@@ -172,7 +172,7 @@ class Container extends NamedElement
 class ConnectivityNode extends NamedElement
 {
     def parse_connectivity (xml: String, context: Context): String =
-        return (Element.parse_attribute (ConnectivityNode.connex, 1, xml, context))
+        return (Element.parse_attribute (ConnectivityNode.connex, 2, xml, context))
 
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
