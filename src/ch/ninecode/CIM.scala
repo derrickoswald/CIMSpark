@@ -259,7 +259,7 @@ import scala.util.matching._
     }
     */
 
-    def parse (xml:String): HashMap[String, Element] =
+    def parse (xml:String): Result =
     {
         val matcher = CIM.rddex.matcher (xml)
         val context = new Context (0, 0, ArrayBuffer (0))
@@ -283,7 +283,7 @@ import scala.util.matching._
             element.parse (rest, context, result)
         }
 
-        return (result.PowerSystemResources)
+        return (result)
     }
 }
 
@@ -294,26 +294,26 @@ object CIM
 
     def main (args: Array[String])
     {
+        if (args.size > 0)
+        {
+            val start = System.nanoTime
 
-        val start = System.nanoTime
+            val source = scala.io.Source.fromFile (args (0))
+            val xml = try source.mkString finally source.close ()
 
-//        val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
-        val source = scala.io.Source.fromFile ("/home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml")
-        val xml = try source.mkString finally source.close ()
+            val before = System.nanoTime
+            val reading = (before - start) / 1000
+            println ("reading %g seconds".format (reading / 1e6))
 
-        val before = System.nanoTime
-        val reading = (before - start) / 1000
-        println ("reading %g seconds".format (reading / 1e6))
+            val parser = new CIM ()
+            val result = parser.parse (xml)
 
-        val parser = new CIM ()
-        val map = parser.parse (xml)
+            val after = System.nanoTime
+            val parsing = (after - before) / 1000
+            println ("parsing %g seconds".format (parsing / 1e6))
 
-        val after = System.nanoTime
-        val parsing = (after - before) / 1000
-        println ("parsing %g seconds".format (parsing / 1e6))
-
-        //println (map)
-        println (map.size + " PowerSystemResource elements parsed")
+            println (result.PowerSystemResources.size + " PowerSystemResource elements parsed")
+        }
     }
 }
 
@@ -327,6 +327,7 @@ object CIM
 
 // interactive creation of an RDD:
 //
+// needs /home/derrick/code/scala-xml/target/scala-2.11/scala-xml_2.11-1.0.6-SNAPSHOT.jar
 //scala> import scala.xml.XML
 //import scala.xml.XML
 //
