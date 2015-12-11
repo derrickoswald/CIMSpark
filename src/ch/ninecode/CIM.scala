@@ -25,6 +25,8 @@ class Element() extends Parser
 {
     val properties: HashMap[String, String] = new HashMap[String, String]
 
+    def id () = properties apply "id"
+
     def parse(xml: String, context: Context, result: Result): Unit =
     {
         val id = Element.parse_id (xml, context)
@@ -39,6 +41,7 @@ class Element() extends Parser
 object Element
 {
     val idex = Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1""")
+
     /**
      * Parse one XML element from a string.
      * @param pattern the regular expression pattern to look for
@@ -126,7 +129,6 @@ class PSRType extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        val id = properties apply "id"
         result.PowerSystemResourceTypes += (id -> this)
     }
 }
@@ -137,21 +139,28 @@ class PSRType extends NamedElement
 class Container extends NamedElement
 {
     val contents = HashSet[String] ()
-    def this (id: String)
+
+    /**
+     * Forward reference constructor.
+     *
+     * Used when there is a forward reference to a container that has not yet been parsed.
+     * @param identifier the id (rdf:ID) of the container, i.e. the forward reference
+     */
+    def this (identifier: String)
     {
         this
-        properties.put ("id", id)
+        properties.put ("id", identifier)
     }
 
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        val id = properties apply "id"
         val node = result.Containers getOrElseUpdate (id, this)
+        // check for forward reference definition and copy any references seen so far
         if (this != node)
         {
             contents ++= node.contents
-            result.Containers.update (id, this)
+            result.Containers.update (id, this) // replace with this Container
         }
     }
 }
@@ -168,7 +177,6 @@ class ConnectivityNode extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        val id = properties apply "id"
         result.ConnectivityNodes += (id -> this) // or update?
         val container = parse_connectivity (xml, context)
         if (null != container)
@@ -197,7 +205,6 @@ class Voltage extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        val id = properties apply "id"
         result.Voltages += (id -> this)
         val voltage = parse_voltage (xml, context)
         if (null != voltage)
@@ -288,25 +295,25 @@ object CIM
     def main (args: Array[String])
     {
 
-        val then = System.nanoTime
+        val start = System.nanoTime
 
 //        val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
-        val source = scala.io.Source.fromFile ("/dump_all.xml")
+        val source = scala.io.Source.fromFile ("/home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml")
         val xml = try source.mkString finally source.close ()
 
         val before = System.nanoTime
-        val reading = (before - then) / 1000
+        val reading = (before - start) / 1000
         println ("reading %g seconds".format (reading / 1e6))
 
         val parser = new CIM ()
         val map = parser.parse (xml)
 
         val after = System.nanoTime
-        //println (map)
-        println (map.size)
-
         val parsing = (after - before) / 1000
         println ("parsing %g seconds".format (parsing / 1e6))
+
+        //println (map)
+        println (map.size + " PowerSystemResource elements parsed")
     }
 }
 
@@ -326,20 +333,20 @@ object CIM
 //scala> val xml = XML.loadFile ("/opt/cim_export/dump_all.xml")
 //xml: scala.xml.Elem =
 //<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#">
-//	<cim:PSRType rdf:ID="PSRType_Substation">
-//		<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
-//	</cim:PSRType>
-//	<cim:PSRType rdf:ID="PSRType_Underground">
-//		<cim:IdentifiedObject.name>Underground</cim:IdentifiedObject.name>
-//	</cim:PSRType>
-//	<cim:PSRType rdf:ID="PSRType_Overhead">
-//		<cim:IdentifiedObject.name>Overhead</cim:IdentifiedObject.name>
-//	</cim:PSRType>
-//	<cim:PSRType rdf:ID="PSRType_Unknown">
-//		<cim:IdentifiedObject.name>Unknown</cim:IdentifiedObject.name>
-//	</cim:PSRType>
-//	<cim:CoordinateSystem rdf:ID="wgs_84">
-//		<cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObje...
+//  <cim:PSRType rdf:ID="PSRType_Substation">
+//    <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
+//  </cim:PSRType>
+//  <cim:PSRType rdf:ID="PSRType_Underground">
+//    <cim:IdentifiedObject.name>Underground</cim:IdentifiedObject.name>
+//  </cim:PSRType>
+//  <cim:PSRType rdf:ID="PSRType_Overhead">
+//    <cim:IdentifiedObject.name>Overhead</cim:IdentifiedObject.name>
+//  </cim:PSRType>
+//  <cim:PSRType rdf:ID="PSRType_Unknown">
+//    <cim:IdentifiedObject.name>Unknown</cim:IdentifiedObject.name>
+//  </cim:PSRType>
+//  <cim:CoordinateSystem rdf:ID="wgs_84">
+//    <cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObje...
 //
 // takes about 30 seconds
 //
