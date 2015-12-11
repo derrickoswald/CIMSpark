@@ -2,6 +2,7 @@ package ch.ninecode
 
 import java.io._
 import java.util.regex.Pattern
+
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
@@ -25,23 +26,13 @@ class Element() extends Parser
 {
     val properties: HashMap[String, String] = new HashMap[String, String]
 
-    def id () = properties apply "id"
-
-    def parse(xml: String, context: Context, result: Result): Unit =
+    override def parse(xml: String, context: Context, result: Result): Unit =
     {
-        val id = Element.parse_id (xml, context)
-        if (null != id)
-        {
-            properties.put ("id", id)
-            result.PowerSystemResources += (id -> this)
-        }
     }
 }
 
 object Element
 {
-    val idex = Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1""")
-
     /**
      * Parse one XML element from a string.
      * @param pattern the regular expression pattern to look for
@@ -83,6 +74,29 @@ object Element
 
         return (ret)
     }
+}
+
+class IdentifiedElement extends Element
+{
+    def id () = properties apply "id"
+
+    override def parse(xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        val id = IdentifiedElement.parse_id (xml, context)
+        if (null != id)
+        {
+            properties.put ("id", id)
+            result.PowerSystemResources += (id -> this)
+        }
+        else
+            throw new Exception ("no id found for an identified element while parsing at line " + context.line_number (context.end))
+    }
+}
+
+object IdentifiedElement
+{
+    val idex = Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1""")
 
     /**
      * Extract an id (rdf:ID value) from an XML string.
@@ -92,17 +106,21 @@ object Element
      * @return the id value
      */
     def parse_id (xml: String, context: Context): String =
-        return (parse_attribute (idex, 2, xml, context))
+        return (Element.parse_attribute (idex, 2, xml, context))
 }
 
-class NamedElement extends Element
+class NamedElement extends IdentifiedElement
 {
+    def name () = properties apply "name"
+
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
         val name = NamedElement.parse_name (xml, context)
         if (null != name)
             properties.put ("name", name)
+        else
+            throw new Exception ("no name found for a named element while parsing at line " + context.line_number (context.end))
     }
 }
 
@@ -177,7 +195,7 @@ class ConnectivityNode extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        result.ConnectivityNodes += (id -> this) // or update?
+        result.ConnectivityNodes += (id -> this) // ToDo: or update?
         val container = parse_connectivity (xml, context)
         if (null != container)
         {
@@ -185,6 +203,8 @@ class ConnectivityNode extends NamedElement
             val node = result.Containers getOrElseUpdate (container, new Container (container))
             node.contents += id
         }
+        else
+            throw new Exception ("no container found for a connectivity element while parsing at line " + context.line_number (context.end))
     }
 }
 
@@ -212,6 +232,8 @@ class Voltage extends NamedElement
             properties.put ("voltage", voltage)
             val node = result.Voltages.getOrElseUpdate (id, this)
         }
+        else
+            throw new Exception ("no voltage value found for a voltage element while parsing at line " + context.line_number (context.end))
     }
 }
 
@@ -264,11 +286,9 @@ import scala.util.matching._
         val matcher = CIM.rddex.matcher (xml)
         val context = new Context (0, 0, ArrayBuffer (0))
         context.index_string (xml, context.start)
-//        val sub = new Context (0, 0, context.newlines)
         val result = new Result ()
         while (matcher.find ())
         {
-//            sub.end = 0
             val name = matcher.group (1)
             val rest = matcher.group (2)
             val element = name match
@@ -281,6 +301,7 @@ import scala.util.matching._
                 case _ ⇒ new Element()
             }
             element.parse (rest, context, result)
+            context.end = matcher.end ()
         }
 
         return (result)
