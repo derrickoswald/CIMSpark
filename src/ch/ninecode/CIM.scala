@@ -1,6 +1,7 @@
 package ch.ninecode
 
 import java.io._
+import java.lang.NumberFormatException
 import java.util.regex.Pattern
 
 import scala.collection.mutable.ArrayBuffer
@@ -189,14 +190,11 @@ class Container extends NamedElement
 //        </cim:ConnectivityNode>
 class ConnectivityNode extends NamedElement
 {
-    def parse_connectivity (xml: String, context: Context): String =
-        return (Element.parse_attribute (ConnectivityNode.connex, 2, xml, context))
-
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
         result.ConnectivityNodes += (id -> this) // ToDo: or update?
-        val container = parse_connectivity (xml, context)
+        val container = ConnectivityNode.parse_connectivity (xml, context)
         if (null != container)
         {
             properties.put ("container", container)
@@ -211,6 +209,9 @@ class ConnectivityNode extends NamedElement
 object ConnectivityNode
 {
     val connex = Pattern.compile ("""<cim:ConnectivityNode.ConnectivityNodeContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+
+    def parse_connectivity (xml: String, context: Context): String =
+        return (Element.parse_attribute (connex, 2, xml, context))
 }
 
 //        <cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
@@ -219,18 +220,26 @@ object ConnectivityNode
 //        </cim:BaseVoltage>
 class Voltage extends NamedElement
 {
-    def parse_voltage (xml: String, context: Context): String =
-        return (Element.parse_attribute (Voltage.voltex, 1, xml, context))
+    def voltage () =
+    {
+        val v = properties apply "voltage"
+        v.toDouble * 1000.0
+    }
 
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
         result.Voltages += (id -> this)
-        val voltage = parse_voltage (xml, context)
+        val voltage = Voltage.parse_voltage (xml, context)
         if (null != voltage)
         {
             properties.put ("voltage", voltage)
-            val node = result.Voltages.getOrElseUpdate (id, this)
+            try
+                voltage.toDouble
+            catch
+            {
+                case nfe: NumberFormatException => throw new Exception ("unparsable voltage value found for a voltage element while parsing at line " + context.line_number (context.end))
+            }
         }
         else
             throw new Exception ("no voltage value found for a voltage element while parsing at line " + context.line_number (context.end))
@@ -240,6 +249,32 @@ class Voltage extends NamedElement
 object Voltage
 {
     val voltex = Pattern.compile ("""<cim:BaseVoltage.nominalVoltage>([\s\S]*?)<\/cim:BaseVoltage.nominalVoltage>""")
+
+    def parse_voltage (xml: String, context: Context): String =
+        return (Element.parse_attribute (voltex, 1, xml, context))
+}
+
+class CoordinateSystem extends NamedElement
+{
+    def urn = properties apply "urn"
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        val urn = CoordinateSystem.parse_urn (xml, context)
+        if (null != urn)
+            properties.put ("urn", urn)
+        else
+            throw new Exception ("no urn value found for a coordinate system element while parsing at line " + context.line_number (context.end))
+    }
+}
+
+object CoordinateSystem
+{
+    val urnex = Pattern.compile ("""<cim:crsUrn>([\s\S]*?)<\/cim:crsUrn>""")
+
+    def parse_urn (xml: String, context: Context): String =
+        return (Element.parse_attribute (urnex, 1, xml, context))
 }
 
 class CIM
@@ -298,6 +333,7 @@ import scala.util.matching._
                 case "cim:Substation" ⇒ new Container () // type is lost
                 case "cim:ConnectivityNode" ⇒ new ConnectivityNode ()
                 case "cim:BaseVoltage" ⇒ new Voltage ()
+                case "cim:CoordinateSystem" ⇒ new CoordinateSystem ()
                 case _ ⇒ new Element()
             }
             element.parse (rest, context, result)
