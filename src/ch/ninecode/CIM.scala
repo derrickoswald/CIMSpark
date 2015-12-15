@@ -1,6 +1,5 @@
 package ch.ninecode
 
-import java.io._
 import java.lang.NumberFormatException
 import java.util.regex.Pattern
 
@@ -10,7 +9,10 @@ import scala.collection.mutable.HashSet
 
 trait Parser
 {
-    def parse (xml: String, context: Context, result: Result): Unit
+    def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        // default implementation does nothing at the moment
+    }
 }
 
 class Result
@@ -26,10 +28,6 @@ class Result
 abstract class Element () extends Parser
 {
     val properties: HashMap[String, String] = new HashMap[String, String]
-
-    override def parse (xml: String, context: Context, result: Result): Unit =
-    {
-    }
 
     /**
      * Extract and store a property function generator.
@@ -48,8 +46,11 @@ abstract class Element () extends Parser
      * value in the properties collection.
      * @param mandatory If true and the property is not found by the regular expression,
      * throw an exception.
+     * @param xml The substring to parse.
+     * @param context The context object with character offsets and linenumber index array.
+     * @param result The current parse partial result.
      */
-    def parse_property (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context): Unit =
+    def parse_property (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context, result: Result): Unit =
     {
         val value = Element.parse_attribute (regex, index, xml, context);
         if (null != value)
@@ -342,8 +343,8 @@ class Location extends IdentifiedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        cs (xml, context);
-        typ (xml, context);
+        cs (xml, context, result);
+        typ (xml, context, result);
         val node = (result.PowerSystemResources getOrElseUpdate (id, this)).asInstanceOf [Location]
         // check for forward reference definition and copy any coordinates seen so far
         if (this != node)
@@ -411,9 +412,9 @@ class Asset extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        typ (xml, context);
-        ass (xml, context);
-        inf (xml, context);
+        typ (xml, context, result);
+        ass (xml, context, result);
+        inf (xml, context, result);
         // ToDo: check for forward reference definition and copy any data necessary
     }
 }
@@ -438,19 +439,34 @@ class Consumer extends NamedElement
     import Consumer._
 
     def container () = properties apply "container"
+
+
+    // ToDo: some of these should be parse_attribute
     def typ = parse_property (typex, 2, "type", true)_
     def loc = parse_property (locex, 1, "location", true)_
     def vol = parse_property (volex, 2, "voltage", true)_
     def con = parse_property (conex, 2, "container", true)_
     def faz = parse_property (fazex, 2, "phase", true)_
+
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
-        super.parse (xml, context, result)
-        typ (xml, context);
-        loc (xml, context);
-        vol (xml, context);
-        con (xml, context);
-        faz (xml, context);
+//      super.parse (xml, context, result)
+//      typ (xml, context, result);
+//      loc (xml, context, result);
+//      vol (xml, context, result);
+//      con (xml, context, result);
+//      faz (xml, context, result);
+
+        val steps = Array[(String, Context, Result) => Unit](
+            super.parse,
+            typ,
+            loc,
+            vol,
+            con,
+            faz
+        )
+        for (f <- steps)
+            f (xml, context, result)
         val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
             node.contents += id
     }
