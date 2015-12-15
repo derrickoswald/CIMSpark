@@ -20,15 +20,43 @@ class Result
     val ConnectivityNodes = HashMap[String, ConnectivityNode] ()
     val Containers = HashMap[String, Container] ()
     val Voltages = HashMap[String, Voltage] ()
-    val Ignored = HashMap[String, Element] ()
+    var Ignored = 0
 }
 
-class Element() extends Parser
+abstract class Element () extends Parser
 {
     val properties: HashMap[String, String] = new HashMap[String, String]
 
-    override def parse(xml: String, context: Context, result: Result): Unit =
+    override def parse (xml: String, context: Context, result: Result): Unit =
     {
+    }
+
+    /**
+     * Extract and store a property function generator.
+     *
+     * Using the provided regular expression, parse out the value of the given property
+     * which has the given group index and store it under the property name provided.
+     * Complain with an exception if the property is not found and mandatory is true.
+     *
+     * Curry the function with a string to parse and the parsing context.
+     *
+     * @param regex The regular expression with at least one group
+     * that can pick out the property value - which will be a string so it can be
+     * stored in the properties collection.
+     * @param index The group index of the property pattern within the regular expression.
+     * @param name The name of the property under which to store the
+     * value in the properties collection.
+     * @param mandatory If true and the property is not found by the regular expression,
+     * throw an exception.
+     */
+    def parse_property (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context): Unit =
+    {
+        val value = Element.parse_attribute (regex, index, xml, context);
+        if (null != value)
+            properties.put (name, value)
+        else
+            if (mandatory)
+                throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number (context.end))
     }
 }
 
@@ -74,6 +102,15 @@ object Element
             ret = ret.substring (1)
 
         return (ret)
+    }
+}
+
+class Unknown extends Element
+{
+    override def parse(xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        result.Ignored = result.Ignored + 1
     }
 }
 
@@ -277,6 +314,157 @@ object CoordinateSystem
         return (Element.parse_attribute (urnex, 1, xml, context))
 }
 
+//    <cim:Location rdf:ID="_location_5773088_1107287243_317923">
+//            <cim:Location.CoordinateSystem>wgs_84</cim:Location.CoordinateSystem>
+//            <cim:Location.type>geographic</cim:Location.type>
+//    </cim:Location>
+
+class Location extends IdentifiedElement
+{
+    import Location._
+
+    var coordinates = new ArrayBuffer[Double] (2)
+
+    /**
+     * Forward reference constructor.
+     *
+     * Used when there is a forward reference to a location that has not yet been parsed.
+     * @param identifier the id (rdf:ID) of the location, i.e. the forward reference
+     */
+    def this (identifier: String)
+    {
+        this
+        properties.put ("id", identifier)
+    }
+
+    def cs = parse_property (csex, 1, "cs", true)_
+    def typ = parse_property (typex, 1, "type", true)_
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        cs (xml, context);
+        typ (xml, context);
+        val node = (result.PowerSystemResources getOrElseUpdate (id, this)).asInstanceOf [Location]
+        // check for forward reference definition and copy any coordinates seen so far
+        if (this != node)
+        {
+            coordinates ++= node.coordinates
+            result.PowerSystemResources.update (id, this) // replace with this Location
+        }
+    }
+}
+
+object Location
+{
+    val csex = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
+    val typex = Pattern.compile ("""<cim:Location.type>([\s\S]*?)<\/cim:Location.type>""")
+}
+
+//    <cim:PositionPoint>
+//            <cim:PositionPoint.Location>_location_5773088_1107287243_317923</cim:PositionPoint.Location>
+//            <cim:sequenceNumber>0</cim:sequenceNumber>
+//            <cim:xPosition>8.78184724183</cim:xPosition>
+//            <cim:yPosition>47.0400997930</cim:yPosition>
+//    </cim:PositionPoint>
+
+class PositionPoint extends Element
+{
+    import PositionPoint._
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        val location = Element.parse_attribute (locex, 1, xml, context)
+        val sequence = Element.parse_attribute (seqex, 1, xml, context).toInt
+        val x = Element.parse_attribute (xposex, 1, xml, context).toDouble
+        val y = Element.parse_attribute (yposex, 1, xml, context).toDouble
+        val loc = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
+        val size = 2 * (sequence + 1)
+        if (loc.coordinates.length < size)
+            loc.coordinates = loc.coordinates.padTo (size, 0.0)
+        loc.coordinates.update (sequence * 2, x)
+        loc.coordinates.update (sequence * 2 + 1, y)
+    }
+}
+
+object PositionPoint
+{
+    val locex = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
+    val seqex = Pattern.compile ("""<cim:sequenceNumber>([\s\S]*?)<\/cim:sequenceNumber>""")
+    val xposex = Pattern.compile ("""<cim:xPosition>([\s\S]*?)<\/cim:xPosition>""")
+    val yposex = Pattern.compile ("""<cim:yPosition>([\s\S]*?)<\/cim:yPosition>""")
+}
+
+//<cim:Asset rdf:ID="_busbar_1772383_asset">
+//<cim:Asset.type>Busbar</cim:Asset.type>
+//<cim:IdentifiedObject.name>Busbar_SAM143</cim:IdentifiedObject.name>
+//<cim:Asset.PowerSystemResources rdf:resource="#_busbar_1772383"/>
+//<cim:Asset.AssetInfo rdf:resource="#_busbar_spec_566593648"/>
+//</cim:Asset>
+class Asset extends NamedElement
+{
+    import Asset._
+
+    def typ = parse_property (typex, 1, "type", true)_
+    def ass = parse_property (assex, 2, "asset", true)_
+    def inf = parse_property (infox, 2, "info", true)_
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        typ (xml, context);
+        ass (xml, context);
+        inf (xml, context);
+        // ToDo: check for forward reference definition and copy any data necessary
+    }
+}
+
+object Asset
+{
+    val typex = Pattern.compile ("""<cim:Asset.type>([\s\S]*?)<\/cim:Asset.type>""")
+    val assex = Pattern.compile ("""<cim:Asset.PowerSystemResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val infox = Pattern.compile ("""<cim:Asset.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//<cim:EnergyConsumer rdf:ID="_house_connection_1469932">
+//    <cim:IdentifiedObject.name>HAS1</cim:IdentifiedObject.name>
+//    <cim:PowerSystemResource.Location>_location_5773088_1107287243_317923</cim:PowerSystemResource.Location>
+//    <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//    <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_350063"/>
+//    <cim:PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
+//</cim:EnergyConsumer>
+class Consumer extends NamedElement
+{
+    import Consumer._
+
+    def container () = properties apply "container"
+    def typ = parse_property (typex, 2, "type", true)_
+    def loc = parse_property (locex, 1, "location", true)_
+    def vol = parse_property (volex, 2, "voltage", true)_
+    def con = parse_property (conex, 2, "container", true)_
+    def faz = parse_property (fazex, 2, "phase", true)_
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        typ (xml, context);
+        loc (xml, context);
+        vol (xml, context);
+        con (xml, context);
+        faz (xml, context);
+        val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
+            node.contents += id
+    }
+}
+
+object Consumer
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
+    val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val fazex = Pattern.compile ("""<cim:PhaseConnection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
 class CIM
 {
     /*
@@ -334,7 +522,11 @@ import scala.util.matching._
                 case "cim:ConnectivityNode" ⇒ new ConnectivityNode ()
                 case "cim:BaseVoltage" ⇒ new Voltage ()
                 case "cim:CoordinateSystem" ⇒ new CoordinateSystem ()
-                case _ ⇒ new Element()
+                case "cim:Location" ⇒ new Location ()
+                case "cim:PositionPoint" ⇒ CIM.point
+                case "cim:Asset" ⇒ new Asset ()
+                case "cim:EnergyConsumer" ⇒ new Consumer ()
+                case _ ⇒ CIM.unknown
             }
             element.parse (rest, context, result)
             context.end = matcher.end ()
@@ -348,7 +540,8 @@ object CIM
 {
 
     val rddex = Pattern.compile ("""\s*<(cim:[^ >\s]+)([\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
-
+    val point = new PositionPoint () // only one of these is required because it just updates the Location object it references
+    val unknown = new Unknown ();
     def main (args: Array[String])
     {
         if (args.size > 0)
@@ -370,6 +563,7 @@ object CIM
             println ("parsing %g seconds".format (parsing / 1e6))
 
             println (result.PowerSystemResources.size + " PowerSystemResource elements parsed")
+            println (result.Ignored + " elements ignored")
         }
     }
 }

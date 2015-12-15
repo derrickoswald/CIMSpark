@@ -1,0 +1,16 @@
+P=
+Xplugin=
+Xplugin-disable=
+Xplugin-require=
+deprecation=true
+eclipse.preferences.version=1
+feature=true
+organizeimports.expandcollapse=expand
+organizeimports.groups=java$scala$org$com$ch
+organizeimports.wildcards=scalaz$scalaz.Scalaz
+scala.compiler.additionalParams=
+scala.compiler.installation=2.11
+scala.compiler.sourceLevel=2.11
+scala.compiler.useProjectSettings=false
+target=jvm-1.8
+unchecked=true
