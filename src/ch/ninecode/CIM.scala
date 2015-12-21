@@ -50,7 +50,17 @@ abstract class Element () extends Parser
      * @param context The context object with character offsets and linenumber index array.
      * @param result The current parse partial result.
      */
-    def parse_property (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context, result: Result): Unit =
+    def parse_element (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context, result: Result): Unit =
+    {
+        val value = Element.parse_element (regex, index, xml, context);
+        if (null != value)
+            properties.put (name, value)
+        else
+            if (mandatory)
+                throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number (context.end))
+    }
+
+    def parse_attribute (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context, result: Result): Unit =
     {
         val value = Element.parse_attribute (regex, index, xml, context);
         if (null != value)
@@ -289,7 +299,7 @@ object Voltage
     val voltex = Pattern.compile ("""<cim:BaseVoltage.nominalVoltage>([\s\S]*?)<\/cim:BaseVoltage.nominalVoltage>""")
 
     def parse_voltage (xml: String, context: Context): String =
-        return (Element.parse_attribute (voltex, 1, xml, context))
+        return (Element.parse_element (voltex, 1, xml, context))
 }
 
 class CoordinateSystem extends NamedElement
@@ -338,8 +348,8 @@ class Location extends IdentifiedElement
         properties.put ("id", identifier)
     }
 
-    def cs = parse_property (csex, 1, "cs", true)_
-    def typ = parse_property (typex, 1, "type", true)_
+    def cs = parse_element (csex, 1, "cs", true)_
+    def typ = parse_element (typex, 1, "type", true)_
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
@@ -406,9 +416,9 @@ class Asset extends NamedElement
 {
     import Asset._
 
-    def typ = parse_property (typex, 1, "type", true)_
-    def ass = parse_property (assex, 2, "asset", true)_
-    def inf = parse_property (infox, 2, "info", true)_
+    def typ = parse_element (typex, 1, "type", true)_
+    def ass = parse_attribute (assex, 2, "asset", true)_
+    def inf = parse_attribute (infox, 2, "info", true)_
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
@@ -439,36 +449,37 @@ class Consumer extends NamedElement
     import Consumer._
 
     def container () = properties apply "container"
+    def location () = properties apply "location"
 
-
-    // ToDo: some of these should be parse_attribute
-    def typ = parse_property (typex, 2, "type", true)_
-    def loc = parse_property (locex, 1, "location", true)_
-    def vol = parse_property (volex, 2, "voltage", true)_
-    def con = parse_property (conex, 2, "container", true)_
-    def faz = parse_property (fazex, 2, "phase", true)_
+    def typ = parse_attribute (typex, 2, "type", true)_
+    def loc = parse_element (locex, 1, "location", true)_
+    def vol = parse_attribute (volex, 2, "voltage", true)_
+    def con = parse_attribute (conex, 2, "container", true)_
+    def faz = parse_attribute (fazex, 2, "phase", true)_
 
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
-//      super.parse (xml, context, result)
-//      typ (xml, context, result);
-//      loc (xml, context, result);
-//      vol (xml, context, result);
-//      con (xml, context, result);
-//      faz (xml, context, result);
+        super.parse (xml, context, result)
+        typ (xml, context, result);
+        loc (xml, context, result);
+        vol (xml, context, result);
+        con (xml, context, result);
+        faz (xml, context, result);
 
-        val steps = Array[(String, Context, Result) => Unit](
-            super.parse,
-            typ,
-            loc,
-            vol,
-            con,
-            faz
-        )
-        for (f <- steps)
-            f (xml, context, result)
+//or as an array of functions
+//        val steps = Array[(String, Context, Result) => Unit](
+//            super.parse,
+//            typ,
+//            loc,
+//            vol,
+//            con,
+//            faz
+//        )
+//        for (f <- steps)
+//            f (xml, context, result)
         val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
             node.contents += id
+        val locn = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
     }
 }
 
@@ -479,6 +490,428 @@ object Consumer
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val fazex = Pattern.compile ("""<cim:PhaseConnection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//<cim:Terminal rdf:ID="_house_connection_1469932_terminal">
+//    <cim:IdentifiedObject.name>HAS1_terminal</cim:IdentifiedObject.name>
+//    <cim:Terminal.sequenceNumber>1</cim:Terminal.sequenceNumber>
+//    <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseCode.ABC"/>
+//    <cim:Terminal.ConnectivityNode rdf:resource="#_node_1469932"/>
+//    <cim:Terminal.ConductingEquipment rdf:resource="#_house_connection_1469932"/>
+//</cim:Terminal>
+
+class Terminal extends NamedElement
+{
+    import Terminal._
+
+    def seq = parse_element (seqex, 1, "sequence", true)_
+    def faz = parse_attribute (fazex, 2, "phase", true)_
+    def con = parse_attribute (conex, 2, "connectivity", false)_  // allow for unconnected terminals
+    def eqp = parse_attribute (eqpex, 2, "equipment", true)_
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        seq (xml, context, result);
+        faz (xml, context, result);
+        con (xml, context, result);
+        eqp (xml, context, result);
+    }
+}
+
+object Terminal
+{
+    val seqex = Pattern.compile ("""<cim:Terminal.sequenceNumber>([\s\S]*?)<\/cim:Terminal.sequenceNumber>""")
+    val fazex = Pattern.compile ("""<cim:Terminal.phases\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val conex = Pattern.compile ("""<cim:Terminal.ConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val eqpex = Pattern.compile ("""<cim:Terminal.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//<cim:BusbarSection rdf:ID="_busbar_1772383">
+//    <cim:IdentifiedObject.name>SAM143</cim:IdentifiedObject.name>
+//    <cim:PowerSystemResource.Location>_location_1610657792_427078125_1772388</cim:PowerSystemResource.Location>
+//    <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
+//    <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_858945"/>
+//</cim:BusbarSection>
+
+class BusbarSection extends NamedElement
+{
+    import BusbarSection._
+
+    def container () = properties apply "container"
+    def location () = properties apply "location"
+
+    def typ = parse_attribute (typex, 2, "type", true)_
+    def loc = parse_element (locex, 1, "location", true)_
+    def vol = parse_attribute (volex, 2, "voltage", true)_
+    def con = parse_attribute (conex, 2, "container", true)_
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        typ (xml, context, result);
+        loc (xml, context, result);
+        vol (xml, context, result);
+        con (xml, context, result);
+        val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
+            node.contents += id
+        val locn = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
+    }
+}
+
+object BusbarSection
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
+    val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//<cim:ACLineSegment rdf:ID="_internal_line_2094357">
+//    <cim:IdentifiedObject.name>KLE8207</cim:IdentifiedObject.name>
+//    <cim:PowerSystemResource.Location>_location_1610630656_427084375_2094361</cim:PowerSystemResource.Location>
+//    <cim:Conductor.length>19.5</cim:Conductor.length>
+//    <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//    <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>
+//</cim:ACLineSegment>
+
+class ACLineSegment extends NamedElement
+{
+    import ACLineSegment._
+
+    var phases = new ArrayBuffer[String] (1)
+
+    /**
+     * Forward reference constructor.
+     *
+     * Used when there is a forward reference to a line segment that has not yet been parsed.
+     * @param identifier the id (rdf:ID) of the line segment, i.e. the forward reference
+     */
+    def this (identifier: String)
+    {
+        this
+        properties.put ("id", identifier)
+    }
+
+    def container () = properties apply "container"
+    def location () = properties apply "location"
+
+    def typ = parse_attribute (typex, 2, "type", true)_
+    def loc = parse_element (locex, 1, "location", true)_
+    def len = parse_element (lenex, 1, "length", true)_
+    def vol = parse_attribute (volex, 2, "voltage", true)_
+    def con = parse_attribute (conex, 2, "container", true)_
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        typ (xml, context, result);
+        loc (xml, context, result);
+        len (xml, context, result);
+        vol (xml, context, result);
+        con (xml, context, result);
+        val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
+            node.contents += id
+        val locn = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
+        val seg = (result.PowerSystemResources getOrElseUpdate (id, this)).asInstanceOf [ACLineSegment]
+        // check for forward reference definition and copy any phases seen so far
+        if (this != seg)
+        {
+            phases ++= seg.phases
+            result.PowerSystemResources.update (id, this) // replace with this ACLineSegment
+        }
+    }
+}
+
+object ACLineSegment
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
+    val lenex = Pattern.compile ("""<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>""")
+    val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//<cim:ACLineSegmentPhase rdf:ID="_internal_line_2094357_phase_A">
+//   <cim:IdentifiedObject.name>KLE8207_phase_A</cim:IdentifiedObject.name>
+//   <cim:ACLineSegmentPhase.phase rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#SinglePhaseKind.A"/>
+//   <cim:ACLineSegmentPhase.ACLineSegment rdf:resource="_internal_line_2094357"/>
+//</cim:ACLineSegmentPhase>
+
+class ACLineSegmentPhase extends NamedElement
+{
+    import ACLineSegmentPhase._
+
+    def segment () = properties apply "segment"
+
+    def faz = parse_attribute (fazex, 2, "phase", true)_
+    def seg = parse_attribute (segex, 2, "segment", true)_
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        faz (xml, context, result);
+        seg (xml, context, result);
+        val segm = (result.PowerSystemResources getOrElseUpdate (segment, new ACLineSegment (segment))).asInstanceOf [ACLineSegment]
+            segm.phases += id
+    }
+}
+
+object ACLineSegmentPhase
+{
+    val fazex = Pattern.compile ("""<cim:ACLineSegmentPhase.phase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val segex = Pattern.compile ("""<cim:ACLineSegmentPhase.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//    <cim:LoadBreakSwitch rdf:ID="_switch_1977502">
+//            <cim:IdentifiedObject.name>TEI568</cim:IdentifiedObject.name>
+//            <cim:PowerSystemResource.Location>_location_1610720512_427087414_1977506</cim:PowerSystemResource.Location>
+//            <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+//            <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
+//            <cim:Equipment.EquipmentContainer rdf:resource="_substation_251865"/>
+//    </cim:LoadBreakSwitch>
+
+class Switch extends NamedElement
+{
+    import Switch._
+
+    def container () = properties apply "container"
+    def normalOpen () = (properties apply "normalOpen").toBoolean
+
+    def typ = parse_attribute (typex, 2, "type", true)_
+    def con = parse_attribute (conex, 2, "container", true)_
+    def loc = parse_element (locex, 1, "location", true)_
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        typ (xml, context, result);
+        loc (xml, context, result);
+        con (xml, context, result);
+        val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
+            node.contents += id
+        val open = Switch.parse_open (xml, context)
+        if (null != open)
+        {
+            properties.put ("normalOpen", open)
+            try
+                open.toBoolean
+            catch
+            {
+                case iae: IllegalArgumentException => throw new Exception ("unparsable boolean value found for a normalOpen element while parsing at line " + context.line_number (context.end))
+            }
+        }
+        else
+            throw new Exception ("no normalOpen value found for a switch element while parsing at line " + context.line_number (context.end))
+    }
+}
+
+object Switch
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val opnex = Pattern.compile ("""<cim:Switch.normalOpen>([\s\S]*?)<\/cim:Switch.normalOpen>""")
+    val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
+
+    def parse_open (xml: String, context: Context): String =
+        return (Element.parse_element (opnex, 1, xml, context))
+}
+
+//        <cim:PowerTransformerInfo rdf:ID="_power_transformer_2083545">
+//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA</cim:IdentifiedObject.name>
+//                <cim:PowerTransformerInfo.TransformerTankInfo rdf:resource="#_power_xfrmr_spec_2083545"/>
+//        </cim:PowerTransformerInfo>
+class PowerTransformerInfo extends NamedElement
+{
+    import PowerTransformerInfo._
+    def inf = parse_attribute (infex, 2, "info", true)_
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        inf (xml, context, result);
+    }
+}
+
+object PowerTransformerInfo
+{
+    val infex = Pattern.compile ("""<cim:PowerTransformerInfo.TransformerTankInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//        <cim:TransformerTankInfo rdf:ID="_power_xfrmr_spec_2083545">
+//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA tank</cim:IdentifiedObject.name>
+//                <cim:TransformerTankInfo.PowerTransformerInfo rdf:resource="#_power_transformer_2083545"/>
+//        </cim:TransformerTankInfo>
+class TransformerTankInfo extends NamedElement
+{
+    import TransformerTankInfo._
+    def inf = parse_attribute (infex, 2, "info", true)_
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        inf (xml, context, result);
+    }
+}
+
+object TransformerTankInfo
+{
+    val infex = Pattern.compile ("""<cim:TransformerTankInfo.PowerTransformerInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//        <cim:TransformerEndInfo rdf:ID="_power_transformer_2083545_end_info_1">
+//                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA_tei_1</cim:IdentifiedObject.name>
+//                <cim:TransformerEndInfo.endNumber>1</cim:TransformerEndInfo.endNumber>
+//        </cim:TransformerEndInfo>
+class TransformerEndInfo extends NamedElement
+{
+    import TransformerEndInfo._
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        val end = parse_end (xml, context)
+        if (null != end)
+        {
+            properties.put ("end", end)
+            try
+                end.toInt
+            catch
+            {
+                case nfe: NumberFormatException => throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + context.line_number (context.end))
+            }
+        }
+        else
+            throw new Exception ("no normalOpen value found for a switch element while parsing at line " + context.line_number (context.end))
+
+    }
+}
+
+object TransformerEndInfo
+{
+    val numex = Pattern.compile ("""<cim:TransformerEndInfo.endNumber>([\s\S]*?)<\/cim:TransformerEndInfo.endNumber>""")
+
+    def parse_end (xml: String, context: Context): String =
+        return (Element.parse_element (numex, 1, xml, context))
+}
+
+//        <cim:PowerTransformer rdf:ID="_transformer_2083545">
+//                <cim:IdentifiedObject.name>TRA79</cim:IdentifiedObject.name>
+//                <cim:PowerSystemResource.Location>_location_1610630656_427085543_2083549</cim:PowerSystemResource.Location>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="#_substation_244441"/>
+//        </cim:PowerTransformer>
+
+class PowerTransformer extends NamedElement
+{
+    import PowerTransformer._
+
+    def container () = properties apply "container"
+    def location () = properties apply "location"
+
+    def typ = parse_attribute (typex, 2, "type", true)_
+    def loc = parse_element (locex, 1, "location", true)_
+    def con = parse_attribute (conex, 2, "container", true)_
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        typ (xml, context, result);
+        loc (xml, context, result);
+        con (xml, context, result);
+        val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
+            node.contents += id
+        val locn = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
+    }
+}
+
+object PowerTransformer
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
+    val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//       <cim:TransformerTank rdf:ID="_transformer_2083545_tank">
+//                <cim:IdentifiedObject.name>TRA79_tank</cim:IdentifiedObject.name>
+//                <cim:TransformerTank.PowerTransformer rdf:resource="#_transformer_2083545"/>
+//        </cim:TransformerTank>
+class TransformerTank extends NamedElement
+{
+    import TransformerTank._
+    var ends = new ArrayBuffer[String] (2)
+
+    /**
+     * Forward reference constructor.
+     *
+     * Used when there is a forward reference to a tank that has not yet been parsed.
+     * @param identifier the id (rdf:ID) of the tank, i.e. the forward reference
+     */
+    def this (identifier: String)
+    {
+        this
+        properties.put ("id", identifier)
+    }
+    def transformer () = properties apply "transformer"
+    def tra = parse_attribute (traex, 2, "transformer", true)_
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        tra (xml, context, result);
+        val tank = (result.PowerSystemResources getOrElseUpdate (id, this)).asInstanceOf [TransformerTank]
+        // check for forward reference definition and copy any phases seen so far
+        if (this != tank)
+        {
+            ends ++= tank.ends
+            result.PowerSystemResources.update (id, this) // replace with this TransfomerTank
+        }
+    }
+}
+
+object TransformerTank
+{
+    val traex = Pattern.compile ("""<cim:TransformerTank.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+}
+
+//        <cim:TransformerTankEnd rdf:ID="_transformer_2083545_tank_end_1">
+//                <cim:TransformerEnd.endNumber>1</cim:TransformerEnd.endNumber>
+//                <cim:IdentifiedObject.name>TRA79_tank_end_1</cim:IdentifiedObject.name>
+//                <cim:TransformerTankEnd.phases rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseCode.ABC"/>
+//                <cim:TransformerTankEnd.TransformerTank rdf:resource="#_transformer_2083545_tank"/>
+//                <cim:TransformerEnd.Terminal rdf:resource="#_transformer_2083545_terminal_1"/>
+//                <cim:TransformerEnd.BaseVoltage rdf:resource="#BaseVoltage_16.0000000000"/>
+//        </cim:TransformerTankEnd>
+class TransformerTankEnd extends NamedElement
+{
+    import TransformerTankEnd._
+    def tank () = properties apply "tank"
+
+    def end = parse_element (endex, 1, "end", true)_
+    def faz = parse_attribute (fazex, 2, "phases", true)_
+    def tnk = parse_attribute (tnkex, 2, "tank", true)_
+    def trm = parse_attribute (trmex, 2, "terminal", true)_
+    def vol = parse_attribute (volex, 2, "voltage", true)_
+
+    override def parse (xml: String, context: Context, result: Result): Unit =
+    {
+        super.parse (xml, context, result)
+        end (xml, context, result)
+        faz (xml, context, result)
+        tnk (xml, context, result)
+        trm (xml, context, result)
+        vol (xml, context, result)
+        val tak = (result.PowerSystemResources getOrElseUpdate (tank, new TransformerTank (tank))).asInstanceOf [TransformerTank]
+            tak.ends += id
+    }
+}
+
+object TransformerTankEnd
+{
+    val endex = Pattern.compile ("""<cim:TransformerEnd.endNumber>([\s\S]*?)<\/cim:TransformerEnd.endNumber>""")
+    val fazex = Pattern.compile ("""<cim:TransformerTankEnd.phases\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val tnkex = Pattern.compile ("""<cim:TransformerTankEnd.TransformerTank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val trmex = Pattern.compile ("""<cim:TransformerEnd.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val volex = Pattern.compile ("""<cim:TransformerEnd.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+
 }
 
 class CIM
@@ -542,6 +975,20 @@ import scala.util.matching._
                 case "cim:PositionPoint" ⇒ CIM.point
                 case "cim:Asset" ⇒ new Asset ()
                 case "cim:EnergyConsumer" ⇒ new Consumer ()
+                case "cim:Terminal" ⇒ new Terminal ()
+                case "cim:BusbarInfo" ⇒ new NamedElement () // type is lost
+                case "cim:BusbarSection" ⇒ new BusbarSection ()
+                case "cim:CableInfo" ⇒ new NamedElement () // type is lost
+                case "cim:ACLineSegment" ⇒ new ACLineSegment ()
+                case "cim:ACLineSegmentPhase" ⇒ new ACLineSegmentPhase ()
+                case "cim:SwitchInfo" ⇒ new NamedElement () // type is lost
+                case "cim:LoadBreakSwitch" ⇒ new Switch ()
+                case "cim:PowerTransformerInfo" ⇒ new PowerTransformerInfo ()
+                case "cim:TransformerTankInfo" ⇒ new TransformerTankInfo ()
+                case "cim:TransformerEndInfo" ⇒ new TransformerEndInfo ()
+                case "cim:PowerTransformer" ⇒ new PowerTransformer ()
+                case "cim:TransformerTank" ⇒ new TransformerTank ()
+                case "cim:TransformerTankEnd" ⇒ new TransformerTankEnd ()
                 case _ ⇒ CIM.unknown
             }
             element.parse (rest, context, result)
