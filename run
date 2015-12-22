@@ -1,0 +1,1 @@
+sbt run-main ch.ninecode.CIM /home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml
