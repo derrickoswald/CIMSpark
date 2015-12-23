@@ -2,6 +2,10 @@ package ch.ninecode
 
 import java.lang.NumberFormatException
 import java.util.regex.Pattern
+import java.io.File
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
@@ -1001,7 +1005,7 @@ import scala.util.matching._
 
 object CIM
 {
-
+    val CHUNK = 1024*1024*16
     val rddex = Pattern.compile ("""\s*<(cim:[^ >\s]+)([\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
     val point = new PositionPoint () // only one of these is required because it just updates the Location object it references
     val unknown = new Unknown ();
@@ -1010,24 +1014,52 @@ object CIM
         if (args.size > 0)
         {
             val start = System.nanoTime
+            val file = new File (args (0))
+            if (file.exists ()) // avoid FileNotFoundException
+            {
+                val fis = new FileInputStream (file)
+                val isr = new InputStreamReader (fis, "UTF8")
+                var xml = ""
+                val buf = new Array[Char] (CHUNK)
+                var i:Int = 0
+                val size = fis.available ()
+                println ("available: %d bytes".format (size))
+                val sb = new StringBuilder (size)
+                do
+                {
+                    i = isr.read (buf, 0, CHUNK)
+                    if (0 < i)
+// slow 17 seconds      xml = xml + buf.view (0, i).mkString
+// slow 2 seconds       xml = xml + String.valueOf (buf.slice (0, i))
+// OK 0.83 seconds
+                        sb.appendAll (buf, 0, i)
+                }
+                while (0 <= i)
+                isr.close ()
+                xml = sb.toString ()
+// fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
+//                val source = scala.io.Source.fromFile (args (0))
+//                val xml = try source.mkString finally source.close ()
 
-            val source = scala.io.Source.fromFile (args (0))
-            val xml = try source.mkString finally source.close ()
+                val before = System.nanoTime
+                val reading = (before - start) / 1000
+                println ("reading %g seconds".format (reading / 1e6))
 
-            val before = System.nanoTime
-            val reading = (before - start) / 1000
-            println ("reading %g seconds".format (reading / 1e6))
+                val parser = new CIM ()
+                val result = parser.parse (xml)
 
-            val parser = new CIM ()
-            val result = parser.parse (xml)
+                val after = System.nanoTime
+                val parsing = (after - before) / 1000
+                println ("parsing %g seconds".format (parsing / 1e6))
 
-            val after = System.nanoTime
-            val parsing = (after - before) / 1000
-            println ("parsing %g seconds".format (parsing / 1e6))
-
-            println (result.PowerSystemResources.size + " PowerSystemResource elements parsed")
-            println (result.Ignored + " elements ignored")
+                println (result.PowerSystemResources.size + " PowerSystemResource elements parsed")
+                println (result.Ignored + " elements ignored")
+            }
+            else
+                println ("CIM XML input file not found")
         }
+        else
+            println ("CIM XML input file not specified")
     }
 }
 

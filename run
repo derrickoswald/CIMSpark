@@ -1,1 +1,2 @@
-sbt run-main ch.ninecode.CIM /home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml
+# sbt run-main ch.ninecode.CIM /home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml
+scala -J-Xmx1G -classpath target/scala-2.11/cimscala_2.11-0.1.jar ch.ninecode.CIM /home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml
