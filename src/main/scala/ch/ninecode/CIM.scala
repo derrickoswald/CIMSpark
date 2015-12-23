@@ -3,9 +3,9 @@ package ch.ninecode
 import java.lang.NumberFormatException
 import java.util.regex.Pattern
 import java.io.File
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.FileInputStream
+import java.io.IOException
+import java.io.InputStreamReader
 
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
@@ -1023,7 +1023,7 @@ object CIM
                 val buf = new Array[Char] (CHUNK)
                 var i:Int = 0
                 val size = fis.available ()
-                println ("available: %d bytes".format (size))
+                println ("file size: %d bytes".format (size))
                 val sb = new StringBuilder (size)
                 do
                 {
