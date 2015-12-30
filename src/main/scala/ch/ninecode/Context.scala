@@ -43,15 +43,15 @@ class Context (var start: Int, var end: Int, val newlines: ArrayBuffer[Int])
 
         while (min <= max)
         {
-            index = (min + max) / 2 | 0;
-            var item = newlines(index);
+            index = (min + max) / 2 | 0
+            var item = newlines(index)
 
             if (item < offset)
-                min = index + 1;
+                min = index + 1
             else if (item > offset)
-                max = index - 1;
+                max = index - 1
             else
-                return (index + 1);
+                return (index + 1)
         }
 
         if (newlines(index) <= offset)

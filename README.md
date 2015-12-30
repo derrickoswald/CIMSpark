@@ -14,13 +14,17 @@ and produces a Spark Resilient Distributed Dataset (RDD).
 
 _So far this is just a Scala app that happens to run inside a Spark instance._ 
 
-Use sbt to package the app (make a jar file):
+Use sbt or maven to package the app (make a jar file):
 
 `sbt package`
+or
+`mvn package`
 
 Copy the jar to a directory visible within Docker:
 
 `cp target/scala-2.10/cimscala_2.10-0.1.jar ../SimpleApp` 
+or
+`cp target/CIMScala-1.0-SNAPSHOT.jar ../SimpleApp` 
 
 Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark")):
 
@@ -32,10 +36,11 @@ Within the docker container, start the spark shell (scala interpreter):
 
 In the spark shell, add the jar to the classpath:
 
-`:cp /opt/SimpleApp/cimscala_2.10-0.1.jar` 
+`:cp /opt/SimpleApp/cimscala_2.10-0.1.jar`
+or
+`:cp /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar` 
 
 Execute the program:
-
 
 	scala> ch.ninecode.CIM.main (Array("/opt/SimpleApp/dump_all.xml")) 
 	available: 98990525 bytes
@@ -43,4 +48,13 @@ Execute the program:
 	parsing 7.86332 seconds
 	203046 PowerSystemResource elements parsed
 	0 elements ignored
+
+To generate an RDD use the CIMRDD class:
+
+    scala> val myrdd = ch.ninecode.CIMRDD.rddFile (sc, "/opt/SimpleApp/dump_all.xml")
+    file size: 98990525 bytes
+    myrdd: org.apache.spark.rdd.RDD[(String, ch.ninecode.Element)] = ParallelCollectionRDD[0] at parallelize at CIMRDD.scala:25
+
+
+
 

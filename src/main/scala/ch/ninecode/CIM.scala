@@ -56,7 +56,7 @@ abstract class Element () extends Parser
      */
     def parse_element (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context, result: Result): Unit =
     {
-        val value = Element.parse_element (regex, index, xml, context);
+        val value = Element.parse_element (regex, index, xml, context)
         if (null != value)
             properties.put (name, value)
         else
@@ -66,7 +66,7 @@ abstract class Element () extends Parser
 
     def parse_attribute (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, context: Context, result: Result): Unit =
     {
-        val value = Element.parse_attribute (regex, index, xml, context);
+        val value = Element.parse_attribute (regex, index, xml, context)
         if (null != value)
             properties.put (name, value)
         else
@@ -88,7 +88,7 @@ object Element
      */
     def parse_element (pattern: Pattern, index: Int, xml:String, context: Context): String =
     {
-        val optional = true;
+        val optional = true
 
         var ret:String = null
         val matcher = pattern.matcher (xml)
@@ -357,8 +357,8 @@ class Location extends IdentifiedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        cs (xml, context, result);
-        typ (xml, context, result);
+        cs (xml, context, result)
+        typ (xml, context, result)
         val node = (result.PowerSystemResources getOrElseUpdate (id, this)).asInstanceOf [Location]
         // check for forward reference definition and copy any coordinates seen so far
         if (this != node)
@@ -426,9 +426,9 @@ class Asset extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        typ (xml, context, result);
-        ass (xml, context, result);
-        inf (xml, context, result);
+        typ (xml, context, result)
+        ass (xml, context, result)
+        inf (xml, context, result)
         // ToDo: check for forward reference definition and copy any data necessary
     }
 }
@@ -464,11 +464,11 @@ class Consumer extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        typ (xml, context, result);
-        loc (xml, context, result);
-        vol (xml, context, result);
-        con (xml, context, result);
-        faz (xml, context, result);
+        typ (xml, context, result)
+        loc (xml, context, result)
+        vol (xml, context, result)
+        con (xml, context, result)
+        faz (xml, context, result)
 
 //or as an array of functions
 //        val steps = Array[(String, Context, Result) => Unit](
@@ -516,10 +516,10 @@ class Terminal extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        seq (xml, context, result);
-        faz (xml, context, result);
-        con (xml, context, result);
-        eqp (xml, context, result);
+        seq (xml, context, result)
+        faz (xml, context, result)
+        con (xml, context, result)
+        eqp (xml, context, result)
     }
 }
 
@@ -554,10 +554,10 @@ class BusbarSection extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        typ (xml, context, result);
-        loc (xml, context, result);
-        vol (xml, context, result);
-        con (xml, context, result);
+        typ (xml, context, result)
+        loc (xml, context, result)
+        vol (xml, context, result)
+        con (xml, context, result)
         val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
             node.contents += id
         val locn = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
@@ -611,11 +611,11 @@ class ACLineSegment extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        typ (xml, context, result);
-        loc (xml, context, result);
-        len (xml, context, result);
-        vol (xml, context, result);
-        con (xml, context, result);
+        typ (xml, context, result)
+        loc (xml, context, result)
+        len (xml, context, result)
+        vol (xml, context, result)
+        con (xml, context, result)
         val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
             node.contents += id
         val locn = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
@@ -656,8 +656,8 @@ class ACLineSegmentPhase extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        faz (xml, context, result);
-        seg (xml, context, result);
+        faz (xml, context, result)
+        seg (xml, context, result)
         val segm = (result.PowerSystemResources getOrElseUpdate (segment, new ACLineSegment (segment))).asInstanceOf [ACLineSegment]
             segm.phases += id
     }
@@ -691,9 +691,9 @@ class Switch extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        typ (xml, context, result);
-        loc (xml, context, result);
-        con (xml, context, result);
+        typ (xml, context, result)
+        loc (xml, context, result)
+        con (xml, context, result)
         val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
             node.contents += id
         val open = Switch.parse_open (xml, context)
@@ -734,7 +734,7 @@ class PowerTransformerInfo extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        inf (xml, context, result);
+        inf (xml, context, result)
     }
 }
 
@@ -754,7 +754,7 @@ class TransformerTankInfo extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        inf (xml, context, result);
+        inf (xml, context, result)
     }
 }
 
@@ -819,9 +819,9 @@ class PowerTransformer extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        typ (xml, context, result);
-        loc (xml, context, result);
-        con (xml, context, result);
+        typ (xml, context, result)
+        loc (xml, context, result)
+        con (xml, context, result)
         val node = (result.PowerSystemResources getOrElseUpdate (container, new Container (container))).asInstanceOf [Container]
             node.contents += id
         val locn = (result.PowerSystemResources getOrElseUpdate (location, new Location (location))).asInstanceOf[Location]
@@ -860,7 +860,7 @@ class TransformerTank extends NamedElement
     override def parse (xml: String, context: Context, result: Result): Unit =
     {
         super.parse (xml, context, result)
-        tra (xml, context, result);
+        tra (xml, context, result)
         val tank = (result.PowerSystemResources getOrElseUpdate (id, this)).asInstanceOf [TransformerTank]
         // check for forward reference definition and copy any phases seen so far
         if (this != tank)
@@ -1003,60 +1003,71 @@ import scala.util.matching._
     }
 }
 
+
 object CIM
 {
     val CHUNK = 1024*1024*16
     val rddex = Pattern.compile ("""\s*<(cim:[^ >\s]+)([\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
     val point = new PositionPoint () // only one of these is required because it just updates the Location object it references
-    val unknown = new Unknown ();
+    val unknown = new Unknown ()
+
+    def read (filename: String): String =
+    {
+        var ret: String = null
+
+        val file = new File (filename)
+        if (file.exists ()) // avoid FileNotFoundException
+        {
+            val fis = new FileInputStream (file)
+            val isr = new InputStreamReader (fis, "UTF8")
+            var xml = ""
+            val buf = new Array[Char] (CHUNK)
+            var i:Int = 0
+            val size = fis.available ()
+            println ("file size: %d bytes".format (size))
+            val sb = new StringBuilder (size)
+            do
+            {
+                i = isr.read (buf, 0, CHUNK)
+                if (0 < i)
+// slow 17 seconds      xml = xml + buf.view (0, i).mkString
+// slow 2 seconds       xml = xml + String.valueOf (buf.slice (0, i))
+// OK 0.83 seconds
+                    sb.appendAll (buf, 0, i)
+            }
+            while (0 <= i)
+            isr.close ()
+            ret = sb.toString ()
+// fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
+//                val source = scala.io.Source.fromFile (args (0))
+//                val xml = try source.mkString finally source.close ()
+
+        }
+        else
+            println ("CIM XML input file not found")
+
+        return (ret)
+    }
+
     def main (args: Array[String])
     {
         if (args.size > 0)
         {
             val start = System.nanoTime
-            val file = new File (args (0))
-            if (file.exists ()) // avoid FileNotFoundException
-            {
-                val fis = new FileInputStream (file)
-                val isr = new InputStreamReader (fis, "UTF8")
-                var xml = ""
-                val buf = new Array[Char] (CHUNK)
-                var i:Int = 0
-                val size = fis.available ()
-                println ("file size: %d bytes".format (size))
-                val sb = new StringBuilder (size)
-                do
-                {
-                    i = isr.read (buf, 0, CHUNK)
-                    if (0 < i)
-// slow 17 seconds      xml = xml + buf.view (0, i).mkString
-// slow 2 seconds       xml = xml + String.valueOf (buf.slice (0, i))
-// OK 0.83 seconds
-                        sb.appendAll (buf, 0, i)
-                }
-                while (0 <= i)
-                isr.close ()
-                xml = sb.toString ()
-// fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
-//                val source = scala.io.Source.fromFile (args (0))
-//                val xml = try source.mkString finally source.close ()
+            val xml = read (args (0))
+            val before = System.nanoTime
+            val reading = (before - start) / 1000
+            println ("reading %g seconds".format (reading / 1e6))
 
-                val before = System.nanoTime
-                val reading = (before - start) / 1000
-                println ("reading %g seconds".format (reading / 1e6))
+            val parser = new CIM ()
+            val result = parser.parse (xml)
 
-                val parser = new CIM ()
-                val result = parser.parse (xml)
+            val after = System.nanoTime
+            val parsing = (after - before) / 1000
+            println ("parsing %g seconds".format (parsing / 1e6))
 
-                val after = System.nanoTime
-                val parsing = (after - before) / 1000
-                println ("parsing %g seconds".format (parsing / 1e6))
-
-                println (result.PowerSystemResources.size + " PowerSystemResource elements parsed")
-                println (result.Ignored + " elements ignored")
-            }
-            else
-                println ("CIM XML input file not found")
+            println (result.PowerSystemResources.size + " PowerSystemResource elements parsed")
+            println (result.Ignored + " elements ignored")
         }
         else
             println ("CIM XML input file not specified")
@@ -1067,7 +1078,7 @@ object CIM
 // usage: CIM.main(Array[String]())
         // get the xml content from our sample file
 //        val xml = XML.loadFile ("/home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml")
-//        val temp = (xml \\ "CoordinateSystem" \\ "IdentifiedObject.name") text;
+//        val temp = (xml \\ "CoordinateSystem" \\ "IdentifiedObject.name") text
 //        println ("coordinate system: " + temp)
 
 
