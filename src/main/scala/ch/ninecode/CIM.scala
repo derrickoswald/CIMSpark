@@ -29,7 +29,7 @@ class Result
     var Ignored = 0
 }
 
-abstract class Element () extends Parser
+abstract class Element () extends Parser with Serializable
 {
     val properties: HashMap[String, String] = new HashMap[String, String]
 

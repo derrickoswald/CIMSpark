@@ -24,7 +24,7 @@ Copy the jar to a directory visible within Docker:
 
 `cp target/scala-2.10/cimscala_2.10-0.1.jar ../SimpleApp` 
 or
-`cp target/CIMScala-1.0-SNAPSHOT.jar ../SimpleApp` 
+`cp target/CIMScala-1.0-SNAPSHOT.jar ../SimpleApp`
 
 Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark")):
 
@@ -38,7 +38,7 @@ In the spark shell, add the jar to the classpath:
 
 `:cp /opt/SimpleApp/cimscala_2.10-0.1.jar`
 or
-`:cp /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar` 
+`:cp /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar`
 
 Execute the program:
 
