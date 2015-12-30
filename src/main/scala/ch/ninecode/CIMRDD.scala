@@ -27,16 +27,30 @@ object CIMRDD
 
     def main (args:Array[String])
     {
-        val master = if (args.size > 0) args (0) else "local"
-        val conf = new SparkConf ().setAppName ("CIMScala").setMaster (master)
-        val sc = new SparkContext (conf)
+        val conf = new SparkConf ().setAppName ("CIMScala")
+//        val master = if (args.size > 0) args (0) else "local"
+//        conf.setMaster (master)
+        val spark = new SparkContext (conf)
 
-        if (args.size > 0)
+        try
         {
-            val xml = CIM.read (args (0))
-            rddFile (sc, xml)
+            if (args.size > 0)
+            {
+                val rdd = rddFile (spark, args (0))
+                val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
+                {
+                    case x: (String, Element)
+                        if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location])
+                }
+                val locations = rdd.collect (pf)
+                println ("collected " + locations.count () + " locations")
+            }
+            else
+                println ("CIM XML input file not specified")
         }
-        else
-            println ("CIM XML input file not specified")
+        finally
+        {
+            spark.stop ();
+        }
     }
 }

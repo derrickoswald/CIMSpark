@@ -34,7 +34,7 @@ Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq
 
 Within the docker container, start the spark shell (scala interpreter):
 
-    spark-shell --master yarn-client --driver-memory 1g --executor-memory 1g --executor-cores 1
+    spark-shell --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1
 
 In the spark shell, add the jar to the classpath:
 
@@ -83,4 +83,9 @@ or to create an typed RDD of id and Location pairs i.e. (String, Location):
     scala> locations.first()._2.coordinates
     res5: scala.collection.mutable.ArrayBuffer[Double] = ArrayBuffer(8.52831529608, 46.9951049314)
 
+To run the sample program:
 
+    spark-submit --class ch.ninecode.CIMRDD --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar "/opt/SimpleApp/dump_all.xml"
+or
+
+    spark-submit --class ch.ninecode.CIMRDD --master yarn-cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar "/opt/SimpleApp/dump_all.xml"

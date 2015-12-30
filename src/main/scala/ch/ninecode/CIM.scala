@@ -1044,7 +1044,7 @@ object CIM
 
         }
         else
-            println ("CIM XML input file not found")
+            println ("CIM XML input file '" + filename + "' not found")
 
         return (ret)
     }
