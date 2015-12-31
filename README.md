@@ -12,40 +12,25 @@ and produces a Spark Resilient Distributed Dataset (RDD).
 
 #Sample Usage
 
-_So far this is just a Scala app that happens to run inside a Spark instance._ 
-
 Use sbt or maven to package the app (make a jar file):
 
     sbt package
 or
 
-   mvn package
+    mvn package
 
-Copy the jar to a directory visible within Docker:
+Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark"))
+with volumes mounted for the jar file and data:
 
-    cp target/scala-2.10/cimscala_2.10-0.1.jar ../SimpleApp 
-or
-
-    cp target/CIMScala-1.0-SNAPSHOT.jar ../SimpleApp
-
-Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark")):
-
-    docker run -it -p 8088:8088 -p 8042:8042 -v /home/derrick/code/SimpleApp:/opt/SimpleApp --rm -h sandbox sequenceiq/spark:1.5.1 bash
+    docker run -it -p 8088:8088 -p 8042:8042 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
 
 Within the docker container, start the spark shell (scala interpreter):
 
-    spark-shell --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1
+    spark-shell --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
 
-In the spark shell, add the jar to the classpath:
+Execute the standalone program:
 
-    scala> :cp /opt/SimpleApp/cimscala_2.10-0.1.jar
-or
-
-    scala> :cp /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar
-
-Execute the program:
-
-	scala> ch.ninecode.CIM.main (Array("/opt/SimpleApp/dump_all.xml")) 
+	scala> ch.ninecode.CIM.main (Array("/opt/data/dump_all.xml")) 
 	available: 98990525 bytes
 	reading 0.419546 seconds
 	parsing 7.86332 seconds
@@ -54,7 +39,7 @@ Execute the program:
 
 To generate an RDD use the CIMRDD class:
 
-    scala> val myrdd = ch.ninecode.CIMRDD.rddFile (sc, "/opt/SimpleApp/dump_all.xml")
+    scala> val myrdd = ch.ninecode.CIMRDD.rddFile (sc, "/opt/data/dump_all.xml")
     file size: 98990525 bytes
     myrdd: org.apache.spark.rdd.RDD[(String, ch.ninecode.Element)] = ParallelCollectionRDD[0] at parallelize at CIMRDD.scala:25
 
@@ -85,7 +70,28 @@ or to create an typed RDD of id and Location pairs i.e. (String, Location):
 
 To run the sample program:
 
-    spark-submit --class ch.ninecode.CIMRDD --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar "/opt/SimpleApp/dump_all.xml"
+    spark-submit --class ch.ninecode.CIMRDD --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
 or
 
-    spark-submit --class ch.ninecode.CIMRDD --master yarn-cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/SimpleApp/CIMScala-1.0-SNAPSHOT.jar "/opt/SimpleApp/dump_all.xml"
+    spark-submit --class ch.ninecode.CIMRDD --master yarn-cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+To expose the RDD as a Hive SQL table:
+
+    scala> val mytable = sqlContext.createDataFrame (myrdd, classOf [ch.ninecode.Element])
+    mydataframe: org.apache.spark.sql.DataFrame = []
+
+    scala> mydataframe.registerTempTable ("myrdd")
+
+    scala> val count = sqlContext.sql("select count(*) n from myrdd")
+    15/12/31 02:56:39 INFO parse.ParseDriver: Parsing command: select count(*) n from myrdd
+    15/12/31 02:56:39 INFO parse.ParseDriver: Parse Completed
+    count: org.apache.spark.sql.DataFrame = [n: bigint]
+
+    scala> count.show()
+    +------+
+    |     n|
+    +------+
+    |203046|
+    +------+
+
+
