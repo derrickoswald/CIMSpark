@@ -77,7 +77,7 @@ or
 
 To expose the RDD as a Hive SQL table:
 
-    scala> val mytable = sqlContext.createDataFrame (myrdd, classOf [ch.ninecode.Element])
+    scala> val mydataframe = sqlContext.createDataFrame (myrdd, classOf [ch.ninecode.Element])
     mydataframe: org.apache.spark.sql.DataFrame = []
 
     scala> mydataframe.registerTempTable ("myrdd")
@@ -93,5 +93,34 @@ To expose the RDD as a Hive SQL table:
     +------+
     |203046|
     +------+
+
+To expose the RDD as a JDBC accessible table:
+
+start Spark docker container with port 10000 also exposed:
+
+    docker run -it -p 8088:8088 -p 8042:8042 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
+
+Start the thrift server:
+
+    bash-4.1# cd /usr/local/spark-1.5.1-bin-hadoop2.6/
+    bash-4.1# ./sbin/start-thriftserver.sh
+    starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /usr/local/spark-1.5.1-bin-hadoop2.6/sbin/../logs/spark--org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-sandbox.out
+
+The java client code requires a shit load of jar fails, which can be black-box included by adding this magic incantation to the maven (what a piece of shit that program is) pom:
+
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-core</artifactId>
+        <version>1.2.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.spark-project.hive</groupId>
+        <artifactId>hive-jdbc</artifactId>
+        <version>1.2.1.spark</version>
+    </dependency>
+
+Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works) and the fact
+that show tables doesn't show registered temporary tables (so like, what the fuck good is that?), but you can query them.
+This whole JDBC server on Hive is about as flaky as Kellogs.
 
 
