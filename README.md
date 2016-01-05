@@ -123,4 +123,35 @@ Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/
 that show tables doesn't show registered temporary tables (so like, what the fuck good is that?), but you can query them.
 This whole JDBC server on Hive is about as flaky as Kellogs.
 
+The jars to start the thrift server are not automatically added to the classpath,
+so use the following to allow execution of a program that creates a Hive SQL context,
+but it runs out of memory at the `new HiveContext (spark)` call _[to be investigated]_:
+
+    sbin/start-thriftserver.sh --class ch.ninecode.CIMRDD --master yarn-cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar,/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar "/opt/data/dump_all.xml"
+
+However, the same steps can be performed in the park-shell, and it works. _[to be investigated]_
+Then it turns out that the dataframe is empty (it has rows, but no columns) when using this constructor:
+
+    sql_context.createDataFrame (rdd, classOf [ch.ninecode.Element])
+
+If the second argument is omitted (so it is supposed to do reflection to determine the schema),
+it [blows up](https://github.com/apache/spark/blob/master/sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/ScalaReflection.scala) with:
+
+    sqlContext.createDataFrame (rdd)
+    java.lang.UnsupportedOperationException: Schema for type ch.ninecode.Element is not supported
+        at org.apache.spark.sql.catalyst.ScalaReflection$class.schemaFor(ScalaReflection.scala:153)
+
+so it seems we either need to annotate the classes (Element, Location etc.) with `SQLUserDefinedType`
+or somehow simplify the class even more than it is so the brain dead reflection code can understand it.
+
+One way may be to supply the schema, i.e.
+
+    val schema =
+      StructType(
+        StructField("id", StringType, false) ::
+        StructField("data", StructType(XXXXX), true) :: Nil)
+    sqlContext.createDataFrame (rdd, schema)
+
+Another way might be to disguise the data as a `Product`. These are treated specially and look like they will unpack a Tuple.
+
 
