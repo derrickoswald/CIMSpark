@@ -20,13 +20,14 @@ or
     mvn package
 
 Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark"))
-with volumes mounted for the jar file and data:
+with volumes mounted for the jar file and data, and ports proxied for the
+cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
-    docker run -it -p 8088:8088 -p 8042:8042 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
+    docker run -it -p 8088:8088 -p 8042:8042 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
 
 Within the docker container, start the spark shell (scala interpreter):
 
-    spark-shell --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
+    spark-shell --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
 
 Execute the standalone program:
 
@@ -55,7 +56,9 @@ or to create an typed RDD of id and Location pairs i.e. (String, Location):
     scala> val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
          |   { case x: (String, Element) if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location]) }
     pf: PartialFunction[(String, ch.ninecode.Element),(String, ch.ninecode.Location)] = <function1>
-    
+
+This gathers the locations to the driver location which isn't what we really want:
+
     scala> val locations = myrdd.collect (pf)
     locations: org.apache.spark.rdd.RDD[(String, ch.ninecode.Location)] = MapPartitionsRDD[2] at collect at <console>:28
     
@@ -70,20 +73,20 @@ or to create an typed RDD of id and Location pairs i.e. (String, Location):
 
 To run the sample program:
 
-    spark-submit --class ch.ninecode.CIMRDD --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
-or
+    spark-submit --class ch.ninecode.CIMRDD --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+or with the driver running on the cluster:
 
-    spark-submit --class ch.ninecode.CIMRDD --master yarn-cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+    spark-submit --class ch.ninecode.CIMRDD --master yarn --deploy-mode cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
 
 To expose the RDD as a Hive SQL table:
 
     scala> val mydataframe = sqlContext.createDataFrame (myrdd, classOf [ch.ninecode.Element])
     mydataframe: org.apache.spark.sql.DataFrame = []
 
-    scala> mydataframe.registerTempTable ("myrdd")
+    scala> mydataframe.registerTempTable ("elements")
 
-    scala> val count = sqlContext.sql("select count(*) n from myrdd")
-    15/12/31 02:56:39 INFO parse.ParseDriver: Parsing command: select count(*) n from myrdd
+    scala> val count = sqlContext.sql("select count(*) n from elements")
+    15/12/31 02:56:39 INFO parse.ParseDriver: Parsing command: select count(*) n from elements
     15/12/31 02:56:39 INFO parse.ParseDriver: Parse Completed
     count: org.apache.spark.sql.DataFrame = [n: bigint]
 
@@ -94,13 +97,7 @@ To expose the RDD as a Hive SQL table:
     |203046|
     +------+
 
-To expose the RDD as a JDBC accessible table:
-
-start Spark docker container with port 10000 also exposed:
-
-    docker run -it -p 8088:8088 -p 8042:8042 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
-
-Start the thrift server:
+To expose the RDD as a JDBC accessible table, start the thrift server:
 
     bash-4.1# cd /usr/local/spark-1.5.1-bin-hadoop2.6/
     bash-4.1# ./sbin/start-thriftserver.sh
@@ -154,4 +151,32 @@ One way may be to supply the schema, i.e.
 
 Another way might be to disguise the data as a `Product`. These are treated specially and look like they will unpack a Tuple.
 
+You can run the ThriftServer2 and fill a temporary table with the command line:
 
+    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.5.1-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMScala-1.0-SNAPSHOT.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode client --conf spark.driver.memory=3g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 1g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+But it's unclear how much is actually executing on the cluster vs. directly on the driver machine.
+And there's still the issue of an SQL schema being missing.
+
+The program can also be executed using:
+
+    export SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dscala.usejavacp=true"
+    spark-submit --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+The out of memory issue is caused by mis-allocation of the memory between the driver and the executor.
+When only the `--deploy-mode` is changed to `cluster` in the above, there is an out of memory error - I think due to
+the thriftserver trying to run on an executor with only 1GB. However, even when the memory is balanced (2Gig and 2Gig)
+the error still occurs, even though `--deploy-mode client` works. Digging into it a bit more, I see an error
+
+    16/01/05 03:56:32 ERROR yarn.ApplicationMaster: User class threw exception: java.lang.OutOfMemoryError: PermGen space
+    java.lang.OutOfMemoryError: PermGen space
+
+which from search results seems to indicate that the maxpermsize is too small.
+The suggested fix was to set `spark.executor.extraJavaOptions=-XX:MaxPermSize=256M`,
+but this didn't work because it's the driver program that's failing.
+Fortunately there's another setting for the driver `spark.driver.extraJavaOptions=-XX:MaxPermSize=256M`, so this works:
+
+    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode cluster --driver-memory 2g --executor-memory 2g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+Incidently, the Tracking UI for the Application Master is really good.
+But it dissappears when the program terminates.
