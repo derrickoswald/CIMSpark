@@ -29,15 +29,6 @@ Within the docker container, start the spark shell (scala interpreter):
 
     spark-shell --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
 
-Execute the standalone program:
-
-	scala> ch.ninecode.CIM.main (Array("/opt/data/dump_all.xml")) 
-	available: 98990525 bytes
-	reading 0.419546 seconds
-	parsing 7.86332 seconds
-	203046 PowerSystemResource elements parsed
-	0 elements ignored
-
 To generate an RDD use the CIMRDD class:
 
     scala> val myrdd = ch.ninecode.CIMRDD.rddFile (sc, "/opt/data/dump_all.xml")
@@ -54,10 +45,8 @@ or to create an typed RDD of id and Location pairs i.e. (String, Location):
     import ch.ninecode._
     
     scala> val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
-         |   { case x: (String, Element) if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location]) }
+         { case x: (String, Element) if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location]) }
     pf: PartialFunction[(String, ch.ninecode.Element),(String, ch.ninecode.Location)] = <function1>
-
-This gathers the locations to the driver location which isn't what we really want:
 
     scala> val locations = myrdd.collect (pf)
     locations: org.apache.spark.rdd.RDD[(String, ch.ninecode.Location)] = MapPartitionsRDD[2] at collect at <console>:28

@@ -35,7 +35,7 @@ class Context (var start: Int, var end: Int, val newlines: ArrayBuffer[Int])
      * @param offset the character position in the stream
      * @return the line number (1 + how many newlines precede the offset)
      */
-    def line_number (offset: Int): Int =
+    def line_number (offset: Int = end): Int =
     {
         var min = 0
         var max = newlines.length - 1
