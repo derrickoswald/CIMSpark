@@ -1,7 +1,7 @@
 CIMScala
 ======
 
-Spark access to Common Information Model (CIM) files as an RDD.
+Spark access to Common Information Model (CIM) files as RDD and Hive SQL.
 
 #Overview
 
@@ -9,6 +9,7 @@ This program reads in a CIM file which is a
 standard interchange format based on IEC standards 61968 & 61970
 (see [CIM users group](http://cimug.ucaiug.org/default.aspx) for additional details)
 and produces a Spark Resilient Distributed Dataset (RDD).
+The RDD is exposed as a Hive2 table using Thrift.
 
 #Sample Usage
 
@@ -25,7 +26,7 @@ cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
     docker run -it -p 8088:8088 -p 8042:8042 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
 
-Within the docker container, start the spark shell (scala interpreter):
+The spark shell (scala interpreter) provides interactive commands:
 
     spark-shell --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
 
@@ -43,56 +44,63 @@ or to create an typed RDD of id and Location pairs i.e. (String, Location):
 
     scala> import ch.ninecode._
     import ch.ninecode._
-    
     scala> val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
          { case x: (String, Element) if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location]) }
     pf: PartialFunction[(String, ch.ninecode.Element),(String, ch.ninecode.Location)] = <function1>
-
-    scala> val locations = myrdd.collect (pf)
-    locations: org.apache.spark.rdd.RDD[(String, ch.ninecode.Location)] = MapPartitionsRDD[2] at collect at <console>:28
+    scala> val subset = myrdd.collect (pf)
+    subset: org.apache.spark.rdd.RDD[(String, ch.ninecode.Location)] = MapPartitionsRDD[2] at collect at <console>:28
     
-    scala> locations.count()
+    scala> subset.count()
     res3: Long = 26165
-
-    scala> locations.first()._1
+    scala> subset.first()._1
     res4: String = _location_1610744576_427087414_2073666
-
-    scala> locations.first()._2.coordinates
+    scala> subset.first()._2.coordinates
     res5: scala.collection.mutable.ArrayBuffer[Double] = ArrayBuffer(8.52831529608, 46.9951049314)
 
-To run the sample program:
+To expose the RDD as a Hive SQL table that is available externally:
 
-    spark-submit --class ch.ninecode.CIMRDD --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
-or with the driver running on the cluster:
-
-    spark-submit --class ch.ninecode.CIMRDD --master yarn --deploy-mode cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
-
-To expose the RDD as a Hive SQL table:
-
-    scala> val mydataframe = sqlContext.createDataFrame (myrdd, classOf [ch.ninecode.Element])
-    mydataframe: org.apache.spark.sql.DataFrame = []
-
-    scala> mydataframe.registerTempTable ("elements")
-
-    scala> val count = sqlContext.sql("select count(*) n from elements")
-    15/12/31 02:56:39 INFO parse.ParseDriver: Parsing command: select count(*) n from elements
-    15/12/31 02:56:39 INFO parse.ParseDriver: Parse Completed
+    scala> val locations = sqlContext.createDataFrame (locations)
+    locations: org.apache.spark.sql.DataFrame = [_1: string, _2: struct<properties:map<string,string>,id:string,cs:string,typ:string,coordinates:array<double>>]
+    
+    scala> locations.registerTempTable ("locations")
+    
+    scala> val count = sqlContext.sql("select count(*) n from locations")
+    val count = sqlContext.sql("select count(*) n from locations")
+    16/01/13 02:10:14 INFO parse.ParseDriver: Parsing command: select count(*) n from locations
+    16/01/13 02:10:14 INFO parse.ParseDriver: Parse Completed
     count: org.apache.spark.sql.DataFrame = [n: bigint]
-
+    
     scala> count.show()
-    +------+
-    |     n|
-    +------+
-    |203046|
-    +------+
+    count.show()
+    16/01/13 02:10:23 INFO spark.SparkContext: Starting job: show at <console>:26
+    ...
+    16/01/13 02:10:31 INFO scheduler.DAGScheduler: Job 5 finished: show at <console>:26, took 7.935441 s
+    +-----+
+    |    n|
+    +-----+
+    |26165|
+    +-----+
 
-To expose the RDD as a JDBC accessible table, start the thrift server:
+Starting the thrift server from the command line uses a different SparkContext/SQLContext
+so the exposed tables will not be visible (don't do this):
 
     bash-4.1# cd /usr/local/spark-1.5.1-bin-hadoop2.6/
     bash-4.1# ./sbin/start-thriftserver.sh
     starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /usr/local/spark-1.5.1-bin-hadoop2.6/sbin/../logs/spark--org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-sandbox.out
 
-The java client code requires a shit load of jar fails, which can be black-box included by adding this magic incantation to the maven (what a piece of shit that program is) pom:
+Start the thrift server from within the spark shell:
+
+    scala> import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+    import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+    
+    scala> HiveThriftServer2.startWithContext (sqlContext.asInstanceOf[org.apache.spark.sql.hive.HiveContext])
+    ...
+    16/01/12 10:26:23 INFO service.AbstractService: Service:HiveServer2 is started.
+
+
+The java client code requires a shit load of jar fails,
+which can be black-box included by adding this magic incantation in
+the maven (what a piece of shit that program is) pom:
 
     <dependency>
         <groupId>org.apache.hadoop</groupId>
@@ -105,21 +113,140 @@ The java client code requires a shit load of jar fails, which can be black-box i
         <version>1.2.1.spark</version>
     </dependency>
 
-Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works) and the fact
-that show tables doesn't show registered temporary tables (so like, what the fuck good is that?), but you can query them.
-This whole JDBC server on Hive is about as flaky as Kellogs.
+Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works).
 
-The jars to start the thrift server are not automatically added to the classpath,
-so use the following to allow execution of a program that creates a Hive SQL context,
-but it runs out of memory at the `new HiveContext (spark)` call _[to be investigated]_:
+    private static String driverName = "org.apache.hive.jdbc.HiveDriver";
 
-    sbin/start-thriftserver.sh --class ch.ninecode.CIMRDD --master yarn-cluster --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar,/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar "/opt/data/dump_all.xml"
+    public static void main (String[] args) throws SQLException
+    {
+        try
+        {
+            Class.forName (driverName);
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace ();
+            System.exit (1);
+        }
+        // replace "hive" here with the name of the user the queries should run as
+        Connection con = DriverManager.getConnection ("jdbc:hive2://localhost:10000/default", "hive", "");
+        Statement stmt = con.createStatement ();
 
-However, the same steps can be performed in the park-shell, and it works. _[to be investigated]_
-Then it turns out that the dataframe is empty (it has rows, but no columns) when using this constructor:
+        // show tables
+        String sql = "show tables";
+        System.out.println ("Running: " + sql);
+        ResultSet res = stmt.executeQuery (sql);
+        while (res.next ())
+            System.out.println ("    " + res.getString (1));
+        res.close ();
+
+        String tableName = "locations";
+
+        // describe table
+        sql = "describe " + tableName;
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        while (res.next ())
+            System.out.println ("    " + res.getString (1) + "\t" + res.getString (2));
+        res.close ();
+
+        // select * query
+        sql = "select * from " + tableName;
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        int index = 0;
+        while (res.next () && (index++ < 10))
+            System.out.println (String.valueOf (res.getString (1)) + "\t" + res.getString (2));
+        res.close ();
+
+        // count query
+        sql = "select count(1) from " + tableName;
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        while (res.next ())
+            System.out.println (res.getString (1));
+        res.close ();
+
+        System.out.println ("done");
+        con.close ();
+    }
+
+yields output:
+
+    16/01/13 08:22:29 INFO jdbc.Utils: Supplied authorities: localhost:10000
+    16/01/13 08:22:29 INFO jdbc.Utils: Resolved authority: localhost:10000
+    16/01/13 08:22:30 INFO jdbc.HiveConnection: Will try to open client transport with JDBC Uri: jdbc:hive2://localhost:10000/default
+    Running: show tables
+        locations
+    Running: describe locations
+        _1  string
+        _2  struct<properties:map<string,string>,id:string,cs:string,typ:string,coordinates:array<double>>
+    Running: select * from locations
+    _location_1610744576_427087414_2073666  {"properties":{"cs":"wgs_84","id":"_location_1610744576_427087414_2073666","type":"geographic"},"id":"_location_1610744576_427087414_2073666","cs":"wgs_84","typ":"geographic","coordinates":[8.52831529608,46.9951049314]}
+    _location_5773117_1164062500_815815 {"properties":{"cs":"wgs_84","id":"_location_5773117_1164062500_815815","type":"geographic"},"id":"_location_5773117_1164062500_815815","cs":"wgs_84","typ":"geographic","coordinates":[8.5512156031,46.9928390755,8.55107434111,46.9934015397,8.54938564426,46.9949313398]}
+    _location_5773096_1152305167_985581 {"properties":{"cs":"wgs_84","id":"_location_5773096_1152305167_985581","type":"geographic"},"id":"_location_5773096_1152305167_985581","cs":"wgs_84","typ":"geographic","coordinates":[8.60289818799,46.995578585]}
+    _location_5773113_699218750_908358  {"properties":{"cs":"wgs_84","id":"_location_5773113_699218750_908358","type":"geographic"},"id":"_location_5773113_699218750_908358","cs":"wgs_84","typ":"geographic","coordinates":[8.57411513961,47.0561388804,8.57404967284,47.0568799695]}
+    _location_1610734848_427085841_1941588  {"properties":{"cs":"wgs_84","id":"_location_1610734848_427085841_1941588","type":"geographic"},"id":"_location_1610734848_427085841_1941588","cs":"wgs_84","typ":"geographic","coordinates":[8.62076427321,47.0015120663,8.62076457045,47.0015255575]}
+    _location_5773116_972140366_615398  {"properties":{"cs":"wgs_84","id":"_location_5773116_972140366_615398","type":"geographic"},"id":"_location_5773116_972140366_615398","cs":"wgs_84","typ":"geographic","coordinates":[8.5110791419,46.9933251694]}
+    _location_1610686720_427083469_1806704  {"properties":{"cs":"wgs_84","id":"_location_1610686720_427083469_1806704","type":"geographic"},"id":"_location_1610686720_427083469_1806704","cs":"wgs_84","typ":"geographic","coordinates":[8.52348118187,46.9948568184,8.52348145461,46.9948703098]}
+    _location_1610724096_427082944_2132876  {"properties":{"cs":"wgs_84","id":"_location_1610724096_427082944_2132876","type":"geographic"},"id":"_location_1610724096_427082944_2132876","cs":"wgs_84","typ":"geographic","coordinates":[8.4742644357,47.0536329009,8.4741806096,47.053381774]}
+    _location_1610744576_427087296_1957913  {"properties":{"cs":"wgs_84","id":"_location_1610744576_427087296_1957913","type":"geographic"},"id":"_location_1610744576_427087296_1957913","cs":"wgs_84","typ":"geographic","coordinates":[8.52844647917,46.9950901903,8.52844620518,46.9950766989]}
+    _location_1610673920_427086875_1791812  {"properties":{"cs":"wgs_84","id":"_location_1610673920_427086875_1791812","type":"geographic"},"id":"_location_1610673920_427086875_1791812","cs":"wgs_84","typ":"geographic","coordinates":[8.67556778748,47.1042507684,8.67556903395,47.1043047314]}
+    Running: select count(1) from locations
+    26165
+    done
+
+#Programmatic Usage
+
+The jars to start the thrift server are not automatically added to the classpath for spark-submit,
+so use the following to allow execution of a program that creates a Hive SQL context and thrift server instance
+just like the spark-shell environment:
+
+    --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar 
+
+The program runs out of memory at the `new HiveContext (spark)` call when the `--deploy-mode` is `cluster`.
+The error:
+
+    16/01/05 03:56:32 ERROR yarn.ApplicationMaster: User class threw exception: java.lang.OutOfMemoryError: PermGen space
+    java.lang.OutOfMemoryError: PermGen space
+
+seems to indicate (from search results) that the maxpermsize is too small.
+The suggested fix was to set `spark.executor.extraJavaOptions=-XX:MaxPermSize=256M`,
+but this didn't work because in this case it is the driver program that's failing.
+Fortunately there's another setting for the driver, so this works:
+
+    spark.driver.extraJavaOptions=-XX:MaxPermSize=256M
+
+So the complete command for cluster deploy is:
+
+    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode cluster --driver-memory 2g --executor-memory 2g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+To run the driver program on the client (only differs in `--deploy-mode` parameter):
+
+    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+but it's unclear how much is actually executing on the cluster vs. directly on the driver machine.
+
+Using Java directly, you can run the sample program that creates a ThriftServer2 and fills a temporary table using the command line:
+
+    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.5.1-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMScala-1.0-SNAPSHOT.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode cluster --conf spark.driver.memory=2g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 2g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+The program can also be executed using:
+
+    export SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dscala.usejavacp=true"
+    spark-submit --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+
+Incidently, the Tracking UI for the Application Master is really good.
+But it dissappears when the program terminates.
+
+#Exposing RDD as Table
+
+The RDD needs to be converted to a dataframe. Using a naive conversion supplying the class as a schema:
 
     sql_context.createDataFrame (rdd, classOf [ch.ninecode.Element])
 
+it turns out that the dataframe is empty - it has rows, but no columns - indicating a lack of schema.
+ 
 If the second argument is omitted (so it is supposed to do reflection to determine the schema),
 it [blows up](https://github.com/apache/spark/blob/master/sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/ScalaReflection.scala) with:
 
@@ -127,45 +254,25 @@ it [blows up](https://github.com/apache/spark/blob/master/sql/catalyst/src/main/
     java.lang.UnsupportedOperationException: Schema for type ch.ninecode.Element is not supported
         at org.apache.spark.sql.catalyst.ScalaReflection$class.schemaFor(ScalaReflection.scala:153)
 
-so it seems we either need to annotate the classes (Element, Location etc.) with `SQLUserDefinedType`
-or somehow simplify the class even more than it is so the brain dead reflection code can understand it.
+There are at least three ways to supply the schema information:
 
-One way may be to supply the schema, i.e.
-
+* supply an explicit schema, e.g. 
     val schema =
       StructType(
         StructField("id", StringType, false) ::
         StructField("data", StructType(XXXXX), true) :: Nil)
-    sqlContext.createDataFrame (rdd, schema)
+as the second argument to sqlContext.createDataFrame (rdd, schema)
+* annotate the classes (Element, Location etc.) with `SQLUserDefinedType` and 
+define a [User Defined Type e.g. UserDefinedType[Element]](https://github.com/apache/spark/blob/master/sql/core/src/main/scala/org/apache/spark/sql/test/ExamplePointUDT.scala) helper class to perform the serialization
+(see also [the test suite]( https://github.com/apache/spark/blob/master/sql/core/src/test/scala/org/apache/spark/sql/UserDefinedTypeSuite.scala))
+* refactor the classes to [Scala case classes](http://docs.scala-lang.org/tutorials/tour/case-classes.html) which are similar to [PoJo](https://en.wikipedia.org/wiki/Plain_Old_Java_Object)s
+* another way that wasn't explored might be to disguise the data as a `Product` (these are treated specially and look like they will unpack a Tuple)
 
-Another way might be to disguise the data as a `Product`. These are treated specially and look like they will unpack a Tuple.
+I've selected to refactor the program into case classes.
+This is why this code now works:
 
-You can run the ThriftServer2 and fill a temporary table with the command line:
+    val locations = sqlContext.createDataFrame (locations)
 
-    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.5.1-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMScala-1.0-SNAPSHOT.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode client --conf spark.driver.memory=3g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 1g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
-
-But it's unclear how much is actually executing on the cluster vs. directly on the driver machine.
-And there's still the issue of an SQL schema being missing.
-
-The program can also be executed using:
-
-    export SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dscala.usejavacp=true"
-    spark-submit --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
-
-The out of memory issue is caused by mis-allocation of the memory between the driver and the executor.
-When only the `--deploy-mode` is changed to `cluster` in the above, there is an out of memory error - I think due to
-the thriftserver trying to run on an executor with only 1GB. However, even when the memory is balanced (2Gig and 2Gig)
-the error still occurs, even though `--deploy-mode client` works. Digging into it a bit more, I see an error
-
-    16/01/05 03:56:32 ERROR yarn.ApplicationMaster: User class threw exception: java.lang.OutOfMemoryError: PermGen space
-    java.lang.OutOfMemoryError: PermGen space
-
-which from search results seems to indicate that the maxpermsize is too small.
-The suggested fix was to set `spark.executor.extraJavaOptions=-XX:MaxPermSize=256M`,
-but this didn't work because it's the driver program that's failing.
-Fortunately there's another setting for the driver `spark.driver.extraJavaOptions=-XX:MaxPermSize=256M`, so this works:
-
-    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode cluster --driver-memory 2g --executor-memory 2g --executor-cores 1 /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
-
-Incidently, the Tracking UI for the Application Master is really good.
-But it dissappears when the program terminates.
+There are a number of base classes that are not case classes.
+Specifically Element, IdentifiedElement, NamedElement, and LocatedElement.
+Experimentation on what is and isn't possible is ongoing.

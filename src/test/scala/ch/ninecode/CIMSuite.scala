@@ -42,12 +42,10 @@ class CIMSuite extends FunSuite
             </rdf:RDF>;
         val parser = new CIM ()
         val result = parser.parse (xml.toString ())
-        assert (result.Containers.size === 1)
-        val container = result.Containers apply "_subnetwork_183839"
+        val container = result.PowerSystemResources.apply ("_subnetwork_183839").asInstanceOf[Container]
         assert (container.contents.size === 1)
         assert (container.contents.contains ("_pin_1555190"))
     }
-
 
     test ("Voltage")
     {
@@ -60,8 +58,7 @@ class CIMSuite extends FunSuite
             </rdf:RDF>;
         val parser = new CIM ()
         val result = parser.parse (xml.toString ())
-        assert (result.Voltages.size === 1)
-        val voltage = result.Voltages apply "BaseVoltage_0.400000000000"
+        val voltage = result.PowerSystemResources.apply ("BaseVoltage_0.400000000000").asInstanceOf[Voltage]
         assert (voltage.voltage === 400)
     }
 

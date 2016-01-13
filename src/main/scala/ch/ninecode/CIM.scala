@@ -19,11 +19,7 @@ trait Parser
 class Result (val context: Context)
 {
     var properties = new HashMap[String, String]
-    val PowerSystemResourceTypes = HashMap[String, PSRType] ()
     val PowerSystemResources = HashMap[String, Element] ()
-    val ConnectivityNodes = HashMap[String, ConnectivityNode] ()
-    val Containers = HashMap[String, Container] ()
-    val Voltages = HashMap[String, Voltage] ()
     var Ignored = 0
 }
 
@@ -278,7 +274,7 @@ object Line extends Parser
         result.PowerSystemResources.remove (id) match
         {
             case Some (node) ⇒
-                ret.contents ++= node.asInstanceOf[Line].contents
+                ret.contents ++= node.asInstanceOf[Container].contents
             case None ⇒
         }
         return (ret)
@@ -300,7 +296,7 @@ object Subnetwork extends Parser
         result.PowerSystemResources.remove (id) match
         {
             case Some (node) ⇒
-                ret.contents ++= node.asInstanceOf[Subnetwork].contents
+                ret.contents ++= node.asInstanceOf[Container].contents
             case None ⇒
         }
         return (ret)
