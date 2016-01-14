@@ -28,7 +28,7 @@ cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
 The spark shell (scala interpreter) provides interactive commands:
 
-    spark-shell --master yarn --deploy-mode client --driver-memory 3g --executor-memory 1g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
+    spark-shell --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
 
 To generate an RDD use the CIMRDD class:
 
@@ -42,39 +42,37 @@ To get the Location objects:
 
 or to create an typed RDD of id and Location pairs i.e. (String, Location):
 
-    scala> import ch.ninecode._
-    import ch.ninecode._
     scala> val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
-         { case x: (String, Element) if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location]) }
+         { case x: (String, Any) if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location]) }
     pf: PartialFunction[(String, ch.ninecode.Element),(String, ch.ninecode.Location)] = <function1>
     scala> val subset = myrdd.collect (pf)
     subset: org.apache.spark.rdd.RDD[(String, ch.ninecode.Location)] = MapPartitionsRDD[2] at collect at <console>:28
     
     scala> subset.count()
+    ...
     res3: Long = 26165
     scala> subset.first()._1
+    ...
     res4: String = _location_1610744576_427087414_2073666
     scala> subset.first()._2.coordinates
+    ...
     res5: scala.collection.mutable.ArrayBuffer[Double] = ArrayBuffer(8.52831529608, 46.9951049314)
 
 To expose the RDD as a Hive SQL table that is available externally:
 
-    scala> val locations = sqlContext.createDataFrame (locations)
+    scala> val locations = sqlContext.createDataFrame (subset)
     locations: org.apache.spark.sql.DataFrame = [_1: string, _2: struct<properties:map<string,string>,id:string,cs:string,typ:string,coordinates:array<double>>]
     
     scala> locations.registerTempTable ("locations")
     
     scala> val count = sqlContext.sql("select count(*) n from locations")
     val count = sqlContext.sql("select count(*) n from locations")
-    16/01/13 02:10:14 INFO parse.ParseDriver: Parsing command: select count(*) n from locations
-    16/01/13 02:10:14 INFO parse.ParseDriver: Parse Completed
+    ...
     count: org.apache.spark.sql.DataFrame = [n: bigint]
     
     scala> count.show()
     count.show()
-    16/01/13 02:10:23 INFO spark.SparkContext: Starting job: show at <console>:26
     ...
-    16/01/13 02:10:31 INFO scheduler.DAGScheduler: Job 5 finished: show at <console>:26, took 7.935441 s
     +-----+
     |    n|
     +-----+
@@ -196,6 +194,27 @@ yields output:
     26165
     done
 
+The RDD or Dataframe can be saved as a text file:
+
+    subset.saveAsTextFile ("file:///opt/data/output")
+    locations.saveAsTextFile ("file:///opt/data/output")
+
+and it can be read in again using the SparkContext:
+
+    val newrdd = sc.textFile ("file:///opt/data/output")
+
+The DataFrame can be saved as a JSON file through a DataFrameWriter:
+
+    locations.write.json ("file:///opt/data/output")
+
+and loaded from the JSON file through the SQLContext and a DataFrameReader:
+
+    val df = sqlContext.read.json ("file:///opt/data/output")
+
+Note that these are not schema preserving,
+since the schema is not included in the output,
+and the schem must be inferred from the input.
+
 #Programmatic Usage
 
 The jars to start the thrift server are not automatically added to the classpath for spark-submit,
@@ -276,3 +295,13 @@ This is why this code now works:
 There are a number of base classes that are not case classes.
 Specifically Element, IdentifiedElement, NamedElement, and LocatedElement.
 Experimentation on what is and isn't possible is ongoing.
+
+
+#Notes
+
+good pictures:
+http://blog.cloudera.com/blog/2014/05/apache-spark-resource-management-and-yarn-app-models/
+
+
+/usr/local/spark/bin/spark-submit   "sparkr-shell" /tmp/RtmpSScO6S/backend_port1b6469f08b97
+

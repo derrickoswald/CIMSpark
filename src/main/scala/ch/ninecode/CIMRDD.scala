@@ -51,23 +51,23 @@ object CIMRDD
                 val rdd = rddFile (spark, args (0))
                 println ("rdd created")
 
-//                // extract the locations as a new RDD
-//                val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
-//                {
-//                    case x: (String, Element)
-//                        if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location])
-//                }
-//                val locations = rdd.collect (pf)
-//                // locations.persist ()
-//                println ("collected " + locations.count () + " locations")
+                // extract the locations as a new RDD
+                val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
+                {
+                    case x: (String, Any)
+                        if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location])
+                }
+                val locations = rdd.collect (pf)
+                // locations.persist ()
+                println ("collected " + locations.count () + " locations")
 
-                // create a dataframe from the rdd
-                val mydataframe = sql_context.createDataFrame (rdd, classOf [ch.ninecode.Element])
+                // create a dataframe from the locations
+                val mydataframe = sql_context.createDataFrame (locations)
                 println ("dataframe created")
 
                 // expose the dataframe as a table
-                mydataframe.registerTempTable ("elements")
-                println ("elements table created")
+                mydataframe.registerTempTable ("locations")
+                println ("locations table created")
 
                 // wait for 120 seconds
                 Thread.sleep (120000)
