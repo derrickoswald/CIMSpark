@@ -55,7 +55,7 @@ object CIMRDD
                 val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
                 {
                     case x: (String, Any)
-                        if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location])
+                        if x._2.getClass () == classOf[ch.ninecode.Location] ⇒ (x._1, x._2.asInstanceOf[ch.ninecode.Location])
                 }
                 val locations = rdd.collect (pf)
                 // locations.persist ()

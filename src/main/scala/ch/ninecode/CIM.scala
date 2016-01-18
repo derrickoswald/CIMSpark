@@ -218,8 +218,8 @@ object LocatedElement extends Parser
         val location = result.properties.apply ("location")
         val ret = result.PowerSystemResources.get (location) match
         {
-            case Some (node) => node.asInstanceOf[Location]
-            case None =>
+            case Some (node) ⇒ node.asInstanceOf[Location]
+            case None ⇒
                 val node = new Location (location)
                 result.PowerSystemResources.put (location, node)
                 node
@@ -372,7 +372,7 @@ object Voltage extends Parser
         }
         catch
         {
-            case nfe: NumberFormatException => throw new Exception ("unparsable voltage value found for a voltage element while parsing at line " + result.context.line_number ())
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable voltage value found for a voltage element while parsing at line " + result.context.line_number ())
         }
     }
 
@@ -442,8 +442,8 @@ object Location extends Parser
         // check for forward reference definition and copy any coordinates seen so far
         result.PowerSystemResources.remove (id) match
         {
-            case Some (node) => ret.coordinates ++= node.asInstanceOf [Location].coordinates
-            case None =>
+            case Some (node) ⇒ ret.coordinates ++= node.asInstanceOf [Location].coordinates
+            case None ⇒
         }
         return (ret)
     }
@@ -494,7 +494,7 @@ object PositionPoint extends Parser
         }
         catch
         {
-            case nfe: NumberFormatException => throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
         }
     }
 }
@@ -559,7 +559,7 @@ object Consumer extends Parser
         faz (xml, result)
 
 //or as an array of functions
-//        val steps = Array[(String, Context, Result) => Unit](
+//        val steps = Array[(String, Context, Result) ⇒ Unit](
 //            LocatedElement.parse,
 //            typ,
 //            vol,
@@ -616,8 +616,8 @@ object Terminal extends Parser
         parse (xml, result)
         val con = result.properties.get ("connectivity") match
         {
-            case Some (value) => value
-            case None => null
+            case Some (value) ⇒ value
+            case None ⇒ null
         }
         Terminal (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("sequence"), result.properties.apply ("phase"), con, result.properties.apply ("equipment"))
     }
@@ -739,8 +739,8 @@ object ACLineSegment extends Parser
         // check for forward reference definition and copy any phases seen so far
         result.PowerSystemResources.remove (id) match // replace with this ACLineSegment
         {
-            case Some (node) => ret.phases ++ node.asInstanceOf [ACLineSegment].phases
-            case None =>
+            case Some (node) ⇒ ret.phases ++ node.asInstanceOf [ACLineSegment].phases
+            case None ⇒
         }
         return (ret)
     }
@@ -777,8 +777,8 @@ object ACLineSegmentPhase extends Parser
         // add this phase to the segment
         val seg = result.PowerSystemResources.get (segment) match
         {
-            case Some (node) => node.asInstanceOf [ACLineSegment]
-            case None =>
+            case Some (node) ⇒ node.asInstanceOf [ACLineSegment]
+            case None ⇒
                 val node = new ACLineSegment (segment)
                 result.PowerSystemResources += (segment -> node)
                 node
@@ -842,7 +842,7 @@ object Switch extends Parser
         }
         catch
         {
-            case iae: IllegalArgumentException => throw new Exception ("unparsable boolean value found for a normalOpen element while parsing at line " + result.context.line_number ())
+            case iae: IllegalArgumentException ⇒ throw new Exception ("unparsable boolean value found for a normalOpen element while parsing at line " + result.context.line_number ())
         }
     }
 }
@@ -930,7 +930,7 @@ object TransformerEndInfo extends Parser
         }
         catch
         {
-            case nfe: NumberFormatException => throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
         }
     }
 }
@@ -1003,8 +1003,8 @@ object TransformerTank extends Parser
         // check for forward reference definition and copy any tank ends seen so far
         result.PowerSystemResources.remove (id) match
         {
-            case Some (node) => ret.ends ++= node.asInstanceOf [TransformerTank].ends
-            case None =>
+            case Some (node) ⇒ ret.ends ++= node.asInstanceOf [TransformerTank].ends
+            case None ⇒
         }
         return (ret)
     }
@@ -1057,8 +1057,8 @@ object TransformerTankEnd extends Parser
             // check for forward reference definition and add a tank if it's not seen before
             val tk = result.PowerSystemResources.get (tank) match
             {
-                case Some (node) => node.asInstanceOf [TransformerTank]
-                case None =>
+                case Some (node) ⇒ node.asInstanceOf [TransformerTank]
+                case None ⇒
                     val node = new TransformerTank (tank)
                     result.PowerSystemResources.put (tank, node)
                     node
@@ -1068,7 +1068,7 @@ object TransformerTankEnd extends Parser
         }
         catch
         {
-            case nfe: NumberFormatException => throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
         }
     }
 }
@@ -1272,7 +1272,7 @@ object CIM
 //
 // takes about 30 seconds
 //
-//scala> var myrdd = sc.parallelize (xml match { case <rdf:RDF>{ xs @ _* }</rdf:RDF> => xs })
+//scala> var myrdd = sc.parallelize (xml match { case <rdf:RDF>{ xs @ _* }</rdf:RDF> ⇒ xs })
 //myrdd: org.apache.spark.rdd.RDD[scala.xml.Node] = ParallelCollectionRDD[0] at parallelize at <console>:24
 //
 //scala> myrdd.count ()
