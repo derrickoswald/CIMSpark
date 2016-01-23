@@ -134,4 +134,10 @@ class CIMSuite extends fixture.FunSuite
         assert (rdd.count () === 1)
     }
 
+    test ("Read")
+    {
+        sc ⇒
+        val rdd = CIMRDD.rddFile (sc, "data/dump_all.xml", 0, 0)
+        assert (rdd.count () === 203046)
+    }
 }

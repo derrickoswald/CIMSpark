@@ -1075,42 +1075,6 @@ object TransformerTankEnd extends Parser
 
 class CIM
 {
-    /*
-     * THIS DOES NOT WORK !
-     * Using scala.util.matching is a complete failure.
-     * As near as I can tell, the regular expression is not compiled down into a state machine,
-     * with concomitant performance issues.
-import scala.util.matching._
-    def parse2 (xml:String): HashMap[String, String] =
-    {
-        val regex = """\s*<(cim:[^ >\\s]+)([\s\S]*?)<\/\1>\s*""".r // .unanchored
-        val regex = new Regex ("""\s*<(cim:[^ >\\s]+)([\s\S]*?)<\/\1>\s*""", "head", "guts")
-        var ret = HashMap[String, String] ()
-
-        val elements = regex findFirstIn xml
-
-         val elements = for (m <- regex findAllMatchIn xml) yield m
-         var count = elements.length
-
-         (regex findAllMatchIn xml map (_.start)).toList
-
-        val elements = for (m <- regex findAllIn xml) yield 1
-        var count = elements.length
-
-        val elements = regex findAllIn xml
-        var count = elements.length
-
-        while (elements.hasNext)
-        {
-            elements.next ()
-            var id = parse_attribute ("rdf:ID=(\"|')([\\s\\S]*?)\\1", elements.group (2)) // /rdf:ID=("|')([\s\S]*?)\1/g
-            if (null != id)
-              ret += (id -> elements.group (2))
-        }
-
-        return (ret)
-    }
-    */
 
     def parse (xml:String): Result =
     {
@@ -1169,13 +1133,29 @@ import scala.util.matching._
     }
 }
 
-
 object CIM
 {
     val CHUNK = 1024*1024*16
+    val OVERREAD = 2048 // should be large enough that no RDF element is bigger than this
     val rddex = Pattern.compile ("""\s*<(cim:[^ >\s]+)([\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 
-    def read (filename: String): String =
+// fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
+//                val source = scala.io.Source.fromFile (args (0))
+//                val xml = try source.mkString finally source.close ()
+
+//            var xml = ""
+// slow 17 seconds      xml = xml + buf.view (0, i).mkString
+// slow 2 seconds       xml = xml + String.valueOf (buf.slice (0, i))
+// OK 0.83 seconds:
+//            val sb = new StringBuilder (size)
+//            do
+//            {
+//                i = isr.read (buf, 0, CHUNK)
+//                if (0 < i)
+//                    sb.appendAll (buf, 0, i)
+//            }
+
+    def read (filename: String, offset: Long, size: Long = CHUNK, overread: Long = OVERREAD): String =
     {
         var ret: String = null
 
@@ -1184,28 +1164,31 @@ object CIM
         {
             val fis = new FileInputStream (file)
             val isr = new InputStreamReader (fis, "UTF8")
-            var xml = ""
-            val buf = new Array[Char] (CHUNK)
-            var i:Int = 0
-            val size = fis.available ()
-            println ("file size: %d bytes".format (size))
-            val sb = new StringBuilder (size)
-            do
+            val skipped = isr.skip (offset)
+            if (offset == skipped)
             {
-                i = isr.read (buf, 0, CHUNK)
-                if (0 < i)
-// slow 17 seconds      xml = xml + buf.view (0, i).mkString
-// slow 2 seconds       xml = xml + String.valueOf (buf.slice (0, i))
-// OK 0.83 seconds
-                    sb.appendAll (buf, 0, i)
+                val buf = new Array[Char] (CHUNK)
+                val sb = new StringBuilder (if (size > Int.MaxValue) Int.MaxValue else size.asInstanceOf[Int])
+                var count:Long = 0
+                var stop = false
+                do
+                {
+                    val max = size + overread - count
+                    val actual = isr.read (buf, 0, if (max > CHUNK) CHUNK else max.asInstanceOf[Int])
+                    if (0 < actual)
+                    {
+                        sb.appendAll (buf, 0, actual)
+                        count += actual
+                    }
+                    else
+                        stop = true
+                }
+                while (!stop && (count < size + overread))
+                isr.close ()
+                ret = sb.toString ()
             }
-            while (0 <= i)
-            isr.close ()
-            ret = sb.toString ()
-// fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
-//                val source = scala.io.Source.fromFile (args (0))
-//                val xml = try source.mkString finally source.close ()
-
+            else
+                println ("CIM XML input file cannot be skipped to offset " + offset + ", actual " + skipped)
         }
         else
             println ("CIM XML input file '" + filename + "' not found")
@@ -1218,7 +1201,7 @@ object CIM
         if (args.size > 0)
         {
             val start = System.nanoTime
-            val xml = read (args (0))
+            val xml = read (args (0), 0)
             val before = System.nanoTime
             val reading = (before - start) / 1000
             println ("reading %g seconds".format (reading / 1e6))
@@ -1248,7 +1231,7 @@ object CIM
 
 // interactive creation of an RDD:
 //
-// needs /home/derrick/code/scala-xml/target/scala-2.11/scala-xml_2.11-1.0.6-SNAPSHOT.jar
+// needs /home/derrick/code/scala-xml/target/scala-2.11/scala-xml_2.11-1.0.6-SNAPSHOT.jar on the classpath
 //scala> import scala.xml.XML
 //import scala.xml.XML
 //
@@ -1277,7 +1260,4 @@ object CIM
 //
 //scala> myrdd.count ()
 //res3: Long = 540367
-//
-//use 3 GB : spark-shell --master yarn-client --driver-memory 3g --executor-memory 1g --executor-cores 1
-//otherwise
-//XML.loadFile java.lang.OutOfMemoryError: Java heap space
+

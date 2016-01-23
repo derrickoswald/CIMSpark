@@ -1,5 +1,7 @@
 package ch.ninecode
 
+import java.io.FileInputStream
+
 import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
@@ -20,9 +22,17 @@ import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
  */
 object CIMRDD
 {
-    def rddFile (sc: SparkContext, filename: String): RDD[(String, Element)] =
+    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[(String, Element)] =
     {
-        val xml = CIM.read (filename)
+        var size: Long = length
+        if (0 == size)
+        {
+            val fis = new FileInputStream (filename)
+            size = fis.available () - offset
+            fis.close ();
+            println ("file size: %d bytes".format (size))
+        }
+        val xml = CIM.read (filename, offset, size)
         val parser = new CIM ()
         val result = parser.parse (xml)
         return (sc.parallelize (result.PowerSystemResources.toSeq))
@@ -48,7 +58,8 @@ object CIMRDD
                 println ("thriftserver started")
 
                 // create an RDD by reading in the datafile
-                val rdd = rddFile (spark, args (0))
+                val filename = args (0)
+                val rdd = rddFile (spark, filename, 0, 0)
                 println ("rdd created")
 
                 // extract the locations as a new RDD
