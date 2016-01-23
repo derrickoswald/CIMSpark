@@ -296,6 +296,77 @@ There are a number of base classes that are not case classes.
 Specifically Element, IdentifiedElement, NamedElement, and LocatedElement.
 Experimentation on what is and isn't possible is ongoing.
 
+#SparkR
+
+Load the SparkR interpreter:
+
+    sparkR
+
+Read in the data from the DataFrame that was saved as a JSON file through a DataFrameWriter:
+
+    locations = jsonFile (sqlContext, "file:///opt/data/output")
+or
+
+    locations = read.df (sqlContext, "file:///opt/data/output", "json")
+    ...
+    nrow(locations)
+    ...
+    [1] 26165
+
+Some exploration
+
+    locations[,c(1,2)]
+    DataFrame[_1:string, _2:struct<coordinates:array<double>,cs:string,id:string,properties:struct<cs:string,id:string,type:string>,typ:string>]
+
+    printSchema(locations)
+    root
+     |-- _1: string (nullable = true)
+     |-- _2: struct (nullable = true)
+     |    |-- coordinates: array (nullable = true)
+     |    |    |-- element: double (containsNull = true)
+     |    |-- cs: string (nullable = true)
+     |    |-- id: string (nullable = true)
+     |    |-- properties: struct (nullable = true)
+     |    |    |-- cs: string (nullable = true)
+     |    |    |-- id: string (nullable = true)
+     |    |    |-- type: string (nullable = true)
+     |    |-- typ: string (nullable = true)
+
+    head (select (locations, locations$"_1"))
+    ...
+                                          _1
+    1 _location_1610737664_427083470_1777780
+    2     _location_5773073_827681199_583688
+    3   _location_5773096_1150143750_1201312
+    4 _location_1610680064_427087119_1803716
+    5 _location_1610731520_427087064_2129924
+    6     _location_5773116_960904171_604623
+
+    head (select (locations, locations$"_2"))
+    ...
+    Error in as.data.frame.default(x[[i]], optional = TRUE) :
+      cannot coerce class ""jobj"" to a data.frame
+
+    showDF (locations, numRows=3)
+    ...
+    +--------------------+--------------------+
+    |                  _1|                  _2|
+    +--------------------+--------------------+
+    |_location_1610737...|[WrappedArray(8.5...|
+    |_location_5773073...|[WrappedArray(8.6...|
+    |_location_5773096...|[WrappedArray(8.6...|
+    +--------------------+--------------------+
+    only showing top 3 rows
+
+    locations[1:5,]
+    Error in locations[1:5, ] : object of type 'S4' is not subsettable
+
+Uh oh, this is why the dataframe conversion fails
+
+    schema = structType (structField ("id", "string", TRUE), structField ("sc", "string", TRUE), structField ("typ", "string", TRUE), structField ("coordinates", "List(DoubleType)", TRUE))
+    Error in structField.character("coordinates", "List(DoubleType)", TRUE) :
+      Unsupported type for Dataframe: List(DoubleType)
+
 
 #Notes
 
