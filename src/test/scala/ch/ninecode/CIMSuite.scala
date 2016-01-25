@@ -45,7 +45,7 @@ class CIMSuite extends fixture.FunSuite
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
         val parser = new CIM ()
         val result = parser.parse (xml)
-        assert (result.PowerSystemResources.size === 1)
+        assert (result.IdentifiedElements.size === 1)
     }
 
     test ("Forward Reference")
@@ -65,7 +65,7 @@ class CIMSuite extends fixture.FunSuite
             </rdf:RDF>;
         val parser = new CIM ()
         val result = parser.parse (xml.toString ())
-        val container = result.PowerSystemResources.apply ("_subnetwork_183839").asInstanceOf[Container]
+        val container = result.IdentifiedElements.apply ("_subnetwork_183839").asInstanceOf[Container]
         assert (container.contents.size === 1)
         assert (container.contents.contains ("_pin_1555190"))
     }
@@ -82,7 +82,7 @@ class CIMSuite extends fixture.FunSuite
             </rdf:RDF>;
         val parser = new CIM ()
         val result = parser.parse (xml.toString ())
-        val voltage = result.PowerSystemResources.apply ("BaseVoltage_0.400000000000").asInstanceOf[Voltage]
+        val voltage = result.IdentifiedElements.apply ("BaseVoltage_0.400000000000").asInstanceOf[Voltage]
         assert (voltage.voltage === 400)
     }
 
@@ -116,8 +116,8 @@ class CIMSuite extends fixture.FunSuite
             </rdf:RDF>;
         val parser = new CIM ()
         val result = parser.parse (xml.toString ())
-        assert (result.PowerSystemResources.size === 1)
-        val cs = result.PowerSystemResources apply "wgs_84"
+        assert (result.IdentifiedElements.size === 1)
+        val cs = result.IdentifiedElements apply "wgs_84"
         assert (cs.isInstanceOf[CoordinateSystem])
         val cs2 = cs.asInstanceOf[CoordinateSystem]
         assert (cs2.urn === "EPSG::4326")
@@ -129,8 +129,8 @@ class CIMSuite extends fixture.FunSuite
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
         val parser = new CIM ()
         val result = parser.parse (xml)
-        assert (result.PowerSystemResources.size === 1)
-        val rdd = sc.parallelize (result.PowerSystemResources.toSeq, 2)
+        assert (result.IdentifiedElements.size === 1)
+        val rdd = sc.parallelize (result.IdentifiedElements.toSeq, 2)
         assert (rdd.count () === 1)
     }
 

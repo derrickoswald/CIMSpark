@@ -35,7 +35,7 @@ object CIMRDD
         val xml = CIM.read (filename, offset, size)
         val parser = new CIM ()
         val result = parser.parse (xml)
-        return (sc.parallelize (result.PowerSystemResources.toSeq))
+        return (sc.parallelize (result.IdentifiedElements.toSeq))
     }
 
     def main (args:Array[String])

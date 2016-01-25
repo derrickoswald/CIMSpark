@@ -19,7 +19,7 @@ trait Parser
 class Result (val context: Context)
 {
     var properties = new HashMap[String, String]
-    val PowerSystemResources = HashMap[String, Element] ()
+    val IdentifiedElements = HashMap[String, IdentifiedElement] ()
     var Ignored = 0
 }
 
@@ -181,7 +181,9 @@ object NamedElement extends Parser
     }
 }
 
-abstract class LocatedElement (properties: HashMap[String, String], id: String, name: String, val location: String, val container: String) extends NamedElement (properties, id, name)
+abstract class PowerSystemResource (properties: HashMap[String, String], id: String, name: String) extends NamedElement (properties, id, name)
+
+abstract class LocatedElement (properties: HashMap[String, String], id: String, name: String, val location: String, val container: String) extends PowerSystemResource (properties, id, name)
 
 object LocatedElement extends Parser
 {
@@ -201,13 +203,13 @@ object LocatedElement extends Parser
     def getContainer (result: Result): Container =
     {
         val container = result.properties.apply ("container")
-        val ret = result.PowerSystemResources.get (container) match
+        val ret = result.IdentifiedElements.get (container) match
         {
             case Some (node) ⇒
                 node.asInstanceOf[Container]
             case None ⇒
                 val node = new Container (container)
-                result.PowerSystemResources.put (container, node)
+                result.IdentifiedElements.put (container, node)
                 node
         }
         return (ret)
@@ -216,12 +218,12 @@ object LocatedElement extends Parser
     def getLocation (result: Result): Location =
     {
         val location = result.properties.apply ("location")
-        val ret = result.PowerSystemResources.get (location) match
+        val ret = result.IdentifiedElements.get (location) match
         {
             case Some (node) ⇒ node.asInstanceOf[Location]
             case None ⇒
                 val node = new Location (location)
-                result.PowerSystemResources.put (location, node)
+                result.IdentifiedElements.put (location, node)
                 node
         }
         return (ret)
@@ -231,7 +233,7 @@ object LocatedElement extends Parser
 //        <cim:PSRType rdf:ID="PSRType_Substation">
 //                <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
 //        </cim:PSRType>
-case class PSRType (override val properties: HashMap[String, String], override val id: String, override val name: String) extends NamedElement (properties, id, name)
+case class PSRType (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
 
 object PSRType extends Parser
 {
@@ -248,7 +250,7 @@ object PSRType extends Parser
 //        <cim:Line rdf:ID="_subnetwork_349554">
 //                <cim:IdentifiedObject.name>ABG2236|ABG7246|APP197|FLT13|FLU20|FLU21|FLU22|FLU23|HAS332|HAS333|HAS334|HAS335|MUF2681|MUF2682|PIN2</cim:IdentifiedObject.name>
 //        </cim:Line>
-class Container (properties: HashMap[String, String], id: String, name: String, val contents: HashSet[String]) extends NamedElement (properties, id, name)
+class Container (properties: HashMap[String, String], id: String, name: String, val contents: HashSet[String]) extends PowerSystemResource (properties, id, name)
 {
     /**
      * Forward reference constructor.
@@ -271,7 +273,7 @@ object Line extends Parser
         // check for forward reference definition and copy any references seen so far
         val id = result.properties.apply ("id")
         val ret = Line (result.properties, id, result.properties apply "name", new HashSet[String] ())
-        result.PowerSystemResources.remove (id) match
+        result.IdentifiedElements.remove (id) match
         {
             case Some (node) ⇒
                 ret.contents ++= node.asInstanceOf[Container].contents
@@ -293,7 +295,7 @@ object Subnetwork extends Parser
         // check for forward reference definition and copy any references seen so far
         val id = result.properties.apply ("id")
         val ret = Subnetwork (result.properties, id, result.properties apply "name", new HashSet[String] ())
-        result.PowerSystemResources.remove (id) match
+        result.IdentifiedElements.remove (id) match
         {
             case Some (node) ⇒
                 ret.contents ++= node.asInstanceOf[Container].contents
@@ -307,7 +309,7 @@ object Subnetwork extends Parser
 //                <cim:IdentifiedObject.name>PIN2</cim:IdentifiedObject.name>
 //                <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="_subnetwork_349554"/>
 //        </cim:ConnectivityNode>
-case class ConnectivityNode (override val properties: HashMap[String, String], override val id: String, override val name: String, val container: String) extends NamedElement (properties, id, name)
+case class ConnectivityNode (override val properties: HashMap[String, String], override val id: String, override val name: String, val container: String) extends PowerSystemResource (properties, id, name)
 
 object ConnectivityNode extends Parser
 {
@@ -378,7 +380,7 @@ object Voltage extends Parser
 
 }
 
-case class CoordinateSystem (override val properties: HashMap[String, String], override val id: String, override val name: String, val urn: String) extends NamedElement (properties, id, name)
+case class CoordinateSystem (override val properties: HashMap[String, String], override val id: String, override val name: String, val urn: String) extends PowerSystemResource (properties, id, name)
 
 object CoordinateSystem extends Parser
 {
@@ -440,7 +442,7 @@ object Location extends Parser
         val id = result.properties.apply ("id")
         val ret = Location (result.properties, id, result.properties.apply ("cs"), result.properties.apply ("type"), new ArrayBuffer[Double] (2))
         // check for forward reference definition and copy any coordinates seen so far
-        result.PowerSystemResources.remove (id) match
+        result.IdentifiedElements.remove (id) match
         {
             case Some (node) ⇒ ret.coordinates ++= node.asInstanceOf [Location].coordinates
             case None ⇒
@@ -588,7 +590,7 @@ object Consumer extends Parser
 //    <cim:Terminal.ConductingEquipment rdf:resource="#_house_connection_1469932"/>
 //</cim:Terminal>
 
-case class Terminal (override val properties: HashMap[String, String], override val id: String, override val name: String, val sequence: String, val phase: String, val connectivity: String, val equipment: String) extends NamedElement (properties, id, name)
+case class Terminal (override val properties: HashMap[String, String], override val id: String, override val name: String, val sequence: String, val phase: String, val connectivity: String, val equipment: String) extends PowerSystemResource (properties, id, name)
 
 object Terminal extends Parser
 {
@@ -623,7 +625,7 @@ object Terminal extends Parser
     }
 }
 
-case class BusbarInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends NamedElement (properties, id, name)
+case class BusbarInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
 
 object BusbarInfo extends Parser
 {
@@ -673,7 +675,7 @@ object BusbarSection extends Parser
     }
 }
 
-case class CableInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends NamedElement (properties, id, name)
+case class CableInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
 
 object CableInfo extends Parser
 {
@@ -737,7 +739,7 @@ object ACLineSegment extends Parser
         val location = LocatedElement.getLocation (result)
         val ret = ACLineSegment (result.properties, id, result.properties.apply ("name"), location.id, container.id, result.properties.apply ("type"), result.properties.apply ("length"), result.properties.apply ("voltage"), new ArrayBuffer[String] (1))
         // check for forward reference definition and copy any phases seen so far
-        result.PowerSystemResources.remove (id) match // replace with this ACLineSegment
+        result.IdentifiedElements.remove (id) match // replace with this ACLineSegment
         {
             case Some (node) ⇒ ret.phases ++ node.asInstanceOf [ACLineSegment].phases
             case None ⇒
@@ -752,7 +754,7 @@ object ACLineSegment extends Parser
 //   <cim:ACLineSegmentPhase.ACLineSegment rdf:resource="_internal_line_2094357"/>
 //</cim:ACLineSegmentPhase>
 
-case class ACLineSegmentPhase (override val properties: HashMap[String, String], override val id: String, override val name: String, val phase: String, val segment: String) extends NamedElement (properties, id, name)
+case class ACLineSegmentPhase (override val properties: HashMap[String, String], override val id: String, override val name: String, val phase: String, val segment: String) extends PowerSystemResource (properties, id, name)
 
 object ACLineSegmentPhase extends Parser
 {
@@ -775,12 +777,12 @@ object ACLineSegmentPhase extends Parser
         val segment = result.properties apply "segment"
         val ret = ACLineSegmentPhase (result.properties, result.properties apply "id", result.properties apply "name", result.properties apply "phase", segment)
         // add this phase to the segment
-        val seg = result.PowerSystemResources.get (segment) match
+        val seg = result.IdentifiedElements.get (segment) match
         {
             case Some (node) ⇒ node.asInstanceOf [ACLineSegment]
             case None ⇒
                 val node = new ACLineSegment (segment)
-                result.PowerSystemResources += (segment -> node)
+                result.IdentifiedElements += (segment -> node)
                 node
         }
         seg.phases += segment
@@ -788,7 +790,7 @@ object ACLineSegmentPhase extends Parser
     }
 }
 
-case class SwitchInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends NamedElement (properties, id, name)
+case class SwitchInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
 
 object SwitchInfo extends Parser
 {
@@ -851,7 +853,7 @@ object Switch extends Parser
 //                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA</cim:IdentifiedObject.name>
 //                <cim:PowerTransformerInfo.TransformerTankInfo rdf:resource="#_power_xfrmr_spec_2083545"/>
 //        </cim:PowerTransformerInfo>
-case class PowerTransformerInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val info: String) extends NamedElement (properties, id, name)
+case class PowerTransformerInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val info: String) extends PowerSystemResource (properties, id, name)
 
 object PowerTransformerInfo extends Parser
 {
@@ -878,7 +880,7 @@ object PowerTransformerInfo extends Parser
 //                <cim:TransformerTankInfo.PowerTransformerInfo rdf:resource="#_power_transformer_2083545"/>
 //        </cim:TransformerTankInfo>
 
-case class TransformerTankInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val info: String) extends NamedElement (properties, id, name)
+case class TransformerTankInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val info: String) extends PowerSystemResource (properties, id, name)
 
 object TransformerTankInfo extends Parser
 {
@@ -904,7 +906,7 @@ object TransformerTankInfo extends Parser
 //                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA_tei_1</cim:IdentifiedObject.name>
 //                <cim:TransformerEndInfo.endNumber>1</cim:TransformerEndInfo.endNumber>
 //        </cim:TransformerEndInfo>
-case class TransformerEndInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val end: Integer) extends NamedElement (properties, id, name)
+case class TransformerEndInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val end: Integer) extends PowerSystemResource (properties, id, name)
 
 object TransformerEndInfo extends Parser
 {
@@ -972,7 +974,7 @@ object PowerTransformer extends Parser
 //                <cim:IdentifiedObject.name>TRA79_tank</cim:IdentifiedObject.name>
 //                <cim:TransformerTank.PowerTransformer rdf:resource="#_transformer_2083545"/>
 //        </cim:TransformerTank>
-case class TransformerTank (override val properties: HashMap[String, String], override val id: String, override val name: String, val transformer: String, val ends: ArrayBuffer[String]) extends NamedElement (properties, id, name)
+case class TransformerTank (override val properties: HashMap[String, String], override val id: String, override val name: String, val transformer: String, val ends: ArrayBuffer[String]) extends PowerSystemResource (properties, id, name)
 {
     /**
      * Forward reference constructor.
@@ -1001,7 +1003,7 @@ object TransformerTank extends Parser
         val id = result.properties.apply ("id")
         val ret = TransformerTank (result.properties, id, result.properties.apply ("name"), result.properties.apply ("transformer"), new ArrayBuffer[String] (2))
         // check for forward reference definition and copy any tank ends seen so far
-        result.PowerSystemResources.remove (id) match
+        result.IdentifiedElements.remove (id) match
         {
             case Some (node) ⇒ ret.ends ++= node.asInstanceOf [TransformerTank].ends
             case None ⇒
@@ -1018,7 +1020,7 @@ object TransformerTank extends Parser
 //                <cim:TransformerEnd.Terminal rdf:resource="#_transformer_2083545_terminal_1"/>
 //                <cim:TransformerEnd.BaseVoltage rdf:resource="#BaseVoltage_16.0000000000"/>
 //        </cim:TransformerTankEnd>
-case class TransformerTankEnd (override val properties: HashMap[String, String], override val id: String, override val name: String, val end: Integer, val phases: String, val tank: String, val terminal: String, val voltage: String) extends NamedElement (properties, id, name)
+case class TransformerTankEnd (override val properties: HashMap[String, String], override val id: String, override val name: String, val end: Integer, val phases: String, val tank: String, val terminal: String, val voltage: String) extends PowerSystemResource (properties, id, name)
 
 object TransformerTankEnd extends Parser
 {
@@ -1055,12 +1057,12 @@ object TransformerTankEnd extends Parser
             val tank = result.properties.apply ("tank")
             val ret = TransformerTankEnd (result.properties, id, result.properties.apply ("name"), num, result.properties.apply ("phases"), result.properties.apply ("tank"), result.properties.apply ("terminal"), result.properties.apply ("voltage"))
             // check for forward reference definition and add a tank if it's not seen before
-            val tk = result.PowerSystemResources.get (tank) match
+            val tk = result.IdentifiedElements.get (tank) match
             {
                 case Some (node) ⇒ node.asInstanceOf [TransformerTank]
                 case None ⇒
                     val node = new TransformerTank (tank)
-                    result.PowerSystemResources.put (tank, node)
+                    result.IdentifiedElements.put (tank, node)
                     node
             }
             tk.ends += id
@@ -1070,6 +1072,98 @@ object TransformerTankEnd extends Parser
         {
             case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
         }
+    }
+}
+
+//<cim:ServiceLocation rdf:ID="_ao_902716339">
+//    <cim:IdentifiedObject.name>HAS14</cim:IdentifiedObject.name>
+//    <cim:ServiceLocation.device>_house_connection_1469992</cim:ServiceLocation.device>
+//</cim:ServiceLocation>
+case class ServiceLocation (override val properties: HashMap[String, String], override val id: String, override val name: String, val device: String, val customers: ArrayBuffer[String]) extends NamedElement (properties, id, name)
+{
+    /**
+     * Forward reference constructor.
+     *
+     * Used when there is a forward reference to a service location that has not yet been parsed.
+     * @param id the id (rdf:ID) of the service location, i.e. the forward reference
+     */
+    def this (id: String) = this (HashMap[String, String] ("id" -> id), id, "", "", new ArrayBuffer[String] (2))
+}
+
+object ServiceLocation extends Parser
+{
+    val devex = Pattern.compile ("""<cim:ServiceLocation.device>([\s\S]*?)<\/cim:ServiceLocation.device>""")
+
+    def dev = Element.parse_element (devex, 1, "device", true)_
+
+    override def parse (xml: String, result: Result): Unit =
+    {
+        NamedElement.parse (xml, result)
+        dev (xml, result)
+    }
+
+    def unpickle (xml: String, result: Result): ServiceLocation =
+    {
+        parse (xml, result)
+
+        val id = result.properties.apply ("id")
+        val device = result.properties.apply ("device")
+        val ret = ServiceLocation (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), device, new ArrayBuffer[String] (2))
+        // check for forward reference definition and copy any customers seen so far
+        result.IdentifiedElements.remove (id) match
+        {
+            case Some (node) ⇒ ret.customers ++= node.asInstanceOf [ServiceLocation].customers
+            case None ⇒
+        }
+        return (ret)
+    }
+}
+
+//<cim:Customer rdf:ID="_customer_1845515577">
+//    <cim:IdentifiedObject.name>HAS14_1</cim:IdentifiedObject.name>
+//    <cim:Customer.kind rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#CustomerKind.residential"/>
+//    <cim:Customer.locale>fr_CH</cim:Customer.locale>
+//    <cim:Customer.service>_ao_902716339</cim:Customer.service>
+//</cim:Customer>
+case class Customer (override val properties: HashMap[String, String], override val id: String, override val name: String, val kind: String, val locale: String, val service: String) extends NamedElement (properties, id, name)
+
+object Customer extends Parser
+{
+    val kinex = Pattern.compile ("""<cim:Customer.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val locex = Pattern.compile ("""<cim:Customer.locale>([\s\S]*?)<\/cim:Customer.locale>""")
+    val serex = Pattern.compile ("""<cim:Customer.service>([\s\S]*?)<\/cim:Customer.service>""")
+
+    def kind = Element.parse_attribute (kinex, 2, "kind", true)_
+    def loc = Element.parse_element (locex, 1, "locale", true)_
+    def serv = Element.parse_element (serex, 1, "service", true)_
+
+    override def parse (xml: String, result: Result): Unit =
+    {
+        NamedElement.parse (xml, result)
+        kind (xml, result)
+        loc (xml, result)
+        serv (xml, result)
+    }
+
+    def unpickle (xml: String, result: Result): Customer =
+    {
+        parse (xml, result)
+        val id = result.properties.apply ("id")
+        val kind = result.properties.apply ("kind")
+        val locale = result.properties.apply ("locale")
+        val service = result.properties.apply ("service")
+        val ret = Customer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), kind, locale, service)
+        // check for forward reference definition and add a service locations if it's not seen before
+        val loc = result.IdentifiedElements.get (service) match
+        {
+            case Some (node) ⇒ node.asInstanceOf [ServiceLocation]
+            case None ⇒
+                val node = new ServiceLocation (service)
+                result.IdentifiedElements.put (service, node)
+                node
+        }
+        loc.customers += id
+        return (ret)
     }
 }
 
@@ -1112,6 +1206,10 @@ class CIM
                 case "cim:PowerTransformer" ⇒ PowerTransformer.unpickle (rest, result)
                 case "cim:TransformerTank" ⇒ TransformerTank.unpickle (rest, result)
                 case "cim:TransformerTankEnd" ⇒ TransformerTankEnd.unpickle (rest, result)
+
+                case "cim:ServiceLocation" ⇒ ServiceLocation.unpickle (rest, result)
+                case "cim:Customer" ⇒ Customer.unpickle (rest, result)
+
                 case _ ⇒
                 {
                     Unknown.parse (rest, result)
@@ -1119,11 +1217,15 @@ class CIM
                 }
             }
             if (null != element)
-                (element.asInstanceOf[IdentifiedElement]).properties.get ("id") match
+                element.properties.get ("id") match
                 {
-                    case Some (id) ⇒ result.PowerSystemResources += (id.asInstanceOf[String] -> element)
-                    case None ⇒ result.Ignored += 1
+                    case Some (id) ⇒
+                        result.IdentifiedElements += (id -> element.asInstanceOf[IdentifiedElement])
+                    case None ⇒
+                        // we check for an id -- if no id then it's unknown
+                        result.Ignored += 1
                 }
+
             // set up for next parse
             result.properties = new HashMap[String, String] ()
             context.end = matcher.end ()
@@ -1200,8 +1302,12 @@ object CIM
     {
         if (args.size > 0)
         {
+            val filename = args (0)
+            val fis = new FileInputStream (filename)
+            val size = fis.available ()
+            fis.close ();
             val start = System.nanoTime
-            val xml = read (args (0), 0)
+            val xml = read (filename, 0, size)
             val before = System.nanoTime
             val reading = (before - start) / 1000
             println ("reading %g seconds".format (reading / 1e6))
@@ -1213,7 +1319,7 @@ object CIM
             val parsing = (after - before) / 1000
             println ("parsing %g seconds".format (parsing / 1e6))
 
-            println (result.PowerSystemResources.size + " PowerSystemResource elements parsed")
+            println (result.IdentifiedElements.size + " identified elements parsed")
             println (result.Ignored + " elements ignored")
         }
         else
