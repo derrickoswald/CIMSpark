@@ -22,7 +22,7 @@ import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
  */
 object CIMRDD
 {
-    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[(String, Element)] =
+    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Element] =
     {
         var size: Long = length
         if (0 == size)
@@ -35,7 +35,7 @@ object CIMRDD
         val xml = CIM.read (filename, offset, size)
         val parser = new CIM ()
         val result = parser.parse (xml)
-        return (sc.parallelize (result.IdentifiedElements.toSeq))
+        return (sc.parallelize (result.IdentifiedElements.values.toSeq))
     }
 
     def main (args:Array[String])
@@ -63,12 +63,13 @@ object CIMRDD
                 println ("rdd created")
 
                 // extract the locations as a new RDD
-                val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
+                val pf: PartialFunction[Element, ch.ninecode.Location] =
                 {
-                    case x: (String, Any)
-                        if x._2.getClass () == classOf[ch.ninecode.Location] ⇒ (x._1, x._2.asInstanceOf[ch.ninecode.Location])
+                    case x: Any
+                        if x.getClass () == classOf[Location] ⇒ x.asInstanceOf[Location]
                 }
                 val locations = rdd.collect (pf)
+
                 // locations.persist ()
                 println ("collected " + locations.count () + " locations")
 

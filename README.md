@@ -28,56 +28,75 @@ cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
 The spark shell (scala interpreter) provides interactive commands:
 
-    spark-shell --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --jars /opt/code/scala-2.10/cimscala_2.10-0.1.jar,/opt/code/CIMScala-1.0-SNAPSHOT.jar
+    spark-shell --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar
+
+Add the CIMScalal jar to the classpath:
+
+    scala> import ch.ninecode._
+    import ch.ninecode._
 
 To generate an RDD use the CIMRDD class:
 
-    scala> val myrdd = ch.ninecode.CIMRDD.rddFile (sc, "/opt/data/dump_all.xml")
+    scala> var myrdd = CIMRDD.rddFile (sc, "/opt/data/dump_all.xml")
     file size: 98990525 bytes
-    myrdd: org.apache.spark.rdd.RDD[(String, ch.ninecode.Element)] = ParallelCollectionRDD[0] at parallelize at CIMRDD.scala:25
+    myrdd: org.apache.spark.rdd.RDD[ch.ninecode.Element] = ParallelCollectionRDD[0] at parallelize at CIMRDD.scala:38
 
 To get the Location objects:
 
-    scala> val ff = myrdd.filter (x => x._2.getClass() == classOf[ch.ninecode.Location])
+    scala> myrdd.filter (x => x.getClass() == classOf[Location]).count()
+    ...
+    res0: Long = 26165
 
-or to create an typed RDD of id and Location pairs i.e. (String, Location):
+or to create an typed RDD of Locations:
 
-    scala> val pf: PartialFunction[(String, ch.ninecode.Element), (String, ch.ninecode.Location)] =
-         { case x: (String, Any) if x._2.getClass () == classOf[ch.ninecode.Location] => (x._1, x._2.asInstanceOf[ch.ninecode.Location]) }
-    pf: PartialFunction[(String, ch.ninecode.Element),(String, ch.ninecode.Location)] = <function1>
-    scala> val subset = myrdd.collect (pf)
-    subset: org.apache.spark.rdd.RDD[(String, ch.ninecode.Location)] = MapPartitionsRDD[2] at collect at <console>:28
+    scala> var pf: PartialFunction[Element, Location] = { case x: Element if x.getClass () == classOf[Location] => x.asInstanceOf[Location] }
+    pf: PartialFunction[ch.ninecode.Element,ch.ninecode.Location] = <function1>
+
+    scala> var subset = myrdd.collect (pf)
+    subset: org.apache.spark.rdd.RDD[ch.ninecode.Location] = MapPartitionsRDD[3] at collect at <console>:28
     
-    scala> subset.count()
+    scala> subset.first().coordinates
     ...
-    res3: Long = 26165
-    scala> subset.first()._1
-    ...
-    res4: String = _location_1610744576_427087414_2073666
-    scala> subset.first()._2.coordinates
-    ...
-    res5: scala.collection.mutable.ArrayBuffer[Double] = ArrayBuffer(8.52831529608, 46.9951049314)
+    res1: scala.collection.mutable.ArrayBuffer[Double] = ArrayBuffer(8.52831529608, 46.9951049314)
 
 To expose the RDD as a Hive SQL table that is available externally:
 
-    scala> val locations = sqlContext.createDataFrame (subset)
-    locations: org.apache.spark.sql.DataFrame = [_1: string, _2: struct<properties:map<string,string>,id:string,cs:string,typ:string,coordinates:array<double>>]
+    scala> case class PointLocation (id: String,  x: Double, y: Double)
+    defined class PointLocation
+
+    scala> var point_pf: PartialFunction[Location, PointLocation] = { case x: Location if x.coordinates.length == 2 => PointLocation (x.id, x.coordinates(0), x.coordinates(1)) }
+    point_pf: PartialFunction[ch.ninecode.Location,PointLocation] = <function1>
+
+    scala> var points = subset.collect (point_pf)
+    points: org.apache.spark.rdd.RDD[PointLocation] = MapPartitionsRDD[5] at collect at <console>:34
+
+    scala> case class LineLocation (id: String,  x1: Double, y1: Double, x2: Double, y2: Double)
+    defined class LineLocation
+
+    scala> var line_pf: PartialFunction[Location, LineLocation] = { case x: Location if x.coordinates.length > 2 => val l = x.coordinates.length; LineLocation (x.id, x.coordinates(0), x.coordinates(1), x.coordinates(l - 2), x.coordinates(l - 1)) }
+    line_pf: PartialFunction[ch.ninecode.Location,LineLocation] = <function1>
     
-    scala> locations.registerTempTable ("locations")
+    scala> var points = sqlContext.createDataFrame (subset.collect (point_pf))
+    points: org.apache.spark.sql.DataFrame = [id: string, x: double, y: double]
     
-    scala> val count = sqlContext.sql("select count(*) n from locations")
-    val count = sqlContext.sql("select count(*) n from locations")
+    scala> var lines = sqlContext.createDataFrame (subset.collect (line_pf))
+    lines: org.apache.spark.sql.DataFrame = [id: string, x1: double, y1: double, x2: double, y2: double]
+
+    scala> points.registerTempTable ("points")
+    scala> lines.registerTempTable ("lines")
+    
+    scala> sqlContext.sql ("select * from points").show ()
     ...
-    count: org.apache.spark.sql.DataFrame = [n: bigint]
-    
-    scala> count.show()
-    count.show()
+    +--------------------+-------------+-------------+
+    |                  id|            x|            y|
+    +--------------------+-------------+-------------+
+    |_location_1610744...|8.52831529608|46.9951049314|
+    |_location_5773096...|8.60289818799| 46.995578585|
     ...
-    +-----+
-    |    n|
-    +-----+
-    |26165|
-    +-----+
+    |_location_1610697...|8.50875932142| 46.993371867|
+    +--------------------+-------------+-------------+
+    only showing top 20 rows
+
 
 Starting the thrift server from the command line uses a different SparkContext/SQLContext
 so the exposed tables will not be visible (don't do this):
@@ -98,7 +117,7 @@ Start the thrift server from within the spark shell:
 
 The java client code requires a shit load of jar fails,
 which can be black-box included by adding this magic incantation in
-the maven (what a piece of shit that program is) pom:
+the maven (I hate Maven) pom:
 
     <dependency>
         <groupId>org.apache.hadoop</groupId>
@@ -138,7 +157,7 @@ Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/
             System.out.println ("    " + res.getString (1));
         res.close ();
 
-        String tableName = "locations";
+        String tableName = "points";
 
         // describe table
         sql = "describe " + tableName;
@@ -153,8 +172,8 @@ Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/
         System.out.println ("Running: " + sql);
         res = stmt.executeQuery (sql);
         int index = 0;
-        while (res.next () && (index++ < 10))
-            System.out.println (String.valueOf (res.getString (1)) + "\t" + res.getString (2));
+        while (res.next () && (index++ < 5))
+            System.out.println (String.valueOf (res.getString (1)) + "\t" + res.getDouble (2)+ "\t" + res.getDouble (3));
         res.close ();
 
         // count query
@@ -171,49 +190,48 @@ Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/
 
 yields output:
 
-    16/01/13 08:22:29 INFO jdbc.Utils: Supplied authorities: localhost:10000
-    16/01/13 08:22:29 INFO jdbc.Utils: Resolved authority: localhost:10000
-    16/01/13 08:22:30 INFO jdbc.HiveConnection: Will try to open client transport with JDBC Uri: jdbc:hive2://localhost:10000/default
+    16/01/26 15:40:32 INFO jdbc.Utils: Supplied authorities: localhost:10000
+    16/01/26 15:40:32 INFO jdbc.Utils: Resolved authority: localhost:10000
+    16/01/26 15:40:32 INFO jdbc.HiveConnection: Will try to open client transport with JDBC Uri: jdbc:hive2://localhost:10000/default
     Running: show tables
-        locations
-    Running: describe locations
-        _1  string
-        _2  struct<properties:map<string,string>,id:string,cs:string,typ:string,coordinates:array<double>>
-    Running: select * from locations
-    _location_1610744576_427087414_2073666  {"properties":{"cs":"wgs_84","id":"_location_1610744576_427087414_2073666","type":"geographic"},"id":"_location_1610744576_427087414_2073666","cs":"wgs_84","typ":"geographic","coordinates":[8.52831529608,46.9951049314]}
-    _location_5773117_1164062500_815815 {"properties":{"cs":"wgs_84","id":"_location_5773117_1164062500_815815","type":"geographic"},"id":"_location_5773117_1164062500_815815","cs":"wgs_84","typ":"geographic","coordinates":[8.5512156031,46.9928390755,8.55107434111,46.9934015397,8.54938564426,46.9949313398]}
-    _location_5773096_1152305167_985581 {"properties":{"cs":"wgs_84","id":"_location_5773096_1152305167_985581","type":"geographic"},"id":"_location_5773096_1152305167_985581","cs":"wgs_84","typ":"geographic","coordinates":[8.60289818799,46.995578585]}
-    _location_5773113_699218750_908358  {"properties":{"cs":"wgs_84","id":"_location_5773113_699218750_908358","type":"geographic"},"id":"_location_5773113_699218750_908358","cs":"wgs_84","typ":"geographic","coordinates":[8.57411513961,47.0561388804,8.57404967284,47.0568799695]}
-    _location_1610734848_427085841_1941588  {"properties":{"cs":"wgs_84","id":"_location_1610734848_427085841_1941588","type":"geographic"},"id":"_location_1610734848_427085841_1941588","cs":"wgs_84","typ":"geographic","coordinates":[8.62076427321,47.0015120663,8.62076457045,47.0015255575]}
-    _location_5773116_972140366_615398  {"properties":{"cs":"wgs_84","id":"_location_5773116_972140366_615398","type":"geographic"},"id":"_location_5773116_972140366_615398","cs":"wgs_84","typ":"geographic","coordinates":[8.5110791419,46.9933251694]}
-    _location_1610686720_427083469_1806704  {"properties":{"cs":"wgs_84","id":"_location_1610686720_427083469_1806704","type":"geographic"},"id":"_location_1610686720_427083469_1806704","cs":"wgs_84","typ":"geographic","coordinates":[8.52348118187,46.9948568184,8.52348145461,46.9948703098]}
-    _location_1610724096_427082944_2132876  {"properties":{"cs":"wgs_84","id":"_location_1610724096_427082944_2132876","type":"geographic"},"id":"_location_1610724096_427082944_2132876","cs":"wgs_84","typ":"geographic","coordinates":[8.4742644357,47.0536329009,8.4741806096,47.053381774]}
-    _location_1610744576_427087296_1957913  {"properties":{"cs":"wgs_84","id":"_location_1610744576_427087296_1957913","type":"geographic"},"id":"_location_1610744576_427087296_1957913","cs":"wgs_84","typ":"geographic","coordinates":[8.52844647917,46.9950901903,8.52844620518,46.9950766989]}
-    _location_1610673920_427086875_1791812  {"properties":{"cs":"wgs_84","id":"_location_1610673920_427086875_1791812","type":"geographic"},"id":"_location_1610673920_427086875_1791812","cs":"wgs_84","typ":"geographic","coordinates":[8.67556778748,47.1042507684,8.67556903395,47.1043047314]}
-    Running: select count(1) from locations
-    26165
+        points
+        lines
+    Running: describe points
+        id  string
+        x   double
+        y   double
+    Running: select * from points
+    _location_1610744576_427087414_2073666  8.52831529608   46.9951049314
+    _location_5773096_1152305167_985581 8.60289818799   46.995578585
+    _location_5773116_972140366_615398  8.5110791419    46.9933251694
+    _location_5773096_823727318_151097  8.6133386841    47.003597305
+    _location_1610642176_427083559_1978331  8.58587930233   47.0543961057
+    Running: select count(1) from points
+    7540
     done
 
-The RDD or Dataframe can be saved as a text file:
+The RDD or Dataframe can be saved as a text, json or parquet file.
+A parquet file can be read in by SparkR:
 
-    subset.saveAsTextFile ("file:///opt/data/output")
-    locations.saveAsTextFile ("file:///opt/data/output")
+    scala> points.saveAsParquetFile ("file:///opt/data/points")
+    scala> lines.saveAsParquetFile ("file:///opt/data/lines")
 
-and it can be read in again using the SparkContext:
+and it can be read in again using the SqlContext:
 
-    val newrdd = sc.textFile ("file:///opt/data/output")
+    scala> var newpoints = sqlContext.parquetFile ("file:///opt/data/points")
+    scala> var newlines = sqlContext.parquetFile ("file:///opt/data/lines")
 
-The DataFrame can be saved as a JSON file through a DataFrameWriter:
+Note that the DataFrame can be saved as a JSON file through a DataFrameWriter:
 
-    locations.write.json ("file:///opt/data/output")
+    scala> points.write.json ("file:///opt/data/points.json")
 
 and loaded from the JSON file through the SQLContext and a DataFrameReader:
 
-    val df = sqlContext.read.json ("file:///opt/data/output")
+    scala> var newpoints = sqlContext.read.json ("file:///opt/data/points.json")
 
 Note that these are not schema preserving,
 since the schema is not included in the output,
-and the schem must be inferred from the input.
+and the schema must be inferred from the input.
 
 #Programmatic Usage
 
@@ -302,71 +320,48 @@ Load the SparkR interpreter:
 
     sparkR
 
-Read in the data from the DataFrame that was saved as a JSON file through a DataFrameWriter:
+Read in the data from the DataFrame that was saved as a parquet file:
 
-    locations = jsonFile (sqlContext, "file:///opt/data/output")
+    > points = parquetFile (sqlContext, "file:///opt/data/points")
 or
 
-    locations = read.df (sqlContext, "file:///opt/data/output", "json")
+    > points = read.df (sqlContext, "file:///opt/data/points", "parquet")
     ...
-    nrow(locations)
+    > nrow(points)
     ...
-    [1] 26165
+    [1] 7540
+
+    > head (points)
+    ...
+                                          id        x        y
+    1 _location_1610744576_427087414_2073666 8.528315 46.99510
+    2    _location_5773096_1152305167_985581 8.602898 46.99558
+    3     _location_5773116_972140366_615398 8.511079 46.99333
+    4     _location_5773096_823727318_151097 8.613339 47.00360
+    5 _location_1610642176_427083559_1978331 8.585879 47.05440
+    6 _location_1610690304_427087038_1995349 8.660671 47.10959
 
 Some exploration
 
-    locations[,c(1,2)]
-    DataFrame[_1:string, _2:struct<coordinates:array<double>,cs:string,id:string,properties:struct<cs:string,id:string,type:string>,typ:string>]
-
-    printSchema(locations)
+    printSchema(points)
     root
-     |-- _1: string (nullable = true)
-     |-- _2: struct (nullable = true)
-     |    |-- coordinates: array (nullable = true)
-     |    |    |-- element: double (containsNull = true)
-     |    |-- cs: string (nullable = true)
-     |    |-- id: string (nullable = true)
-     |    |-- properties: struct (nullable = true)
-     |    |    |-- cs: string (nullable = true)
-     |    |    |-- id: string (nullable = true)
-     |    |    |-- type: string (nullable = true)
-     |    |-- typ: string (nullable = true)
+     |-- id: string (nullable = true)
+     |-- x: double (nullable = true)
+     |-- y: double (nullable = true)
 
-    head (select (locations, locations$"_1"))
+    showDF (points, numRows=3)
     ...
-                                          _1
-    1 _location_1610737664_427083470_1777780
-    2     _location_5773073_827681199_583688
-    3   _location_5773096_1150143750_1201312
-    4 _location_1610680064_427087119_1803716
-    5 _location_1610731520_427087064_2129924
-    6     _location_5773116_960904171_604623
-
-    head (select (locations, locations$"_2"))
-    ...
-    Error in as.data.frame.default(x[[i]], optional = TRUE) :
-      cannot coerce class ""jobj"" to a data.frame
-
-    showDF (locations, numRows=3)
-    ...
-    +--------------------+--------------------+
-    |                  _1|                  _2|
-    +--------------------+--------------------+
-    |_location_1610737...|[WrappedArray(8.5...|
-    |_location_5773073...|[WrappedArray(8.6...|
-    |_location_5773096...|[WrappedArray(8.6...|
-    +--------------------+--------------------+
+    +--------------------+-------------+-------------+
+    |                  id|            x|            y|
+    +--------------------+-------------+-------------+
+    |_location_1610744...|8.52831529608|46.9951049314|
+    |_location_5773096...|8.60289818799| 46.995578585|
+    |_location_5773116...| 8.5110791419|46.9933251694|
+    +--------------------+-------------+-------------+
     only showing top 3 rows
 
-    locations[1:5,]
-    Error in locations[1:5, ] : object of type 'S4' is not subsettable
-
-Uh oh, this is why the dataframe conversion fails
-
-    schema = structType (structField ("id", "string", TRUE), structField ("sc", "string", TRUE), structField ("typ", "string", TRUE), structField ("coordinates", "List(DoubleType)", TRUE))
-    Error in structField.character("coordinates", "List(DoubleType)", TRUE) :
-      Unsupported type for Dataframe: List(DoubleType)
-
+    points[1:5,]
+    Error in points[1:5, ] : object of type 'S4' is not subsettable
 
 #Notes
 
@@ -375,4 +370,38 @@ http://blog.cloudera.com/blog/2014/05/apache-spark-resource-management-and-yarn-
 
 
 /usr/local/spark/bin/spark-submit   "sparkr-shell" /tmp/RtmpSScO6S/backend_port1b6469f08b97
+
+#Magellan
+docker start:
+-v /home/derrick/code/magellan/target/scala-2.10:/opt/magellan 
+spark shell start:
+/opt/magellan/magellan_2.10-1.0.4-SNAPSHOT.jar,
+
+#SAP (faked)
+
+Load the two RDD:
+
+    scala> var main = CIMRDD.rddFile (sc, "/opt/data/dump_all.xml")
+    scala> var auxilliary = CIMRDD.rddFile (sc, "/opt/data/dump_all.xml.fake")
+
+Get only the consumers in a correctly typed (Consumer) RDD:
+
+    var pfc: PartialFunction[Element, Consumer] = { case x: Any if x.getClass () == classOf[Consumer] => x.asInstanceOf[Consumer] }
+    var consumers = main.collect (pfc)
+
+Get only the AO in a correctly typed (ServiceLocation) RDD:
+
+    var pfa: PartialFunction[Element, ServiceLocation] = { case x: Any if x.getClass () == classOf[ServiceLocation] => x.asInstanceOf[ServiceLocation] }
+    var ao = auxilliary.collect (pfa)
+
+[This technique uses PairRDDFunctions.join after creating suitable RDDs of (key, value) pairs]
+Join the AO to the consumers by the device (this fake data has the AO device property equal to the house connection id).
+
+    var ao_device = ao.keyBy (_.device)
+    var consumers_id = consumers.keyBy (_.id)
+    val test = consumers_id.join (ao_device)
+
+    scala> test.first ()
+    ...
+    res0: (String, (ch.ninecode.Consumer, ch.ninecode.ServiceLocation)) = (_house_connection_1509015,(Consumer(Map(location -> _location_5773073_1158948293_592772, type -> PSRType_Unknown, voltage -> BaseVoltage_0.400000000000, container -> _subnetwork_611053, name -> HAS3478, phase -> http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y, id -> _house_connection_1509015),_house_connection_1509015,HAS3478,_location_5773073_1158948293_592772,_subnetwork_611053,PSRType_Unknown,BaseVoltage_0.400000000000,http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y),ServiceLocation(Map(name -> HAS3478, device -> _house_connection_1509015, id -> _ao_440003786),_ao_440003786,HAS3478,_house_connection_1509015,ArrayBuffer(_customer_1639388908, _customer_530169493, _customer_104...
 
