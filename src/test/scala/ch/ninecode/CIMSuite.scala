@@ -2,33 +2,12 @@ package ch.ninecode
 
 import scala.xml._
 
-import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
-
 import org.junit.runner.RunWith
-import org.scalatest.fixture
+import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.Outcome
 
-class CIMSuite extends fixture.FunSuite
+class CIMSuite extends FunSuite
 {
-    type FixtureParam = SparkContext
-
-
-    def withFixture (test: OneArgTest): org.scalatest.Outcome =
-    {
-        // create the fixture
-        val configuration = new SparkConf()
-        configuration.setAppName ("CIMSuite")
-        configuration.setMaster ("local[2]")
-        val context = new SparkContext (configuration)
-        try
-        {
-            withFixture (test.toNoArgTest (context)) // "loan" the fixture to the test
-        }
-        finally context.stop () // clean up the fixture
-    }
-
   /**
    * Link to the scaladoc - very clear and detailed tutorial of FunSuite
    *
@@ -41,7 +20,6 @@ class CIMSuite extends fixture.FunSuite
    */
     test ("Basic")
     {
-        sc ⇒
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
         val parser = new CIM ()
         val result = parser.parse (xml)
@@ -50,7 +28,6 @@ class CIMSuite extends fixture.FunSuite
 
     test ("Forward Reference")
     {
-        sc ⇒
         // Note: scala really hates processing instructions:
         // <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         val xml =
@@ -72,7 +49,6 @@ class CIMSuite extends fixture.FunSuite
 
     test ("Voltage")
     {
-        sc ⇒
         val xml =
             <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
                 <cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
@@ -88,7 +64,6 @@ class CIMSuite extends fixture.FunSuite
 
     test ("Illegal Voltage")
     {
-        sc ⇒
         val xml =
             <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
                 <cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
@@ -106,7 +81,6 @@ class CIMSuite extends fixture.FunSuite
 
     test ("Coordinate System")
     {
-        sc ⇒
         val xml =
             <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
                 <cim:CoordinateSystem rdf:ID="wgs_84">
@@ -123,21 +97,11 @@ class CIMSuite extends fixture.FunSuite
         assert (cs2.urn === "EPSG::4326")
     }
 
-    test ("Create")
+    test ("Read Partial")
     {
-        sc ⇒
-        val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
+        val xml = CIM.read ("data/dump_all.xml", 0, 1024 * 1024, 0) // exactly a megabyte
         val parser = new CIM ()
         val result = parser.parse (xml)
-        assert (result.IdentifiedElements.size === 1)
-        val rdd = sc.parallelize (result.IdentifiedElements.toSeq, 2)
-        assert (rdd.count () === 1)
-    }
-
-    test ("Read")
-    {
-        sc ⇒
-        val rdd = CIMRDD.rddFile (sc, "data/dump_all.xml", 0, 0)
-        assert (rdd.count () === 203046)
+        assert (result.Ignored == 0)
     }
 }
