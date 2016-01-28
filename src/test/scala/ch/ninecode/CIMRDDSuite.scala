@@ -17,10 +17,11 @@ class CIMRDDSuite extends fixture.FunSuite
     def withFixture (test: OneArgTest): org.scalatest.Outcome =
     {
         // create the fixture
-        val configuration = new SparkConf()
+        val configuration = new SparkConf ()
         configuration.setAppName ("CIMSuite")
         configuration.setMaster ("local[2]")
         val context = new SparkContext (configuration)
+        context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
         try
         {
             withFixture (test.toNoArgTest (context)) // "loan" the fixture to the test

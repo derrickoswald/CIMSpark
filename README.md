@@ -371,6 +371,14 @@ http://blog.cloudera.com/blog/2014/05/apache-spark-resource-management-and-yarn-
 
 /usr/local/spark/bin/spark-submit   "sparkr-shell" /tmp/RtmpSScO6S/backend_port1b6469f08b97
 
+.combineByKey  -- coalesce chunks
+
+[probably will cause a shuffle]
+.join
+.leftOuterJoin -- join operations
+.rightOuterJoin
+.fullOuterJoin
+
 #Magellan
 Add to docker start command:
 -v /home/derrick/code/magellan/target/scala-2.10:/opt/magellan 
