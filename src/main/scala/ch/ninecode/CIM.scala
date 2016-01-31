@@ -18,17 +18,17 @@ class Result (val context: Context)
 
 trait Parser
 {
-    def parse (xml: String, result: Result): Unit
+    def steps (): Array[(String, Result) ⇒ Unit]
+    def parse (xml: String, result: Result): Unit =
+        for (f <- steps)
+            f (xml, result)
 }
 
 abstract class Element (val key: String, val properties: HashMap[String, String]) extends Serializable
 
 object Element extends Parser
 {
-    override def parse (xml: String, result: Result): Unit =
-    {
-        // does nothing for now
-    }
+    override def steps () = Array ()
 
     /**
      * Parse one XML element from a string.
@@ -91,9 +91,8 @@ object Element extends Parser
      * throw an exception.
      * @param xml The substring to parse.
      * @param context The context object with character offsets and linenumber index array.
-     * @param result The current parse partial result.
      */
-    def parse_element (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, result: Result): String =
+    def parse_element (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, result: Result): Unit =
     {
         val context = result.context
         val value = Element.parse_element (regex, index, xml, context)
@@ -102,10 +101,9 @@ object Element extends Parser
         else
             if (mandatory)
                 throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number ())
-        return (value)
     }
 
-    def parse_attribute (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, result: Result): String =
+    def parse_attribute (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, result: Result): Unit =
     {
         val context = result.context
         val value = Element.parse_attribute (regex, index, xml, context)
@@ -114,7 +112,6 @@ object Element extends Parser
         else
             if (mandatory)
                 throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number ())
-        return (value)
     }
 }
 
@@ -122,8 +119,7 @@ case class Unknown (override val key: String, override val properties: HashMap[S
 
 object Unknown extends Parser
 {
-    override def parse (xml: String, result: Result): Unit = Element.parse (xml, result)
-
+    override def steps () = Array (Element.parse)
     def unpickle (xml: String, result: Result): Unknown =
     {
         parse (xml, result)
@@ -137,26 +133,7 @@ class IdentifiedElement (override val properties: HashMap[String, String], val i
 object IdentifiedElement extends Parser
 {
     val idex = Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1""")
-
-    /**
-     * Extract an id (rdf:ID value) from an XML string.
-     * @param xml the text to parse
-     * @param the context for the substring in the XML and
-     * line number and position context for reporting in case of an error
-     * @return the id value
-     */
-    def parse_id (xml: String, context: Context): String =
-        return (Element.parse_attribute (idex, 2, xml, context))
-
-    override def parse(xml: String, result: Result): Unit =
-    {
-        Element.parse (xml, result)
-        val id = parse_id (xml, result.context)
-        if (null != id)
-            result.properties.put ("id", id)
-        else
-            throw new Exception ("no id found for an identified element while parsing at line " + result.context.line_number ())
-    }
+    override def steps () = Array (Element.parse, Element.parse_attribute (idex, 2, "id", true)_)
 }
 
 abstract class NamedElement (properties: HashMap[String, String], id: String, val name: String) extends IdentifiedElement (properties, id)
@@ -164,26 +141,7 @@ abstract class NamedElement (properties: HashMap[String, String], id: String, va
 object NamedElement extends Parser
 {
     val namex = Pattern.compile ("""<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>""")
-
-    /**
-     * Extract the name (cim:IdentifiedObject.name value) from an XML string.
-     * @param xml the text to parse
-     * @param the context for the substring in the XML and
-     * line number and position context for reporting in case of an error
-     * @return the name
-     */
-    def parse_name (xml: String, context: Context): String =
-        return (Element.parse_element (namex, 1, xml, context))
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        IdentifiedElement.parse (xml, result)
-        val name = parse_name (xml, result.context)
-        if (null != name)
-            result.properties.put ("name", name)
-        else
-            throw new Exception ("no name found for a named element while parsing at line " + result.context.line_number ())
-    }
+    override def steps () = Array (IdentifiedElement.parse, Element.parse_element (namex, 1, "name", true)_)
 }
 
 abstract class PowerSystemResource (properties: HashMap[String, String], id: String, name: String) extends NamedElement (properties, id, name)
@@ -194,16 +152,11 @@ object LocatedElement extends Parser
 {
     val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
     val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
-    def loc = Element.parse_element (locex, 1, "location", true)_
-    def con = Element.parse_attribute (conex, 2, "container", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        loc (xml, result)
-        con (xml, result)
-    }
+    override def steps () = Array (
+        NamedElement.parse,
+        Element.parse_element (locex, 1, "location", true)_,
+        Element.parse_attribute (conex, 2, "container", true)_
+    )
 }
 
 //        <cim:PSRType rdf:ID="PSRType_Substation">
@@ -213,8 +166,7 @@ case class PSRType (override val properties: HashMap[String, String], override v
 
 object PSRType extends Parser
 {
-    override def parse (xml: String, result: Result): Unit = NamedElement.parse (xml, result)
-
+    override def steps () = Array (NamedElement.parse)
     def unpickle (xml: String, result: Result): PSRType =
     {
         parse (xml, result)
@@ -232,8 +184,7 @@ case class Line (override val properties: HashMap[String, String], override val 
 
 object Line extends Parser
 {
-    override def parse (xml: String, result: Result): Unit = NamedElement.parse (xml, result)
-
+    override def steps () = Array (NamedElement.parse)
     def unpickle (xml: String, result: Result): Line =
     {
         parse (xml, result)
@@ -246,8 +197,7 @@ case class Subnetwork (override val properties: HashMap[String, String], overrid
 
 object Subnetwork extends Parser
 {
-    override def parse (xml: String, result: Result): Unit = NamedElement.parse (xml, result)
-
+    override def steps () = Array (NamedElement.parse)
     def unpickle (xml: String, result: Result): Subnetwork =
     {
         parse (xml, result)
@@ -265,20 +215,7 @@ case class ConnectivityNode (override val properties: HashMap[String, String], o
 object ConnectivityNode extends Parser
 {
     val connex = Pattern.compile ("""<cim:ConnectivityNode.ConnectivityNodeContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
-    def parse_connectivity (xml: String, context: Context): String =
-        return (Element.parse_attribute (connex, 2, xml, context))
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        val container = parse_connectivity (xml, result.context)
-        if (null != container)
-            result.properties.put ("container", container)
-        else
-            throw new Exception ("no container found for a connectivity element while parsing at line " + result.context.line_number ())
-    }
-
+    override def steps () = Array (NamedElement.parse, Element.parse_attribute (connex, 2, "container", true)_)
     def unpickle (xml: String, result: Result): ConnectivityNode =
     {
         parse (xml, result)
@@ -296,20 +233,7 @@ case class Voltage (override val properties: HashMap[String, String], override v
 object Voltage extends Parser
 {
     val voltex = Pattern.compile ("""<cim:BaseVoltage.nominalVoltage>([\s\S]*?)<\/cim:BaseVoltage.nominalVoltage>""")
-
-    def parse_voltage (xml: String, context: Context): String =
-        return (Element.parse_element (voltex, 1, xml, context))
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        val voltage = Voltage.parse_voltage (xml, result.context)
-        if (null != voltage)
-            result.properties.put ("voltage", voltage)
-        else
-            throw new Exception ("no voltage value found for a voltage element while parsing at line " + result.context.line_number ())
-    }
-
+    override def steps () = Array (NamedElement.parse, Element.parse_attribute (voltex, 1, "voltage", true)_)
     def unpickle (xml: String, result: Result): Voltage =
     {
         parse (xml, result)
@@ -332,20 +256,7 @@ case class CoordinateSystem (override val properties: HashMap[String, String], o
 object CoordinateSystem extends Parser
 {
     val urnex = Pattern.compile ("""<cim:crsUrn>([\s\S]*?)<\/cim:crsUrn>""")
-
-    def parse_urn (xml: String, context: Context): String =
-        return (Element.parse_attribute (urnex, 1, xml, context))
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        val urn = parse_urn (xml, result.context)
-        if (null != urn)
-            result.properties.put ("urn", urn)
-        else
-            throw new Exception ("no urn value found for a coordinate system element while parsing at line " + result.context.line_number ())
-    }
-
+    override def steps () = Array (NamedElement.parse, Element.parse_attribute (urnex, 1, "urn", true)_)
     def unpickle (xml: String, result: Result): CoordinateSystem =
     {
         parse (xml, result)
@@ -365,15 +276,7 @@ object Location extends Parser
 {
     val csex = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
     val typex = Pattern.compile ("""<cim:Location.type>([\s\S]*?)<\/cim:Location.type>""")
-
-    def cs = Element.parse_element (csex, 1, "cs", true)_
-    def typ = Element.parse_element (typex, 1, "type", true)_
-    override def parse (xml: String, result: Result): Unit =
-    {
-        IdentifiedElement.parse (xml, result)
-        val coordsys = cs (xml, result)
-        val typer = typ (xml, result)
-    }
+    override def steps () = Array (IdentifiedElement.parse, Element.parse_element (csex, 1, "cs", true)_, Element.parse_element (typex, 1, "type", true)_)
     def unpickle (xml: String, result: Result): Location =
     {
         parse (xml, result)
@@ -402,16 +305,7 @@ object PositionPoint extends Parser
     def seq = Element.parse_attribute (seqex, 1, "sequence", true)_
     def xcoord = Element.parse_attribute (xposex, 1, "x", true)_
     def ycoord = Element.parse_attribute (yposex, 1, "y", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        Element.parse (xml, result)
-        loc (xml, result)
-        seq (xml, result)
-        xcoord (xml, result)
-        ycoord (xml, result)
-    }
-
+    override def steps () = Array (Element.parse, loc, seq, xcoord, ycoord)
     def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
@@ -453,13 +347,7 @@ object Asset extends Parser
     def typ = Element.parse_element (typex, 1, "type", true)_
     def ass = Element.parse_attribute (assex, 2, "asset", true)_
     def inf = Element.parse_attribute (infox, 2, "info", true)_
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        typ (xml, result)
-        ass (xml, result)
-        inf (xml, result)
-    }
+    override def steps () = Array (NamedElement.parse, typ, ass, inf)
     def unpickle (xml: String, result: Result): Asset =
     {
         parse (xml, result)
@@ -487,15 +375,7 @@ object Consumer extends Parser
     def typ = Element.parse_attribute (typex, 2, "type", true)_
     def vol = Element.parse_attribute (volex, 2, "voltage", true)_
     def faz = Element.parse_attribute (fazex, 2, "phase", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        LocatedElement.parse (xml, result)
-        typ (xml, result)
-        vol (xml, result)
-        faz (xml, result)
-    }
-
+    override def steps () = Array (LocatedElement.parse, typ, vol, faz)
     def unpickle (xml: String, result: Result): Consumer =
     {
         parse (xml, result)
@@ -525,16 +405,7 @@ object Terminal extends Parser
     def faz = Element.parse_attribute (fazex, 2, "phase", true)_
     def con = Element.parse_attribute (conex, 2, "connectivity", false)_  // allow for unconnected terminals
     def eqp = Element.parse_attribute (eqpex, 2, "equipment", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        seq (xml, result)
-        faz (xml, result)
-        con (xml, result)
-        eqp (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, seq, faz, con, eqp)
     def unpickle (xml: String, result: Result): Terminal =
     {
         parse (xml, result)
@@ -547,12 +418,15 @@ object Terminal extends Parser
     }
 }
 
+//        <cim:BusbarInfo rdf:ID="_busbar_spec_566593648">
+//                <cim:IdentifiedObject.name>unbekannt EWS</cim:IdentifiedObject.name>
+//        </cim:BusbarInfo>
+
 case class BusbarInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
 
 object BusbarInfo extends Parser
 {
-    override def parse (xml: String, result: Result): Unit = NamedElement.parse (xml, result)
-
+    override def steps () = Array (NamedElement.parse)
     def unpickle (xml: String, result: Result): BusbarInfo =
     {
         parse (xml, result)
@@ -578,14 +452,7 @@ object BusbarSection extends Parser
 
     def typ = Element.parse_attribute (typex, 2, "type", true)_
     def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        LocatedElement.parse (xml, result)
-        typ (xml, result)
-        vol (xml, result)
-    }
-
+    override def steps () = Array (LocatedElement.parse, typ, vol)
     def unpickle (xml: String, result: Result): BusbarSection =
     {
         parse (xml, result)
@@ -597,8 +464,7 @@ case class CableInfo (override val properties: HashMap[String, String], override
 
 object CableInfo extends Parser
 {
-    override def parse (xml: String, result: Result): Unit = NamedElement.parse (xml, result)
-
+    override def steps () = Array (NamedElement.parse)
     def unpickle (xml: String, result: Result): CableInfo =
     {
         parse (xml, result)
@@ -635,19 +501,10 @@ object ACLineSegment extends Parser
     val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val lenex = Pattern.compile ("""<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
     def typ = Element.parse_attribute (typex, 2, "type", true)_
     def len = Element.parse_element (lenex, 1, "length", true)_
     def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        LocatedElement.parse (xml, result)
-        typ (xml, result)
-        len (xml, result)
-        vol (xml, result)
-    }
-
+    override def steps () = Array (LocatedElement.parse, typ, len, vol)
     def unpickle (xml: String, result: Result): ACLineSegment =
     {
         parse (xml, result)
@@ -671,14 +528,7 @@ object ACLineSegmentPhase extends Parser
 
     def faz = Element.parse_attribute (fazex, 2, "phase", true)_
     def seg = Element.parse_attribute (segex, 2, "segment", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        faz (xml, result)
-        seg (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, faz, seg)
     def unpickle (xml: String, result: Result): ACLineSegmentPhase =
     {
         parse (xml, result)
@@ -691,8 +541,7 @@ case class SwitchInfo (override val properties: HashMap[String, String], overrid
 
 object SwitchInfo extends Parser
 {
-    override def parse (xml: String, result: Result): Unit = NamedElement.parse (xml, result)
-
+    override def steps () = Array (NamedElement.parse)
     def unpickle (xml: String, result: Result): SwitchInfo =
     {
         parse (xml, result)
@@ -718,14 +567,7 @@ object Switch extends Parser
 
     def opn = Element.parse_element (opnex, 1, "normalOpen", true)_
     def typ = Element.parse_attribute (typex, 2, "type", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        LocatedElement.parse (xml, result)
-        opn (xml, result)
-        typ (xml, result)
-    }
-
+    override def steps () = Array (LocatedElement.parse, opn, typ)
     def unpickle (xml: String, result: Result): Switch =
     {
         parse (xml, result)
@@ -753,13 +595,7 @@ object PowerTransformerInfo extends Parser
     val infex = Pattern.compile ("""<cim:PowerTransformerInfo.TransformerTankInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
     def inf = Element.parse_attribute (infex, 2, "info", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        inf (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, inf)
     def unpickle (xml: String, result: Result): PowerTransformerInfo =
     {
         parse (xml, result)
@@ -780,13 +616,7 @@ object TransformerTankInfo extends Parser
     val infex = Pattern.compile ("""<cim:TransformerTankInfo.PowerTransformerInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
     def inf = Element.parse_attribute (infex, 2, "info", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        inf (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, inf)
     def unpickle (xml: String, result: Result): TransformerTankInfo =
     {
         parse (xml, result)
@@ -806,13 +636,7 @@ object TransformerEndInfo extends Parser
     val numex = Pattern.compile ("""<cim:TransformerEndInfo.endNumber>([\s\S]*?)<\/cim:TransformerEndInfo.endNumber>""")
 
     def end = Element.parse_element (numex, 1, "end", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        end (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, end)
     def unpickle (xml: String, result: Result): TransformerEndInfo =
     {
         parse (xml, result)
@@ -844,13 +668,7 @@ object PowerTransformer extends Parser
     val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
     def typ = Element.parse_attribute (typex, 2, "type", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        LocatedElement.parse (xml, result)
-        typ (xml, result)
-    }
-
+    override def steps () = Array (LocatedElement.parse, typ)
     def unpickle (xml: String, result: Result): PowerTransformer =
     {
         parse (xml, result)
@@ -870,13 +688,7 @@ object TransformerTank extends Parser
     val traex = Pattern.compile ("""<cim:TransformerTank.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
     def tra = Element.parse_attribute (traex, 2, "transformer", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        tra (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, tra)
     def unpickle (xml: String, result: Result): TransformerTank =
     {
         parse (xml, result)
@@ -908,17 +720,7 @@ object TransformerTankEnd extends Parser
     def tnk = Element.parse_attribute (tnkex, 2, "tank", true)_
     def trm = Element.parse_attribute (trmex, 2, "terminal", true)_
     def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        end (xml, result)
-        faz (xml, result)
-        tnk (xml, result)
-        trm (xml, result)
-        vol (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, end, faz, tnk, trm, vol)
     def unpickle (xml: String, result: Result): TransformerTankEnd =
     {
         parse (xml, result)
@@ -947,13 +749,7 @@ object ServiceLocation extends Parser
     val devex = Pattern.compile ("""<cim:ServiceLocation.device>([\s\S]*?)<\/cim:ServiceLocation.device>""")
 
     def dev = Element.parse_element (devex, 1, "device", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        dev (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, dev)
     def unpickle (xml: String, result: Result): ServiceLocation =
     {
         parse (xml, result)
@@ -980,15 +776,7 @@ object Customer extends Parser
     def kind = Element.parse_attribute (kinex, 2, "kind", true)_
     def loc = Element.parse_element (locex, 1, "locale", true)_
     def serv = Element.parse_element (serex, 1, "service", true)_
-
-    override def parse (xml: String, result: Result): Unit =
-    {
-        NamedElement.parse (xml, result)
-        kind (xml, result)
-        loc (xml, result)
-        serv (xml, result)
-    }
-
+    override def steps () = Array (NamedElement.parse, kind, loc, serv)
     def unpickle (xml: String, result: Result): Customer =
     {
         parse (xml, result)
@@ -1156,7 +944,8 @@ object CIM
             println ("parsing %g seconds".format (parsing / 1e6))
 
             println (map.size + " identified elements parsed")
-            println (map.filter (_.getClass() == classOf[Unknown])+ " unknown elements")
+            val subset = map.filter (_._2.getClass() == classOf[Unknown])
+            println (subset.size + " unknown elements")
         }
         else
             println ("CIM XML input file not specified")
