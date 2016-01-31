@@ -251,6 +251,11 @@ object Voltage extends Parser
 
 }
 
+//        <cim:CoordinateSystem rdf:ID="wgs_84">
+//                <cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObject.name>
+//                <cim:crsUrn>EPSG::4326</cim:crsUrn>
+//        </cim:CoordinateSystem>
+
 case class CoordinateSystem (override val id: String, override val name: String, val urn: String) extends PowerSystemResource (id, name)
 
 object CoordinateSystem extends Parser
@@ -292,7 +297,7 @@ object Location extends Parser
 //            <cim:yPosition>47.0400997930</cim:yPosition>
 //    </cim:PositionPoint>
 
-case class PositionPoint (override val key:String) extends Element (key)
+case class PositionPoint (override val key:String, val location: String, val sequence: Int, val x: Double, val y: Double) extends Element (key)
 
 object PositionPoint extends Parser
 {
@@ -309,24 +314,27 @@ object PositionPoint extends Parser
     def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
-        val ret = PositionPoint (result.properties ("location") + "_seq_" + result.properties ("sequence"))
-        return (ret)
-//        try
-//        {
-//            val sequence = result.properties ("sequence").toInt
-//            val x = result.properties ("x").toDouble
-//            val y = result.properties ("y").toDouble
-//            val location = LocatedElement.getLocation (result)
-//            val size = 2 * (sequence + 1)
-//            if (location.coordinates.length < size)
-//                location.coordinates = location.coordinates.padTo (size, 0.0)
-//            location.coordinates.update (sequence * 2, x)
-//            location.coordinates.update (sequence * 2 + 1, y)
-//        }
-//        catch
-//        {
-//            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tank end element while parsing at line " + result.context.line_number ())
-//        }
+        val location = result.properties ("location")
+        try
+        {
+            val sequence = result.properties ("sequence").toInt
+            val key = location + "_seq_" + sequence
+            try
+            {
+                val x = result.properties ("x").toDouble
+                val y = result.properties ("y").toDouble
+                val ret = PositionPoint (key, location, sequence, x, y)
+                return (ret)
+            }
+            catch
+            {
+                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable coordinate value found for a position point element while parsing at line " + result.context.line_number ())
+            }
+        }
+        catch
+        {
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable sequence value found for a position point element while parsing at line " + result.context.line_number ())
+        }
     }
 }
 
@@ -351,8 +359,8 @@ object Asset extends Parser
     def unpickle (xml: String, result: Result): Asset =
     {
         parse (xml, result)
-        // ToDo: check for forward reference definition and copy any data necessary
-        Asset (result.properties ("id"), result.properties ("name"), result.properties ("type"), result.properties ("asset"), result.properties ("info"))
+        val ret = Asset (result.properties ("id"), result.properties ("name"), result.properties ("type"), result.properties ("asset"), result.properties ("info"))
+        return (ret)
     }
 }
 
@@ -409,12 +417,14 @@ object Terminal extends Parser
     def unpickle (xml: String, result: Result): Terminal =
     {
         parse (xml, result)
+        // allow for unconnected terminals
         val con = result.properties.get ("connectivity") match
         {
             case Some (value) ⇒ value
             case None ⇒ null
         }
-        Terminal (result.properties ("id"), result.properties ("name"), result.properties ("sequence"), result.properties ("phase"), con, result.properties ("equipment"))
+        val ret = Terminal (result.properties ("id"), result.properties ("name"), result.properties ("sequence"), result.properties ("phase"), con, result.properties ("equipment"))
+        return (ret)
     }
 }
 
@@ -482,13 +492,10 @@ object CableInfo extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>
 //</cim:ACLineSegment>
 
-case class ACLineSegment (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val length: String, val voltage: String, val phases: ArrayBuffer[String]) extends LocatedElement (id, name, location, container)
+case class ACLineSegment (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val length: String, val voltage: String) extends LocatedElement (id, name, location, container)
 
 object ACLineSegment extends Parser
 {
-    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
-    val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
     val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val lenex = Pattern.compile ("""<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
@@ -499,7 +506,7 @@ object ACLineSegment extends Parser
     def unpickle (xml: String, result: Result): ACLineSegment =
     {
         parse (xml, result)
-        val ret = ACLineSegment (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("length"), result.properties ("voltage"), new ArrayBuffer[String] (1))
+        val ret = ACLineSegment (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("length"), result.properties ("voltage"))
         return (ret)
     }
 }
@@ -516,7 +523,6 @@ object ACLineSegmentPhase extends Parser
 {
     val fazex = Pattern.compile ("""<cim:ACLineSegmentPhase.phase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val segex = Pattern.compile ("""<cim:ACLineSegmentPhase.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
     def faz = Element.parse_attribute (fazex, 2, "phase", true)_
     def seg = Element.parse_attribute (segex, 2, "segment", true)_
     override def steps () = Array (NamedElement.parse, faz, seg)
@@ -527,6 +533,10 @@ object ACLineSegmentPhase extends Parser
         return (ret)
     }
 }
+
+//        <cim:SwitchInfo rdf:ID="_switch_spec_566593661">
+//                <cim:IdentifiedObject.name>G4</cim:IdentifiedObject.name>
+//        </cim:SwitchInfo>
 
 case class SwitchInfo (override val id: String, override val name: String) extends PowerSystemResource (id, name)
 
@@ -555,7 +565,6 @@ object Switch extends Parser
 {
     val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val opnex = Pattern.compile ("""<cim:Switch.normalOpen>([\s\S]*?)<\/cim:Switch.normalOpen>""")
-
     def opn = Element.parse_element (opnex, 1, "normalOpen", true)_
     def typ = Element.parse_attribute (typex, 2, "type", true)_
     override def steps () = Array (LocatedElement.parse, opn, typ)
@@ -640,7 +649,7 @@ object TransformerEndInfo extends Parser
         }
         catch
         {
-            case nfe: NumberFormatException ⇒ throw new Exception ("u nparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a transformer end info element while parsing at line " + result.context.line_number ())
         }
     }
 }
