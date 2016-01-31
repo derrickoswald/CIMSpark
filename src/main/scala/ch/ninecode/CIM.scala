@@ -24,7 +24,7 @@ trait Parser
             f (xml, result)
 }
 
-abstract class Element (val key: String, val properties: HashMap[String, String]) extends Serializable
+abstract class Element (val key: String) extends Serializable
 
 object Element extends Parser
 {
@@ -115,7 +115,7 @@ object Element extends Parser
     }
 }
 
-case class Unknown (override val key: String, override val properties: HashMap[String, String], guts: String) extends Element (key, properties)
+case class Unknown (override val key: String, guts: String) extends Element (key)
 
 object Unknown extends Parser
 {
@@ -123,12 +123,12 @@ object Unknown extends Parser
     def unpickle (xml: String, result: Result): Unknown =
     {
         parse (xml, result)
-        val ret = Unknown (xml.hashCode().toString(), result.properties, xml)
+        val ret = Unknown (xml.hashCode().toString(), xml)
         return (ret)
     }
 }
 
-class IdentifiedElement (override val properties: HashMap[String, String], val id: String) extends Element (id, properties)
+class IdentifiedElement (val id: String) extends Element (id)
 
 object IdentifiedElement extends Parser
 {
@@ -136,7 +136,7 @@ object IdentifiedElement extends Parser
     override def steps () = Array (Element.parse, Element.parse_attribute (idex, 2, "id", true)_)
 }
 
-abstract class NamedElement (properties: HashMap[String, String], id: String, val name: String) extends IdentifiedElement (properties, id)
+abstract class NamedElement (id: String, val name: String) extends IdentifiedElement (id)
 
 object NamedElement extends Parser
 {
@@ -144,9 +144,9 @@ object NamedElement extends Parser
     override def steps () = Array (IdentifiedElement.parse, Element.parse_element (namex, 1, "name", true)_)
 }
 
-abstract class PowerSystemResource (properties: HashMap[String, String], id: String, name: String) extends NamedElement (properties, id, name)
+abstract class PowerSystemResource (id: String, name: String) extends NamedElement (id, name)
 
-abstract class LocatedElement (properties: HashMap[String, String], id: String, name: String, val location: String, val container: String) extends PowerSystemResource (properties, id, name)
+abstract class LocatedElement (id: String, name: String, val location: String, val container: String) extends PowerSystemResource (id, name)
 
 object LocatedElement extends Parser
 {
@@ -162,7 +162,7 @@ object LocatedElement extends Parser
 //        <cim:PSRType rdf:ID="PSRType_Substation">
 //                <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
 //        </cim:PSRType>
-case class PSRType (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
+case class PSRType (override val id: String, override val name: String) extends PowerSystemResource (id, name)
 
 object PSRType extends Parser
 {
@@ -170,17 +170,17 @@ object PSRType extends Parser
     def unpickle (xml: String, result: Result): PSRType =
     {
         parse (xml, result)
-        val ret = PSRType (result.properties, result.properties apply "id", result.properties apply "name")
+        val ret = PSRType (result.properties apply "id", result.properties apply "name")
         return (ret)
     }
 }
 
-class Container (properties: HashMap[String, String], id: String, name: String) extends PowerSystemResource (properties, id, name)
+class Container (id: String, name: String) extends PowerSystemResource (id, name)
 
 //        <cim:Line rdf:ID="_subnetwork_349554">
 //                <cim:IdentifiedObject.name>ABG2236|ABG7246|APP197|FLT13|FLU20|FLU21|FLU22|FLU23|HAS332|HAS333|HAS334|HAS335|MUF2681|MUF2682|PIN2</cim:IdentifiedObject.name>
 //        </cim:Line>
-case class Line (override val properties: HashMap[String, String], override val id: String, override val name: String) extends Container (properties, id, name)
+case class Line (override val id: String, override val name: String) extends Container (id, name)
 
 object Line extends Parser
 {
@@ -188,12 +188,12 @@ object Line extends Parser
     def unpickle (xml: String, result: Result): Line =
     {
         parse (xml, result)
-        val ret = Line (result.properties, result.properties.apply ("id"), result.properties apply "name")
+        val ret = Line (result.properties.apply ("id"), result.properties apply "name")
         return (ret)
     }
 }
 
-case class Subnetwork (override val properties: HashMap[String, String], override val id: String, override val name: String) extends Container (properties, id, name)
+case class Subnetwork (override val id: String, override val name: String) extends Container (id, name)
 
 object Subnetwork extends Parser
 {
@@ -201,7 +201,7 @@ object Subnetwork extends Parser
     def unpickle (xml: String, result: Result): Subnetwork =
     {
         parse (xml, result)
-        val ret = Subnetwork (result.properties, result.properties.apply ("id"), result.properties apply "name")
+        val ret = Subnetwork (result.properties.apply ("id"), result.properties apply "name")
         return (ret)
     }
 }
@@ -210,7 +210,7 @@ object Subnetwork extends Parser
 //                <cim:IdentifiedObject.name>PIN2</cim:IdentifiedObject.name>
 //                <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="_subnetwork_349554"/>
 //        </cim:ConnectivityNode>
-case class ConnectivityNode (override val properties: HashMap[String, String], override val id: String, override val name: String, val container: String) extends PowerSystemResource (properties, id, name)
+case class ConnectivityNode (override val id: String, override val name: String, val container: String) extends PowerSystemResource (id, name)
 
 object ConnectivityNode extends Parser
 {
@@ -219,7 +219,7 @@ object ConnectivityNode extends Parser
     def unpickle (xml: String, result: Result): ConnectivityNode =
     {
         parse (xml, result)
-        val ret = ConnectivityNode (result.properties, result.properties.apply ("id"), result.properties apply "name", result.properties.apply ("container"))
+        val ret = ConnectivityNode (result.properties.apply ("id"), result.properties apply "name", result.properties.apply ("container"))
         return (ret)
     }
 }
@@ -228,7 +228,7 @@ object ConnectivityNode extends Parser
 //                <cim:IdentifiedObject.name>400.000 V</cim:IdentifiedObject.name>
 //                <cim:BaseVoltage.nominalVoltage>0.400000000000</cim:BaseVoltage.nominalVoltage>
 //        </cim:BaseVoltage>
-case class Voltage (override val properties: HashMap[String, String], override val id: String, override val name: String, val voltage: Double) extends NamedElement (properties, id, name)
+case class Voltage (override val id: String, override val name: String, val voltage: Double) extends NamedElement (id, name)
 
 object Voltage extends Parser
 {
@@ -241,7 +241,7 @@ object Voltage extends Parser
         {
             val voltage = result.properties.apply ("voltage")
             val v = voltage.toDouble * 1000.0
-            return (Voltage (result.properties, result.properties apply "id", result.properties apply "name", v))
+            return (Voltage (result.properties apply "id", result.properties apply "name", v))
         }
         catch
         {
@@ -251,7 +251,7 @@ object Voltage extends Parser
 
 }
 
-case class CoordinateSystem (override val properties: HashMap[String, String], override val id: String, override val name: String, val urn: String) extends PowerSystemResource (properties, id, name)
+case class CoordinateSystem (override val id: String, override val name: String, val urn: String) extends PowerSystemResource (id, name)
 
 object CoordinateSystem extends Parser
 {
@@ -261,7 +261,7 @@ object CoordinateSystem extends Parser
     {
         parse (xml, result)
         val urn = result.properties.apply ("urn")
-        return (CoordinateSystem (result.properties, result.properties apply "id", result.properties apply "name", urn))
+        return (CoordinateSystem (result.properties apply "id", result.properties apply "name", urn))
     }
 }
 
@@ -270,7 +270,7 @@ object CoordinateSystem extends Parser
 //            <cim:Location.type>geographic</cim:Location.type>
 //    </cim:Location>
 
-case class Location (override val properties: HashMap[String, String], override val id: String, val cs: String, val typ: String) extends IdentifiedElement (properties, id)
+case class Location (override val id: String, val cs: String, val typ: String) extends IdentifiedElement (id)
 
 object Location extends Parser
 {
@@ -280,7 +280,7 @@ object Location extends Parser
     def unpickle (xml: String, result: Result): Location =
     {
         parse (xml, result)
-        val ret = Location (result.properties, result.properties.apply ("id"), result.properties.apply ("cs"), result.properties.apply ("type"))
+        val ret = Location (result.properties.apply ("id"), result.properties.apply ("cs"), result.properties.apply ("type"))
         return (ret)
     }
 }
@@ -292,7 +292,7 @@ object Location extends Parser
 //            <cim:yPosition>47.0400997930</cim:yPosition>
 //    </cim:PositionPoint>
 
-case class PositionPoint (override val key:String, override val properties: HashMap[String, String]) extends Element (key, properties)
+case class PositionPoint (override val key:String) extends Element (key)
 
 object PositionPoint extends Parser
 {
@@ -309,7 +309,7 @@ object PositionPoint extends Parser
     def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
-        val ret = PositionPoint (result.properties.apply ("location") + "_seq_" + result.properties.apply ("sequence"), result.properties)
+        val ret = PositionPoint (result.properties.apply ("location") + "_seq_" + result.properties.apply ("sequence"))
         return (ret)
 //        try
 //        {
@@ -336,7 +336,7 @@ object PositionPoint extends Parser
 //<cim:Asset.PowerSystemResources rdf:resource="#_busbar_1772383"/>
 //<cim:Asset.AssetInfo rdf:resource="#_busbar_spec_566593648"/>
 //</cim:Asset>
-case class Asset (override val properties: HashMap[String, String], override val id: String, override val name: String, val typ: String, val asset: String, val info: String) extends NamedElement (properties, id, name)
+case class Asset (override val id: String, override val name: String, val typ: String, val asset: String, val info: String) extends NamedElement (id, name)
 
 object Asset extends Parser
 {
@@ -352,7 +352,7 @@ object Asset extends Parser
     {
         parse (xml, result)
         // ToDo: check for forward reference definition and copy any data necessary
-        Asset (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("type"), result.properties.apply ("asset"), result.properties.apply ("info"))
+        Asset (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("type"), result.properties.apply ("asset"), result.properties.apply ("info"))
     }
 }
 
@@ -364,7 +364,7 @@ object Asset extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_350063"/>
 //    <cim:PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
 //</cim:EnergyConsumer>
-case class Consumer (override val properties: HashMap[String, String], override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String, val phase: String) extends LocatedElement (properties, id, name, location, container)
+case class Consumer (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String, val phase: String) extends LocatedElement (id, name, location, container)
 
 object Consumer extends Parser
 {
@@ -379,7 +379,7 @@ object Consumer extends Parser
     def unpickle (xml: String, result: Result): Consumer =
     {
         parse (xml, result)
-        val ret = Consumer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"), result.properties.apply ("phase"))
+        val ret = Consumer (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"), result.properties.apply ("phase"))
         return (ret)
     }
 }
@@ -392,7 +392,7 @@ object Consumer extends Parser
 //    <cim:Terminal.ConductingEquipment rdf:resource="#_house_connection_1469932"/>
 //</cim:Terminal>
 
-case class Terminal (override val properties: HashMap[String, String], override val id: String, override val name: String, val sequence: String, val phase: String, val connectivity: String, val equipment: String) extends PowerSystemResource (properties, id, name)
+case class Terminal (override val id: String, override val name: String, val sequence: String, val phase: String, val connectivity: String, val equipment: String) extends PowerSystemResource (id, name)
 
 object Terminal extends Parser
 {
@@ -414,7 +414,7 @@ object Terminal extends Parser
             case Some (value) ⇒ value
             case None ⇒ null
         }
-        Terminal (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("sequence"), result.properties.apply ("phase"), con, result.properties.apply ("equipment"))
+        Terminal (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("sequence"), result.properties.apply ("phase"), con, result.properties.apply ("equipment"))
     }
 }
 
@@ -422,7 +422,7 @@ object Terminal extends Parser
 //                <cim:IdentifiedObject.name>unbekannt EWS</cim:IdentifiedObject.name>
 //        </cim:BusbarInfo>
 
-case class BusbarInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
+case class BusbarInfo (override val id: String, override val name: String) extends PowerSystemResource (id, name)
 
 object BusbarInfo extends Parser
 {
@@ -430,7 +430,7 @@ object BusbarInfo extends Parser
     def unpickle (xml: String, result: Result): BusbarInfo =
     {
         parse (xml, result)
-        val ret = BusbarInfo (result.properties, result.properties apply "id", result.properties apply "name")
+        val ret = BusbarInfo (result.properties apply "id", result.properties apply "name")
         return (ret)
     }
 }
@@ -443,7 +443,7 @@ object BusbarInfo extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_858945"/>
 //</cim:BusbarSection>
 
-case class BusbarSection (override val properties: HashMap[String, String], override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String) extends LocatedElement (properties, id, name, location, container)
+case class BusbarSection (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String) extends LocatedElement (id, name, location, container)
 
 object BusbarSection extends Parser
 {
@@ -456,11 +456,11 @@ object BusbarSection extends Parser
     def unpickle (xml: String, result: Result): BusbarSection =
     {
         parse (xml, result)
-        BusbarSection (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"))
+        BusbarSection (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"))
     }
 }
 
-case class CableInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
+case class CableInfo (override val id: String, override val name: String) extends PowerSystemResource (id, name)
 
 object CableInfo extends Parser
 {
@@ -468,7 +468,7 @@ object CableInfo extends Parser
     def unpickle (xml: String, result: Result): CableInfo =
     {
         parse (xml, result)
-        val ret = CableInfo (result.properties, result.properties apply "id", result.properties apply "name")
+        val ret = CableInfo (result.properties apply "id", result.properties apply "name")
         return (ret)
     }
 }
@@ -482,16 +482,7 @@ object CableInfo extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>
 //</cim:ACLineSegment>
 
-case class ACLineSegment (override val properties: HashMap[String, String], override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val length: String, val voltage: String, val phases: ArrayBuffer[String]) extends LocatedElement (properties, id, name, location, container)
-{
-    /**
-     * Forward reference constructor.
-     *
-     * Used when there is a forward reference to a line segment that has not yet been parsed.
-     * @param id the id (rdf:ID) of the line segment, i.e. the forward reference
-     */
-    def this (id: String) = this (HashMap[String, String] ("id" -> id), id, "", "", "", "", "0.0", "", new ArrayBuffer[String] (1))
-}
+case class ACLineSegment (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val length: String, val voltage: String, val phases: ArrayBuffer[String]) extends LocatedElement (id, name, location, container)
 
 object ACLineSegment extends Parser
 {
@@ -508,7 +499,7 @@ object ACLineSegment extends Parser
     def unpickle (xml: String, result: Result): ACLineSegment =
     {
         parse (xml, result)
-        val ret = ACLineSegment (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("length"), result.properties.apply ("voltage"), new ArrayBuffer[String] (1))
+        val ret = ACLineSegment (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("length"), result.properties.apply ("voltage"), new ArrayBuffer[String] (1))
         return (ret)
     }
 }
@@ -519,7 +510,7 @@ object ACLineSegment extends Parser
 //   <cim:ACLineSegmentPhase.ACLineSegment rdf:resource="_internal_line_2094357"/>
 //</cim:ACLineSegmentPhase>
 
-case class ACLineSegmentPhase (override val properties: HashMap[String, String], override val id: String, override val name: String, val phase: String, val segment: String) extends PowerSystemResource (properties, id, name)
+case class ACLineSegmentPhase (override val id: String, override val name: String, val phase: String, val segment: String) extends PowerSystemResource (id, name)
 
 object ACLineSegmentPhase extends Parser
 {
@@ -532,12 +523,12 @@ object ACLineSegmentPhase extends Parser
     def unpickle (xml: String, result: Result): ACLineSegmentPhase =
     {
         parse (xml, result)
-        val ret = ACLineSegmentPhase (result.properties, result.properties apply "id", result.properties apply "name", result.properties apply "phase", result.properties apply "segment")
+        val ret = ACLineSegmentPhase (result.properties apply "id", result.properties apply "name", result.properties apply "phase", result.properties apply "segment")
         return (ret)
     }
 }
 
-case class SwitchInfo (override val properties: HashMap[String, String], override val id: String, override val name: String) extends PowerSystemResource (properties, id, name)
+case class SwitchInfo (override val id: String, override val name: String) extends PowerSystemResource (id, name)
 
 object SwitchInfo extends Parser
 {
@@ -545,7 +536,7 @@ object SwitchInfo extends Parser
     def unpickle (xml: String, result: Result): SwitchInfo =
     {
         parse (xml, result)
-        val ret = SwitchInfo (result.properties, result.properties apply "id", result.properties apply "name")
+        val ret = SwitchInfo (result.properties apply "id", result.properties apply "name")
         return (ret)
     }
 }
@@ -558,7 +549,7 @@ object SwitchInfo extends Parser
 //            <cim:Equipment.EquipmentContainer rdf:resource="_substation_251865"/>
 //    </cim:LoadBreakSwitch>
 
-case class Switch (override val properties: HashMap[String, String], override val id: String, override val name: String, override val location: String, override val container: String, val normalOpen: Boolean, val typ: String) extends LocatedElement (properties, id, name, location, container)
+case class Switch (override val id: String, override val name: String, override val location: String, override val container: String, val normalOpen: Boolean, val typ: String) extends LocatedElement (id, name, location, container)
 
 object Switch extends Parser
 {
@@ -574,7 +565,7 @@ object Switch extends Parser
         try
         {
             val open = (result.properties.apply ("normalOpen")).toBoolean
-            val ret = Switch (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), open, result.properties.apply ("type"))
+            val ret = Switch (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), open, result.properties.apply ("type"))
             return (ret)
         }
         catch
@@ -588,7 +579,7 @@ object Switch extends Parser
 //                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA</cim:IdentifiedObject.name>
 //                <cim:PowerTransformerInfo.TransformerTankInfo rdf:resource="#_power_xfrmr_spec_2083545"/>
 //        </cim:PowerTransformerInfo>
-case class PowerTransformerInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val info: String) extends PowerSystemResource (properties, id, name)
+case class PowerTransformerInfo (override val id: String, override val name: String, val info: String) extends PowerSystemResource (id, name)
 
 object PowerTransformerInfo extends Parser
 {
@@ -599,7 +590,7 @@ object PowerTransformerInfo extends Parser
     def unpickle (xml: String, result: Result): PowerTransformerInfo =
     {
         parse (xml, result)
-        val ret = PowerTransformerInfo (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("info"))
+        val ret = PowerTransformerInfo (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("info"))
         return (ret)
     }
 }
@@ -609,7 +600,7 @@ object PowerTransformerInfo extends Parser
 //                <cim:TransformerTankInfo.PowerTransformerInfo rdf:resource="#_power_transformer_2083545"/>
 //        </cim:TransformerTankInfo>
 
-case class TransformerTankInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val info: String) extends PowerSystemResource (properties, id, name)
+case class TransformerTankInfo (override val id: String, override val name: String, val info: String) extends PowerSystemResource (id, name)
 
 object TransformerTankInfo extends Parser
 {
@@ -620,7 +611,7 @@ object TransformerTankInfo extends Parser
     def unpickle (xml: String, result: Result): TransformerTankInfo =
     {
         parse (xml, result)
-        val ret = TransformerTankInfo (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("info"))
+        val ret = TransformerTankInfo (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("info"))
         return (ret)
     }
 }
@@ -629,7 +620,7 @@ object TransformerTankInfo extends Parser
 //                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA_tei_1</cim:IdentifiedObject.name>
 //                <cim:TransformerEndInfo.endNumber>1</cim:TransformerEndInfo.endNumber>
 //        </cim:TransformerEndInfo>
-case class TransformerEndInfo (override val properties: HashMap[String, String], override val id: String, override val name: String, val end: Integer) extends PowerSystemResource (properties, id, name)
+case class TransformerEndInfo (override val id: String, override val name: String, val end: Integer) extends PowerSystemResource (id, name)
 
 object TransformerEndInfo extends Parser
 {
@@ -644,12 +635,12 @@ object TransformerEndInfo extends Parser
         try
         {
             val num = end.toInt
-            val ret = TransformerEndInfo (result.properties,result.properties.apply ("id"), result.properties.apply ("name"), num)
+            val ret = TransformerEndInfo (result.properties.apply ("id"), result.properties.apply ("name"), num)
             return (ret)
         }
         catch
         {
-            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
+            case nfe: NumberFormatException ⇒ throw new Exception ("u nparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
         }
     }
 }
@@ -661,7 +652,7 @@ object TransformerEndInfo extends Parser
 //                <cim:Equipment.EquipmentContainer rdf:resource="#_substation_244441"/>
 //        </cim:PowerTransformer>
 
-case class PowerTransformer (override val properties: HashMap[String, String], override val id: String, override val name: String, override val location: String, override val container: String, val typ: String) extends LocatedElement (properties, id, name, location, container)
+case class PowerTransformer (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String) extends LocatedElement (id, name, location, container)
 
 object PowerTransformer extends Parser
 {
@@ -672,7 +663,7 @@ object PowerTransformer extends Parser
     def unpickle (xml: String, result: Result): PowerTransformer =
     {
         parse (xml, result)
-        val ret = PowerTransformer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"))
+        val ret = PowerTransformer (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"))
         return (ret)
     }
 }
@@ -681,7 +672,7 @@ object PowerTransformer extends Parser
 //                <cim:IdentifiedObject.name>TRA79_tank</cim:IdentifiedObject.name>
 //                <cim:TransformerTank.PowerTransformer rdf:resource="#_transformer_2083545"/>
 //        </cim:TransformerTank>
-case class TransformerTank (override val properties: HashMap[String, String], override val id: String, override val name: String, val transformer: String) extends PowerSystemResource (properties, id, name)
+case class TransformerTank (override val id: String, override val name: String, val transformer: String) extends PowerSystemResource (id, name)
 
 object TransformerTank extends Parser
 {
@@ -692,7 +683,7 @@ object TransformerTank extends Parser
     def unpickle (xml: String, result: Result): TransformerTank =
     {
         parse (xml, result)
-        val ret = TransformerTank (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("transformer"))
+        val ret = TransformerTank (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("transformer"))
         return (ret)
     }
 }
@@ -705,7 +696,7 @@ object TransformerTank extends Parser
 //                <cim:TransformerEnd.Terminal rdf:resource="#_transformer_2083545_terminal_1"/>
 //                <cim:TransformerEnd.BaseVoltage rdf:resource="#BaseVoltage_16.0000000000"/>
 //        </cim:TransformerTankEnd>
-case class TransformerTankEnd (override val properties: HashMap[String, String], override val id: String, override val name: String, val end: Integer, val phases: String, val tank: String, val terminal: String, val voltage: String) extends PowerSystemResource (properties, id, name)
+case class TransformerTankEnd (override val id: String, override val name: String, val end: Integer, val phases: String, val tank: String, val terminal: String, val voltage: String) extends PowerSystemResource (id, name)
 
 object TransformerTankEnd extends Parser
 {
@@ -728,7 +719,7 @@ object TransformerTankEnd extends Parser
         try
         {
             val num = end.toInt
-            val ret = TransformerTankEnd (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), num, result.properties.apply ("phases"), result.properties.apply ("tank"), result.properties.apply ("terminal"), result.properties.apply ("voltage"))
+            val ret = TransformerTankEnd (result.properties.apply ("id"), result.properties.apply ("name"), num, result.properties.apply ("phases"), result.properties.apply ("tank"), result.properties.apply ("terminal"), result.properties.apply ("voltage"))
             return (ret)
         }
         catch
@@ -742,7 +733,7 @@ object TransformerTankEnd extends Parser
 //    <cim:IdentifiedObject.name>HAS14</cim:IdentifiedObject.name>
 //    <cim:ServiceLocation.device>_house_connection_1469992</cim:ServiceLocation.device>
 //</cim:ServiceLocation>
-case class ServiceLocation (override val properties: HashMap[String, String], override val id: String, override val name: String, val device: String) extends NamedElement (properties, id, name)
+case class ServiceLocation (override val id: String, override val name: String, val device: String) extends NamedElement (id, name)
 
 object ServiceLocation extends Parser
 {
@@ -754,7 +745,7 @@ object ServiceLocation extends Parser
     {
         parse (xml, result)
 
-        val ret = ServiceLocation (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("device"))
+        val ret = ServiceLocation (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("device"))
         return (ret)
     }
 }
@@ -765,7 +756,7 @@ object ServiceLocation extends Parser
 //    <cim:Customer.locale>fr_CH</cim:Customer.locale>
 //    <cim:Customer.service>_ao_902716339</cim:Customer.service>
 //</cim:Customer>
-case class Customer (override val properties: HashMap[String, String], override val id: String, override val name: String, val kind: String, val locale: String, val service: String) extends NamedElement (properties, id, name)
+case class Customer (override val id: String, override val name: String, val kind: String, val locale: String, val service: String) extends NamedElement (id, name)
 
 object Customer extends Parser
 {
@@ -780,7 +771,7 @@ object Customer extends Parser
     def unpickle (xml: String, result: Result): Customer =
     {
         parse (xml, result)
-        val ret = Customer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("kind"), result.properties.apply ("locale"), result.properties.apply ("service"))
+        val ret = Customer (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("kind"), result.properties.apply ("locale"), result.properties.apply ("service"))
         return (ret)
     }
 }
