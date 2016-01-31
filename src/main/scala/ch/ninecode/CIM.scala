@@ -496,7 +496,7 @@ object PositionPoint extends Parser
         }
         catch
         {
-            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tanke end element while parsing at line " + result.context.line_number ())
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tank end element while parsing at line " + result.context.line_number ())
         }
     }
 }

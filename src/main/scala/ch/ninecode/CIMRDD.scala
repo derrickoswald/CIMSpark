@@ -38,6 +38,13 @@ object CIMRDD
         return (sc.parallelize (result.IdentifiedElements.values.toSeq))
     }
 
+    def rddHadoop (sc: SparkContext, hdfs: String): RDD[Element] =
+    {
+        // RDD[(String, Element)]
+        val rdd = sc.newAPIHadoopRDD (sc.hadoopConfiguration, classOf[CIMInputFormat], classOf[String], classOf[Element])
+        return (rdd.values)
+    }
+
     def main (args:Array[String])
     {
         val conf = new SparkConf ().setAppName ("CIMScala")
