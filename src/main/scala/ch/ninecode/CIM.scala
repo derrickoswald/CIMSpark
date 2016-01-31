@@ -170,7 +170,7 @@ object PSRType extends Parser
     def unpickle (xml: String, result: Result): PSRType =
     {
         parse (xml, result)
-        val ret = PSRType (result.properties apply "id", result.properties apply "name")
+        val ret = PSRType (result.properties ("id"), result.properties ("name"))
         return (ret)
     }
 }
@@ -188,7 +188,7 @@ object Line extends Parser
     def unpickle (xml: String, result: Result): Line =
     {
         parse (xml, result)
-        val ret = Line (result.properties.apply ("id"), result.properties apply "name")
+        val ret = Line (result.properties ("id"), result.properties ("name"))
         return (ret)
     }
 }
@@ -201,7 +201,7 @@ object Subnetwork extends Parser
     def unpickle (xml: String, result: Result): Subnetwork =
     {
         parse (xml, result)
-        val ret = Subnetwork (result.properties.apply ("id"), result.properties apply "name")
+        val ret = Subnetwork (result.properties ("id"), result.properties ("name"))
         return (ret)
     }
 }
@@ -219,7 +219,7 @@ object ConnectivityNode extends Parser
     def unpickle (xml: String, result: Result): ConnectivityNode =
     {
         parse (xml, result)
-        val ret = ConnectivityNode (result.properties.apply ("id"), result.properties apply "name", result.properties.apply ("container"))
+        val ret = ConnectivityNode (result.properties ("id"), result.properties ("name"), result.properties ("container"))
         return (ret)
     }
 }
@@ -239,9 +239,9 @@ object Voltage extends Parser
         parse (xml, result)
         try
         {
-            val voltage = result.properties.apply ("voltage")
+            val voltage = result.properties ("voltage")
             val v = voltage.toDouble * 1000.0
-            return (Voltage (result.properties apply "id", result.properties apply "name", v))
+            return (Voltage (result.properties ("id"), result.properties ("name"), v))
         }
         catch
         {
@@ -260,8 +260,8 @@ object CoordinateSystem extends Parser
     def unpickle (xml: String, result: Result): CoordinateSystem =
     {
         parse (xml, result)
-        val urn = result.properties.apply ("urn")
-        return (CoordinateSystem (result.properties apply "id", result.properties apply "name", urn))
+        val urn = result.properties ("urn")
+        return (CoordinateSystem (result.properties ("id"), result.properties ("name"), urn))
     }
 }
 
@@ -280,7 +280,7 @@ object Location extends Parser
     def unpickle (xml: String, result: Result): Location =
     {
         parse (xml, result)
-        val ret = Location (result.properties.apply ("id"), result.properties.apply ("cs"), result.properties.apply ("type"))
+        val ret = Location (result.properties ("id"), result.properties ("cs"), result.properties ("type"))
         return (ret)
     }
 }
@@ -309,13 +309,13 @@ object PositionPoint extends Parser
     def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
-        val ret = PositionPoint (result.properties.apply ("location") + "_seq_" + result.properties.apply ("sequence"))
+        val ret = PositionPoint (result.properties ("location") + "_seq_" + result.properties ("sequence"))
         return (ret)
 //        try
 //        {
-//            val sequence = result.properties.apply ("sequence").toInt
-//            val x = result.properties.apply ("x").toDouble
-//            val y = result.properties.apply ("y").toDouble
+//            val sequence = result.properties ("sequence").toInt
+//            val x = result.properties ("x").toDouble
+//            val y = result.properties ("y").toDouble
 //            val location = LocatedElement.getLocation (result)
 //            val size = 2 * (sequence + 1)
 //            if (location.coordinates.length < size)
@@ -352,7 +352,7 @@ object Asset extends Parser
     {
         parse (xml, result)
         // ToDo: check for forward reference definition and copy any data necessary
-        Asset (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("type"), result.properties.apply ("asset"), result.properties.apply ("info"))
+        Asset (result.properties ("id"), result.properties ("name"), result.properties ("type"), result.properties ("asset"), result.properties ("info"))
     }
 }
 
@@ -379,7 +379,7 @@ object Consumer extends Parser
     def unpickle (xml: String, result: Result): Consumer =
     {
         parse (xml, result)
-        val ret = Consumer (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"), result.properties.apply ("phase"))
+        val ret = Consumer (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"), result.properties ("phase"))
         return (ret)
     }
 }
@@ -414,7 +414,7 @@ object Terminal extends Parser
             case Some (value) ⇒ value
             case None ⇒ null
         }
-        Terminal (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("sequence"), result.properties.apply ("phase"), con, result.properties.apply ("equipment"))
+        Terminal (result.properties ("id"), result.properties ("name"), result.properties ("sequence"), result.properties ("phase"), con, result.properties ("equipment"))
     }
 }
 
@@ -456,7 +456,7 @@ object BusbarSection extends Parser
     def unpickle (xml: String, result: Result): BusbarSection =
     {
         parse (xml, result)
-        BusbarSection (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"))
+        BusbarSection (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"))
     }
 }
 
@@ -499,7 +499,7 @@ object ACLineSegment extends Parser
     def unpickle (xml: String, result: Result): ACLineSegment =
     {
         parse (xml, result)
-        val ret = ACLineSegment (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("length"), result.properties.apply ("voltage"), new ArrayBuffer[String] (1))
+        val ret = ACLineSegment (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("length"), result.properties ("voltage"), new ArrayBuffer[String] (1))
         return (ret)
     }
 }
@@ -564,8 +564,8 @@ object Switch extends Parser
         parse (xml, result)
         try
         {
-            val open = (result.properties.apply ("normalOpen")).toBoolean
-            val ret = Switch (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), open, result.properties.apply ("type"))
+            val open = (result.properties ("normalOpen")).toBoolean
+            val ret = Switch (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), open, result.properties ("type"))
             return (ret)
         }
         catch
@@ -590,7 +590,7 @@ object PowerTransformerInfo extends Parser
     def unpickle (xml: String, result: Result): PowerTransformerInfo =
     {
         parse (xml, result)
-        val ret = PowerTransformerInfo (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("info"))
+        val ret = PowerTransformerInfo (result.properties ("id"), result.properties ("name"), result.properties ("info"))
         return (ret)
     }
 }
@@ -611,7 +611,7 @@ object TransformerTankInfo extends Parser
     def unpickle (xml: String, result: Result): TransformerTankInfo =
     {
         parse (xml, result)
-        val ret = TransformerTankInfo (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("info"))
+        val ret = TransformerTankInfo (result.properties ("id"), result.properties ("name"), result.properties ("info"))
         return (ret)
     }
 }
@@ -631,11 +631,11 @@ object TransformerEndInfo extends Parser
     def unpickle (xml: String, result: Result): TransformerEndInfo =
     {
         parse (xml, result)
-        val end = result.properties.apply ("end")
+        val end = result.properties ("end")
         try
         {
             val num = end.toInt
-            val ret = TransformerEndInfo (result.properties.apply ("id"), result.properties.apply ("name"), num)
+            val ret = TransformerEndInfo (result.properties ("id"), result.properties ("name"), num)
             return (ret)
         }
         catch
@@ -663,7 +663,7 @@ object PowerTransformer extends Parser
     def unpickle (xml: String, result: Result): PowerTransformer =
     {
         parse (xml, result)
-        val ret = PowerTransformer (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"))
+        val ret = PowerTransformer (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"))
         return (ret)
     }
 }
@@ -683,7 +683,7 @@ object TransformerTank extends Parser
     def unpickle (xml: String, result: Result): TransformerTank =
     {
         parse (xml, result)
-        val ret = TransformerTank (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("transformer"))
+        val ret = TransformerTank (result.properties ("id"), result.properties ("name"), result.properties ("transformer"))
         return (ret)
     }
 }
@@ -715,11 +715,11 @@ object TransformerTankEnd extends Parser
     def unpickle (xml: String, result: Result): TransformerTankEnd =
     {
         parse (xml, result)
-        val end = result.properties.apply ("end")
+        val end = result.properties ("end")
         try
         {
             val num = end.toInt
-            val ret = TransformerTankEnd (result.properties.apply ("id"), result.properties.apply ("name"), num, result.properties.apply ("phases"), result.properties.apply ("tank"), result.properties.apply ("terminal"), result.properties.apply ("voltage"))
+            val ret = TransformerTankEnd (result.properties ("id"), result.properties ("name"), num, result.properties ("phases"), result.properties ("tank"), result.properties ("terminal"), result.properties ("voltage"))
             return (ret)
         }
         catch
@@ -745,7 +745,7 @@ object ServiceLocation extends Parser
     {
         parse (xml, result)
 
-        val ret = ServiceLocation (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("device"))
+        val ret = ServiceLocation (result.properties ("id"), result.properties ("name"), result.properties ("device"))
         return (ret)
     }
 }
@@ -771,7 +771,7 @@ object Customer extends Parser
     def unpickle (xml: String, result: Result): Customer =
     {
         parse (xml, result)
-        val ret = Customer (result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("kind"), result.properties.apply ("locale"), result.properties.apply ("service"))
+        val ret = Customer (result.properties ("id"), result.properties ("name"), result.properties ("kind"), result.properties ("locale"), result.properties ("service"))
         return (ret)
     }
 }
