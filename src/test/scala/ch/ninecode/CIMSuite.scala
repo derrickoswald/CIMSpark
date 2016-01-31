@@ -21,34 +21,15 @@ class CIMSuite extends FunSuite
     test ("Basic")
     {
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
-        val parser = new CIM ()
-        val result = parser.parse (xml)
-        assert (result.IdentifiedElements.size === 1)
-    }
-
-    test ("Forward Reference")
-    {
-        // Note: scala really hates processing instructions:
-        // <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-        val xml =
-            <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                <cim:ConnectivityNode rdf:ID="_pin_1555190">
-                    <cim:IdentifiedObject.name>PIN16</cim:IdentifiedObject.name>
-                    <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="_subnetwork_183839"/>
-                </cim:ConnectivityNode>
-                <cim:Line rdf:ID="_subnetwork_183839">
-                    <cim:IdentifiedObject.name>ABG2682|FLT22|FLU74|FLU75|HAS997|PIN16</cim:IdentifiedObject.name>
-                </cim:Line>
-            </rdf:RDF>;
-        val parser = new CIM ()
-        val result = parser.parse (xml.toString ())
-        val container = result.IdentifiedElements.apply ("_subnetwork_183839").asInstanceOf[Container]
-        assert (container.contents.size === 1)
-        assert (container.contents.contains ("_pin_1555190"))
+        val parser = new CIM (xml.toString ())
+        val map = parser.parse ()
+        assert (map.size === 1)
     }
 
     test ("Voltage")
     {
+        // Note: scala really hates processing instructions:
+        // <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         val xml =
             <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
                 <cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
@@ -56,9 +37,9 @@ class CIMSuite extends FunSuite
                         <cim:BaseVoltage.nominalVoltage>0.400000000000</cim:BaseVoltage.nominalVoltage>
                 </cim:BaseVoltage>
             </rdf:RDF>;
-        val parser = new CIM ()
-        val result = parser.parse (xml.toString ())
-        val voltage = result.IdentifiedElements.apply ("BaseVoltage_0.400000000000").asInstanceOf[Voltage]
+        val parser = new CIM (xml.toString ())
+        val map = parser.parse ()
+        val voltage = map.apply ("BaseVoltage_0.400000000000").asInstanceOf[Voltage]
         assert (voltage.voltage === 400)
     }
 
@@ -71,10 +52,10 @@ class CIMSuite extends FunSuite
                         <cim:BaseVoltage.nominalVoltage>x.400000000000</cim:BaseVoltage.nominalVoltage>
                 </cim:BaseVoltage>
             </rdf:RDF>;
-        val parser = new CIM ()
+        val parser = new CIM (xml.toString ())
         intercept[Exception]
         {
-            val result = parser.parse (xml.toString ())
+            val map = parser.parse ()
             fail ("invalid voltage accepted")
         }
     }
@@ -88,10 +69,10 @@ class CIMSuite extends FunSuite
                     <cim:crsUrn>EPSG::4326</cim:crsUrn>
                 </cim:CoordinateSystem>
             </rdf:RDF>;
-        val parser = new CIM ()
-        val result = parser.parse (xml.toString ())
-        assert (result.IdentifiedElements.size === 1)
-        val cs = result.IdentifiedElements apply "wgs_84"
+        val parser = new CIM (xml.toString ())
+        val map = parser.parse ()
+        assert (map.size === 1)
+        val cs = map apply "wgs_84"
         assert (cs.isInstanceOf[CoordinateSystem])
         val cs2 = cs.asInstanceOf[CoordinateSystem]
         assert (cs2.urn === "EPSG::4326")
@@ -100,8 +81,8 @@ class CIMSuite extends FunSuite
     test ("Read Partial")
     {
         val xml = CIM.read ("data/dump_all.xml", 0, 1024 * 1024, 0) // exactly a megabyte
-        val parser = new CIM ()
-        val result = parser.parse (xml)
-        assert (result.Ignored == 0)
+        val parser = new CIM (xml)
+        val map = parser.parse ()
+        assert (map.filter (_.getClass() == classOf[Unknown]).size == 0)
     }
 }

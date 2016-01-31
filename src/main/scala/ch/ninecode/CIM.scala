@@ -11,19 +11,17 @@ import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
 
+class Result (val context: Context)
+{
+    var properties = new HashMap[String, String]
+}
+
 trait Parser
 {
     def parse (xml: String, result: Result): Unit
 }
 
-class Result (val context: Context)
-{
-    var properties = new HashMap[String, String]
-    val IdentifiedElements = HashMap[String, IdentifiedElement] ()
-    var Ignored = 0
-}
-
-abstract class Element (val properties: HashMap[String, String])  extends Serializable
+abstract class Element (val key: String, val properties: HashMap[String, String]) extends Serializable
 
 object Element extends Parser
 {
@@ -120,14 +118,21 @@ object Element extends Parser
     }
 }
 
-case class Unknown (override val properties: HashMap[String, String]) extends Element (properties)
+case class Unknown (override val key: String, override val properties: HashMap[String, String], guts: String) extends Element (key, properties)
 
 object Unknown extends Parser
 {
     override def parse (xml: String, result: Result): Unit = Element.parse (xml, result)
+
+    def unpickle (xml: String, result: Result): Unknown =
+    {
+        parse (xml, result)
+        val ret = Unknown (xml.hashCode().toString(), result.properties, xml)
+        return (ret)
+    }
 }
 
-class IdentifiedElement (override val properties: HashMap[String, String], val id: String) extends Element (properties)
+class IdentifiedElement (override val properties: HashMap[String, String], val id: String) extends Element (id, properties)
 
 object IdentifiedElement extends Parser
 {
@@ -199,35 +204,6 @@ object LocatedElement extends Parser
         loc (xml, result)
         con (xml, result)
     }
-
-    def getContainer (result: Result): Container =
-    {
-        val container = result.properties.apply ("container")
-        val ret = result.IdentifiedElements.get (container) match
-        {
-            case Some (node) ⇒
-                node.asInstanceOf[Container]
-            case None ⇒
-                val node = new Container (container)
-                result.IdentifiedElements.put (container, node)
-                node
-        }
-        return (ret)
-    }
-
-    def getLocation (result: Result): Location =
-    {
-        val location = result.properties.apply ("location")
-        val ret = result.IdentifiedElements.get (location) match
-        {
-            case Some (node) ⇒ node.asInstanceOf[Location]
-            case None ⇒
-                val node = new Location (location)
-                result.IdentifiedElements.put (location, node)
-                node
-        }
-        return (ret)
-    }
 }
 
 //        <cim:PSRType rdf:ID="PSRType_Substation">
@@ -247,21 +223,12 @@ object PSRType extends Parser
     }
 }
 
+class Container (properties: HashMap[String, String], id: String, name: String) extends PowerSystemResource (properties, id, name)
+
 //        <cim:Line rdf:ID="_subnetwork_349554">
 //                <cim:IdentifiedObject.name>ABG2236|ABG7246|APP197|FLT13|FLU20|FLU21|FLU22|FLU23|HAS332|HAS333|HAS334|HAS335|MUF2681|MUF2682|PIN2</cim:IdentifiedObject.name>
 //        </cim:Line>
-class Container (properties: HashMap[String, String], id: String, name: String, val contents: HashSet[String]) extends PowerSystemResource (properties, id, name)
-{
-    /**
-     * Forward reference constructor.
-     *
-     * Used when there is a forward reference to a container that has not yet been parsed.
-     * @param identifier the id (rdf:ID) of the container, i.e. the forward reference
-     */
-    def this (id: String) = this (HashMap[String, String] ("id" -> id), id, "", new HashSet[String] ())
-}
-
-case class Line (override val properties: HashMap[String, String], override val id: String, override val name: String, override val contents: HashSet[String]) extends Container (properties, id, name, contents)
+case class Line (override val properties: HashMap[String, String], override val id: String, override val name: String) extends Container (properties, id, name)
 
 object Line extends Parser
 {
@@ -270,20 +237,12 @@ object Line extends Parser
     def unpickle (xml: String, result: Result): Line =
     {
         parse (xml, result)
-        // check for forward reference definition and copy any references seen so far
-        val id = result.properties.apply ("id")
-        val ret = Line (result.properties, id, result.properties apply "name", new HashSet[String] ())
-        result.IdentifiedElements.remove (id) match
-        {
-            case Some (node) ⇒
-                ret.contents ++= node.asInstanceOf[Container].contents
-            case None ⇒
-        }
+        val ret = Line (result.properties, result.properties.apply ("id"), result.properties apply "name")
         return (ret)
     }
 }
 
-case class Subnetwork (override val properties: HashMap[String, String], override val id: String, override val name: String, override val contents: HashSet[String]) extends Container (properties, id, name, contents)
+case class Subnetwork (override val properties: HashMap[String, String], override val id: String, override val name: String) extends Container (properties, id, name)
 
 object Subnetwork extends Parser
 {
@@ -292,15 +251,7 @@ object Subnetwork extends Parser
     def unpickle (xml: String, result: Result): Subnetwork =
     {
         parse (xml, result)
-        // check for forward reference definition and copy any references seen so far
-        val id = result.properties.apply ("id")
-        val ret = Subnetwork (result.properties, id, result.properties apply "name", new HashSet[String] ())
-        result.IdentifiedElements.remove (id) match
-        {
-            case Some (node) ⇒
-                ret.contents ++= node.asInstanceOf[Container].contents
-            case None ⇒
-        }
+        val ret = Subnetwork (result.properties, result.properties.apply ("id"), result.properties apply "name")
         return (ret)
     }
 }
@@ -331,13 +282,9 @@ object ConnectivityNode extends Parser
     def unpickle (xml: String, result: Result): ConnectivityNode =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val container = LocatedElement.getContainer (result) // ToDo: can this be a trait?
-        container.contents += id
-        val ret = ConnectivityNode (result.properties, id, result.properties apply "name", container.id)
+        val ret = ConnectivityNode (result.properties, result.properties.apply ("id"), result.properties apply "name", result.properties.apply ("container"))
         return (ret)
     }
-
 }
 
 //        <cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
@@ -412,16 +359,7 @@ object CoordinateSystem extends Parser
 //            <cim:Location.type>geographic</cim:Location.type>
 //    </cim:Location>
 
-case class Location (override val properties: HashMap[String, String], override val id: String, val cs: String, val typ: String, var coordinates: ArrayBuffer[Double]) extends IdentifiedElement (properties, id)
-{
-    /**
-     * Forward reference constructor.
-     *
-     * Used when there is a forward reference to a location that has not yet been parsed.
-     * @param identifier the id (rdf:ID) of the location, i.e. the forward reference
-     */
-    def this (id: String) = this (HashMap[String, String] ("id" -> id), id, "", "", new ArrayBuffer[Double] (2))
-}
+case class Location (override val properties: HashMap[String, String], override val id: String, val cs: String, val typ: String) extends IdentifiedElement (properties, id)
 
 object Location extends Parser
 {
@@ -439,14 +377,7 @@ object Location extends Parser
     def unpickle (xml: String, result: Result): Location =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val ret = Location (result.properties, id, result.properties.apply ("cs"), result.properties.apply ("type"), new ArrayBuffer[Double] (2))
-        // check for forward reference definition and copy any coordinates seen so far
-        result.IdentifiedElements.remove (id) match
-        {
-            case Some (node) ⇒ ret.coordinates ++= node.asInstanceOf [Location].coordinates
-            case None ⇒
-        }
+        val ret = Location (result.properties, result.properties.apply ("id"), result.properties.apply ("cs"), result.properties.apply ("type"))
         return (ret)
     }
 }
@@ -457,6 +388,8 @@ object Location extends Parser
 //            <cim:xPosition>8.78184724183</cim:xPosition>
 //            <cim:yPosition>47.0400997930</cim:yPosition>
 //    </cim:PositionPoint>
+
+case class PositionPoint (override val key:String, override val properties: HashMap[String, String]) extends Element (key, properties)
 
 object PositionPoint extends Parser
 {
@@ -479,25 +412,27 @@ object PositionPoint extends Parser
         ycoord (xml, result)
     }
 
-    def unpickle (xml: String, result: Result): Unit =
+    def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
-        try
-        {
-            val sequence = result.properties.apply ("sequence").toInt
-            val x = result.properties.apply ("x").toDouble
-            val y = result.properties.apply ("y").toDouble
-            val location = LocatedElement.getLocation (result)
-            val size = 2 * (sequence + 1)
-            if (location.coordinates.length < size)
-                location.coordinates = location.coordinates.padTo (size, 0.0)
-            location.coordinates.update (sequence * 2, x)
-            location.coordinates.update (sequence * 2 + 1, y)
-        }
-        catch
-        {
-            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tank end element while parsing at line " + result.context.line_number ())
-        }
+        val ret = PositionPoint (result.properties.apply ("location") + "_seq_" + result.properties.apply ("sequence"), result.properties)
+        return (ret)
+//        try
+//        {
+//            val sequence = result.properties.apply ("sequence").toInt
+//            val x = result.properties.apply ("x").toDouble
+//            val y = result.properties.apply ("y").toDouble
+//            val location = LocatedElement.getLocation (result)
+//            val size = 2 * (sequence + 1)
+//            if (location.coordinates.length < size)
+//                location.coordinates = location.coordinates.padTo (size, 0.0)
+//            location.coordinates.update (sequence * 2, x)
+//            location.coordinates.update (sequence * 2 + 1, y)
+//        }
+//        catch
+//        {
+//            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable end value found for a tank end element while parsing at line " + result.context.line_number ())
+//        }
     }
 }
 
@@ -559,26 +494,13 @@ object Consumer extends Parser
         typ (xml, result)
         vol (xml, result)
         faz (xml, result)
-
-//or as an array of functions
-//        val steps = Array[(String, Context, Result) ⇒ Unit](
-//            LocatedElement.parse,
-//            typ,
-//            vol,
-//            faz
-//        )
-//        for (f <- steps)
-//            f (xml, context, result)
     }
 
     def unpickle (xml: String, result: Result): Consumer =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val container = LocatedElement.getContainer (result)
-        container.contents += id
-        val location = LocatedElement.getLocation (result)
-        Consumer (result.properties, id, result.properties.apply ("name"), location.id, container.id, result.properties.apply ("type"), result.properties.apply ("voltage"), result.properties.apply ("phase"))
+        val ret = Consumer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"), result.properties.apply ("phase"))
+        return (ret)
     }
 }
 
@@ -667,11 +589,7 @@ object BusbarSection extends Parser
     def unpickle (xml: String, result: Result): BusbarSection =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val container = LocatedElement.getContainer (result)
-        container.contents += id
-        val location = LocatedElement.getLocation (result)
-        BusbarSection (result.properties, id, result.properties.apply ("name"), location.id, container.id, result.properties.apply ("type"), result.properties.apply ("voltage"))
+        BusbarSection (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("voltage"))
     }
 }
 
@@ -733,17 +651,7 @@ object ACLineSegment extends Parser
     def unpickle (xml: String, result: Result): ACLineSegment =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val container = LocatedElement.getContainer (result)
-        container.contents += id
-        val location = LocatedElement.getLocation (result)
-        val ret = ACLineSegment (result.properties, id, result.properties.apply ("name"), location.id, container.id, result.properties.apply ("type"), result.properties.apply ("length"), result.properties.apply ("voltage"), new ArrayBuffer[String] (1))
-        // check for forward reference definition and copy any phases seen so far
-        result.IdentifiedElements.remove (id) match // replace with this ACLineSegment
-        {
-            case Some (node) ⇒ ret.phases ++ node.asInstanceOf [ACLineSegment].phases
-            case None ⇒
-        }
+        val ret = ACLineSegment (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"), result.properties.apply ("length"), result.properties.apply ("voltage"), new ArrayBuffer[String] (1))
         return (ret)
     }
 }
@@ -774,18 +682,7 @@ object ACLineSegmentPhase extends Parser
     def unpickle (xml: String, result: Result): ACLineSegmentPhase =
     {
         parse (xml, result)
-        val segment = result.properties apply "segment"
-        val ret = ACLineSegmentPhase (result.properties, result.properties apply "id", result.properties apply "name", result.properties apply "phase", segment)
-        // add this phase to the segment
-        val seg = result.IdentifiedElements.get (segment) match
-        {
-            case Some (node) ⇒ node.asInstanceOf [ACLineSegment]
-            case None ⇒
-                val node = new ACLineSegment (segment)
-                result.IdentifiedElements += (segment -> node)
-                node
-        }
-        seg.phases += segment
+        val ret = ACLineSegmentPhase (result.properties, result.properties apply "id", result.properties apply "name", result.properties apply "phase", result.properties apply "segment")
         return (ret)
     }
 }
@@ -835,11 +732,7 @@ object Switch extends Parser
         try
         {
             val open = (result.properties.apply ("normalOpen")).toBoolean
-            val id = result.properties.apply ("id")
-            val container = LocatedElement.getContainer (result)
-            container.contents += id
-            val location = LocatedElement.getLocation (result)
-            val ret = Switch (result.properties, id, result.properties.apply ("name"), location.id, container.id, open, result.properties.apply ("type"))
+            val ret = Switch (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), open, result.properties.apply ("type"))
             return (ret)
         }
         catch
@@ -961,11 +854,7 @@ object PowerTransformer extends Parser
     def unpickle (xml: String, result: Result): PowerTransformer =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val container = LocatedElement.getContainer (result)
-        container.contents += id
-        val location = LocatedElement.getLocation (result)
-        val ret = PowerTransformer (result.properties, id, result.properties.apply ("name"), location.id, container.id, result.properties.apply ("type"))
+        val ret = PowerTransformer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("location"), result.properties.apply ("container"), result.properties.apply ("type"))
         return (ret)
     }
 }
@@ -974,16 +863,7 @@ object PowerTransformer extends Parser
 //                <cim:IdentifiedObject.name>TRA79_tank</cim:IdentifiedObject.name>
 //                <cim:TransformerTank.PowerTransformer rdf:resource="#_transformer_2083545"/>
 //        </cim:TransformerTank>
-case class TransformerTank (override val properties: HashMap[String, String], override val id: String, override val name: String, val transformer: String, val ends: ArrayBuffer[String]) extends PowerSystemResource (properties, id, name)
-{
-    /**
-     * Forward reference constructor.
-     *
-     * Used when there is a forward reference to a tank that has not yet been parsed.
-     * @param id the id (rdf:ID) of the tank, i.e. the forward reference
-     */
-    def this (id: String) = this (HashMap[String, String] ("id" -> id), id, "", "", new ArrayBuffer[String] (2))
-}
+case class TransformerTank (override val properties: HashMap[String, String], override val id: String, override val name: String, val transformer: String) extends PowerSystemResource (properties, id, name)
 
 object TransformerTank extends Parser
 {
@@ -1000,14 +880,7 @@ object TransformerTank extends Parser
     def unpickle (xml: String, result: Result): TransformerTank =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val ret = TransformerTank (result.properties, id, result.properties.apply ("name"), result.properties.apply ("transformer"), new ArrayBuffer[String] (2))
-        // check for forward reference definition and copy any tank ends seen so far
-        result.IdentifiedElements.remove (id) match
-        {
-            case Some (node) ⇒ ret.ends ++= node.asInstanceOf [TransformerTank].ends
-            case None ⇒
-        }
+        val ret = TransformerTank (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("transformer"))
         return (ret)
     }
 }
@@ -1053,19 +926,7 @@ object TransformerTankEnd extends Parser
         try
         {
             val num = end.toInt
-            val id = result.properties.apply ("id")
-            val tank = result.properties.apply ("tank")
-            val ret = TransformerTankEnd (result.properties, id, result.properties.apply ("name"), num, result.properties.apply ("phases"), result.properties.apply ("tank"), result.properties.apply ("terminal"), result.properties.apply ("voltage"))
-            // check for forward reference definition and add a tank if it's not seen before
-            val tk = result.IdentifiedElements.get (tank) match
-            {
-                case Some (node) ⇒ node.asInstanceOf [TransformerTank]
-                case None ⇒
-                    val node = new TransformerTank (tank)
-                    result.IdentifiedElements.put (tank, node)
-                    node
-            }
-            tk.ends += id
+            val ret = TransformerTankEnd (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), num, result.properties.apply ("phases"), result.properties.apply ("tank"), result.properties.apply ("terminal"), result.properties.apply ("voltage"))
             return (ret)
         }
         catch
@@ -1079,16 +940,7 @@ object TransformerTankEnd extends Parser
 //    <cim:IdentifiedObject.name>HAS14</cim:IdentifiedObject.name>
 //    <cim:ServiceLocation.device>_house_connection_1469992</cim:ServiceLocation.device>
 //</cim:ServiceLocation>
-case class ServiceLocation (override val properties: HashMap[String, String], override val id: String, override val name: String, val device: String, val customers: ArrayBuffer[String]) extends NamedElement (properties, id, name)
-{
-    /**
-     * Forward reference constructor.
-     *
-     * Used when there is a forward reference to a service location that has not yet been parsed.
-     * @param id the id (rdf:ID) of the service location, i.e. the forward reference
-     */
-    def this (id: String) = this (HashMap[String, String] ("id" -> id), id, "", "", new ArrayBuffer[String] (2))
-}
+case class ServiceLocation (override val properties: HashMap[String, String], override val id: String, override val name: String, val device: String) extends NamedElement (properties, id, name)
 
 object ServiceLocation extends Parser
 {
@@ -1106,15 +958,7 @@ object ServiceLocation extends Parser
     {
         parse (xml, result)
 
-        val id = result.properties.apply ("id")
-        val device = result.properties.apply ("device")
-        val ret = ServiceLocation (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), device, new ArrayBuffer[String] (2))
-        // check for forward reference definition and copy any customers seen so far
-        result.IdentifiedElements.remove (id) match
-        {
-            case Some (node) ⇒ ret.customers ++= node.asInstanceOf [ServiceLocation].customers
-            case None ⇒
-        }
+        val ret = ServiceLocation (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("device"))
         return (ret)
     }
 }
@@ -1148,35 +992,26 @@ object Customer extends Parser
     def unpickle (xml: String, result: Result): Customer =
     {
         parse (xml, result)
-        val id = result.properties.apply ("id")
-        val kind = result.properties.apply ("kind")
-        val locale = result.properties.apply ("locale")
-        val service = result.properties.apply ("service")
-        val ret = Customer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), kind, locale, service)
-        // check for forward reference definition and add a service locations if it's not seen before
-        val loc = result.IdentifiedElements.get (service) match
-        {
-            case Some (node) ⇒ node.asInstanceOf [ServiceLocation]
-            case None ⇒
-                val node = new ServiceLocation (service)
-                result.IdentifiedElements.put (service, node)
-                node
-        }
-        loc.customers += id
+        val ret = Customer (result.properties, result.properties.apply ("id"), result.properties.apply ("name"), result.properties.apply ("kind"), result.properties.apply ("locale"), result.properties.apply ("service"))
         return (ret)
     }
 }
 
-class CIM
+class CIM (var xml:String)
 {
+    val matcher = CIM.rddex.matcher (xml)
+    val context = new Context (0, 0, ArrayBuffer (0))
+    context.index_string (xml, context.start)
+    val result = new Result (context)
 
-    def parse (xml:String): Result =
+    var key: String = "";
+    var value: Element = null;
+
+    def parse_one (): Boolean =
     {
-        val matcher = CIM.rddex.matcher (xml)
-        val context = new Context (0, 0, ArrayBuffer (0))
-        context.index_string (xml, context.start)
-        val result = new Result (context)
-        while (matcher.find ())
+        var ret = false
+
+        if (matcher.find ())
         {
             val name = matcher.group (1)
             val rest = matcher.group (2)
@@ -1189,7 +1024,7 @@ class CIM
                 case "cim:BaseVoltage" ⇒ Voltage.unpickle (rest, result)
                 case "cim:CoordinateSystem" ⇒ CoordinateSystem.unpickle (rest, result)
                 case "cim:Location" ⇒ Location.unpickle (rest, result)
-                case "cim:PositionPoint" ⇒ PositionPoint.unpickle (rest, result); null
+                case "cim:PositionPoint" ⇒ PositionPoint.unpickle (rest, result);
                 case "cim:Asset" ⇒ Asset.unpickle (rest, result)
                 case "cim:EnergyConsumer" ⇒ Consumer.unpickle (rest, result)
                 case "cim:Terminal" ⇒ Terminal.unpickle (rest, result)
@@ -1210,28 +1045,29 @@ class CIM
                 case "cim:ServiceLocation" ⇒ ServiceLocation.unpickle (rest, result)
                 case "cim:Customer" ⇒ Customer.unpickle (rest, result)
 
-                case _ ⇒
-                {
-                    Unknown.parse (rest, result)
-                    Unknown (result.properties)
-                }
+                case _ ⇒ Unknown.unpickle (rest, result)
             }
-            if (null != element)
-                element.properties.get ("id") match
-                {
-                    case Some (id) ⇒
-                        result.IdentifiedElements += (id -> element.asInstanceOf[IdentifiedElement])
-                    case None ⇒
-                        // we check for an id -- if no id then it's unknown
-                        result.Ignored += 1
-                }
+            key = element.key
+            value = element
 
             // set up for next parse
             result.properties = new HashMap[String, String] ()
             context.end = matcher.end ()
+
+            ret = true
         }
 
-        return (result)
+        return (ret)
+    }
+
+    def parse (): HashMap[String, Element] =
+    {
+        val ret = HashMap[String, Element] ()
+
+        while (parse_one ())
+            ret.put (key, value)
+
+        return (ret)
     }
 }
 
@@ -1312,58 +1148,19 @@ object CIM
             val reading = (before - start) / 1000
             println ("reading %g seconds".format (reading / 1e6))
 
-            val parser = new CIM ()
-            val result = parser.parse (xml)
+            val parser = new CIM (xml)
+            val map = parser.parse ()
 
             val after = System.nanoTime
             val parsing = (after - before) / 1000
             println ("parsing %g seconds".format (parsing / 1e6))
 
-            println (result.IdentifiedElements.size + " identified elements parsed")
-            println (result.Ignored + " elements ignored")
+            println (map.size + " identified elements parsed")
+            println (map.filter (_.getClass() == classOf[Unknown])+ " unknown elements")
         }
         else
             println ("CIM XML input file not specified")
     }
 }
 
-// enable postfix operation with:   scala -language:postfixOps
-// usage: CIM.main(Array[String]())
-        // get the xml content from our sample file
-//        val xml = XML.loadFile ("/home/derrick/Documents/9code/nis/cim/cim_export/dump_all.xml")
-//        val temp = (xml \\ "CoordinateSystem" \\ "IdentifiedObject.name") text
-//        println ("coordinate system: " + temp)
-
-
-// interactive creation of an RDD:
-//
-// needs /home/derrick/code/scala-xml/target/scala-2.11/scala-xml_2.11-1.0.6-SNAPSHOT.jar on the classpath
-//scala> import scala.xml.XML
-//import scala.xml.XML
-//
-//scala> val xml = XML.loadFile ("/opt/cim_export/dump_all.xml")
-//xml: scala.xml.Elem =
-//<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#">
-//  <cim:PSRType rdf:ID="PSRType_Substation">
-//    <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
-//  </cim:PSRType>
-//  <cim:PSRType rdf:ID="PSRType_Underground">
-//    <cim:IdentifiedObject.name>Underground</cim:IdentifiedObject.name>
-//  </cim:PSRType>
-//  <cim:PSRType rdf:ID="PSRType_Overhead">
-//    <cim:IdentifiedObject.name>Overhead</cim:IdentifiedObject.name>
-//  </cim:PSRType>
-//  <cim:PSRType rdf:ID="PSRType_Unknown">
-//    <cim:IdentifiedObject.name>Unknown</cim:IdentifiedObject.name>
-//  </cim:PSRType>
-//  <cim:CoordinateSystem rdf:ID="wgs_84">
-//    <cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObje...
-//
-// takes about 30 seconds
-//
-//scala> var myrdd = sc.parallelize (xml match { case <rdf:RDF>{ xs @ _* }</rdf:RDF> ⇒ xs })
-//myrdd: org.apache.spark.rdd.RDD[scala.xml.Node] = ParallelCollectionRDD[0] at parallelize at <console>:24
-//
-//scala> myrdd.count ()
-//res3: Long = 540367
 

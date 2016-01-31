@@ -23,13 +23,13 @@ object FakeCIM
         pw.println ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>")
         pw.println ("<rdf:RDF xmlns:dm=\"http://iec.ch/2002/schema/CIM_difference_model#\" xmlns:cim=\"http://iec.ch/TC57/2010/CIM-schema-cim15#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">");
 
-        val parser = new CIM ()
-        val result = parser.parse (xml)
+        val parser = new CIM (xml)
+        val map = parser.parse ()
         val pf: PartialFunction[(String, Element), (String, Consumer)] =
         {
             case x: (String, Any) if x._2.getClass () == classOf[Consumer] => (x._1, x._2.asInstanceOf[Consumer])
         }
-        val consumers = result.IdentifiedElements collect pf
+        val consumers = map collect pf
         var rand = new Random ()
         consumers map
         {

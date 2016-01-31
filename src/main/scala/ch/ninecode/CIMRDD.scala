@@ -33,9 +33,9 @@ object CIMRDD
             println ("file size: %d bytes".format (size))
         }
         val xml = CIM.read (filename, offset, size)
-        val parser = new CIM ()
-        val result = parser.parse (xml)
-        return (sc.parallelize (result.IdentifiedElements.values.toSeq))
+        val parser = new CIM (xml)
+        val map = parser.parse ()
+        return (sc.parallelize (map.values.toSeq))
     }
 
     def rddHadoop (sc: SparkContext, hdfs: String): RDD[Element] =

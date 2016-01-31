@@ -33,10 +33,10 @@ class CIMRDDSuite extends fixture.FunSuite
     {
         sc ⇒
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
-        val parser = new CIM ()
-        val result = parser.parse (xml)
-        assert (result.IdentifiedElements.size === 1)
-        val rdd = sc.parallelize (result.IdentifiedElements.toSeq, 2)
+        val parser = new CIM (xml.toString ())
+        val map = parser.parse ()
+        assert (map.size === 1)
+        val rdd = sc.parallelize (map.toSeq, 2)
         assert (rdd.count () === 1)
     }
 
@@ -44,6 +44,6 @@ class CIMRDDSuite extends fixture.FunSuite
     {
         sc ⇒
         val rdd = CIMRDD.rddFile (sc, "data/dump_all.xml", 0, 0)
-        assert (rdd.count () === 203046)
+        assert (rdd.count () === 203046 /* Elements */ + 67137 /* PositionPoints */)
     }
 }
