@@ -80,9 +80,10 @@ class CIMSuite extends FunSuite
 
     test ("Read Partial")
     {
-        val xml = CIM.read ("data/dump_all.xml", 0, 1024 * 1024, 0) // exactly a megabyte
+        val xml = CIM.read ("data/dump_all.xml", 33554432, 1024 * 1024, 0) // exactly a megabyte
         val parser = new CIM (xml)
         val map = parser.parse ()
+        assert (map.size != 0) // 2735
         assert (map.filter (_.getClass() == classOf[Unknown]).size == 0)
     }
 }

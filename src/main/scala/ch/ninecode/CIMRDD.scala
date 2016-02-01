@@ -1,6 +1,7 @@
 package ch.ninecode
 
 import java.io.FileInputStream
+import java.io.File
 
 import org.apache.hadoop.conf.Configuration
 
@@ -24,18 +25,26 @@ import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
  */
 object CIMRDD
 {
+    def read (filename: String, offset: Long = 0, length: Long = 0): String =
+    {
+        val in = new FileInputStream (filename)
+        in.skip (offset)
+        val bytes = new Array[Byte] (length.asInstanceOf[Int]); // ToDo: handle file sizes bigger than 2GB
+        in.read (bytes)
+        val text = new org.apache.hadoop.io.Text ()
+        text.append (bytes, 0, length.asInstanceOf[Int])
+        val xml = text.toString ()
+
+        return (xml)
+    }
+
     def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Element] =
     {
         var size: Long = length
         if (0 == size)
-        {
-            val fis = new FileInputStream (filename)
-            size = fis.available () - offset
-            fis.close ();
-            println ("file size: %d bytes".format (size))
-        }
-        val xml = CIM.read (filename, offset, size)
-        val parser = new CIM (xml)
+            size = new File (filename).length () - offset
+        val xml = CIMRDD.read (filename, offset, size)
+        val parser = new CIM (xml, offset, offset + size)
         val map = parser.parse ()
         return (sc.parallelize (map.values.toSeq))
     }

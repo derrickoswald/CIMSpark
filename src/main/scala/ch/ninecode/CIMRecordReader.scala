@@ -26,17 +26,43 @@ class CIMRecordReader extends RecordReader[String, Element]
         var fs = file.getFileSystem (job);
         val in:org.apache.hadoop.fs.FSDataInputStream = fs.open (file);
 
-        // ToDo: may need to align here first
-        // ToDo: may need to strip BOM(Byte Order Mark) at the start of the text stream, i.e. 0xEF,0xBB,0xBF
-        // ToDo: may need to handle block sizes bigger than 2GB
-        val size = (end - start).asInstanceOf[Int]
+        val extra = if (in.available() > end) CIM.OVERREAD else 0
+        // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
+        val size = (end - start + extra).asInstanceOf[Int]
         val buffer = new Array[Byte] (size);
         in.readFully (start, buffer)
-        val text = new org.apache.hadoop.io.Text ()
-        text.append (buffer, 0, size)
-        val xml = text.toString ()
-        LocalLog.debug ("XML text of length " + xml.length () + " begins with: " + xml.substring (0, 120))
-        cim = new CIM (xml)
+
+        var low = 0
+        if (0 == start)
+            // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
+            if ((size >= 3) && (buffer (low) == 0xef) && (buffer (low + 1) == 0xbb) && (buffer (low + 2) == 0xbf))
+                low += 3
+
+        if (0 != start)
+        {
+            // skip to next UTF-8 non-continuation byte (high order bit zero)
+            // by advancing past at most 4 bytes
+            var i = 0
+            while (0 != (buffer(low) & 0x80) && (i < Math.min (4, size)))
+            {
+                low += 1
+                i += 1
+            }
+        }
+
+        var text = new org.apache.hadoop.io.Text ()
+        text.append (buffer, low, size - low - extra)
+        var xml = text.toString ()
+        val len = xml.length ()
+
+        text = new org.apache.hadoop.io.Text ()
+        text.append (buffer, low, size - low)
+        xml = text.toString ()
+        LocalLog.debug ("XML text starting at byte offset " + (start + low) + " of length " + len + " begins with: " + xml.substring (0, 120))
+        // ToDo: using start here is approximate,
+        // the real character count would require reading the complete file
+        // from 0 to (start + low) and converting to characters
+        cim = new CIM (xml, start, start + len)
     }
 
     def close(): Unit = {}

@@ -7,7 +7,7 @@ import scala.collection.mutable.ArrayBuffer
  * Context for error messages raised while parsing.
  *
  */
-class Context (var start: Int, var end: Int, val newlines: ArrayBuffer[Int])
+class Context (var start: Long, var end: Long, val newlines: ArrayBuffer[Long])
 {
     import Context._
 
@@ -21,7 +21,7 @@ class Context (var start: Int, var end: Int, val newlines: ArrayBuffer[Int])
      * @returns {Unit} nothing
      * @memberOf module:cim
      */
-    def index_string (string: String, offset: Int = 0): Unit =
+    def index_string (string: String, offset: Long = 0L): Unit =
     {
         val matcher = lines.matcher (string)
         while (matcher.find ())
@@ -35,7 +35,7 @@ class Context (var start: Int, var end: Int, val newlines: ArrayBuffer[Int])
      * @param offset the character position in the stream
      * @return the line number (1 + how many newlines precede the offset)
      */
-    def line_number (offset: Int = end): Int =
+    def line_number (offset: Long = end): Int =
     {
         var min = 0
         var max = newlines.length - 1

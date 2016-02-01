@@ -115,7 +115,7 @@ object Element extends Parser
     }
 }
 
-case class Unknown (override val key: String, guts: String) extends Element (key)
+case class Unknown (override val key: String, guts: String, line: Int, start: Long, end: Long) extends Element (key)
 
 object Unknown extends Parser
 {
@@ -123,7 +123,7 @@ object Unknown extends Parser
     def unpickle (xml: String, result: Result): Unknown =
     {
         parse (xml, result)
-        val ret = Unknown (xml.hashCode().toString(), xml)
+        val ret = Unknown (xml.hashCode().toString(), xml, result.context.line_number (), result.context.start, result.context.end)
         return (ret)
     }
 }
@@ -338,12 +338,14 @@ object PositionPoint extends Parser
     }
 }
 
-//<cim:Asset rdf:ID="_busbar_1772383_asset">
-//<cim:Asset.type>Busbar</cim:Asset.type>
-//<cim:IdentifiedObject.name>Busbar_SAM143</cim:IdentifiedObject.name>
-//<cim:Asset.PowerSystemResources rdf:resource="#_busbar_1772383"/>
-//<cim:Asset.AssetInfo rdf:resource="#_busbar_spec_566593648"/>
-//</cim:Asset>
+//        <cim:Asset rdf:ID="_busbar_1772383_asset">
+//                <cim:Asset.type>Busbar</cim:Asset.type>
+//                <cim:IdentifiedObject.name>Busbar_SAM143</cim:IdentifiedObject.name>
+//                <cim:Asset.Location>_location_1610657792_427078125_1772388</cim:Asset.Location>
+//                <cim:Asset.PowerSystemResources rdf:resource="#_busbar_1772383"/>
+//                <cim:Asset.AssetInfo rdf:resource="#_busbar_spec_566593648"/>
+//        </cim:Asset>
+
 case class Asset (override val id: String, override val name: String, val typ: String, val asset: String, val info: String) extends NamedElement (id, name)
 
 object Asset extends Parser
@@ -469,6 +471,10 @@ object BusbarSection extends Parser
         BusbarSection (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"))
     }
 }
+
+//        <cim:CableInfo rdf:ID="_cable_spec_566593874">
+//                <cim:IdentifiedObject.name>TT 4x1x70</cim:IdentifiedObject.name>
+//        </cim:CableInfo>
 
 case class CableInfo (override val id: String, override val name: String) extends PowerSystemResource (id, name)
 
@@ -785,10 +791,12 @@ object Customer extends Parser
     }
 }
 
-class CIM (var xml:String)
+class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
 {
+    if (end == 0L)
+        end = start + xml.length ()
     val matcher = CIM.rddex.matcher (xml)
-    val context = new Context (0, 0, ArrayBuffer (0))
+    val context = new Context (start, start, ArrayBuffer (0L))
     context.index_string (xml, context.start)
     val result = new Result (context)
 
@@ -803,51 +811,59 @@ class CIM (var xml:String)
     def parse_one (): Boolean =
     {
         var ret = false
-
-        if (matcher.find ())
-        {
-            val name = matcher.group (1)
-            val rest = matcher.group (2)
-            val element = name match
+        var found = false
+        if (context.end < end)
+            while (!found && matcher.find ())
             {
-                case "cim:PSRType" ⇒ PSRType.unpickle (rest, result)
-                case "cim:Line" ⇒ Line.unpickle (rest, result)
-                case "cim:Substation" ⇒ Subnetwork.unpickle (rest, result)
-                case "cim:ConnectivityNode" ⇒ ConnectivityNode.unpickle (rest, result)
-                case "cim:BaseVoltage" ⇒ Voltage.unpickle (rest, result)
-                case "cim:CoordinateSystem" ⇒ CoordinateSystem.unpickle (rest, result)
-                case "cim:Location" ⇒ Location.unpickle (rest, result)
-                case "cim:PositionPoint" ⇒ PositionPoint.unpickle (rest, result);
-                case "cim:Asset" ⇒ Asset.unpickle (rest, result)
-                case "cim:EnergyConsumer" ⇒ Consumer.unpickle (rest, result)
-                case "cim:Terminal" ⇒ Terminal.unpickle (rest, result)
-                case "cim:BusbarInfo" ⇒ BusbarInfo.unpickle (rest, result)
-                case "cim:BusbarSection" ⇒ BusbarSection.unpickle (rest, result)
-                case "cim:CableInfo" ⇒ CableInfo.unpickle (rest, result)
-                case "cim:ACLineSegment" ⇒ ACLineSegment.unpickle (rest, result)
-                case "cim:ACLineSegmentPhase" ⇒ ACLineSegmentPhase.unpickle (rest, result)
-                case "cim:SwitchInfo" ⇒ SwitchInfo.unpickle (rest, result)
-                case "cim:LoadBreakSwitch" ⇒ Switch.unpickle (rest, result)
-                case "cim:PowerTransformerInfo" ⇒ PowerTransformerInfo.unpickle (rest, result)
-                case "cim:TransformerTankInfo" ⇒ TransformerTankInfo.unpickle (rest, result)
-                case "cim:TransformerEndInfo" ⇒ TransformerEndInfo.unpickle (rest, result)
-                case "cim:PowerTransformer" ⇒ PowerTransformer.unpickle (rest, result)
-                case "cim:TransformerTank" ⇒ TransformerTank.unpickle (rest, result)
-                case "cim:TransformerTankEnd" ⇒ TransformerTankEnd.unpickle (rest, result)
+                val name = matcher.group (1)
+                // heuristic (along with the while) that allows jumping into the middle of a large file:
+                // top level RDF elements do not have a period in their name
+                if (!name.contains ('.'))
+                {
+                    val rest = matcher.group (2)
+                    val element = name match
+                    {
+                        case "cim:PSRType" ⇒ PSRType.unpickle (rest, result)
+                        case "cim:Line" ⇒ Line.unpickle (rest, result)
+                        case "cim:Substation" ⇒ Subnetwork.unpickle (rest, result)
+                        case "cim:ConnectivityNode" ⇒ ConnectivityNode.unpickle (rest, result)
+                        case "cim:BaseVoltage" ⇒ Voltage.unpickle (rest, result)
+                        case "cim:CoordinateSystem" ⇒ CoordinateSystem.unpickle (rest, result)
+                        case "cim:Location" ⇒ Location.unpickle (rest, result)
+                        case "cim:PositionPoint" ⇒ PositionPoint.unpickle (rest, result);
+                        case "cim:Asset" ⇒ Asset.unpickle (rest, result)
+                        case "cim:EnergyConsumer" ⇒ Consumer.unpickle (rest, result)
+                        case "cim:Terminal" ⇒ Terminal.unpickle (rest, result)
+                        case "cim:BusbarInfo" ⇒ BusbarInfo.unpickle (rest, result)
+                        case "cim:BusbarSection" ⇒ BusbarSection.unpickle (rest, result)
+                        case "cim:CableInfo" ⇒ CableInfo.unpickle (rest, result)
+                        case "cim:ACLineSegment" ⇒ ACLineSegment.unpickle (rest, result)
+                        case "cim:ACLineSegmentPhase" ⇒ ACLineSegmentPhase.unpickle (rest, result)
+                        case "cim:SwitchInfo" ⇒ SwitchInfo.unpickle (rest, result)
+                        case "cim:LoadBreakSwitch" ⇒ Switch.unpickle (rest, result)
+                        case "cim:PowerTransformerInfo" ⇒ PowerTransformerInfo.unpickle (rest, result)
+                        case "cim:TransformerTankInfo" ⇒ TransformerTankInfo.unpickle (rest, result)
+                        case "cim:TransformerEndInfo" ⇒ TransformerEndInfo.unpickle (rest, result)
+                        case "cim:PowerTransformer" ⇒ PowerTransformer.unpickle (rest, result)
+                        case "cim:TransformerTank" ⇒ TransformerTank.unpickle (rest, result)
+                        case "cim:TransformerTankEnd" ⇒ TransformerTankEnd.unpickle (rest, result)
 
-                case "cim:ServiceLocation" ⇒ ServiceLocation.unpickle (rest, result)
-                case "cim:Customer" ⇒ Customer.unpickle (rest, result)
+                        case "cim:ServiceLocation" ⇒ ServiceLocation.unpickle (rest, result)
+                        case "cim:Customer" ⇒ Customer.unpickle (rest, result)
 
-                case _ ⇒ Unknown.unpickle (rest, result)
-            }
-            key = element.key
-            value = element
+                        case _ ⇒ Unknown.unpickle (rest, result)
+                    }
+                    key = element.key
+                    value = element
 
-            // set up for next parse
-            result.properties = new HashMap[String, String] ()
-            context.end = matcher.end ()
+                    // return success unless there was unrecognized text before the match that wasn't at the start of the xml
+                    ret = (context.end == matcher.start ()) || (context.end == context.start)
 
-            ret = true
+                    // set up for next parse
+                    result.properties = new HashMap[String, String] ()
+                    context.end = matcher.end ()
+                    found = true
+                }
         }
 
         return (ret)
