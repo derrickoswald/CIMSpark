@@ -2,6 +2,8 @@ package ch.ninecode
 
 import java.io.FileInputStream
 
+import org.apache.hadoop.conf.Configuration
+
 import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
@@ -40,8 +42,12 @@ object CIMRDD
 
     def rddHadoop (sc: SparkContext, hdfs: String): RDD[Element] =
     {
+        // make a config
+        val configuration = new Configuration (sc.hadoopConfiguration)
+        configuration.set ("mapreduce.input.fileinputformat.inputdir", hdfs);
+
         // RDD[(String, Element)]
-        val rdd = sc.newAPIHadoopRDD (sc.hadoopConfiguration, classOf[CIMInputFormat], classOf[String], classOf[Element])
+        val rdd = sc.newAPIHadoopRDD (configuration, classOf[CIMInputFormat], classOf[String], classOf[Element])
         return (rdd.values)
     }
 

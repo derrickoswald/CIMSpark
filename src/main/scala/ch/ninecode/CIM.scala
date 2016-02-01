@@ -100,7 +100,7 @@ object Element extends Parser
             result.properties.put (name, value)
         else
             if (mandatory)
-                throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number ())
+                throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number () + " with text: '" + xml + "'")
     }
 
     def parse_attribute (regex: Pattern, index: Int, name: String, mandatory: Boolean)(xml: String, result: Result): Unit =
@@ -111,7 +111,7 @@ object Element extends Parser
             result.properties.put (name, value)
         else
             if (mandatory)
-                throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number ())
+                throw new Exception ("mandatory " + name + " value not found while parsing at line " + context.line_number () + " with text: '" + xml + "'")
     }
 }
 
@@ -795,6 +795,11 @@ class CIM (var xml:String)
     var key: String = "";
     var value: Element = null;
 
+    def progress (): Float =
+    {
+        (context.end - context.start).asInstanceOf[Float] / xml.length ().asInstanceOf[Float]
+    }
+
     def parse_one (): Boolean =
     {
         var ret = false
@@ -863,7 +868,7 @@ object CIM
 {
     val CHUNK = 1024*1024*16
     val OVERREAD = 2048 // should be large enough that no RDF element is bigger than this
-    val rddex = Pattern.compile ("""\s*<(cim:[^ >\s]+)([\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
+    val rddex = Pattern.compile ("""\s*<(cim:[^>\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 
 // fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
 //                val source = scala.io.Source.fromFile (args (0))

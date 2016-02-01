@@ -1,5 +1,7 @@
 package ch.ninecode
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.hadoop.mapreduce.InputSplit
 import org.apache.hadoop.mapreduce.JobContext
@@ -8,6 +10,8 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext
 
 class CIMInputFormat extends FileInputFormat[String, Element]
 {
+    val LocalLog = LogFactory.getLog (classOf[CIMInputFormat]);
+
     /**
      * Generate the list of files and make them into FileSplits.
      *
