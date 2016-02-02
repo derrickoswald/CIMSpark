@@ -856,12 +856,13 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                     key = element.key
                     value = element
 
-                    // return success unless there was unrecognized text before the match that wasn't at the start of the xml
-                    ret = (context.end == matcher.start ()) || (context.end == context.start)
+                    // return success unless there was unrecognized text before the match
+                    // that wasn't at the start of the xml
+                    ret = (context.end == (matcher.start () + context.start)) || (context.end == context.start)
 
                     // set up for next parse
                     result.properties = new HashMap[String, String] ()
-                    context.end = matcher.end ()
+                    context.end = matcher.end () + context.start
                     found = true
                 }
         }
@@ -885,6 +886,16 @@ object CIM
     val CHUNK = 1024*1024*16
     val OVERREAD = 2048 // should be large enough that no RDF element is bigger than this
     val rddex = Pattern.compile ("""\s*<(cim:[^>\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
+
+// naive way to make a RDD using "built in" xml processing:
+// Prerequisites:
+//    need scala-xml_2.11-1.0.6-SNAPSHOT.jar on the classpath)
+//    need 3GB of memory in the spark shell (otherwise you slay the compiler)
+// import scala.xml.XML
+// val xml = XML.loadFile ("/opt/data/dump_all.xml")
+// (takes about 30 seconds)
+// var myrdd = sc.parallelize (xml match { case <rdf:RDF>{ xs @ _* }</rdf:RDF> ⇒ xs })
+// ---- this generates an rdd of scala.xml.Node, which isn't so useful
 
 // fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
 //                val source = scala.io.Source.fromFile (args (0))

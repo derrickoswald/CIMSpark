@@ -21,7 +21,7 @@ class CIMRDDSuite extends fixture.FunSuite
         configuration.setAppName ("CIMSuite")
         configuration.setMaster ("local[2]")
         val context = new SparkContext (configuration)
-        context.setLogLevel ("ALL") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+        context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
         try
         {
             withFixture (test.toNoArgTest (context)) // "loan" the fixture to the test
@@ -29,7 +29,7 @@ class CIMRDDSuite extends fixture.FunSuite
         finally context.stop () // clean up the fixture
     }
 
-    ignore ("Create")
+    test ("Create")
     {
         sc ⇒
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
@@ -40,13 +40,12 @@ class CIMRDDSuite extends fixture.FunSuite
         assert (rdd.count () === 1)
     }
 
-    ignore ("Read")
+    test ("Read")
     {
         sc ⇒
         val rdd = CIMRDD.rddFile (sc, "data/dump_all.xml", 0, 0)
         assert (rdd.count () === 203046 /* Elements */ + 67137 /* PositionPoints */)
     }
-
 
     test ("Merge Partial")
     {
@@ -54,18 +53,18 @@ class CIMRDDSuite extends fixture.FunSuite
         val xml1 = CIMRDD.read ("data/dump_all.xml", 0, 33554432 + CIM.OVERREAD)
         val xml2 = CIMRDD.read ("data/dump_all.xml", 33554432, 33554432 + CIM.OVERREAD)
         val xml3 = CIMRDD.read ("data/dump_all.xml", 67108864, 31881661)
-        markup ("xml1 " + xml1.substring (0, 60))
-        markup ("xml2 " + xml2.substring (0, 60))
-        markup ("xml3 " + xml3.substring (0, 60))
+//        markup ("xml1 " + xml1.substring (0, 60))
+//        markup ("xml2 " + xml2.substring (0, 60))
+//        markup ("xml3 " + xml3.substring (0, 60))
         val parser1 = new CIM (xml1, 0, 33554432)
         val parser2 = new CIM (xml2, 33554432, 67108864)
         val parser3 = new CIM (xml3, 67108864, 98990525)
         val map1 = parser1.parse ()
         val map2 = parser2.parse ()
         val map3 = parser3.parse ()
-        markup ("map1 has " + map1.size + " elements")
-        markup ("map2 has " + map2.size + " elements")
-        markup ("map3 has " + map3.size + " elements")
+//        markup ("map1 has " + map1.size + " elements")
+//        markup ("map2 has " + map2.size + " elements")
+//        markup ("map3 has " + map3.size + " elements")
         val rdd1 = sc.parallelize (map1.values.toSeq)
         val rdd2 = sc.parallelize (map2.values.toSeq)
         val rdd3 = sc.parallelize (map3.values.toSeq)
@@ -98,7 +97,7 @@ class CIMRDDSuite extends fixture.FunSuite
         assert (int3.count () == 0)
     }
 
-    ignore ("Hadoop")
+    test ("Hadoop")
     {
         sc ⇒
         val rdd = CIMRDD.rddHadoop (sc, "data/dump_all.xml")
