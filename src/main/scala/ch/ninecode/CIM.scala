@@ -895,7 +895,16 @@ object CIM
 // val xml = XML.loadFile ("/opt/data/dump_all.xml")
 // (takes about 30 seconds)
 // var myrdd = sc.parallelize (xml match { case <rdf:RDF>{ xs @ _* }</rdf:RDF> ⇒ xs })
-// ---- this generates an rdd of scala.xml.Node, which isn't so useful
+// ---- this generates an rdd of scala.xml.Node, which isn't so useful because it's still not understood:
+// myrdd.takeSample (false, 1)(0).toString ()
+// res4: String =
+//    <cim:PositionPoint xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#">
+//        <cim:PositionPoint.Location>_location_5773116_916781250_815217</cim:PositionPoint.Location>
+//        <cim:sequenceNumber>3</cim:sequenceNumber>
+//        <cim:xPosition>8.52872251591</cim:xPosition>
+//        <cim:yPosition>46.9914604142</cim:yPosition>
+//    </cim:PositionPoint>
+
 
 // fast ~ 0.55 seconds, but this fails in the scala-shell of Spark (for non-trivial files):
 //                val source = scala.io.Source.fromFile (args (0))
