@@ -16,6 +16,9 @@ class CIMRecordReader extends RecordReader[String, Element]
 
     def initialize (genericSplit: InputSplit, context: TaskAttemptContext): Unit =
     {
+        LocalLog.info ("initialize")
+        LocalLog.info ("genericSplit: " + genericSplit.toString ())
+        LocalLog.info ("context: " + context.toString ())
         var job = context.getConfiguration ();
         val split = genericSplit.asInstanceOf[FileSplit];
         start = split.getStart ();

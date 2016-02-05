@@ -43,16 +43,16 @@ class CIMRDDSuite extends fixture.FunSuite
     test ("Read")
     {
         sc ⇒
-        val rdd = CIMRDD.rddFile (sc, "data/dump_all.xml", 0, 0)
+        val rdd = CIMRDD.rddFile (sc, "data/dump_ekz.xml", 0, 0)
         assert (rdd.count () === 203046 /* Elements */ + 67137 /* PositionPoints */)
     }
 
     test ("Merge Partial")
     {
         sc ⇒
-        val xml1 = CIMRDD.read ("data/dump_all.xml", 0, 33554432 + CIM.OVERREAD)
-        val xml2 = CIMRDD.read ("data/dump_all.xml", 33554432, 33554432 + CIM.OVERREAD)
-        val xml3 = CIMRDD.read ("data/dump_all.xml", 67108864, 31881661)
+        val xml1 = CIMRDD.read ("data/dump_ekz.xml", 0, 33554432 + CIM.OVERREAD)
+        val xml2 = CIMRDD.read ("data/dump_ekz.xml", 33554432, 33554432 + CIM.OVERREAD)
+        val xml3 = CIMRDD.read ("data/dump_ekz.xml", 67108864, 31881661)
 //        markup ("xml1 " + xml1.substring (0, 60))
 //        markup ("xml2 " + xml2.substring (0, 60))
 //        markup ("xml3 " + xml3.substring (0, 60))
@@ -100,7 +100,7 @@ class CIMRDDSuite extends fixture.FunSuite
     test ("Hadoop")
     {
         sc ⇒
-        val rdd = CIMRDD.rddHadoop (sc, "data/dump_all.xml")
+        val rdd = CIMRDD.rddHadoop (sc, "data/dump_ekz.xml")
         val unknowns = rdd.collect ({ case x: Any if x.getClass () == classOf[Unknown] => x.asInstanceOf[Unknown] })
         if (unknowns.count () != 0)
         {

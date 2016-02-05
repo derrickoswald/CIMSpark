@@ -27,6 +27,8 @@ class CIMInputFormat extends FileInputFormat[String, Element]
      */
     override def getSplits (context: JobContext): java.util.List[InputSplit] =
     {
+        LocalLog.info ("getSplits")
+        LocalLog.info ("context: " + context.toString ())
         var ret: java.util.List[InputSplit] = new java.util.ArrayList[InputSplit]
 
         // Note: we don't need to override this yet,
@@ -47,6 +49,9 @@ class CIMInputFormat extends FileInputFormat[String, Element]
     */
     def createRecordReader (split: InputSplit, context: TaskAttemptContext): RecordReader[String, Element] =
     {
+        LocalLog.info ("createRecordReader")
+        LocalLog.info ("split: " + split.toString ())
+        LocalLog.info ("context: " + context.toString ())
         return (new CIMRecordReader ());
     }
 }

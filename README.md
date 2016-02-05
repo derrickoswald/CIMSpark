@@ -457,3 +457,71 @@ A sample spatial query (items with a bounding box):
     4 _house_connection_1501143 HAS2701  _ao_214109919 8.699420 47.04334  _customer_713218270 HAS2701_2  de_CH
     5 _house_connection_1501143 HAS2701  _ao_214109919 8.699420 47.04334 _customer_1687120939 HAS2701_1  de_CH
     6 _house_connection_1501143 HAS2701  _ao_214109919 8.699420 47.04334 _customer_1034307571 HAS2701_3  de_CH
+
+#DataSource
+
+Add the DataSource cloned from the Avro reference implementation to the sparkR (spark-submit) environment:
+
+    sparkR --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar
+
+I had no success in restarting the SparkContext and SQLContext (don't do this):
+
+    > sparkR.stop()
+    > sc = sparkR.init ("yarn-client", "SparkR", sparkJars = "/opt/code/CIMScala-1.0-SNAPSHOT.jar")
+    > sqlContext = sparkRSQL.init (sc)
+
+For small files, you can read in the CIM directly:
+
+    > elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'file:///opt/data/dump_ekz.xml')")
+    > head (sql (sqlContext, "select * from elements"))
+    ...
+                    key
+    1  PSRType_Substation
+    2 PSRType_Underground
+    3    PSRType_Overhead
+    4     PSRType_Unknown
+    5              wgs_84
+    6  _subnetwork_349554
+    
+    > nrow (sql (sqlContext, "show tables"))
+    ...
+    29
+    > options(width=255)
+    > head (sql (sqlContext, "select * from PositionPoint"))
+    ...
+                                            key                            location sequence        x        y
+    1 _location_5773088_1107287243_317923_seq_0 _location_5773088_1107287243_317923        0 8.781847 47.04010
+    2 _location_5773088_1107289232_293744_seq_0 _location_5773088_1107289232_293744        0 8.782368 47.04018
+    3 _location_5773088_1107291573_305270_seq_0 _location_5773088_1107291573_305270        0 8.782220 47.04002
+    4 _location_5773088_1107291666_293621_seq_0 _location_5773088_1107291666_293621        0 8.782189 47.03996
+    5 _location_5773088_1107302236_320865_seq_0 _location_5773088_1107302236_320865        0 8.782694 47.04011
+    6 _location_5773088_1106785491_294319_seq_0 _location_5773088_1106785491_294319        0 8.783009 47.04057
+    > head (sql (sqlContext, "select * from Consumer"))
+    ...
+                             id  name                            location          container             typ                   voltage                                                               phase
+    1 _house_connection_1469932  HAS1 _location_5773088_1107287243_317923 _subnetwork_350063 PSRType_Unknown BaseVoltage_0.400000000000 http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y
+    2 _house_connection_1469944 HAS10 _location_5773088_1107289232_293744 _subnetwork_349801 PSRType_Unknown BaseVoltage_0.400000000000 http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y
+    3 _house_connection_1469956 HAS11 _location_5773088_1107291573_305270 _subnetwork_349754 PSRType_Unknown BaseVoltage_0.400000000000 http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y
+    4 _house_connection_1469968 HAS12 _location_5773088_1107291666_293621 _subnetwork_349514 PSRType_Unknown BaseVoltage_0.400000000000 http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y
+    5 _house_connection_1469980 HAS13 _location_5773088_1107302236_320865 _subnetwork_349591 PSRType_Unknown BaseVoltage_0.400000000000 http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y
+    6 _house_connection_1469992 HAS14 _location_5773088_1106785491_294319 _subnetwork_349545 PSRType_Unknown BaseVoltage_0.400000000000 http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y
+
+You can also copy the CIM file to HDFS and read it from there:
+
+    elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/dump_ekz.xml')")
+
+Note that saving the R workspace doesn't work. When you access the data.frames after reloading it says:
+
+    Invalid jobj 4. If SparkR was restarted, Spark operations need to be re-executed.
+
+For larger files, we're having some problems with speed and memory.
+
+    options(width=255)
+    elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'file:///opt/data/dump_bkw.xml')")
+    fred = sql (sqlContext, "select * from elements")
+    nrow (fred)
+    ...     takes over six minutes to read 3.8GB
+    [0] 8117372
+
+Subsequent accesses run out of heap space.
+
