@@ -24,7 +24,7 @@ Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq
 with volumes mounted for the jar file and data, and ports proxied for the
 cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
-    docker run -it -p 8088:8088 -p 8042:8042 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
+    docker run -it -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
 
 The spark shell (scala interpreter) provides interactive commands:
 

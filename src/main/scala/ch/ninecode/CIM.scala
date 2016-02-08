@@ -402,7 +402,7 @@ object Consumer extends Parser
 //    <cim:Terminal.ConductingEquipment rdf:resource="#_house_connection_1469932"/>
 //</cim:Terminal>
 
-case class Terminal (override val id: String, override val name: String, val sequence: String, val phase: String, val connectivity: String, val equipment: String) extends PowerSystemResource (id, name)
+case class Terminal (override val id: String, override val name: String, val sequence: Int, val phase: String, val connectivity: String, val equipment: String) extends PowerSystemResource (id, name)
 
 object Terminal extends Parser
 {
@@ -425,8 +425,17 @@ object Terminal extends Parser
             case Some (value) ⇒ value
             case None ⇒ null
         }
-        val ret = Terminal (result.properties ("id"), result.properties ("name"), result.properties ("sequence"), result.properties ("phase"), con, result.properties ("equipment"))
-        return (ret)
+        val seq = result.properties ("sequence")
+        try
+        {
+            val num = seq.toInt
+            val ret = Terminal (result.properties ("id"), result.properties ("name"), num, result.properties ("phase"), con, result.properties ("equipment"))
+            return (ret)
+        }
+        catch
+        {
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable sequence value found for a terminal element while parsing at line " + result.context.line_number ())
+        }
     }
 }
 
