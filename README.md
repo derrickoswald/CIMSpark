@@ -24,7 +24,7 @@ Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq
 with volumes mounted for the jar file and data, and ports proxied for the
 cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
-    docker run -it -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
+    docker run -it -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
 
 The spark shell (scala interpreter) provides interactive commands:
 
@@ -508,7 +508,7 @@ For small files, you can read in the CIM directly:
 
 You can also copy the CIM file to HDFS and read it from there:
 
-    elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/dump_ekz.xml')")
+    elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/dump_bkw.xml')")
 
 Note that saving the R workspace doesn't work. When you access the data.frames after reloading it says:
 
@@ -525,3 +525,17 @@ For larger files, we're having some problems with speed and memory.
 
 Subsequent accesses run out of heap space.
 
+#EC2
+
+Export the [necessary keys](https://spark.apache.org/docs/latest/ec2-scripts.html), then launch a hadoop cluster on AWS with:
+
+    ./spark-ec2 --key-pair=FirstMicro --identity-file=/home/derrick/.ssh/FirstMicro.pem --region=eu-west-1 --ebs-vol-size=0 --master-instance-type=m3.medium --instance-type=m3.large --spot-price=0.025 --slaves=2 --spark-version=1.5.1 --hadoop-major-version=yarn --deploy-root-dir=/home/derrick/code/CIMScala/target/ launch playpen
+
+#Notes
+
+    options (width=255)
+    elements = loadDF (sqlContext, "hdfs:/data/dump_bkw.xml", "ch.ninecode.cim")
+    head (elements, n=25)
+    edges = sql (sqlContext, "select * from edges")
+    ee = collect (edges)
+    head (ee, n=50)

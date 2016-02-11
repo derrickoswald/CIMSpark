@@ -53,27 +53,6 @@ class CIMRelation(
     logInfo ("parameters: " + parameters.toString ())
     logInfo ("sqlContext: " + sqlContext.toString ())
 
-
-    // Define the schema using a case class.
-    // Note: Case classes in Scala 2.10 can support only up to 22 fields. To work around this limit,
-    // you can use custom classes that implement the Product interface.
-    case class Person(name: String, age: Int)
-
-    // create an RDD of Person objects and register it as a table
-    var people0 = scala.collection.mutable.HashMap.empty[String, Int]
-    people0 += ("Derrick" -> 58)
-    people0 += ("Jacqueline" -> 56)
-    val people1 = sqlContext.sparkContext.parallelize(people0.toSeq)
-    val people = sqlContext.createDataFrame (people1)
-    people.registerTempTable ("people")
-
-    // create an RDD from the CIM file and register various tables
-
-    // make a config
-    val configuration = new Configuration (sqlContext.sparkContext.hadoopConfiguration)
-    configuration.set ("mapreduce.input.fileinputformat.inputdir", paths (0));
-
-
   /**
    * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned
    * columns are contained in the data files, they should also appear in `dataSchema`.
@@ -144,11 +123,12 @@ class CIMRelation(
             classOf[String],
             classOf[ch.ninecode.Element]).values
 
+        // cache the result
+        rdd.cache ()
+
         val ret: RDD[Row] = rdd.map (x => Row (x.key))
 
         // as a side effect, define all the other temporary tables
-//        val points = sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PositionPoint] => x.asInstanceOf[ch.ninecode.PositionPoint]}))
-//        points.registerTempTable ("points")
         sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Unknown] => x.asInstanceOf[ch.ninecode.Unknown]})).registerTempTable ("Unknown")
         sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PSRType] => x.asInstanceOf[ch.ninecode.PSRType]})).registerTempTable ("PSRType")
         sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Line] => x.asInstanceOf[ch.ninecode.Line]})).registerTempTable ("Line")
