@@ -472,7 +472,7 @@ I had no success in restarting the SparkContext and SQLContext (don't do this):
 
 For small files, you can read in the CIM directly:
 
-    > elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'file:///opt/data/dump_ekz.xml')")
+    > elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'file:///opt/data/dump_ews.xml')")
     > head (sql (sqlContext, "select * from elements"))
     ...
                     key

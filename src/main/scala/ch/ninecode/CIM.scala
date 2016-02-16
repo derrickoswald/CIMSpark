@@ -825,7 +825,8 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
             while (!found && matcher.find ())
             {
                 val name = matcher.group (1)
-                // heuristic (along with the while) that allows jumping into the middle of a large file:
+                // heuristic (along with the while and the 'not a dot' in rddex regular expression)
+                // that allows jumping into the middle of a large file:
                 // top level RDF elements do not have a period in their name
                 if (!name.contains ('.'))
                 {
@@ -894,7 +895,7 @@ object CIM
 {
     val CHUNK = 1024*1024*16
     val OVERREAD = 2048 // should be large enough that no RDF element is bigger than this
-    val rddex = Pattern.compile ("""\s*<(cim:[^>\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
+    val rddex = Pattern.compile ("""\s*<(cim:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 
 // naive way to make a RDD using "built in" xml processing:
 // Prerequisites:
@@ -944,7 +945,8 @@ object CIM
             if (offset == skipped)
             {
                 val buf = new Array[Char] (CHUNK)
-                val sb = new StringBuilder (if (size > Int.MaxValue) Int.MaxValue else size.asInstanceOf[Int])
+                val sint: Int = if (size > Int.MaxValue) Int.MaxValue else size.asInstanceOf[Int]
+                val sb = new StringBuilder (sint)
                 var count:Long = 0
                 var stop = false
                 do

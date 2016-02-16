@@ -61,7 +61,7 @@ class CIMRecordReader extends RecordReader[String, Element]
         text = new org.apache.hadoop.io.Text ()
         text.append (buffer, low, size - low)
         xml = text.toString ()
-        LocalLog.debug ("XML text starting at byte offset " + (start + low) + " of length " + len + " begins with: " + xml.substring (0, 120))
+        LocalLog.info ("XML text starting at byte offset " + (start + low) + " of length " + len + " begins with: " + xml.substring (0, 120))
         // ToDo: using start here is approximate,
         // the real character count would require reading the complete file
         // from 0 to (start + low) and converting to characters

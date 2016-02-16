@@ -40,76 +40,77 @@ class CIMRelation(
     private val maybeDataSchema: Option[StructType],
     override val userDefinedPartitionColumns: Option[StructType],
     private val parameters: Map[String, String])
-    (@transient val sqlContext: SQLContext) extends HadoopFsRelation with Logging {
+    (@transient val sqlContext: SQLContext) extends HadoopFsRelation with Logging
+{
 
 //  private val IgnoreFilesWithoutExtensionProperty = "avro.mapred.ignore.inputs.without.extension"
 //  private val recordName = parameters.getOrElse("recordName", "topLevelRecord")
 //  private val recordNamespace = parameters.getOrElse("recordNamespace", "")
 
-    logInfo ("ch.ninecode.CIMRelation")
     logInfo ("paths: " + paths.mkString (","))
     logInfo ("maybeDataSchema: " + maybeDataSchema.toString ())
     logInfo ("userDefinedPartitionColumns: " + userDefinedPartitionColumns.toString ())
     logInfo ("parameters: " + parameters.toString ())
     logInfo ("sqlContext: " + sqlContext.toString ())
 
-  /**
-   * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned
-   * columns are contained in the data files, they should also appear in `dataSchema`.
-   *
-   * @since 1.4.0
-   */
-  override def dataSchema: StructType =
-  {
-      val struct = StructType (StructField ("key", StringType, true) :: Nil)
-      maybeDataSchema match
-      {
-        case Some(structType) => structType
-        case None => struct // SchemaConverters.toSqlType(avroSchema).dataType.asInstanceOf[StructType]
-      }
-  }
+    /**
+     * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned
+     * columns are contained in the data files, they should also appear in `dataSchema`.
+     *
+     * @since 1.4.0
+     */
+    override def dataSchema: StructType =
+    {
+        val struct = StructType (StructField ("key", StringType, true) :: Nil)
+        maybeDataSchema match
+        {
+          case Some(structType) => structType
+          case None => struct // SchemaConverters.toSqlType(avroSchema).dataType.asInstanceOf[StructType]
+        }
+    }
 
-  /**
-   * Prepares a write job and returns an [[OutputWriterFactory]].  Client side job preparation can
-   * be put here.  For example, user defined output committer can be configured here
-   * by setting the output committer class in the conf of spark.sql.sources.outputCommitterClass.
-   *
-   * Note that the only side effect expected here is mutating `job` via its setters.  Especially,
-   * Spark SQL caches [[BaseRelation]] instances for performance, mutating relation internal states
-   * may cause unexpected behaviors.
-   *
-   * @since 1.4.0
-   */
-  override def prepareJobForWrite(job: Job): OutputWriterFactory = {
-//    val build = SchemaBuilder.record(recordName).namespace(recordNamespace)
-//    val outputAvroSchema = SchemaConverters.convertStructToAvro(dataSchema, build, recordNamespace)
-//    AvroJob.setOutputKeySchema(job, outputAvroSchema)
-//    val AVRO_COMPRESSION_CODEC = "spark.sql.avro.compression.codec"
-//    val AVRO_DEFLATE_LEVEL = "spark.sql.avro.deflate.level"
-//    val COMPRESS_KEY = "mapred.output.compress"
+    /**
+     * Prepares a write job and returns an [[OutputWriterFactory]].  Client side job preparation can
+     * be put here.  For example, user defined output committer can be configured here
+     * by setting the output committer class in the conf of spark.sql.sources.outputCommitterClass.
+     *
+     * Note that the only side effect expected here is mutating `job` via its setters.  Especially,
+     * Spark SQL caches [[BaseRelation]] instances for performance, mutating relation internal states
+     * may cause unexpected behaviors.
+     *
+     * @since 1.4.0
+     */
+    override def prepareJobForWrite(job: Job): OutputWriterFactory =
+    {
+//        val build = SchemaBuilder.record(recordName).namespace(recordNamespace)
+//        val outputAvroSchema = SchemaConverters.convertStructToAvro(dataSchema, build, recordNamespace)
+//        AvroJob.setOutputKeySchema(job, outputAvroSchema)
+//        val AVRO_COMPRESSION_CODEC = "spark.sql.avro.compression.codec"
+//        val AVRO_DEFLATE_LEVEL = "spark.sql.avro.deflate.level"
+//        val COMPRESS_KEY = "mapred.output.compress"
 //
-//    sqlContext.getConf(AVRO_COMPRESSION_CODEC, "snappy") match {
-//      case "uncompressed" =>
-//        logInfo("writing Avro out uncompressed")
-//        job.getConfiguration.setBoolean(COMPRESS_KEY, false)
-//      case "snappy" =>
-//        logInfo("using snappy for Avro output")
-//        job.getConfiguration.setBoolean(COMPRESS_KEY, true)
-//        job.getConfiguration.set(AvroJob.CONF_OUTPUT_CODEC, DataFileConstants.SNAPPY_CODEC)
-//      case "deflate" =>
-//        val deflateLevel = sqlContext.getConf(
-//          AVRO_DEFLATE_LEVEL, Deflater.DEFAULT_COMPRESSION.toString).toInt
-//        logInfo(s"using deflate: $deflateLevel for Avro output")
-//        job.getConfiguration.setBoolean(COMPRESS_KEY, true)
-//        job.getConfiguration.set(AvroJob.CONF_OUTPUT_CODEC, DataFileConstants.DEFLATE_CODEC)
-//        job.getConfiguration.setInt(AvroOutputFormat.DEFLATE_LEVEL_KEY, deflateLevel)
-//      case unknown: String => logError(s"compression $unknown is not supported")
-//    }
-//    new AvroOutputWriterFactory(dataSchema, recordName, recordNamespace)
-      throw new UnsupportedOperationException ("oops, no writing yet")
-  }
+//        sqlContext.getConf(AVRO_COMPRESSION_CODEC, "snappy") match {
+//            case "uncompressed" =>
+//                logInfo("writing Avro out uncompressed")
+//                job.getConfiguration.setBoolean(COMPRESS_KEY, false)
+//            case "snappy" =>
+//                logInfo("using snappy for Avro output")
+//                job.getConfiguration.setBoolean(COMPRESS_KEY, true)
+//                job.getConfiguration.set(AvroJob.CONF_OUTPUT_CODEC, DataFileConstants.SNAPPY_CODEC)
+//            case "deflate" =>
+//                val deflateLevel = sqlContext.getConf(
+//                  AVRO_DEFLATE_LEVEL, Deflater.DEFAULT_COMPRESSION.toString).toInt
+//                logInfo(s"using deflate: $deflateLevel for Avro output")
+//                job.getConfiguration.setBoolean(COMPRESS_KEY, true)
+//                job.getConfiguration.set(AvroJob.CONF_OUTPUT_CODEC, DataFileConstants.DEFLATE_CODEC)
+//                job.getConfiguration.setInt(AvroOutputFormat.DEFLATE_LEVEL_KEY, deflateLevel)
+//            case unknown: String => logError(s"compression $unknown is not supported")
+//        }
+//        new AvroOutputWriterFactory(dataSchema, recordName, recordNamespace)
+        throw new UnsupportedOperationException ("oops, no writing yet")
+    }
 
-// For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
+    // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
     override def buildScan (inputFiles: Array[FileStatus]): RDD[Row] =
     {
         logInfo ("ch.ninecode.DefaultSource.buildScan")
@@ -123,8 +124,8 @@ class CIMRelation(
             classOf[String],
             classOf[ch.ninecode.Element]).values
 
-        // cache the result
-        rdd.cache ()
+//        // cache the result
+//        rdd.cache ()
 
         val ret: RDD[Row] = rdd.map (x => Row (x.key))
 
@@ -174,6 +175,8 @@ class CIMRelation(
                 Pair (r.equipment, r)
             else
             {
+                if (null != l.right)
+                    throw new IllegalStateException ("three terminals")
                 l.right = r
                 l
             }
