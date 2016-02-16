@@ -135,4 +135,30 @@ class CIMRDDSuite extends fixture.FunSuite
         markup ("map1 has " + map1.size + " elements")
         markup ("map2 has " + map2.size + " elements")
     }
+
+    test ("Greedy2")
+    {
+        sc ⇒
+        val chunk = 134217728L
+        val xml1 = CIMRDD.read ("data/dump_bkw.xml",  402653184L, chunk + CIM.OVERREAD)
+        val xml2 = CIMRDD.read ("data/dump_bkw.xml", 1610612736L, chunk + CIM.OVERREAD)
+        markup ("xml1 " + xml1.substring (0, 60))
+        markup ("xml2 " + xml2.substring (0, 60))
+        val length = 134217728L
+        val parser1 = new CIM (xml1,  402653184L,  402653184L + length)
+        val parser2 = new CIM (xml2, 1610612736L, 1610612736L + length)
+
+        var s = System.nanoTime
+        val map1 = parser1.parse ()
+        var e = System.nanoTime
+        markup ("xml1 time: " + (e - s) / 1e6 + "ms")
+
+        s = System.nanoTime
+        val map2 = parser2.parse ()
+        e = System.nanoTime
+        markup ("xml2 time: " + (e - s) / 1e6 + "ms")
+
+        markup ("map1 has " + map1.size + " elements")
+        markup ("map2 has " + map2.size + " elements")
+    }
 }

@@ -66,7 +66,7 @@ class CIMSuite extends FunSuite
             <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
                 <cim:CoordinateSystem rdf:ID="wgs_84">
                     <cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObject.name>
-                    <cim:crsUrn>EPSG::4326</cim:crsUrn>
+                    <cim:CoordinateSystem.crsUrn>EPSG::4326</cim:CoordinateSystem.crsUrn>
                 </cim:CoordinateSystem>
             </rdf:RDF>;
         val parser = new CIM (xml.toString ())

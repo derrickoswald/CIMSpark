@@ -127,7 +127,7 @@ class CIMRelation(
 //        // cache the result
 //        rdd.cache ()
 
-        val ret: RDD[Row] = rdd.map (x => Row (x.key))
+        val ret: RDD[Row] = rdd.asInstanceOf[RDD[Row]]
 
         // as a side effect, define all the other temporary tables
         sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Unknown] => x.asInstanceOf[ch.ninecode.Unknown]})).registerTempTable ("Unknown")

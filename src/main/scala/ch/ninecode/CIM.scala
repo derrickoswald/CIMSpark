@@ -11,6 +11,8 @@ import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
 
+import org.apache.spark.sql.Row
+
 class Result (val context: Context)
 {
     var properties = new HashMap[String, String]
@@ -24,7 +26,18 @@ trait Parser
             f (xml, result)
 }
 
-abstract class Element (val key: String) extends Serializable
+abstract class Element (val key: String) extends Serializable with Row
+{
+    def copy (): org.apache.spark.sql.Row = new IdentifiedElement (key)
+    def get (i: Int): Any =
+    {
+        if (0 != i)
+            throw new IllegalArgumentException ("only one property")
+        else
+            key
+    }
+    def length: Int = 1
+}
 
 object Element extends Parser
 {
@@ -253,14 +266,14 @@ object Voltage extends Parser
 
 //        <cim:CoordinateSystem rdf:ID="wgs_84">
 //                <cim:IdentifiedObject.name>WGS 84</cim:IdentifiedObject.name>
-//                <cim:crsUrn>EPSG::4326</cim:crsUrn>
+//                <cim:CoordinateSystem.crsUrn>EPSG::4326</cim:crsUrn>
 //        </cim:CoordinateSystem>
 
 case class CoordinateSystem (override val id: String, override val name: String, val urn: String) extends PowerSystemResource (id, name)
 
 object CoordinateSystem extends Parser
 {
-    val urnex = Pattern.compile ("""<cim:crsUrn>([\s\S]*?)<\/cim:crsUrn>""")
+    val urnex = Pattern.compile ("""<cim:CoordinateSystem.crsUrn>([\s\S]*?)<\/cim:CoordinateSystem.crsUrn>""")
     override def steps () = Array (NamedElement.parse, Element.parse_attribute (urnex, 1, "urn", true)_)
     def unpickle (xml: String, result: Result): CoordinateSystem =
     {
@@ -292,9 +305,9 @@ object Location extends Parser
 
 //    <cim:PositionPoint>
 //            <cim:PositionPoint.Location>_location_5773088_1107287243_317923</cim:PositionPoint.Location>
-//            <cim:sequenceNumber>0</cim:sequenceNumber>
-//            <cim:xPosition>8.78184724183</cim:xPosition>
-//            <cim:yPosition>47.0400997930</cim:yPosition>
+//            <cim:PositionPoint.sequenceNumber>0</cim:sequenceNumber>
+//            <cim:PositionPoint.xPosition>8.78184724183</cim:xPosition>
+//            <cim:PositionPoint.yPosition>47.0400997930</cim:yPosition>
 //    </cim:PositionPoint>
 
 case class PositionPoint (override val key:String, val location: String, val sequence: Int, val x: Double, val y: Double) extends Element (key)
@@ -302,9 +315,9 @@ case class PositionPoint (override val key:String, val location: String, val seq
 object PositionPoint extends Parser
 {
     val locex = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
-    val seqex = Pattern.compile ("""<cim:sequenceNumber>([\s\S]*?)<\/cim:sequenceNumber>""")
-    val xposex = Pattern.compile ("""<cim:xPosition>([\s\S]*?)<\/cim:xPosition>""")
-    val yposex = Pattern.compile ("""<cim:yPosition>([\s\S]*?)<\/cim:yPosition>""")
+    val seqex = Pattern.compile ("""<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>""")
+    val xposex = Pattern.compile ("""<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>""")
+    val yposex = Pattern.compile ("""<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>""")
 
     def loc = Element.parse_attribute (locex, 1, "location", true)_
     def seq = Element.parse_attribute (seqex, 1, "sequence", true)_
@@ -372,7 +385,7 @@ object Asset extends Parser
 //    <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
 //    <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_350063"/>
-//    <cim:PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
+//    <cim:EnergyConsumer.PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
 //</cim:EnergyConsumer>
 case class Consumer (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String, val phase: String) extends LocatedElement (id, name, location, container)
 
@@ -380,7 +393,7 @@ object Consumer extends Parser
 {
     val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    val fazex = Pattern.compile ("""<cim:PhaseConnection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val fazex = Pattern.compile ("""<cim:EnergyConsumer.PhaseConnection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
     def typ = Element.parse_attribute (typex, 2, "type", true)_
     def vol = Element.parse_attribute (volex, 2, "voltage", true)_
@@ -507,7 +520,7 @@ object CableInfo extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>
 //</cim:ACLineSegment>
 
-case class ACLineSegment (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val length: String, val voltage: String) extends LocatedElement (id, name, location, container)
+case class ACLineSegment (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val len: String, val voltage: String) extends LocatedElement (id, name, location, container)
 
 object ACLineSegment extends Parser
 {
