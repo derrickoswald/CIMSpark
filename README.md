@@ -24,7 +24,7 @@ Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq
 with volumes mounted for the jar file and data, and ports proxied for the
 cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
-    docker run -it -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.5.1 bash
+    docker run -it -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.6.0 bash
 
 The spark shell (scala interpreter) provides interactive commands:
 
@@ -101,9 +101,9 @@ To expose the RDD as a Hive SQL table that is available externally:
 Starting the thrift server from the command line uses a different SparkContext/SQLContext
 so the exposed tables will not be visible (don't do this):
 
-    bash-4.1# cd /usr/local/spark-1.5.1-bin-hadoop2.6/
+    bash-4.1# cd /usr/local/spark-1.6.0-bin-hadoop2.6/
     bash-4.1# ./sbin/start-thriftserver.sh
-    starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /usr/local/spark-1.5.1-bin-hadoop2.6/sbin/../logs/spark--org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-sandbox.out
+    starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/../logs/spark--org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-sandbox.out
 
 Start the thrift server from within the spark shell:
 
@@ -266,7 +266,7 @@ but it's unclear how much is actually executing on the cluster vs. directly on t
 
 Using Java directly, you can run the sample program that creates a ThriftServer2 and fills a temporary table using the command line:
 
-    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.5.1-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMScala-1.0-SNAPSHOT.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode cluster --conf spark.driver.memory=2g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 2g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
+    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.6.0-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMScala-1.0-SNAPSHOT.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode cluster --conf spark.driver.memory=2g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 2g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar "/opt/data/dump_all.xml"
 
 The program can also be executed using:
 
@@ -529,7 +529,7 @@ Subsequent accesses run out of heap space.
 
 Export the [necessary keys](https://spark.apache.org/docs/latest/ec2-scripts.html), then launch a hadoop cluster on AWS with:
 
-    ./spark-ec2 --key-pair=FirstMicro --identity-file=/home/derrick/.ssh/FirstMicro.pem --region=eu-west-1 --ebs-vol-size=0 --master-instance-type=m3.medium --instance-type=m3.large --spot-price=0.025 --slaves=2 --spark-version=1.5.1 --hadoop-major-version=yarn --deploy-root-dir=/home/derrick/code/CIMScala/target/ launch playpen
+    ./spark-ec2 --key-pair=FirstMicro --identity-file=/home/derrick/.ssh/FirstMicro.pem --region=eu-west-1 --ebs-vol-size=0 --master-instance-type=m3.medium --instance-type=m3.large --spot-price=0.025 --slaves=2 --spark-version=1.6.0 --hadoop-major-version=yarn --deploy-root-dir=/home/derrick/code/CIMScala/target/ launch playpen
 
 #Notes
 
