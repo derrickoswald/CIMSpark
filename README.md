@@ -539,3 +539,138 @@ Export the [necessary keys](https://spark.apache.org/docs/latest/ec2-scripts.htm
     edges = sql (sqlContext, "select * from edges")
     ee = collect (edges)
     head (ee, n=50)
+
+#RStudio & R Remote Client
+
+To be able to use the Spark cluster backend inside of RStudio or R running as a remote client:
+
+Download the Spark tarball file from the [Spark download page](http://spark.apache.org/downloads.html).
+Currently we are using Spark 1.6.0 on Hadoop 2.6 in the [sequenciq/spark Docker container](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark"),
+so to match that, use Spark release 1.6.0 (Jan 04 2016), Pre-built for Hadoop 2.6 and later,
+hence the file is currently spark-1.6.0-bin-hadoop2.6.tgz.
+
+Unpack the tarball into an appropriate directory on the remote client.
+This will have a directory listing like:
+
+    ~/spark-1.6.0-bin-hadoop2.6$ ll
+    total 1384
+    drwxr-xr-x 12 derrick derrick    4096 Dez 22 03:22 ./
+    drwxr-xr-x 93 derrick derrick    4096 Mär 21 13:35 ../
+    drwxr-xr-x  3 derrick derrick    4096 Mär 22 16:14 bin/
+    -rw-r--r--  1 derrick derrick 1312258 Dez 22 03:22 CHANGES.txt
+    drwxr-xr-x  3 derrick derrick    4096 Mär 22 16:13 conf/
+    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 data/
+    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 ec2/
+    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 examples/
+    drwxr-xr-x  2 derrick derrick    4096 Dez 22 03:22 lib/
+    -rw-r--r--  1 derrick derrick   17352 Dez 22 03:22 LICENSE
+    drwxr-xr-x  2 derrick derrick    4096 Dez 22 03:22 licenses/
+    -rw-r--r--  1 derrick derrick   23529 Dez 22 03:22 NOTICE
+    drwxr-xr-x  6 derrick derrick    4096 Dez 22 03:22 python/
+    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 R/
+    -rw-r--r--  1 derrick derrick    3359 Dez 22 03:22 README.md
+    -rw-r--r--  1 derrick derrick     120 Dez 22 03:22 RELEASE
+    drwxr-xr-x  2 derrick derrick    4096 Dez 22 03:22 sbin/
+
+From within the running container, copy these files from the /usr/local/spark-1.6.0-bin-hadoop2.6/yarn-remote-client directory to an appropriate directory on the remote client.
+
+    # ls -al /usr/local/spark-1.6.0-bin-hadoop2.6/yarn-remote-client
+    total 16
+    drwxr-xr-x  2 root root 4096 Jan  9 03:26 .
+    drwxr-xr-x 15  500  500 4096 Mar 22 11:10 ..
+    -rw-r--r--  1 root root  325 Jan  9 03:26 core-site.xml
+    -rw-r--r--  1 root root 1097 Jan  9 03:26 yarn-site.xml
+
+For this purpose I recommend the conf directory of the unpacked tarball (see above).
+Proceed in two steps, one inside the container and one on the remote client (your host).
+
+    # cp /usr/local/spark-1.6.0-bin-hadoop2.6/yarn-remote-client/* /opt/data
+    $ cp /home/derrick/code/CIMScala/data/*-site.xml ~/spark-1.6.0-bin-hadoop2.6/conf
+
+Set environment variables to tell RStudio or R where Spark and it's configuration are:
+
+    export SPARK_HOME=/home/derrick/spark-1.6.0-bin-hadoop2.6
+    export YARN_CONF_DIR=/home/derrick/spark-1.6.0-bin-hadoop2.6/conf
+
+Start RStudio or R.
+
+Install the SparkR package.
+
+    install.packages (pkgs = file.path(Sys.getenv("SPARK_HOME"), "R", "lib", "SparkR"), repos = NULL)
+
+Follow the instructions in [Starting up from RStudio](https://spark.apache.org/docs/latest/sparkr.html#starting-up-from-rstudio), except do not specify a local master and include the CIMScala reader as a jar to be shipped to the worker nodes.
+
+    > library (SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
+
+    Attaching package: ‘SparkR’
+
+    The following objects are masked from ‘package:stats’:
+
+        cov, filter, lag, na.omit, predict, sd, var
+
+    The following objects are masked from ‘package:base’:
+
+        colnames, colnames<-, intersect, rank, rbind, sample, subset,
+        summary, table, transform
+
+    > sc = sparkR.init (sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-1.0-SNAPSHOT.jar"))
+    Launching java with spark-submit command /home/derrick/spark-1.6.0-bin-hadoop2.6/bin/spark-submit --jars /home/derrick/code/CIMScala/target/CIMScala-1.0-SNAPSHOT.jar  sparkr-shell /tmp/RtmplGrbMU/backend_port4b2d6377c08f 
+    16/03/22 17:27:19 INFO SparkContext: Running Spark version 1.6.0
+    16/03/22 17:27:19 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+    16/03/22 17:27:19 WARN Utils: Your hostname, swirl resolves to a loopback address: 127.0.1.1; using 192.168.10.103 instead (on interface wlan1)
+    16/03/22 17:27:19 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+    16/03/22 17:27:19 INFO SecurityManager: Changing view acls to: derrick
+    16/03/22 17:27:19 INFO SecurityManager: Changing modify acls to: derrick
+    16/03/22 17:27:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(derrick); users with modify permissions: Set(derrick)
+    16/03/22 17:27:20 INFO Utils: Successfully started service 'sparkDriver' on port 35286.
+    16/03/22 17:27:20 INFO Slf4jLogger: Slf4jLogger started
+    16/03/22 17:27:20 INFO Remoting: Starting remoting
+    16/03/22 17:27:20 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriverActorSystem@192.168.10.103:40919]
+    16/03/22 17:27:20 INFO Utils: Successfully started service 'sparkDriverActorSystem' on port 40919.
+    16/03/22 17:27:20 INFO SparkEnv: Registering MapOutputTracker
+    16/03/22 17:27:20 INFO SparkEnv: Registering BlockManagerMaster
+    16/03/22 17:27:20 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-469a7ad3-17f8-4b34-b156-9b1aa0ce7319
+    16/03/22 17:27:20 INFO MemoryStore: MemoryStore started with capacity 511.1 MB
+    16/03/22 17:27:20 INFO SparkEnv: Registering OutputCommitCoordinator
+    16/03/22 17:27:20 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+    16/03/22 17:27:20 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+    16/03/22 17:27:20 INFO SparkUI: Started SparkUI at http://192.168.10.103:4041
+    16/03/22 17:27:21 INFO HttpFileServer: HTTP File server directory is /tmp/spark-ce771e87-2ee2-4f62-84fa-ecc13a241340/httpd-e4242c91-aaf0-483c-a232-80545895352c
+    16/03/22 17:27:21 INFO HttpServer: Starting HTTP Server
+    16/03/22 17:27:21 INFO Utils: Successfully started service 'HTTP file server' on port 40351.
+    16/03/22 17:27:21 INFO SparkContext: Added JAR file:/home/derrick/code/CIMScala/target/CIMScala-1.0-SNAPSHOT.jar at http://192.168.10.103:40351/jars/CIMScala-1.0-SNAPSHOT.jar with timestamp 1458664041048
+    16/03/22 17:27:21 INFO Executor: Starting executor ID driver on host localhost
+    16/03/22 17:27:21 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33933.
+    16/03/22 17:27:21 INFO NettyBlockTransferService: Server created on 33933
+    16/03/22 17:27:21 INFO BlockManagerMaster: Trying to register BlockManager
+    16/03/22 17:27:21 INFO BlockManagerMasterEndpoint: Registering block manager localhost:33933 with 511.1 MB RAM, BlockManagerId(driver, localhost, 33933)
+    16/03/22 17:27:21 INFO BlockManagerMaster: Registered BlockManager
+    16/03/22 17:27:21 INFO SparkContext: Added JAR file:///home/derrick/code/CIMScala/target/CIMScala-1.0-SNAPSHOT.jar at http://192.168.10.103:40351/jars/CIMScala-1.0-SNAPSHOT.jar with timestamp 1458664041354
+
+Make an SQL context:
+
+    > sqlContext = sparkRSQL.init(sc)
+
+If you have a data file in HDFS (it cannot be local, it must be on the cluster):
+
+    > elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/user/root/dump_ews.xml')")
+    16/03/22 17:33:56 INFO CIMRelation: paths: hdfs://sandbox:9000/users/root/dump_ews.xml
+    16/03/22 17:33:56 INFO CIMRelation: maybeDataSchema: None
+    16/03/22 17:33:56 INFO CIMRelation: userDefinedPartitionColumns: None
+    16/03/22 17:33:56 INFO CIMRelation: parameters: Map(path -> hdfs:/users/root/dump_ews.xml)
+    16/03/22 17:33:56 INFO CIMRelation: sqlContext: org.apache.spark.sql.SQLContext@5e64d836
+    16/03/22 17:33:56 INFO CIMRelation: Listing hdfs://sandbox:9000/users/root/dump_ews.xml on driver
+    > head (sql (sqlContext, "select * from elements"))
+    ...
+    16/03/22 17:41:02 INFO DAGScheduler: Job 0 finished: dfToCols at NativeMethodAccessorImpl.java:-2, took 8.441160 s
+                      key
+    1  PSRType_Substation
+    2 PSRType_Underground
+    3    PSRType_Overhead
+    4     PSRType_Unknown
+    5              wgs_84
+    6  _subnetwork_349554
+    > fred = sql (sqlContext, "select * from elements")
+    > nrow (fred)
+    ...     takes over six minutes to read 3.8GB
+    [1] 270183
