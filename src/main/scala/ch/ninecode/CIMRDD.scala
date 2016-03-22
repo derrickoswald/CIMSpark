@@ -79,34 +79,27 @@ object CIMRDD
                 HiveThriftServer2.startWithContext (sql_context)
                 println ("thriftserver started")
 
-                // create an RDD by reading in the datafile
                 val filename = args (0)
-                val rdd = rddFile (spark, filename, 0, 0)
-                println ("rdd created")
 
-                // extract the locations as a new RDD
-                val pf: PartialFunction[Element, ch.ninecode.Location] =
-                {
-                    case x: Any
-                        if x.getClass () == classOf[Location] ⇒ x.asInstanceOf[Location]
-                }
-                val locations = rdd.collect (pf)
+                // show databases
+                println ("databases")
+                var sql = "show databases";
+                val databases = sql_context.sql (sql)
+                for (database <- databases)
+                   println (database)
 
-                // locations.persist ()
-                println ("collected " + locations.count () + " locations")
+                sql = "create temporary table elements using ch.ninecode.cim options (path 'file://" + filename + "')"
+                val dataframe = sql_context.sql (sql)
+                val count = sql_context.sql ("select count(*) from elements")
+                println ("dataframe created with " + count.head().getLong(0) + " elements")
 
-                // create a dataframe from the locations
-                val mydataframe = sql_context.createDataFrame (locations)
-                println ("dataframe created")
+                println ("tables")
+                val tables = sql_context.tableNames ()
+                for (table <- tables)
+                   println (table)
 
-                // expose the dataframe as a table
-                mydataframe.registerTempTable ("locations")
-                println ("locations table created")
-
-                // wait for 120 seconds
-                Thread.sleep (120000)
-
-                println ("time's up")
+                println ("Press [Return] to exit...")
+                System.console().readLine()
             }
             else
                 println ("CIM XML input file not specified")
