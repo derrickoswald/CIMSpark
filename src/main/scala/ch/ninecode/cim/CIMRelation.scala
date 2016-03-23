@@ -30,10 +30,12 @@ import org.apache.hadoop.conf.Configuration
 import ch.ninecode.CIMInputFormat
 import ch.ninecode.Element
 import ch.ninecode.ACLineSegment
+import ch.ninecode.Terminal
+import ch.ninecode.ConnectivityNode
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import scala.Stream
 
-case class Pair (id_equ: String, var left: ch.ninecode.Terminal = null, var right: ch.ninecode.Terminal = null)
+case class Pair (id_equ: String, var left: Terminal = null, var right: Terminal = null)
 case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, length: Float)
 
 class CIMRelation(
@@ -137,7 +139,8 @@ class CIMRelation(
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PSRType] => x.asInstanceOf[ch.ninecode.PSRType]})).registerTempTable ("PSRType")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Line] => x.asInstanceOf[ch.ninecode.Line]})).registerTempTable ("Line")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Subnetwork] => x.asInstanceOf[ch.ninecode.Subnetwork]})).registerTempTable ("Subnetwork")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ConnectivityNode] => x.asInstanceOf[ch.ninecode.ConnectivityNode]})).registerTempTable ("ConnectivityNode")
+            val connectivitynodes = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ConnectivityNode] => x.asInstanceOf[ch.ninecode.ConnectivityNode]})
+            sqlContext.createDataFrame (connectivitynodes).registerTempTable ("ConnectivityNode")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Voltage] => x.asInstanceOf[ch.ninecode.Voltage]})).registerTempTable ("Voltage")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.CoordinateSystem] => x.asInstanceOf[ch.ninecode.CoordinateSystem]})).registerTempTable ("CoordinateSystem")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Location] => x.asInstanceOf[ch.ninecode.Location]})).registerTempTable ("Location")
@@ -145,7 +148,7 @@ class CIMRelation(
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Asset] => x.asInstanceOf[ch.ninecode.Asset]})).registerTempTable ("Asset")
             val consumers = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Consumer] => x.asInstanceOf[ch.ninecode.Consumer]})
             sqlContext.createDataFrame (consumers).registerTempTable ("Consumer")
-            val terminals = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Terminal] => x.asInstanceOf[ch.ninecode.Terminal]})
+            val terminals = rdd.collect ({ case x: Element if x.getClass () == classOf[Terminal] => x.asInstanceOf[Terminal]})
             sqlContext.createDataFrame (terminals).registerTempTable ("Terminal")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.BusbarInfo] => x.asInstanceOf[ch.ninecode.BusbarInfo]})).registerTempTable ("BusbarInfo")
             val busbarsections = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.BusbarSection] => x.asInstanceOf[ch.ninecode.BusbarSection]})
@@ -172,7 +175,7 @@ class CIMRelation(
             // set up edge graph
 
             // first get the pairs of terminals keyed by equipment
-            val pair_seq_op = (l: Pair /* null */, r: ch.ninecode.Terminal) ⇒
+            val pair_seq_op = (l: Pair /* null */, r: Terminal) ⇒
             {
                 if (null == l)
                     Pair (r.equipment, r)
@@ -219,18 +222,78 @@ class CIMRelation(
             // all pairs (k, (v, Some(w))) for w in other, or the pair (k, (v, None)) if no elements in other have key k
             val edge_op =
             {
-                p: Any =>
+                j: Any =>
                 {
-                    p match
+                    j match
                     {
                         case (s: String, (e:Edge, Some (ac:ACLineSegment)))
-                            => Edge (e.id_seq_1, e.id_seq_2, e.id_equ, ac.len.toFloat) // ToDo: avoid allocation here
+                            => Edge (e.id_seq_1, e.id_seq_2, e.id_equ, ac.len.toFloat) // ToDo: avoid reallocation here
                         case (s: String, (e:Edge, None))
                             => e
                     }
                 }
             }
             edges = edgepairs.leftOuterJoin (lines).map (edge_op)
+
+            // change terminal id to node id
+            val left_op =
+            {
+                j: Any =>
+                {
+                    j match
+                    {
+                        case (s: String, (e:Edge, Some (t:Terminal)))
+                            => Edge (if (t.connectivity != null) t.connectivity else e.id_seq_1, e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                        case (s: String, (e:Edge, None))
+                            => e
+                    }
+                }
+            }
+            edges = edges.keyBy (_.id_seq_1).leftOuterJoin (terminals.keyBy (_.id)).map (left_op)
+            val right_op =
+            {
+                j: Any =>
+                {
+                    j match
+                    {
+                        case (s: String, (e:Edge, Some (t:Terminal)))
+                            => Edge (e.id_seq_1, if (t.connectivity != null) t.connectivity else e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                        case (s: String, (e:Edge, None))
+                            => e
+                    }
+                }
+            }
+            edges = edges.keyBy (_.id_seq_2).leftOuterJoin (terminals.keyBy (_.id)).map (right_op)
+
+            // change node id to node name
+            val left_op2 =
+            {
+                j: Any =>
+                {
+                    j match
+                    {
+                        case (s: String, (e:Edge, Some (c:ConnectivityNode)))
+                            => Edge (if (c.name != null) c.name else e.id_seq_1, e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                        case (s: String, (e:Edge, None))
+                            => e
+                    }
+                }
+            }
+            edges = edges.keyBy (_.id_seq_1).leftOuterJoin (connectivitynodes.keyBy (_.id)).map (left_op2)
+            val right_op2 =
+            {
+                j: Any =>
+                {
+                    j match
+                    {
+                        case (s: String, (e:Edge, Some (c:ConnectivityNode)))
+                            => Edge (e.id_seq_1, if (c.name != null) c.name else e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                        case (s: String, (e:Edge, None))
+                            => e
+                    }
+                }
+            }
+            edges = edges.keyBy (_.id_seq_2).leftOuterJoin (connectivitynodes.keyBy (_.id)).map (right_op2)
 
             // expose it
             sqlContext.createDataFrame (edges).registerTempTable ("edges")
