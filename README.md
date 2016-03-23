@@ -649,7 +649,7 @@ Follow the instructions in [Starting up from RStudio](https://spark.apache.org/d
 
 Make an SQL context:
 
-    > sqlContext = sparkRSQL.init(sc)
+    > sqlContext = sparkRSQL.init (sc)
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):
 
@@ -672,5 +672,16 @@ If you have a data file in HDFS (it cannot be local, it must be on the cluster):
     6  _subnetwork_349554
     > fred = sql (sqlContext, "select * from elements")
     > nrow (fred)
-    ...     takes over six minutes to read 3.8GB
+    ...
     [1] 270183
+
+#Logging
+
+To quiet down the tremendously verbose logging for Spark to just the minimum,
+i.e. just warnings and errors, copy and edit the log4j configuration
+and set the console logging to WARN instead of INFO:
+
+    $ cd /usr/local/spark-1.6.0-bin-hadoop2.6/conf
+    $ cp log4j.properties.template log4j.properties
+    $ sed -i 's/log4j.rootCategory=INFO/log4j.rootCategory=WARN/g' log4j.properties
+

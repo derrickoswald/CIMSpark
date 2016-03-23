@@ -1,14 +1,14 @@
 package ch.ninecode
 
-import java.io.FileInputStream
 import java.io.File
+import java.io.FileInputStream
 
 import org.apache.hadoop.conf.Configuration
-
-import org.apache.spark.rdd.RDD
-import org.apache.spark.SparkContext
+import org.apache.spark.Logging
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
+import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
 
@@ -23,7 +23,7 @@ import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
  * class remains unencumbered by the heavy overhead.
  *
  */
-object CIMRDD
+object CIMRDD extends Logging
 {
     def read (filename: String, offset: Long = 0, length: Long = 0): String =
     {
@@ -73,36 +73,41 @@ object CIMRDD
             {
                 // set up the SQL context
                 val sql_context = new HiveContext (spark)
-                println ("context established")
+                logInfo ("context established")
 
                 // start the thrift JDBC server on port 10000
                 HiveThriftServer2.startWithContext (sql_context)
-                println ("thriftserver started")
+                logInfo ("thriftserver started")
 
-                val filename = args (0)
+                var filename = args (0)
+                if (!filename.startsWith ("file:") && !filename.startsWith ("hdfs:"))
+                {
+                    logWarning ("filename without scheme, changing " + filename + " to " + "file://" + filename)
+                    filename = "file://" + filename
+                }
 
                 // show databases
-                println ("databases")
+                logInfo ("databases")
                 var sql = "show databases";
                 val databases = sql_context.sql (sql)
                 for (database <- databases)
-                   println (database)
+                   logInfo (database.toString ())
 
-                sql = "create temporary table elements using ch.ninecode.cim options (path 'file://" + filename + "')"
+                sql = "create temporary table elements using ch.ninecode.cim options (path '" + filename + "')"
                 val dataframe = sql_context.sql (sql)
                 val count = sql_context.sql ("select count(*) from elements")
                 println ("dataframe created with " + count.head().getLong(0) + " elements")
 
-                println ("tables")
+                logInfo ("tables")
                 val tables = sql_context.tableNames ()
                 for (table <- tables)
-                   println (table)
+                   logInfo (table.toString ())
 
                 println ("Press [Return] to exit...")
                 System.console().readLine()
             }
             else
-                println ("CIM XML input file not specified")
+                logError ("CIM XML input file not specified")
         }
         finally
         {

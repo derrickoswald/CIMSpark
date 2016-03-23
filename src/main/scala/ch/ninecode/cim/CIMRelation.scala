@@ -114,94 +114,99 @@ class CIMRelation(
     override def buildScan (inputFiles: Array[FileStatus]): RDD[Row] =
     {
         logInfo ("ch.ninecode.DefaultSource.buildScan")
-        // make a config
-        val configuration = new Configuration (sqlContext.sparkContext.hadoopConfiguration)
-        configuration.set ("mapreduce.input.fileinputformat.inputdir", inputFiles (0).getPath.toString);
 
-        val rdd = sqlContext.sparkContext.newAPIHadoopRDD (
-            configuration,
-            classOf[ch.ninecode.CIMInputFormat],
-            classOf[String],
-            classOf[ch.ninecode.Element]).values
+        var ret: RDD[Row] = null
 
-//        // cache the result
-//        rdd.cache ()
-
-        val ret: RDD[Row] = rdd.asInstanceOf[RDD[Row]]
-
-        // as a side effect, define all the other temporary tables
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Unknown] => x.asInstanceOf[ch.ninecode.Unknown]})).registerTempTable ("Unknown")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PSRType] => x.asInstanceOf[ch.ninecode.PSRType]})).registerTempTable ("PSRType")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Line] => x.asInstanceOf[ch.ninecode.Line]})).registerTempTable ("Line")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Subnetwork] => x.asInstanceOf[ch.ninecode.Subnetwork]})).registerTempTable ("Subnetwork")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ConnectivityNode] => x.asInstanceOf[ch.ninecode.ConnectivityNode]})).registerTempTable ("ConnectivityNode")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Voltage] => x.asInstanceOf[ch.ninecode.Voltage]})).registerTempTable ("Voltage")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.CoordinateSystem] => x.asInstanceOf[ch.ninecode.CoordinateSystem]})).registerTempTable ("CoordinateSystem")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Location] => x.asInstanceOf[ch.ninecode.Location]})).registerTempTable ("Location")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PositionPoint] => x.asInstanceOf[ch.ninecode.PositionPoint]})).registerTempTable ("PositionPoint")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Asset] => x.asInstanceOf[ch.ninecode.Asset]})).registerTempTable ("Asset")
-        val consumers = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Consumer] => x.asInstanceOf[ch.ninecode.Consumer]})
-        sqlContext.createDataFrame (consumers).registerTempTable ("Consumer")
-        val terminals = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Terminal] => x.asInstanceOf[ch.ninecode.Terminal]})
-        sqlContext.createDataFrame (terminals).registerTempTable ("Terminal")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.BusbarInfo] => x.asInstanceOf[ch.ninecode.BusbarInfo]})).registerTempTable ("BusbarInfo")
-        val busbarsections = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.BusbarSection] => x.asInstanceOf[ch.ninecode.BusbarSection]})
-        sqlContext.createDataFrame (busbarsections).registerTempTable ("BusbarSection")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.CableInfo] => x.asInstanceOf[ch.ninecode.CableInfo]})).registerTempTable ("CableInfo")
-        val aclinesegments = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ACLineSegment] => x.asInstanceOf[ch.ninecode.ACLineSegment]})
-        sqlContext.createDataFrame (aclinesegments).registerTempTable ("ACLineSegment")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ACLineSegmentPhase] => x.asInstanceOf[ch.ninecode.ACLineSegmentPhase]})).registerTempTable ("ACLineSegmentPhase")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.SwitchInfo] => x.asInstanceOf[ch.ninecode.SwitchInfo]})).registerTempTable ("SwitchInfo")
-        val switchs = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Switch] => x.asInstanceOf[ch.ninecode.Switch]})
-        sqlContext.createDataFrame (switchs).registerTempTable ("Switch")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PowerTransformerInfo] => x.asInstanceOf[ch.ninecode.PowerTransformerInfo]})).registerTempTable ("PowerTransformerInfo")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerTankInfo] => x.asInstanceOf[ch.ninecode.TransformerTankInfo]})).registerTempTable ("TransformerTankInfo")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerEndInfo] => x.asInstanceOf[ch.ninecode.TransformerEndInfo]})).registerTempTable ("TransformerEndInfo")
-        val transformers = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PowerTransformer] => x.asInstanceOf[ch.ninecode.PowerTransformer]})
-        sqlContext.createDataFrame (transformers).registerTempTable ("PowerTransformer")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerTank] => x.asInstanceOf[ch.ninecode.TransformerTank]})).registerTempTable ("TransformerTank")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerTankEnd] => x.asInstanceOf[ch.ninecode.TransformerTankEnd]})).registerTempTable ("TransformerTankEnd")
-
-        // SAP IS-U
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ServiceLocation] => x.asInstanceOf[ch.ninecode.ServiceLocation]})).registerTempTable ("ServiceLocation")
-        sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Customer] => x.asInstanceOf[ch.ninecode.Customer]})).registerTempTable ("Customer")
-
-        // set up edge graph
-
-        // first get the pairs of terminals keyed by equipment
-        val pair_seq_op = (l: Pair /* null */, r: ch.ninecode.Terminal) ⇒
+        if (inputFiles.length > 0)
         {
-            if (null == l)
-                Pair (r.equipment, r)
-            else
+            // make a config
+            val configuration = new Configuration (sqlContext.sparkContext.hadoopConfiguration)
+            configuration.set ("mapreduce.input.fileinputformat.inputdir", inputFiles (0).getPath.toString);
+
+            val rdd = sqlContext.sparkContext.newAPIHadoopRDD (
+                configuration,
+                classOf[ch.ninecode.CIMInputFormat],
+                classOf[String],
+                classOf[ch.ninecode.Element]).values
+
+            ret = rdd.asInstanceOf[RDD[Row]]
+
+            // as a side effect, define all the other temporary tables
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Unknown] => x.asInstanceOf[ch.ninecode.Unknown]})).registerTempTable ("Unknown")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PSRType] => x.asInstanceOf[ch.ninecode.PSRType]})).registerTempTable ("PSRType")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Line] => x.asInstanceOf[ch.ninecode.Line]})).registerTempTable ("Line")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Subnetwork] => x.asInstanceOf[ch.ninecode.Subnetwork]})).registerTempTable ("Subnetwork")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ConnectivityNode] => x.asInstanceOf[ch.ninecode.ConnectivityNode]})).registerTempTable ("ConnectivityNode")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Voltage] => x.asInstanceOf[ch.ninecode.Voltage]})).registerTempTable ("Voltage")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.CoordinateSystem] => x.asInstanceOf[ch.ninecode.CoordinateSystem]})).registerTempTable ("CoordinateSystem")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Location] => x.asInstanceOf[ch.ninecode.Location]})).registerTempTable ("Location")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PositionPoint] => x.asInstanceOf[ch.ninecode.PositionPoint]})).registerTempTable ("PositionPoint")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Asset] => x.asInstanceOf[ch.ninecode.Asset]})).registerTempTable ("Asset")
+            val consumers = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Consumer] => x.asInstanceOf[ch.ninecode.Consumer]})
+            sqlContext.createDataFrame (consumers).registerTempTable ("Consumer")
+            val terminals = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Terminal] => x.asInstanceOf[ch.ninecode.Terminal]})
+            sqlContext.createDataFrame (terminals).registerTempTable ("Terminal")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.BusbarInfo] => x.asInstanceOf[ch.ninecode.BusbarInfo]})).registerTempTable ("BusbarInfo")
+            val busbarsections = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.BusbarSection] => x.asInstanceOf[ch.ninecode.BusbarSection]})
+            sqlContext.createDataFrame (busbarsections).registerTempTable ("BusbarSection")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.CableInfo] => x.asInstanceOf[ch.ninecode.CableInfo]})).registerTempTable ("CableInfo")
+            val aclinesegments = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ACLineSegment] => x.asInstanceOf[ch.ninecode.ACLineSegment]})
+            sqlContext.createDataFrame (aclinesegments).registerTempTable ("ACLineSegment")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ACLineSegmentPhase] => x.asInstanceOf[ch.ninecode.ACLineSegmentPhase]})).registerTempTable ("ACLineSegmentPhase")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.SwitchInfo] => x.asInstanceOf[ch.ninecode.SwitchInfo]})).registerTempTable ("SwitchInfo")
+            val switchs = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Switch] => x.asInstanceOf[ch.ninecode.Switch]})
+            sqlContext.createDataFrame (switchs).registerTempTable ("Switch")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PowerTransformerInfo] => x.asInstanceOf[ch.ninecode.PowerTransformerInfo]})).registerTempTable ("PowerTransformerInfo")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerTankInfo] => x.asInstanceOf[ch.ninecode.TransformerTankInfo]})).registerTempTable ("TransformerTankInfo")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerEndInfo] => x.asInstanceOf[ch.ninecode.TransformerEndInfo]})).registerTempTable ("TransformerEndInfo")
+            val transformers = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.PowerTransformer] => x.asInstanceOf[ch.ninecode.PowerTransformer]})
+            sqlContext.createDataFrame (transformers).registerTempTable ("PowerTransformer")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerTank] => x.asInstanceOf[ch.ninecode.TransformerTank]})).registerTempTable ("TransformerTank")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.TransformerTankEnd] => x.asInstanceOf[ch.ninecode.TransformerTankEnd]})).registerTempTable ("TransformerTankEnd")
+
+            // SAP IS-U
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ServiceLocation] => x.asInstanceOf[ch.ninecode.ServiceLocation]})).registerTempTable ("ServiceLocation")
+            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Customer] => x.asInstanceOf[ch.ninecode.Customer]})).registerTempTable ("Customer")
+
+            // set up edge graph
+
+            // first get the pairs of terminals keyed by equipment
+            val pair_seq_op = (l: Pair /* null */, r: ch.ninecode.Terminal) ⇒
             {
-                if (null != l.right)
+                if (null == l)
+                    Pair (r.equipment, r)
+                else
+                {
+                    if (null != l.right)
+                        throw new IllegalStateException ("three terminals")
+                    l.right = r
+                    l
+                }
+            }
+            val pair_comb_op = (l: Pair, r: Pair) ⇒
+            {
+                if ((null != l.right) || (null != r.right))
                     throw new IllegalStateException ("three terminals")
-                l.right = r
+                if (1 == l.left.sequence)
+                    l.right = r.left
+                else
+                {   // swap so seq#1 is left
+                    l.right = l.left
+                    l.left = r.left
+                }
                 l
             }
-        }
-        val pair_comb_op = (l: Pair, r: Pair) ⇒
-        {
-            if ((null != l.right) || (null != r.right))
-                throw new IllegalStateException ("three terminals")
-            if (1 == l.left.sequence)
-                l.right = r.left
-            else
-            {   // swap so seq#1 is left
-                l.right = l.left
-                l.left = r.left
-            }
-            l
-        }
-        val terms = terminals.keyBy (_.equipment).aggregateByKey (null: Pair) (pair_seq_op, pair_comb_op).values
+            val terms = terminals.keyBy (_.equipment).aggregateByKey (null: Pair) (pair_seq_op, pair_comb_op).values
 
-        // next, map the pairs to edges
-        val map_op = { p: Pair => Edge (p.left.id, if (null != p.right) p.right.id else "", p.left.equipment) }
-        val edges = terms.map (map_op)
+            // next, map the pairs to edges
+            val map_op = { p: Pair => Edge (p.left.id, if (null != p.right) p.right.id else "", p.left.equipment) }
+            val edges = terms.map (map_op)
 
-        // expose it
-        sqlContext.createDataFrame (edges).registerTempTable ("edges")
+            // expose it
+            sqlContext.createDataFrame (edges).registerTempTable ("edges")
+        }
+        else
+            logError ("ch.ninecode.DefaultSource.buildScan was given an input list containing no files")
 
         return (ret)
   }
