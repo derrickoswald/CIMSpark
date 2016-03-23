@@ -29,11 +29,12 @@ import org.apache.spark.sql.{Row, SQLContext}
 import org.apache.hadoop.conf.Configuration
 import ch.ninecode.CIMInputFormat
 import ch.ninecode.Element
+import ch.ninecode.ACLineSegment
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import scala.Stream
 
 case class Pair (id_equ: String, var left: ch.ninecode.Terminal = null, var right: ch.ninecode.Terminal = null)
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String)
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, length: Float)
 
 class CIMRelation(
     override val paths: Array[String],
@@ -199,8 +200,37 @@ class CIMRelation(
             val terms = terminals.keyBy (_.equipment).aggregateByKey (null: Pair) (pair_seq_op, pair_comb_op).values
 
             // next, map the pairs to edges
-            val map_op = { p: Pair => Edge (p.left.id, if (null != p.right) p.right.id else "", p.left.equipment) }
-            val edges = terms.map (map_op)
+            val term_op =
+            {
+                p: Pair =>
+                {
+                    Edge (
+                        p.left.id,
+                        if (null != p.right) p.right.id else "",
+                        p.left.equipment,
+                        0)
+                }
+            }
+            var edges = terms.map (term_op)
+
+            // add the length value if it is an ACLineSegment by perfoming a left outer join
+            val edgepairs = edges.keyBy (_.id_equ)
+            val lines = aclinesegments.keyBy (_.id)
+            // all pairs (k, (v, Some(w))) for w in other, or the pair (k, (v, None)) if no elements in other have key k
+            val edge_op =
+            {
+                p: Any =>
+                {
+                    p match
+                    {
+                        case (s: String, (e:Edge, Some (ac:ACLineSegment)))
+                            => Edge (e.id_seq_1, e.id_seq_2, e.id_equ, ac.len.toFloat) // ToDo: avoid allocation here
+                        case (s: String, (e:Edge, None))
+                            => e
+                    }
+                }
+            }
+            edges = edgepairs.leftOuterJoin (lines).map (edge_op)
 
             // expose it
             sqlContext.createDataFrame (edges).registerTempTable ("edges")
