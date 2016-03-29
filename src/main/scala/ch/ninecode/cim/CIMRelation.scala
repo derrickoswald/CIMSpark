@@ -36,7 +36,7 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import scala.Stream
 
 case class Pair (id_equ: String, var left: Terminal = null, var right: Terminal = null)
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, length: Float)
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Float)
 
 class CIMRelation(
     override val paths: Array[String],
@@ -211,6 +211,7 @@ class CIMRelation(
                         p.left.id,
                         if (null != p.right) p.right.id else "",
                         p.left.equipment,
+                        "",
                         0)
                 }
             }
@@ -227,7 +228,7 @@ class CIMRelation(
                     j match
                     {
                         case (s: String, (e:Edge, Some (ac:ACLineSegment)))
-                            => Edge (e.id_seq_1, e.id_seq_2, e.id_equ, ac.len.toFloat) // ToDo: avoid reallocation here
+                            => Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, ac.len.toFloat) // ToDo: avoid reallocation here
                         case (s: String, (e:Edge, None))
                             => e
                     }
@@ -243,7 +244,7 @@ class CIMRelation(
                     j match
                     {
                         case (s: String, (e:Edge, Some (t:Terminal)))
-                            => Edge (if (t.connectivity != null) t.connectivity else e.id_seq_1, e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                            => Edge (if (t.connectivity != null) t.connectivity else e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length) // ToDo: avoid reallocation here
                         case (s: String, (e:Edge, None))
                             => e
                     }
@@ -257,7 +258,7 @@ class CIMRelation(
                     j match
                     {
                         case (s: String, (e:Edge, Some (t:Terminal)))
-                            => Edge (e.id_seq_1, if (t.connectivity != null) t.connectivity else e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                            => Edge (e.id_seq_1, if (t.connectivity != null) t.connectivity else e.id_seq_2, e.id_equ, e.container, e.length) // ToDo: avoid reallocation here
                         case (s: String, (e:Edge, None))
                             => e
                     }
@@ -273,21 +274,21 @@ class CIMRelation(
                     j match
                     {
                         case (s: String, (e:Edge, Some (c:ConnectivityNode)))
-                            => Edge (if (c.name != null) c.name else e.id_seq_1, e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                            => Edge (if (c.name != null) c.name else e.id_seq_1, e.id_seq_2, e.id_equ, if (c.container != null) c.container else e.container, e.length) // ToDo: avoid reallocation here
                         case (s: String, (e:Edge, None))
                             => e
                     }
                 }
             }
             edges = edges.keyBy (_.id_seq_1).leftOuterJoin (connectivitynodes.keyBy (_.id)).map (left_op2)
-            val right_op2 =
+            val right_op2 = // ToDo: equipment with two containers should be deterministically assigned to the correct container
             {
                 j: Any =>
                 {
                     j match
                     {
                         case (s: String, (e:Edge, Some (c:ConnectivityNode)))
-                            => Edge (e.id_seq_1, if (c.name != null) c.name else e.id_seq_2, e.id_equ, e.length) // ToDo: avoid reallocation here
+                            => Edge (e.id_seq_1, if (c.name != null) c.name else e.id_seq_2, e.id_equ, if (c.container != null) c.container else e.container, e.length) // ToDo: avoid reallocation here
                         case (s: String, (e:Edge, None))
                             => e
                     }
@@ -405,14 +406,14 @@ class CIMRelation(
    */
   override def hashCode(): Int = Objects.hashCode(paths.toSet, dataSchema, schema, partitionColumns)
 
-  /**
-   * Opens up the location to for reading. Takes in a function to run on the schema and returns the
-   * result of this function. This takes in a function so that the caller does not have to worry
-   * about cleaning up and closing the reader.
-   * @param location the location in the filesystem to read from
-   * @param fun the function that is called on when the reader has been initialized
-   * @tparam T the return type of the function given
-   */
+//  /**
+//   * Opens up the location to for reading. Takes in a function to run on the schema and returns the
+//   * result of this function. This takes in a function so that the caller does not have to worry
+//   * about cleaning up and closing the reader.
+//   * @param location the location in the filesystem to read from
+//   * @param fun the function that is called on when the reader has been initialized
+//   * @tparam T the return type of the function given
+//   */
 //  private def newReader[T](location: String)(fun: FileReader[GenericRecord] => T): T = {
 //    val path = new Path(location)
 //    val hadoopConfiguration = sqlContext.sparkContext.hadoopConfiguration
