@@ -514,8 +514,8 @@ object Connector extends Parser
 
     def typ = Element.parse_attribute (typex, 2, "type", true)_
     def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-    def agg = Element.parse_attribute (aggex, 2, "aggregate", true)_
-    def ser = Element.parse_attribute (serex, 2, "inservice", true)_
+    def agg = Element.parse_attribute (aggex, 1, "aggregate", true)_
+    def ser = Element.parse_attribute (serex, 1, "inservice", true)_
     override def steps () = Array (LocatedElement.parse, typ, vol, agg, ser)
     def unpickle (xml: String, result: Result): Connector =
     {
