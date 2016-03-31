@@ -494,9 +494,64 @@ object BusbarSection extends Parser
     }
 }
 
-//        <cim:CableInfo rdf:ID="_cable_spec_566593874">
-//                <cim:IdentifiedObject.name>TT 4x1x70</cim:IdentifiedObject.name>
-//        </cim:CableInfo>
+// <cim:Connector rdf:ID="ABG490">
+//         <cim:IdentifiedObject.name>ABG490</cim:IdentifiedObject.name>
+//         <cim:PowerSystemResource.Location>_location_1610657792_427087417_2101413</cim:PowerSystemResource.Location>
+//         <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//         <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//         <cim:Equipment.aggregate>true</cim:Equipment.aggregate>
+//         <cim:Equipment.normallyInService>true</cim:Equipment.normallyInService>
+//         <cim:Equipment.EquipmentContainer rdf:resource="#KAB76"/>
+// </cim:Connector>
+case class Connector (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String, val aggregate: String, val inservice: String) extends LocatedElement (id, name, location, container)
+
+object Connector extends Parser
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val aggex = Pattern.compile ("""<cim:Equipment.aggregate>([\s\S]*?)<\/cim:Equipment.aggregate>""")
+    val serex = Pattern.compile ("""<cim:Equipment.normallyInService>([\s\S]*?)<\/cim:Equipment.normallyInService>""")
+
+    def typ = Element.parse_attribute (typex, 2, "type", true)_
+    def vol = Element.parse_attribute (volex, 2, "voltage", true)_
+    def agg = Element.parse_attribute (aggex, 2, "aggregate", true)_
+    def ser = Element.parse_attribute (serex, 2, "inservice", true)_
+    override def steps () = Array (LocatedElement.parse, typ, vol, agg, ser)
+    def unpickle (xml: String, result: Result): Connector =
+    {
+        parse (xml, result)
+        Connector (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"), result.properties ("aggregate"), result.properties ("inservice"))
+    }
+}
+
+// <cim:Junction rdf:ID="MUF1">
+//     <cim:IdentifiedObject.name>MUF1</cim:IdentifiedObject.name>
+//     <cim:PowerSystemResource.Location>_location_1121749_1206245218_1532764</cim:PowerSystemResource.Location>
+//     <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//     <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_0.400000000000"/>
+//     <cim:Equipment.EquipmentContainer rdf:resource="#ABG1122|ABG1141|HAS14|HAS15|KLE11|KLE5|KLE6|KLE889|MUF1"/>
+// </cim:Junction>
+
+case class Junction (override val id: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String) extends LocatedElement (id, name, location, container)
+
+object Junction extends Parser
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+
+    def typ = Element.parse_attribute (typex, 2, "type", true)_
+    def vol = Element.parse_attribute (volex, 2, "voltage", true)_
+    override def steps () = Array (LocatedElement.parse, typ, vol)
+    def unpickle (xml: String, result: Result): Junction =
+    {
+        parse (xml, result)
+        Junction (result.properties ("id"), result.properties ("name"), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"))
+    }
+}
+
+// <cim:CableInfo rdf:ID="_cable_spec_566593874">
+//    <cim:IdentifiedObject.name>TT 4x1x70</cim:IdentifiedObject.name>
+// </cim:CableInfo>
 
 case class CableInfo (override val id: String, override val name: String) extends PowerSystemResource (id, name)
 
@@ -859,6 +914,8 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                         case "cim:Terminal" ⇒ Terminal.unpickle (rest, result)
                         case "cim:BusbarInfo" ⇒ BusbarInfo.unpickle (rest, result)
                         case "cim:BusbarSection" ⇒ BusbarSection.unpickle (rest, result)
+                        case "cim:Connector" ⇒ Connector.unpickle (rest, result)
+                        case "cim:Junction" ⇒ Junction.unpickle (rest, result)
                         case "cim:CableInfo" ⇒ CableInfo.unpickle (rest, result)
                         case "cim:ACLineSegment" ⇒ ACLineSegment.unpickle (rest, result)
                         case "cim:ACLineSegmentPhase" ⇒ ACLineSegmentPhase.unpickle (rest, result)
