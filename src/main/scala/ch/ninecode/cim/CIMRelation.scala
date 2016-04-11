@@ -133,6 +133,9 @@ class CIMRelation(
                 classOf[ch.ninecode.Element]).values
 
             ret = rdd.asInstanceOf[RDD[Row]]
+            // persist it so the sample can get at it
+            ret.setName ("Elements")
+            ret.cache()
 
             // as a side effect, define all the other temporary tables
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Unknown] => x.asInstanceOf[ch.ninecode.Unknown]})).registerTempTable ("Unknown")
@@ -295,7 +298,7 @@ class CIMRelation(
             edges = edges.keyBy (_.id_seq_2).leftOuterJoin (connectivitynodes.keyBy (_.id)).map (right_op2)
 
             // persist it so the sample can get at it
-            edges.name = "Edges"
+            edges.setName ("Edges")
             edges.cache()
 
             // expose it
