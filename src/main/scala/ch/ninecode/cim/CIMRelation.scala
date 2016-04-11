@@ -294,8 +294,13 @@ class CIMRelation(
             }
             edges = edges.keyBy (_.id_seq_2).leftOuterJoin (connectivitynodes.keyBy (_.id)).map (right_op2)
 
+            // persist it so the sample can get at it
+            edges.name = "Edges"
+            edges.cache()
+
             // expose it
             sqlContext.createDataFrame (edges).registerTempTable ("edges")
+
         }
         else
             logError ("ch.ninecode.DefaultSource.buildScan was given an input list containing no files")
