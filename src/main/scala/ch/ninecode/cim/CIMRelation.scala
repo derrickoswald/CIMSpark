@@ -135,7 +135,7 @@ class CIMRelation(
             ret = rdd.asInstanceOf[RDD[Row]]
             // persist it so the sample can get at it
             ret.setName ("Elements")
-            ret.cache()
+            ret.cache ()
 
             // as a side effect, define all the other temporary tables
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Unknown] => x.asInstanceOf[ch.ninecode.Unknown]})).registerTempTable ("Unknown")
@@ -143,6 +143,8 @@ class CIMRelation(
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Line] => x.asInstanceOf[ch.ninecode.Line]})).registerTempTable ("Line")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Subnetwork] => x.asInstanceOf[ch.ninecode.Subnetwork]})).registerTempTable ("Subnetwork")
             val connectivitynodes = rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.ConnectivityNode] => x.asInstanceOf[ch.ninecode.ConnectivityNode]})
+            connectivitynodes.setName ("Vertices")
+            connectivitynodes.cache ()
             sqlContext.createDataFrame (connectivitynodes).registerTempTable ("ConnectivityNode")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.Voltage] => x.asInstanceOf[ch.ninecode.Voltage]})).registerTempTable ("Voltage")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ch.ninecode.CoordinateSystem] => x.asInstanceOf[ch.ninecode.CoordinateSystem]})).registerTempTable ("CoordinateSystem")
@@ -299,7 +301,7 @@ class CIMRelation(
 
             // persist it so the sample can get at it
             edges.setName ("Edges")
-            edges.cache()
+            edges.cache ()
 
             // expose it
             sqlContext.createDataFrame (edges).registerTempTable ("edges")
