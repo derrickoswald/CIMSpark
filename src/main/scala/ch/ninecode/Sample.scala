@@ -26,30 +26,6 @@ class Sample extends Serializable
 
     // based on the Pregel sample at http://spark.apache.org/docs/latest/graphx-programming-guide.html#pregel-api
 
-    // We can use the Pregel operator to express computation such as single source shortest path in the following example.
-    //    import org.apache.spark.graphx._
-    //    // Import random graph generation library
-    //    import org.apache.spark.graphx.util.GraphGenerators
-    //    // A graph with edge attributes containing distances
-    //    val graph: Graph[Long, Double] =
-    //        GraphGenerators.logNormalGraph(sc, numVertices = 100).mapEdges(e ⇒ e.attr.toDouble)
-    //    val sourceId: VertexId = 42 // The ultimate source
-    //    // Initialize the graph such that all vertices except the root have distance infinity.
-    //    val initialGraph = graph.mapVertices((id, _) ⇒ if (id == sourceId) 0.0 else Double.PositiveInfinity)
-    //    val sssp = initialGraph.pregel(Double.PositiveInfinity)(
-    //        (id, dist, newDist) ⇒ math.min(dist, newDist), // Vertex Program
-    //        triplet ⇒ { // Send Message
-    //            if (triplet.srcAttr + triplet.attr < triplet.dstAttr) {
-    //                Iterator((triplet.dstId, triplet.srcAttr + triplet.attr))
-    //            }
-    //            else {
-    //                Iterator.empty
-    //            }
-    //        },
-    //        (a, b) ⇒ math.min(a, b) // Merge Message
-    //    )
-    //    println(sssp.vertices.collect.mkString("\n"))
-
     def vprog (id: VertexId, v: VertexWithDistance, distance: Double): VertexWithDistance =
     {
         if (null != v)
@@ -62,19 +38,27 @@ class Sample extends Serializable
         var ret:Iterator[(VertexId, Double)] = Iterator.empty
         if ((null != triplet.srcAttr) && (null != triplet.dstAttr))
         {
+            // identify the upstream abgang vertex - if any
+            val v = triplet.srcAttr.vertex
+            val abgang = if ((null != v) && v.name.startsWith ("ABG") && v.container.startsWith ("_subnetwork")) v else null
+
+            // compute the distance to the downstream vertex
             val distance = triplet.srcAttr.distance + triplet.attr.length
-            if (triplet.srcAttr.abgang != null)
+            if (distance < triplet.dstAttr.distance)
             {
-                triplet.dstAttr.abgang = triplet.srcAttr.abgang
-                // for now just stop
-                println ("stopping at " + (if (null == triplet.dstAttr.vertex) "**unknown**" else triplet.dstAttr.vertex.name))
-            }
-            else
-                if (distance < triplet.dstAttr.distance)
+                triplet.dstAttr.distance = distance
+                if (null == abgang)
                 {
-                    println (triplet.srcId + " -> " + (if (triplet.attr != null) (triplet.attr.id_seq_1 + " " + triplet.attr.id_equ + " " + triplet.attr.id_seq_2) else "null") + " -> " + triplet.dstId + " " + distance)
+                    println (triplet.srcId + " -> " + (if (triplet.attr != null) (triplet.attr.id_seq_1 + " " + triplet.attr.id_equ + " " + triplet.attr.id_seq_2) else "null") + " -> " + triplet.dstId + " " + distance + "<" + triplet.dstAttr.distance)
                     ret = Iterator ((triplet.dstId, distance))
                 }
+                else
+                {
+                    triplet.dstAttr.abgang = triplet.srcAttr.abgang
+                    // for now just stop
+                    println ("stopping at " + (if (null == triplet.dstAttr.vertex) "**unknown**" else (triplet.dstAttr.vertex.name + distance)))
+                }
+            }
         }
         return (ret)
     }
@@ -128,18 +112,35 @@ class Sample extends Serializable
             // keep only non-self connected and non-singly connected edges
             edges =  edges.filter ((e: ch.ninecode.cim.Edge) => { (e.id_seq_1 != e.id_seq_2) && e.id_seq_2 != "" })
 
-            // augment the elements to have the distance and upstream abgang
-            var elementsplus = vertices.flatMap ((v: ch.ninecode.ConnectivityNode) => { Array (VertexWithDistance (v, Double.PositiveInfinity, if (v.name.startsWith ("ABG") && v.container.startsWith ("_subnetwork")) v else null)) })
+            // augment the elements to have the distance and upstream abgang using the VertexWithDistance class
+            var elementsplus = vertices.flatMap (
+                (v: ch.ninecode.ConnectivityNode) =>
+                {
+                    Array (VertexWithDistance (v, Double.PositiveInfinity))
+                }
+            )
 
-            // construct the graph from the edges and augmented elements (vertices)
             // ToDo: what about hashCode() clashes
+            // check: var set = graph.vertices. aggregate (new HashSet[Long]()) ((set, v) => { if (!set.add (v._1)) println (v._1); set }, (set1, set2) => set1++ set2)
+
+            // create RDD of (key, value) pairs
             var _elements = elementsplus.keyBy (_.vertex.name.hashCode().asInstanceOf[VertexId])
-            var _edges = edges.flatMap ((e: ch.ninecode.cim.Edge) => { Array (new Edge (e.id_seq_1.hashCode(), e.id_seq_2.hashCode(), e)) })
-            graph = Graph.apply[VertexWithDistance, ch.ninecode.cim.Edge] (_elements, _edges, VertexWithDistance (null, Double.PositiveInfinity))
+
+            // convert CIM edges into graphx edges
+            var _edges = edges.flatMap (
+                (e: ch.ninecode.cim.Edge) =>
+                {
+                    Array (new Edge (e.id_seq_1.hashCode(), e.id_seq_2.hashCode(), e))
+                }
+            )
+
+            // construct the graph from the augmented elements (vertices) and edges
+            val default = VertexWithDistance (null, Double.PositiveInfinity)
+            graph = Graph.apply[VertexWithDistance, ch.ninecode.cim.Edge] (_elements, _edges, default)
 
             // get all the busbars
             //var sammelschienen = graph.vertices.filter (x => { (x._2 != null) && (x._2.element != null) && (x._2.element.key.startsWith ("_busbar")) })
-/*
+
             // just do one for now
             var busbar = "SAM1753_node".hashCode ()
 
@@ -158,7 +159,6 @@ class Sample extends Serializable
 
             // print the sum of the distances
             println (graph.vertices.aggregate (0.0) (seqOp, combOp))
-*/
         }
 
         return (graph)
