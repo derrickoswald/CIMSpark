@@ -9,84 +9,105 @@ import org.apache.spark.sql.SQLContext
 
 /**
  *   For an execution example see main().
- *
  */
 
+/**
+ * Message passed between nodes when tracing.
+ * busbar - that triggered the trace (use hashCode() to get VertexId)
+ * distance - the distance traversed so far in the path
+ * abgang - the upstream feeder (only for directly connected objects)
+ */
+case class Message (busbar: String, distance: Double, abgang: String) extends Serializable
+
+/**
+ * Data for each node when tracing.
+ * node - the CIM connectivity node
+ * trace - the last recieved (or coelesced) message data
+ */
+case class VertexData (node: ch.ninecode.ConnectivityNode, trace: Message)
+
+/**
+ * Simple example of using CIM.
+ * Computes the average distance between directly connected house connections
+ * and their corresponding busbar. See Sample.R for the R equivalent.
+ */
 class Sample extends Serializable
 {
 
     // based on the Pregel sample at http://spark.apache.org/docs/latest/graphx-programming-guide.html#pregel-api
+    // a better example is at http://www.cakesolutions.net/teamblogs/graphx-pregel-api-an-example
 
-    // messages are a Tuple2 with busbar name String (use hashCode() to get VertexId) and distance as a Double
-
-    var count = 0
-
-    def vprog (id: VertexId, v: (ch.ninecode.ConnectivityNode, (String, Double), String), distances: (String, Double)): (ch.ninecode.ConnectivityNode, (String, Double), String) =
+    /**
+     * Vertex method to handle incoming messages at each node.
+     * @param id - this vertex id (hashCode() of node name)
+     * @param v - the vertex data attached to this node
+     * @param message - the incoming message
+     * @returns the new vertex data
+     */
+    def vprog (id: VertexId, v: VertexData, message: Message): VertexData =
     {
         var ret = v
-        count += 1
-        if (null == distances)
+
+        if (null == message) // initial message
         {
-            // initial message
-            val busbar = if ((v._1 != null) && (v._1.name.startsWith ("SAM"))) v._1.name else null
+            val busbar = if ((v.node != null) && (v.node.name.startsWith ("SAM"))) v.node.name else null
             if (null != busbar)
-                ret = ((v._1, (busbar, 0.0), v._3))
+                ret = (VertexData (v.node, Message (busbar, 0.0, null)))
         }
-        else
-        {
-            // subsequent messages
-            val abgang = if ((v._1 != null) && v._1.name.startsWith ("ABG") && !v._1.container.startsWith ("_substation")) v._1.name else null
-            ret = ((v._1, (distances._1, distances._2), abgang))
-        }
-        if (null != ret._2._1)
-            println ("vprog " + count + ": " + id + (if (null != ret._1) " " + ret._1.name + "[" + ret._2._1 + "->" + ret._2._2 + "]" else ""))
+        else // subsequent messages
+            ret = (VertexData (v.node, Message (message.busbar, message.distance, message.abgang)))
+
         return (ret)
     }
 
-    def sendMessage (triplet: EdgeTriplet[(ch.ninecode.ConnectivityNode, (String, Double), String), ch.ninecode.cim.Edge]): Iterator[(VertexId, (String, Double))] =
+    /**
+     * The message propagation method to determine the message downstream nodes get.
+     * @param triplet - this edge data, including upstream and downstream vertecies
+     * @returns a list of vertex and message tuples that will be used in the next round of tracing
+     */
+    def sendMessage (triplet: EdgeTriplet[VertexData, ch.ninecode.cim.Edge]): Iterator[(VertexId, Message)] =
     {
-        var ret:Iterator[(VertexId, (String, Double))] = Iterator.empty
-        if (triplet.attr == null)
-            println ("null attr for " + triplet.toString ())
-        if ((null != triplet.srcAttr) && (null != triplet.dstAttr))
+        var ret:Iterator[(VertexId, Message)] = Iterator.empty
+
+        if ((null != triplet.srcAttr) && (null != triplet.dstAttr)) // eliminate edges unconnected on one end
         {
             // compute the distance to the downstream vertex
-            val distance = triplet.srcAttr._2._2 + triplet.attr.length
-            // get the distance it may already have
-            val existing = triplet.dstAttr._2._2
+            val distance = triplet.srcAttr.trace.distance + triplet.attr.length
+            // get the distance it already has
+            val existing = triplet.dstAttr.trace.distance
             if (distance < existing)
             {
-                val abgang = triplet.srcAttr._3
-                if (null == abgang)
-                {
-                    println (triplet.srcId + " -> " + (if (triplet.attr != null) (triplet.attr.id_seq_1 + " " + triplet.attr.id_equ + " " + triplet.attr.id_seq_2) else "null") + " -> " + triplet.dstId + " " + distance + "<" + existing)
-                    ret = Iterator ((triplet.dstId, (triplet.srcAttr._2._1, distance)))
-                }
-                else
-                {
-                    // for now just stop
-                    println ("stopping at " + (if (null == triplet.dstAttr._1) "**unknown**" else triplet.dstAttr._1.name) + " " + (if (triplet.attr != null) (triplet.attr.id_seq_1 + " " + triplet.attr.id_equ + " " + triplet.attr.id_seq_2) else "null") + " " + distance)
-                }
+                // check if upstream node is an abgang with a container that isn't a substation
+                val node = triplet.srcAttr.node
+                val abgang = if ((node != null) && node.name.startsWith ("ABG") && !node.container.startsWith ("_substation")) node.name else null
+                ret = Iterator ((triplet.dstId, Message (triplet.srcAttr.trace.busbar, distance, abgang)))
             }
         }
-        else
-        {
-            if (null == triplet.srcAttr)
-                println ("null srcAttr for " + triplet.toString ())
-            if (null == triplet.dstAttr)
-                println ("null dstAttr for " + triplet.toString ())
-        }
+
         return (ret)
     }
 
-    def mergeMessage (a: (String, Double), b: (String, Double)): (String, Double) =
+    /**
+     * Merge two messages at a vertex when more than one message is recieved.
+     * For more than two messages this is applied repeatedly.
+     * @param a - one message
+     * @param b - the other message
+     */
+    def mergeMessage (a: Message, b: Message): Message =
     {
-        if (a._1 != b._1)
+        if ((a.busbar != b.busbar) || (a.abgang != b.abgang))
             println ("conflicting Busbars servicing one vertex")
-        return ((a._1, math.min (a._2, b._2)))
+        return (Message (a.busbar, math.min (a.distance, b.distance), a.abgang))
     }
 
-    def graphx (sc: SparkContext): Graph[(ch.ninecode.ConnectivityNode, (String, Double), String), ch.ninecode.cim.Edge] =
+    /**
+     * Sample GraphX program.
+     * Traces the network from each busbar (sammelschien).
+     * Annotates the graph with the busbar, the distance to the busbar and any upstream feeder (abgang).
+     * @param sc - the Spark context
+     * @returns the annotated graph
+     */
+    def graphx (sc: SparkContext): Graph[VertexData, ch.ninecode.cim.Edge] =
     {
         // get the named RDD from the CIM reader
         var vertices:RDD[ch.ninecode.ConnectivityNode] = null
@@ -102,7 +123,7 @@ class Sample extends Serializable
         }
 
         // make and process the graph
-        var graph:Graph[(ch.ninecode.ConnectivityNode, (String, Double), String), ch.ninecode.cim.Edge] = null
+        var graph:Graph[VertexData, ch.ninecode.cim.Edge] = null
         if ((null != vertices) && (null != edges))
         {
             println ("Found the vertices RDD: " + vertices.name)
@@ -111,11 +132,11 @@ class Sample extends Serializable
             // keep only non-self connected and non-singly connected edges
             edges =  edges.filter ((e: ch.ninecode.cim.Edge) => { (e.id_seq_1 != e.id_seq_2) && e.id_seq_2 != "" })
 
-            // augment the elements to have the distance and upstream abgang using the VertexWithDistance class
+            // augment the elements to have the busbar, distance and upstream abgang using the VertexData class
             var elementsplus = vertices.flatMap (
                 (v: ch.ninecode.ConnectivityNode) =>
                 {
-                    Array ((v, (null.asInstanceOf[String], Double.PositiveInfinity), null.asInstanceOf[String]))
+                    Array (VertexData (v, Message (null, Double.PositiveInfinity, null)))
                 }
             )
 
@@ -124,7 +145,7 @@ class Sample extends Serializable
             // with sample data there were none
 
             // create RDD of (key, value) pairs
-            var _elements = elementsplus.keyBy (_._1.name.hashCode().asInstanceOf[VertexId])
+            var _elements = elementsplus.keyBy (_.node.name.hashCode().asInstanceOf[VertexId])
 
             // convert CIM edges into graphx edges
             var _edges = edges.flatMap (
@@ -135,63 +156,103 @@ class Sample extends Serializable
             )
 
             // construct the graph from the augmented elements (vertices) and edges
-            val default = (null, (null, Double.PositiveInfinity), null)
-            val initial = Graph.apply[(ch.ninecode.ConnectivityNode, (String, Double), String), ch.ninecode.cim.Edge] (_elements, _edges, default)
+            val default = VertexData (null, Message (null, Double.PositiveInfinity, null))
+            val initial = Graph.apply[VertexData, ch.ninecode.cim.Edge] (_elements, _edges, default)
 
             // perform the graph tracing
-            graph = initial.pregel (null.asInstanceOf[(String, Double)], Int.MaxValue, EdgeDirection.Either) (vprog, sendMessage, mergeMessage)
+            graph = initial.pregel (null.asInstanceOf[Message], Int.MaxValue, EdgeDirection.Either) (vprog, sendMessage, mergeMessage)
         }
 
         return (graph)
     }
 
-    def seqOp (sum: Double, v: Tuple2[VertexId, (ch.ninecode.ConnectivityNode, (String, Double), String)]): Double =
+    def seqOp (sum: Tuple2[Int, Double], v: VertexData): Tuple2[Int, Double] =
     {
-        if (null != v._2)
-            if (v._2._2._2 != Double.PositiveInfinity) v._2._2._2 + sum else sum
-        else
-            sum
+        (sum._1 + 1, sum._2 + v.trace.distance)
     }
 
-    def combOp (a: Double, b: Double): Double =
+    def combOp (sum1: Tuple2[Int, Double], sum2: Tuple2[Int, Double]): Tuple2[Int, Double] =
     {
-        if (a != Double.PositiveInfinity)
-            if (b != Double.PositiveInfinity)
-                a + b
-            else
-                a
-        else if (b != Double.PositiveInfinity)
-            b
-        else
-            Double.PositiveInfinity
+        (sum1._1 + sum2._1, sum1._2 + sum2._2)
+    }
+
+    def mapOp (circuit: Tuple2[String, Tuple2[Int, Double]]): Tuple2[String, Double] =
+    {
+        (circuit._1, circuit._2._2 / circuit._2._1)
+    }
+
+    /**
+     * Prints the average house connection length from each busbar (samelschien).
+     * @param - the annotated graph
+     */
+    def average_house_connection_distance (graph: Graph[VertexData, ch.ninecode.cim.Edge])
+    {
+         // gather the house service entries with a directly connected abgang
+         var has = graph.vertices.collect (
+             {
+                 case v: Tuple2[VertexId, VertexData]
+                 if ((v._2.trace.abgang != null) // the node has an upstream abgang
+                    && (v._2.trace.distance != Double.PositiveInfinity) // and it's connected
+                    && (v._2.node.name.startsWith ("HAS"))) // and it's a house connection
+                    =>
+                    v._2 // keep just the data
+             }
+         )
+         // create an RDD keyed by busbar
+         val has_keyed = has.keyBy (_.trace.busbar)
+         // aggregate the count and distances
+         val agg = has_keyed.aggregateByKey ((0, 0.0)) (seqOp, combOp)
+         // print the average of the distances
+         println (agg.collect.map (mapOp).mkString ("\n"))
     }
 }
 
+/**
+ * Main program for sample demo.
+ * Run this from within the cluster with:
+ * spark-shell --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar --class ch.ninecode.Sample hdfs:/user/root/dump_ews.xml
+ */
 object Sample
 {
     def main (args: Array[String])
     {
-        // create the configuration
-        val configuration = new SparkConf ()
-        configuration.setAppName ("Simple")
-        configuration.setMaster ("local[2]")
-        // make a Spark context and SQL context
-        val context = new SparkContext (configuration)
-        val sqlContext = new SQLContext (context)
-        context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
-        try
+        if (args.size > 0)
         {
-             // read the CIM file
-             var options = HashMap[String, String] ("path" -> "file:///home/derrick/code/CIMScala/data/dump_ews.xml")
-             val elements = sqlContext.read.format ("ch.ninecode.cim").options (options)
-             var rdd = elements.load ()
-             rdd.head ()
-             // compute the graph of distances from busbars
-             var sample = new ch.ninecode.Sample ()
-             var graph = sample.graphx (context)
-             // print the sum of the distances
-             println (graph.vertices.aggregate (0.0) (sample.seqOp, sample.combOp))
+            val filename = args (0)
+            val begin = System.nanoTime ()
+            // create the configuration
+            val configuration = new SparkConf ()
+            configuration.setAppName ("Simple")
+            configuration.setMaster ("local[2]")
+            // make a Spark context and SQL context
+            val context = new SparkContext (configuration)
+            val sqlContext = new SQLContext (context)
+            context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+            try
+            {
+                val start = System.nanoTime ()
+                println ("Initialization time: " + ((start - begin) / 1e9) + "s")
+                // read the CIM file
+                var options = HashMap[String, String] ("path" -> filename)
+                val elements = sqlContext.read.format ("ch.ninecode.cim").options (options)
+                var rdd = elements.load ()
+                rdd.head ()
+                val ready = System.nanoTime ()
+                println ("Setup time: " + ((ready - start) / 1e9) + "s")
+                // compute the graph of distances from busbars
+                var sample = new ch.ninecode.Sample ()
+                var graph = sample.graphx (context)
+                val traced = System.nanoTime ()
+                println ("Trace time: " + ((traced - ready) / 1e9) + "s")
+                sample.average_house_connection_distance (graph)
+                val summary = System.nanoTime ()
+                println ("Summarize time: " + ((summary - traced) / 1e9) + "s")
+            }
+            finally context.stop () // clean up
+            val end = System.nanoTime ()
+            println ("Elapsed time: " + ((end - begin) / 1e9) + "s")
         }
-        finally context.stop () // clean up
+        else
+            println ("CIM XML input file not specified")
     }
 }
