@@ -24,7 +24,7 @@ Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq
 with volumes mounted for the jar file and data, and ports proxied for the
 cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
 
-    docker run -it -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.6.0 bash
+    docker run -it -p 8032:8032 -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.6.0 bash
 
 The spark shell (scala interpreter) provides interactive commands:
 
@@ -674,6 +674,14 @@ If you have a data file in HDFS (it cannot be local, it must be on the cluster):
     > nrow (fred)
     ...
     [1] 270183
+
+For remote client access, the hdfs file system needs to be turned off safe mode,
+and access granted to the invoking user (here we use supergroup as described [here](http://stackoverflow.com/questions/13729510/safemodeexception-name-node-is-in-safe-mode#13739201)).
+
+    hdfs dfsadmin -safemode leave
+    sudo groupadd supergroup
+    sudo useradd derrick
+    sudo usermod --append --groups supergroup derrick
 
 #Logging
 
