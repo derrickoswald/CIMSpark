@@ -1,15 +1,19 @@
+
 # recorde the load time
 pre = proc.time ()
 
 # set up the Spark system
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark-1.6.0-bin-hadoop2.6/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark-1.6.0-bin-hadoop2.6")
-library (SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc = sparkR.init (sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-1.0-SNAPSHOT.jar"), sparkEnvir=list(spark.driver.memory="4g"))
+library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
+sc = sparkR.init (sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-1.0-SNAPSHOT.jar"), sparkEnvir = list (spark.driver.memory="4g"))
 sqlContext = sparkRSQL.init (sc)
 
 # read the data file and make the edge graph
-elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/user/root/dump_ews.xml')")
+# file:///opt/data/dump_ews.xml
+# hdfs://root@ec2-52-30-238-126.eu-west-1.compute.amazonaws.com:9000/data/dump_ews.xml
+# hdfs:/user/root/dump_ews.xml
+elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/dump_ews.xml')")
 head (sql (sqlContext, "select * from elements"))
 edges = sql (sqlContext, "select * from edges")
 redges = SparkR::as.data.frame (edges)
