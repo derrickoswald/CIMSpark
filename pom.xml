@@ -39,28 +39,28 @@
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_2.10</artifactId>
 			<scope>provided</scope>
-			<version>1.6.0</version>
+			<version>1.4.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-sql_2.10</artifactId>
 			<scope>provided</scope>
-			<version>1.6.0</version>
+			<version>1.4.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-hive-thriftserver_2.10</artifactId>
 			<scope>provided</scope>
-			<version>1.6.0</version>
+			<version>1.4.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-graphx_2.10</artifactId>
 			<scope>provided</scope>
-			<version>1.6.0</version>
+			<version>1.4.1</version>
 		</dependency>
 
 	</dependencies>

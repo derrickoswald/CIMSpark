@@ -29,7 +29,7 @@ trait Parser
 abstract class Element (val key: String) extends Serializable with Row
 {
     def copy (): org.apache.spark.sql.Row = new IdentifiedElement (key)
-    def get (i: Int): Any =
+    override def get (i: Int): Any =
     {
         if (0 != i)
             throw new IllegalArgumentException ("only one property")
@@ -37,6 +37,106 @@ abstract class Element (val key: String) extends Serializable with Row
             key
     }
     def length: Int = 1
+    def apply(i: Int): Any =
+    {
+        if (0 != i)
+            throw new IllegalArgumentException ("only one property")
+        else
+            key
+    }
+
+  /** Checks whether the value at position i is null. */
+  def isNullAt(i: Int): Boolean = get(i) == null
+
+  /**
+   * Returns the value at position i as a primitive boolean.
+   *
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  def getBoolean(i: Int): Boolean = getAnyValAs[Boolean](i)
+
+  /**
+   * Returns the value at position i as a primitive byte.
+   *
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  def getByte(i: Int): Byte = getAnyValAs[Byte](i)
+
+  /**
+   * Returns the value at position i as a primitive short.
+   *
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  def getShort(i: Int): Short = getAnyValAs[Short](i)
+
+  /**
+   * Returns the value at position i as a primitive int.
+   *
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  def getInt(i: Int): Int = getAnyValAs[Int](i)
+
+  /**
+   * Returns the value at position i as a primitive long.
+   *
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  def getLong(i: Int): Long = getAnyValAs[Long](i)
+
+  /**
+   * Returns the value at position i as a primitive float.
+   * Throws an exception if the type mismatches or if the value is null.
+   *
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  def getFloat(i: Int): Float = getAnyValAs[Float](i)
+
+  /**
+   * Returns the value at position i as a primitive double.
+   *
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  def getDouble(i: Int): Double = getAnyValAs[Double](i)
+
+  /**
+   * Returns the value at position i as a String object.
+   *
+   * @throws ClassCastException when data type does not match.
+   */
+  def getString(i: Int): String = getAs[String](i)
+
+
+  /**
+   * Returns the value of a given fieldName.
+   *
+   * @throws UnsupportedOperationException when schema is not defined.
+   * @throws ClassCastException when data type does not match.
+   * @throws NullPointerException when value is null.
+   */
+  private def getAnyValAs[T <: AnyVal](i: Int): T =
+    if (isNullAt(i)) throw new NullPointerException(s"Value at index $i in null")
+    else getAs[T](i)
+
+  /**
+   * Return a Scala Seq representing the row. Elements are placed in the same order in the Seq.
+   */
+  def toSeq: Seq[Any] = {
+    val n = length
+    val values = new Array[Any](n)
+    var i = 0
+    while (i < n) {
+      values.update(i, get(i))
+      i += 1
+    }
+    values.toSeq
+  }
 }
 
 object Element extends Parser
