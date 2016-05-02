@@ -246,7 +246,9 @@ class IdentifiedElement (val id: String) extends Element (id)
 object IdentifiedElement extends Parser
 {
     val idex = Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1""")
-    override def steps () = Array (Element.parse, Element.parse_attribute (idex, 2, "id", true)_)
+    override def steps () = Array (
+        Element.parse,
+        Element.parse_attribute (idex, 2, "id", true)_)
 }
 
 abstract class NamedElement (override val id: String, val alias: String, val description: String, val name: String) extends IdentifiedElement (id)
@@ -257,21 +259,30 @@ object NamedElement extends Parser
     val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>""")
     val namex = Pattern.compile ("""<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>""")
     override def steps () = Array (
-        IdentifiedElement.parse, Element.parse_element (aliex, 1, "name", false)_,
-        IdentifiedElement.parse, Element.parse_element (desex, 1, "name", false)_,
-        IdentifiedElement.parse, Element.parse_element (namex, 1, "name", false)_)
+        IdentifiedElement.parse,
+        Element.parse_element (aliex, 1, "name", false)_,
+        Element.parse_element (desex, 1, "name", false)_,
+        Element.parse_element (namex, 1, "name", false)_)
 }
 
-abstract class PowerSystemResource (override val id: String, override val alias: String, override val description: String, override val name: String) extends NamedElement (id, alias, description, name)
+abstract class PowerSystemResource (override val id: String, override val alias: String, override val description: String, override val name: String, val typ: String) extends NamedElement (id, alias, description, name)
 
-abstract class LocatedElement (override val id: String, override val alias: String, override val description: String, override val name: String, val location: String, val container: String) extends PowerSystemResource (id, alias, description, name)
+object PowerSystemResource extends Parser
+{
+    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    override def steps () = Array (
+        NamedElement.parse,
+        Element.parse_element (typex, 2, "type", false)_)
+}
+
+abstract class LocatedElement (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val location: String, val container: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object LocatedElement extends Parser
 {
     val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
     val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
-        NamedElement.parse,
+        PowerSystemResource.parse,
         Element.parse_element (locex, 1, "location", true)_,
         Element.parse_attribute (conex, 2, "container", true)_
     )
@@ -280,7 +291,7 @@ object LocatedElement extends Parser
 //        <cim:PSRType rdf:ID="PSRType_Substation">
 //                <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
 //        </cim:PSRType>
-case class PSRType (override val id: String, override val alias: String, override val description: String, override val name: String) extends PowerSystemResource (id, alias, description, name)
+case class PSRType (override val id: String, override val alias: String, override val description: String, override val name: String) extends NamedElement (id, alias, description, name)
 
 object PSRType extends Parser
 {
@@ -293,33 +304,33 @@ object PSRType extends Parser
     }
 }
 
-class Container (override val id: String, override val alias: String, override val description: String, override val name: String) extends PowerSystemResource (id, alias, description, name)
+class Container (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 //        <cim:Line rdf:ID="_subnetwork_349554">
 //                <cim:IdentifiedObject.name>ABG2236|ABG7246|APP197|FLT13|FLU20|FLU21|FLU22|FLU23|HAS332|HAS333|HAS334|HAS335|MUF2681|MUF2682|PIN2</cim:IdentifiedObject.name>
 //        </cim:Line>
-case class Line (override val id: String, override val alias: String, override val description: String, override val name: String) extends Container (id, alias, description, name)
+case class Line (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String) extends Container (id, alias, description, name, typ)
 
 object Line extends Parser
 {
-    override def steps () = Array (NamedElement.parse)
+    override def steps () = Array (PowerSystemResource.parse)
     def unpickle (xml: String, result: Result): Line =
     {
         parse (xml, result)
-        val ret = Line (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""))
+        val ret = Line (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("typ", ""))
         return (ret)
     }
 }
 
-case class Subnetwork (override val id: String, override val alias: String, override val description: String, override val name: String) extends Container (id, alias, description, name)
+case class Subnetwork (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String) extends Container (id, alias, description, name, typ)
 
 object Subnetwork extends Parser
 {
-    override def steps () = Array (NamedElement.parse)
+    override def steps () = Array (PowerSystemResource.parse)
     def unpickle (xml: String, result: Result): Subnetwork =
     {
         parse (xml, result)
-        val ret = Subnetwork (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""))
+        val ret = Subnetwork (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("typ", ""))
         return (ret)
     }
 }
@@ -332,28 +343,21 @@ object Subnetwork extends Parser
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:VoltageLevel.Substation rdf:resource="#STA1"/>
 //        </cim:VoltageLevel>
-case class VoltageLevel (override val id: String, override val alias: String, override val description: String, override val name: String, val location: String, val typ: String, val substation: String) extends Container (id, alias, description, name)
+case class VoltageLevel (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val location: String, val substation: String) extends Container (id, alias, description, name, typ)
 
 object VoltageLevel extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
     val staex = Pattern.compile ("""<cim:VoltageLevel.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
     override def steps () = Array (
-        NamedElement.parse,
-        Element.parse_element (typex, 2, "type", true)_,
-        Element.parse_element (locex, 1, "location", true)_,
-        Element.parse_element (staex, 2, "substation", true)_)
+        PowerSystemResource.parse,
+        Element.parse_element (locex, 1, "location", false)_,
+        Element.parse_element (staex, 2, "substation", false)_)
     def unpickle (xml: String, result: Result): VoltageLevel =
     {
         parse (xml, result)
-        val substation = result.properties.get ("substation") match
-        {
-            case Some (value) ⇒ value
-            case None ⇒ ""
-        }
-        val ret = VoltageLevel (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("type"), substation)
+        val ret = VoltageLevel (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties.getOrElse ("location", ""), result.properties.getOrElse ("substation", ""))
         return (ret)
     }
 }
@@ -365,23 +369,19 @@ object VoltageLevel extends Parser
 //                <cim:PowerSystemResource.Location>_location_1610657792_427083125_7047032</cim:PowerSystemResource.Location>
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //        </cim:Bay>
-case class Bay (override val id: String, override val alias: String, override val description: String, override val name: String, val location: String, val typ: String) extends Container (id, alias, description, name)
+case class Bay (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val location: String) extends Container (id, alias, description, name, typ)
 
 object Bay extends Parser
 {
-    val aliex = Pattern.compile ("""<cim:IdentifiedObject.aliasName>([\s\S]*?)<\/cim:IdentifiedObject.aliasName>""")
-    val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>""")
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
 
     override def steps () = Array (
-        NamedElement.parse,
-        Element.parse_element (typex, 2, "type", true)_,
-        Element.parse_element (locex, 1, "location", true)_)
+        PowerSystemResource.parse,
+        Element.parse_element (locex, 1, "location", false)_)
     def unpickle (xml: String, result: Result): Bay =
     {
         parse (xml, result)
-        val ret = Bay (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("type"))
+        val ret = Bay (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties.getOrElse ("location", ""))
         return (ret)
     }
 }
@@ -390,12 +390,14 @@ object Bay extends Parser
 //                <cim:IdentifiedObject.name>PIN2</cim:IdentifiedObject.name>
 //                <cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="_subnetwork_349554"/>
 //        </cim:ConnectivityNode>
-case class ConnectivityNode (override val id: String, override val alias: String, override val description: String, override val name: String, val container: String) extends PowerSystemResource (id, alias, description, name)
+case class ConnectivityNode (override val id: String, override val alias: String, override val description: String, override val name: String, val container: String) extends NamedElement (id, alias, description, name)
 
 object ConnectivityNode extends Parser
 {
     val connex = Pattern.compile ("""<cim:ConnectivityNode.ConnectivityNodeContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    override def steps () = Array (NamedElement.parse, Element.parse_attribute (connex, 2, "container", true)_)
+    override def steps () = Array (
+        NamedElement.parse,
+        Element.parse_attribute (connex, 2, "container", true)_)
     def unpickle (xml: String, result: Result): ConnectivityNode =
     {
         parse (xml, result)
@@ -413,7 +415,9 @@ case class Voltage (override val id: String, override val alias: String, overrid
 object Voltage extends Parser
 {
     val voltex = Pattern.compile ("""<cim:BaseVoltage.nominalVoltage>([\s\S]*?)<\/cim:BaseVoltage.nominalVoltage>""")
-    override def steps () = Array (NamedElement.parse, Element.parse_attribute (voltex, 1, "voltage", true)_)
+    override def steps () = Array (
+        NamedElement.parse,
+        Element.parse_attribute (voltex, 1, "voltage", true)_)
     def unpickle (xml: String, result: Result): Voltage =
     {
         parse (xml, result)
@@ -436,7 +440,7 @@ object Voltage extends Parser
 //                <cim:CoordinateSystem.crsUrn>EPSG::4326</cim:crsUrn>
 //        </cim:CoordinateSystem>
 
-case class CoordinateSystem (override val id: String, override val alias: String, override val description: String, override val name: String, val urn: String) extends PowerSystemResource (id, alias, description, name)
+case class CoordinateSystem (override val id: String, override val alias: String, override val description: String, override val name: String, val urn: String) extends NamedElement (id, alias, description, name)
 
 object CoordinateSystem extends Parser
 {
@@ -461,7 +465,10 @@ object Location extends Parser
 {
     val csex = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
     val typex = Pattern.compile ("""<cim:Location.type>([\s\S]*?)<\/cim:Location.type>""")
-    override def steps () = Array (NamedElement.parse, Element.parse_element (csex, 1, "cs", true)_, Element.parse_element (typex, 1, "type", true)_)
+    override def steps () = Array (
+        NamedElement.parse,
+        Element.parse_element (csex, 1, "cs", true)_,
+        Element.parse_element (typex, 1, "type", true)_)
     def unpickle (xml: String, result: Result): Location =
     {
         parse (xml, result)
@@ -486,11 +493,12 @@ object PositionPoint extends Parser
     val xposex = Pattern.compile ("""<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>""")
     val yposex = Pattern.compile ("""<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>""")
 
-    def loc = Element.parse_attribute (locex, 1, "location", true)_
-    def seq = Element.parse_attribute (seqex, 1, "sequence", true)_
-    def xcoord = Element.parse_attribute (xposex, 1, "x", true)_
-    def ycoord = Element.parse_attribute (yposex, 1, "y", true)_
-    override def steps () = Array (Element.parse, loc, seq, xcoord, ycoord)
+    override def steps () = Array (
+        NamedElement.parse,
+        Element.parse_attribute (locex, 1, "location", true)_,
+        Element.parse_attribute (seqex, 1, "sequence", true)_,
+        Element.parse_attribute (xposex, 1, "x", true)_,
+        Element.parse_attribute (yposex, 1, "y", true)_)
     def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
@@ -554,22 +562,21 @@ object Asset extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_350063"/>
 //    <cim:EnergyConsumer.PhaseConnection rdf:resource="http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseShuntConnectionKind.Y"/>
 //</cim:EnergyConsumer>
-case class Consumer (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String, val phase: String) extends LocatedElement (id, alias, description, name, location, container)
+case class Consumer (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val voltage: String, val phase: String) extends LocatedElement (id, alias, description, name, location, container, typ)
 
 object Consumer extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val fazex = Pattern.compile ("""<cim:EnergyConsumer.PhaseConnection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
-    def typ = Element.parse_attribute (typex, 2, "type", true)_
-    def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-    def faz = Element.parse_attribute (fazex, 2, "phase", true)_
-    override def steps () = Array (LocatedElement.parse, typ, vol, faz)
+    override def steps () = Array (
+        LocatedElement.parse,
+        Element.parse_attribute (volex, 2, "voltage", true)_,
+        Element.parse_attribute (fazex, 2, "phase", true)_)
     def unpickle (xml: String, result: Result): Consumer =
     {
         parse (xml, result)
-        val ret = Consumer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"), result.properties ("phase"))
+        val ret = Consumer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"), result.properties ("phase"))
         return (ret)
     }
 }
@@ -582,7 +589,7 @@ object Consumer extends Parser
 //    <cim:Terminal.ConductingEquipment rdf:resource="#_house_connection_1469932"/>
 //</cim:Terminal>
 
-case class Terminal (override val id: String, override val alias: String, override val description: String, override val name: String, val sequence: Int, val phase: String, val connectivity: String, val equipment: String) extends PowerSystemResource (id, alias, description, name)
+case class Terminal (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val sequence: Int, val phase: String, val connectivity: String, val equipment: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object Terminal extends Parser
 {
@@ -592,33 +599,19 @@ object Terminal extends Parser
     val conex = Pattern.compile ("""<cim:Terminal.ConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val eqpex = Pattern.compile ("""<cim:Terminal.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
-    def seq1 = Element.parse_element (seqex, 1, "sequence", false)_
-    def seq2 = Element.parse_element (seqey, 1, "sequence", false)_
-    def faz = Element.parse_attribute (fazex, 2, "phase", true)_
-    def con = Element.parse_attribute (conex, 2, "connectivity", false)_  // allow for unconnected terminals
-    def eqp = Element.parse_attribute (eqpex, 2, "equipment", true)_
-    override def steps () = Array (NamedElement.parse, seq1, seq2, faz, con, eqp)
+    override def steps () = Array (
+        PowerSystemResource.parse,
+        Element.parse_element (seqex, 1, "sequence", false)_,
+        Element.parse_element (seqey, 1, "sequence", false)_,
+        Element.parse_attribute (fazex, 2, "phase", false)_,
+        Element.parse_attribute (conex, 2, "connectivity", false)_,  // allow for unconnected terminals
+        Element.parse_attribute (eqpex, 2, "equipment", true)_)
     def unpickle (xml: String, result: Result): Terminal =
     {
         parse (xml, result)
-        // allow for unconnected terminals
-        val con = result.properties.get ("connectivity") match
-        {
-            case Some (value) ⇒ value
-            case None ⇒ null
-        }
-        var seq = result.properties ("sequence")
+        var seq = result.properties.getOrElse ("sequence", "")
         var num = 0
-        if (null != seq)
-            try
-            {
-                num = seq.toInt
-            }
-            catch
-            {
-                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable sequence value found for a terminal element while parsing at line " + result.context.line_number ())
-            }
-        else if (null != seq2)
+        if ("" != seq)
             try
             {
                 num = seq.toInt
@@ -629,7 +622,7 @@ object Terminal extends Parser
             }
         else
             throw new Exception ("mandatory sequence value not found for a terminal element while parsing at line " + result.context.line_number ())
-        val ret = Terminal (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), num, result.properties ("phase"), con, result.properties ("equipment"))
+        val ret = Terminal (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), num, result.properties.getOrElse ("phase", ""), result.properties.getOrElse ("connectivity", ""), result.properties ("equipment"))
         return (ret)
     }
 }
@@ -638,15 +631,15 @@ object Terminal extends Parser
 //                <cim:IdentifiedObject.name>unbekannt EWS</cim:IdentifiedObject.name>
 //        </cim:BusbarInfo>
 
-case class BusbarInfo (override val id: String, override val alias: String, override val description: String, override val name: String) extends PowerSystemResource (id, alias, description, name)
+case class BusbarInfo (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object BusbarInfo extends Parser
 {
-    override def steps () = Array (NamedElement.parse)
+    override def steps () = Array (PowerSystemResource.parse)
     def unpickle (xml: String, result: Result): BusbarInfo =
     {
         parse (xml, result)
-        val ret = BusbarInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""))
+        val ret = BusbarInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""))
         return (ret)
     }
 }
@@ -659,20 +652,18 @@ object BusbarInfo extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_858945"/>
 //</cim:BusbarSection>
 
-case class BusbarSection (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String) extends LocatedElement (id, alias, description, name, location, container)
+case class BusbarSection (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val voltage: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object BusbarSection extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
-    def typ = Element.parse_attribute (typex, 2, "type", true)_
     def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-    override def steps () = Array (LocatedElement.parse, typ, vol)
+    override def steps () = Array (LocatedElement.parse, vol)
     def unpickle (xml: String, result: Result): BusbarSection =
     {
         parse (xml, result)
-        BusbarSection (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"))
+        BusbarSection (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"))
     }
 }
 
@@ -685,24 +676,23 @@ object BusbarSection extends Parser
 //         <cim:Equipment.normallyInService>true</cim:Equipment.normallyInService>
 //         <cim:Equipment.EquipmentContainer rdf:resource="#KAB76"/>
 // </cim:Connector>
-case class Connector (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String, val aggregate: String, val inservice: String) extends LocatedElement (id, alias, description, name, location, container)
+case class Connector (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val voltage: String, val aggregate: String, val inservice: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object Connector extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val aggex = Pattern.compile ("""<cim:Equipment.aggregate>([\s\S]*?)<\/cim:Equipment.aggregate>""")
     val serex = Pattern.compile ("""<cim:Equipment.normallyInService>([\s\S]*?)<\/cim:Equipment.normallyInService>""")
 
-    def typ = Element.parse_attribute (typex, 2, "type", true)_
-    def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-    def agg = Element.parse_attribute (aggex, 1, "aggregate", true)_
-    def ser = Element.parse_attribute (serex, 1, "inservice", true)_
-    override def steps () = Array (LocatedElement.parse, typ, vol, agg, ser)
+    override def steps () = Array (
+        LocatedElement.parse,
+        Element.parse_attribute (volex, 2, "voltage", true)_,
+        Element.parse_attribute (aggex, 1, "aggregate", true)_,
+        Element.parse_attribute (serex, 1, "inservice", true)_)
     def unpickle (xml: String, result: Result): Connector =
     {
         parse (xml, result)
-        Connector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"), result.properties ("aggregate"), result.properties ("inservice"))
+        Connector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"), result.properties ("aggregate"), result.properties ("inservice"))
     }
 }
 
@@ -714,20 +704,19 @@ object Connector extends Parser
 //     <cim:Equipment.EquipmentContainer rdf:resource="#ABG1122|ABG1141|HAS14|HAS15|KLE11|KLE5|KLE6|KLE889|MUF1"/>
 // </cim:Junction>
 
-case class Junction (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String, val voltage: String) extends LocatedElement (id, alias, description, name, location, container)
+case class Junction (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val voltage: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object Junction extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
-    def typ = Element.parse_attribute (typex, 2, "type", true)_
-    def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-    override def steps () = Array (LocatedElement.parse, typ, vol)
+    override def steps () = Array (
+        LocatedElement.parse,
+        Element.parse_attribute (volex, 2, "voltage", true)_)
     def unpickle (xml: String, result: Result): Junction =
     {
         parse (xml, result)
-        Junction (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), result.properties ("type"), result.properties ("voltage"))
+        Junction (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"))
     }
 }
 
@@ -735,7 +724,7 @@ object Junction extends Parser
 //    <cim:IdentifiedObject.name>TT 4x1x70</cim:IdentifiedObject.name>
 // </cim:CableInfo>
 
-case class CableInfo (override val id: String, override val alias: String, override val description: String, override val name: String) extends PowerSystemResource (id, alias, description, name)
+case class CableInfo (override val id: String, override val alias: String, override val description: String, override val name: String) extends NamedElement (id, alias, description, name)
 
 object CableInfo extends Parser
 {
@@ -757,17 +746,17 @@ object CableInfo extends Parser
 //    <cim:Equipment.EquipmentContainer rdf:resource="_subnetwork_859028"/>
 //</cim:ACLineSegment>
 
-case class ACLineSegment (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String, val len: String, val voltage: String) extends LocatedElement (id, alias, description, name, location, container)
+case class ACLineSegment (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val len: String, val voltage: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object ACLineSegment extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val lenex = Pattern.compile ("""<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>""")
     val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    def typ = Element.parse_attribute (typex, 2, "type", true)_
-    def len = Element.parse_element (lenex, 1, "length", false)_
-    def vol = Element.parse_attribute (volex, 2, "voltage", false)_
-    override def steps () = Array (LocatedElement.parse, typ, len, vol)
+
+    override def steps () = Array (
+        LocatedElement.parse,
+        Element.parse_element (lenex, 1, "length", false)_,
+        Element.parse_attribute (volex, 2, "voltage", false)_)
     def unpickle (xml: String, result: Result): ACLineSegment =
     {
         parse (xml, result)
@@ -781,7 +770,7 @@ object ACLineSegment extends Parser
             case Some (value) ⇒ value
             case None ⇒ "0"
         }
-        val ret = ACLineSegment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), result.properties ("type"), length, volts)
+        val ret = ACLineSegment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), length, volts)
         return (ret)
     }
 }
@@ -792,7 +781,7 @@ object ACLineSegment extends Parser
 //   <cim:ACLineSegmentPhase.ACLineSegment rdf:resource="_internal_line_2094357"/>
 //</cim:ACLineSegmentPhase>
 
-case class ACLineSegmentPhase (override val id: String, override val alias: String, override val description: String, override val name: String, val phase: String, val segment: String) extends PowerSystemResource (id, alias, description, name)
+case class ACLineSegmentPhase (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val phase: String, val segment: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object ACLineSegmentPhase extends Parser
 {
@@ -800,11 +789,14 @@ object ACLineSegmentPhase extends Parser
     val segex = Pattern.compile ("""<cim:ACLineSegmentPhase.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     def faz = Element.parse_attribute (fazex, 2, "phase", true)_
     def seg = Element.parse_attribute (segex, 2, "segment", true)_
-    override def steps () = Array (NamedElement.parse, faz, seg)
+    override def steps () = Array (
+        PowerSystemResource.parse,
+        faz,
+        seg)
     def unpickle (xml: String, result: Result): ACLineSegmentPhase =
     {
         parse (xml, result)
-        val ret = ACLineSegmentPhase (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties apply "phase", result.properties apply "segment")
+        val ret = ACLineSegmentPhase (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties apply "phase", result.properties apply "segment")
         return (ret)
     }
 }
@@ -813,7 +805,7 @@ object ACLineSegmentPhase extends Parser
 //                <cim:IdentifiedObject.name>G4</cim:IdentifiedObject.name>
 //        </cim:SwitchInfo>
 
-case class SwitchInfo (override val id: String, override val alias: String, override val description: String, override val name: String) extends PowerSystemResource (id, alias, description, name)
+case class SwitchInfo (override val id: String, override val alias: String, override val description: String, override val name: String) extends NamedElement (id, alias, description, name)
 
 object SwitchInfo extends Parser
 {
@@ -826,24 +818,18 @@ object SwitchInfo extends Parser
     }
 }
 
-abstract class SwitchElement (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val voltage: String, val normalOpen: Boolean, val typ: String, val current: String) extends LocatedElement (id, alias, description, name, location, container)
+abstract class SwitchElement (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val typ: String, override val container: String, val voltage: String, val normalOpen: Boolean, val current: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object SwitchElement extends Parser
 {
-    val aliex = Pattern.compile ("""<cim:IdentifiedObject.aliasName>([\s\S]*?)<\/cim:IdentifiedObject.aliasName>""")
-    val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>""")
     val voltex = Pattern.compile ("""<cim:BaseVoltage.nominalVoltage>([\s\S]*?)<\/cim:BaseVoltage.nominalVoltage>""")
     val opnex = Pattern.compile ("""<cim:Switch.normalOpen>([\s\S]*?)<\/cim:Switch.normalOpen>""")
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val ampsex = Pattern.compile ("""<cim:Switch.ratedCurrent>([\s\S]*?)<\/cim:Switch.ratedCurrent>""")
 
     override def steps () = Array (
         LocatedElement.parse,
-        Element.parse_element (aliex, 1, "alias", false)_,
-        Element.parse_element (desex, 1, "description", false)_,
         Element.parse_attribute (voltex, 1, "voltage", false)_,
         Element.parse_element (opnex, 1, "normalOpen", false)_,
-        Element.parse_attribute (typex, 2, "type", false)_,
         Element.parse_attribute (ampsex, 1, "current", false)_)
 }
 
@@ -866,7 +852,7 @@ object SwitchElement extends Parser
 //                <cim:Equipment.EquipmentContainer rdf:resource="#ABG2236|ABG7246|APP197|FLE111|FLE112|FLE114|FLE115|FLE116|FLE117|FLE118|FLE119|FLT13|FLU20|FLU21|FLU22|FLU23|HAS332|HAS333|HAS334|HAS335|KLE572|KLE573|KLE574|KLE575|KLE576|MUF2681|MUF2682|PIN1|PIN2"/>
 //        </cim:Switch>
 
-case class Switch (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val typ: String, override val current: String) extends SwitchElement (id, alias, description, name, location, container, voltage, normalOpen, typ, current)
+case class Switch (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val current: String) extends SwitchElement (id, alias, description, name, typ, location, container, voltage, normalOpen, current)
 
 object Switch extends Parser
 {
@@ -877,16 +863,6 @@ object Switch extends Parser
         parse (xml, result)
         try
         {
-            val alias = result.properties.get ("alias") match
-            {
-                case Some (value) ⇒ value
-                case None ⇒ ""
-            }
-            val description = result.properties.get ("description") match
-            {
-                case Some (value) ⇒ value
-                case None ⇒ ""
-            }
             val voltage = result.properties.get ("voltage") match
             {
                 case Some (value) ⇒ value
@@ -897,17 +873,12 @@ object Switch extends Parser
                 case Some (value) ⇒ value.toBoolean
                 case None ⇒ false
             }
-            val typ = result.properties.get ("type") match
-            {
-                case Some (value) ⇒ value
-                case None ⇒ ""
-            }
             val current = result.properties.get ("current") match
             {
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = Switch (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), voltage, open, typ, current)
+            val ret = Switch (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), voltage, open, current)
             return (ret)
         }
         catch
@@ -921,18 +892,19 @@ object Switch extends Parser
 //                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA</cim:IdentifiedObject.name>
 //                <cim:PowerTransformerInfo.TransformerTankInfo rdf:resource="#_power_xfrmr_spec_2083545"/>
 //        </cim:PowerTransformerInfo>
-case class PowerTransformerInfo (override val id: String, override val alias: String, override val description: String, override val name: String, val info: String) extends PowerSystemResource (id, alias, description, name)
+case class PowerTransformerInfo (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val info: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object PowerTransformerInfo extends Parser
 {
     val infex = Pattern.compile ("""<cim:PowerTransformerInfo.TransformerTankInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
-    def inf = Element.parse_attribute (infex, 2, "info", true)_
-    override def steps () = Array (NamedElement.parse, inf)
+    override def steps () = Array (
+        PowerSystemResource.parse,
+        Element.parse_attribute (infex, 2, "info", true)_)
     def unpickle (xml: String, result: Result): PowerTransformerInfo =
     {
         parse (xml, result)
-        val ret = PowerTransformerInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("info"))
+        val ret = PowerTransformerInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("info"))
         return (ret)
     }
 }
@@ -942,7 +914,7 @@ object PowerTransformerInfo extends Parser
 //                <cim:TransformerTankInfo.PowerTransformerInfo rdf:resource="#_power_transformer_2083545"/>
 //        </cim:TransformerTankInfo>
 
-case class TransformerTankInfo (override val id: String, override val alias: String, override val description: String, override val name: String, val info: String) extends PowerSystemResource (id, alias, description, name)
+case class TransformerTankInfo (override val id: String, override val alias: String, override val description: String, override val name: String,  override val typ: String, val info: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object TransformerTankInfo extends Parser
 {
@@ -953,7 +925,7 @@ object TransformerTankInfo extends Parser
     def unpickle (xml: String, result: Result): TransformerTankInfo =
     {
         parse (xml, result)
-        val ret = TransformerTankInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("info"))
+        val ret = TransformerTankInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("info"))
         return (ret)
     }
 }
@@ -962,14 +934,15 @@ object TransformerTankInfo extends Parser
 //                <cim:IdentifiedObject.name>Rauscher + Stöckli 100 kVA_tei_1</cim:IdentifiedObject.name>
 //                <cim:TransformerEndInfo.endNumber>1</cim:TransformerEndInfo.endNumber>
 //        </cim:TransformerEndInfo>
-case class TransformerEndInfo (override val id: String, override val alias: String, override val description: String, override val name: String, val end: Integer) extends PowerSystemResource (id, alias, description, name)
+case class TransformerEndInfo (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val end: Integer) extends PowerSystemResource (id, alias, description, name, typ)
 
 object TransformerEndInfo extends Parser
 {
     val numex = Pattern.compile ("""<cim:TransformerEndInfo.endNumber>([\s\S]*?)<\/cim:TransformerEndInfo.endNumber>""")
 
-    def end = Element.parse_element (numex, 1, "end", true)_
-    override def steps () = Array (NamedElement.parse, end)
+    override def steps () = Array (
+        PowerSystemResource.parse,
+        Element.parse_element (numex, 1, "end", true)_)
     def unpickle (xml: String, result: Result): TransformerEndInfo =
     {
         parse (xml, result)
@@ -977,7 +950,7 @@ object TransformerEndInfo extends Parser
         try
         {
             val num = end.toInt
-            val ret = TransformerEndInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), num)
+            val ret = TransformerEndInfo (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), num)
             return (ret)
         }
         catch
@@ -994,18 +967,16 @@ object TransformerEndInfo extends Parser
 //                <cim:Equipment.EquipmentContainer rdf:resource="#_substation_244441"/>
 //        </cim:PowerTransformer>
 
-case class PowerTransformer (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String) extends LocatedElement (id, alias, description, name, location, container)
+case class PowerTransformer (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String) extends LocatedElement (id, alias, description, name, location, container, typ)
 
 object PowerTransformer extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
-    def typ = Element.parse_attribute (typex, 2, "type", true)_
-    override def steps () = Array (LocatedElement.parse, typ)
+    override def steps () = Array (
+        LocatedElement.parse)
     def unpickle (xml: String, result: Result): PowerTransformer =
     {
         parse (xml, result)
-        val ret = PowerTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), result.properties ("type"))
+        val ret = PowerTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
         return (ret)
     }
 }
@@ -1014,7 +985,7 @@ object PowerTransformer extends Parser
 //                <cim:IdentifiedObject.name>TRA79_tank</cim:IdentifiedObject.name>
 //                <cim:TransformerTank.PowerTransformer rdf:resource="#_transformer_2083545"/>
 //        </cim:TransformerTank>
-case class TransformerTank (override val id: String, override val alias: String, override val description: String, override val name: String, val transformer: String) extends PowerSystemResource (id, alias, description, name)
+case class TransformerTank (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val transformer: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object TransformerTank extends Parser
 {
@@ -1025,7 +996,7 @@ object TransformerTank extends Parser
     def unpickle (xml: String, result: Result): TransformerTank =
     {
         parse (xml, result)
-        val ret = TransformerTank (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("transformer"))
+        val ret = TransformerTank (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("transformer"))
         return (ret)
     }
 }
@@ -1038,7 +1009,7 @@ object TransformerTank extends Parser
 //                <cim:TransformerEnd.Terminal rdf:resource="#_transformer_2083545_terminal_1"/>
 //                <cim:TransformerEnd.BaseVoltage rdf:resource="#BaseVoltage_16.0000000000"/>
 //        </cim:TransformerTankEnd>
-case class TransformerTankEnd (override val id: String, override val alias: String, override val description: String, override val name: String, val end: Integer, val phases: String, val tank: String, val terminal: String, val voltage: String) extends PowerSystemResource (id, alias, description, name)
+case class TransformerTankEnd (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val end: Integer, val phases: String, val tank: String, val terminal: String, val voltage: String) extends PowerSystemResource (id, alias, description, name, typ)
 
 object TransformerTankEnd extends Parser
 {
@@ -1048,12 +1019,13 @@ object TransformerTankEnd extends Parser
     val trmex = Pattern.compile ("""<cim:TransformerEnd.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val volex = Pattern.compile ("""<cim:TransformerEnd.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
 
-    def end = Element.parse_element (endex, 1, "end", true)_
-    def faz = Element.parse_attribute (fazex, 2, "phases", true)_
-    def tnk = Element.parse_attribute (tnkex, 2, "tank", true)_
-    def trm = Element.parse_attribute (trmex, 2, "terminal", true)_
-    def vol = Element.parse_attribute (volex, 2, "voltage", true)_
-    override def steps () = Array (NamedElement.parse, end, faz, tnk, trm, vol)
+    override def steps () = Array (
+        PowerSystemResource.parse,
+        Element.parse_element (endex, 1, "end", true)_,
+        Element.parse_attribute (fazex, 2, "phases", true)_,
+        Element.parse_attribute (tnkex, 2, "tank", true)_,
+        Element.parse_attribute (trmex, 2, "terminal", true)_,
+        Element.parse_attribute (volex, 2, "voltage", true)_)
     def unpickle (xml: String, result: Result): TransformerTankEnd =
     {
         parse (xml, result)
@@ -1061,7 +1033,7 @@ object TransformerTankEnd extends Parser
         try
         {
             val num = end.toInt
-            val ret = TransformerTankEnd (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), num, result.properties ("phases"), result.properties ("tank"), result.properties ("terminal"), result.properties ("voltage"))
+            val ret = TransformerTankEnd (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), num, result.properties ("phases"), result.properties ("tank"), result.properties ("terminal"), result.properties ("voltage"))
             return (ret)
         }
         catch
@@ -1082,7 +1054,7 @@ object TransformerTankEnd extends Parser
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="#STA1"/>
 //        </cim:Fuse>
-case class Fuse (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val typ: String, override val current: String) extends SwitchElement (id, alias, description, name, location, container, voltage, normalOpen, typ, current)
+case class Fuse (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val current: String) extends SwitchElement (id, alias, description, name, typ, location, container, voltage, normalOpen, current)
 
 object Fuse extends Parser
 {
@@ -1113,7 +1085,7 @@ object Fuse extends Parser
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = Fuse (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), voltage, open, typ, current)
+            val ret = Fuse (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), voltage, open, current)
             return (ret)
         }
         catch
@@ -1133,7 +1105,7 @@ object Fuse extends Parser
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="#STA1"/>
 //        </cim:Disconnector>
-case class Disconnector (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val typ: String, override val current: String) extends SwitchElement (id, alias, description, name, location, container, voltage, normalOpen, typ, current)
+case class Disconnector (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val current: String) extends SwitchElement (id, alias, description, name, typ, location, container, voltage, normalOpen, current)
 
 object Disconnector extends Parser
 {
@@ -1164,7 +1136,7 @@ object Disconnector extends Parser
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = Disconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"),  voltage, open, typ, current)
+            val ret = Disconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"),  voltage, open, current)
             return (ret)
         }
         catch
@@ -1182,7 +1154,7 @@ object Disconnector extends Parser
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="#STA1"/>
 //        </cim:GroundDisconnector>
-case class GroundDisconnector (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val typ: String, override val current: String) extends SwitchElement (id, alias, description, name, location, container, voltage, normalOpen, typ, current)
+case class GroundDisconnector (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val current: String) extends SwitchElement (id, alias, description, name, typ, location, container, voltage, normalOpen, current)
 
 object GroundDisconnector extends Parser
 {
@@ -1193,16 +1165,6 @@ object GroundDisconnector extends Parser
         parse (xml, result)
         try
         {
-            val alias = result.properties.get ("alias") match
-            {
-                case Some (value) ⇒ value
-                case None ⇒ ""
-            }
-            val description = result.properties.get ("description") match
-            {
-                case Some (value) ⇒ value
-                case None ⇒ ""
-            }
             val voltage = result.properties.get ("voltage") match
             {
                 case Some (value) ⇒ value
@@ -1213,17 +1175,12 @@ object GroundDisconnector extends Parser
                 case Some (value) ⇒ value.toBoolean
                 case None ⇒ false
             }
-            val typ = result.properties.get ("type") match
-            {
-                case Some (value) ⇒ value
-                case None ⇒ ""
-            }
             val current = result.properties.get ("current") match
             {
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = GroundDisconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), voltage, open, typ, current)
+            val ret = GroundDisconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), voltage, open, current)
             return (ret)
         }
         catch
@@ -1241,24 +1198,16 @@ object GroundDisconnector extends Parser
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="#SRE1"/>
 //        </cim:ProtectionEquipment>^M
-case class ProtectionEquipment (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String) extends LocatedElement (id, alias, description, name, location, container)
+case class ProtectionEquipment (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object ProtectionEquipment extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
     override def steps () = Array (
-        LocatedElement.parse,
-        Element.parse_attribute (typex, 2, "type", false)_)
+        LocatedElement.parse)
     def unpickle (xml: String, result: Result): ProtectionEquipment =
     {
         parse (xml, result)
-        val typ = result.properties.get ("type") match
-        {
-            case Some (value) ⇒ value
-            case None ⇒ ""
-        }
-        val ret = ProtectionEquipment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), typ)
+        val ret = ProtectionEquipment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
         return (ret)
     }
 }
@@ -1271,24 +1220,16 @@ object ProtectionEquipment extends Parser
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="#STA1"/>
 //        </cim:CurrentTransformer>^M
-case class CurrentTransformer (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String) extends LocatedElement (id, alias, description, name, location, container)
+case class CurrentTransformer (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object CurrentTransformer extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
     override def steps () = Array (
-        LocatedElement.parse,
-        Element.parse_attribute (typex, 2, "type", false)_)
+        LocatedElement.parse)
     def unpickle (xml: String, result: Result): CurrentTransformer =
     {
         parse (xml, result)
-        val typ = result.properties.get ("type") match
-        {
-            case Some (value) ⇒ value
-            case None ⇒ ""
-        }
-        val ret = CurrentTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), typ)
+        val ret = CurrentTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
         return (ret)
     }
 }
@@ -1301,24 +1242,16 @@ object CurrentTransformer extends Parser
 //                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Substation"/>
 //                <cim:Equipment.EquipmentContainer rdf:resource="#PRE1"/>
 //        </cim:CurrentRelay>
-case class CurrentRelay (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String) extends LocatedElement (id, alias, description, name, location, container)
+case class CurrentRelay (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object CurrentRelay extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
     override def steps () = Array (
-        LocatedElement.parse,
-        Element.parse_attribute (typex, 2, "type", false)_)
+        LocatedElement.parse)
     def unpickle (xml: String, result: Result): CurrentRelay =
     {
         parse (xml, result)
-        val typ = result.properties.get ("type") match
-        {
-            case Some (value) ⇒ value
-            case None ⇒ ""
-        }
-        val ret = CurrentRelay (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), typ)
+        val ret = CurrentRelay (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
         return (ret)
     }
 }
@@ -1329,19 +1262,16 @@ object CurrentRelay extends Parser
 //         <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
 //         <cim:Equipment.EquipmentContainer rdf:resource="#EEA11|MST11|VER19669"/>
 // </cim:ServiceLocation>
-case class ServiceLocation (override val id: String, override val alias: String, override val description: String, override val name: String, override val location: String, override val container: String, val typ: String) extends LocatedElement (id, alias, description, name, location, container)
+case class ServiceLocation (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object ServiceLocation extends Parser
 {
-    val typex = Pattern.compile ("""<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-
-    def typ = Element.parse_attribute (typex, 2, "type", true)_
-    override def steps () = Array (LocatedElement.parse, typ)
+    override def steps () = Array (LocatedElement.parse)
     def unpickle (xml: String, result: Result): ServiceLocation =
     {
         parse (xml, result)
 
-        val ret = ServiceLocation (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("location"), result.properties ("container"), result.properties ("type"))
+        val ret = ServiceLocation (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
         return (ret)
     }
 }
@@ -1424,7 +1354,7 @@ object NameType extends Parser
 //                <cim:Name.NameType rdf:resource="#sap"/>
 //        </cim:Name>
 
-case class Name (override val id: String, override val alias: String, override val description: String, override val name: String, val obj: String, val typ: String) extends NamedElement (id, alias, description, name)
+case class Name (override val id: String, override val alias: String, override val description: String, override val name: String, val object_name: String, val obj: String, val typ: String) extends NamedElement (id, alias, description, name)
 
 object Name extends Parser
 {
@@ -1433,7 +1363,8 @@ object Name extends Parser
     val typex = Pattern.compile ("""<cim:Name.NameType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
         NamedElement.parse,
-        Element.parse_attribute (objex, 1, "object", true)_,
+        Element.parse_attribute (namex, 1, "object_name", true)_,
+        Element.parse_attribute (objex, 2, "object", true)_,
         Element.parse_attribute (typex, 2, "type", false)_)
     def unpickle (xml: String, result: Result): Name =
     {
@@ -1443,7 +1374,7 @@ object Name extends Parser
             case Some (value) ⇒ value
             case None ⇒ ""
         }
-        return (Name (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("object"), typ))
+        return (Name (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("object_name"), result.properties ("object"), typ))
     }
 }
 class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
