@@ -284,7 +284,7 @@ object LocatedElement extends Parser
     override def steps () = Array (
         PowerSystemResource.parse,
         Element.parse_element (locex, 1, "location", true)_,
-        Element.parse_attribute (conex, 2, "container", true)_
+        Element.parse_attribute (conex, 2, "container", false)_
     )
 }
 
@@ -401,7 +401,7 @@ object ConnectivityNode extends Parser
     def unpickle (xml: String, result: Result): ConnectivityNode =
     {
         parse (xml, result)
-        val ret = ConnectivityNode (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties ("container"))
+        val ret = ConnectivityNode (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("container", ""))
         return (ret)
     }
 }
@@ -488,13 +488,23 @@ case class PositionPoint (override val id: String, override val alias: String, o
 
 object PositionPoint extends Parser
 {
+    val idex = Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1""")
+    val aliex = Pattern.compile ("""<cim:IdentifiedObject.aliasName>([\s\S]*?)<\/cim:IdentifiedObject.aliasName>""")
+    val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>""")
+    val namex = Pattern.compile ("""<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>""")
     val locex = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
     val seqex = Pattern.compile ("""<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>""")
     val xposex = Pattern.compile ("""<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>""")
     val yposex = Pattern.compile ("""<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>""")
 
     override def steps () = Array (
-        NamedElement.parse,
+//        NamedElement.parse, - removed to make PositionPoint mRID optional
+        Element.parse,
+        Element.parse_attribute (idex, 2, "id", false)_,
+        Element.parse_element (aliex, 1, "name", false)_,
+        Element.parse_element (desex, 1, "name", false)_,
+        Element.parse_element (namex, 1, "name", false)_,
+
         Element.parse_attribute (locex, 1, "location", true)_,
         Element.parse_attribute (seqex, 1, "sequence", true)_,
         Element.parse_attribute (xposex, 1, "x", true)_,
@@ -506,7 +516,7 @@ object PositionPoint extends Parser
         try
         {
             val sequence = result.properties ("sequence").toInt
-            val key = location + "_seq_" + sequence
+            val key = if (result.properties.contains ("id")) result.properties ("id") else (location + "_seq_" + sequence)
             try
             {
                 val x = result.properties ("x").toDouble
@@ -576,7 +586,7 @@ object Consumer extends Parser
     def unpickle (xml: String, result: Result): Consumer =
     {
         parse (xml, result)
-        val ret = Consumer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"), result.properties ("phase"))
+        val ret = Consumer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), result.properties ("voltage"), result.properties ("phase"))
         return (ret)
     }
 }
@@ -663,7 +673,7 @@ object BusbarSection extends Parser
     def unpickle (xml: String, result: Result): BusbarSection =
     {
         parse (xml, result)
-        BusbarSection (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"))
+        BusbarSection (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), result.properties ("voltage"))
     }
 }
 
@@ -692,7 +702,7 @@ object Connector extends Parser
     def unpickle (xml: String, result: Result): Connector =
     {
         parse (xml, result)
-        Connector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"), result.properties ("aggregate"), result.properties ("inservice"))
+        Connector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), result.properties ("voltage"), result.properties ("aggregate"), result.properties ("inservice"))
     }
 }
 
@@ -716,7 +726,7 @@ object Junction extends Parser
     def unpickle (xml: String, result: Result): Junction =
     {
         parse (xml, result)
-        Junction (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), result.properties ("voltage"))
+        Junction (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), result.properties ("voltage"))
     }
 }
 
@@ -770,7 +780,7 @@ object ACLineSegment extends Parser
             case Some (value) ⇒ value
             case None ⇒ "0"
         }
-        val ret = ACLineSegment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), length, volts)
+        val ret = ACLineSegment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), length, volts)
         return (ret)
     }
 }
@@ -878,7 +888,7 @@ object Switch extends Parser
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = Switch (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), voltage, open, current)
+            val ret = Switch (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), voltage, open, current)
             return (ret)
         }
         catch
@@ -976,7 +986,7 @@ object PowerTransformer extends Parser
     def unpickle (xml: String, result: Result): PowerTransformer =
     {
         parse (xml, result)
-        val ret = PowerTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
+        val ret = PowerTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
         return (ret)
     }
 }
@@ -1085,7 +1095,7 @@ object Fuse extends Parser
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = Fuse (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), voltage, open, current)
+            val ret = Fuse (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), voltage, open, current)
             return (ret)
         }
         catch
@@ -1136,7 +1146,7 @@ object Disconnector extends Parser
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = Disconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"),  voltage, open, current)
+            val ret = Disconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""),  voltage, open, current)
             return (ret)
         }
         catch
@@ -1180,7 +1190,7 @@ object GroundDisconnector extends Parser
                 case Some (value) ⇒ value
                 case None ⇒ ""
             }
-            val ret = GroundDisconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"), voltage, open, current)
+            val ret = GroundDisconnector (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), voltage, open, current)
             return (ret)
         }
         catch
@@ -1207,7 +1217,7 @@ object ProtectionEquipment extends Parser
     def unpickle (xml: String, result: Result): ProtectionEquipment =
     {
         parse (xml, result)
-        val ret = ProtectionEquipment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
+        val ret = ProtectionEquipment (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
         return (ret)
     }
 }
@@ -1229,7 +1239,7 @@ object CurrentTransformer extends Parser
     def unpickle (xml: String, result: Result): CurrentTransformer =
     {
         parse (xml, result)
-        val ret = CurrentTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
+        val ret = CurrentTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
         return (ret)
     }
 }
@@ -1251,7 +1261,7 @@ object CurrentRelay extends Parser
     def unpickle (xml: String, result: Result): CurrentRelay =
     {
         parse (xml, result)
-        val ret = CurrentRelay (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
+        val ret = CurrentRelay (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
         return (ret)
     }
 }
@@ -1271,7 +1281,7 @@ object ServiceLocation extends Parser
     {
         parse (xml, result)
 
-        val ret = ServiceLocation (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties ("container"))
+        val ret = ServiceLocation (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
         return (ret)
     }
 }
