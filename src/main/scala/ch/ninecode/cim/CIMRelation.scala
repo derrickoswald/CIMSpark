@@ -16,27 +16,29 @@
 
 package ch.ninecode.cim
 
-import scala.collection.Iterator
-import scala.collection.JavaConversions._
-import com.google.common.base.Objects
-import org.apache.hadoop.fs.{FileStatus, FileSystem, Path}
+import java.util.Objects
+
+import scala.reflect.runtime.universe
+
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.FileStatus
 import org.apache.hadoop.mapreduce.Job
 import org.apache.spark.Logging
-import org.apache.spark.rdd.{RDD, UnionRDD}
-import org.apache.spark.sql.sources._
-import org.apache.spark.sql.types._
-import org.apache.spark.sql.{Row, SQLContext}
-import org.apache.hadoop.conf.Configuration
-import ch.ninecode.CIMInputFormat
-import ch.ninecode.Element
-import ch.ninecode.ACLineSegment
-import ch.ninecode.Terminal
-import ch.ninecode.ConnectivityNode
+import org.apache.spark.annotation.DeveloperApi
+import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import scala.Stream
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.sources.HadoopFsRelation
+import org.apache.spark.sql.sources.OutputWriterFactory
+import org.apache.spark.sql.types.StringType
+import org.apache.spark.sql.types.StructField
+import org.apache.spark.sql.types.StructType
+
+import ch.ninecode._
 
 case class Pair (id_equ: String, var left: Terminal = null, var right: Terminal = null)
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Float)
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double)
 
 class CIMRelation(
     override val paths: Array[String],
@@ -236,7 +238,7 @@ class CIMRelation(
                     j match
                     {
                         case (s: String, (e:Edge, Some (ac:ACLineSegment)))
-                            => Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, ac.len.toFloat) // ToDo: avoid reallocation here
+                            => Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, ac.len.toDouble) // ToDo: avoid reallocation here
                         case (s: String, (e:Edge, None))
                             => e
                     }
@@ -417,7 +419,7 @@ class CIMRelation(
   /**
    * Generates a unique has of this relation based off of its paths, schema, and partition
    */
-  override def hashCode(): Int = Objects.hashCode(paths.toSet, dataSchema, schema, partitionColumns)
+  override def hashCode(): Int = Objects.hash(paths.toSet, dataSchema, schema, partitionColumns)
 
 //  /**
 //   * Opens up the location to for reading. Takes in a function to run on the schema and returns the

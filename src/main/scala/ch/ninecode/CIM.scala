@@ -1504,8 +1504,7 @@ object CIM
 //    need scala-xml_2.11-1.0.6-SNAPSHOT.jar on the classpath)
 //    need 3GB of memory in the spark shell (otherwise you slay the compiler)
 // import scala.xml.XML
-// val xml = XML.loadFile ("/opt/data/dump_all.xml")
-// (takes about 30 seconds)
+// val xml = XML.loadFile ("/opt/data/dump_all.xml") // (takes about 30 seconds)
 // var myrdd = sc.parallelize (xml match { case <rdf:RDF>{ xs @ _* }</rdf:RDF> ⇒ xs })
 // ---- this generates an rdd of scala.xml.Node, which isn't so useful because it's still not understood:
 // myrdd.takeSample (false, 1)(0).toString ()
