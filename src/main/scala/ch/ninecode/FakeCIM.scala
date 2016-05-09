@@ -33,7 +33,7 @@ object FakeCIM
         var rand = new Random ()
         consumers map
         {
-            case (_id, Consumer (id, name, location, container, typ, voltage, phase)) =>
+            case (_id, Consumer (id, alias, description, name, location, container, typ, voltage, phase)) =>
                 val number = rand.nextInt (Int.MaxValue)
                 val ao = "_ao_" + { number }
                 val service =
