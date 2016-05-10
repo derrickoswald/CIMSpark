@@ -1,6 +1,15 @@
 # record the load time
 pre = proc.time ()
 
+# assumes the file is on hdfs:
+# bash-4.1# hdfs dfs -mkdir /data/
+# bash-4.1# hdfs dfs -put /opt/data/dump_ews.xml /data/
+
+# assumes the user is created:
+# bash-4.1# groupadd supergroup
+# bash-4.1# useradd derrick
+# bash-4.1# usermod --append --groups supergroup derrick
+
 # set up the Spark system
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark-1.6.0-bin-hadoop2.6/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark-1.6.0-bin-hadoop2.6")
@@ -9,7 +18,7 @@ sc = sparkR.init (sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-1.
 sqlContext = sparkRSQL.init (sc)
 
 # read the data file and make the edge graph
-elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/user/root/dump_ews.xml')")
+elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/dump_ews.xml')")
 head (sql (sqlContext, "select * from elements"))
 
 # get the transformers - to get their container
