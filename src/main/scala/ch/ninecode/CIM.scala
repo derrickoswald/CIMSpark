@@ -29,7 +29,7 @@ trait Parser
 abstract class Element (val key: String) extends Serializable with Row
 {
     def copy (): org.apache.spark.sql.Row = new IdentifiedElement (key)
-    def get (i: Int): Any =
+    override def get (i: Int): Any =
     {
         if (0 != i)
             throw new IllegalArgumentException ("only one property")
