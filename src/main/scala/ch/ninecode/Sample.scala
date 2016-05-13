@@ -222,12 +222,12 @@ object Sample
             val begin = System.nanoTime ()
             // create the configuration
             val configuration = new SparkConf ()
-            configuration.setAppName ("Simple")
-            configuration.setMaster ("local[2]")
+            configuration.setAppName ("CIMScala GraphX Sample")
+            configuration.setMaster ("yarn-client")
             // make a Spark context and SQL context
             val context = new SparkContext (configuration)
             val sqlContext = new SQLContext (context)
-            context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+            context.setLogLevel ("INFO") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
             try
             {
                 val start = System.nanoTime ()
@@ -236,7 +236,7 @@ object Sample
                 var options = HashMap[String, String] ("path" -> filename)
                 val elements = sqlContext.read.format ("ch.ninecode.cim").options (options)
                 var rdd = elements.load ()
-                rdd.head ()
+                var first = rdd.head ()
                 val ready = System.nanoTime ()
                 println ("Setup time: " + ((ready - start) / 1e9) + "s")
                 // compute the graph of distances from busbars
