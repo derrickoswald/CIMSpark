@@ -62,9 +62,9 @@ object CIMRDD extends Logging
 
     def main (args:Array[String])
     {
-        val conf = new SparkConf ().setAppName ("CIMScala")
-//        val master = if (args.size > 0) args (0) else "local"
-//        conf.setMaster (master)
+        val conf = new SparkConf ()
+        conf.setAppName ("CIMScala JDBC Server")
+        conf.setMaster ("yarn-client")
         val spark = new SparkContext (conf)
 
         try
@@ -75,7 +75,15 @@ object CIMRDD extends Logging
                 val sql_context = new HiveContext (spark)
                 logInfo ("context established")
 
-                // start the thrift JDBC server on port 10000
+                // set the port if it was specified, otherwise use the default of port 10000
+                if (args.size > 1)
+                {
+                    val port = args(1)
+                    // ToDo: check it's a number
+                    sql_context.setConf("hive.server2.thrift.port", port)
+                }
+
+                // start the thrift JDBC server
                 HiveThriftServer2.startWithContext (sql_context)
                 logInfo ("thriftserver started")
 
