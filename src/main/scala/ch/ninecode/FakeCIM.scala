@@ -25,15 +25,15 @@ object FakeCIM
 
         val parser = new CIM (xml)
         val map = parser.parse ()
-        val pf: PartialFunction[(String, Element), (String, Consumer)] =
+        val pf: PartialFunction[(String, Element), (String, EnergyConsumer)] =
         {
-            case x: (String, Any) if x._2.getClass () == classOf[Consumer] => (x._1, x._2.asInstanceOf[Consumer])
+            case x: (String, Any) if x._2.getClass () == classOf[EnergyConsumer] => (x._1, x._2.asInstanceOf[EnergyConsumer])
         }
         val consumers = map collect pf
         var rand = new Random ()
         consumers map
         {
-            case (_id, Consumer (id, alias, description, name, location, container, typ, voltage, phase)) =>
+            case (_id, EnergyConsumer (id, alias, description, name, location, container, typ, voltage, phase)) =>
                 val number = rand.nextInt (Int.MaxValue)
                 val ao = "_ao_" + { number }
                 val service =
