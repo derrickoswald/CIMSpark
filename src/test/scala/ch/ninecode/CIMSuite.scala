@@ -39,7 +39,7 @@ class CIMSuite extends FunSuite
             </rdf:RDF>;
         val parser = new CIM (xml.toString ())
         val map = parser.parse ()
-        val voltage = map.apply ("BaseVoltage_0.400000000000").asInstanceOf[Voltage]
+        val voltage = map.apply ("BaseVoltage_0.400000000000").asInstanceOf[BaseVoltage]
         assert (voltage.voltage === 400)
     }
 
