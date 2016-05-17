@@ -102,8 +102,8 @@ trait Parser
  */
 class Element
 (
-    val id: String,
-    val sup: Element = null
+    val sup: Element = null,
+    val id: String = null
 )
 extends
     Row
@@ -112,12 +112,11 @@ with
 with
     Cloneable
 {
-    def copy (): Row = { return (this.clone ().asInstanceOf[Row]); }
+    def key: String = { if (null == sup) id else sup.key }
+    def copy (): Row = { return (this.clone ().asInstanceOf[Element]); }
     override def get (i: Int): Any =
     {
         if (0 == i)
-            id
-        else if (1 == i)
             sup
         else
             throw new IllegalArgumentException ("invalid property index " + i)
@@ -129,15 +128,20 @@ object Element
 extends
     Parser
 {
-    val id = (Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1"""), 2)
-
     /**
      * Parse an element.
      * Simply extracts the id
      */
+    val mRID = parse_element ((Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1"""), 2))_
     override def parse (context: Context): Element =
     {
-        return (new Element (parse_element (id)(context)))
+        return (
+            new Element
+            (
+                null,
+                mRID (context)
+            )
+        )
     }
 
 }
@@ -147,7 +151,6 @@ extends
  * Default parsed element, when no other more specific class applies
  */
 case class Unknown (
-    override val id: String,
     override val sup: Element,
     guts: String,
     line: Int,
@@ -155,7 +158,7 @@ case class Unknown (
     end: Long
 )
 extends
-    Element (id, null)
+    Element (sup)
 {
     override def copy (): Row = { return (this.clone ().asInstanceOf[Unknown]); }
     override def get (i: Int): Any =
@@ -175,7 +178,16 @@ extends
     def parse (context: Context): Unknown =
     {
         val element = Element.parse (context)
-        return (Unknown (element.id, element.sup, context.xml, context.line_number (), context.start, context.end))
+        return (
+            Unknown
+            (
+                element,
+                context.xml,
+                context.line_number (),
+                context.start,
+                context.end
+            )
+        )
     }
 }
 
@@ -184,16 +196,16 @@ extends
  */
 case class IdentifiedObject
 (
-    override val id: String,
-    override val sup: Element = null,
+    override val sup: Element,
     val aliasName: String,
     val description: String,
     val mRID: String,
     val name: String
 )
 extends
-    Element (id, null)
+    Element (sup)
 {
+    override def key: String = { if (null == sup) mRID else sup.key }
     override def copy (): Row = { return (this.clone ().asInstanceOf[IdentifiedObject]); }
     override def get (i: Int): Any =
     {
@@ -218,7 +230,6 @@ extends
         val element = Element.parse (context)
         return (
             IdentifiedObject (
-                element.id,
                 element,
                 aliasName (context),
                 description (context),
@@ -231,11 +242,10 @@ extends
 
 case class PSRType
 (
-    override val id: String,
     override val sup: Element
 )
 extends
-    Element (id, sup)
+    Element (sup)
 {
     override def copy (): Row = { return (this.clone ().asInstanceOf[PSRType]); }
     override def get (i: Int): Any =
@@ -254,24 +264,60 @@ extends
 {
     def parse (context: Context): PSRType =
     {
-        val element = IdentifiedObject.parse (context)
         return (
-            PSRType (
-                element.id,
-                element
-                ))
+            PSRType
+            (
+                IdentifiedObject.parse (context)
+            )
+        )
+    }
+}
+
+case class CoordinateSystem
+(
+    override val sup: Element,
+    val crsUrn: String
+)
+extends
+    Element (sup)
+{
+    override def copy (): Row = { return (this.clone ().asInstanceOf[CoordinateSystem]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object CoordinateSystem
+extends
+    Parser
+{
+    val crsUrn = parse_element (element ("""CoordinateSystem.crsUrn"""))_
+
+    def parse (context: Context): CoordinateSystem =
+    {
+        return (
+            CoordinateSystem
+            (
+                IdentifiedObject.parse (context),
+                crsUrn (context)
+            )
+        )
     }
 }
 
 case class ConnectivityNode
 (
-    override val id: String,
     override val sup: Element,
     val ConnectivityNodeContainer: String,
     val TopologicalNode: String
 )
 extends
-    Element (id, sup)
+    Element (sup)
 {
     override def copy (): Row = { return (this.clone ().asInstanceOf[ConnectivityNode]); }
     override def get (i: Int): Any =
@@ -293,27 +339,26 @@ extends
 
     def parse (context: Context): ConnectivityNode =
     {
-        val element = IdentifiedObject.parse (context)
         return (
-            ConnectivityNode (
-                element.id,
-                element,
+            ConnectivityNode
+            (
+                IdentifiedObject.parse (context),
                 ConnectivityNodeContainer (context),
                 TopologicalNode (context)
-                ))
+            )
+        )
     }
 }
 
 case class ACDCTerminal
 (
-    override val id: String,
     override val sup: Element,
     val connected: Boolean,
     val sequenceNumber: Integer,
     val BusNameMarker: String
 )
 extends
-    Element (id, sup)
+    Element (sup)
 {
     override def copy (): Row = { return (this.clone ().asInstanceOf[ACDCTerminal]); }
     override def get (i: Int): Any =
@@ -335,11 +380,10 @@ extends
     val BusNameMarker = parse_attribute (attribute ("""ACDCTerminal.BusNameMarker"""))_
     def parse (context: Context): ACDCTerminal =
     {
-        val element = IdentifiedObject.parse (context)
         return (
-            ACDCTerminal (
-                element.id,
-                element,
+            ACDCTerminal
+            (
+                IdentifiedObject.parse (context),
                 toBoolean (connected (context), context),
                 toInteger (sequenceNumber (context), context),
                 BusNameMarker (context)
@@ -350,7 +394,6 @@ extends
 
 case class Terminal
 (
-    override val id: String,
     override val sup: Element,
     val phases: String,
     val Bushing: String,
@@ -360,7 +403,7 @@ case class Terminal
     val TopologicalNode: String
 )
 extends
-    Element (id, sup)
+    Element (sup)
 {
     override def copy (): Row = { return (this.clone ().asInstanceOf[Terminal]); }
     override def get (i: Int): Any =
@@ -385,17 +428,161 @@ extends
     val TopologicalNode = parse_attribute (attribute ("""Terminal.TopologicalNode"""))_
     def parse (context: Context): Terminal =
     {
-        val element = ACDCTerminal.parse (context)
         return (
-            Terminal (
-                element.id,
-                element,
+            Terminal
+            (
+                ACDCTerminal.parse (context),
                 phases (context),
                 Bushing (context),
                 ConductingEquipment (context),
                 ConnectivityNode (context),
                 SvPowerFlow (context),
                 TopologicalNode (context)
+            )
+        )
+    }
+}
+
+case class PowerSystemResource
+(
+    override val sup: Element,
+    val AssetDataSheet: String,
+    val Location: String,
+    val PSRType: String
+)
+extends
+    Element (sup)
+{
+    override def copy (): Row = { return (this.clone ().asInstanceOf[PowerSystemResource]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object PowerSystemResource
+extends
+    Parser
+{
+    val AssetDataSheet = parse_attribute (attribute ("""PowerSystemResource.AssetDataSheet"""))_
+    val Location = parse_attribute (attribute ("""PowerSystemResource.Location"""))_
+    val PSRType = parse_attribute (attribute ("""PowerSystemResource.PSRType"""))_
+    // ToDo: other relations and containments
+    def parse (context: Context): PowerSystemResource =
+    {
+        return (
+            PowerSystemResource
+            (
+                IdentifiedObject.parse (context),
+                AssetDataSheet (context),
+                Location (context),
+                PSRType (context)
+            )
+        )
+    }
+}
+
+case class ConnectivityNodeContainer
+(
+    override val sup: Element
+)
+extends
+    Element (sup)
+{
+    override def copy (): Row = { return (this.clone ().asInstanceOf[ConnectivityNodeContainer]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object ConnectivityNodeContainer
+extends
+    Parser
+{
+    def parse (context: Context): ConnectivityNodeContainer =
+    {
+        return (
+            ConnectivityNodeContainer
+            (
+                PowerSystemResource.parse (context)
+            )
+        )
+    }
+}
+
+case class EquipmentContainer
+(
+    override val sup: Element
+)
+extends
+    Element (sup)
+{
+    override def copy (): Row = { return (this.clone ().asInstanceOf[EquipmentContainer]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object EquipmentContainer
+extends
+    Parser
+{
+    def parse (context: Context): EquipmentContainer =
+    {
+        return (
+            EquipmentContainer
+            (
+                ConnectivityNodeContainer.parse (context)
+            )
+        )
+    }
+}
+
+case class Line
+(
+    override val sup: Element,
+    val Region: String
+)
+extends
+    Element (sup)
+{
+    override def copy (): Row = { return (this.clone ().asInstanceOf[Line]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object Line
+extends
+    Parser
+{
+    val Region = parse_attribute (attribute ("""Line.Region"""))_
+    def parse (context: Context): Line =
+    {
+        return (
+            Line
+            (
+                ConnectivityNodeContainer.parse (context),
+                Region (context)
             )
         )
     }
@@ -438,9 +625,14 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                     {
                         case "cim:IdentifiedObject" ⇒ IdentifiedObject.parse (context)
                         case "cim:PSRType" ⇒ PSRType.parse (context)
+                        case "cim:CoordinateSystem" ⇒ CoordinateSystem.parse (context)
                         case "cim:ConnectivityNode" ⇒ ConnectivityNode.parse (context)
                         case "cim:ACDCTerminal" ⇒ ACDCTerminal.parse (context)
                         case "cim:Terminal" ⇒ Terminal.parse (context)
+                        case "cim:PowerSystemResource" ⇒ PowerSystemResource.parse (context)
+                        case "cim:ConnectivityNodeContainer" ⇒ ConnectivityNodeContainer.parse (context)
+                        case "cim:EquipmentContainer" ⇒ EquipmentContainer.parse (context)
+                        case "cim:Line" ⇒ Line.parse (context)
 
                         case _ ⇒ Unknown.parse (context)
                     }
@@ -454,7 +646,7 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                     context.end = matcher.end () + context.start
                     found = true
                 }
-        }
+            }
 
         return (ret)
     }
@@ -465,7 +657,7 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
 var count = 0
         while (parse_one () && (count < 100))
         {
-            ret.put (value.id, value)
+            ret.put (value.key, value)
             count += 1
         }
 

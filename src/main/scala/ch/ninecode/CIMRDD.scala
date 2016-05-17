@@ -101,6 +101,7 @@ object CIMRDD extends Logging
                 for (database <- databases)
                    logInfo (database.toString ())
 
+                logInfo ("create temporary table")
                 sql = "create temporary table elements using ch.ninecode.cim options (path '" + filename + "')"
                 val dataframe = sql_context.sql (sql)
                 val count = sql_context.sql ("select count(*) from elements")
