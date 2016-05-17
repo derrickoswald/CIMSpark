@@ -1602,7 +1602,7 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
     if (end == 0L)
         end = start + xml.length ()
     val matcher = CIM.rddex.matcher (xml)
-    val context = new Context (start, start, ArrayBuffer (0L))
+    val context = new Context (xml, start, start, ArrayBuffer (0L))
     context.index_string (xml, context.start)
     val result = new Result (context)
 

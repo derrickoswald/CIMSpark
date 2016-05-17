@@ -7,7 +7,7 @@ import scala.collection.mutable.ArrayBuffer
  * Context for error messages raised while parsing.
  *
  */
-class Context (var start: Long, var end: Long, val newlines: ArrayBuffer[Long])
+class Context (var xml: String, var start: Long, var end: Long, val newlines: ArrayBuffer[Long])
 {
     import Context._
 
