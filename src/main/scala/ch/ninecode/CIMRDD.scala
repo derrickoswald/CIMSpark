@@ -95,13 +95,14 @@ object CIMRDD extends Logging
                 }
 
                 // show databases
-                logInfo ("databases")
-                var sql = "show databases";
-                val databases = sql_context.sql (sql)
-                for (database <- databases)
-                   logInfo (database.toString ())
+//                logInfo ("databases")
+//                var sql = "show databases";
+//                val databases = sql_context.sql (sql)
+//                for (database <- databases)
+//                   logInfo (database.toString ())
 
-                sql = "create temporary table elements using ch.ninecode.cim options (path '" + filename + "')"
+                logInfo ("create temporary table")
+                var sql = "create temporary table elements using ch.ninecode.cim options (path '" + filename + "')"
                 val dataframe = sql_context.sql (sql)
                 val count = sql_context.sql ("select count(*) from elements")
                 println ("dataframe created with " + count.head().getLong(0) + " elements")
