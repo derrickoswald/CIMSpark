@@ -10,6 +10,10 @@ import scala.collection.mutable.ArrayBuffer
 class Context (var xml: String, var start: Long, var end: Long, val newlines: ArrayBuffer[Long])
 {
     import Context._
+    val DEBUG = true
+    val MAXERRORS = 10
+    val coverage = new ArrayBuffer[Pair[Int, Int]]
+    val errors = new ArrayBuffer[String]
 
     /**
      * Create an index of newline characters in a string.
@@ -58,6 +62,25 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
             index += 1
 
         return (index + 1)
+    }
+
+    def covered (): Boolean =
+    {
+        var ret: Boolean = true
+        var index: Int = 0
+        for (pair <- coverage.sorted)
+        {
+            val sub = xml.substring (index, pair._1).trim ()
+            if ("" != sub)
+            {
+                ret = false
+                if (errors.size < MAXERRORS)
+                    errors += "Unknown content \"" + sub + "\" at line " + line_number ()
+            }
+            index = pair._2
+        }
+
+        return (ret)
     }
 }
 
