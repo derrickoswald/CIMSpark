@@ -11,6 +11,12 @@ standard interchange format based on IEC standards 61968 & 61970
 and produces a Spark Resilient Distributed Dataset (RDD).
 The RDD is exposed as a Hive2 table using Thrift.
 
+#Architecture
+
+The architrecture follows the sample code from [Databricks](https://databricks.com/blog/2015/01/09/spark-sql-data-sources-api-unified-data-access-for-the-spark-platform.html).
+
+![CIMScala Architecture](https://rawgit.com/derrickoswald/CIMScala/master/img/Architecture.svg "High level architecture diagram")
+
 #Sample Usage
 
 Use sbt or maven to package the app (make a jar file):
