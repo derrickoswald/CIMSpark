@@ -27,6 +27,8 @@ extends
 
 object ACDCTerminal
 extends
+    Parseable[ACDCTerminal]
+with
     Parser
 {
     val connected = parse_attribute (attribute ("""ACDCTerminal.connected"""))_
@@ -67,6 +69,8 @@ extends
 
 object BaseVoltage
 extends
+    Parseable[BaseVoltage]
+with
     Parser
 {
     val nominalVoltage = parse_element (element ("""BaseVoltage.nominalVoltage"""))_
@@ -107,6 +111,8 @@ extends
 
 object Bay
 extends
+    Parseable[Bay]
+with
     Parser
 {
     val bayEnergyMeasFlag = parse_element (element ("""Bay.bayEnergyMeasFlag"""))_
@@ -152,6 +158,8 @@ extends
 
 object ConductingEquipment
 extends
+    Parseable[ConductingEquipment]
+with
     Parser
 {
     val BaseVoltage = parse_attribute (attribute ("""ConductingEquipment.BaseVoltage"""))_
@@ -195,6 +203,8 @@ extends
 
 object ConnectivityNode
 extends
+    Parseable[ConnectivityNode]
+with
     Parser
 {
     val ConnectivityNodeContainer = parse_attribute (attribute ("""ConnectivityNode.ConnectivityNodeContainer"""))_
@@ -233,6 +243,8 @@ extends
 
 object ConnectivityNodeContainer
 extends
+    Parseable[ConnectivityNodeContainer]
+with
     Parser
 {
     def parse (context: Context): ConnectivityNodeContainer =
@@ -269,6 +281,8 @@ extends
 
 object Equipment
 extends
+    Parseable[Equipment]
+with
     Parser
 {
     val aggregate = parse_element (element ("""Equipment.aggregate"""))_
@@ -308,6 +322,8 @@ extends
 
 object EquipmentContainer
 extends
+    Parseable[EquipmentContainer]
+with
     Parser
 {
     def parse (context: Context): EquipmentContainer =
@@ -329,7 +345,7 @@ case class IdentifiedObject
     override val sup: Element,
     val aliasName: String,
     val description: String,
-    val mRID: String,
+    override val mRID: String,
     val name: String
 )
 extends
@@ -349,6 +365,8 @@ extends
 
 object IdentifiedObject
 extends
+    Parseable[IdentifiedObject]
+with
     Parser
 {
     val aliasName = parse_element (element ("""IdentifiedObject.aliasName"""))_
@@ -363,7 +381,7 @@ extends
                 element,
                 aliasName (context),
                 description (context),
-                element.id,
+                element.mRID,
                 name (context)
             )
         )
@@ -393,6 +411,8 @@ extends
 
 object Name
 extends
+    Parseable[Name]
+with
     Parser
 {
     def parse (context: Context): Name =
@@ -434,6 +454,8 @@ extends
 
 object NameType
 extends
+    Parseable[NameType]
+with
     Parser
 {
     val description = parse_element (element ("""NameType.description"""))_
@@ -474,6 +496,8 @@ extends
 
 object NameTypeAuthority
 extends
+    Parseable[NameTypeAuthority]
+with
     Parser
 {
     val description = parse_element (element ("""NameTypeAuthority.description"""))_
@@ -511,6 +535,8 @@ extends
 
 object PSRType
 extends
+    Parseable[PSRType]
+with
     Parser
 {
     def parse (context: Context): PSRType =
@@ -547,6 +573,8 @@ extends
 
 object PowerSystemResource
 extends
+    Parseable[PowerSystemResource]
+with
     Parser
 {
     val AssetDataSheet = parse_attribute (attribute ("""PowerSystemResource.AssetDataSheet"""))_
@@ -587,6 +615,8 @@ extends
 
 object Substation
 extends
+    Parseable[Substation]
+with
     Parser
 {
     val Region = parse_attribute (attribute ("""Substation.Region"""))_
@@ -628,6 +658,8 @@ extends
 
 object Terminal
 extends
+    Parseable[Terminal]
+with
     Parser
 {
     val phases = parse_attribute (attribute ("""Terminal.phases"""))_
@@ -677,6 +709,8 @@ extends
 
 object VoltageLevel
 extends
+    Parseable[VoltageLevel]
+with
     Parser
 {
     val highVoltageLimit = parse_element (element ("""VoltageLevel.highVoltageLimit"""))_
@@ -698,3 +732,26 @@ extends
     }
 }
 
+object Core
+{
+    def register: Unit =
+    {
+        ACDCTerminal.register
+        BaseVoltage.register
+        Bay.register
+        ConductingEquipment.register
+        ConnectivityNode.register
+        ConnectivityNodeContainer.register
+        Equipment.register
+        EquipmentContainer.register
+        IdentifiedObject.register
+        Name.register
+        NameType.register
+        NameTypeAuthority.register
+        PSRType.register
+        PowerSystemResource.register
+        Substation.register
+        Terminal.register
+        VoltageLevel.register
+    }
+}

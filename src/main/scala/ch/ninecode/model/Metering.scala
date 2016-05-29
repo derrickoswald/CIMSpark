@@ -46,6 +46,8 @@ extends
 
 object UsagePoint
 extends
+    Parseable[UsagePoint]
+with
     Parser
 {
     //val amiBillingReady = parse_element (element ("""UsagePoint.amiBillingReady"""))_
@@ -126,6 +128,8 @@ extends
 
 object UsagePointLocation
 extends
+    Parseable[UsagePointLocation]
+with
     Parser
 {
     val accessMethod = parse_element (element ("""UsagePointLocation.accessMethod"""))_
@@ -142,5 +146,14 @@ extends
                 siteAccessProblem (context)
             )
         )
+    }
+}
+
+object Metering
+{
+    def register: Unit =
+    {
+        UsagePoint.register
+        UsagePointLocation.register
     }
 }

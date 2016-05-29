@@ -36,6 +36,8 @@ extends
 
 object ACLineSegment
 extends
+    Parseable[ACLineSegment]
+with
     Parser
 {
     val b0ch = parse_element (element ("""ACLineSegment.b0ch"""))_
@@ -95,6 +97,8 @@ extends
 
 object ACLineSegmentPhase
 extends
+    Parseable[ACLineSegmentPhase]
+with
     Parser
 {
     val phase = parse_attribute (attribute ("""ACLineSegmentPhase.phase"""))_
@@ -133,6 +137,8 @@ extends
 
 object BusbarSection
 extends
+    Parseable[BusbarSection]
+with
     Parser
 {
     val ipMax = parse_element (element ("""BusbarSection.ipMax"""))_
@@ -169,6 +175,8 @@ extends
 
 object Conductor
 extends
+    Parseable[Conductor]
+with
     Parser
 {
     val len = parse_element (element ("""Conductor.length"""))_
@@ -204,6 +212,8 @@ extends
 
 object Connector
 extends
+    Parseable[Connector]
+with
     Parser
 {
     def parse (context: Context): Connector =
@@ -237,6 +247,8 @@ extends
 
 object Disconnector
 extends
+    Parseable[Disconnector]
+with
     Parser
 {
     def parse (context: Context): Disconnector =
@@ -282,6 +294,8 @@ extends
 
 object EnergyConsumer
 extends
+    Parseable[EnergyConsumer]
+with
     Parser
 {
     val customerCount = parse_element (element ("""EnergyConsumer.customerCount"""))_
@@ -339,6 +353,8 @@ extends
 
 object Fuse
 extends
+    Parseable[Fuse]
+with
     Parser
 {
     def parse (context: Context): Fuse =
@@ -372,6 +388,8 @@ extends
 
 object GroundDisconnector
 extends
+    Parseable[GroundDisconnector]
+with
     Parser
 {
     def parse (context: Context): GroundDisconnector =
@@ -405,6 +423,8 @@ extends
 
 object Junction
 extends
+    Parseable[Junction]
+with
     Parser
 {
     def parse (context: Context): Junction =
@@ -439,6 +459,8 @@ extends
 
 object Line
 extends
+    Parseable[Line]
+with
     Parser
 {
     val Region = parse_attribute (attribute ("""Line.Region"""))_
@@ -481,6 +503,8 @@ extends
 
 object PowerTransformer
 extends
+    Parseable[PowerTransformer]
+with
     Parser
 {
     val beforeShCircuitHighestOperatingCurrent = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingCurrent"""))_
@@ -541,6 +565,8 @@ extends
 
 object PowerTransformerEnd
 extends
+    Parseable[PowerTransformerEnd]
+with
     Parser
 {
     val b0 = parse_element (element ("""PowerTransformerEnd.b0"""))_
@@ -611,6 +637,8 @@ extends
 
 object Switch
 extends
+    Parseable[Switch]
+with
     Parser
 {
     val normalOpen = parse_element (element ("""Switch.normalOpen"""))_
@@ -675,6 +703,8 @@ extends
 
 object TransformerEnd
 extends
+    Parseable[TransformerEnd]
+with
     Parser
 {
     val bmagSat = parse_element (element ("""TransformerEnd.bmagSat"""))_
@@ -739,6 +769,8 @@ extends
 
 object TransformerTank
 extends
+    Parseable[TransformerTank]
+with
     Parser
 {
     val PowerTransformer = parse_attribute (attribute ("""TransformerTank.PowerTransformer"""))_
@@ -776,6 +808,8 @@ extends
 
 object TransformerTankEnd
 extends
+    Parseable[TransformerTankEnd]
+with
     Parser
 {
     val phases = parse_attribute (attribute ("""TransformerTankEnd.phases"""))_
@@ -793,3 +827,26 @@ extends
     }
 }
 
+object Wires
+{
+    def register: Unit =
+    {
+        ACLineSegment.register
+        ACLineSegmentPhase.register
+        BusbarSection.register
+        Conductor.register
+        Connector.register
+        Disconnector.register
+        EnergyConsumer.register
+        Fuse.register
+        GroundDisconnector.register
+        Junction.register
+        Line.register
+        PowerTransformer.register
+        PowerTransformerEnd.register
+        Switch.register
+        TransformerEnd.register
+        TransformerTank.register
+        TransformerTankEnd.register
+    }
+}

@@ -1661,6 +1661,7 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                 if (!name.contains ('.'))
                 {
                     val rest = matcher.group (2)
+                    context.name = name
                     val element = name match
                     {
                         case "cim:PSRType" ⇒ PSRType.unpickle (rest, result)

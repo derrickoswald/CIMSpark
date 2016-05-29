@@ -25,6 +25,8 @@ extends
 
 object GeneratingUnit
 extends
+    Parseable[GeneratingUnit]
+with
     Parser
 {
     val ratedNetMaxP = parse_element (element ("""GeneratingUnit.ratedNetMaxP"""))_
@@ -62,6 +64,8 @@ extends
 
 object SolarGeneratingUnit
 extends
+    Parseable[SolarGeneratingUnit]
+with
     Parser
 {
     val commissioningDate = parse_element (element ("""SolarGeneratingUnit.commissioningDate"""))_
@@ -77,3 +81,11 @@ extends
     }
 }
 
+object Production
+{
+    def register: Unit =
+    {
+        GeneratingUnit.register
+        SolarGeneratingUnit.register
+    }
+}

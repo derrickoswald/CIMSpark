@@ -31,6 +31,8 @@ extends
 
 object CurrentRelay
 extends
+    Parseable[CurrentRelay]
+with
     Parser
 {
     val currentLimit1 = parse_element (element ("""CurrentRelay.currentLimit1"""))_
@@ -84,6 +86,8 @@ extends
 
 object ProtectionEquipment
 extends
+    Parseable[ProtectionEquipment]
+with
     Parser
 {
     val highLimit = parse_element (element ("""ProtectionEquipment.highLimit"""))_
@@ -106,5 +110,14 @@ extends
                 unitSymbol (context)
             )
         )
+    }
+}
+
+object Protection
+{
+    def register: Unit =
+    {
+        CurrentRelay.register
+        ProtectionEquipment.register
     }
 }

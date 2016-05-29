@@ -25,6 +25,8 @@ extends
 
 object WorkLocation
 extends
+    Parseable[WorkLocation]
+with
     Parser
 {
     val OneCallRequest = parse_element (element ("""WorkLocation.OneCallRequest"""))_
@@ -40,3 +42,10 @@ extends
     }
 }
 
+object Work
+{
+    def register: Unit =
+    {
+        WorkLocation.register
+    }
+}

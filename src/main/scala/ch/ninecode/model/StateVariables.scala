@@ -23,6 +23,8 @@ extends
 
 object StateVariable
 extends
+    Parseable[StateVariable]
+with
     Parser
 {
     def parse (context: Context): StateVariable =
@@ -57,6 +59,8 @@ extends
 
 object SvStatus
 extends
+    Parseable[SvStatus]
+with
     Parser
 {
     def parse (context: Context): SvStatus =
@@ -74,3 +78,11 @@ extends
     }
 }
 
+object StateVariables
+{
+    def register: Unit =
+    {
+        StateVariable.register
+        SvStatus.register
+    }
+}

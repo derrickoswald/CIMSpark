@@ -26,6 +26,8 @@ extends
 
 object Agreement
 extends
+    Parseable[Agreement]
+with
     Parser
 {
     val signDate = parse_element (element ("""Agreement.signDate"""))_
@@ -70,6 +72,8 @@ extends
 
 object Customer
 extends
+    Parseable[Customer]
+with
     Parser
 {
     val kind = parse_attribute (attribute ("""Customer.kind"""))_
@@ -123,6 +127,8 @@ extends
 
 object CustomerAgreement
 extends
+    Parseable[CustomerAgreement]
+with
     Parser
 {
     val loadMgmt = parse_element (element ("""CustomerAgreement.loadMgmt"""))_
@@ -179,6 +185,8 @@ extends
 
 object Document
 extends
+    Parseable[Document]
+with
     Parser
 {
     val authorName = parse_element (element ("""Document.authorName"""))_
@@ -235,6 +243,8 @@ extends
 
 object OrganisationRole
 extends
+    Parseable[OrganisationRole]
+with
     Parser
 {
     val Organisation = parse_attribute (attribute ("""OrganisationRole.Organisation"""))_
@@ -277,6 +287,8 @@ extends
 
 object PricingStructure
 extends
+    Parseable[PricingStructure]
+with
     Parser
 {
     val code = parse_element (element ("""PricingStructure.code"""))_
@@ -325,6 +337,8 @@ extends
 
 object ServiceCategory
 extends
+    Parseable[ServiceCategory]
+with
     Parser
 {
     val kind = parse_attribute (attribute ("""ServiceCategory.kind"""))_
@@ -363,6 +377,8 @@ extends
 
 object ServiceLocation
 extends
+    Parseable[ServiceLocation]
+with
     Parser
 {
     val accessMethod = parse_element (element ("""ServiceLocation.accessMethod"""))_
@@ -382,3 +398,17 @@ extends
     }
 }
 
+object Customers
+{
+    def register: Unit =
+    {
+        Agreement.register
+        Customer.register
+        CustomerAgreement.register
+        Document.register
+        OrganisationRole.register
+        PricingStructure.register
+        ServiceCategory.register
+        ServiceLocation.register
+    }
+}

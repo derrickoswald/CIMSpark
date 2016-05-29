@@ -25,6 +25,8 @@ extends
 
 object CoordinateSystem
 extends
+    Parseable[CoordinateSystem]
+with
     Parser
 {
     val crsUrn = parse_element (element ("""CoordinateSystem.crsUrn"""))_
@@ -70,6 +72,8 @@ extends
 
 object Location
 extends
+    Parseable[Location]
+with
     Parser
 {
     val direction = parse_element (element ("""Location.direction"""))_
@@ -127,6 +131,8 @@ extends
 
 object PositionPoint
 extends
+    Parseable[PositionPoint]
+with
     Parser
 {
     val sequenceNumber = parse_element (element ("""PositionPoint.sequenceNumber"""))_
@@ -175,6 +181,8 @@ extends
 
 object UserAttribute
 extends
+    Parseable[UserAttribute]
+with
     Parser
 {
     val name = parse_element (element ("""UserAttribute.name"""))_
@@ -200,3 +208,13 @@ extends
     }
 }
 
+object Common
+{
+    def register: Unit =
+    {
+        CoordinateSystem.register
+        Location.register
+        PositionPoint.register
+        UserAttribute.register
+    }
+}

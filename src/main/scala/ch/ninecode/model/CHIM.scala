@@ -11,19 +11,28 @@ import java.io.InputStreamReader
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
+import scala.reflect._
 
 import ch.ninecode.Context
 
+abstract class Parseable[A <: Element : ClassTag]
+{
+    def cls: String = { val name = classTag[A].runtimeClass.getName; name.substring (name.lastIndexOf (".") + 1) }
+    def register: Unit = CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parser]))
+}
+
 trait Parser
 {
+    val namespace = "cim"
+    val rddex = Pattern.compile ("""\s*<(""" + namespace + """:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
+    def element (name: String) = (Pattern.compile ("""<""" + namespace + """:""" + name + """>([\s\S]*?)<\/""" + namespace + """:""" + name + """>"""), 1)
+    def attribute (name: String) = (Pattern.compile ("""<""" + namespace + """:""" + name + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
+
     /**
      * Abstract parse function.
      * To be overridden in each implemented class.
      */
     def parse (context: Context): Element
-
-    def element (name: String) = (Pattern.compile ("""<cim:""" + name + """>([\s\S]*?)<\/cim:""" + name + """>"""), 1)
-    def attribute (name: String) = (Pattern.compile ("""<cim:""" + name + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
 
     /**
      * Parse one XML element from a string.
@@ -36,6 +45,7 @@ trait Parser
     def parse_element (pattern: Tuple2[Pattern, Int])(context: Context): String =
     {
         var ret:String = null
+
         val matcher = pattern._1.matcher (context.xml)
         if (matcher.find ())
         {
@@ -79,8 +89,6 @@ trait Parser
             }
 
         return (ret);
-
-
     }
 
     def toInteger (string: String, context: Context): Integer =
@@ -94,7 +102,7 @@ trait Parser
             }
             catch
             {
-                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable integer (" + string + ")found while parsing at line " + context.line_number ())
+                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number ())
             }
 
         return (ret);
@@ -111,7 +119,7 @@ trait Parser
             }
             catch
             {
-                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable double (" + string + ")found while parsing at line " + context.line_number ())
+                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
             }
 
         return (ret);
@@ -124,7 +132,7 @@ trait Parser
 class Element
 (
     val sup: Element = null,
-    val id: String = null
+    val mRID: String = null
 )
 extends
     Row
@@ -133,12 +141,14 @@ with
 with
     Cloneable
 {
-    def key: String = { if (null == sup) id else sup.key }
+    def key: String = { if (null == sup) mRID else sup.key }
     def copy (): Row = { return (this.clone ().asInstanceOf[Element]); }
     override def get (i: Int): Any =
     {
         if (0 == i)
             sup
+        else if (1 == i)
+            mRID
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
@@ -151,7 +161,7 @@ extends
 {
     /**
      * Parse an element.
-     * Simply extracts the id
+     * Simply extracts the id.
      */
     val mRID = parse_element ((Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))_
     override def parse (context: Context): Element =
@@ -164,7 +174,6 @@ extends
             )
         )
     }
-
 }
 
 /**
@@ -198,6 +207,8 @@ extends
 {
     def parse (context: Context): Unknown =
     {
+        if ((context.DEBUG) && (context.errors.size < context.MAXERRORS))
+            context.errors += "Unknown element \"" + context.name + "\" at line " + context.line_number ()
         return (
             Unknown
             (
@@ -219,11 +230,20 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
 {
     if (end == 0L)
         end = start + xml.length ()
-    val matcher = CHIM.rddex.matcher (xml)
     val context = new Context (xml, start, start, ArrayBuffer (0L))
     context.index_string (xml, context.start)
+    val matcher = Unknown.rddex.matcher (xml) // ToDo: there must be an easier way to get a constant out of a Trait
 
     var value: Element = null;
+    Common.register
+    Core.register
+    Customers.register
+    Metering.register
+    Production.register
+    Protection.register
+    StateVariables.register
+    Wires.register
+    Work.register
 
     def progress (): Float =
     {
@@ -244,72 +264,8 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                 if (!name.contains ('.'))
                 {
                     context.xml = matcher.group (2)
-                    val element = name match
-                    {
-                        case "cim:UserAttribute" ⇒ UserAttribute.parse (context)
-                        case "cim:NameTypeAuthority" ⇒ NameTypeAuthority.parse (context)
-                        case "cim:NameType" ⇒ NameType.parse (context)
-                        case "cim:StateVariable" ⇒ StateVariable.parse (context)
-                        case "cim:SvStatus" ⇒ SvStatus.parse (context)
-                        case "cim:IdentifiedObject" ⇒ IdentifiedObject.parse (context)
-                        case "cim:PSRType" ⇒ PSRType.parse (context)
-                        case "cim:Name" ⇒ Name.parse (context)
-                        case "cim:CoordinateSystem" ⇒ CoordinateSystem.parse (context)
-                        case "cim:BaseVoltage" ⇒ BaseVoltage.parse (context)
-                        case "cim:ConnectivityNode" ⇒ ConnectivityNode.parse (context)
-                        case "cim:ACDCTerminal" ⇒ ACDCTerminal.parse (context)
-                        case "cim:Terminal" ⇒ Terminal.parse (context)
-                        case "cim:PowerSystemResource" ⇒ PowerSystemResource.parse (context)
-                        case "cim:ConnectivityNodeContainer" ⇒ ConnectivityNodeContainer.parse (context)
-                        case "cim:EquipmentContainer" ⇒ EquipmentContainer.parse (context)
-                        case "cim:Line" ⇒ Line.parse (context)
-                        case "cim:Substation" ⇒ Substation.parse (context)
-                        case "cim:VoltageLevel" ⇒ VoltageLevel.parse (context)
-                        case "cim:Bay" ⇒ Bay.parse (context)
-                        case "cim:Equipment" ⇒ Equipment.parse (context)
-                        case "cim:ConductingEquipment" ⇒ ConductingEquipment.parse (context)
-                        case "cim:Connector" ⇒ Connector.parse (context)
-                        case "cim:Junction" ⇒ Junction.parse (context)
-                        case "cim:EnergyConsumer" ⇒ EnergyConsumer.parse (context)
-                        case "cim:Conductor" ⇒ Conductor.parse (context)
-                        case "cim:ACLineSegment" ⇒ ACLineSegment.parse (context)
-                        case "cim:ACLineSegmentPhase" ⇒ ACLineSegmentPhase.parse (context)
-                        case "cim:BusbarSection" ⇒ BusbarSection.parse (context)
-                        case "cim:Switch" ⇒ Switch.parse (context)
-                        case "cim:GroundDisconnector" ⇒ GroundDisconnector.parse (context)
-                        case "cim:Fuse" ⇒ Fuse.parse (context)
-                        case "cim:Disconnector" ⇒ Disconnector.parse (context)
-                        case "cim:GeneratingUnit" ⇒ GeneratingUnit.parse (context)
-                        case "cim:SolarGeneratingUnit" ⇒ SolarGeneratingUnit.parse (context)
-                        case "cim:TransformerTank" ⇒ TransformerTank.parse (context)
-                        case "cim:TransformerEnd" ⇒ TransformerEnd.parse (context)
-                        case "cim:PowerTransformerEnd" ⇒ PowerTransformerEnd.parse (context)
-                        case "cim:TransformerTankEnd" ⇒ TransformerTankEnd.parse (context)
-                        case "cim:PowerTransformer" ⇒ PowerTransformer.parse (context)
-                        case "cim:ProtectionEquipment" ⇒ ProtectionEquipment.parse (context)
-                        case "cim:CurrentRelay" ⇒ CurrentRelay.parse (context)
-                        case "cim:Location" ⇒ Location.parse (context)
-                        case "cim:PositionPoint" ⇒ PositionPoint.parse (context)
-                        case "cim:WorkLocation" ⇒ WorkLocation.parse (context)
-                        case "cim:ServiceLocation" ⇒ ServiceLocation.parse (context)
-                        case "cim:UsagePoint" ⇒ UsagePoint.parse (context)
-                        case "cim:UsagePointLocation" ⇒ UsagePointLocation.parse (context)
-                        case "cim:Agreement" ⇒ Agreement.parse (context)
-                        case "cim:Customer" ⇒ Customer.parse (context)
-                        case "cim:CustomerAgreement" ⇒ CustomerAgreement.parse (context)
-                        case "cim:OrganisationRole" ⇒ OrganisationRole.parse (context)
-                        case "cim:ServiceCategory" ⇒ ServiceCategory.parse (context)
-                        case "cim:PricingStructure" ⇒ PricingStructure.parse (context)
-                        case "cim:Document" ⇒ Document.parse (context)
-
-                        case _ ⇒
-                        {
-                            if ((context.DEBUG) && (context.errors.size < context.MAXERRORS))
-                                context.errors += "Unknown element \"" + name + "\" at line " + context.line_number ()
-                            Unknown.parse (context)
-                        }
-                    }
-                    value = element
+                    context.name = name
+                    value = CHIM.LOOKUP.getOrElse (name, Unknown).parse (context)
 
                     // return success unless there was unrecognized text before the match
                     // that wasn't at the start of the xml
@@ -342,7 +298,7 @@ object CHIM
 {
     val CHUNK = 1024*1024*64
     val OVERREAD = 2048 // should be large enough that no RDF element is bigger than this
-    val rddex = Pattern.compile ("""\s*<(cim:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
+    val LOOKUP = new HashMap[String,Parser]
 
     def read (filename: String, offset: Long, size: Long = CHUNK, overread: Long = OVERREAD): String =
     {
