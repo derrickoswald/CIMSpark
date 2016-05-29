@@ -224,10 +224,12 @@ object Sample
             val configuration = new SparkConf ()
             configuration.setAppName ("CIMScala GraphX Sample")
             configuration.setMaster ("yarn-client")
+            configuration.set ("spark.driver.memory", "8G")
+            configuration.set ("spark.executor.memory", "7G")
             // make a Spark context and SQL context
             val context = new SparkContext (configuration)
             val sqlContext = new SQLContext (context)
-            context.setLogLevel ("INFO") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+            context.setLogLevel ("DEBUG") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
             try
             {
                 val start = System.nanoTime ()

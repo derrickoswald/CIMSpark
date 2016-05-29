@@ -73,6 +73,45 @@ extends
     }
 }
 
+case class ACLineSegmentPhase
+(
+    override val sup: Element,
+    val phase: String,
+    val ACLineSegment: String
+)
+extends
+    Element (sup)
+{
+    override def copy (): Row = { return (this.clone ().asInstanceOf[ACLineSegmentPhase]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object ACLineSegmentPhase
+extends
+    Parser
+{
+    val phase = parse_attribute (attribute ("""ACLineSegmentPhase.phase"""))_
+    val ACLineSegment = parse_attribute (attribute ("""ACLineSegmentPhase.ACLineSegment"""))_
+    def parse (context: Context): ACLineSegmentPhase =
+    {
+        return (
+            ACLineSegmentPhase
+            (
+                PowerSystemResource.parse (context),
+                phase (context),
+                ACLineSegment (context)
+            )
+        )
+    }
+}
+
 case class BusbarSection
 (
     override val sup: Element,
@@ -306,6 +345,39 @@ extends
     {
         return (
             Fuse
+            (
+                Switch.parse (context)
+            )
+        )
+    }
+}
+
+case class GroundDisconnector
+(
+    override val sup: Element
+)
+extends
+    Element (sup)
+{
+    override def copy (): Row = { return (this.clone ().asInstanceOf[GroundDisconnector]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object GroundDisconnector
+extends
+    Parser
+{
+    def parse (context: Context): GroundDisconnector =
+    {
+        return (
+            GroundDisconnector
             (
                 Switch.parse (context)
             )
@@ -706,14 +778,14 @@ object TransformerTankEnd
 extends
     Parser
 {
-    val phases = parse_element (element ("""TransformerTankEnd.phases"""))_
+    val phases = parse_attribute (attribute ("""TransformerTankEnd.phases"""))_
     val TransformerTank = parse_attribute (attribute ("""TransformerTankEnd.TransformerTank"""))_
     def parse (context: Context): TransformerTankEnd =
     {
         return (
             TransformerTankEnd
             (
-                Equipment.parse (context),
+                TransformerEnd.parse (context),
                 phases (context),
                 TransformerTank (context)
             )

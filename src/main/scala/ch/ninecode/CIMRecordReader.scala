@@ -9,7 +9,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext
 
 class CIMRecordReader extends RecordReader[String, Element]
 {
-    val LocalLog = LogFactory.getLog (classOf[CIMInputFormat]);
+    val LocalLog = LogFactory.getLog (classOf[CIMRecordReader]);
     var start: Long = 0
     var end: Long = 0
     var cim: CIM = null

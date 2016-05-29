@@ -6,8 +6,8 @@ import ch.ninecode.Context
 
 case class GeneratingUnit
 (
-    override val sup: Element
-    // ToDo: many, many attributes
+    override val sup: Element,
+    val ratedNetMaxP: Double
 )
 extends
     Element (sup)
@@ -27,12 +27,14 @@ object GeneratingUnit
 extends
     Parser
 {
+    val ratedNetMaxP = parse_element (element ("""GeneratingUnit.ratedNetMaxP"""))_
     def parse (context: Context): GeneratingUnit =
     {
         return (
             GeneratingUnit
             (
-                Equipment.parse (context)
+                Equipment.parse (context),
+                toDouble (ratedNetMaxP (context), context)
             )
         )
     }
@@ -40,7 +42,9 @@ extends
 
 case class SolarGeneratingUnit
 (
-    override val sup: Element
+    override val sup: Element,
+    // ToDo: non-standard... should be in Asset
+    val commissioningDate: String
 )
 extends
     Element (sup)
@@ -60,14 +64,14 @@ object SolarGeneratingUnit
 extends
     Parser
 {
-    //val x = parse_element (element ("""SolarGeneratingUnit."""))_
-    //val y = parse_attribute (attribute ("""SolarGeneratingUnit."""))_
+    val commissioningDate = parse_element (element ("""SolarGeneratingUnit.commissioningDate"""))_
     def parse (context: Context): SolarGeneratingUnit =
     {
         return (
             SolarGeneratingUnit
             (
-                GeneratingUnit.parse (context)
+                GeneratingUnit.parse (context),
+                commissioningDate (context)
             )
         )
     }

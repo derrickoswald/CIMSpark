@@ -24,7 +24,7 @@ package object cim
 
   /**
    * Adds a method, `cim`, to DataFrameReader that allows you to read CIM files using
-   * the DataFileReade
+   * the DataFileReader
    */
   implicit class CIMDataFrameReader(reader: DataFrameReader) {
     def cim: String => DataFrame = reader.format("ch.ninecode.cim").load

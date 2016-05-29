@@ -550,8 +550,7 @@ extends
     Parser
 {
     val AssetDataSheet = parse_attribute (attribute ("""PowerSystemResource.AssetDataSheet"""))_
-    // ToDo: make this an attribute
-    val Location = parse_element (element ("""PowerSystemResource.Location"""))_
+    val Location = parse_attribute (attribute ("""PowerSystemResource.Location"""))_
     val PSRType = parse_attribute (attribute ("""PowerSystemResource.PSRType"""))_
     def parse (context: Context): PowerSystemResource =
     {

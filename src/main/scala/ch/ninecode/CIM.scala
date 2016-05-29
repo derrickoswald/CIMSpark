@@ -179,11 +179,14 @@ abstract class LocatedElement (override val id: String, override val alias: Stri
 
 object LocatedElement extends Parser
 {
-    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
+    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    // ToDo: remove this... it's redundant for new versions
+    val locex2 = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
     val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
         PowerSystemResource.parse,
-        Element.parse_element (locex, 1, "location", true)_,
+        Element.parse_attribute (locex, 2, "location", false)_,
+        Element.parse_element (locex2, 1, "location", false)_,
         Element.parse_attribute (conex, 2, "container", false)_
     )
 }
@@ -380,7 +383,10 @@ case class CoordinateSystem (override val id: String, override val alias: String
 object CoordinateSystem extends Parser
 {
     val urnex = Pattern.compile ("""<cim:CoordinateSystem.crsUrn>([\s\S]*?)<\/cim:CoordinateSystem.crsUrn>""")
-    override def steps () = Array (NamedElement.parse, Element.parse_attribute (urnex, 1, "urn", true)_)
+    override def steps () = Array (
+        NamedElement.parse,
+        Element.parse_attribute (urnex, 1, "urn", true)_
+    )
     def unpickle (xml: String, result: Result): CoordinateSystem =
     {
         parse (xml, result)
@@ -390,7 +396,7 @@ object CoordinateSystem extends Parser
 }
 
 //    <cim:Location rdf:ID="_location_5773088_1107287243_317923">
-//            <cim:Location.CoordinateSystem>wgs_84</cim:Location.CoordinateSystem>
+//            <cim:Location.CoordinateSystem rdf:resource="wgs_84"/>
 //            <cim:Location.type>geographic</cim:Location.type>
 //    </cim:Location>
 
@@ -398,11 +404,14 @@ case class Location (override val id: String, override val alias: String, overri
 
 object Location extends Parser
 {
-    val csex = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
+    val csex = Pattern.compile ("""<cim:Location.CoordinateSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    // ToDo: remove this... it's redundant for new versions
+    val csex2 = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
     val typex = Pattern.compile ("""<cim:Location.type>([\s\S]*?)<\/cim:Location.type>""")
     override def steps () = Array (
         NamedElement.parse,
-        Element.parse_element (csex, 1, "cs", true)_,
+        Element.parse_attribute (csex, 2, "cs", false)_,
+        Element.parse_element (csex2, 1, "cs", false)_,
         Element.parse_element (typex, 1, "type", true)_)
     def unpickle (xml: String, result: Result): Location =
     {
@@ -427,7 +436,10 @@ object PositionPoint extends Parser
     val aliex = Pattern.compile ("""<cim:IdentifiedObject.aliasName>([\s\S]*?)<\/cim:IdentifiedObject.aliasName>""")
     val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>""")
     val namex = Pattern.compile ("""<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>""")
-    val locex = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
+
+    val locex = Pattern.compile ("""<cim:PositionPoint.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    // ToDo: remove this... it's redundant for new versions
+    val locex2 = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
     val seqex = Pattern.compile ("""<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>""")
     val xposex = Pattern.compile ("""<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>""")
     val yposex = Pattern.compile ("""<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>""")
@@ -440,10 +452,11 @@ object PositionPoint extends Parser
         Element.parse_element (desex, 1, "name", false)_,
         Element.parse_element (namex, 1, "name", false)_,
 
-        Element.parse_attribute (locex, 1, "location", true)_,
-        Element.parse_attribute (seqex, 1, "sequence", true)_,
-        Element.parse_attribute (xposex, 1, "x", true)_,
-        Element.parse_attribute (yposex, 1, "y", true)_)
+        Element.parse_attribute (locex, 2, "location", false)_,
+        Element.parse_element (locex2, 1, "location", false)_,
+        Element.parse_element (seqex, 1, "sequence", true)_,
+        Element.parse_element (xposex, 1, "x", true)_,
+        Element.parse_element (yposex, 1, "y", true)_)
     def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
@@ -1249,19 +1262,39 @@ object CurrentRelay extends Parser
 //        <cim:PowerSystemResource.Location>_location_1755791_1170577924_327689372</cim:PowerSystemResource.Location>
 //        <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
 //        <cim:Equipment.EquipmentContainer rdf:resource="#EEA828|MST154744"/>
+//        <cim:GeneratingUnit.ratedNetMaxP>2000</cim:GeneratingUnit.ratedNetMaxP>
+//        <cim:SolarGeneratingUnit.commissioningDate>May 27, 2016</cim:SolarGeneratingUnit.commissioningDate>
 //    </cim:SolarGeneratingUnit>
 
-case class SolarGeneratingUnit (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String) extends LocatedElement (id, alias, description, name, typ, location, container)
+case class SolarGeneratingUnit (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val power: Double, val commissioned: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object SolarGeneratingUnit extends Parser
 {
+    val powex = Pattern.compile ("""<cim:GeneratingUnit.ratedNetMaxP>([\s\S]*?)<\/cim:GeneratingUnit.ratedNetMaxP>""")
+    // ToDo: non-standard... should be in Asset
+    val datex = Pattern.compile ("""<cim:SolarGeneratingUnit.commissioningDate>([\s\S]*?)<\/cim:SolarGeneratingUnit.commissioningDate>""")
     override def steps () = Array (
-        LocatedElement.parse)
+        LocatedElement.parse,
+        Element.parse_element (powex, 1, "power", false)_,
+        Element.parse_element (powex, 1, "commissioned", false)_
+        )
     def unpickle (xml: String, result: Result): SolarGeneratingUnit =
     {
         parse (xml, result)
-        val ret = SolarGeneratingUnit (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
-        return (ret)
+        try
+        {
+            val power = result.properties.getOrElse ("power", "")
+            val p = if (power != "")
+                power.toDouble
+            else
+                0.0
+            val ret = SolarGeneratingUnit (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), p, result.properties.getOrElse ("commissioned", ""))
+            return (ret)
+        }
+        catch
+        {
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable power value found for a ratedNetMaxP element while parsing at line " + result.context.line_number ())
+        }
     }
 }
 

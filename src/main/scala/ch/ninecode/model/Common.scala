@@ -75,8 +75,7 @@ extends
     val direction = parse_element (element ("""Location.direction"""))_
     val geoInfoReference = parse_element (element ("""Location.geoInfoReference"""))_
     val typ = parse_element (element ("""Location.type"""))_
-    // ToD: fix this; should be attribute:
-    val CoordinateSystem = parse_element (element ("""Location.CoordinateSystem"""))_
+    val CoordinateSystem = parse_attribute (attribute ("""Location.CoordinateSystem"""))_
     val electronicAddress = parse_attribute (attribute ("""Location.electronicAddress"""))_
     val mainAddress = parse_attribute (attribute ("""Location.mainAddress"""))_
     val phone1 = parse_attribute (attribute ("""Location.phone1"""))_
@@ -134,8 +133,7 @@ extends
     val xPosition = parse_element (element ("""PositionPoint.xPosition"""))_
     val yPosition = parse_element (element ("""PositionPoint.yPosition"""))_
     val zPosition = parse_element (element ("""PositionPoint.zPosition"""))_
-    // ToDo: fix this; should be attribute
-    val Location = parse_element (element ("""PositionPoint.Location"""))_
+    val Location = parse_attribute (attribute ("""PositionPoint.Location"""))_
     def parse (context: Context): PositionPoint =
     {
         return (
