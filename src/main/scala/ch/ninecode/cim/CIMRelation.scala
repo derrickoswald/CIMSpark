@@ -38,9 +38,9 @@ import org.apache.spark.sql.types.StructType
 import ch.ninecode._
 
 class Pair (val id_equ: String, var left: Terminal = null, var right: Terminal = null) extends Serializable
-class PreEdge (var id_seq_1: String, var id_seq_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var location: String) extends Serializable
+class PreEdge (var id_seq_1: String, var id_seq_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var location: String, val power: Double, val commissioned: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : Double, var y1 : Double, var max_index: Int, var x2 : Double, var y2 : Double) extends Serializable
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, x1: Double, y1: Double, x2: Double, y2: Double)
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, val power: Double, val commissioned: String, x1: Double, y1: Double, x2: Double, y2: Double)
 
 class CIMRelation(
     override val paths: Array[String],
@@ -241,6 +241,8 @@ class CIMRelation(
                                     var typ = ""
                                     var normalOpen = false
                                     var location = ""
+                                    var power = 0.0
+                                    var commissioned = ""
                                     Some (e) match
                                     {
                                         case Some(o) if o.getClass () == classOf[PSRType] => { }
@@ -338,7 +340,13 @@ class CIMRelation(
                                         case Some(o) if o.getClass () == classOf[ProtectionEquipment] => { }
                                         case Some(o) if o.getClass () == classOf[CurrentTransformer] => { }
                                         case Some(o) if o.getClass () == classOf[CurrentRelay] => { }
-                                        case Some(o) if o.getClass () == classOf[SolarGeneratingUnit] => { }
+                                        case Some(o) if o.getClass () == classOf[SolarGeneratingUnit] =>
+                                            {
+                                                val sgu = o.asInstanceOf[SolarGeneratingUnit]
+                                                location = sgu.location
+                                                power = sgu.power
+                                                commissioned = sgu.commissioned
+                                            }
 
                                         case Some(o) if o.getClass () == classOf[ServiceLocation] => { }
                                         case Some(o) if o.getClass () == classOf[UsagePointLocation] => { }
@@ -367,11 +375,13 @@ class CIMRelation(
                                         voltage,
                                         typ,
                                         normalOpen,
-                                        location)
+                                        location,
+                                        power,
+                                        commissioned)
                                 }
                             case (s: String, (p: Pair, None)) =>
                                 // shouldn't happen of course: if it does we have a terminal with an equipment reference to non-existant equipment
-                                new PreEdge ("", "", "", "", 0.0, "", "", false, "")
+                                new PreEdge ("", "", "", "", 0.0, "", "", false, "", 0.0, "")
                         }
                     }
                 }
@@ -501,10 +511,10 @@ class CIMRelation(
                         j match
                         {
                             case (l: String, (e:PreEdge, Some (x:Extremum))) =>
-                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, x.x1, x.y1, x.x2, x.y2)
+                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, x.x1, x.y1, x.x2, x.y2)
                             case (l: String, (e:PreEdge, None)) =>
                                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, 0.0, 0.0, 0.0, 0.0)
+                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, 0.0, 0.0, 0.0, 0.0)
                         }
                     }
                 }

@@ -1358,19 +1358,39 @@ object CurrentRelay extends Parser
 //        <cim:PowerSystemResource.Location>_location_1755791_1170577924_327689372</cim:PowerSystemResource.Location>
 //        <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
 //        <cim:Equipment.EquipmentContainer rdf:resource="#EEA828|MST154744"/>
+//        <cim:GeneratingUnit.ratedNetMaxP>2000</cim:GeneratingUnit.ratedNetMaxP>
+//        <cim:SolarGeneratingUnit.commissioningDate>May 27, 2016</cim:SolarGeneratingUnit.commissioningDate>
 //    </cim:SolarGeneratingUnit>
 
-case class SolarGeneratingUnit (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String) extends LocatedElement (id, alias, description, name, typ, location, container)
+case class SolarGeneratingUnit (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val power: Double, val commissioned: String) extends LocatedElement (id, alias, description, name, typ, location, container)
 
 object SolarGeneratingUnit extends Parser
 {
+    val powex = Pattern.compile ("""<cim:GeneratingUnit.ratedNetMaxP>([\s\S]*?)<\/cim:GeneratingUnit.ratedNetMaxP>""")
+    // ToDo: non-standard... should be in Asset
+    val datex = Pattern.compile ("""<cim:SolarGeneratingUnit.commissioningDate>([\s\S]*?)<\/cim:SolarGeneratingUnit.commissioningDate>""")
     override def steps () = Array (
-        LocatedElement.parse)
+        LocatedElement.parse,
+        Element.parse_element (powex, 1, "power", false)_,
+        Element.parse_element (powex, 1, "commissioned", false)_
+        )
     def unpickle (xml: String, result: Result): SolarGeneratingUnit =
     {
         parse (xml, result)
-        val ret = SolarGeneratingUnit (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
-        return (ret)
+        try
+        {
+            val power = result.properties.getOrElse ("power", "")
+            val p = if (power != "")
+                power.toDouble
+            else
+                0.0
+            val ret = SolarGeneratingUnit (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), p, result.properties.getOrElse ("commissioned", ""))
+            return (ret)
+        }
+        catch
+        {
+            case nfe: NumberFormatException ⇒ throw new Exception ("unparsable power value found for a ratedNetMaxP element while parsing at line " + result.context.line_number ())
+        }
     }
 }
 
