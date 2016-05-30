@@ -279,11 +279,14 @@ abstract class LocatedElement (override val id: String, override val alias: Stri
 
 object LocatedElement extends Parser
 {
-    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
+    val locex = Pattern.compile ("""<cim:PowerSystemResource.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    // ToDo: remove when old format need not be supported
+    val locex2 = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
     val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
         PowerSystemResource.parse,
-        Element.parse_element (locex, 1, "location", true)_,
+        Element.parse_attribute (locex, 1, "location", false)_,
+        Element.parse_element (locex2, 1, "location", false)_,
         Element.parse_attribute (conex, 2, "container", false)_
     )
 }
@@ -498,11 +501,14 @@ case class Location (override val id: String, override val alias: String, overri
 
 object Location extends Parser
 {
-    val csex = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
+    val csex = Pattern.compile ("""<cim:Location.CoordinateSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    // ToDo: remove when old format need not be supported
+    val csex2 = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
     val typex = Pattern.compile ("""<cim:Location.type>([\s\S]*?)<\/cim:Location.type>""")
     override def steps () = Array (
         NamedElement.parse,
-        Element.parse_element (csex, 1, "cs", true)_,
+        Element.parse_attribute (csex, 2, "cs", false)_,
+        Element.parse_attribute (csex2, 1, "cs", false)_,
         Element.parse_element (typex, 1, "type", true)_)
     def unpickle (xml: String, result: Result): Location =
     {
@@ -527,7 +533,9 @@ object PositionPoint extends Parser
     val aliex = Pattern.compile ("""<cim:IdentifiedObject.aliasName>([\s\S]*?)<\/cim:IdentifiedObject.aliasName>""")
     val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>""")
     val namex = Pattern.compile ("""<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>""")
-    val locex = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
+    val locex = Pattern.compile ("""<cim:PositionPoint.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    // ToDo: remove when old format need not be supported
+    val locex2 = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
     val seqex = Pattern.compile ("""<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>""")
     val xposex = Pattern.compile ("""<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>""")
     val yposex = Pattern.compile ("""<cim:PositionPoint.yPosition>([\s\S]*?)<\/cim:PositionPoint.yPosition>""")
@@ -540,10 +548,11 @@ object PositionPoint extends Parser
         Element.parse_element (desex, 1, "name", false)_,
         Element.parse_element (namex, 1, "name", false)_,
 
-        Element.parse_attribute (locex, 1, "location", true)_,
-        Element.parse_attribute (seqex, 1, "sequence", true)_,
-        Element.parse_attribute (xposex, 1, "x", true)_,
-        Element.parse_attribute (yposex, 1, "y", true)_)
+        Element.parse_attribute (locex, 2, "location", false)_,
+        Element.parse_element (locex2, 1, "location", false)_,
+        Element.parse_element (seqex, 1, "sequence", true)_,
+        Element.parse_element (xposex, 1, "x", true)_,
+        Element.parse_element (yposex, 1, "y", true)_)
     def unpickle (xml: String, result: Result): PositionPoint =
     {
         parse (xml, result)
@@ -1705,7 +1714,7 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
     if (end == 0L)
         end = start + xml.length ()
     val matcher = CIM.rddex.matcher (xml)
-    val context = new Context (start, start, ArrayBuffer (0L))
+    val context = new Context (xml, start, start, ArrayBuffer (0L))
     context.index_string (xml, context.start)
     val result = new Result (context)
 
