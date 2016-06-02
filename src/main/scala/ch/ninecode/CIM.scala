@@ -285,7 +285,7 @@ object LocatedElement extends Parser
     val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
         PowerSystemResource.parse,
-        Element.parse_attribute (locex, 1, "location", false)_,
+        Element.parse_attribute (locex, 2, "location", false)_,
         Element.parse_element (locex2, 1, "location", false)_,
         Element.parse_attribute (conex, 2, "container", false)_
     )
