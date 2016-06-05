@@ -493,7 +493,7 @@ object CoordinateSystem extends Parser
 }
 
 //    <cim:Location rdf:ID="_location_5773088_1107287243_317923">
-//            <cim:Location.CoordinateSystem>wgs_84</cim:Location.CoordinateSystem>
+//            <cim:Location.CoordinateSystem rdf:resource="wgs_84"/>
 //            <cim:Location.type>geographic</cim:Location.type>
 //    </cim:Location>
 
@@ -508,7 +508,7 @@ object Location extends Parser
     override def steps () = Array (
         NamedElement.parse,
         Element.parse_attribute (csex, 2, "cs", false)_,
-        Element.parse_attribute (csex2, 1, "cs", false)_,
+        Element.parse_element (csex2, 1, "cs", false)_,
         Element.parse_element (typex, 1, "type", true)_)
     def unpickle (xml: String, result: Result): Location =
     {
@@ -1760,6 +1760,7 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                 if (!name.contains ('.'))
                 {
                     val rest = matcher.group (2)
+                    context.name = name
                     val element = name match
                     {
                         case "cim:PSRType" ⇒ PSRType.unpickle (rest, result)
