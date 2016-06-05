@@ -1276,7 +1276,7 @@ object SolarGeneratingUnit extends Parser
     override def steps () = Array (
         LocatedElement.parse,
         Element.parse_element (powex, 1, "power", false)_,
-        Element.parse_element (powex, 1, "commissioned", false)_
+        Element.parse_element (datex, 1, "commissioned", false)_
         )
     def unpickle (xml: String, result: Result): SolarGeneratingUnit =
     {
