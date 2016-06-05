@@ -180,7 +180,7 @@ abstract class LocatedElement (override val id: String, override val alias: Stri
 object LocatedElement extends Parser
 {
     val locex = Pattern.compile ("""<cim:PowerSystemResource.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    // ToDo: remove this... it's redundant for new versions
+    // ToDo: remove when old format need not be supported
     val locex2 = Pattern.compile ("""<cim:PowerSystemResource.Location>([\s\S]*?)<\/cim:PowerSystemResource.Location>""")
     val conex = Pattern.compile ("""<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
@@ -405,7 +405,7 @@ case class Location (override val id: String, override val alias: String, overri
 object Location extends Parser
 {
     val csex = Pattern.compile ("""<cim:Location.CoordinateSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    // ToDo: remove this... it's redundant for new versions
+    // ToDo: remove when old format need not be supported
     val csex2 = Pattern.compile ("""<cim:Location.CoordinateSystem>([\s\S]*?)<\/cim:Location.CoordinateSystem>""")
     val typex = Pattern.compile ("""<cim:Location.type>([\s\S]*?)<\/cim:Location.type>""")
     override def steps () = Array (
@@ -438,7 +438,7 @@ object PositionPoint extends Parser
     val namex = Pattern.compile ("""<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>""")
 
     val locex = Pattern.compile ("""<cim:PositionPoint.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    // ToDo: remove this... it's redundant for new versions
+    // ToDo: remove when old format need not be supported
     val locex2 = Pattern.compile ("""<cim:PositionPoint.Location>([\s\S]*?)<\/cim:PositionPoint.Location>""")
     val seqex = Pattern.compile ("""<cim:PositionPoint.sequenceNumber>([\s\S]*?)<\/cim:PositionPoint.sequenceNumber>""")
     val xposex = Pattern.compile ("""<cim:PositionPoint.xPosition>([\s\S]*?)<\/cim:PositionPoint.xPosition>""")
@@ -1386,7 +1386,7 @@ object ServiceCategory extends Parser
 //        <cim:IdentifiedObject.name></cim:IdentifiedObject.name>
 //        <cim:IdentifiedObject.aliasName>Tariftyp</cim:IdentifiedObject.aliasName>
 //        <cim:PricingStructure.code>102</cim:PricingStructure.code>
-//        <cim:ServiceCategory rdf:resource="NETZ"/>
+//        <cim:PricingStructure.ServiceCategory rdf:resource="NETZ"/>
 //    </cim:PricingStructure>
 
 case class PricingStructure (override val id: String, override val alias: String, override val description: String, override val name: String, val code: String, val category: String) extends NamedElement (id, alias, description, name)
@@ -1394,7 +1394,7 @@ case class PricingStructure (override val id: String, override val alias: String
 object PricingStructure extends Parser
 {
     val codex = Pattern.compile ("""<cim:PricingStructure.code>([\s\S]*?)<\/cim:PricingStructure.code>""")
-    val catex = Pattern.compile ("""<cim:ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val catex = Pattern.compile ("""<cim:PricingStructure.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
         NamedElement.parse,
         Element.parse_element (codex, 1, "code", false)_,
@@ -1447,15 +1447,15 @@ object Customer extends Parser
 //        <cim:IdentifiedObject.description>CustomerAgreement</cim:IdentifiedObject.description>
 //        <cim:IdentifiedObject.name></cim:IdentifiedObject.name>
 //        <cim:IdentifiedObject.aliasName>Vertrag</cim:IdentifiedObject.aliasName>
-//        <cim:ServiceCategory rdf:resource="NETZ"/>
-//        <cim:Customer rdf:resource="80340129"/>
+//        <cim:CustomerAgreement.ServiceCategory rdf:resource="NETZ"/>
+//        <cim:CustomerAgreement.Customer rdf:resource="80340129"/>
 //    </cim:CustomerAgreement>
 case class CustomerAgreement (override val id: String, override val alias: String, override val description: String, override val name: String, val category: String, val customer: String) extends NamedElement (id, alias, description, name)
 
 object CustomerAgreement extends Parser
 {
-    val catex = Pattern.compile ("""<cim:ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    val cusex = Pattern.compile ("""<cim:Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val catex = Pattern.compile ("""<cim:CustomerAgreement.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val cusex = Pattern.compile ("""<cim:CustomerAgreement.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
         NamedElement.parse,
         Element.parse_element (catex, 2, "category", false)_,
@@ -1478,10 +1478,10 @@ object CustomerAgreement extends Parser
 //        <cim:UsagePoint.nominalServiceVoltage>-1</cim:UsagePoint.nominalServiceVoltage>
 //        <cim:UsagePoint.ratedPower>-1</cim:UsagePoint.ratedPower>
 //        <cim:UsagePoint.ratedCurrent>-1</cim:UsagePoint.ratedCurrent>
-//        <cim:ServiceLocation rdf:resource="11100002858"/>
-//        <cim:UsagePointLocationLocation rdf:resource="61708"/>
-//        <cim:CustomerAgreement rdf:resource="41250281"/>
-//        <cim:PricingStructure rdf:resource="N5_SD_P"/>
+//        <cim:UsagePoint.ServiceLocation rdf:resource="11100002858"/>
+//        <cim:UsagePoint.UsagePointLocationLocation rdf:resource="61708"/>
+//        <cim:UsagePoint.CustomerAgreement rdf:resource="41250281"/>
+//        <cim:UsagePoint.PricingStructure rdf:resource="N5_SD_P"/>
 //    </cim:UsagePoint>
 case class UsagePoint (override val id: String, override val alias: String, override val description: String, override val name: String, val outageregion: String, val nominalvoltage: String, val ratedpower: String, val ratedcurrent: String, val servicepoint: String, val usagepointlocation: String, val customeragreement: String, val pricingstructure: String) extends NamedElement (id, alias, description, name)
 
@@ -1491,10 +1491,12 @@ object UsagePoint extends Parser
     val volex = Pattern.compile ("""<cim:UsagePoint.nominalServiceVoltage>([\s\S]*?)<\/cim:UsagePoint.nominalServiceVoltage>""")
     val powex = Pattern.compile ("""<cim:UsagePoint.ratedPower>([\s\S]*?)<\/cim:UsagePoint.ratedPower>""")
     val curex = Pattern.compile ("""<cim:UsagePoint.ratedCurrent>([\s\S]*?)<\/cim:UsagePoint.ratedCurrent>""")
-    val locex = Pattern.compile ("""<cim:ServiceLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    val uplex = Pattern.compile ("""<cim:UsagePointLocationLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    val cusex = Pattern.compile ("""<cim:CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    val priex = Pattern.compile ("""<cim:PricingStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val locex = Pattern.compile ("""<cim:UsagePoint.ServiceLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val uplex = Pattern.compile ("""<cim:UsagePoint.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    // error in ISU.CIM, remove when fixed:
+    val uplex2 = Pattern.compile ("""<cim:UsagePoint.LocationLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val cusex = Pattern.compile ("""<cim:UsagePoint.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val priex = Pattern.compile ("""<cim:UsagePoint.PricingStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
         NamedElement.parse,
         Element.parse_element (outex, 1, "outageregion", false)_,
@@ -1503,6 +1505,7 @@ object UsagePoint extends Parser
         Element.parse_element (curex, 1, "current", false)_,
         Element.parse_element (locex, 2, "servicelocation", false)_,
         Element.parse_element (uplex, 2, "usagelocation", false)_,
+        Element.parse_element (uplex2, 2, "usagelocation", false)_,
         Element.parse_element (cusex, 2, "customer", false)_,
         Element.parse_element (priex, 2, "pricing", false)_
         )
