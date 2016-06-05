@@ -1492,9 +1492,9 @@ object UsagePoint extends Parser
     val powex = Pattern.compile ("""<cim:UsagePoint.ratedPower>([\s\S]*?)<\/cim:UsagePoint.ratedPower>""")
     val curex = Pattern.compile ("""<cim:UsagePoint.ratedCurrent>([\s\S]*?)<\/cim:UsagePoint.ratedCurrent>""")
     val locex = Pattern.compile ("""<cim:UsagePoint.ServiceLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
-    val uplex = Pattern.compile ("""<cim:UsagePoint.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val uplex = Pattern.compile ("""<cim:UsagePoint.UsagePointLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     // error in ISU.CIM, remove when fixed:
-    val uplex2 = Pattern.compile ("""<cim:UsagePoint.LocationLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val uplex2 = Pattern.compile ("""<cim:UsagePoint.UsagePointLocationLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val cusex = Pattern.compile ("""<cim:UsagePoint.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     val priex = Pattern.compile ("""<cim:UsagePoint.PricingStructure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
     override def steps () = Array (
@@ -1750,7 +1750,7 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
 
 object CIM
 {
-    val CHUNK = 1024*1024*128
+    val CHUNK = 1024*1024*64
     val OVERREAD = 2048 // should be large enough that no RDF element is bigger than this
     val rddex = Pattern.compile ("""\s*<(cim:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 
