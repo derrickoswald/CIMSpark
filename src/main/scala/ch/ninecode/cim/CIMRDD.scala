@@ -1,4 +1,4 @@
-package ch.ninecode
+package ch.ninecode.cim
 
 import java.io.File
 import java.io.FileInputStream
@@ -9,8 +9,12 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+
+import ch.ninecode.model.CHIM
+import ch.ninecode.model.Element
 
 //// NOTE: in order to get maven and scala to work together in Eclipse
 //// I needed to install the maven-scala plugin from here:
@@ -38,13 +42,13 @@ object CIMRDD extends Logging
         return (xml)
     }
 
-    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Element] =
+    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
     {
         var size: Long = length
         if (0 == size)
             size = new File (filename).length () - offset
         val xml = CIMRDD.read (filename, offset, size)
-        val parser = new CIM (xml, offset, offset + size)
+        val parser = new CHIM (xml, offset, offset + size)
         val map = parser.parse ()
         return (sc.parallelize (map.values.toSeq))
     }

@@ -1,4 +1,4 @@
-package ch.ninecode
+package ch.ninecode.cim
 
 import org.apache.commons.logging.LogFactory
 import org.apache.hadoop.fs.Path
@@ -9,18 +9,20 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.hadoop.mapreduce.lib.input.FileSplit
 
+import ch.ninecode.model.Element
+
 class CIMInputFormat extends FileInputFormat[String, Element]
 {
     val LocalLog = LogFactory.getLog (classOf[CIMInputFormat]);
 
-    /**
-     * A factory that makes the split for this class. It can be overridden
-     * by sub-classes to make sub-types
-     */
-    override def makeSplit (file: Path, start: Long, length: Long, hosts: Array[String]): FileSplit =
-    {
-        return new FileSplit (file, start, length, hosts);
-    }
+//    /**
+//     * A factory that makes the split for this class. It can be overridden
+//     * by sub-classes to make sub-types
+//     */
+//    override def makeSplit (file: Path, start: Long, length: Long, hosts: Array[String]): FileSplit =
+//    {
+//        return new FileSplit (file, start, length, hosts);
+//    }
 
     /**
      * Generate the list of files and make them into FileSplits.

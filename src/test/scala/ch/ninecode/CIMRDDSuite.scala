@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 import org.scalatest.fixture
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.Outcome
+import ch.ninecode.cim.CIMRDD
 
 class CIMRDDSuite extends fixture.FunSuite
 {

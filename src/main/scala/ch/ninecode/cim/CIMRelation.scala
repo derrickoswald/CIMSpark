@@ -1,19 +1,3 @@
-/*
- * Copyright 2014 Databricks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package ch.ninecode.cim
 
 import java.util.Objects
@@ -24,23 +8,23 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileStatus
 import org.apache.hadoop.mapreduce.Job
 import org.apache.spark.Logging
-import org.apache.spark.annotation.DeveloperApi
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.catalyst.ScalaReflection
 import org.apache.spark.sql.sources.HadoopFsRelation
 import org.apache.spark.sql.sources.OutputWriterFactory
 import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.types.StructField
 import org.apache.spark.sql.types.StructType
 
-import ch.ninecode._
+import ch.ninecode.model._
 
 class Pair (val id_equ: String, var left: Terminal = null, var right: Terminal = null) extends Serializable
 class PreEdge (var id_seq_1: String, var id_seq_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var location: String, val power: Double, val commissioned: String) extends Serializable
-class Extremum (val id_loc: String, var min_index: Int, var x1 : Double, var y1 : Double, var max_index: Int, var x2 : Double, var y2 : Double) extends Serializable
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, power: Double, commissioned: String, x1: Double, y1: Double, x2: Double, y2: Double)
+class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, power: Double, commissioned: String, x1: String, y1: String, x2: String, y2: String)
 
 class CIMRelation(
     override val paths: Array[String],
@@ -68,11 +52,14 @@ class CIMRelation(
      */
     override def dataSchema: StructType =
     {
-        val struct = StructType (StructField ("key", StringType, true) :: Nil)
+        // we cheat here: the elements in the elements rdd are full Scala hierarchical objects,
+        // but we say here they only have one field of type Element because for some that is all they have
+        // (lowest common denominator)
+        val element = ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]
         maybeDataSchema match
         {
-          case Some(structType) => structType
-          case None => struct // SchemaConverters.toSqlType(avroSchema).dataType.asInstanceOf[StructType]
+          case Some (structType) => structType
+          case None => element
         }
     }
 
@@ -143,6 +130,7 @@ class CIMRelation(
             ret.cache ()
 
             // as a side effect, define all the other temporary tables
+            // ToDo: loop over CHIM.LOOKUP with nested element detection
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Unknown] => x.asInstanceOf[Unknown]})).registerTempTable ("Unknown")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PSRType] => x.asInstanceOf[PSRType]})).registerTempTable ("PSRType")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[SvStatus] => x.asInstanceOf[SvStatus]})).registerTempTable ("SvStatus")
@@ -159,23 +147,23 @@ class CIMRelation(
             points.setName ("Points")
             points.cache ()
             sqlContext.createDataFrame (points).registerTempTable ("PositionPoint")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Asset] => x.asInstanceOf[Asset]})).registerTempTable ("Asset")
+            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Asset] => x.asInstanceOf[Asset]})).registerTempTable ("Asset")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[EnergyConsumer] => x.asInstanceOf[EnergyConsumer]})).registerTempTable ("Consumer")
             val terminals = rdd.collect ({ case x: Element if x.getClass () == classOf[Terminal] => x.asInstanceOf[Terminal]})
             sqlContext.createDataFrame (terminals).registerTempTable ("Terminal")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[BusbarInfo] => x.asInstanceOf[BusbarInfo]})).registerTempTable ("BusbarInfo")
+            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[BusbarInfo] => x.asInstanceOf[BusbarInfo]})).registerTempTable ("BusbarInfo")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[BusbarSection] => x.asInstanceOf[BusbarSection]})).registerTempTable ("BusbarSection")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Connector] => x.asInstanceOf[Connector]})).registerTempTable ("Connector")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Junction] => x.asInstanceOf[Junction]})).registerTempTable ("Junction")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[CableInfo] => x.asInstanceOf[CableInfo]})).registerTempTable ("CableInfo")
+            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[CableInfo] => x.asInstanceOf[CableInfo]})).registerTempTable ("CableInfo")
             val aclinesegments = rdd.collect ({ case x: Element if x.getClass () == classOf[ACLineSegment] => x.asInstanceOf[ACLineSegment]})
             sqlContext.createDataFrame (aclinesegments).registerTempTable ("ACLineSegment")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ACLineSegmentPhase] => x.asInstanceOf[ACLineSegmentPhase]})).registerTempTable ("ACLineSegmentPhase")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[SwitchInfo] => x.asInstanceOf[SwitchInfo]})).registerTempTable ("SwitchInfo")
+            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[SwitchInfo] => x.asInstanceOf[SwitchInfo]})).registerTempTable ("SwitchInfo")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Switch] => x.asInstanceOf[Switch]})).registerTempTable ("Switch")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PowerTransformerInfo] => x.asInstanceOf[PowerTransformerInfo]})).registerTempTable ("PowerTransformerInfo")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerTankInfo] => x.asInstanceOf[TransformerTankInfo]})).registerTempTable ("TransformerTankInfo")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerEndInfo] => x.asInstanceOf[TransformerEndInfo]})).registerTempTable ("TransformerEndInfo")
+            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PowerTransformerInfo] => x.asInstanceOf[PowerTransformerInfo]})).registerTempTable ("PowerTransformerInfo")
+            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerTankInfo] => x.asInstanceOf[TransformerTankInfo]})).registerTempTable ("TransformerTankInfo")
+            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerEndInfo] => x.asInstanceOf[TransformerEndInfo]})).registerTempTable ("TransformerEndInfo")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PowerTransformer] => x.asInstanceOf[PowerTransformer]})).registerTempTable ("PowerTransformer")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerTank] => x.asInstanceOf[TransformerTank]})).registerTempTable ("TransformerTank")
             sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerTankEnd] => x.asInstanceOf[TransformerTankEnd]})).registerTempTable ("TransformerTankEnd")
@@ -203,7 +191,7 @@ class CIMRelation(
                 val pair_seq_op = (l: Pair /* null */, r: Terminal) ⇒
                 {
                     if (null == l)
-                        new Pair (r.equipment, r)
+                        new Pair (r.ConductingEquipment, r)
                     else
                     {
 //                        if (null != l.right)
@@ -216,7 +204,7 @@ class CIMRelation(
                 {
 //                    if ((null != l.right) || (null != r.right))
 //                        throw new IllegalStateException ("three terminals")
-                    if (1 == l.left.sequence)
+                    if (1 == l.left.ACDCTerminal.sequenceNumber)
                         l.right = r.left
                     else
                     {   // swap so seq#1 is left
@@ -225,7 +213,7 @@ class CIMRelation(
                     }
                     l
                 }
-                val terms = terminals.keyBy (_.equipment).aggregateByKey (null: Pair) (pair_seq_op, pair_comb_op).values
+                val terms = terminals.keyBy (_.ConductingEquipment).aggregateByKey (null: Pair) (pair_seq_op, pair_comb_op).values
 
                 // next, map the pairs to edges
                 val term_op =
@@ -256,96 +244,96 @@ class CIMRelation(
                                         case Some(o) if o.getClass () == classOf[CoordinateSystem] => { }
                                         case Some(o) if o.getClass () == classOf[Location] => { }
                                         case Some(o) if o.getClass () == classOf[PositionPoint] => { };
-                                        case Some(o) if o.getClass () == classOf[Asset] => { }
+                                        //case Some(o) if o.getClass () == classOf[Asset] => { }
                                         case Some(o) if o.getClass () == classOf[EnergyConsumer] =>
                                             {
                                                 val ec = o.asInstanceOf[EnergyConsumer]
-                                                voltage = ec.voltage
-                                                location = ec.location
+                                                voltage = ec.ConductingEquipment.BaseVoltage
+                                                location = ec.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[Terminal] => { }
-                                        case Some(o) if o.getClass () == classOf[BusbarInfo] => { }
+                                        //case Some(o) if o.getClass () == classOf[BusbarInfo] => { }
                                         case Some(o) if o.getClass () == classOf[BusbarSection] =>
                                             {
                                                 val bs = o.asInstanceOf[BusbarSection]
-                                                voltage = bs.voltage
-                                                location = bs.location
+                                                voltage = bs.Connector.ConductingEquipment.BaseVoltage
+                                                location = bs.Connector.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[Connector] =>
                                             {
                                                 val c = o.asInstanceOf[Connector]
-                                                voltage = c.voltage
-                                                location = c.location
+                                                voltage = c.ConductingEquipment.BaseVoltage
+                                                location = c.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[Junction] => { }
                                             {
                                                 val j = o.asInstanceOf[Junction]
-                                                voltage = j.voltage
-                                                location = j.location
+                                                voltage = j.Connector.ConductingEquipment.BaseVoltage
+                                                location = j.Connector.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
-                                        case Some(o) if o.getClass () == classOf[CableInfo] => { }
+                                        //case Some(o) if o.getClass () == classOf[CableInfo] => { }
                                         case Some(o) if o.getClass () == classOf[ACLineSegment] =>
                                             {
                                                 val ac = o.asInstanceOf[ACLineSegment]
-                                                length = ac.len.toDouble
-                                                voltage = ac.voltage
-                                                typ = ac.name
-                                                location = ac.location
+                                                length = ac.Conductor.len
+                                                voltage = ac.Conductor.ConductingEquipment.BaseVoltage
+                                                typ = ac.Conductor.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name
+                                                location = ac.Conductor.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[ACLineSegmentPhase] => { }
-                                        case Some(o) if o.getClass () == classOf[SwitchInfo] => { }
+                                        //case Some(o) if o.getClass () == classOf[SwitchInfo] => { }
                                         case Some(o) if o.getClass () == classOf[Switch] =>
                                             {
                                                 val s = o.asInstanceOf[Switch]
-                                                voltage = s.voltage
+                                                voltage = s.ConductingEquipment.BaseVoltage
                                                 normalOpen = s.normalOpen
-                                                location = s.location
+                                                location = s.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
-                                        case Some(o) if o.getClass () == classOf[PowerTransformerInfo] => { }
-                                        case Some(o) if o.getClass () == classOf[TransformerTankInfo] => { }
-                                        case Some(o) if o.getClass () == classOf[TransformerEndInfo] => { }
+                                        //case Some(o) if o.getClass () == classOf[PowerTransformerInfo] => { }
+                                        //case Some(o) if o.getClass () == classOf[TransformerTankInfo] => { }
+                                        //case Some(o) if o.getClass () == classOf[TransformerEndInfo] => { }
                                         case Some(o) if o.getClass () == classOf[PowerTransformer] =>
                                             {
                                                 val t = o.asInstanceOf[PowerTransformer]
-                                                typ = t.name
-                                                location = t.location
+                                                typ = t.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name
+                                                location = t.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[TransformerTank] => { }
                                         case Some(o) if o.getClass () == classOf[TransformerTankEnd] =>
                                             {
                                                 val te = o.asInstanceOf[TransformerTankEnd]
-                                                voltage = te.voltage
+                                                voltage = te.TransformerEnd.BaseVoltage
                                             }
                                         case Some(o) if o.getClass () == classOf[Fuse] =>
                                             {
                                                 val f = o.asInstanceOf[Fuse]
-                                                voltage = f.voltage
-                                                normalOpen = f.normalOpen
-                                                location = f.location
+                                                voltage = f.Switch.ConductingEquipment.BaseVoltage
+                                                normalOpen = f.Switch.normalOpen
+                                                location = f.Switch.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[Disconnector] => { }
                                             {
                                                 val d = o.asInstanceOf[Disconnector]
-                                                voltage = d.voltage
-                                                normalOpen = d.normalOpen
-                                                location = d.location
+                                                voltage = d.Switch.ConductingEquipment.BaseVoltage
+                                                normalOpen = d.Switch.normalOpen
+                                                location = d.Switch.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[GroundDisconnector] =>
                                             {
                                                 val gd = o.asInstanceOf[GroundDisconnector]
-                                                voltage = gd.voltage
-                                                normalOpen = gd.normalOpen
-                                                location = gd.location
+                                                voltage = gd.Switch.ConductingEquipment.BaseVoltage
+                                                normalOpen = gd.Switch.normalOpen
+                                                location = gd.Switch.ConductingEquipment.Equipment.PowerSystemResource.Location
                                             }
                                         case Some(o) if o.getClass () == classOf[ProtectionEquipment] => { }
-                                        case Some(o) if o.getClass () == classOf[CurrentTransformer] => { }
+                                        //case Some(o) if o.getClass () == classOf[CurrentTransformer] => { }
                                         case Some(o) if o.getClass () == classOf[CurrentRelay] => { }
                                         case Some(o) if o.getClass () == classOf[SolarGeneratingUnit] =>
                                             {
                                                 val sgu = o.asInstanceOf[SolarGeneratingUnit]
-                                                location = sgu.location
-                                                power = sgu.power
-                                                commissioned = sgu.commissioned
+                                                location = sgu.GeneratingUnit.Equipment.PowerSystemResource.Location
+                                                power = sgu.GeneratingUnit.ratedNetMaxP
+                                                commissioned = sgu.commissioningDate
                                             }
 
                                         case Some(o) if o.getClass () == classOf[ServiceLocation] => { }
@@ -357,8 +345,8 @@ class CIMRelation(
                                         case Some(o) if o.getClass () == classOf[UsagePoint] =>
                                             {
                                                 val up = o.asInstanceOf[UsagePoint]
-                                                voltage = up.nominalvoltage
-                                                location = up.usagepointlocation
+                                                voltage = up.nominalServiceVoltage.toString ()
+                                                location = up.UsagePointLocation
                                             }
 
                                         case Some(o) if o.getClass () == classOf[NameTypeAuthority] => { }
@@ -367,9 +355,9 @@ class CIMRelation(
                                         case Some(o) if o.getClass () == classOf[UserAttribute] => { }
                                     }
                                     new PreEdge (
-                                        p.left.id,
-                                        if (null != p.right) p.right.id else "",
-                                        p.left.equipment,
+                                        p.left.ACDCTerminal.IdentifiedObject.mRID,
+                                        if (null != p.right) p.right.ACDCTerminal.IdentifiedObject.mRID else "",
+                                        p.left.ConductingEquipment,
                                         "",
                                         length,
                                         voltage,
@@ -385,7 +373,7 @@ class CIMRelation(
                         }
                     }
                 }
-                var preedges = terms.keyBy (_.id_equ).leftOuterJoin (rdd.keyBy (_.key)).map (term_op)
+                var preedges = terms.keyBy (_.id_equ).leftOuterJoin (rdd.keyBy (_.id)).map (term_op)
 
                 // change terminal id to node id
                 val left_op =
@@ -396,15 +384,15 @@ class CIMRelation(
                         {
                             case (s: String, (e:PreEdge, Some (t:Terminal))) =>
                                 {
-                                    if (t.connectivity != null)
-                                        e.id_seq_1 = t.connectivity
+                                    if (t.ConnectivityNode != null)
+                                        e.id_seq_1 = t.ConnectivityNode
                                     e
                                 }
                             case (s: String, (e:PreEdge, None)) => e
                         }
                     }
                 }
-                preedges = preedges.keyBy (_.id_seq_1).leftOuterJoin (terminals.keyBy (_.id)).map (left_op)
+                preedges = preedges.keyBy (_.id_seq_1).leftOuterJoin (terminals.keyBy (_.ACDCTerminal.IdentifiedObject.mRID)).map (left_op)
                 val right_op =
                 {
                     j: Any =>
@@ -413,15 +401,15 @@ class CIMRelation(
                         {
                             case (s: String, (e:PreEdge, Some (t:Terminal))) =>
                                 {
-                                    if (t.connectivity != null)
-                                        e.id_seq_2 = t.connectivity
+                                    if (t.ConnectivityNode != null)
+                                        e.id_seq_2 = t.ConnectivityNode
                                     e
                                 }
                             case (s: String, (e:PreEdge, None)) => e
                         }
                     }
                 }
-                preedges = preedges.keyBy (_.id_seq_2).leftOuterJoin (terminals.keyBy (_.id)).map (right_op)
+                preedges = preedges.keyBy (_.id_seq_2).leftOuterJoin (terminals.keyBy (_.ACDCTerminal.IdentifiedObject.mRID)).map (right_op)
 
                 // change node id to node name
                 val left_op2 =
@@ -432,17 +420,17 @@ class CIMRelation(
                         {
                             case (s: String, (e:PreEdge, Some (c:ConnectivityNode))) =>
                                 {
-                                    if (c.name != null)
-                                        e.id_seq_1 = c.name
-                                    if (c.container != null)
-                                        e.container = c.container
+                                    if (c.IdentifiedObject.name != null)
+                                        e.id_seq_1 = c.IdentifiedObject.name
+                                    if (c.ConnectivityNodeContainer != null)
+                                        e.container = c.ConnectivityNodeContainer
                                     e
                                 }
                             case (s: String, (e:PreEdge, None)) => e
                         }
                     }
                 }
-                preedges = preedges.keyBy (_.id_seq_1).leftOuterJoin (connectivitynodes.keyBy (_.id)).map (left_op2)
+                preedges = preedges.keyBy (_.id_seq_1).leftOuterJoin (connectivitynodes.keyBy (_.IdentifiedObject.mRID)).map (left_op2)
                 val right_op2 = // ToDo: equipment with two containers should be deterministically assigned to the correct container
                 {
                     j: Any =>
@@ -451,36 +439,36 @@ class CIMRelation(
                         {
                             case (s: String, (e:PreEdge, Some (c:ConnectivityNode))) =>
                                 {
-                                    if (c.name != null)
-                                        e.id_seq_2 = c.name
-                                    if (c.container != null)
-                                        e.container = c.container
+                                    if (c.IdentifiedObject.name != null)
+                                        e.id_seq_2 = c.IdentifiedObject.name
+                                    if (c.ConnectivityNodeContainer != null)
+                                        e.container = c.ConnectivityNodeContainer
                                     e
                                 }
                             case (s: String, (e:PreEdge, None)) => e
                         }
                     }
                 }
-                preedges = preedges.keyBy (_.id_seq_2).leftOuterJoin (connectivitynodes.keyBy (_.id)).map (right_op2)
+                preedges = preedges.keyBy (_.id_seq_2).leftOuterJoin (connectivitynodes.keyBy (_.IdentifiedObject.mRID)).map (right_op2)
 
                 // get start and end coordinates of each location
                 val point_seq_op = (x: Extremum /* null */, p: PositionPoint) ⇒
                 {
                     if (null == x)
-                        new Extremum (p.location, p.sequence, p.x, p.y, p.sequence, p.x, p.y)
+                        new Extremum (p.Location, p.sequenceNumber, p.xPosition, p.yPosition, p.sequenceNumber, p.xPosition, p.yPosition)
                     else
                     {
-                        if (p.sequence < x.min_index)
+                        if (p.sequenceNumber < x.min_index)
                         {
-                            x.min_index = p.sequence
-                            x.x1 = p.x
-                            x.y1 = p.y
+                            x.min_index = p.sequenceNumber
+                            x.x1 = p.xPosition
+                            x.y1 = p.yPosition
                         }
-                        else if (p.sequence > x.max_index)
+                        else if (p.sequenceNumber > x.max_index)
                         {
-                            x.max_index = p.sequence
-                            x.x2 = p.x
-                            x.y2 = p.y
+                            x.max_index = p.sequenceNumber
+                            x.x2 = p.xPosition
+                            x.y2 = p.yPosition
                         }
                         x
                     }
@@ -501,7 +489,7 @@ class CIMRelation(
                     }
                     l
                 }
-                val extremum = points.keyBy (_.location).aggregateByKey (null: Extremum) (point_seq_op, point_comb_op).values
+                val extremum = points.keyBy (_.Location).aggregateByKey (null: Extremum) (point_seq_op, point_comb_op).values
 
                 // join coordinates with edges using equipment
                 val edge_op =
@@ -514,7 +502,7 @@ class CIMRelation(
                                 Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, x.x1, x.y1, x.x2, x.y2)
                             case (l: String, (e:PreEdge, None)) =>
                                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, 0.0, 0.0, 0.0, 0.0)
+                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, "0.0", "0.0", "0.0", "0.0")
                         }
                     }
                 }
@@ -529,7 +517,7 @@ class CIMRelation(
             }
         }
         else
-            logError ("ch.ninecode.cim.DefaultSource.buildScan was given an input list containing no files")
+            logError ("ch.ninecode.cim.CIMRelation.buildScan was given an input list containing no files")
 
         return (ret)
   }
