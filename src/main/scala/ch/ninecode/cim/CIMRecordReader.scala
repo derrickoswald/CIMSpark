@@ -30,7 +30,7 @@ class CIMRecordReader extends RecordReader[String, Element]
 
         // open the file and seek to the start of the split
         var fs = file.getFileSystem (job);
-        val in:org.apache.hadoop.fs.FSDataInputStream = fs.open (file);
+        val in = fs.open (file);
 
         val extra = if (in.available() > end) CHIM.OVERREAD else 0
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
@@ -49,11 +49,12 @@ class CIMRecordReader extends RecordReader[String, Element]
             // skip to next UTF-8 non-continuation byte (high order bit zero)
             // by advancing past at most 4 bytes
             var i = 0
-            while (0 != (buffer(low) & 0x80) && (i < Math.min (4, size)))
-            {
-                low += 1
-                i += 1
-            }
+            if ((buffer(low) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
+                while (0 != (buffer(low) & 0x80) && (i < Math.min (4, size)))
+                {
+                    low += 1
+                    i += 1
+                }
         }
 
         var text = new org.apache.hadoop.io.Text ()

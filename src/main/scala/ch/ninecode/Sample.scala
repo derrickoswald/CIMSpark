@@ -7,6 +7,8 @@ import scala.collection.mutable.HashMap
 import scala.collection.mutable.MutableList
 import org.apache.spark.sql.SQLContext
 
+import ch.ninecode.model.ConnectivityNode
+
 /**
  *   For an execution example see main().
  */
@@ -24,7 +26,7 @@ case class Message (busbar: String, distance: Double, abgang: String) extends Se
  * node - the CIM connectivity node
  * trace - the last recieved (or coelesced) message data
  */
-case class VertexData (node: ch.ninecode.ConnectivityNode, trace: Message)
+case class VertexData (node: ConnectivityNode, trace: Message)
 
 /**
  * Simple example of using CIM.
@@ -50,7 +52,7 @@ class Sample extends Serializable
 
         if (null == message) // initial message
         {
-            val busbar = if ((v.node != null) && (v.node.name.startsWith ("SAM"))) v.node.name else null
+            val busbar = if ((v.node != null) && (v.node.IdentifiedObject.name.startsWith ("SAM"))) v.node.IdentifiedObject.name else null
             if (null != busbar)
                 ret = (VertexData (v.node, Message (busbar, 0.0, null)))
         }
@@ -79,7 +81,7 @@ class Sample extends Serializable
             {
                 // check if upstream node is an abgang with a container that isn't a substation
                 val node = triplet.srcAttr.node
-                val abgang = if ((node != null) && node.name.startsWith ("ABG") && !node.container.startsWith ("_substation")) node.name else null
+                val abgang = if ((node != null) && node.IdentifiedObject.name.startsWith ("ABG") && !node.ConnectivityNodeContainer.startsWith ("_substation")) node.IdentifiedObject.name else null
                 ret = Iterator ((triplet.dstId, Message (triplet.srcAttr.trace.busbar, distance, abgang)))
             }
         }
@@ -110,14 +112,14 @@ class Sample extends Serializable
     def graphx (sc: SparkContext): Graph[VertexData, ch.ninecode.cim.Edge] =
     {
         // get the named RDD from the CIM reader
-        var vertices:RDD[ch.ninecode.ConnectivityNode] = null
+        var vertices:RDD[ConnectivityNode] = null
         var edges:RDD[ch.ninecode.cim.Edge] = null
         val rdds = sc.getPersistentRDDs
         for (key <- rdds.keys)
         {
             val rdd = rdds (key)
             if (rdd.name == "Vertices")
-                vertices = rdds (key).asInstanceOf[RDD[ch.ninecode.ConnectivityNode]]
+                vertices = rdds (key).asInstanceOf[RDD[ConnectivityNode]]
             if (rdd.name == "Edges")
                 edges = rdds (key).asInstanceOf[RDD[ch.ninecode.cim.Edge]]
         }
@@ -134,7 +136,7 @@ class Sample extends Serializable
 
             // augment the elements to have the busbar, distance and upstream abgang using the VertexData class
             var elementsplus = vertices.flatMap (
-                (v: ch.ninecode.ConnectivityNode) =>
+                (v: ConnectivityNode) =>
                 {
                     Array (VertexData (v, Message (null, Double.PositiveInfinity, null)))
                 }
@@ -145,7 +147,7 @@ class Sample extends Serializable
             // with sample data there were none
 
             // create RDD of (key, value) pairs
-            var _elements = elementsplus.keyBy (_.node.name.hashCode().asInstanceOf[VertexId])
+            var _elements = elementsplus.keyBy (_.node.IdentifiedObject.name.hashCode().asInstanceOf[VertexId])
 
             // convert CIM edges into graphx edges
             var _edges = edges.flatMap (
@@ -193,7 +195,7 @@ class Sample extends Serializable
                  case v: Tuple2[VertexId, VertexData]
                  if ((v._2.trace.abgang != null) // the node has an upstream abgang
                     && (v._2.trace.distance != Double.PositiveInfinity) // and it's connected
-                    && (v._2.node.name.startsWith ("HAS"))) // and it's a house connection
+                    && (v._2.node.IdentifiedObject.name.startsWith ("HAS"))) // and it's a house connection
                     =>
                     v._2 // keep just the data
              }
@@ -242,7 +244,7 @@ object Sample
                 val ready = System.nanoTime ()
                 println ("Setup time: " + ((ready - start) / 1e9) + "s")
                 // compute the graph of distances from busbars
-                var sample = new ch.ninecode.Sample ()
+                var sample = new Sample ()
                 var graph = sample.graphx (context)
                 val traced = System.nanoTime ()
                 println ("Trace time: " + ((traced - ready) / 1e9) + "s")

@@ -3261,15 +3261,15 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                     found = true
                 }
             }
-
         return (ret)
     }
 
-    def parse (): HashMap[String, Row] =
+    def parse (): HashMap[String, Element] =
     {
-        val ret = HashMap[String, Row] ()
+        var print = true
+        val ret = HashMap[String, Element] ()
         while (parse_one ())
-            ret.put (value.get (1).asInstanceOf[String], value)
+            ret.put (value.id, value)
 
         return (ret)
     }
@@ -3278,40 +3278,115 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
 object CHIM
 {
     val CHUNK = 1024*1024*64
-    val OVERREAD = 2048 // should be large enough that no RDF element is bigger than this
+    val OVERREAD = 4096 // should be large enough that no RDF element is bigger than this
     val LOOKUP = new HashMap[String,Parser]
 
-    def read (filename: String, offset: Long, size: Long = CHUNK, overread: Long = OVERREAD): String =
+    def adjustment (buffer: Array[Byte], low: Integer, high: Integer, also_upper_bound: Boolean): Tuple2[Int, Int] =
+    {
+        var lo = low
+        var hi = high
+
+        // skip to next UTF-8 non-continuation byte (high order bit zero)
+        // by advancing past at most 4 bytes
+        var i = 0
+        if ((buffer(lo) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
+            while ((lo < high) && (0 != (buffer(lo) & 0x80)) && (i < 4))
+            {
+                lo += 1
+                i += 1
+            }
+
+        // avoid eating a partial UTF-8 character at the end of the buffer
+        var j = 0
+        if (also_upper_bound)
+        {
+            var done = false
+            while (!done && (hi - 1 >= lo) && (0 != (buffer(hi - 1) & 0x80)) && (j < 4))
+            {
+                hi -= 1
+                j += 1
+                if ((buffer(hi) & 0xc0) == 0xc0)
+                    done = true
+            }
+        }
+
+        (i, j)
+    }
+
+    def read (filename: String, offset: Long, size: Long = CHUNK, overread: Long = OVERREAD) =
     {
         var ret: String = null
 
+        var limit: Long = 0L
         val file = new File (filename)
         if (file.exists ()) // avoid FileNotFoundException
         {
+            // open the file and skip to the starting offset
             val fis = new FileInputStream (file)
-            val isr = new InputStreamReader (fis, "UTF8")
-            val skipped = isr.skip (offset)
+            val gross = fis.available ()
+            val skipped = fis.skip (offset)
             if (offset == skipped)
             {
-                val buf = new Array[Char] (CHUNK)
-                val sint: Int = if (size > Int.MaxValue) Int.MaxValue else size.asInstanceOf[Int]
-                val sb = new StringBuilder (sint)
+                // the amount extra to read so we get a complete RDF element at the end
+                val extra = if (gross > offset + size + overread) overread else Math.max (0, gross - offset - size)
+                // the size including extra as an integer
+                val span: Int = if ((size + extra) > Int.MaxValue) Int.MaxValue else (size + extra).asInstanceOf[Int]
+                // allocate a stringbuilder big enough
+                val sb = new StringBuilder (span)
+                // the number of bytes read in so far
                 var count:Long = 0
+                // a flag to indicate a file read error
                 var stop = false
+                // a chunk sized byte buffer with room for one more partial UTF-8 character
+                val buffer = new Array[Byte] (CHUNK + 4)
+                // place in the buffer where to start putting the bytes being read in
+                var lo = 0
                 do
                 {
+                    // calculate how much there is still to read in
                     val max = size + overread - count
-                    val actual = isr.read (buf, 0, if (max > CHUNK) CHUNK else max.asInstanceOf[Int])
+                    val actual = fis.read (buffer, lo, if (max > CHUNK) CHUNK else max.asInstanceOf[Int])
                     if (0 < actual)
                     {
-                        sb.appendAll (buf, 0, actual)
+                        // high water mark for valid bytes in the buffer
+                        var hi = actual + lo
+
+                        // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
+                        if ((0 == offset) && (0 == count)) // start of the file
+                            if ((actual >= 3) && (buffer (lo) == 0xef) && (buffer (lo + 1) == 0xbb) && (buffer (lo + 2) == 0xbf))
+                                lo += 3
+
+                        // get minor adjustment to land on UTF-8 character boundary
+                        var (i, j) = adjustment (buffer, lo, hi, count + actual < gross) // upper bound too if not at the end of the file
+
+                        val tripwire: Boolean = ((count + actual >= size) && (0 == limit)) // first time crossing the requested end boundary
+                        if (tripwire)
+                        {
+                            val stub = new String (buffer, lo + i, (size - count).asInstanceOf[Int], "UTF8")
+                            limit = sb.length + stub.length
+                        }
+
+                        // form the string and add it to the buffer
+                        val s = new String (buffer, lo + i, hi - j, "UTF8")
+                        sb.append (s)
+
+                        // move the partial UTF-8 character at the end of the buffer to the beginning
+                        i = 0
+                        while (j > 0)
+                        {
+                            buffer(i) = buffer(hi)
+                            i += 1
+                            j -= 1
+                        }
+
+                        // update the count of bytes read in
                         count += actual
                     }
                     else
                         stop = true
                 }
                 while (!stop && (count < size + overread))
-                isr.close ()
+                fis.close ()
                 ret = sb.toString ()
             }
             else
@@ -3320,7 +3395,7 @@ object CHIM
         else
             println ("CIM XML input file '" + filename + "' not found")
 
-        return (ret)
+        (ret, offset, offset + limit)
     }
 
     /**
@@ -3335,14 +3410,14 @@ object CHIM
             val size = fis.available ()
             fis.close ();
 
-            val result = new HashMap[String, Row]
+            val result = new HashMap[String, Element]
             var offset = 0L
             var reading = 0.0
             var parsing = 0.0
             while (offset < size)
             {
                 val start = System.nanoTime
-                var xml = read (filename, offset)
+                var (xml, lo, hi) = read (filename, offset)
                 offset += CHUNK
                 val before = System.nanoTime
                 reading += (before - start) / 1000

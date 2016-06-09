@@ -83,6 +83,11 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
 
         return (ret)
     }
+
+    override def toString: String =
+    {
+        xml.substring (0, 50) + " start: " + start + " end: " + end
+    }
 }
 
 object Context
