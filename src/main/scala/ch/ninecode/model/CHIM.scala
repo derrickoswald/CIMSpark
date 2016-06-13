@@ -13,7 +13,9 @@ import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
 import scala.reflect._
+import scala.reflect.runtime.universe._
 
+import org.apache.spark.rdd.RDD
 import org.apache.spark.unsafe.types.UTF8String
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.util.{ArrayData, GenericArrayData}
@@ -41,10 +43,37 @@ import ch.ninecode.Context
 //# IdentifiedObject
 //b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]][[1]]
 
-abstract class Parseable[A <: Row : ClassTag]
+abstract class Parseable[+A <: Row with Product : ClassTag : TypeTag]
 {
-    def cls: String = { val name = classTag[A].runtimeClass.getName; name.substring (name.lastIndexOf (".") + 1) }
+    def runtime_class = classTag[A].runtimeClass
+    def classname = runtime_class.getName
+    def cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
     def register: Unit = CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parser]))
+//    def elementClassTag: ClassTag[A] = classTag[A]
+//    def elementTypeTag: TypeTag[A] = typeTag[A]
+    def cast(e: Element) = e.asInstanceOf[A]
+//    type mytype <: RDD[A]
+    def subset (rdd: RDD[Element with Product]): RDD[Element with Product] =
+    {
+        def subclass (x: Element, parser: Parseable[A]): A =
+        {
+            var ret = x
+
+            while ((null != ret) && (ret.getClass () != parser.runtime_class))
+                return (ret.asInstanceOf[A])
+
+            return (null.asInstanceOf[A])
+        }
+        val pf:PartialFunction[Element with Product, A] =
+        {
+            case x: Element if (null != subclass (x, this)) =>
+                subclass (x, this)
+        }
+        val subrdd: RDD[A] = rdd.collect (pf)
+        subrdd.name = this.cls
+        subrdd.cache ()
+        subrdd.asInstanceOf[RDD[Element with Product]]
+    }
 }
 
 trait Parser
@@ -3207,7 +3236,7 @@ object Work
  * Common Hierarchical Information Model
  * CIM classes for parsing RDF files.
  */
-class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
+class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L) extends Serializable
 {
     if (end == 0L)
         end = start + xml.length ()
@@ -3279,7 +3308,16 @@ object CHIM
 {
     val CHUNK = 1024*1024*64
     val OVERREAD = 4096 // should be large enough that no RDF element is bigger than this
+
     val LOOKUP = new HashMap[String,Parser]
+
+    def apply_to_all_classes[T <: Element with Product] (fn: (String, Parseable[T]) => Unit) =
+    {
+        val chim = new CHIM ("")
+        println ("apply_to_all_classes " + LOOKUP.size)
+        for ((name, cls) <- LOOKUP.iterator)
+            fn (name, cls.asInstanceOf[Parseable[T]])
+    }
 
     def adjustment (buffer: Array[Byte], low: Integer, high: Integer, also_upper_bound: Boolean): Tuple2[Int, Int] =
     {

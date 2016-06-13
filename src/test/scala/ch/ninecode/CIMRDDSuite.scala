@@ -17,6 +17,7 @@ import ch.ninecode.cim.CIMInputFormat
 import ch.ninecode.model.CHIM
 import ch.ninecode.model.Element
 import ch.ninecode.model.Unknown
+import ch.ninecode.model.Parseable
 
 class CIMRDDSuite extends fixture.FunSuite
 {
@@ -49,6 +50,7 @@ class CIMRDDSuite extends fixture.FunSuite
 
         // RDD[(String, Element)]
         val rdd = sc.newAPIHadoopRDD (configuration, classOf[CIMInputFormat], classOf[String], classOf[Element])
+
         return (rdd.values)
     }
 
