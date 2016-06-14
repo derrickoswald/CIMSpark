@@ -22,9 +22,9 @@ import org.apache.spark.sql.types.StructType
 import ch.ninecode.model._
 
 class Pair (val id_equ: String, var left: Terminal = null, var right: Terminal = null) extends Serializable
-class PreEdge (var id_seq_1: String, var id_seq_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var location: String, val power: Double, val commissioned: String) extends Serializable
+class PreEdge (var id_seq_1: String, var id_seq_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var location: String, val power: Double, val commissioned: String, val status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, power: Double, commissioned: String, x1: String, y1: String, x2: String, y2: String)
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
 
 class CIMRelation(
     override val paths: Array[String],
@@ -344,6 +344,7 @@ class CIMRelation(
                                     var location = ""
                                     var power = 0.0
                                     var commissioned = ""
+                                    var status = ""
                                     Some (e) match
                                     {
                                         case Some(o) if o.getClass () == classOf[PSRType] => { }
@@ -392,6 +393,8 @@ class CIMRelation(
                                                 voltage = ac.Conductor.ConductingEquipment.BaseVoltage
                                                 typ = ac.Conductor.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name
                                                 location = ac.Conductor.ConductingEquipment.Equipment.PowerSystemResource.Location
+                                                status = ac.Conductor.ConductingEquipment.SvStatus
+
                                             }
                                         case Some(o) if o.getClass () == classOf[ACLineSegmentPhase] => { }
                                         //case Some(o) if o.getClass () == classOf[SwitchInfo] => { }
@@ -478,11 +481,12 @@ class CIMRelation(
                                         normalOpen,
                                         location,
                                         power,
-                                        commissioned)
+                                        commissioned,
+                                        status)
                                 }
                             case (s: String, (p: Pair, None)) =>
                                 // shouldn't happen of course: if it does we have a terminal with an equipment reference to non-existant equipment
-                                new PreEdge ("", "", "", "", 0.0, "", "", false, "", 0.0, "")
+                                new PreEdge ("", "", "", "", 0.0, "", "", false, "", 0.0, "", "")
                         }
                     }
                 }
@@ -612,10 +616,10 @@ class CIMRelation(
                         j match
                         {
                             case (l: String, (e:PreEdge, Some (x:Extremum))) =>
-                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, x.x1, x.y1, x.x2, x.y2)
+                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
                             case (l: String, (e:PreEdge, None)) =>
                                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, "0.0", "0.0", "0.0", "0.0")
+                                Edge (e.id_seq_1, e.id_seq_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
                         }
                     }
                 }
