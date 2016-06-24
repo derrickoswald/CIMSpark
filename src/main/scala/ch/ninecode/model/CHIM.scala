@@ -247,7 +247,13 @@ class ElementUDT extends UserDefinedType[Element]
     // stub
     //   - where stub is an instance of another class ElementUDT_stub extends UserDefinedType[Element]
     //     results in the same serialization/deserialization issues as above, but one level away
-    override def sqlType: DataType = StructType (StructField ("sup", StringType, true) :: Nil)
+    // StructType (StructField ("sup", StringType, true) :: Nil)
+    //   - works except for hive-thriftserver
+    //     where it doesn't handle user defined types (UDT)
+    //     see addNonNullColumnValue in https://github.com/apache/spark/blob/master/sql/hive-thriftserver/src/main/scala/org/apache/spark/sql/hive/thriftserver/SparkExecuteStatementOperation.scala
+    //     results in scala.MatchError: ch.ninecode.model.ElementUDT@7c008354 (of class ch.ninecode.model.ElementUDT)
+    //override def sqlType: DataType = StructType (StructField ("sup", StringType, true) :: Nil)
+    override def sqlType: DataType = NullType
 
     override def pyUDT: String = "ch.ninecode.cim.ElementUDT"
 
@@ -302,6 +308,19 @@ class ElementUDT extends UserDefinedType[Element]
     }
 
     override def userClass: Class[Element] = classOf[Element]
+
+    override def equals (o: Any): Boolean =
+    {
+        o match
+        {
+            case v: ElementUDT => true
+            case _ => false
+        }
+    }
+
+    override def hashCode(): Int = classOf[ElementUDT].getName.hashCode()
+
+    override def typeName: String = "element"
 
     override def asNullable: ElementUDT = this
 }
