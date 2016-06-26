@@ -252,7 +252,6 @@ class ElementUDT extends UserDefinedType[Element]
     //     where it doesn't handle user defined types (UDT)
     //     see addNonNullColumnValue in https://github.com/apache/spark/blob/master/sql/hive-thriftserver/src/main/scala/org/apache/spark/sql/hive/thriftserver/SparkExecuteStatementOperation.scala
     //     results in scala.MatchError: ch.ninecode.model.ElementUDT@7c008354 (of class ch.ninecode.model.ElementUDT)
-    //override def sqlType: DataType = StructType (StructField ("sup", StringType, true) :: Nil)
     override def sqlType: DataType = NullType
 
     override def pyUDT: String = "ch.ninecode.cim.ElementUDT"
@@ -2957,7 +2956,7 @@ case class Switch
     val ratedCurrent: String,
     val retained: Boolean,
     val switchOnCount: Integer,
-    // ToDo: Date handlien
+    // ToDo: Date handling
     //val switchOnDate: Date
     val CompositeSwitch: String,
     val Outage: String,
@@ -3023,8 +3022,6 @@ case class TransformerEnd
     val xground: Double,
     val BaseVoltage: String,
     val CoreAdmittance: String,
-    val FromMeshImpedance: String,
-    val FromWindingInsulations: String,
     val PhaseTapChanger: String,
     val RatioTapChanger: String,
     val StarImpedance: String,
@@ -3058,14 +3055,12 @@ with
     val magSatFlux = parse_element (element ("""TransformerEnd.magSatFlux"""))_
     val rground = parse_element (element ("""TransformerEnd.rground"""))_
     val xground = parse_element (element ("""TransformerEnd.xground"""))_
-    val BaseVoltage = parse_element (element ("""TransformerEnd.BaseVoltage"""))_
-    val CoreAdmittance = parse_element (element ("""TransformerEnd.CoreAdmittance"""))_
-    val FromMeshImpedance = parse_element (element ("""TransformerEnd.FromMeshImpedance"""))_
-    val FromWindingInsulations = parse_element (element ("""TransformerEnd.FromWindingInsulations"""))_
-    val PhaseTapChanger = parse_element (element ("""TransformerEnd.PhaseTapChanger"""))_
-    val RatioTapChanger = parse_element (element ("""TransformerEnd.RatioTapChanger"""))_
-    val StarImpedance = parse_element (element ("""TransformerEnd.StarImpedance"""))_
-    val Terminal = parse_element (element ("""TransformerEnd.Terminal"""))_
+    val BaseVoltage = parse_attribute (attribute ("""TransformerEnd.BaseVoltage"""))_
+    val CoreAdmittance = parse_attribute (attribute ("""TransformerEnd.CoreAdmittance"""))_
+    val PhaseTapChanger = parse_attribute (attribute ("""TransformerEnd.PhaseTapChanger"""))_
+    val RatioTapChanger = parse_attribute (attribute ("""TransformerEnd.RatioTapChanger"""))_
+    val StarImpedance = parse_attribute (attribute ("""TransformerEnd.StarImpedance"""))_
+    val Terminal = parse_attribute (attribute ("""TransformerEnd.Terminal"""))_
     def parse (context: Context): TransformerEnd =
     {
         return (
@@ -3081,8 +3076,6 @@ with
                 toDouble (xground (context), context),
                 BaseVoltage (context),
                 CoreAdmittance (context),
-                FromMeshImpedance (context),
-                FromWindingInsulations (context),
                 PhaseTapChanger (context),
                 RatioTapChanger (context),
                 StarImpedance (context),
@@ -3301,7 +3294,8 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L) extends Se
                     ret = (context.end == (matcher.start () + context.start)) || (context.end == context.start)
                     // or there is non-whitespace not covered
                     if (context.DEBUG)
-                        ret &= context.covered ()
+                        if (!context.covered () && context.STOP_ON_ERROR)
+                            ret = true
 
                     // set up for next parse
                     context.end = matcher.end () + context.start

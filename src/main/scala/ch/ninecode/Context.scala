@@ -11,6 +11,7 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
 {
     import Context._
     val DEBUG = true
+    val STOP_ON_ERROR = false
     val MAXERRORS = 10
     var name: String = null // current element name
     val coverage = new ArrayBuffer[Pair[Int, Int]]

@@ -34,8 +34,6 @@ public class CIMJava
             System.out.println ("    " + res.getString (1));
         res.close ();
 
-        String tableName = null;
-
         // show tables
         sql = "show tables";
         System.out.println ("Running: " + sql);
@@ -45,15 +43,19 @@ public class CIMJava
         {
             String name = res.getString (1);
             names.add (name);
-            if (name.equals ("edges"))
-                tableName = name;
         }
         res.close ();
 
         // describe table
         for (String name: names)
         {
-            System.out.println ("    " + name);
+            System.out.print ("    " + name);
+            // count query
+            sql = "select count(1) from " + name;
+            res = stmt.executeQuery (sql);
+            while (res.next ())
+                System.out.println (" has " + res.getString (1) + " rows");
+            res.close ();
             sql = "describe " + name;
             res = stmt.executeQuery (sql);
             while (res.next ())
@@ -61,28 +63,67 @@ public class CIMJava
             res.close ();
         }
 
-        if (null != tableName)
-        {
-            // count query
-            sql = "select count(1) from " + tableName;
-            System.out.println ("Running: " + sql);
-            res = stmt.executeQuery (sql);
-            while (res.next ())
-                System.out.println (res.getString (1));
-            res.close ();
+        // edges query
+        // id_seq_1    string
+        // id_seq_2    string
+        // id_equ  string
+        // container   string
+        // length  double
+        // voltage string
+        // typ string
+        // normalOpen  boolean
+        // power   double
+        // commissioned    string
+        // status  string
+        // x1  string
+        // y1  string
+        // x2  string
+        // y2  string
+        sql = "select id_seq_1, id_seq_2, id_equ, length, x1, y1, x2, y2 from edges";
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        int index = 0;
+        while (res.next () && (index++ < 5))
+            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getDouble (4) + "\t" + res.getString (5) + "\t" + res.getString (6) + "\t" + res.getString (7) + "\t" + res.getString (8));
+        res.close ();
 
-            // select * query
-//            sql = "select * from " + tableName;
-//            sql = "select sup.aliasName, sup.description, sup.mRID, sup.name, direction, geoInfoReference, typ, CoordinateSystem, electronicAddress, mainAddress, phone1, phone2, secondaryAddress, status from " + tableName;
-            sql = "select id_seq_1, id_seq_2, id_equ, length from edges " + tableName;
-            System.out.println ("Running: " + sql);
-            res = stmt.executeQuery (sql);
-            int index = 0;
-            while (res.next () && (index++ < 5))
-                //System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (7) + "\t" + res.getString (8));
-                System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getDouble (4));
-            res.close ();
-        }
+        // select * query on PositionPoint
+        sql = "select * from PositionPoint";
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        index = 0;
+        while (res.next () && (index++ < 5))
+            System.out.println (res.getString (1) + "\t" + res.getInt (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5)+ "\t" + res.getString (6));
+        res.close ();
+
+        // explicit query on Location
+        // sup struct<sup:element,aliasName:string,description:string,mRID:string,name:string>
+        // direction   string
+        // geoInfoReference    string
+        // typ string
+        // CoordinateSystem    string
+        // electronicAddress   string
+        // mainAddress string
+        // phone1  string
+        // phone2  string
+        // secondaryAddress    string
+        // status  string
+        sql = "select sup.aliasName, sup.description, sup.mRID, sup.name, direction, geoInfoReference, typ, CoordinateSystem, electronicAddress, mainAddress, phone1, phone2, secondaryAddress, status from Location";
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        index = 0;
+        while (res.next () && (index++ < 5))
+            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5) + "\t" + res.getString (6) + "\t" + res.getString (7) + "\t" + res.getString (8) + "\t" + res.getString (9) + "\t" + res.getString (10) + "\t" + res.getString (11) + "\t" + res.getString (12) + "\t" + res.getString (13) + "\t" + res.getString (14));
+        res.close ();
+
+        // select * query on Switch
+        sql = "select * from Switch";
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        index = 0;
+        while (res.next () && (index++ < 5))
+            System.out.println (res.getString (1) + "\t" + res.getBoolean (2) + "\t" + res.getBoolean (3) + "\t" + res.getString (4) + "\t" + res.getBoolean (5)+ "\t" + res.getInt (6));
+        res.close ();
 
         System.out.println ("done");
         con.close ();

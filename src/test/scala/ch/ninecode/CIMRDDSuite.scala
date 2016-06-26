@@ -29,7 +29,12 @@ class CIMRDDSuite extends fixture.FunSuite
     // number of elements in the file
     // get number of lines at the top level with:
     // grep -P "^[\t]<cim" NIS_CIM_Export_NS_INITIAL_FILL.rdf | wc
-    val ELEMENTS = 488796
+    val ELEMENTS = 316694
+
+    // number of elements in a 1MB chunk
+    // this is approximately (off by one)
+    // tail --bytes=+33554432 NIS_CIM_Export_NS_INITIAL_FILL.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
+    val PARTIAL_MAP_SIZE = 2648
 
     def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
     {
@@ -94,7 +99,7 @@ class CIMRDDSuite extends fixture.FunSuite
         val parser = new CHIM (xml, start, end)
         val map = parser.parse ()
         markup ("map size: " + map.size)
-        assert (map.size == 2188)
+        assert (map.size == PARTIAL_MAP_SIZE)
         assert (map.filter (_.getClass() == classOf[Unknown]).size == 0)
     }
 

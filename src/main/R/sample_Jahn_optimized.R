@@ -1,6 +1,3 @@
-# record the load time
-pre = proc.time ()
-
 # assumes the file is on hdfs:
 # bash-4.1# hdfs dfs -mkdir /data/
 # bash-4.1# hdfs dfs -put /opt/data/dump_ews.xml /data/
@@ -10,11 +7,14 @@ pre = proc.time ()
 # bash-4.1# useradd derrick
 # bash-4.1# usermod --append --groups supergroup derrick
 
+# record the load time
+begin = proc.time ()
+
 # set up the Spark system
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark-1.6.0-bin-hadoop2.6/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark-1.6.0-bin-hadoop2.6")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc = sparkR.init ("yarn-client", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-1.6.0-SNAPSHOT.jar"), sparkEnvir = list (spark.driver.memory="4g", spark.executor.memory="4g"))
+sc = sparkR.init ("yarn-client", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-1.6.0-SNAPSHOT.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="6500m"))
 sqlContext = sparkRSQL.init (sc)
 
 # read the data file and make the edge graph
@@ -29,10 +29,10 @@ redges = SparkR::collect (edges, stringsAsFactors=FALSE) # redges = SparkR::as.d
 
 library (igraph)
 
-# pre = proc.time ()
+pre = proc.time ()
 
-# keep only non-self connected and non-singly connected edges 
-r2edges = redges[redges$id_seq_1 != redges$id_seq_2 & redges$id_seq_2 != "", ]
+# keep only non-self connected and non-singly connected edges
+r2edges = redges[redges$id_seq_1 != redges$id_seq_2 & !is.na (redges$id_seq_1) & !is.na (redges$id_seq_2), ]
 
 # Generate the graph
 graph = graph_from_data_frame (r2edges, directed = F)
@@ -45,17 +45,17 @@ kanten = as_data_frame (graph, what = "vertices")
 sammelschienen = kanten[substr (kanten$name, 1, 3)=="SAM",]
 
 # Alle Trafos
-trafos = kanten[substr (kanten$name, 1, 3)=="TRA",]
+trafos = as_data_frame (graph, what = "edges")
+trafos = trafos[substr (trafos$name, 1, 3)=="TRA",]
 
 # data.frame for saving the results
 allbusbars = data.frame (name = character(), distance = character (), stringsAsFactors = FALSE)
-
 
 # for each busbar
 for (sam in sammelschienen)
 {
     # remember the starting time
-#     start = proc.time ()
+    start = proc.time ()
     
     # convert the sam into a vector, so that the following function can be executed
     pruefungKnotenIDs = as.vector(sam)
@@ -88,8 +88,8 @@ for (sam in sammelschienen)
     allbusbars = rbind (allbusbars, busbar)
     
     # show some activity
-#     finish = proc.time ()
-#     print (paste (sam, as.numeric (finish[3] - start[3])))
+    finish = proc.time ()
+    print (paste (sam, as.numeric (finish[3] - start[3])))
 }
 
 # output the summary
@@ -97,3 +97,4 @@ end = proc.time ()
 print (paste ("setup", as.numeric (begin[3] - pre[3])))
 print (paste ("total computation", as.numeric (end[3] - begin[3])))
 print ("results in data.frame allbusbars")
+sparkR.stop ()

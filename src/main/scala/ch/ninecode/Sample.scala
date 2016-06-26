@@ -79,9 +79,10 @@ class Sample extends Serializable
             val existing = triplet.dstAttr.trace.distance
             if (distance < existing)
             {
-                // check if upstream node is an abgang with a container that isn't a substation
+                // check if upstream node is an abgang
+                // ToDo: eliminate abgang with container that isn't a substation
                 val node = triplet.srcAttr.node
-                val abgang = if ((node != null) && node.IdentifiedObject.name.startsWith ("ABG") && !node.ConnectivityNodeContainer.startsWith ("_substation")) node.IdentifiedObject.name else null
+                val abgang = if ((node != null) && node.IdentifiedObject.name.startsWith ("ABG")) node.IdentifiedObject.name else null
                 ret = Iterator ((triplet.dstId, Message (triplet.srcAttr.trace.busbar, distance, abgang)))
             }
         }
@@ -98,7 +99,7 @@ class Sample extends Serializable
     def mergeMessage (a: Message, b: Message): Message =
     {
         if ((a.busbar != b.busbar) || (a.abgang != b.abgang))
-            println ("conflicting Busbars servicing one vertex")
+            println ("conflicting Busbars servicing one vertex: a.busbar (" + a.busbar + ") != b.busbar (" + b.busbar+ ") or a.abgang (" + a.abgang + ")!= b.abgang (" + b.abgang + ")")
         return (Message (a.busbar, math.min (a.distance, b.distance), a.abgang))
     }
 
@@ -118,7 +119,7 @@ class Sample extends Serializable
         for (key <- rdds.keys)
         {
             val rdd = rdds (key)
-            if (rdd.name == "Vertices")
+            if (rdd.name == "ConnectivityNode")
                 vertices = rdds (key).asInstanceOf[RDD[ConnectivityNode]]
             if (rdd.name == "Edges")
                 edges = rdds (key).asInstanceOf[RDD[ch.ninecode.cim.Edge]]
@@ -132,7 +133,7 @@ class Sample extends Serializable
             println ("Found the edges RDD: " + edges.name)
 
             // keep only non-self connected and non-singly connected edges
-            edges =  edges.filter ((e: ch.ninecode.cim.Edge) => { (e.id_seq_1 != e.id_seq_2) && e.id_seq_2 != "" })
+            edges =  edges.filter ((e: ch.ninecode.cim.Edge) => { (e.id_seq_1 != e.id_seq_2) && e.id_seq_1 != null && e.id_seq_2 != null && e.id_seq_1 != "" && e.id_seq_2 != "" })
 
             // augment the elements to have the busbar, distance and upstream abgang using the VertexData class
             var elementsplus = vertices.flatMap (
@@ -212,7 +213,7 @@ class Sample extends Serializable
 /**
  * Main program for sample demo.
  * Run this from within the cluster with:
- * spark-shell --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar --class ch.ninecode.Sample hdfs:/user/root/dump_ews.xml
+ * spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 1 --jars /opt/code/CIMScala-1.6.0-SNAPSHOT.jar --class ch.ninecode.Sample hdfs:/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf
  */
 object Sample
 {
@@ -226,12 +227,12 @@ object Sample
             val configuration = new SparkConf ()
             configuration.setAppName ("CIMScala GraphX Sample")
             configuration.setMaster ("yarn-client")
-            configuration.set ("spark.driver.memory", "8G")
-            configuration.set ("spark.executor.memory", "7G")
+//            configuration.set ("spark.driver.memory", "1g")
+//            configuration.set ("spark.executor.memory", "4g")
             // make a Spark context and SQL context
             val context = new SparkContext (configuration)
             val sqlContext = new SQLContext (context)
-            context.setLogLevel ("DEBUG") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+            context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
             try
             {
                 val start = System.nanoTime ()

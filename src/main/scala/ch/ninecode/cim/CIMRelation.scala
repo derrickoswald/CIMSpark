@@ -22,7 +22,7 @@ import org.apache.spark.sql.types.StructType
 
 import ch.ninecode.model._
 
-case class Terminals (val id_equ: String, var terms: List[Terminal]) extends Serializable
+//case class Terminals (val id_equ: String, var terms: List[Terminal]) extends Serializable
 case class PreEdge (var id_seq_1: String, var cn_1: String, var id_seq_2: String, var cn_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var location: String, val power: Double, val commissioned: String, val status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
 case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
@@ -303,20 +303,20 @@ class CIMRelation(
             {
                 // first get the terminals keyed by equipment
                 // the following could also work:
-                // val terms = terminals.groupBy (_.ConductingEquipment) // groupBy[K](f: (T) ⇒ K)(implicit kt: ClassTag[K]): RDD[(K, Iterable[T])]
+                val terms = terminals.groupBy (_.ConductingEquipment) // groupBy[K](f: (T) ⇒ K)(implicit kt: ClassTag[K]): RDD[(K, Iterable[T])]
 
-                val terminal_seq_op = (terminals: Terminals /* null */, terminal: Terminal) ⇒
-                {
-                    if (null == terminals)
-                        new Terminals (terminal.ConductingEquipment, List (terminal))
-                    else
-                        new Terminals (terminal.ConductingEquipment, terminals.terms :+ terminal)
-                }
-                val terminal_comb_op = (l: Terminals, r: Terminals) ⇒
-                {
-                    new Terminals (l.id_equ, l.terms ++ r.terms)
-                }
-                val terms = terminals.keyBy (_.ConductingEquipment).aggregateByKey (null: Terminals) (terminal_seq_op, terminal_comb_op).values
+//                val terminal_seq_op = (terminals: Terminals /* null */, terminal: Terminal) ⇒
+//                {
+//                    if (null == terminals)
+//                        new Terminals (terminal.ConductingEquipment, List (terminal))
+//                    else
+//                        new Terminals (terminal.ConductingEquipment, terminals.terms :+ terminal)
+//                }
+//                val terminal_comb_op = (l: Terminals, r: Terminals) ⇒
+//                {
+//                    new Terminals (l.id_equ, l.terms ++ r.terms)
+//                }
+//                val terms = terminals.keyBy (_.ConductingEquipment).aggregateByKey (null: Terminals) (terminal_seq_op, terminal_comb_op).values
 
 //                terms.setName ("Terminals")
 //                terms.cache ()
@@ -325,16 +325,16 @@ class CIMRelation(
                 // next, map the terminal pairs to pre-edges
                 val term_op =
                 {
-                    var ret = List[PreEdge] ()
-
-                    arg: Any =>
+                    (arg: Any) ⇒
                     {
                         arg match
                         {
-                            case (t: Terminals, Some (e:Element)) ⇒
+                            case (e: Element, Some(it: Iterable[Terminal])) ⇒
                             {
+                                var ret = List[PreEdge] ()
+
                                 // sort terminals by sequence number
-                                var terminals = t.terms.toArray.sortWith (_.ACDCTerminal.sequenceNumber < _.ACDCTerminal.sequenceNumber)
+                                var terminals = it.toArray.sortWith (_.ACDCTerminal.sequenceNumber < _.ACDCTerminal.sequenceNumber)
 
                                 // extract pertinent information from the equipment using a join
                                 var container = ""
@@ -346,7 +346,7 @@ class CIMRelation(
                                 var power = 0.0
                                 var commissioned = ""
                                 var status = ""
-                                Some (e) match
+                                Some(e) match
                                 {
                                     case Some(o) if o.getClass () == classOf[PSRType] => { }
                                     case Some(o) if o.getClass () == classOf[SvStatus] => { }
@@ -549,21 +549,20 @@ class CIMRelation(
                                             list
                                         }
                                 }
+                                ret
                             }
-                            case (t: Terminals, None) =>
+                            case (e: Element, None) ⇒
                             {
-                                // shouldn't happen of course: if it does, we have a terminal with an equipment reference to non-existant equipment
-                                println ("terminal(s) without equipment with mRID: " + t.id_equ)
+                                List[PreEdge] ()
                             }
                         }
                     }
-                    ret
                 }
-                var preedges = terms.keyBy (_.id_equ).leftOuterJoin (rdd.keyBy (_.id)).values.flatMap (term_op)
+                var preedges = rdd.keyBy (_.id).leftOuterJoin (terms).flatMapValues (term_op).values
 
-//                preedges.setName ("PreEdges")
-//                preedges.cache ()
-//                sqlContext.createDataFrame (preedges).registerTempTable ("preedges")
+                preedges.setName ("PreEdges")
+                preedges.cache ()
+                sqlContext.createDataFrame (preedges).registerTempTable ("preedges")
 
                 // change node id to node name
                 val left_op2 =
