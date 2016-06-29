@@ -1,29 +1,30 @@
 package ch.ninecode.model
 
-import org.apache.spark.sql.Row
-import org.apache.spark.sql.types._
-
-import java.lang.NumberFormatException
-import java.util.regex.Pattern
 import java.io.File
 import java.io.FileInputStream
-import java.io.IOException
-import java.io.InputStreamReader
+import java.util.regex.Pattern
+
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
-import scala.collection.mutable.HashSet
-import scala.reflect._
-import scala.reflect.runtime.universe._
+import scala.reflect.ClassTag
+import scala.reflect.classTag
+import scala.reflect.runtime.universe.TypeTag
 
-import org.apache.spark.rdd.RDD
-import org.apache.spark.unsafe.types.UTF8String
-import org.apache.spark.sql.catalyst.InternalRow
-import org.apache.spark.sql.catalyst.util.{ArrayData, GenericArrayData}
-import org.apache.spark.sql.catalyst.expressions.GenericMutableRow
 import org.apache.spark.sql.catalyst.expressions.GenericInternalRow
+import org.apache.spark.sql.catalyst.expressions.GenericMutableRow
 import org.apache.spark.sql.catalyst.expressions.UnsafeRow
+import org.apache.spark.sql.catalyst.InternalRow
+import org.apache.spark.sql.catalyst.ScalaReflection
+import org.apache.spark.sql.types.DataType
+import org.apache.spark.sql.types.NullType
+import org.apache.spark.sql.types.SQLUserDefinedType
+import org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.types.UserDefinedType
+import org.apache.spark.unsafe.types.UTF8String
+import org.apache.spark.sql.Row
 
 import ch.ninecode.Context
+import ch.ninecode.cim.CIMSubsetter
 
 // From SparkR package:
 //busbars = sql (sqlContext, "select * from BusbarSection")
@@ -42,39 +43,6 @@ import ch.ninecode.Context
 //b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]]
 //# IdentifiedObject
 //b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]][[1]]
-
-abstract class Parseable[+A <: Row with Product : ClassTag : TypeTag]
-{
-    def runtime_class = classTag[A].runtimeClass
-    def classname = runtime_class.getName
-    def cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
-    def register: Unit = CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parser]))
-//    def elementClassTag: ClassTag[A] = classTag[A]
-//    def elementTypeTag: TypeTag[A] = typeTag[A]
-    def cast(e: Element) = e.asInstanceOf[A]
-//    type mytype <: RDD[A]
-    def subset (rdd: RDD[Element with Product]): RDD[Element with Product] =
-    {
-        def subclass (x: Element, parser: Parseable[A]): A =
-        {
-            var ret = x
-
-            while ((null != ret) && (ret.getClass () != parser.runtime_class))
-                return (ret.asInstanceOf[A])
-
-            return (null.asInstanceOf[A])
-        }
-        val pf:PartialFunction[Element with Product, A] =
-        {
-            case x: Element if (null != subclass (x, this)) =>
-                subclass (x, this)
-        }
-        val subrdd: RDD[A] = rdd.collect (pf)
-        subrdd.name = this.cls
-        subrdd.cache ()
-        subrdd.asInstanceOf[RDD[Element with Product]]
-    }
-}
 
 trait Parser
 {
@@ -178,6 +146,38 @@ trait Parser
             }
 
         return (ret);
+    }
+}
+
+abstract class Parseable[A <: Product : ClassTag : TypeTag]
+extends
+    Parser
+{
+    def runtime_class = classTag[A].runtimeClass
+    def classname = runtime_class.getName
+    def cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
+//    def elementClassTag: ClassTag[A] = classTag[A]
+//    def elementTypeTag: TypeTag[A] = typeTag[A]
+//    type myrddtype <: RDD[A]
+//    def cast(e: Element) = e.asInstanceOf[A]
+//    type mytype <: A
+//    def instance () =
+//    {
+//        val mirror = ru.runtimeMirror (getClass.getClassLoader)
+//        val classA = ru.typeOf[A].typeSymbol.asClass
+//        val class_mirror = mirror.reflectClass (classA)
+//        val constructors = ru.typeOf[A].declaration (ru.nme.CONSTRUCTOR).asTerm.alternatives
+//        val constructor = constructors(1).asMethod  // ToDo: this requires zero args constructor be the second one defined
+//        val constructor_mirror = class_mirror.reflectConstructor (constructor)
+//
+//        val a = constructor_mirror()
+//        (a.asInstanceOf[Product], typeTag[A])
+//    }
+    def register: Unit =
+    {
+        CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
+        val schema = ScalaReflection.schemaFor[A].dataType.asInstanceOf[StructType]
+        CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A] (schema)))
     }
 }
 
@@ -347,6 +347,7 @@ case class BasicElement
 extends
     Element
 {
+    def this () = { this (null, null) }
     override def id: String = mRID
     override def copy (): Row = { return (clone ().asInstanceOf[Element]); }
     override def get (i: Int): Any =
@@ -394,6 +395,7 @@ case class Unknown (
 extends
     Element
 {
+    def this () = { this (null, null, 0, 0l, 0l) }
     def Element: Element = sup
     override def copy (): Row = { return (clone ().asInstanceOf[Unknown]); }
     override def get (i: Int): Any =
@@ -454,6 +456,7 @@ case class CoordinateSystem
 extends
     Element
 {
+    def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[CoordinateSystem]); }
     override def get (i: Int): Any =
@@ -469,8 +472,6 @@ extends
 object CoordinateSystem
 extends
     Parseable[CoordinateSystem]
-with
-    Parser
 {
     val crsUrn = parse_element (element ("""CoordinateSystem.crsUrn"""))_
     def parse (context: Context): CoordinateSystem =
@@ -502,6 +503,7 @@ case class Location
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[Location]); }
     override def get (i: Int): Any =
@@ -517,8 +519,6 @@ extends
 object Location
 extends
     Parseable[Location]
-with
-    Parser
 {
     val direction = parse_element (element ("""Location.direction"""))_
     val geoInfoReference = parse_element (element ("""Location.geoInfoReference"""))_
@@ -562,6 +562,7 @@ case class PositionPoint (
 extends
     Element
 {
+    def this () = { this (null, 0, null, null, null, null) }
     def Element: Element = sup
     override def copy (): Row = { return (clone ().asInstanceOf[PositionPoint]); }
     override def get (i: Int): Any =
@@ -577,8 +578,6 @@ extends
 object PositionPoint
 extends
     Parseable[PositionPoint]
-with
-    Parser
 {
     val sequenceNumber = parse_element (element ("""PositionPoint.sequenceNumber"""))_
     val xPosition = parse_element (element ("""PositionPoint.xPosition"""))_
@@ -615,6 +614,7 @@ case class UserAttribute (
 extends
     Element
 {
+    def this () = { this (null, null, 0, null, null, null, null) }
     def Element: Element = sup
     override def copy (): Row = { return (clone ().asInstanceOf[UserAttribute]); }
     override def get (i: Int): Any =
@@ -630,8 +630,6 @@ extends
 object UserAttribute
 extends
     Parseable[UserAttribute]
-with
-    Parser
 {
     val name = parse_element (element ("""UserAttribute.name"""))_
     val sequenceNumber = parse_element (element ("""UserAttribute.sequenceNumber"""))_
@@ -681,6 +679,7 @@ case class ACDCTerminal
 extends
     Element
 {
+    def this () = { this (null, false, 0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[ACDCTerminal]); }
     override def get (i: Int): Any =
@@ -696,8 +695,6 @@ extends
 object ACDCTerminal
 extends
     Parseable[ACDCTerminal]
-with
-    Parser
 {
     val connected = parse_attribute (attribute ("""ACDCTerminal.connected"""))_
     val sequenceNumber = parse_element (element ("""ACDCTerminal.sequenceNumber"""))_
@@ -724,6 +721,7 @@ case class BaseVoltage
 extends
     Element
 {
+    def this () = { this (null, 0.0) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[BaseVoltage]); }
     override def get (i: Int): Any =
@@ -739,8 +737,6 @@ extends
 object BaseVoltage
 extends
     Parseable[BaseVoltage]
-with
-    Parser
 {
     val nominalVoltage = parse_element (element ("""BaseVoltage.nominalVoltage"""))_
 
@@ -767,6 +763,7 @@ case class Bay
 extends
     Element
 {
+    def this () = { this (null, false, false, null, null) }
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { return (clone ().asInstanceOf[Bay]); }
     override def get (i: Int): Any =
@@ -782,8 +779,6 @@ extends
 object Bay
 extends
     Parseable[Bay]
-with
-    Parser
 {
     val bayEnergyMeasFlag = parse_element (element ("""Bay.bayEnergyMeasFlag"""))_
     val bayPowerMeasFlag = parse_element (element ("""Bay.bayPowerMeasFlag"""))_
@@ -815,6 +810,7 @@ case class ConductingEquipment
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { return (clone ().asInstanceOf[ConductingEquipment]); }
     override def get (i: Int): Any =
@@ -830,8 +826,6 @@ extends
 object ConductingEquipment
 extends
     Parseable[ConductingEquipment]
-with
-    Parser
 {
     val BaseVoltage = parse_attribute (attribute ("""ConductingEquipment.BaseVoltage"""))_
     val GroundingAction = parse_attribute (attribute ("""ConductingEquipment.GroundingAction"""))_
@@ -861,6 +855,7 @@ case class ConnectivityNode
 extends
     Element
 {
+    def this () = { this (null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[ConnectivityNode]); }
     override def get (i: Int): Any =
@@ -876,8 +871,6 @@ extends
 object ConnectivityNode
 extends
     Parseable[ConnectivityNode]
-with
-    Parser
 {
     val ConnectivityNodeContainer = parse_attribute (attribute ("""ConnectivityNode.ConnectivityNodeContainer"""))_
     val TopologicalNode = parse_attribute (attribute ("""ConnectivityNode.TopologicalNode"""))_
@@ -902,6 +895,7 @@ case class ConnectivityNodeContainer
 extends
     Element
 {
+    def this () = { this (null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { return (clone ().asInstanceOf[ConnectivityNodeContainer]); }
     override def get (i: Int): Any =
@@ -917,8 +911,6 @@ extends
 object ConnectivityNodeContainer
 extends
     Parseable[ConnectivityNodeContainer]
-with
-    Parser
 {
     def parse (context: Context): ConnectivityNodeContainer =
     {
@@ -941,6 +933,7 @@ case class Equipment
 extends
     Element
 {
+    def this () = { this (null, false, false, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { return (clone ().asInstanceOf[Equipment]); }
     override def get (i: Int): Any =
@@ -956,8 +949,6 @@ extends
 object Equipment
 extends
     Parseable[Equipment]
-with
-    Parser
 {
     val aggregate = parse_element (element ("""Equipment.aggregate"""))_
     val normallyInService = parse_element (element ("""Equipment.normallyInService"""))_
@@ -983,6 +974,7 @@ case class EquipmentContainer
 extends
     Element
 {
+    def this () = { this (null) }
     def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
     override def copy (): Row = { return (clone ().asInstanceOf[EquipmentContainer]); }
     override def get (i: Int): Any =
@@ -998,8 +990,6 @@ extends
 object EquipmentContainer
 extends
     Parseable[EquipmentContainer]
-with
-    Parser
 {
     def parse (context: Context): EquipmentContainer =
     {
@@ -1026,6 +1016,7 @@ case class IdentifiedObject
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null) }
     def Element: Element = sup
     override def id: String = mRID
     override def copy (): Row = { return (clone ().asInstanceOf[IdentifiedObject]); }
@@ -1042,8 +1033,6 @@ extends
 object IdentifiedObject
 extends
     Parseable[IdentifiedObject]
-with
-    Parser
 {
     val aliasName = parse_element (element ("""IdentifiedObject.aliasName"""))_
     val description = parse_element (element ("""IdentifiedObject.description"""))_
@@ -1074,6 +1063,7 @@ case class Name
 extends
     Element
 {
+    def this () = { this (null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[Name]); }
     override def get (i: Int): Any =
@@ -1089,8 +1079,6 @@ extends
 object Name
 extends
     Parseable[Name]
-with
-    Parser
 {
     def parse (context: Context): Name =
     {
@@ -1118,6 +1106,7 @@ case class NameType (
 extends
     Element
 {
+    def this () = { this (null, null, null, null) }
     def Element: Element = sup
     override def copy (): Row = { return (clone ().asInstanceOf[NameType]); }
     override def get (i: Int): Any =
@@ -1133,8 +1122,6 @@ extends
 object NameType
 extends
     Parseable[NameType]
-with
-    Parser
 {
     val description = parse_element (element ("""NameType.description"""))_
     val name = parse_element (element ("""NameType.name"""))_
@@ -1161,6 +1148,7 @@ case class NameTypeAuthority (
 extends
     Element
 {
+    def this () = { this (null, null, null) }
     def Element: Element = sup
     override def copy (): Row = { return (clone ().asInstanceOf[NameTypeAuthority]); }
     override def get (i: Int): Any =
@@ -1176,8 +1164,6 @@ extends
 object NameTypeAuthority
 extends
     Parseable[NameTypeAuthority]
-with
-    Parser
 {
     val description = parse_element (element ("""NameTypeAuthority.description"""))_
     val name = parse_element (element ("""NameTypeAuthority.name"""))_
@@ -1201,6 +1187,7 @@ case class PSRType
 extends
     Element
 {
+    def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[PSRType]); }
     override def get (i: Int): Any =
@@ -1216,8 +1203,6 @@ extends
 object PSRType
 extends
     Parseable[PSRType]
-with
-    Parser
 {
     def parse (context: Context): PSRType =
     {
@@ -1240,6 +1225,7 @@ case class PowerSystemResource
 extends
     Element
 {
+    def this () = { this (null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[PowerSystemResource]); }
     override def get (i: Int): Any =
@@ -1255,8 +1241,6 @@ extends
 object PowerSystemResource
 extends
     Parseable[PowerSystemResource]
-with
-    Parser
 {
     val AssetDataSheet = parse_attribute (attribute ("""PowerSystemResource.AssetDataSheet"""))_
     val Location = parse_attribute (attribute ("""PowerSystemResource.Location"""))_
@@ -1283,6 +1267,7 @@ case class Substation
 extends
     Element
 {
+    def this () = { this (null, null) }
     def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
     override def copy (): Row = { return (clone ().asInstanceOf[Substation]); }
     override def get (i: Int): Any =
@@ -1298,8 +1283,6 @@ extends
 object Substation
 extends
     Parseable[Substation]
-with
-    Parser
 {
     val Region = parse_attribute (attribute ("""Substation.Region"""))_
     def parse (context: Context): Substation =
@@ -1327,6 +1310,7 @@ case class Terminal
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null, null, null) }
     def ACDCTerminal: ACDCTerminal = sup.asInstanceOf[ACDCTerminal]
     override def copy (): Row = { return (clone ().asInstanceOf[Terminal]); }
     override def get (i: Int): Any =
@@ -1342,8 +1326,6 @@ extends
 object Terminal
 extends
     Parseable[Terminal]
-with
-    Parser
 {
     val phases = parse_attribute (attribute ("""Terminal.phases"""))_
     val Bushing = parse_attribute (attribute ("""Terminal.Bushing"""))_
@@ -1379,6 +1361,7 @@ case class VoltageLevel
 extends
     Element
 {
+    def this () = { this (null, 0.0, 0.0, null, null) }
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { return (clone ().asInstanceOf[VoltageLevel]); }
     override def get (i: Int): Any =
@@ -1394,8 +1377,6 @@ extends
 object VoltageLevel
 extends
     Parseable[VoltageLevel]
-with
-    Parser
 {
     val highVoltageLimit = parse_element (element ("""VoltageLevel.highVoltageLimit"""))_
     val lowVoltageLimit = parse_element (element ("""VoltageLevel.lowVoltageLimit"""))_
@@ -1452,6 +1433,7 @@ case class Agreement
 extends
     Element
 {
+    def this () = { this (null, null, null) }
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { return (clone ().asInstanceOf[Agreement]); }
     override def get (i: Int): Any =
@@ -1467,8 +1449,6 @@ extends
 object Agreement
 extends
     Parseable[Agreement]
-with
-    Parser
 {
     val signDate = parse_element (element ("""Agreement.signDate"""))_
     val validityInterval = parse_attribute (attribute ("""Agreement.validityInterval"""))_
@@ -1499,6 +1479,7 @@ case class Customer
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null, false, null, null) }
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { return (clone ().asInstanceOf[Customer]); }
     override def get (i: Int): Any =
@@ -1514,8 +1495,6 @@ extends
 object Customer
 extends
     Parseable[Customer]
-with
-    Parser
 {
     val kind = parse_attribute (attribute ("""Customer.kind"""))_
     val locale = parse_element (element ("""Customer.locale"""))_
@@ -1555,6 +1534,7 @@ case class CustomerAgreement
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null, null, null) }
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { return (clone ().asInstanceOf[CustomerAgreement]); }
     override def get (i: Int): Any =
@@ -1570,8 +1550,6 @@ extends
 object CustomerAgreement
 extends
     Parseable[CustomerAgreement]
-with
-    Parser
 {
     val loadMgmt = parse_element (element ("""CustomerAgreement.loadMgmt"""))_
     val Customer = parse_attribute (attribute ("""CustomerAgreement.Customer"""))_
@@ -1614,6 +1592,7 @@ case class Document
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[Document]); }
     override def get (i: Int): Any =
@@ -1629,8 +1608,6 @@ extends
 object Document
 extends
     Parseable[Document]
-with
-    Parser
 {
     val authorName = parse_element (element ("""Document.authorName"""))_
     val comment = parse_element (element ("""Document.comment"""))_
@@ -1673,6 +1650,7 @@ case class OrganisationRole
 extends
     Element
 {
+    def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[OrganisationRole]); }
     override def get (i: Int): Any =
@@ -1688,8 +1666,6 @@ extends
 object OrganisationRole
 extends
     Parseable[OrganisationRole]
-with
-    Parser
 {
     val Organisation = parse_attribute (attribute ("""OrganisationRole.Organisation"""))_
     def parse (context: Context): OrganisationRole =
@@ -1718,6 +1694,7 @@ case class PricingStructure
 extends
     Element
 {
+    def this () = { this (null, null, null, null, null, null, false, null) }
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { return (clone ().asInstanceOf[PricingStructure]); }
     override def get (i: Int): Any =
@@ -1733,8 +1710,6 @@ extends
 object PricingStructure
 extends
     Parseable[PricingStructure]
-with
-    Parser
 {
     val code = parse_element (element ("""PricingStructure.code"""))_
     val dailyCeilingUsage = parse_element (element ("""PricingStructure.dailyCeilingUsage"""))_
@@ -1769,6 +1744,7 @@ case class ServiceCategory
 extends
     Element
 {
+    def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[ServiceCategory]); }
     override def get (i: Int): Any =
@@ -1784,8 +1760,6 @@ extends
 object ServiceCategory
 extends
     Parseable[ServiceCategory]
-with
-    Parser
 {
     val kind = parse_attribute (attribute ("""ServiceCategory.kind"""))_
     def parse (context: Context): ServiceCategory =
@@ -1810,6 +1784,7 @@ case class ServiceLocation
 extends
     Element
 {
+    def this () = { this (null, null, false, null) }
     def Location: Location = sup.asInstanceOf[Location]
     override def copy (): Row = { return (clone ().asInstanceOf[ServiceLocation]); }
     override def get (i: Int): Any =
@@ -1825,8 +1800,6 @@ extends
 object ServiceLocation
 extends
     Parseable[ServiceLocation]
-with
-    Parser
 {
     val accessMethod = parse_element (element ("""ServiceLocation.accessMethod"""))_
     val needsInspection = parse_element (element ("""ServiceLocation.needsInspection"""))_
@@ -1893,6 +1866,7 @@ case class UsagePoint
 extends
     Element
 {
+    def this () = { this (null, false, null, 0.0, false, false, false, false, 0.0, null, null, 0.0, 0.0, null, null, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[UsagePoint]); }
     override def get (i: Int): Any =
@@ -1908,8 +1882,6 @@ extends
 object UsagePoint
 extends
     Parseable[UsagePoint]
-with
-    Parser
 {
     //val amiBillingReady = parse_element (element ("""UsagePoint.amiBillingReady"""))_
     val checkBilling = parse_element (element ("""UsagePoint.checkBilling"""))_
@@ -1976,6 +1948,7 @@ case class UsagePointLocation
 extends
     Element
 {
+    def this () = { this (null, null, null, null) }
     def Location: Location = sup.asInstanceOf[Location]
     override def copy (): Row = { return (clone ().asInstanceOf[UsagePointLocation]); }
     override def get (i: Int): Any =
@@ -1991,8 +1964,6 @@ extends
 object UsagePointLocation
 extends
     Parseable[UsagePointLocation]
-with
-    Parser
 {
     val accessMethod = parse_element (element ("""UsagePointLocation.accessMethod"""))_
     val remark = parse_element (element ("""UsagePointLocation.remark"""))_
@@ -2032,6 +2003,7 @@ case class GeneratingUnit
 extends
     Element
 {
+    def this () = { this (null, 0.0) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { return (clone ().asInstanceOf[GeneratingUnit]); }
     override def get (i: Int): Any =
@@ -2047,8 +2019,6 @@ extends
 object GeneratingUnit
 extends
     Parseable[GeneratingUnit]
-with
-    Parser
 {
     val ratedNetMaxP = parse_element (element ("""GeneratingUnit.ratedNetMaxP"""))_
     def parse (context: Context): GeneratingUnit =
@@ -2072,6 +2042,7 @@ case class SolarGeneratingUnit
 extends
     Element
 {
+    def this () = { this (null, null) }
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { return (clone ().asInstanceOf[SolarGeneratingUnit]); }
     override def get (i: Int): Any =
@@ -2087,8 +2058,6 @@ extends
 object SolarGeneratingUnit
 extends
     Parseable[SolarGeneratingUnit]
-with
-    Parser
 {
     val commissioningDate = parse_element (element ("""SolarGeneratingUnit.commissioningDate"""))_
     def parse (context: Context): SolarGeneratingUnit =
@@ -2130,6 +2099,7 @@ case class CurrentRelay
 extends
     Element
 {
+    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf[ProtectionEquipment]
     override def copy (): Row = { return (clone ().asInstanceOf[CurrentRelay]); }
     override def get (i: Int): Any =
@@ -2145,8 +2115,6 @@ extends
 object CurrentRelay
 extends
     Parseable[CurrentRelay]
-with
-    Parser
 {
     val currentLimit1 = parse_element (element ("""CurrentRelay.currentLimit1"""))_
     val currentLimit2 = parse_element (element ("""CurrentRelay.currentLimit2"""))_
@@ -2186,6 +2154,7 @@ case class ProtectionEquipment
 extends
     Element
 {
+    def this () = { this (null, 0.0, 0.0, false, 0.0, null, null) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { return (clone ().asInstanceOf[ProtectionEquipment]); }
     override def get (i: Int): Any =
@@ -2201,8 +2170,6 @@ extends
 object ProtectionEquipment
 extends
     Parseable[ProtectionEquipment]
-with
-    Parser
 {
     val highLimit = parse_element (element ("""ProtectionEquipment.highLimit"""))_
     val lowLimit = parse_element (element ("""ProtectionEquipment.lowLimit"""))_
@@ -2246,6 +2213,7 @@ case class StateVariable (
 extends
     Element
 {
+    def this () = { this (null) }
     def Element: Element = sup
     override def copy (): Row = { return (clone ().asInstanceOf[StateVariable]); }
     override def get (i: Int): Any =
@@ -2261,8 +2229,6 @@ extends
 object StateVariable
 extends
     Parseable[StateVariable]
-with
-    Parser
 {
     def parse (context: Context): StateVariable =
     {
@@ -2283,6 +2249,7 @@ case class SvStatus (
 extends
     Element
 {
+    def this () = { this (null, false, null) }
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
     override def copy (): Row = { return (clone ().asInstanceOf[SvStatus]); }
     override def get (i: Int): Any =
@@ -2298,8 +2265,6 @@ extends
 object SvStatus
 extends
     Parseable[SvStatus]
-with
-    Parser
 {
     def parse (context: Context): SvStatus =
     {
@@ -2348,6 +2313,7 @@ case class ACLineSegment
 extends
     Element
 {
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def Conductor: Conductor = sup.asInstanceOf[Conductor]
     override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]); }
     override def get (i: Int): Any =
@@ -2363,8 +2329,6 @@ extends
 object ACLineSegment
 extends
     Parseable[ACLineSegment]
-with
-    Parser
 {
     val b0ch = parse_element (element ("""ACLineSegment.b0ch"""))_
     val bch = parse_element (element ("""ACLineSegment.bch"""))_
@@ -2410,6 +2374,7 @@ case class ACLineSegmentPhase
 extends
     Element
 {
+    def this () = { this (null, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegmentPhase]); }
     override def get (i: Int): Any =
@@ -2425,8 +2390,6 @@ extends
 object ACLineSegmentPhase
 extends
     Parseable[ACLineSegmentPhase]
-with
-    Parser
 {
     val phase = parse_attribute (attribute ("""ACLineSegmentPhase.phase"""))_
     val ACLineSegment = parse_attribute (attribute ("""ACLineSegmentPhase.ACLineSegment"""))_
@@ -2452,6 +2415,7 @@ case class BusbarSection
 extends
     Element
 {
+    def this () = { this (null, 0.0, null) }
     def Connector: Connector = sup.asInstanceOf[Connector]
     override def copy (): Row = { return (clone ().asInstanceOf[BusbarSection]); }
     override def get (i: Int): Any =
@@ -2467,8 +2431,6 @@ extends
 object BusbarSection
 extends
     Parseable[BusbarSection]
-with
-    Parser
 {
     val ipMax = parse_element (element ("""BusbarSection.ipMax"""))_
     val VoltageControlZone = parse_attribute (attribute ("""BusbarSection.VoltageControlZone"""))_
@@ -2493,6 +2455,7 @@ case class Conductor
 extends
     Element
 {
+    def this () = { this (null, 0.0) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { return (clone ().asInstanceOf[Conductor]); }
     override def get (i: Int): Any =
@@ -2508,8 +2471,6 @@ extends
 object Conductor
 extends
     Parseable[Conductor]
-with
-    Parser
 {
     val len = parse_element (element ("""Conductor.length"""))_
     def parse (context: Context): Conductor =
@@ -2531,6 +2492,7 @@ case class Connector
 extends
     Element
 {
+    def this () = { this (null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { return (clone ().asInstanceOf[Connector]); }
     override def get (i: Int): Any =
@@ -2546,8 +2508,6 @@ extends
 object Connector
 extends
     Parseable[Connector]
-with
-    Parser
 {
     def parse (context: Context): Connector =
     {
@@ -2567,6 +2527,7 @@ case class Disconnector
 extends
     Element
 {
+    def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { return (clone ().asInstanceOf[Disconnector]); }
     override def get (i: Int): Any =
@@ -2582,8 +2543,6 @@ extends
 object Disconnector
 extends
     Parseable[Disconnector]
-with
-    Parser
 {
     def parse (context: Context): Disconnector =
     {
@@ -2615,6 +2574,7 @@ case class EnergyConsumer
 extends
     Element
 {
+    def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumer]); }
     override def get (i: Int): Any =
@@ -2630,8 +2590,6 @@ extends
 object EnergyConsumer
 extends
     Parseable[EnergyConsumer]
-with
-    Parser
 {
     val customerCount = parse_element (element ("""EnergyConsumer.customerCount"""))_
     val grounded = parse_element (element ("""EnergyConsumer.grounded"""))_
@@ -2675,6 +2633,7 @@ case class Fuse
 extends
     Element
 {
+    def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { return (clone ().asInstanceOf[Fuse]); }
     override def get (i: Int): Any =
@@ -2690,8 +2649,6 @@ extends
 object Fuse
 extends
     Parseable[Fuse]
-with
-    Parser
 {
     def parse (context: Context): Fuse =
     {
@@ -2711,6 +2668,7 @@ case class GroundDisconnector
 extends
     Element
 {
+    def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { return (clone ().asInstanceOf[GroundDisconnector]); }
     override def get (i: Int): Any =
@@ -2726,8 +2684,6 @@ extends
 object GroundDisconnector
 extends
     Parseable[GroundDisconnector]
-with
-    Parser
 {
     def parse (context: Context): GroundDisconnector =
     {
@@ -2747,6 +2703,7 @@ case class Junction
 extends
     Element
 {
+    def this () = { this (null) }
     def Connector: Connector = sup.asInstanceOf[Connector]
     override def copy (): Row = { return (clone ().asInstanceOf[Junction]); }
     override def get (i: Int): Any =
@@ -2762,8 +2719,6 @@ extends
 object Junction
 extends
     Parseable[Junction]
-with
-    Parser
 {
     def parse (context: Context): Junction =
     {
@@ -2784,6 +2739,7 @@ case class Line
 extends
     Element
 {
+    def this () = { this (null, null) }
     def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
     override def copy (): Row = { return (clone ().asInstanceOf[Line]); }
     override def get (i: Int): Any =
@@ -2799,8 +2755,6 @@ extends
 object Line
 extends
     Parseable[Line]
-with
-    Parser
 {
     val Region = parse_attribute (attribute ("""Line.Region"""))_
     def parse (context: Context): Line =
@@ -2829,6 +2783,7 @@ case class PowerTransformer
 extends
     Element
 {
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformer]); }
     override def get (i: Int): Any =
@@ -2844,8 +2799,6 @@ extends
 object PowerTransformer
 extends
     Parseable[PowerTransformer]
-with
-    Parser
 {
     val beforeShCircuitHighestOperatingCurrent = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingCurrent"""))_
     val beforeShCircuitHighestOperatingVoltage = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingVoltage"""))_
@@ -2892,6 +2845,7 @@ case class PowerTransformerEnd
 extends
     Element
 {
+    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
     override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformer]); }
     override def get (i: Int): Any =
@@ -2907,8 +2861,6 @@ extends
 object PowerTransformerEnd
 extends
     Parseable[PowerTransformerEnd]
-with
-    Parser
 {
     val b0 = parse_element (element ("""PowerTransformerEnd.b0"""))_
     val b = parse_element (element ("""PowerTransformerEnd.b"""))_
@@ -2965,6 +2917,7 @@ case class Switch
 extends
     Element
 {
+    def this () = { this (null, false, false, null, false, 0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { return (clone ().asInstanceOf[Switch]); }
     override def get (i: Int): Any =
@@ -2980,8 +2933,6 @@ extends
 object Switch
 extends
     Parseable[Switch]
-with
-    Parser
 {
     val normalOpen = parse_element (element ("""Switch.normalOpen"""))_
     val open = parse_element (element ("""Switch.open"""))_
@@ -3030,6 +2981,7 @@ case class TransformerEnd
 extends
     Element
 {
+    def this () = { this (null, 0.0, 0, false, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[TransformerEnd]); }
     override def get (i: Int): Any =
@@ -3045,8 +2997,6 @@ extends
 object TransformerEnd
 extends
     Parseable[TransformerEnd]
-with
-    Parser
 {
     val bmagSat = parse_element (element ("""TransformerEnd.bmagSat"""))_
     val endNumber = parse_element (element ("""TransformerEnd.endNumber"""))_
@@ -3093,6 +3043,7 @@ case class TransformerTank
 extends
     Element
 {
+    def this () = { this (null, null) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { return (clone ().asInstanceOf[TransformerTank]); }
     override def get (i: Int): Any =
@@ -3108,8 +3059,6 @@ extends
 object TransformerTank
 extends
     Parseable[TransformerTank]
-with
-    Parser
 {
     val PowerTransformer = parse_attribute (attribute ("""TransformerTank.PowerTransformer"""))_
     def parse (context: Context): TransformerTank =
@@ -3133,6 +3082,7 @@ case class TransformerTankEnd
 extends
     Element
 {
+    def this () = { this (null, null, null) }
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
     override def copy (): Row = { return (clone ().asInstanceOf[TransformerTankEnd]); }
     override def get (i: Int): Any =
@@ -3148,8 +3098,6 @@ extends
 object TransformerTankEnd
 extends
     Parseable[TransformerTankEnd]
-with
-    Parser
 {
     val phases = parse_attribute (attribute ("""TransformerTankEnd.phases"""))_
     val TransformerTank = parse_attribute (attribute ("""TransformerTankEnd.TransformerTank"""))_
@@ -3202,6 +3150,7 @@ case class WorkLocation
 extends
     Element
 {
+    def this () = { this (null, null) }
     override def copy (): Row = { return (clone ().asInstanceOf[WorkLocation]); }
     override def get (i: Int): Any =
     {
@@ -3216,8 +3165,6 @@ extends
 object WorkLocation
 extends
     Parseable[WorkLocation]
-with
-    Parser
 {
     val OneCallRequest = parse_element (element ("""WorkLocation.OneCallRequest"""))_
     def parse (context: Context): WorkLocation =
@@ -3322,14 +3269,14 @@ object CHIM
     val CHUNK = 1024*1024*64
     val OVERREAD = 4096 // should be large enough that no RDF element is bigger than this
 
-    val LOOKUP = new HashMap[String,Parser]
+    val LOOKUP = new HashMap[String, Parseable[Product]]
+    val SUBSETTERS = new HashMap[String, CIMSubsetter[_]]
 
-    def apply_to_all_classes[T <: Element with Product] (fn: (String, Parseable[T]) => Unit) =
+    def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit) =
     {
-        val chim = new CHIM ("")
-        println ("apply_to_all_classes " + LOOKUP.size)
-        for ((name, cls) <- LOOKUP.iterator)
-            fn (name, cls.asInstanceOf[Parseable[T]])
+        val chim = new CHIM ("") // ensure registration has occured
+        for ((name, subsetter) <- SUBSETTERS.iterator)
+            fn (subsetter)
     }
 
     def adjustment (buffer: Array[Byte], low: Integer, high: Integer, also_upper_bound: Boolean): Tuple2[Int, Int] =

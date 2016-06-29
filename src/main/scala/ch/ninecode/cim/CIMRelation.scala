@@ -20,9 +20,12 @@ import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.types.StructField
 import org.apache.spark.sql.types.StructType
 
+import scala.reflect._
+import scala.reflect.runtime.universe._
+import scala.reflect.runtime.{universe => ru}
+
 import ch.ninecode.model._
 
-//case class Terminals (val id_equ: String, var terms: List[Terminal]) extends Serializable
 case class PreEdge (var id_seq_1: String, var cn_1: String, var id_seq_2: String, var cn_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var location: String, val power: Double, val commissioned: String, val status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
 case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
@@ -105,17 +108,17 @@ class CIMRelation(
         throw new UnsupportedOperationException ("oops, no writing yet")
     }
 
-//    def get (name: String): RDD[Element] =
-//    {
-//        val rdds = sqlContext.sparkContext.getPersistentRDDs
-//        for (key <- rdds.keys)
-//        {
-//            val rdd = rdds (key)
-//            if (rdd.name == name)
-//                return (rdd.asInstanceOf[RDD[Element]])
-//        }
-//        return (null)
-//    }
+    def get (name: String): RDD[Element] =
+    {
+        val rdds = sqlContext.sparkContext.getPersistentRDDs
+        for (key <- rdds.keys)
+        {
+            val rdd = rdds (key)
+            if (rdd.name == name)
+                return (rdd.asInstanceOf[RDD[Element]])
+        }
+        return (null)
+    }
 
     // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
     override def buildScan (inputFiles: Array[FileStatus]): RDD[Row] =
@@ -138,189 +141,29 @@ class CIMRelation(
                 classOf[Element]).values
 
             ret = rdd.asInstanceOf[RDD[Row]]
-            // persist it so the sample can get at it
-            ret.setName ("Elements")
+            ret.setName ("Elements") // persist it
             ret.cache ()
 
             // as a side effect, define all the other temporary tables
             logInfo ("creating temporary tables")
+            CHIM.apply_to_all_classes (
+                (subsetter: CIMSubsetter[_]) =>
+                {
+                    logInfo ("building " + subsetter.cls)
+                    subsetter.make (sqlContext, rdd)
+                }
+            )
 
-            // ToDo: loop over CHIM.LOOKUP with nested element detection
-            // this doesn't work, get:
-            // Exception in thread "main" java.lang.ClassCastException: ch.ninecode.model.ElementUDT cannot be cast to org.apache.spark.sql.types.StructType
-            //   at org.apache.spark.sql.SQLContext.createDataFrame(SQLContext.scala:414)
-//            CHIM.apply_to_all_classes (
-//                (name: String, parser: Parseable[Element with Product]) =>
-//                {
-//                    logInfo ("building " + name)
-//                    val df = sqlContext.createDataFrame (parser.subset (rdd.asInstanceOf[RDD[Element with Product]]))
-//                    df.registerTempTable (parser.cls)
-//                }
-//            )
-
-//            // this doesn't work either, get:
-//            // java.io.InvalidClassException: ch.ninecode.model.Location$; no valid constructor
-//            var _rdd = rdd.asInstanceOf[RDD[Element with Product]]
-//
-//            // Common
-//            sqlContext.createDataFrame (CoordinateSystem.subset (_rdd).asInstanceOf[RDD[CoordinateSystem]]).registerTempTable ("CoordinateSystem")
-//            sqlContext.createDataFrame (Location.subset (_rdd).asInstanceOf[RDD[Location]]).registerTempTable ("Location")
-//            sqlContext.createDataFrame (PositionPoint.subset (_rdd).asInstanceOf[RDD[PositionPoint]]).registerTempTable ("PositionPoint")
-//            sqlContext.createDataFrame (UserAttribute.subset (_rdd).asInstanceOf[RDD[UserAttribute]]).registerTempTable ("UserAttribute")
-//
-//            // Core
-//            sqlContext.createDataFrame (ACDCTerminal.subset (_rdd).asInstanceOf[RDD[ACDCTerminal]]).registerTempTable ("ACDCTerminal")
-//            sqlContext.createDataFrame (BaseVoltage.subset (_rdd).asInstanceOf[RDD[BaseVoltage]]).registerTempTable ("BaseVoltage")
-//            sqlContext.createDataFrame (Bay.subset (_rdd).asInstanceOf[RDD[Bay]]).registerTempTable ("Bay")
-//            sqlContext.createDataFrame (ConductingEquipment.subset (_rdd).asInstanceOf[RDD[ConductingEquipment]]).registerTempTable ("ConductingEquipment")
-//            sqlContext.createDataFrame (ConnectivityNode.subset (_rdd).asInstanceOf[RDD[ConnectivityNode]]).registerTempTable ("ConnectivityNode")
-//            sqlContext.createDataFrame (ConnectivityNodeContainer.subset (_rdd).asInstanceOf[RDD[ConnectivityNodeContainer]]).registerTempTable ("ConnectivityNodeContainer")
-//            sqlContext.createDataFrame (Equipment.subset (_rdd).asInstanceOf[RDD[Equipment]]).registerTempTable ("Equipment")
-//            sqlContext.createDataFrame (EquipmentContainer.subset (_rdd).asInstanceOf[RDD[EquipmentContainer]]).registerTempTable ("EquipmentContainer")
-//            sqlContext.createDataFrame (IdentifiedObject.subset (_rdd).asInstanceOf[RDD[IdentifiedObject]]).registerTempTable ("IdentifiedObject")
-//            sqlContext.createDataFrame (Name.subset (_rdd).asInstanceOf[RDD[Name]]).registerTempTable ("Name")
-//            sqlContext.createDataFrame (NameType.subset (_rdd).asInstanceOf[RDD[NameType]]).registerTempTable ("NameType")
-//            sqlContext.createDataFrame (NameTypeAuthority.subset (_rdd).asInstanceOf[RDD[NameTypeAuthority]]).registerTempTable ("NameTypeAuthority")
-//            sqlContext.createDataFrame (PSRType.subset (_rdd).asInstanceOf[RDD[PSRType]]).registerTempTable ("PSRType")
-//            sqlContext.createDataFrame (PowerSystemResource.subset (_rdd).asInstanceOf[RDD[PowerSystemResource]]).registerTempTable ("PowerSystemResource")
-//            sqlContext.createDataFrame (Substation.subset (_rdd).asInstanceOf[RDD[Substation]]).registerTempTable ("Substation")
-//            sqlContext.createDataFrame (Terminal.subset (_rdd).asInstanceOf[RDD[Terminal]]).registerTempTable ("Terminal")
-//            sqlContext.createDataFrame (VoltageLevel.subset (_rdd).asInstanceOf[RDD[VoltageLevel]]).registerTempTable ("VoltageLevel")
-//
-//            // Customers
-//            sqlContext.createDataFrame (Agreement.subset (_rdd).asInstanceOf[RDD[Agreement]]).registerTempTable ("Agreement")
-//            sqlContext.createDataFrame (Customer.subset (_rdd).asInstanceOf[RDD[Customer]]).registerTempTable ("Customer")
-//            sqlContext.createDataFrame (CustomerAgreement.subset (_rdd).asInstanceOf[RDD[CustomerAgreement]]).registerTempTable ("CustomerAgreement")
-//            sqlContext.createDataFrame (Document.subset (_rdd).asInstanceOf[RDD[Document]]).registerTempTable ("Document")
-//            sqlContext.createDataFrame (OrganisationRole.subset (_rdd).asInstanceOf[RDD[OrganisationRole]]).registerTempTable ("OrganisationRole")
-//            sqlContext.createDataFrame (PricingStructure.subset (_rdd).asInstanceOf[RDD[PricingStructure]]).registerTempTable ("PricingStructure")
-//            sqlContext.createDataFrame (ServiceCategory.subset (_rdd).asInstanceOf[RDD[ServiceCategory]]).registerTempTable ("ServiceCategory")
-//            sqlContext.createDataFrame (ServiceLocation.subset (_rdd).asInstanceOf[RDD[ServiceLocation]]).registerTempTable ("ServiceLocation")
-//
-//            // Metering
-//            sqlContext.createDataFrame (UsagePoint.subset (_rdd).asInstanceOf[RDD[UsagePoint]]).registerTempTable ("UsagePoint")
-//            sqlContext.createDataFrame (UsagePointLocation.subset (_rdd).asInstanceOf[RDD[UsagePointLocation]]).registerTempTable ("UsagePointLocation")
-//
-//            // Production
-//            sqlContext.createDataFrame (GeneratingUnit.subset (_rdd).asInstanceOf[RDD[GeneratingUnit]]).registerTempTable ("GeneratingUnit")
-//            sqlContext.createDataFrame (SolarGeneratingUnit.subset (_rdd).asInstanceOf[RDD[SolarGeneratingUnit]]).registerTempTable ("SolarGeneratingUnit")
-//
-//            // Protection
-//            sqlContext.createDataFrame (CurrentRelay.subset (_rdd).asInstanceOf[RDD[CurrentRelay]]).registerTempTable ("CurrentRelay")
-//            sqlContext.createDataFrame (ProtectionEquipment.subset (_rdd).asInstanceOf[RDD[ProtectionEquipment]]).registerTempTable ("ProtectionEquipment")
-//
-//            // StateVariables
-//            sqlContext.createDataFrame (StateVariable.subset (_rdd).asInstanceOf[RDD[StateVariable]]).registerTempTable ("StateVariable")
-//            sqlContext.createDataFrame (SvStatus.subset (_rdd).asInstanceOf[RDD[SvStatus]]).registerTempTable ("SvStatus")
-//
-//            // Wires
-//            sqlContext.createDataFrame (ACLineSegment.subset (_rdd).asInstanceOf[RDD[ACLineSegment]]).registerTempTable ("ACLineSegment")
-//            sqlContext.createDataFrame (ACLineSegmentPhase.subset (_rdd).asInstanceOf[RDD[ACLineSegmentPhase]]).registerTempTable ("ACLineSegmentPhase")
-//            sqlContext.createDataFrame (BusbarSection.subset (_rdd).asInstanceOf[RDD[BusbarSection]]).registerTempTable ("BusbarSection")
-//            sqlContext.createDataFrame (Conductor.subset (_rdd).asInstanceOf[RDD[Conductor]]).registerTempTable ("Conductor")
-//            sqlContext.createDataFrame (Connector.subset (_rdd).asInstanceOf[RDD[Connector]]).registerTempTable ("Connector")
-//            sqlContext.createDataFrame (Disconnector.subset (_rdd).asInstanceOf[RDD[Disconnector]]).registerTempTable ("Disconnector")
-//            sqlContext.createDataFrame (EnergyConsumer.subset (_rdd).asInstanceOf[RDD[EnergyConsumer]]).registerTempTable ("EnergyConsumer")
-//            sqlContext.createDataFrame (Fuse.subset (_rdd).asInstanceOf[RDD[Fuse]]).registerTempTable ("Fuse")
-//            sqlContext.createDataFrame (GroundDisconnector.subset (_rdd).asInstanceOf[RDD[GroundDisconnector]]).registerTempTable ("GroundDisconnector")
-//            sqlContext.createDataFrame (Junction.subset (_rdd).asInstanceOf[RDD[Junction]]).registerTempTable ("Junction")
-//            sqlContext.createDataFrame (Line.subset (_rdd).asInstanceOf[RDD[Line]]).registerTempTable ("Line")
-//            sqlContext.createDataFrame (PowerTransformer.subset (_rdd).asInstanceOf[RDD[PowerTransformer]]).registerTempTable ("PowerTransformer")
-//            sqlContext.createDataFrame (PowerTransformerEnd.subset (_rdd).asInstanceOf[RDD[PowerTransformerEnd]]).registerTempTable ("PowerTransformerEnd")
-//            sqlContext.createDataFrame (Switch.subset (_rdd).asInstanceOf[RDD[Switch]]).registerTempTable ("Switch")
-//            sqlContext.createDataFrame (TransformerEnd.subset (_rdd).asInstanceOf[RDD[TransformerEnd]]).registerTempTable ("TransformerEnd")
-//            sqlContext.createDataFrame (TransformerTank.subset (_rdd).asInstanceOf[RDD[TransformerTank]]).registerTempTable ("TransformerTank")
-//            sqlContext.createDataFrame (TransformerTankEnd.subset (_rdd).asInstanceOf[RDD[TransformerTankEnd]]).registerTempTable ("TransformerTankEnd")
-//
-//            // Work
-//            sqlContext.createDataFrame (WorkLocation.subset (_rdd).asInstanceOf[RDD[WorkLocation]]).registerTempTable ("WorkLocation")
-
-            // ToDo: loop over CHIM.LOOKUP with nested element detection
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Unknown] => x.asInstanceOf[Unknown]})).registerTempTable ("Unknown")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PSRType] => x.asInstanceOf[PSRType]})).registerTempTable ("PSRType")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[SvStatus] => x.asInstanceOf[SvStatus]})).registerTempTable ("SvStatus")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Line] => x.asInstanceOf[Line]})).registerTempTable ("Line")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Substation] => x.asInstanceOf[Substation]})).registerTempTable ("Subnetwork")
-            val connectivitynodes = rdd.collect ({ case x: Element if x.getClass () == classOf[ConnectivityNode] => x.asInstanceOf[ConnectivityNode]})
-            connectivitynodes.setName ("ConnectivityNode")
-            connectivitynodes.cache ()
-            sqlContext.createDataFrame (connectivitynodes).registerTempTable ("ConnectivityNode")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[BaseVoltage] => x.asInstanceOf[BaseVoltage]})).registerTempTable ("Voltage")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[CoordinateSystem] => x.asInstanceOf[CoordinateSystem]})).registerTempTable ("CoordinateSystem")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Location] => x.asInstanceOf[Location]})).registerTempTable ("Location")
-            val points = rdd.collect ({ case x: Element if x.getClass () == classOf[PositionPoint] => x.asInstanceOf[PositionPoint]})
-            points.setName ("PositionPoint")
-            points.cache ()
-            sqlContext.createDataFrame (points).registerTempTable ("PositionPoint")
-            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Asset] => x.asInstanceOf[Asset]})).registerTempTable ("Asset")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[EnergyConsumer] => x.asInstanceOf[EnergyConsumer]})).registerTempTable ("Consumer")
-            val terminals = rdd.collect ({ case x: Element if x.getClass () == classOf[Terminal] => x.asInstanceOf[Terminal]})
-            terminals.setName ("Terminal")
-            terminals.cache ()
-            sqlContext.createDataFrame (terminals).registerTempTable ("Terminal")
-            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[BusbarInfo] => x.asInstanceOf[BusbarInfo]})).registerTempTable ("BusbarInfo")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[BusbarSection] => x.asInstanceOf[BusbarSection]})).registerTempTable ("BusbarSection")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Connector] => x.asInstanceOf[Connector]})).registerTempTable ("Connector")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Junction] => x.asInstanceOf[Junction]})).registerTempTable ("Junction")
-            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[CableInfo] => x.asInstanceOf[CableInfo]})).registerTempTable ("CableInfo")
-            val aclinesegments = rdd.collect ({ case x: Element if x.getClass () == classOf[ACLineSegment] => x.asInstanceOf[ACLineSegment]})
-            aclinesegments.setName ("ACLineSegment")
-            aclinesegments.cache ()
-            sqlContext.createDataFrame (aclinesegments).registerTempTable ("ACLineSegment")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ACLineSegmentPhase] => x.asInstanceOf[ACLineSegmentPhase]})).registerTempTable ("ACLineSegmentPhase")
-            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[SwitchInfo] => x.asInstanceOf[SwitchInfo]})).registerTempTable ("SwitchInfo")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Switch] => x.asInstanceOf[Switch]})).registerTempTable ("Switch")
-            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PowerTransformerInfo] => x.asInstanceOf[PowerTransformerInfo]})).registerTempTable ("PowerTransformerInfo")
-            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerTankInfo] => x.asInstanceOf[TransformerTankInfo]})).registerTempTable ("TransformerTankInfo")
-            //sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerEndInfo] => x.asInstanceOf[TransformerEndInfo]})).registerTempTable ("TransformerEndInfo")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PowerTransformer] => x.asInstanceOf[PowerTransformer]})).registerTempTable ("PowerTransformer")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerTank] => x.asInstanceOf[TransformerTank]})).registerTempTable ("TransformerTank")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[TransformerTankEnd] => x.asInstanceOf[TransformerTankEnd]})).registerTempTable ("TransformerTankEnd")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[SolarGeneratingUnit] => x.asInstanceOf[SolarGeneratingUnit]})).registerTempTable ("SolarGeneratingUnit")
-
-            // Name
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[NameTypeAuthority] => x.asInstanceOf[NameTypeAuthority]})).registerTempTable ("NameTypeAuthority")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[NameType] => x.asInstanceOf[NameType]})).registerTempTable ("NameType")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Name] => x.asInstanceOf[Name]})).registerTempTable ("Name")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[UserAttribute] => x.asInstanceOf[UserAttribute]})).registerTempTable ("UserAttribute")
-
-            // SAP IS-U
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ServiceLocation] => x.asInstanceOf[ServiceLocation]})).registerTempTable ("ServiceLocation")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[UsagePointLocation] => x.asInstanceOf[UsagePointLocation]})).registerTempTable ("UsagePointLocation")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[ServiceCategory] => x.asInstanceOf[ServiceCategory]})).registerTempTable ("ServiceCategory")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[PricingStructure] => x.asInstanceOf[PricingStructure]})).registerTempTable ("PricingStructure")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[Customer] => x.asInstanceOf[Customer]})).registerTempTable ("Customer")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[CustomerAgreement] => x.asInstanceOf[CustomerAgreement]})).registerTempTable ("CustomerAgreement")
-            sqlContext.createDataFrame (rdd.collect ({ case x: Element if x.getClass () == classOf[UsagePoint] => x.asInstanceOf[UsagePoint]})).registerTempTable ("UsagePoint")
-
-//            val connectivitynodes = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]]
-//            val points = get ("PositionPoint").asInstanceOf[RDD[PositionPoint]]
-//            val terminals = get ("Terminal").asInstanceOf[RDD[Terminal]]
-//            val aclinesegments = get ("ACLineSegment").asInstanceOf[RDD[ACLineSegment]]
+            val connectivitynodes = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]]
+            val points = get ("PositionPoint").asInstanceOf[RDD[PositionPoint]]
+            val terminals = get ("Terminal").asInstanceOf[RDD[Terminal]]
+            val aclinesegments = get ("ACLineSegment").asInstanceOf[RDD[ACLineSegment]]
 
             // set up edge graph if it's not an ISU file
             if (!filename.contains ("ISU"))
             {
                 // first get the terminals keyed by equipment
-                // the following could also work:
                 val terms = terminals.groupBy (_.ConductingEquipment) // groupBy[K](f: (T) ⇒ K)(implicit kt: ClassTag[K]): RDD[(K, Iterable[T])]
-
-//                val terminal_seq_op = (terminals: Terminals /* null */, terminal: Terminal) ⇒
-//                {
-//                    if (null == terminals)
-//                        new Terminals (terminal.ConductingEquipment, List (terminal))
-//                    else
-//                        new Terminals (terminal.ConductingEquipment, terminals.terms :+ terminal)
-//                }
-//                val terminal_comb_op = (l: Terminals, r: Terminals) ⇒
-//                {
-//                    new Terminals (l.id_equ, l.terms ++ r.terms)
-//                }
-//                val terms = terminals.keyBy (_.ConductingEquipment).aggregateByKey (null: Terminals) (terminal_seq_op, terminal_comb_op).values
-
-//                terms.setName ("Terminals")
-//                terms.cache ()
-//                sqlContext.createDataFrame (terms).registerTempTable ("terms")
 
                 // next, map the terminal pairs to pre-edges
                 val term_op =
@@ -478,7 +321,7 @@ class CIMRelation(
 
                                     case Some(o) if o.getClass () == classOf[NameTypeAuthority] => { }
                                     case Some(o) if o.getClass () == classOf[NameType] => { }
-                                    case Some(o) if o.getClass () == classOf[Name] => { }
+                                    case Some(o) if o.getClass () == classOf[ch.ninecode.model.Name] => { }
                                     case Some(o) if o.getClass () == classOf[UserAttribute] => { }
                                 }
 
@@ -560,10 +403,6 @@ class CIMRelation(
                 }
                 var preedges = rdd.keyBy (_.id).leftOuterJoin (terms).flatMapValues (term_op).values
 
-                preedges.setName ("PreEdges")
-                preedges.cache ()
-                sqlContext.createDataFrame (preedges).registerTempTable ("preedges")
-
                 // change node id to node name
                 val left_op2 =
                 {
@@ -606,10 +445,6 @@ class CIMRelation(
                     }
                 }
                 preedges = preedges.keyBy (_.cn_2).leftOuterJoin (cns).map (right_op2)
-
-//                preedges.setName ("PreEdges")
-//                preedges.cache ()
-//                sqlContext.createDataFrame (preedges).registerTempTable ("preedges")
 
                 // get start and end coordinates of each location
                 val point_seq_op = (x: Extremum /* null */, p: PositionPoint) ⇒

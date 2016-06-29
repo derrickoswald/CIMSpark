@@ -28,36 +28,6 @@ class CIMSuite extends FunSuite
         assert (map.size === 1)
     }
 
-    def subclass (x: Element, parser: Parseable[Element with Product]): Element =
-    {
-        var ret = x
-
-        while ((null != ret) && (ret.getClass () != parser.runtime_class))
-            ret = ret.sup
-
-        return (ret)
-    }
-
-    test ("Classes")
-    {
-        val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
-        val parser = new CHIM (xml.toString ())
-        val map = parser.parse ()
-        val element = map.getOrElse ("PSRType_Substation", null)
-        assert (element != null)
-        CHIM.apply_to_all_classes (
-            (name: String, parser: Parseable[Element with Product]) =>
-            {
-                val cls = subclass (element, parser)
-                if (null != cls)
-                {
-                    markup ("class " + cls.toString ())
-                    markup (parser.runtime_class.toString () + " boolean " + (element.getClass () == parser.runtime_class))
-                }
-            }
-        )
-    }
-
     test ("Voltage")
     {
         // Note: scala really hates processing instructions:
