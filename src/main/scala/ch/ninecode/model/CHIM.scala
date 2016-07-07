@@ -114,9 +114,9 @@ trait Parser
         return (ret);
     }
 
-    def toInteger (string: String, context: Context): Integer =
+    def toInteger (string: String, context: Context): Int =
     {
-        var ret = 0
+        var ret: Int = 0
 
         if ((null != string) && ("" != string))
             try
@@ -445,7 +445,370 @@ extends
 //
 
 /*
- * Common
+ * Package: AssetInfo
+ */
+
+case class CableInfo
+(
+    override val sup: WireInfo,
+    val constructionKind: String,
+    val diameterOverCore: Double,
+    val diameterOverInsulation: Double,
+    val diameterOverJacket: Double,
+    val diameterOverScreen: Double,
+    val isStrandFill: Boolean,
+    val nominalTemperature: Double,
+    val outerJacketKind: String,
+    val sheathAsNeutral: Boolean,
+    val shieldMaterial: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, false, 0.0, null, false, null) }
+    def WireInfo: WireInfo = sup.asInstanceOf[WireInfo]
+    override def copy (): Row = { return (clone ().asInstanceOf[CableInfo]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object CableInfo
+extends
+    Parseable[CableInfo]
+{
+    val constructionKind = parse_attribute (attribute ("""CableInfo.constructionKind"""))_
+
+    val diameterOverCore = parse_element (element ("""CableInfo.diameterOverCore"""))_
+    val diameterOverInsulation = parse_element (element ("""CableInfo.diameterOverInsulation"""))_
+    val diameterOverJacket = parse_element (element ("""CableInfo.diameterOverJacket"""))_
+    val diameterOverScreen = parse_element (element ("""CableInfo.diameterOverScreen"""))_
+    val isStrandFill = parse_element (element ("""CableInfo.isStrandFill"""))_
+    val nominalTemperature = parse_element (element ("""CableInfo.nominalTemperature"""))_
+    val outerJacketKind = parse_attribute (attribute ("""CableInfo.outerJacketKind"""))_
+    val sheathAsNeutral = parse_element (element ("""CableInfo.sheathAsNeutral"""))_
+    val shieldMaterial = parse_attribute (attribute ("""CableInfo.shieldMaterial"""))_
+    def parse (context: Context): CableInfo =
+    {
+        return (
+            CableInfo
+            (
+                WireInfo.parse (context),
+                constructionKind (context),
+                toDouble (diameterOverCore (context), context),
+                toDouble (diameterOverInsulation (context), context),
+                toDouble (diameterOverJacket (context), context),
+                toDouble (diameterOverScreen (context), context),
+                toBoolean (isStrandFill (context), context),
+                toDouble (nominalTemperature (context), context),
+                outerJacketKind (context),
+                toBoolean (sheathAsNeutral (context), context),
+                shieldMaterial (context)
+            )
+        )
+    }
+}
+
+case class SwitchInfo
+(
+    override val sup: AssetInfo,
+    val breakingCapacity: Double,
+    val isSinglePhase: Boolean,
+    val isUnganged: Boolean,
+    val ratedCurrent: Double,
+    val ratedVoltage: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, false, false, 0.0, 0.0) }
+    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
+    override def copy (): Row = { return (clone ().asInstanceOf[SwitchInfo]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object SwitchInfo
+extends
+    Parseable[SwitchInfo]
+{
+    val breakingCapacity = parse_element (element ("""SwitchInfo.breakingCapacity"""))_
+    val isSinglePhase = parse_element (element ("""SwitchInfo.isSinglePhase"""))_
+    val isUnganged = parse_element (element ("""SwitchInfo.isUnganged"""))_
+    val ratedCurrent = parse_element (element ("""SwitchInfo.ratedCurrent"""))_
+    val ratedVoltage = parse_element (element ("""SwitchInfo.ratedVoltage"""))_
+    def parse (context: Context): SwitchInfo =
+    {
+        return (
+            SwitchInfo
+            (
+                AssetInfo.parse (context),
+                toDouble (breakingCapacity (context), context),
+                toBoolean (isSinglePhase (context), context),
+                toBoolean (isUnganged (context), context),
+                toDouble (ratedCurrent (context), context),
+                toDouble (ratedVoltage (context), context)
+            )
+        )
+    }
+}
+
+case class TapChangerInfo
+(
+    override val sup: AssetInfo,
+    val bil: Double,
+    val ctRating: Double,
+    val ctRatio: Double,
+    val frequency: Double,
+    val highStep: Int,
+    val isTcul: Boolean,
+    val lowStep: Int,
+    val neutralStep: Int,
+    val neutralU: Double,
+    val ptRatio: Double,
+    val ratedApparentPower: Double,
+    val ratedCurrent: Double,
+    val ratedVoltage: Double,
+    val stepPhaseIncrement: Double,
+    val stepVoltageIncrement: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, false, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerInfo]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TapChangerInfo
+extends
+    Parseable[TapChangerInfo]
+{
+    val bil = parse_element (element ("""TapChangerInfo.bil"""))_
+    val ctRating = parse_element (element ("""TapChangerInfo.ctRating"""))_
+    val ctRatio = parse_element (element ("""TapChangerInfo.ctRatio"""))_
+    val frequency = parse_element (element ("""TapChangerInfo.frequency"""))_
+    val highStep = parse_element (element ("""TapChangerInfo.highStep"""))_
+    val isTcul = parse_element (element ("""TapChangerInfo.isTcul"""))_
+    val lowStep = parse_element (element ("""TapChangerInfo.lowStep"""))_
+    val neutralStep = parse_element (element ("""TapChangerInfo.neutralStep"""))_
+    val neutralU = parse_element (element ("""TapChangerInfo.neutralU"""))_
+    val ptRatio = parse_element (element ("""TapChangerInfo.ptRatio"""))_
+    val ratedApparentPower = parse_element (element ("""TapChangerInfo.ratedApparentPower"""))_
+    val ratedCurrent = parse_element (element ("""TapChangerInfo.ratedCurrent"""))_
+    val ratedVoltage = parse_element (element ("""TapChangerInfo.ratedVoltage"""))_
+    val stepPhaseIncrement = parse_element (element ("""TapChangerInfo.stepPhaseIncrement"""))_
+    val stepVoltageIncrement = parse_element (element ("""TapChangerInfo.stepVoltageIncrement"""))_
+    def parse (context: Context): TapChangerInfo =
+    {
+        return (
+            TapChangerInfo
+            (
+                AssetInfo.parse (context),
+                toDouble (bil (context), context),
+                toDouble (ctRating (context), context),
+                toDouble (ctRatio (context), context),
+                toDouble (frequency (context), context),
+                toInteger (highStep (context), context),
+                toBoolean (isTcul (context), context),
+                toInteger (lowStep (context), context),
+                toInteger (neutralStep (context), context),
+                toDouble (neutralU (context), context),
+                toDouble (ptRatio (context), context),
+                toDouble (ratedApparentPower (context), context),
+                toDouble (ratedCurrent (context), context),
+                toDouble (ratedVoltage (context), context),
+                toDouble (stepPhaseIncrement (context), context),
+                toDouble (stepVoltageIncrement (context), context)
+            )
+        )
+    }
+}
+
+case class TapeShieldCableInfo
+(
+    override val sup: CableInfo,
+    val tapeLap: Double,
+    val tapeThickness: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0) }
+    def CableInfo: CableInfo = sup.asInstanceOf[CableInfo]
+    override def copy (): Row = { return (clone ().asInstanceOf[TapeShieldCableInfo]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TapeShieldCableInfo
+extends
+    Parseable[TapeShieldCableInfo]
+{
+    val tapeLap = parse_element (element ("""TapeShieldCableInfo.tapeLap"""))_
+    val tapeThickness = parse_element (element ("""TapeShieldCableInfo.tapeThickness"""))_
+    def parse (context: Context): TapeShieldCableInfo =
+    {
+        return (
+            TapeShieldCableInfo
+            (
+                CableInfo.parse (context),
+                toDouble (tapeLap (context), context),
+                toDouble (tapeThickness (context), context)
+            )
+        )
+    }
+}
+
+case class WireInfo
+(
+    override val sup: AssetInfo,
+    val coreRadius: Double,
+    val coreStrandCount: Int,
+    val gmr: Double,
+    val insulated: Boolean,
+    val insulationMaterial: String,
+    val insulationThickness: Double,
+    val material: String,
+    val rAC25: Double,
+    val rAC50: Double,
+    val rAC75: Double,
+    val rDC20: Double,
+    val radius: Double,
+    val ratedCurrent: Double,
+    val sizeDescription: String,
+    val strandCount: Int
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0, 0.0, false, null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0 ) }
+    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
+    override def copy (): Row = { return (clone ().asInstanceOf[WireInfo]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object WireInfo
+extends
+    Parseable[WireInfo]
+{
+    val coreRadius = parse_element (element ("""WireInfo.coreRadius"""))_
+    val coreStrandCount = parse_element (element ("""WireInfo.coreStrandCount"""))_
+    val gmr = parse_element (element ("""WireInfo.gmr"""))_
+    val insulated = parse_element (element ("""WireInfo.insulated"""))_
+    val insulationMaterial = parse_attribute (attribute ("""WireInfo.insulationMaterial"""))_
+    val insulationThickness = parse_element (element ("""WireInfo.insulationThickness"""))_
+    val material = parse_attribute (attribute ("""WireInfo.material"""))_
+    val rAC25 = parse_element (element ("""WireInfo.rAC25"""))_
+    val rAC50 = parse_element (element ("""WireInfo.rAC50"""))_
+    val rAC75 = parse_element (element ("""WireInfo.rAC75"""))_
+    val rDC20 = parse_element (element ("""WireInfo.rDC20"""))_
+    val radius = parse_element (element ("""WireInfo.radius"""))_
+    val ratedCurrent = parse_element (element ("""WireInfo.ratedCurrent"""))_
+    val sizeDescription = parse_element (element ("""WireInfo.sizeDescription"""))_
+    val strandCount = parse_element (element ("""WireInfo.strandCount"""))_
+    def parse (context: Context): WireInfo =
+    {
+        return (
+            WireInfo
+            (
+                AssetInfo.parse (context),
+                toDouble (coreRadius (context), context),
+                toInteger (coreStrandCount (context), context),
+                toDouble (gmr (context), context),
+                toBoolean (insulated (context), context),
+                insulationMaterial (context),
+                toDouble (insulationThickness (context), context),
+                material (context),
+                toDouble (rAC25 (context), context),
+                toDouble (rAC50 (context), context),
+                toDouble (rAC75 (context), context),
+                toDouble (rDC20 (context), context),
+                toDouble (radius (context), context),
+                toDouble (ratedCurrent (context), context),
+                sizeDescription (context),
+                toInteger (strandCount (context), context)
+            )
+        )
+    }
+}
+
+/*
+ * Package: Assets
+ */
+
+case class AssetInfo
+(
+    override val sup: IdentifiedObject,
+    val AssetModel: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { return (clone ().asInstanceOf[AssetInfo]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object AssetInfo
+extends
+    Parseable[AssetInfo]
+{
+    val AssetModel = parse_attribute (attribute ("""AssetInfo.AssetModel"""))_
+    def parse (context: Context): AssetInfo =
+    {
+        return (
+            AssetInfo
+            (
+                IdentifiedObject.parse (context),
+                AssetModel (context)
+            )
+        )
+    }
+}
+
+/*
+ * Package: Common
  */
 
 case class ActivityRecord
@@ -951,7 +1314,7 @@ object Hazard
 extends
     Parseable[Hazard]
 {
-    val typ = parse_element (element ("""Hazard.typ"""))_
+    val typ = parse_element (element ("""Hazard.type"""))_
     val status = parse_attribute (attribute ("""Hazard.status"""))_
     def parse (context: Context): Hazard =
     {
@@ -1458,7 +1821,7 @@ extends
 {
     val justification = parse_element (element ("""Priority.justification"""))_
     val rank = parse_element (element ("""Priority.rank"""))_
-    val typ = parse_element (element ("""Priority.typ"""))_
+    val typ = parse_element (element ("""Priority.type"""))_
     def parse (context: Context): Priority =
     {
         return (
@@ -1502,7 +1865,7 @@ extends
     Parseable[ScheduledEvent]
 {
     val duration = parse_element (element ("""ScheduledEvent.duration"""))_
-    val typ = parse_element (element ("""ScheduledEvent.typ"""))_
+    val typ = parse_element (element ("""ScheduledEvent.type"""))_
     val ScheduledEventData = parse_attribute (attribute ("""ScheduledEvent.ScheduledEventData"""))_
     val status = parse_attribute (attribute ("""ScheduledEvent.status"""))_
     def parse (context: Context): ScheduledEvent =
@@ -1697,7 +2060,7 @@ extends
     val prefix = parse_element (element ("""StreetDetail.prefix"""))_
     val suffix = parse_element (element ("""StreetDetail.suffix"""))_
     val suiteNumber = parse_element (element ("""StreetDetail.suiteNumber"""))_
-    val typ = parse_element (element ("""StreetDetail.typ"""))_
+    val typ = parse_element (element ("""StreetDetail.type"""))_
     val withinTownLimits = parse_element (element ("""StreetDetail.withinTownLimits"""))_
     def parse (context: Context): StreetDetail =
     {
@@ -1720,10 +2083,211 @@ extends
     }
 }
 
+case class TelephoneNumber (
+    override val sup: Element,
+    areaCode: String,
+    cityCode: String,
+    countryCode: String,
+    extension: String,
+    localNumber: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null) }
+    def Element: Element = sup
+    override def copy (): Row = { return (clone ().asInstanceOf[TelephoneNumber]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TelephoneNumber
+extends
+    Parseable[TelephoneNumber]
+{
+    val areaCode = parse_element (element ("""TelephoneNumber.areaCode"""))_
+    val cityCode = parse_element (element ("""TelephoneNumber.cityCode"""))_
+    val countryCode = parse_element (element ("""TelephoneNumber.countryCode"""))_
+    val extension = parse_element (element ("""TelephoneNumber.extension"""))_
+    val localNumber = parse_element (element ("""TelephoneNumber.localNumber"""))_
+    def parse (context: Context): TelephoneNumber =
+    {
+        return (
+            TelephoneNumber
+            (
+                BasicElement.parse (context),
+                areaCode (context),
+                cityCode (context),
+                countryCode (context),
+                extension (context),
+                localNumber (context)
+            )
+        )
+    }
+}
+
+case class TimePoint
+(
+    override val sup: IdentifiedObject,
+    val dateTime: String,
+    val relativeTimeInterval: Double,
+    val sequenceNumber: Int,
+    val TimeSchedule: String,
+    val status: String,
+    val window: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, 0.0, 0, null, null, null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { return (clone ().asInstanceOf[TimePoint]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TimePoint
+extends
+    Parseable[TimePoint]
+{
+    val dateTime = parse_element (element ("""TimePoint.dateTime"""))_
+    val relativeTimeInterval = parse_element (element ("""TimePoint.relativeTimeInterval"""))_
+    val sequenceNumber = parse_element (element ("""TimePoint.sequenceNumber"""))_
+    val TimeSchedule = parse_attribute (attribute ("""TimePoint.TimeSchedule"""))_
+    val status = parse_attribute (attribute ("""TimePoint.status"""))_
+    val window = parse_attribute (attribute ("""TimePoint.window"""))_
+    def parse (context: Context): TimePoint =
+    {
+        return (
+            TimePoint
+            (
+                IdentifiedObject.parse (context),
+                dateTime (context),
+                toDouble (relativeTimeInterval (context), context),
+                toInteger (sequenceNumber (context), context),
+                TimeSchedule (context),
+                status (context),
+                window (context)
+            )
+        )
+    }
+}
+
+case class TimeSchedule
+(
+    override val sup: Document,
+    val disabled: Boolean,
+    val offset: Double,
+    val recurrencePattern: String,
+    val recurrencePeriod: Double,
+    val scheduleInterval: String
+)
+extends
+    Element
+{
+    def this () = { this (null, false, 0.0, null, 0.0, null) }
+    def Document: Document = sup.asInstanceOf[Document]
+    override def copy (): Row = { return (clone ().asInstanceOf[TimeSchedule]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TimeSchedule
+extends
+    Parseable[TimeSchedule]
+{
+    val disabled = parse_element (element ("""TimeSchedule.disabled"""))_
+    val offset = parse_element (element ("""TimeSchedule.offset"""))_
+    val recurrencePattern = parse_element (element ("""TimeSchedule.recurrencePattern"""))_
+    val recurrencePeriod = parse_element (element ("""TimeSchedule.recurrencePeriod"""))_
+    val scheduleInterval = parse_attribute (attribute ("""TimeSchedule.scheduleInterval"""))_
+    def parse (context: Context): TimeSchedule =
+    {
+        return (
+            TimeSchedule
+            (
+                Document.parse (context),
+                toBoolean (disabled (context), context),
+                toDouble (offset (context), context),
+                recurrencePattern (context),
+                toDouble (recurrencePeriod (context), context),
+                scheduleInterval (context)
+            )
+        )
+    }
+}
+
+case class TownDetail (
+    override val sup: Element,
+    code: String,
+    country: String,
+    name: String,
+    section: String,
+    stateOrProvince: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null) }
+    def Element: Element = sup
+    override def copy (): Row = { return (clone ().asInstanceOf[TownDetail]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TownDetail
+extends
+    Parseable[TownDetail]
+{
+    val code = parse_element (element ("""TownDetail.code"""))_
+    val country = parse_element (element ("""TownDetail.country"""))_
+    val name = parse_element (element ("""TownDetail.name"""))_
+    val section = parse_element (element ("""TownDetail.section"""))_
+    val stateOrProvince = parse_element (element ("""TownDetail.stateOrProvince"""))_
+    def parse (context: Context): TownDetail =
+    {
+        return (
+            TownDetail
+            (
+                BasicElement.parse (context),
+                code (context),
+                country (context),
+                name (context),
+                section (context),
+                stateOrProvince (context)
+            )
+        )
+    }
+}
+
 case class UserAttribute (
     override val sup: Element,
     name: String,
-    sequenceNumber: Integer,
+    sequenceNumber: Int,
     val PropertySpecification: String,
     val RatingSpecification: String,
     val Transaction: String,
@@ -1791,7 +2355,7 @@ case class ACDCTerminal
 (
     override val sup: IdentifiedObject,
     val connected: Boolean,
-    val sequenceNumber: Integer,
+    val sequenceNumber: Int,
     val BusNameMarker: String
 )
 extends
@@ -3531,7 +4095,7 @@ extends
 case class EnergyConsumer
 (
     override val sup: ConductingEquipment,
-    val customerCount: Integer,
+    val customerCount: Int,
     val grounded: Boolean,
     val p: Double,
     val pfixed: Double,
@@ -3806,7 +4370,7 @@ case class PowerTransformerEnd
     val connectionKind: String,
     val g0: Double,
     val g: Double,
-    val phaseAngleClock: Integer,
+    val phaseAngleClock: Int,
     val r0: Double,
     val r: Double,
     val ratedS: Double,
@@ -3880,7 +4444,7 @@ case class Switch
     // ToDo: should be Double
     val ratedCurrent: String,
     val retained: Boolean,
-    val switchOnCount: Integer,
+    val switchOnCount: Int,
     // ToDo: Date handling
     //val switchOnDate: Date
     val CompositeSwitch: String,
@@ -3938,7 +4502,7 @@ case class TransformerEnd
 (
     override val sup: IdentifiedObject,
     val bmagSat: Double,
-    val endNumber: Integer,
+    val endNumber: Int,
     val grounded: Boolean,
     val magBaseU: Double,
     val magSatFlux: Double,
@@ -4252,7 +4816,7 @@ object CHIM
             fn (subsetter)
     }
 
-    def adjustment (buffer: Array[Byte], low: Integer, high: Integer, also_upper_bound: Boolean): Tuple2[Int, Int] =
+    def adjustment (buffer: Array[Byte], low: Int, high: Int, also_upper_bound: Boolean): Tuple2[Int, Int] =
     {
         var lo = low
         var hi = high
