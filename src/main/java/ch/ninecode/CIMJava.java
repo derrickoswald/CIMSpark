@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.sql.DriverManager;
 
 public class CIMJava
@@ -47,7 +48,10 @@ public class CIMJava
         res.close ();
 
         // describe table
-        for (String name: names)
+        String[] ordered = new String[names.size ()];
+        names.toArray (ordered);
+        Arrays.sort (ordered);
+        for (String name: ordered)
         {
             System.out.print ("    " + name);
             // count query
@@ -123,6 +127,15 @@ public class CIMJava
         index = 0;
         while (res.next () && (index++ < 5))
             System.out.println (res.getString (1) + "\t" + res.getBoolean (2) + "\t" + res.getBoolean (3) + "\t" + res.getString (4) + "\t" + res.getBoolean (5)+ "\t" + res.getInt (6));
+        res.close ();
+
+        // join query on Switch
+        sql = "select s.sup.sup.sup.sup.mRID mRID, s.sup.sup.sup.sup.aliasName aliasName, s.sup.sup.sup.sup.name name, s.sup.sup.sup.sup.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.sup.sup.sup.Location = l.sup.mRID and s.sup.sup.sup.Location = p.Location and p.sequenceNumber = 0";
+        System.out.println ("Running: " + sql);
+        res = stmt.executeQuery (sql);
+        index = 0;
+        while (res.next () && (index++ < 5))
+            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getBoolean (5)+ "\t" + res.getBoolean (6) + "\t" + res.getString (7) + "\t" + res.getString (8) + "\t" + res.getString (9));
         res.close ();
 
         System.out.println ("done");

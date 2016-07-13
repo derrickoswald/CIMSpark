@@ -226,9 +226,6 @@ object Sample
             // create the configuration
             val configuration = new SparkConf ()
             configuration.setAppName ("CIMScala GraphX Sample")
-            configuration.setMaster ("yarn-client")
-//            configuration.set ("spark.driver.memory", "1g")
-//            configuration.set ("spark.executor.memory", "4g")
             // make a Spark context and SQL context
             val context = new SparkContext (configuration)
             val sqlContext = new SQLContext (context)
