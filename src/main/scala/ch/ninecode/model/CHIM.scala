@@ -385,7 +385,8 @@ extends
  * Unknown element
  * Default parsed element, when no other more specific class applies
  */
-case class Unknown (
+case class Unknown
+(
     override val sup: Element = null,
     guts: String,
     line: Int,
@@ -1388,6 +1389,32 @@ extends
     }
 }
 
+object _AssetInfo
+{
+    def register: Unit =
+    {
+        BusBarSectionInfo.register
+        CableInfo.register
+        ConcentricNeutralCableInfo.register
+        NoLoadTest.register
+        NoLoadTest.register
+        OpenCircuitTest.register
+        OverheadWireInfo.register
+        PowerTransformerInfo.register
+        ShortCircuitTest.register
+        ShuntCompensatorInfo.register
+        SwitchInfo.register
+        TapChangerInfo.register
+        TapeShieldCableInfo.register
+        TransformerEndInfo.register
+        TransformerTankInfo.register
+        TransformerTest.register
+        WireInfo.register
+        WirePosition.register
+        WireSpacingInfo.register
+    }
+}
+
 /*
  * Package: Assets
  */
@@ -1427,6 +1454,14 @@ extends
                 AssetModel (context)
             )
         )
+    }
+}
+
+object Assets
+{
+    def register: Unit =
+    {
+        AssetInfo.register
     }
 }
 
@@ -1674,7 +1709,6 @@ case class Crew
     override val sup: IdentifiedObject,
     val CrewType: String,
     val status: String
-
 )
 extends
     Element
@@ -2319,7 +2353,8 @@ extends
     }
 }
 
-case class PositionPoint (
+case class PositionPoint
+(
     override val sup: Element,
     sequenceNumber: Int,
     xPosition: String,
@@ -2370,7 +2405,8 @@ extends
     }
 }
 
-case class PostalAddress (
+case class PostalAddress
+(
     override val sup: Element,
     poBox: String,
     postalCode: String,
@@ -2416,7 +2452,8 @@ extends
     }
 }
 
-case class Priority (
+case class Priority
+(
     override val sup: Element,
     justification: String,
     rank: Int,
@@ -2553,7 +2590,8 @@ extends
     }
 }
 
-case class Status (
+case class Status
+(
     override val sup: Element,
     dateTime: String,
     reason: String,
@@ -2599,7 +2637,8 @@ extends
     }
 }
 
-case class StreetAddress (
+case class StreetAddress
+(
     override val sup: Element,
     status: String,
     streetDetail: String,
@@ -2642,7 +2681,8 @@ extends
     }
 }
 
-case class StreetDetail (
+case class StreetDetail
+(
     override val sup: Element,
     addressGeneral: String,
     buildingName: String,
@@ -2706,7 +2746,8 @@ extends
     }
 }
 
-case class TelephoneNumber (
+case class TelephoneNumber
+(
     override val sup: Element,
     areaCode: String,
     cityCode: String,
@@ -2858,7 +2899,8 @@ extends
     }
 }
 
-case class TownDetail (
+case class TownDetail
+(
     override val sup: Element,
     code: String,
     country: String,
@@ -2907,7 +2949,8 @@ extends
     }
 }
 
-case class UserAttribute (
+case class UserAttribute
+(
     override val sup: Element,
     name: String,
     sequenceNumber: Int,
@@ -2918,7 +2961,7 @@ case class UserAttribute (
 )
 extends
     Element
-{ Location
+{
     def this () = { this (null, null, 0, null, null, null, null) }
     def Element: Element = sup
     override def copy (): Row = { return (clone ().asInstanceOf[UserAttribute]); }
@@ -2963,9 +3006,37 @@ object Common
 {
     def register: Unit =
     {
+        ActivityRecord.register
+        Agreement.register
+        Appointment.register
+        ConfigurationEvent.register
         CoordinateSystem.register
+        Crew.register
+        CrewMember.register
+        CrewType.register
+        Document.register
+        ElectronicAddress.register
+        Hazard.register
         Location.register
+        OperationPersonRole.register
+        Operator.register
+        Organisation.register
+        OrganisationRole.register
+        Ownership.register
+        Person.register
+        PersonRole.register
         PositionPoint.register
+        PostalAddress.register
+        Priority.register
+        ScheduledEvent.register
+        ScheduledEventData.register
+        Status.register
+        StreetAddress.register
+        StreetDetail.register
+        TelephoneNumber.register
+        TimePoint.register
+        TimeSchedule.register
+        TownDetail.register
         UserAttribute.register
     }
 }
@@ -3403,7 +3474,8 @@ extends
     }
 }
 
-case class NameType (
+case class NameType
+(
     override val sup: Element,
     description: String,
     name: String,
@@ -3446,7 +3518,8 @@ extends
     }
 }
 
-case class NameTypeAuthority (
+case class NameTypeAuthority
+(
     override val sup: Element,
     description: String,
     name: String
@@ -3982,11 +4055,8 @@ object Customers
 {
     def register: Unit =
     {
-        Agreement.register
         Customer.register
         CustomerAgreement.register
-        Document.register
-        OrganisationRole.register
         PricingStructure.register
         ServiceCategory.register
         ServiceLocation.register
@@ -4000,7 +4070,7 @@ object Customers
 case class UsagePoint
 (
     override val sup: IdentifiedObject,
-    // val amiBillingReady: String, Implementation restriction: case classes cannot have more than 22 parameters.
+    // val amiBillingReady: String, Implementation restriction: case  classes cannot have more than 22 parameters.
     val checkBilling: Boolean,
     val connectionState: String,
     val estimatedLoad: Double,
@@ -4367,7 +4437,8 @@ object Protection
  * StateVariables
  */
 
-case class StateVariable (
+case class StateVariable
+(
     override val sup: Element
 )
 extends
@@ -4401,7 +4472,8 @@ extends
     }
 }
 
-case class SvStatus (
+case class SvStatus
+(
     override val sup: StateVariable,
     val inService: Boolean,
     val ConductingEquipment: String
@@ -5064,8 +5136,7 @@ case class Switch
     override val sup: ConductingEquipment,
     val normalOpen: Boolean,
     val open: Boolean,
-    // ToDo: should be Double
-    val ratedCurrent: String,
+    val ratedCurrent: Double,
     val retained: Boolean,
     val switchOnCount: Int,
     // ToDo: Date handling
@@ -5077,7 +5148,7 @@ case class Switch
 extends
     Element
 {
-    def this () = { this (null, false, false, null, false, 0, null, null, null) }
+    def this () = { this (null, false, false, 0.0, false, 0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { return (clone ().asInstanceOf[Switch]); }
     override def get (i: Int): Any =
@@ -5110,7 +5181,7 @@ extends
                 ConductingEquipment.parse (context),
                 toBoolean (normalOpen (context), context),
                 toBoolean (open (context), context),
-                ratedCurrent (context),
+                toDouble (ratedCurrent (context), context),
                 toBoolean (retained (context), context),
                 toInteger (switchOnCount (context), context),
                 CompositeSwitch (context),
@@ -5364,6 +5435,8 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L) extends Se
     val matcher = Unknown.rddex.matcher (xml) // ToDo: there must be an easier way to get a constant out of a Trait
 
     var value: Element = null;
+    _AssetInfo.register
+    Assets.register
     Common.register
     Core.register
     Customers.register
