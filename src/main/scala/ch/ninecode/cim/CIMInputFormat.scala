@@ -34,7 +34,7 @@ class CIMInputFormat extends FileInputFormat[String, Element]
      * The InputFormat also creates the RecordReader to consume the InputSplit objects produced.
      *
      * @param context the job context
-     * @returns the list of FileSplit objects for the job
+     * @return the list of FileSplit objects for the job
      * @throws IOException
      */
     override def getSplits (context: JobContext): java.util.List[InputSplit] =
