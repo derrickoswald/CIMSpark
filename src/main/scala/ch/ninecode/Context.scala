@@ -12,7 +12,6 @@ import scala.collection.mutable.ArrayBuffer
  */
 class Context (var xml: String, var start: Long, var end: Long, val newlines: ArrayBuffer[Long])
 {
-    import Context._
     val DEBUG = true
     val STOP_ON_ERROR = false
     val MAXERRORS = 10
