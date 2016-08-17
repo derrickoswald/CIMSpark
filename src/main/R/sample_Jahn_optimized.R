@@ -1,6 +1,6 @@
 # assumes the file is on hdfs:
 # bash-4.1# hdfs dfs -mkdir /data/
-# bash-4.1# hdfs dfs -put /opt/data/dump_ews.xml /data/
+# bash-4.1# hdfs dfs -put /opt/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf /data/
 
 # assumes the user is created:
 # bash-4.1# groupadd supergroup

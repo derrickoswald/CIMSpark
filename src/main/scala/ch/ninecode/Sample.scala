@@ -35,7 +35,6 @@ case class VertexData (node: ConnectivityNode, trace: Message)
  */
 class Sample extends Serializable
 {
-
     // based on the Pregel sample at http://spark.apache.org/docs/latest/graphx-programming-guide.html#pregel-api
     // a better example is at http://www.cakesolutions.net/teamblogs/graphx-pregel-api-an-example
 
@@ -44,7 +43,7 @@ class Sample extends Serializable
      * @param id - this vertex id (hashCode() of node name)
      * @param v - the vertex data attached to this node
      * @param message - the incoming message
-     * @returns the new vertex data
+     * @return the new vertex data
      */
     def vprog (id: VertexId, v: VertexData, message: Message): VertexData =
     {
@@ -65,7 +64,7 @@ class Sample extends Serializable
     /**
      * The message propagation method to determine the message downstream nodes get.
      * @param triplet - this edge data, including upstream and downstream vertecies
-     * @returns a list of vertex and message tuples that will be used in the next round of tracing
+     * @return a list of vertex and message tuples that will be used in the next round of tracing
      */
     def sendMessage (triplet: EdgeTriplet[VertexData, ch.ninecode.cim.Edge]): Iterator[(VertexId, Message)] =
     {
@@ -108,7 +107,7 @@ class Sample extends Serializable
      * Traces the network from each busbar (sammelschien).
      * Annotates the graph with the busbar, the distance to the busbar and any upstream feeder (abgang).
      * @param sc - the Spark context
-     * @returns the annotated graph
+     * @return the annotated graph
      */
     def graphx (sc: SparkContext): Graph[VertexData, ch.ninecode.cim.Edge] =
     {

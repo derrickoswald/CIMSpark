@@ -4,15 +4,18 @@ import java.util.regex.Pattern
 import scala.collection.mutable.ArrayBuffer
 
 /**
- * Context for error messages raised while parsing.
+ * Context for parsing.
+ * Contains the raw XML, indexes at which to star and stop parsing,
+ * the line number index of newlines within the XML,
+ * text coverage set (in debug) and error messages raised while parsing.
  *
  */
 class Context (var xml: String, var start: Long, var end: Long, val newlines: ArrayBuffer[Long])
 {
-    import Context._
     val DEBUG = true
     val STOP_ON_ERROR = false
     val MAXERRORS = 10
+    val lines = Pattern.compile ("""\n""")
     var name: String = null // current element name
     val coverage = new ArrayBuffer[Pair[Int, Int]]
     val errors = new ArrayBuffer[String]
@@ -24,8 +27,7 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
      * is [15, 32, 64]
      * @param {String} string - the string to index
      * @param {Number} offset - optional offset to add to the index values
-     * @returns {Unit} nothing
-     * @memberOf module:cim
+     * @return {Unit} nothing
      */
     def index_string (string: String, offset: Long = 0L): Unit =
     {
@@ -89,9 +91,4 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
     {
         xml.substring (0, 50) + " start: " + start + " end: " + end
     }
-}
-
-object Context
-{
-    val lines = Pattern.compile ("""\n""")
 }
