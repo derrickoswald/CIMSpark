@@ -4523,7 +4523,7 @@ object StateVariables
 }
 
 /*
- * Wires
+ * Package: Wires
  */
 
 case class ACLineSegment
@@ -4638,6 +4638,142 @@ extends
     }
 }
 
+case class AsynchronousMachine
+(
+    override val sup: RotatingMachine,
+    val AsynchronousMachineType: String,
+    val converterFedDrive: Boolean,
+    val efficiency: Double,
+    val ialrRatio: Double,
+    val nominalFrequency: Double,
+    val nominalSpeed: Double,
+    val polePairNumber: Int,
+    val ratedMechanicalPower: Double,
+    val reversible: Boolean,
+    val rr1: Double,
+    val rr2: Double,
+    val rxLockedRotorRatio: Double,
+    val tpo: Double,
+    val tppo: Double,
+    val xlr1: Double,
+    val xlr2: Double,
+    val xm: Double,
+    val xp: Double,
+    val xpp: Double,
+    val xs: Double,
+    val AsynchronousMachineDynamics: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, false, 0.0, 0.0, 0.0, 0.0, 0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
+    override def copy (): Row = { return (clone ().asInstanceOf[AsynchronousMachine]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object AsynchronousMachine
+extends
+    Parseable[AsynchronousMachine]
+{
+    val AsynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineType"""))_    
+    val converterFedDrive = parse_element (element ("""AsynchronousMachine.converterFedDrive"""))_
+    val efficiency = parse_element (element ("""AsynchronousMachine.efficiency"""))_
+    val ialrRatio = parse_element (element ("""AsynchronousMachine.ialrRatio"""))_
+    val nominalFrequency = parse_element (element ("""AsynchronousMachine.nominalFrequency"""))_
+    val nominalSpeed = parse_element (element ("""AsynchronousMachine.nominalSpeed"""))_
+    val polePairNumber = parse_element (element ("""AsynchronousMachine.polePairNumber"""))_
+    val ratedMechanicalPower = parse_element (element ("""AsynchronousMachine.ratedMechanicalPower"""))_
+    val reversible = parse_element (element ("""AsynchronousMachine.reversible"""))_
+    val rr1 = parse_element (element ("""AsynchronousMachinerr1.rr1"""))_
+    val rr2 = parse_element (element ("""AsynchronousMachinerr1.rr2"""))_
+    val rxLockedRotorRatio = parse_element (element ("""AsynchronousMachinerr1.rxLockedRotorRatio"""))_
+    val tpo = parse_element (element ("""AsynchronousMachinerr1.tpo"""))_
+    val tppo = parse_element (element ("""AsynchronousMachinerr1.tppo"""))_
+    val xlr1 = parse_element (element ("""AsynchronousMachinerr1.xlr1"""))_
+    val xlr2 = parse_element (element ("""AsynchronousMachinerr1.xlr2"""))_
+    val xm = parse_element (element ("""AsynchronousMachinerr1.xm"""))_
+    val xp = parse_element (element ("""AsynchronousMachinerr1.xp"""))_
+    val xpp = parse_element (element ("""AsynchronousMachinerr1.xpp"""))_
+    val xs = parse_element (element ("""AsynchronousMachinerr1.xs"""))_
+    val AsynchronousMachineDynamics = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineDynamics"""))_
+    def parse (context: Context): AsynchronousMachine =
+    {
+        return (
+            AsynchronousMachine
+            (
+                RotatingMachine.parse (context),
+                AsynchronousMachineType (context),
+                toBoolean (converterFedDrive (context), context),
+                toDouble (efficiency (context), context),
+                toDouble (ialrRatio (context), context),
+                toDouble (nominalFrequency (context), context),
+                toDouble (nominalSpeed (context), context),
+                toInteger (polePairNumber (context), context),
+                toDouble (ratedMechanicalPower (context), context),
+                toBoolean (reversible (context), context),
+                toDouble (rr1 (context), context),
+                toDouble (rr2 (context), context),
+                toDouble (rxLockedRotorRatio (context), context),
+                toDouble (tpo (context), context),
+                toDouble (tppo (context), context),
+                toDouble (xlr1 (context), context),
+                toDouble (xlr2 (context), context),
+                toDouble (xm (context), context),
+                toDouble (xp (context), context),
+                toDouble (xpp (context), context),
+                toDouble (xs (context), context),
+                AsynchronousMachineDynamics (context)
+            )
+        )
+    }
+}
+
+case class Breaker
+(
+    override val sup: ProtectedSwitch,
+    val inTransitTime: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0) }
+    def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
+    override def copy (): Row = { return (clone ().asInstanceOf[Breaker]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object Breaker
+extends
+    Parseable[Breaker]
+{
+    val inTransitTime = parse_element (element ("""Breaker.inTransitTime"""))_
+    def parse (context: Context): Breaker =
+    {
+        return (
+            Breaker
+            (
+                ProtectedSwitch.parse (context),
+                toDouble (inTransitTime (context), context)
+            )
+        )
+    }
+}
+
 case class BusbarSection
 (
     override val sup: Connector,
@@ -4674,6 +4810,85 @@ extends
                 Connector.parse (context),
                 toDouble (ipMax (context), context),
                 VoltageControlZone (context)
+            )
+        )
+    }
+}
+
+case class Clamp
+(
+    override val sup: ConductingEquipment,
+    val lengthFromTerminal1: Double,
+    val ACLineSegment: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, null) }
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { return (clone ().asInstanceOf[Clamp]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object Clamp
+extends
+    Parseable[Clamp]
+{
+    val lengthFromTerminal1 = parse_element (element ("""Clamp.lengthFromTerminal1"""))_
+    val ACLineSegment = parse_attribute (attribute ("""Clamp.ACLineSegment"""))_
+    def parse (context: Context): Clamp =
+    {
+        return (
+            Clamp
+            (
+                ConductingEquipment.parse (context),
+                toDouble (lengthFromTerminal1 (context), context),
+                ACLineSegment (context)
+            )
+        )
+    }
+}
+
+case class CompositeSwitch
+(
+    override val sup: Equipment,
+    val compositeSwitchType: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def Equipment: Equipment = sup.asInstanceOf[Equipment]
+    override def copy (): Row = { return (clone ().asInstanceOf[CompositeSwitch]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object CompositeSwitch
+extends
+    Parseable[CompositeSwitch]
+{
+    val compositeSwitchType = parse_element (element ("""CompositeSwitch.compositeSwitchType"""))_
+    def parse (context: Context): CompositeSwitch =
+    {
+        return (
+            CompositeSwitch
+            (
+                Equipment.parse (context),
+                compositeSwitchType (context)
             )
         )
     }
@@ -4752,6 +4967,51 @@ extends
     }
 }
 
+case class Cut
+(
+    override val sup: Switch,
+    val lengthFromTerminal: Double,
+    val ACLineSegment: String,
+    val CutAction: String
+   
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, null, null) }
+    def Switch: Switch = sup.asInstanceOf[Switch]
+    override def copy (): Row = { return (clone ().asInstanceOf[Cut]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object Cut
+extends
+    Parseable[Cut]
+{
+    val lengthFromTerminal = parse_element (element ("""Cut.lengthFromTerminal"""))_
+    val ACLineSegment = parse_attribute (attribute ("""Cut.ACLineSegment"""))_
+    val CutAction = parse_attribute (attribute ("""Cut.CutAction"""))_
+    def parse (context: Context): Cut =
+    {
+        return (
+            Cut
+            (
+                Switch.parse (context),
+                toDouble (lengthFromTerminal (context), context),
+                ACLineSegment (context),
+                CutAction (context)
+            )
+        )
+    }
+}
+
 case class Disconnector
 (
     override val sup: Switch
@@ -4782,6 +5042,44 @@ extends
             Disconnector
             (
                 Switch.parse (context)
+            )
+        )
+    }
+}
+
+case class EarthFaultCompensator
+(
+    override val sup: ConductingEquipment,
+    val r: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0) }
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { return (clone ().asInstanceOf[EarthFaultCompensator]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object EarthFaultCompensator
+extends
+    Parseable[EarthFaultCompensator]
+{
+    val r = parse_element (element ("""EarthFaultCompensator.r"""))_
+    def parse (context: Context): EarthFaultCompensator =
+    {
+        return (
+            EarthFaultCompensator
+            (
+                ConductingEquipment.parse (context),
+                toDouble (r (context), context)
             )
         )
     }
@@ -4858,6 +5156,275 @@ extends
     }
 }
 
+case class EnergyConsumerPhase
+(
+    override val sup: PowerSystemResource,
+    val pfixed: Double,
+    val pfixedPct: Double,
+    val SinglePhaseKind: String,
+    val qfixed: Double,
+    val qfixedPct: Double,
+    val EnergyConsumer: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, null) }
+    def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumerPhase]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object EnergyConsumerPhase
+extends
+    Parseable[EnergyConsumerPhase]
+{
+    val pfixed = parse_element (element ("""EnergyConsumerPhase.pfixed"""))_
+    val pfixedPct = parse_element (element ("""EnergyConsumerPhase.pfixedPct"""))_
+    val SinglePhaseKind = parse_attribute (attribute ("""EnergyConsumerPhase.SinglePhaseKind"""))_
+    val qfixed = parse_element (element ("""EnergyConsumerPhase.qfixed"""))_
+    val qfixedPct = parse_element (element ("""EnergyConsumerPhase.qfixedPct"""))_
+    val EnergyConsumer = parse_attribute (attribute ("""EnergyConsumerPhase.EnergyConsumer"""))_
+    def parse (context: Context): EnergyConsumerPhase =
+    {
+        return (
+            EnergyConsumerPhase
+            (
+                PowerSystemResource.parse (context),
+                toDouble (pfixed (context), context),
+                toDouble (pfixedPct (context), context),
+                SinglePhaseKind (context),
+                toDouble (qfixed (context), context),
+                toDouble (qfixedPct (context), context),
+                EnergyConsumer (context)
+            )
+        )
+    }
+}
+
+case class EnergySource
+(
+    override val sup: ConductingEquipment,
+    val activePower: Double,
+    val nominalVoltage: Double,
+    val r0: Double,
+    val r: Double,
+    val reactivePower: Double,
+    val rn: Double,
+    val voltageAngle: Double,
+    val voltageMagnitude: Double,
+    val x0: Double,
+    val x: Double,
+    val xn: Double,
+    val EnergySchedulingType: String,
+    val EnergySourceAction: String,
+    val WindTurbineType3or4Dynamics: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergySource]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object EnergySource
+extends
+    Parseable[EnergySource]
+{
+    val activePower = parse_element (element ("""EnergySource.activePower"""))_
+    val nominalVoltage = parse_element (element ("""EnergySource.nominalVoltage"""))_
+    val r0 = parse_element (element ("""EnergySource.r0"""))_
+    val r = parse_element (element ("""EnergySource.r"""))_
+    val reactivePower = parse_element (element ("""EnergySource.reactivePower"""))_
+    val rn = parse_element (element ("""EnergySource.rn"""))_
+    val voltageAngle = parse_element (element ("""EnergySource.voltageAngle"""))_
+    val voltageMagnitude = parse_element (element ("""EnergySource.voltageMagnitude"""))_
+    val x0 = parse_element (element ("""EnergySource.x0"""))_
+    val x = parse_element (element ("""EnergySource.x"""))_
+    val xn = parse_element (element ("""EnergySource.xn"""))_
+    val EnergySchedulingType = parse_attribute (attribute ("""EnergySource.EnergySchedulingType"""))_
+    val EnergySourceAction = parse_attribute (attribute ("""EnergySource.EnergySourceAction"""))_
+    val WindTurbineType3or4Dynamics = parse_attribute (attribute ("""EnergySource.WindTurbineType3or4Dynamics"""))_
+    def parse (context: Context): EnergySource =
+    {
+        return (
+            EnergySource
+            (
+                ConductingEquipment.parse (context),
+                toDouble (activePower (context), context),
+                toDouble (nominalVoltage (context), context),
+                toDouble (r0 (context), context),
+                toDouble (r (context), context),
+                toDouble (reactivePower (context), context),
+                toDouble (rn (context), context),
+                toDouble (voltageAngle (context), context),
+                toDouble (voltageMagnitude (context), context),
+                toDouble (x0 (context), context),
+                toDouble (x (context), context),
+                toDouble (xn (context), context),
+                EnergySchedulingType (context),
+                EnergySourceAction (context),
+                WindTurbineType3or4Dynamics (context)
+            )
+        )
+    }
+}
+
+case class ExternalNetworkInjection
+(
+    override val sup: RegulatingCondEq,
+    val governorSCD: Double,
+    val ikSecond: Boolean,
+    val maxInitialSymShCCurrent: Double,
+    val maxP: Double,
+    val maxQ: Double,
+    val maxR0ToX0Ratio: Double,
+    val maxR1ToX1Ratio: Double,
+    val maxZ0ToZ1Ratio: Double,
+    val minInitialSymShCCurrent: Double,
+    val minP: Double,
+    val minQ: Double,
+    val minR0ToX0Ratio: Double,
+    val minR1ToX1Ratio: Double,
+    val minZ0ToZ1Ratio: Double,
+    val p: Double,
+    val q: Double,
+    val referencePriority: Int,
+    val voltageFactor: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0) }
+    def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
+    override def copy (): Row = { return (clone ().asInstanceOf[ExternalNetworkInjection]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object ExternalNetworkInjection
+extends
+    Parseable[ExternalNetworkInjection]
+{
+    val governorSCD = parse_element (element ("""ExternalNetworkInjection.governorSCD"""))_
+    val ikSecond = parse_element (element ("""ExternalNetworkInjection.ikSecond"""))_
+    val maxInitialSymShCCurrent = parse_element (element ("""ExternalNetworkInjection.maxInitialSymShCCurrent"""))_
+    val maxP = parse_element (element ("""ExternalNetworkInjection.maxP"""))_
+    val maxQ = parse_element (element ("""ExternalNetworkInjection.maxQ"""))_
+    val maxR0ToX0Ratio = parse_element (element ("""ExternalNetworkInjection.maxR0ToX0Ratio"""))_
+    val maxR1ToX1Ratio = parse_element (element ("""ExternalNetworkInjection.maxR1ToX1Ratio"""))_
+    val maxZ0ToZ1Ratio = parse_element (element ("""ExternalNetworkInjection.maxZ0ToZ1Ratio"""))_
+    val minInitialSymShCCurrent = parse_element (element ("""ExternalNetworkInjection.minInitialSymShCCurrent"""))_
+    val minP = parse_element (element ("""ExternalNetworkInjection.minP"""))_
+    val minQ = parse_element (element ("""ExternalNetworkInjection.minQ"""))_
+    val minR0ToX0Ratio = parse_element (element ("""ExternalNetworkInjection.minR0ToX0Ratio"""))_
+    val minR1ToX1Ratio = parse_element (element ("""ExternalNetworkInjection.minR1ToX1Ratio"""))_
+    val minZ0ToZ1Ratio = parse_element (element ("""ExternalNetworkInjection.minZ0ToZ1Ratio"""))_
+    val p = parse_element (element ("""ExternalNetworkInjection.p"""))_
+    val q = parse_element (element ("""ExternalNetworkInjection.q"""))_
+    val referencePriority = parse_element (element ("""ExternalNetworkInjection.referencePriority"""))_
+    val voltageFactor = parse_element (element ("""ExternalNetworkInjection.voltageFactor"""))_
+    def parse (context: Context): ExternalNetworkInjection =
+    {
+        return (
+            ExternalNetworkInjection
+            (
+                RegulatingCondEq.parse (context),
+                toDouble (governorSCD (context), context),
+                toBoolean (ikSecond (context), context),
+                toDouble (maxInitialSymShCCurrent (context), context),
+                toDouble (maxP (context), context),
+                toDouble (maxQ (context), context),
+                toDouble (maxR0ToX0Ratio (context), context),
+                toDouble (maxR1ToX1Ratio (context), context),
+                toDouble (maxZ0ToZ1Ratio (context), context),
+                toDouble (minInitialSymShCCurrent (context), context),
+                toDouble (minP (context), context),
+                toDouble (minQ (context), context),
+                toDouble (minR0ToX0Ratio (context), context),
+                toDouble (minR1ToX1Ratio (context), context),
+                toDouble (minZ0ToZ1Ratio (context), context),
+                toDouble (p (context), context),
+                toDouble (q (context), context),
+                toInteger (referencePriority (context), context),
+                toDouble (voltageFactor (context), context)
+            )
+        )
+    }
+}
+
+case class FrequencyConverter
+(
+    override val sup: RegulatingCondEq,
+    val frequency: Double,
+    val maxP: Double,
+    val maxU: Double,
+    val minP: Double,
+    val minU: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
+    override def copy (): Row = { return (clone ().asInstanceOf[FrequencyConverter]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object FrequencyConverter
+extends
+    Parseable[FrequencyConverter]
+{
+    val frequency = parse_element (element ("""FrequencyConverter.frequency"""))_
+    val maxP = parse_element (element ("""FrequencyConverter.maxP"""))_
+    val maxU = parse_element (element ("""FrequencyConverter.maxU"""))_
+    val minP = parse_element (element ("""FrequencyConverter.minP"""))_
+    val minU = parse_element (element ("""FrequencyConverter.minU"""))_
+    def parse (context: Context): FrequencyConverter =
+    {
+        return (
+            FrequencyConverter
+            (
+                RegulatingCondEq.parse (context),
+                toDouble (frequency (context), context),
+                toDouble (maxP (context), context),
+                toDouble (maxU (context), context),
+                toDouble (minP (context), context),
+                toDouble (minU (context), context) 
+            )
+        )
+    }
+}
+
 case class Fuse
 (
     override val sup: Switch
@@ -4893,6 +5460,44 @@ extends
     }
 }
 
+case class Ground
+(
+    override val sup: ConductingEquipment,
+    val GroundAction: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { return (clone ().asInstanceOf[Ground]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object Ground
+extends
+    Parseable[Ground]
+{
+    val GroundAction = parse_attribute (attribute ("""Ground.GroundAction"""))_
+    def parse (context: Context): Ground =
+    {
+        return (
+            Ground
+            (
+                ConductingEquipment.parse (context),
+                GroundAction (context)
+            )
+        )
+    }
+}
+
 case class GroundDisconnector
 (
     override val sup: Switch
@@ -4923,6 +5528,44 @@ extends
             GroundDisconnector
             (
                 Switch.parse (context)
+            )
+        )
+    }
+}
+
+case class Jumper
+(
+    override val sup: Switch,
+    val JumperAction: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def Switch: Switch = sup.asInstanceOf[Switch]
+    override def copy (): Row = { return (clone ().asInstanceOf[Jumper]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object Jumper
+extends
+    Parseable[Jumper]
+{
+    val JumperAction = parse_attribute (attribute ("""Jumper.JumperAction"""))_
+    def parse (context: Context): Jumper =
+    {
+        return (
+            Jumper
+            (
+                Switch.parse (context),
+                JumperAction (context)
             )
         )
     }
@@ -5000,6 +5643,53 @@ extends
         )
     }
 }
+
+//case class LinearShuntCompensator
+//(
+//    override val sup: ShuntCompensator,
+//    val b0PerSection: Double,
+//    val bPerSection: Double,
+//    val g0PerSection: Double,
+//    val gPerSection: Double
+//)
+//extends
+//    Element
+//{
+//    def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
+//    def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
+//    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensator]); }
+//    override def get (i: Int): Any =
+//    {
+//        if (i < productArity)
+//            productElement (i)
+//        else
+//            throw new IllegalArgumentException ("invalid property index " + i)
+//    }
+//    override def length: Int = productArity
+//}
+//
+//object LinearShuntCompensator
+//extends
+//    Parseable[LinearShuntCompensator]
+//{
+//    val b0PerSection = parse_element (element ("""LinearShuntCompensator.b0PerSection"""))_
+//    val bPerSection = parse_element (element ("""LinearShuntCompensator.bPerSection"""))_
+//    val g0PerSection = parse_element (element ("""LinearShuntCompensator.g0PerSection"""))_
+//    val gPerSection = parse_element (element ("""LinearShuntCompensator.gPerSection"""))_
+//    def parse (context: Context): LinearShuntCompensator =
+//    {
+//        return (
+//            LinearShuntCompensator
+//            (
+//                ShuntCompensator.parse (context),
+//                toDouble (b0PerSection (context), context),
+//                toDouble (bPerSection (context), context),
+//                toDouble (g0PerSection (context), context),
+//                toDouble (gPerSection (context), context)
+//            )
+//        )
+//    }
+//}
 
 case class PowerTransformer
 (
@@ -5079,7 +5769,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
-    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformer]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformerEnd]); }
     override def get (i: Int): Any =
     {
         if (i < productArity)
@@ -5126,6 +5816,142 @@ extends
                 toDouble (x0 (context), context),
                 toDouble (x (context), context),
                 PowerTransformer (context)
+            )
+        )
+    }
+}
+
+case class ProtectedSwitch
+(
+    override val sup: Switch,
+    val breakingCapacity: Double
+    // ToDo: RecloseSequences
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0) }
+    def Switch: Switch = sup.asInstanceOf[Switch]
+    override def copy (): Row = { return (clone ().asInstanceOf[ProtectedSwitch]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object ProtectedSwitch
+extends
+    Parseable[ProtectedSwitch]
+{
+    val breakingCapacity = parse_attribute (attribute ("""ProtectedSwitch.breakingCapacity"""))_
+    def parse (context: Context): ProtectedSwitch =
+    {
+        return (
+            ProtectedSwitch
+            (
+                Switch.parse (context),
+                toDouble (breakingCapacity (context), context)
+            )
+        )
+    }
+}
+
+case class RegulatingCondEq
+(
+    override val sup: ConductingEquipment,
+    val controlledEnabled: Boolean,
+    val RegulatingControl: String
+)
+extends
+    Element
+{
+    def this () = { this (null, false, null) }
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingCondEq]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object RegulatingCondEq
+extends
+    Parseable[RegulatingCondEq]
+{
+    val controlledEnabled = parse_element (element ("""RegulatingCondEq.controlledEnabled"""))_
+    val RegulatingControl = parse_attribute (attribute ("""RegulatingCondEq.RegulatingControl"""))_
+    def parse (context: Context): RegulatingCondEq =
+    {
+        return (
+            RegulatingCondEq
+            (
+                ConductingEquipment.parse (context),
+                toBoolean (controlledEnabled (context), context),
+                RegulatingControl (context)
+            )
+        )
+    }
+}
+
+case class RotatingMachine
+(
+    override val sup: RegulatingCondEq,
+    val p: Double,
+    val q: Double,
+    val ratedPowerFactor: Double,
+    val ratedS: Double,
+    val ratedU: Double,
+    val GeneratingUnit: String,
+    val HydroPump: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
+    def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
+    override def copy (): Row = { return (clone ().asInstanceOf[RotatingMachine]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object RotatingMachine
+extends
+    Parseable[RotatingMachine]
+{
+    val p = parse_element (element ("""RotatingMachine.p"""))_
+    val q = parse_element (element ("""RotatingMachine.q"""))_
+    val ratedPowerFactor = parse_element (element ("""RotatingMachine.ratedPowerFactor"""))_
+    val ratedS = parse_element (element ("""RotatingMachine.ratedS"""))_
+    val ratedU = parse_element (element ("""RotatingMachine.ratedU"""))_
+    val GeneratingUnit = parse_attribute (attribute ("""RotatingMachine.GeneratingUnit"""))_
+    val HydroPump = parse_attribute (attribute ("""RotatingMachine.HydroPump"""))_
+    def parse (context: Context): RotatingMachine =
+    {
+        return (
+            RotatingMachine
+            (
+                RegulatingCondEq.parse (context),
+                toDouble (p (context), context),
+                toDouble (q (context), context),
+                toDouble (ratedPowerFactor (context), context),
+                toDouble (ratedS (context), context),
+                toDouble (ratedU (context), context),
+                GeneratingUnit (context),
+                HydroPump (context)
             )
         )
     }
@@ -5351,17 +6177,32 @@ object Wires
     {
         ACLineSegment.register
         ACLineSegmentPhase.register
+        AsynchronousMachine.register
+        Breaker.register
         BusbarSection.register
+        Clamp.register
+        CompositeSwitch.register
         Conductor.register
         Connector.register
         Disconnector.register
+        EarthFaultCompensator.register
         EnergyConsumer.register
+        EnergyConsumerPhase.register
+        EnergySource.register
+        ExternalNetworkInjection.register
+        FrequencyConverter.register
         Fuse.register
+        Ground.register
         GroundDisconnector.register
+        Jumper.register
         Junction.register
         Line.register
+        //LinearShuntCompensator.register
         PowerTransformer.register
         PowerTransformerEnd.register
+        ProtectedSwitch.register
+        RegulatingCondEq.register
+        RotatingMachine.register
         Switch.register
         TransformerEnd.register
         TransformerTank.register
