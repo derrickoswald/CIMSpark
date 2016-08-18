@@ -26,10 +26,6 @@ import scala.reflect.runtime.{universe => ru}
 
 import ch.ninecode.model._
 
-case class PreEdge (var id_seq_1: String, var cn_1: String, var id_seq_2: String, var cn_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var ratedCurrent: Double, var location: String, val power: Double, val commissioned: String, val status: String) extends Serializable
-class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
-
 class CIMRelation(
     override val paths: Array[String],
     private val maybeDataSchema: Option[StructType],
@@ -106,18 +102,6 @@ class CIMRelation(
 //        }
 //        new AvroOutputWriterFactory(dataSchema, recordName, recordNamespace)
         throw new UnsupportedOperationException ("oops, no writing yet")
-    }
-
-    def get (name: String): RDD[Element] =
-    {
-        val rdds = sqlContext.sparkContext.getPersistentRDDs
-        for (key <- rdds.keys)
-        {
-            val rdd = rdds (key)
-            if (rdd.name == name)
-                return (rdd.asInstanceOf[RDD[Element]])
-        }
-        return (null)
     }
 
     // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.

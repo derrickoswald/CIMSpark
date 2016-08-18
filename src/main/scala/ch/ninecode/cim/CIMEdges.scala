@@ -7,6 +7,10 @@ import org.apache.spark.sql.types.SQLUserDefinedType
 
 import ch.ninecode.model._
 
+case class PreEdge (var id_seq_1: String, var cn_1: String, var id_seq_2: String, var cn_2: String, var id_equ: String, var clazz: String, var name: String, var aliasName: String, var container: String, var length: Double, var voltage: String, var normalOpen: Boolean, var ratedCurrent: Double, var location: String, val power: Double, val commissioned: String, val status: String) extends Serializable
+class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
+
 class CIMEdges (val sqlContext: SQLContext) extends Serializable
 {
     def get (name: String): RDD[Element] =
@@ -47,10 +51,12 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
 
                         // extract pertinent information from the equipment using a join
                         case class Bucket (
+                            var clazz: String = "",
+                            var name: String = "",
+                            var aliasName: String = "",
                             var container: String = "",
                             var length: Double = 0.0,
                             var voltage: String = "",
-                            var typ: String = "",
                             var normalOpen: Boolean = false,
                             var ratedCurrent: Double = 0.0,
                             var location: String = "",
@@ -59,11 +65,16 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
                             var status: String = "")
 
                         val bucket = Bucket ()
+                        bucket.clazz = e.getClass ().getName ()
+                        def do_identified (identified: IdentifiedObject)
+                        {
+                            bucket.name = identified.name
+                            bucket.aliasName = identified.aliasName
+                        }
                         def do_resource (resource: PowerSystemResource)
                         {
                             bucket.location = resource.Location
-                            bucket.typ = resource.IdentifiedObject.name
-
+                            do_identified (resource.IdentifiedObject)
                         }
                         def do_equipment (equipment: Equipment)
                         {
@@ -206,7 +217,7 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
                                 {
                                     val te = o.asInstanceOf[TransformerEnd]
                                     bucket.voltage = te.BaseVoltage
-                                    bucket.typ = te.IdentifiedObject.name
+                                    do_identified (te.IdentifiedObject)
                                 }
 
                             // ToDo: this is not correct, ProtectionEquipment should have no Terminal elements pointing to it
@@ -245,10 +256,12 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
                                         "",
                                         "",
                                         terminals(0).ConductingEquipment,
+                                        bucket.clazz,
+                                        bucket.name,
+                                        bucket.aliasName,
                                         bucket.container,
                                         bucket.length,
                                         bucket.voltage,
-                                        bucket.typ,
                                         bucket.normalOpen,
                                         bucket.ratedCurrent,
                                         bucket.location,
@@ -263,10 +276,12 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
                                         terminals(1).ACDCTerminal.IdentifiedObject.mRID,
                                         terminals(1).ConnectivityNode,
                                         terminals(0).ConductingEquipment,
+                                        bucket.clazz,
+                                        bucket.name,
+                                        bucket.aliasName,
                                         bucket.container,
                                         bucket.length,
                                         bucket.voltage,
-                                        bucket.typ,
                                         bucket.normalOpen,
                                         bucket.ratedCurrent,
                                         bucket.location,
@@ -289,10 +304,12 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
                                                 terminals(i + 1).ACDCTerminal.IdentifiedObject.mRID,
                                                 terminals(i + 1).ConnectivityNode,
                                                 terminals(0).ConductingEquipment,
+                                                bucket.clazz,
+                                                bucket.name,
+                                                bucket.aliasName,
                                                 bucket.container,
                                                 bucket.length,
                                                 bucket.voltage,
-                                                bucket.typ,
                                                 bucket.normalOpen,
                                                 bucket.ratedCurrent,
                                                 bucket.location,
@@ -406,10 +423,10 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
                 j match
                 {
                     case (l: String, (e:PreEdge, Some (x:Extremum))) =>
-                        Edge (e.cn_1, e.cn_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+                        Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
                     case (l: String, (e:PreEdge, None)) =>
                         // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                        Edge (e.cn_1, e.cn_2, e.id_equ, e.container, e.length, e.voltage, e.typ, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                        Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
                 }
             }
         }
