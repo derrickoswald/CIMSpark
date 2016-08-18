@@ -66,6 +66,7 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
 
                         val bucket = Bucket ()
                         bucket.clazz = e.getClass ().getName ()
+                        bucket.clazz = bucket.clazz.substring (bucket.clazz.lastIndexOf (".") + 1)
                         def do_identified (identified: IdentifiedObject)
                         {
                             bucket.name = identified.name
