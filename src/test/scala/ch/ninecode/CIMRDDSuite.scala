@@ -24,17 +24,18 @@ class CIMRDDSuite extends fixture.FunSuite
     type FixtureParam = SparkContext
 
     // test file name
-    val FILENAME = "data/NIS_CIM_Export_NS_INITIAL_FILL.rdf"
+    val FILENAME = "data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
 
     // number of elements in the file
     // get number of lines at the top level with:
-    // grep -P "^[\t]<cim" NIS_CIM_Export_NS_INITIAL_FILL.rdf | wc
-    val ELEMENTS = 351979
+    // grep -P "^[\t]<cim" NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | wc
+    val ELEMENTS = 14501
 
     // number of elements in a 1MB chunk
     // this is approximately (off by +one)
-    // tail --bytes=+33554432 NIS_CIM_Export_NS_INITIAL_FILL.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
-    val PARTIAL_MAP_SIZE = 2151
+    // tail --bytes=+3145728 NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
+    val OFFSET = 3145728
+    val PARTIAL_MAP_SIZE = 2548
 
     def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
     {
@@ -95,7 +96,7 @@ class CIMRDDSuite extends fixture.FunSuite
     test ("Read Partial")
     {
         sc ⇒
-        val (xml, start, end) = CHIM.read (FILENAME, 33554432, 1024 * 1024, 0) // exactly a megabyte
+        val (xml, start, end) = CHIM.read (FILENAME, OFFSET, 1024 * 1024, 0) // exactly a megabyte
         val parser = new CHIM (xml, start, end)
         val map = parser.parse ()
         markup ("map size: " + map.size)
