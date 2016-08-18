@@ -888,6 +888,48 @@ object ACLineSegmentPhase extends Parser
     }
 }
 
+//        <cim:Conductor rdf:ID="REF3670">
+//                <cim:IdentifiedObject.name>REF3670</cim:IdentifiedObject.name>
+//                <cim:IdentifiedObject.aliasName>223932998:nis_el_ref_connection</cim:IdentifiedObject.aliasName>
+//                <cim:PowerSystemResource.Location rdf:resource="#_location_1622078208_427083542_223932994"/>
+//                <cim:Conductor.length>0.000000000</cim:Conductor.length>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Unknown"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="#_line_PIN201917|PIN201918|PIN201919|PIN201920|REF3670|REF3671|TRA7856|TRA7857"/>
+//                <cim:ConductingEquipment.BaseVoltage rdf:resource="BaseVoltage_0"/>
+//                <cim:ConductingEquipment.SvStatus rdf:resource="#in_use"/>
+//        </cim:Conductor>
+
+case class Conductor (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, val len: String, val voltage: String, val status: String) extends LocatedElement (id, alias, description, name, typ, location, container)
+
+object Conductor extends Parser
+{
+    val lenex = Pattern.compile ("""<cim:Conductor.length>([\s\S]*?)<\/cim:Conductor.length>""")
+    val volex = Pattern.compile ("""<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val staex = Pattern.compile ("""<cim:ConductingEquipment.SvStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+
+    override def steps () = Array (
+        LocatedElement.parse,
+        Element.parse_element (lenex, 1, "length", false)_,
+        Element.parse_attribute (volex, 2, "voltage", false)_,
+        Element.parse_attribute (staex, 2, "status", false)_)
+    def unpickle (xml: String, result: Result): Conductor =
+    {
+        parse (xml, result)
+        val length = result.properties.get ("length") match
+        {
+            case Some (value) ⇒ value
+            case None ⇒ "0"
+        }
+        val volts = result.properties.get ("voltage") match
+        {
+            case Some (value) ⇒ value
+            case None ⇒ "0"
+        }
+        val ret = Conductor (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), length, volts, result.properties.getOrElse ("status", ""))
+        return (ret)
+    }
+}
+
 //        <cim:SwitchInfo rdf:ID="_switch_spec_566593661">
 //                <cim:IdentifiedObject.name>G4</cim:IdentifiedObject.name>
 //        </cim:SwitchInfo>
@@ -1073,6 +1115,63 @@ object PowerTransformer extends Parser
     {
         parse (xml, result)
         val ret = PowerTransformer (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""))
+        return (ret)
+    }
+}
+
+//        <cim:PowerTransformerEnd rdf:ID="TRA153_end_1">
+//                <cim:IdentifiedObject.name>TRA153_end_1</cim:IdentifiedObject.name>
+//                <cim:IdentifiedObject.aliasName>2084728:nis_el_int_pin</cim:IdentifiedObject.aliasName>
+//                <cim:IdentifiedObject.description>PowerTransformer End</cim:IdentifiedObject.description>
+//                <cim:TransformerEnd.endNumber>1</cim:TransformerEnd.endNumber>
+//                <cim:TransformerEnd.Terminal rdf:resource="#TRA153_terminal_1"/>
+//                <cim:TransformerEnd.BaseVoltage rdf:resource="#BaseVoltage_16000"/>
+//                <cim:PowerTransformerEnd.PowerTransformer rdf:resource="#TRA153"/>
+//                <cim:PowerTransformerEnd.ratedS>0.400000000000</cim:PowerTransformerEnd.ratedS>
+//                <cim:PowerTransformerEnd.connectionKind>Dyn5</cim:PowerTransformerEnd.connectionKind>
+//                <cim:PowerTransformerEnd.ratedU>16</cim:PowerTransformerEnd.ratedU>
+//                <cim:PowerTransformerEnd.r>4.92800000000</cim:PowerTransformerEnd.r>
+//                <cim:PowerTransformerEnd.x>25.1212025190</cim:PowerTransformerEnd.x>
+//        </cim:PowerTransformerEnd>
+
+case class PowerTransformerEnd (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, val end: String, val terminal: String, val Voltage: String, val transformer: String, val ratedS: String, val connectionKind: String, val ratedU: String, val r: String, val x: String) extends PowerSystemResource (id, alias, description, name, typ)
+
+object PowerTransformerEnd extends Parser
+{
+    val end = Pattern.compile ("""<cim:TransformerEnd.endNumber>([\s\S]*?)<\/cim:TransformerEnd.endNumber>""")
+    val term = Pattern.compile ("""<cim:TransformerEnd.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val volts = Pattern.compile ("""<cim:TransformerEnd.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val traex = Pattern.compile ("""<cim:PowerTransformerEnd.PowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>""")
+    val s = Pattern.compile ("""<cim:PowerTransformerEnd.ratedS>([\s\S]*?)<\/cim:PowerTransformerEnd.ratedS>""")
+    val kind = Pattern.compile ("""<cim:PowerTransformerEnd.connectionKind>([\s\S]*?)<\/cim:PowerTransformerEnd.connectionKind>""")
+    val u = Pattern.compile ("""<cim:PowerTransformerEnd.ratedU>([\s\S]*?)<\/cim:PowerTransformerEnd.ratedU>""")
+    val r = Pattern.compile ("""<cim:PowerTransformerEnd.r>([\s\S]*?)<\/cim:PowerTransformerEnd.r>""")
+    val x = Pattern.compile ("""<cim:PowerTransformerEnd.x>([\s\S]*?)<\/cim:PowerTransformerEnd.x>""")
+
+    def end_ = Element.parse_element (end, 1, "end", true)_
+    def ter = Element.parse_attribute (term, 2, "terminal", true)_
+    def vol = Element.parse_attribute (volts, 2, "voltage", true)_
+    def tra = Element.parse_attribute (traex, 2, "transformer", true)_
+    def rats = Element.parse_element (s, 1, "ratedS", false)_
+    def kin = Element.parse_element (kind, 1, "connectionKind", false)_
+    def ratu = Element.parse_element (u, 1, "ratedU", false)_
+    def r_ = Element.parse_element (r, 1, "r", false)_
+    def x_ = Element.parse_element (x, 1, "x", false)_
+    override def steps () = Array (
+        PowerSystemResource.parse,
+        end_,
+        ter,
+        vol,
+        tra,
+        rats,
+        kin,
+        ratu,
+        r_,
+        x_)
+    def unpickle (xml: String, result: Result): PowerTransformerEnd =
+    {
+        parse (xml, result)
+        val ret = PowerTransformerEnd (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties.getOrElse ("end", ""), result.properties.getOrElse ("terminal", ""), result.properties.getOrElse ("voltage", ""), result.properties.getOrElse ("transformer", ""), result.properties.getOrElse ("ratedS", ""), result.properties.getOrElse ("connectionKind", ""), result.properties.getOrElse ("ratedU", ""), result.properties.getOrElse ("r", ""), result.properties.getOrElse ("x", ""))
         return (ret)
     }
 }
@@ -1285,6 +1384,58 @@ object GroundDisconnector extends Parser
         }
     }
 }
+
+//        <cim:Jumper rdf:ID="SIG2833">
+//                <cim:IdentifiedObject.name>G4-SEV-SEF (NH-Lastschaltleiste 400V)</cim:IdentifiedObject.name>
+//                <cim:IdentifiedObject.aliasName>240380867:nis_el_int_fuse_group</cim:IdentifiedObject.aliasName>
+//                <cim:IdentifiedObject.description>Trennmesser SIG2833 SIC2833</cim:IdentifiedObject.description>
+//                <cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_400"/>
+//                <cim:PowerSystemResource.Location rdf:resource="#_location_1623253248_427087459_240380869"/>
+//                <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+//                <cim:PowerSystemResource.PSRType rdf:resource="#PSRType_DistributionBox"/>
+//                <cim:Equipment.EquipmentContainer rdf:resource="#FEL40911"/>
+//        </cim:Jumper>
+case class Jumper (override val id: String, override val alias: String, override val description: String, override val name: String, override val typ: String, override val location: String, override val container: String, override val voltage: String, override val normalOpen: Boolean, override val current: String) extends SwitchElement (id, alias, description, name, typ, location, container, voltage, normalOpen, current)
+
+object Jumper extends Parser
+{
+    override def steps () = Array (
+        SwitchElement.parse)
+    def unpickle (xml: String, result: Result): Jumper =
+    {
+        parse (xml, result)
+        try
+        {
+            val voltage = result.properties.get ("voltage") match
+            {
+                case Some (value) ⇒ value
+                case None ⇒ ""
+            }
+            val open = result.properties.get ("normalOpen") match
+            {
+                case Some (value) ⇒ value.toBoolean
+                case None ⇒ false
+            }
+            val typ = result.properties.get ("type") match
+            {
+                case Some (value) ⇒ value
+                case None ⇒ ""
+            }
+            val current = result.properties.get ("current") match
+            {
+                case Some (value) ⇒ value
+                case None ⇒ ""
+            }
+            val ret = Jumper (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), voltage, open, current)
+            return (ret)
+        }
+        catch
+        {
+            case iae: IllegalArgumentException ⇒ throw new Exception ("unparsable boolean value found for a normalOpen element while parsing at line " + result.context.line_number ())
+        }
+    }
+}
+
 
 //        <cim:ProtectionEquipment rdf:ID="SRE1">
 //                <cim:IdentifiedObject.name>unbekannt</cim:IdentifiedObject.name>
@@ -1784,6 +1935,7 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                         case "cim:CableInfo" ⇒ CableInfo.unpickle (rest, result)
                         case "cim:ACLineSegment" ⇒ ACLineSegment.unpickle (rest, result)
                         case "cim:ACLineSegmentPhase" ⇒ ACLineSegmentPhase.unpickle (rest, result)
+                        case "cim:Conductor" ⇒ Conductor.unpickle (rest, result)
                         case "cim:SwitchInfo" ⇒ SwitchInfo.unpickle (rest, result)
                         case "cim:Switch" ⇒ Switch.unpickle (rest, result)
                         case "cim:LoadBreakSwitch" ⇒ Switch.unpickle (rest, result)
@@ -1791,11 +1943,13 @@ class CIM (var xml:String, var start: Long = 0L, var end: Long = 0L)
                         case "cim:TransformerTankInfo" ⇒ TransformerTankInfo.unpickle (rest, result)
                         case "cim:TransformerEndInfo" ⇒ TransformerEndInfo.unpickle (rest, result)
                         case "cim:PowerTransformer" ⇒ PowerTransformer.unpickle (rest, result)
+                        case "cim:PowerTransformerEnd" ⇒ PowerTransformerEnd.unpickle (rest, result)
                         case "cim:TransformerTank" ⇒ TransformerTank.unpickle (rest, result)
                         case "cim:TransformerTankEnd" ⇒ TransformerTankEnd.unpickle (rest, result)
                         case "cim:Fuse" ⇒ Fuse.unpickle (rest, result)
                         case "cim:Disconnector" ⇒ Disconnector.unpickle (rest, result)
                         case "cim:GroundDisconnector" ⇒ GroundDisconnector.unpickle (rest, result)
+                        case "cim:Jumper" ⇒ Jumper.unpickle (rest, result)
                         case "cim:ProtectionEquipment" ⇒ ProtectionEquipment.unpickle (rest, result)
                         case "cim:CurrentTransformer" ⇒ CurrentTransformer.unpickle (rest, result)
                         case "cim:CurrentRelay" ⇒ CurrentRelay.unpickle (rest, result)

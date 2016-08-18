@@ -295,6 +295,22 @@ class CIMRelation(
                                                 status = ac.status
                                             }
                                         case Some(o) if o.getClass () == classOf[ACLineSegmentPhase] => { }
+                                        case Some(o) if o.getClass () == classOf[Jumper] =>
+                                            {
+                                                val j = o.asInstanceOf[Jumper]
+                                                length = 0.0
+                                                voltage = j.voltage
+                                                typ = j.name
+                                                location = j.location
+                                            }
+                                        case Some(o) if o.getClass () == classOf[Conductor] =>
+                                            {
+                                                val c = o.asInstanceOf[Conductor]
+                                                length = c.len.toDouble
+                                                voltage = c.voltage
+                                                typ = c.name
+                                                location = c.location
+                                            }
                                         case Some(o) if o.getClass () == classOf[SwitchInfo] => { }
                                         case Some(o) if o.getClass () == classOf[Switch] =>
                                             {

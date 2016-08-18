@@ -77,13 +77,4 @@ class CIMSuite extends FunSuite
         val cs2 = cs.asInstanceOf[CoordinateSystem]
         assert (cs2.urn === "EPSG::4326")
     }
-
-    test ("Read Partial")
-    {
-        val xml = CIM.read ("data/dump_ews.xml", 33554432, 1024 * 1024, 0) // exactly a megabyte
-        val parser = new CIM (xml)
-        val map = parser.parse ()
-        assert (map.size != 0) // 2735
-        assert (map.filter (_.getClass() == classOf[Unknown]).size == 0)
-    }
 }
