@@ -133,6 +133,14 @@ class CIMRelation(
             CHIM.apply_to_all_classes (
                 (subsetter: CIMSubsetter[_]) =>
                 {
+                    // sometimes this loop doesn't work well
+                    // the symptoms are:
+                    //     scala.reflect.runtime.ReflectError: value ch is not a package
+                    // or
+                    //     java.lang.RuntimeException: error reading Scala signature of ch.ninecode.model.BusBarSectionInfo: value model is not a package
+                    // due to https://issues.apache.org/jira/browse/SPARK-2178
+                    // which is due to https://issues.scala-lang.org/browse/SI-6240
+                    // p.s. Scala's type system is a shit show of kludgy code
                     logInfo ("building " + subsetter.cls)
                     subsetter.make (sqlContext, rdd)
                 }
@@ -141,6 +149,7 @@ class CIMRelation(
             // set up edge graph if it's not an ISU file
             if (!filename.contains ("ISU"))
             {
+                logInfo ("making Edges RDD")
                 val cimedges = new CIMEdges (sqlContext)
                 cimedges.make_edges (rdd)
             }
