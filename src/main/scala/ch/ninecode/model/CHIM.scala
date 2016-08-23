@@ -173,10 +173,10 @@ extends
 //        val a = constructor_mirror()
 //        (a.asInstanceOf[Product], typeTag[A])
 //    }
+    val schema = ScalaReflection.schemaFor[A].dataType.asInstanceOf[StructType]
     def register: Unit =
     {
         CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
-        val schema = ScalaReflection.schemaFor[A].dataType.asInstanceOf[StructType]
         CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A] (schema)))
     }
 }
@@ -4683,7 +4683,7 @@ object AsynchronousMachine
 extends
     Parseable[AsynchronousMachine]
 {
-    val AsynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineType"""))_    
+    val AsynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineType"""))_
     val converterFedDrive = parse_element (element ("""AsynchronousMachine.converterFedDrive"""))_
     val efficiency = parse_element (element ("""AsynchronousMachine.efficiency"""))_
     val ialrRatio = parse_element (element ("""AsynchronousMachine.ialrRatio"""))_
@@ -4973,7 +4973,7 @@ case class Cut
     val lengthFromTerminal: Double,
     val ACLineSegment: String,
     val CutAction: String
-   
+
 )
 extends
     Element
@@ -5419,7 +5419,7 @@ extends
                 toDouble (maxP (context), context),
                 toDouble (maxU (context), context),
                 toDouble (minP (context), context),
-                toDouble (minU (context), context) 
+                toDouble (minU (context), context)
             )
         )
     }
