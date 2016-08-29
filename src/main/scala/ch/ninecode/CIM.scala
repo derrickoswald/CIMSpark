@@ -1535,7 +1535,7 @@ object SolarGeneratingUnit extends Parser
                 power.toDouble
             else
                 0.0
-            val ret = SolarGeneratingUnit (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties ("location"), result.properties.getOrElse ("container", ""), p, result.properties.getOrElse ("commissioned", ""))
+            val ret = SolarGeneratingUnit (result.properties ("id"), result.properties.getOrElse ("alias", ""), result.properties.getOrElse ("description", ""), result.properties.getOrElse ("name", ""), result.properties.getOrElse ("type", ""), result.properties.getOrElse ("location", ""), result.properties.getOrElse ("container", ""), p, result.properties.getOrElse ("commissioned", ""))
             return (ret)
         }
         catch
