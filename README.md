@@ -35,98 +35,65 @@ or
 
 Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark"))
 with volumes mounted for the jar file and data, and ports proxied for the
-cluster manager (8088), node manager (8042) and JDBC ThriftServer2 (10000):
+cluster manager (8088), node manager (8042), JDBC ThriftServer2 (10000), standalone port (7077) and Web UI (8080):
 
-    docker run -it -p 8032:8032 -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -p 50010:50010 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/code/CIMScala/data:/opt/data --rm -h sandbox sequenceiq/spark:1.6.0 bash
+    docker run -it -p 8032:8032 -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -p 10001:10001 -p 50010:50010 -p 7077:7077 -p 8081:8080 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/Documents/9code/nis/cim/cim_export:/opt/data --rm -h sandbox sequenceiq/spark:1.6.0 bash 
 
-The spark shell (scala interpreter) provides interactive commands:
+The spark shell (scala interpreter) allows interactive commands:
 
-    spark-shell --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar
+    spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 2 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar
 
 Add the CIMScala jar to the classpath:
 
-    scala> import ch.ninecode._
-    import ch.ninecode._
+    scala> import ch.ninecode.{cim, model}
+    import ch.ninecode.{cim, model}
 
-To generate an RDD use the CIMRDD class:
+To read a CIM file using the DataFrameReader approach:
 
-    scala> var myrdd = CIMRDD.rddFile (sc, "/opt/data/dump_all.xml")
-    file size: 98990525 bytes
-    myrdd: org.apache.spark.rdd.RDD[ch.ninecode.Element] = ParallelCollectionRDD[0] at parallelize at CIMRDD.scala:38
-
-To get the Location objects:
-
-    scala> myrdd.filter (x => x.getClass() == classOf[Location]).count()
+    scala> val elements = sqlContext.read.format ("ch.ninecode.cim").load ("hdfs://sandbox:9000/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf")
     ...
-    res0: Long = 26165
-
-or to create an typed RDD of Locations:
-
-    scala> var pf: PartialFunction[Element, Location] = { case x: Element if x.getClass () == classOf[Location] => x.asInstanceOf[Location] }
-    pf: PartialFunction[ch.ninecode.Element,ch.ninecode.Location] = <function1>
-
-    scala> var subset = myrdd.collect (pf)
-    subset: org.apache.spark.rdd.RDD[ch.ninecode.Location] = MapPartitionsRDD[3] at collect at <console>:28
-    
-    scala> subset.first().coordinates
+    elements: org.apache.spark.sql.DataFrame = [sup: element]
+    scala> elements.count
     ...
-    res1: scala.collection.mutable.ArrayBuffer[Double] = ArrayBuffer(8.52831529608, 46.9951049314)
+    res0: Long = 629007
 
-To expose the RDD as a Hive SQL table that is available externally:
+After reading is done, you can access the temporary tables:
 
-    scala> case class PointLocation (id: String,  x: Double, y: Double)
-    defined class PointLocation
-
-    scala> var point_pf: PartialFunction[Location, PointLocation] = { case x: Location if x.coordinates.length == 2 => PointLocation (x.id, x.coordinates(0), x.coordinates(1)) }
-    point_pf: PartialFunction[ch.ninecode.Location,PointLocation] = <function1>
-
-    scala> var points = subset.collect (point_pf)
-    points: org.apache.spark.rdd.RDD[PointLocation] = MapPartitionsRDD[5] at collect at <console>:34
-
-    scala> case class LineLocation (id: String,  x1: Double, y1: Double, x2: Double, y2: Double)
-    defined class LineLocation
-
-    scala> var line_pf: PartialFunction[Location, LineLocation] = { case x: Location if x.coordinates.length > 2 => val l = x.coordinates.length; LineLocation (x.id, x.coordinates(0), x.coordinates(1), x.coordinates(l - 2), x.coordinates(l - 1)) }
-    line_pf: PartialFunction[ch.ninecode.Location,LineLocation] = <function1>
-    
-    scala> var points = sqlContext.createDataFrame (subset.collect (point_pf))
-    points: org.apache.spark.sql.DataFrame = [id: string, x: double, y: double]
-    
-    scala> var lines = sqlContext.createDataFrame (subset.collect (line_pf))
-    lines: org.apache.spark.sql.DataFrame = [id: string, x1: double, y1: double, x2: double, y2: double]
-
-    scala> points.registerTempTable ("points")
-    scala> lines.registerTempTable ("lines")
-    
-    scala> sqlContext.sql ("select * from points").show ()
+    scala> val switches = sqlContext.sql ("select s.sup.sup.sup.sup.mRID mRID, s.sup.sup.sup.sup.aliasName aliasName, s.sup.sup.sup.sup.name name, s.sup.sup.sup.sup.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s,Location l, PositionPoint p where s.sup.sup.sup.Location = l.sup.mRID and s.sup.sup.sup.Location = p.Location and p.sequenceNumber = 0")
     ...
-    +--------------------+-------------+-------------+
-    |                  id|            x|            y|
-    +--------------------+-------------+-------------+
-    |_location_1610744...|8.52831529608|46.9951049314|
-    |_location_5773096...|8.60289818799| 46.995578585|
+    switches: org.apache.spark.sql.DataFrame = [mRID: string, aliasName: string, name: string, description: string, open: boolean, no: boolean, cs: string, xPosition: string, yPosition: string]
+    scala> switches.show (5)
     ...
-    |_location_1610697...|8.50875932142| 46.993371867|
-    +--------------------+-------------+-------------+
-    only showing top 20 rows
+    +---------+--------------------+--------------------+--------------------+-----+-----+-------------+-------------+-------------+
+    |     mRID|           aliasName|                name|         description| open|   no|           cs|    xPosition|    yPosition|
+    +---------+--------------------+--------------------+--------------------+-----+-----+-------------+-------------+-------------+
+    |  TRE3660|271706169:nis_el_...|           CGMCOSMOS|        Disconnector|false| true|pseudo_wgs_84|7.23127456569|47.1170112726|
+    |SIG105938|264083025:nis_el_...|G4-SEV (NH-Lastsc...|                null|false| true|pseudo_wgs_84|7.22987267738|47.1135371050|
+    |SIG131042|279147335:nis_el_...|Gr2-DIN (NH-Lasts...|Fuse SIG131042 SI...|false|false|pseudo_wgs_84|7.22921322029|47.1119559902|
+    |SIG114020|265608762:nis_el_...|1000A (NH-Lastsch...|Trennmesser SIG11...|false|false|pseudo_wgs_84|7.23598655757|47.1472289784|
+    |TEI125716|269104342:nis_el_...|           CGMCOSMOS|              Switch|false|false|pseudo_wgs_84|7.28937671248|47.0974306672|
+    +---------+--------------------+--------------------+--------------------+-----+-----+-------------+-------------+-------------+
+    only showing top 5 rows
 
+or access the named RDD:
 
-Starting the thrift server from the command line uses a different SparkContext/SQLContext
-so the exposed tables will not be visible (don't do this):
-
-    bash-4.1# cd /usr/local/spark-1.6.0-bin-hadoop2.6/
-    bash-4.1# ./sbin/start-thriftserver.sh
-    starting org.apache.spark.sql.hive.thriftserver.HiveThriftServer2, logging to /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/../logs/spark--org.apache.spark.sql.hive.thriftserver.HiveThriftServer2-1-sandbox.out
-
-Start the thrift server from within the spark shell:
-
-    scala> import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
-    import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+    scala> val terminals = sc.getPersistentRDDs.values.filter ((x) => {"Terminal" == x.name}).head.asInstanceOf[org.apache.spark.rdd.RDD[ch.ninecode.model.Terminal]]
+    terminals: org.apache.spark.rdd.RDD[ch.ninecode.model.Terminal] = Terminal MapPartitionsRDD[312] at collect at CIMSubsetter.scala:43
+    scala> terminals.count
+    ...
+    res2: Long = 110580
+    scala> terminals.first
+    ...
+    res3: ch.ninecode.model.Terminal = [[[[null,SAM4634_terminal],null,null,SAM4634_terminal,SAM4634_terminal],false,1,null],http://iec.ch/TC57/2010/CIM-schema-cim15#PhaseCode.ABC,null,SAM4634,SAM4634_node,null,null]
     
-    scala> HiveThriftServer2.startWithContext (sqlContext.asInstanceOf[org.apache.spark.sql.hive.HiveContext])
-    ...
-    16/01/12 10:26:23 INFO service.AbstractService: Service:HiveServer2 is started.
 
+To expose the RDD as Hive SQL tables that are available externally, a utility main() function is provided in CIMRDD:
+
+    spark-submit --class ch.ninecode.cim.CIMRDD --jars /opt/code/CIMScala-1.6.0-SNAPSHOT.jar --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMScala-1.6.0-SNAPSHOT.jar "hdfs://sandbox:9000/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
+    ...
+    Press [Return] to exit...
+
+The program will serve JDBC on port 10000 untill you press Return.
 
 The java client code requires a shit load of jar fails,
 which can be black-box included by adding this magic incantation in
