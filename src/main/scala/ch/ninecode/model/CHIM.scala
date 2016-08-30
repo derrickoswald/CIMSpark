@@ -44,6 +44,8 @@ import ch.ninecode.cim.CIMSubsetter
 //# IdentifiedObject
 //b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]][[1]]
 
+case class SerializableObject (name: String) extends Serializable
+
 trait Parser
 {
     val namespace = "cim"
@@ -174,11 +176,15 @@ extends
 //        (a.asInstanceOf[Product], typeTag[A])
 //    }
     val schema = ScalaReflection.schemaFor[A].dataType.asInstanceOf[StructType]
+    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
+    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
+    val lock: AnyRef = SerializableObject ("scalasucks")
     def register: Unit =
-    {
-        CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
-        CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A] (schema)))
-    }
+        lock.synchronized
+        {
+            CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
+            CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A] (schema)))
+        }
 }
 
 // needed to get around error: trait Element accesses protected method clone inside a concrete trait method.

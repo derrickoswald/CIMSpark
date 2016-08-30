@@ -11,6 +11,8 @@ import org.apache.spark.sql.types.StructType
 
 import ch.ninecode.model.Element
 
+case class SerializableObject (name: String) extends Serializable
+
 /**
  * Subclass extractor
  * Extracts the given type of object from the full Element Resilient Distributes Dataset (RDD),
@@ -21,6 +23,10 @@ import ch.ninecode.model.Element
  */
 class CIMSubsetter[A <: Product : ClassTag] (schema: StructType) extends Serializable
 {
+    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
+    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
+    val lock: AnyRef = SerializableObject ("dickhead")
+
     def runtime_class = classTag[A].runtimeClass
     def classname = runtime_class.getName
     def cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
@@ -46,10 +52,11 @@ class CIMSubsetter[A <: Product : ClassTag] (schema: StructType) extends Seriali
         subrdd.asInstanceOf[RDD[Row]]
     }
     def make (sqlContext: SQLContext, rdd: RDD[Element]) =
-    {
-        val sub = subset (rdd)
-        // use the (Row, schema) form of createDataFrame, because all others rely on a TypeTag which is erased
-        val df = sqlContext.createDataFrame (sub, schema)
-        df.registerTempTable (cls)
-    }
+        lock.synchronized
+        {
+            val sub = subset (rdd)
+            // use the (Row, schema) form of createDataFrame, because all others rely on a TypeTag which is erased
+            val df = sqlContext.createDataFrame (sub, schema)
+            df.registerTempTable (cls)
+        }
 }

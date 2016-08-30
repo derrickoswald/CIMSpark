@@ -140,6 +140,7 @@ class CIMRelation(
                     //     java.lang.RuntimeException: error reading Scala signature of ch.ninecode.model.BusBarSectionInfo: value model is not a package
                     // due to https://issues.apache.org/jira/browse/SPARK-2178
                     // which is due to https://issues.scala-lang.org/browse/SI-6240
+                    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
                     // p.s. Scala's type system is a shit show of kludgy code
                     logInfo ("building " + subsetter.cls)
                     subsetter.make (sqlContext, rdd)
