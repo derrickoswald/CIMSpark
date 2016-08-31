@@ -4,6 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.SQLUserDefinedType
+import org.apache.spark.storage.StorageLevel
 
 import ch.ninecode.model._
 
@@ -11,7 +12,7 @@ case class PreEdge (var id_seq_1: String, var cn_1: String, var id_seq_2: String
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
 case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
 
-class CIMEdges (val sqlContext: SQLContext) extends Serializable
+class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
 {
     def get (name: String): RDD[Element] =
     {
@@ -395,7 +396,7 @@ class CIMEdges (val sqlContext: SQLContext) extends Serializable
 
         // persist it so the sample can get at it
         edges.setName ("Edges")
-        edges.cache ()
+        edges.persist (storage)
 
         // expose it
         sqlContext.createDataFrame (edges).registerTempTable ("edges")

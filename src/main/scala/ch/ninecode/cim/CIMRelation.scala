@@ -19,6 +19,7 @@ import org.apache.spark.sql.sources.OutputWriterFactory
 import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.types.StructField
 import org.apache.spark.sql.types.StructType
+import org.apache.spark.storage.StorageLevel
 
 import scala.reflect._
 import scala.reflect.runtime.universe._
@@ -33,16 +34,15 @@ class CIMRelation(
     private val parameters: Map[String, String])
     (@transient val sqlContext: SQLContext) extends HadoopFsRelation with Logging
 {
-
-//  private val IgnoreFilesWithoutExtensionProperty = "avro.mapred.ignore.inputs.without.extension"
-//  private val recordName = parameters.getOrElse("recordName", "topLevelRecord")
-//  private val recordNamespace = parameters.getOrElse("recordNamespace", "")
+    // check for a storage level option
+    var _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
 
     logInfo ("paths: " + paths.mkString (","))
     logInfo ("maybeDataSchema: " + maybeDataSchema.toString ())
     logInfo ("userDefinedPartitionColumns: " + userDefinedPartitionColumns.toString ())
     logInfo ("parameters: " + parameters.toString ())
     logInfo ("sqlContext: " + sqlContext.toString ())
+    logInfo ("storage: " + _StorageLevel.description)
 
     /**
      * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned
@@ -126,7 +126,7 @@ class CIMRelation(
 
             ret = rdd.asInstanceOf[RDD[Row]]
             ret.setName ("Elements") // persist it
-            ret.cache ()
+            ret.persist (_StorageLevel)
 
             // as a side effect, define all the other temporary tables
             logInfo ("creating temporary tables")
@@ -143,7 +143,7 @@ class CIMRelation(
                     // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
                     // p.s. Scala's type system is a shit show of kludgy code
                     logInfo ("building " + subsetter.cls)
-                    subsetter.make (sqlContext, rdd)
+                    subsetter.make (sqlContext, rdd, _StorageLevel)
                 }
             )
 
@@ -151,7 +151,7 @@ class CIMRelation(
             if (!filename.contains ("ISU"))
             {
                 logInfo ("making Edges RDD")
-                val cimedges = new CIMEdges (sqlContext)
+                val cimedges = new CIMEdges (sqlContext, _StorageLevel)
                 cimedges.make_edges (rdd)
             }
         }

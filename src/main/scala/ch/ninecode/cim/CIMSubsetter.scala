@@ -8,10 +8,9 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.ScalaReflection
 import org.apache.spark.sql.types.StructType
+import org.apache.spark.storage.StorageLevel
 
 import ch.ninecode.model.Element
-
-case class SerializableObject (name: String) extends Serializable
 
 /**
  * Subclass extractor
@@ -23,10 +22,6 @@ case class SerializableObject (name: String) extends Serializable
  */
 class CIMSubsetter[A <: Product : ClassTag] (schema: StructType) extends Serializable
 {
-    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
-    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
-    val lock: AnyRef = SerializableObject ("dickhead")
-
     def runtime_class = classTag[A].runtimeClass
     def classname = runtime_class.getName
     def cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
@@ -44,19 +39,18 @@ class CIMSubsetter[A <: Product : ClassTag] (schema: StructType) extends Seriali
         case x: Element if (null != subclass (x)) =>
             subclass (x)
     }
-    def subset (rdd: RDD[Element]): RDD[Row] =
+    def subset (rdd: RDD[Element], storage: StorageLevel): RDD[Row] =
     {
         val subrdd = rdd.collect[A] (pf)
         subrdd.name = cls
-        subrdd.cache ()
+        subrdd.persist (storage)
         subrdd.asInstanceOf[RDD[Row]]
     }
-    def make (sqlContext: SQLContext, rdd: RDD[Element]) =
-        lock.synchronized
-        {
-            val sub = subset (rdd)
-            // use the (Row, schema) form of createDataFrame, because all others rely on a TypeTag which is erased
-            val df = sqlContext.createDataFrame (sub, schema)
-            df.registerTempTable (cls)
-        }
+    def make (sqlContext: SQLContext, rdd: RDD[Element], storage: StorageLevel) =
+    {
+        val sub = subset (rdd, storage)
+        // use the (Row, schema) form of createDataFrame, because all others rely on a TypeTag which is erased
+        val df = sqlContext.createDataFrame (sub, schema)
+        df.registerTempTable (cls)
+    }
 }

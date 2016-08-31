@@ -39,6 +39,23 @@ cluster manager (8088), node manager (8042), JDBC ThriftServer2 (10000), standal
 
     docker run -it -p 8032:8032 -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -p 10001:10001 -p 50010:50010 -p 7077:7077 -p 8081:8080 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/Documents/9code/nis/cim/cim_export:/opt/data --rm -h sandbox sequenceiq/spark:1.6.0 bash 
 
+There are a few settings I always do that are not part of the standard docker image, like enabling UTF8 characters in filenames, and adding an alias for ll. When executing from a remote client, the user needs to be a valid user on the cluster, and a member of *supergroup*. Any data files that are needed should be copied into hdfs. If using Spark standalone, you will need to start a master and slave process. So the usual setup commands are:
+
+    export LANG=en_US.utf8
+    alias ll="ls -al"
+    
+    sudo groupadd supergroup
+    sudo useradd derrick
+    sudo usermod --append --groups supergroup derrick
+    
+    hdfs dfsadmin -safemode leave
+    hdfs dfs -mkdir /data
+    hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf /data
+    hdfs dfs -put /opt/data/KS_Leistungen.csv /data
+    
+    /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/start-master.sh
+    /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/start-slave.sh -m 4g -c 2 spark://sandbox:7077
+
 The spark shell (scala interpreter) allows interactive commands:
 
     spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 2 --jars /opt/code/CIMScala-1.0-SNAPSHOT.jar
