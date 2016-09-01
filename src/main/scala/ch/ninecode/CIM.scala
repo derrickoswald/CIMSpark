@@ -256,12 +256,12 @@ abstract class NamedElement (override val id: String, val alias: String, val des
 object NamedElement extends Parser
 {
     val aliex = Pattern.compile ("""<cim:IdentifiedObject.aliasName>([\s\S]*?)<\/cim:IdentifiedObject.aliasName>""")
-    val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>""")
+    val desex = Pattern.compile ("""<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:IdentifiedObject.description>""")
     val namex = Pattern.compile ("""<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>""")
     override def steps () = Array (
         IdentifiedElement.parse,
-        Element.parse_element (aliex, 1, "name", false)_,
-        Element.parse_element (desex, 1, "name", false)_,
+        Element.parse_element (aliex, 1, "alias", false)_,
+        Element.parse_element (desex, 1, "description", false)_,
         Element.parse_element (namex, 1, "name", false)_)
 }
 
@@ -544,8 +544,8 @@ object PositionPoint extends Parser
 //        NamedElement.parse, - removed to make PositionPoint mRID optional
         Element.parse,
         Element.parse_attribute (idex, 2, "id", false)_,
-        Element.parse_element (aliex, 1, "name", false)_,
-        Element.parse_element (desex, 1, "name", false)_,
+        Element.parse_element (aliex, 1, "alias", false)_,
+        Element.parse_element (desex, 1, "description", false)_,
         Element.parse_element (namex, 1, "name", false)_,
 
         Element.parse_attribute (locex, 2, "location", false)_,
