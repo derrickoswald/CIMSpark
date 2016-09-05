@@ -14,7 +14,7 @@ pre = proc.time ()
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark-1.4.1-bin-hadoop2.6/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark-1.4.1-bin-hadoop2.6")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc = sparkR.init ("yarn-client", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-1.4.1-SNAPSHOT.jar"), sparkEnvir = list (spark.driver.memory="4g", spark.executor.memory="4g"))
+sc = sparkR.init ("yarn-client", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.10-1.4.1-0.6.0.jar"), sparkEnvir = list (spark.driver.memory="4g", spark.executor.memory="4g"))
 sqlContext = sparkRSQL.init (sc)
 
 # read the data file and make the edge graph
