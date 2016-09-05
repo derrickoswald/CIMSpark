@@ -50,7 +50,7 @@ There are a few settings I always do that are not part of the standard docker im
     
     hdfs dfsadmin -safemode leave
     hdfs dfs -mkdir /data
-    hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf /data
+    hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_V8_Bruegg.rdf /data
     hdfs dfs -put /opt/data/KS_Leistungen.csv /data
     
     /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/start-master.sh
