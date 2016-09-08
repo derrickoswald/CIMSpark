@@ -35,7 +35,7 @@ class CIMRelation(
     (@transient val sqlContext: SQLContext) extends HadoopFsRelation with Logging
 {
     // check for a storage level option
-    var _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
+    val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
 
     logInfo ("paths: " + paths.mkString (","))
     logInfo ("maybeDataSchema: " + maybeDataSchema.toString ())
@@ -107,7 +107,8 @@ class CIMRelation(
     // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
     override def buildScan (inputFiles: Array[FileStatus]): RDD[Row] =
     {
-        logInfo ("ch.ninecode.cim.DefaultSource.buildScan")
+        logInfo ("buildScan")
+        logInfo ("storage: " + _StorageLevel.description)
 
         var ret: RDD[Row] = null
 
@@ -156,7 +157,7 @@ class CIMRelation(
             }
         }
         else
-            logError ("ch.ninecode.cim.CIMRelation.buildScan was given an input list containing no files")
+            logError ("buildScan was given an input list containing no files")
 
         return (ret)
   }

@@ -72,12 +72,18 @@ class CIMRecordReader extends RecordReader[String, Element]
         cim = new CHIM (xml, start, start + len)
     }
 
-    def close(): Unit = {}
-    def getCurrentKey(): String = { return (cim.value.id) }
-    def getCurrentValue(): Element = { return (cim.value) }
-    def getProgress(): Float = { return (cim.progress ()) }
-    def nextKeyValue(): Boolean =
+    def close (): Unit =
     {
-        return (cim.parse_one ())
+        LocalLog.info ("close")
+        cim = null
     }
+
+    def getCurrentKey (): String = { return (cim.value.id) }
+
+    def getCurrentValue (): Element = { return (cim.value) }
+
+    def getProgress (): Float = { return (cim.progress ()) }
+
+    def nextKeyValue (): Boolean = { return (cim.parse_one ()) }
+
 }
