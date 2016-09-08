@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ch.ninecode.cim</groupId>
     <artifactId>CIMScala</artifactId>
-    <version>1.6.0-SNAPSHOT</version>
+    <version>2.10-1.6.0-1.6.0</version> <!-- version>${version.dependency.scala}-${version.dependency.spark}-1.6.0</version -->
     <name>${project.artifactId}</name>
-    <description>Expose CIM source as Spark RDD</description>
+    <description>Expose CIM data files as Spark RDD</description>
     <inceptionYear>2015</inceptionYear>
 
     <properties>
@@ -127,4 +127,5 @@
             </plugin>
         </plugins>
     </build>
+    <url>https://github.com/derrickoswald/CIMScala</url>
 </project>

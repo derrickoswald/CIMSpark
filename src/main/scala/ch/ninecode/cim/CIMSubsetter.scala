@@ -8,6 +8,7 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.ScalaReflection
 import org.apache.spark.sql.types.StructType
+import org.apache.spark.storage.StorageLevel
 
 import ch.ninecode.model.Element
 
@@ -38,16 +39,16 @@ class CIMSubsetter[A <: Product : ClassTag] (schema: StructType) extends Seriali
         case x: Element if (null != subclass (x)) =>
             subclass (x)
     }
-    def subset (rdd: RDD[Element]): RDD[Row] =
+    def subset (rdd: RDD[Element], storage: StorageLevel): RDD[Row] =
     {
         val subrdd = rdd.collect[A] (pf)
         subrdd.name = cls
-        subrdd.cache ()
+        subrdd.persist (storage)
         subrdd.asInstanceOf[RDD[Row]]
     }
-    def make (sqlContext: SQLContext, rdd: RDD[Element]) =
+    def make (sqlContext: SQLContext, rdd: RDD[Element], storage: StorageLevel) =
     {
-        val sub = subset (rdd)
+        val sub = subset (rdd, storage)
         // use the (Row, schema) form of createDataFrame, because all others rely on a TypeTag which is erased
         val df = sqlContext.createDataFrame (sub, schema)
         df.registerTempTable (cls)

@@ -19,16 +19,13 @@ import org.apache.spark.sql.sources.OutputWriterFactory
 import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.types.StructField
 import org.apache.spark.sql.types.StructType
+import org.apache.spark.storage.StorageLevel
 
 import scala.reflect._
 import scala.reflect.runtime.universe._
 import scala.reflect.runtime.{universe => ru}
 
 import ch.ninecode.model._
-
-case class PreEdge (var id_seq_1: String, var cn_1: String, var id_seq_2: String, var cn_2: String, var id_equ: String, var container: String, var length: Double, var voltage: String, var typ: String, var normalOpen: Boolean, var ratedCurrent: Double, var location: String, val power: Double, val commissioned: String, val status: String) extends Serializable
-class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, container: String, length: Double, voltage: String, typ: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
 
 class CIMRelation(
     override val paths: Array[String],
@@ -37,16 +34,15 @@ class CIMRelation(
     private val parameters: Map[String, String])
     (@transient val sqlContext: SQLContext) extends HadoopFsRelation with Logging
 {
-
-//  private val IgnoreFilesWithoutExtensionProperty = "avro.mapred.ignore.inputs.without.extension"
-//  private val recordName = parameters.getOrElse("recordName", "topLevelRecord")
-//  private val recordNamespace = parameters.getOrElse("recordNamespace", "")
+    // check for a storage level option
+    val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
 
     logInfo ("paths: " + paths.mkString (","))
     logInfo ("maybeDataSchema: " + maybeDataSchema.toString ())
     logInfo ("userDefinedPartitionColumns: " + userDefinedPartitionColumns.toString ())
     logInfo ("parameters: " + parameters.toString ())
     logInfo ("sqlContext: " + sqlContext.toString ())
+    logInfo ("storage: " + _StorageLevel.description)
 
     /**
      * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned
@@ -108,22 +104,11 @@ class CIMRelation(
         throw new UnsupportedOperationException ("oops, no writing yet")
     }
 
-    def get (name: String): RDD[Element] =
-    {
-        val rdds = sqlContext.sparkContext.getPersistentRDDs
-        for (key <- rdds.keys)
-        {
-            val rdd = rdds (key)
-            if (rdd.name == name)
-                return (rdd.asInstanceOf[RDD[Element]])
-        }
-        return (null)
-    }
-
     // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
     override def buildScan (inputFiles: Array[FileStatus]): RDD[Row] =
     {
-        logInfo ("ch.ninecode.cim.DefaultSource.buildScan")
+        logInfo ("buildScan")
+        logInfo ("storage: " + _StorageLevel.description)
 
         var ret: RDD[Row] = null
 
@@ -142,27 +127,37 @@ class CIMRelation(
 
             ret = rdd.asInstanceOf[RDD[Row]]
             ret.setName ("Elements") // persist it
-            ret.cache ()
+            ret.persist (_StorageLevel)
 
             // as a side effect, define all the other temporary tables
             logInfo ("creating temporary tables")
             CHIM.apply_to_all_classes (
                 (subsetter: CIMSubsetter[_]) =>
                 {
+                    // sometimes this loop doesn't work well
+                    // the symptoms are:
+                    //     scala.reflect.runtime.ReflectError: value ch is not a package
+                    // or
+                    //     java.lang.RuntimeException: error reading Scala signature of ch.ninecode.model.BusBarSectionInfo: value model is not a package
+                    // due to https://issues.apache.org/jira/browse/SPARK-2178
+                    // which is due to https://issues.scala-lang.org/browse/SI-6240
+                    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
+                    // p.s. Scala's type system is a shit show of kludgy code
                     logInfo ("building " + subsetter.cls)
-                    subsetter.make (sqlContext, rdd)
+                    subsetter.make (sqlContext, rdd, _StorageLevel)
                 }
             )
 
             // set up edge graph if it's not an ISU file
             if (!filename.contains ("ISU"))
             {
-                val cimedges = new CIMEdges (sqlContext)
+                logInfo ("making Edges RDD")
+                val cimedges = new CIMEdges (sqlContext, _StorageLevel)
                 cimedges.make_edges (rdd)
             }
         }
         else
-            logError ("ch.ninecode.cim.CIMRelation.buildScan was given an input list containing no files")
+            logError ("buildScan was given an input list containing no files")
 
         return (ret)
   }

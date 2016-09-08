@@ -7,7 +7,7 @@ Sys.setenv (HADOOP_CONF_DIR="/etc/hadoop/conf")
 Sys.setenv (YARN_CONF_DIR="/usr/local/spark-1.6.0-bin-hadoop2.6/conf")
 Sys.setenv (SPARK_HOME="/usr/local/spark-1.6.0-bin-hadoop2.6")
 library (SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc = sparkR.init ("yarn-client", "CIM_Sample", sparkJars = c ("/hdfs/data-sources/NetIntel/CIMScala-1.6.0-SNAPSHOT.jar"), sparkEnvir = list (spark.driver.memory="8g", spark.executor.memory="8g"))
+sc = sparkR.init ("yarn-client", "CIM_Sample", sparkJars = c ("/hdfs/data-sources/NetIntel/CIMScala-2.10-1.4.1-0.6.0.jar"), sparkEnvir = list (spark.driver.memory="8g", spark.executor.memory="8g"))
 sqlContext = sparkRSQL.init (sc)
 
 # read the data file and make the edge graph

@@ -44,6 +44,8 @@ import ch.ninecode.cim.CIMSubsetter
 //# IdentifiedObject
 //b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]][[1]]
 
+case class SerializableObject (name: String) extends Serializable
+
 trait Parser
 {
     val namespace = "cim"
@@ -173,12 +175,16 @@ extends
 //        val a = constructor_mirror()
 //        (a.asInstanceOf[Product], typeTag[A])
 //    }
+    val schema = ScalaReflection.schemaFor[A].dataType.asInstanceOf[StructType]
+    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
+    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
+    val lock: AnyRef = SerializableObject ("scalasucks")
     def register: Unit =
-    {
-        CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
-        val schema = ScalaReflection.schemaFor[A].dataType.asInstanceOf[StructType]
-        CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A] (schema)))
-    }
+        lock.synchronized
+        {
+            CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
+            CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A] (schema)))
+        }
 }
 
 // needed to get around error: trait Element accesses protected method clone inside a concrete trait method.
@@ -5019,7 +5025,7 @@ object AsynchronousMachine
 extends
     Parseable[AsynchronousMachine]
 {
-    val AsynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineType"""))_    
+    val AsynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineType"""))_
     val converterFedDrive = parse_element (element ("""AsynchronousMachine.converterFedDrive"""))_
     val efficiency = parse_element (element ("""AsynchronousMachine.efficiency"""))_
     val ialrRatio = parse_element (element ("""AsynchronousMachine.ialrRatio"""))_
@@ -5309,7 +5315,7 @@ case class Cut
     val lengthFromTerminal: Double,
     val ACLineSegment: String,
     val CutAction: String
-   
+
 )
 extends
     Element
@@ -5755,7 +5761,7 @@ extends
                 toDouble (maxP (context), context),
                 toDouble (maxU (context), context),
                 toDouble (minP (context), context),
-                toDouble (minU (context), context) 
+                toDouble (minU (context), context)
             )
         )
     }
