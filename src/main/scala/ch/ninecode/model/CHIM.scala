@@ -7969,18 +7969,20 @@ extends
 
 case class SynchronousMachine
 (
+    // remove some parameters: error: Implementation restriction: case classes cannot have more than 22 parameters.
+
     override val sup: RotatingMachine,
     val aVRToManualLag: Double,
     val aVRToManualLead: Double,
     val baseQ: Double,
-    val condenserP: Double,
-    val coolantCondition: Double,
+    // val condenserP: Double,
+    // val coolantCondition: Double,
     val coolantType: String,
-    val earthing: Boolean,
-    val earthingStarPointR: Double,
-    val earthingStarPointX: Double,
+    // val earthing: Boolean,
+    // val earthingStarPointR: Double,
+    // val earthingStarPointX: Double,
     val ikk: Double,
-    val manualToAVR: Double,
+    // val manualToAVR: Double,
     val maxQ: Double,
     val maxU: Double,
     val minQ: Double,
@@ -7992,12 +7994,12 @@ case class SynchronousMachine
     val r2: Double,
     val r: Double,
     val referencePriority: Int,
-    val satDirectSubtransX: Double,
-    val satDirectSyncX: Double,
-    val satDirectTransX: Double,
-    val shortCircuitRotorType: String,
+    // val satDirectSubtransX: Double,
+    // val satDirectSyncX: Double,
+    // val satDirectTransX: Double,
+    // val shortCircuitRotorType: String,
     val typ: String, // cannot use type
-    val voltageRegulationRange: Double,
+    // val voltageRegulationRange: Double,
     val x0: Double,
     val x2: Double,
     val InitialReactiveCapabilityCurve: String,
@@ -8006,9 +8008,9 @@ case class SynchronousMachine
 extends
     Element
 {
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, false,
-        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0,
-        0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, /* 0.0, 0.0, */ null,
+        /* false, 0.0, 0.0, */ 0.0, /* 0.0, */ 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0,
+        /* 0.0, 0.0, 0.0, null, */ null, /* 0.0, */ 0.0, 0.0, null, null) }
     def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
     override def copy (): Row = { return (clone ().asInstanceOf[SynchronousMachine]); }
     override def get (i: Int): Any =
@@ -8066,14 +8068,14 @@ extends
                 toDouble (aVRToManualLag (context), context),
                 toDouble (aVRToManualLead (context), context),
                 toDouble (baseQ (context), context),
-                toDouble (condenserP (context), context),
-                toDouble (coolantCondition (context), context),
+                // toDouble (condenserP (context), context),
+                // toDouble (coolantCondition (context), context),
                 coolantType (context),
-                toBoolean (earthing (context), context),
-                toDouble (earthingStarPointR (context), context),
-                toDouble (earthingStarPointX (context), context),
+                // toBoolean (earthing (context), context),
+                // toDouble (earthingStarPointR (context), context),
+                // toDouble (earthingStarPointX (context), context),
                 toDouble (ikk (context), context),
-                toDouble (manualToAVR (context), context),
+                // toDouble (manualToAVR (context), context),
                 toDouble (maxQ (context), context),
                 toDouble (maxU (context), context),
                 toDouble (minQ (context), context),
@@ -8085,12 +8087,12 @@ extends
                 toDouble (r2 (context), context),
                 toDouble (r (context), context),
                 toInteger (referencePriority (context), context),
-                toDouble (satDirectSubtransX (context), context),
-                toDouble (satDirectSyncX (context), context),
-                toDouble (satDirectTransX (context), context),
-                shortCircuitRotorType (context),
+                // toDouble (satDirectSubtransX (context), context),
+                // toDouble (satDirectSyncX (context), context),
+                // toDouble (satDirectTransX (context), context),
+                // shortCircuitRotorType (context),
                 typ (context),
-                toDouble (voltageRegulationRange (context), context),
+                // toDouble (voltageRegulationRange (context), context),
                 toDouble (x0 (context), context),
                 toDouble (x2 (context), context),
                 InitialReactiveCapabilityCurve (context),
