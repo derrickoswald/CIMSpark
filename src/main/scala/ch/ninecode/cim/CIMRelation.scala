@@ -44,6 +44,14 @@ class CIMRelation(
     logInfo ("sqlContext: " + sqlContext.toString ())
     logInfo ("storage: " + _StorageLevel.description)
 
+    // just to get a schema
+    case class dummy
+    (
+        override val sup: Element = null
+    )
+    extends
+        Element
+
     /**
      * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned
      * columns are contained in the data files, they should also appear in `dataSchema`.
