@@ -156,13 +156,10 @@ class CIMRelation(
                 }
             )
 
-            // set up edge graph if it's not an ISU file
-            if (!filename.contains ("ISU"))
-            {
-                logInfo ("making Edges RDD")
-                val cimedges = new CIMEdges (sqlContext, _StorageLevel)
-                cimedges.make_edges (rdd)
-            }
+            // set up edge graph
+            logInfo ("making Edges RDD")
+            val cimedges = new CIMEdges (sqlContext, _StorageLevel)
+            cimedges.make_edges (rdd)
         }
         else
             logError ("buildScan was given an input list containing no files")

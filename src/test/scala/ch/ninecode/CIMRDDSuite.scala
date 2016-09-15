@@ -8,16 +8,14 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
+import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.Row
-import org.scalatest.Outcome
-import org.scalatest.fixture
-import org.scalatest.junit.JUnitRunner
+import org.apache.spark.sql.types.SQLUserDefinedType
 
-import ch.ninecode.cim.CIMInputFormat
-import ch.ninecode.model.CHIM
-import ch.ninecode.model.Element
-import ch.ninecode.model.Unknown
-import ch.ninecode.model.Parseable
+import org.scalatest.fixture
+
+import ch.ninecode.cim._
+import ch.ninecode.model._
 
 class CIMRDDSuite extends fixture.FunSuite
 {
@@ -66,7 +64,7 @@ class CIMRDDSuite extends fixture.FunSuite
     {
         // create the fixture
         val configuration = new SparkConf ()
-        configuration.setAppName ("CIMSuite")
+        configuration.setAppName ("CIMRDDSuite")
         configuration.setMaster ("local[2]")
         val context = new SparkContext (configuration)
         context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
