@@ -124,7 +124,7 @@ class CIMRelation(
         {
             // make a config
             val configuration = new Configuration (sqlContext.sparkContext.hadoopConfiguration)
-            val filename = inputFiles (0).getPath.toString
+            val filename = inputFiles.map (_.getPath.toString).mkString (",")
             configuration.set ("mapreduce.input.fileinputformat.inputdir", filename);
 
             val rdd = sqlContext.sparkContext.newAPIHadoopRDD (
