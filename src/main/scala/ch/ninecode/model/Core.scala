@@ -587,7 +587,7 @@ case class Name
 (
     override val sup: IdentifiedObject,
     val name: String,
-    val IdentifiedObj: String,
+    val IdentifiedObj: String, // should be IdentifiedObject, but that leads to a conflict
     val NameType: String
 )
 extends

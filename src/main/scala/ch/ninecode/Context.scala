@@ -38,7 +38,7 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
 
     /**
      * Get the line number for the given offset value.
-     * Uses a binary search through the neline array to determine where the
+     * Uses a binary search through the newline array to determine where the
      * given offset lies in the source stream.
      * @param offset the character position in the stream
      * @return the line number (1 + how many newlines precede the offset)
@@ -82,6 +82,13 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
                     errors += "Unknown content \"" + sub + "\" at line " + line_number ()
             }
             index = pair._2
+        }
+        val remainder = xml.substring (index, xml.length ()).trim ()
+        if ("" != remainder)
+        {
+            ret = false
+            if (errors.size < MAXERRORS)
+                errors += "Unknown content \"" + remainder + "\" at line " + line_number ()
         }
 
         return (ret)
