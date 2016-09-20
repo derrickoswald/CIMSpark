@@ -1,5 +1,8 @@
 package ch.ninecode
 
+import java.util.HashMap
+import java.util.Map
+
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.annotation.DeveloperApi
@@ -11,6 +14,7 @@ import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 
 import org.scalatest.fixture
+import org.scalatest.Outcome
 
 import ch.ninecode.cim._
 import ch.ninecode.model._
@@ -23,7 +27,7 @@ class CIMSparkSuite extends fixture.FunSuite
 
     type FixtureParam = ContextPair
 
-    def withFixture (test: OneArgTest): org.scalatest.Outcome =
+    def withFixture (test: OneArgTest): Outcome =
     {
         // create the fixture
 
@@ -51,10 +55,10 @@ class CIMSparkSuite extends fixture.FunSuite
         finally context.stop () // clean up the fixture
     }
 
-    def readFile (context: SQLContext, filename: String): DataFrame =
+    def readFile (context: SQLContext, filename: String, options: Map[String, String]): DataFrame =
     {
         val files = filename.split (",")
-        val element = context.read.format ("ch.ninecode.cim").option ("StorageLevel", "MEMORY_AND_DISK_SER").load (files:_*)
+        val element = context.read.format ("ch.ninecode.cim").options (options).load (files:_*)
         val plan = element.queryExecution
         val test = plan.toString ()
         if (!test.contains ("InputPaths"))
@@ -74,7 +78,10 @@ class CIMSparkSuite extends fixture.FunSuite
             FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V8_Bruegg" + ".rdf" +
             "," +
             FILE_DEPOT + "ISU_CIM_Export_20160505_partial" + ".rdf"
-        val elements = readFile (sql_context, filename)
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
+        options.put ("ch.ninecode.cim.make_edges", "true")
+        val elements = readFile (sql_context, filename, options)
         println (elements.count())
         val edges = sql_context.sql ("select * from edges")
         val head = edges.head (5)
@@ -102,10 +109,12 @@ class CIMSparkSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_b4_Bruegg" + ".rdf" + // NIS_CIM_Export_b4_Bubenei
+            FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf" + // NIS_CIM_Export_b4_Bruegg
             "," +
-            FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
-        val elements = readFile (sql_context, filename)
+            FILE_DEPOT + "ISU_CIM_Export_20160505_partial" + ".rdf"
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
+        val elements = readFile (sql_context, filename, options)
         println (elements.count () + " elements")
 
         var servicelocations = get (sql_context, "ServiceLocation").asInstanceOf[RDD[ServiceLocation]]
@@ -138,4 +147,37 @@ class CIMSparkSuite extends fixture.FunSuite
         if (0 != count)
             println (names.first)
     }
+
+    test ("Auto-join")
+    {
+        a: ContextPair ⇒
+
+        val context: SparkContext = a._SparkContext
+        val sql_context: SQLContext = a._SQLContext
+
+        val filename =
+            FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf" + // NIS_CIM_Export_b4_Bruegg
+            "," +
+            FILE_DEPOT + "ISU_CIM_Export_20160505_partial" + ".rdf"
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
+        options.put ("ch.ninecode.cim.do_join", "true")
+        val elements = readFile (sql_context, filename, options)
+
+        val servicelocations = get (sql_context, "ServiceLocation").asInstanceOf[RDD[ServiceLocation]]
+        println (servicelocations.count () + " servicelocations after")
+
+        val positions = get (sql_context, "PositionPoint").asInstanceOf[RDD[PositionPoint]]
+        println (positions.count () + " positions after")
+
+        val users = get (sql_context, "UserAttribute").asInstanceOf[RDD[UserAttribute]]
+        println (users.count () + " user attributes after")
+
+        val names = get (sql_context, "Name").asInstanceOf[RDD[UserAttribute]]
+        val count = names.count ()
+        println (count + " names after")
+        if (0 != count)
+            println (names.first)
+    }
+
 }

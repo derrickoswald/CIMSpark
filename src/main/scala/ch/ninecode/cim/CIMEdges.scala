@@ -374,8 +374,11 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         }
     }
 
-    def make_edges (rdd: RDD[Element]): Unit =
+    def make_edges (): Unit =
     {
+        // get the elements RDD
+        val elements = get ("Elements").asInstanceOf[RDD[Element]]
+
         // get the nodes RDD
         val connectivitynodes = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]]
 
@@ -386,7 +389,7 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         val terms = terminals.groupBy (_.ConductingEquipment)
 
         // next, map the terminal pairs to pre-edges
-        val preedges = rdd.keyBy (_.id).leftOuterJoin (terms).flatMapValues (term_op).values
+        val preedges = elements.keyBy (_.id).leftOuterJoin (terms).flatMapValues (term_op).values
 
         // get start and end coordinates of each location
         val extremum = get_extremum ()

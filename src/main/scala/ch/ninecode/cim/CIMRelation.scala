@@ -36,6 +36,10 @@ class CIMRelation(
 {
     // check for a storage level option
     val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
+    // check for edge creation option
+    val _Edges: Boolean = parameters.getOrElse ("ch.ninecode.cim.make_edges", "false").toBoolean
+    // check for ISU join option
+    val _Join: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_join", "false").toBoolean
 
     logInfo ("paths: " + paths.mkString (","))
     logInfo ("maybeDataSchema: " + maybeDataSchema.toString ())
@@ -156,10 +160,22 @@ class CIMRelation(
                 }
             )
 
-            // set up edge graph
-            logInfo ("making Edges RDD")
-            val cimedges = new CIMEdges (sqlContext, _StorageLevel)
-            cimedges.make_edges (rdd)
+            // set up edge graph if requested
+            if (_Edges)
+            {
+                logInfo ("making Edges RDD")
+                val cimedges = new CIMEdges (sqlContext, _StorageLevel)
+                cimedges.make_edges ()
+            }
+
+            // merge ISU and NIS ServiceLocations if requested
+            if (_Join)
+            {
+                logInfo ("joining ISU and NIS")
+                val join = new CIMJoin (sqlContext, _StorageLevel)
+                join.do_join ()
+            }
+
         }
         else
             logError ("buildScan was given an input list containing no files")
