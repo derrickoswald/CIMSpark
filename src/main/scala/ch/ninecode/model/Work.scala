@@ -17,6 +17,7 @@ extends
     Element
 {
     def this () = { this (null, null) }
+    def Location: Location = sup.asInstanceOf[Location]
     override def copy (): Row = { return (clone ().asInstanceOf[WorkLocation]); }
     override def get (i: Int): Any =
     {

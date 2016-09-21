@@ -213,7 +213,7 @@ extends
 
 case class ServiceLocation
 (
-    override val sup: Location,
+    override val sup: WorkLocation,
     val accessMethod: String,
     val needsInspection: Boolean,
     val siteAccessProblem: String
@@ -222,7 +222,7 @@ extends
     Element
 {
     def this () = { this (null, null, false, null) }
-    def Location: Location = sup.asInstanceOf[Location]
+    def WorkLocation: WorkLocation = sup.asInstanceOf[WorkLocation]
     override def copy (): Row = { return (clone ().asInstanceOf[ServiceLocation]); }
     override def get (i: Int): Any =
     {
@@ -246,7 +246,7 @@ extends
         return (
             ServiceLocation
             (
-                Location.parse (context),
+                WorkLocation.parse (context),
                 accessMethod (context),
                 toBoolean (needsInspection (context), context),
                 siteAccessProblem (context)

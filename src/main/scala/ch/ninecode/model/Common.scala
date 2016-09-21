@@ -569,8 +569,18 @@ extends
     val phone2 = parse_attribute (attribute ("""Location.phone2"""))_
     val secondaryAddress = parse_attribute (attribute ("""Location.secondaryAddress"""))_
     val status = parse_attribute (attribute ("""Location.status"""))_
+
+    val mainAddress_noncompliant = parse_element (element ("""Location.mainAddress"""))_
+    val secondaryAddress_noncompliant = parse_element (element ("""Location.secondaryAddress"""))_
+
     def parse (context: Context): Location =
     {
+        // to handle addresses without generating StreetAddress, StreetDetail & TownDetail elements
+        // we first try parsing the main and secondary addresses as simple strings
+        // and if these have a value, then we use that instead
+        // ToDo: clean this up and make CIM export from NIS compliant
+        val main = mainAddress_noncompliant (context)
+        val secondary = secondaryAddress_noncompliant (context)
         return (
             Location
             (
@@ -580,10 +590,10 @@ extends
                 typ (context),
                 CoordinateSystem (context),
                 electronicAddress (context),
-                mainAddress (context),
+                if (null == main) mainAddress (context) else main,
                 phone1 (context),
                 phone2 (context),
-                secondaryAddress (context),
+                if (null == secondary) secondaryAddress (context) else secondary,
                 status (context)
             )
         )

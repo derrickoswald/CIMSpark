@@ -24,7 +24,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
 
     def unbundle (a: Tuple2[Tuple2[Name,ServiceLocation], Tuple2[Name,ServiceLocation]]): Tuple2[String, Tuple2[ServiceLocation, ServiceLocation]] =
     {
-        return ((a._1._1.id, (a._1._2, a._2._2)))
+        return ((a._2._2.id, (a._1._2, a._2._2)))
     }
 
     def edit_service_location (a: Tuple2[ServiceLocation, Option[(String, (ServiceLocation, ServiceLocation))]]): ServiceLocation =
@@ -35,30 +35,38 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
                 case (Some (x)) ⇒
                 {
                     // for ISU ServiceLocation with a matching NIS ServiceLocation, make a merged one
-                    val nis = x._2._1
-                    val isu = x._2._2
-                    val id = IdentifiedObject (
+                    val isu = x._2._1
+                    val nis = x._2._2
+                    val element = BasicElement (
                         null,
-                        nis.Location.IdentifiedObject.aliasName, // aliasName, e.g. ######:nis_el_meter_point
-                        isu.Location.IdentifiedObject.aliasName, // description, e.g. Anschlussobjekt
-                        isu.Location.IdentifiedObject.mRID,      // mRID
-                        nis.Location.IdentifiedObject.name       // name, e.g. MST###
+                        isu.WorkLocation.Location.IdentifiedObject.mRID
+                    )
+                    val id = IdentifiedObject (
+                        element,
+                        nis.WorkLocation.Location.IdentifiedObject.aliasName, // aliasName, e.g. ######:nis_el_meter_point
+                        isu.WorkLocation.Location.IdentifiedObject.aliasName, // description, e.g. Anschlussobjekt
+                        element.mRID,                            // mRID
+                        nis.WorkLocation.Location.IdentifiedObject.name       // name, e.g. MST###
                     )
                     val location = Location (
                         id,
-                        isu.Location.direction,
-                        isu.Location.geoInfoReference,
-                        nis.Location.typ,               // e.g. geographic
-                        nis.Location.CoordinateSystem,  // e.g. wgs_84
-                        isu.Location.electronicAddress,
-                        isu.Location.mainAddress,
-                        isu.Location.phone1,
-                        isu.Location.phone2,
-                        isu.Location.secondaryAddress,
-                        isu.Location.status
+                        isu.WorkLocation.Location.direction,
+                        isu.WorkLocation.Location.geoInfoReference,
+                        nis.WorkLocation.Location.typ,               // e.g. geographic
+                        nis.WorkLocation.Location.CoordinateSystem,  // e.g. wgs_84
+                        isu.WorkLocation.Location.electronicAddress,
+                        isu.WorkLocation.Location.mainAddress,
+                        isu.WorkLocation.Location.phone1,
+                        isu.WorkLocation.Location.phone2,
+                        nis.WorkLocation.Location.secondaryAddress, // take any NIS address it might have
+                        isu.WorkLocation.Location.status
+                    )
+                    val worklocation = WorkLocation (
+                        location,
+                        isu.WorkLocation.OneCallRequest
                     )
                     ServiceLocation (
-                        location,
+                        worklocation,
                         isu.accessMethod,
                         isu.needsInspection,
                         isu.siteAccessProblem
@@ -66,7 +74,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
                 }
                 case (None) ⇒
                 {
-                    // default is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match
+                    // the default action is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match
                     a._1
                 }
             }
@@ -74,7 +82,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
     }
 
 
-    def delete_service_location (a: Tuple2[ServiceLocation, Option[(String, (ServiceLocation, ServiceLocation))]]): Boolean =
+    def delete_service_location (a: Tuple2[ServiceLocation, Option[(ServiceLocation, ServiceLocation)]]): Boolean =
     {
         return (
             a._2 match
@@ -93,7 +101,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
         )
     }
 
-    def edit_position_point (a: Tuple2[PositionPoint, Option[(String, (ServiceLocation, ServiceLocation))]]): PositionPoint =
+    def edit_position_point (a: Tuple2[PositionPoint, Option[(ServiceLocation, ServiceLocation)]]): PositionPoint =
     {
         return (
             a._2 match
@@ -107,7 +115,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
                         a._1.xPosition,
                         a._1.yPosition,
                         a._1.zPosition,
-                        x._2._2.id)
+                        x._1.id)
                 }
                 case (None) ⇒
                 {
@@ -118,7 +126,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
         )
     }
 
-    def edit_user_attribute (a: Tuple2[UserAttribute, Option[(String, (ServiceLocation, ServiceLocation))]]): UserAttribute =
+    def edit_user_attribute (a: Tuple2[UserAttribute, Option[(ServiceLocation, ServiceLocation)]]): UserAttribute =
     {
         return (
             a._2 match
@@ -128,7 +136,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
                     // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
                     UserAttribute (
                         BasicElement (null, a._1.id),
-                        x._2._2.id,
+                        x._1.id,
                         a._1.sequenceNumber,
                         a._1.PropertySpecification,
                         a._1.RatingSpecification,
@@ -144,7 +152,7 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
         )
     }
 
-    def delete_name (a: Tuple2[Name, Option[(String, (ServiceLocation, ServiceLocation))]]): Boolean =
+    def delete_name (a: Tuple2[Name, Option[(ServiceLocation, ServiceLocation)]]): Boolean =
     {
         return (
             a._2 match
@@ -206,20 +214,20 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
         val pairs = isusl.keyBy (_._1.id).join (nissl.keyBy (_._1.id)).values.map (unbundle)
 
         // step 1, edit (replace) ISU ServiceLocation that have a corresponding NIS ServiceLocation
-        val temp_locations = locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._2.id)).values.map (edit_service_location)
+        val temp_locations = locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._1.id)).values.map (edit_service_location)
         // step 4, delete the NIS ServiceLocations that have a corresponding ISU ServiceLocation
-        val updated_locations = temp_locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._1.id)).values.filter (delete_service_location).map (_._1)
+        val updated_locations = temp_locations.keyBy (_.id).leftOuterJoin (pairs).values.filter (delete_service_location).map (_._1)
 
         // step 2, change the Location attribute of affected PositionPoint
-        val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs.keyBy (_._2._2.id)).values.map (edit_position_point)
+        val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs).values.map (edit_position_point)
 
         // step 3, change the name attribute of affected UserAttribute
-        val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs.keyBy (_._2._2.id)).values.map (edit_user_attribute)
+        val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
 
         // step 5 and 6, delete the Name objects that are no longer needed
-        val updated_names = names.keyBy (_.IdentifiedObj).leftOuterJoin (pairs.keyBy (_._2._2.id)).values.filter (delete_name).map (_._1)
+        val updated_names = names.keyBy (_.IdentifiedObj).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
 
-        // swap the old for the new
+        // swap the old RDD for the new ones
 
         names.name = "trash_names"
         names.unpersist (false)
