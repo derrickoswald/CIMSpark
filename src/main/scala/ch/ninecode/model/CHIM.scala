@@ -459,7 +459,7 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L) extends Se
     Protection.register
     StateVariables.register
     Wires.register
-    Work.register
+    _Work.register
 
     def progress (): Float =
     {
