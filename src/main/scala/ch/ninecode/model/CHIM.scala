@@ -454,10 +454,14 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L) extends Se
     Common.register
     Core.register
     Customers.register
+    ExternalInputs.register
+    LoadModel.register
+    Meas.register
     Metering.register
     Production.register
     Protection.register
     StateVariables.register
+    Topology.register
     Wires.register
     _Work.register
 

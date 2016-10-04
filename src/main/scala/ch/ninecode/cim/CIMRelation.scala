@@ -40,6 +40,8 @@ class CIMRelation(
     val _Edges: Boolean = parameters.getOrElse ("ch.ninecode.cim.make_edges", "false").toBoolean
     // check for ISU join option
     val _Join: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_join", "false").toBoolean
+    // check for NTP option
+    val _Topo: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_topo", "false").toBoolean
 
     logInfo ("paths: " + paths.mkString (","))
     logInfo ("maybeDataSchema: " + maybeDataSchema.toString ())
@@ -176,6 +178,13 @@ class CIMRelation(
                 join.do_join ()
             }
 
+            // perform topological processing if requested
+            if (_Topo)
+            {
+                logInfo ("performing Network Topology Processing")
+                val ntp = new CIMNetworkTopologyProcessor (sqlContext, _StorageLevel)
+                ntp.process ()
+            }
         }
         else
             logError ("buildScan was given an input list containing no files")
