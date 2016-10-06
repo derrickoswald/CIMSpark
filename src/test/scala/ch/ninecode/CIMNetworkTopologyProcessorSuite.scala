@@ -42,6 +42,8 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         configuration.registerKryoClasses (Array (classOf[Element], classOf[BasicElement], classOf[Unknown]))
         // register CIM case classes
         CHIM.apply_to_all_classes { x => configuration.registerKryoClasses (Array (x.runtime_class)) }
+        // register topological classes
+        configuration.registerKryoClasses (Array (classOf[CuttingEdge], classOf[TopologicalData]))
 
         val context = new SparkContext (configuration)
         context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
@@ -82,7 +84,8 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-        FILE_DEPOT + "NIS_CIM_Export_b4_Guemligen" + ".rdf"
+//        FILE_DEPOT + "NIS_CIM_Export_b4_Guemligen" + ".rdf"
+        FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf"
         val elements = readFile (sql_context, filename)
 
         val read = System.nanoTime ()

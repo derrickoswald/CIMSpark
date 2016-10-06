@@ -113,7 +113,13 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
     def vertexProgram (id: VertexId, data: TopologicalData, message: TopologicalData): TopologicalData =
     {
-        return (TopologicalData (math.min (data.island, message.island), math.min (data.label, message.label)))
+        val ret = if (null == message)
+            // initialization call
+            data
+        else
+            TopologicalData (data.island, math.min (data.label, message.label))
+
+        return (ret)
     }
 
     // function to see if the nodes for an element are topologically connected
@@ -148,10 +154,11 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             case "PowerTransformer" =>
                 false
             case "ACLineSegment" =>
-                (0.0 <= element.asInstanceOf[ACLineSegment].Conductor.length) ||
-                (0.0 <= element.asInstanceOf[ACLineSegment].r)
+                val line = element.asInstanceOf[ACLineSegment]
+                //println ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "Ω/km " + !((line.Conductor.len > 0.0) && (line.r > 0.0)))
+                !((line.Conductor.len > 0.0) && (line.r > 0.0))
             case "Conductor" =>
-                (0.0 <= element.asInstanceOf[Conductor].length)
+                true
             case _ =>
             {
                 false
@@ -163,24 +170,23 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
     def sendMessage (triplet: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
     {
-        var ret:Iterator[(VertexId, TopologicalData)] = Iterator.empty
-
-        val same = isSameNode (triplet.attr.element)
-        if (triplet.srcAttr.island > triplet.dstAttr.island)
-            ret = Iterator ((triplet.dstId, TopologicalData (triplet.srcAttr.island, if (same) math.min (triplet.srcAttr.label, triplet.dstAttr.label) else triplet.dstAttr.label)))
-        else if (triplet.dstAttr.island > triplet.srcAttr.island)
-            ret = Iterator ((triplet.srcId, TopologicalData (triplet.dstAttr.island, if (same) math.min (triplet.srcAttr.label, triplet.dstAttr.label) else triplet.srcAttr.label)))
-        else if (same && triplet.srcAttr.label > triplet.dstAttr.label)
-            ret = Iterator ((triplet.dstId, TopologicalData (triplet.srcAttr.island, triplet.srcAttr.label)))
-        else if (same && triplet.dstAttr.label > triplet.srcAttr.label)
-            ret = Iterator ((triplet.srcId, TopologicalData (triplet.dstAttr.island, triplet.dstAttr.label)))
-
-        return (ret)
+        val same = isSameNode (triplet.attr.element) // true if these should be the same TopologicalNode
+        if (!same)
+            Iterator.empty
+        else if (triplet.srcAttr.label < triplet.dstAttr.label)
+            Iterator ((triplet.dstId, triplet.srcAttr))
+        else if (triplet.srcAttr.label > triplet.dstAttr.label)
+            Iterator ((triplet.srcId, triplet.dstAttr))
+        else
+           Iterator.empty
     }
 
     def mergeMessage (a: TopologicalData, b: TopologicalData): TopologicalData =
     {
-        return (TopologicalData (math.min (a.island, b.island), math.min (a.label, b.label)))
+        if (a.label == b.label)
+            a
+        else
+            TopologicalData (a.island, math.min (a.label, b.label))
     }
 
     def island_name (v: VertexId): String =
@@ -249,7 +255,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         )
     }
 
-    def update_cn (arg: Tuple2[VertexId, Tuple2[ConnectivityNode,Option[TopologicalNode]]]): ConnectivityNode =
+    def update_cn (arg: Tuple2[VertexId, Tuple2[ConnectivityNode,Option[TopologicalData]]]): ConnectivityNode =
     {
         return (
             ConnectivityNode
@@ -258,7 +264,27 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                 arg._2._1.ConnectivityNodeContainer,
                 arg._2._2 match
                 {
-                    case Some (node) => node.id
+                    case Some (node) => node_name (node.label)
+                    case None => ""
+                }
+            )
+        )
+    }
+
+    def update_terminals (arg: Tuple2[VertexId, Tuple2[Terminal,Option[TopologicalData]]]): Terminal =
+    {
+        return (
+            Terminal
+            (
+                arg._2._1.sup,
+                arg._2._1.phases,
+                arg._2._1.Bushing,
+                arg._2._1.ConductingEquipment,
+                arg._2._1.ConnectivityNode,
+                arg._2._1.SvPowerFlow,
+                arg._2._2 match
+                {
+                    case Some (node) => node_name (node.label)
                     case None => ""
                 }
             )
@@ -270,37 +296,61 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         // get the initial graph based on edges
         val initial = make_graph (sqlContext.sparkContext)
 
-        // traverse the graph with the Pregel algorithm
-        // assigns the minimum VertexId of all:
-        // - connected nodes (island)
-        // - electrically identical nodes (label)
-        // Note: on the first pass through the Pregel algorithm all nodes get a maximum message (TopologicalData (Long.MaxValue, Long.MaxValue))
-        val graph = initial.pregel[TopologicalData] (TopologicalData (), 10000, EdgeDirection.Either) (vertexProgram, sendMessage, mergeMessage)
+        // get the topological islands
+        val inseln = initial.connectedComponents ()
 
         // create TopologicalIsland RDD
-        val islands = graph.vertices.map (_._2.island).distinct.map (to_islands)
+        val islands = inseln.vertices.values.distinct ().map (to_islands)
+        val islandcount = islands.count
+        println ("islands: " + islandcount)
+        if (0 != islandcount)
+            println (islands.first)
+        val old_islands = get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]]
+        old_islands.unpersist (true)
         islands.name = "TopologicalIsland"
         islands.persist (storage)
         sqlContext.createDataFrame (islands).registerTempTable ("TopologicalIsland")
 
+        // initialize the label graph
+        val labels = inseln.mapVertices { case (vid, island) => TopologicalData (island, vid) }
+
+        // traverse the graph with the Pregel algorithm
+        // assigns the minimum VertexId of all electrically identical nodes (label)
+        // Note: on the first pass through the Pregel algorithm all nodes get a null message
+        val graph = labels.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertexProgram, sendMessage, mergeMessage)
+
         // create TopologicalNode RDD
         val nodes = graph.vertices.map (_._2).groupBy (_.label).map (to_nodes) // ToDo: is there a  better way than GroupBy?
+        val nodecount = nodes.count
+        println ("nodes: " + nodecount)
+        if (0 != nodecount)
+            println (nodes.first)
+        val old_tn = get ("TopologicalNode", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalNode]]
+        old_tn.unpersist (true)
         nodes.name = "TopologicalNode"
-        nodes.persist (storage)
+        val stuff = nodes.persist (storage)
         sqlContext.createDataFrame (nodes).registerTempTable ("TopologicalNode")
 
         // assign every ConnectivtyNode to a TopologicalNode
         val old_cn = get ("ConnectivityNode", sqlContext.sparkContext).asInstanceOf[RDD[ConnectivityNode]]
-        val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (nodes.keyBy (_.IdentifiedObject.aliasName.toLong)).map (update_cn)
+        val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).map (update_cn)
 
         // swap the old RDD for the new one
-
         old_cn.name = "trash_connectivitynode"
         old_cn.unpersist (false)
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
         sqlContext.createDataFrame (new_cn).registerTempTable ("ConnectivityNode")
 
-        // ToDo: assign every Terminal to a TopologicalNode
+        // assign every Terminal to a TopologicalNode
+        val old_terminals = get ("Terminal", sqlContext.sparkContext).asInstanceOf[RDD[Terminal]]
+        val new_terminals = old_terminals.filter (null != _.ConnectivityNode).keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).map (update_terminals)
+
+        // swap the old RDD for the new one
+        old_terminals.name = "trash_terminal"
+        old_terminals.unpersist (false)
+        new_terminals.name = "Terminal"
+        new_terminals.persist (storage)
+        sqlContext.createDataFrame (new_terminals).registerTempTable ("Terminal")
     }
 }
