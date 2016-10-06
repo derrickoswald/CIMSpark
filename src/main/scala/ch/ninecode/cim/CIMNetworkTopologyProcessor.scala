@@ -191,7 +191,9 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
     def island_name (v: VertexId): String =
     {
-        return ("topoisland_" + v.toString) // ToDo: is it legal to have dashes (minus signs) in element names
+        // ToDo: is it legal to have dashes (minus signs) in element names
+        val ret = if (Long.MaxValue == v) "" else "topoisland_" + v.toString
+        return (ret)
     }
 
     def to_islands (v: VertexId): TopologicalIsland =
@@ -291,28 +293,53 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         )
     }
 
-    def process (): Unit =
+//    /** Connected components algorithm for debugging. */
+//    def connectedComponents (graph: Graph[TopologicalData, CuttingEdge]): Graph[VertexId, CuttingEdge] =
+//    {
+//        val ccGraph = graph.mapVertices { case (vid, _) => vid }
+//        def sendMessage (edge: EdgeTriplet[VertexId, CuttingEdge]): Iterator[(VertexId, VertexId)] =
+//        {
+//            if (edge.srcAttr < edge.dstAttr)
+//                Iterator ((edge.dstId, edge.srcAttr))
+//            else if (edge.srcAttr > edge.dstAttr)
+//                Iterator ((edge.srcId, edge.dstAttr))
+//            else
+//                Iterator.empty
+//        }
+//        val initialMessage = Long.MaxValue
+//        ccGraph.pregel[VertexId] (initialMessage, 4, activeDirection = EdgeDirection.Either) (
+//            vprog = (id, attr, msg) => math.min (attr, msg),
+//            sendMsg = sendMessage,
+//            mergeMsg = (a, b) => math.min (a, b))
+//    }
+
+    def process (identify_islands: Boolean): Unit =
     {
         // get the initial graph based on edges
         val initial = make_graph (sqlContext.sparkContext)
 
-        // get the topological islands
-        val inseln = initial.connectedComponents ()
+        val labels = if (identify_islands)
+        {
+            // get the topological islands
+            val inseln = initial.connectedComponents () // connectedComponents (initial)
 
-        // create TopologicalIsland RDD
-        val islands = inseln.vertices.values.distinct ().map (to_islands)
-        val islandcount = islands.count
-        println ("islands: " + islandcount)
-        if (0 != islandcount)
-            println (islands.first)
-        val old_islands = get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]]
-        old_islands.unpersist (true)
-        islands.name = "TopologicalIsland"
-        islands.persist (storage)
-        sqlContext.createDataFrame (islands).registerTempTable ("TopologicalIsland")
+            // create TopologicalIsland RDD
+            val islands = inseln.vertices.values.distinct ().map (to_islands)
+            val islandcount = islands.count
+            println ("islands: " + islandcount)
+            if (0 != islandcount)
+                println (islands.first)
+            val old_islands = get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]]
+            old_islands.unpersist (true)
+            islands.name = "TopologicalIsland"
+            islands.persist (storage)
+            sqlContext.createDataFrame (islands).registerTempTable ("TopologicalIsland")
 
-        // initialize the label graph
-        val labels = inseln.mapVertices { case (vid, island) => TopologicalData (island, vid) }
+            // initialize the label graph
+            inseln.mapVertices { case (vid, island) => TopologicalData (island, vid) }
+        }
+        else
+            initial.mapVertices { case (vid, _) => TopologicalData (label = vid) }
 
         // traverse the graph with the Pregel algorithm
         // assigns the minimum VertexId of all electrically identical nodes (label)

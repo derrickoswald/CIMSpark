@@ -84,7 +84,32 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-//        FILE_DEPOT + "NIS_CIM_Export_b4_Guemligen" + ".rdf"
+        FILE_DEPOT + "NIS_CIM_Export_b4_Guemligen" + ".rdf"
+        val elements = readFile (sql_context, filename)
+
+        val read = System.nanoTime ()
+
+        // set up for execution
+        val topo = new CIMNetworkTopologyProcessor (sql_context, StorageLevel.MEMORY_AND_DISK_SER)
+        topo.process (false)
+
+        val process = System.nanoTime ()
+
+        println ("read : " + (read - start) / 1e9 + " seconds")
+        println ("process: " + (process - read) / 1e9 + " seconds")
+        println ()
+    }
+
+    test ("Islands")
+    {
+        a: ContextPair ⇒
+
+        val start = System.nanoTime ()
+
+        val context: SparkContext = a._SparkContext
+        val sql_context: SQLContext = a._SQLContext
+
+        val filename =
         FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf"
         val elements = readFile (sql_context, filename)
 
@@ -92,7 +117,7 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
 
         // set up for execution
         val topo = new CIMNetworkTopologyProcessor (sql_context, StorageLevel.MEMORY_AND_DISK_SER)
-        topo.process ()
+        topo.process (true) // islands take a lot of work
 
         val process = System.nanoTime ()
 

@@ -42,6 +42,8 @@ class CIMRelation(
     val _Join: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_join", "false").toBoolean
     // check for NTP option
     val _Topo: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_topo", "false").toBoolean
+    // check for NTP island option
+    val _Islands: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_topo_islands", "false").toBoolean
 
     logInfo ("paths: " + paths.mkString (","))
     logInfo ("maybeDataSchema: " + maybeDataSchema.toString ())
@@ -179,11 +181,11 @@ class CIMRelation(
             }
 
             // perform topological processing if requested
-            if (_Topo)
+            if (_Topo || _Islands)
             {
                 logInfo ("performing Network Topology Processing")
                 val ntp = new CIMNetworkTopologyProcessor (sqlContext, _StorageLevel)
-                ntp.process ()
+                ntp.process (_Islands)
             }
         }
         else
