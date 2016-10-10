@@ -17,9 +17,30 @@ import ch.ninecode.model._
 case class CuttingEdge (id_seq_1: String, id_cn_1: String, id_seq_2: String, id_cn_2: String, id_equ: String, equipment: ConductingEquipment, element: Element) extends Serializable
 /**
  * island is min of all connected ConnectivityNode ( single topological island)
- * label is min of equivalent ConnectivityNode (a single topological node)
+ * node is min of equivalent ConnectivityNode (a single topological node)
+ * label is a user freindly label
  */
-case class TopologicalData (island: VertexId = Long.MaxValue, label: VertexId = Long.MaxValue) extends Serializable
+case class TopologicalData (island: VertexId = Long.MaxValue, node: VertexId = Long.MaxValue, label: String = "") extends Serializable
+{
+    def name: String =
+    {
+        if (label.endsWith ("_node_fuse"))
+            label.substring (0, label.length - "_node_fuse".length) + "_topo_fuse"
+        else if (label.endsWith ("_node"))
+            label.substring (0, label.length - "_node".length) + "_topo"
+        else
+            label + "_topo"
+    }
+    def island_name: String =
+    {
+        if (label.endsWith ("_node_fuse"))
+            label.substring (0, label.length - "_node_fuse".length) + "_island_fuse"
+        else if (label.endsWith ("_node"))
+            label.substring (0, label.length - "_node".length) + "_island"
+        else
+            label + "_island"
+    }
+}
 
 /**
  * Create a topology.
@@ -98,6 +119,12 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         return (org.apache.spark.graphx.Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e))
     }
 
+    def to_vertex (n: ConnectivityNode): TopologicalData =
+    {
+        val id = vertex_id (n.id)
+        TopologicalData (id, id, n.id)
+    }
+
     def make_graph (sc: SparkContext): Graph[TopologicalData, CuttingEdge] =
     {
         // get the terminals keyed by equipment
@@ -107,8 +134,11 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         val edges = get ("Elements", sc).asInstanceOf[RDD[Element]].keyBy (_.id).join (terms)
             .flatMapValues (edge_operator).values
 
+        // get the vertices
+        val vertices = get ("ConnectivityNode", sc).asInstanceOf[RDD[ConnectivityNode]].map (to_vertex).keyBy (_.node)
+
         // construct the initial graph from the edges
-        return (Graph.fromEdges[TopologicalData, CuttingEdge](edges.map (make_graph_edges), TopologicalData (), storage, storage))
+        return (Graph.apply[TopologicalData, CuttingEdge](vertices, edges.map (make_graph_edges), TopologicalData (), storage, storage))
     }
 
     def vertexProgram (id: VertexId, data: TopologicalData, message: TopologicalData): TopologicalData =
@@ -117,7 +147,10 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             // initialization call
             data
         else
-            TopologicalData (data.island, math.min (data.label, message.label))
+            if (data.node < message.node)
+                TopologicalData (data.island, data.node, data.label)
+            else
+                TopologicalData (data.island, message.node, message.label)
 
         return (ret)
     }
@@ -173,9 +206,9 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         val same = isSameNode (triplet.attr.element) // true if these should be the same TopologicalNode
         if (!same)
             Iterator.empty
-        else if (triplet.srcAttr.label < triplet.dstAttr.label)
+        else if (triplet.srcAttr.node < triplet.dstAttr.node)
             Iterator ((triplet.dstId, triplet.srcAttr))
-        else if (triplet.srcAttr.label > triplet.dstAttr.label)
+        else if (triplet.srcAttr.node > triplet.dstAttr.node)
             Iterator ((triplet.srcId, triplet.dstAttr))
         else
            Iterator.empty
@@ -183,21 +216,17 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
     def mergeMessage (a: TopologicalData, b: TopologicalData): TopologicalData =
     {
-        if (a.label == b.label)
+        if (a.node <= b.node)
             a
         else
-            TopologicalData (a.island, math.min (a.label, b.label))
+            b
     }
 
-    def island_name (v: VertexId): String =
+    def to_islands (nodes: Iterable[TopologicalData]): TopologicalIsland =
     {
-        // ToDo: is it legal to have dashes (minus signs) in element names
-        val ret = if (Long.MaxValue == v) "" else "topoisland_" + v.toString
-        return (ret)
-    }
-
-    def to_islands (v: VertexId): TopologicalIsland =
-    {
+        // ToDo: should sort these somehow and always choose the same one
+        val name = nodes.head.island_name
+        val alias = nodes.head.toString
         return (
             TopologicalIsland
             (
@@ -206,21 +235,16 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                     BasicElement
                     (
                         null,
-                        island_name (v)
+                        name
                     ),
-                    v.toString, // aliasName: String
+                    alias, // aliasName: String
                     "", // description: String
-                    island_name (v),  // mRID: String
+                    name,  // mRID: String
                     ""  // name: String
                 ),
                 "" // AngleRefTopologicalNode: String
             )
         )
-    }
-
-    def node_name (v: VertexId): String =
-    {
-        return ("toponode_" + v.toString) // ToDo: is it legal to have dashes (minus signs) in element names
     }
 
     def to_nodes (arg: Tuple2[VertexId, Iterable[TopologicalData]]): TopologicalNode =
@@ -229,6 +253,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         // val uniques = arg._2.filterNot { x => x.island == arg._2.head.island }
         // if (uniques.size != 0)
         //     println ("ah shit")
+        val name = arg._2.head.name
         return (
             TopologicalNode
             (
@@ -237,11 +262,11 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                     BasicElement
                     (
                         null,
-                        node_name (arg._1)
+                        name
                     ),
                     arg._1.toString, // aliasName: String
                     "", // description: String
-                    node_name (arg._1),  // mRID: String
+                    name,  // mRID: String
                     ""  // name: String
                 ),
                 0.0, // pInjection: Double,
@@ -252,7 +277,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                 "", // ReportingGroup: String,
                 "", // SvInjection: String,
                 "", // SvVoltage: String,
-                island_name (arg._2.head.island)  // TopologicalIsland: String
+                arg._2.head.island_name  // TopologicalIsland: String
             )
         )
     }
@@ -266,7 +291,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                 arg._2._1.ConnectivityNodeContainer,
                 arg._2._2 match
                 {
-                    case Some (node) => node_name (node.label)
+                    case Some (node) => node.name
                     case None => ""
                 }
             )
@@ -286,45 +311,43 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                 arg._2._1.SvPowerFlow,
                 arg._2._2 match
                 {
-                    case Some (node) => node_name (node.label)
+                    case Some (node) => node.name
                     case None => ""
                 }
             )
         )
     }
 
-//    /** Connected components algorithm for debugging. */
-//    def connectedComponents (graph: Graph[TopologicalData, CuttingEdge]): Graph[VertexId, CuttingEdge] =
-//    {
-//        val ccGraph = graph.mapVertices { case (vid, _) => vid }
-//        def sendMessage (edge: EdgeTriplet[VertexId, CuttingEdge]): Iterator[(VertexId, VertexId)] =
-//        {
-//            if (edge.srcAttr < edge.dstAttr)
-//                Iterator ((edge.dstId, edge.srcAttr))
-//            else if (edge.srcAttr > edge.dstAttr)
-//                Iterator ((edge.srcId, edge.dstAttr))
-//            else
-//                Iterator.empty
-//        }
-//        val initialMessage = Long.MaxValue
-//        ccGraph.pregel[VertexId] (initialMessage, 4, activeDirection = EdgeDirection.Either) (
-//            vprog = (id, attr, msg) => math.min (attr, msg),
-//            sendMsg = sendMessage,
-//            mergeMsg = (a, b) => math.min (a, b))
-//    }
+    // like Graph.connectedComponents except it keeps the labels
+    def connectedComponents (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
+    {
+        def sendMessage (edge: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
+        {
+            if (edge.srcAttr.island < edge.dstAttr.island)
+                Iterator ((edge.dstId, edge.srcAttr))
+            else if (edge.srcAttr.island > edge.dstAttr.island)
+                Iterator ((edge.srcId, edge.dstAttr))
+            else
+                Iterator.empty
+        }
+        graph.pregel[TopologicalData] (null, 10000, activeDirection = EdgeDirection.Either) (
+            vprog = (id, attr, msg) => if (null == msg) attr else if (attr.island < msg.island) attr else TopologicalData (msg.island, attr.node, attr.label),
+            sendMsg = sendMessage,
+            mergeMsg = (a, b) => TopologicalData (math.min (a.island, b.island), a.node, a.label))
+    }
 
     def process (identify_islands: Boolean): Unit =
     {
         // get the initial graph based on edges
         val initial = make_graph (sqlContext.sparkContext)
 
-        val labels = if (identify_islands)
+        val raw = if (identify_islands)
         {
             // get the topological islands
-            val inseln = initial.connectedComponents () // connectedComponents (initial)
+            val inseln = connectedComponents (initial)
 
             // create TopologicalIsland RDD
-            val islands = inseln.vertices.values.distinct ().map (to_islands)
+            val islands = inseln.vertices.values.groupBy (_.island).values.map (to_islands)
             val islandcount = islands.count
             println ("islands: " + islandcount)
             if (0 != islandcount)
@@ -335,19 +358,19 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             islands.persist (storage)
             sqlContext.createDataFrame (islands).registerTempTable ("TopologicalIsland")
 
-            // initialize the label graph
-            inseln.mapVertices { case (vid, island) => TopologicalData (island, vid) }
+            // initialize the graph
+            inseln
         }
         else
-            initial.mapVertices { case (vid, _) => TopologicalData (label = vid) }
+            initial
 
         // traverse the graph with the Pregel algorithm
-        // assigns the minimum VertexId of all electrically identical nodes (label)
+        // assigns the minimum VertexId of all electrically identical nodes (node)
         // Note: on the first pass through the Pregel algorithm all nodes get a null message
-        val graph = labels.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertexProgram, sendMessage, mergeMessage)
+        val graph = raw.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertexProgram, sendMessage, mergeMessage)
 
         // create TopologicalNode RDD
-        val nodes = graph.vertices.map (_._2).groupBy (_.label).map (to_nodes) // ToDo: is there a  better way than GroupBy?
+        val nodes = graph.vertices.map (_._2).groupBy (_.node).map (to_nodes) // ToDo: is there a  better way than GroupBy?
         val nodecount = nodes.count
         println ("nodes: " + nodecount)
         if (0 != nodecount)
