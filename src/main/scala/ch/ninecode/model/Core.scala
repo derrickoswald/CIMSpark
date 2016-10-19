@@ -452,6 +452,56 @@ extends
     }
 }
 
+case class CurveData
+(
+    override val sup: Element,
+    val xvalue: Double,
+    val y1value: Double,
+    val y2value: Double,
+    val y3value: Double,
+    val Curve: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null ) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[CurveData]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object CurveData
+extends
+    Parseable[CurveData]
+{
+    val xvalue = parse_element (element ("""CurveData.xvalue"""))_
+    val y1value = parse_element (element ("""CurveData.y1value"""))_
+    val y2value = parse_element (element ("""CurveData.y2value"""))_
+    val y3value = parse_element (element ("""CurveData.y3value"""))_
+    val Curve = parse_attribute (attribute ("""CurveData.Curve"""))_
+    def parse (context: Context): CurveData =
+    {
+        return (
+            CurveData
+            (
+                BasicElement.parse (context),
+                toDouble (xvalue (context), context),
+                toDouble (y1value (context), context),
+                toDouble (y2value (context), context),
+                toDouble (y3value (context), context),
+                Curve (context)
+            )
+        )
+    }
+}
+
 case class Equipment
 (
     override val sup: PowerSystemResource,
@@ -531,6 +581,41 @@ extends
     }
 }
 
+case class GeographicalRegion
+(
+    override val sup: IdentifiedObject
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { return (clone ().asInstanceOf[GeographicalRegion]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object GeographicalRegion
+extends
+    Parseable[GeographicalRegion]
+{
+    def parse (context: Context): GeographicalRegion =
+    {
+        return (
+            GeographicalRegion
+            (
+                IdentifiedObject.parse (context)
+            )
+        )
+    }
+}
+
 /**
  * Top level CIM object.
  */
@@ -567,7 +652,6 @@ extends
     val aliasName = parse_element (element ("""IdentifiedObject.aliasName"""))_
     val description = parse_element (element ("""IdentifiedObject.description"""))_
     val name = parse_element (element ("""IdentifiedObject.name"""))_
-
     def parse (context: Context): IdentifiedObject =
     {
         val element = BasicElement.parse (context)
@@ -578,6 +662,88 @@ extends
                 description (context),
                 element.mRID,
                 name (context)
+            )
+        )
+    }
+}
+
+case class IrregularIntervalSchedule
+(
+    override val sup: BasicIntervalSchedule
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def BasicIntervalSchedule: BasicIntervalSchedule = sup.asInstanceOf[BasicIntervalSchedule]
+    override def copy (): Row = { return (clone ().asInstanceOf[IrregularIntervalSchedule]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object IrregularIntervalSchedule
+extends
+    Parseable[IrregularIntervalSchedule]
+{
+    def parse (context: Context): IrregularIntervalSchedule =
+    {
+        return (
+            IrregularIntervalSchedule
+            (
+                BasicIntervalSchedule.parse (context)
+            )
+        )
+    }
+}
+
+case class IrregularTimePoint
+(
+    override val sup: Element,
+    val time: Double,
+    val value1: Double,
+    val value2: Double,
+    val IntervalSchedule: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, null ) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[IrregularTimePoint]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object IrregularTimePoint
+extends
+    Parseable[IrregularTimePoint]
+{
+    val time = parse_element (element ("""IrregularTimePoint.time"""))_
+    val value1 = parse_element (element ("""IrregularTimePoint.value1"""))_
+    val value2 = parse_element (element ("""IrregularTimePoint.value2"""))_
+    val IntervalSchedule = parse_attribute (attribute ("""IrregularTimePoint.IntervalSchedule"""))_
+    def parse (context: Context): IrregularTimePoint =
+    {
+        return (
+            IrregularTimePoint
+            (
+                BasicElement.parse (context),
+                toDouble (time (context), context),
+                toDouble (value1 (context), context),
+                toDouble (value2 (context), context),
+                IntervalSchedule (context)
             )
         )
     }
@@ -712,6 +878,85 @@ extends
     }
 }
 
+case class OperatingParticipant
+(
+    override val sup: IdentifiedObject
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { return (clone ().asInstanceOf[OperatingParticipant]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object OperatingParticipant
+extends
+    Parseable[OperatingParticipant]
+{
+    def parse (context: Context): OperatingParticipant =
+    {
+        return (
+            OperatingParticipant
+            (
+                IdentifiedObject.parse (context)
+            )
+        )
+    }
+}
+
+case class OperatingShare
+(
+    override val sup: Element,
+    val percentage: Double,
+    val OperatingParticipant: String,
+    val PowerSystemRecource: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[OperatingShare]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object OperatingShare
+extends
+    Parseable[OperatingShare]
+{
+    def parse (context: Context): OperatingShare =
+    {
+        val percentage = parse_element (element ("""OperatingShare.percentage"""))_
+        val OperatingParticipant = parse_attribute (attribute ("""OperatingShare.OperatingParticipant"""))_
+        val PowerSystemRecource = parse_attribute (attribute ("""OperatingShare.PowerSystemRecource"""))_
+        return (
+            OperatingShare
+            (
+                BasicElement.parse (context),
+                toDouble (percentage (context), context),
+                OperatingParticipant (context),
+                PowerSystemRecource (context)
+            )
+        )
+    }
+}
+
 case class PSRType
 (
     override val sup: IdentifiedObject
@@ -832,16 +1077,171 @@ extends
     }
 }
 
-case class Substation
+case class RegularTimePoint
 (
-    override val sup: ConnectivityNodeContainer,
+    override val sup: Element,
+    val sequenceNumber: Int,
+    val value1: Double,
+    val value2: Double,
+    val IntervalSchedule: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0, 0.0, 0.0, null ) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[RegularTimePoint]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object RegularTimePoint
+extends
+    Parseable[RegularTimePoint]
+{
+    val sequenceNumber = parse_element (element ("""RegularTimePoint.sequenceNumber"""))_
+    val value1 = parse_element (element ("""RegularTimePoint.value1"""))_
+    val value2 = parse_element (element ("""RegularTimePoint.value2"""))_
+    val IntervalSchedule = parse_attribute (attribute ("""RegularTimePoint.IntervalSchedule"""))_
+    def parse (context: Context): RegularTimePoint =
+    {
+        return (
+            RegularTimePoint
+            (
+                BasicElement.parse (context),
+                toInteger (sequenceNumber (context), context),
+                toDouble (value1 (context), context),
+                toDouble (value2 (context), context),
+                IntervalSchedule (context)
+            )
+        )
+    }
+}
+
+case class ReportingGroup
+(
+    override val sup: IdentifiedObject
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { return (clone ().asInstanceOf[ReportingGroup]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object ReportingGroup
+extends
+    Parseable[ReportingGroup]
+{
+    def parse (context: Context): ReportingGroup =
+    {
+        return (
+            ReportingGroup
+            (
+                IdentifiedObject.parse (context)
+            )
+        )
+    }
+}
+
+case class ReportingSuperGroup
+(
+    override val sup: IdentifiedObject
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { return (clone ().asInstanceOf[ReportingSuperGroup]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object ReportingSuperGroup
+extends
+    Parseable[ReportingSuperGroup]
+{
+    def parse (context: Context): ReportingSuperGroup =
+    {
+        return (
+            ReportingSuperGroup
+            (
+                IdentifiedObject.parse (context)
+            )
+        )
+    }
+}
+
+case class SubGeographicalRegion
+(
+    override val sup: IdentifiedObject,
     val Region: String
 )
 extends
     Element
 {
     def this () = { this (null, null) }
-    def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { return (clone ().asInstanceOf[SubGeographicalRegion]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object SubGeographicalRegion
+extends
+    Parseable[SubGeographicalRegion]
+{
+    val Region = parse_attribute (attribute ("""SubGeographicalRegion.Region"""))_
+    def parse (context: Context): SubGeographicalRegion =
+    {
+        return (
+            SubGeographicalRegion
+            (
+                IdentifiedObject.parse (context),
+                Region (context)
+            )
+        )
+    }
+}
+
+case class Substation
+(
+    override val sup: EquipmentContainer,
+    val Region: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { return (clone ().asInstanceOf[Substation]); }
     override def get (i: Int): Any =
     {
@@ -863,7 +1263,7 @@ extends
         return (
             Substation
             (
-                ConnectivityNodeContainer.parse (context),
+                EquipmentContainer.parse (context),
                 Region (context)
             )
         )
@@ -984,15 +1384,25 @@ object Core
         ConnectivityNode.register
         ConnectivityNodeContainer.register
         Curve.register
+        CurveData.register
         Equipment.register
         EquipmentContainer.register
+        GeographicalRegion.register
         IdentifiedObject.register
+        IrregularIntervalSchedule.register
+        IrregularTimePoint.register
         Name.register
         NameType.register
         NameTypeAuthority.register
+        OperatingParticipant.register
+        OperatingShare.register
         PSRType.register
         PowerSystemResource.register
         RegularIntervalSchedule.register
+        RegularTimePoint.register
+        ReportingGroup.register
+        ReportingSuperGroup.register
+        SubGeographicalRegion.register
         Substation.register
         Terminal.register
         VoltageLevel.register

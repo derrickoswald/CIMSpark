@@ -956,7 +956,6 @@ object _AssetInfo
         CableInfo.register
         ConcentricNeutralCableInfo.register
         NoLoadTest.register
-        NoLoadTest.register
         OpenCircuitTest.register
         OverheadWireInfo.register
         PowerTransformerInfo.register

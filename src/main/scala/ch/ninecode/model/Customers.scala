@@ -64,6 +64,50 @@ extends
     }
 }
 
+case class CustomerAccount
+(
+    override val sup: Document,
+    val billingCycle: String,
+    val budgetBill: String,
+    val Customer: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Document: Document = sup.asInstanceOf[Document]
+    override def copy (): Row = { return (clone ().asInstanceOf[CustomerAccount]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object CustomerAccount
+extends
+    Parseable[CustomerAccount]
+{
+    val billingCycle = parse_element (element ("""CustomerAccount.billingCycle"""))_
+    val budgetBill = parse_element (element ("""CustomerAccount.budgetBill"""))_
+    val Customer = parse_attribute (attribute ("""CustomerAccount.Customer"""))_
+    def parse (context: Context): CustomerAccount =
+    {
+        return (
+            CustomerAccount
+            (
+                Document.parse (context),
+                billingCycle (context),
+                budgetBill (context),
+                Customer (context)
+            )
+        )
+    }
+}
+
 case class CustomerAgreement
 (
     override val sup: Agreement,
@@ -255,14 +299,57 @@ extends
     }
 }
 
+case class Tariff
+(
+    override val sup: Document,
+    val endDate: String,
+    val startDate: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Document: Document = sup.asInstanceOf[Document]
+    override def copy (): Row = { return (clone ().asInstanceOf[Tariff]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object Tariff
+extends
+    Parseable[Tariff]
+{
+    val endDate = parse_element (element ("""Tariff.endDate"""))_
+    val startDate = parse_element (element ("""Tariff.startDate"""))_
+    def parse (context: Context): Tariff =
+    {
+        return (
+            Tariff
+            (
+                Document.parse (context),
+                endDate (context),
+                startDate (context)
+            )
+        )
+    }
+}
+
 object Customers
 {
     def register: Unit =
     {
         Customer.register
+        CustomerAccount.register
         CustomerAgreement.register
         PricingStructure.register
         ServiceCategory.register
         ServiceLocation.register
+        Tariff.register
     }
 }
