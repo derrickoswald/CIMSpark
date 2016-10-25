@@ -20,7 +20,7 @@ case class CuttingEdge (id_seq_1: String, id_cn_1: String, id_seq_2: String, id_
  * node is min of equivalent ConnectivityNode (a single topological node)
  * label is a user freindly label
  */
-case class TopologicalData (island: VertexId = Long.MaxValue, node: VertexId = Long.MaxValue, label: String = "") extends Serializable
+case class TopologicalData (var island: VertexId = Long.MaxValue, var node: VertexId = Long.MaxValue, var label: String = "") extends Serializable
 {
     def name: String =
     {
@@ -31,14 +31,18 @@ case class TopologicalData (island: VertexId = Long.MaxValue, node: VertexId = L
         else
             label + "_topo"
     }
+
     def island_name: String =
     {
-        if (label.endsWith ("_node_fuse"))
-            label.substring (0, label.length - "_node_fuse".length) + "_island_fuse"
-        else if (label.endsWith ("_node"))
-            label.substring (0, label.length - "_node".length) + "_island"
+        if (0 == island)
+            ""
         else
-            label + "_island"
+            if (label.endsWith ("_node_fuse"))
+                label.substring (0, label.length - "_node_fuse".length) + "_island_fuse"
+            else if (label.endsWith ("_node"))
+                label.substring (0, label.length - "_node".length) + "_island"
+            else
+                label + "_island"
     }
 }
 
@@ -122,7 +126,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
     def to_vertex (n: ConnectivityNode): TopologicalData =
     {
         val id = vertex_id (n.id)
-        TopologicalData (id, id, n.id)
+        TopologicalData (0.asInstanceOf[VertexId], id, n.id)
     }
 
     def make_graph (sc: SparkContext): Graph[TopologicalData, CuttingEdge] =
@@ -143,16 +147,14 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
     def vertexProgram (id: VertexId, data: TopologicalData, message: TopologicalData): TopologicalData =
     {
-        val ret = if (null == message)
-            // initialization call
-            data
-        else
-            if (data.node < message.node)
-                TopologicalData (data.island, data.node, data.label)
-            else
-                TopologicalData (data.island, message.node, message.label)
+        if (null != message) // not initialization call?
+            if (data.node > message.node)
+            {
+                data.node = message.node
+                data.label = message.label
+            }
 
-        return (ret)
+        return (data)
     }
 
     // function to see if the nodes for an element are topologically connected
@@ -188,8 +190,9 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                 false
             case "ACLineSegment" =>
                 val line = element.asInstanceOf[ACLineSegment]
-                //println ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "Ω/km " + !((line.Conductor.len > 0.0) && (line.r > 0.0)))
-                !((line.Conductor.len > 0.0) && (line.r > 0.0))
+                val nonzero = ((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
+                //println ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "+" + line.x + "jΩ/km " + !nonzero)
+                !nonzero
             case "Conductor" =>
                 true
             case _ =>
@@ -205,13 +208,14 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
     {
         val same = isSameNode (triplet.attr.element) // true if these should be the same TopologicalNode
         if (!same)
-            Iterator.empty
-        else if (triplet.srcAttr.node < triplet.dstAttr.node)
-            Iterator ((triplet.dstId, triplet.srcAttr))
-        else if (triplet.srcAttr.node > triplet.dstAttr.node)
-            Iterator ((triplet.srcId, triplet.dstAttr))
+            Iterator.empty // send no message across a topological boundary
         else
-           Iterator.empty
+            if (triplet.srcAttr.node < triplet.dstAttr.node)
+                Iterator ((triplet.dstId, triplet.srcAttr))
+            else if (triplet.srcAttr.node > triplet.dstAttr.node)
+                Iterator ((triplet.srcId, triplet.dstAttr))
+            else
+                Iterator.empty
     }
 
     def mergeMessage (a: TopologicalData, b: TopologicalData): TopologicalData =
@@ -226,7 +230,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
     {
         // ToDo: should sort these somehow and always choose the same one
         val name = nodes.head.island_name
-        val alias = nodes.head.toString
+        val alias = nodes.head.island.toString
         return (
             TopologicalIsland
             (
@@ -321,7 +325,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
     // like Graph.connectedComponents except it keeps the labels
     def connectedComponents (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
     {
-        def sendMessage (edge: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
+        def send_message (edge: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
         {
             if (edge.srcAttr.island < edge.dstAttr.island)
                 Iterator ((edge.dstId, edge.srcAttr))
@@ -330,10 +334,31 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             else
                 Iterator.empty
         }
-        graph.pregel[TopologicalData] (null, 10000, activeDirection = EdgeDirection.Either) (
-            vprog = (id, attr, msg) => if (null == msg) attr else if (attr.island < msg.island) attr else TopologicalData (msg.island, attr.node, attr.label),
-            sendMsg = sendMessage,
-            mergeMsg = (a, b) => TopologicalData (math.min (a.island, b.island), a.node, a.label))
+        def vertex_program (id: VertexId, attr: TopologicalData, msg: TopologicalData): TopologicalData =
+        {
+            if (null == msg)
+            {
+                attr.island = attr.node // initially assign each node to it's own island
+                attr
+            }
+            else
+                if (attr.island < msg.island)
+                    attr
+                else
+                {
+                    msg.node = attr.node
+                    msg.label = attr.label
+                    msg
+                }
+        }
+        def merge_message (a: TopologicalData, b: TopologicalData): TopologicalData =
+        {
+            if (a.island < b.island)
+                a
+            else
+                b
+        }
+        graph.pregel[TopologicalData] (null, 10000, activeDirection = EdgeDirection.Either) (vertex_program, send_message, merge_message)
     }
 
     def process (identify_islands: Boolean): Unit =
