@@ -18,11 +18,7 @@ sc = sparkR.init ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derric
 sqlContext = sparkRSQL.init (sc)
 
 # read the data file and make the edge graph
-# file:///opt/data/dump_ews.xml
-# hdfs://root@ec2-52-30-238-126.eu-west-1.compute.amazonaws.com:9000/data/dump_ews.xml
-# hdfs:/user/root/dump_ews.xml
-# hdfs:/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf
-elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/NIS_CIM_Export_sias_current_20160816_V8_Bruegg.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true')")
+elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/NIS_CIM_Export_sias_current_20160608_V9_Preview_CKW_with_filter_EWS.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true')")
 head (sql (sqlContext, "select * from elements"))
 edges = sql (sqlContext, "select * from edges")
 redges = SparkR::collect (edges, stringsAsFactors=FALSE) # redges = SparkR::as.data.frame (edges)

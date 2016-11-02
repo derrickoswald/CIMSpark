@@ -64,7 +64,10 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER");
         options.put ("ch.ninecode.cim.make_edges", "false");
-        options.put ("ch.ninecode.cim.do_join", "true");
+        options.put ("ch.ninecode.cim.do_join", "false");
+        options.put ("ch.ninecode.cim.do_topo", "false"); // done explicitly in the test
+        options.put ("ch.ninecode.cim.do_topo_islands", "false"); // done explicitly in the test
+
         val element = context.read.format ("ch.ninecode.cim").options (options).load (files:_*)
         val plan = element.queryExecution
         val test = plan.toString ()
@@ -84,7 +87,7 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-        FILE_DEPOT + "NIS_CIM_Export_b4_Guemligen" + ".rdf"
+        FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V9_Guemligen" + ".rdf"
         val elements = readFile (sql_context, filename)
 
         val read = System.nanoTime ()
@@ -110,14 +113,15 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-        FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V9_Bubenei" + ".rdf"
+        FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V9_Bubenei" + ".rdf" // ~8 seconds
+//        FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V9_Brügg" + ".rdf" // ~6 minutes
         val elements = readFile (sql_context, filename)
 
         val read = System.nanoTime ()
 
         // set up for execution
         val topo = new CIMNetworkTopologyProcessor (sql_context, StorageLevel.MEMORY_AND_DISK_SER)
-        topo.process (true) // islands take a lot of work
+        topo.process (true)
 
         val process = System.nanoTime ()
 
