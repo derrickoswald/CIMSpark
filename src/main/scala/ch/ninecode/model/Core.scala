@@ -995,7 +995,7 @@ extends
 case class PowerSystemResource
 (
     override val sup: IdentifiedObject,
-    val AssetDataSheet: String,
+    val AssetDatasheet: String,
     val Location: String,
     val PSRType: String
 )
@@ -1019,7 +1019,7 @@ object PowerSystemResource
 extends
     Parseable[PowerSystemResource]
 {
-    val AssetDataSheet = parse_attribute (attribute ("""PowerSystemResource.AssetDataSheet"""))_
+    val AssetDatasheet = parse_attribute (attribute ("""PowerSystemResource.AssetDatasheet"""))_
     val Location = parse_attribute (attribute ("""PowerSystemResource.Location"""))_
     val PSRType = parse_attribute (attribute ("""PowerSystemResource.PSRType"""))_
     def parse (context: Context): PowerSystemResource =
@@ -1028,7 +1028,7 @@ extends
             PowerSystemResource
             (
                 IdentifiedObject.parse (context),
-                AssetDataSheet (context),
+                AssetDatasheet (context),
                 Location (context),
                 PSRType (context)
             )
