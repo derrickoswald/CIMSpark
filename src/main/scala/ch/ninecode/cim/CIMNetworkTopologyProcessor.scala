@@ -10,6 +10,7 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
+import org.apache.spark.Logging
 import org.apache.spark.SparkContext
 
 import ch.ninecode.model._
@@ -63,7 +64,7 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
  * To be done eventually:
  * - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
  */
-class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
+class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable with Logging
 {
     def get (name: String, sc: SparkContext): RDD[Element] =
     {
@@ -144,14 +145,14 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         // get the edges
         val edges = elements.map (make_graph_edges)
 
-        // persist the RDD to avoid recomputation
-        vertices.name = "topology_graph_vertices"
-        vertices.persist (storage)
-        edges.name = "topology_graph_edges"
-        edges.persist (storage)
-
         // construct the initial graph from the edges
-        return (Graph.apply[TopologicalData, CuttingEdge](vertices, edges, TopologicalData (), storage, storage))
+        val ret = Graph.apply[TopologicalData, CuttingEdge](vertices, edges, TopologicalData (), storage, storage)
+
+        // persist the RDD to avoid recomputation
+        ret.vertices.persist (storage)
+        ret.edges.persist (storage)
+
+        return (ret)
     }
 
     def identifyNodes (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
@@ -482,18 +483,30 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
     def process (identify_islands: Boolean): Unit =
     {
+        logInfo ("begin process")
         // get the initial graph based on edges
         val initial = make_graph (sqlContext.sparkContext)
 
         // get the topological nodes
+        logInfo ("identifyNodes")
         var graph = identifyNodes (initial)
+
+        // persist the RDD to avoid recomputation
+        graph.vertices.persist (storage)
+        graph.edges.persist (storage)
 
         if (identify_islands)
         {
             // get the topological islands
+            logInfo ("identifyIslands")
             graph = identifyIslands (graph)
 
+            // persist the RDD to avoid recomputation
+            graph.vertices.persist (storage)
+            graph.edges.persist (storage)
+
             // create TopologicalIsland RDD
+            logInfo ("islands")
             val islands = graph.vertices.values.filter (_.island != 0L).groupBy (_.island).values.map (to_islands)
             get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]].unpersist (true)
             islands.name = "TopologicalIsland"
@@ -502,6 +515,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         }
 
         // create TopologicalNode RDD
+        logInfo ("nodes")
         val nodes = graph.vertices.map (_._2).groupBy (_.node).map (to_nodes) // ToDo: is there a  better way than GroupBy?
         get ("TopologicalNode", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalNode]].unpersist (true)
         nodes.name = "TopologicalNode"
@@ -509,6 +523,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         sqlContext.createDataFrame (nodes).registerTempTable ("TopologicalNode")
 
         // assign every ConnectivtyNode to a TopologicalNode
+        logInfo ("ConnectivityNode")
         val old_cn = get ("ConnectivityNode", sqlContext.sparkContext).asInstanceOf[RDD[ConnectivityNode]]
         val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).map (update_cn)
 
@@ -520,8 +535,10 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         sqlContext.createDataFrame (new_cn).registerTempTable ("ConnectivityNode")
 
         // assign every Terminal to a TopologicalNode
-        val old_terminals = get ("Terminal", sqlContext.sparkContext).asInstanceOf[RDD[Terminal]]
-        val new_terminals = old_terminals.filter (null != _.ConnectivityNode).keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).map (update_terminals)
+        logInfo ("Terminal")
+        val old_terminals = get ("Terminal", sqlContext.sparkContext).asInstanceOf[RDD[Terminal]].filter (null != _.ConnectivityNode).keyBy (a => vertex_id (a.ConnectivityNode))
+        old_terminals.persist (storage)
+        val new_terminals = old_terminals.leftOuterJoin (graph.vertices).map (update_terminals)
 
         // swap the old RDD for the new one
         old_terminals.name = "trash_terminal"
