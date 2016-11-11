@@ -483,7 +483,6 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
     def process (identify_islands: Boolean): Unit =
     {
-        logInfo ("begin process")
         // get the initial graph based on edges
         val initial = make_graph (sqlContext.sparkContext)
 
@@ -508,7 +507,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             // create TopologicalIsland RDD
             logInfo ("islands")
             val islands = graph.vertices.values.filter (_.island != 0L).groupBy (_.island).values.map (to_islands)
-            get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]].unpersist (true)
+            get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]].unpersist (false)
             islands.name = "TopologicalIsland"
             islands.persist (storage)
             sqlContext.createDataFrame (islands).registerTempTable ("TopologicalIsland")
@@ -517,31 +516,26 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         // create TopologicalNode RDD
         logInfo ("nodes")
         val nodes = graph.vertices.map (_._2).groupBy (_.node).map (to_nodes) // ToDo: is there a  better way than GroupBy?
-        get ("TopologicalNode", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalNode]].unpersist (true)
+        get ("TopologicalNode", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalNode]].unpersist (false)
         nodes.name = "TopologicalNode"
         val stuff = nodes.persist (storage)
         sqlContext.createDataFrame (nodes).registerTempTable ("TopologicalNode")
 
         // assign every ConnectivtyNode to a TopologicalNode
-        logInfo ("ConnectivityNode")
         val old_cn = get ("ConnectivityNode", sqlContext.sparkContext).asInstanceOf[RDD[ConnectivityNode]]
         val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).map (update_cn)
 
         // swap the old RDD for the new one
-        old_cn.name = "trash_connectivitynode"
         old_cn.unpersist (false)
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
         sqlContext.createDataFrame (new_cn).registerTempTable ("ConnectivityNode")
 
         // assign every Terminal to a TopologicalNode
-        logInfo ("Terminal")
-        val old_terminals = get ("Terminal", sqlContext.sparkContext).asInstanceOf[RDD[Terminal]].filter (null != _.ConnectivityNode).keyBy (a => vertex_id (a.ConnectivityNode))
-        old_terminals.persist (storage)
-        val new_terminals = old_terminals.leftOuterJoin (graph.vertices).map (update_terminals)
+        val old_terminals = get ("Terminal", sqlContext.sparkContext).asInstanceOf[RDD[Terminal]]
+        val new_terminals = old_terminals.filter (null != _.ConnectivityNode).keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).map (update_terminals)
 
         // swap the old RDD for the new one
-        old_terminals.name = "trash_terminal"
         old_terminals.unpersist (false)
         new_terminals.name = "Terminal"
         new_terminals.persist (storage)

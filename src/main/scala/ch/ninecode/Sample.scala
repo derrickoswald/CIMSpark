@@ -132,7 +132,7 @@ class Sample extends Serializable
             println ("Found the edges RDD: " + edges.name)
 
             // keep only non-self connected and non-singly connected edges
-            edges =  edges.filter ((e: ch.ninecode.cim.Edge) => { (e.id_seq_1 != e.id_seq_2) && e.id_seq_1 != null && e.id_seq_2 != null && e.id_seq_1 != "" && e.id_seq_2 != "" })
+            edges =  edges.filter ((e: ch.ninecode.cim.Edge) => { (e.id_node_1 != e.id_node_2) && e.id_node_1 != null && e.id_node_2 != null && e.id_node_1 != "" && e.id_node_2 != "" })
 
             // augment the elements to have the busbar, distance and upstream abgang using the VertexData class
             var elementsplus = vertices.flatMap (
@@ -153,7 +153,7 @@ class Sample extends Serializable
             var _edges = edges.flatMap (
                 (e: ch.ninecode.cim.Edge) =>
                 {
-                    Array (new Edge (e.id_seq_1.hashCode(), e.id_seq_2.hashCode(), e))
+                    Array (new Edge (e.id_node_1.hashCode(), e.id_node_2.hashCode(), e))
                 }
             )
 

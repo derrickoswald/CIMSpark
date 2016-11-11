@@ -164,14 +164,6 @@ class CIMRelation(
                 }
             )
 
-            // set up edge graph if requested
-            if (_Edges)
-            {
-                logInfo ("making Edges RDD")
-                val cimedges = new CIMEdges (sqlContext, _StorageLevel)
-                cimedges.make_edges ()
-            }
-
             // merge ISU and NIS ServiceLocations if requested
             if (_Join)
             {
@@ -186,6 +178,14 @@ class CIMRelation(
                 logInfo ("performing Network Topology Processing")
                 val ntp = new CIMNetworkTopologyProcessor (sqlContext, _StorageLevel)
                 ntp.process (_Islands)
+            }
+
+            // set up edge graph if requested
+            if (_Edges)
+            {
+                logInfo ("making Edges RDD")
+                val cimedges = new CIMEdges (sqlContext, _StorageLevel)
+                cimedges.make_edges (_Topo)
             }
         }
         else

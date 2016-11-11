@@ -1,5 +1,6 @@
 package ch.ninecode.cim
 
+import org.apache.spark.Logging
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SQLContext
@@ -8,11 +9,11 @@ import org.apache.spark.storage.StorageLevel
 
 import ch.ninecode.model._
 
-case class PreEdge (var id_seq_1: String, var cn_1: String, var id_seq_2: String, var cn_2: String, var id_equ: String, var clazz: String, var name: String, var aliasName: String, var container: String, var length: Double, var voltage: String, var normalOpen: Boolean, var ratedCurrent: Double, var location: String, val power: Double, val commissioned: String, val status: String) extends Serializable
+case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, val status: String, x1: String, y1: String, x2: String, y2: String)
+case class Edge (id_node_1: String, id_island_1: String, id_node_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 
-class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
+class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable with Logging
 {
     def get (name: String): RDD[Element] =
     {
@@ -69,18 +70,18 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         points.keyBy (_.Location).aggregateByKey (null: Extremum) (point_seq_op, point_comb_op).values
     }
 
-    def term_op (arg: Any): List[PreEdge] =
+    def term_op (topological_nodes: Boolean) (arg: Tuple2[Element, Option[Iterable[Terminal]]]): List[PreEdge] =
     {
         arg match
         {
-            case (e: Element, Some(it: Iterable[Terminal])) ⇒
+            case (e: Element, Some (it: Iterable[Terminal])) ⇒
             {
                 var ret = List[PreEdge] ()
 
                 // sort terminals by sequence number
                 var terminals = it.toArray.sortWith (_.ACDCTerminal.sequenceNumber < _.ACDCTerminal.sequenceNumber)
 
-                // extract pertinent information from the equipment using a join
+                // extract pertinent information from the equipment
                 case class Bucket (
                     var clazz: String = "",
                     var name: String = "",
@@ -284,7 +285,7 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
                         List (
                             new PreEdge (
                                 terminals(0).ACDCTerminal.IdentifiedObject.mRID,
-                                terminals(0).ConnectivityNode,
+                                if (topological_nodes) terminals(0).TopologicalNode else terminals(0).ConnectivityNode,
                                 "",
                                 "",
                                 terminals(0).ConductingEquipment,
@@ -304,9 +305,9 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
                         List (
                             new PreEdge (
                                 terminals(0).ACDCTerminal.IdentifiedObject.mRID,
-                                terminals(0).ConnectivityNode,
+                                if (topological_nodes) terminals(0).TopologicalNode else terminals(0).ConnectivityNode,
                                 terminals(1).ACDCTerminal.IdentifiedObject.mRID,
-                                terminals(1).ConnectivityNode,
+                                if (topological_nodes) terminals(1).TopologicalNode else terminals(1).ConnectivityNode,
                                 terminals(0).ConductingEquipment,
                                 bucket.clazz,
                                 bucket.name,
@@ -325,16 +326,16 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
                             // three (or more terminal device - which we assume is a transformer
                             // sequence number 1 at index 0 is the high side of a transformer
                             // make edges to each of the secondaries
-                            println ("equipment with " + terminals.length + " terminals: " + terminals(0).ConductingEquipment)
+                            logWarning ("equipment with " + terminals.length + " terminals: " + terminals(0).ConductingEquipment)
                             var i = 0
                             var list = List[PreEdge] ()
                             while (i < terminals.length - 1)
                             {
                                 list = list :+ new PreEdge (
                                         terminals(0).ACDCTerminal.IdentifiedObject.mRID,
-                                        terminals(0).ConnectivityNode,
+                                        if (topological_nodes) terminals(0).TopologicalNode else terminals(0).ConnectivityNode,
                                         terminals(i + 1).ACDCTerminal.IdentifiedObject.mRID,
-                                        terminals(i + 1).ConnectivityNode,
+                                        if (topological_nodes) terminals(i + 1).TopologicalNode else terminals(i + 1).ConnectivityNode,
                                         terminals(0).ConductingEquipment,
                                         bucket.clazz,
                                         bucket.name,
@@ -362,25 +363,26 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         }
     }
 
-    def edge_op (j: Any) =
+    def edge_op (arg: Tuple4[PreEdge, Option[Extremum], Option[TopologicalNode], Option[TopologicalNode]]) =
     {
-        j match
+        val e = arg._1
+        val x = arg._2
+        val i1 = arg._3 match { case Some (t) => t.TopologicalIsland case _ => "" }
+        val i2 = arg._4 match { case Some (t) => t.TopologicalIsland case _ => "" }
+        x match
         {
-            case (l: String, (e:PreEdge, Some (x:Extremum))) =>
-                Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
-            case (l: String, (e:PreEdge, None)) =>
+            case Some (x:Extremum) =>
+                Edge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+            case None =>
                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                Edge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
         }
     }
 
-    def make_edges (): Unit =
+    def make_edges (topological_nodes: Boolean): Unit =
     {
         // get the elements RDD
         val elements = get ("Elements").asInstanceOf[RDD[Element]]
-
-        // get the nodes RDD
-        val connectivitynodes = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]]
 
         // get the terminals
         val terminals = get ("Terminal").asInstanceOf[RDD[Terminal]]
@@ -388,16 +390,27 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         // first get the terminals keyed by equipment
         val terms = terminals.groupBy (_.ConductingEquipment)
 
-        // next, map the terminal pairs to pre-edges
-        val preedges = elements.keyBy (_.id).leftOuterJoin (terms).flatMapValues (term_op).values
+        // next, map the terminal pairs to pre-edges, keep only edges with differing nodes on each end
+        val preedges = elements.keyBy (_.id).leftOuterJoin (terms).flatMapValues (term_op (topological_nodes)).values.filter (x => x.cn_1 != x.cn_2)
 
         // get start and end coordinates of each location
         val extremum = get_extremum ()
 
-        // join coordinates with edges using equipment
-        val edges = preedges.keyBy (_.location).leftOuterJoin (extremum.keyBy (_.id_loc)).map (edge_op)
+        // join coordinates with edges using location
+        val located_edges = preedges.keyBy (_.location).leftOuterJoin (extremum.keyBy (_.id_loc)).values
 
-        // persist it so the sample can get at it
+        // join with topological nodes if requested
+        val edges = if (topological_nodes)
+        {
+            val topologicals = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]].keyBy (_.id)
+            val topo1 = located_edges.keyBy (_._1.cn_1).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._2))
+            val topo2 =         topo1.keyBy (_._1.cn_2).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._1._3, x._2))
+            topo2.map (edge_op)
+        }
+        else
+            located_edges.map ((x) => (x._1, x._2, None, None)).map (edge_op)
+
+        // persist it
         edges.setName ("Edges")
         edges.persist (storage)
 

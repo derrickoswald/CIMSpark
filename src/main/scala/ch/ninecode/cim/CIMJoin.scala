@@ -229,26 +229,22 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
 
         // swap the old RDD for the new ones
 
-        names.name = "trash_names"
-        names.unpersist (true)
+        names.unpersist (false)
         updated_names.name = "Name"
         updated_names.persist (storage)
         sqlContext.createDataFrame (updated_names).registerTempTable ("Name")
 
-        locations.name = "trash_locations"
-        locations.unpersist (true)
+        locations.unpersist (false)
         updated_locations.name = "ServiceLocation"
         updated_locations.persist (storage)
         sqlContext.createDataFrame (updated_locations).registerTempTable ("ServiceLocation")
 
-        points.name = "trash_points"
-        points.unpersist (true)
+        points.unpersist (false)
         updated_points.name = "PositionPoint"
         updated_points.persist (storage)
         sqlContext.createDataFrame (updated_points).registerTempTable ("PositionPoint")
 
-        attributes.name = "trash_attributes"
-        attributes.unpersist (true)
+        attributes.unpersist (false)
         updated_attributes.name = "UserAttribute"
         updated_attributes.persist (storage)
         sqlContext.createDataFrame (updated_attributes).registerTempTable ("UserAttribute")
