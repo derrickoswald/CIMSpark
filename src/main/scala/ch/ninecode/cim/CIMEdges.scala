@@ -11,7 +11,7 @@ import ch.ninecode.model._
 
 case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class Edge (id_node_1: String, id_island_1: String, id_node_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class Edge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 
 class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable with Logging
 {
