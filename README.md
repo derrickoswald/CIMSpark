@@ -24,7 +24,9 @@ The architrecture follows the sample code from [Databricks](https://databricks.c
 
 ![CIMScala Architecture](https://rawgit.com/derrickoswald/CIMScala/master/img/Architecture.svg "High level architecture diagram")
 
-#Sample Usage
+#Sample Interactive Usage
+
+Normally the CIMScala jar file is used as a component in a larger 
 
 Use sbt or maven to package the app (make a jar file):
 
@@ -50,7 +52,7 @@ There are a few settings I always do that are not part of the standard docker im
     
     hdfs dfsadmin -safemode leave
     hdfs dfs -mkdir /data
-    hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_V8_Bruegg.rdf /data
+    hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_Brügg_V9.rdf /data
     hdfs dfs -put /opt/data/KS_Leistungen.csv /data
     
     /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/start-master.sh
@@ -62,19 +64,47 @@ The spark shell (scala interpreter) allows interactive commands:
 
 Add the CIMScala jar to the classpath:
 
-    scala> import ch.ninecode.{cim, model}
-    import ch.ninecode.{cim, model}
+    scala> import ch.ninecode.cim._
+    import ch.ninecode.cim._
 
-To read a CIM file using the DataFrameReader approach:
+Read in a file:
 
-    scala> val elements = sqlContext.read.format ("ch.ninecode.cim").load ("hdfs://sandbox:9000/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf")
-    ...
+    scala> val elements = sqlContext.read.cim ("hdfs://sandbox:9000/data/NIS_CIM_Export_sias_current_20160816_Brügg_V9.rdf")
+    ... 
     elements: org.apache.spark.sql.DataFrame = [sup: element]
+
+Since evaluation is lazy, you need to trigger the actual file reading by, for example, asking for the count:
+
     scala> elements.count
     ...
-    res0: Long = 629007
+    res0: Long = 625812
 
-After reading is done, you can access the temporary tables:
+The data is now available in a large number of cached RDD structures. For example, all ACLineSegment objects are available
+in the cached RDD with the name "ACLineSegment". You can get a named RDD using:
+
+    ```scala
+    import org.apache.spark.rdd.RDD
+    import ch.ninecode.model._
+    val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
+    ```
+
+The above shorthand for the DataFrameReader syntax:
+
+    ```scala
+    val element = context.read.format ("ch.ninecode.cim").options (opts).load (file1, file2, ...)
+    ```
+where:
+* file1..n is a list of files to read, (note that load can take a variable number of arguments)
+* opts is pairs of named options in a Map[String,String], where values are "true" or "false",
+CIM reader specific option names and their meaning are:
+  * ch.ninecode.cim.make_edges - generate the Edges RDD and table or not
+  * ch.ninecode.cim.do_join - merge CIM files (by UserAttribute) or not
+  * ch.ninecode.cim.do_topo - generate TopologicalNode elements
+  * ch.ninecode.cim.do_topo_islands - generate topological islands (forces ch.ninecode.cim.do_topo true also)
+  
+One further option is the [StorageLevel](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.storage.StorageLevel$)
+
+All RDD are also exposed as temporary tables:
 
     scala> val switches = sqlContext.sql ("select s.sup.sup.sup.sup.mRID mRID, s.sup.sup.sup.sup.aliasName aliasName, s.sup.sup.sup.sup.name name, s.sup.sup.sup.sup.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s,Location l, PositionPoint p where s.sup.sup.sup.Location = l.sup.mRID and s.sup.sup.sup.Location = p.Location and p.sequenceNumber = 0")
     ...
