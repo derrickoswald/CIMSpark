@@ -14,16 +14,19 @@ begin = proc.time ()
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark-1.6.0-bin-hadoop2.6/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark-1.6.0-bin-hadoop2.6")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc = sparkR.init ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.10-1.6.0-1.6.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sc = sparkR.init ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.10-1.6.0-1.7.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 sqlContext = sparkRSQL.init (sc)
 
-# read the data file and make the edge graph
-elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/NIS_CIM_Export_sias_current_20160816_Kiental_V9.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.do_topo 'true', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo_islands 'true')")
-head (sql (sqlContext, "select * from elements"))
+# read the data file and process topologically and make the edge RDD
+elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/NIS_CIM_Export_sias_current_20161013_V9.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'true', ch.ninecode.cim.do_topo_islands 'true')")
+head (sql (sqlContext, "select * from elements")) # triggers evaluation
+
+# read the edges RDD as an R data frame
+edges = sql (sqlContext, "select * from edges")
+redges = SparkR::collect (edges, stringsAsFactors=FALSE)
+
 terminals = sql (sqlContext, "select * from Terminal")
 rterminals = SparkR::collect (terminals, stringsAsFactors=FALSE)
-edges = sql (sqlContext, "select * from edges")
-redges = SparkR::collect (edges, stringsAsFactors=FALSE) # redges = SparkR::as.data.frame (edges)
 
 library (igraph)
 

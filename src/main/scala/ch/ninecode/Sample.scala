@@ -212,7 +212,7 @@ class Sample extends Serializable
 /**
  * Main program for sample demo.
  * Run this from within the cluster with:
- * spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 1 --jars /opt/code/CIMScala-2.10-1.6.0-1.6.0.jar --class ch.ninecode.Sample hdfs:/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf
+ * spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 1 --jars /opt/code/CIMScala-2.10-1.6.0-1.7.0.jar --class ch.ninecode.Sample hdfs:/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf
  */
 object Sample
 {
