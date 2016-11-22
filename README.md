@@ -82,11 +82,11 @@ Since evaluation is lazy, you need to trigger the actual file reading by, for ex
 The data is now available in a large number of cached RDD structures. For example, all ACLineSegment objects are available
 in the cached RDD with the name "ACLineSegment". You can get a named RDD using:
 
-    ```scala
-    import org.apache.spark.rdd.RDD
-    import ch.ninecode.model._
-    val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
-    ```
+```scala
+import org.apache.spark.rdd.RDD
+import ch.ninecode.model._
+val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
+```
 
 The RDD or Dataframe can be saved as a text, json or parquet file.
 A parquet file can be read in by SparkR:
@@ -115,9 +115,10 @@ and the schema must be inferred from the input.
 
 The expression "sqlContext.read.cim" in the above example is shorthand for the full DataFrameReader syntax:
 
-    ```scala
-    val element = context.read.format ("ch.ninecode.cim").options (opts).load (file1, file2, ...)
-    ```
+```scala
+val element = context.read.format ("ch.ninecode.cim").options (opts).load (file1, file2, ...)
+```
+
 where:
 * file1..n is a list of files to read, (note that load can take a variable number of arguments)
 * opts is pairs of named options in a Map[String,String], where values are "true" or "false",
