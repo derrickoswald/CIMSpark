@@ -11,7 +11,8 @@ import ch.ninecode.model._
 
 case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class Edge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 
 class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable with Logging
 {
@@ -363,7 +364,21 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         }
     }
 
-    def edge_op (arg: Tuple4[PreEdge, Option[Extremum], Option[TopologicalNode], Option[TopologicalNode]]) =
+    def edge_op (arg: Tuple2[PreEdge, Option[Extremum]]) =
+    {
+        val e = arg._1
+        val x = arg._2
+        x match
+        {
+            case Some (x:Extremum) =>
+                Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+            case None =>
+                // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
+                Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+        }
+    }
+
+    def topo_edge_op (arg: Tuple4[PreEdge, Option[Extremum], Option[TopologicalNode], Option[TopologicalNode]]) =
     {
         val e = arg._1
         val x = arg._2
@@ -372,10 +387,10 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         x match
         {
             case Some (x:Extremum) =>
-                Edge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
             case None =>
                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                Edge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
         }
     }
 
@@ -400,21 +415,30 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         val located_edges = preedges.keyBy (_.location).leftOuterJoin (extremum.keyBy (_.id_loc)).values
 
         // join with topological nodes if requested
-        val edges = if (topological_nodes)
+        if (topological_nodes)
         {
             val topologicals = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]].keyBy (_.id)
             val topo1 = located_edges.keyBy (_._1.cn_1).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._2))
             val topo2 =         topo1.keyBy (_._1.cn_2).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._1._3, x._2))
-            topo2.map (edge_op)
+            val edges = topo2.map (topo_edge_op)
+
+            // persist it
+            edges.setName ("Edges")
+            edges.persist (storage)
+
+            // expose it
+            sqlContext.createDataFrame (edges).registerTempTable ("edges")
         }
         else
-            located_edges.map ((x) => (x._1, x._2, None, None)).map (edge_op)
+        {
+            val edges = located_edges.map ((x) => (x._1, x._2)).map (edge_op)
 
-        // persist it
-        edges.setName ("Edges")
-        edges.persist (storage)
+            // persist it
+            edges.setName ("Edges")
+            edges.persist (storage)
 
-        // expose it
-        sqlContext.createDataFrame (edges).registerTempTable ("edges")
+            // expose it
+            sqlContext.createDataFrame (edges).registerTempTable ("edges")
+        }
     }
 }
