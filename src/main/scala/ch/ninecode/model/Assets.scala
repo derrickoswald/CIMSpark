@@ -100,7 +100,7 @@ extends
     val lotNumber = parse_element (element ("""Asset.lotNumber"""))_
     val purchasePrice = parse_element (element ("""Asset.purchasePrice"""))_
     val serialNumber = parse_element (element ("""Asset.serialNumber"""))_
-    val typ = parse_element (element ("""Asset.typ"""))_
+    val typ = parse_element (element ("""Asset.type"""))_
     val utcNumber = parse_element (element ("""Asset.utcNumber"""))_
     val AssetContainer = parse_attribute (attribute ("""Asset.AssetContainer"""))_
     val AssetInfo = parse_attribute (attribute ("""Asset.AssetInfo"""))_
