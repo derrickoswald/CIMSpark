@@ -9,7 +9,7 @@ import org.apache.spark.storage.StorageLevel
 
 import ch.ninecode.model._
 
-case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
+case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, var container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
 case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
@@ -394,6 +394,20 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         }
     }
 
+    def container (arg: Tuple2[PreEdge, Option[Element]]): PreEdge =
+    {
+        val edge = arg._1
+        val node = arg._2
+        node match
+        {
+            case Some (station: Substation) => edge.container = station.id
+            case Some (bay: Bay) => edge.container = bay.Substation
+            case Some (level: VoltageLevel) => edge.container = level.Substation
+            case _ => // keep the same container
+        }
+        edge
+    }
+
     def make_edges (topological_nodes: Boolean): Unit =
     {
         // get the elements RDD
@@ -408,11 +422,14 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         // next, map the terminal pairs to pre-edges, keep only edges with differing nodes on each end
         val preedges = elements.keyBy (_.id).leftOuterJoin (terms).flatMapValues (term_op (topological_nodes)).values.filter (x => x.cn_1 != x.cn_2)
 
+        // use the top level container where possible
+        val preedges2 = preedges.keyBy (_.container).leftOuterJoin (elements.keyBy (_.id)).values.map (container)
+
         // get start and end coordinates of each location
         val extremum = get_extremum ()
 
         // join coordinates with edges using location
-        val located_edges = preedges.keyBy (_.location).leftOuterJoin (extremum.keyBy (_.id_loc)).values
+        val located_edges = preedges2.keyBy (_.location).leftOuterJoin (extremum.keyBy (_.id_loc)).values
 
         // join with topological nodes if requested
         if (topological_nodes)

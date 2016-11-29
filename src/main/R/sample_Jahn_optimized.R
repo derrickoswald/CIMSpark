@@ -18,7 +18,7 @@ sc = sparkR.init ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derric
 sqlContext = sparkRSQL.init (sc)
 
 # read the data file and process topologically and make the edge RDD
-elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/NIS_CIM_Export_sias_current_20161013_V9.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'true', ch.ninecode.cim.do_topo_islands 'true')")
+elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
 head (sql (sqlContext, "select * from elements")) # triggers evaluation
 
 # read the edges RDD as an R data frame

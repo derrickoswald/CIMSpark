@@ -87,7 +87,7 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-        FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V9_Guemligen" + ".rdf" // ~1.5 minutes
+            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Kiental_V9" + ".rdf"
         val elements = readFile (sql_context, filename)
 
         val read = System.nanoTime ()
@@ -113,8 +113,7 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-        FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V9_Bubenei" + ".rdf" // ~8 seconds
-//        FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V9_Brügg" + ".rdf" // ~6 minutes
+            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf"
         val elements = readFile (sql_context, filename)
 
         val read = System.nanoTime ()

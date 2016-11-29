@@ -167,4 +167,5 @@ class CIMRDDSuite extends fixture.FunSuite
         assert (rdd2.count () === ELEMENTS2)
         assert (rdd3.count () === (ELEMENTS1 + ELEMENTS2))
     }
+
 }

@@ -75,7 +75,7 @@ class CIMSparkSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_V8_Bruegg" + ".rdf" +
+            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Brügg_V9" + ".rdf" +
             "," +
             FILE_DEPOT + "ISU_CIM_Export_20160505_partial" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
@@ -109,9 +109,9 @@ class CIMSparkSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf" + // NIS_CIM_Export_b4_Bruegg
+            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf" +
             "," +
-            FILE_DEPOT + "ISU_CIM_Export_20160505_partial" + ".rdf"
+            FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         val elements = readFile (sql_context, filename, options)
@@ -156,9 +156,9 @@ class CIMSparkSuite extends fixture.FunSuite
         val sql_context: SQLContext = a._SQLContext
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf" + // NIS_CIM_Export_b4_Bruegg
+            FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf" +
             "," +
-            FILE_DEPOT + "ISU_CIM_Export_20160505_partial" + ".rdf"
+            FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         options.put ("ch.ninecode.cim.do_join", "true")
