@@ -28,16 +28,16 @@ The architrecture follows the sample code from [Databricks](https://databricks.c
 
 Assuming the Scala Build Tool [sbt](http://www.scala-sbt.org/) or Maven [mvn](https://maven.apache.org/) is installed, to package CIMScala (make a jar file) follow these steps:
 
-1. Change to the top level CIMScala directory:
-```bash
+* Change to the top level CIMScala directory:
+```
 cd CIMScala
 ```
-2. Invoke the package command:
-```bash
+* Invoke the package command:
+```
 sbt package
 ```
 or
-```bash
+```
 mvn package
 ```
 
@@ -54,7 +54,7 @@ The first version number is the Scala library version. This follows [Scala libra
 
 The second version number is the [Spark version](https://spark.apache.org/downloads.html).
 
-The third version number is the CIMScala version number, which is set in the pom.xml file.  
+The third version number is the CIMScala version number, which is set (hardcoded) in the pom.xml and build.sbt files.  
 
 #Sample Interactive Usage
 
@@ -64,34 +64,34 @@ One can, however, perform some operations interactively using the Spark shell.
 We recommend using [Docker](https://www.docker.com/) and [Docker-Compose](https://docs.docker.com/compose/).
 A sample [yaml](http://yaml.org/) file to be used with docker compose is src/test/resources/sandbox.yaml.
 
-**NOTE: The sample relies on the environment variable "USER" being set to get the username for the Spark owner/operator.**
+**NOTE: The sample relies on the environment variable "USER" being set to the username for the Spark owner/operator.**
 
 Assuming, Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0) are installed, the following steps would launch the cluster and start a Spark shell (:quit to exit).
 
-1. Change to the top level CIMScala directory:
-```bash
+* Change to the top level CIMScala directory:
+```
 cd CIMScala
 ```
-2. Initialize the cluster (default is two containers, "sandbox" and "worker"):
-```bash
+* Initialize the cluster (default is two containers, "sandbox" and "worker"):
+```
 docker-compose --file src/test/resources/sandbox.yaml up&
 ```
-3. To shut down the cluster (this also deletes images used by the containers using --rmi):
-```bash
+* To shut down the cluster (this also deletes images used by the containers using --rmi):
+```
 docker-compose --file src/test/resources/sandbox.yaml down --rmi local
 ```
-4. To run an interactive shell in another container (a copy of the worker container):
-```bash
+* To run an interactive shell in another container (a copy of the worker container):
+```
 docker-compose --file src/test/resources/sandbox.yaml run --rm worker bash
 ```
-5. From within the interactive shell, to copy data files to HDFS
-```bash
+* From within the interactive shell, to copy data files to HDFS
+```
 hdfs dfs -fs hdfs://sandbox:8020 -mkdir /data
 hdfs dfs -fs hdfs://sandbox:8020 -put /opt/data/* /data
 hdfs dfs -fs hdfs://sandbox:8020 -ls /data
 ```
-6. From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath:
-```bash
+* From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath:
+```
 spark-shell --jars /opt/code/CIMScala-2.10-1.6.0-1.7.2.jar
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
@@ -116,19 +116,19 @@ Type :help for more information.
 
 scala>
 ```
-7. At the scala prompt one can import the classes defined in the CIMScala jar:
-Add the CIMScala jar to the classpath:
+* At the scala prompt one can import the classes defined in the CIMScala jar:
 ```scala
 import org.apache.spark.rdd.RDD
 import ch.ninecode.cim._
 import ch.ninecode.model._
 ```
-8. One can then read in a CIM file:
+* One can then read in a CIM file:
 ```scala
 val elements = spark.read.cim ("hdfs://sandbox:9000/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
 ```
 **NOTE: This currently does not work for Spark 2.0.**
-9. Since evaluation is lazy, one needs to trigger the actual file reading by, for example, asking for the count:
+
+* Since evaluation is lazy, one needs to trigger the actual file reading by, for example, asking for the count:
 ```scala
 val count = elements.count
 ```

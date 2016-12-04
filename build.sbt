@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
     name := "CIMScala",
-    version := "1.6.0-1.6.0",
+    version := "1.6.0-1.7.2",
     scalaVersion := "2.10.5"
   )
 
