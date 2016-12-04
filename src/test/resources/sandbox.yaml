@@ -1,0 +1,40 @@
+version: "2" # Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0)
+
+services:
+  sandbox:
+    image: singularities/spark
+    command: start-spark master
+    environment:
+      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
+    hostname: sandbox
+    ports: # not sure how many of these are really needed:
+      - "4040:4040"
+      - "6066:6066"
+      - "7070:7070"
+      - "7077:7077" # Spark standalone port, as in master = spark://sandbox:7077
+      - "8020:8020" # hdfs port, is in: hdfs dfs -fs hdfs://sandbox:8020 -ls
+      - "8032:8032"
+      - "8042:8042"
+      - "8081:8080"
+      - "8088:8088"
+      - "9000:9000"
+      - "10000:10000" # Thriftserver JDBC port
+      - "10001:10001"
+      - "50010:50010"
+      - "50070:50070"
+    volumes:
+      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
+      - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
+  worker:
+    image: singularities/spark
+    command: start-spark worker sandbox
+    environment:
+      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
+    environment:
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 2g
+    links:
+      - sandbox
+    volumes:
+      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
+      - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container

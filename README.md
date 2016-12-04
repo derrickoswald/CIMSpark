@@ -24,92 +24,121 @@ The architrecture follows the sample code from [Databricks](https://databricks.c
 
 ![CIMScala Architecture](https://rawgit.com/derrickoswald/CIMScala/master/img/Architecture.svg "High level architecture diagram")
 
+#Building
+
+Assuming the Scala Build Tool [sbt](http://www.scala-sbt.org/) or Maven [mvn](https://maven.apache.org/) is installed, to package CIMScala (make a jar file) follow these steps:
+
+1. Change to the top level CIMScala directory:
+```bash
+cd CIMScala
+```
+2. Invoke the package command:
+```bash
+sbt package
+```
+or
+```bash
+mvn package
+```
+
+This should produce a jar file in the target/ directory.
+
+**NOTE: If you use sbt, the jar file will be in a subdirectory of target/ based on the version of the Scala library used,
+e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, that is, the name will be cimscala_2.11-??.** 
+
+##Jar Naming Scheme
+
+The name of the jar file (e.g. CIMScala-2.10-1.6.0-1.7.2.jar) is comprised of a fixed name ("CIMScala") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+
+The first version number is the Scala library version. This follows [Scala libray naming semantics](https://github.com/scalacenter/scaladex).
+
+The second version number is the [Spark version](https://spark.apache.org/downloads.html).
+
+The third version number is the CIMScala version number, which is set in the pom.xml file.  
+
 #Sample Interactive Usage
 
-Normally the CIMScala jar file is used as a component in a larger 
+Normally the CIMScala jar file is used as a component in a larger application.
+One can, however, perform some operations interactively using the Spark shell. 
 
-Use sbt or maven to package the app (make a jar file):
+We recommend using [Docker](https://www.docker.com/) and [Docker-Compose](https://docs.docker.com/compose/).
+A sample [yaml](http://yaml.org/) file to be used with docker compose is src/test/resources/sandbox.yaml.
 
-    sbt package
-or
+**NOTE: The sample relies on the environment variable "USER" being set to get the username for the Spark owner/operator.**
 
-    mvn package
+Assuming, Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0) are installed, the following steps would launch the cluster and start a Spark shell (:quit to exit).
 
-Start docker (see [An easy way to try Spark](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark"))
-with volumes mounted for the jar file and data, and ports proxied for the
-cluster manager (8088), node manager (8042), JDBC ThriftServer2 (10000), standalone port (7077) and Web UI (8080):
+1. Change to the top level CIMScala directory:
+```bash
+cd CIMScala
+```
+2. Initialize the cluster (default is two containers, "sandbox" and "worker"):
+```bash
+docker-compose --file src/test/resources/sandbox.yaml up&
+```
+3. To shut down the cluster (this also deletes images used by the containers using --rmi):
+```bash
+docker-compose --file src/test/resources/sandbox.yaml down --rmi local
+```
+4. To run an interactive shell in another container (a copy of the worker container):
+```bash
+docker-compose --file src/test/resources/sandbox.yaml run --rm worker bash
+```
+5. From within the interactive shell, to copy data files to HDFS
+```bash
+hdfs dfs -fs hdfs://sandbox:8020 -mkdir /data
+hdfs dfs -fs hdfs://sandbox:8020 -put /opt/data/* /data
+hdfs dfs -fs hdfs://sandbox:8020 -ls /data
+```
+6. From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath:
+```bash
+spark-shell --jars /opt/code/CIMScala-2.10-1.6.0-1.7.2.jar
+```
+This should print out the Scala shell welcome screen with cool ASCII art:
+```
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel).
+16/12/04 13:25:09 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+16/12/04 13:25:10 WARN spark.SparkContext: Use an existing SparkContext, some configuration may not take effect.
+Spark context Web UI available at http://172.18.0.4:4040
+Spark context available as 'sc' (master = local[*], app id = local-1480857910650).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 2.0.1
+      /_/
+         
+Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_111)
+Type in expressions to have them evaluated.
+Type :help for more information.
 
-    docker run -it -p 8032:8032 -p 8088:8088 -p 8042:8042 -p 4040:4040 -p 9000:9000 -p 10000:10000 -p 10001:10001 -p 50010:50010 -p 7077:7077 -p 8081:8080 -v /home/derrick/code/CIMScala/target:/opt/code -v /home/derrick/Documents/9code/nis/cim/cim_export:/opt/data --rm -h sandbox sequenceiq/spark:1.6.0 bash 
-
-There are a few settings I always do that are not part of the standard docker image, like enabling UTF8 characters in filenames, and adding an alias for ll. When executing from a remote client, the user needs to be a valid user on the cluster, and a member of *supergroup*. Any data files that are needed should be copied into hdfs. If using Spark standalone, you will need to start a master and slave process. So the usual setup commands are:
-
-    export LANG=en_US.utf8
-    alias ll="ls -al"
-    
-    sudo groupadd supergroup
-    sudo useradd derrick
-    sudo usermod --append --groups supergroup derrick
-    
-    hdfs dfsadmin -safemode leave
-    hdfs dfs -mkdir /data
-    hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_Brügg_V9.rdf /data
-    hdfs dfs -put /opt/data/KS_Leistungen.csv /data
-    
-    /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/start-master.sh
-    /usr/local/spark-1.6.0-bin-hadoop2.6/sbin/start-slave.sh -m 4g -c 2 spark://sandbox:7077
-
-The spark shell (scala interpreter) allows interactive commands:
-
-    spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 2 --jars /opt/code/CIMScala-2.10-1.6.0-1.7.2.jar
-
+scala>
+```
+7. At the scala prompt one can import the classes defined in the CIMScala jar:
 Add the CIMScala jar to the classpath:
-
-    scala> import ch.ninecode.cim._
-    import ch.ninecode.cim._
-
-Read in a file:
-
-    scala> val elements = sqlContext.read.cim ("hdfs://sandbox:9000/data/NIS_CIM_Export_sias_current_20160816_Brügg_V9.rdf")
-    ... 
-    elements: org.apache.spark.sql.DataFrame = [sup: element]
-
-Since evaluation is lazy, you need to trigger the actual file reading by, for example, asking for the count:
-
-    scala> elements.count
-    ...
-    res0: Long = 625812
+```scala
+import org.apache.spark.rdd.RDD
+import ch.ninecode.cim._
+import ch.ninecode.model._
+```
+8. One can then read in a CIM file:
+```scala
+val elements = spark.read.cim ("hdfs://sandbox:9000/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
+```
+**NOTE: This currently does not work for Spark 2.0.**
+9. Since evaluation is lazy, one needs to trigger the actual file reading by, for example, asking for the count:
+```scala
+val count = elements.count
+```
 
 The data is now available in a large number of cached RDD structures. For example, all ACLineSegment objects are available
 in the cached RDD with the name "ACLineSegment". You can get a named RDD using:
 
 ```scala
-import org.apache.spark.rdd.RDD
-import ch.ninecode.model._
 val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
 ```
-
-The RDD or Dataframe can be saved as a text, json or parquet file.
-A parquet file can be read in by SparkR:
-
-    scala> points.saveAsParquetFile ("file:///opt/data/points")
-    scala> lines.saveAsParquetFile ("file:///opt/data/lines")
-
-and it can be read in again using the SqlContext:
-
-    scala> var newpoints = sqlContext.parquetFile ("file:///opt/data/points")
-    scala> var newlines = sqlContext.parquetFile ("file:///opt/data/lines")
-
-Note that the DataFrame can be saved as a JSON file through a DataFrameWriter:
-
-    scala> points.write.json ("file:///opt/data/points.json")
-
-and loaded from the JSON file through the SQLContext and a DataFrameReader:
-
-    scala> var newpoints = sqlContext.read.json ("file:///opt/data/points.json")
-
-Note that these are not schema preserving,
-since the schema is not included in the output,
-and the schema must be inferred from the input.
 
 #Reader API
 
