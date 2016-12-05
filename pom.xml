@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ch.ninecode.cim</groupId>
     <artifactId>CIMScala</artifactId>
-    <version>2.10-1.6.0-1.7.2</version> <!-- version>${version.dependency.scala}-${version.dependency.spark}-1.6.0</version -->
+    <version>2.11-2.0.1-1.8.0</version> <!-- version>${version.dependency.scala}-${version.dependency.spark}-1.6.0</version -->
     <name>${project.artifactId}</name>
     <description>Expose CIM data files as Spark RDD</description>
     <inceptionYear>2015</inceptionYear>
@@ -12,11 +12,11 @@
         <encoding>UTF-8</encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <version.dependency.scala>2.10</version.dependency.scala>
-        <version.dependency.scalalibrary>2.10.5</version.dependency.scalalibrary>
+        <version.dependency.scala>2.11</version.dependency.scala>
+        <version.dependency.scalalibrary>2.11.8</version.dependency.scalalibrary>
         <version.dependency.scalatest>3.0.0-M14</version.dependency.scalatest>
         <version.dependency.junit>4.11</version.dependency.junit>
-        <version.dependency.spark>1.6.0</version.dependency.spark>
+        <version.dependency.spark>2.0.1</version.dependency.spark>
     </properties>
 
     <dependencies>
