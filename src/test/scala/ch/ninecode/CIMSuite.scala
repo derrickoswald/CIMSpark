@@ -79,4 +79,26 @@ class CIMSuite extends FunSuite
         val cs2 = cs.asInstanceOf[CoordinateSystem]
         assert (cs2.crsUrn === "EPSG::4326")
     }
+
+    test ("Many-to-Many")
+    {
+        val xml =
+            <cim:Facility rdf:ID="STA196_asset">
+                <cim:IdentifiedObject.name>Kiental</cim:IdentifiedObject.name>
+                <cim:IdentifiedObject.aliasName>187674625:nis_el_station</cim:IdentifiedObject.aliasName>
+                <cim:IdentifiedObject.description>Ortsbeton (TS Gebäude eingebaut)</cim:IdentifiedObject.description>
+                <cim:Asset.type>Transformer Station</cim:Asset.type>
+                <cim:Asset.Location rdf:resource="#_location_1745492_973692419_187674644"/>
+                <cim:Asset.PowerSystemResources rdf:resource="#STA196"/>
+                <cim:Asset.PowerSystemResources rdf:resource="#STA197"/>
+                <cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
+            </cim:Facility>
+        val parser = new CHIM (xml.toString ())
+        val map = parser.parse ()
+        assert (map.size === 1)
+        val facility = map ("STA196_asset")
+        assert (facility.isInstanceOf[Facility])
+        val asset = (facility.asInstanceOf[Facility]).sup.sup
+        assert (2 == asset.PowerSystemResources.length)
+    }
 }

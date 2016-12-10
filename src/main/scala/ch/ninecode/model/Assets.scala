@@ -69,6 +69,7 @@ case class Asset
     val ErpItemMaster: String,
     val FinancialInfo: String,
     val Location: String,
+    val PowerSystemResources: List[String],
     val acceptanceTest: String,
     val electronicAddress: String,
     val lifecycle: String,
@@ -77,7 +78,7 @@ case class Asset
 extends
     Element
 {
-    def this () = { this (null, false, null, 0.0, null, 0.0, null, null, null, null, null, null, null, null, null, null, null, null, null) }
+    def this () = { this (null, false, null, 0.0, null, 0.0, null, null, null, null, null, null, null, null, null, List(), null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { return (clone ().asInstanceOf[Asset]); }
     override def get (i: Int): Any =
@@ -108,6 +109,7 @@ extends
     val ErpItemMaster = parse_attribute (attribute ("""Asset.ErpItemMaster"""))_
     val FinancialInfo = parse_attribute (attribute ("""Asset.FinancialInfo"""))_
     val Location = parse_attribute (attribute ("""Asset.Location"""))_
+    val PowerSystemResources = parse_attributes (attribute ("""Asset.PowerSystemResources"""))_
     val acceptanceTest = parse_attribute (attribute ("""Asset.acceptanceTest"""))_
     val electronicAddress = parse_attribute (attribute ("""Asset.electronicAddress"""))_
     val lifecycle = parse_attribute (attribute ("""Asset.lifecycle"""))_
@@ -132,6 +134,7 @@ extends
                 ErpItemMaster (context),
                 FinancialInfo (context),
                 Location (context),
+                PowerSystemResources (context),
                 acceptanceTest (context),
                 electronicAddress (context),
                 lifecycle (context),

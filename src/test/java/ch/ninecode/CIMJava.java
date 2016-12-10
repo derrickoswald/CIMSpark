@@ -1,6 +1,7 @@
 package ch.ninecode;
 
 import java.sql.SQLException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,6 +15,8 @@ public class CIMJava
 
     public static void main (String[] args) throws SQLException
     {
+        int index;
+
         try
         {
             Class.forName (driverName);
@@ -39,7 +42,7 @@ public class CIMJava
         sql = "show tables";
         System.out.println ("Running: " + sql);
         res = stmt.executeQuery (sql);
-        ArrayList<String> names = new ArrayList<String> ();
+        ArrayList<String> names = new ArrayList<> ();
         while (res.next ())
         {
             String name = res.getString (1);
@@ -83,13 +86,16 @@ public class CIMJava
         // y1  string
         // x2  string
         // y2  string
-        sql = "select id_seq_1, id_seq_2, id_equ, length, x1, y1, x2, y2 from edges";
-        System.out.println ("Running: " + sql);
-        res = stmt.executeQuery (sql);
-        int index = 0;
-        while (res.next () && (index++ < 5))
-            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getDouble (4) + "\t" + res.getString (5) + "\t" + res.getString (6) + "\t" + res.getString (7) + "\t" + res.getString (8));
-        res.close ();
+        if (names.contains ("edges"))
+        {
+            sql = "select id_seq_1, id_seq_2, id_equ, length, x1, y1, x2, y2 from edges";
+            System.out.println ("Running: " + sql);
+            res = stmt.executeQuery (sql);
+            index = 0;
+            while (res.next () && (index++ < 5))
+                System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getDouble (4) + "\t" + res.getString (5) + "\t" + res.getString (6) + "\t" + res.getString (7) + "\t" + res.getString (8));
+            res.close ();
+        }
 
         // select * query on PositionPoint
         sql = "select * from PositionPoint";
@@ -97,7 +103,7 @@ public class CIMJava
         res = stmt.executeQuery (sql);
         index = 0;
         while (res.next () && (index++ < 5))
-            System.out.println (res.getString (1) + "\t" + res.getInt (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5)+ "\t" + res.getString (6));
+            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5) + "\t" + res.getString (6));
         res.close ();
 
         // explicit query on Location
@@ -112,21 +118,30 @@ public class CIMJava
         // phone2  string
         // secondaryAddress    string
         // status  string
-        sql = "select sup.aliasName, sup.description, sup.mRID, sup.name, direction, geoInfoReference, typ, CoordinateSystem, electronicAddress, mainAddress, phone1, phone2, secondaryAddress, status from Location";
+        sql = "select sup.aliasName aliasName, sup.description description, sup.name name, CoordinateSystem, typ from Location";
         System.out.println ("Running: " + sql);
         res = stmt.executeQuery (sql);
         index = 0;
         while (res.next () && (index++ < 5))
-            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5) + "\t" + res.getString (6) + "\t" + res.getString (7) + "\t" + res.getString (8) + "\t" + res.getString (9) + "\t" + res.getString (10) + "\t" + res.getString (11) + "\t" + res.getString (12) + "\t" + res.getString (13) + "\t" + res.getString (14));
+            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5));
         res.close ();
 
         // select * query on Switch
+//        sup struct<sup:struct<sup:struct<sup:struct<sup:element,aliasName:string,description:string,mRID:string,name:string>,AssetDatasheet:string,Location:string,PSRType:string>,aggregate:boolean,normallyInService:boolean,EquipmentContainer:string>,BaseVoltage:string,GroundingAction:string,JumpingAction:string,SvStatus:string>
+//        normalOpen  boolean
+//        open    boolean
+//        ratedCurrent    double
+//        retained    boolean
+//        switchOnCount   int
+//        CompositeSwitch string
+//        Outage  string
+//        SwitchAction    string
         sql = "select * from Switch";
         System.out.println ("Running: " + sql);
         res = stmt.executeQuery (sql);
         index = 0;
         while (res.next () && (index++ < 5))
-            System.out.println (res.getString (1) + "\t" + res.getBoolean (2) + "\t" + res.getBoolean (3) + "\t" + res.getString (4) + "\t" + res.getBoolean (5)+ "\t" + res.getInt (6));
+            System.out.println (res.getString (1) + "\t" + res.getBoolean (2) + "\t" +  res.getBoolean (3) + "\t" + res.getDouble (4) + "\t" + res.getBoolean (5) + "\t" + res.getInt (6) + "\t" + res.getString (7) + "\t" + res.getString (8) + "\t" + res.getString (9));
         res.close ();
 
         // join query on Switch
@@ -135,8 +150,25 @@ public class CIMJava
         res = stmt.executeQuery (sql);
         index = 0;
         while (res.next () && (index++ < 5))
-            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getBoolean (5)+ "\t" + res.getBoolean (6) + "\t" + res.getString (7) + "\t" + res.getString (8) + "\t" + res.getString (9));
+            System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getBoolean (5)+ "\t" + res.getString (6) + "\t" + res.getString (7) + "\t" + res.getString (8));
         res.close ();
+
+//        // query a many-to-many relationship
+//        // note use a doctored RDF to have one of these many-to-many relationships
+//        sql = "select PowerSystemResources from Asset";
+//        res = stmt.executeQuery (sql);
+//        while (res.next ())
+//        {
+//            Array a = res.getArray (1); // SQLException: "Method not supported"
+//            if (!res.wasNull ())
+//            {
+//                Object obj = a.getArray ();
+//                String[] strings = (String[])obj;
+//                for (int i = 0; i < strings.length; i++)
+//                    System.out.println ("PowerSystemResource " + i + " = " + strings[i]);
+//            }
+//        }
+//        res.close ();
 
         System.out.println ("done");
         con.close ();
