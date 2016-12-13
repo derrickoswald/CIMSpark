@@ -131,7 +131,7 @@ import ch.ninecode.model._
 ```
 * One can then read in a CIM file:
 ```scala
-val elements = spark.read.cim ("hdfs://sandbox:9000/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
+val elements = spark.read.cim ("hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
 ```
 
 * Since evaluation is lazy, one needs to trigger the actual file reading by, for example, asking for the count:
