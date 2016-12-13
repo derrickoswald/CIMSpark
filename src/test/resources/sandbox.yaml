@@ -12,7 +12,7 @@ services:
       - "6066:6066"
       - "7070:7070"
       - "7077:7077" # Spark standalone port, as in master = spark://sandbox:7077
-      - "8020:8020" # hdfs port, is in: hdfs dfs -fs hdfs://sandbox:8020 -ls
+      - "8020:8020" # hdfs port, as in: hdfs dfs -fs hdfs://sandbox:8020 -ls
       - "8032:8032"
       - "8042:8042"
       - "8081:8080"

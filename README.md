@@ -90,9 +90,16 @@ hdfs dfs -fs hdfs://sandbox:8020 -mkdir /data
 hdfs dfs -fs hdfs://sandbox:8020 -put /opt/data/* /data
 hdfs dfs -fs hdfs://sandbox:8020 -ls /data
 ```
-* From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath:
+* Edit the core-site.xml to replace the placeholder with the name "sandbox":
 ```
-spark-shell --jars /opt/code/CIMScala-2.10-1.6.0-1.7.2.jar
+sed --in-place --expression='s/\[NAMENODE_HOST\]/sandbox/' /usr/local/hadoop-2.7.3/etc/hadoop/core-site.xml
+```
+* From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath
+[Note: to avoid "java.io.IOException: No FileSystem for scheme: null" when executing spark in the root directory,
+either change to any subdirectory (i.e. ```cd /opt```) or
+add the warehouse.dir configuration as shown here] 
+```
+spark-shell spark-shell --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMScala-2.11-2.0.1-1.8.0.jar
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
@@ -126,7 +133,6 @@ import ch.ninecode.model._
 ```scala
 val elements = spark.read.cim ("hdfs://sandbox:9000/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
 ```
-**NOTE: This currently does not work for Spark 2.0.**
 
 * Since evaluation is lazy, one needs to trigger the actual file reading by, for example, asking for the count:
 ```scala
