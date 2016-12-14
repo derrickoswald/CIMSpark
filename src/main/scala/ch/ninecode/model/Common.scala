@@ -1533,7 +1533,7 @@ extends
     val PropertySpecification = parse_attribute (attribute ("""UserAttribute.PropertySpecification"""))_
     val RatingSpecification = parse_attribute (attribute ("""UserAttribute.RatingSpecification"""))_
     val Transaction = parse_attribute (attribute ("""UserAttribute.Transaction"""))_
-    val value = parse_element (element ("""UserAttribute.value"""))_
+    val value = parse_attribute (attribute ("""UserAttribute.value"""))_
     def parse (context: Context): UserAttribute =
     {
         return (
