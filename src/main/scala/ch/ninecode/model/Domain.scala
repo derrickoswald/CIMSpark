@@ -1,0 +1,61 @@
+package ch.ninecode.model
+
+import org.apache.spark.sql.Row
+
+import ch.ninecode.Context
+
+/*
+ * Package: Domain
+ */
+
+case class StringQuantity
+(
+    override val sup: BasicElement,
+    val multiplier: String,
+    val unit: String,
+    val value: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def BasicElement: BasicElement = sup.asInstanceOf[BasicElement]
+    override def copy (): Row = { return (clone ().asInstanceOf[StringQuantity]); }
+    override def get (i: Int): Any =
+    {
+        if (i < productArity)
+            productElement (i)
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object StringQuantity
+extends
+    Parseable[StringQuantity]
+{
+    val multiplier = parse_attribute (attribute ("""StringQuantity.multiplier"""))_
+    val unit = parse_attribute (attribute ("""StringQuantity.unit"""))_
+    val value = parse_element (element ("""StringQuantity.value"""))_
+    def parse (context: Context): StringQuantity =
+    {
+        return (
+            StringQuantity
+            (
+                BasicElement.parse (context),
+                multiplier (context),
+                unit (context),
+                value (context)
+            )
+        )
+    }
+}
+
+object Domain
+{
+    def register: Unit =
+    {
+        StringQuantity.register
+    }
+}
