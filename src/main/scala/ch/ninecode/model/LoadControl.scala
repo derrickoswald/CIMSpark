@@ -1,6 +1,6 @@
 package ch.ninecode.model
 
-import org.apache.spark.sql.Row
+import org.apache.spark.sql.catalyst.InternalRow
 
 import ch.ninecode.Context
 
@@ -25,15 +25,15 @@ extends
 {
     def this () = { this (null, 0, false, false, false, false, false, false, null) }
     def EndDeviceFunction: EndDeviceFunction = sup.asInstanceOf[EndDeviceFunction]
-    override def copy (): Row = { return (clone ().asInstanceOf[ConnectDisconnectFunction]); }
-    override def get (i: Int): Any =
+    override def copy (): InternalRow = { return (clone ().asInstanceOf[ConnectDisconnectFunction]); }
+    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object ConnectDisconnectFunction
@@ -88,15 +88,15 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, false, false, false, false, false, 0.0, false) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[RemoteConnectDisconnectInfo]); }
-    override def get (i: Int): Any =
+    override def copy (): InternalRow = { return (clone ().asInstanceOf[RemoteConnectDisconnectInfo]); }
+    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object RemoteConnectDisconnectInfo

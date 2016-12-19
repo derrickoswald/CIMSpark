@@ -5,7 +5,7 @@ import org.apache.spark.graphx._
 import org.apache.spark.rdd.RDD
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.MutableList
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.model.ConnectivityNode
 
@@ -227,7 +227,7 @@ object Sample
             configuration.setAppName ("CIMScala GraphX Sample")
             // make a Spark context and SQL context
             val context = new SparkContext (configuration)
-            val sqlContext = new SQLContext (context)
+            val sqlContext = SparkSession.builder().getOrCreate().sqlContext
             context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
             try
             {

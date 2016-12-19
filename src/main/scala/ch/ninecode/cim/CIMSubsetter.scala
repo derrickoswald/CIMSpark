@@ -9,6 +9,10 @@ import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.ScalaReflection
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
+import org.apache.spark.sql.types._
+
+import org.apache.spark.sql.Encoders
+import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.model.Element
 
@@ -20,7 +24,7 @@ import ch.ninecode.model.Element
  * Note: This must be serializable and can't depend on the companion objects
  * for the CIM case classes.
  */
-class CIMSubsetter[A <: Product : ClassTag] (schema: StructType) extends Serializable
+class CIMSubsetter[A <: Product : ClassTag] () extends Serializable
 {
     def runtime_class = classTag[A].runtimeClass
     def classname = runtime_class.getName
@@ -46,11 +50,15 @@ class CIMSubsetter[A <: Product : ClassTag] (schema: StructType) extends Seriali
         subrdd.persist (storage)
         subrdd.asInstanceOf[RDD[Row]]
     }
-    def make (sqlContext: SQLContext, rdd: RDD[Element], storage: StorageLevel) =
+    def make (context: SparkSession, rdd: RDD[Element], storage: StorageLevel) =
     {
-        val sub = subset (rdd, storage)
+      //TODO for Spark 2.0 Upgrade
+        /*val sub = subset (rdd, storage).asInstanceOf[RDD[A]]
         // use the (Row, schema) form of createDataFrame, because all others rely on a TypeTag which is erased
-        val df = sqlContext.createDataFrame (sub, schema)
-        df.registerTempTable (cls)
+        //val df = sqlContext.createDataFrame (sub, schema)
+        //df.createOrReplaceTempView (cls)
+        
+        val Encoder = Encoders.product[A]
+        context.createDataset(sub, Encoder)*/
     }
 }

@@ -1,6 +1,6 @@
 package ch.ninecode.model
 
-import org.apache.spark.sql.Row
+import org.apache.spark.sql.catalyst.InternalRow
 
 import ch.ninecode.Context
 
@@ -17,15 +17,15 @@ extends
 {
     def this () = { this (null) }
     def Element: Element = sup
-    override def copy (): Row = { return (clone ().asInstanceOf[StateVariable]); }
-    override def get (i: Int): Any =
+    override def copy (): InternalRow = { return (clone ().asInstanceOf[StateVariable]); }
+    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object StateVariable
@@ -54,15 +54,15 @@ extends
 {
     def this () = { this (null, false, null) }
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
-    override def copy (): Row = { return (clone ().asInstanceOf[SvStatus]); }
-    override def get (i: Int): Any =
+    override def copy (): InternalRow = { return (clone ().asInstanceOf[SvStatus]); }
+    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object SvStatus

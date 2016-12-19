@@ -232,22 +232,22 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
         names.unpersist (false)
         updated_names.name = "Name"
         updated_names.persist (storage)
-        sqlContext.createDataFrame (updated_names).registerTempTable ("Name")
+        sqlContext.createDataFrame (updated_names).createOrReplaceTempView ("Name")
 
         locations.unpersist (false)
         updated_locations.name = "ServiceLocation"
         updated_locations.persist (storage)
-        sqlContext.createDataFrame (updated_locations).registerTempTable ("ServiceLocation")
+        sqlContext.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
 
         points.unpersist (false)
         updated_points.name = "PositionPoint"
         updated_points.persist (storage)
-        sqlContext.createDataFrame (updated_points).registerTempTable ("PositionPoint")
+        sqlContext.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
 
         attributes.unpersist (false)
         updated_attributes.name = "UserAttribute"
         updated_attributes.persist (storage)
-        sqlContext.createDataFrame (updated_attributes).registerTempTable ("UserAttribute")
+        sqlContext.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
 
     }
 }

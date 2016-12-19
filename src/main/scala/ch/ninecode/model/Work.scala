@@ -1,6 +1,6 @@
 package ch.ninecode.model
 
-import org.apache.spark.sql.Row
+import org.apache.spark.sql.catalyst.InternalRow
 
 import ch.ninecode.Context
 
@@ -21,15 +21,15 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { return (clone ().asInstanceOf[BaseWork]); }
-    override def get (i: Int): Any =
+    override def copy (): InternalRow = { return (clone ().asInstanceOf[BaseWork]); }
+    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object BaseWork
@@ -69,15 +69,15 @@ extends
 {
     def this () = { this (null, null, null, null, null, null) }
     def BaseWork: BaseWork = sup.asInstanceOf[BaseWork]
-    override def copy (): Row = { return (clone ().asInstanceOf[Work]); }
-    override def get (i: Int): Any =
+    override def copy (): InternalRow = { return (clone ().asInstanceOf[Work]); }
+    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object Work
@@ -115,15 +115,15 @@ extends
 {
     def this () = { this (null, null) }
     def Location: Location = sup.asInstanceOf[Location]
-    override def copy (): Row = { return (clone ().asInstanceOf[WorkLocation]); }
-    override def get (i: Int): Any =
+    override def copy (): InternalRow = { return (clone ().asInstanceOf[WorkLocation]); }
+    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object WorkLocation

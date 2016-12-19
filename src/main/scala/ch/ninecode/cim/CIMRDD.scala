@@ -4,14 +4,14 @@ import java.io.File
 import java.io.FileInputStream
 
 import org.apache.hadoop.conf.Configuration
-import org.apache.spark.Logging
+import org.slf4j.LoggerFactory
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.Row
-import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.model.CHIM
 import ch.ninecode.model.Element
@@ -27,8 +27,10 @@ import ch.ninecode.model.Element
  * class remains unencumbered by the heavy overhead.
  *
  */
-object CIMRDD extends Logging
+object CIMRDD
 {
+    private val log = LoggerFactory.getLogger(getClass)
+    
     def main (args:Array[String])
     {
         val conf = new SparkConf ()
@@ -41,8 +43,10 @@ object CIMRDD extends Logging
             if (args.size > 0)
             {
                 // set up the SQL context
-                val sql_context = new HiveContext (spark)
-                logInfo ("context established")
+                val session_builder = SparkSession.builder()
+                session_builder.enableHiveSupport()
+                val sql_context = session_builder.getOrCreate().sqlContext
+                log.info ("context established")
 
                 // set the port if it was specified, otherwise use the default of port 10000
                 if (args.size > 1)
@@ -54,38 +58,38 @@ object CIMRDD extends Logging
 
                 // start the thrift JDBC server
                 HiveThriftServer2.startWithContext (sql_context)
-                logInfo ("thriftserver started")
+                log.info ("thriftserver started")
 
                 var filename = args (0)
                 if (!filename.startsWith ("file:") && !filename.startsWith ("hdfs:"))
                 {
-                    logWarning ("filename without scheme, changing " + filename + " to " + "file://" + filename)
+                    log.warn ("filename without scheme, changing " + filename + " to " + "file://" + filename)
                     filename = "file://" + filename
                 }
 
                 // show databases
-//                logInfo ("databases")
+//                log.info ("databases")
 //                var sql = "show databases";
 //                val databases = sql_context.sql (sql)
 //                for (database <- databases)
-//                   logInfo (database.toString ())
+//                   log.info (database.toString ())
 
-                logInfo ("create temporary table")
+                log.info ("create temporary table")
                 var sql = "create temporary table elements using ch.ninecode.cim options (path '" + filename + "')"
                 val dataframe = sql_context.sql (sql)
                 val count = sql_context.sql ("select count(*) from elements")
                 println ("dataframe created with " + count.head().getLong(0) + " elements")
 
-                logInfo ("tables")
+                log.info ("tables")
                 val tables = sql_context.tableNames ()
                 for (table <- tables)
-                   logInfo (table.toString ())
+                   log.info (table.toString ())
 
                 println ("Press [Return] to exit...")
                 System.console().readLine()
             }
             else
-                logError ("CIM XML input file not specified")
+                log.error ("CIM XML input file not specified")
         }
         finally
         {

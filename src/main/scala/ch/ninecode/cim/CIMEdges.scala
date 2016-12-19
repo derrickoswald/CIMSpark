@@ -1,6 +1,6 @@
 package ch.ninecode.cim
 
-import org.apache.spark.Logging
+import org.slf4j.LoggerFactory
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SQLContext
@@ -14,8 +14,10 @@ class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 
 case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 
-class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable with Logging
+class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
 {
+    private val log = LoggerFactory.getLogger(getClass)
+    
     def get (name: String): RDD[Element] =
     {
         val rdds = sqlContext.sparkContext.getPersistentRDDs
@@ -327,7 +329,7 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
                             // three (or more terminal device - which we assume is a transformer
                             // sequence number 1 at index 0 is the high side of a transformer
                             // make edges to each of the secondaries
-                            logWarning ("equipment with " + terminals.length + " terminals: " + terminals(0).ConductingEquipment)
+                            log.warn ("equipment with " + terminals.length + " terminals: " + terminals(0).ConductingEquipment)
                             var i = 0
                             var list = List[PreEdge] ()
                             while (i < terminals.length - 1)
@@ -444,7 +446,7 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
             edges.persist (storage)
 
             // expose it
-            sqlContext.createDataFrame (edges).registerTempTable ("edges")
+            sqlContext.createDataFrame (edges).createOrReplaceTempView ("edges")
         }
         else
         {
@@ -455,7 +457,7 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
             edges.persist (storage)
 
             // expose it
-            sqlContext.createDataFrame (edges).registerTempTable ("edges")
+            sqlContext.createDataFrame (edges).createOrReplaceTempView ("edges")
         }
     }
 }

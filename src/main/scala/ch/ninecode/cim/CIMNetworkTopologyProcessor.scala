@@ -10,7 +10,7 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.Logging
+import org.slf4j.LoggerFactory
 import org.apache.spark.SparkContext
 
 import ch.ninecode.model._
@@ -64,8 +64,10 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
  * To be done eventually:
  * - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
  */
-class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable with Logging
+class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
 {
+    private val log = LoggerFactory.getLogger(getClass)
+    
     def get (name: String, sc: SparkContext): RDD[Element] =
     {
         val rdds = sc.getPersistentRDDs
@@ -487,7 +489,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         val initial = make_graph (sqlContext.sparkContext)
 
         // get the topological nodes
-        logInfo ("identifyNodes")
+        log.info ("identifyNodes")
         var graph = identifyNodes (initial)
 
         // persist the RDD to avoid recomputation
@@ -497,7 +499,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         if (identify_islands)
         {
             // get the topological islands
-            logInfo ("identifyIslands")
+            log.info ("identifyIslands")
             graph = identifyIslands (graph)
 
             // persist the RDD to avoid recomputation
@@ -505,21 +507,21 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             graph.edges.persist (storage)
 
             // create TopologicalIsland RDD
-            logInfo ("islands")
+            log.info ("islands")
             val islands = graph.vertices.values.filter (_.island != 0L).groupBy (_.island).values.map (to_islands)
             get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]].unpersist (false)
             islands.name = "TopologicalIsland"
             islands.persist (storage)
-            sqlContext.createDataFrame (islands).registerTempTable ("TopologicalIsland")
+            sqlContext.createDataFrame (islands).createOrReplaceTempView ("TopologicalIsland")
         }
 
         // create TopologicalNode RDD
-        logInfo ("nodes")
+        log.info ("nodes")
         val nodes = graph.vertices.map (_._2).groupBy (_.node).map (to_nodes) // ToDo: is there a  better way than GroupBy?
         get ("TopologicalNode", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalNode]].unpersist (false)
         nodes.name = "TopologicalNode"
         val stuff = nodes.persist (storage)
-        sqlContext.createDataFrame (nodes).registerTempTable ("TopologicalNode")
+        sqlContext.createDataFrame (nodes).createOrReplaceTempView ("TopologicalNode")
 
         // assign every ConnectivtyNode to a TopologicalNode
         val old_cn = get ("ConnectivityNode", sqlContext.sparkContext).asInstanceOf[RDD[ConnectivityNode]]
@@ -529,7 +531,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         old_cn.unpersist (false)
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
-        sqlContext.createDataFrame (new_cn).registerTempTable ("ConnectivityNode")
+        sqlContext.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
 
         // assign every Terminal to a TopologicalNode
         val old_terminals = get ("Terminal", sqlContext.sparkContext).asInstanceOf[RDD[Terminal]]
@@ -539,6 +541,6 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         old_terminals.unpersist (false)
         new_terminals.name = "Terminal"
         new_terminals.persist (storage)
-        sqlContext.createDataFrame (new_terminals).registerTempTable ("Terminal")
+        sqlContext.createDataFrame (new_terminals).createOrReplaceTempView ("Terminal")
     }
 }

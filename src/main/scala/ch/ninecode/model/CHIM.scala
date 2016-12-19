@@ -10,6 +10,7 @@ import scala.reflect.ClassTag
 import scala.reflect.classTag
 import scala.reflect.runtime.universe.TypeTag
 
+import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.expressions.GenericInternalRow
 import org.apache.spark.sql.catalyst.expressions.GenericMutableRow
 import org.apache.spark.sql.catalyst.expressions.UnsafeRow
@@ -147,7 +148,7 @@ trait Parser
                 case nfe: NumberFormatException ⇒ throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
             }
 
-        return (ret);
+      return (ret);
     }
 }
 
@@ -175,71 +176,58 @@ extends
 //        val a = constructor_mirror()
 //        (a.asInstanceOf[Product], typeTag[A])
 //    }
-    val schema = ScalaReflection.schemaFor[A].dataType.asInstanceOf[StructType]
-    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
-    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
+  //val dataType = ScalaReflection.dataTypeFor[A]
+  // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
+  // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
     val lock: AnyRef = SerializableObject ("scalasucks")
-    def register: Unit =
-        lock.synchronized
-        {
-            CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
-            CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A] (schema)))
-        }
+  def register: Unit =
+    lock.synchronized
+    {
+      CHIM.LOOKUP += (("cim" + ":" + cls, this.asInstanceOf[Parseable[Product]]))
+      CHIM.SUBSETTERS += (("cim" + ":" + cls, new CIMSubsetter[A]()))
+    }
 }
 
 // needed to get around error: trait Element accesses protected method clone inside a concrete trait method.
 // Add an accessor in a class extending class Object as a workaround.
-class ObjectPlus extends Object { protected def cloneplus = clone }
+/*class ObjectPlus extends Object { protected def cloneplus = clone }*/
 
-@SQLUserDefinedType(udt = classOf[ElementUDT])
+//@SQLUserDefinedType(udt = classOf[ElementUDT])
 trait Element
-extends
-    ObjectPlus
-with
-    Row
-with
+extends 
+    InternalRow
+with 
     Serializable
-with
-    Cloneable
+with 
+    Cloneable 
 {
-    def sup: Element = null
-    def id: String = if (null == sup) "0" else (sup.id)
-
-    override def hashCode (): Int =
-    {
-        if (null == sup) 0 else sup.hashCode()
-    }
-
-    override def equals (other: Any): Boolean =
-    {
-        other match
-        {
-            case that: Element => this.sup == that.sup
-            case _ => false
-        }
-    }
-
-    override def copy (): Row =
-    {
-        val ret: Row = cloneplus.asInstanceOf[Element]
-        return (ret)
-    }
-
-    override def get (i: Int): Any =
-    {
-        if (0 == i)
-            sup
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-
-    override def length: Int = 1
+  def sup: Element = null
+  def id: String = if (null == sup) "0" else (sup.id)
+  override def anyNull: Boolean = false
+  override def numFields: Int = 0
+  override def get(x$1: Int, x$2: org.apache.spark.sql.types.DataType): Object = { throw new Exception("not implemented yet") }
+  override def getArray(i: Int): org.apache.spark.sql.catalyst.util.ArrayData = { throw new Exception("not implemented yet") }
+  override def getBinary(x$1: Int): Array[Byte] = { throw new Exception("not implemented yet") }
+  override def getBoolean(x$1: Int): Boolean = { throw new Exception("not implemented yet") }
+  override def getByte(x$1: Int): Byte = { throw new Exception("not implemented yet") }
+  override def getDecimal(x$1: Int, x$2: Int, x$3: Int): org.apache.spark.sql.types.Decimal = { throw new Exception("not implemented yet") }
+  override def getDouble(x$1: Int): Double = { throw new Exception("not implemented yet") }
+  override def getFloat(x$1: Int): Float = { throw new Exception("not implemented yet") }
+  override def getInt(x$1: Int): Int = { throw new Exception("not implemented yet") }
+  override def getInterval(x$1: Int): org.apache.spark.unsafe.types.CalendarInterval = { throw new Exception("not implemented yet") }
+  override def getLong(x$1: Int): Long = { throw new Exception("not implemented yet") }
+  override def getMap(x$1: Int): org.apache.spark.sql.catalyst.util.MapData = { throw new Exception("not implemented yet") }
+  override def getShort(x$1: Int): Short = { throw new Exception("not implemented yet") }
+  override def getStruct(x$1: Int, x$2: Int): org.apache.spark.sql.catalyst.InternalRow = { throw new Exception("not implemented yet") }
+  override def getUTF8String(x$1: Int): org.apache.spark.unsafe.types.UTF8String = { throw new Exception("not implemented yet") }
+  override def isNullAt(i: Int): Boolean = { throw new Exception("not implemented yet") }
+  override def copy(): InternalRow = { throw new Exception("not implemented yet") }
 }
 
 /**
  * User-defined type for [[Element]].
  */
-class ElementUDT extends UserDefinedType[Element]
+/*class ElementUDT extends UserDefinedType[Element]
 {
     // The following type and it's serialization took a lot of trial and error.
     // This is what didn't work for a data type for sup:
@@ -329,7 +317,7 @@ class ElementUDT extends UserDefinedType[Element]
 
     override def asNullable: ElementUDT = this
 }
-
+*/
 /**
  * Top level element.
  * Not all elements really have an mRID (classes in package Common like PositionPoint and PostalAddress)
@@ -344,36 +332,31 @@ extends
     Element
 {
     def this () = { this (null, null) }
-    override def id: String = mRID
-    override def copy (): Row = { return (clone ().asInstanceOf[Element]); }
-    override def get (i: Int): Any =
+  override def id: String = mRID
+  override def copy(): InternalRow = { return (clone().asInstanceOf[Element]); }
+  override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object BasicElement
-extends
-    Parser
-{
-    /**
-     * Parse an element.
-     * Simply extracts the id.
-     */
-    val mRID = parse_element ((Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))_
-    override def parse (context: Context): BasicElement =
+    extends Parser {
+  /**
+   * Parse an element.
+   * Simply extracts the id.
+   */
+  val mRID = parse_element((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))_
+  override def parse(context: Context): BasicElement =
     {
-        return (
-            new BasicElement
-            (
-                null,
-                mRID (context)
-            )
-        )
+      return (
+        new BasicElement(
+          null,
+          mRID(context)))
     }
 }
 
@@ -381,48 +364,39 @@ extends
  * Unknown element
  * Default parsed element, when no other more specific class applies
  */
-case class Unknown
-(
-    override val sup: Element = null,
-    guts: String,
-    line: Int,
-    start: Long,
-    end: Long
-)
-extends
-    Element
-{
-    def this () = { this (null, null, 0, 0l, 0l) }
-    def Element: Element = sup
-    override def copy (): Row = { return (clone ().asInstanceOf[Unknown]); }
-    override def get (i: Int): Any =
+case class Unknown(
+  override val sup: Element = null,
+  guts: String,
+  line: Int,
+  start: Long,
+  end: Long)
+    extends Element {
+  def this() = { this(null, null, 0, 0l, 0l) }
+  def Element: Element = sup
+  override def copy(): InternalRow = { return (clone().asInstanceOf[Unknown]); }
+  override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
     {
         if (i < productArity)
-            productElement (i)
+            productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def length: Int = productArity
+    override def numFields: Int = productArity
 }
 
 object Unknown
-extends
-    Parser
-{
-    def parse (context: Context): Unknown =
+    extends Parser {
+  def parse(context: Context): Unknown =
     {
-        if ((context.DEBUG) && (context.errors.size < context.MAXERRORS))
-            context.errors += "Unknown element \"" + context.name + "\" at line " + context.line_number ()
-        return (
-            Unknown
-            (
-                BasicElement.parse (context),
-                context.xml,
-                context.line_number (),
-                context.start,
-                context.end
-            )
-        )
+      if ((context.DEBUG) && (context.errors.size < context.MAXERRORS))
+        context.errors += "Unknown element \"" + context.name + "\" at line " + context.line_number()
+      return (
+        Unknown(
+          BasicElement.parse(context),
+          context.xml,
+          context.line_number(),
+          context.start,
+          context.end))
     }
 }
 
@@ -563,7 +537,7 @@ object CHIM
             }
         }
 
-        (i, j)
+      (i, j)
     }
 
     def read (filename: String, offset: Long, size: Long = CHUNK, overread: Long = OVERREAD) =
@@ -651,9 +625,9 @@ object CHIM
         (ret, offset, offset + limit)
     }
 
-    /**
-     * Main program for testing purposes.
-     */
+  /**
+   * Main program for testing purposes.
+   */
     def main (args: Array[String])
     {
         if (args.size > 0)

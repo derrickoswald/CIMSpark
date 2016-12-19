@@ -17,7 +17,7 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
     val MAXERRORS = 10
     val lines = Pattern.compile ("""\n""")
     var name: String = null // current element name
-    val coverage = new ArrayBuffer[Pair[Int, Int]]
+    val coverage = new ArrayBuffer[Tuple2[Int, Int]]
     val errors = new ArrayBuffer[String]
 
     /**
