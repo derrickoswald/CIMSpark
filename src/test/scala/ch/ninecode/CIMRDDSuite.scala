@@ -33,14 +33,14 @@ class CIMRDDSuite extends fixture.FunSuite
     // number of elements in the file
     // get number of lines at the top level with:
     // grep -P "^[\t]<cim" NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | wc
-    val ELEMENTS1 = 14501
-    val ELEMENTS2 = 23197
+    val ELEMENTS1 = 14584
+    val ELEMENTS2 = 23576
 
     // number of elements in a 1MB chunk
     // this is approximately (off by +one)
     // tail --bytes=+3145728 NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
     val OFFSET = 3145728
-    val PARTIAL_MAP_SIZE = 2548
+    val PARTIAL_MAP_SIZE = 2544
 
     def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[InternalRow] =
     {
