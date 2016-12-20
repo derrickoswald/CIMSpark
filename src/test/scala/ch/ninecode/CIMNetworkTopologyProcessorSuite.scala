@@ -14,6 +14,8 @@ import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.storage.StorageLevel
 import org.scalatest.fixture
+import org.apache.spark.sql.SparkSession
+
 
 import ch.ninecode.cim._
 import ch.ninecode.model._
@@ -25,11 +27,9 @@ import org.apache.spark.sql.types.CHIM
 
 class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
 {
-    case class ContextPair (_SparkContext: SparkContext, _SQLContext: SQLContext)
-
     val FILE_DEPOT = "/home/derrick/Documents/9code/nis/cim/cim_export/"
 
-    type FixtureParam = ContextPair
+    type FixtureParam = SparkSession
 
     def withFixture (test: OneArgTest): org.scalatest.Outcome =
     {
@@ -50,17 +50,13 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         // register topological classes
         configuration.registerKryoClasses (Array (classOf[CuttingEdge], classOf[TopologicalData]))
 
-        val context = new SparkContext (configuration)
-        context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
-        val sql_context = new SQLContext (context)
-
         val end = System.nanoTime ()
         println ("setup : " + (end - start) / 1e9 + " seconds")
+        val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
+        session.sparkContext.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
         try
-        {
-            withFixture (test.toNoArgTest (ContextPair (context, sql_context))) // "loan" the fixture to the test
-        }
-        finally context.stop () // clean up the fixture
+            withFixture (test.toNoArgTest (session)) // "loan" the fixture to the test
+        finally session.stop() // clean up the fixture
     }
 
     def readFile (context: SQLContext, filename: String): DataFrame =
@@ -84,21 +80,18 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
 
     test ("Basic")
     {
-        a: ContextPair ⇒
+        session: SparkSession ⇒
 
         val start = System.nanoTime ()
 
-        val context: SparkContext = a._SparkContext
-        val sql_context: SQLContext = a._SQLContext
-
         val filename =
             FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Kiental_V9" + ".rdf"
-        val elements = readFile (sql_context, filename)
+        val elements = readFile (session.sqlContext, filename)
 
         val read = System.nanoTime ()
 
         // set up for execution
-        val topo = new CIMNetworkTopologyProcessor (sql_context, StorageLevel.MEMORY_AND_DISK_SER)
+        val topo = new CIMNetworkTopologyProcessor (session.sqlContext, StorageLevel.MEMORY_AND_DISK_SER)
         topo.process (false)
 
         val process = System.nanoTime ()
@@ -110,21 +103,18 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
 
     test ("Islands")
     {
-        a: ContextPair ⇒
+        session: SparkSession ⇒
 
         val start = System.nanoTime ()
 
-        val context: SparkContext = a._SparkContext
-        val sql_context: SQLContext = a._SQLContext
-
         val filename =
             FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf"
-        val elements = readFile (sql_context, filename)
+        val elements = readFile (session.sqlContext, filename)
 
         val read = System.nanoTime ()
 
         // set up for execution
-        val topo = new CIMNetworkTopologyProcessor (sql_context, StorageLevel.MEMORY_AND_DISK_SER)
+        val topo = new CIMNetworkTopologyProcessor (session.sqlContext, StorageLevel.MEMORY_AND_DISK_SER)
         topo.process (true)
 
         val process = System.nanoTime ()
