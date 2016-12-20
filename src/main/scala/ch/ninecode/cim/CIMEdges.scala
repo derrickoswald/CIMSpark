@@ -6,6 +6,7 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
+import org.apache.spark.sql.types.Element
 
 import ch.ninecode.model._
 

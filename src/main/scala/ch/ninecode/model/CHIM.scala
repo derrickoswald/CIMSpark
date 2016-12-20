@@ -1,9 +1,11 @@
-package ch.ninecode.model
+//package ch.ninecode.model
+package org.apache.spark.sql.types;
 
 import java.io.File
 import java.io.FileInputStream
 import java.util.regex.Pattern
 
+import ch.ninecode.model._
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.reflect.ClassTag
@@ -16,11 +18,11 @@ import org.apache.spark.sql.catalyst.expressions.GenericMutableRow
 import org.apache.spark.sql.catalyst.expressions.UnsafeRow
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.ScalaReflection
-import org.apache.spark.sql.types.DataType
+/*import org.apache.spark.sql.types.DataType
 import org.apache.spark.sql.types.NullType
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.sql.types.StructType
-import org.apache.spark.sql.types.UserDefinedType
+import org.apache.spark.sql.types.UserDefinedType*/
 import org.apache.spark.unsafe.types.UTF8String
 import org.apache.spark.sql.Row
 
@@ -192,7 +194,7 @@ extends
 // Add an accessor in a class extending class Object as a workaround.
 /*class ObjectPlus extends Object { protected def cloneplus = clone }*/
 
-//@SQLUserDefinedType(udt = classOf[ElementUDT])
+@SQLUserDefinedType(udt = classOf[ElementUDT])
 trait Element
 extends 
     InternalRow
@@ -204,8 +206,15 @@ with
   def sup: Element = null
   def id: String = if (null == sup) "0" else (sup.id)
   override def anyNull: Boolean = false
-  override def numFields: Int = 0
-  override def get(x$1: Int, x$2: org.apache.spark.sql.types.DataType): Object = { throw new Exception("not implemented yet") }
+  override def numFields: Int = 1
+  override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    {
+        if (0 == i)
+            sup
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+  //override def get(x$1: Int, x$2: org.apache.spark.sql.types.DataType): Object = { throw new Exception("not implemented yet") }
   override def getArray(i: Int): org.apache.spark.sql.catalyst.util.ArrayData = { throw new Exception("not implemented yet") }
   override def getBinary(x$1: Int): Array[Byte] = { throw new Exception("not implemented yet") }
   override def getBoolean(x$1: Int): Boolean = { throw new Exception("not implemented yet") }
@@ -220,14 +229,18 @@ with
   override def getShort(x$1: Int): Short = { throw new Exception("not implemented yet") }
   override def getStruct(x$1: Int, x$2: Int): org.apache.spark.sql.catalyst.InternalRow = { throw new Exception("not implemented yet") }
   override def getUTF8String(x$1: Int): org.apache.spark.unsafe.types.UTF8String = { throw new Exception("not implemented yet") }
-  override def isNullAt(i: Int): Boolean = { throw new Exception("not implemented yet") }
+  override def isNullAt(i: Int): Boolean = 
+  { 
+    // TODO implement for each case class??
+    return true   
+  }
   override def copy(): InternalRow = { throw new Exception("not implemented yet") }
 }
 
 /**
  * User-defined type for [[Element]].
  */
-/*class ElementUDT extends UserDefinedType[Element]
+class ElementUDT extends UserDefinedType[Element]
 {
     // The following type and it's serialization took a lot of trial and error.
     // This is what didn't work for a data type for sup:
@@ -248,26 +261,14 @@ with
     //     results in scala.MatchError: ch.ninecode.model.ElementUDT@7c008354 (of class ch.ninecode.model.ElementUDT)
     override def sqlType: DataType = NullType
 
-    override def pyUDT: String = "ch.ninecode.cim.ElementUDT"
+    override def pyUDT: String = "org.apache.spark.sql.types.ElementUDT"
 
-    override def serialize (obj: Any): InternalRow =
+    override def serialize (obj: org.apache.spark.sql.types.Element): Any =
     {
-        obj match
-        {
-            case e: Element =>
-            {
-                val output = new Array[Any](1)
-                output (0) = UTF8String.fromString (e.id.toString)
-                val r = new GenericMutableRow (output)
-                r
-            }
-            case _: Any =>
-            {
-                println ("output _")
-                val r = new GenericMutableRow (0)
-                r
-            }
-        }
+          val output = new Array[Any](1)
+          output (0) = UTF8String.fromString (obj.id.toString)
+          val r = new GenericMutableRow (output)
+          r
     }
 
     override def deserialize (datum: Any): Element =
@@ -317,7 +318,7 @@ with
 
     override def asNullable: ElementUDT = this
 }
-*/
+
 /**
  * Top level element.
  * Not all elements really have an mRID (classes in package Common like PositionPoint and PostalAddress)

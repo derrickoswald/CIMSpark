@@ -3,7 +3,7 @@ package ch.ninecode.cim
 import java.io.{FileNotFoundException, IOException, ObjectInputStream, ObjectOutputStream}
 import scala.util.control.NonFatal
 
-import ch.ninecode.model.CHIM
+import org.apache.spark.sql.types._
 import ch.ninecode.cim.DefaultSource.{IgnoreFilesWithoutExtensionProperty, SerializableConfiguration}
 
 import org.apache.hadoop.conf.Configuration
@@ -17,7 +17,8 @@ import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.execution.datasources.{FileFormat, OutputWriterFactory, PartitionedFile}
 import org.apache.spark.sql.sources.{DataSourceRegister, Filter}
 import org.apache.spark.sql.types.StructType
-       
+import org.apache.spark.sql.catalyst.ScalaReflection
+     
 class DefaultSource extends FileFormat with DataSourceRegister with Serializable {
   private val log = LoggerFactory.getLogger(getClass)
         
@@ -25,17 +26,23 @@ class DefaultSource extends FileFormat with DataSourceRegister with Serializable
     case _: DefaultSource => true
     case _ => false
   }
+  
+  case class dummy
+    (
+        override val sup: Element = null
+    )
+    extends
+        Element
 
   override def inferSchema(
       spark: SparkSession,
       options: Map[String, String],
       files: Seq[FileStatus]): Option[StructType] = {
-    log.info("DefaultSource.inferSchema")
-    
-    //val cimSchema = ScalaReflection.schemaFor[Element].dataType.asInstanceOf[StructType]
-    val cimSchema = new StructType()
-    cimSchema.add("id", StringType);
-    cimSchema.add("sup", NullType);
+        
+    val cimSchema = ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]
+//    val cimSchema = new StructType()
+//    cimSchema.add("id", StringType);
+//    cimSchema.add("sup", NullType);
    
     return Some(cimSchema)
   }

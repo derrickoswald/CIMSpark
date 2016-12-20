@@ -4,6 +4,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.types.DataType
 
+import org.apache.spark.sql.types._
 import ch.ninecode.Context
 
 /*
@@ -322,6 +323,16 @@ extends
     def this () = { this (null) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): InternalRow = { return (clone ().asInstanceOf[PowerTransformerInfo]); }
+    override def isNullAt(i: Int): Boolean = 
+    { 
+      if (i < productArity)
+            if (productElement (i).isInstanceOf[AnyRef]) {
+              return true
+            }
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+      return false
+    }
     override def get (i: Int, d: DataType): Object =
     {
         if (i < productArity)

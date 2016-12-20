@@ -7,8 +7,8 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.hadoop.mapreduce.lib.input.FileSplit
 import org.apache.spark.sql.Row
 
-import ch.ninecode.model.CHIM
-import ch.ninecode.model.Element
+import org.apache.spark.sql.types.CHIM
+import org.apache.spark.sql.types.Element
 
 class CIMRecordReader extends RecordReader[String, Element]
 {

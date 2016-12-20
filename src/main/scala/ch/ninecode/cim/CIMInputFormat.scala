@@ -9,7 +9,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.hadoop.mapreduce.lib.input.FileSplit
 
-import ch.ninecode.model.Element
+import org.apache.spark.sql.types.Element
 
 class CIMInputFormat extends FileInputFormat[String, Element]
 {

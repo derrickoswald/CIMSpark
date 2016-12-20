@@ -6,6 +6,7 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 
+import org.apache.spark.sql.types._
 import ch.ninecode.model._
 
 class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
