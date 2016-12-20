@@ -19,6 +19,11 @@ import org.scalatest.Outcome
 import ch.ninecode.cim._
 import ch.ninecode.model._
 
+import org.apache.spark.sql.types.Element
+import org.apache.spark.sql.types.Unknown
+import org.apache.spark.sql.types.BasicElement
+import org.apache.spark.sql.types.CHIM
+
 class CIMSparkSuite extends fixture.FunSuite
 {
     case class ContextPair (_SparkContext: SparkContext, _SQLContext: SQLContext)
