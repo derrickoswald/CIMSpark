@@ -197,7 +197,7 @@ extends
 @SQLUserDefinedType(udt = classOf[ElementUDT])
 trait Element
 extends 
-    InternalRow
+    Row
 with 
     Serializable
 with 
@@ -206,8 +206,8 @@ with
   def sup: Element = null
   def id: String = if (null == sup) "0" else (sup.id)
   override def anyNull: Boolean = false
-  override def numFields: Int = 1
-  override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+  override def length: Int = 1
+  override def get (i: Int): Object =
     {
         if (0 == i)
             sup
@@ -215,7 +215,7 @@ with
             throw new IllegalArgumentException ("invalid property index " + i)
     }
   //override def get(x$1: Int, x$2: org.apache.spark.sql.types.DataType): Object = { throw new Exception("not implemented yet") }
-  override def getArray(i: Int): org.apache.spark.sql.catalyst.util.ArrayData = { throw new Exception("not implemented yet") }
+  /*override def getArray(i: Int): org.apache.spark.sql.catalyst.util.ArrayData = { throw new Exception("not implemented yet") }
   override def getBinary(x$1: Int): Array[Byte] = { throw new Exception("not implemented yet") }
   override def getBoolean(x$1: Int): Boolean = { throw new Exception("not implemented yet") }
   override def getByte(x$1: Int): Byte = { throw new Exception("not implemented yet") }
@@ -233,8 +233,8 @@ with
   { 
     // TODO implement for each case class??
     return true   
-  }
-  override def copy(): InternalRow = { throw new Exception("not implemented yet") }
+  }*/
+  override def copy(): Row = { throw new Exception("not implemented yet") }
 }
 
 /**
@@ -334,15 +334,15 @@ extends
 {
     def this () = { this (null, null) }
   override def id: String = mRID
-  override def copy(): InternalRow = { return (clone().asInstanceOf[Element]); }
-  override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+  override def copy(): Row = { return (clone().asInstanceOf[Element]); }
+  override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object BasicElement
@@ -374,15 +374,15 @@ case class Unknown(
     extends Element {
   def this() = { this(null, null, 0, 0l, 0l) }
   def Element: Element = sup
-  override def copy(): InternalRow = { return (clone().asInstanceOf[Unknown]); }
-  override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+  override def copy(): Row = { return (clone().asInstanceOf[Unknown]); }
+  override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object Unknown

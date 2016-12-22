@@ -1,6 +1,6 @@
 package ch.ninecode.model
 
-//import org.apache.spark.sql.Row
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.types.DataType
 
@@ -22,15 +22,15 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[BusBarSectionInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[BusBarSectionInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
     
 }
 
@@ -72,15 +72,15 @@ extends
 {
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, false, 0.0, null, false, null) }
     def WireInfo: WireInfo = sup.asInstanceOf[WireInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[CableInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[CableInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object CableInfo
@@ -133,15 +133,15 @@ extends
 {
     def this () = { this (null, 0.0, 0, 0.0, 0.0, 0.0) }
     def CableInfo: CableInfo = sup.asInstanceOf[CableInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ConcentricNeutralCableInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ConcentricNeutralCableInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ConcentricNeutralCableInfo
@@ -184,15 +184,15 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null)}
     def TransformerTest: TransformerTest = sup.asInstanceOf[TransformerTest]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[NoLoadTest]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[NoLoadTest]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object NoLoadTest
@@ -238,15 +238,15 @@ extends
 {
     def this () = { this (null, 0, 0.0, 0, 0.0, 0.0, null, null) }
     def TransformerTest: TransformerTest = sup.asInstanceOf[TransformerTest]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[OpenCircuitTest]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[OpenCircuitTest]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object OpenCircuitTest
@@ -287,15 +287,15 @@ extends
 {
     def this () = { this (null) }
     def WireInfo: WireInfo = sup.asInstanceOf[WireInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[OverheadWireInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[OverheadWireInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object OverheadWireInfo
@@ -322,7 +322,7 @@ extends
 {
     def this () = { this (null) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[PowerTransformerInfo]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformerInfo]); }
     override def isNullAt(i: Int): Boolean = 
     { 
       if (i < productArity)
@@ -333,14 +333,14 @@ extends
             throw new IllegalArgumentException ("invalid property index " + i)
       return false
     }
-    override def get (i: Int, d: DataType): Object =
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object PowerTransformerInfo
@@ -374,15 +374,15 @@ extends
 {
     def this () = { this (null, 0, 0, 0.0, 0.0, 0.0, 0.0, null) }
     def TransformerTest: TransformerTest = sup.asInstanceOf[TransformerTest]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ShortCircuitTest]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ShortCircuitTest]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ShortCircuitTest
@@ -428,15 +428,15 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ShuntCompensatorInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensatorInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ShuntCompensatorInfo
@@ -478,15 +478,15 @@ extends
 {
     def this () = { this (null, 0.0, false, false, 0.0, 0.0) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[SwitchInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[SwitchInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object SwitchInfo
@@ -538,15 +538,15 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, false, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[TapChangerInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object TapChangerInfo
@@ -605,15 +605,15 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def CableInfo: CableInfo = sup.asInstanceOf[CableInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[TapeShieldCableInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[TapeShieldCableInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object TapeShieldCableInfo
@@ -656,15 +656,15 @@ extends
 {
     def this () = { this (null, null, 0.0, 0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[TransformerEndInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerEndInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object TransformerEndInfo
@@ -716,15 +716,15 @@ extends
 {
     def this () = { this (null, null) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[TransformerTankInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTankInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object TransformerTankInfo
@@ -755,15 +755,15 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[TransformerTest]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTest]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object TransformerTest
@@ -809,15 +809,15 @@ extends
 {
     def this () = { this (null, 0.0, 0, 0.0, false, null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0 ) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[WireInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[WireInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object WireInfo
@@ -878,15 +878,15 @@ extends
 {
     def this () = { this (null, null, 0.0, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[WirePosition]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[WirePosition]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object WirePosition
@@ -926,15 +926,15 @@ extends
 {
     def this () = { this (null, false, 0, 0.0, null, null) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[WireSpacingInfo]); }
-    override def get (i: Int, d: DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[WireSpacingInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object WireSpacingInfo

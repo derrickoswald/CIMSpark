@@ -1,5 +1,6 @@
 package ch.ninecode.model
 
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.catalyst.InternalRow
 
@@ -22,15 +23,15 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[BaseReading]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[BaseReading]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object BaseReading
@@ -68,15 +69,15 @@ extends
 {
     def this () = { this (null, false, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[Channel]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[Channel]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object Channel
@@ -114,15 +115,15 @@ extends
 {
     def this () = { this (null, null, null, null, null, null) }
     def EndDeviceFunction: EndDeviceFunction = sup.asInstanceOf[EndDeviceFunction]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ComFunction]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ComFunction]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ComFunction
@@ -162,15 +163,15 @@ extends
 {
     def this () = { this (null, null, false, 0.0) }
     def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ComModule]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ComModule]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ComModule
@@ -215,15 +216,15 @@ extends
 {
     def this () = { this (null, false, false, false, false, false, false, false, false, false, false, false, false) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ControlledAppliance]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ControlledAppliance]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ControlledAppliance
@@ -276,15 +277,15 @@ extends
 {
     def this () = { this (null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[DemandResponseProgram]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[DemandResponseProgram]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object DemandResponseProgram
@@ -324,15 +325,15 @@ extends
 {
     def this () = { this (null, null, null, false, false, 0.0, null, null, null, null) }
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDevice]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDevice]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDevice
@@ -382,15 +383,15 @@ extends
 {
     def this () = { this (null, null, 0.0, false, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceAction]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceAction]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceAction
@@ -445,15 +446,15 @@ extends
 {
     def this () = { this (null, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceCapability]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceCapability]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceCapability
@@ -527,15 +528,15 @@ extends
 {
     def this () = { this (null, 0, false, null, null, null, null, null, 0.0, null, null, null ) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceControl]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceControl]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceControl
@@ -588,15 +589,15 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceControlType]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceControlType]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceControlType
@@ -638,15 +639,15 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null) }
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceEvent]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceEvent]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceEvent
@@ -690,15 +691,15 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceEventDetail]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceEventDetail]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceEventDetail
@@ -735,15 +736,15 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceEventType]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceEventType]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceEventType
@@ -780,15 +781,15 @@ extends
 {
     def this () = { this (null, false, null) }
     def AssetFunction: AssetFunction = sup.asInstanceOf[AssetFunction]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceFunction]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceFunction]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceFunction
@@ -820,15 +821,15 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceGroup]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceGroup]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceGroup
@@ -862,15 +863,15 @@ extends
 {
     def this () = { this (null, false, 0, 0.0, 0.0, null) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceInfo]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceInfo]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceInfo
@@ -911,15 +912,15 @@ extends
 {
     def this () = { this (null, 0.0, false, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[EndDeviceTiming]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[EndDeviceTiming]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object EndDeviceTiming
@@ -957,15 +958,15 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[IntervalBlock]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[IntervalBlock]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object IntervalBlock
@@ -998,15 +999,15 @@ extends
 {
     def this () = { this (null) }
     def BaseReading: BaseReading = sup.asInstanceOf[BaseReading]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[IntervalReading]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[IntervalReading]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object IntervalReading
@@ -1034,15 +1035,15 @@ extends
 {
     def this () = { this (null, null) }
     def EndDevice: EndDevice = sup.asInstanceOf[EndDevice]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[Meter]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[Meter]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object Meter
@@ -1074,15 +1075,15 @@ extends
 {
     def this () = { this (null, null, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[MeterMultiplier]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[MeterMultiplier]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object MeterMultiplier
@@ -1120,15 +1121,15 @@ extends
 {
     def this () = { this (null, false, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[MeterReading]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[MeterReading]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object MeterReading
@@ -1168,15 +1169,15 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Work: Work = sup.asInstanceOf[Work]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[MeterServiceWork]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[MeterServiceWork]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object MeterServiceWork
@@ -1210,15 +1211,15 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[MetrologyRequirement]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[MetrologyRequirement]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object MetrologyRequirement
@@ -1259,15 +1260,15 @@ extends
 {
     def this () = { this (null, 0.0, null, null, false, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, null) }
     def EndDeviceAction: EndDeviceAction = sup.asInstanceOf[EndDeviceAction]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[PanDemandResponse]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[PanDemandResponse]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object PanDemandResponse
@@ -1322,15 +1323,15 @@ extends
 {
     def this () = { this (null, false, null, null, null) }
     def EndDeviceAction: EndDeviceAction = sup.asInstanceOf[EndDeviceAction]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[PanDisplay]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[PanDisplay]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object PanDisplay
@@ -1366,15 +1367,15 @@ extends
 {
     def this () = { this (null, null) }
     def EndDeviceAction: EndDeviceAction = sup.asInstanceOf[EndDeviceAction]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[PanPricing]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[PanPricing]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object PanPricing
@@ -1417,15 +1418,15 @@ extends
 {
     def this () = { this (null, 0.0, null, null, null, 0.0, null, 0.0, 0, 0, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[PanPricingDetail]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[PanPricingDetail]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object PanPricingDetail
@@ -1486,15 +1487,15 @@ extends
 {
     def this () = { this (null, false, 0, 0, 0.0, 0, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[PendingCalculation]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[PendingCalculation]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object PendingCalculation
@@ -1535,15 +1536,15 @@ extends
 {
     def this () = { this (null, 0, 0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[RationalNumber]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[RationalNumber]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object RationalNumber
@@ -1576,15 +1577,15 @@ extends
 {
     def this () = { this (null, null, null) }
     def BaseReading: BaseReading = sup.asInstanceOf[BaseReading]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[Reading]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[Reading]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object Reading
@@ -1617,15 +1618,15 @@ extends
 {
     def this () = { this (null, 0, 0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ReadingInterharmonic]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ReadingInterharmonic]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ReadingInterharmonic
@@ -1661,15 +1662,15 @@ extends
 {
     def this () = { this (null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ReadingQuality]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ReadingQuality]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ReadingQuality
@@ -1709,15 +1710,15 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ReadingQualityType]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ReadingQualityType]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ReadingQualityType
@@ -1769,15 +1770,15 @@ extends
 {
     def this () = { this (null, null, null, null, 0, 0, null, null, null, null, null, null, null, 0, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ReadingType]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ReadingType]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ReadingType
@@ -1846,15 +1847,15 @@ extends
 {
     def this () = { this (null, false, 0, 0, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[Register]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[Register]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object Register
@@ -1896,15 +1897,15 @@ extends
 {
     def this () = { this (null, null, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[ServiceMultiplier]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[ServiceMultiplier]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object ServiceMultiplier
@@ -1938,15 +1939,15 @@ extends
 {
     def this () = { this (null, null) }
     def EndDeviceFunction: EndDeviceFunction = sup.asInstanceOf[EndDeviceFunction]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[SimpleEndDeviceFunction]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[SimpleEndDeviceFunction]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object SimpleEndDeviceFunction
@@ -1997,15 +1998,15 @@ extends
 {
     def this () = { this (null, false, null, 0.0, false, false, false, false, 0.0, null, null, 0.0, 0.0, null, null, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[UsagePoint]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[UsagePoint]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object UsagePoint
@@ -2077,15 +2078,15 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[UsagePointGroup]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[UsagePointGroup]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object UsagePointGroup
@@ -2117,15 +2118,15 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Location: Location = sup.asInstanceOf[Location]
-    override def copy (): InternalRow = { return (clone ().asInstanceOf[UsagePointLocation]); }
-    override def get (i: Int, d: org.apache.spark.sql.types.DataType): Object =
+    override def copy (): Row = { return (clone ().asInstanceOf[UsagePointLocation]); }
+    override def get (i: Int): Object =
     {
         if (i < productArity)
             productElement (i).asInstanceOf[AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def numFields: Int = productArity
+    override def length: Int = productArity
 }
 
 object UsagePointLocation

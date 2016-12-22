@@ -24,7 +24,7 @@ import org.apache.spark.sql.types.Element
  * Note: This must be serializable and can't depend on the companion objects
  * for the CIM case classes.
  */
-class CIMSubsetter[A <: Product : ClassTag] () extends Serializable
+class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 {
     def runtime_class = classTag[A].runtimeClass
     def classname = runtime_class.getName
@@ -43,22 +43,17 @@ class CIMSubsetter[A <: Product : ClassTag] () extends Serializable
         case x: Element if (null != subclass (x)) =>
             subclass (x)
     }
-    def subset (rdd: RDD[Element], storage: StorageLevel): RDD[Row] =
+    def subset (rdd: RDD[Element], storage: StorageLevel): RDD[A] =
     {
         val subrdd = rdd.collect[A] (pf)
         subrdd.name = cls
         subrdd.persist (storage)
-        subrdd.asInstanceOf[RDD[Row]]
+        subrdd
     }
-    def make (context: SparkSession, rdd: RDD[Element], storage: StorageLevel) =
+    def make (sqlContext: SQLContext, rdd: RDD[Element], storage: StorageLevel) =
     {
-      //TODO for Spark 2.0 Upgrade
-        /*val sub = subset (rdd, storage).asInstanceOf[RDD[A]]
-        // use the (Row, schema) form of createDataFrame, because all others rely on a TypeTag which is erased
-        //val df = sqlContext.createDataFrame (sub, schema)
-        //df.createOrReplaceTempView (cls)
-        
-        val Encoder = Encoders.product[A]
-        context.createDataset(sub, Encoder)*/
+        val sub = subset (rdd, storage)
+        val df = sqlContext.sparkSession.createDataFrame(sub)(typeTag[A])
+        df.createOrReplaceTempView (cls)
     }
 }
