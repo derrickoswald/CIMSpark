@@ -9,23 +9,15 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.BasicElement
-import org.apache.spark.sql.types.CHIM
-import org.apache.spark.sql.types.Element
+import org.apache.spark.sql.types._
 import org.apache.spark.sql.types.SQLUserDefinedType
-import org.apache.spark.sql.types.Unknown
 import org.apache.spark.storage.StorageLevel
 
 import org.scalatest.Outcome
 import org.scalatest.fixture
 
-import ch.ninecode.cim.CIMJoin
-import ch.ninecode.cim.Edge
-import ch.ninecode.cim.Extremum
-import ch.ninecode.cim.PreEdge
-import ch.ninecode.model.PositionPoint
-import ch.ninecode.model.ServiceLocation
-import ch.ninecode.model.UserAttribute
+import ch.ninecode.cim._
+import ch.ninecode.model._
 
 class CIMSparkSuite extends fixture.FunSuite
 {

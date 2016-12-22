@@ -7,11 +7,7 @@ import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
 
 import ch.ninecode.model._
-
 import org.apache.spark.sql.types.Element
-import org.apache.spark.sql.types.Unknown
-import org.apache.spark.sql.types.BasicElement
-import org.apache.spark.sql.types.CHIM
 
 class CIMSuite extends FunSuite
 {

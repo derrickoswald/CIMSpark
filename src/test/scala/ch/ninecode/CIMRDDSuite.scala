@@ -11,6 +11,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.types.SQLUserDefinedType
+import org.apache.spark.sql.Row
 
 import org.scalatest.fixture
 
@@ -18,9 +19,6 @@ import ch.ninecode.cim._
 import ch.ninecode.model._
 
 import org.apache.spark.sql.types.Element
-import org.apache.spark.sql.types.Unknown
-import org.apache.spark.sql.types.BasicElement
-import org.apache.spark.sql.types.CHIM
 
 class CIMRDDSuite extends fixture.FunSuite
 {
@@ -42,7 +40,7 @@ class CIMRDDSuite extends fixture.FunSuite
     val OFFSET = 3145728
     val PARTIAL_MAP_SIZE = 2544
 
-    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[InternalRow] =
+    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
     {
         var size: Long = length
         if (0 == size)

@@ -19,11 +19,7 @@ import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.cim._
 import ch.ninecode.model._
-
 import org.apache.spark.sql.types.Element
-import org.apache.spark.sql.types.Unknown
-import org.apache.spark.sql.types.BasicElement
-import org.apache.spark.sql.types.CHIM
 
 class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
 {
