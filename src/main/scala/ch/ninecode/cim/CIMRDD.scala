@@ -13,7 +13,7 @@ import org.apache.spark.sql.Row
 import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
 import org.apache.spark.sql.SparkSession
 
-import org.apache.spark.sql.types.CHIM
+import ch.ninecode.model.CHIM
 import org.apache.spark.sql.types.Element
 
 //// NOTE: in order to get maven and scala to work together in Eclipse
