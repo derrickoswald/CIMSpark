@@ -59,6 +59,7 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
     {
         val files = filename.split (",")
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("path", filename)
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER");
         options.put ("ch.ninecode.cim.make_edges", "false");
         options.put ("ch.ninecode.cim.do_join", "false");
@@ -66,10 +67,6 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         options.put ("ch.ninecode.cim.do_topo_islands", "false"); // done explicitly in the test
 
         val element = context.read.format ("ch.ninecode.cim").options (options).load (files:_*)
-        val plan = element.queryExecution
-        val test = plan.toString ()
-        if (!test.contains ("InputPaths"))
-            throw new Exception ("input file not found: " + filename)
 
         return (element)
     }

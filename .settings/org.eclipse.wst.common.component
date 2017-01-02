@@ -2,5 +2,6 @@
     <wb-module deploy-name="CIMScala">
         <wb-resource deploy-path="/" source-path="/src/main/scala"/>
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/src/test/java"/>
     </wb-module>
 </project-modules>

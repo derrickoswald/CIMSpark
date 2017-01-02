@@ -12,6 +12,7 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.sql.Row
+import org.apache.spark.sql.catalyst.InternalRow
 
 import org.scalatest.fixture
 

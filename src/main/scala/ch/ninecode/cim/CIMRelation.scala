@@ -1,38 +1,49 @@
 package ch.ninecode.cim
 
-import java.util.Objects
-
-import scala.util.Sorting
-import scala.reflect.runtime.universe
-
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs.FileStatus
-import org.apache.hadoop.mapreduce.Job
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.catalyst.ScalaReflection
-import org.apache.spark.sql.types.StringType
-import org.apache.spark.sql.types.StructField
+import org.apache.spark.sql.execution.datasources.FileCatalog
+import org.apache.spark.sql.execution.datasources.FileFormat
+import org.apache.spark.sql.sources.BaseRelation
+import org.apache.spark.sql.sources.TableScan
+import org.apache.spark.sql.types.Element
+import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.sql.sources._
-
-import scala.reflect._
-import scala.reflect.runtime.universe._
-import scala.reflect.runtime.{universe => ru}
 import org.slf4j.LoggerFactory
 
-import ch.ninecode.model._
-import org.apache.spark.sql.types._
+import ch.ninecode.model.CHIM
 
-class CIMRelation(
-    private val parameters: Map[String, String])
-    (@transient val sqlContext: SQLContext) extends BaseRelation with TableScan
+class CIMRelation (
+    location: FileCatalog,
+    partitionSchema: StructType,
+    dataSchema: StructType,
+    fileFormat: FileFormat,
+    parameters: Map[String, String])
+                                    (sparkSession: SparkSession)
+
+// Derrick: if it inherits from HadoopFSRelation, DataSource uses the CIMFileFormat which doesn't allow subsetting, etc.
+//extends
+//    HadoopFsRelation (
+//        location,
+//        partitionSchema,
+//        dataSchema,
+//        None, // org.apache.spark.sql.execution.datasources.BucketSpec is private
+//        fileFormat,
+//        parameters)                    (sparkSession)
+extends
+    BaseRelation
+with
+    TableScan
 {
-  
-    private val log = LoggerFactory.getLogger(getClass)
+
+    val log = LoggerFactory.getLogger (getClass)
+
     // check for a storage level option
     val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
     // check for edge creation option
@@ -47,6 +58,8 @@ class CIMRelation(
     log.info ("parameters: " + parameters.toString ())
     log.info ("sqlContext: " + sqlContext.toString ())
     log.info ("storage: " + _StorageLevel.description)
+
+    def sqlContext: SQLContext = sparkSession.sqlContext
 
     // just to get a schema
     case class dummy

@@ -50,14 +50,23 @@ class CIMSparkSuite extends fixture.FunSuite
 
     def readFile (context: SQLContext, filename: String, options: Map[String, String]): DataFrame =
     {
+        options.put ("path", filename)
         val files = filename.split (",")
         val element = context.read.format ("ch.ninecode.cim").options (options).load (files:_*)
-        val plan = element.queryExecution
-        val test = plan.toString ()
-        if (!test.contains ("InputPaths"))
-            throw new Exception ("input file not found: " + filename)
 
         return (element)
+    }
+
+    def get (sql_context: SQLContext, name: String): RDD[Element] =
+    {
+        val rdds = sql_context.sparkContext.getPersistentRDDs
+        for (key <- rdds.keys)
+        {
+            val rdd = rdds (key)
+            if (rdd.name == name)
+                return (rdd.asInstanceOf[RDD[Element]])
+        }
+        return (null)
     }
 
     test ("Basic")
@@ -77,18 +86,6 @@ class CIMSparkSuite extends fixture.FunSuite
         val head = edges.head (5)
         if (0 != head.length)
             println (head (0))
-    }
-
-    def get (sql_context: SQLContext, name: String): RDD[Element] =
-    {
-        val rdds = sql_context.sparkContext.getPersistentRDDs
-        for (key <- rdds.keys)
-        {
-            val rdd = rdds (key)
-            if (rdd.name == name)
-                return (rdd.asInstanceOf[RDD[Element]])
-        }
-        return (null)
     }
 
     test ("Join")
@@ -140,7 +137,7 @@ class CIMSparkSuite extends fixture.FunSuite
         session: SparkSession ⇒
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_b4_Bubenei" + ".rdf" +
+            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf" +
             "," +
             FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
