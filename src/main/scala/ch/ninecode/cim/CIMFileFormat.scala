@@ -1,32 +1,21 @@
 package ch.ninecode.cim
 
-import scala.collection.mutable
-import scala.util.Try
-
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs._
-import org.apache.hadoop.io.compress.{CompressionCodecFactory, SplittableCompressionCodec}
-import org.apache.hadoop.mapred.{FileInputFormat, JobConf}
-import org.apache.hadoop.mapreduce.{Job, TaskAttemptContext}
-
-import org.apache.spark.annotation.Experimental
-import org.apache.spark.internal.Logging
-import org.apache.spark.sql._
-import org.apache.spark.sql.catalyst.{CatalystTypeConverters, InternalRow}
+import org.apache.hadoop.fs.FileStatus
+import org.apache.hadoop.fs.Path
+import org.apache.hadoop.mapreduce.Job
+import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.ScalaReflection
-import org.apache.spark.sql.catalyst.expressions._
-import org.apache.spark.sql.catalyst.expressions.codegen.GenerateUnsafeProjection
 import org.apache.spark.sql.execution.datasources.FileFormat
-import org.apache.spark.sql.execution.FileRelation
-import org.apache.spark.sql.sources.{BaseRelation, DataSourceRegister, Filter}
-import org.apache.spark.sql.types.StructType
-import org.apache.spark.util.SerializableConfiguration
-
-import org.apache.spark.sql.execution.datasources.PartitionedFile
 import org.apache.spark.sql.execution.datasources.OutputWriterFactory
-
-import org.apache.spark.sql.types.Element
+import org.apache.spark.sql.execution.datasources.PartitionedFile
+import org.apache.spark.sql.sources.Filter
+import org.apache.spark.sql.types.StructType
 import org.slf4j.LoggerFactory
+
+import ch.ninecode.model.Element
 
 //
 // NOTE: This class is not used (yet).

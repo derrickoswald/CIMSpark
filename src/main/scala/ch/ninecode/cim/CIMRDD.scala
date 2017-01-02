@@ -1,20 +1,10 @@
 package ch.ninecode.cim
 
-import java.io.File
-import java.io.FileInputStream
-
-import org.apache.hadoop.conf.Configuration
-import org.slf4j.LoggerFactory
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
-import org.apache.spark.rdd.RDD
-import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import org.apache.spark.sql.Row
-import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
 import org.apache.spark.sql.SparkSession
-
-import ch.ninecode.model.CHIM
-import org.apache.spark.sql.types.Element
+import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+import org.slf4j.LoggerFactory
 
 //// NOTE: in order to get maven and scala to work together in Eclipse
 //// I needed to install the maven-scala plugin from here:

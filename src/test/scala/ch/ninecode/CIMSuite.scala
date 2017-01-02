@@ -1,13 +1,8 @@
 package ch.ninecode
 
-import scala.xml._
-
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
 import ch.ninecode.model._
-import org.apache.spark.sql.types.Element
 
 class CIMSuite extends FunSuite
 {

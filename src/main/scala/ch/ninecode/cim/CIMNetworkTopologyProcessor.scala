@@ -1,5 +1,6 @@
 package ch.ninecode.cim
 
+import org.apache.spark.SparkContext
 import org.apache.spark.graphx.EdgeDirection
 import org.apache.spark.graphx.EdgeTriplet
 import org.apache.spark.graphx.Graph
@@ -11,9 +12,7 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
-import org.apache.spark.SparkContext
 
-import org.apache.spark.sql.types.Element
 import ch.ninecode.model._
 
 case class CuttingEdge (id_seq_1: String, id_cn_1: String, id_seq_2: String, id_cn_2: String, id_equ: String, equipment: ConductingEquipment, element: Element) extends Serializable

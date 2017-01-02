@@ -1,10 +1,5 @@
 package org.apache.spark.sql.types
 
-import org.apache.spark.sql.types.DataType
-import org.apache.spark.sql.types.NullType
-import org.apache.spark.sql.types.SQLUserDefinedType
-import org.apache.spark.sql.types.UserDefinedType
-
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.expressions.GenericInternalRow
@@ -12,32 +7,6 @@ import org.apache.spark.sql.catalyst.expressions.GenericMutableRow
 import org.apache.spark.sql.catalyst.expressions.UnsafeRow
 import org.apache.spark.unsafe.types.UTF8String
 import ch.ninecode.model._
-
-// needed to get around error: trait Element accesses protected method clone inside a concrete trait method.
-// Add an accessor in a class extending class Object as a workaround.
-/*class ObjectPlus extends Object { protected def cloneplus = clone }*/
-
-@SQLUserDefinedType(udt = classOf[ElementUDT])
-trait Element
-extends 
-    Row
-with 
-    Serializable
-with 
-    Cloneable 
-{
-  def sup: Element = null
-  def id: String = if (null == sup) "0" else (sup.id)
-  override def length: Int = 1
-  override def get (i: Int): Object =
-    {
-        if (0 == i)
-            sup
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-  override def copy(): Row = { throw new Exception("not implemented yet") }
-}
 
 // HACK:
 // This needs to be defined within package org.apache.spark.sql.types 

@@ -4,13 +4,10 @@ import java.util.HashMap
 import java.util.Map
 
 import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types._
-import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 
 import org.scalatest.Outcome
@@ -144,7 +141,7 @@ class CIMSparkSuite extends fixture.FunSuite
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         options.put ("ch.ninecode.cim.do_join", "true")
         val elements = readFile (session.sqlContext, filename, options)
-
+        println (elements.count () + " elements")
         val servicelocations = get (session.sqlContext, "ServiceLocation").asInstanceOf[RDD[ServiceLocation]]
         println (servicelocations.count () + " servicelocations after")
 

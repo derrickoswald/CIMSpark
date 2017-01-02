@@ -1,15 +1,13 @@
 package ch.ninecode.cim
 
 import org.apache.commons.logging.LogFactory
-import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapreduce.InputSplit
 import org.apache.hadoop.mapreduce.JobContext
 import org.apache.hadoop.mapreduce.RecordReader
 import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
-import org.apache.hadoop.mapreduce.lib.input.FileSplit
 
-import org.apache.spark.sql.types.Element
+import ch.ninecode.model.Element
 
 class CIMInputFormat extends FileInputFormat[String, Element]
 {

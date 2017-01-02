@@ -1,12 +1,11 @@
 package ch.ninecode.cim
 
-import org.slf4j.LoggerFactory
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.sql.types.Element
+import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
 

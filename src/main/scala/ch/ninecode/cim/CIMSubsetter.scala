@@ -14,7 +14,7 @@ import org.apache.spark.sql.types._
 import org.apache.spark.sql.Encoders
 import org.apache.spark.sql.SparkSession
 
-import org.apache.spark.sql.types.Element
+import ch.ninecode.model.Element
 
 /**
  * Subclass extractor

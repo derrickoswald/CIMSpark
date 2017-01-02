@@ -1,25 +1,17 @@
 package ch.ninecode
 
-import java.io.File
-import java.nio.charset.StandardCharsets
-import java.nio.file.Files
-import java.nio.file.Paths
 import java.util.HashMap
 import java.util.Map
 
-import org.apache.commons.io.FileUtils
 import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.scalatest.fixture
-import org.apache.spark.sql.SparkSession
-
 
 import ch.ninecode.cim._
 import ch.ninecode.model._
-import org.apache.spark.sql.types.Element
 
 class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
 {
@@ -80,7 +72,7 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val filename =
             FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Kiental_V9" + ".rdf"
         val elements = readFile (session.sqlContext, filename)
-
+        println (elements.count () + " elements")
         val read = System.nanoTime ()
 
         // set up for execution
@@ -103,7 +95,7 @@ class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
         val filename =
             FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf"
         val elements = readFile (session.sqlContext, filename)
-
+        println (elements.count () + " elements")
         val read = System.nanoTime ()
 
         // set up for execution

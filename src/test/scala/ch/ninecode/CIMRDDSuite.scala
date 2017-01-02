@@ -9,17 +9,14 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import org.apache.spark.sql.catalyst.InternalRow
-import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.sql.Row
-import org.apache.spark.sql.catalyst.InternalRow
-
+import org.apache.spark.sql.types.SQLUserDefinedType
 import org.scalatest.fixture
 
-import ch.ninecode.cim._
-import ch.ninecode.model._
-
-import org.apache.spark.sql.types.Element
+import ch.ninecode.cim.CIMInputFormat
+import ch.ninecode.model.CHIM
+import ch.ninecode.model.Element
+import ch.ninecode.model.Unknown
 
 class CIMRDDSuite extends fixture.FunSuite
 {

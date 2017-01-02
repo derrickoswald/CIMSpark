@@ -11,13 +11,13 @@ import org.apache.spark.sql.execution.datasources.FileCatalog
 import org.apache.spark.sql.execution.datasources.FileFormat
 import org.apache.spark.sql.sources.BaseRelation
 import org.apache.spark.sql.sources.TableScan
-import org.apache.spark.sql.types.Element
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 
 import ch.ninecode.model.CHIM
+import ch.ninecode.model.Element
 
 class CIMRelation (
     location: FileCatalog,

@@ -10,10 +10,8 @@ import scala.reflect.ClassTag
 import scala.reflect.classTag
 import scala.reflect.runtime.universe.TypeTag
 
-import org.apache.spark.sql.types.Element
 import org.apache.spark.sql.Row
 
-import ch.ninecode.model._
 import ch.ninecode.Context
 import ch.ninecode.cim.CIMSubsetter
 
