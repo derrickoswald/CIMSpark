@@ -18,7 +18,7 @@ import ch.ninecode.model._
 
 class CIMSparkSuite extends fixture.FunSuite
 {
-    val FILE_DEPOT = "/home/derrick/Documents/9code/nis/cim/cim_export/"
+    val FILE_DEPOT = "data/"
 
     type FixtureParam = SparkSession
 
