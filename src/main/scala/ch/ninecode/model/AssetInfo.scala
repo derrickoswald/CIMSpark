@@ -11,7 +11,7 @@ import ch.ninecode.Context
  * Package: AssetInfo
  */
 
-case class BusBarSectionInfo
+case class BusbarSectionInfo
 (
     override val sup: AssetInfo,
     val ratedCurrent: Double,
@@ -22,7 +22,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): Row = { return (clone ().asInstanceOf[BusBarSectionInfo]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[BusbarSectionInfo]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -34,16 +34,16 @@ extends
     
 }
 
-object BusBarSectionInfo
+object BusbarSectionInfo
 extends
-    Parseable[BusBarSectionInfo]
+    Parseable[BusbarSectionInfo]
 {
-    val ratedCurrent = parse_element (element ("""BusBarSectionInfo.ratedCurrent"""))_
-    val ratedVoltage = parse_element (element ("""BusBarSectionInfo.ratedVoltage"""))_
-    def parse (context: Context): BusBarSectionInfo =
+    val ratedCurrent = parse_element (element ("""BusbarSectionInfo.ratedCurrent"""))_
+    val ratedVoltage = parse_element (element ("""BusbarSectionInfo.ratedVoltage"""))_
+    def parse (context: Context): BusbarSectionInfo =
     {
         return (
-            BusBarSectionInfo
+            BusbarSectionInfo
             (
                 AssetInfo.parse (context),
                 toDouble (ratedCurrent (context), context),
@@ -676,7 +676,7 @@ extends
     val endNumber = parse_element (element ("""TransformerEndInfo.endNumber"""))_
     val insulationU = parse_element (element ("""TransformerEndInfo.insulationU"""))_
     val phaseAngleClock = parse_element (element ("""TransformerEndInfo.phaseAngleClock"""))_
-    val r = parse_attribute (attribute ("""TransformerEndInfo.r"""))_
+    val r = parse_element (element ("""TransformerEndInfo.r"""))_
     val ratedS = parse_element (element ("""TransformerEndInfo.ratedS"""))_
     val ratedU = parse_element (element ("""TransformerEndInfo.ratedU"""))_
     val shortTermS = parse_element (element ("""TransformerEndInfo.shortTermS"""))_
@@ -966,7 +966,7 @@ object _AssetInfo
 {
     def register: Unit =
     {
-        BusBarSectionInfo.register
+        BusbarSectionInfo.register
         CableInfo.register
         ConcentricNeutralCableInfo.register
         NoLoadTest.register
