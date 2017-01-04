@@ -338,6 +338,7 @@ class CHIM (var xml:String, var start: Long = 0L, var end: Long = 0L) extends Se
     Core.register
     Customers.register
     DiagramLayout.register
+    Domain.register
     ExternalInputs.register
     InfAssets.register
     LoadControl.register
