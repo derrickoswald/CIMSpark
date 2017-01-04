@@ -78,7 +78,7 @@ class CIMSparkSuite extends fixture.FunSuite
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         options.put ("ch.ninecode.cim.make_edges", "true")
         val elements = readFile (session.sqlContext, filename, options)
-        println (elements.count())
+        println (elements.count () + " elements")
         val edges = session.sqlContext.sql ("select * from edges")
         val head = edges.head (5)
         if (0 != head.length)
