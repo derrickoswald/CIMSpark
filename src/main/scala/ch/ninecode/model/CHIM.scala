@@ -49,6 +49,36 @@ trait Parser
     def parse (context: Context): Element
 
     /**
+     * Parse one or more XML elements from a string.
+     * @param pattern the regular expression pattern to look for
+     * @param index the number of the capture group to extract from within the pattern
+     * @param context the context for the substring in the XML and
+     * line number and position context for reporting in case of an error
+     * @return the matched group from the regular expression
+     */
+    def parse_elements (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
+    {
+        var ret: List[String] = null
+
+        val matcher = pattern._1.matcher (context.xml)
+        while (matcher.find ())
+        {
+            val string = matcher.group (pattern._2)
+            if (context.DEBUG)
+                context.coverage += Tuple2 (matcher.start (), matcher.end ())
+            if (null != string)
+            {
+                if (null == ret)
+                    ret = List (string)
+                else
+                    ret = ret :+ string
+            }
+        }
+
+        return (ret)
+    }
+
+    /**
      * Parse one XML element from a string.
      * @param pattern the regular expression pattern to look for
      * @param index the number of the capture group to extract from within the pattern
@@ -58,14 +88,37 @@ trait Parser
      */
     def parse_element (pattern: Tuple2[Pattern, Int])(context: Context): String =
     {
-        var ret:String = null
+        val elements = parse_elements (pattern)(context)
+        return (if (null == elements) null else elements.head)
+    }
+
+    /**
+     * Parse one or more attributes from an XML string.
+     * @param pattern the regular expression pattern to look for
+     * @param index the number of the capture group to extract from within the pattern
+     * @param context the context for the substring in the XML and
+     * line number and position context for reporting in case of an error
+     * @return the attribute values (with leading # stripped off) as a list, or null if the pattern wasn't found
+     */
+    def parse_attributes (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
+    {
+        var ret: List[String] = null
 
         val matcher = pattern._1.matcher (context.xml)
-        if (matcher.find ())
+        while (matcher.find ())
         {
-            ret = matcher.group (pattern._2)
+            var string = matcher.group (pattern._2)
             if (context.DEBUG)
                 context.coverage += Tuple2 (matcher.start (), matcher.end ())
+            if (null != string)
+            {
+                if (string.startsWith ("#")) // remove '#'
+                    string = string.substring (1)
+                if (null == ret)
+                    ret = List (string)
+                else
+                    ret = ret :+ string
+            }
         }
 
         return (ret)
@@ -81,11 +134,8 @@ trait Parser
      */
     def parse_attribute (pattern: Tuple2[Pattern, Int])(context: Context): String =
     {
-        var ret = parse_element (pattern)(context)
-        if ((null != ret) && ret.startsWith ("#")) // remove '#'
-            ret = ret.substring (1)
-
-        return (ret)
+        val attributes = parse_attributes (pattern)(context)
+        return (if (null == attributes) null else attributes.head)
     }
 
     def toBoolean (string: String, context: Context): Boolean =
