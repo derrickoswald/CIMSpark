@@ -1,8 +1,8 @@
 # assumes the file is on hdfs:
 # bash-4.1# hdfs dfs -mkdir /data/
-# bash-4.1# hdfs dfs -put /opt/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf /data/
+# bash-4.1# hdfs dfs -put /opt/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf /data/
 
-# assumes the user is created:
+# assumes the user is created if necessary:
 # bash-4.1# groupadd supergroup
 # bash-4.1# useradd derrick
 # bash-4.1# usermod --append --groups supergroup derrick
@@ -11,22 +11,26 @@
 begin = proc.time ()
 
 # set up the Spark system
-Sys.setenv (YARN_CONF_DIR="/home/derrick/spark-1.6.0-bin-hadoop2.6/conf")
-Sys.setenv (SPARK_HOME="/home/derrick/spark-1.6.0-bin-hadoop2.6")
+Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
+Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc = sparkR.init ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.10-1.6.0-1.7.2.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
-sqlContext = sparkRSQL.init (sc)
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.11-2.0.1-1.8.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 
 # read the data file and process topologically and make the edge RDD
-elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
-head (sql (sqlContext, "select * from elements")) # triggers evaluation
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
+head (sql ("select * from elements")) # triggers evaluation
 
 # read the edges RDD as an R data frame
-edges = sql (sqlContext, "select * from edges")
+edges = sql ("select * from edges")
 redges = SparkR::collect (edges, stringsAsFactors=FALSE)
 
-terminals = sql (sqlContext, "select * from Terminal")
+# example to read an RDD directly
+terminals = sql ("select * from Terminal")
 rterminals = SparkR::collect (terminals, stringsAsFactors=FALSE)
+
+# example to read a three-way join of RDD
+switch = sql ("select s.sup.sup.sup.sup.mRID mRID, s.sup.sup.sup.sup.aliasName aliasName, s.sup.sup.sup.sup.name name, s.sup.sup.sup.sup.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.sup.sup.sup.Location = l.sup.mRID and s.sup.sup.sup.Location = p.Location and p.sequenceNumber = 0")
+rswitch = SparkR::collect (switch, stringsAsFactors=FALSE)
 
 library (igraph)
 

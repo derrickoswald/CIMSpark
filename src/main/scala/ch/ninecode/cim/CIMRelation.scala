@@ -13,6 +13,7 @@ import org.apache.spark.sql.sources.BaseRelation
 import org.apache.spark.sql.sources.TableScan
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.types.ElementRegistration
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 
@@ -88,6 +89,9 @@ with
     {
         log.info ("buildScan")
         log.info ("storage: " + _StorageLevel.description)
+
+        // register the ElementUDT
+        ElementRegistration.register ()
 
         var ret: RDD[Row] = null
 

@@ -48,32 +48,20 @@ class ElementUDT extends UserDefinedType[Element]
 
     override def deserialize (datum: Any): Element =
     {
-        datum match
-        {
-            case row: UnsafeRow => // only GenericInternalRow and InternalRow are used, kept for reference
+        if (null == datum)
+            BasicElement (null, "")
+        else
+            datum match
             {
-                var dd = row.getUTF8String (0)
-                var ee = if (null == dd) "" else dd.toString ()
-                BasicElement (null, ee)
+                case row: UnsafeRow => // only GenericInternalRow and InternalRow are used, kept for reference
+                    BasicElement (null, "")
+                case row: GenericInternalRow =>
+                    BasicElement (null, "")
+                case row: InternalRow =>
+                    BasicElement (null, "")
+                case _: Any =>
+                    BasicElement (null, "")
             }
-            case row: GenericInternalRow =>
-            {
-                var dd = row.getUTF8String (0)
-                var ee = if (null == dd) "" else dd.toString ()
-                BasicElement (null, ee)
-            }
-            case row: InternalRow =>
-            {
-                var dd = row.getUTF8String (0)
-                var ee = if (null == dd) "" else dd.toString ()
-                BasicElement (null, ee)
-            }
-            case _: Any =>
-            {
-                println ("in _")
-                BasicElement (null, "foo")
-            }
-        }
     }
 
     override def userClass: Class[Element] = classOf[Element]
@@ -92,4 +80,13 @@ class ElementUDT extends UserDefinedType[Element]
     override def typeName: String = "element"
 
     override def asNullable: ElementUDT = this
+}
+
+object ElementRegistration
+{
+    def register (): Unit =
+    {
+        if (!UDTRegistration.exists (classOf[Element].getName))
+            UDTRegistration.register (classOf[Element].getName, classOf[ElementUDT].getName)
+    }
 }

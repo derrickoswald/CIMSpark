@@ -80,6 +80,14 @@ docker-compose --file src/test/resources/sandbox.yaml up&
 ```
 docker-compose --file src/test/resources/sandbox.yaml down --rmi local
 ```
+* To run an interactive shell in the master container:
+```
+docker exec -it resources_sandbox_1 bash
+```
+* To install R so that the sparkR command works:
+```
+apt-get install r-base
+```
 * To run an interactive shell in another container (a copy of the worker container):
 ```
 docker-compose --file src/test/resources/sandbox.yaml run --rm worker bash
@@ -366,55 +374,6 @@ There are a number of base classes that are not case classes.
 Specifically Element, IdentifiedElement, NamedElement, and LocatedElement.
 Experimentation on what is and isn't possible is ongoing.
 
-#SparkR
-
-Load the SparkR interpreter:
-
-    sparkR
-
-Read in the data from the DataFrame that was saved as a parquet file:
-
-    > points = parquetFile (sqlContext, "file:///opt/data/points")
-or
-
-    > points = read.df (sqlContext, "file:///opt/data/points", "parquet")
-    ...
-    > nrow(points)
-    ...
-    [1] 7540
-
-    > head (points)
-    ...
-                                          id        x        y
-    1 _location_1610744576_427087414_2073666 8.528315 46.99510
-    2    _location_5773096_1152305167_985581 8.602898 46.99558
-    3     _location_5773116_972140366_615398 8.511079 46.99333
-    4     _location_5773096_823727318_151097 8.613339 47.00360
-    5 _location_1610642176_427083559_1978331 8.585879 47.05440
-    6 _location_1610690304_427087038_1995349 8.660671 47.10959
-
-Some exploration
-
-    printSchema(points)
-    root
-     |-- id: string (nullable = true)
-     |-- x: double (nullable = true)
-     |-- y: double (nullable = true)
-
-    showDF (points, numRows=3)
-    ...
-    +--------------------+-------------+-------------+
-    |                  id|            x|            y|
-    +--------------------+-------------+-------------+
-    |_location_1610744...|8.52831529608|46.9951049314|
-    |_location_5773096...|8.60289818799| 46.995578585|
-    |_location_5773116...| 8.5110791419|46.9933251694|
-    +--------------------+-------------+-------------+
-    only showing top 3 rows
-
-    points[1:5,]
-    Error in points[1:5, ] : object of type 'S4' is not subsettable
-
 #Notes
 
 good pictures:
@@ -498,6 +457,8 @@ Set environment variables to tell RStudio or R where Spark and it's configuratio
     export SPARK_HOME=/home/derrick/spark-1.6.0-bin-hadoop2.6
     export YARN_CONF_DIR=/home/derrick/spark-1.6.0-bin-hadoop2.6/conf
 
+#R
+
 Start RStudio or R.
 
 Install the SparkR package.
@@ -506,56 +467,29 @@ Install the SparkR package.
 
 Follow the instructions in [Starting up from RStudio](https://spark.apache.org/docs/latest/sparkr.html#starting-up-from-rstudio), except do not specify a local master and include the CIMScala reader as a jar to be shipped to the worker nodes.
 
-    > library (SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-
-    Attaching package: ‘SparkR’
-
-    The following objects are masked from ‘package:stats’:
-
-        cov, filter, lag, na.omit, predict, sd, var
-
-    The following objects are masked from ‘package:base’:
-
-        colnames, colnames<-, intersect, rank, rbind, sample, subset,
-        summary, table, transform
-
-    > sc = sparkR.init (sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.11-2.0.1-1.8.0.jar"))
-
-Make an SQL context:
-
-    > sqlContext = sparkRSQL.init (sc)
+```
+# set up the Spark system
+Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
+Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
+library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.11-2.0.1-1.8.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):
 
-    > elements = sql (sqlContext, "create temporary table elements using ch.ninecode.cim options (path 'hdfs:/user/root/dump_ews.xml')")
-    16/03/22 17:33:56 INFO CIMRelation: paths: hdfs://sandbox:8020/users/root/dump_ews.xml
-    16/03/22 17:33:56 INFO CIMRelation: maybeDataSchema: None
-    16/03/22 17:33:56 INFO CIMRelation: userDefinedPartitionColumns: None
-    16/03/22 17:33:56 INFO CIMRelation: parameters: Map(path -> hdfs:/users/root/dump_ews.xml)
-    16/03/22 17:33:56 INFO CIMRelation: sqlContext: org.apache.spark.sql.SQLContext@5e64d836
-    16/03/22 17:33:56 INFO CIMRelation: Listing hdfs://sandbox:8020/users/root/dump_ews.xml on driver
-    > head (sql (sqlContext, "select * from elements"))
-    ...
-    16/03/22 17:41:02 INFO DAGScheduler: Job 0 finished: dfToCols at NativeMethodAccessorImpl.java:-2, took 8.441160 s
-                      key
-    1  PSRType_Substation
-    2 PSRType_Underground
-    3    PSRType_Overhead
-    4     PSRType_Unknown
-    5              wgs_84
-    6  _subnetwork_349554
-    > fred = sql (sqlContext, "select * from elements")
-    > nrow (fred)
-    ...
-    [1] 270183
+```
+# read the data file
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
+head (sql ("select * from elements")) # triggers evaluation
 
-For remote client access, the hdfs file system needs to be turned off safe mode,
-and access granted to the invoking user (here we use supergroup as described [here](http://stackoverflow.com/questions/13729510/safemodeexception-name-node-is-in-safe-mode#13739201)).
+# read the edges RDD as an R data frame
+edges = sql ("select * from edges")
+redges = SparkR::collect (edges, stringsAsFactors=FALSE)
 
-    hdfs dfsadmin -safemode leave
-    sudo groupadd supergroup
-    sudo useradd derrick
-    sudo usermod --append --groups supergroup derrick
+# example to read an RDD directly
+terminals = sql ("select * from Terminal")
+rterminals = SparkR::collect (terminals, stringsAsFactors=FALSE)
+```
 
 #Logging
 
