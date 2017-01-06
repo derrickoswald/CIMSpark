@@ -14,7 +14,7 @@ begin = proc.time ()
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.11-2.0.1-1.8.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.11-2.0.1-1.8.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 
 # read the data file and process topologically and make the edge RDD
 elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")

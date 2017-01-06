@@ -25,7 +25,7 @@ object CIMRDD
     {
         val conf = new SparkConf ()
         conf.setAppName ("CIMScala JDBC Server")
-        conf.setMaster ("yarn-client")
+        conf.setMaster ("spark://sandbox:7077")
         val spark = new SparkContext (conf)
 
         try
