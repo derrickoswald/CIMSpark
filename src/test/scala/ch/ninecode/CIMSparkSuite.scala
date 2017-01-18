@@ -11,12 +11,12 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 
 import org.scalatest.Outcome
-import org.scalatest.fixture
+import org.scalatest.fixture.FunSuite
 
 import ch.ninecode.cim._
 import ch.ninecode.model._
 
-class CIMSparkSuite extends fixture.FunSuite
+class CIMSparkSuite extends FunSuite
 {
     val FILE_DEPOT = "data/"
 

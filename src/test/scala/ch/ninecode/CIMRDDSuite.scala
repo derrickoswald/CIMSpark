@@ -11,14 +11,14 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
-import org.scalatest.fixture
+import org.scalatest.fixture.FunSuite
 
 import ch.ninecode.cim.CIMInputFormat
 import ch.ninecode.model.CHIM
 import ch.ninecode.model.Element
 import ch.ninecode.model.Unknown
 
-class CIMRDDSuite extends fixture.FunSuite
+class CIMRDDSuite extends FunSuite
 {
     type FixtureParam = SparkContext
 

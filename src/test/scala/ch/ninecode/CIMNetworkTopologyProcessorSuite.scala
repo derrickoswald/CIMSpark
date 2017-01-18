@@ -8,12 +8,12 @@ import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
-import org.scalatest.fixture
+import org.scalatest.fixture.FunSuite
 
 import ch.ninecode.cim._
 import ch.ninecode.model._
 
-class CIMNetworkTopologyProcessorSuite extends fixture.FunSuite
+class CIMNetworkTopologyProcessorSuite extends FunSuite
 {
     val FILE_DEPOT = "data/"
 

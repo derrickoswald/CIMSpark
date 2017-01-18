@@ -14,7 +14,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <version.dependency.scala>2.11</version.dependency.scala>
         <version.dependency.scalalibrary>2.11.8</version.dependency.scalalibrary>
-        <version.dependency.scalatest>3.0.0-M14</version.dependency.scalatest>
+        <version.dependency.scalatest>3.0.1</version.dependency.scalatest>
         <version.dependency.junit>4.11</version.dependency.junit>
         <version.dependency.spark>2.0.1</version.dependency.spark>
     </properties>
