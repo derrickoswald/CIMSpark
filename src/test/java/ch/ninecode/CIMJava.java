@@ -27,7 +27,7 @@ public class CIMJava
             System.exit (1);
         }
         // replace "hive" here with the name of the user the queries should run as
-        Connection con = DriverManager.getConnection ("jdbc:hive2://localhost:10000/default", "hive", "");
+        Connection con = DriverManager.getConnection ("jdbc:hive2://localhost:10005/default", "hive", "");
         Statement stmt = con.createStatement ();
 
         // show databases

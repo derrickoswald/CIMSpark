@@ -24,7 +24,7 @@ services:
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
-  worker:
+  worker1:
     image: singularities/spark
     command: start-spark worker sandbox
     environment:
@@ -37,3 +37,17 @@ services:
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
+  worker2:
+    image: singularities/spark
+    command: start-spark worker sandbox
+    environment:
+      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
+    environment:
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 4g
+    links:
+      - sandbox
+    volumes:
+      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
+      - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
+      

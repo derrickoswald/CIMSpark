@@ -8,7 +8,7 @@
 # bash-4.1# usermod --append --groups supergroup derrick
 
 # record the load time
-begin = proc.time ()
+pre = proc.time ()
 
 # set up the Spark system
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
@@ -16,13 +16,24 @@ Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
 sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMScala/target/CIMScala-2.11-2.0.1-1.8.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 
+begin = proc.time ()
+
 # read the data file and process topologically and make the edge RDD
-elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
 head (sql ("select * from elements")) # triggers evaluation
+
+post = proc.time ()
 
 # read the edges RDD as an R data frame
 edges = sql ("select * from edges")
 redges = SparkR::collect (edges, stringsAsFactors=FALSE)
+
+finish = proc.time ()
+
+# show timing
+print (paste ("setup", as.numeric (pre[3] - begin[3])))
+print (paste ("read", as.numeric (post[3] - pre[3])))
+print (paste ("redges", as.numeric (finish[3] - post[3])))
 
 # example to read an RDD directly
 terminals = sql ("select * from Terminal")
