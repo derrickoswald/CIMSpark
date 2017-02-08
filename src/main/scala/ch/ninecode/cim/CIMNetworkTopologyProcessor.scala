@@ -1,6 +1,6 @@
 package ch.ninecode.cim
 
-import org.apache.spark.SparkContext
+import org.apache.spark.graphx.Edge
 import org.apache.spark.graphx.EdgeDirection
 import org.apache.spark.graphx.EdgeTriplet
 import org.apache.spark.graphx.Graph
@@ -8,7 +8,7 @@ import org.apache.spark.graphx.Graph.graphToGraphOps
 import org.apache.spark.graphx.VertexId
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
@@ -51,13 +51,13 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
  * To be done eventually:
  * - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
  */
-class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
+class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel) extends Serializable
 {
     private val log = LoggerFactory.getLogger(getClass)
     
     def get (name: String): RDD[Element] =
     {
-        val rdds = sqlContext.sparkContext.getPersistentRDDs
+        val rdds = session.sparkContext.getPersistentRDDs
         for (key <- rdds.keys)
         {
             val rdd = rdds (key)
@@ -79,7 +79,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         if (null != equipment)
         {
             // make an array of terminals sorted by sequence number
-            val terminals = arg._2.toArray.sortWith (_.ACDCTerminal.sequenceNumber < _.ACDCTerminal.sequenceNumber)
+            val terminals = arg._2.toArray.sortBy (_.ACDCTerminal.sequenceNumber)
             // make an edge for each pair of terminals
             if (null != terminals(0).ConnectivityNode)  // eliminate edges without two connectivity nodes
                 for (i <- 1 until terminals.length) // eliminate edges with only one terminal
@@ -103,23 +103,13 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         return (ret)
     }
 
-    def vertex_id (string: String): VertexId =
-    {
-        return (string.hashCode().asInstanceOf[VertexId])
-    }
+    def vertex_id (string: String): VertexId = string.hashCode().asInstanceOf[VertexId]
 
-    def make_graph_edges (e: CuttingEdge): org.apache.spark.graphx.Edge[CuttingEdge] =
-    {
-        return (org.apache.spark.graphx.Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e))
-    }
+    def make_graph_edges (e: CuttingEdge): Edge[CuttingEdge] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)
 
-    def to_vertex (n: ConnectivityNode): TopologicalData =
-    {
-        val id = vertex_id (n.id)
-        TopologicalData (0.asInstanceOf[VertexId], "", id, n.id)
-    }
+    def to_vertex (n: ConnectivityNode): TopologicalData = TopologicalData (0.asInstanceOf[VertexId], "", vertex_id (n.id), n.id)
 
-    def make_graph (sc: SparkContext): Graph[TopologicalData, CuttingEdge] =
+    def make_graph (): Graph[TopologicalData, CuttingEdge] =
     {
         // get the terminals keyed by equipment
         val terms = get ("Terminal").asInstanceOf[RDD[Terminal]].groupBy (_.ConductingEquipment)
@@ -208,8 +198,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 
         def send_message (triplet: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
         {
-            val same = isSameNode (triplet.attr.element) // true if these should be the same TopologicalNode
-            if (!same)
+            if (!isSameNode (triplet.attr.element))
                 Iterator.empty // send no message across a topological boundary
             else
                 if (triplet.srcAttr.node < triplet.dstAttr.node)
@@ -220,13 +209,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                     Iterator.empty
         }
 
-        def merge_message (a: TopologicalData, b: TopologicalData): TopologicalData =
-        {
-            if (a.node <= b.node)
-                a
-            else
-                b
-        }
+        def merge_message (a: TopologicalData, b: TopologicalData): TopologicalData = if (a.node <= b.node) a else b
 
         // traverse the graph with the Pregel algorithm
         // assigns the minimum VertexId of all electrically identical nodes (node)
@@ -455,25 +438,12 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                     Iterator.empty
         }
 
-        def merge_message (a: TopologicalData, b: TopologicalData): TopologicalData =
-        {
-            if (a.island < b.island)
-                a
-            else
-                b
-        }
+        def merge_message (a: TopologicalData, b: TopologicalData): TopologicalData = if (a.island < b.island) a else b
 
-        def boundary (edge: Tuple3[org.apache.spark.graphx.Edge[CuttingEdge], TopologicalData, TopologicalData]): Boolean =
-        {
-            val end1 = edge._2
-            val end2 = edge._3
-            end1.node != end2.node
-        }
+        def boundary (edge: Tuple3[Edge[CuttingEdge], TopologicalData, TopologicalData]): Boolean = edge._2.node != edge._3.node
 
-        def make_graph_edges (edge: Tuple3[org.apache.spark.graphx.Edge[CuttingEdge], TopologicalData, TopologicalData]): org.apache.spark.graphx.Edge[CuttingEdge] =
-        {
-            return (org.apache.spark.graphx.Edge (edge._2.node, edge._3.node, edge._1.attr))
-        }
+        def make_graph_edges (edge: Tuple3[Edge[CuttingEdge], TopologicalData, TopologicalData]): Edge[CuttingEdge] =
+            Edge (edge._2.node, edge._3.node, edge._1.attr)
 
         def update_vertices (id: VertexId, vertex: TopologicalData, island: Option[TopologicalData]): TopologicalData =
         {
@@ -526,7 +496,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
     def process (identify_islands: Boolean): Unit =
     {
         // get the initial graph based on edges
-        val initial = make_graph (sqlContext.sparkContext)
+        val initial = make_graph ()
 
         // get the topological nodes
         log.info ("nodes")
@@ -564,7 +534,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             old_ti.unpersist (false)
             new_ti.name = "TopologicalIsland"
             new_ti.persist (storage)
-            sqlContext.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
+            session.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
             nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
@@ -577,7 +547,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         old_tn.unpersist (false)
         new_tn.name = "TopologicalNode"
         new_tn.persist (storage)
-        sqlContext.createDataFrame (new_tn).createOrReplaceTempView ("TopologicalNode")
+        session.createDataFrame (new_tn).createOrReplaceTempView ("TopologicalNode")
 
         // assume the old TopologicalIsland and TopologicalNode RDD were empty
         // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
@@ -590,7 +560,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         old_cn.unpersist (false)
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
-        sqlContext.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
+        session.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
 
         // assign every Terminal to a TopologicalNode
         val old_terminals = get ("Terminal").asInstanceOf[RDD[Terminal]]
@@ -609,7 +579,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         old_terminals.unpersist (false)
         new_term.name = "Terminal"
         new_term.persist (storage)
-        sqlContext.createDataFrame (new_term).createOrReplaceTempView ("Terminal")
+        session.createDataFrame (new_term).createOrReplaceTempView ("Terminal")
 
         // replace terminals in ACDCTerminal
         val old_acdc_term = get ("ACDCTerminal").asInstanceOf[RDD[ACDCTerminal]]
@@ -625,7 +595,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         old_acdc_term.unpersist (false)
         new_acdc_term.name = "ACDCTerminal"
         new_acdc_term.persist (storage)
-        sqlContext.createDataFrame (new_acdc_term).createOrReplaceTempView ("ACDCTerminal")
+        session.createDataFrame (new_acdc_term).createOrReplaceTempView ("ACDCTerminal")
 
         // make a union of all new RDD as IdentifiedObject
         val idobj = get ("TopologicalIsland").asInstanceOf[RDD[TopologicalIsland]].map (_.IdentifiedObject).
@@ -647,7 +617,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         old_idobj.unpersist (false)
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
-        sqlContext.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
+        session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
         // replace elements in Elements
         val old_elements = get ("Elements").asInstanceOf[RDD[Element]]

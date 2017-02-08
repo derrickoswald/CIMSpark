@@ -2,7 +2,7 @@ package ch.ninecode.cim
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
@@ -11,16 +11,16 @@ import ch.ninecode.model._
 
 case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, var container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class Edge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class PostEdge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 
-class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
+class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializable
 {
     private val log = LoggerFactory.getLogger(getClass)
     
     def get (name: String): RDD[Element] =
     {
-        val rdds = sqlContext.sparkContext.getPersistentRDDs
+        val rdds = session.sparkContext.getPersistentRDDs
         for (key <- rdds.keys)
         {
             val rdd = rdds (key)
@@ -373,10 +373,10 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
         x match
         {
             case Some (x:Extremum) =>
-                Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
             case None =>
                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                Edge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
         }
     }
 
@@ -446,7 +446,7 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
             edges.persist (storage)
 
             // expose it
-            sqlContext.createDataFrame (edges).createOrReplaceTempView ("edges")
+            session.createDataFrame (edges).createOrReplaceTempView ("edges")
         }
         else
         {
@@ -457,7 +457,7 @@ class CIMEdges (val sqlContext: SQLContext, val storage: StorageLevel) extends S
             edges.persist (storage)
 
             // expose it
-            sqlContext.createDataFrame (edges).createOrReplaceTempView ("edges")
+            session.createDataFrame (edges).createOrReplaceTempView ("edges")
         }
     }
 }

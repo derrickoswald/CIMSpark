@@ -76,7 +76,7 @@ class CIMNetworkTopologyProcessorSuite extends FunSuite
         val read = System.nanoTime ()
 
         // set up for execution
-        val topo = new CIMNetworkTopologyProcessor (session.sqlContext, StorageLevel.MEMORY_AND_DISK_SER)
+        val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER)
         topo.process (false)
 
         val process = System.nanoTime ()
@@ -99,7 +99,7 @@ class CIMNetworkTopologyProcessorSuite extends FunSuite
         val read = System.nanoTime ()
 
         // set up for execution
-        val topo = new CIMNetworkTopologyProcessor (session.sqlContext, StorageLevel.MEMORY_AND_DISK_SER)
+        val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER)
         topo.process (true)
 
         val process = System.nanoTime ()

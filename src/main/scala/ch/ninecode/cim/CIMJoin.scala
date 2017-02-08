@@ -2,18 +2,18 @@ package ch.ninecode.cim
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 
 import org.apache.spark.sql.types._
 import ch.ninecode.model._
 
-class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Serializable
+class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializable
 {
     def get (name: String): RDD[Element] =
     {
-        val rdds = sqlContext.sparkContext.getPersistentRDDs
+        val rdds = session.sparkContext.getPersistentRDDs
         for (key <- rdds.keys)
         {
             val rdd = rdds (key)
@@ -233,22 +233,93 @@ class CIMJoin (val sqlContext: SQLContext, val storage: StorageLevel) extends Se
         names.unpersist (false)
         updated_names.name = "Name"
         updated_names.persist (storage)
-        sqlContext.createDataFrame (updated_names).createOrReplaceTempView ("Name")
+        session.createDataFrame (updated_names).createOrReplaceTempView ("Name")
 
         locations.unpersist (false)
         updated_locations.name = "ServiceLocation"
         updated_locations.persist (storage)
-        sqlContext.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
+        session.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
+
+        // replace service locations in WorkLocation
+        val old_work_loc = get ("WorkLocation").asInstanceOf[RDD[WorkLocation]]
+        val new_work_loc = old_work_loc.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation).keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[WorkLocation, Option[WorkLocation]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
+        old_work_loc.unpersist (false)
+        new_work_loc.name = "WorkLocation"
+        new_work_loc.persist (storage)
+        session.createDataFrame (new_work_loc).createOrReplaceTempView ("WorkLocation")
+
+        // replace service locations in Location
+        val old_loc = get ("Location").asInstanceOf[RDD[Location]]
+        val new_loc = old_loc.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation.Location).keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[Location, Option[Location]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
+        old_loc.unpersist (false)
+        new_loc.name = "Location"
+        new_loc.persist (storage)
+        session.createDataFrame (new_loc).createOrReplaceTempView ("Location")
+
+        // make a union of all new RDD as IdentifiedObject
+        val idobj = updated_names.map (_.IdentifiedObject).
+            union (old_loc.map (_.IdentifiedObject))
+
+        // replace identified objects in IdentifiedObject
+        val old_idobj = get ("IdentifiedObject").asInstanceOf[RDD[IdentifiedObject]]
+        val new_idobj = old_idobj.keyBy (_.id).leftOuterJoin (idobj.keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[IdentifiedObject, Option[IdentifiedObject]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
+        old_idobj.unpersist (false)
+        new_idobj.name = "IdentifiedObject"
+        new_idobj.persist (storage)
+        session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
         points.unpersist (false)
         updated_points.name = "PositionPoint"
         updated_points.persist (storage)
-        sqlContext.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
+        session.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
 
         attributes.unpersist (false)
         updated_attributes.name = "UserAttribute"
         updated_attributes.persist (storage)
-        sqlContext.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
+        session.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
 
+        // make a union of all new RDD as IdentifiedObject
+        val elem = new_idobj.map (_.Element).
+            union (updated_points.map (_.Element)).
+            union (updated_attributes.map (_.Element))
+
+        // replace elements in Elements
+        val old_elements = get ("Elements").asInstanceOf[RDD[Element]]
+        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (elem.keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[Element, Option[Element]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
+        old_elements.unpersist (false)
+        new_elements.name = "Elements"
+        new_elements.persist (storage)
     }
 }

@@ -136,7 +136,7 @@ with
         if (_Join)
         {
             log.info ("joining ISU and NIS")
-            val join = new CIMJoin (sqlContext, _StorageLevel)
+            val join = new CIMJoin (sparkSession, _StorageLevel)
             join.do_join ()
         }
 
@@ -144,7 +144,7 @@ with
         if (_Topo)
         {
             log.info ("performing Network Topology Processing")
-            val ntp = new CIMNetworkTopologyProcessor (sqlContext, _StorageLevel)
+            val ntp = new CIMNetworkTopologyProcessor (sparkSession, _StorageLevel)
             ntp.process (_Islands)
         }
 
@@ -152,7 +152,7 @@ with
         if (_Edges)
         {
             log.info ("making Edges RDD")
-            val cimedges = new CIMEdges (sqlContext, _StorageLevel)
+            val cimedges = new CIMEdges (sparkSession, _StorageLevel)
             cimedges.make_edges (_Topo)
         }
 

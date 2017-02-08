@@ -36,7 +36,7 @@ class CIMSparkSuite extends FunSuite
         // register CIM case classes
         CHIM.apply_to_all_classes { x => configuration.registerKryoClasses (Array (x.runtime_class)) }
         // register edge related classes
-        configuration.registerKryoClasses (Array (classOf[PreEdge], classOf[Extremum], classOf[Edge]))
+        configuration.registerKryoClasses (Array (classOf[PreEdge], classOf[Extremum], classOf[PostEdge]))
 
         val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
         session.sparkContext.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
@@ -110,7 +110,7 @@ class CIMSparkSuite extends FunSuite
         var names = get (session.sqlContext, "Name").asInstanceOf[RDD[UserAttribute]]
         println (names.count () + " names before")
 
-        val join = new CIMJoin (session.sqlContext, StorageLevel.fromString ("MEMORY_AND_DISK_SER"))
+        val join = new CIMJoin (session, StorageLevel.fromString ("MEMORY_AND_DISK_SER"))
         join.do_join ()
 
         servicelocations = get (session.sqlContext, "ServiceLocation").asInstanceOf[RDD[ServiceLocation]]
