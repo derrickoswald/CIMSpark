@@ -52,11 +52,11 @@ class CIMNetworkTopologyProcessorSuite extends FunSuite
         val files = filename.split (",")
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("path", filename)
-        options.put ("StorageLevel", "MEMORY_AND_DISK_SER");
-        options.put ("ch.ninecode.cim.make_edges", "false");
-        options.put ("ch.ninecode.cim.do_join", "false");
-        options.put ("ch.ninecode.cim.do_topo", "false"); // done explicitly in the test
-        options.put ("ch.ninecode.cim.do_topo_islands", "false"); // done explicitly in the test
+        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
+        options.put ("ch.ninecode.cim.make_edges", "false")
+        options.put ("ch.ninecode.cim.do_join", "false")
+        options.put ("ch.ninecode.cim.do_topo", "false") // done explicitly in the test
+        options.put ("ch.ninecode.cim.do_topo_islands", "false") // done explicitly in the test
 
         val element = context.read.format ("ch.ninecode.cim").options (options).load (files:_*)
 

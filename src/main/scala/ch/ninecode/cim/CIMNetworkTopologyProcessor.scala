@@ -19,7 +19,7 @@ case class CuttingEdge (id_seq_1: String, id_cn_1: String, id_seq_2: String, id_
 /**
  * island is min of all connected ConnectivityNode ( single topological island)
  * node is min of equivalent ConnectivityNode (a single topological node)
- * label is a user freindly label
+ * label is a user friendly label
  */
 case class TopologicalData (var island: VertexId = Long.MaxValue, var island_label: String = "", var node: VertexId = Long.MaxValue, var node_label: String = "") extends Serializable
 {
@@ -32,19 +32,6 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
         else
             node_label + "_topo"
     }
-
-    def island_name: String =
-    {
-        if (0 == island)
-            ""
-        else
-            if (island_label.endsWith ("_node_fuse"))
-                island_label.substring (0, island_label.length - "_node_fuse".length) + "_island_fuse"
-            else if (island_label.endsWith ("_node"))
-                island_label.substring (0, island_label.length - "_node".length) + "_island"
-            else
-                island_label + "_island"
-    }
 }
 
 /**
@@ -52,7 +39,7 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
  * Create TopologicalNode and TopologicalIsland RDD.
  * Based on ConnectivityNode elements and connecting edges, find the topology that has:
  * - each substation has a single bus (TopologicalNode) at each nominal voltage level
- *   for each set of BusbarSection that are conected by closed switches
+ *   for each set of BusbarSection that are connected by closed switches
  * - eliminates switches based on their open/closed state
  * - assigns each ConnectivityNode to exactly one TopologicalNode
  * - assigns each TopologicalNode to exactly one TopologicalIsland
@@ -68,9 +55,9 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
 {
     private val log = LoggerFactory.getLogger(getClass)
     
-    def get (name: String, sc: SparkContext): RDD[Element] =
+    def get (name: String): RDD[Element] =
     {
-        val rdds = sc.getPersistentRDDs
+        val rdds = sqlContext.sparkContext.getPersistentRDDs
         for (key <- rdds.keys)
         {
             val rdd = rdds (key)
@@ -135,14 +122,14 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
     def make_graph (sc: SparkContext): Graph[TopologicalData, CuttingEdge] =
     {
         // get the terminals keyed by equipment
-        val terms = get ("Terminal", sc).asInstanceOf[RDD[Terminal]].groupBy (_.ConductingEquipment)
+        val terms = get ("Terminal").asInstanceOf[RDD[Terminal]].groupBy (_.ConductingEquipment)
 
         // map elements with their terminal 'pairs' to edges
-        val elements = get ("Elements", sc).asInstanceOf[RDD[Element]].keyBy (_.id).join (terms)
+        val elements = get ("Elements").asInstanceOf[RDD[Element]].keyBy (_.id).join (terms)
             .flatMapValues (edge_operator).values
 
         // get the vertices
-        val vertices = get ("ConnectivityNode", sc).asInstanceOf[RDD[ConnectivityNode]].map (to_vertex).keyBy (_.node)
+        val vertices = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]].map (to_vertex).keyBy (_.node)
 
         // get the edges
         val edges = elements.map (make_graph_edges)
@@ -205,13 +192,14 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                 case "ACLineSegment" =>
                     val line = element.asInstanceOf[ACLineSegment]
                     val nonzero = ((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
-                    //println ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "+" + line.x + "jΩ/km " + !nonzero)
+                    // log.debug ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "+" + line.x + "jΩ/km " + !nonzero)
                     !nonzero
                 case "Conductor" =>
                     true
                 case _ =>
                 {
-                    false
+                    log.warn ("topological node processor encountered edge with unhandled class '" + cls +"', assumed conducting")
+                    true
                 }
             }
 
@@ -246,33 +234,84 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         return (graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message))
     }
 
-    def to_islands (nodes: Iterable[TopologicalData]): TopologicalIsland =
+    def to_islands (nodes: Iterable[Tuple2[Tuple2[TopologicalData,ConnectivityNode],Option[Tuple2[Terminal, Element]]]]): Tuple2[VertexId, TopologicalIsland] =
     {
-        val name = nodes.head.island_name
-        val alias = nodes.head.island.toString
+        def op (current: Tuple2[List[Terminal],ConnectivityNode], data: Tuple2[Tuple2[TopologicalData,ConnectivityNode],Option[Tuple2[Terminal, Element]]]): Tuple2[List[Terminal],ConnectivityNode] =
+        {
+            val ret =
+                data._2 match
+                {
+                    case Some ((terminal, element)) =>
+                        // get the alphabetically least connectivity node name as a fall-back
+                        val cn = data._1._2
+                        val best = if (null == current._2) cn else if (cn.id < current._2.id) cn else current._2
+                        // get the transformer secondary terminal
+                        val clazz = element.getClass.getName
+                        val cls = clazz.substring (clazz.lastIndexOf (".") + 1)
+                        cls match
+                        {
+                            case "PowerTransformer" =>
+                                if (terminal.ACDCTerminal.sequenceNumber > 1)
+                                    (current._1 :+ terminal, cn)
+                                else
+                                    (current._1, best)
+                            case _ =>
+                                (current._1, best)
+                        }
+                    case None =>
+                        current
+                }
+            return (ret)
+        }
+        val (lv_terminals, cn) = nodes.foldLeft (Tuple2[List[Terminal],ConnectivityNode](List[Terminal](), null))(op)
+        // based on how many transformer terminals there are, construct a suitable name
+        def trafos (l: List[Terminal]): String = l.map (_.ConductingEquipment).mkString ("_")
+        val terminals = lv_terminals.sortBy (_.id)
+        val base =
+            terminals match
+            {
+                case t1 :: Nil =>
+                    t1.id
+                case t1 :: tail =>
+                    trafos (terminals) + "_terminal_" + t1.ACDCTerminal.sequenceNumber
+                case _ =>
+                    cn.id
+            }
+        val name = base + "_topo"
+        val island = nodes.head._1._1.island
         return (
-            TopologicalIsland
             (
-                IdentifiedObject
+                island,
+                TopologicalIsland
                 (
-                    BasicElement
+                    IdentifiedObject
                     (
-                        null,
-                        name
+                        BasicElement
+                        (
+                            null,
+                            name
+                        ),
+                        cn.IdentifiedObject.aliasName, // aliasName: String
+                        cn.IdentifiedObject.description, // description: String
+                        name,  // mRID: String
+                        cn.id  // name: String
                     ),
-                    alias, // aliasName: String
-                    "", // description: String
-                    name,  // mRID: String
-                    ""  // name: String
-                ),
-                "" // AngleRefTopologicalNode: String
+                    "" // AngleRefTopologicalNode: String
+                )
             )
         )
     }
 
-    def to_nodes (arg: Tuple2[VertexId, Iterable[TopologicalData]]): TopologicalNode =
+    def to_nodes (arg: Tuple3[VertexId, TopologicalData, Option[TopologicalIsland]]): TopologicalNode =
     {
-        val name = arg._2.head.name
+        val name = arg._2.name
+        val island = arg._3 match
+        {
+            case Some (i) =>
+                i.id
+            case _ =>
+                ""
+        }
         return (
             TopologicalNode
             (
@@ -296,7 +335,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                 "", // ReportingGroup: String,
                 "", // SvInjection: String,
                 "", // SvVoltage: String,
-                arg._2.head.island_name  // TopologicalIsland: String
+                island  // TopologicalIsland: String
             )
         )
     }
@@ -394,7 +433,8 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                     true
                 case _ =>
                 {
-                    false
+                    log.warn ("topological island processor encountered edge with unhandled class '" + cls +"', assumed conducting")
+                    true
                 }
             }
 
@@ -443,7 +483,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
                     vertex.island = data.island
                     vertex.island_label = data.island_label
                 case None => // should never happen
-                    // ToDo: log warning
+                    log.warn ("update vertices skipping vertex with no associated island")
             }
 
             return (vertex)
@@ -474,7 +514,7 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         val vertices = boundaries.map (_._2).union (boundaries.map (_._3)).distinct.keyBy (_.node)
         val topo_graph = Graph.apply[TopologicalData, CuttingEdge](vertices, edges, TopologicalData (), storage, storage)
 
-        // run the pregel algorithm over the reduced topological graph
+        // run the Pregel algorithm over the reduced topological graph
         val g = topo_graph.pregel[TopologicalData] (null, 10000, activeDirection = EdgeDirection.Either) (vertex_program, send_message, merge_message)
 
         // update the original graph with the islands
@@ -489,14 +529,15 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
         val initial = make_graph (sqlContext.sparkContext)
 
         // get the topological nodes
-        log.info ("identifyNodes")
+        log.info ("nodes")
         var graph = identifyNodes (initial)
 
         // persist the RDD to avoid recomputation
         graph.vertices.persist (storage)
         graph.edges.persist (storage)
 
-        if (identify_islands)
+        // create a new TopologicalNode RDD
+        val new_tn = if (identify_islands)
         {
             // get the topological islands
             log.info ("identifyIslands")
@@ -506,41 +547,121 @@ class CIMNetworkTopologyProcessor (val sqlContext: SQLContext, val storage: Stor
             graph.vertices.persist (storage)
             graph.edges.persist (storage)
 
-            // create TopologicalIsland RDD
             log.info ("islands")
-            val islands = graph.vertices.values.filter (_.island != 0L).groupBy (_.island).values.map (to_islands)
-            get ("TopologicalIsland", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalIsland]].unpersist (false)
-            islands.name = "TopologicalIsland"
-            islands.persist (storage)
-            sqlContext.createDataFrame (islands).createOrReplaceTempView ("TopologicalIsland")
-        }
+            // get the terminals keyed by equipment with equipment
+            val elements = get ("Elements").asInstanceOf[RDD[Element]].keyBy (_.id)
+            val terms = get ("Terminal").asInstanceOf[RDD[Terminal]].keyBy (_.ConductingEquipment).join (elements).values
+            // map each graph vertex to the terminals
+            val vertices = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]].map ((x) => (vertex_id (x.id), x))
+            val td_plus = graph.vertices.join (vertices).values.filter (_._1.island != 0L).keyBy (_._2.id).leftOuterJoin (terms.keyBy (_._1.ConnectivityNode)).values
+            val islands = td_plus.groupBy (_._1._1.island).values.map (to_islands)
 
-        // create TopologicalNode RDD
-        log.info ("nodes")
-        val nodes = graph.vertices.map (_._2).groupBy (_.node).map (to_nodes) // ToDo: is there a  better way than GroupBy?
-        get ("TopologicalNode", sqlContext.sparkContext).asInstanceOf[RDD[TopologicalNode]].unpersist (false)
-        nodes.name = "TopologicalNode"
-        val stuff = nodes.persist (storage)
-        sqlContext.createDataFrame (nodes).createOrReplaceTempView ("TopologicalNode")
+            // create a new TopologicalIsland RDD
+            val old_ti = get ("TopologicalIsland").asInstanceOf[RDD[TopologicalIsland]]
+            val new_ti = islands.values
+
+            // swap the old TopologicalIsland RDD for the new one
+            old_ti.unpersist (false)
+            new_ti.name = "TopologicalIsland"
+            new_ti.persist (storage)
+            sqlContext.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
+
+            val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
+            nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
+        }
+        else
+            graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes)
+
+        // swap the old TopologicalNode RDD for the new one
+        val old_tn = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]]
+        old_tn.unpersist (false)
+        new_tn.name = "TopologicalNode"
+        new_tn.persist (storage)
+        sqlContext.createDataFrame (new_tn).createOrReplaceTempView ("TopologicalNode")
+
+        // assume the old TopologicalIsland and TopologicalNode RDD were empty
+        // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
 
         // assign every ConnectivtyNode to a TopologicalNode
-        val old_cn = get ("ConnectivityNode", sqlContext.sparkContext).asInstanceOf[RDD[ConnectivityNode]]
+        val old_cn = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]]
         val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).map (update_cn)
 
-        // swap the old RDD for the new one
+        // swap the old ConnectivityNode RDD for the new one
         old_cn.unpersist (false)
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
         sqlContext.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
 
         // assign every Terminal to a TopologicalNode
-        val old_terminals = get ("Terminal", sqlContext.sparkContext).asInstanceOf[RDD[Terminal]]
+        val old_terminals = get ("Terminal").asInstanceOf[RDD[Terminal]]
         val new_terminals = old_terminals.filter (null != _.ConnectivityNode).keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).map (update_terminals)
 
-        // swap the old RDD for the new one
+        // replace terminals in Terminal
+        val new_term = old_terminals.keyBy (_.id).leftOuterJoin (new_terminals.keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[Terminal, Option[Terminal]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
         old_terminals.unpersist (false)
-        new_terminals.name = "Terminal"
-        new_terminals.persist (storage)
-        sqlContext.createDataFrame (new_terminals).createOrReplaceTempView ("Terminal")
+        new_term.name = "Terminal"
+        new_term.persist (storage)
+        sqlContext.createDataFrame (new_term).createOrReplaceTempView ("Terminal")
+
+        // replace terminals in ACDCTerminal
+        val old_acdc_term = get ("ACDCTerminal").asInstanceOf[RDD[ACDCTerminal]]
+        val new_acdc_term = old_acdc_term.keyBy (_.id).leftOuterJoin (new_terminals.map (_.ACDCTerminal).keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[ACDCTerminal, Option[ACDCTerminal]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
+        old_acdc_term.unpersist (false)
+        new_acdc_term.name = "ACDCTerminal"
+        new_acdc_term.persist (storage)
+        sqlContext.createDataFrame (new_acdc_term).createOrReplaceTempView ("ACDCTerminal")
+
+        // make a union of all new RDD as IdentifiedObject
+        val idobj = get ("TopologicalIsland").asInstanceOf[RDD[TopologicalIsland]].map (_.IdentifiedObject).
+            union (new_tn.map (_.IdentifiedObject)).
+            union (new_cn.map (_.IdentifiedObject)).
+            union (new_acdc_term.map (_.IdentifiedObject))
+
+        // replace identified objects in IdentifiedObject
+        val old_idobj = get ("IdentifiedObject").asInstanceOf[RDD[IdentifiedObject]]
+        val new_idobj = old_idobj.keyBy (_.id).leftOuterJoin (idobj.keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[IdentifiedObject, Option[IdentifiedObject]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
+        old_idobj.unpersist (false)
+        new_idobj.name = "IdentifiedObject"
+        new_idobj.persist (storage)
+        sqlContext.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
+
+        // replace elements in Elements
+        val old_elements = get ("Elements").asInstanceOf[RDD[Element]]
+        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (new_idobj.map (_.Element).keyBy (_.id)).
+            values.flatMap (
+                (arg: Tuple2[Element, Option[Element]]) =>
+                    arg._2 match
+                    {
+                        case Some (x) => List(x)
+                        case None => List (arg._1)
+                    }
+                )
+        old_elements.unpersist (false)
+        new_elements.name = "Elements"
+        new_elements.persist (storage)
     }
 }
