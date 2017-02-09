@@ -82,94 +82,63 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         )
     }
 
-
     def delete_service_location (a: Tuple2[ServiceLocation, Option[(ServiceLocation, ServiceLocation)]]): Boolean =
     {
-        return (
-            a._2 match
-            {
-                case (Some (x)) ⇒
-                {
-                    // delete ServiceLocation that match (they were edited already and new ones have an ISU mRID)
-                    false
-                }
-                case (None) ⇒
-                {
-                    // keep ServiceLocation without a match
-                    true
-                }
-            }
-        )
+        a._2 match
+        {
+            // delete ServiceLocation that match (they were edited already and new ones have an ISU mRID)
+            case (Some (x)) ⇒ false
+            // keep ServiceLocation without a match
+            case (None) ⇒ true
+        }
     }
 
     def edit_position_point (a: Tuple2[PositionPoint, Option[(ServiceLocation, ServiceLocation)]]): PositionPoint =
     {
-        return (
-            a._2 match
-            {
-                case (Some (x)) ⇒
-                {
-                    // for PositionPoint with a NIS ServiceLocation, make a new one with the ISU ServiceLocation
-                    PositionPoint (
-                        BasicElement (null, a._1.id),
-                        a._1.sequenceNumber,
-                        a._1.xPosition,
-                        a._1.yPosition,
-                        a._1.zPosition,
-                        x._1.id)
-                }
-                case (None) ⇒
-                {
-                    // default is to keep the original PositionPoint where there isn't a match
-                    a._1
-                }
-            }
-        )
+        a._2 match
+        {
+            // for PositionPoint with a NIS ServiceLocation, make a new one with the ISU ServiceLocation
+            case (Some (x)) ⇒
+                PositionPoint (
+                    BasicElement (null, a._1.id),
+                    a._1.sequenceNumber,
+                    a._1.xPosition,
+                    a._1.yPosition,
+                    a._1.zPosition,
+                    x._1.id)
+            // default is to keep the original PositionPoint where there isn't a match
+            case (None) ⇒ a._1
+        }
     }
 
     def edit_user_attribute (a: Tuple2[UserAttribute, Option[(ServiceLocation, ServiceLocation)]]): UserAttribute =
     {
-        return (
-            a._2 match
-            {
-                case (Some (x)) ⇒
-                {
-                    // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
-                    UserAttribute (
-                        BasicElement (null, a._1.id),
-                        x._1.id,
-                        a._1.sequenceNumber,
-                        a._1.PropertySpecification,
-                        a._1.RatingSpecification,
-                        a._1.Transaction,
-                        a._1.value)
-                }
-                case (None) ⇒
-                {
-                    // default is to keep the original UserAttribute where there isn't a match
-                    a._1
-                }
-            }
-        )
+        a._2 match
+        {
+            // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
+            case (Some (x)) ⇒
+                UserAttribute (
+                    BasicElement (null, a._1.id),
+                    x._1.id,
+                    a._1.sequenceNumber,
+                    a._1.PropertySpecification,
+                    a._1.RatingSpecification,
+                    a._1.Transaction,
+                    a._1.value)
+            // default is to keep the original UserAttribute where there isn't a match
+            case (None) ⇒ a._1
+        }
     }
 
     def delete_name (a: Tuple2[Name, Option[(ServiceLocation, ServiceLocation)]]): Boolean =
     {
-        return (
-            a._2 match
-            {
-                case (Some (x)) ⇒
-                {
-                    // delete Name that matches (it was used to perform the join already)
-                    false
-                }
-                case (None) ⇒
-                {
-                    // keep Name without a match
-                    true
-                }
-            }
-        )
+        a._2 match
+        {
+            // delete Name that matches (it was used to perform the join already)
+            case (Some (x)) ⇒ false
+            // keep Name without a match
+            case (None) ⇒ true
+        }
     }
 
     /**
@@ -222,26 +191,39 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         // step 2, change the Location attribute of affected PositionPoint
         val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs).values.map (edit_position_point)
 
+        // swap the old PositionPoint RDD for the new one
+        points.name = null
+        updated_points.name = "PositionPoint"
+        updated_points.persist (storage)
+        session.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
+
         // step 3, change the name attribute of affected UserAttribute
         val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
+
+        // swap the old UserAttribute RDD for the new one
+        attributes.name = null
+        updated_attributes.name = "UserAttribute"
+        updated_attributes.persist (storage)
+        session.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
 
         // step 5 and 6, delete the Name objects that are no longer needed
         val updated_names = names.keyBy (_.IdentifiedObj).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
 
-        // swap the old RDD for the new ones
-
-        names.unpersist (false)
+        // swap the old Name RDD for the new one
+        names.name = null
         updated_names.name = "Name"
         updated_names.persist (storage)
         session.createDataFrame (updated_names).createOrReplaceTempView ("Name")
 
-        locations.unpersist (false)
+        // swap the old ServiceLocation RDD for the new one
+        locations.name = null
         updated_locations.name = "ServiceLocation"
         updated_locations.persist (storage)
         session.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
 
         // replace service locations in WorkLocation
         val old_work_loc = get ("WorkLocation").asInstanceOf[RDD[WorkLocation]]
+        val updated_worklocations_pairrdd = updated_locations.map (_.WorkLocation).keyBy (_.id)
         val new_work_loc = old_work_loc.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation).keyBy (_.id)).
             values.flatMap (
                 (arg: Tuple2[WorkLocation, Option[WorkLocation]]) =>
@@ -251,7 +233,9 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                         case None => List (arg._1)
                     }
                 )
-        old_work_loc.unpersist (false)
+
+        // swap the old WorkLocation RDD for the new one
+        old_work_loc.name = null
         new_work_loc.name = "WorkLocation"
         new_work_loc.persist (storage)
         session.createDataFrame (new_work_loc).createOrReplaceTempView ("WorkLocation")
@@ -267,7 +251,9 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                         case None => List (arg._1)
                     }
                 )
-        old_loc.unpersist (false)
+
+        // swap the old Location RDD for the new one
+        old_loc.name = null
         new_loc.name = "Location"
         new_loc.persist (storage)
         session.createDataFrame (new_loc).createOrReplaceTempView ("Location")
@@ -287,22 +273,14 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                         case None => List (arg._1)
                     }
                 )
-        old_idobj.unpersist (false)
+
+        // swap the old IdentifiedObject RDD for the new one
+        old_idobj.name = null
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
-        points.unpersist (false)
-        updated_points.name = "PositionPoint"
-        updated_points.persist (storage)
-        session.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
-
-        attributes.unpersist (false)
-        updated_attributes.name = "UserAttribute"
-        updated_attributes.persist (storage)
-        session.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
-
-        // make a union of all new RDD as IdentifiedObject
+        // make a union of all new RDD as Element
         val elem = new_idobj.map (_.Element).
             union (updated_points.map (_.Element)).
             union (updated_attributes.map (_.Element))
@@ -318,7 +296,9 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                         case None => List (arg._1)
                     }
                 )
-        old_elements.unpersist (false)
+
+        // swap the old Elements RDD for the new one
+        old_elements.name = null
         new_elements.name = "Elements"
         new_elements.persist (storage)
     }

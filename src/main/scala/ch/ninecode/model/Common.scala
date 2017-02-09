@@ -907,11 +907,11 @@ extends
 case class PositionPoint
 (
     override val sup: Element,
-    sequenceNumber: Int,
-    xPosition: String,
-    yPosition: String,
-    zPosition: String,
-    Location: String
+    val sequenceNumber: Int,
+    val xPosition: String,
+    val yPosition: String,
+    val zPosition: String,
+    val Location: String
 )
 extends
     Element
@@ -1503,8 +1503,8 @@ extends
 case class UserAttribute
 (
     override val sup: Element,
-    name: String,
-    sequenceNumber: Int,
+    val name: String,
+    val sequenceNumber: Int,
     val PropertySpecification: String,
     val RatingSpecification: String,
     val Transaction: String,

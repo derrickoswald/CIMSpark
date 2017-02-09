@@ -325,39 +325,41 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
 
     def update_cn (arg: Tuple2[VertexId, Tuple2[ConnectivityNode,Option[TopologicalData]]]): ConnectivityNode =
     {
-        return (
-            ConnectivityNode
-            (
-                arg._2._1.sup,
-                arg._2._1.ConnectivityNodeContainer,
-                arg._2._2 match
-                {
-                    case Some (node) => node.name
-                    case None => ""
-                }
-            )
-        )
+        val c = arg._2._1
+        arg._2._2 match
+        {
+            case Some (node) =>
+                ConnectivityNode (
+                    c.IdentifiedObject.copy ().asInstanceOf[IdentifiedObject],
+                    c.ConnectivityNodeContainer,
+                    node.name
+                )
+            case None => c
+        }
     }
 
     def update_terminals (arg: Tuple2[VertexId, Tuple2[Terminal,Option[TopologicalData]]]): Terminal =
     {
-        return (
-            Terminal
-            (
-                arg._2._1.sup,
-                arg._2._1.phases,
-                arg._2._1.Bushing,
-                arg._2._1.ConductingEquipment,
-                arg._2._1.ConnectivityNode,
-                arg._2._1.SvPowerFlow,
-                arg._2._2 match
-                {
-                    case Some (node) => node.name
-                    case None => ""
-                }
-            )
-        )
+        val t = arg._2._1
+        val a = t.ACDCTerminal
+        arg._2._2 match
+        {
+            case Some (node) =>
+                val id = a.IdentifiedObject.copy ().asInstanceOf[IdentifiedObject]
+                val acdc = ACDCTerminal (id, a.connected, a.sequenceNumber, a.BusNameMarker)
+                Terminal (
+                    acdc,
+                    t.phases,
+                    t.Bushing,
+                    t.ConductingEquipment,
+                    t.ConnectivityNode,
+                    t.SvPowerFlow,
+                    node.name
+                )
+            case None => t
+        }
     }
+
 
     def identifyIslands (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
     {
@@ -532,6 +534,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
 
             // swap the old TopologicalIsland RDD for the new one
             old_ti.unpersist (false)
+            old_ti.name = null
             new_ti.name = "TopologicalIsland"
             new_ti.persist (storage)
             session.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
@@ -545,6 +548,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         // swap the old TopologicalNode RDD for the new one
         val old_tn = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]]
         old_tn.unpersist (false)
+        old_tn.name = null
         new_tn.name = "TopologicalNode"
         new_tn.persist (storage)
         session.createDataFrame (new_tn).createOrReplaceTempView ("TopologicalNode")
@@ -557,7 +561,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).map (update_cn)
 
         // swap the old ConnectivityNode RDD for the new one
-        old_cn.unpersist (false)
+        old_cn.name = null
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
         session.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
@@ -571,12 +575,14 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             values.flatMap (
                 (arg: Tuple2[Terminal, Option[Terminal]]) =>
                     arg._2 match
-                    {
+                     {
                         case Some (x) => List(x)
                         case None => List (arg._1)
-                    }
+                     }
                 )
-        old_terminals.unpersist (false)
+
+        // swap the old Terminal RDD for the new one
+        old_terminals.name = null
         new_term.name = "Terminal"
         new_term.persist (storage)
         session.createDataFrame (new_term).createOrReplaceTempView ("Terminal")
@@ -592,7 +598,9 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                         case None => List (arg._1)
                     }
                 )
-        old_acdc_term.unpersist (false)
+
+        // swap the old ACDCTerminal RDD for the new one
+        old_acdc_term.name = null
         new_acdc_term.name = "ACDCTerminal"
         new_acdc_term.persist (storage)
         session.createDataFrame (new_acdc_term).createOrReplaceTempView ("ACDCTerminal")
@@ -614,7 +622,9 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                         case None => List (arg._1)
                     }
                 )
-        old_idobj.unpersist (false)
+
+        // swap the old IdentifiedObject RDD for the new one
+        old_idobj.name = null
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
@@ -630,7 +640,9 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                         case None => List (arg._1)
                     }
                 )
-        old_elements.unpersist (false)
+
+        // swap the old Elements RDD for the new one
+        old_elements.name = null
         new_elements.name = "Elements"
         new_elements.persist (storage)
     }

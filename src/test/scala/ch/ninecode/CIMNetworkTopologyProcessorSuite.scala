@@ -81,6 +81,9 @@ class CIMNetworkTopologyProcessorSuite extends FunSuite
 
         val process = System.nanoTime ()
 
+        val topos = session.sparkContext.getPersistentRDDs.filter(_._2.name == "TopologicalNode").head._2.asInstanceOf[org.apache.spark.rdd.RDD[TopologicalNode]]
+        println (topos.take (10).mkString ("\n"))
+
         println ("read : " + (read - start) / 1e9 + " seconds")
         println ("process: " + (process - read) / 1e9 + " seconds")
         println ()
@@ -104,8 +107,46 @@ class CIMNetworkTopologyProcessorSuite extends FunSuite
 
         val process = System.nanoTime ()
 
+        val islands = session.sparkContext.getPersistentRDDs.filter(_._2.name == "TopologicalIsland").head._2.asInstanceOf[org.apache.spark.rdd.RDD[TopologicalIsland]]
+        println (islands.take (10).mkString ("\n"))
+
         println ("read : " + (read - start) / 1e9 + " seconds")
         println ("process: " + (process - read) / 1e9 + " seconds")
+        println ()
+    }
+
+    test ("Auto")
+    {
+        session: SparkSession ⇒
+
+        def readFileAuto (context: SQLContext, filename: String): DataFrame =
+        {
+            val files = filename.split (",")
+            val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+            options.put ("path", filename)
+            options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
+            options.put ("ch.ninecode.cim.make_edges", "false")
+            options.put ("ch.ninecode.cim.do_join", "false")
+            options.put ("ch.ninecode.cim.do_topo", "true")
+            options.put ("ch.ninecode.cim.do_topo_islands", "true")
+
+            val element = context.read.format ("ch.ninecode.cim").options (options).load (files:_*)
+
+            return (element)
+        }
+
+        val start = System.nanoTime ()
+
+        val filename =
+            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf"
+        val elements = readFileAuto (session.sqlContext, filename)
+        println (elements.count () + " elements")
+        val read = System.nanoTime ()
+
+        val nodes = session.sparkContext.getPersistentRDDs.filter(_._2.name == "ConnectivityNode").head._2.asInstanceOf[org.apache.spark.rdd.RDD[ConnectivityNode]]
+        println (nodes.take (10).mkString ("\n"))
+
+        println ("read : " + (read - start) / 1e9 + " seconds")
         println ()
     }
 
