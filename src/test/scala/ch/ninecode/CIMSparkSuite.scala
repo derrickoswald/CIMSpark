@@ -71,12 +71,11 @@ class CIMSparkSuite extends FunSuite
         session: SparkSession ⇒
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Brügg_V9" + ".rdf" +
-            "," +
-            FILE_DEPOT + "ISU_CIM_Export_20160505_partial" + ".rdf"
+            FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         options.put ("ch.ninecode.cim.make_edges", "true")
+        options.put ("ch.ninecode.cim.do_topo_islands", "true")
         val elements = readFile (session.sqlContext, filename, options)
         println (elements.count () + " elements")
         val edges = session.sqlContext.sql ("select * from edges")

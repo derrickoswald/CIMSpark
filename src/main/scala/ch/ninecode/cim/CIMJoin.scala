@@ -281,13 +281,14 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
         // make a union of all new RDD as Element
-        val elem = new_idobj.map (_.Element).
-            union (updated_points.map (_.Element)).
-            union (updated_attributes.map (_.Element))
+        val newelem = updated_points.asInstanceOf[RDD[Element]].
+            union (updated_attributes.asInstanceOf[RDD[Element]]).
+            union (updated_names.asInstanceOf[RDD[Element]]).
+            union (updated_locations.asInstanceOf[RDD[Element]])
 
         // replace elements in Elements
         val old_elements = get ("Elements").asInstanceOf[RDD[Element]]
-        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (elem.keyBy (_.id)).
+        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
             values.flatMap (
                 (arg: Tuple2[Element, Option[Element]]) =>
                     arg._2 match

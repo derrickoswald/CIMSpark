@@ -629,9 +629,14 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         new_idobj.persist (storage)
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
+        val newelem = get ("TopologicalIsland").asInstanceOf[RDD[Element]].
+            union (new_tn.asInstanceOf[RDD[Element]]).
+            union (new_cn.asInstanceOf[RDD[Element]]).
+            union (new_acdc_term.asInstanceOf[RDD[Element]])
+
         // replace elements in Elements
         val old_elements = get ("Elements").asInstanceOf[RDD[Element]]
-        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (new_idobj.map (_.Element).keyBy (_.id)).
+        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
             values.flatMap (
                 (arg: Tuple2[Element, Option[Element]]) =>
                     arg._2 match

@@ -72,25 +72,21 @@ Assuming, Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0)
 ```
 cd CIMScala
 ```
-* Initialize the cluster (default is two containers, "sandbox" and "worker"):
+* Initialize the cluster (default is three containers, "sandbox", "worker1" and "worker2"):
 ```
 docker-compose --file src/test/resources/sandbox.yaml up&
 ```
-* To shut down the cluster (this also deletes images used by the containers using --rmi):
+* To shut down the cluster:
 ```
-docker-compose --file src/test/resources/sandbox.yaml down --rmi local
+docker-compose --file src/test/resources/sandbox.yaml down
 ```
 * To run an interactive shell in the master container:
 ```
-docker exec -it resources_sandbox_1 bash
+docker exec --interactive --tty resources_sandbox_1 bash
 ```
-* To install R so that the sparkR command works:
+* Optionally, to install R so that the sparkR command works:
 ```
 apt-get install r-base
-```
-* To run an interactive shell in another container (a copy of the worker container):
-```
-docker-compose --file src/test/resources/sandbox.yaml run --rm worker bash
 ```
 * From within the interactive shell, to copy data files to HDFS
 ```
@@ -98,11 +94,8 @@ hdfs dfs -fs hdfs://sandbox:8020 -mkdir /data
 hdfs dfs -fs hdfs://sandbox:8020 -put /opt/data/* /data
 hdfs dfs -fs hdfs://sandbox:8020 -ls /data
 ```
-* Edit the core-site.xml to replace the placeholder with the name "sandbox":
-```
-sed --in-place --expression='s/\[NAMENODE_HOST\]/sandbox/' /usr/local/hadoop-2.7.3/etc/hadoop/core-site.xml
-```
-* From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath
+
+From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath
 [Note: to avoid "java.io.IOException: No FileSystem for scheme: null" when executing spark in the root directory,
 either change to any subdirectory (i.e. ```cd /opt```) or
 add the warehouse.dir configuration as shown here] 
@@ -148,8 +141,14 @@ val count = elements.count
 ```
 
 The data is now available in a large number of cached RDD structures. For example, all ACLineSegment objects are available
-in the cached RDD with the name "ACLineSegment". You can get a named RDD using:
+in the cached RDD with the name "ACLineSegment". 
 
+You can get a list of RDD using:
+```scala
+println (sc.getPersistentRDDs.map(_._2.name).toArray.sortWith(_ < _).mkString("\n")
+```
+
+You can get a named RDD using:
 ```scala
 val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
 ```
@@ -173,6 +172,23 @@ CIM reader specific option names and their meaning are:
   
 One further option is the [StorageLevel](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.storage.StorageLevel$)
 
+For example, to enable edge creation, topological island formation and add disk serialization, use:
+
+```scala
+import scala.collection.mutable.HashMap
+import org.apache.spark.rdd.RDD
+import ch.ninecode.cim._
+import ch.ninecode.model._
+val opts = new HashMap[String,String]()
+opts.put("ch.ninecode.cim.make_edges", "true")
+opts.put("ch.ninecode.cim.do_topo_islands", "true")
+opts.put("StorageLevel", "MEMORY_AND_DISK_SER")
+val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
+element.count
+val edges = sc.getPersistentRDDs.filter(_._2.name == "Edges").head._2.asInstanceOf[RDD[TopoEdge]]
+edges.first
+```
+
 All RDD are also exposed as temporary tables, so one can use SQL syntax to construct specific queries, such as this one that queries details from all switches and performs a join to location coordinates:
 
     scala> val switches = spark.sql ("select s.sup.sup.sup.sup.mRID mRID, s.sup.sup.sup.sup.aliasName aliasName, s.sup.sup.sup.sup.name name, s.sup.sup.sup.sup.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.sup.sup.sup.Location = l.sup.mRID and s.sup.sup.sup.Location = p.Location and p.sequenceNumber = 0")
@@ -180,15 +196,15 @@ All RDD are also exposed as temporary tables, so one can use SQL syntax to const
     switches: org.apache.spark.sql.DataFrame = [mRID: string, aliasName: string, name: string, description: string, open: boolean, no: boolean, cs: string, xPosition: string, yPosition: string]
     scala> switches.show (5)
     ...
-    +---------+--------------------+--------------------+--------------------+-----+-----+-------------+-------------+-------------+
-    |     mRID|           aliasName|                name|         description| open|   no|           cs|    xPosition|    yPosition|
-    +---------+--------------------+--------------------+--------------------+-----+-----+-------------+-------------+-------------+
-    |  TRE3660|271706169:nis_el_...|           CGMCOSMOS|        Disconnector|false| true|pseudo_wgs_84|7.23127456569|47.1170112726|
-    |SIG105938|264083025:nis_el_...|G4-SEV (NH-Lastsc...|                null|false| true|pseudo_wgs_84|7.22987267738|47.1135371050|
-    |SIG131042|279147335:nis_el_...|Gr2-DIN (NH-Lasts...|Fuse SIG131042 SI...|false|false|pseudo_wgs_84|7.22921322029|47.1119559902|
-    |SIG114020|265608762:nis_el_...|1000A (NH-Lastsch...|Trennmesser SIG11...|false|false|pseudo_wgs_84|7.23598655757|47.1472289784|
-    |TEI125716|269104342:nis_el_...|           CGMCOSMOS|              Switch|false|false|pseudo_wgs_84|7.28937671248|47.0974306672|
-    +---------+--------------------+--------------------+--------------------+-----+-----+-------------+-------------+-------------+
+    +-----------+--------------------+--------------------+-----------+-----+-----+-------------+-------------+-------------+
+    |       mRID|           aliasName|                name|description| open|   no|           cs|    xPosition|    yPosition|
+    +-----------+--------------------+--------------------+-----------+-----+-----+-------------+-------------+-------------+
+    |    TEI8271|8136705:nis_el_in...|unbekannt ausfahrbar|     Switch|false|false|pseudo_wgs_84|8.78279448906|47.0431707353|
+    |  HAS6_fuse|                null|           unbekannt|  Fuse HAS6|false|false|       wgs_84|8.78362235047|47.0410546451|
+    |    TEI6817|2070980:nis_el_in...|               DIN00|     Switch|false|false|pseudo_wgs_84|8.78023909003|47.0411507663|
+    |HAS200_fuse|                null|           unbekannt|Fuse HAS200|false|false|       wgs_84|8.78427055434|47.0413288289|
+    |    TEI2218|2005426:nis_el_in...|             Trenner|     Switch|false|false|pseudo_wgs_84|8.78806552763|47.0431092357|
+    +-----------+--------------------+--------------------+-----------+-----+-----+-------------+-------------+-------------+
     only showing top 5 rows
 
 To expose the RDD as Hive SQL tables that are available externally, via JDBC for instance, a utility main() function is provided in CIMRDD:
@@ -197,9 +213,9 @@ To expose the RDD as Hive SQL tables that are available externally, via JDBC for
     ...
     Press [Return] to exit...
 
-The program will serve on port 10000 untill you press Return.
+The program will serve on port 10000 until you press Return.
 
-The java client code requires can be black-box included by adding this magic incantation in
+The java client code required can be black-box included by adding this magic incantation in
 the maven pom:
 
     <dependency>
