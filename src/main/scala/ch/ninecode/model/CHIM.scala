@@ -12,8 +12,8 @@ import scala.reflect.runtime.universe.TypeTag
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.Context
 import ch.ninecode.cim.CIMSubsetter
+import ch.ninecode.cim.Context
 
 // From SparkR package:
 //busbars = sql (sqlContext, "select * from BusbarSection")

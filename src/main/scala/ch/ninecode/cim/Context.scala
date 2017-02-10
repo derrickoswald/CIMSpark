@@ -1,4 +1,4 @@
-package ch.ninecode
+package ch.ninecode.cim
 
 import java.util.regex.Pattern
 import scala.collection.mutable.ArrayBuffer

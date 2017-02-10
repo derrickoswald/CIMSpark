@@ -2,7 +2,7 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.Context
+import ch.ninecode.cim.Context
 
 /*
  * Package: Topology
