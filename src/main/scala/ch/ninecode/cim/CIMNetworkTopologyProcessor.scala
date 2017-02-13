@@ -214,7 +214,13 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         // traverse the graph with the Pregel algorithm
         // assigns the minimum VertexId of all electrically identical nodes (node)
         // Note: on the first pass through the Pregel algorithm all nodes get a null message
-        return (graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message))
+        val ret = graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
+
+        // persist the RDD to avoid recomputation
+        ret.vertices.persist (storage)
+        ret.edges.persist (storage)
+
+        return (ret)
     }
 
     def to_islands (nodes: Iterable[Tuple2[Tuple2[TopologicalData,ConnectivityNode],Option[Tuple2[Terminal, Element]]]]): Tuple2[VertexId, TopologicalIsland] =
@@ -492,7 +498,13 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         // update the original graph with the islands
         val v = graph.vertices.keyBy (_._2.node).leftOuterJoin (g.vertices.values.keyBy (_.node)).map (mapper)
 
-        return (graph.outerJoinVertices (v) (update_vertices))
+        val ret = graph.outerJoinVertices (v) (update_vertices)
+
+        // persist the RDD to avoid recomputation
+        ret.vertices.persist (storage)
+        ret.edges.persist (storage)
+
+        return (ret)
     }
 
     def process (identify_islands: Boolean): Unit =
@@ -504,20 +516,12 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         log.info ("nodes")
         var graph = identifyNodes (initial)
 
-        // persist the RDD to avoid recomputation
-        graph.vertices.persist (storage)
-        graph.edges.persist (storage)
-
         // create a new TopologicalNode RDD
         val new_tn = if (identify_islands)
         {
             // get the topological islands
             log.info ("identifyIslands")
             graph = identifyIslands (graph)
-
-            // persist the RDD to avoid recomputation
-            graph.vertices.persist (storage)
-            graph.edges.persist (storage)
 
             log.info ("islands")
             // get the terminals keyed by equipment with equipment
@@ -629,13 +633,14 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         new_idobj.persist (storage)
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
-        val newelem = get ("TopologicalIsland").asInstanceOf[RDD[Element]].
+        // make a union of all new RDD as Element
+        val newelem = get ("TopologicalIsland").
             union (new_tn.asInstanceOf[RDD[Element]]).
             union (new_cn.asInstanceOf[RDD[Element]]).
             union (new_acdc_term.asInstanceOf[RDD[Element]])
 
         // replace elements in Elements
-        val old_elements = get ("Elements").asInstanceOf[RDD[Element]]
+        val old_elements = get ("Elements")
         val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
             values.flatMap (
                 (arg: Tuple2[Element, Option[Element]]) =>
@@ -650,5 +655,6 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         old_elements.name = null
         new_elements.name = "Elements"
         new_elements.persist (storage)
+        new_elements.count // needed for some reason
     }
 }
