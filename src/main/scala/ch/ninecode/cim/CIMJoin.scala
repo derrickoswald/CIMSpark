@@ -195,6 +195,11 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         points.name = null
         updated_points.name = "PositionPoint"
         updated_points.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => updated_points.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
 
         // step 3, change the name attribute of affected UserAttribute
@@ -204,6 +209,11 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         attributes.name = null
         updated_attributes.name = "UserAttribute"
         updated_attributes.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => updated_attributes.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
 
         // step 5 and 6, delete the Name objects that are no longer needed
@@ -213,12 +223,22 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         names.name = null
         updated_names.name = "Name"
         updated_names.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => updated_names.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (updated_names).createOrReplaceTempView ("Name")
 
         // swap the old ServiceLocation RDD for the new one
         locations.name = null
         updated_locations.name = "ServiceLocation"
         updated_locations.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => updated_locations.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
 
         // replace service locations in WorkLocation
@@ -238,6 +258,11 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_work_loc.name = null
         new_work_loc.name = "WorkLocation"
         new_work_loc.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_work_loc.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_work_loc).createOrReplaceTempView ("WorkLocation")
 
         // replace service locations in Location
@@ -256,6 +281,11 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_loc.name = null
         new_loc.name = "Location"
         new_loc.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_loc.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_loc).createOrReplaceTempView ("Location")
 
         // make a union of all new RDD as IdentifiedObject
@@ -278,6 +308,11 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_idobj.name = null
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_idobj.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
         // make a union of all new RDD as Element
@@ -302,5 +337,10 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_elements.name = null
         new_elements.name = "Elements"
         new_elements.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_elements.checkpoint ()
+            case None =>
+        }
     }
 }

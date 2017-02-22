@@ -112,6 +112,11 @@ with
         ret = rdd.asInstanceOf[RDD[Row]]
         ret.setName ("Elements") // persist it
         ret.persist (_StorageLevel)
+        sparkSession.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => ret.checkpoint ()
+            case None =>
+        }
 
         // as a side effect, define all the other temporary tables
         log.info ("creating temporary tables")

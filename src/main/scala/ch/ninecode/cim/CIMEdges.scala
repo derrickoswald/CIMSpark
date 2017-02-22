@@ -444,6 +444,11 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
             // persist it
             edges.setName ("Edges")
             edges.persist (storage)
+            session.sparkContext.getCheckpointDir match
+            {
+                case Some (dir) => edges.checkpoint ()
+                case None =>
+            }
 
             // expose it
             session.createDataFrame (edges).createOrReplaceTempView ("edges")
@@ -455,6 +460,11 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
             // persist it
             edges.setName ("Edges")
             edges.persist (storage)
+            session.sparkContext.getCheckpointDir match
+            {
+                case Some (dir) => edges.checkpoint ()
+                case None =>
+            }
 
             // expose it
             session.createDataFrame (edges).createOrReplaceTempView ("edges")

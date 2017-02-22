@@ -4,6 +4,7 @@ import scala.reflect._
 import scala.reflect.runtime.universe._
 import scala.reflect.runtime.{universe => ru}
 import org.apache.spark.rdd.RDD
+import org.apache.spark.SparkContext
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.ScalaReflection
@@ -43,16 +44,21 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
         case x: Element if (null != subclass (x)) =>
             subclass (x)
     }
-    def subset (rdd: RDD[Element], storage: StorageLevel): RDD[A] =
+    def subset (rdd: RDD[Element], storage: StorageLevel, context: SparkContext): RDD[A] =
     {
         val subrdd = rdd.collect[A] (pf)
         subrdd.name = cls
         subrdd.persist (storage)
+        context.getCheckpointDir match
+        {
+            case Some (dir) => subrdd.checkpoint ()
+            case None =>
+        }
         subrdd
     }
     def make (sqlContext: SQLContext, rdd: RDD[Element], storage: StorageLevel) =
     {
-        val sub = subset (rdd, storage)
+        val sub = subset (rdd, storage, sqlContext.sparkSession.sparkContext)
         val df = sqlContext.sparkSession.createDataFrame(sub)(typeTag[A])
         df.createOrReplaceTempView (cls)
     }

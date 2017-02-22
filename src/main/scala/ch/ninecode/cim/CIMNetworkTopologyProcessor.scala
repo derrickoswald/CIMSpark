@@ -15,7 +15,15 @@ import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
 
-case class CuttingEdge (id_seq_1: String, id_cn_1: String, id_seq_2: String, id_cn_2: String, id_equ: String, equipment: ConductingEquipment, element: Element) extends Serializable
+case class CuttingEdge (
+    id_seq_1: String,
+    id_cn_1: String,
+    id_seq_2: String,
+    id_cn_2: String,
+    id_equ: String,
+    isZero: Boolean,
+    isConnected: Boolean) extends Serializable
+
 /**
  * island is min of all connected ConnectivityNode ( single topological island)
  * node is min of equivalent ConnectivityNode (a single topological node)
@@ -68,6 +76,95 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         return (null)
     }
 
+    // function to see if the nodes for an element are topologically connected
+    def isSameNode (element: Element): Boolean =
+    {
+        val clazz = element.getClass.getName
+        val cls = clazz.substring (clazz.lastIndexOf (".") + 1)
+        cls match
+        {
+            case "Switch" =>
+                !element.asInstanceOf[Switch].normalOpen
+            case "Cut" =>
+                !element.asInstanceOf[Cut].Switch.normalOpen
+            case "Disconnector" =>
+                !element.asInstanceOf[Disconnector].Switch.normalOpen
+            case "Fuse" =>
+                !element.asInstanceOf[Fuse].Switch.normalOpen
+            case "GroundDisconnector" =>
+                !element.asInstanceOf[GroundDisconnector].Switch.normalOpen
+            case "Jumper" =>
+                !element.asInstanceOf[Jumper].Switch.normalOpen
+            case "ProtectedSwitch" =>
+                !element.asInstanceOf[ProtectedSwitch].Switch.normalOpen
+            case "Sectionaliser" =>
+                !element.asInstanceOf[Sectionaliser].Switch.normalOpen
+            case "Breaker" =>
+                !element.asInstanceOf[Breaker].ProtectedSwitch.Switch.normalOpen
+            case "LoadBreakSwitch" =>
+                !element.asInstanceOf[LoadBreakSwitch].ProtectedSwitch.Switch.normalOpen
+            case "Recloser" =>
+                !element.asInstanceOf[Recloser].ProtectedSwitch.Switch.normalOpen
+            case "PowerTransformer" =>
+                false
+            case "ACLineSegment" =>
+                val line = element.asInstanceOf[ACLineSegment]
+                val nonzero = ((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
+                // log.debug ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "+" + line.x + "jΩ/km " + !nonzero)
+                !nonzero
+            case "Conductor" =>
+                true
+            case _ =>
+            {
+                log.warn ("topological node processor encountered edge with unhandled class '" + cls +"', assumed conducting")
+                true
+            }
+        }
+    }
+
+    // function to see if the nodes for an element are topologically connected
+    def isSameIsland (element: Element): Boolean =
+    {
+        val clazz = element.getClass.getName
+        val cls = clazz.substring (clazz.lastIndexOf (".") + 1)
+        cls match
+        {
+            case "Switch" =>
+                !element.asInstanceOf[Switch].normalOpen
+            case "Cut" =>
+                !element.asInstanceOf[Cut].Switch.normalOpen
+            case "Disconnector" =>
+                !element.asInstanceOf[Disconnector].Switch.normalOpen
+            case "Fuse" =>
+                !element.asInstanceOf[Fuse].Switch.normalOpen
+            case "GroundDisconnector" =>
+                !element.asInstanceOf[GroundDisconnector].Switch.normalOpen
+            case "Jumper" =>
+                !element.asInstanceOf[Jumper].Switch.normalOpen
+            case "ProtectedSwitch" =>
+                !element.asInstanceOf[ProtectedSwitch].Switch.normalOpen
+            case "Sectionaliser" =>
+                !element.asInstanceOf[Sectionaliser].Switch.normalOpen
+            case "Breaker" =>
+                !element.asInstanceOf[Breaker].ProtectedSwitch.Switch.normalOpen
+            case "LoadBreakSwitch" =>
+                !element.asInstanceOf[LoadBreakSwitch].ProtectedSwitch.Switch.normalOpen
+            case "Recloser" =>
+                !element.asInstanceOf[Recloser].ProtectedSwitch.Switch.normalOpen
+            case "PowerTransformer" =>
+                false
+            case "ACLineSegment" =>
+                true
+            case "Conductor" =>
+                true
+            case _ =>
+            {
+                log.warn ("topological island processor encountered edge with unhandled class '" + cls +"', assumed conducting")
+                true
+            }
+        }
+    }
+
     def edge_operator (arg: Tuple2[Element, Iterable[Terminal]]): List[CuttingEdge] =
     {
         var ret = List[CuttingEdge] ()
@@ -78,6 +175,10 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             equipment = equipment.sup
         if (null != equipment)
         {
+            // check if this edge connects its nodes
+            val identical = isSameNode (equipment)
+            // check if this edge has its nodes in the same island
+            val connected = isSameIsland (equipment)
             // make an array of terminals sorted by sequence number
             val terminals = arg._2.toArray.sortBy (_.ACDCTerminal.sequenceNumber)
             // make an edge for each pair of terminals
@@ -91,8 +192,8 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                                 terminals(i).ACDCTerminal.IdentifiedObject.mRID,
                                 terminals(i).ConnectivityNode,
                                 terminals(0).ConductingEquipment,
-                                equipment.asInstanceOf[ConductingEquipment],
-                                arg._1)
+                                identical,
+                                connected)
                 }
         }
         //else // shouldn't happen, terminals always reference ConductingEquipment, right?
@@ -148,57 +249,9 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             return (data)
         }
 
-        // function to see if the nodes for an element are topologically connected
-        def isSameNode (element: Element): Boolean =
-        {
-            val clazz = element.getClass.getName
-            val cls = clazz.substring (clazz.lastIndexOf (".") + 1)
-            val ret = cls match
-            {
-                case "Switch" =>
-                    !element.asInstanceOf[Switch].normalOpen
-                case "Cut" =>
-                    !element.asInstanceOf[Cut].Switch.normalOpen
-                case "Disconnector" =>
-                    !element.asInstanceOf[Disconnector].Switch.normalOpen
-                case "Fuse" =>
-                    !element.asInstanceOf[Fuse].Switch.normalOpen
-                case "GroundDisconnector" =>
-                    !element.asInstanceOf[GroundDisconnector].Switch.normalOpen
-                case "Jumper" =>
-                    !element.asInstanceOf[Jumper].Switch.normalOpen
-                case "ProtectedSwitch" =>
-                    !element.asInstanceOf[ProtectedSwitch].Switch.normalOpen
-                case "Sectionaliser" =>
-                    !element.asInstanceOf[Sectionaliser].Switch.normalOpen
-                case "Breaker" =>
-                    !element.asInstanceOf[Breaker].ProtectedSwitch.Switch.normalOpen
-                case "LoadBreakSwitch" =>
-                    !element.asInstanceOf[LoadBreakSwitch].ProtectedSwitch.Switch.normalOpen
-                case "Recloser" =>
-                    !element.asInstanceOf[Recloser].ProtectedSwitch.Switch.normalOpen
-                case "PowerTransformer" =>
-                    false
-                case "ACLineSegment" =>
-                    val line = element.asInstanceOf[ACLineSegment]
-                    val nonzero = ((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
-                    // log.debug ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "+" + line.x + "jΩ/km " + !nonzero)
-                    !nonzero
-                case "Conductor" =>
-                    true
-                case _ =>
-                {
-                    log.warn ("topological node processor encountered edge with unhandled class '" + cls +"', assumed conducting")
-                    true
-                }
-            }
-
-            return (ret)
-        }
-
         def send_message (triplet: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
         {
-            if (!isSameNode (triplet.attr.element))
+            if (!triplet.attr.isZero)
                 Iterator.empty // send no message across a topological boundary
             else
                 if (triplet.srcAttr.node < triplet.dstAttr.node)
@@ -387,55 +440,9 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             attr
         }
 
-        // function to see if the nodes for an element are topologically connected
-        def isSameIsland (element: Element): Boolean =
-        {
-            val clazz = element.getClass.getName
-            val cls = clazz.substring (clazz.lastIndexOf (".") + 1)
-            val ret = cls match
-            {
-                case "Switch" =>
-                    !element.asInstanceOf[Switch].normalOpen
-                case "Cut" =>
-                    !element.asInstanceOf[Cut].Switch.normalOpen
-                case "Disconnector" =>
-                    !element.asInstanceOf[Disconnector].Switch.normalOpen
-                case "Fuse" =>
-                    !element.asInstanceOf[Fuse].Switch.normalOpen
-                case "GroundDisconnector" =>
-                    !element.asInstanceOf[GroundDisconnector].Switch.normalOpen
-                case "Jumper" =>
-                    !element.asInstanceOf[Jumper].Switch.normalOpen
-                case "ProtectedSwitch" =>
-                    !element.asInstanceOf[ProtectedSwitch].Switch.normalOpen
-                case "Sectionaliser" =>
-                    !element.asInstanceOf[Sectionaliser].Switch.normalOpen
-                case "Breaker" =>
-                    !element.asInstanceOf[Breaker].ProtectedSwitch.Switch.normalOpen
-                case "LoadBreakSwitch" =>
-                    !element.asInstanceOf[LoadBreakSwitch].ProtectedSwitch.Switch.normalOpen
-                case "Recloser" =>
-                    !element.asInstanceOf[Recloser].ProtectedSwitch.Switch.normalOpen
-                case "PowerTransformer" =>
-                    false
-                case "ACLineSegment" =>
-                    true
-                case "Conductor" =>
-                    true
-                case _ =>
-                {
-                    log.warn ("topological island processor encountered edge with unhandled class '" + cls +"', assumed conducting")
-                    true
-                }
-            }
-
-            return (ret)
-        }
-
         def send_message (triplet: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
         {
-            val same = isSameIsland (triplet.attr.element) // true if these should be the same TopologicalIsland
-            if (!same)
+            if (!triplet.attr.isConnected)
                 Iterator.empty // send no message across a topological boundary
             else
                 if (triplet.srcAttr.island < triplet.dstAttr.island)
@@ -541,6 +548,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             old_ti.name = null
             new_ti.name = "TopologicalIsland"
             new_ti.persist (storage)
+            session.sparkContext.getCheckpointDir match
+            {
+                case Some (dir) => new_ti.checkpoint ()
+                case None =>
+            }
             session.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
@@ -555,6 +567,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         old_tn.name = null
         new_tn.name = "TopologicalNode"
         new_tn.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_tn.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_tn).createOrReplaceTempView ("TopologicalNode")
 
         // assume the old TopologicalIsland and TopologicalNode RDD were empty
@@ -568,6 +585,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         old_cn.name = null
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_cn.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
 
         // assign every Terminal to a TopologicalNode
@@ -589,6 +611,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         old_terminals.name = null
         new_term.name = "Terminal"
         new_term.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_term.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_term).createOrReplaceTempView ("Terminal")
 
         // replace terminals in ACDCTerminal
@@ -607,6 +634,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         old_acdc_term.name = null
         new_acdc_term.name = "ACDCTerminal"
         new_acdc_term.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_acdc_term.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_acdc_term).createOrReplaceTempView ("ACDCTerminal")
 
         // make a union of all new RDD as IdentifiedObject
@@ -631,6 +663,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         old_idobj.name = null
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_idobj.checkpoint ()
+            case None =>
+        }
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
         // make a union of all new RDD as Element
@@ -655,6 +692,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         old_elements.name = null
         new_elements.name = "Elements"
         new_elements.persist (storage)
+        session.sparkContext.getCheckpointDir match
+        {
+            case Some (dir) => new_elements.checkpoint ()
+            case None =>
+        }
         new_elements.count // needed for some reason
     }
 }
