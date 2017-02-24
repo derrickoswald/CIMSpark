@@ -175,16 +175,16 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             equipment = equipment.sup
         if (null != equipment)
         {
-            // check if this edge connects its nodes
-            val identical = isSameNode (equipment)
-            // check if this edge has its nodes in the same island
-            val connected = isSameIsland (equipment)
             // make an array of terminals sorted by sequence number
             val terminals = arg._2.toArray.sortBy (_.ACDCTerminal.sequenceNumber)
             // make an edge for each pair of terminals
             if (null != terminals(0).ConnectivityNode)  // eliminate edges without two connectivity nodes
                 for (i <- 1 until terminals.length) // eliminate edges with only one terminal
                 {
+                    // check if this edge connects its nodes
+                    val identical = isSameNode (arg._1)
+                    // check if this edge has its nodes in the same island
+                    val connected = isSameIsland (arg._1)
                     if (null != terminals(i).ConnectivityNode) // eliminate edges without two connectivity nodes
                         ret = ret :+ new CuttingEdge (
                                 terminals(0).ACDCTerminal.IdentifiedObject.mRID,
@@ -691,12 +691,12 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         // swap the old Elements RDD for the new one
         old_elements.name = null
         new_elements.name = "Elements"
+        val bogus = new_elements.count + 1L // needed for some reason
         new_elements.persist (storage)
         session.sparkContext.getCheckpointDir match
         {
             case Some (dir) => new_elements.checkpoint ()
             case None =>
         }
-        new_elements.count // needed for some reason
     }
 }
