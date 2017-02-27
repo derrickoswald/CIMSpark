@@ -18,6 +18,8 @@ or can be accessed via [SparkR](http://spark.apache.org/docs/latest/sparkr.html)
 
 The RDDs are also exposed as Hive2 tables using Thrift for legacy JDBC access.
 
+The CIM model as implemented in CIMScala is described in [CIM Model](Model.md).
+
 #Architecture
 
 The architrecture follows the sample code from [Databricks](https://databricks.com/blog/2015/01/09/spark-sql-data-sources-api-unified-data-access-for-the-spark-platform.html).
