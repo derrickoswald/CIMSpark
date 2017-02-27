@@ -34,7 +34,7 @@ Attributes of the class are of four flavors:
 
 Subclasses and the superclass have open arrow icons.
 
-Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMScala/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (i.e. attrbute length must be changed to len in the scala code due to a superclass member method). 
+Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMScala/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (i.e. attrbute length must be changed to len in the scala code due to a superclass member method). Names of classes have been preserved also in the names of the RDD containing the objects - that is if you are seeking an object of type PowerTransformer it is in the named and cached RDD "PowerTransformer" of type RDD[PowerTransformer]. 
 
 ```Scala
 case class ACLineSegment
@@ -108,3 +108,37 @@ extends
     }
 }
 ```
+
+Hierarchy
+-----
+
+Just as in the CIM model, CIMScala model classes are hierarchical.
+
+At the bottom of the screen shot you can see that the superclass of ACLineSegment is Conductor. This is mimicked in the Scala code by the sup member of type Conductor. Note that this does not use the class hierarchy of Scala directly for two reasons:
+
+1) CIM classes are exposed as database tables and SQL is not hierarchical
+2) Scala case classes are used (to support Spark DataFrames) and, for technical reasons, case classes must be the leaf nodes of a Scala class hierarchy
+
+In CIMScala, the root class of all CIM model classes is Element, which has only two members, the id and a sup member which is null. 
+
+The sup member of each higher level class is aliased with a method of the correct name, so given an ACLineSegment object obj in Scala, the base class is accessible via obj.sup or obj.Conductor. The latter is preferred because the code reads better. This feature is not available in SQL queries, where sup must be used.
+
+When the CIM model RDD are constructed each sub-object is added to the base class RDDs. So for example, an object of type ACLineSegment can be accessed in the RDD for ACLineSegment, Conductor, ConductingEquipment, Equipment, PowerSystemResource, IdentifiedObject and Element - as each of those types respectively (RDD[ACLineSegment], RDD[Conductor], RDD[ConductingEquipment], RDD[Equipment], RDD[PowerSystemResource], RDD[IdentifiedObject] and RDD[Element]).
+
+The Element RDD however, does contain full CIMScala model objects. That is, if you know the members of a filter operation are of a specific type, you can cast to that type:
+
+```Scala
+val elements: RDD[Element] = ...
+val lines: RDD[ACLineSegment] = elements.filter(_.id.startsWith ("KLE")).asInstanceOf[RDD[ACLineSegment]]
+```
+
+A safer way to move from a base class to a superclass is to join with the superclass by id:
+```Scala
+val equipment: RDD[Equipment] = ...
+val lines: RDD[ACLineSegment] = ...
+val some_lines: RDD[ACLineSegment] = equipment.keyBy(_.id).join (lines.keyBy (_.id)).values.map (_._2)
+```
+
+One can also use class name, e.g. ch.ninecode.model.ACLineSegment, on objects in RDD[Element].
+
+
