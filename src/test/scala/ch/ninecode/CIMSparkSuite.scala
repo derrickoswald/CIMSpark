@@ -82,8 +82,8 @@ class CIMSparkSuite extends FunSuite
         println (elements.count () + " elements")
         val edges = session.sqlContext.sql ("select * from edges")
         val count = edges.count
-        //assert (count === 1)
-        println ("Basic count = " + count)
+        markup ("edge count: " + count)
+        assert (count === 760)
     }
 
     test ("Join")

@@ -7,6 +7,7 @@ import scala.collection.mutable.HashMap
 import scala.collection.mutable.MutableList
 import org.apache.spark.sql.SparkSession
 
+import ch.ninecode.cim.PreEdge
 import ch.ninecode.model.ConnectivityNode
 
 /**
@@ -66,7 +67,7 @@ class Sample extends Serializable
      * @param triplet - this edge data, including upstream and downstream vertecies
      * @return a list of vertex and message tuples that will be used in the next round of tracing
      */
-    def sendMessage (triplet: EdgeTriplet[VertexData, ch.ninecode.cim.Edge]): Iterator[(VertexId, Message)] =
+    def sendMessage (triplet: EdgeTriplet[VertexData, PreEdge]): Iterator[(VertexId, Message)] =
     {
         var ret:Iterator[(VertexId, Message)] = Iterator.empty
 
@@ -109,11 +110,11 @@ class Sample extends Serializable
      * @param sc - the Spark context
      * @return the annotated graph
      */
-    def graphx (sc: SparkContext): Graph[VertexData, ch.ninecode.cim.Edge] =
+    def graphx (sc: SparkContext): Graph[VertexData, PreEdge] =
     {
         // get the named RDD from the CIM reader
         var vertices:RDD[ConnectivityNode] = null
-        var edges:RDD[ch.ninecode.cim.Edge] = null
+        var edges:RDD[PreEdge] = null
         val rdds = sc.getPersistentRDDs
         for (key <- rdds.keys)
         {
@@ -121,18 +122,18 @@ class Sample extends Serializable
             if (rdd.name == "ConnectivityNode")
                 vertices = rdds (key).asInstanceOf[RDD[ConnectivityNode]]
             if (rdd.name == "Edges")
-                edges = rdds (key).asInstanceOf[RDD[ch.ninecode.cim.Edge]]
+                edges = rdds (key).asInstanceOf[RDD[PreEdge]]
         }
 
         // make and process the graph
-        var graph:Graph[VertexData, ch.ninecode.cim.Edge] = null
+        var graph:Graph[VertexData, PreEdge] = null
         if ((null != vertices) && (null != edges))
         {
             println ("Found the vertices RDD: " + vertices.name)
             println ("Found the edges RDD: " + edges.name)
 
             // keep only non-self connected and non-singly connected edges
-            edges =  edges.filter ((e: ch.ninecode.cim.Edge) => { (e.id_seq_1 != e.id_seq_2) && e.id_seq_1 != null && e.id_seq_2 != null && e.id_seq_1 != "" && e.id_seq_2 != "" })
+            edges =  edges.filter ((e: PreEdge) => { (e.id_seq_1 != e.id_seq_2) && e.id_seq_1 != null && e.id_seq_2 != null && e.id_seq_1 != "" && e.id_seq_2 != "" })
 
             // augment the elements to have the busbar, distance and upstream abgang using the VertexData class
             var elementsplus = vertices.flatMap (
@@ -151,7 +152,7 @@ class Sample extends Serializable
 
             // convert CIM edges into graphx edges
             var _edges = edges.flatMap (
-                (e: ch.ninecode.cim.Edge) =>
+                (e: PreEdge) =>
                 {
                     Array (new Edge (e.id_seq_1.hashCode(), e.id_seq_2.hashCode(), e))
                 }
@@ -159,7 +160,7 @@ class Sample extends Serializable
 
             // construct the graph from the augmented elements (vertices) and edges
             val default = VertexData (null, Message (null, Double.PositiveInfinity, null))
-            val initial = Graph.apply[VertexData, ch.ninecode.cim.Edge] (_elements, _edges, default)
+            val initial = Graph.apply[VertexData, PreEdge] (_elements, _edges, default)
 
             // perform the graph tracing
             graph = initial.pregel (null.asInstanceOf[Message], Int.MaxValue, EdgeDirection.Either) (vprog, sendMessage, mergeMessage)
@@ -187,7 +188,7 @@ class Sample extends Serializable
      * Prints the average house connection length from each busbar (samelschien).
      * @param - the annotated graph
      */
-    def average_house_connection_distance (graph: Graph[VertexData, ch.ninecode.cim.Edge])
+    def average_house_connection_distance (graph: Graph[VertexData, PreEdge])
     {
          // gather the house service entries with a directly connected abgang
          var has = graph.vertices.collect (
