@@ -81,9 +81,9 @@ class CIMSparkSuite extends FunSuite
         val elements = readFile (session.sqlContext, filename, options)
         println (elements.count () + " elements")
         val edges = session.sqlContext.sql ("select * from edges")
-        val head = edges.head (5)
-        if (0 != head.length)
-            println (head (0))
+        val count = edges.count
+        //assert (count === 1)
+        println ("Basic count = " + count)
     }
 
     test ("Join")

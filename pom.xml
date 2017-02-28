@@ -3,10 +3,21 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ch.ninecode.cim</groupId>
     <artifactId>CIMScala</artifactId>
-    <version>2.11-2.0.1-1.8.1</version> <!-- version>${version.dependency.scala}-${version.dependency.spark}-1.6.0</version -->
+    <version>2.11-2.0.1-1.9.0</version> <!-- version>${version.dependency.scala}-${version.dependency.spark}-1.9.0</version -->
     <name>${project.artifactId}</name>
     <description>Expose CIM data files as Spark RDD</description>
     <inceptionYear>2015</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMScala</url>
+    <organization>
+        <name>9code GmbH</name>
+        <url>http://9code.ch</url>
+    </organization>
+    <scm>
+        <url>https://github.com/derrickoswald/CIMScala</url>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/derrickoswald/CIMScala/issues</url>
+    </issueManagement>
 
     <properties>
         <encoding>UTF-8</encoding>
@@ -131,5 +142,4 @@
             </plugin>
         </plugins>
     </build>
-    <url>https://github.com/derrickoswald/CIMScala</url>
 </project>
