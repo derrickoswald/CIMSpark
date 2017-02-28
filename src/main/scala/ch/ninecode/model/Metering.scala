@@ -195,7 +195,7 @@ extends
 
 case class ControlledAppliance
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val isElectricVehicle: Boolean,
     val isExteriorLighting: Boolean,
     val isGenerationSystem: Boolean,
@@ -369,7 +369,7 @@ extends
 
 case class EndDeviceAction
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val command: String,
     val duration: Double,
     val durationIndefinite: Boolean,
@@ -419,7 +419,7 @@ extends
 
 case class EndDeviceCapability
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val autonomousDst: Boolean,
     val communication: Boolean,
     val connectDisconnect: Boolean,
@@ -679,7 +679,7 @@ extends
 
 case class EndDeviceEventDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val name: String,
     val EndDeviceEvent: String,
     val value: String
@@ -899,7 +899,7 @@ extends
 
 case class EndDeviceTiming
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val duration: Double,
     val durationIndefinite: Boolean,
     val randomisation: String,
@@ -946,7 +946,7 @@ extends
 
 case class IntervalBlock
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val MeterReading: String,
     val PendingCalculation: String,
     val ReadingType: String
@@ -1395,7 +1395,7 @@ extends
 
 case class PanPricingDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val alternateCostDelivered: Double,
     val alternateCostUnit: String,
     val currentTimeDate: String,
@@ -1472,7 +1472,7 @@ extends
 
 case class PendingCalculation
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplyBeforeAdd: Boolean,
     val offset: Int,
     val scalarDenominator: Int,
@@ -1525,7 +1525,7 @@ extends
 
 case class RationalNumber
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominator: Int,
     val numerator: Int
 )
@@ -1607,7 +1607,7 @@ extends
 
 case class ReadingInterharmonic
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominator: Int,
     val numerator: Int
 )
@@ -1648,7 +1648,7 @@ extends
 
 case class ReadingQuality
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val comment: String,
     val source: String,
     val timeStamp: String,  // dateTime

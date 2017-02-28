@@ -454,7 +454,7 @@ extends
 
 case class CurveData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val xvalue: Double,
     val y1value: Double,
     val y2value: Double,
@@ -704,7 +704,7 @@ extends
 
 case class IrregularTimePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val time: Double,
     val value1: Double,
     val value2: Double,
@@ -795,7 +795,7 @@ extends
 
 case class NameType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     description: String,
     name: String,
     NameTypeAuthority: String
@@ -839,7 +839,7 @@ extends
 
 case class NameTypeAuthority
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     description: String,
     name: String
 )
@@ -915,7 +915,7 @@ extends
 
 case class OperatingShare
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val percentage: Double,
     val OperatingParticipant: String,
     val PowerSystemRecource: String
@@ -1079,7 +1079,7 @@ extends
 
 case class RegularTimePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val value1: Double,
     val value2: Double,

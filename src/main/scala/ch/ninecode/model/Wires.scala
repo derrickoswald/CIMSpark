@@ -1424,7 +1424,7 @@ extends
 
 case class NonlinearShuntCompensatorPhasePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b: Double,
     val g: Double,
     val sectionNumber: Int
@@ -1468,7 +1468,7 @@ extends
 
 case class NonlinearShuntCompensatorPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b0: Double,
     val b: Double,
     val g0: Double,
@@ -1744,7 +1744,7 @@ extends
 
 case class PhaseImpedanceData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b: Double,
     val r: Double,
     val sequenceNumber: Int,
@@ -3368,7 +3368,7 @@ extends
 
 case class TapChangerTablePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b: Double,
     val g: Double,
     val r: Double,

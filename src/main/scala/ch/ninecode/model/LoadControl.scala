@@ -69,7 +69,7 @@ extends
 
 case class RemoteConnectDisconnectInfo
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val armedTimeout: Double,
     val customerVoltageLimit: Double,
     val energyLimit: Double,

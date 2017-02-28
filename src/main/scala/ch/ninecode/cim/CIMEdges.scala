@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
 
-case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, var container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
+case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, var container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class PostEdge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
-case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class PostEdge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 
 class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializable
 {
@@ -89,6 +89,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                     var clazz: String = "",
                     var name: String = "",
                     var aliasName: String = "",
+                    var description: String = "",
                     var container: String = "",
                     var length: Double = 0.0,
                     var voltage: String = "",
@@ -106,6 +107,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                 {
                     bucket.name = identified.name
                     bucket.aliasName = identified.aliasName
+                    bucket.description = identified.description
                 }
                 def do_resource (resource: PowerSystemResource)
                 {
@@ -295,6 +297,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                                 bucket.clazz,
                                 bucket.name,
                                 bucket.aliasName,
+                                bucket.description,
                                 bucket.container,
                                 bucket.length,
                                 bucket.voltage,
@@ -315,6 +318,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                                 bucket.clazz,
                                 bucket.name,
                                 bucket.aliasName,
+                                bucket.description,
                                 bucket.container,
                                 bucket.length,
                                 bucket.voltage,
@@ -343,6 +347,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                                         bucket.clazz,
                                         bucket.name,
                                         bucket.aliasName,
+                                        bucket.description,
                                         bucket.container,
                                         bucket.length,
                                         bucket.voltage,
@@ -373,10 +378,10 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
         x match
         {
             case Some (x:Extremum) =>
-                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
             case None =>
                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
         }
     }
 
@@ -389,10 +394,10 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
         x match
         {
             case Some (x:Extremum) =>
-                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
             case None =>
                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
         }
     }
 

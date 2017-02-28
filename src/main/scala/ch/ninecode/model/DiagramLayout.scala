@@ -157,7 +157,7 @@ extends
 
 case class DiagramObjectPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val xPosition: Double,
     val yPosition: Double,

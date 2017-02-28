@@ -427,7 +427,7 @@ extends
 
 case class ElectronicAddress
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val email1: String,
     val email2: String,
     val lan: String,
@@ -904,7 +904,7 @@ extends
 
 case class PositionPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val xPosition: String,
     val yPosition: String,
@@ -956,7 +956,7 @@ extends
 
 case class PostalAddress
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     poBox: String,
     postalCode: String,
     streetDetail: String,
@@ -1003,7 +1003,7 @@ extends
 
 case class Priority
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     justification: String,
     rank: Int,
     typ: String
@@ -1094,7 +1094,7 @@ extends
 
 case class ScheduledEventData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val InspectionDataSet: String,
     val estimatedWindow: String,
     val requestedWindow: String,
@@ -1141,7 +1141,7 @@ extends
 
 case class Status
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     dateTime: String,
     reason: String,
     remark: String,
@@ -1188,7 +1188,7 @@ extends
 
 case class StreetAddress
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     status: String,
     streetDetail: String,
     townDetail: String
@@ -1232,7 +1232,7 @@ extends
 
 case class StreetDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     addressGeneral: String,
     buildingName: String,
     code: String,
@@ -1297,7 +1297,7 @@ extends
 
 case class TelephoneNumber
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     areaCode: String,
     cityCode: String,
     countryCode: String,
@@ -1450,7 +1450,7 @@ extends
 
 case class TownDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     code: String,
     country: String,
     name: String,
@@ -1500,7 +1500,7 @@ extends
 
 case class UserAttribute
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val name: String,
     val sequenceNumber: Int,
     val PropertySpecification: String,

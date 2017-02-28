@@ -898,7 +898,7 @@ extends
 
 case class Quality61850
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val badReference: Boolean,
     val estimatorReplaced: Boolean,
     val failure: Boolean,

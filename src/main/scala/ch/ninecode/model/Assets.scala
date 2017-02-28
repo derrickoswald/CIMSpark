@@ -10,7 +10,7 @@ import ch.ninecode.cim.Context
 
 case class AcceptanceTest
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val dateTime: String,
     val success: Boolean,
     val typ: String  // type
@@ -482,7 +482,7 @@ extends
 
 case class LifecycleDate
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val installationDate: String,  // date
     val manufacturedDate: String,
     val purchaseDate: String,

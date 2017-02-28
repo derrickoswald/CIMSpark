@@ -19,7 +19,7 @@ sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/
 begin = proc.time ()
 
 # read the data file and process topologically and make the edge RDD
-elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20161220_Kiental im Oberland_V11_assets_preview.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false', 'ch.ninecode.cim.do_join' 'false')")
 head (sql ("select * from elements")) # triggers evaluation
 
 post = proc.time ()
