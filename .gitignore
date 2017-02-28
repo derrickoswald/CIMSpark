@@ -24,6 +24,9 @@ pom.xml.releaseBackup
 pom.xml.next
 release.properties
 
+# customer data files #
+private_data/
+
 # Misc #
 glslogs/
 *.log

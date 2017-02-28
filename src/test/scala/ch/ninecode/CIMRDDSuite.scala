@@ -67,6 +67,7 @@ class CIMRDDSuite extends FunSuite
         val configuration = new SparkConf ()
         configuration.setAppName ("CIMRDDSuite")
         configuration.setMaster ("local[2]")
+        configuration.set ("spark.ui.showConsoleProgress", "false")
         val context = new SparkContext (configuration)
         context.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
         try

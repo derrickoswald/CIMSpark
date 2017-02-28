@@ -22,7 +22,8 @@ services:
       - "50010:50010"
       - "50070:50070"
     volumes:
-      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
+      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
+      - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
   worker1:
     image: singularities/spark
@@ -35,7 +36,8 @@ services:
     links:
       - sandbox
     volumes:
-      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
+      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
+      - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
   worker2:
     image: singularities/spark
@@ -48,6 +50,7 @@ services:
     links:
       - sandbox
     volumes:
-      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container 
+      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
+      - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
       

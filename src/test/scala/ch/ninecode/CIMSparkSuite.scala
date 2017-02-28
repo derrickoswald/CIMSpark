@@ -19,6 +19,7 @@ import ch.ninecode.model._
 class CIMSparkSuite extends FunSuite
 {
     val FILE_DEPOT = "data/"
+    val PRIVATE_FILE_DEPOT = "private_data/"
 
     type FixtureParam = SparkSession
 
@@ -30,6 +31,7 @@ class CIMSparkSuite extends FunSuite
         configuration.setMaster ("local[2]")
         configuration.set ("spark.driver.memory", "1g")
         configuration.set ("spark.executor.memory", "4g")
+        configuration.set ("spark.ui.showConsoleProgress", "false")
 
         // register low level classes
         configuration.registerKryoClasses (Array (classOf[Element], classOf[BasicElement], classOf[Unknown]))
@@ -89,9 +91,9 @@ class CIMSparkSuite extends FunSuite
         session: SparkSession ⇒
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf" +
+            PRIVATE_FILE_DEPOT + "NIS_CIM_Export_sias_current_20161220_Bubenei_V11_assets_preview" + ".rdf" +
             "," +
-            FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
+            PRIVATE_FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         val elements = readFile (session.sqlContext, filename, options)
@@ -133,9 +135,9 @@ class CIMSparkSuite extends FunSuite
         session: SparkSession ⇒
 
         val filename =
-            FILE_DEPOT + "NIS_CIM_Export_sias_current_20160816_Bubenei_V9" + ".rdf" +
+            PRIVATE_FILE_DEPOT + "NIS_CIM_Export_sias_current_20161220_Bubenei_V11_assets_preview" + ".rdf" +
             "," +
-            FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
+            PRIVATE_FILE_DEPOT + "ISU_CIM_Export_20160505" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         options.put ("ch.ninecode.cim.do_join", "true")
@@ -156,5 +158,4 @@ class CIMSparkSuite extends FunSuite
         if (0 != count)
             println (names.first)
     }
-
 }
