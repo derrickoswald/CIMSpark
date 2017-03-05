@@ -12,7 +12,7 @@ import ch.ninecode.model.Element
 
 class CIMRecordReader extends RecordReader[String, Element]
 {
-    val LocalLog = LogFactory.getLog (classOf[CIMRecordReader]);
+    val LocalLog = LogFactory.getLog (classOf[CIMRecordReader])
     var start: Long = 0
     var end: Long = 0
     var cim: CHIM = null
@@ -22,20 +22,20 @@ class CIMRecordReader extends RecordReader[String, Element]
         LocalLog.info ("initialize")
         LocalLog.info ("genericSplit: " + genericSplit.toString ())
         LocalLog.info ("context: " + context.toString ())
-        var job = context.getConfiguration ();
-        val split = genericSplit.asInstanceOf[FileSplit];
-        start = split.getStart ();
-        end = start + split.getLength ();
-        val file = split.getPath ();
+        var job = context.getConfiguration ()
+        val split = genericSplit.asInstanceOf[FileSplit]
+        start = split.getStart ()
+        end = start + split.getLength ()
+        val file = split.getPath ()
 
         // open the file and seek to the start of the split
-        var fs = file.getFileSystem (job);
-        val in = fs.open (file);
+        var fs = file.getFileSystem (job)
+        val in = fs.open (file)
 
-        val extra = if (in.available() > end) CHIM.OVERREAD else 0
+        val extra = if (in.available () > end) CHIM.OVERREAD else 0
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
         val size = (end - start + extra).asInstanceOf[Int]
-        val buffer = new Array[Byte] (size);
+        val buffer = new Array[Byte] (size)
         in.readFully (start, buffer)
 
         var low = 0
