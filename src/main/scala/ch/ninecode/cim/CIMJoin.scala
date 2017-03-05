@@ -169,7 +169,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
      *    UserAttribute (edit)
      *    Name (delete)
      */
-    def do_join ()
+    def do_join (): RDD[Element] =
     {
         val names = get ("Name").asInstanceOf[RDD[Name]]
         val locations = get ("ServiceLocation").asInstanceOf[RDD[ServiceLocation]]
@@ -342,5 +342,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
             case Some (dir) => new_elements.checkpoint ()
             case None =>
         }
+
+        new_elements
     }
 }

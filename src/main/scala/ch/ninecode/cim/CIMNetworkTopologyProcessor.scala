@@ -514,7 +514,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         return (ret)
     }
 
-    def process (identify_islands: Boolean): Unit =
+    def process (identify_islands: Boolean): RDD[Element] =
     {
         // get the initial graph based on edges
         val initial = make_graph ()
@@ -691,12 +691,13 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         // swap the old Elements RDD for the new one
         old_elements.name = null
         new_elements.name = "Elements"
-        val bogus = new_elements.count + 1L // needed for some reason
         new_elements.persist (storage)
         session.sparkContext.getCheckpointDir match
         {
             case Some (dir) => new_elements.checkpoint ()
             case None =>
         }
+
+        new_elements
     }
 }

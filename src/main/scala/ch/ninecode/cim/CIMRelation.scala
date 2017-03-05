@@ -142,7 +142,7 @@ with
         {
             log.info ("joining ISU and NIS")
             val join = new CIMJoin (sparkSession, _StorageLevel)
-            join.do_join ()
+            ret = join.do_join ().asInstanceOf[RDD[Row]]
         }
 
         // perform topological processing if requested
@@ -150,7 +150,7 @@ with
         {
             log.info ("performing Network Topology Processing")
             val ntp = new CIMNetworkTopologyProcessor (sparkSession, _StorageLevel)
-            ntp.process (_Islands)
+            ret = ntp.process (_Islands).asInstanceOf[RDD[Row]]
         }
 
         // set up edge graph if requested
@@ -158,10 +158,10 @@ with
         {
             log.info ("making Edges RDD")
             val cimedges = new CIMEdges (sparkSession, _StorageLevel)
-            cimedges.make_edges (_Topo)
+            ret = cimedges.make_edges (_Topo).asInstanceOf[RDD[Row]]
         }
 
-        return (ret)
+        ret
   }
 
 }

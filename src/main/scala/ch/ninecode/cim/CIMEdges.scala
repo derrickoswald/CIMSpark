@@ -415,7 +415,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
         edge
     }
 
-    def make_edges (topological_nodes: Boolean): Unit =
+    def make_edges (topological_nodes: Boolean): RDD[Element] =
     {
         // get the elements RDD
         val elements = get ("Elements").asInstanceOf[RDD[Element]]
@@ -474,5 +474,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
             // expose it
             session.createDataFrame (edges).createOrReplaceTempView ("edges")
         }
+
+        elements
     }
 }
