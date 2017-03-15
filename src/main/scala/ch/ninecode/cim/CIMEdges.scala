@@ -9,15 +9,15 @@ import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
 
-case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, var container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, commissioned: String, status: String) extends Serializable
+case class PreEdge (id_seq_1: String, cn_1: String, id_seq_2: String, cn_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, var container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, location: String, power: Double, status: String) extends Serializable
 class Extremum (val id_loc: String, var min_index: Int, var x1 : String, var y1 : String, var max_index: Int, var x2 : String, var y2 : String) extends Serializable
-case class PostEdge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
-case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, commissioned: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class PostEdge (id_seq_1: String, id_seq_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, installationDate: String, receivedDate: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
+case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id_island_2: String, id_equ: String, clazz: String, name: String, aliasName: String, description: String, container: String, length: Double, voltage: String, normalOpen: Boolean, ratedCurrent: Double, power: Double, installationDate: String, receivedDate: String, status: String, x1: String, y1: String, x2: String, y2: String) extends Serializable
 
 class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializable
 {
     private val log = LoggerFactory.getLogger(getClass)
-    
+
     def get (name: String): RDD[Element] =
     {
         val rdds = session.sparkContext.getPersistentRDDs
@@ -97,7 +97,6 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                     var ratedCurrent: Double = 0.0,
                     var location: String = "",
                     var power: Double = 0.0,
-                    var commissioned: String = "",
                     var status: String = "")
 
                 val bucket = Bucket ()
@@ -258,7 +257,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                             do_identified (te.IdentifiedObject)
                         }
 
-                    // ToDo: this is not correct, ProtectionEquipment should have no Terminal elements pointing to it
+                    // ToDo: this is not correct, ProtectionEquipment should have no Terminal elements pointing to 
                     // the others are also not ConductingEquipment
                     case Some(o) if o.getClass () == classOf[ProtectionEquipment] =>
                         {
@@ -272,7 +271,6 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                         {
                             val sgu = o.asInstanceOf[SolarGeneratingUnit]
                             bucket.power = sgu.GeneratingUnit.ratedNetMaxP
-                            bucket.commissioned = sgu.commissioningDate
                             do_equipment (sgu.GeneratingUnit.Equipment)
                         }
                     case Some(o) if o.getClass () == classOf[UsagePoint] =>
@@ -305,7 +303,6 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                                 bucket.ratedCurrent,
                                 bucket.location,
                                 bucket.power,
-                                bucket.commissioned,
                                 bucket.status))
                     case 2 =>
                         List (
@@ -326,7 +323,6 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                                 bucket.ratedCurrent,
                                 bucket.location,
                                 bucket.power,
-                                bucket.commissioned,
                                 bucket.status))
                     case _ =>
                         {
@@ -355,7 +351,6 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
                                         bucket.ratedCurrent,
                                         bucket.location,
                                         bucket.power,
-                                        bucket.commissioned,
                                         bucket.status)
                                 i += 1
                             }
@@ -371,33 +366,54 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
         }
     }
 
-    def edge_op (arg: Tuple2[PreEdge, Option[Extremum]]) =
+    def getDates (arg: Option[Tuple2[Asset, Option[LifecycleDate]]]) =
     {
-        val e = arg._1
-        val x = arg._2
-        x match
+        arg match
         {
-            case Some (x:Extremum) =>
-                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+            case Some ((asset, l)) =>
+                l match
+                {
+                    case Some (lifecycle) =>
+//                		<cim:LifecycleDate.installationDate>15.09.2016</cim:LifecycleDate.installationDate>
+//                		<cim:LifecycleDate.receivedDate>22.06.2016</cim:LifecycleDate.receivedDate>
+                        (lifecycle.installationDate, lifecycle.receivedDate)
+                    case None =>
+                        ("", "")
+                }
             case None =>
-                // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                ("", "")
         }
     }
 
-    def topo_edge_op (arg: Tuple4[PreEdge, Option[Extremum], Option[TopologicalNode], Option[TopologicalNode]]) =
+    def edge_op (arg: Tuple3[PreEdge, Option[Extremum], Option[Tuple2[Asset, Option[LifecycleDate]]]]) =
     {
         val e = arg._1
         val x = arg._2
-        val i1 = arg._3 match { case Some (t) => t.TopologicalIsland case _ => "" }
-        val i2 = arg._4 match { case Some (t) => t.TopologicalIsland case _ => "" }
+        val (installationDate, receivedDate) = getDates (arg._3)
         x match
         {
             case Some (x:Extremum) =>
-                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, x.x1, x.y1, x.x2, x.y2)
+                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, installationDate, receivedDate, e.status, x.x1, x.y1, x.x2, x.y2)
             case None =>
                 // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
-                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, e.commissioned, e.status, "0.0", "0.0", "0.0", "0.0")
+                PostEdge (e.cn_1, e.cn_2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, installationDate, receivedDate, e.status, "0.0", "0.0", "0.0", "0.0")
+        }
+    }
+
+    def topo_edge_op (arg: Tuple5[PreEdge, Option[Extremum], Option[Tuple2[Asset, Option[LifecycleDate]]], Option[TopologicalNode], Option[TopologicalNode]]) =
+    {
+        val e = arg._1
+        val x = arg._2
+        val (installationDate, receivedDate) = getDates (arg._3)
+        val i1 = arg._4 match { case Some (t) => t.TopologicalIsland case _ => "" }
+        val i2 = arg._5 match { case Some (t) => t.TopologicalIsland case _ => "" }
+        x match
+        {
+            case Some (x:Extremum) =>
+                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, installationDate, receivedDate, e.status, x.x1, x.y1, x.x2, x.y2)
+            case None =>
+                // shouldn't happen of course: if it does we have an equipment with a location reference to non-existant location
+                TopoEdge (e.cn_1, i1, e.cn_2, i2, e.id_equ, e.clazz, e.name, e.aliasName, e.description, e.container, e.length, e.voltage, e.normalOpen, e.ratedCurrent, e.power, installationDate, receivedDate, e.status, "0.0", "0.0", "0.0", "0.0")
         }
     }
 
@@ -438,12 +454,26 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
         // join coordinates with edges using location
         val located_edges = preedges2.keyBy (_.location).leftOuterJoin (extremum.keyBy (_.id_loc)).values
 
+        // join assets & lifecycles with edges
+        val asset = get ("Asset").asInstanceOf[RDD[Asset]]
+        val lifecycledate = get ("LifecycleDate").asInstanceOf[RDD[LifecycleDate]]
+        val assets = asset.keyBy (_.lifecycle).leftOuterJoin (lifecycledate.keyBy (_.id)).values
+        def psr (arg: Tuple2[Asset, Option[LifecycleDate]]) =
+        {
+            val p = arg._1.PowerSystemResources;
+            if (null != p)
+                p.map (new Tuple2 (_, arg))
+            else
+                List[Tuple2[String, Tuple2[Asset, Option[LifecycleDate]]]]()
+        }
+        val asseted_edges = located_edges.keyBy (_._1.id_equ).leftOuterJoin (assets.flatMap (psr)).map ((x) => (x._2._1._1, x._2._1._2, x._2._2))
+
         // join with topological nodes if requested
         if (topological_nodes)
         {
             val topologicals = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]].keyBy (_.id)
-            val topo1 = located_edges.keyBy (_._1.cn_1).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._2))
-            val topo2 =         topo1.keyBy (_._1.cn_2).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._1._3, x._2))
+            val topo1 = asseted_edges.keyBy (_._1.cn_1).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._1._3, x._2))
+            val topo2 =         topo1.keyBy (_._1.cn_2).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._1._3, x._1._4, x._2))
             val edges = topo2.map (topo_edge_op)
 
             // persist it
@@ -460,7 +490,7 @@ class CIMEdges (session: SparkSession, storage: StorageLevel) extends Serializab
         }
         else
         {
-            val edges = located_edges.map ((x) => (x._1, x._2)).map (edge_op)
+            val edges = asseted_edges.map (edge_op)
 
             // persist it
             edges.setName ("Edges")

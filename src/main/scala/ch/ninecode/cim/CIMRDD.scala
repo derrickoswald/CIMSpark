@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory
 object CIMRDD
 {
     private val log = LoggerFactory.getLogger(getClass)
-    
+
     def main (args:Array[String])
     {
         val conf = new SparkConf ()

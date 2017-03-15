@@ -48,14 +48,12 @@ extends
 
 case class SolarGeneratingUnit
 (
-    override val sup: GeneratingUnit,
-    // ToDo: non-standard... should be in Asset
-    val commissioningDate: String
+    override val sup: GeneratingUnit
 )
 extends
     Element
 {
-    def this () = { this (null, null) }
+    def this () = { this (null) }
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { return (clone ().asInstanceOf[SolarGeneratingUnit]); }
     override def get (i: Int): Object =
@@ -72,14 +70,12 @@ object SolarGeneratingUnit
 extends
     Parseable[SolarGeneratingUnit]
 {
-    val commissioningDate = parse_element (element ("""SolarGeneratingUnit.commissioningDate"""))_
     def parse (context: Context): SolarGeneratingUnit =
     {
         return (
             SolarGeneratingUnit
             (
-                GeneratingUnit.parse (context),
-                commissioningDate (context)
+                GeneratingUnit.parse (context)
             )
         )
     }
