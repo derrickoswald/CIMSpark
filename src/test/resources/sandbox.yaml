@@ -2,9 +2,15 @@
 #
 # Note: from CIMScala directory run with:
 #       docker-compose --file src/test/resources/sandbox.yaml up&
+# stop with:
+#       docker-compose --file src/test/resources/sandbox.yaml down
 #
 # Note: for more worker nodes use:
-#       docker-compose scale worker=2
+#       docker-compose --file src/test/resources/sandbox.yaml scale worker=2
+#
+# Note: to start a shell on the cluster use:
+#       docker exec --interactive --tty resources_sandbox_1 bash
+# or    docker exec --interactive --tty resources_worker_1 bash
 #
 
 version: "2" # Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0)
