@@ -1,3 +1,12 @@
+# Spark local cluster using Docker
+#
+# Note: from CIMScala directory run with:
+#       docker-compose --file src/test/resources/sandbox.yaml up&
+#
+# Note: for more worker nodes use:
+#       docker-compose scale worker=2
+#
+
 version: "2" # Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0)
 
 services:
@@ -25,7 +34,7 @@ services:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
-  worker1:
+  worker:
     image: singularities/spark
     command: start-spark worker sandbox
     environment:
@@ -39,18 +48,3 @@ services:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
-  worker2:
-    image: singularities/spark
-    command: start-spark worker sandbox
-    environment:
-      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
-    environment:
-      SPARK_WORKER_CORES: 1
-      SPARK_WORKER_MEMORY: 4g
-    links:
-      - sandbox
-    volumes:
-      - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
-      - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
-      - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
-      
