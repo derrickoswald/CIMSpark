@@ -1,6 +1,7 @@
 package ch.ninecode.cim
 
 import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.Row
@@ -55,6 +56,8 @@ with
     val _Islands: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_topo_islands", "false").toBoolean
     // check for NTP option, islands requires topological nodes
     val _Topo: Boolean = if (_Islands) true else parameters.getOrElse ("ch.ninecode.cim.do_topo", "false").toBoolean
+    // check for split size option, default is 64MB
+    val _SplitSize: Long = parameters.getOrElse ("ch.ninecode.cim.split_maxsize", "67108864").toLong
 
     log.info ("parameters: " + parameters.toString ())
     log.info ("sqlContext: " + sqlContext.toString ())
@@ -99,9 +102,8 @@ with
 
         // make a config
         val configuration = new Configuration (sqlContext.sparkContext.hadoopConfiguration)
-        //val filename = inputFiles.map (_.getPath.toString).mkString (",")
-        val filename = path
-        configuration.set ("mapreduce.input.fileinputformat.inputdir", filename);
+        configuration.set (FileInputFormat.INPUT_DIR, path);
+        configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize);
 
         val rdd = sqlContext.sparkContext.newAPIHadoopRDD (
             configuration,
