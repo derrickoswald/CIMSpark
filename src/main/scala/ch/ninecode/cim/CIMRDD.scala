@@ -24,7 +24,7 @@ object CIMRDD
     def main (args:Array[String])
     {
         val conf = new SparkConf ()
-        conf.setAppName ("CIMScala JDBC Server")
+        conf.setAppName ("CIMReader JDBC Server")
         conf.setMaster ("spark://sandbox:7077")
         val spark = new SparkContext (conf)
 

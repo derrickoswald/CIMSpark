@@ -18,7 +18,7 @@ The installation and use instructions are quite good. You may need to use the sl
 
 When you've successfully created a project, you should see something similar to that shown below:
 
-![CIMTool](https://rawgit.com/derrickoswald/CIMScala/master/img/CIMTool.png "CIMTool Screen Capture")
+![CIMTool](https://rawgit.com/derrickoswald/CIMReader/master/img/CIMTool.png "CIMTool Screen Capture")
 
 Scala Code
 -----
@@ -34,7 +34,7 @@ Attributes of the class are of four flavors:
 
 Subclasses and the superclass have open arrow icons.
 
-Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMScala/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (e.g. attribute length must be changed to len in the Scala code due to a superclass member method).
+Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMReader/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (e.g. attribute length must be changed to len in the Scala code due to a superclass member method).
 
 ```Scala
 case class ACLineSegment
@@ -112,14 +112,14 @@ extends
 Hierarchy
 -----
 
-Just as in the CIM model, CIMScala model classes are hierarchical.
+Just as in the CIM model, CIMReader model classes are hierarchical.
 
 At the bottom of the screen shot you can see that the superclass of ACLineSegment is Conductor. This is mimicked in the Scala code by the sup member of type Conductor. Note that this does not use the class hierarchy of Scala directly for two reasons:
 
 1. CIM classes are exposed as database tables and SQL is not hierarchical
 2. Scala case classes are used (to support Spark DataFrames) and, for technical reasons, case classes must be the leaf nodes of a Scala class hierarchy
 
-In CIMScala, the root class of all CIM model classes is Element, which has only two members, the id and a sup member which is null. 
+In CIMReader, the root class of all CIM model classes is Element, which has only two members, the id and a sup member which is null. 
 
 The sup member of each higher level class is aliased with a method of the correct name, so given an ACLineSegment object obj in Scala, the base class is accessible via obj.sup or obj.Conductor. The latter is preferred because the code reads better. This feature is not available in SQL queries, where sup must be used.
 
@@ -134,7 +134,7 @@ val lines = session.sparkContext.getPersistentRDDs.filter(_._2.name == "ACLineSe
 val line = lines.filter(_.id == "KLE1234").head
 ```
 
-The Element RDD contains full CIMScala model objects, not just Element objects. That is, if you know the members of a filter operation are of a specific type, you can cast to that type:
+The Element RDD contains full CIMReader model objects, not just Element objects. That is, if you know the members of a filter operation are of a specific type, you can cast to that type:
 
 ```Scala
 val elements: RDD[Element] = ...

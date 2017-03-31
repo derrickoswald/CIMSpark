@@ -1,6 +1,6 @@
 # Spark local cluster using Docker
 #
-# Note: from CIMScala directory run with:
+# Note: from CIMReader directory run with:
 #       docker-compose --file src/test/resources/sandbox.yaml up&
 # stop with:
 #       docker-compose --file src/test/resources/sandbox.yaml down

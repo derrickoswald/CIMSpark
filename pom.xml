@@ -2,21 +2,21 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ch.ninecode.cim</groupId>
-    <artifactId>CIMScala</artifactId>
+    <artifactId>CIMReader</artifactId>
     <version>2.11-2.0.1-1.9.0</version> <!-- version>${version.dependency.scala}-${version.dependency.spark}-1.9.0</version -->
     <name>${project.artifactId}</name>
     <description>Expose CIM data files as Spark RDD</description>
     <inceptionYear>2015</inceptionYear>
-    <url>https://github.com/derrickoswald/CIMScala</url>
+    <url>https://github.com/derrickoswald/CIMReader</url>
     <organization>
         <name>9code GmbH</name>
         <url>http://9code.ch</url>
     </organization>
     <scm>
-        <url>https://github.com/derrickoswald/CIMScala</url>
+        <url>https://github.com/derrickoswald/CIMReader</url>
     </scm>
     <issueManagement>
-        <url>https://github.com/derrickoswald/CIMScala/issues</url>
+        <url>https://github.com/derrickoswald/CIMReader/issues</url>
     </issueManagement>
 
     <properties>

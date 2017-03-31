@@ -213,7 +213,7 @@ class Sample extends Serializable
 /**
  * Main program for sample demo.
  * Run this from within the cluster with:
- * spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 1 --jars /opt/code/CIMScala-2.10-1.6.0-1.7.2.jar --class ch.ninecode.Sample hdfs:/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf
+ * spark-shell --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --executor-cores 1 --jars /opt/code/CIMReader-2.10-1.6.0-1.7.2.jar --class ch.ninecode.Sample hdfs:/data/NIS_CIM_Export_NS_INITIAL_FILL.rdf
  */
 object Sample
 {
@@ -225,7 +225,7 @@ object Sample
             val begin = System.nanoTime ()
             // create the configuration
             val configuration = new SparkConf ()
-            configuration.setAppName ("CIMScala GraphX Sample")
+            configuration.setAppName ("CIMReader GraphX Sample")
             // make a Spark context and SQL context
             val context = new SparkContext (configuration)
             val sqlContext = SparkSession.builder().getOrCreate().sqlContext
