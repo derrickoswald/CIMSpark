@@ -5,7 +5,7 @@ Spark access to Common Information Model (CIM) files as RDD and Hive SQL.
 
 # Overview
 
-This program reads in a CIM file which is a 
+This program reads in CIM files which are a 
 standard interchange format based on IEC standards 61968 & 61970
 (see [CIM users group](http://cimug.ucaiug.org/default.aspx) for additional details)
 and produces a Spark Resilient Distributed Dataset (RDD) for each CIM class.
@@ -22,7 +22,7 @@ The CIM model as implemented in CIMScala is described in [CIM Model](Model.md).
 
 # Architecture
 
-The architrecture follows the sample code from [Databricks](https://databricks.com/blog/2015/01/09/spark-sql-data-sources-api-unified-data-access-for-the-spark-platform.html).
+The architecture follows the sample code from [Databricks](https://databricks.com/blog/2015/01/09/spark-sql-data-sources-api-unified-data-access-for-the-spark-platform.html).
 
 ![CIMScala Architecture](https://rawgit.com/derrickoswald/CIMScala/master/img/Architecture.svg "High level architecture diagram")
 
@@ -74,9 +74,13 @@ Assuming, Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0)
 ```
 cd CIMScala
 ```
-* Initialize the cluster (default is three containers, "sandbox", "worker1" and "worker2"):
+* Initialize the cluster (default is two containers, "sandbox" and "worker"):
 ```
 docker-compose --file src/test/resources/sandbox.yaml up&
+```
+* To increase the number of worker nodes:
+```
+docker-compose --file src/test/resources/sandbox.yaml scale worker=2
 ```
 * To shut down the cluster:
 ```
@@ -86,18 +90,18 @@ docker-compose --file src/test/resources/sandbox.yaml down
 ```
 docker exec --interactive --tty resources_sandbox_1 bash
 ```
-* Optionally, to install R so that the sparkR command works:
-```
-apt-get install r-base
-```
 * From within the interactive shell, to copy data files to HDFS
 ```
 hdfs dfs -fs hdfs://sandbox:8020 -mkdir /data
 hdfs dfs -fs hdfs://sandbox:8020 -put /opt/data/* /data
 hdfs dfs -fs hdfs://sandbox:8020 -ls /data
 ```
+* Optionally, to install R so that the sparkR command works:
+```
+apt-get install r-base
+```
 
-From within the interactive shell, to start the Spark shell with the CIMScala jar file on the classpath
+From within the interactive shell in the master container, to start the Spark shell with the CIMScala jar file on the classpath
 [Note: to avoid "java.io.IOException: No FileSystem for scheme: null" when executing spark in the root directory,
 either change to any subdirectory (i.e. ```cd /opt```) or
 add the warehouse.dir configuration as shown here] 
@@ -137,20 +141,20 @@ import ch.ninecode.model._
 val elements = spark.read.cim ("hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
 ```
 
-* Since evaluation is lazy, one needs to trigger the actual file reading by, for example, asking for the count:
+* Since transform evaluation is lazy, one needs to trigger the actual reading of the file by, for example, asking for the count:
 ```scala
 val count = elements.count
 ```
 
-The data is now available in a large number of cached RDD structures. For example, all ACLineSegment objects are available
-in the cached RDD with the name "ACLineSegment". 
+The data is now available in a large number of cached RDD structures.
+For example, all ACLineSegment objects are available in the cached RDD with the name "ACLineSegment". 
 
 You can get a list of RDD using:
 ```scala
 println (sc.getPersistentRDDs.map(_._2.name).toArray.sortWith(_ < _).mkString("\n")
 ```
 
-You can get a named RDD using:
+You can get a named RDD using the class name:
 ```scala
 val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
 ```

@@ -34,7 +34,7 @@ Attributes of the class are of four flavors:
 
 Subclasses and the superclass have open arrow icons.
 
-Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMScala/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (i.e. attrbute length must be changed to len in the scala code due to a superclass member method).
+Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMScala/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (e.g. attribute length must be changed to len in the Scala code due to a superclass member method).
 
 ```Scala
 case class ACLineSegment
@@ -123,12 +123,15 @@ In CIMScala, the root class of all CIM model classes is Element, which has only 
 
 The sup member of each higher level class is aliased with a method of the correct name, so given an ACLineSegment object obj in Scala, the base class is accessible via obj.sup or obj.Conductor. The latter is preferred because the code reads better. This feature is not available in SQL queries, where sup must be used.
 
-When the CIM model RDD are constructed, each sub-object is added to the base class RDDs. So for example, an object of type ACLineSegment can be accessed in the RDD for ACLineSegment, Conductor, ConductingEquipment, Equipment, PowerSystemResource, IdentifiedObject and Element - as each of those types respectively (RDD[ACLineSegment], RDD[Conductor], RDD[ConductingEquipment], RDD[Equipment], RDD[PowerSystemResource], RDD[IdentifiedObject] and RDD[Element]).
+The id member is the value of the Master Resource Identifier (MRID), which is also the mRID member of the IdentifiedObject superclass, from which most classes in the CIM model derive.
 
-Names of classes have been preserved also in the names of the RDD containing the objects - that is if you are seeking an object of type PowerTransformer it is in the named and cached RDD "PowerTransformer" of type RDD[PowerTransformer].
+When the CIM model RDD are constructed, each sub-object is also added to the base class RDDs. So for example, an object of type ACLineSegment can be accessed in the RDD for ACLineSegment, Conductor, ConductingEquipment, Equipment, PowerSystemResource, IdentifiedObject and Element - as each of those types respectively (RDD[ACLineSegment], RDD[Conductor], RDD[ConductingEquipment], RDD[Equipment], RDD[PowerSystemResource], RDD[IdentifiedObject] and RDD[Element]).
+
+Names of classes have been preserved also in the names of the RDD containing the objects - that is if you are seeking an object of type ACLineSegment it is in the named and cached RDD "ACLineSegment" of type RDD[ACLineSegment]. In the example below, a particular ACLineSegment with the MRID "KLE1234" is extracted: 
 
 ```Scala
 val lines = session.sparkContext.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
+val line = lines.filter(_.id == "KLE1234").head
 ```
 
 The Element RDD contains full CIMScala model objects, not just Element objects. That is, if you know the members of a filter operation are of a specific type, you can cast to that type:
@@ -145,6 +148,6 @@ val lines: RDD[ACLineSegment] = ...
 val some_lines: RDD[ACLineSegment] = equipment.keyBy(_.id).join (lines.keyBy (_.id)).values.map (_._2)
 ```
 
-One can also use class name, e.g. ch.ninecode.model.ACLineSegment, on objects in RDD[Element].
+One can also get the class name, e.g. ch.ninecode.model.ACLineSegment, from objects in RDD[Element] using theObject.getClass.getName in order to perform specific actions on different class types.
 
 
