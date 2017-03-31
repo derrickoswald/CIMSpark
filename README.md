@@ -151,7 +151,7 @@ For example, all ACLineSegment objects are available in the cached RDD with the 
 
 You can get a list of RDD using:
 ```scala
-println (sc.getPersistentRDDs.map(_._2.name).toArray.sortWith(_ < _).mkString("\n")
+println (sc.getPersistentRDDs.map(_._2.name).toArray.sortWith(_ < _).mkString("\n"))
 ```
 
 You can get a named RDD using the class name:
