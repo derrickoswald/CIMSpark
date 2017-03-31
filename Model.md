@@ -121,7 +121,7 @@ At the bottom of the screen shot you can see that the superclass of ACLineSegmen
 
 In CIMReader, the root class of all CIM model classes is Element, which has only two members, the id and a sup member which is null. 
 
-![Hierarchical Class Nesting](https://rawgit.com/derrickoswald/CIMReader/master/img/Heirarchical.svg "Heirarchical Nesting Diagram")
+![Hierarchical Class Nesting](https://rawgit.com/derrickoswald/CIMReader/master/img/Hierarchical.svg "Hierarchical Nesting Diagram")
 
 The sup member of each higher level class is aliased with a method of the correct name, so given an ACLineSegment object obj in Scala, the base class is accessible via obj.sup or obj.Conductor. The latter is preferred because the code reads better. This feature is not available in SQL queries, where sup must be used.
 
