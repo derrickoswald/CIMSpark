@@ -13,6 +13,7 @@ import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 
+
 import ch.ninecode.model._
 
 case class CuttingEdge (
@@ -62,7 +63,7 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
 class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel) extends Serializable
 {
     private val log = LoggerFactory.getLogger(getClass)
-    
+
     def get (name: String): RDD[Element] =
     {
         val rdds = session.sparkContext.getPersistentRDDs
@@ -208,7 +209,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
 
     def make_graph_edges (e: CuttingEdge): Edge[CuttingEdge] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)
 
-    def to_vertex (n: ConnectivityNode): TopologicalData = TopologicalData (0.asInstanceOf[VertexId], "", vertex_id (n.id), n.id)
+    def to_vertex (n: ConnectivityNode): (VertexId, TopologicalData) =
+    {
+        val v = vertex_id (n.id)
+        (v, TopologicalData (0.asInstanceOf[VertexId], "", v, n.id))
+    }
 
     def make_graph (): Graph[TopologicalData, CuttingEdge] =
     {
@@ -216,23 +221,14 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         val terms = get ("Terminal").asInstanceOf[RDD[Terminal]].groupBy (_.ConductingEquipment)
 
         // map elements with their terminal 'pairs' to edges
-        val elements = get ("Elements").asInstanceOf[RDD[Element]].keyBy (_.id).join (terms)
-            .flatMapValues (edge_operator).values
+        val edges = get ("Elements").asInstanceOf[RDD[Element]].keyBy (_.id).join (terms)
+            .flatMapValues (edge_operator).values.map (make_graph_edges)
 
         // get the vertices
-        val vertices = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]].map (to_vertex).keyBy (_.node)
-
-        // get the edges
-        val edges = elements.map (make_graph_edges)
+        val vertices = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]].map (to_vertex)
 
         // construct the initial graph from the edges
-        val ret = Graph.apply[TopologicalData, CuttingEdge](vertices, edges, TopologicalData (), storage, storage)
-
-        // persist the RDD to avoid recomputation
-        ret.vertices.persist (storage)
-        ret.edges.persist (storage)
-
-        return (ret)
+        Graph.apply (vertices, edges, TopologicalData (), storage, storage).cache
     }
 
     def identifyNodes (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
@@ -267,13 +263,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         // traverse the graph with the Pregel algorithm
         // assigns the minimum VertexId of all electrically identical nodes (node)
         // Note: on the first pass through the Pregel algorithm all nodes get a null message
-        val ret = graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
-
-        // persist the RDD to avoid recomputation
-        ret.vertices.persist (storage)
-        ret.edges.persist (storage)
-
-        return (ret)
+        graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
     }
 
     def to_islands (nodes: Iterable[Tuple2[Tuple2[TopologicalData,ConnectivityNode],Option[Tuple2[Terminal, Element]]]]): Tuple2[VertexId, TopologicalIsland] =
@@ -500,7 +490,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         val topo_graph = Graph.apply[TopologicalData, CuttingEdge](vertices, edges, TopologicalData (), storage, storage)
 
         // run the Pregel algorithm over the reduced topological graph
-        val g = topo_graph.pregel[TopologicalData] (null, 10000, activeDirection = EdgeDirection.Either) (vertex_program, send_message, merge_message)
+        val g = topo_graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
 
         // update the original graph with the islands
         val v = graph.vertices.keyBy (_._2.node).leftOuterJoin (g.vertices.values.keyBy (_.node)).map (mapper)
@@ -520,7 +510,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         val initial = make_graph ()
 
         // get the topological nodes
-        log.info ("nodes")
+        log.info ("identifyNodes")
         var graph = identifyNodes (initial)
 
         // create a new TopologicalNode RDD
