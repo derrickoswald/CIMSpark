@@ -94,11 +94,33 @@ class CIMSparkSuite extends FunSuite
             FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
-        options.put ("ch.ninecode.cim.do_deduplication", "true")
         val elements1 = readFile (session.sqlContext, filename, options)
         val count1 = elements1.count ()
         println (count1 + " elements")
+        options.put ("ch.ninecode.cim.do_deduplication", "true")
         val elements2 = readFile (session.sqlContext, filename + "," + filename, options)
+        val count2 = elements2.count ()
+        println (count2 + " elements")
+        assert (count1 === count2)
+    }
+
+    test ("DedupStripes")
+    {
+        session: SparkSession ⇒
+
+        val filename =
+            PRIVATE_FILE_DEPOT + "bkw_cim_export_all_overlays" + ".rdf"
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
+        val elements1 = readFile (session.sqlContext, filename, options)
+        val count1 = elements1.count ()
+        println (count1 + " elements")
+        val filename1 =
+            PRIVATE_FILE_DEPOT + "bkw_cim_export_stripe1_overlays" + ".rdf"
+        val filename2 =
+            PRIVATE_FILE_DEPOT + "bkw_cim_export_stripe2_overlays" + ".rdf"
+        options.put ("ch.ninecode.cim.do_deduplication", "true")
+        val elements2 = readFile (session.sqlContext, filename1 + "," + filename2, options)
         val count2 = elements2.count ()
         println (count2 + " elements")
         assert (count1 === count2)
