@@ -171,6 +171,7 @@ where:
 * file1..n is a list of files to read, (note that load can take a variable number of arguments)
 * opts is pairs of named options in a Map[String,String], where values are "true" or "false",
 CIM reader specific option names and their meaning are:
+  * ch.ninecode.cim.do_deduplication - eliminate duplicates based on CIM rdfID or not
   * ch.ninecode.cim.make_edges - generate the Edges RDD and table or not
   * ch.ninecode.cim.do_join - merge CIM files (by UserAttribute) or not
   * ch.ninecode.cim.do_topo - generate TopologicalNode elements

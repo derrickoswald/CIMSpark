@@ -48,6 +48,8 @@ with
 
     // check for a storage level option
     val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
+    // check for deduplication option
+    val _DeDup: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_deduplication", "false").toBoolean
     // check for edge creation option
     val _Edges: Boolean = parameters.getOrElse ("ch.ninecode.cim.make_edges", "false").toBoolean
     // check for ISU join option
@@ -120,6 +122,18 @@ with
             case None =>
         }
 
+        // dedup if requested
+        val elements = if (_DeDup)
+        {
+            log.info ("eliminating duplicates")
+            val dedup = new CIMDeDup (sparkSession, _StorageLevel)
+            val (e, r) = dedup.do_dedupulicate ()
+            ret = r
+            e
+        }
+        else
+            rdd
+
         // as a side effect, define all the other temporary tables
         log.info ("creating temporary tables")
         CHIM.apply_to_all_classes (
@@ -135,7 +149,7 @@ with
                 // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
                 // p.s. Scala's type system is a shit show of kludgy code
                 log.info ("building " + subsetter.cls)
-                subsetter.make (sqlContext, rdd, _StorageLevel)
+                subsetter.make (sqlContext, elements, _StorageLevel)
             }
         )
 

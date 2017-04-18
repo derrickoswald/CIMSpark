@@ -86,6 +86,24 @@ class CIMSparkSuite extends FunSuite
         assert (count === 760)
     }
 
+    test ("Dedup")
+    {
+        session: SparkSession ⇒
+
+        val filename =
+            FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf"
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
+        options.put ("ch.ninecode.cim.do_deduplication", "true")
+        val elements1 = readFile (session.sqlContext, filename, options)
+        val count1 = elements1.count ()
+        println (count1 + " elements")
+        val elements2 = readFile (session.sqlContext, filename + "," + filename, options)
+        val count2 = elements2.count ()
+        println (count2 + " elements")
+        assert (count1 === count2)
+    }
+
     test ("Join")
     {
         session: SparkSession ⇒
