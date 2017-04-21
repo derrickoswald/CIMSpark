@@ -33,26 +33,22 @@ class CIMInputFormat extends FileInputFormat[String, Element]
      *
      * @param context the job context
      * @return the list of FileSplit objects for the job
-     * @throws IOException
      */
     override def getSplits (context: JobContext): java.util.List[InputSplit] =
     {
         LocalLog.info ("getSplits")
-        var ret: java.util.List[InputSplit] = new java.util.ArrayList[InputSplit]
 
         // Note: we don't need to override this yet,
         // but the JobContext has the Credentials (@see org.apache.hadoop.mapreduce.JobContext.getCredentials())
         // which would be checked here.
-        ret = super.getSplits (context)
+        val ret = super.getSplits (context)
 
         LocalLog.info ("getSplits: " + ret.size() + " splits returned")
         return (ret)
     }
 
    /**
-    * Create a record reader for a given split. The framework will call
-    * {@link RecordReader#initialize(InputSplit, TaskAttemptContext)} before
-    * the split is used.
+    * Create a record reader for a given split.
     * @param split the split to be read
     * @param context the information about the task
     * @return a new record reader

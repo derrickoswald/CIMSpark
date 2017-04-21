@@ -2,6 +2,7 @@ package ch.ninecode
 
 import java.io.File
 
+import scala.collection.mutable.HashMap
 import scala.util.Random
 
 import org.apache.hadoop.conf.Configuration
@@ -25,6 +26,7 @@ class CIMRDDSuite extends FunSuite
     // test file names
     val FILENAME1 = "data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
     val FILENAME2 = "data/NIS_CIM_Export_NS_INITIAL_FILL_Stoos.rdf"
+    val FILENAME3 = "private_data/bkw_cim_export_defaultstripe7a.rdf"
 
     // number of elements in the file
     // get number of lines at the top level with:
@@ -38,30 +40,22 @@ class CIMRDDSuite extends FunSuite
     val OFFSET = 3145728
     val PARTIAL_MAP_SIZE = 2545
 
-    def rddFile (sc: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
+    def rddFile (context: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
     {
-        var size: Long = length
-        if (0 == size)
-            size = new File (filename).length () - offset
+        val size = if (0L != length) length else new File (filename).length () - offset
         val (xml, start, end) = CHIM.read (filename, offset, size)
         val parser = new CHIM (xml, start, end)
-        val map = parser.parse ()
-        return (sc.parallelize (map.values.toSeq))
+        val map = CHIM.parse (parser)
+        return (context.parallelize (map.values.toSeq))
     }
 
-    def rddHadoop (sc: SparkContext, hdfs: String): RDD[Element] =
+    def rddHadoop (context: SparkContext, map: Map[String,String]): RDD[Element] =
     {
-        // make a config
-        val configuration = new Configuration (sc.hadoopConfiguration)
-        configuration.set ("mapreduce.input.fileinputformat.inputdir", hdfs);
-
-        // RDD[(String, Element)]
-        val rdd = sc.newAPIHadoopRDD (configuration, classOf[CIMInputFormat], classOf[String], classOf[Element])
-
-        return (rdd.values)
+        val configuration = map.foldLeft (new Configuration (context.hadoopConfiguration))((c, e) => { c.set (e._1, e._2); c })
+        context.newAPIHadoopRDD (configuration, classOf[CIMInputFormat], classOf[String], classOf[Element]).values
     }
 
-    def withFixture (test: OneArgTest): org.scalatest.Outcome =
+    def withFixture (test: OneArgTest) =
     {
         // create the fixture
         val configuration = new SparkConf ()
@@ -79,28 +73,28 @@ class CIMRDDSuite extends FunSuite
 
     test ("Create")
     {
-        sc ⇒
+        context ⇒
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
         val parser = new CHIM (xml.toString ())
-        val map = parser.parse ()
+        val map = CHIM.parse (parser)
         assert (map.size === 1)
-        val rdd = sc.parallelize (map.toSeq, 2)
+        val rdd = context.parallelize (map.toSeq, 2)
         assert (rdd.count () === 1)
     }
 
     test ("Read")
     {
-        sc ⇒
-        val rdd = rddFile (sc, FILENAME1, 0, 0)
+        context ⇒
+        val rdd = rddFile (context, FILENAME1, 0, 0)
         assert (rdd.count () === ELEMENTS1)
     }
 
     test ("Read Partial")
     {
-        sc ⇒
+        context ⇒
         val (xml, start, end) = CHIM.read (FILENAME1, OFFSET, 1024 * 1024, 0) // exactly a megabyte
         val parser = new CHIM (xml, start, end)
-        val map = parser.parse ()
+        val map = CHIM.parse (parser)
         markup ("map size: " + map.size)
         assert (map.size == PARTIAL_MAP_SIZE)
         assert (map.filter (_.getClass() == classOf[Unknown]).size == 0)
@@ -108,7 +102,7 @@ class CIMRDDSuite extends FunSuite
 
     test ("Merge Partial")
     {
-        sc ⇒
+        context ⇒
         val size = new File (FILENAME1).length ().asInstanceOf[Int]
         var offset = 0
         var count = 0 // count of elements
@@ -124,9 +118,9 @@ class CIMRDDSuite extends FunSuite
             markup ("xml " + xml.substring (0, 60))
             val parser = new CHIM (xml, start, end)
             xml = null
-            val map = parser.parse ()
+            val map = CHIM.parse (parser)
             markup ("map has " + map.size + " elements")
-            val rdd = sc.parallelize (map.keys.toSeq)
+            val rdd = context.parallelize (map.keys.toSeq)
             if (null != last)
             {
                 val int = rdd.intersection (last)
@@ -148,8 +142,8 @@ class CIMRDDSuite extends FunSuite
 
     test ("Hadoop")
     {
-        sc ⇒
-        val rdd = rddHadoop (sc, FILENAME1)
+        context ⇒
+        val rdd = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1)))
         val unknowns = rdd.collect ({ case x: Any if x.getClass () == classOf[Unknown] => x.asInstanceOf[Unknown] })
         if (unknowns.count () != 0)
         {
@@ -161,13 +155,20 @@ class CIMRDDSuite extends FunSuite
 
     test ("Multiple Files")
     {
-        sc ⇒
-        val rdd1 = rddHadoop (sc, FILENAME1)
-        val rdd2 = rddHadoop (sc, FILENAME2)
-        val rdd3 = rddHadoop (sc, FILENAME1 + "," + FILENAME2)
+        context ⇒
+        val rdd1 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1)))
+        val rdd2 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2)))
+        val rdd3 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1 + "," + FILENAME2)))
         assert (rdd1.count () === ELEMENTS1)
         assert (rdd2.count () === ELEMENTS2)
         assert (rdd3.count () === (ELEMENTS1 + ELEMENTS2))
     }
 
+    test ("Splits")
+    {
+        context ⇒
+        val rdd1 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3)))
+        val rdd2 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3), ("mapreduce.input.fileinputformat.split.maxsize", "65536")))
+        assert (rdd1.count () === rdd2.count ())
+    }
 }

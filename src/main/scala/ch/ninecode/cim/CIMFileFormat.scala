@@ -52,7 +52,7 @@ extends
     }
 
     /**
-     * Prepares a write job and returns an [[OutputWriterFactory]].
+     * Prepares a write job and returns an OutputWriterFactory.
      * <em>Currently not supported</em>
      */
     override def prepareWrite (
@@ -92,7 +92,7 @@ extends
      *                       occurred.
      * @param filters A set of filters than can optionally be used to reduce the number of rows output
      * @param options A set of string -> string configuration options.
-     * @return
+     * @return A function to convert the file into a set of rows.
      */
     override def buildReader (
         sparkSession: SparkSession,
@@ -115,7 +115,7 @@ extends
     }
 
     /**
-     * Returns a [[OutputWriterFactory]] for generating output writers that can write data.
+     * Returns a factory for generating output writers that can write data.
      * <em>Currently not supported</em>
      */
     override def buildWriter (

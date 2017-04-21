@@ -20,7 +20,7 @@ class CIMSuite extends FunSuite
     {
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
         val parser = new CHIM (xml.toString ())
-        val map = parser.parse ()
+        val map = CHIM.parse (parser)
         assert (map.size === 1)
     }
 
@@ -36,7 +36,7 @@ class CIMSuite extends FunSuite
                 </cim:BaseVoltage>
             </rdf:RDF>;
         val parser = new CHIM (xml.toString ())
-        val map = parser.parse ()
+        val map = CHIM.parse (parser)
         val voltage = map.apply ("BaseVoltage_0.400000000000").asInstanceOf[BaseVoltage]
         assert (voltage.nominalVoltage.toDouble === 0.40)
     }
@@ -53,7 +53,7 @@ class CIMSuite extends FunSuite
         val parser = new CHIM (xml.toString ())
         intercept[Exception]
         {
-            val map = parser.parse ()
+            val map = CHIM.parse (parser)
             fail ("invalid voltage accepted")
         }
     }
@@ -68,7 +68,7 @@ class CIMSuite extends FunSuite
                 </cim:CoordinateSystem>
             </rdf:RDF>;
         val parser = new CHIM (xml.toString ())
-        val map = parser.parse ()
+        val map = CHIM.parse (parser)
         assert (map.size === 1)
         val cs = map apply "wgs_84"
         assert (cs.isInstanceOf[CoordinateSystem])
@@ -90,7 +90,7 @@ class CIMSuite extends FunSuite
                 <cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
             </cim:Facility>
         val parser = new CHIM (xml.toString ())
-        val map = parser.parse ()
+        val map = CHIM.parse (parser)
         assert (map.size === 1)
         val facility = map ("STA196_asset")
         assert (facility.isInstanceOf[Facility])

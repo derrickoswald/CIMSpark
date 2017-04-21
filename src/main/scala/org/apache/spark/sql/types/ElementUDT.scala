@@ -8,12 +8,13 @@ import org.apache.spark.sql.catalyst.expressions.UnsafeRow
 import org.apache.spark.unsafe.types.UTF8String
 import ch.ninecode.model._
 
-// HACK:
-// This needs to be defined within package org.apache.spark.sql.types 
-// because UserDefinedType became private with Spark 2.0.x
-// it will be reintroduced with Spark 2.1.x, see https://issues.apache.org/jira/browse/SPARK-13326
 /**
- * User-defined type for [[Element]].
+ * User-defined type for [[ch.ninecode.model.Element]].
+ * HACK:
+ * This needs to be defined within package org.apache.spark.sql.types 
+ * because UserDefinedType became private with Spark 2.0.x
+ * it will be reintroduced with Spark 2.1.x.
+ * @see https://issues.apache.org/jira/browse/SPARK-13326
  */
 class ElementUDT extends UserDefinedType[Element]
 {

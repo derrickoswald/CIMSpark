@@ -256,6 +256,25 @@ extends
     }
 }
 
+
+// From SparkR package:
+//busbars = sql (sqlContext, "select * from BusbarSection")
+//rbusbars = SparkR::collect (busbars, stringsAsFactors=FALSE)
+//# first busbar
+//b = rbusbars[1,]
+//# sup - first column = list of 1
+//b = rbusbars[1,][[1]]
+//# Connector
+//b = rbusbars[1,][[1]][[1]]
+//# ConductingEquipment
+//b = rbusbars[1,][[1]][[1]][[1]]
+//# Equipment
+//b = rbusbars[1,][[1]][[1]][[1]][[1]]
+//# PowerSystemResource
+//b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]]
+//# IdentifiedObject
+//b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]][[1]]
+
 case class BusbarSection
 (
     override val sup: Connector,
