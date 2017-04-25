@@ -21,12 +21,14 @@ import ch.ninecode.model.Unknown
 
 class CIMRDDSuite extends FunSuite
 {
+    val FILE_DEPOT = "data/"
+    val PRIVATE_FILE_DEPOT = "private_data/"
+
     type FixtureParam = SparkContext
 
     // test file names
-    val FILENAME1 = "data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
-    val FILENAME2 = "data/NIS_CIM_Export_NS_INITIAL_FILL_Stoos.rdf"
-    val FILENAME3 = "private_data/bkw_cim_export_defaultstripe7a.rdf"
+    val FILENAME1 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
+    val FILENAME2 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Stoos.rdf"
 
     // number of elements in the file
     // get number of lines at the top level with:
@@ -35,18 +37,19 @@ class CIMRDDSuite extends FunSuite
     val ELEMENTS2 = 36927
 
     // number of elements in a 1MB chunk
-    // this is approximately (off by +one)
     // tail --bytes=+3145728 NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
     val OFFSET = 3145728
-    val PARTIAL_MAP_SIZE = 2545
+    val PARTIAL_MAP_SIZE = 2546
 
     def rddFile (context: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
     {
         val size = if (0L != length) length else new File (filename).length () - offset
         val (xml, start, end) = CHIM.read (filename, offset, size)
+        //markup ("" + start + ":" + end + " " + offset + "+" + size + " " + xml.substring (0, 50))
         val parser = new CHIM (xml, start, end)
-        val map = CHIM.parse (parser)
-        return (context.parallelize (map.values.toSeq))
+        val result = CHIM.parse (parser)
+        assert (result._2.length === 0)
+        return (context.parallelize (result._1.values.toSeq))
     }
 
     def rddHadoop (context: SparkContext, map: Map[String,String]): RDD[Element] =
@@ -76,9 +79,10 @@ class CIMRDDSuite extends FunSuite
         context ⇒
         val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
         val parser = new CHIM (xml.toString ())
-        val map = CHIM.parse (parser)
-        assert (map.size === 1)
-        val rdd = context.parallelize (map.toSeq, 2)
+        val result = CHIM.parse (parser)
+        assert (result._1.size === 1)
+        assert (result._2.length === 0)
+        val rdd = context.parallelize (result._1.toSeq, 2)
         assert (rdd.count () === 1)
     }
 
@@ -92,12 +96,13 @@ class CIMRDDSuite extends FunSuite
     test ("Read Partial")
     {
         context ⇒
-        val (xml, start, end) = CHIM.read (FILENAME1, OFFSET, 1024 * 1024, 0) // exactly a megabyte
-        val parser = new CHIM (xml, start, end)
-        val map = CHIM.parse (parser)
-        markup ("map size: " + map.size)
-        assert (map.size == PARTIAL_MAP_SIZE)
-        assert (map.filter (_.getClass() == classOf[Unknown]).size == 0)
+        val (xml, start, end) = CHIM.read (FILENAME1, OFFSET, 1024 * 1024) // exactly a megabyte
+        //markup ("" + start + ":" + end + " " + OFFSET + "+" + 1024 * 1024 + " " + xml.substring (0, 50))
+        val parser = new CHIM (xml, start, end, OFFSET, OFFSET + (1024 * 1024))
+        val result = CHIM.parse (parser)
+        assert (result._1.size === PARTIAL_MAP_SIZE)
+        assert (result._2.length === 0)
+        assert (result._1.filter (_.getClass() == classOf[Unknown]).size == 0)
     }
 
     test ("Merge Partial")
@@ -111,16 +116,16 @@ class CIMRDDSuite extends FunSuite
         var rdd: RDD[String] = null // the current result
         while (offset < size)
         {
-            var piece = random.nextInt (size)
+            var piece = random.nextInt (size / 10)
             if (offset + piece > size)
                 piece = size - offset
             var (xml, start, end) = CHIM.read (FILENAME1, offset, piece)
-            markup ("xml " + xml.substring (0, 60))
-            val parser = new CHIM (xml, start, end)
+            //markup ("" + start + ":" + end + " " + offset + "+" + piece + " " + xml.substring (0, 50))
+            val parser = new CHIM (xml, start, end, offset, offset + piece)
             xml = null
-            val map = CHIM.parse (parser)
-            markup ("map has " + map.size + " elements")
-            val rdd = context.parallelize (map.keys.toSeq)
+            val result = CHIM.parse (parser)
+            //markup ("" + result._1.size + " elements")
+            val rdd = context.parallelize (result._1.keys.toSeq)
             if (null != last)
             {
                 val int = rdd.intersection (last)
@@ -135,7 +140,7 @@ class CIMRDDSuite extends FunSuite
             }
             last = rdd
             offset += piece
-            count += map.size
+            count += result._1.size
         }
         assert (count === ELEMENTS1)
     }
@@ -167,8 +172,9 @@ class CIMRDDSuite extends FunSuite
     test ("Splits")
     {
         context ⇒
-        val rdd1 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3)))
-        val rdd2 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3), ("mapreduce.input.fileinputformat.split.maxsize", "65536")))
-        assert (rdd1.count () === rdd2.count ())
+        val rdd1 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2)))
+        val rdd2 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2), ("mapreduce.input.fileinputformat.split.maxsize", "655360")))
+        assert (rdd1.count () === ELEMENTS2)
+        assert (rdd2.count () === ELEMENTS2)
     }
 }

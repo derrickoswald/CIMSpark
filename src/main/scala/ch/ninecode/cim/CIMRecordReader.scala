@@ -24,16 +24,18 @@ class CIMRecordReader extends RecordReader[String, Element]
         val job = context.getConfiguration ()
         val split = genericSplit.asInstanceOf[FileSplit]
         val start = split.getStart ()
-        val end = start + split.getLength ()
+        val bytes = split.getLength ()
         val file = split.getPath ()
 
         // open the file and seek to the start of the split
         val fs = file.getFileSystem (job)
         val in = fs.open (file)
 
-        val extra = if (in.available () > end) CHIM.OVERREAD else 0
+        val end = start + bytes
+        val available = in.available
+        val extra = if (available > end) Math.min (CHIM.OVERREAD, (available - end).toInt) else 0
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
-        val size = (end - start + extra).toInt
+        val size = (bytes + extra).toInt
         val buffer = new Array[Byte] (size)
         in.readFully (start, buffer)
 
@@ -61,14 +63,14 @@ class CIMRecordReader extends RecordReader[String, Element]
             else
                 low
 
-        val len = Text.decode (buffer, first, size - first - extra).length
         val xml = Text.decode (buffer, first, size - first)
+        val len = if (0 == extra) xml.length else Text.decode (buffer, first, size - first - extra).length
 
         // ToDo: using first here is approximate,
         // the real character count would require reading the complete file
         // from 0 to (start + first) and converting to characters
         LocalLog.info ("XML text starting at byte offset " + (start + first) + " of length " + len + " characters begins with: " + xml.substring (0, 120))
-        cim = new CHIM (xml, first, first + len)
+        cim = new CHIM (xml, first, first + len, start, start + bytes)
     }
 
     def close (): Unit =

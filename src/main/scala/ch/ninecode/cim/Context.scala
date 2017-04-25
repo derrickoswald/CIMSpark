@@ -8,17 +8,39 @@ import scala.collection.mutable.ArrayBuffer
  * Contains the raw XML, indexes at which to star and stop parsing,
  * the line number index of newlines within the XML,
  * text coverage set (in debug) and error messages raised while parsing.
- *
+ * @param xml The current xml string being parsed.
+ * @param start The starting character position of the xml string - non-zero if not the first Split.
+ * @param end The ending character position at which to stop parsing.
+ * @param first_byte The byte offset of the first character to be parsed.
  */
-class Context (var xml: String, var start: Long, var end: Long, val newlines: ArrayBuffer[Long])
+class Context (var xml: String, val start: Long, var end: Long, var first_byte: Long)
 {
-    val DEBUG = true
-    val STOP_ON_ERROR = false
-    val MAXERRORS = 10
-    val lines = Pattern.compile ("""\n""")
-    var name: String = null // current element name
+    import Context._
+
+    /**
+     * The array of character positions of newlines in the xml string.
+     */
+    val newlines = index_string (xml, start)
+
+    /**
+     * An array of string start and end offsets that have been parsed. 
+     */
     val coverage = new ArrayBuffer[Tuple2[Int, Int]]
+
+    /**
+     * An array of up to MAXERRORS error messages.
+     */
     val errors = new ArrayBuffer[String]
+
+    /**
+     * The byte offset of the last successfully parsed full element.
+     */
+    var last_byte = first_byte;
+
+    /**
+     * The internal XML for an element being parsed.
+     */
+    var subxml: String = null
 
     /**
      * Create an index of newline characters in a string.
@@ -29,11 +51,12 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
      * @param {Number} offset - optional offset to add to the index values
      * @return {Unit} nothing
      */
-    def index_string (string: String, offset: Long = 0L): Unit =
+    def index_string (string: String, offset: Long = 0L, n: ArrayBuffer[Long] = ArrayBuffer[Long] ()): ArrayBuffer[Long] =
     {
         val matcher = lines.matcher (string)
         while (matcher.find ())
-            newlines += (matcher.start () + offset)
+            n += (matcher.start () + offset)
+        return (n)
     }
 
     /**
@@ -68,13 +91,18 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
         return (index + 1)
     }
 
+    /**
+     * Check that all characters were consumed by parsing.
+     * Used to find attributes and references that are not understood by the model.
+     * @return <code>true</code> if all non-whitespace characters were parsed.
+     */
     def covered (): Boolean =
     {
         var ret: Boolean = true
         var index: Int = 0
         for (pair <- coverage.sorted)
         {
-            val sub = xml.substring (index, pair._1).trim ()
+            val sub = subxml.substring (index, pair._1).trim ()
             if ("" != sub)
             {
                 ret = false
@@ -83,7 +111,7 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
             }
             index = pair._2
         }
-        val remainder = xml.substring (index, xml.length ()).trim ()
+        val remainder = subxml.substring (index, subxml.length ()).trim ()
         if ("" != remainder)
         {
             ret = false
@@ -94,8 +122,34 @@ class Context (var xml: String, var start: Long, var end: Long, val newlines: Ar
         return (ret)
     }
 
+    /**
+     * Output a debugging string of this context.
+     */
     override def toString: String =
     {
-        xml.substring (0, 50) + " start: " + start + " end: " + end
+        "\"" + subxml.substring (0, 50) + "...\" @ " + end + " character " + last_byte + " byte"
     }
+}
+
+object Context
+{
+    /**
+     * Add extra checks while parsing flag.
+     */
+    var DEBUG = true
+
+    /**
+     * Return no elements after an error flag.
+     */
+    var STOP_ON_ERROR = false
+
+    /**
+     * Limit errors accumulation to this amount.
+     */
+    var MAXERRORS = 10
+
+    /**
+     * Regular expression for line counting.
+     */
+    val lines = Pattern.compile ("""\n""")
 }
