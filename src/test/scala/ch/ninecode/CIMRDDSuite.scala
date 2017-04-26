@@ -6,6 +6,10 @@ import scala.collection.mutable.HashMap
 import scala.util.Random
 
 import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.Path
+import org.apache.hadoop.mapreduce.lib.input.FileSplit
+import org.apache.hadoop.mapreduce.TaskAttemptContext
+import org.apache.hadoop.mapred.JobConf
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
@@ -15,6 +19,7 @@ import org.apache.spark.sql.types.SQLUserDefinedType
 import org.scalatest.fixture.FunSuite
 
 import ch.ninecode.cim.CIMInputFormat
+import ch.ninecode.cim.CIMRecordReader
 import ch.ninecode.model.CHIM
 import ch.ninecode.model.Element
 import ch.ninecode.model.Unknown
@@ -29,17 +34,25 @@ class CIMRDDSuite extends FunSuite
     // test file names
     val FILENAME1 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
     val FILENAME2 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Stoos.rdf"
+    val FILENAME3 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL.rdf"
+    val FILENAME4 = PRIVATE_FILE_DEPOT + "bkw_cim_export_defaultall.rdf"
 
     // number of elements in the file
     // get number of lines at the top level with:
     // grep -P "^[\t]<cim" NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | wc
     val ELEMENTS1 = 22312
     val ELEMENTS2 = 36927
+    val ELEMENTS3 = 645495
 
     // number of elements in a 1MB chunk
     // tail --bytes=+3145728 NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
     val OFFSET = 3145728
     val PARTIAL_MAP_SIZE = 2546
+
+    // tail --bytes=+5905580032 bkw_cim_export_defaultall.rdf | head --bytes=67108864 | grep -P "^[\t]<cim" | wc
+    val SIZE4 = 64L * 1024L * 1024L // 67108864
+    val OFFSET4 = 88L * SIZE4 // 5905580032
+    val PARTIAL4 = 150674
 
     def rddFile (context: SparkContext, filename: String, offset: Long = 0, length: Long = 0): RDD[Row] =
     {
@@ -108,7 +121,7 @@ class CIMRDDSuite extends FunSuite
     test ("Merge Partial")
     {
         context ⇒
-        val size = new File (FILENAME1).length ().asInstanceOf[Int]
+        val size = new File (FILENAME3).length ().toInt
         var offset = 0
         var count = 0 // count of elements
         val random = new Random ()
@@ -119,12 +132,13 @@ class CIMRDDSuite extends FunSuite
             var piece = random.nextInt (size / 10)
             if (offset + piece > size)
                 piece = size - offset
-            var (xml, start, end) = CHIM.read (FILENAME1, offset, piece)
+            var (xml, start, end) = CHIM.read (FILENAME3, offset, piece)
             //markup ("" + start + ":" + end + " " + offset + "+" + piece + " " + xml.substring (0, 50))
             val parser = new CHIM (xml, start, end, offset, offset + piece)
             xml = null
             val result = CHIM.parse (parser)
             //markup ("" + result._1.size + " elements")
+            assert (result._2.length === 0)
             val rdd = context.parallelize (result._1.keys.toSeq)
             if (null != last)
             {
@@ -142,7 +156,7 @@ class CIMRDDSuite extends FunSuite
             offset += piece
             count += result._1.size
         }
-        assert (count === ELEMENTS1)
+        assert (count === ELEMENTS3)
     }
 
     test ("Hadoop")
@@ -172,9 +186,86 @@ class CIMRDDSuite extends FunSuite
     test ("Splits")
     {
         context ⇒
-        val rdd1 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2)))
-        val rdd2 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2), ("mapreduce.input.fileinputformat.split.maxsize", "655360")))
-        assert (rdd1.count () === ELEMENTS2)
-        assert (rdd2.count () === ELEMENTS2)
+        val rdd1 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3)))
+        val rdd2 = rddHadoop (context, Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3), ("mapreduce.input.fileinputformat.split.maxsize", "655360")))
+        assert (rdd1.count () === ELEMENTS3)
+        assert (rdd2.count () === ELEMENTS3)
+    }
+
+    case class MyInputSplit (file: String, start: Long, end: Long) extends FileSplit
+    {
+        override def getStart (): Long = start
+        override def getPath (): Path = new Path (file)
+        override def getLength (): Long = end - start
+        override def getLocations (): Array[String] = Array (file)
+    }
+
+    case class MyTaskAttemptContext () extends TaskAttemptContext
+    {
+        val task = new org.apache.hadoop.mapred.TaskID ("test case", 1, org.apache.hadoop.mapreduce.TaskType.JOB_SETUP, 1)
+        override def getTaskAttemptID () = new org.apache.hadoop.mapred.TaskAttemptID (task, 1)
+
+        // Members declared in org.apache.hadoop.mapreduce.JobContext
+        def getArchiveClassPaths(): Array[org.apache.hadoop.fs.Path] = ???
+        def getArchiveTimestamps(): Array[String] = ???
+        def getCacheArchives(): Array[java.net.URI] = ???
+        def getCacheFiles(): Array[java.net.URI] = ???
+        def getCombinerClass(): Class[_ <: org.apache.hadoop.mapreduce.Reducer[_, _, _, _]] = ???
+        def getConfiguration(): org.apache.hadoop.conf.Configuration = new org.apache.hadoop.conf.Configuration ()
+        def getCredentials(): org.apache.hadoop.security.Credentials = ???
+        def getFileClassPaths(): Array[org.apache.hadoop.fs.Path] = ???
+        def getFileTimestamps(): Array[String] = ???
+        def getGroupingComparator(): org.apache.hadoop.io.RawComparator[_] = ???
+        def getInputFormatClass(): Class[_ <: org.apache.hadoop.mapreduce.InputFormat[_, _]] = ???
+        def getJar(): String = ???
+        def getJobID(): org.apache.hadoop.mapreduce.JobID = ???
+        def getJobName(): String = ???
+        def getJobSetupCleanupNeeded(): Boolean = ???
+        def getLocalCacheArchives(): Array[org.apache.hadoop.fs.Path] = ???
+        def getLocalCacheFiles(): Array[org.apache.hadoop.fs.Path] = ???
+        def getMapOutputKeyClass(): Class[_] = ???
+        def getMapOutputValueClass(): Class[_] = ???
+        def getMapperClass(): Class[_ <: org.apache.hadoop.mapreduce.Mapper[_, _, _, _]] = ???
+        def getMaxMapAttempts(): Int = ???
+        def getMaxReduceAttempts(): Int = ???
+        def getNumReduceTasks(): Int = ???
+        def getOutputFormatClass(): Class[_ <: org.apache.hadoop.mapreduce.OutputFormat[_, _]] = ???
+        def getOutputKeyClass(): Class[_] = ???
+        def getOutputValueClass(): Class[_] = ???
+        def getPartitionerClass(): Class[_ <: org.apache.hadoop.mapreduce.Partitioner[_, _]] = ???
+        def getProfileEnabled(): Boolean = ???
+        def getProfileParams(): String = ???
+        def getProfileTaskRange(x$1: Boolean): org.apache.hadoop.conf.Configuration.IntegerRanges = ???
+        def getReducerClass(): Class[_ <: org.apache.hadoop.mapreduce.Reducer[_, _, _, _]] = ???
+        def getSortComparator(): org.apache.hadoop.io.RawComparator[_] = ???
+        def getSymlink(): Boolean = ???
+        def getTaskCleanupNeeded(): Boolean = ???
+        def getUser(): String = ???
+        def getWorkingDirectory(): org.apache.hadoop.fs.Path = ???
+
+        // Members declared in org.apache.hadoop.util.Progressable
+        def progress(): Unit = ???
+
+        // Members declared in org.apache.hadoop.mapreduce.TaskAttemptContext
+        def getCounter(x$1: String,x$2: String): org.apache.hadoop.mapreduce.Counter = ???
+        def getCounter(x$1: Enum[_]): org.apache.hadoop.mapreduce.Counter = ???
+        def getProgress(): Float = ???
+        def getStatus(): String = ???
+        def setStatus(x$1: String): Unit = ???
+    }
+
+    test ("Read beyond 2GB")
+    {
+        context ⇒
+        val reader = new CIMRecordReader ()
+        val split = MyInputSplit (FILENAME4, OFFSET4, OFFSET4 + SIZE4)
+        val context = MyTaskAttemptContext ()
+        reader.initialize (split, context)
+        var count = 0
+        while (reader.nextKeyValue)
+            count += 1
+        reader.close ()
+        assert (count === PARTIAL4)
+
     }
 }

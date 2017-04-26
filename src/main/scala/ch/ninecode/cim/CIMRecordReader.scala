@@ -32,7 +32,7 @@ class CIMRecordReader extends RecordReader[String, Element]
         val in = fs.open (file)
 
         val end = start + bytes
-        val available = in.available
+        val available = fs.getFileStatus (file).getLen ()
         val extra = if (available > end) Math.min (CHIM.OVERREAD, (available - end).toInt) else 0
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
         val size = (bytes + extra).toInt
