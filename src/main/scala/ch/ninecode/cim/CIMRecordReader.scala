@@ -33,7 +33,7 @@ class CIMRecordReader extends RecordReader[String, Element]
 
         val end = start + bytes
         val available = fs.getFileStatus (file).getLen ()
-        val extra = if (available > end) Math.min (CHIM.OVERREAD, (available - end).toInt) else 0
+        val extra = if (available > end) Math.min (CHIM.OVERREAD.toLong, available - end) else 0L
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
         val size = (bytes + extra).toInt
         val buffer = new Array[Byte] (size)
@@ -64,7 +64,7 @@ class CIMRecordReader extends RecordReader[String, Element]
                 low
 
         val xml = Text.decode (buffer, first, size - first)
-        val len = if (0 == extra) xml.length else Text.decode (buffer, first, size - first - extra).length
+        val len = if (0 == extra) xml.length else Text.decode (buffer, first, (size - first - extra).toInt).length
 
         // ToDo: using first here is approximate,
         // the real character count would require reading the complete file
