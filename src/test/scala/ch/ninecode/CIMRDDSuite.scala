@@ -42,7 +42,7 @@ class CIMRDDSuite extends FunSuite
     // grep -P "^[\t]<cim" NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | wc
     val ELEMENTS1 = 22312
     val ELEMENTS2 = 36927
-    val ELEMENTS3 = 645495
+    val ELEMENTS3 = 679473
 
     // number of elements in a 1MB chunk
     // tail --bytes=+3145728 NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
