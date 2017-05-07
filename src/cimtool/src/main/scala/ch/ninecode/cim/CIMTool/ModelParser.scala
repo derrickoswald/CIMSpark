@@ -233,21 +233,58 @@ object ModelParser
   
     def main(args : Array[String])
     {
-        var parser = ModelParser (DatabaseBuilder.open (new File ("private_data/iec61970cim17v16_iec61968cim13v10_iec62325cim03v14.eap")))
+        val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/iec61970cim17v16_iec61968cim13v10_iec62325cim03v14.eap")))
         parser.run
         val dir = new File ("target/model/")
         dir.mkdir
-        var js = JavaScript (parser);
+        val files = scala.collection.mutable.SortedSet[String]()
+        val switch_cases = new StringBuilder ()
+        switch_cases.append ("""                switch (element)
+            |                {
+            |""".stripMargin)
         for (pkg <- parser.packages)
         {
-            var p = pkg._2
-            var s = js.asText (p)
+            val p = pkg._2
+            val js = JavaScript (parser, p);
+            val s = js.asText ()
             if (s.trim != "")
             {
+                files.add (p.name);
+                for (provided <- js.parses)
+                {
+                    switch_cases.append ("""
+                        |                    case """".stripMargin)
+                    switch_cases.append (provided._1)
+                    switch_cases.append ("""":
+                        |                        """.stripMargin)
+                    switch_cases.append (p.name)
+                    switch_cases.append (".")
+                    switch_cases.append (provided._2)
+                    switch_cases.append (""" (subcontext, guts);
+                        |                        break;
+                        |""".stripMargin)
+                }
                 println ("target/model/" + p.name + ".js:")
                 Files.write (Paths.get ("target/model/" + p.name + ".js"), s.getBytes (StandardCharsets.UTF_8))
             }
         }
+        switch_cases.append ("""
+            |
+            |                    default:
+            |                        if (context.parsed.ignored < 3)
+            |                            if ("undefined" != typeof (console))
+            |                                console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
+            |                            else
+            |                                print ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
+            |                        context.parsed.ignored++;
+            |                        break;
+            |                }
+            |""".stripMargin)
+        Files.write (Paths.get ("target/switch_cases.js"), switch_cases.toString.getBytes (StandardCharsets.UTF_8))
+        val decl = """    ["model/base", """"  + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
+        val fn = """    function (base, """ + files.mkString (""", """) + """)"""
+        Files.write (Paths.get ("target/cim_header.js"), (decl + "\n" + fn).getBytes (StandardCharsets.UTF_8))
+
 //        println ("Packages: " + parser.packages.size)
 //        parser.showPackages
 //        println ("Classes: " + parser.classes.size)
