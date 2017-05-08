@@ -55,6 +55,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                |""".stripMargin)
             for (attribute <- attributes)
             {
+                s.append (JavaDoc (attribute.notes, 12).asText ())
                 val n = attribute.name.replace ("""/""", """\/""")
                 s.append ("""            obj["""");
                 s.append (attribute.name);
@@ -73,6 +74,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             for (role <- roles)
                 if (role.upper == 1)
                 {
+                    s.append (JavaDoc (role.note, 12).asText ())
                     val n = role.name.replace ("""/""", """\/""")
                     s.append ("""            obj["""");
                     s.append (role.name);
@@ -83,7 +85,19 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     s.append ("""\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
                     |""".stripMargin)
                 }
-
+            // special handling for mRID in IdentifiedObject
+            if (cls._2.name == "IdentifiedObject")
+                s.append ("""            if (null == obj.mRID)
+                |                obj.mRID = obj.id;
+                |            if ((null != obj.mRID) && (obj.id != obj.mRID))
+                |            {
+                |                if ("undefined" != typeof (console))
+                |                    console.log ("***Warning*** rdf:ID != mRID [" + obj.id + " != " + obj.mRID + "]");
+                |                else
+                |                    print ("***Warning*** rdf:ID != mRID [" + obj.id + " != " + obj.mRID + "]");
+                |                obj.id = obj.mRID;
+                |            }
+                |""".stripMargin);
             s.append ("""            bucket = context.parsed.""")
             s.append (name)
             s.append (""";""")
