@@ -56,6 +56,7 @@ case class Attribute (
     pkg: Package,
     cls: Class,
     notes: String,
+    typ: String,
     classifier: Class,
     dflt: String)
 
@@ -152,7 +153,7 @@ case class ModelParser (db: Database)
             {
                 val classifier = if (row.hasClassifier) classes.getOrElse (row.getClassifier, null) else null
                 val dflt = if (row.hasDefault) row.getDefault else null
-                val attribute = Attribute (row.getXUID, row.getName, cls.pkg, cls, row.getNotes, classifier, dflt)
+                val attribute = Attribute (row.getXUID, row.getName, cls.pkg, cls, row.getNotes, row.getType, classifier, dflt)
                 val id = row.getObjectID
                 if (attributes.contains (id))
                     attributes.put (id, attributes(id) :+ attribute)

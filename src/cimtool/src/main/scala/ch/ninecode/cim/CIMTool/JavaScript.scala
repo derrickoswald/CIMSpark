@@ -59,7 +59,15 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 val n = attribute.name.replace ("""/""", """\/""")
                 s.append ("""            obj["""");
                 s.append (attribute.name);
-                s.append (""""] = base.parse_element (/<cim:""");
+                s.append (""""] = """)
+                s.append (attribute.typ match
+                {
+                    case "Boolean" => "base.to_boolean ("
+                    case "DateTime" => "base.to_datetime ("
+                    case "Float" => "base.to_float ("
+                    case _ => ""
+                })
+                s.append ("""base.parse_element (/<cim:""");
                 s.append (cls._2.name);
                 s.append (""".""");
                 s.append (n);
@@ -67,7 +75,15 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 s.append (cls._2.name);
                 s.append (""".""");
                 s.append (n);
-                s.append (""">/g, sub, context, true);
+                s.append (""">/g, sub, context, true)""")
+                s.append (attribute.typ match
+                {
+                    case "Boolean" => ")"
+                    case "DateTime" => ")"
+                    case "Float" => ")"
+                    case _ => ""
+                })
+                s.append (""";
                 |""".stripMargin)
             }
             val roles = parser.roles.filter(_.src == cls._2)

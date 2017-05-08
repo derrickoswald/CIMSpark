@@ -66,4 +66,5 @@ case class Row (fields: Map[String,Object])
     def getSourceRoleNote    = getString ("SourceRoleNote")
     def getSourceCard        = getString ("SourceCard")
     def getSourceIsAggregate = 0 != getInt ("SourceIsAggregate")
+    def getType              = getString ("Type")
 }
