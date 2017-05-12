@@ -2,6 +2,7 @@ package ch.ninecode.cim.CIMTool
 
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
+import scala.collection.mutable.SortedSet
 
 import java.io.File
 import java.nio.file.{Paths, Files}
@@ -89,12 +90,36 @@ case class Role (
     override def toString: String = "" + name + " from " + src.name + " to " + dst.name
 }
 
+case class Domain (
+
+    xuid: String,
+
+    name: String,
+
+    note: String,
+
+    stereotype: String,
+
+    enumeration: scala.collection.immutable.Set[String],
+
+    value: String,
+
+    unit: String,
+
+    multiplier: String,
+
+    denominatorUnit: String,
+
+    denominatorMultiplier: String)
+
+
 case class ModelParser (db: Database)
 {
     val packages = Map[Int,Package]()
     val classes = Map[Int,Class]()
     val attributes = Map[Int,List[Attribute]]()
     val roles = Set[Role]()
+    val domains = Set[Domain]()
 
     def getPackageTable = db.getTable ("t_package")
     def getObjectTable = db.getTable ("t_object")
@@ -148,20 +173,20 @@ case class ModelParser (db: Database)
         while (it.hasNext ())
         {
             val row = new Row (it.next ())
-            val cls = classes.getOrElse (row.getObjectID, null)
+            val cls_id = row.getObjectID
+            val cls = classes.getOrElse (cls_id, null)
             if (null != cls)
             {
                 val classifier = if (row.hasClassifier) classes.getOrElse (row.getClassifier, null) else null
                 val dflt = if (row.hasDefault) row.getDefault else null
                 val attribute = Attribute (row.getXUID, row.getName, cls.pkg, cls, row.getNotes, row.getType, classifier, dflt)
-                val id = row.getObjectID
-                if (attributes.contains (id))
-                    attributes.put (id, attributes(id) :+ attribute)
+                if (attributes.contains (cls_id))
+                    attributes.put (cls_id, attributes(cls_id) :+ attribute)
                 else
-                    attributes.put (id, List (attribute))
+                    attributes.put (cls_id, List (attribute))
             }
             else
-                System.out.println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + row.getObjectID);
+                System.out.println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id);
         }
     }
 
@@ -191,6 +216,49 @@ case class ModelParser (db: Database)
                     }
                 }
             }
+        }
+    }
+
+    def extractDomains
+    {
+        packages.find (_._2.name == "Domain") match
+        {
+            case Some (pkg) =>
+                val it = getObjectTable.iterator ()
+                while (it.hasNext ())
+                {
+                    val row = new Row (it.next ())
+                    if (row.getObjectType.equals ("Class") && (row.getPackageID == pkg._1))
+                    {
+                        val cls_id = row.getObjectID
+                        val xuid = row.getXUID
+                        val name = row.getName
+                        val note = row.getNote
+                        val stereotype = if (row.hasStereotype) row.getStereotype else null
+                        val noenum = scala.collection.immutable.Set[String]()
+                        val domain = stereotype match
+                        {
+                            case "Primitive" =>
+                                Domain (xuid, name, note, stereotype, noenum, "", "", "", "", "")
+                            case "CIMDatatype" =>
+                                val details = attributes(cls_id)
+                                val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                                val unit = details.find (_.name == "unit") match { case Some(attribute) => attribute.dflt case None => null }
+                                val multiplier = details.find (_.name == "multiplier") match { case Some(attribute) => attribute.dflt case None => null }
+                                val denominatorUnit = details.find (_.name == "denominatorUnit") match { case Some(attribute) => attribute.dflt case None => null }
+                                val denominatorMultiplier = details.find (_.name == "denominatorMultiplier") match { case Some(attribute) => attribute.dflt case None => null }
+                                Domain (xuid, name, note, stereotype, noenum, value, unit, multiplier, denominatorUnit, denominatorMultiplier)
+                            case "enumeration" =>
+                                val enumeration = attributes(cls_id).map (_.name).toSet
+                                Domain (xuid, name, note, stereotype, enumeration, "", "", "", "", "")
+                            case _ =>
+                                null
+                        }
+                        if (null != domain)
+                            domains.add (domain)
+                    }
+                }
+            case None =>
         }
     }
 
@@ -226,6 +294,7 @@ case class ModelParser (db: Database)
         extractClasses
         extractAttributes
         extractAssociations
+        extractDomains
     }
 }
 
@@ -240,25 +309,6 @@ object ModelParser
             "iec61970cim17v16_iec61968cim13v10_iec62325cim03v14.eap"
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))
         parser.run
-        val dir = new File ("target/model/")
-        dir.mkdir
-        val files = scala.collection.mutable.SortedSet[String]()
-        for (pkg <- parser.packages)
-        {
-            val p = pkg._2
-            val js = JavaScript (parser, p);
-            val s = js.asText ()
-            if (s.trim != "")
-            {
-                files.add (p.name);
-                println ("target/model/" + p.name + ".js:")
-                Files.write (Paths.get ("target/model/" + p.name + ".js"), s.getBytes (StandardCharsets.UTF_8))
-            }
-        }
-        val decl = """    ["model/base", """"  + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
-        val fn = """    function (base, """ + files.mkString (""", """) + """)"""
-        Files.write (Paths.get ("target/cim_header.js"), (decl + "\n" + fn).getBytes (StandardCharsets.UTF_8))
-
 //        println ("Packages: " + parser.packages.size)
 //        parser.showPackages
 //        println ("Classes: " + parser.classes.size)
@@ -267,5 +317,57 @@ object ModelParser
 //        parser.showAttributes
 //        println ("Roles: " + parser.roles.size)
 //        parser.showRoles
+
+        val dir = new File ("target/model/")
+        dir.mkdir
+        if (true)
+        {
+            implicit val ordering = new Ordering[(String, Int)]
+            {
+               def compare (a: (String, Int), b: (String, Int)) = a._1.compareTo (b._1)
+            }
+            val packages = SortedSet[(String, Int)]()
+            for (pkg <- parser.packages)
+            {
+                val scala = Scala (parser, pkg._2);
+                packages.add ((scala.register, pkg._1))
+            }
+            val register = new StringBuilder ()
+            for (q <- packages)
+            {
+                val p = parser.packages (q._2)
+                val scala = Scala (parser, p);
+                val s = scala.asText ()
+                if (s.trim != "")
+                {
+                    println ("target/model/" + p.name + ".scala:")
+                    Files.write (Paths.get ("target/model/" + p.name + ".scala"), s.getBytes (StandardCharsets.UTF_8))
+                    register.append ("""    """)
+                    register.append (scala.register)
+                    register.append (""".register
+                    |""".stripMargin)
+                }
+            }
+            Files.write (Paths.get ("target/chim_register.scala"), register.toString.getBytes (StandardCharsets.UTF_8))
+        }
+        else
+        {
+            val files = scala.collection.mutable.SortedSet[String]()
+            for (pkg <- parser.packages)
+            {
+                val p = pkg._2
+                val js = JavaScript (parser, p);
+                val s = js.asText ()
+                if (s.trim != "")
+                {
+                    files.add (p.name);
+                    println ("target/model/" + p.name + ".js:")
+                    Files.write (Paths.get ("target/model/" + p.name + ".js"), s.getBytes (StandardCharsets.UTF_8))
+                }
+            }
+            val decl = """    ["model/base", """"  + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
+            val fn = """    function (base, """ + files.mkString (""", """) + """)"""
+            Files.write (Paths.get ("target/cim_header.js"), (decl + "\n" + fn).getBytes (StandardCharsets.UTF_8))
+        }
     }
 }
