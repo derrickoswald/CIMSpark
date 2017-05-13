@@ -6,7 +6,7 @@ Sys.setenv (YARN_CONF_DIR="/opt/hadoop/etc/hadoop")
 Sys.setenv (SPARK_HOME="/opt/spark")
 Sys.setenv (LANG="en_US.utf8")
 library (SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session (sparkJars = c ("/disktemp/transfer/CIMReader-2.11-2.0.2-1.9.0.jar"), sparkEnvir = list (spark.driver.memory="16g", spark.executor.memory="16g", spark.driver.maxResultSize="2g", spark.sql.warehouse.dir="/home/nis03/"))
+sparkR.session (sparkJars = c ("/disktemp/transfer/CIMReader-2.11-2.0.2-2.0.0.jar"), sparkEnvir = list (spark.driver.memory="16g", spark.executor.memory="16g", spark.driver.maxResultSize="2g", spark.sql.warehouse.dir="/home/nis03/"))
 sparkR.session.setLogLevel ("WARN")
 
 # record the start time

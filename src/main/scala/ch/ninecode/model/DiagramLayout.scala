@@ -4,18 +4,48 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
 
-/*
- * Package: DiagramLayout
+/**
+ * This package describes diagram layout.
+ * This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 
+/**
+ * The diagram being exchanged.
+ * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
+ */
 case class Diagram
 (
+
     override val sup: IdentifiedObject,
+
+    /**
+     * Coordinate system orientation of the diagram.
+     */
     val orientation: String,
+
+    /**
+     * X coordinate of the first corner of the initial view.
+     */
     val x1InitialView: Double,
+
+    /**
+     * X coordinate of the second corner of the initial view.
+     */
     val x2InitialView: Double,
+
+    /**
+     * Y coordinate of the first corner of the initial view.
+     */
     val y1InitialView: Double,
+
+    /**
+     * Y coordinate of the second corner of the initial view.
+     */
     val y2InitialView: Double,
+
+    /**
+     * A Diagram may have a DiagramStyle.
+     */
     val DiagramStyle: String
 )
 extends
@@ -23,7 +53,7 @@ extends
 {
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Diagram]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Diagram]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -38,6 +68,7 @@ object Diagram
 extends
     Parseable[Diagram]
 {
+    val sup = IdentifiedObject.parse _
     val orientation = parse_attribute (attribute ("""Diagram.orientation"""))_
     val x1InitialView = parse_element (element ("""Diagram.x1InitialView"""))_
     val x2InitialView = parse_element (element ("""Diagram.x2InitialView"""))_
@@ -46,39 +77,83 @@ extends
     val DiagramStyle = parse_attribute (attribute ("""Diagram.DiagramStyle"""))_
     def parse (context: Context): Diagram =
     {
-        return (
-            Diagram
-            (
-                IdentifiedObject.parse (context),
-                orientation (context),
-                toDouble (x1InitialView (context), context),
-                toDouble (x2InitialView (context), context),
-                toDouble (y1InitialView (context), context),
-                toDouble (y2InitialView (context), context),
-                DiagramStyle (context)
-            )
+        Diagram(
+            sup (context),
+            orientation (context),
+            toDouble (x1InitialView (context), context),
+            toDouble (x2InitialView (context), context),
+            toDouble (y1InitialView (context), context),
+            toDouble (y2InitialView (context), context),
+            DiagramStyle (context)
         )
     }
 }
 
+/**
+ * An object that defines one or more points in a given space.
+ * This object can be associated with anything that specializes IdentifiedObject. For single line diagrams such objects typically include such items as analog values, breakers, disconnectors, power transformers, and transmission lines.
+ */
 case class DiagramObject
 (
+
     override val sup: IdentifiedObject,
+
+    /**
+     * The drawing order of this element.
+     * The higher the number, the later the element is drawn in sequence. This is used to ensure that elements that overlap are rendered in the correct order.
+     */
     val drawingOrder: Int,
+
+    /**
+     * Defines whether or not the diagram objects points define the boundaries of a polygon or the routing of a polyline.
+     * If this value is true then a receiving application should consider the first and last points to be connected.
+     */
     val isPolygon: Boolean,
+
+    /**
+     * The offset in the X direction.
+     * This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
+     */
     val offsetX: Double,
+
+    /**
+     * The offset in the Y direction.
+     * This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
+     */
     val offsetY: Double,
+
+    /**
+     * Sets the angle of rotation of the diagram object.
+     * Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.
+     */
     val rotation: Double,
+
+    /**
+     * A diagram object is part of a diagram.
+     */
     val Diagram: String,
+
+    /**
+     * A diagram object has a style associated that provides a reference for the style used in the originating system.
+     */
     val DiagramObjectStyle: String,
-    val _IdentifiedObject: String  // IdentifiedObject not allowed here
+
+    /**
+     * The domain object to which this diagram object is associated.
+     */
+    val IdentifiedObject_attr: String,
+
+    /**
+     * A diagram object can be part of multiple visibility layers.
+     */
+    val VisibilityLayers: List[String]
 )
 extends
     Element
 {
-    def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, null, null) }
+    def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, null, null, List()) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObject]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObject]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -93,6 +168,7 @@ object DiagramObject
 extends
     Parseable[DiagramObject]
 {
+    val sup = IdentifiedObject.parse _
     val drawingOrder = parse_element (element ("""DiagramObject.drawingOrder"""))_
     val isPolygon = parse_element (element ("""DiagramObject.isPolygon"""))_
     val offsetX = parse_element (element ("""DiagramObject.offsetX"""))_
@@ -100,36 +176,39 @@ extends
     val rotation = parse_element (element ("""DiagramObject.rotation"""))_
     val Diagram = parse_attribute (attribute ("""DiagramObject.Diagram"""))_
     val DiagramObjectStyle = parse_attribute (attribute ("""DiagramObject.DiagramObjectStyle"""))_
-    val _IdentifiedObject = parse_attribute (attribute ("""DiagramObject._IdentifiedObject"""))_
+    val IdentifiedObject_attr = parse_attribute (attribute ("""DiagramObject.IdentifiedObject"""))_
+    val VisibilityLayers = parse_attributes (attribute ("""DiagramObject.VisibilityLayers"""))_
     def parse (context: Context): DiagramObject =
     {
-        return (
-            DiagramObject
-            (
-                IdentifiedObject.parse (context),
-                toInteger (drawingOrder (context), context),
-                toBoolean (isPolygon (context), context),
-                toDouble (offsetX (context), context),
-                toDouble (offsetY (context), context),
-                toDouble (rotation (context), context),
-                Diagram (context),
-                DiagramObjectStyle (context),
-                _IdentifiedObject (context)
-            )
+        DiagramObject(
+            sup (context),
+            toInteger (drawingOrder (context), context),
+            toBoolean (isPolygon (context), context),
+            toDouble (offsetX (context), context),
+            toDouble (offsetY (context), context),
+            toDouble (rotation (context), context),
+            Diagram (context),
+            DiagramObjectStyle (context),
+            IdentifiedObject_attr (context),
+            VisibilityLayers (context)
         )
     }
 }
 
+/**
+ * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
+ */
 case class DiagramObjectGluePoint
 (
-    override val sup: Element
+
+    override val sup: BasicElement
 )
 extends
     Element
 {
     def this () = { this (null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectGluePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectGluePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -144,25 +223,52 @@ object DiagramObjectGluePoint
 extends
     Parseable[DiagramObjectGluePoint]
 {
+    val sup = BasicElement.parse _
     def parse (context: Context): DiagramObjectGluePoint =
     {
-        return (
-            DiagramObjectGluePoint
-            (
-                BasicElement.parse (context)
-            )
+        DiagramObjectGluePoint(
+            sup (context)
         )
     }
 }
 
+/**
+ * A point in a given space defined by 3 coordinates and associated to a diagram object.
+ * The coordinates may be positive or negative as the origin does not have to be in the corner of a diagram.
+ */
 case class DiagramObjectPoint
 (
+
     override val sup: BasicElement,
+
+    /**
+     * The sequence position of the point, used for defining the order of points for diagram objects acting as a polyline or polygon with more than one point.
+     */
     val sequenceNumber: Int,
+
+    /**
+     * The X coordinate of this point.
+     */
     val xPosition: Double,
+
+    /**
+     * The Y coordinate of this point.
+     */
     val yPosition: Double,
+
+    /**
+     * The Z coordinate of this point.
+     */
     val zPosition: Double,
+
+    /**
+     * The diagram object with which the points are associated.
+     */
     val DiagramObject: String,
+
+    /**
+     * The 'glue' point to which this point is associated.
+     */
     val DiagramObjectGluePoint: String
 )
 extends
@@ -170,7 +276,7 @@ extends
 {
     def this () = { this (null, 0, 0.0, 0.0, 0.0, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectPoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectPoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -185,6 +291,7 @@ object DiagramObjectPoint
 extends
     Parseable[DiagramObjectPoint]
 {
+    val sup = BasicElement.parse _
     val sequenceNumber = parse_element (element ("""DiagramObjectPoint.sequenceNumber"""))_
     val xPosition = parse_element (element ("""DiagramObjectPoint.xPosition"""))_
     val yPosition = parse_element (element ("""DiagramObjectPoint.yPosition"""))_
@@ -193,23 +300,25 @@ extends
     val DiagramObjectGluePoint = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObjectGluePoint"""))_
     def parse (context: Context): DiagramObjectPoint =
     {
-        return (
-            DiagramObjectPoint
-            (
-                BasicElement.parse (context),
-                toInteger (sequenceNumber (context), context),
-                toDouble (xPosition (context), context),
-                toDouble (yPosition (context), context),
-                toDouble (zPosition (context), context),
-                DiagramObject (context),
-                DiagramObjectGluePoint (context)
-            )
+        DiagramObjectPoint(
+            sup (context),
+            toInteger (sequenceNumber (context), context),
+            toDouble (xPosition (context), context),
+            toDouble (yPosition (context), context),
+            toDouble (zPosition (context), context),
+            DiagramObject (context),
+            DiagramObjectGluePoint (context)
         )
     }
 }
 
+/**
+ * A reference to a style used by the originating system for a diagram object.
+ * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
+ */
 case class DiagramObjectStyle
 (
+
     override val sup: IdentifiedObject
 )
 extends
@@ -217,7 +326,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectStyle]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectStyle]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -232,19 +341,22 @@ object DiagramObjectStyle
 extends
     Parseable[DiagramObjectStyle]
 {
+    val sup = IdentifiedObject.parse _
     def parse (context: Context): DiagramObjectStyle =
     {
-        return (
-            DiagramObjectStyle
-            (
-                IdentifiedObject.parse (context)
-            )
+        DiagramObjectStyle(
+            sup (context)
         )
     }
 }
 
+/**
+ * The diagram style refer to a style used by the originating system for a diagram.
+ * A diagram style describes information such as schematic, geographic, bus-branch etc.
+ */
 case class DiagramStyle
 (
+
     override val sup: IdentifiedObject
 )
 extends
@@ -252,7 +364,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramStyle]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[DiagramStyle]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -267,20 +379,79 @@ object DiagramStyle
 extends
     Parseable[DiagramStyle]
 {
+    val sup = IdentifiedObject.parse _
     def parse (context: Context): DiagramStyle =
     {
-        return (
-            DiagramStyle
-            (
-                IdentifiedObject.parse (context)
-            )
+        DiagramStyle(
+            sup (context)
         )
     }
 }
 
+/**
+ * The orientation of the coordinate system with respect to top, left, and the coordinate number system.
+ */
+case class OrientationKind
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * For 2D diagrams, a negative orientation gives the left-hand orientation (favoured by computer graphics displays) with X values increasing from left to right and Y values increasing from top to bottom.
+     * This is also known as a left hand orientation.
+     */
+    val negative: String,
+
+    /**
+     * For 2D diagrams, a positive orientation will result in X values increasing from left to right and Y values increasing from bottom to top.
+     * This is also known as a right hand orientation.
+     */
+    val positive: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[OrientationKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object OrientationKind
+extends
+    Parseable[OrientationKind]
+{
+    val sup = BasicElement.parse _
+    val negative = parse_attribute (attribute ("""OrientationKind.negative"""))_
+    val positive = parse_attribute (attribute ("""OrientationKind.positive"""))_
+    def parse (context: Context): OrientationKind =
+    {
+        OrientationKind(
+            sup (context),
+            negative (context),
+            positive (context)
+        )
+    }
+}
+
+/**
+ * A diagram object for placing free-text or text derived from an associated domain object.
+ */
 case class TextDiagramObject
 (
+
     override val sup: DiagramObject,
+
+    /**
+     * The text that is displayed by this text diagram object.
+     */
     val text: String
 )
 extends
@@ -288,7 +459,7 @@ extends
 {
     def this () = { this (null, null) }
     def DiagramObject: DiagramObject = sup.asInstanceOf[DiagramObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TextDiagramObject]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TextDiagramObject]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -303,22 +474,30 @@ object TextDiagramObject
 extends
     Parseable[TextDiagramObject]
 {
+    val sup = DiagramObject.parse _
     val text = parse_element (element ("""TextDiagramObject.text"""))_
     def parse (context: Context): TextDiagramObject =
     {
-        return (
-            TextDiagramObject
-            (
-                DiagramObject.parse (context),
-                text (context)
-            )
+        TextDiagramObject(
+            sup (context),
+            text (context)
         )
     }
 }
 
+/**
+ * Layers are typically used for grouping diagram objects according to themes and scales.
+ * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
+ */
 case class VisibilityLayer
 (
+
     override val sup: IdentifiedObject,
+
+    /**
+     * The drawing order for this layer.
+     * The higher the number, the later the layer and the objects within it are rendered.
+     */
     val drawingOrder: Int
 )
 extends
@@ -326,7 +505,7 @@ extends
 {
     def this () = { this (null, 0) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[VisibilityLayer]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[VisibilityLayer]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -341,30 +520,29 @@ object VisibilityLayer
 extends
     Parseable[VisibilityLayer]
 {
+    val sup = IdentifiedObject.parse _
     val drawingOrder = parse_element (element ("""VisibilityLayer.drawingOrder"""))_
     def parse (context: Context): VisibilityLayer =
     {
-        return (
-            VisibilityLayer
-            (
-                IdentifiedObject.parse (context),
-                toInteger (drawingOrder (context), context)
-            )
+        VisibilityLayer(
+            sup (context),
+            toInteger (drawingOrder (context), context)
         )
     }
 }
 
-object DiagramLayout
+object _DiagramLayout
 {
     def register: Unit =
     {
-          Diagram.register
-          DiagramObject.register
-          DiagramObjectGluePoint.register
-          DiagramObjectPoint.register
-          DiagramObjectStyle.register
-          DiagramStyle.register
-          TextDiagramObject.register
-          VisibilityLayer.register
+        Diagram.register
+        DiagramObject.register
+        DiagramObjectGluePoint.register
+        DiagramObjectPoint.register
+        DiagramObjectStyle.register
+        DiagramStyle.register
+        OrientationKind.register
+        TextDiagramObject.register
+        VisibilityLayer.register
     }
 }

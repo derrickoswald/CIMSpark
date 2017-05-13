@@ -50,17 +50,18 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                         nis.WorkLocation.Location.IdentifiedObject.name       // name, e.g. MST###
                     )
                     val location = Location (
-                        id,
-                        isu.WorkLocation.Location.direction,
-                        isu.WorkLocation.Location.geoInfoReference,
-                        nis.WorkLocation.Location.typ,               // e.g. geographic
-                        nis.WorkLocation.Location.CoordinateSystem,  // e.g. wgs_84
-                        isu.WorkLocation.Location.electronicAddress,
-                        isu.WorkLocation.Location.mainAddress,
-                        isu.WorkLocation.Location.phone1,
-                        isu.WorkLocation.Location.phone2,
-                        nis.WorkLocation.Location.secondaryAddress, // take any NIS address it might have
-                        isu.WorkLocation.Location.status
+                        sup = id,
+                        direction = isu.WorkLocation.Location.direction,
+                        electronicAddress = isu.WorkLocation.Location.electronicAddress,
+                        geoInfoReference = isu.WorkLocation.Location.geoInfoReference,
+                        mainAddress = isu.WorkLocation.Location.mainAddress,
+                        phone1 = isu.WorkLocation.Location.phone1,
+                        phone2 = isu.WorkLocation.Location.phone2,
+                        secondaryAddress = nis.WorkLocation.Location.secondaryAddress, // take any NIS address it might have
+                        status = isu.WorkLocation.Location.status,
+                        typ = nis.WorkLocation.Location.typ,               // e.g. geographic
+                        Measurements = nis.WorkLocation.Location.Measurements,
+                        CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem  // e.g. wgs_84
                     )
                     val worklocation = WorkLocation (
                         location,
@@ -118,13 +119,16 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
             // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
             case (Some (x)) ⇒
                 UserAttribute (
-                    BasicElement (null, a._1.id),
-                    x._1.id,
-                    a._1.sequenceNumber,
-                    a._1.PropertySpecification,
-                    a._1.RatingSpecification,
-                    a._1.Transaction,
-                    a._1.value)
+                    sup = BasicElement (null, a._1.id),
+                    name = x._1.id,
+                    sequenceNumber = a._1.sequenceNumber,
+                    value = a._1.value,
+                    Transaction = a._1.Transaction,
+                    RatingSpecification = a._1.RatingSpecification,
+                    ProcedureDataSets = a._1.ProcedureDataSets,
+                    PropertySpecification = a._1.PropertySpecification
+                    )
+
             // default is to keep the original UserAttribute where there isn't a match
             case (None) ⇒ a._1
         }
@@ -178,7 +182,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
 
         // get only the cim:Name objects pertaining to the ServiceLocation join
         val isusl = names.keyBy (_.name).join (locations.keyBy (_.id)).values
-        val nissl = names.keyBy (_.IdentifiedObj).join (locations.keyBy (_.id)).values
+        val nissl = names.keyBy (_.IdentifiedObject).join (locations.keyBy (_.id)).values
 
         // construct a useful intermediate representation of the cim:Name objects
         val pairs = isusl.keyBy (_._1.id).join (nissl.keyBy (_._1.id)).values.map (unbundle)
@@ -217,7 +221,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         session.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
 
         // step 5 and 6, delete the Name objects that are no longer needed
-        val updated_names = names.keyBy (_.IdentifiedObj).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
+        val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
 
         // swap the old Name RDD for the new one
         names.name = null
@@ -288,9 +292,8 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         }
         session.createDataFrame (new_loc).createOrReplaceTempView ("Location")
 
-        // make a union of all new RDD as IdentifiedObject
-        val idobj = updated_names.map (_.IdentifiedObject).
-            union (old_loc.map (_.IdentifiedObject))
+        // new RDD as IdentifiedObject
+        val idobj = old_loc.map (_.IdentifiedObject)
 
         // replace identified objects in IdentifiedObject
         val old_idobj = get ("IdentifiedObject").asInstanceOf[RDD[IdentifiedObject]]

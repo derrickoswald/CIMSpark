@@ -4,24 +4,80 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
 
-/*
- * Package: Wires
+/**
+ * An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks.
+ * This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 
+/**
+ * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
+ * For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
+ */
 case class ACLineSegment
 (
+
     override val sup: Conductor,
+
+    /**
+     * Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
+     */
     val b0ch: Double,
+
+    /**
+     * Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
+     * This value represents the full charging over the full length of the line.
+     */
     val bch: Double,
+
+    /**
+     * Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+     */
     val g0ch: Double,
+
+    /**
+     * Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+     */
     val gch: Double,
-    val r0: Double,
+
+    /**
+     * Positive sequence series resistance of the entire line section.
+     */
     val r: Double,
+
+    /**
+     * Zero sequence series resistance of the entire line section.
+     */
+    val r0: Double,
+
+    /**
+     * Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents.
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val shortCircuitEndTemperature: Double,
-    val x0: Double,
+
+    /**
+     * Positive sequence series reactance of the entire line section.
+     */
     val x: Double,
+
+    /**
+     * Zero sequence series reactance of the entire line section.
+     */
+    val x0: Double,
+
+    /**
+     * Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
+     */
     val LineGroundingAction: String,
+
+    /**
+     * Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
+     */
     val LineJumpingAction: String,
+
+    /**
+     * Per-length impedance of this line segment.
+     */
     val PerLengthImpedance: String
 )
 extends
@@ -29,7 +85,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def Conductor: Conductor = sup.asInstanceOf[Conductor]
-    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -44,45 +100,55 @@ object ACLineSegment
 extends
     Parseable[ACLineSegment]
 {
+    val sup = Conductor.parse _
     val b0ch = parse_element (element ("""ACLineSegment.b0ch"""))_
     val bch = parse_element (element ("""ACLineSegment.bch"""))_
     val g0ch = parse_element (element ("""ACLineSegment.g0ch"""))_
     val gch = parse_element (element ("""ACLineSegment.gch"""))_
-    val r0 = parse_element (element ("""ACLineSegment.r0"""))_
     val r = parse_element (element ("""ACLineSegment.r"""))_
+    val r0 = parse_element (element ("""ACLineSegment.r0"""))_
     val shortCircuitEndTemperature = parse_element (element ("""ACLineSegment.shortCircuitEndTemperature"""))_
-    val x0 = parse_element (element ("""ACLineSegment.x0"""))_
     val x = parse_element (element ("""ACLineSegment.x"""))_
+    val x0 = parse_element (element ("""ACLineSegment.x0"""))_
     val LineGroundingAction = parse_attribute (attribute ("""ACLineSegment.LineGroundingAction"""))_
     val LineJumpingAction = parse_attribute (attribute ("""ACLineSegment.LineJumpingAction"""))_
     val PerLengthImpedance = parse_attribute (attribute ("""ACLineSegment.PerLengthImpedance"""))_
     def parse (context: Context): ACLineSegment =
     {
-        return (
-            ACLineSegment
-            (
-                Conductor.parse (context),
-                toDouble (b0ch (context), context),
-                toDouble (bch (context), context),
-                toDouble (g0ch (context), context),
-                toDouble (gch (context), context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toDouble (shortCircuitEndTemperature (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context),
-                LineGroundingAction (context),
-                LineJumpingAction (context),
-                PerLengthImpedance (context)
-            )
+        ACLineSegment(
+            sup (context),
+            toDouble (b0ch (context), context),
+            toDouble (bch (context), context),
+            toDouble (g0ch (context), context),
+            toDouble (gch (context), context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toDouble (shortCircuitEndTemperature (context), context),
+            toDouble (x (context), context),
+            toDouble (x0 (context), context),
+            LineGroundingAction (context),
+            LineJumpingAction (context),
+            PerLengthImpedance (context)
         )
     }
 }
 
+/**
+ * Represents a single wire of an alternating current line segment.
+ */
 case class ACLineSegmentPhase
 (
+
     override val sup: PowerSystemResource,
+
+    /**
+     * The phase connection of the wire at both ends.
+     */
     val phase: String,
+
+    /**
+     * The line segment to which the phase belongs.
+     */
     val ACLineSegment: String
 )
 extends
@@ -90,7 +156,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegmentPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegmentPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -105,44 +171,139 @@ object ACLineSegmentPhase
 extends
     Parseable[ACLineSegmentPhase]
 {
+    val sup = PowerSystemResource.parse _
     val phase = parse_attribute (attribute ("""ACLineSegmentPhase.phase"""))_
     val ACLineSegment = parse_attribute (attribute ("""ACLineSegmentPhase.ACLineSegment"""))_
     def parse (context: Context): ACLineSegmentPhase =
     {
-        return (
-            ACLineSegmentPhase
-            (
-                PowerSystemResource.parse (context),
-                phase (context),
-                ACLineSegment (context)
-            )
+        ACLineSegmentPhase(
+            sup (context),
+            phase (context),
+            ACLineSegment (context)
         )
     }
 }
 
+/**
+ * A rotating machine whose shaft rotates asynchronously with the electrical field.
+ * Also known as an induction machine with no external connection to the rotor windings, e.g squirrel-cage induction machine.
+ */
 case class AsynchronousMachine
 (
+
     override val sup: RotatingMachine,
-    val AsynchronousMachineType: String,
+
+    /**
+     * Indicates the type of Asynchronous Machine (motor or generator).
+     */
+    val asynchronousMachineType: String,
+
+    /**
+     * Indicates whether the machine is a converter fed drive.
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val converterFedDrive: Boolean,
+
+    /**
+     * Efficiency of the asynchronous machine at nominal operation in percent.
+     * Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909
+     */
     val efficiency: Double,
-    val ialrRatio: Double,
+
+    /**
+     * Ratio of locked-rotor current to the rated current of the motor (Ia/Ir).
+     * Used for short circuit data exchange according to IEC 60909
+     */
+    val iaIrRatio: Double,
+
+    /**
+     * Nameplate data indicates if the machine is 50 or 60 Hz.
+     */
     val nominalFrequency: Double,
+
+    /**
+     * Nameplate data.
+     * Depends on the slip and number of pole pairs.
+     */
     val nominalSpeed: Double,
+
+    /**
+     * Number of pole pairs of stator.
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val polePairNumber: Int,
+
+    /**
+     * Rated mechanical power (Pr in the IEC 60909-0).
+     * Used for short circuit data exchange according to IEC 60909.
+     */
     val ratedMechanicalPower: Double,
+
+    /**
+     * Indicates for converter drive motors if the power can be reversible.
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val reversible: Boolean,
+
+    /**
+     * Damper 1 winding resistance.
+     */
     val rr1: Double,
+
+    /**
+     * Damper 2 winding resistance.
+     */
     val rr2: Double,
+
+    /**
+     * Locked rotor ratio (R/X).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val rxLockedRotorRatio: Double,
+
+    /**
+     * Transient rotor time constant (greater than tppo).
+     */
     val tpo: Double,
+
+    /**
+     * Sub-transient rotor time constant (greater than 0).
+     */
     val tppo: Double,
+
+    /**
+     * Damper 1 winding leakage reactance.
+     */
     val xlr1: Double,
+
+    /**
+     * Damper 2 winding leakage reactance.
+     */
     val xlr2: Double,
+
+    /**
+     * Magnetizing reactance.
+     */
     val xm: Double,
+
+    /**
+     * Transient reactance (unsaturated) (greater than or equal to xpp).
+     */
     val xp: Double,
+
+    /**
+     * Sub-transient reactance (unsaturated) (greather than Xl).
+     */
     val xpp: Double,
+
+    /**
+     * Synchronous reactance (greather than xp).
+     */
     val xs: Double,
+
+    /**
+     * Asynchronous machine dynamics model used to describe dynamic behavior of this asynchronous machine.
+     */
     val AsynchronousMachineDynamics: String
 )
 extends
@@ -150,7 +311,7 @@ extends
 {
     def this () = { this (null, null, false, 0.0, 0.0, 0.0, 0.0, 0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
-    override def copy (): Row = { return (clone ().asInstanceOf[AsynchronousMachine]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[AsynchronousMachine]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -165,62 +326,119 @@ object AsynchronousMachine
 extends
     Parseable[AsynchronousMachine]
 {
-    val AsynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineType"""))_
+    val sup = RotatingMachine.parse _
+    val asynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.asynchronousMachineType"""))_
     val converterFedDrive = parse_element (element ("""AsynchronousMachine.converterFedDrive"""))_
     val efficiency = parse_element (element ("""AsynchronousMachine.efficiency"""))_
-    val ialrRatio = parse_element (element ("""AsynchronousMachine.ialrRatio"""))_
+    val iaIrRatio = parse_element (element ("""AsynchronousMachine.iaIrRatio"""))_
     val nominalFrequency = parse_element (element ("""AsynchronousMachine.nominalFrequency"""))_
     val nominalSpeed = parse_element (element ("""AsynchronousMachine.nominalSpeed"""))_
     val polePairNumber = parse_element (element ("""AsynchronousMachine.polePairNumber"""))_
     val ratedMechanicalPower = parse_element (element ("""AsynchronousMachine.ratedMechanicalPower"""))_
     val reversible = parse_element (element ("""AsynchronousMachine.reversible"""))_
-    val rr1 = parse_element (element ("""AsynchronousMachinerr1.rr1"""))_
-    val rr2 = parse_element (element ("""AsynchronousMachinerr1.rr2"""))_
-    val rxLockedRotorRatio = parse_element (element ("""AsynchronousMachinerr1.rxLockedRotorRatio"""))_
-    val tpo = parse_element (element ("""AsynchronousMachinerr1.tpo"""))_
-    val tppo = parse_element (element ("""AsynchronousMachinerr1.tppo"""))_
-    val xlr1 = parse_element (element ("""AsynchronousMachinerr1.xlr1"""))_
-    val xlr2 = parse_element (element ("""AsynchronousMachinerr1.xlr2"""))_
-    val xm = parse_element (element ("""AsynchronousMachinerr1.xm"""))_
-    val xp = parse_element (element ("""AsynchronousMachinerr1.xp"""))_
-    val xpp = parse_element (element ("""AsynchronousMachinerr1.xpp"""))_
-    val xs = parse_element (element ("""AsynchronousMachinerr1.xs"""))_
+    val rr1 = parse_element (element ("""AsynchronousMachine.rr1"""))_
+    val rr2 = parse_element (element ("""AsynchronousMachine.rr2"""))_
+    val rxLockedRotorRatio = parse_element (element ("""AsynchronousMachine.rxLockedRotorRatio"""))_
+    val tpo = parse_element (element ("""AsynchronousMachine.tpo"""))_
+    val tppo = parse_element (element ("""AsynchronousMachine.tppo"""))_
+    val xlr1 = parse_element (element ("""AsynchronousMachine.xlr1"""))_
+    val xlr2 = parse_element (element ("""AsynchronousMachine.xlr2"""))_
+    val xm = parse_element (element ("""AsynchronousMachine.xm"""))_
+    val xp = parse_element (element ("""AsynchronousMachine.xp"""))_
+    val xpp = parse_element (element ("""AsynchronousMachine.xpp"""))_
+    val xs = parse_element (element ("""AsynchronousMachine.xs"""))_
     val AsynchronousMachineDynamics = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineDynamics"""))_
     def parse (context: Context): AsynchronousMachine =
     {
-        return (
-            AsynchronousMachine
-            (
-                RotatingMachine.parse (context),
-                AsynchronousMachineType (context),
-                toBoolean (converterFedDrive (context), context),
-                toDouble (efficiency (context), context),
-                toDouble (ialrRatio (context), context),
-                toDouble (nominalFrequency (context), context),
-                toDouble (nominalSpeed (context), context),
-                toInteger (polePairNumber (context), context),
-                toDouble (ratedMechanicalPower (context), context),
-                toBoolean (reversible (context), context),
-                toDouble (rr1 (context), context),
-                toDouble (rr2 (context), context),
-                toDouble (rxLockedRotorRatio (context), context),
-                toDouble (tpo (context), context),
-                toDouble (tppo (context), context),
-                toDouble (xlr1 (context), context),
-                toDouble (xlr2 (context), context),
-                toDouble (xm (context), context),
-                toDouble (xp (context), context),
-                toDouble (xpp (context), context),
-                toDouble (xs (context), context),
-                AsynchronousMachineDynamics (context)
-            )
+        AsynchronousMachine(
+            sup (context),
+            asynchronousMachineType (context),
+            toBoolean (converterFedDrive (context), context),
+            toDouble (efficiency (context), context),
+            toDouble (iaIrRatio (context), context),
+            toDouble (nominalFrequency (context), context),
+            toDouble (nominalSpeed (context), context),
+            toInteger (polePairNumber (context), context),
+            toDouble (ratedMechanicalPower (context), context),
+            toBoolean (reversible (context), context),
+            toDouble (rr1 (context), context),
+            toDouble (rr2 (context), context),
+            toDouble (rxLockedRotorRatio (context), context),
+            toDouble (tpo (context), context),
+            toDouble (tppo (context), context),
+            toDouble (xlr1 (context), context),
+            toDouble (xlr2 (context), context),
+            toDouble (xm (context), context),
+            toDouble (xp (context), context),
+            toDouble (xpp (context), context),
+            toDouble (xs (context), context),
+            AsynchronousMachineDynamics (context)
         )
     }
 }
 
+/**
+ * Kind of Asynchronous Machine.
+ */
+case class AsynchronousMachineKind
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * The Asynchronous Machine is a generator.
+     */
+    val generator: String,
+
+    /**
+     * The Asynchronous Machine is a motor.
+     */
+    val motor: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[AsynchronousMachineKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object AsynchronousMachineKind
+extends
+    Parseable[AsynchronousMachineKind]
+{
+    val sup = BasicElement.parse _
+    val generator = parse_attribute (attribute ("""AsynchronousMachineKind.generator"""))_
+    val motor = parse_attribute (attribute ("""AsynchronousMachineKind.motor"""))_
+    def parse (context: Context): AsynchronousMachineKind =
+    {
+        AsynchronousMachineKind(
+            sup (context),
+            generator (context),
+            motor (context)
+        )
+    }
+}
+
+/**
+ * A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time, and breaking currents under specified abnormal circuit conditions e.g.  those of short circuit.
+ */
 case class Breaker
 (
+
     override val sup: ProtectedSwitch,
+
+    /**
+     * The transition time from open to close.
+     */
     val inTransitTime: Double
 )
 extends
@@ -228,7 +446,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Breaker]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Breaker]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -243,42 +461,35 @@ object Breaker
 extends
     Parseable[Breaker]
 {
+    val sup = ProtectedSwitch.parse _
     val inTransitTime = parse_element (element ("""Breaker.inTransitTime"""))_
     def parse (context: Context): Breaker =
     {
-        return (
-            Breaker
-            (
-                ProtectedSwitch.parse (context),
-                toDouble (inTransitTime (context), context)
-            )
+        Breaker(
+            sup (context),
+            toDouble (inTransitTime (context), context)
         )
     }
 }
 
-
-// From SparkR package:
-//busbars = sql (sqlContext, "select * from BusbarSection")
-//rbusbars = SparkR::collect (busbars, stringsAsFactors=FALSE)
-//# first busbar
-//b = rbusbars[1,]
-//# sup - first column = list of 1
-//b = rbusbars[1,][[1]]
-//# Connector
-//b = rbusbars[1,][[1]][[1]]
-//# ConductingEquipment
-//b = rbusbars[1,][[1]][[1]][[1]]
-//# Equipment
-//b = rbusbars[1,][[1]][[1]][[1]][[1]]
-//# PowerSystemResource
-//b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]]
-//# IdentifiedObject
-//b = rbusbars[1,][[1]][[1]][[1]][[1]][[1]][[1]]
-
+/**
+ * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation.
+ * Voltage measurements are typically obtained from VoltageTransformers that are connected to busbar sections. A bus bar section may have many physical terminals but for analysis is modelled with exactly one logical terminal.
+ */
 case class BusbarSection
 (
+
     override val sup: Connector,
+
+    /**
+     * Maximum allowable peak short-circuit current of busbar (Ipmax in the IEC 60909-0).
+     * Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909
+     */
     val ipMax: Double,
+
+    /**
+     * A VoltageControlZone is controlled by a designated BusbarSection.
+     */
     val VoltageControlZone: String
 )
 extends
@@ -286,7 +497,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def Connector: Connector = sup.asInstanceOf[Connector]
-    override def copy (): Row = { return (clone ().asInstanceOf[BusbarSection]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[BusbarSection]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -301,25 +512,36 @@ object BusbarSection
 extends
     Parseable[BusbarSection]
 {
+    val sup = Connector.parse _
     val ipMax = parse_element (element ("""BusbarSection.ipMax"""))_
     val VoltageControlZone = parse_attribute (attribute ("""BusbarSection.VoltageControlZone"""))_
     def parse (context: Context): BusbarSection =
     {
-        return (
-            BusbarSection
-            (
-                Connector.parse (context),
-                toDouble (ipMax (context), context),
-                VoltageControlZone (context)
-            )
+        BusbarSection(
+            sup (context),
+            toDouble (ipMax (context), context),
+            VoltageControlZone (context)
         )
     }
 }
 
+/**
+ * A Clamp is a galvanic connection at a line segment where other equipment is connected.
+ * A Clamp does not cut the line segment.
+ */
 case class Clamp
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * The length to the place where the clamp is located starting from side one of the line segment, i.e. the line segment terminal with sequence number equal to 1.
+     */
     val lengthFromTerminal1: Double,
+
+    /**
+     * The line segment to which the clamp is connected.
+     */
     val ACLineSegment: String
 )
 extends
@@ -327,7 +549,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Clamp]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Clamp]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -342,24 +564,31 @@ object Clamp
 extends
     Parseable[Clamp]
 {
+    val sup = ConductingEquipment.parse _
     val lengthFromTerminal1 = parse_element (element ("""Clamp.lengthFromTerminal1"""))_
     val ACLineSegment = parse_attribute (attribute ("""Clamp.ACLineSegment"""))_
     def parse (context: Context): Clamp =
     {
-        return (
-            Clamp
-            (
-                ConductingEquipment.parse (context),
-                toDouble (lengthFromTerminal1 (context), context),
-                ACLineSegment (context)
-            )
+        Clamp(
+            sup (context),
+            toDouble (lengthFromTerminal1 (context), context),
+            ACLineSegment (context)
         )
     }
 }
 
+/**
+ * A model of a set of individual Switches normally enclosed within the same cabinet and possibly with interlocks that restrict the combination of switch positions.
+ * These are typically found in medium voltage distribution networks.
+ */
 case class CompositeSwitch
 (
+
     override val sup: Equipment,
+
+    /**
+     * An alphanumeric code that can be used as a reference to extra information such as the description of the interlocking scheme if any.
+     */
     val compositeSwitchType: String
 )
 extends
@@ -367,7 +596,7 @@ extends
 {
     def this () = { this (null, null) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[CompositeSwitch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[CompositeSwitch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -382,22 +611,28 @@ object CompositeSwitch
 extends
     Parseable[CompositeSwitch]
 {
+    val sup = Equipment.parse _
     val compositeSwitchType = parse_element (element ("""CompositeSwitch.compositeSwitchType"""))_
     def parse (context: Context): CompositeSwitch =
     {
-        return (
-            CompositeSwitch
-            (
-                Equipment.parse (context),
-                compositeSwitchType (context)
-            )
+        CompositeSwitch(
+            sup (context),
+            compositeSwitchType (context)
         )
     }
 }
 
+/**
+ * Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
+ */
 case class Conductor
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * Segment length for calculating line section capabilities
+     */
     val len: Double
 )
 extends
@@ -405,7 +640,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Conductor]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Conductor]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -420,21 +655,23 @@ object Conductor
 extends
     Parseable[Conductor]
 {
+    val sup = ConductingEquipment.parse _
     val len = parse_element (element ("""Conductor.length"""))_
     def parse (context: Context): Conductor =
     {
-        return (
-            Conductor
-            (
-                ConductingEquipment.parse (context),
-                toDouble (len (context), context)
-            )
+        Conductor(
+            sup (context),
+            toDouble (len (context), context)
         )
     }
 }
 
+/**
+ * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation and are modelled with a single logical terminal.
+ */
 case class Connector
 (
+
     override val sup: ConductingEquipment
 )
 extends
@@ -442,7 +679,7 @@ extends
 {
     def this () = { this (null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Connector]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Connector]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -457,31 +694,103 @@ object Connector
 extends
     Parseable[Connector]
 {
+    val sup = ConductingEquipment.parse _
     def parse (context: Context): Connector =
     {
-        return (
-            Connector
-            (
-                ConductingEquipment.parse (context)
-            )
+        Connector(
+            sup (context)
         )
     }
 }
 
+/**
+ * Method of cooling a machine.
+ */
+case class CoolantType
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Air.
+     */
+    val air: String,
+
+    /**
+     * Hydrogen gas.
+     */
+    val hydrogenGas: String,
+
+    /**
+     * Water.
+     */
+    val water: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[CoolantType]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object CoolantType
+extends
+    Parseable[CoolantType]
+{
+    val sup = BasicElement.parse _
+    val air = parse_attribute (attribute ("""CoolantType.air"""))_
+    val hydrogenGas = parse_attribute (attribute ("""CoolantType.hydrogenGas"""))_
+    val water = parse_attribute (attribute ("""CoolantType.water"""))_
+    def parse (context: Context): CoolantType =
+    {
+        CoolantType(
+            sup (context),
+            air (context),
+            hydrogenGas (context),
+            water (context)
+        )
+    }
+}
+
+/**
+ * A cut separates a line segment into two parts.
+ * The cut appears as a switch inserted between these two parts and connects them together. As the cut is normally open there is no galvanic connection between the two line segment parts. But it is possible to close the cut to get galvanic connection.
+ */
 case class Cut
 (
-    override val sup: Switch,
-    val lengthFromTerminal: Double,
-    val ACLineSegment: String,
-    val CutAction: String
 
+    override val sup: Switch,
+
+    /**
+     * The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1.
+     */
+    val lengthFromTerminal1: Double,
+
+    /**
+     * The line segment to which the cut is applied.
+     */
+    val ACLineSegment: String,
+
+    /**
+     * Action taken with this cut.
+     */
+    val CutAction: String
 )
 extends
     Element
 {
     def this () = { this (null, 0.0, null, null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Cut]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Cut]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -496,25 +805,28 @@ object Cut
 extends
     Parseable[Cut]
 {
-    val lengthFromTerminal = parse_element (element ("""Cut.lengthFromTerminal"""))_
+    val sup = Switch.parse _
+    val lengthFromTerminal1 = parse_element (element ("""Cut.lengthFromTerminal1"""))_
     val ACLineSegment = parse_attribute (attribute ("""Cut.ACLineSegment"""))_
     val CutAction = parse_attribute (attribute ("""Cut.CutAction"""))_
     def parse (context: Context): Cut =
     {
-        return (
-            Cut
-            (
-                Switch.parse (context),
-                toDouble (lengthFromTerminal (context), context),
-                ACLineSegment (context),
-                CutAction (context)
-            )
+        Cut(
+            sup (context),
+            toDouble (lengthFromTerminal1 (context), context),
+            ACLineSegment (context),
+            CutAction (context)
         )
     }
 }
 
+/**
+ * A manually operated or motor operated mechanical switching device used for changing the connections in a circuit, or for isolating a circuit or equipment from a source of power.
+ * It is required to open or close circuits when negligible current is broken or made.
+ */
 case class Disconnector
 (
+
     override val sup: Switch
 )
 extends
@@ -522,7 +834,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Disconnector]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Disconnector]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -537,20 +849,27 @@ object Disconnector
 extends
     Parseable[Disconnector]
 {
+    val sup = Switch.parse _
     def parse (context: Context): Disconnector =
     {
-        return (
-            Disconnector
-            (
-                Switch.parse (context)
-            )
+        Disconnector(
+            sup (context)
         )
     }
 }
 
+/**
+ * A conducting equipment used to represent a connection to ground which is typically used to compensate earth faults..
+ * An earth fault compensator device modeled with a single terminal implies a second terminal solidly connected to ground.  If two terminals are modeled, the ground is not assumed and normal connection rules apply.
+ */
 case class EarthFaultCompensator
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * Nominal resistance of device.
+     */
     val r: Double
 )
 extends
@@ -558,7 +877,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[EarthFaultCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EarthFaultCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -573,33 +892,91 @@ object EarthFaultCompensator
 extends
     Parseable[EarthFaultCompensator]
 {
+    val sup = ConductingEquipment.parse _
     val r = parse_element (element ("""EarthFaultCompensator.r"""))_
     def parse (context: Context): EarthFaultCompensator =
     {
-        return (
-            EarthFaultCompensator
-            (
-                ConductingEquipment.parse (context),
-                toDouble (r (context), context)
-            )
+        EarthFaultCompensator(
+            sup (context),
+            toDouble (r (context), context)
         )
     }
 }
 
+/**
+ * Generic user of energy - a  point of consumption on the power system model.
+ */
 case class EnergyConsumer
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * Number of individual customers represented by this demand.
+     */
     val customerCount: Int,
+
+    /**
+     * Used for Yn and Zn connections.
+     * True if the neutral is solidly grounded.
+     */
     val grounded: Boolean,
+
+    /**
+     * Active power of the load.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val p: Double,
+
+    /**
+     * Active power of the load that is a fixed quantity.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val pfixed: Double,
+
+    /**
+     * Fixed active power as per cent of load group fixed active power.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val pfixedPct: Double,
+
+    /**
+     * The type of phase connection, such as wye or delta.
+     */
     val phaseConnection: String,
+
+    /**
+     * Reactive power of the load.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val q: Double,
+
+    /**
+     * Reactive power of the load that is a fixed quantity.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val qfixed: Double,
+
+    /**
+     * Fixed reactive power as per cent of load group fixed reactive power.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val qfixedPct: Double,
+
+    /**
+     * Load dynamics model used to describe dynamic behavior of this energy consumer.
+     */
     val LoadDynamics: String,
+
+    /**
+     * The load response characteristic of this load.
+     * If missing, this load is assumed to be constant power.
+     */
     val LoadResponse: String,
+
+    /**
+     * The  energy consumer is assigned to this power cut zone.
+     */
     val PowerCutZone: String
 )
 extends
@@ -607,7 +984,7 @@ extends
 {
     def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumer]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumer]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -622,6 +999,7 @@ object EnergyConsumer
 extends
     Parseable[EnergyConsumer]
 {
+    val sup = ConductingEquipment.parse _
     val customerCount = parse_element (element ("""EnergyConsumer.customerCount"""))_
     val grounded = parse_element (element ("""EnergyConsumer.grounded"""))_
     val p = parse_element (element ("""EnergyConsumer.p"""))_
@@ -636,35 +1014,65 @@ extends
     val PowerCutZone = parse_attribute (attribute ("""EnergyConsumer.PowerCutZone"""))_
     def parse (context: Context): EnergyConsumer =
     {
-        return (
-            EnergyConsumer
-            (
-                ConductingEquipment.parse (context),
-                toInteger (customerCount (context), context),
-                toBoolean (grounded (context), context),
-                toDouble (p (context), context),
-                toDouble (pfixed (context), context),
-                toDouble (pfixedPct (context), context),
-                phaseConnection (context),
-                toDouble (q (context), context),
-                toDouble (qfixed (context), context),
-                toDouble (qfixedPct (context), context),
-                LoadDynamics (context),
-                LoadResponse (context),
-                PowerCutZone (context)
-            )
+        EnergyConsumer(
+            sup (context),
+            toInteger (customerCount (context), context),
+            toBoolean (grounded (context), context),
+            toDouble (p (context), context),
+            toDouble (pfixed (context), context),
+            toDouble (pfixedPct (context), context),
+            phaseConnection (context),
+            toDouble (q (context), context),
+            toDouble (qfixed (context), context),
+            toDouble (qfixedPct (context), context),
+            LoadDynamics (context),
+            LoadResponse (context),
+            PowerCutZone (context)
         )
     }
 }
 
+/**
+ * A single phase of an energy consumer.
+ */
 case class EnergyConsumerPhase
 (
+
     override val sup: PowerSystemResource,
+
+    /**
+     * Active power of the load that is a fixed quantity.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val pfixed: Double,
+
+    /**
+     * Fixed active power as per cent of load group fixed active power.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val pfixedPct: Double,
-    val SinglePhaseKind: String,
+
+    /**
+     * Phase of this energy consumer component.
+     * If the energy consumer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy consumer is delta connected, the phase indicates an energy consumer connected from the indicated phase to the next logical non-neutral phase.
+     */
+    val phase: String,
+
+    /**
+     * Reactive power of the load that is a fixed quantity.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val qfixed: Double,
+
+    /**
+     * Fixed reactive power as per cent of load group fixed reactive power.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val qfixedPct: Double,
+
+    /**
+     * The energy consumer to which this phase belongs.
+     */
     val EnergyConsumer: String
 )
 extends
@@ -672,7 +1080,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumerPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumerPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -687,45 +1095,105 @@ object EnergyConsumerPhase
 extends
     Parseable[EnergyConsumerPhase]
 {
+    val sup = PowerSystemResource.parse _
     val pfixed = parse_element (element ("""EnergyConsumerPhase.pfixed"""))_
     val pfixedPct = parse_element (element ("""EnergyConsumerPhase.pfixedPct"""))_
-    val SinglePhaseKind = parse_attribute (attribute ("""EnergyConsumerPhase.SinglePhaseKind"""))_
+    val phase = parse_attribute (attribute ("""EnergyConsumerPhase.phase"""))_
     val qfixed = parse_element (element ("""EnergyConsumerPhase.qfixed"""))_
     val qfixedPct = parse_element (element ("""EnergyConsumerPhase.qfixedPct"""))_
     val EnergyConsumer = parse_attribute (attribute ("""EnergyConsumerPhase.EnergyConsumer"""))_
     def parse (context: Context): EnergyConsumerPhase =
     {
-        return (
-            EnergyConsumerPhase
-            (
-                PowerSystemResource.parse (context),
-                toDouble (pfixed (context), context),
-                toDouble (pfixedPct (context), context),
-                SinglePhaseKind (context),
-                toDouble (qfixed (context), context),
-                toDouble (qfixedPct (context), context),
-                EnergyConsumer (context)
-            )
+        EnergyConsumerPhase(
+            sup (context),
+            toDouble (pfixed (context), context),
+            toDouble (pfixedPct (context), context),
+            phase (context),
+            toDouble (qfixed (context), context),
+            toDouble (qfixedPct (context), context),
+            EnergyConsumer (context)
         )
     }
 }
 
+/**
+ * A generic equivalent for an energy supplier on a transmission or distribution voltage level.
+ */
 case class EnergySource
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * High voltage source active injection.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val activePower: Double,
+
+    /**
+     * Phase-to-phase nominal voltage.
+     */
     val nominalVoltage: Double,
-    val r0: Double,
+
+    /**
+     * Positive sequence Thevenin resistance.
+     */
     val r: Double,
+
+    /**
+     * Zero sequence Thevenin resistance.
+     */
+    val r0: Double,
+
+    /**
+     * High voltage source reactive injection.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val reactivePower: Double,
+
+    /**
+     * Negative sequence Thevenin resistance.
+     */
     val rn: Double,
+
+    /**
+     * Phase angle of a-phase open circuit.
+     */
     val voltageAngle: Double,
+
+    /**
+     * Phase-to-phase open circuit voltage magnitude.
+     */
     val voltageMagnitude: Double,
-    val x0: Double,
+
+    /**
+     * Positive sequence Thevenin reactance.
+     */
     val x: Double,
+
+    /**
+     * Zero sequence Thevenin reactance.
+     */
+    val x0: Double,
+
+    /**
+     * Negative sequence Thevenin reactance.
+     */
     val xn: Double,
+
+    /**
+     * Energy Scheduling Type of an Energy Source
+     */
     val EnergySchedulingType: String,
+
+    /**
+     * Action taken with this energy source.
+     */
     val EnergySourceAction: String,
+
+    /**
+     * Wind generator Type 3 or 4 dynamics model associated with this energy source.
+     */
     val WindTurbineType3or4Dynamics: String
 )
 extends
@@ -733,7 +1201,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[EnergySource]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergySource]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -748,65 +1216,152 @@ object EnergySource
 extends
     Parseable[EnergySource]
 {
+    val sup = ConductingEquipment.parse _
     val activePower = parse_element (element ("""EnergySource.activePower"""))_
     val nominalVoltage = parse_element (element ("""EnergySource.nominalVoltage"""))_
-    val r0 = parse_element (element ("""EnergySource.r0"""))_
     val r = parse_element (element ("""EnergySource.r"""))_
+    val r0 = parse_element (element ("""EnergySource.r0"""))_
     val reactivePower = parse_element (element ("""EnergySource.reactivePower"""))_
     val rn = parse_element (element ("""EnergySource.rn"""))_
     val voltageAngle = parse_element (element ("""EnergySource.voltageAngle"""))_
     val voltageMagnitude = parse_element (element ("""EnergySource.voltageMagnitude"""))_
-    val x0 = parse_element (element ("""EnergySource.x0"""))_
     val x = parse_element (element ("""EnergySource.x"""))_
+    val x0 = parse_element (element ("""EnergySource.x0"""))_
     val xn = parse_element (element ("""EnergySource.xn"""))_
     val EnergySchedulingType = parse_attribute (attribute ("""EnergySource.EnergySchedulingType"""))_
     val EnergySourceAction = parse_attribute (attribute ("""EnergySource.EnergySourceAction"""))_
     val WindTurbineType3or4Dynamics = parse_attribute (attribute ("""EnergySource.WindTurbineType3or4Dynamics"""))_
     def parse (context: Context): EnergySource =
     {
-        return (
-            EnergySource
-            (
-                ConductingEquipment.parse (context),
-                toDouble (activePower (context), context),
-                toDouble (nominalVoltage (context), context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toDouble (reactivePower (context), context),
-                toDouble (rn (context), context),
-                toDouble (voltageAngle (context), context),
-                toDouble (voltageMagnitude (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context),
-                toDouble (xn (context), context),
-                EnergySchedulingType (context),
-                EnergySourceAction (context),
-                WindTurbineType3or4Dynamics (context)
-            )
+        EnergySource(
+            sup (context),
+            toDouble (activePower (context), context),
+            toDouble (nominalVoltage (context), context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toDouble (reactivePower (context), context),
+            toDouble (rn (context), context),
+            toDouble (voltageAngle (context), context),
+            toDouble (voltageMagnitude (context), context),
+            toDouble (x (context), context),
+            toDouble (x0 (context), context),
+            toDouble (xn (context), context),
+            EnergySchedulingType (context),
+            EnergySourceAction (context),
+            WindTurbineType3or4Dynamics (context)
         )
     }
 }
 
+/**
+ * This class represents external network and it is used for IEC 60909 calculations.
+ */
 case class ExternalNetworkInjection
 (
+
     override val sup: RegulatingCondEq,
+
+    /**
+     * Power Frequency Bias.
+     * This is the change in power injection divided by the change in frequency and negated.  A positive value of the power frequency bias provides additional power injection upon a drop in frequency.
+     */
     val governorSCD: Double,
+
+    /**
+     * Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
+     */
     val ikSecond: Boolean,
+
+    /**
+     * Maximum initial symmetrical short-circuit currents (Ik" max) in A (Ik" = Sk"/(SQRT(3) Un)).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val maxInitialSymShCCurrent: Double,
+
+    /**
+     * Maximum active power of the injection.
+     */
     val maxP: Double,
+
+    /**
+     * Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
+     * If maxQ and minQ are not used ReactiveCapabilityCurve can be used
+     */
     val maxQ: Double,
+
+    /**
+     * Maximum ratio of zero sequence resistance of Network Feeder to its zero sequence reactance (R(0)/X(0) max).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val maxR0ToX0Ratio: Double,
+
+    /**
+     * Maximum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) max).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val maxR1ToX1Ratio: Double,
+
+    /**
+     * Maximum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) max).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val maxZ0ToZ1Ratio: Double,
+
+    /**
+     * Minimum initial symmetrical short-circuit currents (Ik" min) in A (Ik" = Sk"/(SQRT(3) Un)).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val minInitialSymShCCurrent: Double,
+
+    /**
+     * Minimum active power of the injection.
+     */
     val minP: Double,
+
+    /**
+     * Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
+     * If maxQ and minQ are not used ReactiveCapabilityCurve can be used
+     */
     val minQ: Double,
+
+    /**
+     * Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
+     * Used for short circuit data exchange according to IEC 6090
+     */
     val minR0ToX0Ratio: Double,
+
+    /**
+     * Minimum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) min).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val minR1ToX1Ratio: Double,
+
+    /**
+     * Minimum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) min).
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val minZ0ToZ1Ratio: Double,
+
+    /**
+     * Active power injection.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val p: Double,
+
+    /**
+     * Reactive power injection.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val q: Double,
+
+    /**
+     * Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+     */
     val referencePriority: Int,
+
+    /**
+     * Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
+     */
     val voltageFactor: Double
 )
 extends
@@ -814,7 +1369,7 @@ extends
 {
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[ExternalNetworkInjection]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ExternalNetworkInjection]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -829,6 +1384,7 @@ object ExternalNetworkInjection
 extends
     Parseable[ExternalNetworkInjection]
 {
+    val sup = RegulatingCondEq.parse _
     val governorSCD = parse_element (element ("""ExternalNetworkInjection.governorSCD"""))_
     val ikSecond = parse_element (element ("""ExternalNetworkInjection.ikSecond"""))_
     val maxInitialSymShCCurrent = parse_element (element ("""ExternalNetworkInjection.maxInitialSymShCCurrent"""))_
@@ -849,40 +1405,62 @@ extends
     val voltageFactor = parse_element (element ("""ExternalNetworkInjection.voltageFactor"""))_
     def parse (context: Context): ExternalNetworkInjection =
     {
-        return (
-            ExternalNetworkInjection
-            (
-                RegulatingCondEq.parse (context),
-                toDouble (governorSCD (context), context),
-                toBoolean (ikSecond (context), context),
-                toDouble (maxInitialSymShCCurrent (context), context),
-                toDouble (maxP (context), context),
-                toDouble (maxQ (context), context),
-                toDouble (maxR0ToX0Ratio (context), context),
-                toDouble (maxR1ToX1Ratio (context), context),
-                toDouble (maxZ0ToZ1Ratio (context), context),
-                toDouble (minInitialSymShCCurrent (context), context),
-                toDouble (minP (context), context),
-                toDouble (minQ (context), context),
-                toDouble (minR0ToX0Ratio (context), context),
-                toDouble (minR1ToX1Ratio (context), context),
-                toDouble (minZ0ToZ1Ratio (context), context),
-                toDouble (p (context), context),
-                toDouble (q (context), context),
-                toInteger (referencePriority (context), context),
-                toDouble (voltageFactor (context), context)
-            )
+        ExternalNetworkInjection(
+            sup (context),
+            toDouble (governorSCD (context), context),
+            toBoolean (ikSecond (context), context),
+            toDouble (maxInitialSymShCCurrent (context), context),
+            toDouble (maxP (context), context),
+            toDouble (maxQ (context), context),
+            toDouble (maxR0ToX0Ratio (context), context),
+            toDouble (maxR1ToX1Ratio (context), context),
+            toDouble (maxZ0ToZ1Ratio (context), context),
+            toDouble (minInitialSymShCCurrent (context), context),
+            toDouble (minP (context), context),
+            toDouble (minQ (context), context),
+            toDouble (minR0ToX0Ratio (context), context),
+            toDouble (minR1ToX1Ratio (context), context),
+            toDouble (minZ0ToZ1Ratio (context), context),
+            toDouble (p (context), context),
+            toDouble (q (context), context),
+            toInteger (referencePriority (context), context),
+            toDouble (voltageFactor (context), context)
         )
     }
 }
 
+/**
+ * A device to convert from one frequency to another (e.g., frequency F1 to F2) comprises a pair of FrequencyConverter instances.
+ * One converts from F1 to DC, the other converts the DC to F2.
+ */
 case class FrequencyConverter
 (
+
     override val sup: RegulatingCondEq,
+
+    /**
+     * Frequency on the AC side.
+     */
     val frequency: Double,
+
+    /**
+     * The maximum active power on the DC side at which the frequence converter should operate.
+     */
     val maxP: Double,
+
+    /**
+     * The maximum voltage on the DC side at which the frequency converter should operate.
+     */
     val maxU: Double,
+
+    /**
+     * The minimum active power on the DC side at which the frequence converter should operate.
+     */
     val minP: Double,
+
+    /**
+     * The minimum voltage on the DC side at which the frequency converter should operate.
+     */
     val minU: Double
 )
 extends
@@ -890,7 +1468,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[FrequencyConverter]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[FrequencyConverter]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -905,6 +1483,7 @@ object FrequencyConverter
 extends
     Parseable[FrequencyConverter]
 {
+    val sup = RegulatingCondEq.parse _
     val frequency = parse_element (element ("""FrequencyConverter.frequency"""))_
     val maxP = parse_element (element ("""FrequencyConverter.maxP"""))_
     val maxU = parse_element (element ("""FrequencyConverter.maxU"""))_
@@ -912,22 +1491,24 @@ extends
     val minU = parse_element (element ("""FrequencyConverter.minU"""))_
     def parse (context: Context): FrequencyConverter =
     {
-        return (
-            FrequencyConverter
-            (
-                RegulatingCondEq.parse (context),
-                toDouble (frequency (context), context),
-                toDouble (maxP (context), context),
-                toDouble (maxU (context), context),
-                toDouble (minP (context), context),
-                toDouble (minU (context), context)
-            )
+        FrequencyConverter(
+            sup (context),
+            toDouble (frequency (context), context),
+            toDouble (maxP (context), context),
+            toDouble (maxU (context), context),
+            toDouble (minP (context), context),
+            toDouble (minU (context), context)
         )
     }
 }
 
+/**
+ * An overcurrent protective device with a circuit opening fusible part that is heated and severed by the passage of overcurrent through it.
+ * A fuse is considered a switching device because it breaks current.
+ */
 case class Fuse
 (
+
     override val sup: Switch
 )
 extends
@@ -935,7 +1516,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Fuse]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Fuse]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -950,20 +1531,27 @@ object Fuse
 extends
     Parseable[Fuse]
 {
+    val sup = Switch.parse _
     def parse (context: Context): Fuse =
     {
-        return (
-            Fuse
-            (
-                Switch.parse (context)
-            )
+        Fuse(
+            sup (context)
         )
     }
 }
 
+/**
+ * A point where the system is grounded used for connecting conducting equipment to ground.
+ * The power system model can have any number of grounds.
+ */
 case class Ground
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * Action taken with this ground.
+     */
     val GroundAction: String
 )
 extends
@@ -971,7 +1559,7 @@ extends
 {
     def this () = { this (null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Ground]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Ground]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -986,21 +1574,23 @@ object Ground
 extends
     Parseable[Ground]
 {
+    val sup = ConductingEquipment.parse _
     val GroundAction = parse_attribute (attribute ("""Ground.GroundAction"""))_
     def parse (context: Context): Ground =
     {
-        return (
-            Ground
-            (
-                ConductingEquipment.parse (context),
-                GroundAction (context)
-            )
+        Ground(
+            sup (context),
+            GroundAction (context)
         )
     }
 }
 
+/**
+ * A manually operated or motor operated mechanical switching device used for isolating a circuit or equipment from ground.
+ */
 case class GroundDisconnector
 (
+
     override val sup: Switch
 )
 extends
@@ -1008,7 +1598,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[GroundDisconnector]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[GroundDisconnector]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1023,20 +1613,26 @@ object GroundDisconnector
 extends
     Parseable[GroundDisconnector]
 {
+    val sup = Switch.parse _
     def parse (context: Context): GroundDisconnector =
     {
-        return (
-            GroundDisconnector
-            (
-                Switch.parse (context)
-            )
+        GroundDisconnector(
+            sup (context)
         )
     }
 }
 
+/**
+ * A fixed impedance device used for grounding.
+ */
 case class GroundingImpedance
 (
+
     override val sup: EarthFaultCompensator,
+
+    /**
+     * Reactance of device.
+     */
     val x: Double
 )
 extends
@@ -1044,7 +1640,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def EarthFaultCompensator: EarthFaultCompensator = sup.asInstanceOf[EarthFaultCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[GroundingImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[GroundingImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1059,22 +1655,29 @@ object GroundingImpedance
 extends
     Parseable[GroundingImpedance]
 {
+    val sup = EarthFaultCompensator.parse _
     val x = parse_element (element ("""GroundingImpedance.x"""))_
     def parse (context: Context): GroundingImpedance =
     {
-        return (
-            GroundingImpedance
-            (
-                EarthFaultCompensator.parse (context),
-                toDouble (x (context), context)
-            )
+        GroundingImpedance(
+            sup (context),
+            toDouble (x (context), context)
         )
     }
 }
 
+/**
+ * A short section of conductor with negligible impedance which can be manually removed and replaced if the circuit is de-energized.
+ * Note that zero-impedance branches can potentially be modeled by other equipment types.
+ */
 case class Jumper
 (
+
     override val sup: Switch,
+
+    /**
+     * Action taken with this jumper.
+     */
     val JumperAction: String
 )
 extends
@@ -1082,7 +1685,7 @@ extends
 {
     def this () = { this (null, null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Jumper]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Jumper]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1097,21 +1700,23 @@ object Jumper
 extends
     Parseable[Jumper]
 {
+    val sup = Switch.parse _
     val JumperAction = parse_attribute (attribute ("""Jumper.JumperAction"""))_
     def parse (context: Context): Jumper =
     {
-        return (
-            Jumper
-            (
-                Switch.parse (context),
-                JumperAction (context)
-            )
+        Jumper(
+            sup (context),
+            JumperAction (context)
         )
     }
 }
 
+/**
+ * A point where one or more conducting equipments are connected with zero resistance.
+ */
 case class Junction
 (
+
     override val sup: Connector
 )
 extends
@@ -1119,7 +1724,7 @@ extends
 {
     def this () = { this (null) }
     def Connector: Connector = sup.asInstanceOf[Connector]
-    override def copy (): Row = { return (clone ().asInstanceOf[Junction]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Junction]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1134,28 +1739,34 @@ object Junction
 extends
     Parseable[Junction]
 {
+    val sup = Connector.parse _
     def parse (context: Context): Junction =
     {
-        return (
-            Junction
-            (
-                Connector.parse (context)
-            )
+        Junction(
+            sup (context)
         )
     }
 }
 
+/**
+ * Contains equipment beyond a substation belonging to a power transmission line.
+ */
 case class Line
 (
-    override val sup: ConnectivityNodeContainer,
+
+    override val sup: EquipmentContainer,
+
+    /**
+     * The sub-geographical region of the line.
+     */
     val Region: String
 )
 extends
     Element
 {
     def this () = { this (null, null) }
-    def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[Line]); }
+    def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
+    override def copy (): Row = { return (clone ().asInstanceOf[Line]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1170,25 +1781,43 @@ object Line
 extends
     Parseable[Line]
 {
+    val sup = EquipmentContainer.parse _
     val Region = parse_attribute (attribute ("""Line.Region"""))_
     def parse (context: Context): Line =
     {
-        return (
-            Line
-            (
-                ConnectivityNodeContainer.parse (context),
-                Region (context)
-            )
+        Line(
+            sup (context),
+            Region (context)
         )
     }
 }
 
+/**
+ * A linear shunt compensator has banks or sections with equal admittance values.
+ */
 case class LinearShuntCompensator
 (
+
     override val sup: ShuntCompensator,
+
+    /**
+     * Zero sequence shunt (charging) susceptance per section
+     */
     val b0PerSection: Double,
+
+    /**
+     * Positive sequence shunt (charging) susceptance per section
+     */
     val bPerSection: Double,
+
+    /**
+     * Zero sequence shunt (charging) conductance per section
+     */
     val g0PerSection: Double,
+
+    /**
+     * Positive sequence shunt (charging) conductance per section
+     */
     val gPerSection: Double
 )
 extends
@@ -1196,7 +1825,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1211,29 +1840,41 @@ object LinearShuntCompensator
 extends
     Parseable[LinearShuntCompensator]
 {
+    val sup = ShuntCompensator.parse _
     val b0PerSection = parse_element (element ("""LinearShuntCompensator.b0PerSection"""))_
     val bPerSection = parse_element (element ("""LinearShuntCompensator.bPerSection"""))_
     val g0PerSection = parse_element (element ("""LinearShuntCompensator.g0PerSection"""))_
     val gPerSection = parse_element (element ("""LinearShuntCompensator.gPerSection"""))_
     def parse (context: Context): LinearShuntCompensator =
     {
-        return (
-            LinearShuntCompensator
-            (
-                ShuntCompensator.parse (context),
-                toDouble (b0PerSection (context), context),
-                toDouble (bPerSection (context), context),
-                toDouble (g0PerSection (context), context),
-                toDouble (gPerSection (context), context)
-            )
+        LinearShuntCompensator(
+            sup (context),
+            toDouble (b0PerSection (context), context),
+            toDouble (bPerSection (context), context),
+            toDouble (g0PerSection (context), context),
+            toDouble (gPerSection (context), context)
         )
     }
 }
 
+/**
+ * A per phase linear shunt compensator has banks or sections with equal admittance values.
+ */
 case class LinearShuntCompensatorPhase
 (
+
     override val sup: ShuntCompensatorPhase,
+
+    /**
+     * Susceptance per section of the phase if shunt compensator is wye connected.
+     * Susceptance per section phase to phase if shunt compensator is delta connected.
+     */
     val bPerSection: Double,
+
+    /**
+     * Conductance per section for this phase if shunt compensator is wye connected.
+     * Conductance per section phase to phase if shunt compensator is delta connected.
+     */
     val gPerSection: Double
 )
 extends
@@ -1241,7 +1882,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def ShuntCompensatorPhase: ShuntCompensatorPhase = sup.asInstanceOf[ShuntCompensatorPhase]
-    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensatorPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensatorPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1256,23 +1897,25 @@ object LinearShuntCompensatorPhase
 extends
     Parseable[LinearShuntCompensatorPhase]
 {
+    val sup = ShuntCompensatorPhase.parse _
     val bPerSection = parse_element (element ("""LinearShuntCompensatorPhase.bPerSection"""))_
     val gPerSection = parse_element (element ("""LinearShuntCompensatorPhase.gPerSection"""))_
     def parse (context: Context): LinearShuntCompensatorPhase =
     {
-        return (
-            LinearShuntCompensatorPhase
-            (
-                ShuntCompensatorPhase.parse (context),
-                toDouble (bPerSection (context), context),
-                toDouble (gPerSection (context), context)
-            )
+        LinearShuntCompensatorPhase(
+            sup (context),
+            toDouble (bPerSection (context), context),
+            toDouble (gPerSection (context), context)
         )
     }
 }
 
+/**
+ * A mechanical switching device capable of making, carrying, and breaking currents under normal operating conditions.
+ */
 case class LoadBreakSwitch
 (
+
     override val sup: ProtectedSwitch
 )
 extends
@@ -1280,7 +1923,7 @@ extends
 {
     def this () = { this (null) }
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
-    override def copy (): Row = { return (clone ().asInstanceOf[LoadBreakSwitch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[LoadBreakSwitch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1295,29 +1938,72 @@ object LoadBreakSwitch
 extends
     Parseable[LoadBreakSwitch]
 {
+    val sup = ProtectedSwitch.parse _
     def parse (context: Context): LoadBreakSwitch =
     {
-        return (
-            LoadBreakSwitch
-            (
-                ProtectedSwitch.parse (context)
-            )
+        LoadBreakSwitch(
+            sup (context)
         )
     }
 }
 
+/**
+ * This class represents the zero sequence line mutual coupling.
+ */
 case class MutualCoupling
 (
+
     override val sup: IdentifiedObject,
+
+    /**
+     * Zero sequence mutual coupling shunt (charging) susceptance, uniformly distributed, of the entire line section.
+     */
     val b0ch: Double,
+
+    /**
+     * Distance to the start of the coupled region from the first line's terminal having sequence number equal to 1.
+     */
     val distance11: Double,
+
+    /**
+     * Distance to the end of the coupled region from the first line's terminal with sequence number equal to 1.
+     */
     val distance12: Double,
+
+    /**
+     * Distance to the start of coupled region from the second line's terminal with sequence number equal to 1.
+     */
     val distance21: Double,
+
+    /**
+     * Distance to the end of coupled region from the second line's terminal with sequence number equal to 1.
+     */
     val distance22: Double,
+
+    /**
+     * Zero sequence mutual coupling shunt (charging) conductance, uniformly distributed, of the entire line section.
+     */
     val g0ch: Double,
+
+    /**
+     * Zero sequence branch-to-branch mutual impedance coupling, resistance.
+     */
     val r0: Double,
+
+    /**
+     * Zero sequence branch-to-branch mutual impedance coupling, reactance.
+     */
     val x0: Double,
+
+    /**
+     * The starting terminal for the calculation of distances along the first branch of the mutual coupling.
+     * Normally MutualCoupling would only be used for terminals of AC line segments.  The first and second terminals of a mutual coupling should point to different AC line segments.
+     */
     val First_Terminal: String,
+
+    /**
+     * The starting terminal for the calculation of distances along the second branch of the mutual coupling.
+     */
     val Second_Terminal: String
 )
 extends
@@ -1325,7 +2011,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[MutualCoupling]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[MutualCoupling]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1340,6 +2026,7 @@ object MutualCoupling
 extends
     Parseable[MutualCoupling]
 {
+    val sup = IdentifiedObject.parse _
     val b0ch = parse_element (element ("""MutualCoupling.b0ch"""))_
     val distance11 = parse_element (element ("""MutualCoupling.distance11"""))_
     val distance12 = parse_element (element ("""MutualCoupling.distance12"""))_
@@ -1352,27 +2039,28 @@ extends
     val Second_Terminal = parse_attribute (attribute ("""MutualCoupling.Second_Terminal"""))_
     def parse (context: Context): MutualCoupling =
     {
-        return (
-            MutualCoupling
-            (
-                IdentifiedObject.parse (context),
-                toDouble (b0ch (context), context),
-                toDouble (distance11 (context), context),
-                toDouble (distance12 (context), context),
-                toDouble (distance21 (context), context),
-                toDouble (distance22 (context), context),
-                toDouble (g0ch (context), context),
-                toDouble (r0 (context), context),
-                toDouble (x0 (context), context),
-                First_Terminal (context),
-                Second_Terminal (context)
-            )
+        MutualCoupling(
+            sup (context),
+            toDouble (b0ch (context), context),
+            toDouble (distance11 (context), context),
+            toDouble (distance12 (context), context),
+            toDouble (distance21 (context), context),
+            toDouble (distance22 (context), context),
+            toDouble (g0ch (context), context),
+            toDouble (r0 (context), context),
+            toDouble (x0 (context), context),
+            First_Terminal (context),
+            Second_Terminal (context)
         )
     }
 }
 
-case class NonLinearShuntCompensator
+/**
+ * A non linear shunt compensator has bank or section admittance values that differs.
+ */
+case class NonlinearShuntCompensator
 (
+
     override val sup: ShuntCompensator
 )
 extends
@@ -1380,7 +2068,7 @@ extends
 {
     def this () = { this (null) }
     def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonLinearShuntCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1391,23 +2079,25 @@ extends
     override def length: Int = productArity
 }
 
-object NonLinearShuntCompensator
+object NonlinearShuntCompensator
 extends
-    Parseable[NonLinearShuntCompensator]
+    Parseable[NonlinearShuntCompensator]
 {
-    def parse (context: Context): NonLinearShuntCompensator =
+    val sup = ShuntCompensator.parse _
+    def parse (context: Context): NonlinearShuntCompensator =
     {
-        return (
-            NonLinearShuntCompensator
-            (
-                ShuntCompensator.parse (context)
-            )
+        NonlinearShuntCompensator(
+            sup (context)
         )
     }
 }
 
-case class NonLinearShuntCompensatorPhase
+/**
+ * A per phase non linear shunt compensator has bank or section admittance values that differs.
+ */
+case class NonlinearShuntCompensatorPhase
 (
+
     override val sup: ShuntCompensatorPhase
 )
 extends
@@ -1415,7 +2105,7 @@ extends
 {
     def this () = { this (null) }
     def ShuntCompensatorPhase: ShuntCompensatorPhase = sup.asInstanceOf[ShuntCompensatorPhase]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonLinearShuntCompensatorPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1426,26 +2116,40 @@ extends
     override def length: Int = productArity
 }
 
-object NonLinearShuntCompensatorPhase
+object NonlinearShuntCompensatorPhase
 extends
-    Parseable[NonLinearShuntCompensatorPhase]
+    Parseable[NonlinearShuntCompensatorPhase]
 {
-    def parse (context: Context): NonLinearShuntCompensatorPhase =
+    val sup = ShuntCompensatorPhase.parse _
+    def parse (context: Context): NonlinearShuntCompensatorPhase =
     {
-        return (
-            NonLinearShuntCompensatorPhase
-            (
-                ShuntCompensatorPhase.parse (context)
-            )
+        NonlinearShuntCompensatorPhase(
+            sup (context)
         )
     }
 }
 
+/**
+ * A per phase non linear shunt compensator bank or section admittance value.
+ */
 case class NonlinearShuntCompensatorPhasePoint
 (
+
     override val sup: BasicElement,
+
+    /**
+     * Positive sequence shunt (charging) susceptance per section
+     */
     val b: Double,
+
+    /**
+     * Positive sequence shunt (charging) conductance per section
+     */
     val g: Double,
+
+    /**
+     * The number of the section.
+     */
     val sectionNumber: Int
 )
 extends
@@ -1453,7 +2157,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPhasePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPhasePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1468,30 +2172,52 @@ object NonlinearShuntCompensatorPhasePoint
 extends
     Parseable[NonlinearShuntCompensatorPhasePoint]
 {
+    val sup = BasicElement.parse _
     val b = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.b"""))_
     val g = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.g"""))_
     val sectionNumber = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.sectionNumber"""))_
     def parse (context: Context): NonlinearShuntCompensatorPhasePoint =
     {
-        return (
-            NonlinearShuntCompensatorPhasePoint
-            (
-                BasicElement.parse (context),
-                toDouble (b (context), context),
-                toDouble (g (context), context),
-                toInteger (sectionNumber (context), context)
-            )
+        NonlinearShuntCompensatorPhasePoint(
+            sup (context),
+            toDouble (b (context), context),
+            toDouble (g (context), context),
+            toInteger (sectionNumber (context), context)
         )
     }
 }
 
+/**
+ * A non linear shunt compensator bank or section admittance value.
+ */
 case class NonlinearShuntCompensatorPoint
 (
+
     override val sup: BasicElement,
-    val b0: Double,
+
+    /**
+     * Positive sequence shunt (charging) susceptance per section
+     */
     val b: Double,
-    val g0: Double,
+
+    /**
+     * Zero sequence shunt (charging) susceptance per section
+     */
+    val b0: Double,
+
+    /**
+     * Positive sequence shunt (charging) conductance per section
+     */
     val g: Double,
+
+    /**
+     * Zero sequence shunt (charging) conductance per section
+     */
+    val g0: Double,
+
+    /**
+     * The number of the section.
+     */
     val sectionNumber: Int
 )
 extends
@@ -1499,7 +2225,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1514,6 +2240,7 @@ object NonlinearShuntCompensatorPoint
 extends
     Parseable[NonlinearShuntCompensatorPoint]
 {
+    val sup = BasicElement.parse _
     val b = parse_element (element ("""NonlinearShuntCompensatorPoint.b"""))_
     val b0 = parse_element (element ("""NonlinearShuntCompensatorPoint.b0"""))_
     val g = parse_element (element ("""NonlinearShuntCompensatorPoint.g"""))_
@@ -1521,22 +2248,23 @@ extends
     val sectionNumber = parse_element (element ("""NonlinearShuntCompensatorPoint.sectionNumber"""))_
     def parse (context: Context): NonlinearShuntCompensatorPoint =
     {
-        return (
-            NonlinearShuntCompensatorPoint
-            (
-                BasicElement.parse (context),
-                toDouble (b (context), context),
-                toDouble (b0 (context), context),
-                toDouble (g (context), context),
-                toDouble (g0 (context), context),
-                toInteger (sectionNumber (context), context)
-            )
+        NonlinearShuntCompensatorPoint(
+            sup (context),
+            toDouble (b (context), context),
+            toDouble (b0 (context), context),
+            toDouble (g (context), context),
+            toDouble (g0 (context), context),
+            toInteger (sectionNumber (context), context)
         )
     }
 }
 
+/**
+ * Common type for per-length impedance electrical catalogues.
+ */
 case class PerLengthImpedance
 (
+
     override val sup: PerLengthLineParameter
 )
 extends
@@ -1544,7 +2272,7 @@ extends
 {
     def this () = { this (null) }
     def PerLengthLineParameter: PerLengthLineParameter = sup.asInstanceOf[PerLengthLineParameter]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1559,20 +2287,26 @@ object PerLengthImpedance
 extends
     Parseable[PerLengthImpedance]
 {
+    val sup = PerLengthLineParameter.parse _
     def parse (context: Context): PerLengthImpedance =
     {
-        return (
-            PerLengthImpedance
-            (
-                PerLengthLineParameter.parse (context)
-            )
+        PerLengthImpedance(
+            sup (context)
         )
     }
 }
 
+/**
+ * Common type for per-length electrical catalogues describing line parameters.
+ */
 case class PerLengthLineParameter
 (
+
     override val sup: IdentifiedObject,
+
+    /**
+     * Wire spacing datasheet used to calculate this per-length parameter.
+     */
     val WireSpacingInfo: String
 )
 extends
@@ -1580,7 +2314,7 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthLineParameter]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthLineParameter]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1595,22 +2329,29 @@ object PerLengthLineParameter
 extends
     Parseable[PerLengthLineParameter]
 {
+    val sup = IdentifiedObject.parse _
     val WireSpacingInfo = parse_attribute (attribute ("""PerLengthLineParameter.WireSpacingInfo"""))_
     def parse (context: Context): PerLengthLineParameter =
     {
-        return (
-            PerLengthLineParameter
-            (
-                IdentifiedObject.parse (context),
-                WireSpacingInfo (context)
-            )
+        PerLengthLineParameter(
+            sup (context),
+            WireSpacingInfo (context)
         )
     }
 }
 
+/**
+ * Impedance and admittance parameters per unit length for n-wire unbalanced lines, in matrix form.
+ */
 case class PerLengthPhaseImpedance
 (
+
     override val sup: PerLengthImpedance,
+
+    /**
+     * Number of phase, neutral, and other wires retained.
+     * Constrains the number of matrix elements and the phase codes that can be used with this matrix.
+     */
     val conductorCount: Int
 )
 extends
@@ -1618,7 +2359,7 @@ extends
 {
     def this () = { this (null, 0) }
     def PerLengthImpedance: PerLengthImpedance = sup.asInstanceOf[PerLengthImpedance]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthPhaseImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthPhaseImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1633,37 +2374,72 @@ object PerLengthPhaseImpedance
 extends
     Parseable[PerLengthPhaseImpedance]
 {
+    val sup = PerLengthImpedance.parse _
     val conductorCount = parse_element (element ("""PerLengthPhaseImpedance.conductorCount"""))_
     def parse (context: Context): PerLengthPhaseImpedance =
     {
-        return (
-            PerLengthPhaseImpedance
-            (
-                PerLengthImpedance.parse (context),
-                toInteger (conductorCount (context), context)
-            )
+        PerLengthPhaseImpedance(
+            sup (context),
+            toInteger (conductorCount (context), context)
         )
     }
 }
 
+/**
+ * Sequence impedance and admittance parameters per unit length, for transposed lines of 1, 2, or 3 phases.
+ * For 1-phase lines, define x=x0=xself. For 2-phase lines, define x=xs-xm and x0=xs+xm.
+ */
 case class PerLengthSequenceImpedance
 (
+
     override val sup: PerLengthImpedance,
+
+    /**
+     * Zero sequence shunt (charging) susceptance, per unit of length.
+     */
     val b0ch: Double,
+
+    /**
+     * Positive sequence shunt (charging) susceptance, per unit of length.
+     */
     val bch: Double,
+
+    /**
+     * Zero sequence shunt (charging) conductance, per unit of length.
+     */
     val g0ch: Double,
+
+    /**
+     * Positive sequence shunt (charging) conductance, per unit of length.
+     */
     val gch: Double,
-    val r0: Double,
+
+    /**
+     * Positive sequence series resistance, per unit of length.
+     */
     val r: Double,
-    val x0: Double,
-    val x: Double
+
+    /**
+     * Zero sequence series resistance, per unit of length.
+     */
+    val r0: Double,
+
+    /**
+     * Positive sequence series reactance, per unit of length.
+     */
+    val x: Double,
+
+    /**
+     * Zero sequence series reactance, per unit of length.
+     */
+    val x0: Double
 )
 extends
     Element
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def PerLengthImpedance: PerLengthImpedance = sup.asInstanceOf[PerLengthImpedance]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthSequenceImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthSequenceImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1678,42 +2454,75 @@ object PerLengthSequenceImpedance
 extends
     Parseable[PerLengthSequenceImpedance]
 {
+    val sup = PerLengthImpedance.parse _
     val b0ch = parse_element (element ("""PerLengthSequenceImpedance.b0ch"""))_
     val bch = parse_element (element ("""PerLengthSequenceImpedance.bch"""))_
     val g0ch = parse_element (element ("""PerLengthSequenceImpedance.g0ch"""))_
     val gch = parse_element (element ("""PerLengthSequenceImpedance.gch"""))_
-    val r0 = parse_element (element ("""PerLengthSequenceImpedance.r0"""))_
     val r = parse_element (element ("""PerLengthSequenceImpedance.r"""))_
-    val x0 = parse_element (element ("""PerLengthSequenceImpedance.x0"""))_
+    val r0 = parse_element (element ("""PerLengthSequenceImpedance.r0"""))_
     val x = parse_element (element ("""PerLengthSequenceImpedance.x"""))_
+    val x0 = parse_element (element ("""PerLengthSequenceImpedance.x0"""))_
     def parse (context: Context): PerLengthSequenceImpedance =
     {
-        return (
-            PerLengthSequenceImpedance
-            (
-                PerLengthImpedance.parse (context),
-                toDouble (b0ch (context), context),
-                toDouble (bch (context), context),
-                toDouble (g0ch (context), context),
-                toDouble (gch (context), context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context)
-            )
+        PerLengthSequenceImpedance(
+            sup (context),
+            toDouble (b0ch (context), context),
+            toDouble (bch (context), context),
+            toDouble (g0ch (context), context),
+            toDouble (gch (context), context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toDouble (x (context), context),
+            toDouble (x0 (context), context)
         )
     }
 }
 
+/**
+ * A tunable impedance device normally used to offset line charging during single line faults in an ungrounded section of network.
+ */
 case class PetersenCoil
 (
+
     override val sup: EarthFaultCompensator,
+
+    /**
+     * The mode of operation of the Petersen coil.
+     */
     val mode: String,
+
+    /**
+     * The nominal voltage for which the coil is designed.
+     */
     val nominalU: Double,
+
+    /**
+     * The offset current that the Petersen coil controller is operating from the resonant point.
+     * This is normally a fixed amount for which the controller is configured and could be positive or negative.  Typically 0 to 60 Amperes depending on voltage and resonance conditions.
+     */
     val offsetCurrent: Double,
+
+    /**
+     * The control current used to control the Petersen coil also known as the position current.
+     * Typically in the range of 20-200mA.
+     */
     val positionCurrent: Double,
+
+    /**
+     * The maximum reactance.
+     */
     val xGroundMax: Double,
+
+    /**
+     * The minimum reactance.
+     */
     val xGroundMin: Double,
+
+    /**
+     * The nominal reactance.
+     * This is the operating point (normally over compensation) that is defined based on the resonance point in the healthy network condition.  The impedance is calculated based on nominal voltage divided by position current.
+     */
     val xGroundNominal: Double
 )
 extends
@@ -1721,7 +2530,7 @@ extends
 {
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def EarthFaultCompensator: EarthFaultCompensator = sup.asInstanceOf[EarthFaultCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[PetersenCoil]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PetersenCoil]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1736,6 +2545,7 @@ object PetersenCoil
 extends
     Parseable[PetersenCoil]
 {
+    val sup = EarthFaultCompensator.parse _
     val mode = parse_attribute (attribute ("""PetersenCoil.mode"""))_
     val nominalU = parse_element (element ("""PetersenCoil.nominalU"""))_
     val offsetCurrent = parse_element (element ("""PetersenCoil.offsetCurrent"""))_
@@ -1745,29 +2555,109 @@ extends
     val xGroundNominal = parse_element (element ("""PetersenCoil.xGroundNominal"""))_
     def parse (context: Context): PetersenCoil =
     {
-        return (
-            PetersenCoil
-            (
-                EarthFaultCompensator.parse (context),
-                mode (context),
-                toDouble (nominalU (context), context),
-                toDouble (offsetCurrent (context), context),
-                toDouble (positionCurrent (context), context),
-                toDouble (xGroundMax (context), context),
-                toDouble (xGroundMin (context), context),
-                toDouble (xGroundNominal (context), context)
-            )
+        PetersenCoil(
+            sup (context),
+            mode (context),
+            toDouble (nominalU (context), context),
+            toDouble (offsetCurrent (context), context),
+            toDouble (positionCurrent (context), context),
+            toDouble (xGroundMax (context), context),
+            toDouble (xGroundMin (context), context),
+            toDouble (xGroundNominal (context), context)
         )
     }
 }
 
+/**
+ * The mode of operation for a Petersen coil.
+ */
+case class PetersenCoilModeKind
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Automatic positioning.
+     */
+    val automaticPositioning: String,
+
+    /**
+     * Fixed position.
+     */
+    val fixed: String,
+
+    /**
+     * Manual positioning.
+     */
+    val manual: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[PetersenCoilModeKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object PetersenCoilModeKind
+extends
+    Parseable[PetersenCoilModeKind]
+{
+    val sup = BasicElement.parse _
+    val automaticPositioning = parse_attribute (attribute ("""PetersenCoilModeKind.automaticPositioning"""))_
+    val fixed = parse_attribute (attribute ("""PetersenCoilModeKind.fixed"""))_
+    val manual = parse_attribute (attribute ("""PetersenCoilModeKind.manual"""))_
+    def parse (context: Context): PetersenCoilModeKind =
+    {
+        PetersenCoilModeKind(
+            sup (context),
+            automaticPositioning (context),
+            fixed (context),
+            manual (context)
+        )
+    }
+}
+
+/**
+ * Triplet of resistance, reactance, and susceptance matrix element values.
+ */
 case class PhaseImpedanceData
 (
+
     override val sup: BasicElement,
+
+    /**
+     * Susceptance matrix element value, per length of unit.
+     */
     val b: Double,
+
+    /**
+     * Resistance matrix element value, per length of unit.
+     */
     val r: Double,
+
+    /**
+     * Column-wise element index, assuming a symmetrical matrix.
+     * Ranges from 1 to N + N*(N-1)/2.
+     */
     val sequenceNumber: Int,
+
+    /**
+     * Reactance matrix element value, per length of unit.
+     */
     val x: Double,
+
+    /**
+     * Conductor phase impedance to which this data belongs.
+     */
     val PhaseImpedance: String
 )
 extends
@@ -1775,7 +2665,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0, 0.0, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseImpedanceData]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseImpedanceData]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1790,6 +2680,7 @@ object PhaseImpedanceData
 extends
     Parseable[PhaseImpedanceData]
 {
+    val sup = BasicElement.parse _
     val b = parse_element (element ("""PhaseImpedanceData.b"""))_
     val r = parse_element (element ("""PhaseImpedanceData.r"""))_
     val sequenceNumber = parse_element (element ("""PhaseImpedanceData.sequenceNumber"""))_
@@ -1797,23 +2688,94 @@ extends
     val PhaseImpedance = parse_attribute (attribute ("""PhaseImpedanceData.PhaseImpedance"""))_
     def parse (context: Context): PhaseImpedanceData =
     {
-        return (
-            PhaseImpedanceData
-            (
-                BasicElement.parse (context),
-                toDouble (b (context), context),
-                toDouble (r (context), context),
-                toInteger (sequenceNumber (context), context),
-                toDouble (x (context), context),
-                PhaseImpedance (context)
-            )
+        PhaseImpedanceData(
+            sup (context),
+            toDouble (b (context), context),
+            toDouble (r (context), context),
+            toInteger (sequenceNumber (context), context),
+            toDouble (x (context), context),
+            PhaseImpedance (context)
         )
     }
 }
 
+/**
+ * The configuration of phase connections for a single terminal device such as a load or capactitor.
+ */
+case class PhaseShuntConnectionKind
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Delta connection.
+     */
+    val D: String,
+
+    /**
+     * Independent winding, for single-phase connections.
+     */
+    val I: String,
+
+    /**
+     * Wye connection.
+     */
+    val Y: String,
+
+    /**
+     * Wye, with neutral brought out for grounding.
+     */
+    val Yn: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseShuntConnectionKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object PhaseShuntConnectionKind
+extends
+    Parseable[PhaseShuntConnectionKind]
+{
+    val sup = BasicElement.parse _
+    val D = parse_attribute (attribute ("""PhaseShuntConnectionKind.D"""))_
+    val I = parse_attribute (attribute ("""PhaseShuntConnectionKind.I"""))_
+    val Y = parse_attribute (attribute ("""PhaseShuntConnectionKind.Y"""))_
+    val Yn = parse_attribute (attribute ("""PhaseShuntConnectionKind.Yn"""))_
+    def parse (context: Context): PhaseShuntConnectionKind =
+    {
+        PhaseShuntConnectionKind(
+            sup (context),
+            D (context),
+            I (context),
+            Y (context),
+            Yn (context)
+        )
+    }
+}
+
+/**
+ * A transformer phase shifting tap model that controls the phase angle difference across the power transformer and potentially the active power flow through the power transformer.
+ * This phase tap model may also impact the voltage magnitude.
+ */
 case class PhaseTapChanger
 (
+
     override val sup: TapChanger,
+
+    /**
+     * Transformer end to which this phase tap changer belongs.
+     */
     val TransformerEnd: String
 )
 extends
@@ -1821,7 +2783,7 @@ extends
 {
     def this () = { this (null, null) }
     def TapChanger: TapChanger = sup.asInstanceOf[TapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChanger]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChanger]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1836,22 +2798,30 @@ object PhaseTapChanger
 extends
     Parseable[PhaseTapChanger]
 {
+    val sup = TapChanger.parse _
     val TransformerEnd = parse_attribute (attribute ("""PhaseTapChanger.TransformerEnd"""))_
     def parse (context: Context): PhaseTapChanger =
     {
-        return (
-            PhaseTapChanger
-            (
-                TapChanger.parse (context),
-                TransformerEnd (context)
-            )
+        PhaseTapChanger(
+            sup (context),
+            TransformerEnd (context)
         )
     }
 }
 
+/**
+ * Describes the tap model for an asymmetrical phase shifting transformer in which the difference voltage vector adds to the primary side voltage.
+ * The angle between the primary side voltage and the difference voltage is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
+ */
 case class PhaseTapChangerAsymmetrical
 (
+
     override val sup: PhaseTapChangerNonLinear,
+
+    /**
+     * The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift.
+     * The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmemtrical transformer.
+     */
     val windingConnectionAngle: Double
 )
 extends
@@ -1859,7 +2829,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = sup.asInstanceOf[PhaseTapChangerNonLinear]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerAsymmetrical]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerAsymmetrical]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1874,24 +2844,42 @@ object PhaseTapChangerAsymmetrical
 extends
     Parseable[PhaseTapChangerAsymmetrical]
 {
+    val sup = PhaseTapChangerNonLinear.parse _
     val windingConnectionAngle = parse_element (element ("""PhaseTapChangerAsymmetrical.windingConnectionAngle"""))_
     def parse (context: Context): PhaseTapChangerAsymmetrical =
     {
-        return (
-            PhaseTapChangerAsymmetrical
-            (
-                PhaseTapChangerNonLinear.parse (context),
-                toDouble (windingConnectionAngle (context), context)
-            )
+        PhaseTapChangerAsymmetrical(
+            sup (context),
+            toDouble (windingConnectionAngle (context), context)
         )
     }
 }
 
+/**
+ * Describes a tap changer with a linear relation between the tap step and the phase angle difference across the transformer.
+ * This is a mathematical model that is an approximation of a real phase tap changer.
+ */
 case class PhaseTapChangerLinear
 (
+
     override val sup: PhaseTapChanger,
+
+    /**
+     * Phase shift per step position.
+     * A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+     */
     val stepPhaseShiftIncrement: Double,
+
+    /**
+     * The reactance depend on the tap position according to a "u" shaped curve.
+     * The maximum reactance (xMax) appear at the low and high tap positions.
+     */
     val xMax: Double,
+
+    /**
+     * The reactance depend on the tap position according to a "u" shaped curve.
+     * The minimum reactance (xMin) appear at the mid tap position.
+     */
     val xMin: Double
 )
 extends
@@ -1899,7 +2887,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0) }
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerLinear]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerLinear]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1914,28 +2902,45 @@ object PhaseTapChangerLinear
 extends
     Parseable[PhaseTapChangerLinear]
 {
+    val sup = PhaseTapChanger.parse _
     val stepPhaseShiftIncrement = parse_element (element ("""PhaseTapChangerLinear.stepPhaseShiftIncrement"""))_
     val xMax = parse_element (element ("""PhaseTapChangerLinear.xMax"""))_
     val xMin = parse_element (element ("""PhaseTapChangerLinear.xMin"""))_
     def parse (context: Context): PhaseTapChangerLinear =
     {
-        return (
-            PhaseTapChangerLinear
-            (
-                PhaseTapChanger.parse (context),
-                toDouble (stepPhaseShiftIncrement (context), context),
-                toDouble (xMax (context), context),
-                toDouble (xMin (context), context)
-            )
+        PhaseTapChangerLinear(
+            sup (context),
+            toDouble (stepPhaseShiftIncrement (context), context),
+            toDouble (xMax (context), context),
+            toDouble (xMin (context), context)
         )
     }
 }
 
+/**
+ * The non-linear phase tap changer describes the non-linear behavior of a phase tap changer.
+ * This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in the IEC 61970-301 document.
+ */
 case class PhaseTapChangerNonLinear
 (
+
     override val sup: PhaseTapChanger,
+
+    /**
+     * The voltage step increment on the out of phase winding specified in percent of nominal voltage of the transformer end.
+     */
     val voltageStepIncrement: Double,
+
+    /**
+     * The reactance depend on the tap position according to a "u" shaped curve.
+     * The maximum reactance (xMax) appear at the low and high tap positions.
+     */
     val xMax: Double,
+
+    /**
+     * The reactance depend on the tap position according to a "u" shaped curve.
+     * The minimum reactance (xMin) appear at the mid tap position.
+     */
     val xMin: Double
 )
 extends
@@ -1943,7 +2948,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0) }
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerNonLinear]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerNonLinear]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1958,25 +2963,28 @@ object PhaseTapChangerNonLinear
 extends
     Parseable[PhaseTapChangerNonLinear]
 {
+    val sup = PhaseTapChanger.parse _
     val voltageStepIncrement = parse_element (element ("""PhaseTapChangerNonLinear.voltageStepIncrement"""))_
     val xMax = parse_element (element ("""PhaseTapChangerNonLinear.xMax"""))_
     val xMin = parse_element (element ("""PhaseTapChangerNonLinear.xMin"""))_
     def parse (context: Context): PhaseTapChangerNonLinear =
     {
-        return (
-            PhaseTapChangerNonLinear
-            (
-                PhaseTapChanger.parse (context),
-                toDouble (voltageStepIncrement (context), context),
-                toDouble (xMax (context), context),
-                toDouble (xMin (context), context)
-            )
+        PhaseTapChangerNonLinear(
+            sup (context),
+            toDouble (voltageStepIncrement (context), context),
+            toDouble (xMax (context), context),
+            toDouble (xMin (context), context)
         )
     }
 }
 
+/**
+ * Describes a symmetrical phase shifting transformer tap model in which the secondary side voltage magnitude is the same as at the primary side.
+ * The difference voltage magnitude is the base in an equal-sided triangle where the sides corresponds to the primary and secondary voltages. The phase angle difference corresponds to the top angle and can be expressed as twice the arctangent of half the total difference voltage.
+ */
 case class PhaseTapChangerSymmetrical
 (
+
     override val sup: PhaseTapChangerNonLinear
 )
 extends
@@ -1984,7 +2992,7 @@ extends
 {
     def this () = { this (null) }
     def PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = sup.asInstanceOf[PhaseTapChangerNonLinear]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerSymmetrical]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerSymmetrical]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1999,19 +3007,21 @@ object PhaseTapChangerSymmetrical
 extends
     Parseable[PhaseTapChangerSymmetrical]
 {
+    val sup = PhaseTapChangerNonLinear.parse _
     def parse (context: Context): PhaseTapChangerSymmetrical =
     {
-        return (
-            PhaseTapChangerSymmetrical
-            (
-                PhaseTapChangerNonLinear.parse (context)
-            )
+        PhaseTapChangerSymmetrical(
+            sup (context)
         )
     }
 }
 
+/**
+ * Describes a tabular curve for how the phase angle difference and impedance varies with the tap step.
+ */
 case class PhaseTapChangerTable
 (
+
     override val sup: IdentifiedObject
 )
 extends
@@ -2019,7 +3029,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTable]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTable]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2034,21 +3044,31 @@ object PhaseTapChangerTable
 extends
     Parseable[PhaseTapChangerTable]
 {
+    val sup = IdentifiedObject.parse _
     def parse (context: Context): PhaseTapChangerTable =
     {
-        return (
-            PhaseTapChangerTable
-            (
-                IdentifiedObject.parse (context)
-            )
+        PhaseTapChangerTable(
+            sup (context)
         )
     }
 }
 
+/**
+ * Describes each tap step in the phase tap changer tabular curve.
+ */
 case class PhaseTapChangerTablePoint
 (
+
     override val sup: TapChangerTablePoint,
+
+    /**
+     * The angle difference in degrees.
+     */
     val angle: Double,
+
+    /**
+     * The table of this point.
+     */
     val PhaseTapChangerTable: String
 )
 extends
@@ -2056,7 +3076,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def TapChangerTablePoint: TapChangerTablePoint = sup.asInstanceOf[TapChangerTablePoint]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTablePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTablePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2071,24 +3091,27 @@ object PhaseTapChangerTablePoint
 extends
     Parseable[PhaseTapChangerTablePoint]
 {
+    val sup = TapChangerTablePoint.parse _
     val angle = parse_element (element ("""PhaseTapChangerTablePoint.angle"""))_
     val PhaseTapChangerTable = parse_attribute (attribute ("""PhaseTapChangerTablePoint.PhaseTapChangerTable"""))_
     def parse (context: Context): PhaseTapChangerTablePoint =
     {
-        return (
-            PhaseTapChangerTablePoint
-            (
-                TapChangerTablePoint.parse (context),
-                toDouble (angle (context), context),
-                PhaseTapChangerTable (context)
-            )
+        PhaseTapChangerTablePoint(
+            sup (context),
+            toDouble (angle (context), context),
+            PhaseTapChangerTable (context)
         )
     }
 }
 
 case class PhaseTapChangerTabular
 (
+
     override val sup: PhaseTapChanger,
+
+    /**
+     * The phase tap changer table for this phase tap changer.
+     */
     val PhaseTapChangerTable: String
 )
 extends
@@ -2096,7 +3119,7 @@ extends
 {
     def this () = { this (null, null) }
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTabular]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTabular]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2111,21 +3134,23 @@ object PhaseTapChangerTabular
 extends
     Parseable[PhaseTapChangerTabular]
 {
+    val sup = PhaseTapChanger.parse _
     val PhaseTapChangerTable = parse_attribute (attribute ("""PhaseTapChangerTabular.PhaseTapChangerTable"""))_
     def parse (context: Context): PhaseTapChangerTabular =
     {
-        return (
-            PhaseTapChangerTabular
-            (
-                PhaseTapChanger.parse (context),
-                PhaseTapChangerTable (context)
-            )
+        PhaseTapChangerTabular(
+            sup (context),
+            PhaseTapChangerTable (context)
         )
     }
 }
 
+/**
+ * A Plant is a collection of equipment for purposes of generation.
+ */
 case class Plant
 (
+
     override val sup: EquipmentContainer
 )
 extends
@@ -2133,7 +3158,7 @@ extends
 {
     def this () = { this (null) }
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[Plant]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Plant]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2148,26 +3173,64 @@ object Plant
 extends
     Parseable[Plant]
 {
+    val sup = EquipmentContainer.parse _
     def parse (context: Context): Plant =
     {
-        return (
-            Plant
-            (
-                EquipmentContainer.parse (context)
-            )
+        Plant(
+            sup (context)
         )
     }
 }
 
+/**
+ * An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits.
+ * Transformers can be used to control voltage and phase shift (active power flow).
+ */
 case class PowerTransformer
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * The highest operating current (Ib in the IEC 60909-0) before short circuit (depends on network configuration and relevant reliability philosophy).
+     * It is used for calculation of the impedance correction factor KT defined in IEC 60909-0.
+     */
     val beforeShCircuitHighestOperatingCurrent: Double,
+
+    /**
+     * The highest operating voltage (Ub in the IEC 60909-0) before short circuit.
+     * It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is worst case voltage on the low side winding (Section 3.7.1 in the standard). Used to define operating conditions.
+     */
     val beforeShCircuitHighestOperatingVoltage: Double,
+
+    /**
+     * The angle of power factor before short circuit (phib in the IEC 60909-0).
+     * It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is the worst case power factor. Used to define operating conditions.
+     */
     val beforeShortCircuitAnglePf: Double,
+
+    /**
+     * The minimum operating voltage (uQmin in the IEC 60909-0) at the high voltage side (Q side) of the unit transformer of the power station unit.
+     * A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0
+     */
     val highSideMinOperatingU: Double,
+
+    /**
+     * Indicates whether the machine is part of a power station unit.
+     * Used for short circuit data exchange according to IEC 60909
+     */
     val isPartOfGeneratorUnit: Boolean,
+
+    /**
+     * It is used to define if the data (other attributes related to short circuit data exchange) defines long term operational conditions or not.
+     * Used for short circuit data exchange according to IEC 60909.
+     */
     val operationalValuesConsidered: Boolean,
+
+    /**
+     * Vector group of the transformer for protective relaying, e.g., Dyn1.
+     * For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.
+     */
     val vectorGroup: String
 )
 extends
@@ -2175,7 +3238,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformer]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformer]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2190,6 +3253,7 @@ object PowerTransformer
 extends
     Parseable[PowerTransformer]
 {
+    val sup = ConductingEquipment.parse _
     val beforeShCircuitHighestOperatingCurrent = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingCurrent"""))_
     val beforeShCircuitHighestOperatingVoltage = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingVoltage"""))_
     val beforeShortCircuitAnglePf = parse_element (element ("""PowerTransformer.beforeShortCircuitAnglePf"""))_
@@ -2199,37 +3263,96 @@ extends
     val vectorGroup = parse_element (element ("""PowerTransformer.vectorGroup"""))_
     def parse (context: Context): PowerTransformer =
     {
-        return (
-            PowerTransformer
-            (
-                ConductingEquipment.parse (context),
-                toDouble (beforeShCircuitHighestOperatingCurrent (context), context),
-                toDouble (beforeShCircuitHighestOperatingVoltage (context), context),
-                toDouble (beforeShortCircuitAnglePf (context), context),
-                toDouble (highSideMinOperatingU (context), context),
-                toBoolean (isPartOfGeneratorUnit (context), context),
-                toBoolean (operationalValuesConsidered (context), context),
-                vectorGroup (context)
-            )
+        PowerTransformer(
+            sup (context),
+            toDouble (beforeShCircuitHighestOperatingCurrent (context), context),
+            toDouble (beforeShCircuitHighestOperatingVoltage (context), context),
+            toDouble (beforeShortCircuitAnglePf (context), context),
+            toDouble (highSideMinOperatingU (context), context),
+            toBoolean (isPartOfGeneratorUnit (context), context),
+            toBoolean (operationalValuesConsidered (context), context),
+            vectorGroup (context)
         )
     }
 }
 
+/**
+ * A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
+ * The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows
+ */
 case class PowerTransformerEnd
 (
+
     override val sup: TransformerEnd,
-    val b0: Double,
+
+    /**
+     * Magnetizing branch susceptance (B mag).
+     * The value can be positive or negative.
+     */
     val b: Double,
+
+    /**
+     * Zero sequence magnetizing branch susceptance.
+     */
+    val b0: Double,
+
+    /**
+     * Kind of connection.
+     */
     val connectionKind: String,
-    val g0: Double,
+
+    /**
+     * Magnetizing branch conductance.
+     */
     val g: Double,
+
+    /**
+     * Zero sequence magnetizing branch conductance (star-model).
+     */
+    val g0: Double,
+
+    /**
+     * Terminal voltage phase angle displacement where 360 degrees are represented with clock hours.
+     * The valid values are 0 to 11. For example, for the secondary side end of a transformer with vector group code of 'Dyn11', specify the connection kind as wye with neutral and specify the phase angle of the clock as 11.  The clock value of the transformer end number specified as 1, is assumed to be zero.  Note the transformer end number is not assumed to be the same as the terminal sequence number.
+     */
     val phaseAngleClock: Int,
-    val r0: Double,
+
+    /**
+     * Resistance (star-model) of the transformer end.
+     * The attribute shall be equal or greater than zero for non-equivalent transformers.
+     */
     val r: Double,
+
+    /**
+     * Zero sequence series resistance (star-model) of the transformer end.
+     */
+    val r0: Double,
+
+    /**
+     * Normal apparent power rating.
+     * The attribute shall be a positive value. For a two-winding transformer the values for the high and low voltage sides shall be identical.
+     */
     val ratedS: Double,
+
+    /**
+     * Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
+     * A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater or equal than ratedU for the lower voltage sides.
+     */
     val ratedU: Double,
-    val x0: Double,
+
+    /**
+     * Positive sequence series reactance (star-model) of the transformer end.
+     */
     val x: Double,
+
+    /**
+     * Zero sequence series reactance of the transformer end.
+     */
+    val x0: Double,
+
+    /**
+     * The power transformer of this power transformer end.
+     */
     val PowerTransformer: String
 )
 extends
@@ -2237,7 +3360,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
-    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformerEnd]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformerEnd]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2252,55 +3375,60 @@ object PowerTransformerEnd
 extends
     Parseable[PowerTransformerEnd]
 {
-    val b0 = parse_element (element ("""PowerTransformerEnd.b0"""))_
+    val sup = TransformerEnd.parse _
     val b = parse_element (element ("""PowerTransformerEnd.b"""))_
+    val b0 = parse_element (element ("""PowerTransformerEnd.b0"""))_
     val connectionKind = parse_attribute (attribute ("""PowerTransformerEnd.connectionKind"""))_
-    val g0 = parse_element (element ("""PowerTransformerEnd.g0"""))_
     val g = parse_element (element ("""PowerTransformerEnd.g"""))_
+    val g0 = parse_element (element ("""PowerTransformerEnd.g0"""))_
     val phaseAngleClock = parse_element (element ("""PowerTransformerEnd.phaseAngleClock"""))_
-    val r0 = parse_element (element ("""PowerTransformerEnd.r0"""))_
     val r = parse_element (element ("""PowerTransformerEnd.r"""))_
+    val r0 = parse_element (element ("""PowerTransformerEnd.r0"""))_
     val ratedS = parse_element (element ("""PowerTransformerEnd.ratedS"""))_
     val ratedU = parse_element (element ("""PowerTransformerEnd.ratedU"""))_
-    val x0 = parse_element (element ("""PowerTransformerEnd.x0"""))_
     val x = parse_element (element ("""PowerTransformerEnd.x"""))_
+    val x0 = parse_element (element ("""PowerTransformerEnd.x0"""))_
     val PowerTransformer = parse_attribute (attribute ("""PowerTransformerEnd.PowerTransformer"""))_
     def parse (context: Context): PowerTransformerEnd =
     {
-        return (
-            PowerTransformerEnd
-            (
-                TransformerEnd.parse (context),
-                toDouble (b0 (context), context),
-                toDouble (b (context), context),
-                connectionKind (context),
-                toDouble (g0 (context), context),
-                toDouble (g (context), context),
-                toInteger (phaseAngleClock (context), context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toDouble (ratedS (context), context),
-                toDouble (ratedU (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context),
-                PowerTransformer (context)
-            )
+        PowerTransformerEnd(
+            sup (context),
+            toDouble (b (context), context),
+            toDouble (b0 (context), context),
+            connectionKind (context),
+            toDouble (g (context), context),
+            toDouble (g0 (context), context),
+            toInteger (phaseAngleClock (context), context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toDouble (ratedS (context), context),
+            toDouble (ratedU (context), context),
+            toDouble (x (context), context),
+            toDouble (x0 (context), context),
+            PowerTransformer (context)
         )
     }
 }
 
+/**
+ * A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
+ */
 case class ProtectedSwitch
 (
+
     override val sup: Switch,
+
+    /**
+     * The maximum fault current a breaking device can break safely under prescribed conditions of use.
+     */
     val breakingCapacity: Double
-    // ToDo: RecloseSequences
 )
 extends
     Element
 {
     def this () = { this (null, 0.0) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[ProtectedSwitch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ProtectedSwitch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2315,25 +3443,43 @@ object ProtectedSwitch
 extends
     Parseable[ProtectedSwitch]
 {
-    val breakingCapacity = parse_attribute (attribute ("""ProtectedSwitch.breakingCapacity"""))_
+    val sup = Switch.parse _
+    val breakingCapacity = parse_element (element ("""ProtectedSwitch.breakingCapacity"""))_
     def parse (context: Context): ProtectedSwitch =
     {
-        return (
-            ProtectedSwitch
-            (
-                Switch.parse (context),
-                toDouble (breakingCapacity (context), context)
-            )
+        ProtectedSwitch(
+            sup (context),
+            toDouble (breakingCapacity (context), context)
         )
     }
 }
 
+/**
+ * A tap changer that changes the voltage ratio impacting the voltage magnitude but not the phase angle across the transformer.
+ */
 case class RatioTapChanger
 (
+
     override val sup: TapChanger,
+
+    /**
+     * Tap step increment, in per cent of nominal voltage, per step position.
+     */
     val stepVoltageIncrement: Double,
+
+    /**
+     * Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger.
+     */
     val tculControlMode: String,
+
+    /**
+     * The tap ratio table for this ratio  tap changer.
+     */
     val RatioTapChangerTable: String,
+
+    /**
+     * Transformer end to which this ratio tap changer belongs.
+     */
     val TransformerEnd: String
 )
 extends
@@ -2341,7 +3487,7 @@ extends
 {
     def this () = { this (null, 0.0, null, null, null) }
     def TapChanger: TapChanger = sup.asInstanceOf[TapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChanger]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChanger]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2356,27 +3502,29 @@ object RatioTapChanger
 extends
     Parseable[RatioTapChanger]
 {
+    val sup = TapChanger.parse _
     val stepVoltageIncrement = parse_element (element ("""RatioTapChanger.stepVoltageIncrement"""))_
     val tculControlMode = parse_attribute (attribute ("""RatioTapChanger.tculControlMode"""))_
     val RatioTapChangerTable = parse_attribute (attribute ("""RatioTapChanger.RatioTapChangerTable"""))_
     val TransformerEnd = parse_attribute (attribute ("""RatioTapChanger.TransformerEnd"""))_
     def parse (context: Context): RatioTapChanger =
     {
-        return (
-            RatioTapChanger
-            (
-                TapChanger.parse (context),
-                toDouble (stepVoltageIncrement (context), context),
-                tculControlMode (context),
-                RatioTapChangerTable (context),
-                TransformerEnd (context)
-            )
+        RatioTapChanger(
+            sup (context),
+            toDouble (stepVoltageIncrement (context), context),
+            tculControlMode (context),
+            RatioTapChangerTable (context),
+            TransformerEnd (context)
         )
     }
 }
 
+/**
+ * Describes a curve for how the voltage magnitude and impedance varies with the tap step.
+ */
 case class RatioTapChangerTable
 (
+
     override val sup: IdentifiedObject
 )
 extends
@@ -2384,7 +3532,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTable]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTable]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2399,20 +3547,26 @@ object RatioTapChangerTable
 extends
     Parseable[RatioTapChangerTable]
 {
+    val sup = IdentifiedObject.parse _
     def parse (context: Context): RatioTapChangerTable =
     {
-        return (
-            RatioTapChangerTable
-            (
-                IdentifiedObject.parse (context)
-            )
+        RatioTapChangerTable(
+            sup (context)
         )
     }
 }
 
+/**
+ * Describes each tap step in the ratio tap changer tabular curve.
+ */
 case class RatioTapChangerTablePoint
 (
+
     override val sup: TapChangerTablePoint,
+
+    /**
+     * Table of this point.
+     */
     val RatioTapChangerTable: String
 )
 extends
@@ -2420,7 +3574,7 @@ extends
 {
     def this () = { this (null, null) }
     def TapChangerTablePoint: TapChangerTablePoint = sup.asInstanceOf[TapChangerTablePoint]
-    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTablePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTablePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2435,23 +3589,34 @@ object RatioTapChangerTablePoint
 extends
     Parseable[RatioTapChangerTablePoint]
 {
+    val sup = TapChangerTablePoint.parse _
     val RatioTapChangerTable = parse_attribute (attribute ("""RatioTapChangerTablePoint.RatioTapChangerTable"""))_
     def parse (context: Context): RatioTapChangerTablePoint =
     {
-        return (
-            RatioTapChangerTablePoint
-            (
-                TapChangerTablePoint.parse (context),
-                RatioTapChangerTable (context)
-            )
+        RatioTapChangerTablePoint(
+            sup (context),
+            RatioTapChangerTable (context)
         )
     }
 }
 
+/**
+ * Reactive power rating envelope versus the synchronous machine's active power, in both the generating and motoring modes.
+ * For each active power value there is a corresponding high and low reactive power limit  value. Typically there will be a separate curve for each coolant condition, such as hydrogen pressure.  The Y1 axis values represent reactive minimum and the Y2 axis values represent reactive maximum.
+ */
 case class ReactiveCapabilityCurve
 (
+
     override val sup: Curve,
+
+    /**
+     * The machine's coolant temperature (e.g., ambient air or stator circulating water).
+     */
     val coolantTemperature: Double,
+
+    /**
+     * The hydrogen coolant pressure
+     */
     val hydrogenPressure: Double
 )
 extends
@@ -2459,7 +3624,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { return (clone ().asInstanceOf[ReactiveCapabilityCurve]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ReactiveCapabilityCurve]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2474,23 +3639,25 @@ object ReactiveCapabilityCurve
 extends
     Parseable[ReactiveCapabilityCurve]
 {
+    val sup = Curve.parse _
     val coolantTemperature = parse_element (element ("""ReactiveCapabilityCurve.coolantTemperature"""))_
     val hydrogenPressure = parse_element (element ("""ReactiveCapabilityCurve.hydrogenPressure"""))_
     def parse (context: Context): ReactiveCapabilityCurve =
     {
-        return (
-            ReactiveCapabilityCurve
-            (
-                Curve.parse (context),
-                toDouble (coolantTemperature (context), context),
-                toDouble (hydrogenPressure (context), context)
-            )
+        ReactiveCapabilityCurve(
+            sup (context),
+            toDouble (coolantTemperature (context), context),
+            toDouble (hydrogenPressure (context), context)
         )
     }
 }
 
+/**
+ * Pole-mounted fault interrupter with built-in phase and ground relays, current transformer (CT), and supplemental controls.
+ */
 case class Recloser
 (
+
     override val sup: ProtectedSwitch
 )
 extends
@@ -2498,7 +3665,7 @@ extends
 {
     def this () = { this (null) }
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Recloser]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Recloser]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2513,21 +3680,32 @@ object Recloser
 extends
     Parseable[Recloser]
 {
+    val sup = ProtectedSwitch.parse _
     def parse (context: Context): Recloser =
     {
-        return (
-            Recloser
-            (
-                ProtectedSwitch.parse (context)
-            )
+        Recloser(
+            sup (context)
         )
     }
 }
 
+/**
+ * A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.
+ */
 case class RegulatingCondEq
 (
+
     override val sup: ConductingEquipment,
-    val controlledEnabled: Boolean,
+
+    /**
+     * Specifies the regulation status of the equipment.
+     * True is regulating, false is not regulating.
+     */
+    val controlEnabled: Boolean,
+
+    /**
+     * The regulating control scheme in which this equipment participates.
+     */
     val RegulatingControl: String
 )
 extends
@@ -2535,7 +3713,7 @@ extends
 {
     def this () = { this (null, false, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingCondEq]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingCondEq]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2550,31 +3728,71 @@ object RegulatingCondEq
 extends
     Parseable[RegulatingCondEq]
 {
-    val controlledEnabled = parse_element (element ("""RegulatingCondEq.controlledEnabled"""))_
+    val sup = ConductingEquipment.parse _
+    val controlEnabled = parse_element (element ("""RegulatingCondEq.controlEnabled"""))_
     val RegulatingControl = parse_attribute (attribute ("""RegulatingCondEq.RegulatingControl"""))_
     def parse (context: Context): RegulatingCondEq =
     {
-        return (
-            RegulatingCondEq
-            (
-                ConductingEquipment.parse (context),
-                toBoolean (controlledEnabled (context), context),
-                RegulatingControl (context)
-            )
+        RegulatingCondEq(
+            sup (context),
+            toBoolean (controlEnabled (context), context),
+            RegulatingControl (context)
         )
     }
 }
 
+/**
+ * Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.
+ * Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment.
+ */
 case class RegulatingControl
 (
+
     override val sup: PowerSystemResource,
+
+    /**
+     * The regulation is performed in a discrete mode.
+     * This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.
+     */
     val discrete: Boolean,
+
+    /**
+     * The flag tells if regulation is enabled.
+     */
     val enabled: Boolean,
+
+    /**
+     * The regulating control mode presently available.
+     * This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.
+     */
     val mode: String,
+
+    /**
+     * Phase voltage controlling this regulator, measured at regulator location.
+     */
     val monitoredPhase: String,
+
+    /**
+     * This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
+     * The units of those appropriate for the mode.
+     */
     val targetDeadband: Double,
+
+    /**
+     * The target value specified for case input.
+     * This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
+     */
     val targetValue: Double,
+
+    /**
+     * Specify the multiplier for used for the targetValue.
+     */
     val targetValueUnitMultiplier: String,
+
+    /**
+     * The terminal associated with this regulating control.
+     * The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.
+     */
     val Terminal: String
 )
 extends
@@ -2582,7 +3800,7 @@ extends
 {
     def this () = { this (null, false, false, null, null, 0.0, 0.0, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingControl]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingControl]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2597,6 +3815,7 @@ object RegulatingControl
 extends
     Parseable[RegulatingControl]
 {
+    val sup = PowerSystemResource.parse _
     val discrete = parse_element (element ("""RegulatingControl.discrete"""))_
     val enabled = parse_element (element ("""RegulatingControl.enabled"""))_
     val mode = parse_attribute (attribute ("""RegulatingControl.mode"""))_
@@ -2607,26 +3826,126 @@ extends
     val Terminal = parse_attribute (attribute ("""RegulatingControl.Terminal"""))_
     def parse (context: Context): RegulatingControl =
     {
-        return (
-            RegulatingControl
-            (
-                PowerSystemResource.parse (context),
-                toBoolean (discrete (context), context),
-                toBoolean (enabled (context), context),
-                mode (context),
-                monitoredPhase (context),
-                toDouble (targetDeadband (context), context),
-                toDouble (targetValue (context), context),
-                targetValueUnitMultiplier (context),
-                Terminal (context)
-            )
+        RegulatingControl(
+            sup (context),
+            toBoolean (discrete (context), context),
+            toBoolean (enabled (context), context),
+            mode (context),
+            monitoredPhase (context),
+            toDouble (targetDeadband (context), context),
+            toDouble (targetValue (context), context),
+            targetValueUnitMultiplier (context),
+            Terminal (context)
         )
     }
 }
 
+/**
+ * The kind of regulation model.
+ * For example regulating voltage, reactive power, active power, etc.
+ */
+case class RegulatingControlModeKind
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Active power is specified.
+     */
+    val activePower: String,
+
+    /**
+     * Admittance is specified.
+     */
+    val admittance: String,
+
+    /**
+     * Current flow is specified.
+     */
+    val currentFlow: String,
+
+    /**
+     * Power factor is specified.
+     */
+    val powerFactor: String,
+
+    /**
+     * Reactive power is specified.
+     */
+    val reactivePower: String,
+
+    /**
+     * Control switches on/off based on the local temperature (i.e., a thermostat).
+     */
+    val temperature: String,
+
+    /**
+     * Control switches on/off by time of day.
+     * The times may change on the weekend, or in different seasons.
+     */
+    val timeScheduled: String,
+
+    /**
+     * Voltage is specified.
+     */
+    val voltage: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingControlModeKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object RegulatingControlModeKind
+extends
+    Parseable[RegulatingControlModeKind]
+{
+    val sup = BasicElement.parse _
+    val activePower = parse_attribute (attribute ("""RegulatingControlModeKind.activePower"""))_
+    val admittance = parse_attribute (attribute ("""RegulatingControlModeKind.admittance"""))_
+    val currentFlow = parse_attribute (attribute ("""RegulatingControlModeKind.currentFlow"""))_
+    val powerFactor = parse_attribute (attribute ("""RegulatingControlModeKind.powerFactor"""))_
+    val reactivePower = parse_attribute (attribute ("""RegulatingControlModeKind.reactivePower"""))_
+    val temperature = parse_attribute (attribute ("""RegulatingControlModeKind.temperature"""))_
+    val timeScheduled = parse_attribute (attribute ("""RegulatingControlModeKind.timeScheduled"""))_
+    val voltage = parse_attribute (attribute ("""RegulatingControlModeKind.voltage"""))_
+    def parse (context: Context): RegulatingControlModeKind =
+    {
+        RegulatingControlModeKind(
+            sup (context),
+            activePower (context),
+            admittance (context),
+            currentFlow (context),
+            powerFactor (context),
+            reactivePower (context),
+            temperature (context),
+            timeScheduled (context),
+            voltage (context)
+        )
+    }
+}
+
+/**
+ * A pre-established pattern over time for a controlled variable, e.g., busbar voltage.
+ */
 case class RegulationSchedule
 (
+
     override val sup: SeasonDayTypeSchedule,
+
+    /**
+     * Regulating controls that have this Schedule.
+     */
     val RegulatingControl: String
 )
 extends
@@ -2634,7 +3953,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[RegulationSchedule]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulationSchedule]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2649,28 +3968,64 @@ object RegulationSchedule
 extends
     Parseable[RegulationSchedule]
 {
+    val sup = SeasonDayTypeSchedule.parse _
     val RegulatingControl = parse_attribute (attribute ("""RegulationSchedule.RegulatingControl"""))_
     def parse (context: Context): RegulationSchedule =
     {
-        return (
-            RegulationSchedule
-            (
-                SeasonDayTypeSchedule.parse (context),
-                RegulatingControl (context)
-            )
+        RegulationSchedule(
+            sup (context),
+            RegulatingControl (context)
         )
     }
 }
 
+/**
+ * A rotating machine which may be used as a generator or motor.
+ */
 case class RotatingMachine
 (
+
     override val sup: RegulatingCondEq,
+
+    /**
+     * Active power injection.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val p: Double,
+
+    /**
+     * Reactive power injection.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val q: Double,
+
+    /**
+     * Power factor (nameplate data).
+     * It is primarily used for short circuit data exchange according to IEC 60909.
+     */
     val ratedPowerFactor: Double,
+
+    /**
+     * Nameplate apparent power rating for the unit.
+     * The attribute shall have a positive value.
+     */
     val ratedS: Double,
+
+    /**
+     * Rated voltage (nameplate data, Ur in IEC 60909-0).
+     * It is primarily used for short circuit data exchange according to IEC 60909.
+     */
     val ratedU: Double,
+
+    /**
+     * A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
+     */
     val GeneratingUnit: String,
+
+    /**
+     * The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
+     * The direction of machine rotation for pumping may or may not be the same as for generating.
+     */
     val HydroPump: String
 )
 extends
@@ -2678,7 +4033,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[RotatingMachine]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RotatingMachine]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2693,6 +4048,7 @@ object RotatingMachine
 extends
     Parseable[RotatingMachine]
 {
+    val sup = RegulatingCondEq.parse _
     val p = parse_element (element ("""RotatingMachine.p"""))_
     val q = parse_element (element ("""RotatingMachine.q"""))_
     val ratedPowerFactor = parse_element (element ("""RotatingMachine.ratedPowerFactor"""))_
@@ -2702,24 +4058,71 @@ extends
     val HydroPump = parse_attribute (attribute ("""RotatingMachine.HydroPump"""))_
     def parse (context: Context): RotatingMachine =
     {
-        return (
-            RotatingMachine
-            (
-                RegulatingCondEq.parse (context),
-                toDouble (p (context), context),
-                toDouble (q (context), context),
-                toDouble (ratedPowerFactor (context), context),
-                toDouble (ratedS (context), context),
-                toDouble (ratedU (context), context),
-                GeneratingUnit (context),
-                HydroPump (context)
-            )
+        RotatingMachine(
+            sup (context),
+            toDouble (p (context), context),
+            toDouble (q (context), context),
+            toDouble (ratedPowerFactor (context), context),
+            toDouble (ratedS (context), context),
+            toDouble (ratedU (context), context),
+            GeneratingUnit (context),
+            HydroPump (context)
         )
     }
 }
 
+/**
+ * Static VAr Compensator control mode.
+ */
+case class SVCControlMode
+(
+
+    override val sup: BasicElement,
+
+    val reactivePower: String,
+
+    val voltage: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[SVCControlMode]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object SVCControlMode
+extends
+    Parseable[SVCControlMode]
+{
+    val sup = BasicElement.parse _
+    val reactivePower = parse_attribute (attribute ("""SVCControlMode.reactivePower"""))_
+    val voltage = parse_attribute (attribute ("""SVCControlMode.voltage"""))_
+    def parse (context: Context): SVCControlMode =
+    {
+        SVCControlMode(
+            sup (context),
+            reactivePower (context),
+            voltage (context)
+        )
+    }
+}
+
+/**
+ * Automatic switch that will lock open to isolate a faulted section.
+ * It may, or may not, have load breaking capability. Its primary purpose is to provide fault sectionalising at locations where the fault current is either too high, or too low, for proper coordination of fuses.
+ */
 case class Sectionaliser
 (
+
     override val sup: Switch
 )
 extends
@@ -2727,7 +4130,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Sectionaliser]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Sectionaliser]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2742,34 +4145,65 @@ object Sectionaliser
 extends
     Parseable[Sectionaliser]
 {
+    val sup = Switch.parse _
     def parse (context: Context): Sectionaliser =
     {
-        return (
-            Sectionaliser
-            (
-                Switch.parse (context)
-            )
+        Sectionaliser(
+            sup (context)
         )
     }
 }
 
+/**
+ * A Series Compensator is a series capacitor or reactor or an AC transmission line without charging susceptance.
+ * It is a two terminal device.
+ */
 case class SeriesCompensator
 (
+
     override val sup: ConductingEquipment,
-    val r0: Double,
+
+    /**
+     * Positive sequence resistance.
+     */
     val r: Double,
+
+    /**
+     * Zero sequence resistance.
+     */
+    val r0: Double,
+
+    /**
+     * Describe if a metal oxide varistor (mov) for over voltage protection is configured at the series compensator.
+     */
     val varistorPresent: Boolean,
+
+    /**
+     * The maximum current the varistor is designed to handle at specified duration.
+     */
     val varistorRatedCurrent: Double,
+
+    /**
+     * The dc voltage at which the varistor start conducting.
+     */
     val varistorVoltageThreshold: Double,
-    val x0: Double,
-    val x: Double
+
+    /**
+     * Positive sequence reactance.
+     */
+    val x: Double,
+
+    /**
+     * Zero sequence reactance.
+     */
+    val x0: Double
 )
 extends
     Element
 {
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[SeriesCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SeriesCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2784,44 +4218,159 @@ object SeriesCompensator
 extends
     Parseable[SeriesCompensator]
 {
-    val r0 = parse_element (element ("""SeriesCompensator.r0"""))_
+    val sup = ConductingEquipment.parse _
     val r = parse_element (element ("""SeriesCompensator.r"""))_
+    val r0 = parse_element (element ("""SeriesCompensator.r0"""))_
     val varistorPresent = parse_element (element ("""SeriesCompensator.varistorPresent"""))_
     val varistorRatedCurrent = parse_element (element ("""SeriesCompensator.varistorRatedCurrent"""))_
     val varistorVoltageThreshold = parse_element (element ("""SeriesCompensator.varistorVoltageThreshold"""))_
-    val x0 = parse_element (element ("""SeriesCompensator.x0"""))_
     val x = parse_element (element ("""SeriesCompensator.x"""))_
+    val x0 = parse_element (element ("""SeriesCompensator.x0"""))_
     def parse (context: Context): SeriesCompensator =
     {
-        return (
-            SeriesCompensator
-            (
-                ConductingEquipment.parse (context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toBoolean (varistorPresent (context), context),
-                toDouble (varistorRatedCurrent (context), context),
-                toDouble (varistorVoltageThreshold (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context)
-            )
+        SeriesCompensator(
+            sup (context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toBoolean (varistorPresent (context), context),
+            toDouble (varistorRatedCurrent (context), context),
+            toDouble (varistorVoltageThreshold (context), context),
+            toDouble (x (context), context),
+            toDouble (x0 (context), context)
         )
     }
 }
 
+/**
+ * Type of rotor, used by short circuit applications.
+ */
+case class ShortCircuitRotorKind
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Salient pole 1 in the IEC 60909
+     */
+    val salientPole1: String,
+
+    /**
+     * Salient pole 2 in IEC 60909
+     */
+    val salientPole2: String,
+
+    /**
+     * Turbo Series 1 in the IEC 60909
+     */
+    val turboSeries1: String,
+
+    /**
+     * Turbo series 2 in IEC 60909
+     */
+    val turboSeries2: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[ShortCircuitRotorKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object ShortCircuitRotorKind
+extends
+    Parseable[ShortCircuitRotorKind]
+{
+    val sup = BasicElement.parse _
+    val salientPole1 = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole1"""))_
+    val salientPole2 = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole2"""))_
+    val turboSeries1 = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries1"""))_
+    val turboSeries2 = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries2"""))_
+    def parse (context: Context): ShortCircuitRotorKind =
+    {
+        ShortCircuitRotorKind(
+            sup (context),
+            salientPole1 (context),
+            salientPole2 (context),
+            turboSeries1 (context),
+            turboSeries2 (context)
+        )
+    }
+}
+
+/**
+ * A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors.
+ * A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
+ */
 case class ShuntCompensator
 (
+
     override val sup: RegulatingCondEq,
+
+    /**
+     * Time delay required for the device to be connected or disconnected by automatic voltage regulation (AVR).
+     */
     val aVRDelay: Double,
+
+    /**
+     * Used for Yn and Zn connections.
+     * True if the neutral is solidly grounded.
+     */
     val grounded: Boolean,
+
+    /**
+     * The maximum number of sections that may be switched in.
+     */
     val maximumSections: Int,
+
+    /**
+     * The voltage at which the nominal reactive power may be calculated.
+     * This should normally be within 10% of the voltage at which the capacitor is connected to the network.
+     */
     val nomU: Double,
+
+    /**
+     * The normal number of sections switched in.
+     */
     val normalSections: Int,
+
+    /**
+     * The type of phase connection, such as wye or delta.
+     */
     val phaseConnection: String,
+
+    /**
+     * Shunt compensator sections in use.
+     * Starting value for steady state solution. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
+     */
     val sections: Double,
+
+    /**
+     * The switch on count since the capacitor count was last reset or initialized.
+     */
     val switchOnCount: Int,
+
+    /**
+     * The date and time when the capacitor bank was last switched on.
+     */
     val switchOnDate: String,
+
+    /**
+     * Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
+     */
     val voltageSensitivity: Double,
+
+    /**
+     * The state for the number of shunt compensator sections in service.
+     */
     val SvShuntCompensatorSections: String
 )
 extends
@@ -2829,7 +4378,7 @@ extends
 {
     def this () = { this (null, 0.0, false, 0, 0.0, 0, null, 0.0, 0, null, 0.0, null) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2844,6 +4393,7 @@ object ShuntCompensator
 extends
     Parseable[ShuntCompensator]
 {
+    val sup = RegulatingCondEq.parse _
     val aVRDelay = parse_element (element ("""ShuntCompensator.aVRDelay"""))_
     val grounded = parse_element (element ("""ShuntCompensator.grounded"""))_
     val maximumSections = parse_element (element ("""ShuntCompensator.maximumSections"""))_
@@ -2857,32 +4407,50 @@ extends
     val SvShuntCompensatorSections = parse_attribute (attribute ("""ShuntCompensator.SvShuntCompensatorSections"""))_
     def parse (context: Context): ShuntCompensator =
     {
-        return (
-            ShuntCompensator
-            (
-                RegulatingCondEq.parse (context),
-                toDouble (aVRDelay (context), context),
-                toBoolean (grounded (context), context),
-                toInteger (maximumSections (context), context),
-                toDouble (nomU (context), context),
-                toInteger (normalSections (context), context),
-                phaseConnection (context),
-                toDouble (sections (context), context),
-                toInteger (switchOnCount (context), context),
-                switchOnDate (context),
-                toDouble (voltageSensitivity (context), context),
-                SvShuntCompensatorSections (context)
-            )
+        ShuntCompensator(
+            sup (context),
+            toDouble (aVRDelay (context), context),
+            toBoolean (grounded (context), context),
+            toInteger (maximumSections (context), context),
+            toDouble (nomU (context), context),
+            toInteger (normalSections (context), context),
+            phaseConnection (context),
+            toDouble (sections (context), context),
+            toInteger (switchOnCount (context), context),
+            switchOnDate (context),
+            toDouble (voltageSensitivity (context), context),
+            SvShuntCompensatorSections (context)
         )
     }
 }
 
+/**
+ * Single phase of a multi-phase shunt compensator when its attributes might be different per phase.
+ */
 case class ShuntCompensatorPhase
 (
+
     override val sup: PowerSystemResource,
+
+    /**
+     * The maximum number of sections that may be switched in for this phase.
+     */
     val maximumSections: Int,
+
+    /**
+     * For the capacitor phase, the normal number of sections switched in.
+     */
     val normalSections: Int,
+
+    /**
+     * Phase of this shunt compensator component.
+     * If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase.
+     */
     val phase: String,
+
+    /**
+     * Shunt compensator of this shunt compensator phase.
+     */
     val ShuntCompensator: String
 )
 extends
@@ -2890,7 +4458,7 @@ extends
 {
     def this () = { this (null, 0, 0, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensatorPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensatorPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2905,33 +4473,142 @@ object ShuntCompensatorPhase
 extends
     Parseable[ShuntCompensatorPhase]
 {
+    val sup = PowerSystemResource.parse _
     val maximumSections = parse_element (element ("""ShuntCompensatorPhase.maximumSections"""))_
     val normalSections = parse_element (element ("""ShuntCompensatorPhase.normalSections"""))_
     val phase = parse_attribute (attribute ("""ShuntCompensatorPhase.phase"""))_
     val ShuntCompensator = parse_attribute (attribute ("""ShuntCompensatorPhase.ShuntCompensator"""))_
     def parse (context: Context): ShuntCompensatorPhase =
     {
-        return (
-            ShuntCompensatorPhase
-            (
-                PowerSystemResource.parse (context),
-                toInteger (maximumSections (context), context),
-                toInteger (normalSections (context), context),
-                phase (context),
-                ShuntCompensator (context)
-            )
+        ShuntCompensatorPhase(
+            sup (context),
+            toInteger (maximumSections (context), context),
+            toInteger (normalSections (context), context),
+            phase (context),
+            ShuntCompensator (context)
         )
     }
 }
 
+/**
+ * Enumeration of single phase identifiers.
+ * Allows designation of single phases for both transmission and distribution equipment, circuits and loads.
+ */
+case class SinglePhaseKind
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Secondary phase 1.
+     */
+    val s1: String,
+
+    /**
+     * Secondary phase 2.
+     */
+    val s2: String,
+
+    /**
+     * Phase A.
+     */
+    val A: String,
+
+    /**
+     * Phase B.
+     */
+    val B: String,
+
+    /**
+     * Phase C.
+     */
+    val C: String,
+
+    /**
+     * Neutral.
+     */
+    val N: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[SinglePhaseKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object SinglePhaseKind
+extends
+    Parseable[SinglePhaseKind]
+{
+    val sup = BasicElement.parse _
+    val s1 = parse_attribute (attribute ("""SinglePhaseKind.s1"""))_
+    val s2 = parse_attribute (attribute ("""SinglePhaseKind.s2"""))_
+    val A = parse_attribute (attribute ("""SinglePhaseKind.A"""))_
+    val B = parse_attribute (attribute ("""SinglePhaseKind.B"""))_
+    val C = parse_attribute (attribute ("""SinglePhaseKind.C"""))_
+    val N = parse_attribute (attribute ("""SinglePhaseKind.N"""))_
+    def parse (context: Context): SinglePhaseKind =
+    {
+        SinglePhaseKind(
+            sup (context),
+            s1 (context),
+            s2 (context),
+            A (context),
+            B (context),
+            C (context),
+            N (context)
+        )
+    }
+}
+
+/**
+ * A facility for providing variable and controllable shunt reactive power.
+ * The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.
+ */
 case class StaticVarCompensator
 (
+
     override val sup: RegulatingCondEq,
+
+    /**
+     * Maximum available capacitive reactance.
+     */
     val capacitiveRating: Double,
+
+    /**
+     * Maximum available inductive reactance.
+     */
     val inductiveRating: Double,
+
+    /**
+     * Reactive power injection.
+     * Load sign convention is used, i.e. positive sign means flow out from a node.
+     */
     val q: Double,
+
+    /**
+     * SVC control mode.
+     */
     val sVCControlMode: String,
+
+    /**
+     * The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
+     */
     val slope: Double,
+
+    /**
+     * The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
+     * When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
+     */
     val voltageSetPoint: Double
 )
 extends
@@ -2939,7 +4616,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, 0.0) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[StaticVarCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[StaticVarCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2954,6 +4631,7 @@ object StaticVarCompensator
 extends
     Parseable[StaticVarCompensator]
 {
+    val sup = RegulatingCondEq.parse _
     val capacitiveRating = parse_element (element ("""StaticVarCompensator.capacitiveRating"""))_
     val inductiveRating = parse_element (element ("""StaticVarCompensator.inductiveRating"""))_
     val q = parse_element (element ("""StaticVarCompensator.q"""))_
@@ -2962,41 +4640,80 @@ extends
     val voltageSetPoint = parse_element (element ("""StaticVarCompensator.voltageSetPoint"""))_
     def parse (context: Context): StaticVarCompensator =
     {
-        return (
-            StaticVarCompensator
-            (
-                RegulatingCondEq.parse (context),
-                toDouble (capacitiveRating (context), context),
-                toDouble (inductiveRating (context), context),
-                toDouble (q (context), context),
-                sVCControlMode (context),
-                toDouble (slope (context), context),
-                toDouble (voltageSetPoint (context), context)
-            )
+        StaticVarCompensator(
+            sup (context),
+            toDouble (capacitiveRating (context), context),
+            toDouble (inductiveRating (context), context),
+            toDouble (q (context), context),
+            sVCControlMode (context),
+            toDouble (slope (context), context),
+            toDouble (voltageSetPoint (context), context)
         )
     }
 }
 
+/**
+ * A generic device designed to close, or open, or both, one or more electric circuits.
+ * All switches are two terminal devices including grounding switches.
+ */
 case class Switch
 (
+
     override val sup: ConductingEquipment,
+
+    /**
+     * The attribute is used in cases when no Measurement for the status value is present.
+     * If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.
+     */
     val normalOpen: Boolean,
+
+    /**
+     * The attribute tells if the switch is considered open when used as input to topology processing.
+     */
     val open: Boolean,
+
+    /**
+     * The maximum continuous current carrying capacity in amps governed by the device material and construction.
+     */
     val ratedCurrent: Double,
+
+    /**
+     * Branch is retained in a bus branch model.
+     * The flow through retained switches will normally be calculated in power flow.
+     */
     val retained: Boolean,
+
+    /**
+     * The switch on count since the switch was last reset or initialized.
+     */
     val switchOnCount: Int,
-    // ToDo: Date handling
-    //val switchOnDate: Date
+
+    /**
+     * The date and time when the switch was last switched on.
+     */
+    val switchOnDate: String,
+
+    /**
+     * Composite switch to which this Switch belongs.
+     */
     val CompositeSwitch: String,
+
+    /**
+     * Current outage of this protective device.
+     */
     val Outage: String,
+
+    /**
+     * Action changing status of this switch.
+     */
     val SwitchAction: String
 )
 extends
     Element
 {
-    def this () = { this (null, false, false, 0.0, false, 0, null, null, null) }
+    def this () = { this (null, false, false, 0.0, false, 0, null, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Switch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Switch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3011,40 +4728,67 @@ object Switch
 extends
     Parseable[Switch]
 {
+    val sup = ConductingEquipment.parse _
     val normalOpen = parse_element (element ("""Switch.normalOpen"""))_
     val open = parse_element (element ("""Switch.open"""))_
     val ratedCurrent = parse_element (element ("""Switch.ratedCurrent"""))_
     val retained = parse_element (element ("""Switch.retained"""))_
     val switchOnCount = parse_element (element ("""Switch.switchOnCount"""))_
+    val switchOnDate = parse_element (element ("""Switch.switchOnDate"""))_
     val CompositeSwitch = parse_attribute (attribute ("""Switch.CompositeSwitch"""))_
     val Outage = parse_attribute (attribute ("""Switch.Outage"""))_
     val SwitchAction = parse_attribute (attribute ("""Switch.SwitchAction"""))_
     def parse (context: Context): Switch =
     {
-        return (
-            Switch
-            (
-                ConductingEquipment.parse (context),
-                toBoolean (normalOpen (context), context),
-                toBoolean (open (context), context),
-                toDouble (ratedCurrent (context), context),
-                toBoolean (retained (context), context),
-                toInteger (switchOnCount (context), context),
-                CompositeSwitch (context),
-                Outage (context),
-                SwitchAction (context)
-            )
+        Switch(
+            sup (context),
+            toBoolean (normalOpen (context), context),
+            toBoolean (open (context), context),
+            toDouble (ratedCurrent (context), context),
+            toBoolean (retained (context), context),
+            toInteger (switchOnCount (context), context),
+            switchOnDate (context),
+            CompositeSwitch (context),
+            Outage (context),
+            SwitchAction (context)
         )
     }
 }
 
+/**
+ * Single phase of a multi-phase switch when its attributes might be different per phase.
+ */
 case class SwitchPhase
 (
+
     override val sup: PowerSystemResource,
+
+    /**
+     * The attribute tells if the switch is considered closed when used as input to topology processing.
+     */
     val closed: Boolean,
+
+    /**
+     * Used in cases when no Measurement for the status value is present.
+     * If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.
+     */
     val normalOpen: Boolean,
+
+    /**
+     * Phase of this SwitchPhase on the side with terminal sequence number equal 1.
+     * Should be a phase contained in that terminal&rsquo;s phases attribute.
+     */
     val phaseSide1: String,
+
+    /**
+     * Phase of this SwitchPhase on the side with terminal sequence number equal 2.
+     * Should be a phase contained in that terminal&rsquo;s Terminal.phases attribute.
+     */
     val phaseSide2: String,
+
+    /**
+     * The switch of the switch phase.
+     */
     val Switch: String
 )
 extends
@@ -3052,7 +4796,7 @@ extends
 {
     def this () = { this (null, false, false, null, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[SwitchPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SwitchPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3067,6 +4811,7 @@ object SwitchPhase
 extends
     Parseable[SwitchPhase]
 {
+    val sup = PowerSystemResource.parse _
     val closed = parse_element (element ("""SwitchPhase.closed"""))_
     val normalOpen = parse_element (element ("""SwitchPhase.normalOpen"""))_
     val phaseSide1 = parse_attribute (attribute ("""SwitchPhase.phaseSide1"""))_
@@ -3074,23 +4819,29 @@ extends
     val Switch = parse_attribute (attribute ("""SwitchPhase.Switch"""))_
     def parse (context: Context): SwitchPhase =
     {
-        return (
-            SwitchPhase
-            (
-                PowerSystemResource.parse (context),
-                toBoolean (closed (context), context),
-                toBoolean (normalOpen (context), context),
-                phaseSide1 (context),
-                phaseSide2 (context),
-                Switch (context)
-            )
+        SwitchPhase(
+            sup (context),
+            toBoolean (closed (context), context),
+            toBoolean (normalOpen (context), context),
+            phaseSide1 (context),
+            phaseSide2 (context),
+            Switch (context)
         )
     }
 }
 
+/**
+ * A schedule of switch positions.
+ * If RegularTimePoint.value1 is 0, the switch is open.  If 1, the switch is closed.
+ */
 case class SwitchSchedule
 (
+
     override val sup: SeasonDayTypeSchedule,
+
+    /**
+     * A SwitchSchedule is associated with a Switch.
+     */
     val Switch: String
 )
 extends
@@ -3098,7 +4849,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[SwitchSchedule]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SwitchSchedule]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3113,65 +4864,206 @@ object SwitchSchedule
 extends
     Parseable[SwitchSchedule]
 {
+    val sup = SeasonDayTypeSchedule.parse _
     val Switch = parse_attribute (attribute ("""SwitchSchedule.Switch"""))_
     def parse (context: Context): SwitchSchedule =
     {
-        return (
-            SwitchSchedule
-            (
-                SeasonDayTypeSchedule.parse (context),
-                Switch (context)
-            )
+        SwitchSchedule(
+            sup (context),
+            Switch (context)
         )
     }
 }
 
+/**
+ * An electromechanical device that operates with shaft rotating synchronously with the network.
+ * It is a single machine operating either as a generator or synchronous condenser or pump.
+ */
 case class SynchronousMachine
 (
-    // remove some parameters: error: Implementation restriction: case classes cannot have more than 22 parameters.
 
     override val sup: RotatingMachine,
+
+    /**
+     * Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a lagging MVAr violation.
+     */
     val aVRToManualLag: Double,
+
+    /**
+     * Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a leading MVAr violation.
+     */
     val aVRToManualLead: Double,
+
+    /**
+     * Default base reactive power value.
+     * This value represents the initial reactive power that can be used by any application function.
+     */
     val baseQ: Double,
-    // val condenserP: Double,
-    // val coolantCondition: Double,
+
+    /**
+     * Active power consumed when in condenser mode operation.
+     */
+    val condenserP: Double,
+
+    /**
+     * Temperature or pressure of coolant medium
+     */
+    val coolantCondition: Double,
+
+    /**
+     * Method of cooling the machine.
+     */
     val coolantType: String,
-    // val earthing: Boolean,
-    // val earthingStarPointR: Double,
-    // val earthingStarPointX: Double,
+
+    /**
+     * Indicates whether or not the generator is earthed.
+     * Used for short circuit data exchange according to IEC 60909
+     */
+    val earthing: Boolean,
+
+    /**
+     * Generator star point earthing resistance (Re).
+     * Used for short circuit data exchange according to IEC 60909
+     */
+    val earthingStarPointR: Double,
+
+    /**
+     * Generator star point earthing reactance (Xe).
+     * Used for short circuit data exchange according to IEC 60909
+     */
+    val earthingStarPointX: Double,
+
+    /**
+     * Steady-state short-circuit current (in A for the profile) of generator with compound excitation during 3-phase short circuit.
+    - Ikk=0: Generator with no compound excitation.
+    - Ikk?0: Generator with compound excitation.
+     * Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation
+     */
     val ikk: Double,
-    // val manualToAVR: Double,
+
+    /**
+     * Time delay required when switching from Manual to Automatic Voltage Regulation.
+     * This value is used in the accelerating power reference frame for powerflow solutions
+     */
+    val manualToAVR: Double,
+
+    /**
+     * Maximum reactive power limit.
+     * This is the maximum (nameplate) limit for the unit.
+     */
     val maxQ: Double,
+
+    /**
+     * Maximum voltage limit for the unit.
+     */
     val maxU: Double,
+
+    /**
+     * Minimum reactive power limit for the unit.
+     */
     val minQ: Double,
+
+    /**
+     * Minimum voltage  limit for the unit.
+     */
     val minU: Double,
+
+    /**
+     * Factor to calculate the breaking current (Section 4.5.2.1 in the IEC 60909-0).
+     * Used only for single fed short circuit on a generator (Section 4.3.4.2. in the IEC 60909-0).
+     */
     val mu: Double,
+
+    /**
+     * Current mode of operation.
+     */
     val operatingMode: String,
+
+    /**
+     * Percent of the coordinated reactive control that comes from this machine.
+     */
     val qPercent: Double,
-    val r0: Double,
-    val r2: Double,
+
+    /**
+     * Equivalent resistance (RG) of generator.
+     * RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909
+     */
     val r: Double,
+
+    /**
+     * Zero sequence resistance of the synchronous machine.
+     */
+    val r0: Double,
+
+    /**
+     * Negative sequence resistance.
+     */
+    val r2: Double,
+
+    /**
+     * Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+     */
     val referencePriority: Int,
-    // val satDirectSubtransX: Double,
-    // val satDirectSyncX: Double,
-    // val satDirectTransX: Double,
-    // val shortCircuitRotorType: String,
-    val typ: String, // cannot use type
-    // val voltageRegulationRange: Double,
+
+    /**
+     * Direct-axis subtransient reactance saturated, also known as Xd"sat.
+     */
+    val satDirectSubtransX: Double,
+
+    /**
+     * Direct-axes saturated synchronous reactance (xdsat); reciprocal of short-circuit ration.
+     * Used for short circuit data exchange, only for single fed short circuit on a generator. (Section 4.3.4.2. in the IEC 60909-0).
+     */
+    val satDirectSyncX: Double,
+
+    /**
+     * Saturated Direct-axis transient reactance.
+     * The attribute is primarily used for short circuit calculations according to ANSI.
+     */
+    val satDirectTransX: Double,
+
+    /**
+     * Type of rotor, used by short circuit applications, only for single fed short circuit according to IEC 60909.
+     */
+    val shortCircuitRotorType: String,
+
+    /**
+     * Modes that this synchronous machine can operate in.
+     */
+    val typ: String,
+
+    /**
+     * Range of generator voltage regulation (PG in the IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0
+     * This attribute is used to describe the operating voltage of the generating unit.
+     */
+    val voltageRegulationRange: Double,
+
+    /**
+     * Zero sequence reactance of the synchronous machine.
+     */
     val x0: Double,
+
+    /**
+     * Negative sequence reactance.
+     */
     val x2: Double,
+
+    /**
+     * The default reactive capability curve for use by a synchronous machine.
+     */
     val InitialReactiveCapabilityCurve: String,
+
+    /**
+     * Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
+     */
     val SynchronousMachineDynamics: String
 )
 extends
     Element
 {
-    def this () = { this (null, 0.0, 0.0, 0.0, /* 0.0, 0.0, */ null,
-        /* false, 0.0, 0.0, */ 0.0, /* 0.0, */ 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0,
-        /* 0.0, 0.0, 0.0, null, */ null, /* 0.0, */ 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, null, null) }
     def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
-    override def copy (): Row = { return (clone ().asInstanceOf[SynchronousMachine]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SynchronousMachine]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3186,6 +5078,7 @@ object SynchronousMachine
 extends
     Parseable[SynchronousMachine]
 {
+    val sup = RotatingMachine.parse _
     val aVRToManualLag = parse_element (element ("""SynchronousMachine.aVRToManualLag"""))_
     val aVRToManualLead = parse_element (element ("""SynchronousMachine.aVRToManualLead"""))_
     val baseQ = parse_element (element ("""SynchronousMachine.baseQ"""))_
@@ -3204,15 +5097,15 @@ extends
     val mu = parse_element (element ("""SynchronousMachine.mu"""))_
     val operatingMode = parse_attribute (attribute ("""SynchronousMachine.operatingMode"""))_
     val qPercent = parse_element (element ("""SynchronousMachine.qPercent"""))_
+    val r = parse_element (element ("""SynchronousMachine.r"""))_
     val r0 = parse_element (element ("""SynchronousMachine.r0"""))_
     val r2 = parse_element (element ("""SynchronousMachine.r2"""))_
-    val r = parse_element (element ("""SynchronousMachine.r"""))_
     val referencePriority = parse_element (element ("""SynchronousMachine.referencePriority"""))_
     val satDirectSubtransX = parse_element (element ("""SynchronousMachine.satDirectSubtransX"""))_
     val satDirectSyncX = parse_element (element ("""SynchronousMachine.satDirectSyncX"""))_
     val satDirectTransX = parse_element (element ("""SynchronousMachine.satDirectTransX"""))_
     val shortCircuitRotorType = parse_attribute (attribute ("""SynchronousMachine.shortCircuitRotorType"""))_
-    val typ = parse_attribute (attribute ("""SynchronousMachine.typ"""))_
+    val typ = parse_attribute (attribute ("""SynchronousMachine.type"""))_
     val voltageRegulationRange = parse_element (element ("""SynchronousMachine.voltageRegulationRange"""))_
     val x0 = parse_element (element ("""SynchronousMachine.x0"""))_
     val x2 = parse_element (element ("""SynchronousMachine.x2"""))_
@@ -3220,61 +5113,229 @@ extends
     val SynchronousMachineDynamics = parse_attribute (attribute ("""SynchronousMachine.SynchronousMachineDynamics"""))_
     def parse (context: Context): SynchronousMachine =
     {
-        return (
-            SynchronousMachine
-            (
-                RotatingMachine.parse (context),
-                toDouble (aVRToManualLag (context), context),
-                toDouble (aVRToManualLead (context), context),
-                toDouble (baseQ (context), context),
-                // toDouble (condenserP (context), context),
-                // toDouble (coolantCondition (context), context),
-                coolantType (context),
-                // toBoolean (earthing (context), context),
-                // toDouble (earthingStarPointR (context), context),
-                // toDouble (earthingStarPointX (context), context),
-                toDouble (ikk (context), context),
-                // toDouble (manualToAVR (context), context),
-                toDouble (maxQ (context), context),
-                toDouble (maxU (context), context),
-                toDouble (minQ (context), context),
-                toDouble (minU (context), context),
-                toDouble (mu (context), context),
-                operatingMode (context),
-                toDouble (qPercent (context), context),
-                toDouble (r0 (context), context),
-                toDouble (r2 (context), context),
-                toDouble (r (context), context),
-                toInteger (referencePriority (context), context),
-                // toDouble (satDirectSubtransX (context), context),
-                // toDouble (satDirectSyncX (context), context),
-                // toDouble (satDirectTransX (context), context),
-                // shortCircuitRotorType (context),
-                typ (context),
-                // toDouble (voltageRegulationRange (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x2 (context), context),
-                InitialReactiveCapabilityCurve (context),
-                SynchronousMachineDynamics (context)
-            )
+        SynchronousMachine(
+            sup (context),
+            toDouble (aVRToManualLag (context), context),
+            toDouble (aVRToManualLead (context), context),
+            toDouble (baseQ (context), context),
+            toDouble (condenserP (context), context),
+            toDouble (coolantCondition (context), context),
+            coolantType (context),
+            toBoolean (earthing (context), context),
+            toDouble (earthingStarPointR (context), context),
+            toDouble (earthingStarPointX (context), context),
+            toDouble (ikk (context), context),
+            toDouble (manualToAVR (context), context),
+            toDouble (maxQ (context), context),
+            toDouble (maxU (context), context),
+            toDouble (minQ (context), context),
+            toDouble (minU (context), context),
+            toDouble (mu (context), context),
+            operatingMode (context),
+            toDouble (qPercent (context), context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toDouble (r2 (context), context),
+            toInteger (referencePriority (context), context),
+            toDouble (satDirectSubtransX (context), context),
+            toDouble (satDirectSyncX (context), context),
+            toDouble (satDirectTransX (context), context),
+            shortCircuitRotorType (context),
+            typ (context),
+            toDouble (voltageRegulationRange (context), context),
+            toDouble (x0 (context), context),
+            toDouble (x2 (context), context),
+            InitialReactiveCapabilityCurve (context),
+            SynchronousMachineDynamics (context)
         )
     }
 }
 
+/**
+ * Synchronous machine type.
+ */
+case class SynchronousMachineKind
+(
+
+    override val sup: BasicElement,
+
+    val condenser: String,
+
+    val generator: String,
+
+    val generatorOrCondenser: String,
+
+    val generatorOrCondenserOrMotor: String,
+
+    val generatorOrMotor: String,
+
+    val motor: String,
+
+    val motorOrCondenser: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[SynchronousMachineKind]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object SynchronousMachineKind
+extends
+    Parseable[SynchronousMachineKind]
+{
+    val sup = BasicElement.parse _
+    val condenser = parse_attribute (attribute ("""SynchronousMachineKind.condenser"""))_
+    val generator = parse_attribute (attribute ("""SynchronousMachineKind.generator"""))_
+    val generatorOrCondenser = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenser"""))_
+    val generatorOrCondenserOrMotor = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenserOrMotor"""))_
+    val generatorOrMotor = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrMotor"""))_
+    val motor = parse_attribute (attribute ("""SynchronousMachineKind.motor"""))_
+    val motorOrCondenser = parse_attribute (attribute ("""SynchronousMachineKind.motorOrCondenser"""))_
+    def parse (context: Context): SynchronousMachineKind =
+    {
+        SynchronousMachineKind(
+            sup (context),
+            condenser (context),
+            generator (context),
+            generatorOrCondenser (context),
+            generatorOrCondenserOrMotor (context),
+            generatorOrMotor (context),
+            motor (context),
+            motorOrCondenser (context)
+        )
+    }
+}
+
+/**
+ * Synchronous machine operating mode.
+ */
+case class SynchronousMachineOperatingMode
+(
+
+    override val sup: BasicElement,
+
+    val condenser: String,
+
+    val generator: String,
+
+    val motor: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[SynchronousMachineOperatingMode]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object SynchronousMachineOperatingMode
+extends
+    Parseable[SynchronousMachineOperatingMode]
+{
+    val sup = BasicElement.parse _
+    val condenser = parse_attribute (attribute ("""SynchronousMachineOperatingMode.condenser"""))_
+    val generator = parse_attribute (attribute ("""SynchronousMachineOperatingMode.generator"""))_
+    val motor = parse_attribute (attribute ("""SynchronousMachineOperatingMode.motor"""))_
+    def parse (context: Context): SynchronousMachineOperatingMode =
+    {
+        SynchronousMachineOperatingMode(
+            sup (context),
+            condenser (context),
+            generator (context),
+            motor (context)
+        )
+    }
+}
+
+/**
+ * Mechanism for changing transformer winding tap positions.
+ */
 case class TapChanger
 (
+
     override val sup: PowerSystemResource,
+
+    /**
+     * Specifies the regulation status of the equipment.
+     * True is regulating, false is not regulating.
+     */
     val controlEnabled: Boolean,
+
+    /**
+     * Highest possible tap step position, advance from neutral.
+     * The attribute shall be greater than lowStep.
+     */
     val highStep: Int,
+
+    /**
+     * For an LTC, the delay for initial tap changer operation (first step change)
+     */
     val initialDelay: Double,
+
+    /**
+     * Lowest possible tap step position, retard from neutral
+     */
     val lowStep: Int,
+
+    /**
+     * Specifies whether or not a TapChanger has load tap changing capabilities.
+     */
     val ltcFlag: Boolean,
+
+    /**
+     * The neutral tap step position for this winding.
+     * The attribute shall be equal or greater than lowStep and equal or less than highStep.
+     */
     val neutralStep: Int,
+
+    /**
+     * Voltage at which the winding operates at the neutral tap setting.
+     */
     val neutralU: Double,
+
+    /**
+     * The tap step position used in "normal" network operation for this winding.
+     * For a "Fixed" tap changer indicates the current physical tap setting.
+     */
     val normalStep: Int,
+
+    /**
+     * Tap changer position.
+     * Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.
+     */
     val step: Double,
+
+    /**
+     * For an LTC, the delay for subsequent tap changer operation (second and later step changes)
+     */
     val subsequentDelay: Double,
+
+    /**
+     * The tap step state associated with the tap changer.
+     */
     val SvTapStep: String,
+
+    /**
+     * The regulating control scheme in which this tap changer participates.
+     */
     val TapChangerControl: String
 )
 extends
@@ -3282,7 +5343,7 @@ extends
 {
     def this () = { this (null, false, 0, 0.0, 0, false, 0, 0.0, 0, 0.0, 0.0, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapChanger]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChanger]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3297,6 +5358,7 @@ object TapChanger
 extends
     Parseable[TapChanger]
 {
+    val sup = PowerSystemResource.parse _
     val controlEnabled = parse_element (element ("""TapChanger.controlEnabled"""))_
     val highStep = parse_element (element ("""TapChanger.highStep"""))_
     val initialDelay = parse_element (element ("""TapChanger.initialDelay"""))_
@@ -3311,35 +5373,61 @@ extends
     val TapChangerControl = parse_attribute (attribute ("""TapChanger.TapChangerControl"""))_
     def parse (context: Context): TapChanger =
     {
-        return (
-            TapChanger
-            (
-                PowerSystemResource.parse (context),
-                toBoolean (controlEnabled (context), context),
-                toInteger (highStep (context), context),
-                toDouble (initialDelay (context), context),
-                toInteger (lowStep (context), context),
-                toBoolean (ltcFlag (context), context),
-                toInteger (neutralStep (context), context),
-                toDouble (neutralU (context), context),
-                toInteger (normalStep (context), context),
-                toDouble (step (context), context),
-                toDouble (subsequentDelay (context), context),
-                SvTapStep (context),
-                TapChangerControl (context)
-            )
+        TapChanger(
+            sup (context),
+            toBoolean (controlEnabled (context), context),
+            toInteger (highStep (context), context),
+            toDouble (initialDelay (context), context),
+            toInteger (lowStep (context), context),
+            toBoolean (ltcFlag (context), context),
+            toInteger (neutralStep (context), context),
+            toDouble (neutralU (context), context),
+            toInteger (normalStep (context), context),
+            toDouble (step (context), context),
+            toDouble (subsequentDelay (context), context),
+            SvTapStep (context),
+            TapChangerControl (context)
         )
     }
 }
 
+/**
+ * Describes behavior specific to tap changers, e.g. how the voltage at the end of a line varies with the load level and compensation of the voltage drop by tap adjustment.
+ */
 case class TapChangerControl
 (
+
     override val sup: RegulatingControl,
+
+    /**
+     * Maximum allowed regulated voltage on the PT secondary, regardless of line drop compensation.
+     * Sometimes referred to as first-house protection.
+     */
     val limitVoltage: Double,
+
+    /**
+     * If true, the line drop compensation is to be applied.
+     */
     val lineDropCompensation: Boolean,
+
+    /**
+     * Line drop compensator resistance setting for normal (forward) power flow.
+     */
     val lineDropR: Double,
+
+    /**
+     * Line drop compensator reactance setting for normal (forward) power flow.
+     */
     val lineDropX: Double,
+
+    /**
+     * Line drop compensator resistance setting for reverse power flow.
+     */
     val reverseLineDropR: Double,
+
+    /**
+     * Line drop compensator reactance setting for reverse power flow.
+     */
     val reverseLineDropX: Double
 )
 extends
@@ -3347,7 +5435,7 @@ extends
 {
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
     def RegulatingControl: RegulatingControl = sup.asInstanceOf[RegulatingControl]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerControl]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerControl]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3362,6 +5450,7 @@ object TapChangerControl
 extends
     Parseable[TapChangerControl]
 {
+    val sup = RegulatingControl.parse _
     val limitVoltage = parse_element (element ("""TapChangerControl.limitVoltage"""))_
     val lineDropCompensation = parse_element (element ("""TapChangerControl.lineDropCompensation"""))_
     val lineDropR = parse_element (element ("""TapChangerControl.lineDropR"""))_
@@ -3370,29 +5459,56 @@ extends
     val reverseLineDropX = parse_element (element ("""TapChangerControl.reverseLineDropX"""))_
     def parse (context: Context): TapChangerControl =
     {
-        return (
-            TapChangerControl
-            (
-                RegulatingControl.parse (context),
-                toDouble (limitVoltage (context), context),
-                toBoolean (lineDropCompensation (context), context),
-                toDouble (lineDropR (context), context),
-                toDouble (lineDropX (context), context),
-                toDouble (reverseLineDropR (context), context),
-                toDouble (reverseLineDropX (context), context)
-            )
+        TapChangerControl(
+            sup (context),
+            toDouble (limitVoltage (context), context),
+            toBoolean (lineDropCompensation (context), context),
+            toDouble (lineDropR (context), context),
+            toDouble (lineDropX (context), context),
+            toDouble (reverseLineDropR (context), context),
+            toDouble (reverseLineDropX (context), context)
         )
     }
 }
 
 case class TapChangerTablePoint
 (
+
     override val sup: BasicElement,
+
+    /**
+     * The magnetizing branch susceptance deviation in percent of nominal value.
+     * The actual susceptance is calculated as follows:
+     */
     val b: Double,
+
+    /**
+     * The magnetizing branch conductance deviation in percent of nominal value.
+     * The actual conductance is calculated as follows:
+     */
     val g: Double,
+
+    /**
+     * The resistance deviation in percent of nominal value.
+     * The actual reactance is calculated as follows:
+     */
     val r: Double,
+
+    /**
+     * The voltage ratio in per unit.
+     * Hence this is a value close to one.
+     */
     val ratio: Double,
+
+    /**
+     * The tap step.
+     */
     val step: Int,
+
+    /**
+     * The series reactance deviation in percent of nominal value.
+     * The actual reactance is calculated as follows:
+     */
     val x: Double
 )
 extends
@@ -3400,7 +5516,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, 0.0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerTablePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerTablePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3415,6 +5531,7 @@ object TapChangerTablePoint
 extends
     Parseable[TapChangerTablePoint]
 {
+    val sup = BasicElement.parse _
     val b = parse_element (element ("""TapChangerTablePoint.b"""))_
     val g = parse_element (element ("""TapChangerTablePoint.g"""))_
     val r = parse_element (element ("""TapChangerTablePoint.r"""))_
@@ -3423,24 +5540,29 @@ extends
     val x = parse_element (element ("""TapChangerTablePoint.x"""))_
     def parse (context: Context): TapChangerTablePoint =
     {
-        return (
-            TapChangerTablePoint
-            (
-                BasicElement.parse (context),
-                toDouble (b (context), context),
-                toDouble (g (context), context),
-                toDouble (r (context), context),
-                toDouble (ratio (context), context),
-                toInteger (step (context), context),
-                toDouble (x (context), context)
-            )
+        TapChangerTablePoint(
+            sup (context),
+            toDouble (b (context), context),
+            toDouble (g (context), context),
+            toDouble (r (context), context),
+            toDouble (ratio (context), context),
+            toInteger (step (context), context),
+            toDouble (x (context), context)
         )
     }
 }
 
+/**
+ * A pre-established pattern over time for a tap step.
+ */
 case class TapSchedule
 (
+
     override val sup: SeasonDayTypeSchedule,
+
+    /**
+     * A TapSchedule is associated with a TapChanger.
+     */
     val TapChanger: String
 )
 extends
@@ -3448,7 +5570,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapSchedule]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapSchedule]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3463,26 +5585,101 @@ object TapSchedule
 extends
     Parseable[TapSchedule]
 {
+    val sup = SeasonDayTypeSchedule.parse _
     val TapChanger = parse_attribute (attribute ("""TapSchedule.TapChanger"""))_
     def parse (context: Context): TapSchedule =
     {
-        return (
-            TapSchedule
-            (
-                SeasonDayTypeSchedule.parse (context),
-                TapChanger (context)
-            )
+        TapSchedule(
+            sup (context),
+            TapChanger (context)
         )
     }
 }
 
+/**
+ * Control modes for a transformer.
+ */
+case class TransformerControlMode
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Reactive power flow control
+     */
+    val reactive: String,
+
+    /**
+     * Voltage control
+     */
+    val volt: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerControlMode]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TransformerControlMode
+extends
+    Parseable[TransformerControlMode]
+{
+    val sup = BasicElement.parse _
+    val reactive = parse_attribute (attribute ("""TransformerControlMode.reactive"""))_
+    val volt = parse_attribute (attribute ("""TransformerControlMode.volt"""))_
+    def parse (context: Context): TransformerControlMode =
+    {
+        TransformerControlMode(
+            sup (context),
+            reactive (context),
+            volt (context)
+        )
+    }
+}
+
+/**
+ * The transformer core admittance.
+ * Used to specify the core admittance of a transformer in a manner that can be shared among power transformers.
+ */
 case class TransformerCoreAdmittance
 (
+
     override val sup: IdentifiedObject,
-    val b0: Double,
+
+    /**
+     * Magnetizing branch susceptance (B mag).
+     * The value can be positive or negative.
+     */
     val b: Double,
-    val g0: Double,
+
+    /**
+     * Zero sequence magnetizing branch susceptance.
+     */
+    val b0: Double,
+
+    /**
+     * Magnetizing branch conductance (G mag).
+     */
     val g: Double,
+
+    /**
+     * Zero sequence magnetizing branch conductance.
+     */
+    val g0: Double,
+
+    /**
+     * Transformer end datasheet used to calculate this core admittance.
+     */
     val TransformerEndInfo: String
 )
 extends
@@ -3490,7 +5687,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerCoreAdmittance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerCoreAdmittance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3505,42 +5702,101 @@ object TransformerCoreAdmittance
 extends
     Parseable[TransformerCoreAdmittance]
 {
-    val b0 = parse_element (element ("""TransformerCoreAdmittance.b0"""))_
+    val sup = IdentifiedObject.parse _
     val b = parse_element (element ("""TransformerCoreAdmittance.b"""))_
-    val g0 = parse_element (element ("""TransformerCoreAdmittance.g0"""))_
+    val b0 = parse_element (element ("""TransformerCoreAdmittance.b0"""))_
     val g = parse_element (element ("""TransformerCoreAdmittance.g"""))_
+    val g0 = parse_element (element ("""TransformerCoreAdmittance.g0"""))_
     val TransformerEndInfo = parse_attribute (attribute ("""TransformerCoreAdmittance.TransformerEndInfo"""))_
     def parse (context: Context): TransformerCoreAdmittance =
     {
-        return (
-            TransformerCoreAdmittance
-            (
-                IdentifiedObject.parse (context),
-                toDouble (b0 (context), context),
-                toDouble (b (context), context),
-                toDouble (g0 (context), context),
-                toDouble (g (context), context),
-                TransformerEndInfo (context)
-            )
+        TransformerCoreAdmittance(
+            sup (context),
+            toDouble (b (context), context),
+            toDouble (b0 (context), context),
+            toDouble (g (context), context),
+            toDouble (g0 (context), context),
+            TransformerEndInfo (context)
         )
     }
 }
 
+/**
+ * A conducting connection point of a power transformer.
+ * It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.
+ */
 case class TransformerEnd
 (
+
     override val sup: IdentifiedObject,
+
+    /**
+     * Core shunt magnetizing susceptance in the saturation region.
+     */
     val bmagSat: Double,
+
+    /**
+     * Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
+     * Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.
+     */
     val endNumber: Int,
+
+    /**
+     * (for Yn and Zn connections) True if the neutral is solidly grounded.
+     */
     val grounded: Boolean,
+
+    /**
+     * The reference voltage at which the magnetizing saturation measurements were made
+     */
     val magBaseU: Double,
+
+    /**
+     * Core magnetizing saturation curve knee flux level.
+     */
     val magSatFlux: Double,
+
+    /**
+     * (for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.
+     */
     val rground: Double,
+
+    /**
+     * (for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.
+     */
     val xground: Double,
+
+    /**
+     * Base voltage of the transformer end.
+     * This is essential for PU calculation.
+     */
     val BaseVoltage: String,
+
+    /**
+     * Core admittance of this transformer end, representing magnetising current and core losses.
+     * The full values of the transformer should be supplied for one transformer end only.
+     */
     val CoreAdmittance: String,
+
+    /**
+     * Phase tap changer associated with this transformer end.
+     */
     val PhaseTapChanger: String,
+
+    /**
+     * Ratio tap changer associated with this transformer end.
+     */
     val RatioTapChanger: String,
+
+    /**
+     * (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
+     * By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).
+     */
     val StarImpedance: String,
+
+    /**
+     * Terminal of the power transformer to which this transformer end belongs.
+     */
     val Terminal: String
 )
 extends
@@ -3548,7 +5804,7 @@ extends
 {
     def this () = { this (null, 0.0, 0, false, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerEnd]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerEnd]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3563,6 +5819,7 @@ object TransformerEnd
 extends
     Parseable[TransformerEnd]
 {
+    val sup = IdentifiedObject.parse _
     val bmagSat = parse_element (element ("""TransformerEnd.bmagSat"""))_
     val endNumber = parse_element (element ("""TransformerEnd.endNumber"""))_
     val grounded = parse_element (element ("""TransformerEnd.grounded"""))_
@@ -3578,36 +5835,64 @@ extends
     val Terminal = parse_attribute (attribute ("""TransformerEnd.Terminal"""))_
     def parse (context: Context): TransformerEnd =
     {
-        return (
-            TransformerEnd
-            (
-                IdentifiedObject.parse (context),
-                toDouble (bmagSat (context), context),
-                toInteger (endNumber (context), context),
-                toBoolean (grounded (context), context),
-                toDouble (magBaseU (context), context),
-                toDouble (magSatFlux (context), context),
-                toDouble (rground (context), context),
-                toDouble (xground (context), context),
-                BaseVoltage (context),
-                CoreAdmittance (context),
-                PhaseTapChanger (context),
-                RatioTapChanger (context),
-                StarImpedance (context),
-                Terminal (context)
-            )
+        TransformerEnd(
+            sup (context),
+            toDouble (bmagSat (context), context),
+            toInteger (endNumber (context), context),
+            toBoolean (grounded (context), context),
+            toDouble (magBaseU (context), context),
+            toDouble (magSatFlux (context), context),
+            toDouble (rground (context), context),
+            toDouble (xground (context), context),
+            BaseVoltage (context),
+            CoreAdmittance (context),
+            PhaseTapChanger (context),
+            RatioTapChanger (context),
+            StarImpedance (context),
+            Terminal (context)
         )
     }
 }
 
+/**
+ * Transformer mesh impedance (Delta-model) between transformer ends.
+ * The typical case is that this class describes the impedance between two transformer ends pair-wise, i.e. the cardinalities at both tranformer end associations are 1. But in cases where two or more transformer ends are modeled the cardinalities are larger than 1.
+ */
 case class TransformerMeshImpedance
 (
+
     override val sup: IdentifiedObject,
-    val r0: Double,
+
+    /**
+     * Resistance between the 'from' and the 'to' end, seen from the 'from' end.
+     */
     val r: Double,
-    val x0: Double,
+
+    /**
+     * Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.
+     */
+    val r0: Double,
+
+    /**
+     * Reactance between the 'from' and the 'to' end, seen from the 'from' end.
+     */
     val x: Double,
+
+    /**
+     * Zero-sequence reactance between the 'from' and the 'to' end, seen from the 'from' end.
+     */
+    val x0: Double,
+
+    /**
+     * From end this mesh impedance is connected to.
+     * It determines the voltage reference.
+     */
     val FromTransformerEnd: String,
+
+    /**
+     * 'from' transformer end datasheet this mesh impedance is calculated from.
+     * It determines the voltage reference.
+     */
     val FromTransformerEndInfo: String
 )
 extends
@@ -3615,7 +5900,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerMeshImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerMeshImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3630,36 +5915,59 @@ object TransformerMeshImpedance
 extends
     Parseable[TransformerMeshImpedance]
 {
-    val r0 = parse_element (element ("""TransformerMeshImpedance.r0"""))_
+    val sup = IdentifiedObject.parse _
     val r = parse_element (element ("""TransformerMeshImpedance.r"""))_
-    val x0 = parse_element (element ("""TransformerMeshImpedance.x0"""))_
+    val r0 = parse_element (element ("""TransformerMeshImpedance.r0"""))_
     val x = parse_element (element ("""TransformerMeshImpedance.x"""))_
+    val x0 = parse_element (element ("""TransformerMeshImpedance.x0"""))_
     val FromTransformerEnd = parse_attribute (attribute ("""TransformerMeshImpedance.FromTransformerEnd"""))_
     val FromTransformerEndInfo = parse_attribute (attribute ("""TransformerMeshImpedance.FromTransformerEndInfo"""))_
     def parse (context: Context): TransformerMeshImpedance =
     {
-        return (
-            TransformerMeshImpedance
-            (
-                IdentifiedObject.parse (context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context),
-                FromTransformerEnd (context),
-                FromTransformerEndInfo (context)
-            )
+        TransformerMeshImpedance(
+            sup (context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toDouble (x (context), context),
+            toDouble (x0 (context), context),
+            FromTransformerEnd (context),
+            FromTransformerEndInfo (context)
         )
     }
 }
 
+/**
+ * Transformer star impedance (Pi-model) that accurately reflects impedance for transformers with 2 or 3 windings.
+ * For transformers with 4 or more windings, you must use TransformerMeshImpedance class.
+ */
 case class TransformerStarImpedance
 (
+
     override val sup: IdentifiedObject,
-    val r0: Double,
+
+    /**
+     * Resistance of the transformer end.
+     */
     val r: Double,
-    val x0: Double,
+
+    /**
+     * Zero sequence series resistance of the transformer end.
+     */
+    val r0: Double,
+
+    /**
+     * Positive sequence series reactance of the transformer end.
+     */
     val x: Double,
+
+    /**
+     * Zero sequence series reactance of the transformer end.
+     */
+    val x0: Double,
+
+    /**
+     * Transformer end datasheet used to calculate this transformer star impedance.
+     */
     val TransformerEndInfo: String
 )
 extends
@@ -3667,7 +5975,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerStarImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerStarImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3682,38 +5990,45 @@ object TransformerStarImpedance
 extends
     Parseable[TransformerStarImpedance]
 {
-    val r0 = parse_element (element ("""TransformerStarImpedance.r0"""))_
+    val sup = IdentifiedObject.parse _
     val r = parse_element (element ("""TransformerStarImpedance.r"""))_
-    val x0 = parse_element (element ("""TransformerStarImpedance.x0"""))_
+    val r0 = parse_element (element ("""TransformerStarImpedance.r0"""))_
     val x = parse_element (element ("""TransformerStarImpedance.x"""))_
+    val x0 = parse_element (element ("""TransformerStarImpedance.x0"""))_
     val TransformerEndInfo = parse_attribute (attribute ("""TransformerStarImpedance.TransformerEndInfo"""))_
     def parse (context: Context): TransformerStarImpedance =
     {
-        return (
-            TransformerStarImpedance
-            (
-                IdentifiedObject.parse (context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context),
-                TransformerEndInfo (context)
-            )
+        TransformerStarImpedance(
+            sup (context),
+            toDouble (r (context), context),
+            toDouble (r0 (context), context),
+            toDouble (x (context), context),
+            toDouble (x0 (context), context),
+            TransformerEndInfo (context)
         )
     }
 }
 
+/**
+ * An assembly of two or more coupled windings that transform electrical power between voltage levels.
+ * These windings are bound on a common core and place in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
+ */
 case class TransformerTank
 (
+
     override val sup: Equipment,
-    PowerTransformer: String
+
+    /**
+     * Bank this transformer belongs to.
+     */
+    val PowerTransformer: String
 )
 extends
     Element
 {
     def this () = { this (null, null) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTank]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTank]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3728,23 +6043,33 @@ object TransformerTank
 extends
     Parseable[TransformerTank]
 {
+    val sup = Equipment.parse _
     val PowerTransformer = parse_attribute (attribute ("""TransformerTank.PowerTransformer"""))_
     def parse (context: Context): TransformerTank =
     {
-        return (
-            TransformerTank
-            (
-                Equipment.parse (context),
-                PowerTransformer (context)
-            )
+        TransformerTank(
+            sup (context),
+            PowerTransformer (context)
         )
     }
 }
 
+/**
+ * Transformer tank end represents an individual winding for unbalanced models or for transformer tanks connected into a bank (and bank is modelled with the PowerTransformer).
+ */
 case class TransformerTankEnd
 (
+
     override val sup: TransformerEnd,
+
+    /**
+     * Describes the phases carried by a conducting equipment.
+     */
     val phases: String,
+
+    /**
+     * Transformer this winding belongs to.
+     */
     val TransformerTank: String
 )
 extends
@@ -3752,7 +6077,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTankEnd]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTankEnd]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3767,25 +6092,36 @@ object TransformerTankEnd
 extends
     Parseable[TransformerTankEnd]
 {
+    val sup = TransformerEnd.parse _
     val phases = parse_attribute (attribute ("""TransformerTankEnd.phases"""))_
     val TransformerTank = parse_attribute (attribute ("""TransformerTankEnd.TransformerTank"""))_
     def parse (context: Context): TransformerTankEnd =
     {
-        return (
-            TransformerTankEnd
-            (
-                TransformerEnd.parse (context),
-                phases (context),
-                TransformerTank (context)
-            )
+        TransformerTankEnd(
+            sup (context),
+            phases (context),
+            TransformerTank (context)
         )
     }
 }
 
+/**
+ * An area of the power system network which is defined for secondary voltage control purposes.
+ * A voltage control zone consists of a collection of substations with a designated bus bar section whose voltage will be controlled.
+ */
 case class VoltageControlZone
 (
+
     override val sup: PowerSystemResource,
+
+    /**
+     * A VoltageControlZone is controlled by a designated BusbarSection.
+     */
     val BusbarSection: String,
+
+    /**
+     * A VoltageControlZone may have a  voltage regulation schedule.
+     */
     val RegulationSchedule: String
 )
 extends
@@ -3793,7 +6129,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[VoltageControlZone]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[VoltageControlZone]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3808,34 +6144,121 @@ object VoltageControlZone
 extends
     Parseable[VoltageControlZone]
 {
+    val sup = PowerSystemResource.parse _
     val BusbarSection = parse_attribute (attribute ("""VoltageControlZone.BusbarSection"""))_
     val RegulationSchedule = parse_attribute (attribute ("""VoltageControlZone.RegulationSchedule"""))_
     def parse (context: Context): VoltageControlZone =
     {
-        return (
-            VoltageControlZone
-            (
-                PowerSystemResource.parse (context),
-                BusbarSection (context),
-                RegulationSchedule (context)
-            )
+        VoltageControlZone(
+            sup (context),
+            BusbarSection (context),
+            RegulationSchedule (context)
         )
     }
 }
 
-object Wires
+/**
+ * Winding connection type.
+ */
+case class WindingConnection
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Autotransformer common winding
+     */
+    val A: String,
+
+    /**
+     * Delta
+     */
+    val D: String,
+
+    /**
+     * Independent winding, for single-phase connections
+     */
+    val I: String,
+
+    /**
+     * Wye
+     */
+    val Y: String,
+
+    /**
+     * Wye, with neutral brought out for grounding.
+     */
+    val Yn: String,
+
+    /**
+     * ZigZag
+     */
+    val Z: String,
+
+    /**
+     * ZigZag, with neutral brought out for grounding.
+     */
+    val Zn: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[WindingConnection]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object WindingConnection
+extends
+    Parseable[WindingConnection]
+{
+    val sup = BasicElement.parse _
+    val A = parse_attribute (attribute ("""WindingConnection.A"""))_
+    val D = parse_attribute (attribute ("""WindingConnection.D"""))_
+    val I = parse_attribute (attribute ("""WindingConnection.I"""))_
+    val Y = parse_attribute (attribute ("""WindingConnection.Y"""))_
+    val Yn = parse_attribute (attribute ("""WindingConnection.Yn"""))_
+    val Z = parse_attribute (attribute ("""WindingConnection.Z"""))_
+    val Zn = parse_attribute (attribute ("""WindingConnection.Zn"""))_
+    def parse (context: Context): WindingConnection =
+    {
+        WindingConnection(
+            sup (context),
+            A (context),
+            D (context),
+            I (context),
+            Y (context),
+            Yn (context),
+            Z (context),
+            Zn (context)
+        )
+    }
+}
+
+object _Wires
 {
     def register: Unit =
     {
         ACLineSegment.register
         ACLineSegmentPhase.register
         AsynchronousMachine.register
+        AsynchronousMachineKind.register
         Breaker.register
         BusbarSection.register
         Clamp.register
         CompositeSwitch.register
         Conductor.register
         Connector.register
+        CoolantType.register
+        Cut.register
         Disconnector.register
         EarthFaultCompensator.register
         EnergyConsumer.register
@@ -3854,8 +6277,8 @@ object Wires
         LinearShuntCompensatorPhase.register
         LoadBreakSwitch.register
         MutualCoupling.register
-        NonLinearShuntCompensator.register
-        NonLinearShuntCompensatorPhase.register
+        NonlinearShuntCompensator.register
+        NonlinearShuntCompensatorPhase.register
         NonlinearShuntCompensatorPhasePoint.register
         NonlinearShuntCompensatorPoint.register
         PerLengthImpedance.register
@@ -3863,7 +6286,9 @@ object Wires
         PerLengthPhaseImpedance.register
         PerLengthSequenceImpedance.register
         PetersenCoil.register
+        PetersenCoilModeKind.register
         PhaseImpedanceData.register
+        PhaseShuntConnectionKind.register
         PhaseTapChanger.register
         PhaseTapChangerAsymmetrical.register
         PhaseTapChangerLinear.register
@@ -3883,21 +6308,28 @@ object Wires
         Recloser.register
         RegulatingCondEq.register
         RegulatingControl.register
+        RegulatingControlModeKind.register
         RegulationSchedule.register
         RotatingMachine.register
+        SVCControlMode.register
         Sectionaliser.register
         SeriesCompensator.register
+        ShortCircuitRotorKind.register
         ShuntCompensator.register
         ShuntCompensatorPhase.register
+        SinglePhaseKind.register
         StaticVarCompensator.register
         Switch.register
         SwitchPhase.register
         SwitchSchedule.register
         SynchronousMachine.register
+        SynchronousMachineKind.register
+        SynchronousMachineOperatingMode.register
         TapChanger.register
         TapChangerControl.register
         TapChangerTablePoint.register
         TapSchedule.register
+        TransformerControlMode.register
         TransformerCoreAdmittance.register
         TransformerEnd.register
         TransformerMeshImpedance.register
@@ -3905,5 +6337,6 @@ object Wires
         TransformerTank.register
         TransformerTankEnd.register
         VoltageControlZone.register
+        WindingConnection.register
     }
 }

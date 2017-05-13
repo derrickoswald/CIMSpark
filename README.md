@@ -50,7 +50,7 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 ## Jar Naming Scheme
 
-The name of the jar file (e.g. CIMReader-2.11-2.0.2-1.8.1.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+The name of the jar file (e.g. CIMReader-2.11-2.0.2-2.0.0.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
 
 The first version number is the Scala library version. This follows [Scala libray naming semantics](https://github.com/scalacenter/scaladex).
 
@@ -106,7 +106,7 @@ From within the interactive shell in the master container, to start the Spark sh
 either change to any subdirectory (i.e. ```cd /opt```) or
 add the warehouse.dir configuration as shown here] 
 ```
-spark-shell --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-1.8.1.jar
+spark-shell --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
@@ -217,7 +217,7 @@ All RDD are also exposed as temporary tables, so one can use SQL syntax to const
 
 To expose the RDD as Hive SQL tables that are available externally, via JDBC for instance, a utility main() function is provided in CIMRDD:
 
-    spark-submit --class ch.ninecode.cim.CIMRDD --jars /opt/code/CIMReader-2.11-2.0.2-1.8.1.jar --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-1.8.1.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
+    spark-submit --class ch.ninecode.cim.CIMRDD --jars /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
     ...
     Press [Return] to exit...
 
@@ -340,22 +340,22 @@ Fortunately there's another setting for the driver, so this works:
 
 So the complete command for cluster deploy is:
 
-    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode cluster --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-1.8.1.jar "/opt/data/dump_all.xml"
+    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode cluster --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
 
 To run the driver program on the client (only differs in `--deploy-mode` parameter):
 
-    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-1.8.1.jar "/opt/data/dump_all.xml"
+    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
 
 but it's unclear how much is actually executing on the cluster vs. directly on the driver machine.
 
 Using Java directly, you can run the sample program that creates a ThriftServer2 and fills a temporary table using the command line:
 
-    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.6.0-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMReader-2.11-2.0.2-1.8.1.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode cluster --conf spark.driver.memory=2g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true --jars /opt/code/CIMReader-2.11-2.0.2-1.8.1.jar "/opt/data/dump_all.xml"
+    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.6.0-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMReader-2.11-2.0.2-2.0.0.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode cluster --conf spark.driver.memory=2g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true --jars /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
 
 The program can also be executed using:
 
     export SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dscala.usejavacp=true"
-    spark-submit --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-1.8.1.jar "/opt/data/dump_all.xml"
+    spark-submit --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
 
 Incidentally, the Tracking UI for the Application Master is really good.
 But it disappears when the program terminates.
@@ -496,7 +496,7 @@ Follow the instructions in [Starting up from RStudio](https://spark.apache.org/d
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-1.8.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-2.0.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):

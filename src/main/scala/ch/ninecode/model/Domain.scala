@@ -4,15 +4,327 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
 
-/*
- * Package: Domain
+/**
+ * The domain package define primitive datatypes that are used by classes in other packages.
+ * Stereotypes are used to describe the datatypes. The following stereotypes are defined:
  */
 
+/**
+ * Interval between two dates.
+ */
+case class DateInterval
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * End date of this interval.
+     */
+    val end: String,
+
+    /**
+     * Start date of this interval.
+     */
+    val start: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[DateInterval]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object DateInterval
+extends
+    Parseable[DateInterval]
+{
+    val sup = BasicElement.parse _
+    val end = parse_element (element ("""DateInterval.end"""))_
+    val start = parse_element (element ("""DateInterval.start"""))_
+    def parse (context: Context): DateInterval =
+    {
+        DateInterval(
+            sup (context),
+            end (context),
+            start (context)
+        )
+    }
+}
+
+/**
+ * Interval between two date and time points.
+ */
+case class DateTimeInterval
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * End date and time of this interval.
+     */
+    val end: String,
+
+    /**
+     * Start date and time of this interval.
+     */
+    val start: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[DateTimeInterval]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object DateTimeInterval
+extends
+    Parseable[DateTimeInterval]
+{
+    val sup = BasicElement.parse _
+    val end = parse_element (element ("""DateTimeInterval.end"""))_
+    val start = parse_element (element ("""DateTimeInterval.start"""))_
+    def parse (context: Context): DateTimeInterval =
+    {
+        DateTimeInterval(
+            sup (context),
+            end (context),
+            start (context)
+        )
+    }
+}
+
+case class DecimalQuantity
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * Quantity with decimal value and associated unit or currency information.
+     */
+    val currency: String,
+
+    val multiplier: String,
+
+    val unit: String,
+
+    val value: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, 0.0) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[DecimalQuantity]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object DecimalQuantity
+extends
+    Parseable[DecimalQuantity]
+{
+    val sup = BasicElement.parse _
+    val currency = parse_attribute (attribute ("""DecimalQuantity.currency"""))_
+    val multiplier = parse_attribute (attribute ("""DecimalQuantity.multiplier"""))_
+    val unit = parse_attribute (attribute ("""DecimalQuantity.unit"""))_
+    val value = parse_element (element ("""DecimalQuantity.value"""))_
+    def parse (context: Context): DecimalQuantity =
+    {
+        DecimalQuantity(
+            sup (context),
+            currency (context),
+            multiplier (context),
+            unit (context),
+            toDouble (value (context), context)
+        )
+    }
+}
+
+/**
+ * Quantity with float value and associated unit information.
+ */
+case class FloatQuantity
+(
+
+    override val sup: BasicElement,
+
+    val multiplier: String,
+
+    val unit: String,
+
+    val value: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, 0.0) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[FloatQuantity]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object FloatQuantity
+extends
+    Parseable[FloatQuantity]
+{
+    val sup = BasicElement.parse _
+    val multiplier = parse_attribute (attribute ("""FloatQuantity.multiplier"""))_
+    val unit = parse_attribute (attribute ("""FloatQuantity.unit"""))_
+    val value = parse_element (element ("""FloatQuantity.value"""))_
+    def parse (context: Context): FloatQuantity =
+    {
+        FloatQuantity(
+            sup (context),
+            multiplier (context),
+            unit (context),
+            toDouble (value (context), context)
+        )
+    }
+}
+
+/**
+ * Quantity with integer value and associated unit information.
+ */
+case class IntegerQuantity
+(
+
+    override val sup: BasicElement,
+
+    val multiplier: String,
+
+    val unit: String,
+
+    val value: Int
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, 0) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[IntegerQuantity]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object IntegerQuantity
+extends
+    Parseable[IntegerQuantity]
+{
+    val sup = BasicElement.parse _
+    val multiplier = parse_attribute (attribute ("""IntegerQuantity.multiplier"""))_
+    val unit = parse_attribute (attribute ("""IntegerQuantity.unit"""))_
+    val value = parse_element (element ("""IntegerQuantity.value"""))_
+    def parse (context: Context): IntegerQuantity =
+    {
+        IntegerQuantity(
+            sup (context),
+            multiplier (context),
+            unit (context),
+            toInteger (value (context), context)
+        )
+    }
+}
+
+/**
+ * Interval between two times specified as mont and date.
+ */
+case class MonthDayInterval
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * End time of this interval.
+     */
+    val end: String,
+
+    /**
+     * Start time of this interval.
+     */
+    val start: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[MonthDayInterval]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object MonthDayInterval
+extends
+    Parseable[MonthDayInterval]
+{
+    val sup = BasicElement.parse _
+    val end = parse_element (element ("""MonthDayInterval.end"""))_
+    val start = parse_element (element ("""MonthDayInterval.start"""))_
+    def parse (context: Context): MonthDayInterval =
+    {
+        MonthDayInterval(
+            sup (context),
+            end (context),
+            start (context)
+        )
+    }
+}
+
+/**
+ * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
+ */
 case class StringQuantity
 (
+
     override val sup: BasicElement,
+
     val multiplier: String,
+
     val unit: String,
+
     val value: String
 )
 extends
@@ -20,7 +332,7 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[StringQuantity]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[StringQuantity]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -35,27 +347,83 @@ object StringQuantity
 extends
     Parseable[StringQuantity]
 {
+    val sup = BasicElement.parse _
     val multiplier = parse_attribute (attribute ("""StringQuantity.multiplier"""))_
     val unit = parse_attribute (attribute ("""StringQuantity.unit"""))_
     val value = parse_element (element ("""StringQuantity.value"""))_
     def parse (context: Context): StringQuantity =
     {
-        return (
-            StringQuantity
-            (
-                BasicElement.parse (context),
-                multiplier (context),
-                unit (context),
-                value (context)
-            )
+        StringQuantity(
+            sup (context),
+            multiplier (context),
+            unit (context),
+            value (context)
         )
     }
 }
 
-object Domain
+/**
+ * Interval between two times.
+ */
+case class TimeInterval
+(
+
+    override val sup: BasicElement,
+
+    /**
+     * End time of this interval.
+     */
+    val end: String,
+
+    /**
+     * Start time of this interval.
+     */
+    val start: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { return (clone ().asInstanceOf[TimeInterval]) }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+}
+
+object TimeInterval
+extends
+    Parseable[TimeInterval]
+{
+    val sup = BasicElement.parse _
+    val end = parse_element (element ("""TimeInterval.end"""))_
+    val start = parse_element (element ("""TimeInterval.start"""))_
+    def parse (context: Context): TimeInterval =
+    {
+        TimeInterval(
+            sup (context),
+            end (context),
+            start (context)
+        )
+    }
+}
+
+object _Domain
 {
     def register: Unit =
     {
+        DateInterval.register
+        DateTimeInterval.register
+        DecimalQuantity.register
+        FloatQuantity.register
+        IntegerQuantity.register
+        MonthDayInterval.register
         StringQuantity.register
+        TimeInterval.register
     }
 }

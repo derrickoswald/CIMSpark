@@ -6,7 +6,7 @@ Sys.setenv (YARN_CONF_DIR="/usr/local/spark-2.0.1/conf/")
 Sys.setenv (SPARK_HOME="/usr/local/spark-2.0.1/")
 Sys.setenv (LANG="en_US.utf8")
 library (SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-spark = sparkR.session (sparkJars = c ("/opt/code/CIMReader-2.11-2.0.2-1.9.0.jar"), sparkEnvir = list (spark.driver.memory="2g", spark.executor.memory="4g", spark.driver.maxResultSize="1g", spark.ui.showConsoleProgress="false"))
+spark = sparkR.session (sparkJars = c ("/opt/code/CIMReader-2.11-2.0.2-2.0.0.jar"), sparkEnvir = list (spark.driver.memory="2g", spark.executor.memory="4g", spark.driver.maxResultSize="1g", spark.ui.showConsoleProgress="false"))
 
 # record the start time
 pre = proc.time ()
