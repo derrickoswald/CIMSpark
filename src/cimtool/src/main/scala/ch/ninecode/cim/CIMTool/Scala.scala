@@ -98,43 +98,70 @@ case class Scala (parser: ModelParser, pkg: Package)
         "_" + valid_class_name (pkg.name)
     }
 
-    def details (attribute: Attribute): (String, String, String) =
+    case class Member (
+        name: String,
+        variable: String,
+        overrid: Boolean,
+        comment: String,
+        reference: Boolean,
+        multiple: Boolean,
+        datatype: String,
+        initializer: String,
+        function: String)
+
+    def details (attribute: Attribute): Member =
     {
-        val domain = parser.domains.find (_.name == attribute.typ) match
+        val name = attribute.name
+        val variable = valid_attribute_name (attribute)
+        val comment = attribute.notes
+        parser.domains.find (_.name == attribute.typ) match
         {
-            case Some (dom) => dom
-            //Domain (xuid, name, note, stereotype, noenum, value, unit, multiplier, denominatorUnit, denominatorMultiplier)
-            case None => Domain ("", "String", "", "", null, "String", "", "", "", "")
+            case Some (dom) =>
+                dom.name match
+                {
+                    case "Time" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                    case "Integer" => Member (name, variable, false, comment, false, false, "Int", "0", "toInteger")
+                    case "Float" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
+                    case "Decimal" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
+                    case "Boolean" => Member (name, variable, false, comment, false, false, "Boolean", "false", "toBoolean")
+                    case "Date" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                    case "Duration" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                    case "String" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                    case "DateTime" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                    case "MonthDay" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                    case _ =>
+                        dom.value match
+                            {
+                                case "Time" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                                case "Integer" => Member (name, variable, false, comment, false, false, "Int", "0", "toInteger")
+                                case "Float" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
+                                case "Decimal" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
+                                case "Boolean" => Member (name, variable, false, comment, false, false, "Boolean", "false", "toBoolean")
+                                case "Date" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                                case "Duration" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                                case "String" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                                case "DateTime" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                                case "MonthDay" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                                case _ =>
+                                    if (dom.stereotype == "enumeration")
+                                        Member (name, variable, false, comment, true, false, "String", "null", "")
+                                    else
+                                        Member (name, variable, false, comment, false, false, "String", "null", "")
+                            }
+                }
+            case None => Member (name, variable, false, comment, true, false, "String", "null", "")
         }
-        val (datatype, initializer, function) = domain.name match
-        {
-            case "Time" => ("String", "null", "")
-            case "Integer" => ("Int", "0", "toInteger")
-            case "Float" => ("Double", "0.0", "toDouble")
-            case "Decimal" => ("Double", "0.0", "toDouble")
-            case "Boolean" => ("Boolean", "false", "toBoolean")
-            case "Date" => ("String", "null", "")
-            case "Duration" => ("String", "null", "")
-            case "String" => ("String", "null", "")
-            case "DateTime" => ("String", "null", "")
-            case "MonthDay" => ("String", "null", "")
-            case _ =>
-                domain.value match
-                    {
-                        case "Time" => ("String", "null", "")
-                        case "Integer" => ("Int", "0", "toInteger")
-                        case "Float" => ("Double", "0.0", "toDouble")
-                        case "Decimal" => ("Double", "0.0", "toDouble")
-                        case "Boolean" => ("Boolean", "false", "toBoolean")
-                        case "Date" => ("String", "null", "")
-                        case "Duration" => ("String", "null", "")
-                        case "String" => ("String", "null", "")
-                        case "DateTime" => ("String", "null", "")
-                        case "MonthDay" => ("String", "null", "")
-                        case _ => ("String", "null", "")
-                    }
-        }
-        (datatype, initializer, function)
+    }
+
+    def details (role: Role): Member =
+    {
+        val name = role.name
+        val variable = valid_role_name (role)
+        val comment = role.note
+        if (role.upper == 1)
+            Member (name, variable, false, comment, true, false, "String", "null", "")
+        else
+            Member (name, variable, false, comment, true, true, "List[String]", "List()", "")
     }
 
     def asText (): String =
@@ -150,96 +177,74 @@ case class Scala (parser: ModelParser, pkg: Package)
             if ((pkg.name != "Domain") || (cls._2.stereotype == "Compound"))
                 case_classes.add ((valid_class_name (cls._2.name), cls._1))
 
-        val requires = Set[Package]()
         val p = new StringBuilder ()
         for (c <- case_classes)
         {
             val cls = classes (c._2)
             val name = valid_class_name (cls.name)
-            val attr = parser.attributes.getOrElse(c._2, List[Attribute]()).filter (_.name != "") // ToDo: why empty names?
+            def myattribute (attribute: Attribute): Boolean = attribute.name != "" // ToDo: why empty names?
             def myrole (role: Role): Boolean =
             {
                 def many_to_many: Boolean = ((role.card == "0..*") && (role.mate.card == "0..*") && role.sideA)
                 role.src == cls && ((role.upper == 1) || many_to_many)
             }
-            val rols = parser.roles.filter (myrole)
-            val (attributes, roles) = if ((attr.length + rols.size) > 21)
+            implicit val ordering = new Ordering[Member]
             {
-                println ("warning: " + pkg.name + "." + cls.name + " has too many attributes/roles (" + attr.length + "/" + rols.size + ") for a Scala case class")
-                // ToDo: better method
-                val at = attr.takeRight (21) // use takeRight so GeneratingUnit.ratedNetMaxP is included
-                val n = 21 - at.length
-                val rl = rols.takeRight (Math.max (0, n))
-                (at, rl)
+               def compare (a: Member, b: Member) =
+                   if (a.name == "sup")
+                       -1
+                   else if (b.name == "sup")
+                       1
+                   else
+                       if (a.variable.charAt (0).isLower)
+                           if (b.variable.charAt (0).isLower)
+                               a.variable.compareTo (b.variable)
+                           else
+                               -1
+                       else
+                           if (b.variable.charAt (0).isLower)
+                               1
+                           else
+                               a.variable.compareTo (b.variable)
             }
-            else
-                (attr, rols)
+            val sup = Member ("sup", "sup", true, "", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "")
+            val members =
+                (SortedSet[Member] (sup) ++
+                    parser.attributes.getOrElse (c._2, List[Attribute]()).filter (myattribute).map (details).toSet
+                    .union (parser.roles.filter (myrole).map (details)))
+
             val s = new StringBuilder ()
             if (null != cls.note)
                 s.append (JavaDoc (cls.note, 0).asText ())
             s.append ("case class ")
             s.append (name)
             s.append ("""
-                |(
-                |    override val sup: """.stripMargin)
-            if (null != cls.sup)
-                s.append (cls.sup.name)
-            else
-                s.append ("""BasicElement""")
+                |(""".stripMargin)
             val initializers = new StringBuilder ()
-            for (attribute <- attributes)
+            for (product <- members)
             {
-                if (initializers.length > 0)
-                    initializers.append (", ")
-                s.append (""",
+                if (product.name != "sup") s.append (""",""")
+                s.append ("""
                 |
                 |""".stripMargin)
-                s.append (JavaDoc (attribute.notes, 4).asText ())
-                val n = valid_attribute_name (attribute)
-                s.append ("""    val """);
-                s.append (n);
+                s.append (JavaDoc (product.comment, 4).asText ())
+                s.append ("""    """)
+                if (product.overrid) s.append ("""override """)
+                s.append ("""val """)
+                s.append (product.variable)
                 s.append (""": """)
-                val (datatype, initializer, function) = details (attribute)
-                s.append (datatype)
-                initializers.append (initializer)
+                s.append (product.datatype)
+                if (initializers.length > 0)
+                    initializers.append (", ")
+                initializers.append (product.initializer)
             }
-            for (role <- roles)
-                if (role.upper == 1)
-                {
-                    if (initializers.length > 0)
-                        initializers.append (", ")
-                    initializers.append ("""null""")
-                    s.append (""",
-                    |
-                    |""".stripMargin)
-                    s.append (JavaDoc (role.note, 4).asText ())
-                    val n = valid_role_name (role)
-                    s.append ("""    val """);
-                    s.append (n);
-                    s.append (""": String""".stripMargin)
-                }
-                else if (role.card == "0..*")
-                {
-                    if (initializers.length > 0)
-                        initializers.append (", ")
-                    initializers.append ("""List()""")
-                    s.append (""",
-                    |
-                    |""".stripMargin)
-                    s.append (JavaDoc (role.note, 4).asText ())
-                    val n = valid_role_name (role)
-                    s.append ("""    val """);
-                    s.append (n);
-                    s.append (""": List[String]""".stripMargin)
-                }
+
             s.append ("""
             |)
             |extends
             |    Element
             |{
-            |    def this () = { this (null""".stripMargin)
-            if (initializers.length > 0)
-                s.append (""", """)
+            |    def this () = { this (""".stripMargin)
             s.append (initializers.toString)
             s.append (""") }
             |    def """.stripMargin)
@@ -256,7 +261,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             s.append ("""]
             |    override def copy (): Row = { return (clone ().asInstanceOf[""".stripMargin)
             s.append (name)
-            s.append ("""]); }
+            s.append ("""]) }
             |    override def get (i: Int): Object =
             |    {
             |        if (i < productArity)
@@ -276,49 +281,35 @@ case class Scala (parser: ModelParser, pkg: Package)
             s.append ("""]
             |{
             |""".stripMargin)
-            for (attribute <- attributes)
+            for (product <- members)
             {
-                val n = valid_attribute_name (attribute)
                 s.append ("""    val """.stripMargin)
-                s.append (n);
-                s.append (""" = parse_element (element ("""")
-                s.append ("""""""")
-                s.append (name);
-                s.append (""".""")
-                s.append (attribute.name);
-                s.append ("""""""")
-                s.append (""""))_
-                |""".stripMargin)
+                s.append (product.variable)
+                if (product.name == "sup")
+                {
+                    s.append (""" = """)
+                    s.append (product.datatype)
+                    s.append (""".parse _
+                    |""".stripMargin)
+                }
+                else
+                {
+                    if (product.reference)
+                        if (product.multiple)
+                            s.append (""" = parse_attributes (attribute ("""")
+                        else
+                            s.append (""" = parse_attribute (attribute ("""")
+                    else
+                        s.append (""" = parse_element (element ("""")
+                    s.append ("""""""")
+                    s.append (name)
+                    s.append (""".""")
+                    s.append (product.name)
+                    s.append ("""""""")
+                    s.append (""""))_
+                    |""".stripMargin)
+                }
             }
-            for (role <- roles)
-                if (role.upper == 1)
-                {
-                    val n = valid_role_name (role)
-                    s.append ("""    val """.stripMargin)
-                    s.append (n);
-                    s.append (""" = parse_attribute (attribute ("""")
-                    s.append ("""""""")
-                    s.append (name);
-                    s.append (""".""")
-                    s.append (role.name);
-                    s.append ("""""""")
-                    s.append (""""))_
-                    |""".stripMargin)
-                }
-                else if (role.card == "0..*")
-                {
-                    val n = valid_role_name (role)
-                    s.append ("""    val """.stripMargin)
-                    s.append (n);
-                    s.append (""" = parse_attributes (attribute ("""")
-                    s.append ("""""""")
-                    s.append (name);
-                    s.append (""".""")
-                    s.append (role.name);
-                    s.append ("""""""")
-                    s.append (""""))_
-                    |""".stripMargin)
-                }
 
             s.append ("""    def parse (context: Context): """)
             s.append (name)
@@ -326,40 +317,23 @@ case class Scala (parser: ModelParser, pkg: Package)
             |    {
             |        """.stripMargin)
             s.append (name)
-            s.append ("""(
-            |            """.stripMargin)
-            if (null != cls.sup)
-                s.append (cls.sup.name)
-            else
-                s.append ("""BasicElement""")
-            s.append (""".parse (context)""")
-            for (attribute <- attributes)
+            s.append ("""(""")
+            for (product <- members)
             {
-                s.append (""",
-                |""".stripMargin)
-                val n = valid_attribute_name (attribute)
-                s.append ("""            """)
-                val (datatype, initializer, function) = details (attribute)
-                if (function != "")
+                if (product.name != "sup") s.append (""",""")
+                s.append ("""
+                |            """.stripMargin)
+                if (product.function != "")
                 {
-                    s.append (function)
+                    s.append (product.function)
                     s.append (""" (""")
                 }
-                s.append (n)
+                s.append (product.variable)
                 s.append (""" (context)""")
-                if (function != "")
+                if (product.function != "")
                     s.append (""", context)""")
             }
-            for (role <- roles)
-                if ((role.upper == 1) || (role.card == "0..*"))
-                {
-                    s.append (""",
-                    |""".stripMargin)
-                    val n = valid_role_name (role)
-                    s.append ("""            """)
-                    s.append (n)
-                    s.append (""" (context)""")
-                }
+
             s.append ("""
             |        )
             |    }
@@ -374,7 +348,6 @@ case class Scala (parser: ModelParser, pkg: Package)
         {
             val v = new StringBuilder ()
             val r = scala.collection.mutable.SortedSet[String]()
-            requires.foreach ((p) => r.add (p.name))
 
             v.append ("""package ch.ninecode.model
             |

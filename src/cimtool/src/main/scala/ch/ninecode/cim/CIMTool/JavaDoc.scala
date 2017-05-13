@@ -22,7 +22,7 @@ case class JavaDoc (note: String, leftpad: Int)
 
     def asText (): String =
     {
-        if (null != note)
+        if ((null != note) && (note != ""))
         {
             val s = new StringBuilder ()
             s.append ("""/**
