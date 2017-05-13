@@ -10,41 +10,28 @@ import ch.ninecode.cim.Context
 
 /**
  * A (document/collection) that describe a set of changes to the network.
+ * @param sup Reference to the superclass object.
+ * @param attr
+ * @param description
+ * @param name
+ * @param priority Priority between competing projects.
+ *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
+ * @param state Describes the state the project realisation are from starting planning until it is commissioned if not cancelled.
+ * @param typ Type of project.
+ * @param version Version of the project.
+ *        Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
+ * @param Project
  */
 case class PowerSystemProject
-(
-
-    override val sup: BasicElement,
-
-    val attr: String,
-
-    val description: String,
-
-    val name: String,
-
-    /**
-     * Priority between competing projects.
-     * Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
-     */
-    val priority: Int,
-
-    /**
-     * Describes the state the project realisation are from starting planning until it is commissioned if not cancelled.
-     */
-    val state: String,
-
-    /**
-     * Type of project.
-     */
-    val typ: String,
-
-    /**
-     * Version of the project.
-     * Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
-     */
-    val version: Int,
-
-    val Project: String
+(override val sup: BasicElement,
+val attr: String,
+val description: String,
+val name: String,
+val priority: Int,
+val state: String,
+val typ: String,
+val version: Int,
+val Project: String
 )
 extends
     Element
@@ -92,35 +79,14 @@ extends
 }
 
 case class PowerSystemProjectSchedule
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Actual date and time for when the project is commissioned and committed to the network model.
-     */
-    val actualEnd: String,
-
-    /**
-     * Actual date and time for when the project is commissioned and committed to the network model.
-     */
-    val actualStart: String,
-
-    val attr: String,
-
-    /**
-     * Estimated date and time for when the project will be commissioned and committed to the network model.
-     */
-    val scheduledEnd: String,
-
-    /**
-     * Estimated date and time for when the project will be commissioned and committed to the network model.
-     */
-    val scheduledStart: String,
-
-    val status: String,
-
-    val stepType: String
+(override val sup: BasicElement,
+val actualEnd: String,
+val actualStart: String,
+val attr: String,
+val scheduledEnd: String,
+val scheduledStart: String,
+val status: String,
+val stepType: String
 )
 extends
     Element
@@ -167,13 +133,12 @@ extends
 
 /**
  * A collection of dependent projects.
+ * @param sup Reference to the superclass object.
+ * @param Project
  */
 case class PowerSystemSubProject
-(
-
-    override val sup: PowerSystemProject,
-
-    val Project: String
+(override val sup: PowerSystemProject,
+val Project: String
 )
 extends
     Element
@@ -208,35 +173,22 @@ extends
 
 /**
  * The ProjectSteps are ordered by the actualStart and actualEnds so that  a dependent ProjectStep will have a actualStart after an actualEnd.
+ * @param sup Reference to the superclass object.
+ * @param actualEnd Actual date and time for when the project is commissioned and committed to the network model.
+ * @param actualStart Actual date and time for when the project is commissioned and committed to the network model.
+ * @param scheduledEnd Estimated date and time for when the project will be commissioned and committed to the network model.
+ * @param scheduledStart Estimated date and time for when the project will be commissioned and committed to the network model.
+ * @param status
+ * @param stepType
  */
 case class ProjectStep
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Actual date and time for when the project is commissioned and committed to the network model.
-     */
-    val actualEnd: String,
-
-    /**
-     * Actual date and time for when the project is commissioned and committed to the network model.
-     */
-    val actualStart: String,
-
-    /**
-     * Estimated date and time for when the project will be commissioned and committed to the network model.
-     */
-    val scheduledEnd: String,
-
-    /**
-     * Estimated date and time for when the project will be commissioned and committed to the network model.
-     */
-    val scheduledStart: String,
-
-    val status: String,
-
-    val stepType: String
+(override val sup: BasicElement,
+val actualEnd: String,
+val actualStart: String,
+val scheduledEnd: String,
+val scheduledStart: String,
+val status: String,
+val stepType: String
 )
 extends
     Element
@@ -280,17 +232,11 @@ extends
 }
 
 case class ProjectStepStatusKind
-(
-
-    override val sup: BasicElement,
-
-    val approved: String,
-
-    val cancelled: String,
-
-    val inProgress: String,
-
-    val inactive: String
+(override val sup: BasicElement,
+val approved: String,
+val cancelled: String,
+val inProgress: String,
+val inactive: String
 )
 extends
     Element
@@ -331,30 +277,20 @@ extends
 
 /**
  * State of the project
+ * @param sup Reference to the superclass object.
+ * @param commissioning The project is commissioned and added to the network model.
+ * @param design_and_construction Project is approved for realisation and the construction is starting, under construction or in the state of being realist.
+ * @param planning First phase investigation and planning.
+ * @param revision
+ * @param ____list_incomplete__more_to_come
  */
 case class StepKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The project is commissioned and added to the network model.
-     */
-    val commissioning: String,
-
-    /**
-     * Project is approved for realisation and the construction is starting, under construction or in the state of being realist.
-     */
-    val design_and_construction: String,
-
-    /**
-     * First phase investigation and planning.
-     */
-    val planning: String,
-
-    val revision: String,
-
-    val ____list_incomplete__more_to_come: String
+(override val sup: BasicElement,
+val commissioning: String,
+val design_and_construction: String,
+val planning: String,
+val revision: String,
+val ____list_incomplete__more_to_come: String
 )
 extends
     Element

@@ -8,13 +8,12 @@ import ch.ninecode.cim.Context
 /**
  * A unique identifier of a wheeling transaction.
  * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
+ * @param sup Reference to the superclass object.
+ * @param value
  */
 case class WheelingReferenceSchedule
-(
-
-    override val sup: BidHourlySchedule,
-
-    val value: String
+(override val sup: BidHourlySchedule,
+val value: String
 )
 extends
     Element

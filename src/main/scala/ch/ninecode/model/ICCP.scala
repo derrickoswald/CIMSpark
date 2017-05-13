@@ -6,11 +6,8 @@ import ch.ninecode.cim.Context
 
 
 case class ICCPCommandPoint
-(
-
-    override val sup: ICCPControlPoint,
-
-    val attr: String
+(override val sup: ICCPControlPoint,
+val attr: String
 )
 extends
     Element
@@ -44,13 +41,9 @@ extends
 }
 
 case class ICCPControlPoint
-(
-
-    override val sup: ICCPPoint,
-
-    val attr: String,
-
-    val deviceClass: String
+(override val sup: ICCPPoint,
+val attr: String,
+val deviceClass: String
 )
 extends
     Element
@@ -86,13 +79,9 @@ extends
 }
 
 case class ICCPControlPointDeviceClass
-(
-
-    override val sup: BasicElement,
-
-    val NONSBO: String,
-
-    val SBO: String
+(override val sup: BasicElement,
+val NONSBO: String,
+val SBO: String
 )
 extends
     Element
@@ -128,13 +117,9 @@ extends
 }
 
 case class ICCPIndicationPoint
-(
-
-    override val sup: ICCPPoint,
-
-    val attr: String,
-
-    val typ: String
+(override val sup: ICCPPoint,
+val attr: String,
+val typ: String
 )
 extends
     Element
@@ -170,15 +155,10 @@ extends
 }
 
 case class ICCPIndicationPointType
-(
-
-    override val sup: BasicElement,
-
-    val DISCRETE: String,
-
-    val REAL: String,
-
-    val STATE: String
+(override val sup: BasicElement,
+val DISCRETE: String,
+val REAL: String,
+val STATE: String
 )
 extends
     Element
@@ -218,21 +198,17 @@ extends
 /**
  * This class represents the TASE.2 Information Message Object.
  * The IdentifiedObject.name attribute must be non-null.  The value of the attribute shall be used as the TASE.2 Information Reference, as specified by 60870-6-503.
+ * @param sup Reference to the superclass object.
+ * @param attr
+ * @param localReference The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
+ *        It further identifies the Information Message.
+ * @param scope
  */
 case class ICCPInformationMessage
-(
-
-    override val sup: IdentifiedObject,
-
-    val attr: List[String],
-
-    /**
-     * The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
-     * It further identifies the Information Message.
-     */
-    val localReference: String,
-
-    val scope: String
+(override val sup: IdentifiedObject,
+val attr: List[String],
+val localReference: String,
+val scope: String
 )
 extends
     Element
@@ -270,13 +246,9 @@ extends
 }
 
 case class ICCPPScope
-(
-
-    override val sup: BasicElement,
-
-    val ICC: String,
-
-    val VCC: String
+(override val sup: BasicElement,
+val ICC: String,
+val VCC: String
 )
 extends
     Element
@@ -314,15 +286,14 @@ extends
 /**
  * The IdentifiedObject.name attribute must have a value.
  * The name attribute shall be used as the DataValue name used for the exchange.
+ * @param sup Reference to the superclass object.
+ * @param attr
+ * @param scope
  */
 case class ICCPPoint
-(
-
-    override val sup: IdentifiedObject,
-
-    val attr: String,
-
-    val scope: String
+(override val sup: IdentifiedObject,
+val attr: String,
+val scope: String
 )
 extends
     Element
@@ -358,13 +329,9 @@ extends
 }
 
 case class ICCPSetPoint
-(
-
-    override val sup: ICCPControlPoint,
-
-    val attr: String,
-
-    val typ: String
+(override val sup: ICCPControlPoint,
+val attr: String,
+val typ: String
 )
 extends
     Element
@@ -400,13 +367,9 @@ extends
 }
 
 case class ICCPSetPointType
-(
-
-    override val sup: BasicElement,
-
-    val DISCRETE: String,
-
-    val REAL: String
+(override val sup: BasicElement,
+val DISCRETE: String,
+val REAL: String
 )
 extends
     Element
@@ -442,19 +405,12 @@ extends
 }
 
 case class IPAccessPoint
-(
-
-    override val sup: BasicElement,
-
-    val address: String,
-
-    val addressType: String,
-
-    val attr: String,
-
-    val gateway: String,
-
-    val subnet: String
+(override val sup: BasicElement,
+val address: String,
+val addressType: String,
+val attr: String,
+val gateway: String,
+val subnet: String
 )
 extends
     Element
@@ -496,15 +452,10 @@ extends
 }
 
 case class IPAddressType
-(
-
-    override val sup: BasicElement,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: String
+(override val sup: BasicElement,
+val multiplier: String,
+val unit: String,
+val value: String
 )
 extends
     Element
@@ -542,15 +493,10 @@ extends
 }
 
 case class ISOAPAddressing
-(
-
-    override val sup: BasicElement,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: String
+(override val sup: BasicElement,
+val multiplier: String,
+val unit: String,
+val value: String
 )
 extends
     Element
@@ -588,17 +534,11 @@ extends
 }
 
 case class ISOUpperLayer
-(
-
-    override val sup: TCPAcessPoint,
-
-    val ap: String,
-
-    val osiPsel: String,
-
-    val osiSsel: String,
-
-    val osiTsel: String
+(override val sup: TCPAcessPoint,
+val ap: String,
+val osiPsel: String,
+val osiSsel: String,
+val osiTsel: String
 )
 extends
     Element
@@ -640,33 +580,20 @@ extends
 /**
  * This class describe the sending (providing) side in a bilateral ICCP data exchange.
  * Hence the ICCP bilateral (table) descriptions are created by exchanging ICCPProvider data between the parties.
+ * @param sup Reference to the superclass object.
+ * @param bilateralTableID Specifies the version of the Bilateral Table configuration that is being exchanged.
+ * @param calling Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
+ *        If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.
+ * @param nameOfICC Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
+ *        This value may not be null.
+ * @param tase2version Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2
  */
 case class TASE2BilateralTable
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Specifies the version of the Bilateral Table configuration that is being exchanged.
-     */
-    val bilateralTableID: String,
-
-    /**
-     * Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
-     * If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.
-     */
-    val calling: Boolean,
-
-    /**
-     * Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
-     * This value may not be null.
-     */
-    val nameOfICC: String,
-
-    /**
-     * Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2
-     */
-    val tase2version: String
+(override val sup: IdentifiedObject,
+val bilateralTableID: String,
+val calling: Boolean,
+val nameOfICC: String,
+val tase2version: String
 )
 extends
     Element
@@ -706,13 +633,9 @@ extends
 }
 
 case class TCPAcessPoint
-(
-
-    override val sup: IPAccessPoint,
-
-    val keepAliveTime: Int,
-
-    val port: Int
+(override val sup: IPAccessPoint,
+val keepAliveTime: Int,
+val port: Int
 )
 extends
     Element

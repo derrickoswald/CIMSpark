@@ -11,26 +11,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
+ * @param sup Reference to the superclass object.
+ * @param airCompressorRating Rating of the CAES air compressor.
+ * @param CAESPlant An air compressor may be a member of a compressed air energy storage plant.
+ * @param CombustionTurbine A CAES air compressor is driven by combustion turbine.
  */
 case class AirCompressor
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * Rating of the CAES air compressor.
-     */
-    val airCompressorRating: Double,
-
-    /**
-     * An air compressor may be a member of a compressed air energy storage plant.
-     */
-    val CAESPlant: String,
-
-    /**
-     * A CAES air compressor is driven by combustion turbine.
-     */
-    val CombustionTurbine: String
+(override val sup: PowerSystemResource,
+val airCompressorRating: Double,
+val CAESPlant: String,
+val CombustionTurbine: String
 )
 extends
     Element
@@ -69,31 +59,18 @@ extends
 
 /**
  * Compressed air energy storage plant.
+ * @param sup Reference to the superclass object.
+ * @param energyStorageCapacity The rated energy storage capacity.
+ * @param ratedCapacityP The CAES plant's gross rated generating capacity.
+ * @param AirCompressor An air compressor may be a member of a compressed air energy storage plant.
+ * @param ThermalGeneratingUnit A thermal generating unit may be a member of a compressed air energy storage plant.
  */
 case class CAESPlant
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * The rated energy storage capacity.
-     */
-    val energyStorageCapacity: Double,
-
-    /**
-     * The CAES plant's gross rated generating capacity.
-     */
-    val ratedCapacityP: Double,
-
-    /**
-     * An air compressor may be a member of a compressed air energy storage plant.
-     */
-    val AirCompressor: String,
-
-    /**
-     * A thermal generating unit may be a member of a compressed air energy storage plant.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: PowerSystemResource,
+val energyStorageCapacity: Double,
+val ratedCapacityP: Double,
+val AirCompressor: String,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -135,17 +112,16 @@ extends
 /**
  * Classification of level.
  * Specify as 1..n, with 1 being the most detailed, highest priority, etc as described on the attribue using this data type.
+ * @param sup Reference to the superclass object.
+ * @param multiplier
+ * @param unit
+ * @param value
  */
 case class Classification
-(
-
-    override val sup: BasicElement,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: Int
+(override val sup: BasicElement,
+val multiplier: String,
+val unit: String,
+val value: Int
 )
 extends
     Element
@@ -185,41 +161,22 @@ extends
 /**
  * A set of thermal generating units for the production of electrical energy and process steam (usually from the output of the steam turbines).
  * The steam sendout is typically used for industrial purposes or for municipal heating and cooling.
+ * @param sup Reference to the superclass object.
+ * @param cogenHPSendoutRating The high pressure steam sendout.
+ * @param cogenHPSteamRating The high pressure steam rating.
+ * @param cogenLPSendoutRating The low pressure steam sendout.
+ * @param cogenLPSteamRating The low pressure steam rating.
+ * @param ratedP The rated output active power of the cogeneration plant.
+ * @param SteamSendoutSchedule A cogeneration plant has a steam sendout schedule.
  */
 case class CogenerationPlant
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * The high pressure steam sendout.
-     */
-    val cogenHPSendoutRating: Double,
-
-    /**
-     * The high pressure steam rating.
-     */
-    val cogenHPSteamRating: Double,
-
-    /**
-     * The low pressure steam sendout.
-     */
-    val cogenLPSendoutRating: Double,
-
-    /**
-     * The low pressure steam rating.
-     */
-    val cogenLPSteamRating: Double,
-
-    /**
-     * The rated output active power of the cogeneration plant.
-     */
-    val ratedP: Double,
-
-    /**
-     * A cogeneration plant has a steam sendout schedule.
-     */
-    val SteamSendoutSchedule: String
+(override val sup: PowerSystemResource,
+val cogenHPSendoutRating: Double,
+val cogenHPSteamRating: Double,
+val cogenLPSendoutRating: Double,
+val cogenLPSteamRating: Double,
+val ratedP: Double,
+val SteamSendoutSchedule: String
 )
 extends
     Element
@@ -264,16 +221,12 @@ extends
 
 /**
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
+ * @param sup Reference to the superclass object.
+ * @param combCyclePlantRating The combined cycle plant's active power output rating.
  */
 case class CombinedCyclePlant
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * The combined cycle plant's active power output rating.
-     */
-    val combCyclePlantRating: Double
+(override val sup: PowerSystemResource,
+val combCyclePlantRating: Double
 )
 extends
     Element
@@ -308,21 +261,20 @@ extends
 
 /**
  * Cost, in units of currency, per quantity of heat generated.
+ * @param sup Reference to the superclass object.
+ * @param denominatorMultiplier
+ * @param denominatorUnit
+ * @param multiplier
+ * @param unit
+ * @param value
  */
 case class CostPerHeatUnit
-(
-
-    override val sup: BasicElement,
-
-    val denominatorMultiplier: String,
-
-    val denominatorUnit: String,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: Double
+(override val sup: BasicElement,
+val denominatorMultiplier: String,
+val denominatorUnit: String,
+val multiplier: String,
+val unit: String,
+val value: Double
 )
 extends
     Element
@@ -365,21 +317,20 @@ extends
 
 /**
  * Quantity of emission per fuel heat content.
+ * @param sup Reference to the superclass object.
+ * @param denominatorMultiplier
+ * @param denominatorUnit
+ * @param multiplier
+ * @param unit
+ * @param value
  */
 case class Emission
-(
-
-    override val sup: BasicElement,
-
-    val denominatorMultiplier: String,
-
-    val denominatorUnit: String,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: Double
+(override val sup: BasicElement,
+val denominatorMultiplier: String,
+val denominatorUnit: String,
+val multiplier: String,
+val unit: String,
+val value: Double
 )
 extends
     Element
@@ -423,27 +374,17 @@ extends
 /**
  * Accounts for tracking emissions usage and credits for thermal generating units.
  * A unit may have zero or more emission accounts, and will typically have one for tracking usage and one for tracking credits.
+ * @param sup Reference to the superclass object.
+ * @param emissionType The type of emission, for example sulfur dioxide (SO2).
+ *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
+ * @param emissionValueSource The source of the emission value.
+ * @param ThermalGeneratingUnit A thermal generating unit may have one or more emission allowance accounts.
  */
 case class EmissionAccount
-(
-
-    override val sup: Curve,
-
-    /**
-     * The type of emission, for example sulfur dioxide (SO2).
-     * The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
-     */
-    val emissionType: String,
-
-    /**
-     * The source of the emission value.
-     */
-    val emissionValueSource: String,
-
-    /**
-     * A thermal generating unit may have one or more emission allowance accounts.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: Curve,
+val emissionType: String,
+val emissionValueSource: String,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -483,32 +424,19 @@ extends
 /**
  * Relationship between the unit's emission rate in units of mass per hour (Y-axis) and output active power (X-axis) for a given type of emission.
  * This curve applies when only one type of fuel is being burned.
+ * @param sup Reference to the superclass object.
+ * @param emissionContent The emission content per quantity of fuel burned.
+ * @param emissionType The type of emission, which also gives the production rate measurement unit.
+ *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
+ * @param isNetGrossP Flag is set to true when output is expressed in net active power.
+ * @param ThermalGeneratingUnit A thermal generating unit may have  one or more emission curves.
  */
 case class EmissionCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * The emission content per quantity of fuel burned.
-     */
-    val emissionContent: String,
-
-    /**
-     * The type of emission, which also gives the production rate measurement unit.
-     * The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
-     */
-    val emissionType: String,
-
-    /**
-     * Flag is set to true when output is expressed in net active power.
-     */
-    val isNetGrossP: Boolean,
-
-    /**
-     * A thermal generating unit may have  one or more emission curves.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: Curve,
+val emissionContent: String,
+val emissionType: String,
+val isNetGrossP: Boolean,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -549,41 +477,22 @@ extends
 
 /**
  * The type of emission.
+ * @param sup Reference to the superclass object.
+ * @param carbonDioxide Carbon diaoxide.
+ * @param carbonDisulfide Carbon disulfide.
+ * @param chlorine Clorine.
+ * @param hydrogenSulfide Hydrogen sulfide.
+ * @param nitrogenOxide Nitrogen oxide.
+ * @param sulfurDioxide Sulfer dioxide.
  */
 case class EmissionType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Carbon diaoxide.
-     */
-    val carbonDioxide: String,
-
-    /**
-     * Carbon disulfide.
-     */
-    val carbonDisulfide: String,
-
-    /**
-     * Clorine.
-     */
-    val chlorine: String,
-
-    /**
-     * Hydrogen sulfide.
-     */
-    val hydrogenSulfide: String,
-
-    /**
-     * Nitrogen oxide.
-     */
-    val nitrogenOxide: String,
-
-    /**
-     * Sulfer dioxide.
-     */
-    val sulfurDioxide: String
+(override val sup: BasicElement,
+val carbonDioxide: String,
+val carbonDisulfide: String,
+val chlorine: String,
+val hydrogenSulfide: String,
+val nitrogenOxide: String,
+val sulfurDioxide: String
 )
 extends
     Element
@@ -628,21 +537,14 @@ extends
 
 /**
  * The source of the emission value.
+ * @param sup Reference to the superclass object.
+ * @param calculated Calculated.
+ * @param measured Measured.
  */
 case class EmissionValueSource
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Calculated.
-     */
-    val calculated: String,
-
-    /**
-     * Measured.
-     */
-    val measured: String
+(override val sup: BasicElement,
+val calculated: String,
+val measured: String
 )
 extends
     Element
@@ -680,68 +582,34 @@ extends
 /**
  * The fossil fuel consumed by the non-nuclear thermal generating unit.
  * For example, coal, oil, gas, etc.   This a the specific fuels that the generating unit can consume.
+ * @param sup Reference to the superclass object.
+ * @param fossilFuelType The type of fossil fuel, such as coal, oil, or gas.
+ * @param fuelCost The cost in terms of heat value for the given type of fuel.
+ * @param fuelDispatchCost The cost of fuel used for economic dispatching which includes: fuel cost, transportation cost,  and incremental maintenance cost.
+ * @param fuelEffFactor The efficiency factor for the fuel (per unit) in terms of the effective energy absorbed.
+ * @param fuelHandlingCost Handling and processing cost associated with this fuel.
+ * @param fuelHeatContent The amount of heat per weight (or volume) of the given type of fuel.
+ * @param fuelMixture Relative amount of the given type of fuel, when multiple fuels are being consumed.
+ * @param fuelSulfur The fuel's fraction of pollution credit per unit of heat content.
+ * @param highBreakpointP The active power output level of the unit at which the given type of fuel is switched on.
+ *        This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels.
+ * @param lowBreakpointP The active power output level of the unit at which the given type of fuel is switched off.
+ *        This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels.
+ * @param ThermalGeneratingUnit A thermal generating unit may have one or more fossil fuels.
  */
 case class FossilFuel
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The type of fossil fuel, such as coal, oil, or gas.
-     */
-    val fossilFuelType: String,
-
-    /**
-     * The cost in terms of heat value for the given type of fuel.
-     */
-    val fuelCost: String,
-
-    /**
-     * The cost of fuel used for economic dispatching which includes: fuel cost, transportation cost,  and incremental maintenance cost.
-     */
-    val fuelDispatchCost: String,
-
-    /**
-     * The efficiency factor for the fuel (per unit) in terms of the effective energy absorbed.
-     */
-    val fuelEffFactor: Double,
-
-    /**
-     * Handling and processing cost associated with this fuel.
-     */
-    val fuelHandlingCost: String,
-
-    /**
-     * The amount of heat per weight (or volume) of the given type of fuel.
-     */
-    val fuelHeatContent: Double,
-
-    /**
-     * Relative amount of the given type of fuel, when multiple fuels are being consumed.
-     */
-    val fuelMixture: Double,
-
-    /**
-     * The fuel's fraction of pollution credit per unit of heat content.
-     */
-    val fuelSulfur: Double,
-
-    /**
-     * The active power output level of the unit at which the given type of fuel is switched on.
-     * This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels.
-     */
-    val highBreakpointP: Double,
-
-    /**
-     * The active power output level of the unit at which the given type of fuel is switched off.
-     * This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels.
-     */
-    val lowBreakpointP: Double,
-
-    /**
-     * A thermal generating unit may have one or more fossil fuels.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: IdentifiedObject,
+val fossilFuelType: String,
+val fuelCost: String,
+val fuelDispatchCost: String,
+val fuelEffFactor: Double,
+val fuelHandlingCost: String,
+val fuelHeatContent: Double,
+val fuelMixture: Double,
+val fuelSulfur: Double,
+val highBreakpointP: Double,
+val lowBreakpointP: Double,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -796,46 +664,24 @@ extends
 
 /**
  * The amount of fuel of a given type which is allocated for consumption over a specified period of time.
+ * @param sup Reference to the superclass object.
+ * @param fuelAllocationEndDate The end time and date of the fuel allocation schedule.
+ * @param fuelAllocationStartDate The start time and date of the fuel allocation schedule.
+ * @param fuelType The type of fuel, which also indicates the corresponding measurement unit.
+ * @param maxFuelAllocation The maximum amount fuel that is allocated for consumption for the scheduled time period.
+ * @param minFuelAllocation The minimum amount fuel that is allocated for consumption for the scheduled time period, e.g., based on a "take-or-pay" contract.
+ * @param FossilFuel A fuel allocation schedule must have a fossil fuel.
+ * @param ThermalGeneratingUnit A thermal generating unit may have one or more fuel allocation schedules.
  */
 case class FuelAllocationSchedule
-(
-
-    override val sup: Curve,
-
-    /**
-     * The end time and date of the fuel allocation schedule.
-     */
-    val fuelAllocationEndDate: String,
-
-    /**
-     * The start time and date of the fuel allocation schedule.
-     */
-    val fuelAllocationStartDate: String,
-
-    /**
-     * The type of fuel, which also indicates the corresponding measurement unit.
-     */
-    val fuelType: String,
-
-    /**
-     * The maximum amount fuel that is allocated for consumption for the scheduled time period.
-     */
-    val maxFuelAllocation: Double,
-
-    /**
-     * The minimum amount fuel that is allocated for consumption for the scheduled time period, e.g., based on a "take-or-pay" contract.
-     */
-    val minFuelAllocation: Double,
-
-    /**
-     * A fuel allocation schedule must have a fossil fuel.
-     */
-    val FossilFuel: String,
-
-    /**
-     * A thermal generating unit may have one or more fuel allocation schedules.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: Curve,
+val fuelAllocationEndDate: String,
+val fuelAllocationStartDate: String,
+val fuelType: String,
+val maxFuelAllocation: Double,
+val minFuelAllocation: Double,
+val FossilFuel: String,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -882,42 +728,23 @@ extends
 
 /**
  * Type of fuel.
+ * @param sup Reference to the superclass object.
+ * @param coal Generic coal, not including lignite type.
+ * @param gas Natural gas.
+ * @param hardCoal Hard coal
+ * @param lignite The fuel is lignite coal.
+ *        Note that this is a special type of coal, so the other enum of coal is reserved for hard coal types or if the exact type of coal is not known.
+ * @param oil Oil.
+ * @param oilShale Oil Shale
  */
 case class FuelType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Generic coal, not including lignite type.
-     */
-    val coal: String,
-
-    /**
-     * Natural gas.
-     */
-    val gas: String,
-
-    /**
-     * Hard coal
-     */
-    val hardCoal: String,
-
-    /**
-     * The fuel is lignite coal.
-     * Note that this is a special type of coal, so the other enum of coal is reserved for hard coal types or if the exact type of coal is not known.
-     */
-    val lignite: String,
-
-    /**
-     * Oil.
-     */
-    val oil: String,
-
-    /**
-     * Oil Shale
-     */
-    val oilShale: String
+(override val sup: BasicElement,
+val coal: String,
+val gas: String,
+val hardCoal: String,
+val lignite: String,
+val oil: String,
+val oilShale: String
 )
 extends
     Element
@@ -963,21 +790,14 @@ extends
 /**
  * Relationship between unit operating cost (Y-axis) and unit output active power (X-axis).
  * The operating cost curve for thermal units is derived from heat input and fuel costs. The operating cost curve for hydro units is derived from water flow rates and equivalent water costs.
+ * @param sup Reference to the superclass object.
+ * @param isNetGrossP Flag is set to true when output is expressed in net active power.
+ * @param GeneratingUnit A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
  */
 case class GenUnitOpCostCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Flag is set to true when output is expressed in net active power.
-     */
-    val isNetGrossP: Boolean,
-
-    /**
-     * A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
-     */
-    val GeneratingUnit: String
+(override val sup: Curve,
+val isNetGrossP: Boolean,
+val GeneratingUnit: String
 )
 extends
     Element
@@ -1015,16 +835,12 @@ extends
 /**
  * The generating unit's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
  * The X-axis represents absolute time. The Y1-axis represents the status (0=off-line and unavailable: 1=available: 2=must run: 3=must run at fixed power value: etc.). The Y2-axis represents the must run fixed power value where required.
+ * @param sup Reference to the superclass object.
+ * @param GeneratingUnit A generating unit may have an operating schedule, indicating the planned operation of the unit.
  */
 case class GenUnitOpSchedule
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * A generating unit may have an operating schedule, indicating the planned operation of the unit.
-     */
-    val GeneratingUnit: String
+(override val sup: RegularIntervalSchedule,
+val GeneratingUnit: String
 )
 extends
     Element
@@ -1060,207 +876,92 @@ extends
 /**
  * A single or set of synchronous machines for converting mechanical power into alternating-current power.
  * For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.
+ * @param sup Reference to the superclass object.
+ * @param allocSpinResP The planned unused capacity (spinning reserve) which can be used to support emergency load.
+ * @param autoCntrlMarginP The planned unused capacity which can be used to support automatic control overruns.
+ * @param baseP For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value.
+ *        The value must be between the operating low and high limits.
+ * @param controlDeadband Unit control error deadband.
+ *        When a unit's desired active power change is less than this deadband, then no control pulses will be sent to the unit.
+ * @param controlPulseHigh Pulse high limit which is the largest control pulse that the unit can respond to.
+ * @param controlPulseLow Pulse low limit which is the smallest control pulse that the unit can respond to.
+ * @param controlResponseRate Unit response rate which specifies the active power change for a control pulse of one second in the most responsive loading level of the unit.
+ * @param efficiency The efficiency of the unit in converting mechanical energy, from the prime mover, into electrical energy.
+ * @param genControlMode The unit control mode.
+ * @param genControlSource The source of controls for a generating unit.
+ * @param governorMPL Governor motor position limit.
+ * @param governorSCD Governor Speed Changer Droop.
+ *        This is the change in generator power output divided by the change in frequency normalized by the nominal power of the generator and the nominal frequency and expressed in percent and negated. A positive value of speed change droop provides additional generator output upon a drop in frequency.
+ * @param highControlLimit High limit for secondary (AGC) control.
+ * @param initialP Default initial active power  which is used to store a powerflow result for the initial active power for this unit in this network configuration.
+ * @param longPF Generating unit long term economic participation factor.
+ * @param lowControlLimit Low limit for secondary (AGC) control.
+ * @param lowerRampRate The normal maximum rate the generating unit active power output can be lowered by control actions.
+ * @param maxEconomicP Maximum high economic active power limit, that should not exceed the maximum operating active power limit.
+ * @param maxOperatingP This is the maximum operating active power limit the dispatcher can enter for this unit.
+ * @param maximumAllowableSpinningReserve Maximum allowable spinning reserve.
+ *        Spinning reserve will never be considered greater than this value regardless of the current operating point.
+ * @param minEconomicP Low economic active power limit that must be greater than or equal to the minimum operating active power limit.
+ * @param minOperatingP This is the minimum operating active power limit the dispatcher can enter for this unit.
+ * @param minimumOffTime Minimum time interval between unit shutdown and startup.
+ * @param modelDetail Detail level of the generator model data.
+ * @param nominalP The nominal power of the generating unit.
+ *        Used to give precise meaning to percentage based attributes such as the governor speed change droop (governorSCD attribute).
+ * @param normalPF Generating unit economic participation factor.
+ * @param penaltyFactor Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value.
+ *        The typical range of penalty factors is (0.9 to 1.1).
+ * @param raiseRampRate The normal maximum rate the generating unit active power output can be raised by control actions.
+ * @param ratedGrossMaxP The unit's gross rated maximum capacity (book value).
+ * @param ratedGrossMinP The gross rated minimum generation level which the unit can safely operate at while delivering power to the transmission grid.
+ * @param ratedNetMaxP The net rated maximum capacity determined by subtracting the auxiliary power used to operate the internal plant machinery from the rated gross maximum capacity.
+ * @param shortPF Generating unit short term economic participation factor.
+ * @param startupCost The initial startup cost incurred for each start of the GeneratingUnit.
+ * @param startupTime Time it takes to get the unit on-line, from the time that the prime mover mechanical power is applied.
+ * @param tieLinePF Generating unit economic participation factor.
+ * @param totalEfficiency The efficiency of the unit in converting the fuel into electrical energy.
+ * @param variableCost The variable cost component of production per unit of ActivePower.
+ * @param GenUnitOpSchedule A generating unit may have an operating schedule, indicating the planned operation of the unit.
  */
 case class GeneratingUnit
-(
-
-    override val sup: Equipment,
-
-    /**
-     * The planned unused capacity (spinning reserve) which can be used to support emergency load.
-     */
-    val allocSpinResP: Double,
-
-    /**
-     * The planned unused capacity which can be used to support automatic control overruns.
-     */
-    val autoCntrlMarginP: Double,
-
-    /**
-     * For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value.
-     * The value must be between the operating low and high limits.
-     */
-    val baseP: Double,
-
-    /**
-     * Unit control error deadband.
-     * When a unit's desired active power change is less than this deadband, then no control pulses will be sent to the unit.
-     */
-    val controlDeadband: Double,
-
-    /**
-     * Pulse high limit which is the largest control pulse that the unit can respond to.
-     */
-    val controlPulseHigh: Double,
-
-    /**
-     * Pulse low limit which is the smallest control pulse that the unit can respond to.
-     */
-    val controlPulseLow: Double,
-
-    /**
-     * Unit response rate which specifies the active power change for a control pulse of one second in the most responsive loading level of the unit.
-     */
-    val controlResponseRate: Double,
-
-    /**
-     * The efficiency of the unit in converting mechanical energy, from the prime mover, into electrical energy.
-     */
-    val efficiency: Double,
-
-    /**
-     * The unit control mode.
-     */
-    val genControlMode: String,
-
-    /**
-     * The source of controls for a generating unit.
-     */
-    val genControlSource: String,
-
-    /**
-     * Governor motor position limit.
-     */
-    val governorMPL: Double,
-
-    /**
-     * Governor Speed Changer Droop.
-     * This is the change in generator power output divided by the change in frequency normalized by the nominal power of the generator and the nominal frequency and expressed in percent and negated. A positive value of speed change droop provides additional generator output upon a drop in frequency.
-     */
-    val governorSCD: Double,
-
-    /**
-     * High limit for secondary (AGC) control.
-     */
-    val highControlLimit: Double,
-
-    /**
-     * Default initial active power  which is used to store a powerflow result for the initial active power for this unit in this network configuration.
-     */
-    val initialP: Double,
-
-    /**
-     * Generating unit long term economic participation factor.
-     */
-    val longPF: Double,
-
-    /**
-     * Low limit for secondary (AGC) control.
-     */
-    val lowControlLimit: Double,
-
-    /**
-     * The normal maximum rate the generating unit active power output can be lowered by control actions.
-     */
-    val lowerRampRate: Double,
-
-    /**
-     * Maximum high economic active power limit, that should not exceed the maximum operating active power limit.
-     */
-    val maxEconomicP: Double,
-
-    /**
-     * This is the maximum operating active power limit the dispatcher can enter for this unit.
-     */
-    val maxOperatingP: Double,
-
-    /**
-     * Maximum allowable spinning reserve.
-     * Spinning reserve will never be considered greater than this value regardless of the current operating point.
-     */
-    val maximumAllowableSpinningReserve: Double,
-
-    /**
-     * Low economic active power limit that must be greater than or equal to the minimum operating active power limit.
-     */
-    val minEconomicP: Double,
-
-    /**
-     * This is the minimum operating active power limit the dispatcher can enter for this unit.
-     */
-    val minOperatingP: Double,
-
-    /**
-     * Minimum time interval between unit shutdown and startup.
-     */
-    val minimumOffTime: Double,
-
-    /**
-     * Detail level of the generator model data.
-     */
-    val modelDetail: String,
-
-    /**
-     * The nominal power of the generating unit.
-     * Used to give precise meaning to percentage based attributes such as the governor speed change droop (governorSCD attribute).
-     */
-    val nominalP: Double,
-
-    /**
-     * Generating unit economic participation factor.
-     */
-    val normalPF: Double,
-
-    /**
-     * Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value.
-     * The typical range of penalty factors is (0.9 to 1.1).
-     */
-    val penaltyFactor: Double,
-
-    /**
-     * The normal maximum rate the generating unit active power output can be raised by control actions.
-     */
-    val raiseRampRate: Double,
-
-    /**
-     * The unit's gross rated maximum capacity (book value).
-     */
-    val ratedGrossMaxP: Double,
-
-    /**
-     * The gross rated minimum generation level which the unit can safely operate at while delivering power to the transmission grid.
-     */
-    val ratedGrossMinP: Double,
-
-    /**
-     * The net rated maximum capacity determined by subtracting the auxiliary power used to operate the internal plant machinery from the rated gross maximum capacity.
-     */
-    val ratedNetMaxP: Double,
-
-    /**
-     * Generating unit short term economic participation factor.
-     */
-    val shortPF: Double,
-
-    /**
-     * The initial startup cost incurred for each start of the GeneratingUnit.
-     */
-    val startupCost: Double,
-
-    /**
-     * Time it takes to get the unit on-line, from the time that the prime mover mechanical power is applied.
-     */
-    val startupTime: Double,
-
-    /**
-     * Generating unit economic participation factor.
-     */
-    val tieLinePF: Double,
-
-    /**
-     * The efficiency of the unit in converting the fuel into electrical energy.
-     */
-    val totalEfficiency: Double,
-
-    /**
-     * The variable cost component of production per unit of ActivePower.
-     */
-    val variableCost: Double,
-
-    /**
-     * A generating unit may have an operating schedule, indicating the planned operation of the unit.
-     */
-    val GenUnitOpSchedule: String
+(override val sup: Equipment,
+val allocSpinResP: Double,
+val autoCntrlMarginP: Double,
+val baseP: Double,
+val controlDeadband: Double,
+val controlPulseHigh: Double,
+val controlPulseLow: Double,
+val controlResponseRate: Double,
+val efficiency: Double,
+val genControlMode: String,
+val genControlSource: String,
+val governorMPL: Double,
+val governorSCD: Double,
+val highControlLimit: Double,
+val initialP: Double,
+val longPF: Double,
+val lowControlLimit: Double,
+val lowerRampRate: Double,
+val maxEconomicP: Double,
+val maxOperatingP: Double,
+val maximumAllowableSpinningReserve: Double,
+val minEconomicP: Double,
+val minOperatingP: Double,
+val minimumOffTime: Double,
+val modelDetail: String,
+val nominalP: Double,
+val normalPF: Double,
+val penaltyFactor: Double,
+val raiseRampRate: Double,
+val ratedGrossMaxP: Double,
+val ratedGrossMinP: Double,
+val ratedNetMaxP: Double,
+val shortPF: Double,
+val startupCost: Double,
+val startupTime: Double,
+val tieLinePF: Double,
+val totalEfficiency: Double,
+val variableCost: Double,
+val GenUnitOpSchedule: String
 )
 extends
     Element
@@ -1369,21 +1070,14 @@ extends
 
 /**
  * Unit control modes.
+ * @param sup Reference to the superclass object.
+ * @param pulse Pulse control mode.
+ * @param setpoint Setpoint control mode.
  */
 case class GeneratorControlMode
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Pulse control mode.
-     */
-    val pulse: String,
-
-    /**
-     * Setpoint control mode.
-     */
-    val setpoint: String
+(override val sup: BasicElement,
+val pulse: String,
+val setpoint: String
 )
 extends
     Element
@@ -1420,31 +1114,18 @@ extends
 
 /**
  * The source of controls for a generating unit.
+ * @param sup Reference to the superclass object.
+ * @param offAGC Off of automatic generation control (AGC).
+ * @param onAGC On automatic generation control (AGC).
+ * @param plantControl Plant is controlling.
+ * @param unavailable Not available.
  */
 case class GeneratorControlSource
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Off of automatic generation control (AGC).
-     */
-    val offAGC: String,
-
-    /**
-     * On automatic generation control (AGC).
-     */
-    val onAGC: String,
-
-    /**
-     * Plant is controlling.
-     */
-    val plantControl: String,
-
-    /**
-     * Not available.
-     */
-    val unavailable: String
+(override val sup: BasicElement,
+val offAGC: String,
+val onAGC: String,
+val plantControl: String,
+val unavailable: String
 )
 extends
     Element
@@ -1486,16 +1167,12 @@ extends
 /**
  * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
  * Station service loads, when modeled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
+ * @param sup Reference to the superclass object.
+ * @param GeneratingUnit A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
  */
 case class GrossToNetActivePowerCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
-     */
-    val GeneratingUnit: String
+(override val sup: Curve,
+val GeneratingUnit: String
 )
 extends
     Element
@@ -1531,41 +1208,22 @@ extends
 /**
  * Relationship between unit heat input in energy per time for main fuel (Y1-axis) and supplemental fuel (Y2-axis) versus unit output in active power (X-axis).
  * The quantity of main fuel used to sustain generation at this output level is prorated for throttling between definition points. The quantity of supplemental fuel used at this output level is fixed and not prorated.
+ * @param sup Reference to the superclass object.
+ * @param auxPowerMult Power output - auxiliary power multiplier adjustment factor.
+ * @param auxPowerOffset Power output - auxiliary power offset adjustment factor.
+ * @param heatInputEff Heat input - efficiency multiplier adjustment factor.
+ * @param heatInputOffset Heat input - offset adjustment factor.
+ * @param isNetGrossP Flag is set to true when output is expressed in net active power.
+ * @param ThermalGeneratingUnit A thermal generating unit may have a heat input curve.
  */
 case class HeatInputCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Power output - auxiliary power multiplier adjustment factor.
-     */
-    val auxPowerMult: Double,
-
-    /**
-     * Power output - auxiliary power offset adjustment factor.
-     */
-    val auxPowerOffset: Double,
-
-    /**
-     * Heat input - efficiency multiplier adjustment factor.
-     */
-    val heatInputEff: Double,
-
-    /**
-     * Heat input - offset adjustment factor.
-     */
-    val heatInputOffset: String,
-
-    /**
-     * Flag is set to true when output is expressed in net active power.
-     */
-    val isNetGrossP: Boolean,
-
-    /**
-     * A thermal generating unit may have a heat input curve.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: Curve,
+val auxPowerMult: Double,
+val auxPowerOffset: Double,
+val heatInputEff: Double,
+val heatInputOffset: String,
+val isNetGrossP: Boolean,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -1610,21 +1268,20 @@ extends
 
 /**
  * Heat generated, in energy pertime unit of elapsed time.
+ * @param sup Reference to the superclass object.
+ * @param denominatorMultiplier
+ * @param denominatorUnit
+ * @param multiplier
+ * @param unit
+ * @param value
  */
 case class HeatRate
-(
-
-    override val sup: BasicElement,
-
-    val denominatorMultiplier: String,
-
-    val denominatorUnit: String,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: Double
+(override val sup: BasicElement,
+val denominatorMultiplier: String,
+val denominatorUnit: String,
+val multiplier: String,
+val unit: String,
+val value: Double
 )
 extends
     Element
@@ -1668,21 +1325,14 @@ extends
 /**
  * Relationship between unit heat rate per active power (Y-axis) and  unit output (X-axis).
  * The heat input is from all fuels.
+ * @param sup Reference to the superclass object.
+ * @param isNetGrossP Flag is set to true when output is expressed in net active power.
+ * @param ThermalGeneratingUnit A thermal generating unit may have a heat rate curve.
  */
 case class HeatRateCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Flag is set to true when output is expressed in net active power.
-     */
-    val isNetGrossP: Boolean,
-
-    /**
-     * A thermal generating unit may have a heat rate curve.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: Curve,
+val isNetGrossP: Boolean,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -1719,21 +1369,14 @@ extends
 
 /**
  * Specifies the capability of the hydro generating unit to convert energy as a generator or pump.
+ * @param sup Reference to the superclass object.
+ * @param generator Able to generate power, but not able to pump water for energy storage.
+ * @param pumpAndGenerator Able to both generate power and pump water for energy storage.
  */
 case class HydroEnergyConversionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Able to generate power, but not able to pump water for energy storage.
-     */
-    val generator: String,
-
-    /**
-     * Able to both generate power and pump water for energy storage.
-     */
-    val pumpAndGenerator: String
+(override val sup: BasicElement,
+val generator: String,
+val pumpAndGenerator: String
 )
 extends
     Element
@@ -1771,16 +1414,12 @@ extends
 /**
  * Relationship between unit efficiency in percent and unit output active power for a given net head in meters.
  * The relationship between efficiency, discharge, head, and power output is expressed as follows:   E =KP/HQ
+ * @param sup Reference to the superclass object.
+ * @param HydroGeneratingUnit A hydro generating unit has an efficiency curve.
  */
 case class HydroGeneratingEfficiencyCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * A hydro generating unit has an efficiency curve.
-     */
-    val HydroGeneratingUnit: String
+(override val sup: Curve,
+val HydroGeneratingUnit: String
 )
 extends
     Element
@@ -1815,31 +1454,18 @@ extends
 
 /**
  * A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
+ * @param sup Reference to the superclass object.
+ * @param energyConversionCapability Energy conversion capability for generating.
+ * @param hydroUnitWaterCost The equivalent cost of water that drives the hydro turbine.
+ * @param HydroPowerPlant The hydro generating unit belongs to a hydro power plant.
+ * @param PenstockLossCurve A hydro generating unit has a penstock loss curve.
  */
 case class HydroGeneratingUnit
-(
-
-    override val sup: GeneratingUnit,
-
-    /**
-     * Energy conversion capability for generating.
-     */
-    val energyConversionCapability: String,
-
-    /**
-     * The equivalent cost of water that drives the hydro turbine.
-     */
-    val hydroUnitWaterCost: Double,
-
-    /**
-     * The hydro generating unit belongs to a hydro power plant.
-     */
-    val HydroPowerPlant: String,
-
-    /**
-     * A hydro generating unit has a penstock loss curve.
-     */
-    val PenstockLossCurve: String
+(override val sup: GeneratingUnit,
+val energyConversionCapability: String,
+val hydroUnitWaterCost: Double,
+val HydroPowerPlant: String,
+val PenstockLossCurve: String
 )
 extends
     Element
@@ -1880,26 +1506,16 @@ extends
 
 /**
  * The type of hydro power plant.
+ * @param sup Reference to the superclass object.
+ * @param pumpedStorage Pumped storage.
+ * @param runOfRiver Run of river.
+ * @param storage Storage.
  */
 case class HydroPlantStorageKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Pumped storage.
-     */
-    val pumpedStorage: String,
-
-    /**
-     * Run of river.
-     */
-    val runOfRiver: String,
-
-    /**
-     * Storage.
-     */
-    val storage: String
+(override val sup: BasicElement,
+val pumpedStorage: String,
+val runOfRiver: String,
+val storage: String
 )
 extends
     Element
@@ -1939,66 +1555,32 @@ extends
 /**
  * A hydro power station which can generate or pump.
  * When generating, the generator turbines receive water from an upper reservoir. When pumping, the pumps receive their water from a lower reservoir.
+ * @param sup Reference to the superclass object.
+ * @param dischargeTravelDelay Water travel delay from tailbay to next downstream hydro power station.
+ * @param genRatedP The hydro plant's generating rating active power for rated head conditions.
+ * @param hydroPlantStorageType The type of hydro power plant water storage.
+ * @param penstockType Type and configuration of hydro plant penstock(s).
+ * @param plantDischargeCapacity Total plant discharge capacity.
+ * @param plantRatedHead The plant's rated gross head.
+ * @param pumpRatedP The hydro plant's pumping rating active power for rated head conditions.
+ * @param surgeTankCode A code describing the type (or absence) of surge tank that is associated with the hydro power plant.
+ * @param surgeTankCrestLevel The level at which the surge tank spills.
+ * @param GenSourcePumpDischargeReservoir Generators are supplied water from or pumps discharge water to an upstream reservoir.
+ * @param Reservoir Generators discharge water to or pumps are supplied water from a downstream reservoir.
  */
 case class HydroPowerPlant
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * Water travel delay from tailbay to next downstream hydro power station.
-     */
-    val dischargeTravelDelay: Double,
-
-    /**
-     * The hydro plant's generating rating active power for rated head conditions.
-     */
-    val genRatedP: Double,
-
-    /**
-     * The type of hydro power plant water storage.
-     */
-    val hydroPlantStorageType: String,
-
-    /**
-     * Type and configuration of hydro plant penstock(s).
-     */
-    val penstockType: String,
-
-    /**
-     * Total plant discharge capacity.
-     */
-    val plantDischargeCapacity: Double,
-
-    /**
-     * The plant's rated gross head.
-     */
-    val plantRatedHead: Double,
-
-    /**
-     * The hydro plant's pumping rating active power for rated head conditions.
-     */
-    val pumpRatedP: Double,
-
-    /**
-     * A code describing the type (or absence) of surge tank that is associated with the hydro power plant.
-     */
-    val surgeTankCode: String,
-
-    /**
-     * The level at which the surge tank spills.
-     */
-    val surgeTankCrestLevel: Double,
-
-    /**
-     * Generators are supplied water from or pumps discharge water to an upstream reservoir.
-     */
-    val GenSourcePumpDischargeReservoir: String,
-
-    /**
-     * Generators discharge water to or pumps are supplied water from a downstream reservoir.
-     */
-    val Reservoir: String
+(override val sup: PowerSystemResource,
+val dischargeTravelDelay: Double,
+val genRatedP: Double,
+val hydroPlantStorageType: String,
+val penstockType: String,
+val plantDischargeCapacity: Double,
+val plantRatedHead: Double,
+val pumpRatedP: Double,
+val surgeTankCode: String,
+val surgeTankCrestLevel: Double,
+val GenSourcePumpDischargeReservoir: String,
+val Reservoir: String
 )
 extends
     Element
@@ -2053,47 +1635,25 @@ extends
 
 /**
  * A synchronous motor-driven pump, typically associated with a pumped storage plant.
+ * @param sup Reference to the superclass object.
+ * @param pumpDischAtMaxHead The pumping discharge under maximum head conditions, usually at full gate.
+ * @param pumpDischAtMinHead The pumping discharge under minimum head conditions, usually at full gate.
+ * @param pumpPowerAtMaxHead The pumping power under maximum head conditions, usually at full gate.
+ * @param pumpPowerAtMinHead The pumping power under minimum head conditions, usually at full gate.
+ * @param HydroPowerPlant The hydro pump may be a member of a pumped storage plant or a pump for distributing water.
+ * @param HydroPumpOpSchedule The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
+ * @param RotatingMachine The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
+ *        The direction of machine rotation for pumping may or may not be the same as for generating.
  */
 case class HydroPump
-(
-
-    override val sup: Equipment,
-
-    /**
-     * The pumping discharge under maximum head conditions, usually at full gate.
-     */
-    val pumpDischAtMaxHead: Double,
-
-    /**
-     * The pumping discharge under minimum head conditions, usually at full gate.
-     */
-    val pumpDischAtMinHead: Double,
-
-    /**
-     * The pumping power under maximum head conditions, usually at full gate.
-     */
-    val pumpPowerAtMaxHead: Double,
-
-    /**
-     * The pumping power under minimum head conditions, usually at full gate.
-     */
-    val pumpPowerAtMinHead: Double,
-
-    /**
-     * The hydro pump may be a member of a pumped storage plant or a pump for distributing water.
-     */
-    val HydroPowerPlant: String,
-
-    /**
-     * The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
-     */
-    val HydroPumpOpSchedule: String,
-
-    /**
-     * The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
-     * The direction of machine rotation for pumping may or may not be the same as for generating.
-     */
-    val RotatingMachine: String
+(override val sup: Equipment,
+val pumpDischAtMaxHead: Double,
+val pumpDischAtMinHead: Double,
+val pumpPowerAtMaxHead: Double,
+val pumpPowerAtMinHead: Double,
+val HydroPowerPlant: String,
+val HydroPumpOpSchedule: String,
+val RotatingMachine: String
 )
 extends
     Element
@@ -2141,16 +1701,12 @@ extends
 /**
  * The hydro pump's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
  * The unit's operating schedule status is typically given as: (0=unavailable) (1=avilable to startup or shutdown)  (2=must pump).
+ * @param sup Reference to the superclass object.
+ * @param HydroPump The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
  */
 case class HydroPumpOpSchedule
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
-     */
-    val HydroPump: String
+(override val sup: RegularIntervalSchedule,
+val HydroPump: String
 )
 extends
     Element
@@ -2186,21 +1742,14 @@ extends
 /**
  * Relationship between unit incremental heat rate in (delta energy/time) per (delta active power) and unit output in active power.
  * The IHR curve represents the slope of the HeatInputCurve. Note that the "incremental heat rate" and the "heat rate" have the same engineering units.
+ * @param sup Reference to the superclass object.
+ * @param isNetGrossP Flag is set to true when output is expressed in net active power.
+ * @param ThermalGeneratingUnit A thermal generating unit may have an incremental heat rate curve.
  */
 case class IncrementalHeatRateCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Flag is set to true when output is expressed in net active power.
-     */
-    val isNetGrossP: Boolean,
-
-    /**
-     * A thermal generating unit may have an incremental heat rate curve.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: Curve,
+val isNetGrossP: Boolean,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -2238,16 +1787,12 @@ extends
 /**
  * Natural water inflow to a reservoir, usually forecasted from predicted rain and snowmelt.
  * Typically in one hour increments for up to 10 days. The forecast is given in average cubic meters per second over the time increment.
+ * @param sup Reference to the superclass object.
+ * @param Reservoir A reservoir may have a "natural" inflow forecast.
  */
 case class InflowForecast
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * A reservoir may have a "natural" inflow forecast.
-     */
-    val Reservoir: String
+(override val sup: RegularIntervalSchedule,
+val Reservoir: String
 )
 extends
     Element
@@ -2283,16 +1828,12 @@ extends
 /**
  * Relationship between reservoir volume and reservoir level.
  * The  volume is at the y-axis and the reservoir level at the x-axis.
+ * @param sup Reference to the superclass object.
+ * @param Reservoir A reservoir may have a level versus volume relationship.
  */
 case class LevelVsVolumeCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * A reservoir may have a level versus volume relationship.
-     */
-    val Reservoir: String
+(override val sup: Curve,
+val Reservoir: String
 )
 extends
     Element
@@ -2327,11 +1868,10 @@ extends
 
 /**
  * A nuclear generating unit.
+ * @param sup Reference to the superclass object.
  */
 case class NuclearGeneratingUnit
-(
-
-    override val sup: GeneratingUnit
+(override val sup: GeneratingUnit
 )
 extends
     Element
@@ -2365,16 +1905,12 @@ extends
 /**
  * Relationship between penstock head loss (in meters) and  total discharge through the penstock (in cubic meters per second).
  * One or more turbines may be connected to the same penstock.
+ * @param sup Reference to the superclass object.
+ * @param HydroGeneratingUnit A hydro generating unit has a penstock loss curve.
  */
 case class PenstockLossCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * A hydro generating unit has a penstock loss curve.
-     */
-    val HydroGeneratingUnit: String
+(override val sup: Curve,
+val HydroGeneratingUnit: String
 )
 extends
     Element
@@ -2410,77 +1946,37 @@ extends
 /**
  * A water storage facility within a hydro system, including: ponds, lakes, lagoons, and rivers.
  * The storage is usually behind some type of dam.
+ * @param sup Reference to the superclass object.
+ * @param activeStorageCapacity Storage volume between the full supply level and the normal minimum operating level.
+ * @param energyStorageRating The reservoir's energy storage rating in energy for given head conditions.
+ * @param fullSupplyLevel Full supply level, above which water will spill.
+ *        This can be the spillway crest level or the top of closed gates.
+ * @param grossCapacity Total capacity of reservoir.
+ * @param normalMinOperateLevel Normal minimum operating level below which the penstocks will draw air.
+ * @param riverOutletWorks River outlet works for riparian right releases or other purposes.
+ * @param spillTravelDelay The spillway water travel delay to the next downstream reservoir.
+ * @param spillWayGateType Type of spillway gate, including parameters.
+ * @param spillwayCapacity The flow capacity of the spillway in cubic meters per second.
+ * @param spillwayCrestLength The length of the spillway crest.
+ * @param spillwayCrestLevel Spillway crest level above which water will spill.
+ * @param SpillsFromReservoir A reservoir may spill into a downstream reservoir.
+ * @param TargetLevelSchedule A reservoir may have a water level target schedule.
  */
 case class Reservoir
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * Storage volume between the full supply level and the normal minimum operating level.
-     */
-    val activeStorageCapacity: Double,
-
-    /**
-     * The reservoir's energy storage rating in energy for given head conditions.
-     */
-    val energyStorageRating: Double,
-
-    /**
-     * Full supply level, above which water will spill.
-     * This can be the spillway crest level or the top of closed gates.
-     */
-    val fullSupplyLevel: Double,
-
-    /**
-     * Total capacity of reservoir.
-     */
-    val grossCapacity: Double,
-
-    /**
-     * Normal minimum operating level below which the penstocks will draw air.
-     */
-    val normalMinOperateLevel: Double,
-
-    /**
-     * River outlet works for riparian right releases or other purposes.
-     */
-    val riverOutletWorks: String,
-
-    /**
-     * The spillway water travel delay to the next downstream reservoir.
-     */
-    val spillTravelDelay: Double,
-
-    /**
-     * Type of spillway gate, including parameters.
-     */
-    val spillWayGateType: String,
-
-    /**
-     * The flow capacity of the spillway in cubic meters per second.
-     */
-    val spillwayCapacity: Double,
-
-    /**
-     * The length of the spillway crest.
-     */
-    val spillwayCrestLength: Double,
-
-    /**
-     * Spillway crest level above which water will spill.
-     */
-    val spillwayCrestLevel: Double,
-
-    /**
-     * A reservoir may spill into a downstream reservoir.
-     */
-    val SpillsFromReservoir: String,
-
-    /**
-     * A reservoir may have a water level target schedule.
-     */
-    val TargetLevelSchedule: String
+(override val sup: PowerSystemResource,
+val activeStorageCapacity: Double,
+val energyStorageRating: Double,
+val fullSupplyLevel: Double,
+val grossCapacity: Double,
+val normalMinOperateLevel: Double,
+val riverOutletWorks: String,
+val spillTravelDelay: Double,
+val spillWayGateType: String,
+val spillwayCapacity: Double,
+val spillwayCrestLength: Double,
+val spillwayCrestLevel: Double,
+val SpillsFromReservoir: String,
+val TargetLevelSchedule: String
 )
 extends
     Element
@@ -2539,26 +2035,16 @@ extends
 
 /**
  * Relationship between the rate in gross active power/minute (Y-axis) at which a unit should be shutdown and its present gross MW output (X-axis).
+ * @param sup Reference to the superclass object.
+ * @param shutdownCost Fixed shutdown cost.
+ * @param shutdownDate The date and time of the most recent generating unit shutdown.
+ * @param ThermalGeneratingUnit A thermal generating unit may have a shutdown curve.
  */
 case class ShutdownCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Fixed shutdown cost.
-     */
-    val shutdownCost: Double,
-
-    /**
-     * The date and time of the most recent generating unit shutdown.
-     */
-    val shutdownDate: String,
-
-    /**
-     * A thermal generating unit may have a shutdown curve.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: Curve,
+val shutdownCost: Double,
+val shutdownDate: String,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -2597,11 +2083,10 @@ extends
 
 /**
  * A solar thermal generating unit.
+ * @param sup Reference to the superclass object.
  */
 case class SolarGeneratingUnit
-(
-
-    override val sup: GeneratingUnit
+(override val sup: GeneratingUnit
 )
 extends
     Element
@@ -2634,21 +2119,14 @@ extends
 
 /**
  * The quantity of ignition fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
+ * @param sup Reference to the superclass object.
+ * @param ignitionFuelType Type of ignition fuel.
+ * @param StartupModel The unit's startup model may have a startup ignition fuel curve.
  */
 case class StartIgnFuelCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Type of ignition fuel.
-     */
-    val ignitionFuelType: String,
-
-    /**
-     * The unit's startup model may have a startup ignition fuel curve.
-     */
-    val StartupModel: String
+(override val sup: Curve,
+val ignitionFuelType: String,
+val StartupModel: String
 )
 extends
     Element
@@ -2685,21 +2163,14 @@ extends
 
 /**
  * The quantity of main fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
+ * @param sup Reference to the superclass object.
+ * @param mainFuelType Type of main fuel.
+ * @param StartupModel The unit's startup model may have a startup main fuel curve.
  */
 case class StartMainFuelCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Type of main fuel.
-     */
-    val mainFuelType: String,
-
-    /**
-     * The unit's startup model may have a startup main fuel curve.
-     */
-    val StartupModel: String
+(override val sup: Curve,
+val mainFuelType: String,
+val StartupModel: String
 )
 extends
     Element
@@ -2736,21 +2207,14 @@ extends
 
 /**
  * Rate in gross active power/minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
+ * @param sup Reference to the superclass object.
+ * @param hotStandbyRamp The startup ramp rate in gross for a unit that is on hot standby.
+ * @param StartupModel The unit's startup model may have a startup ramp curve.
  */
 case class StartRampCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * The startup ramp rate in gross for a unit that is on hot standby.
-     */
-    val hotStandbyRamp: Double,
-
-    /**
-     * The unit's startup model may have a startup ramp curve.
-     */
-    val StartupModel: String
+(override val sup: Curve,
+val hotStandbyRamp: Double,
+val StartupModel: String
 )
 extends
     Element
@@ -2787,83 +2251,40 @@ extends
 
 /**
  * Unit start up characteristics depending on how long the unit has been off line.
+ * @param sup Reference to the superclass object.
+ * @param fixedMaintCost Fixed maintenance cost.
+ * @param hotStandbyHeat The amount of heat input per time uint required for hot standby operation.
+ * @param incrementalMaintCost Incremental maintenance cost.
+ * @param minimumDownTime The minimum number of hours the unit must be down before restart.
+ * @param minimumRunTime The minimum number of hours the unit must be operating before being allowed to shut down.
+ * @param riskFactorCost The opportunity cost associated with the return in monetary unit.
+ *        This represents the restart's "share" of the unit depreciation and risk of an event which would damage the unit.
+ * @param startupCost Total miscellaneous start up costs.
+ * @param startupDate The date and time of the most recent generating unit startup.
+ * @param startupPriority Startup priority within control area where lower numbers indicate higher priorities.
+ *        More than one unit in an area may be assigned the same priority.
+ * @param stbyAuxP The unit's auxiliary active power consumption to maintain standby mode.
+ * @param StartIgnFuelCurve The unit's startup model may have a startup ignition fuel curve.
+ * @param StartMainFuelCurve The unit's startup model may have a startup main fuel curve.
+ * @param StartRampCurve The unit's startup model may have a startup ramp curve.
+ * @param ThermalGeneratingUnit A thermal generating unit may have a startup model.
  */
 case class StartupModel
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Fixed maintenance cost.
-     */
-    val fixedMaintCost: Double,
-
-    /**
-     * The amount of heat input per time uint required for hot standby operation.
-     */
-    val hotStandbyHeat: String,
-
-    /**
-     * Incremental maintenance cost.
-     */
-    val incrementalMaintCost: Double,
-
-    /**
-     * The minimum number of hours the unit must be down before restart.
-     */
-    val minimumDownTime: Double,
-
-    /**
-     * The minimum number of hours the unit must be operating before being allowed to shut down.
-     */
-    val minimumRunTime: Double,
-
-    /**
-     * The opportunity cost associated with the return in monetary unit.
-     * This represents the restart's "share" of the unit depreciation and risk of an event which would damage the unit.
-     */
-    val riskFactorCost: Double,
-
-    /**
-     * Total miscellaneous start up costs.
-     */
-    val startupCost: Double,
-
-    /**
-     * The date and time of the most recent generating unit startup.
-     */
-    val startupDate: String,
-
-    /**
-     * Startup priority within control area where lower numbers indicate higher priorities.
-     * More than one unit in an area may be assigned the same priority.
-     */
-    val startupPriority: Int,
-
-    /**
-     * The unit's auxiliary active power consumption to maintain standby mode.
-     */
-    val stbyAuxP: Double,
-
-    /**
-     * The unit's startup model may have a startup ignition fuel curve.
-     */
-    val StartIgnFuelCurve: String,
-
-    /**
-     * The unit's startup model may have a startup main fuel curve.
-     */
-    val StartMainFuelCurve: String,
-
-    /**
-     * The unit's startup model may have a startup ramp curve.
-     */
-    val StartRampCurve: String,
-
-    /**
-     * A thermal generating unit may have a startup model.
-     */
-    val ThermalGeneratingUnit: String
+(override val sup: IdentifiedObject,
+val fixedMaintCost: Double,
+val hotStandbyHeat: String,
+val incrementalMaintCost: Double,
+val minimumDownTime: Double,
+val minimumRunTime: Double,
+val riskFactorCost: Double,
+val startupCost: Double,
+val startupDate: String,
+val startupPriority: Int,
+val stbyAuxP: Double,
+val StartIgnFuelCurve: String,
+val StartMainFuelCurve: String,
+val StartRampCurve: String,
+val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -2924,16 +2345,12 @@ extends
 
 /**
  * The cogeneration plant's steam sendout schedule in volume per time unit.
+ * @param sup Reference to the superclass object.
+ * @param CogenerationPlant A cogeneration plant has a steam sendout schedule.
  */
 case class SteamSendoutSchedule
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * A cogeneration plant has a steam sendout schedule.
-     */
-    val CogenerationPlant: String
+(override val sup: RegularIntervalSchedule,
+val CogenerationPlant: String
 )
 extends
     Element
@@ -2969,16 +2386,12 @@ extends
 /**
  * Relationship between tailbay head loss hight (y-axis) and the total discharge into the power station's tailbay volume per time unit (x-axis) .
  * There could be more than one curve depending on the level of the tailbay reservoir or river level.
+ * @param sup Reference to the superclass object.
+ * @param HydroGeneratingUnit A hydro generating unit has a tailbay loss curve.
  */
 case class TailbayLossCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * A hydro generating unit has a tailbay loss curve.
-     */
-    val HydroGeneratingUnit: String
+(override val sup: Curve,
+val HydroGeneratingUnit: String
 )
 extends
     Element
@@ -3014,26 +2427,16 @@ extends
 /**
  * Reservoir water level targets from advanced studies or "rule curves".
  * Typically in one hour increments for up to 10 days.
+ * @param sup Reference to the superclass object.
+ * @param highLevelLimit High target level limit, above which the reservoir operation will be penalized.
+ * @param lowLevelLimit Low target level limit, below which the reservoir operation will be penalized.
+ * @param Reservoir A reservoir may have a water level target schedule.
  */
 case class TargetLevelSchedule
-(
-
-    override val sup: Curve,
-
-    /**
-     * High target level limit, above which the reservoir operation will be penalized.
-     */
-    val highLevelLimit: Double,
-
-    /**
-     * Low target level limit, below which the reservoir operation will be penalized.
-     */
-    val lowLevelLimit: Double,
-
-    /**
-     * A reservoir may have a water level target schedule.
-     */
-    val Reservoir: String
+(override val sup: Curve,
+val highLevelLimit: Double,
+val lowLevelLimit: Double,
+val Reservoir: String
 )
 extends
     Element
@@ -3072,56 +2475,28 @@ extends
 
 /**
  * A generating unit whose prime mover could be a steam turbine, combustion turbine, or diesel engine.
+ * @param sup Reference to the superclass object.
+ * @param oMCost Operating and maintenance cost for the thermal unit.
+ * @param CAESPlant A thermal generating unit may be a member of a compressed air energy storage plant.
+ * @param CogenerationPlant A thermal generating unit may be a member of a cogeneration plant.
+ * @param CombinedCyclePlant A thermal generating unit may be a member of a combined cycle plant.
+ * @param HeatInputCurve A thermal generating unit may have a heat input curve.
+ * @param HeatRateCurve A thermal generating unit may have a heat rate curve.
+ * @param IncrementalHeatRateCurve A thermal generating unit may have an incremental heat rate curve.
+ * @param ShutdownCurve A thermal generating unit may have a shutdown curve.
+ * @param StartupModel A thermal generating unit may have a startup model.
  */
 case class ThermalGeneratingUnit
-(
-
-    override val sup: GeneratingUnit,
-
-    /**
-     * Operating and maintenance cost for the thermal unit.
-     */
-    val oMCost: String,
-
-    /**
-     * A thermal generating unit may be a member of a compressed air energy storage plant.
-     */
-    val CAESPlant: String,
-
-    /**
-     * A thermal generating unit may be a member of a cogeneration plant.
-     */
-    val CogenerationPlant: String,
-
-    /**
-     * A thermal generating unit may be a member of a combined cycle plant.
-     */
-    val CombinedCyclePlant: String,
-
-    /**
-     * A thermal generating unit may have a heat input curve.
-     */
-    val HeatInputCurve: String,
-
-    /**
-     * A thermal generating unit may have a heat rate curve.
-     */
-    val HeatRateCurve: String,
-
-    /**
-     * A thermal generating unit may have an incremental heat rate curve.
-     */
-    val IncrementalHeatRateCurve: String,
-
-    /**
-     * A thermal generating unit may have a shutdown curve.
-     */
-    val ShutdownCurve: String,
-
-    /**
-     * A thermal generating unit may have a startup model.
-     */
-    val StartupModel: String
+(override val sup: GeneratingUnit,
+val oMCost: String,
+val CAESPlant: String,
+val CogenerationPlant: String,
+val CombinedCyclePlant: String,
+val HeatInputCurve: String,
+val HeatRateCurve: String,
+val IncrementalHeatRateCurve: String,
+val ShutdownCurve: String,
+val StartupModel: String
 )
 extends
     Element
@@ -3172,21 +2547,14 @@ extends
 
 /**
  * Kind of wind generating unit.
+ * @param sup Reference to the superclass object.
+ * @param offshore The wind generating unit is located offshore.
+ * @param onshore The wind generating unit is located onshore.
  */
 case class WindGenUnitKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The wind generating unit is located offshore.
-     */
-    val offshore: String,
-
-    /**
-     * The wind generating unit is located onshore.
-     */
-    val onshore: String
+(override val sup: BasicElement,
+val offshore: String,
+val onshore: String
 )
 extends
     Element
@@ -3224,16 +2592,12 @@ extends
 /**
  * A wind driven generating unit.
  * May be used to represent a single turbine or an aggregation.
+ * @param sup Reference to the superclass object.
+ * @param windGenUnitType The kind of wind generating unit
  */
 case class WindGeneratingUnit
-(
-
-    override val sup: GeneratingUnit,
-
-    /**
-     * The kind of wind generating unit
-     */
-    val windGenUnitType: String
+(override val sup: GeneratingUnit,
+val windGenUnitType: String
 )
 extends
     Element

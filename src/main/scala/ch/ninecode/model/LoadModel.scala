@@ -11,16 +11,12 @@ import ch.ninecode.cim.Context
 
 /**
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
+ * @param sup Reference to the superclass object.
+ * @param LoadGroup Group of this ConformLoad.
  */
 case class ConformLoad
-(
-
-    override val sup: EnergyConsumer,
-
-    /**
-     * Group of this ConformLoad.
-     */
-    val LoadGroup: String
+(override val sup: EnergyConsumer,
+val LoadGroup: String
 )
 extends
     Element
@@ -55,11 +51,10 @@ extends
 
 /**
  * A group of loads conforming to an allocation pattern.
+ * @param sup Reference to the superclass object.
  */
 case class ConformLoadGroup
-(
-
-    override val sup: LoadGroup
+(override val sup: LoadGroup
 )
 extends
     Element
@@ -93,16 +88,12 @@ extends
 /**
  * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
  * This curve represents a typical pattern of load over the time period for a given day type and season.
+ * @param sup Reference to the superclass object.
+ * @param ConformLoadGroup The ConformLoadGroup where the ConformLoadSchedule belongs.
  */
 case class ConformLoadSchedule
-(
-
-    override val sup: SeasonDayTypeSchedule,
-
-    /**
-     * The ConformLoadGroup where the ConformLoadSchedule belongs.
-     */
-    val ConformLoadGroup: String
+(override val sup: SeasonDayTypeSchedule,
+val ConformLoadGroup: String
 )
 extends
     Element
@@ -138,11 +129,10 @@ extends
 /**
  * Group of similar days.
  * For example it could be used to represent weekdays, weekend, or holidays.
+ * @param sup Reference to the superclass object.
  */
 case class DayType
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -176,16 +166,12 @@ extends
 /**
  * Describes an area having energy production or consumption.
  * Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.
+ * @param sup Reference to the superclass object.
+ * @param ControlArea The control area specification that is used for the load forecast.
  */
 case class EnergyArea
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The control area specification that is used for the load forecast.
-     */
-    val ControlArea: String
+(override val sup: IdentifiedObject,
+val ControlArea: String
 )
 extends
     Element
@@ -220,11 +206,10 @@ extends
 
 /**
  * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+ * @param sup Reference to the superclass object.
  */
 case class LoadArea
-(
-
-    override val sup: EnergyArea
+(override val sup: EnergyArea
 )
 extends
     Element
@@ -257,16 +242,12 @@ extends
 
 /**
  * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+ * @param sup Reference to the superclass object.
+ * @param SubLoadArea The SubLoadArea where the Loadgroup belongs.
  */
 case class LoadGroup
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The SubLoadArea where the Loadgroup belongs.
-     */
-    val SubLoadArea: String
+(override val sup: IdentifiedObject,
+val SubLoadArea: String
 )
 extends
     Element
@@ -302,67 +283,33 @@ extends
 /**
  * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
  * This is not related to demand response.
+ * @param sup Reference to the superclass object.
+ * @param exponentModel Indicates the exponential voltage dependency model is to be used.
+ *        If false, the coefficient model is to be used.
+ * @param pConstantCurrent Portion of active power load modeled as constant current.
+ * @param pConstantImpedance Portion of active power load modeled as constant impedance.
+ * @param pConstantPower Portion of active power load modeled as constant power.
+ * @param pFrequencyExponent Exponent of per unit frequency effecting active power.
+ * @param pVoltageExponent Exponent of per unit voltage effecting real power.
+ * @param qConstantCurrent Portion of reactive power load modeled as constant current.
+ * @param qConstantImpedance Portion of reactive power load modeled as constant impedance.
+ * @param qConstantPower Portion of reactive power load modeled as constant power.
+ * @param qFrequencyExponent Exponent of per unit frequency effecting reactive power.
+ * @param qVoltageExponent Exponent of per unit voltage effecting reactive power.
  */
 case class LoadResponseCharacteristic
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Indicates the exponential voltage dependency model is to be used.
-     * If false, the coefficient model is to be used.
-     */
-    val exponentModel: Boolean,
-
-    /**
-     * Portion of active power load modeled as constant current.
-     */
-    val pConstantCurrent: Double,
-
-    /**
-     * Portion of active power load modeled as constant impedance.
-     */
-    val pConstantImpedance: Double,
-
-    /**
-     * Portion of active power load modeled as constant power.
-     */
-    val pConstantPower: Double,
-
-    /**
-     * Exponent of per unit frequency effecting active power.
-     */
-    val pFrequencyExponent: Double,
-
-    /**
-     * Exponent of per unit voltage effecting real power.
-     */
-    val pVoltageExponent: Double,
-
-    /**
-     * Portion of reactive power load modeled as constant current.
-     */
-    val qConstantCurrent: Double,
-
-    /**
-     * Portion of reactive power load modeled as constant impedance.
-     */
-    val qConstantImpedance: Double,
-
-    /**
-     * Portion of reactive power load modeled as constant power.
-     */
-    val qConstantPower: Double,
-
-    /**
-     * Exponent of per unit frequency effecting reactive power.
-     */
-    val qFrequencyExponent: Double,
-
-    /**
-     * Exponent of per unit voltage effecting reactive power.
-     */
-    val qVoltageExponent: Double
+(override val sup: IdentifiedObject,
+val exponentModel: Boolean,
+val pConstantCurrent: Double,
+val pConstantImpedance: Double,
+val pConstantPower: Double,
+val pFrequencyExponent: Double,
+val pVoltageExponent: Double,
+val qConstantCurrent: Double,
+val qConstantImpedance: Double,
+val qConstantPower: Double,
+val qFrequencyExponent: Double,
+val qVoltageExponent: Double
 )
 extends
     Element
@@ -417,16 +364,12 @@ extends
 
 /**
  * NonConformLoad represent loads that do not follow a daily load change pattern and changes are not correlated with the daily load change pattern.
+ * @param sup Reference to the superclass object.
+ * @param LoadGroup Group of this ConformLoad.
  */
 case class NonConformLoad
-(
-
-    override val sup: EnergyConsumer,
-
-    /**
-     * Group of this ConformLoad.
-     */
-    val LoadGroup: String
+(override val sup: EnergyConsumer,
+val LoadGroup: String
 )
 extends
     Element
@@ -461,11 +404,10 @@ extends
 
 /**
  * Loads that do not follow a daily and seasonal load variation pattern.
+ * @param sup Reference to the superclass object.
  */
 case class NonConformLoadGroup
-(
-
-    override val sup: LoadGroup
+(override val sup: LoadGroup
 )
 extends
     Element
@@ -498,16 +440,12 @@ extends
 
 /**
  * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
+ * @param sup Reference to the superclass object.
+ * @param NonConformLoadGroup The NonConformLoadGroup where the NonConformLoadSchedule belongs.
  */
 case class NonConformLoadSchedule
-(
-
-    override val sup: SeasonDayTypeSchedule,
-
-    /**
-     * The NonConformLoadGroup where the NonConformLoadSchedule belongs.
-     */
-    val NonConformLoadGroup: String
+(override val sup: SeasonDayTypeSchedule,
+val NonConformLoadGroup: String
 )
 extends
     Element
@@ -542,21 +480,14 @@ extends
 
 /**
  * An area or zone of the power system which is used for load shedding purposes.
+ * @param sup Reference to the superclass object.
+ * @param cutLevel1 First level (amount) of load to cut as a percentage of total zone load.
+ * @param cutLevel2 Second level (amount) of load to cut as a percentage of total zone load.
  */
 case class PowerCutZone
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * First level (amount) of load to cut as a percentage of total zone load.
-     */
-    val cutLevel1: Double,
-
-    /**
-     * Second level (amount) of load to cut as a percentage of total zone load.
-     */
-    val cutLevel2: Double
+(override val sup: PowerSystemResource,
+val cutLevel1: Double,
+val cutLevel2: Double
 )
 extends
     Element
@@ -593,21 +524,14 @@ extends
 
 /**
  * A specified time period of the year.
+ * @param sup Reference to the superclass object.
+ * @param endDate Date season ends.
+ * @param startDate Date season starts.
  */
 case class Season
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Date season ends.
-     */
-    val endDate: String,
-
-    /**
-     * Date season starts.
-     */
-    val startDate: String
+(override val sup: IdentifiedObject,
+val endDate: String,
+val startDate: String
 )
 extends
     Element
@@ -644,21 +568,14 @@ extends
 
 /**
  * A time schedule covering a 24 hour period, with curve data for a specific type of season and day.
+ * @param sup Reference to the superclass object.
+ * @param DayType DayType for the Schedule.
+ * @param Season Season for the Schedule.
  */
 case class SeasonDayTypeSchedule
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * DayType for the Schedule.
-     */
-    val DayType: String,
-
-    /**
-     * Season for the Schedule.
-     */
-    val Season: String
+(override val sup: RegularIntervalSchedule,
+val DayType: String,
+val Season: String
 )
 extends
     Element
@@ -695,11 +612,10 @@ extends
 
 /**
  * Station supply with load derived from the station output.
+ * @param sup Reference to the superclass object.
  */
 case class StationSupply
-(
-
-    override val sup: EnergyConsumer
+(override val sup: EnergyConsumer
 )
 extends
     Element
@@ -732,16 +648,12 @@ extends
 
 /**
  * The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+ * @param sup Reference to the superclass object.
+ * @param LoadArea The LoadArea where the SubLoadArea belongs.
  */
 case class SubLoadArea
-(
-
-    override val sup: EnergyArea,
-
-    /**
-     * The LoadArea where the SubLoadArea belongs.
-     */
-    val LoadArea: String
+(override val sup: EnergyArea,
+val LoadArea: String
 )
 extends
     Element

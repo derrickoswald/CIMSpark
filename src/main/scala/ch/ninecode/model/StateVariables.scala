@@ -10,11 +10,10 @@ import ch.ninecode.cim.Context
 
 /**
  * An abstract class for state variables.
+ * @param sup Reference to the superclass object.
  */
 case class StateVariable
-(
-
-    override val sup: BasicElement
+(override val sup: BasicElement
 )
 extends
     Element
@@ -48,28 +47,18 @@ extends
 /**
  * The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.
  * The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
+ * @param sup Reference to the superclass object.
+ * @param pInjection The active power injected into the bus in addition to injections from equipment terminals.
+ *        Positive sign means injection into the TopologicalNode (bus).
+ * @param qInjection The reactive power injected into the bus in addition to injections from equipment terminals.
+ *        Positive sign means injection into the TopologicalNode (bus).
+ * @param TopologicalNode The topological node associated with the flow injection state variable.
  */
 case class SvInjection
-(
-
-    override val sup: StateVariable,
-
-    /**
-     * The active power injected into the bus in addition to injections from equipment terminals.
-     * Positive sign means injection into the TopologicalNode (bus).
-     */
-    val pInjection: Double,
-
-    /**
-     * The reactive power injected into the bus in addition to injections from equipment terminals.
-     * Positive sign means injection into the TopologicalNode (bus).
-     */
-    val qInjection: Double,
-
-    /**
-     * The topological node associated with the flow injection state variable.
-     */
-    val TopologicalNode: String
+(override val sup: StateVariable,
+val pInjection: Double,
+val qInjection: Double,
+val TopologicalNode: String
 )
 extends
     Element
@@ -109,28 +98,18 @@ extends
 /**
  * State variable for power flow.
  * Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.
+ * @param sup Reference to the superclass object.
+ * @param p The active power flow.
+ *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+ * @param q The reactive power flow.
+ *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+ * @param Terminal The terminal associated with the power flow state variable.
  */
 case class SvPowerFlow
-(
-
-    override val sup: StateVariable,
-
-    /**
-     * The active power flow.
-     * Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
-     */
-    val p: Double,
-
-    /**
-     * The reactive power flow.
-     * Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
-     */
-    val q: Double,
-
-    /**
-     * The terminal associated with the power flow state variable.
-     */
-    val Terminal: String
+(override val sup: StateVariable,
+val p: Double,
+val q: Double,
+val Terminal: String
 )
 extends
     Element
@@ -169,22 +148,15 @@ extends
 
 /**
  * State variable for the number of sections in service for a shunt compensator.
+ * @param sup Reference to the superclass object.
+ * @param sections The number of sections in service as a continous variable.
+ *        To get integer value scale with ShuntCompensator.bPerSection.
+ * @param ShuntCompensator The shunt compensator for which the state applies.
  */
 case class SvShuntCompensatorSections
-(
-
-    override val sup: StateVariable,
-
-    /**
-     * The number of sections in service as a continous variable.
-     * To get integer value scale with ShuntCompensator.bPerSection.
-     */
-    val sections: Double,
-
-    /**
-     * The shunt compensator for which the state applies.
-     */
-    val ShuntCompensator: String
+(override val sup: StateVariable,
+val sections: Double,
+val ShuntCompensator: String
 )
 extends
     Element
@@ -221,21 +193,14 @@ extends
 
 /**
  * State variable for status.
+ * @param sup Reference to the superclass object.
+ * @param inService The in service status as a result of topology processing.
+ * @param ConductingEquipment The conducting equipment associated with the status state variable.
  */
 case class SvStatus
-(
-
-    override val sup: StateVariable,
-
-    /**
-     * The in service status as a result of topology processing.
-     */
-    val inService: Boolean,
-
-    /**
-     * The conducting equipment associated with the status state variable.
-     */
-    val ConductingEquipment: String
+(override val sup: StateVariable,
+val inService: Boolean,
+val ConductingEquipment: String
 )
 extends
     Element
@@ -273,22 +238,15 @@ extends
 /**
  * State variable for transformer tap step.
  * This class is to be used for taps of LTC (load tap changing) transformers, not fixed tap transformers.
+ * @param sup Reference to the superclass object.
+ * @param position The floating point tap position.
+ *        This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions.
+ * @param TapChanger The tap changer associated with the tap step state.
  */
 case class SvTapStep
-(
-
-    override val sup: StateVariable,
-
-    /**
-     * The floating point tap position.
-     * This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions.
-     */
-    val position: Double,
-
-    /**
-     * The tap changer associated with the tap step state.
-     */
-    val TapChanger: String
+(override val sup: StateVariable,
+val position: Double,
+val TapChanger: String
 )
 extends
     Element
@@ -325,26 +283,16 @@ extends
 
 /**
  * State variable for voltage.
+ * @param sup Reference to the superclass object.
+ * @param angle The voltage angle of the topological node complex voltage with respect to system reference.
+ * @param v The voltage magnitude of the topological node.
+ * @param TopologicalNode The topological node associated with the voltage state.
  */
 case class SvVoltage
-(
-
-    override val sup: StateVariable,
-
-    /**
-     * The voltage angle of the topological node complex voltage with respect to system reference.
-     */
-    val angle: Double,
-
-    /**
-     * The voltage magnitude of the topological node.
-     */
-    val v: Double,
-
-    /**
-     * The topological node associated with the voltage state.
-     */
-    val TopologicalNode: String
+(override val sup: StateVariable,
+val angle: Double,
+val v: Double,
+val TopologicalNode: String
 )
 extends
     Element

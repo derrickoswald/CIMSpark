@@ -98,17 +98,6 @@ case class Scala (parser: ModelParser, pkg: Package)
         "_" + valid_class_name (pkg.name)
     }
 
-    case class Member (
-        name: String,
-        variable: String,
-        overrid: Boolean,
-        comment: String,
-        reference: Boolean,
-        multiple: Boolean,
-        datatype: String,
-        initializer: String,
-        function: String)
-
     def details (attribute: Attribute): Member =
     {
         val name = attribute.name
@@ -207,7 +196,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                            else
                                a.variable.compareTo (b.variable)
             }
-            val sup = Member ("sup", "sup", true, "", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "")
+            val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "")
             val members =
                 (SortedSet[Member] (sup) ++
                     parser.attributes.getOrElse (c._2, List[Attribute]()).filter (myattribute).map (details).toSet
@@ -215,7 +204,7 @@ case class Scala (parser: ModelParser, pkg: Package)
 
             val s = new StringBuilder ()
             if (null != cls.note)
-                s.append (JavaDoc (cls.note, 0).asText ())
+                s.append (JavaDoc (cls.note, 0, members).asText ())
             s.append ("case class ")
             s.append (name)
             s.append ("""
@@ -223,12 +212,8 @@ case class Scala (parser: ModelParser, pkg: Package)
             val initializers = new StringBuilder ()
             for (product <- members)
             {
-                if (product.name != "sup") s.append (""",""")
-                s.append ("""
-                |
+                if (product.name != "sup") s.append (""",
                 |""".stripMargin)
-                s.append (JavaDoc (product.comment, 4).asText ())
-                s.append ("""    """)
                 if (product.overrid) s.append ("""override """)
                 s.append ("""val """)
                 s.append (product.variable)
@@ -313,7 +298,7 @@ case class Scala (parser: ModelParser, pkg: Package)
 
             s.append ("""    def parse (context: Context): """)
             s.append (name)
-            s.append (""" = 
+            s.append (""" =
             |    {
             |        """.stripMargin)
             s.append (name)

@@ -10,52 +10,27 @@ import ch.ninecode.cim.Context
 
 /**
  * Organisation receiving services from service supplier.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of customer.
+ * @param locale Locale designating language to use in communications with this customer.
+ * @param priority Priority of the customer.
+ * @param pucNumber (if applicable) Public utilities commission (PUC) identification number.
+ * @param specialNeed True if customer organisation has special service needs such as life support, hospitals, etc.
+ * @param status Status of this customer.
+ * @param vip (use 'priority' instead) True if this is an important customer.
+ *        Importance is for matters different than those in 'specialNeed' attribute.
+ * @param Works All the works performed for this customer.
  */
 case class Customer
-(
-
-    override val sup: OrganisationRole,
-
-    /**
-     * Kind of customer.
-     */
-    val kind: String,
-
-    /**
-     * Locale designating language to use in communications with this customer.
-     */
-    val locale: String,
-
-    /**
-     * Priority of the customer.
-     */
-    val priority: String,
-
-    /**
-     * (if applicable) Public utilities commission (PUC) identification number.
-     */
-    val pucNumber: String,
-
-    /**
-     * True if customer organisation has special service needs such as life support, hospitals, etc.
-     */
-    val specialNeed: String,
-
-    /**
-     * Status of this customer.
-     */
-    val status: String,
-
-    /**
-     * (use 'priority' instead) True if this is an important customer.
-     * Importance is for matters different than those in 'specialNeed' attribute.
-     */
-    val vip: Boolean,
-
-    /**
-     * All the works performed for this customer.
-     */
-    val Works: List[String]
+(override val sup: OrganisationRole,
+val kind: String,
+val locale: String,
+val priority: String,
+val pucNumber: String,
+val specialNeed: String,
+val status: String,
+val vip: Boolean,
+val Works: List[String]
 )
 extends
     Element
@@ -105,26 +80,16 @@ extends
 /**
  * Assignment of a group of products and services purchased by the customer through a customer agreement, used as a mechanism for customer billing and payment.
  * It contains common information from the various types of customer agreements to create billings (invoices) for a customer and receive payment.
+ * @param sup Reference to the superclass object.
+ * @param billingCycle Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.
+ * @param budgetBill Budget bill code.
+ * @param Customer Customer owning this account.
  */
 case class CustomerAccount
-(
-
-    override val sup: Document,
-
-    /**
-     * Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.
-     */
-    val billingCycle: String,
-
-    /**
-     * Budget bill code.
-     */
-    val budgetBill: String,
-
-    /**
-     * Customer owning this account.
-     */
-    val Customer: String
+(override val sup: Document,
+val billingCycle: String,
+val budgetBill: String,
+val Customer: String
 )
 extends
     Element
@@ -164,48 +129,26 @@ extends
 /**
  * Agreement between the customer and the service supplier to pay for service at a specific service location.
  * It records certain billing information about the type of service provided at the service location and is used during charge creation to determine the type of service.
+ * @param sup Reference to the superclass object.
+ * @param loadMgmt Load management code.
+ * @param Customer Customer for this agreement.
+ * @param CustomerAccount Customer account owning this agreement.
+ * @param PricingStructures All pricing structures applicable to this customer agreement.
+ * @param ServiceCategory Service category for this agreement.
+ * @param ServiceLocations All service locations regulated by this customer agreement.
+ * @param ServiceSupplier Service supplier for this customer agreement.
+ * @param StandardIndustryCode
  */
 case class CustomerAgreement
-(
-
-    override val sup: Agreement,
-
-    /**
-     * Load management code.
-     */
-    val loadMgmt: String,
-
-    /**
-     * Customer for this agreement.
-     */
-    val Customer: String,
-
-    /**
-     * Customer account owning this agreement.
-     */
-    val CustomerAccount: String,
-
-    /**
-     * All pricing structures applicable to this customer agreement.
-     */
-    val PricingStructures: List[String],
-
-    /**
-     * Service category for this agreement.
-     */
-    val ServiceCategory: String,
-
-    /**
-     * All service locations regulated by this customer agreement.
-     */
-    val ServiceLocations: List[String],
-
-    /**
-     * Service supplier for this customer agreement.
-     */
-    val ServiceSupplier: String,
-
-    val StandardIndustryCode: String
+(override val sup: Agreement,
+val loadMgmt: String,
+val Customer: String,
+val CustomerAccount: String,
+val PricingStructures: List[String],
+val ServiceCategory: String,
+val ServiceLocations: List[String],
+val ServiceSupplier: String,
+val StandardIndustryCode: String
 )
 extends
     Element
@@ -254,71 +197,34 @@ extends
 
 /**
  * Kind of customer.
+ * @param sup Reference to the superclass object.
+ * @param commercialIndustrial Commercial industrial customer.
+ * @param energyServiceScheduler Customer as energy service scheduler.
+ * @param energyServiceSupplier Customer as energy service supplier.
+ * @param internalUse Internal use customer.
+ * @param other Other kind of customer.
+ * @param pumpingLoad Pumping load customer.
+ * @param residential Residential customer.
+ * @param residentialAndCommercial Residential and commercial customer.
+ * @param residentialAndStreetlight Residential and streetlight customer.
+ * @param residentialFarmService Residential farm service customer.
+ * @param residentialStreetlightOthers Residential streetlight or other related customer.
+ * @param windMachine Wind machine customer.
  */
 case class CustomerKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Commercial industrial customer.
-     */
-    val commercialIndustrial: String,
-
-    /**
-     * Customer as energy service scheduler.
-     */
-    val energyServiceScheduler: String,
-
-    /**
-     * Customer as energy service supplier.
-     */
-    val energyServiceSupplier: String,
-
-    /**
-     * Internal use customer.
-     */
-    val internalUse: String,
-
-    /**
-     * Other kind of customer.
-     */
-    val other: String,
-
-    /**
-     * Pumping load customer.
-     */
-    val pumpingLoad: String,
-
-    /**
-     * Residential customer.
-     */
-    val residential: String,
-
-    /**
-     * Residential and commercial customer.
-     */
-    val residentialAndCommercial: String,
-
-    /**
-     * Residential and streetlight customer.
-     */
-    val residentialAndStreetlight: String,
-
-    /**
-     * Residential farm service customer.
-     */
-    val residentialFarmService: String,
-
-    /**
-     * Residential streetlight or other related customer.
-     */
-    val residentialStreetlightOthers: String,
-
-    /**
-     * Wind machine customer.
-     */
-    val windMachine: String
+(override val sup: BasicElement,
+val commercialIndustrial: String,
+val energyServiceScheduler: String,
+val energyServiceSupplier: String,
+val internalUse: String,
+val other: String,
+val pumpingLoad: String,
+val residential: String,
+val residentialAndCommercial: String,
+val residentialAndStreetlight: String,
+val residentialFarmService: String,
+val residentialStreetlightOthers: String,
+val windMachine: String
 )
 extends
     Element
@@ -375,46 +281,24 @@ extends
 
 /**
  * Conditions for notifying the customer about the changes in the status of their service (e.g., outage restore, estimated restoration time, tariff or service level change, etc.)
+ * @param sup Reference to the superclass object.
+ * @param contactType Type of contact (e.g., phone, email, etc.).
+ * @param contactValue Value of contact type (e.g., phone number, email address, etc.).
+ * @param earliestDateTimeToCall Earliest date time to call the customer.
+ * @param latestDateTimeToCall Latest date time to call the customer.
+ * @param trigger Trigger for this notification.
+ * @param Customer Customer requiring this notification.
+ * @param Incident Incident as a subject of this customer notification.
  */
 case class CustomerNotification
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Type of contact (e.g., phone, email, etc.).
-     */
-    val contactType: String,
-
-    /**
-     * Value of contact type (e.g., phone number, email address, etc.).
-     */
-    val contactValue: String,
-
-    /**
-     * Earliest date time to call the customer.
-     */
-    val earliestDateTimeToCall: String,
-
-    /**
-     * Latest date time to call the customer.
-     */
-    val latestDateTimeToCall: String,
-
-    /**
-     * Trigger for this notification.
-     */
-    val trigger: String,
-
-    /**
-     * Customer requiring this notification.
-     */
-    val Customer: String,
-
-    /**
-     * Incident as a subject of this customer notification.
-     */
-    val Incident: String
+(override val sup: BasicElement,
+val contactType: String,
+val contactValue: String,
+val earliestDateTimeToCall: String,
+val latestDateTimeToCall: String,
+val trigger: String,
+val Customer: String,
+val Incident: String
 )
 extends
     Element
@@ -462,21 +346,14 @@ extends
 /**
  * Hazardous situation associated with an incident.
  * Examples are line down, gas leak, fire, etc.
+ * @param sup Reference to the superclass object.
+ * @param Incident Incident associated with this hazard.
+ * @param TroubleTicket Trouble ticket associated with this hazard.
  */
 case class IncidentHazard
-(
-
-    override val sup: Hazard,
-
-    /**
-     * Incident associated with this hazard.
-     */
-    val Incident: String,
-
-    /**
-     * Trouble ticket associated with this hazard.
-     */
-    val TroubleTicket: String
+(override val sup: Hazard,
+val Incident: String,
+val TroubleTicket: String
 )
 extends
     Element
@@ -513,36 +390,20 @@ extends
 
 /**
  * Kind of trigger to notify customer.
+ * @param sup Reference to the superclass object.
+ * @param etrChange Notify customer if estimated restoration time changes.
+ * @param informDispatched Notify customer that a crew has been dispatched to investigate the problem.
+ * @param initialEtr Notify customer for the first time that estimated restoration time is available.
+ * @param powerOut Notify customer of planned outage.
+ * @param powerRestored Notify customer when power has been restored.
  */
 case class NotificationTriggerKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Notify customer if estimated restoration time changes.
-     */
-    val etrChange: String,
-
-    /**
-     * Notify customer that a crew has been dispatched to investigate the problem.
-     */
-    val informDispatched: String,
-
-    /**
-     * Notify customer for the first time that estimated restoration time is available.
-     */
-    val initialEtr: String,
-
-    /**
-     * Notify customer of planned outage.
-     */
-    val powerOut: String,
-
-    /**
-     * Notify customer when power has been restored.
-     */
-    val powerRestored: String
+(override val sup: BasicElement,
+val etrChange: String,
+val informDispatched: String,
+val initialEtr: String,
+val powerOut: String,
+val powerRestored: String
 )
 extends
     Element
@@ -586,57 +447,29 @@ extends
 /**
  * Grouping of pricing components and prices used in the creation of customer charges and the eligibility criteria under which these terms may be offered to a customer.
  * The reasons for grouping include state, customer classification, site characteristics, classification (i.e. fee price structure, deposit price structure, electric service price structure, etc.) and accounting requirements.
+ * @param sup Reference to the superclass object.
+ * @param code Unique user-allocated key for this pricing structure, used by company representatives to identify the correct price structure for allocating to a customer.
+ *        For rate schedules it is often prefixed by a state code.
+ * @param dailyCeilingUsage Absolute maximum valid non-demand usage quantity used in validating a customer's billed non-demand usage.
+ * @param dailyEstimatedUsage Used in place of actual computed estimated average when history of usage is not available, and typically manually entered by customer accounting.
+ * @param dailyFloorUsage Absolute minimum valid non-demand usage quantity used in validating a customer's billed non-demand usage.
+ * @param revenueKind (accounting) Kind of revenue, often used to determine the grace period allowed, before collection actions are taken on a customer (grace periods vary between revenue classes).
+ * @param taxExemption True if this pricing structure is not taxable.
+ * @param ServiceCategory Service category to which this pricing structure applies.
+ * @param Tariffs All tariffs used by this pricing structure.
+ * @param UsagePoints All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
  */
 case class PricingStructure
-(
-
-    override val sup: Document,
-
-    /**
-     * Unique user-allocated key for this pricing structure, used by company representatives to identify the correct price structure for allocating to a customer.
-     * For rate schedules it is often prefixed by a state code.
-     */
-    val code: String,
-
-    /**
-     * Absolute maximum valid non-demand usage quantity used in validating a customer's billed non-demand usage.
-     */
-    val dailyCeilingUsage: Int,
-
-    /**
-     * Used in place of actual computed estimated average when history of usage is not available, and typically manually entered by customer accounting.
-     */
-    val dailyEstimatedUsage: Int,
-
-    /**
-     * Absolute minimum valid non-demand usage quantity used in validating a customer's billed non-demand usage.
-     */
-    val dailyFloorUsage: Int,
-
-    /**
-     * (accounting) Kind of revenue, often used to determine the grace period allowed, before collection actions are taken on a customer (grace periods vary between revenue classes).
-     */
-    val revenueKind: String,
-
-    /**
-     * True if this pricing structure is not taxable.
-     */
-    val taxExemption: Boolean,
-
-    /**
-     * Service category to which this pricing structure applies.
-     */
-    val ServiceCategory: String,
-
-    /**
-     * All tariffs used by this pricing structure.
-     */
-    val Tariffs: List[String],
-
-    /**
-     * All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
-     */
-    val UsagePoints: List[String]
+(override val sup: Document,
+val code: String,
+val dailyCeilingUsage: Int,
+val dailyEstimatedUsage: Int,
+val dailyFloorUsage: Int,
+val revenueKind: String,
+val taxExemption: Boolean,
+val ServiceCategory: String,
+val Tariffs: List[String],
+val UsagePoints: List[String]
 )
 extends
     Element
@@ -687,46 +520,24 @@ extends
 
 /**
  * Accounting classification of the type of revenue collected for the customer agreement, typically used to break down accounts for revenue accounting.
+ * @param sup Reference to the superclass object.
+ * @param commercial Commercial revenue.
+ * @param industrial Industrial revenue.
+ * @param irrigation Irrigation revenue.
+ * @param nonResidential Non-residential revenue.
+ * @param other Other revenue kind.
+ * @param residential Residential revenue.
+ * @param streetLight Streetlight revenue.
  */
 case class RevenueKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Commercial revenue.
-     */
-    val commercial: String,
-
-    /**
-     * Industrial revenue.
-     */
-    val industrial: String,
-
-    /**
-     * Irrigation revenue.
-     */
-    val irrigation: String,
-
-    /**
-     * Non-residential revenue.
-     */
-    val nonResidential: String,
-
-    /**
-     * Other revenue kind.
-     */
-    val other: String,
-
-    /**
-     * Residential revenue.
-     */
-    val residential: String,
-
-    /**
-     * Streetlight revenue.
-     */
-    val streetLight: String
+(override val sup: BasicElement,
+val commercial: String,
+val industrial: String,
+val irrigation: String,
+val nonResidential: String,
+val other: String,
+val residential: String,
+val streetLight: String
 )
 extends
     Element
@@ -773,16 +584,12 @@ extends
 
 /**
  * Category of service provided to the customer.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of service.
  */
 case class ServiceCategory
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Kind of service.
-     */
-    val kind: String
+(override val sup: IdentifiedObject,
+val kind: String
 )
 extends
     Element
@@ -817,66 +624,32 @@ extends
 
 /**
  * Kind of service.
+ * @param sup Reference to the superclass object.
+ * @param electricity Electricity service.
+ * @param gas Gas service.
+ * @param heat Heat service.
+ * @param internet Internet service.
+ * @param other Other kind of service.
+ * @param rates Rates (e.g. tax, charge, toll, duty, tariff, etc.) service.
+ * @param refuse Refuse (waster) service.
+ * @param sewerage Sewerage service.
+ * @param time Time service.
+ * @param tvLicence TV license service.
+ * @param water Water service.
  */
 case class ServiceKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Electricity service.
-     */
-    val electricity: String,
-
-    /**
-     * Gas service.
-     */
-    val gas: String,
-
-    /**
-     * Heat service.
-     */
-    val heat: String,
-
-    /**
-     * Internet service.
-     */
-    val internet: String,
-
-    /**
-     * Other kind of service.
-     */
-    val other: String,
-
-    /**
-     * Rates (e.g. tax, charge, toll, duty, tariff, etc.) service.
-     */
-    val rates: String,
-
-    /**
-     * Refuse (waster) service.
-     */
-    val refuse: String,
-
-    /**
-     * Sewerage service.
-     */
-    val sewerage: String,
-
-    /**
-     * Time service.
-     */
-    val time: String,
-
-    /**
-     * TV license service.
-     */
-    val tvLicence: String,
-
-    /**
-     * Water service.
-     */
-    val water: String
+(override val sup: BasicElement,
+val electricity: String,
+val gas: String,
+val heat: String,
+val internet: String,
+val other: String,
+val rates: String,
+val refuse: String,
+val sewerage: String,
+val time: String,
+val tvLicence: String,
+val water: String
 )
 extends
     Element
@@ -931,29 +704,19 @@ extends
 
 /**
  * A real estate location, commonly referred to as premises.
+ * @param sup Reference to the superclass object.
+ * @param accessMethod Method for the service person to access this service location.
+ *        For example, a description of where to obtain a key if the facility is unmanned and secured.
+ * @param needsInspection True if inspection is needed of facilities at this service location.
+ *        This could be requested by a customer, due to suspected tampering, environmental concerns (e.g., a fire in the vicinity), or to correct incompatible data.
+ * @param siteAccessProblem Problems previously encountered when visiting or performing work on this location.
+ *        Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
  */
 case class ServiceLocation
-(
-
-    override val sup: WorkLocation,
-
-    /**
-     * Method for the service person to access this service location.
-     * For example, a description of where to obtain a key if the facility is unmanned and secured.
-     */
-    val accessMethod: String,
-
-    /**
-     * True if inspection is needed of facilities at this service location.
-     * This could be requested by a customer, due to suspected tampering, environmental concerns (e.g., a fire in the vicinity), or to correct incompatible data.
-     */
-    val needsInspection: Boolean,
-
-    /**
-     * Problems previously encountered when visiting or performing work on this location.
-     * Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
-     */
-    val siteAccessProblem: String
+(override val sup: WorkLocation,
+val accessMethod: String,
+val needsInspection: Boolean,
+val siteAccessProblem: String
 )
 extends
     Element
@@ -993,26 +756,16 @@ extends
 /**
  * Document, approved by the responsible regulatory agency, listing the terms and conditions, including a schedule of prices, under which utility services will be provided.
  * It has a unique number within the state or province. For rate schedules it is frequently allocated by the affiliated Public utilities commission (PUC).
+ * @param sup Reference to the superclass object.
+ * @param endDate (if tariff became inactive) Date tariff was terminated.
+ * @param startDate Date tariff was activated.
+ * @param TariffProfiles All tariff profiles using this tariff.
  */
 case class Tariff
-(
-
-    override val sup: Document,
-
-    /**
-     * (if tariff became inactive) Date tariff was terminated.
-     */
-    val endDate: String,
-
-    /**
-     * Date tariff was activated.
-     */
-    val startDate: String,
-
-    /**
-     * All tariff profiles using this tariff.
-     */
-    val TariffProfiles: List[String]
+(override val sup: Document,
+val endDate: String,
+val startDate: String,
+val TariffProfiles: List[String]
 )
 extends
     Element
@@ -1051,36 +804,20 @@ extends
 
 /**
  * Kind of trouble reporting.
+ * @param sup Reference to the superclass object.
+ * @param call Trouble call received by customer service representative.
+ * @param email Trouble reported by email.
+ * @param ivr Trouble reported through interactive voice response system.
+ * @param letter Trouble reported by letter.
+ * @param other Trouble reported by other means.
  */
 case class TroubleReportingKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Trouble call received by customer service representative.
-     */
-    val call: String,
-
-    /**
-     * Trouble reported by email.
-     */
-    val email: String,
-
-    /**
-     * Trouble reported through interactive voice response system.
-     */
-    val ivr: String,
-
-    /**
-     * Trouble reported by letter.
-     */
-    val letter: String,
-
-    /**
-     * Trouble reported by other means.
-     */
-    val other: String
+(override val sup: BasicElement,
+val call: String,
+val email: String,
+val ivr: String,
+val letter: String,
+val other: String
 )
 extends
     Element
@@ -1122,49 +859,15 @@ extends
 }
 
 case class TroubleTicket
-(
-
-    override val sup: Document,
-
-    /**
-     * Date and time the trouble has been reported.
-     */
-    val dateTimeOfReport: String,
-
-    /**
-     * A first responder on site such as police, fire department etc.
-     */
-    val firstResponder: String,
-
-    /**
-     * Indicates how the customer reported trouble.
-     */
-    val reportingKind: String,
-
-    /**
-     * Date and time this trouble ticket has been resolved.
-     */
-    val resolvedDateTime: String,
-
-    /**
-     * Trouble code (e.g., power down, flickering lights, partial power, etc).
-     */
-    val troubleCode: String,
-
-    /**
-     * Customer for whom this trouble ticket is relevant.
-     */
-    val Customer: String,
-
-    /**
-     * Incident reported in this trouble ticket
-     */
-    val Incident: String,
-
-    /**
-     * Notification for this trouble ticket.
-     */
-    val Notification: String
+(override val sup: Document,
+val dateTimeOfReport: String,
+val firstResponder: String,
+val reportingKind: String,
+val resolvedDateTime: String,
+val troubleCode: String,
+val Customer: String,
+val Incident: String,
+val Notification: String
 )
 extends
     Element

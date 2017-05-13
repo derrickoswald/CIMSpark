@@ -10,17 +10,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Identity contain comon descriptive information.
+ * @param sup Reference to the superclass object.
+ * @param description
+ * @param name
+ * @param version
  */
 case class Description
-(
-
-    override val sup: BasicElement,
-
-    val description: String,
-
-    val name: String,
-
-    val version: Int
+(override val sup: BasicElement,
+val description: String,
+val name: String,
+val version: Int
 )
 extends
     Element
@@ -58,11 +57,8 @@ extends
 }
 
 case class DescriptionID
-(
-
-    override val sup: Description,
-
-    val uri: String
+(override val sup: Description,
+val uri: String
 )
 extends
     Element
@@ -96,13 +92,9 @@ extends
 }
 
 case class DifferenceModel
-(
-
-    override val sup: Model,
-
-    val forwardDifferences: String,
-
-    val reverseDifferences: String
+(override val sup: Model,
+val forwardDifferences: String,
+val reverseDifferences: String
 )
 extends
     Element
@@ -138,9 +130,7 @@ extends
 }
 
 case class FullModel
-(
-
-    override val sup: FullModelDocumentElement
+(override val sup: FullModelDocumentElement
 )
 extends
     Element
@@ -172,9 +162,7 @@ extends
 }
 
 case class FullModelDocumentElement
-(
-
-    override val sup: BasicElement
+(override val sup: BasicElement
 )
 extends
     Element
@@ -206,25 +194,15 @@ extends
 }
 
 case class Model
-(
-
-    override val sup: BasicElement,
-
-    val created: String,
-
-    val description: String,
-
-    val modelingAuthoritySet: String,
-
-    val profile: String,
-
-    val scenarioTime: String,
-
-    val version: String,
-
-    val DependentOn: List[String],
-
-    val Supersedes: List[String]
+(override val sup: BasicElement,
+val created: String,
+val description: String,
+val modelingAuthoritySet: String,
+val profile: String,
+val scenarioTime: String,
+val version: String,
+val DependentOn: List[String],
+val Supersedes: List[String]
 )
 extends
     Element
@@ -272,13 +250,9 @@ extends
 }
 
 case class ModelDescriptionCIMVersion
-(
-
-    override val sup: BasicElement,
-
-    val date: String,
-
-    val version: String
+(override val sup: BasicElement,
+val date: String,
+val version: String
 )
 extends
     Element
@@ -314,9 +288,7 @@ extends
 }
 
 case class Statements
-(
-
-    override val sup: FullModelDocumentElement
+(override val sup: FullModelDocumentElement
 )
 extends
     Element
@@ -349,11 +321,10 @@ extends
 
 /**
  * URI is a string following the rules defined by the W3C/IETF URI Planning Interest Group in a set of RFCs of which one is RFC 3305.
+ * @param sup Reference to the superclass object.
  */
 case class URI
-(
-
-    override val sup: BasicElement
+(override val sup: BasicElement
 )
 extends
     Element

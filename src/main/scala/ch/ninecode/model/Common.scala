@@ -10,36 +10,20 @@ import ch.ninecode.cim.Context
 
 /**
  * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
+ * @param sup Reference to the superclass object.
+ * @param createdDateTime Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
+ * @param reason Reason for event resulting in this activity record, typically supplied when user initiated.
+ * @param severity Severity level of event resulting in this activity record.
+ * @param status Information on consequence of event resulting in this activity record.
+ * @param typ Type of event resulting in this activity record.
  */
 case class ActivityRecord
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
-     */
-    val createdDateTime: String,
-
-    /**
-     * Reason for event resulting in this activity record, typically supplied when user initiated.
-     */
-    val reason: String,
-
-    /**
-     * Severity level of event resulting in this activity record.
-     */
-    val severity: String,
-
-    /**
-     * Information on consequence of event resulting in this activity record.
-     */
-    val status: String,
-
-    /**
-     * Type of event resulting in this activity record.
-     */
-    val typ: String
+(override val sup: IdentifiedObject,
+val createdDateTime: String,
+val reason: String,
+val severity: String,
+val status: String,
+val typ: String
 )
 extends
     Element
@@ -83,21 +67,14 @@ extends
 /**
  * Formal agreement between two parties defining the terms and conditions for a set of services.
  * The specifics of the services are, in turn, defined via one or more service agreements.
+ * @param sup Reference to the superclass object.
+ * @param signDate Date this agreement was consummated among associated persons and/or organisations.
+ * @param validityInterval Date and time interval this agreement is valid (from going into effect to termination).
  */
 case class Agreement
-(
-
-    override val sup: Document,
-
-    /**
-     * Date this agreement was consummated among associated persons and/or organisations.
-     */
-    val signDate: String,
-
-    /**
-     * Date and time interval this agreement is valid (from going into effect to termination).
-     */
-    val validityInterval: String
+(override val sup: Document,
+val signDate: String,
+val validityInterval: String
 )
 extends
     Element
@@ -134,26 +111,16 @@ extends
 
 /**
  * Meeting time and location.
+ * @param sup Reference to the superclass object.
+ * @param callAhead True if requested to call customer when someone is about to arrive at their premises.
+ * @param meetingInterval Date and time reserved for appointment.
+ * @param Works All works for this appointment.
  */
 case class Appointment
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * True if requested to call customer when someone is about to arrive at their premises.
-     */
-    val callAhead: Boolean,
-
-    /**
-     * Date and time reserved for appointment.
-     */
-    val meetingInterval: String,
-
-    /**
-     * All works for this appointment.
-     */
-    val Works: List[String]
+(override val sup: IdentifiedObject,
+val callAhead: Boolean,
+val meetingInterval: String,
+val Works: List[String]
 )
 extends
     Element
@@ -192,61 +159,30 @@ extends
 
 /**
  * Used to report details on creation, change or deletion of an entity or its configuration.
+ * @param sup Reference to the superclass object.
+ * @param effectiveDateTime Date and time this event has or will become effective.
+ * @param modifiedBy Source/initiator of modification.
+ * @param remark Free text remarks.
+ * @param ChangedAsset Asset whose change resulted in this configuration event.
+ * @param ChangedDocument Document whose change resulted in this configuration event.
+ * @param ChangedLocation Location whose change resulted in this configuration event.
+ * @param ChangedOrganisationRole Organisation role whose change resulted in this configuration event.
+ * @param ChangedPersonRole Person role whose change resulted in this configuration event.
+ * @param ChangedServiceCategory Service category whose change resulted in this configuration event.
+ * @param ChangedUsagePoint Usage point whose change resulted in this configuration event.
  */
 case class ConfigurationEvent
-(
-
-    override val sup: ActivityRecord,
-
-    /**
-     * Date and time this event has or will become effective.
-     */
-    val effectiveDateTime: String,
-
-    /**
-     * Source/initiator of modification.
-     */
-    val modifiedBy: String,
-
-    /**
-     * Free text remarks.
-     */
-    val remark: String,
-
-    /**
-     * Asset whose change resulted in this configuration event.
-     */
-    val ChangedAsset: String,
-
-    /**
-     * Document whose change resulted in this configuration event.
-     */
-    val ChangedDocument: String,
-
-    /**
-     * Location whose change resulted in this configuration event.
-     */
-    val ChangedLocation: String,
-
-    /**
-     * Organisation role whose change resulted in this configuration event.
-     */
-    val ChangedOrganisationRole: String,
-
-    /**
-     * Person role whose change resulted in this configuration event.
-     */
-    val ChangedPersonRole: String,
-
-    /**
-     * Service category whose change resulted in this configuration event.
-     */
-    val ChangedServiceCategory: String,
-
-    /**
-     * Usage point whose change resulted in this configuration event.
-     */
-    val ChangedUsagePoint: String
+(override val sup: ActivityRecord,
+val effectiveDateTime: String,
+val modifiedBy: String,
+val remark: String,
+val ChangedAsset: String,
+val ChangedDocument: String,
+val ChangedLocation: String,
+val ChangedOrganisationRole: String,
+val ChangedPersonRole: String,
+val ChangedServiceCategory: String,
+val ChangedUsagePoint: String
 )
 extends
     Element
@@ -299,17 +235,13 @@ extends
 
 /**
  * Coordinate reference system.
+ * @param sup Reference to the superclass object.
+ * @param crsUrn A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
+ *        PositionPoints'.
  */
 case class CoordinateSystem
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
-     * PositionPoints'.
-     */
-    val crsUrn: String
+(override val sup: IdentifiedObject,
+val crsUrn: String
 )
 extends
     Element
@@ -344,21 +276,14 @@ extends
 
 /**
  * Group of people with specific skills, tools, and vehicles.
+ * @param sup Reference to the superclass object.
+ * @param status Status of this crew.
+ * @param CrewType Type of this crew.
  */
 case class Crew
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Status of this crew.
-     */
-    val status: String,
-
-    /**
-     * Type of this crew.
-     */
-    val CrewType: String
+(override val sup: IdentifiedObject,
+val status: String,
+val CrewType: String
 )
 extends
     Element
@@ -395,16 +320,12 @@ extends
 
 /**
  * Member of a crew.
+ * @param sup Reference to the superclass object.
+ * @param Crew Crew to which this crew member belongs.
  */
 case class CrewMember
-(
-
-    override val sup: OperationPersonRole,
-
-    /**
-     * Crew to which this crew member belongs.
-     */
-    val Crew: String
+(override val sup: OperationPersonRole,
+val Crew: String
 )
 extends
     Element
@@ -440,11 +361,10 @@ extends
 /**
  * Custom description of the type of crew.
  * This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.
+ * @param sup Reference to the superclass object.
  */
 case class CrewType
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -478,69 +398,35 @@ extends
 /**
  * Parent class for different groupings of information collected and managed as a part of a business process.
  * It will frequently contain references to other objects, such as assets, people and power system resources.
+ * @param sup Reference to the superclass object.
+ * @param authorName Name of the author of this document.
+ * @param comment Free text comment.
+ * @param createdDateTime Date and time that this document was created.
+ * @param docStatus Status of this document.
+ *        For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.
+ * @param electronicAddress Electronic address.
+ * @param lastModifiedDateTime Date and time this document was last modified.
+ *        Documents may potentially be modified many times during their lifetime.
+ * @param revisionNumber Revision number for this document.
+ * @param status Status of subject matter (e.g., Agreement, Work) this document represents.
+ *        For status of the document itself, use 'docStatus' attribute.
+ * @param subject Document subject.
+ * @param title Document title.
+ * @param typ Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  */
 case class Document
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Name of the author of this document.
-     */
-    val authorName: String,
-
-    /**
-     * Free text comment.
-     */
-    val comment: String,
-
-    /**
-     * Date and time that this document was created.
-     */
-    val createdDateTime: String,
-
-    /**
-     * Status of this document.
-     * For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.
-     */
-    val docStatus: String,
-
-    /**
-     * Electronic address.
-     */
-    val electronicAddress: String,
-
-    /**
-     * Date and time this document was last modified.
-     * Documents may potentially be modified many times during their lifetime.
-     */
-    val lastModifiedDateTime: String,
-
-    /**
-     * Revision number for this document.
-     */
-    val revisionNumber: String,
-
-    /**
-     * Status of subject matter (e.g., Agreement, Work) this document represents.
-     * For status of the document itself, use 'docStatus' attribute.
-     */
-    val status: String,
-
-    /**
-     * Document subject.
-     */
-    val subject: String,
-
-    /**
-     * Document title.
-     */
-    val title: String,
-
-    /**
-     * Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
-     */
-    val typ: String
+(override val sup: IdentifiedObject,
+val authorName: String,
+val comment: String,
+val createdDateTime: String,
+val docStatus: String,
+val electronicAddress: String,
+val lastModifiedDateTime: String,
+val revisionNumber: String,
+val status: String,
+val subject: String,
+val title: String,
+val typ: String
 )
 extends
     Element
@@ -595,51 +481,26 @@ extends
 
 /**
  * Electronic address information.
+ * @param sup Reference to the superclass object.
+ * @param email1 Primary email address.
+ * @param email2 Alternate email address.
+ * @param lan Address on local area network.
+ * @param mac MAC (Media Access Control) address.
+ * @param password Password needed to log in.
+ * @param radio Radio address.
+ * @param userID User ID needed to log in, which can be for an individual person, an organisation, a location, etc.
+ * @param web World wide web address.
  */
 case class ElectronicAddress
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Primary email address.
-     */
-    val email1: String,
-
-    /**
-     * Alternate email address.
-     */
-    val email2: String,
-
-    /**
-     * Address on local area network.
-     */
-    val lan: String,
-
-    /**
-     * MAC (Media Access Control) address.
-     */
-    val mac: String,
-
-    /**
-     * Password needed to log in.
-     */
-    val password: String,
-
-    /**
-     * Radio address.
-     */
-    val radio: String,
-
-    /**
-     * User ID needed to log in, which can be for an individual person, an organisation, a location, etc.
-     */
-    val userID: String,
-
-    /**
-     * World wide web address.
-     */
-    val web: String
+(override val sup: BasicElement,
+val email1: String,
+val email2: String,
+val lan: String,
+val mac: String,
+val password: String,
+val radio: String,
+val userID: String,
+val web: String
 )
 extends
     Element
@@ -688,21 +549,14 @@ extends
 
 /**
  * An object or a condition that is a danger for causing loss or perils to an asset and/or people.
+ * @param sup Reference to the superclass object.
+ * @param status Status of this hazard.
+ * @param typ Type of this hazard.
  */
 case class Hazard
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Status of this hazard.
-     */
-    val status: String,
-
-    /**
-     * Type of this hazard.
-     */
-    val typ: String
+(override val sup: IdentifiedObject,
+val status: String,
+val typ: String
 )
 extends
     Element
@@ -740,65 +594,34 @@ extends
 /**
  * The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time.
  * It can be defined with one or more postition points (coordinates) in a given coordinate system.
+ * @param sup Reference to the superclass object.
+ * @param direction (if applicable) Direction that allows field crews to quickly find a given asset.
+ *        For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.
+ * @param electronicAddress Electronic address.
+ * @param geoInfoReference (if applicable) Reference to geographical information source, often external to the utility.
+ * @param mainAddress Main address of the location.
+ * @param phone1 Phone number.
+ * @param phone2 Additional phone number.
+ * @param secondaryAddress Secondary address of the location.
+ *        For example, PO Box address may have different ZIP code than that in the 'mainAddress'.
+ * @param status Status of this location.
+ * @param typ Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
+ * @param CoordinateSystem Coordinate system used to describe position points of this location.
+ * @param Measurements
  */
 case class Location
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * (if applicable) Direction that allows field crews to quickly find a given asset.
-     * For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.
-     */
-    val direction: String,
-
-    /**
-     * Electronic address.
-     */
-    val electronicAddress: String,
-
-    /**
-     * (if applicable) Reference to geographical information source, often external to the utility.
-     */
-    val geoInfoReference: String,
-
-    /**
-     * Main address of the location.
-     */
-    val mainAddress: String,
-
-    /**
-     * Phone number.
-     */
-    val phone1: String,
-
-    /**
-     * Additional phone number.
-     */
-    val phone2: String,
-
-    /**
-     * Secondary address of the location.
-     * For example, PO Box address may have different ZIP code than that in the 'mainAddress'.
-     */
-    val secondaryAddress: String,
-
-    /**
-     * Status of this location.
-     */
-    val status: String,
-
-    /**
-     * Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
-     */
-    val typ: String,
-
-    /**
-     * Coordinate system used to describe position points of this location.
-     */
-    val CoordinateSystem: String,
-
-    val Measurements: List[String]
+(override val sup: IdentifiedObject,
+val direction: String,
+val electronicAddress: String,
+val geoInfoReference: String,
+val mainAddress: String,
+val phone1: String,
+val phone2: String,
+val secondaryAddress: String,
+val status: String,
+val typ: String,
+val CoordinateSystem: String,
+val Measurements: List[String]
 )
 extends
     Element
@@ -853,11 +676,10 @@ extends
 
 /**
  * Person role in the context of utility operations.
+ * @param sup Reference to the superclass object.
  */
 case class OperationPersonRole
-(
-
-    override val sup: PersonRole
+(override val sup: PersonRole
 )
 extends
     Element
@@ -890,11 +712,10 @@ extends
 
 /**
  * Control room operator.
+ * @param sup Reference to the superclass object.
  */
 case class Operator
-(
-
-    override val sup: OperationPersonRole
+(override val sup: OperationPersonRole
 )
 extends
     Element
@@ -927,38 +748,22 @@ extends
 
 /**
  * Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.
+ * @param sup Reference to the superclass object.
+ * @param electronicAddress Electronic address.
+ * @param phone1 Phone number.
+ * @param phone2 Additional phone number.
+ * @param postalAddress Postal address, potentially different than 'streetAddress' (e.g., another city).
+ * @param streetAddress Street address.
+ * @param ActivityRecords
  */
 case class Organisation
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Electronic address.
-     */
-    val electronicAddress: String,
-
-    /**
-     * Phone number.
-     */
-    val phone1: String,
-
-    /**
-     * Additional phone number.
-     */
-    val phone2: String,
-
-    /**
-     * Postal address, potentially different than 'streetAddress' (e.g., another city).
-     */
-    val postalAddress: String,
-
-    /**
-     * Street address.
-     */
-    val streetAddress: String,
-
-    val ActivityRecords: List[String]
+(override val sup: IdentifiedObject,
+val electronicAddress: String,
+val phone1: String,
+val phone2: String,
+val postalAddress: String,
+val streetAddress: String,
+val ActivityRecords: List[String]
 )
 extends
     Element
@@ -1003,16 +808,12 @@ extends
 
 /**
  * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
+ * @param sup Reference to the superclass object.
+ * @param Organisation Organisation having this role.
  */
 case class OrganisationRole
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Organisation having this role.
-     */
-    val Organisation: String
+(override val sup: IdentifiedObject,
+val Organisation: String
 )
 extends
     Element
@@ -1047,26 +848,16 @@ extends
 
 /**
  * Ownership of e.g. asset.
+ * @param sup Reference to the superclass object.
+ * @param share Share of this ownership.
+ * @param Asset Asset that is object of this ownership.
+ * @param AssetOwner Asset owner that is subject in this ownership.
  */
 case class Ownership
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Share of this ownership.
-     */
-    val share: Double,
-
-    /**
-     * Asset that is object of this ownership.
-     */
-    val Asset: String,
-
-    /**
-     * Asset owner that is subject in this ownership.
-     */
-    val AssetOwner: String
+(override val sup: IdentifiedObject,
+val share: Double,
+val Asset: String,
+val AssetOwner: String
 )
 extends
     Element
@@ -1105,56 +896,28 @@ extends
 
 /**
  * General purpose information for name and other information to contact people.
+ * @param sup Reference to the superclass object.
+ * @param electronicAddress Electronic address.
+ * @param firstName Person's first name.
+ * @param landlinePhone Landline phone number.
+ * @param lastName Person's last (family, sir) name.
+ * @param mName Middle name(s) or initial(s).
+ * @param mobilePhone Mobile phone number.
+ * @param prefix A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
+ * @param specialNeed Special service needs for the person (contact) are described; examples include life support, etc.
+ * @param suffix A suffix for the person's name, such as II, III, etc.
  */
 case class Person
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Electronic address.
-     */
-    val electronicAddress: String,
-
-    /**
-     * Person's first name.
-     */
-    val firstName: String,
-
-    /**
-     * Landline phone number.
-     */
-    val landlinePhone: String,
-
-    /**
-     * Person's last (family, sir) name.
-     */
-    val lastName: String,
-
-    /**
-     * Middle name(s) or initial(s).
-     */
-    val mName: String,
-
-    /**
-     * Mobile phone number.
-     */
-    val mobilePhone: String,
-
-    /**
-     * A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
-     */
-    val prefix: String,
-
-    /**
-     * Special service needs for the person (contact) are described; examples include life support, etc.
-     */
-    val specialNeed: String,
-
-    /**
-     * A suffix for the person's name, such as II, III, etc.
-     */
-    val suffix: String
+(override val sup: IdentifiedObject,
+val electronicAddress: String,
+val firstName: String,
+val landlinePhone: String,
+val lastName: String,
+val mName: String,
+val mobilePhone: String,
+val prefix: String,
+val specialNeed: String,
+val suffix: String
 )
 extends
     Element
@@ -1204,19 +967,9 @@ extends
 }
 
 case class PersonRole
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * All appointments for this person.
-     */
-    val Appointments: List[String],
-
-    /**
-     * Person having this role.
-     */
-    val Person: String
+(override val sup: IdentifiedObject,
+val Appointments: List[String],
+val Person: String
 )
 extends
     Element
@@ -1254,36 +1007,20 @@ extends
 /**
  * Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.
  * CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
+ * @param sup Reference to the superclass object.
+ * @param sequenceNumber Zero-relative sequence number of this point within a series of points.
+ * @param xPosition X axis position.
+ * @param yPosition Y axis position.
+ * @param zPosition (if applicable) Z axis position.
+ * @param Location Location described by this position point.
  */
 case class PositionPoint
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Zero-relative sequence number of this point within a series of points.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * X axis position.
-     */
-    val xPosition: String,
-
-    /**
-     * Y axis position.
-     */
-    val yPosition: String,
-
-    /**
-     * (if applicable) Z axis position.
-     */
-    val zPosition: String,
-
-    /**
-     * Location described by this position point.
-     */
-    val Location: String
+(override val sup: BasicElement,
+val sequenceNumber: Int,
+val xPosition: String,
+val yPosition: String,
+val zPosition: String,
+val Location: String
 )
 extends
     Element
@@ -1326,31 +1063,18 @@ extends
 
 /**
  * General purpose postal address information.
+ * @param sup Reference to the superclass object.
+ * @param poBox Post office box.
+ * @param postalCode Postal code for the address.
+ * @param streetDetail Street detail.
+ * @param townDetail Town detail.
  */
 case class PostalAddress
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Post office box.
-     */
-    val poBox: String,
-
-    /**
-     * Postal code for the address.
-     */
-    val postalCode: String,
-
-    /**
-     * Street detail.
-     */
-    val streetDetail: String,
-
-    /**
-     * Town detail.
-     */
-    val townDetail: String
+(override val sup: BasicElement,
+val poBox: String,
+val postalCode: String,
+val streetDetail: String,
+val townDetail: String
 )
 extends
     Element
@@ -1391,26 +1115,16 @@ extends
 
 /**
  * Priority definition.
+ * @param sup Reference to the superclass object.
+ * @param justification Justification for 'rank'.
+ * @param rank Priority level; usually, lower number means high priority, but the details are provided in 'type'.
+ * @param typ Type describing 'rank'; e.g., high, emergency, etc.
  */
 case class Priority
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Justification for 'rank'.
-     */
-    val justification: String,
-
-    /**
-     * Priority level; usually, lower number means high priority, but the details are provided in 'type'.
-     */
-    val rank: Int,
-
-    /**
-     * Type describing 'rank'; e.g., high, emergency, etc.
-     */
-    val typ: String
+(override val sup: BasicElement,
+val justification: String,
+val rank: Int,
+val typ: String
 )
 extends
     Element
@@ -1449,30 +1163,20 @@ extends
 
 /**
  * An event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units must be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
+ * @param sup Reference to the superclass object.
+ * @param duration Duration of the scheduled event, for example, the time to ramp between values.
+ * @param status
+ * @param typ Type of scheduled event.
+ * @param Assets
+ * @param ScheduledEventData Specification for this scheduled event.
  */
 case class ScheduledEvent
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Duration of the scheduled event, for example, the time to ramp between values.
-     */
-    val duration: Double,
-
-    val status: String,
-
-    /**
-     * Type of scheduled event.
-     */
-    val typ: String,
-
-    val Assets: List[String],
-
-    /**
-     * Specification for this scheduled event.
-     */
-    val ScheduledEventData: String
+(override val sup: IdentifiedObject,
+val duration: Double,
+val status: String,
+val typ: String,
+val Assets: List[String],
+val ScheduledEventData: String
 )
 extends
     Element
@@ -1515,25 +1219,18 @@ extends
 
 /**
  * Schedule parameters for an activity that is to occur, is occurring, or has completed.
+ * @param sup Reference to the superclass object.
+ * @param estimatedWindow Estimated date and time for activity execution (with earliest possibility of activity initiation and latest possibility of activity completion).
+ * @param requestedWindow Requested date and time interval for activity execution.
+ * @param status
+ * @param InspectionDataSet
  */
 case class ScheduledEventData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Estimated date and time for activity execution (with earliest possibility of activity initiation and latest possibility of activity completion).
-     */
-    val estimatedWindow: String,
-
-    /**
-     * Requested date and time interval for activity execution.
-     */
-    val requestedWindow: String,
-
-    val status: String,
-
-    val InspectionDataSet: String
+(override val sup: BasicElement,
+val estimatedWindow: String,
+val requestedWindow: String,
+val status: String,
+val InspectionDataSet: String
 )
 extends
     Element
@@ -1574,31 +1271,18 @@ extends
 
 /**
  * Current status information relevant to an entity.
+ * @param sup Reference to the superclass object.
+ * @param dateTime Date and time for which status 'value' applies.
+ * @param reason Reason code or explanation for why an object went to the current status 'value'.
+ * @param remark Pertinent information regarding the current 'value', as free form text.
+ * @param value Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.
  */
 case class Status
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Date and time for which status 'value' applies.
-     */
-    val dateTime: String,
-
-    /**
-     * Reason code or explanation for why an object went to the current status 'value'.
-     */
-    val reason: String,
-
-    /**
-     * Pertinent information regarding the current 'value', as free form text.
-     */
-    val remark: String,
-
-    /**
-     * Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.
-     */
-    val value: String
+(override val sup: BasicElement,
+val dateTime: String,
+val reason: String,
+val remark: String,
+val value: String
 )
 extends
     Element
@@ -1639,26 +1323,16 @@ extends
 
 /**
  * General purpose street address information.
+ * @param sup Reference to the superclass object.
+ * @param status Status of this address.
+ * @param streetDetail Street detail.
+ * @param townDetail Town detail.
  */
 case class StreetAddress
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Status of this address.
-     */
-    val status: String,
-
-    /**
-     * Street detail.
-     */
-    val streetDetail: String,
-
-    /**
-     * Town detail.
-     */
-    val townDetail: String
+(override val sup: BasicElement,
+val status: String,
+val streetDetail: String,
+val townDetail: String
 )
 extends
     Element
@@ -1697,64 +1371,33 @@ extends
 
 /**
  * Street details, in the context of address.
+ * @param sup Reference to the superclass object.
+ * @param addressGeneral Additional address information, for example a mailstop.
+ * @param buildingName (if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.
+ * @param code (if applicable) Utilities often make use of external reference systems, such as those of the town-planner's department or surveyor general's mapping system, that allocate global reference codes to streets.
+ * @param name Name of the street.
+ * @param number Designator of the specific location on the street.
+ * @param prefix Prefix to the street name.
+ *        For example: North, South, East, West.
+ * @param suffix Suffix to the street name.
+ *        For example: North, South, East, West.
+ * @param suiteNumber Number of the apartment or suite.
+ * @param typ Type of street.
+ *        Examples include: street, circle, boulevard, avenue, road, drive, etc.
+ * @param withinTownLimits True if this street is within the legal geographical boundaries of the specified town (default).
  */
 case class StreetDetail
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Additional address information, for example a mailstop.
-     */
-    val addressGeneral: String,
-
-    /**
-     * (if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.
-     */
-    val buildingName: String,
-
-    /**
-     * (if applicable) Utilities often make use of external reference systems, such as those of the town-planner's department or surveyor general's mapping system, that allocate global reference codes to streets.
-     */
-    val code: String,
-
-    /**
-     * Name of the street.
-     */
-    val name: String,
-
-    /**
-     * Designator of the specific location on the street.
-     */
-    val number: String,
-
-    /**
-     * Prefix to the street name.
-     * For example: North, South, East, West.
-     */
-    val prefix: String,
-
-    /**
-     * Suffix to the street name.
-     * For example: North, South, East, West.
-     */
-    val suffix: String,
-
-    /**
-     * Number of the apartment or suite.
-     */
-    val suiteNumber: String,
-
-    /**
-     * Type of street.
-     * Examples include: street, circle, boulevard, avenue, road, drive, etc.
-     */
-    val typ: String,
-
-    /**
-     * True if this street is within the legal geographical boundaries of the specified town (default).
-     */
-    val withinTownLimits: Boolean
+(override val sup: BasicElement,
+val addressGeneral: String,
+val buildingName: String,
+val code: String,
+val name: String,
+val number: String,
+val prefix: String,
+val suffix: String,
+val suiteNumber: String,
+val typ: String,
+val withinTownLimits: Boolean
 )
 extends
     Element
@@ -1807,36 +1450,20 @@ extends
 
 /**
  * Telephone number.
+ * @param sup Reference to the superclass object.
+ * @param areaCode Area or region code.
+ * @param cityCode (if applicable) City code.
+ * @param countryCode Country code.
+ * @param extension (if applicable) Extension for this telephone number.
+ * @param localNumber Main (local) part of this telephone number.
  */
 case class TelephoneNumber
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Area or region code.
-     */
-    val areaCode: String,
-
-    /**
-     * (if applicable) City code.
-     */
-    val cityCode: String,
-
-    /**
-     * Country code.
-     */
-    val countryCode: String,
-
-    /**
-     * (if applicable) Extension for this telephone number.
-     */
-    val extension: String,
-
-    /**
-     * Main (local) part of this telephone number.
-     */
-    val localNumber: String
+(override val sup: BasicElement,
+val areaCode: String,
+val cityCode: String,
+val countryCode: String,
+val extension: String,
+val localNumber: String
 )
 extends
     Element
@@ -1879,42 +1506,23 @@ extends
 
 /**
  * A point in time within a sequence of points in time relative to a time schedule.
+ * @param sup Reference to the superclass object.
+ * @param dateTime Absolute date and time for this time point.
+ *        For calendar-based time point, it is typically manually entered, while for interval-based or sequence-based time point it is derived.
+ * @param relativeTimeInterval (if interval-based) A point in time relative to scheduled start time in 'TimeSchedule.scheduleInterval.start'.
+ * @param sequenceNumber (if sequence-based) Relative sequence number for this time point.
+ * @param status Status of this time point.
+ * @param window Interval defining the window of time that this time point is valid (for example, seasonal, only on weekends, not on weekends, only 8:00 am to 5:00 pm, etc.).
+ * @param TimeSchedule Time schedule owning this time point.
  */
 case class TimePoint
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Absolute date and time for this time point.
-     * For calendar-based time point, it is typically manually entered, while for interval-based or sequence-based time point it is derived.
-     */
-    val dateTime: String,
-
-    /**
-     * (if interval-based) A point in time relative to scheduled start time in 'TimeSchedule.scheduleInterval.start'.
-     */
-    val relativeTimeInterval: Double,
-
-    /**
-     * (if sequence-based) Relative sequence number for this time point.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * Status of this time point.
-     */
-    val status: String,
-
-    /**
-     * Interval defining the window of time that this time point is valid (for example, seasonal, only on weekends, not on weekends, only 8:00 am to 5:00 pm, etc.).
-     */
-    val window: String,
-
-    /**
-     * Time schedule owning this time point.
-     */
-    val TimeSchedule: String
+(override val sup: IdentifiedObject,
+val dateTime: String,
+val relativeTimeInterval: Double,
+val sequenceNumber: Int,
+val status: String,
+val window: String,
+val TimeSchedule: String
 )
 extends
     Element
@@ -1960,38 +1568,22 @@ extends
 /**
  * Description of anything that changes through time.
  * Time schedule is used to perform a single-valued function of time. Use inherited 'type' attribute to give additional information on this schedule, such as: periodic (hourly, daily, weekly, monthly, etc.), day of the month, by date, calendar (specific times and dates).
+ * @param sup Reference to the superclass object.
+ * @param disabled True if this schedule is deactivated (disabled).
+ * @param offset The offset from midnight (i.e., 0 h, 0 min, 0 s) for the periodic time points to begin.
+ *        For example, for an interval meter that is set up for five minute intervals ('recurrencePeriod'=300=5 min), setting 'offset'=120=2 min would result in scheduled events to read the meter executing at 2 min, 7 min, 12 min, 17 min, 22 min, 27 min, 32 min, 37 min, 42 min, 47 min, 52 min, and 57 min past each hour.
+ * @param recurrencePattern Interval at which the scheduled action repeats (e.g., first Monday of every month, last day of the month, etc.).
+ * @param recurrencePeriod Duration between time points, from the beginning of one period to the beginning of the next period.
+ *        Note that a device like a meter may have multiple interval periods (e.g., 1 min, 5 min, 15 min, 30 min, or 60 min).
+ * @param scheduleInterval Schedule date and time interval.
  */
 case class TimeSchedule
-(
-
-    override val sup: Document,
-
-    /**
-     * True if this schedule is deactivated (disabled).
-     */
-    val disabled: Boolean,
-
-    /**
-     * The offset from midnight (i.e., 0 h, 0 min, 0 s) for the periodic time points to begin.
-     * For example, for an interval meter that is set up for five minute intervals ('recurrencePeriod'=300=5 min), setting 'offset'=120=2 min would result in scheduled events to read the meter executing at 2 min, 7 min, 12 min, 17 min, 22 min, 27 min, 32 min, 37 min, 42 min, 47 min, 52 min, and 57 min past each hour.
-     */
-    val offset: Double,
-
-    /**
-     * Interval at which the scheduled action repeats (e.g., first Monday of every month, last day of the month, etc.).
-     */
-    val recurrencePattern: String,
-
-    /**
-     * Duration between time points, from the beginning of one period to the beginning of the next period.
-     * Note that a device like a meter may have multiple interval periods (e.g., 1 min, 5 min, 15 min, 30 min, or 60 min).
-     */
-    val recurrencePeriod: Double,
-
-    /**
-     * Schedule date and time interval.
-     */
-    val scheduleInterval: String
+(override val sup: Document,
+val disabled: Boolean,
+val offset: Double,
+val recurrencePattern: String,
+val recurrencePeriod: Double,
+val scheduleInterval: String
 )
 extends
     Element
@@ -2034,37 +1626,21 @@ extends
 
 /**
  * Town details, in the context of address.
+ * @param sup Reference to the superclass object.
+ * @param code Town code.
+ * @param country Name of the country.
+ * @param name Town name.
+ * @param section Town section.
+ *        For example, it is common for there to be 36 sections per township.
+ * @param stateOrProvince Name of the state or province.
  */
 case class TownDetail
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Town code.
-     */
-    val code: String,
-
-    /**
-     * Name of the country.
-     */
-    val country: String,
-
-    /**
-     * Town name.
-     */
-    val name: String,
-
-    /**
-     * Town section.
-     * For example, it is common for there to be 36 sections per township.
-     */
-    val section: String,
-
-    /**
-     * Name of the state or province.
-     */
-    val stateOrProvince: String
+(override val sup: BasicElement,
+val code: String,
+val country: String,
+val name: String,
+val section: String,
+val stateOrProvince: String
 )
 extends
     Element
@@ -2107,37 +1683,24 @@ extends
 
 /**
  * Generic name-value pair class, with optional sequence number and units for value; can be used to model parts of information exchange when concrete types are not known in advance.
+ * @param sup Reference to the superclass object.
+ * @param name Name of an attribute.
+ * @param sequenceNumber Sequence number for this attribute in a list of attributes.
+ * @param value Value of an attribute, including unit information.
+ * @param ProcedureDataSets
+ * @param PropertySpecification
+ * @param RatingSpecification
+ * @param Transaction Transaction for which this snapshot has been recorded.
  */
 case class UserAttribute
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Name of an attribute.
-     */
-    val name: String,
-
-    /**
-     * Sequence number for this attribute in a list of attributes.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * Value of an attribute, including unit information.
-     */
-    val value: String,
-
-    val ProcedureDataSets: List[String],
-
-    val PropertySpecification: String,
-
-    val RatingSpecification: String,
-
-    /**
-     * Transaction for which this snapshot has been recorded.
-     */
-    val Transaction: String
+(override val sup: BasicElement,
+val name: String,
+val sequenceNumber: Int,
+val value: String,
+val ProcedureDataSets: List[String],
+val PropertySpecification: String,
+val RatingSpecification: String,
+val Transaction: String
 )
 extends
     Element

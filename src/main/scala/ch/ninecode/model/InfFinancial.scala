@@ -12,21 +12,14 @@ import ch.ninecode.cim.Context
 /**
  * Operates the Control Area.
  * Approves and implements energy transactions. Verifies both Inter-Control Area and Intra-Control Area transactions for the power system  before granting approval (and implementing) the transactions.
+ * @param sup Reference to the superclass object.
+ * @param CAChildOf A ControlAreaOperator has a collection of tie points that ring the ControlArea, called a TieLine.
+ * @param ControlledBy A ControlAreaCompany controls a ControlArea.
  */
 case class ControlAreaOperator
-(
-
-    override val sup: Organisation,
-
-    /**
-     * A ControlAreaOperator has a collection of tie points that ring the ControlArea, called a TieLine.
-     */
-    val CAChildOf: List[String],
-
-    /**
-     * A ControlAreaCompany controls a ControlArea.
-     */
-    val ControlledBy: String
+(override val sup: Organisation,
+val CAChildOf: List[String],
+val ControlledBy: String
 )
 extends
     Element
@@ -63,11 +56,10 @@ extends
 
 /**
  * The energy buyer in the energy marketplace.
+ * @param sup Reference to the superclass object.
  */
 case class CustomerConsumer
-(
-
-    override val sup: Organisation
+(override val sup: Organisation
 )
 extends
     Element
@@ -100,11 +92,10 @@ extends
 
 /**
  * The energy seller in the energy marketplace.
+ * @param sup Reference to the superclass object.
  */
 case class GenerationProvider
-(
-
-    override val sup: Organisation
+(override val sup: Organisation
 )
 extends
     Element
@@ -137,19 +128,15 @@ extends
 
 /**
  * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
+ * @param sup Reference to the superclass object.
+ * @param defaultIntegrationMethod The default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
+ *        Method #1 is to integrate the instantaneous schedule between the hourly boundaries. Method #2 compensates for any up/down ramping that occurs across the hourly boundary (this is called block accounting).
+ * @param MktOrganisation
  */
 case class IntSchedAgreement
-(
-
-    override val sup: Agreement,
-
-    /**
-     * The default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
-     * Method #1 is to integrate the instantaneous schedule between the hourly boundaries. Method #2 compensates for any up/down ramping that occurs across the hourly boundary (this is called block accounting).
-     */
-    val defaultIntegrationMethod: String,
-
-    val MktOrganisation: List[String]
+(override val sup: Agreement,
+val defaultIntegrationMethod: String,
+val MktOrganisation: List[String]
 )
 extends
     Element
@@ -186,11 +173,10 @@ extends
 
 /**
  * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
+ * @param sup Reference to the superclass object.
  */
 case class Marketer
-(
-
-    override val sup: Organisation
+(override val sup: Organisation
 )
 extends
     Element
@@ -223,11 +209,10 @@ extends
 
 /**
  * Contracts for services offered commercially.
+ * @param sup Reference to the superclass object.
  */
 case class OpenAccessProduct
-(
-
-    override val sup: Agreement
+(override val sup: Agreement
 )
 extends
     Element
@@ -259,25 +244,10 @@ extends
 }
 
 case class TransmissionProduct
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Type of the transmission product.
-     * This could be a transmission service class (firm, total transmission capability, or non-firm), transmission service period (on-peak, full-period, off-peak), transmission service increments (yearly extended, hourly fixed, monthly sliding, etc.), transmission service type (network, available transmission capability, or point-to-point, or a transmission service window (fixed hourly, sliding weekly, extended monthly, etc.).
-     */
-    val transmissionProductType: String,
-
-    /**
-     * A transmission product is located on a transmission path.
-     */
-    val LocationFor: List[String],
-
-    /**
-     * A TransmissionProvider offers a TransmissionProduct.
-     */
-    val TransmissionProvider: String
+(override val sup: IdentifiedObject,
+val transmissionProductType: String,
+val LocationFor: List[String],
+val TransmissionProvider: String
 )
 extends
     Element
@@ -317,11 +287,10 @@ extends
 /**
  * Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.
  * Posts information for transmission paths and AvailableTransmissionCapacities  on a reservation node.  Buys and sells its products and services on the same reservation node.
+ * @param sup Reference to the superclass object.
  */
 case class TransmissionProvider
-(
-
-    override val sup: Organisation
+(override val sup: Organisation
 )
 extends
     Element

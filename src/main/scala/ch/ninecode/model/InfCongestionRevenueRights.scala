@@ -7,42 +7,26 @@ import ch.ninecode.cim.Context
 
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
+ * @param sup Reference to the superclass object.
+ * @param action Buy, Sell
+ * @param baseEnergy Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
+ * @param ftrType Type of rights being offered (product) allowed to be auctioned (option, obligation).
+ * @param optimized Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
+ * @param EnergyPriceCurve
+ * @param Flowgate
+ * @param Pnodes
+ * @param _class Peak, Off-peak, 24-hour
  */
 case class FTR
-(
-
-    override val sup: Agreement,
-
-    /**
-     * Buy, Sell
-     */
-    val action: String,
-
-    /**
-     * Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
-     */
-    val baseEnergy: Double,
-
-    /**
-     * Type of rights being offered (product) allowed to be auctioned (option, obligation).
-     */
-    val ftrType: String,
-
-    /**
-     * Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
-     */
-    val optimized: String,
-
-    val EnergyPriceCurve: String,
-
-    val Flowgate: String,
-
-    val Pnodes: List[String],
-
-    /**
-     * Peak, Off-peak, 24-hour
-     */
-    val _class: String
+(override val sup: Agreement,
+val action: String,
+val baseEnergy: Double,
+val ftrType: String,
+val optimized: String,
+val EnergyPriceCurve: String,
+val Flowgate: String,
+val Pnodes: List[String],
+val _class: String
 )
 extends
     Element
@@ -91,22 +75,18 @@ extends
 
 /**
  * A type of limit that indicates if it is enforced and, through association, the organisation responsible for setting the limit.
+ * @param sup Reference to the superclass object.
+ * @param enforced True if limit is enforced.
+ * @param Flowgate
+ * @param MktMeasurement
+ * @param MktOrganisation
  */
 case class ViolationLimit
-(
-
-    override val sup: Limit,
-
-    /**
-     * True if limit is enforced.
-     */
-    val enforced: Boolean,
-
-    val Flowgate: String,
-
-    val MktMeasurement: String,
-
-    val MktOrganisation: List[String]
+(override val sup: Limit,
+val enforced: Boolean,
+val Flowgate: String,
+val MktMeasurement: String,
+val MktOrganisation: List[String]
 )
 extends
     Element

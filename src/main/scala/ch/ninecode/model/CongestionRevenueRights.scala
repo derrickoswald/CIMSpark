@@ -12,41 +12,25 @@ import ch.ninecode.cim.Context
 /**
  * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
  * A CRR is a financial concept that is used to hedge congestion charges.
+ * @param sup Reference to the superclass object.
+ * @param cRRcategory CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
+ *        If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records
+ * @param cRRtype Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
+ * @param hedgeType hedger type Obligation or Option
+ * @param timeOfUse Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).
+ * @param tradeSliceID Segment of the CRR described in the current record
+ * @param CRRMarket
+ * @param Flowgate
  */
 case class CRR
-(
-
-    override val sup: Document,
-
-    /**
-     * CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
-     * If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records
-     */
-    val cRRcategory: String,
-
-    /**
-     * Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
-     */
-    val cRRtype: String,
-
-    /**
-     * hedger type Obligation or Option
-     */
-    val hedgeType: String,
-
-    /**
-     * Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).
-     */
-    val timeOfUse: String,
-
-    /**
-     * Segment of the CRR described in the current record
-     */
-    val tradeSliceID: String,
-
-    val CRRMarket: String,
-
-    val Flowgate: String
+(override val sup: Document,
+val cRRcategory: String,
+val cRRtype: String,
+val hedgeType: String,
+val timeOfUse: String,
+val tradeSliceID: String,
+val CRRMarket: String,
+val Flowgate: String
 )
 extends
     Element
@@ -93,25 +77,18 @@ extends
 
 /**
  * Identifies a way in which an organisation may participate with a defined Congestion Revenue Right (CRR).
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of role the organisation is with regards to the congestion revenue rights.
+ * @param status Status of congestion revenue rights organisation role.
+ * @param CRR
+ * @param MktOrganisation
  */
 case class CRROrgRole
-(
-
-    override val sup: OrganisationRole,
-
-    /**
-     * Kind of role the organisation is with regards to the congestion revenue rights.
-     */
-    val kind: String,
-
-    /**
-     * Status of congestion revenue rights organisation role.
-     */
-    val status: String,
-
-    val CRR: String,
-
-    val MktOrganisation: String
+(override val sup: OrganisationRole,
+val kind: String,
+val status: String,
+val CRR: String,
+val MktOrganisation: String
 )
 extends
     Element
@@ -153,38 +130,22 @@ extends
 /**
  * CRRSegment represents a segment of a CRR in a particular time frame.
  * The segment class contains CRR kind, type, quantity, hedger type, time of use flag, and segment period.
+ * @param sup Reference to the superclass object.
+ * @param amount Dollar amount = quantity x clearingPrice
+ * @param clearingPrice Clearing price of a CRR
+ * @param endDateTime segment end date time
+ * @param quantity The MW amount associated with the CRR
+ * @param startDateTime segment start date time
+ * @param CRR
  */
 case class CRRSegment
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Dollar amount = quantity x clearingPrice
-     */
-    val amount: Double,
-
-    /**
-     * Clearing price of a CRR
-     */
-    val clearingPrice: Double,
-
-    /**
-     * segment end date time
-     */
-    val endDateTime: String,
-
-    /**
-     * The MW amount associated with the CRR
-     */
-    val quantity: Double,
-
-    /**
-     * segment start date time
-     */
-    val startDateTime: String,
-
-    val CRR: String
+(override val sup: IdentifiedObject,
+val amount: Double,
+val clearingPrice: Double,
+val endDateTime: String,
+val quantity: Double,
+val startDateTime: String,
+val CRR: String
 )
 extends
     Element

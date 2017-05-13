@@ -10,13 +10,12 @@ import ch.ninecode.cim.Context
 
 /**
  * Model of results of market clearing with respect to  Ancillary Service products
+ * @param sup Reference to the superclass object.
+ * @param MarketCaseClearing
  */
 case class AncillaryServiceClearing
-(
-
-    override val sup: MarketFactors,
-
-    val MarketCaseClearing: String
+(override val sup: MarketFactors,
+val MarketCaseClearing: String
 )
 extends
     Element
@@ -51,64 +50,48 @@ extends
 
 /**
  * Model various charges to support billing and settlement of
+ * @param sup Reference to the superclass object.
+ * @param calculationLevel Level in charge calculation order.
+ * @param configVersion The version of configuration of calculation logic in the settlement.
+ * @param deleteStatus
+ * @param effectiveDate
+ * @param exception
+ * @param factor
+ * @param frequency
+ * @param numberInterval Number of intervals of bill determiant in trade day, eg 300 for five minute intervals.
+ * @param offset
+ * @param precisionLevel The level of precision in the current value.
+ * @param primaryYN
+ * @param referenceFlag
+ * @param reportable
+ * @param roundOff
+ * @param source
+ * @param terminationDate
+ * @param unitOfMeasure The UOM for the current value of the Bill Determinant.
+ * @param ChargeProfile
+ * @param MktUserAttribute
  */
 case class BillDeterminant
-(
-
-    override val sup: Document,
-
-    /**
-     * Level in charge calculation order.
-     */
-    val calculationLevel: String,
-
-    /**
-     * The version of configuration of calculation logic in the settlement.
-     */
-    val configVersion: String,
-
-    val deleteStatus: String,
-
-    val effectiveDate: String,
-
-    val exception: String,
-
-    val factor: String,
-
-    val frequency: String,
-
-    /**
-     * Number of intervals of bill determiant in trade day, eg 300 for five minute intervals.
-     */
-    val numberInterval: Int,
-
-    val offset: String,
-
-    /**
-     * The level of precision in the current value.
-     */
-    val precisionLevel: String,
-
-    val primaryYN: String,
-
-    val referenceFlag: String,
-
-    val reportable: String,
-
-    val roundOff: String,
-
-    val source: String,
-
-    val terminationDate: String,
-
-    /**
-     * The UOM for the current value of the Bill Determinant.
-     */
-    val unitOfMeasure: String,
-
-    val ChargeProfile: String,
-
-    val MktUserAttribute: List[String]
+(override val sup: Document,
+val calculationLevel: String,
+val configVersion: String,
+val deleteStatus: String,
+val effectiveDate: String,
+val exception: String,
+val factor: String,
+val frequency: String,
+val numberInterval: Int,
+val offset: String,
+val precisionLevel: String,
+val primaryYN: String,
+val referenceFlag: String,
+val reportable: String,
+val roundOff: String,
+val source: String,
+val terminationDate: String,
+val unitOfMeasure: String,
+val ChargeProfile: String,
+val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -179,38 +162,25 @@ extends
 
 /**
  * A type of profile for financial charges
+ * @param sup Reference to the superclass object.
+ * @param frequency The calculation frequency, daily or monthly.
+ * @param numberInterval The number of intervals in the profile data.
+ * @param typ The type of profile.
+ *        It could be amount, price, or quantity.
+ * @param unitOfMeasure The unit of measure applied to the value attribute of the profile data.
+ * @param Bid
+ * @param BillDeterminant
+ * @param PassTroughBill
  */
 case class ChargeProfile
-(
-
-    override val sup: Profile,
-
-    /**
-     * The calculation frequency, daily or monthly.
-     */
-    val frequency: String,
-
-    /**
-     * The number of intervals in the profile data.
-     */
-    val numberInterval: Int,
-
-    /**
-     * The type of profile.
-     * It could be amount, price, or quantity.
-     */
-    val typ: String,
-
-    /**
-     * The unit of measure applied to the value attribute of the profile data.
-     */
-    val unitOfMeasure: String,
-
-    val Bid: String,
-
-    val BillDeterminant: String,
-
-    val PassTroughBill: String
+(override val sup: Profile,
+val frequency: String,
+val numberInterval: Int,
+val typ: String,
+val unitOfMeasure: String,
+val Bid: String,
+val BillDeterminant: String,
+val PassTroughBill: String
 )
 extends
     Element
@@ -257,30 +227,20 @@ extends
 
 /**
  * Model of various charges associated with an energy profile to support billing and settlement
+ * @param sup Reference to the superclass object.
+ * @param sequence The sequence number of the profile.
+ * @param timeStamp The date and time of an interval.
+ * @param value The value of an interval given a profile type (amount, price, or quantity), subject to the UOM.
+ * @param BillDeterminant
+ * @param ChargeProfile
  */
 case class ChargeProfileData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The sequence number of the profile.
-     */
-    val sequence: Int,
-
-    /**
-     * The date and time of an interval.
-     */
-    val timeStamp: String,
-
-    /**
-     * The value of an interval given a profile type (amount, price, or quantity), subject to the UOM.
-     */
-    val value: Double,
-
-    val BillDeterminant: String,
-
-    val ChargeProfile: String
+(override val sup: BasicElement,
+val sequence: Int,
+val timeStamp: String,
+val value: Double,
+val BillDeterminant: String,
+val ChargeProfile: String
 )
 extends
     Element
@@ -323,11 +283,10 @@ extends
 
 /**
  * Models results of market clearing which call for commitment of units.
+ * @param sup Reference to the superclass object.
  */
 case class CommitmentClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -361,57 +320,35 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Startup/Shutdown commitment results.
  * This information is relevant to all markets.
+ * @param sup Reference to the superclass object.
+ * @param commitmentType the type of UC status (self commitment, ISO commitment, or SCUC commitment)
+ * @param instructionCost Total cost associated with changing the status of the resource.
+ * @param instructionType Indicator of either a Start-Up or a Shut-Down.
+ * @param intervalEndTime End time for the commitment period.
+ *        This will be on an interval boundary.
+ * @param intervalStartTime Start time for the commitment period.
+ *        This will be on an interval boundary.
+ * @param minStatusChangeTime SCUC commitment period start-up time.
+ *        Calculated start up time based on the StartUpTimeCurve provided with the Bid.
+ * @param noLoadCost Unit no load cost in case of energy commodity
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param RegisteredResource
  */
 case class Commitments
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * the type of UC status (self commitment, ISO commitment, or SCUC commitment)
-     */
-    val commitmentType: String,
-
-    /**
-     * Total cost associated with changing the status of the resource.
-     */
-    val instructionCost: Double,
-
-    /**
-     * Indicator of either a Start-Up or a Shut-Down.
-     */
-    val instructionType: String,
-
-    /**
-     * End time for the commitment period.
-     * This will be on an interval boundary.
-     */
-    val intervalEndTime: String,
-
-    /**
-     * Start time for the commitment period.
-     * This will be on an interval boundary.
-     */
-    val intervalStartTime: String,
-
-    /**
-     * SCUC commitment period start-up time.
-     * Calculated start up time based on the StartUpTimeCurve provided with the Bid.
-     */
-    val minStatusChangeTime: Int,
-
-    /**
-     * Unit no load cost in case of energy commodity
-     */
-    val noLoadCost: Double,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val commitmentType: String,
+val instructionCost: Double,
+val instructionType: String,
+val intervalEndTime: String,
+val intervalStartTime: String,
+val minStatusChangeTime: Int,
+val noLoadCost: Double,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -466,11 +403,10 @@ extends
 
 /**
  * Groups all items associated with Binding Constraints and Constraint Violations per interval and market.
+ * @param sup Reference to the superclass object.
  */
 case class ConstraintClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -504,95 +440,49 @@ extends
 /**
  * Provides the Market results for the constraint processing for either the DAM or RTM.
  * The data includes the constraint type (binding or violated), the solved value for the constraint, and the associated shadow price.
+ * @param sup Reference to the superclass object.
+ * @param baseFlow Branch base Power Flow.
+ * @param bindingLimit MW Limit.
+ * @param clearedValue Cleared MW.
+ * @param competitivePathConstraint Non-competitive path constraint Flag"(Y/N)  indicating whether the shadow price on a non-competitive path was non-zero.
+ * @param constraintType Type of constraint.
+ * @param limitFlag Limit flag ('Maximum', 'Minimum').
+ * @param optimizationFlag Included in optimization Y/N.
+ * @param overloadMW Transmission overload MW.
+ * @param percentMW Actual MW flow as percent of limit.
+ * @param shadowPrice Shadow Price ($/MW) for the commodity.
+ *        Shadow price for the corresponding constraint.
+ * @param updateTimeStamp Update time stamp.
+ * @param updateType MQS change type.
+ * @param updateUser Updated user.
+ * @param BGLimit This value is determined in DA and RTM.
+ *        The SCUC optimization ensures that the MW flow on the Branch Group will not exceed this limit in the relevant direction.
+ * @param BGTRResCap Branch Group TR Reservation Capacity - This value is determined in DA and RTM.
+ *        It is the amount of spare transmission capacity that is left for the TR holder to use.
+ * @param ConstraintClearing
+ * @param Flowgate
+ * @param MktContingency
  */
 case class ConstraintResults
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Branch base Power Flow.
-     */
-    val baseFlow: Double,
-
-    /**
-     * MW Limit.
-     */
-    val bindingLimit: Double,
-
-    /**
-     * Cleared MW.
-     */
-    val clearedValue: Double,
-
-    /**
-     * Non-competitive path constraint Flag"(Y/N)  indicating whether the shadow price on a non-competitive path was non-zero.
-     */
-    val competitivePathConstraint: String,
-
-    /**
-     * Type of constraint.
-     */
-    val constraintType: String,
-
-    /**
-     * Limit flag ('Maximum', 'Minimum').
-     */
-    val limitFlag: String,
-
-    /**
-     * Included in optimization Y/N.
-     */
-    val optimizationFlag: String,
-
-    /**
-     * Transmission overload MW.
-     */
-    val overloadMW: Double,
-
-    /**
-     * Actual MW flow as percent of limit.
-     */
-    val percentMW: Double,
-
-    /**
-     * Shadow Price ($/MW) for the commodity.
-     * Shadow price for the corresponding constraint.
-     */
-    val shadowPrice: Double,
-
-    /**
-     * Update time stamp.
-     */
-    val updateTimeStamp: String,
-
-    /**
-     * MQS change type.
-     */
-    val updateType: String,
-
-    /**
-     * Updated user.
-     */
-    val updateUser: String,
-
-    /**
-     * This value is determined in DA and RTM.
-     * The SCUC optimization ensures that the MW flow on the Branch Group will not exceed this limit in the relevant direction.
-     */
-    val BGLimit: Double,
-
-    /**
-     * Branch Group TR Reservation Capacity - This value is determined in DA and RTM.
-     * It is the amount of spare transmission capacity that is left for the TR holder to use.
-     */
-    val BGTRResCap: Double,
-
-    val ConstraintClearing: String,
-
-    val Flowgate: String,
-
-    val MktContingency: String
+(override val sup: IdentifiedObject,
+val baseFlow: Double,
+val bindingLimit: Double,
+val clearedValue: Double,
+val competitivePathConstraint: String,
+val constraintType: String,
+val limitFlag: String,
+val optimizationFlag: String,
+val overloadMW: Double,
+val percentMW: Double,
+val shadowPrice: Double,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val BGLimit: Double,
+val BGTRResCap: Double,
+val ConstraintClearing: String,
+val Flowgate: String,
+val MktContingency: String
 )
 extends
     Element
@@ -662,41 +552,28 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Dispatch Operating Point (DOP) results on a Dispatch interval.
  * This information is only relevant to the RT interval market.
+ * @param sup Reference to the superclass object.
+ * @param mwDOP Dispatched Operating Point (MW)
+ * @param plotPriority A value used to establish priority of the DOP when plotting.
+ *        This is only applicable when two DOPs exist for the same time, but with different MW values.  E.g. when indicating a step in the curve.  Its used to determine if the curve steps up or down.
+ * @param runIndicatorDOP Indication of DOP validity.
+ *        Shows the DOP is calculated from the latest run (YES). A NO indicator shows that the DOP is copied from a previous execution.
+ * @param timestampDOP DOP time stamp
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param RegisteredResouce
  */
 case class DopInstruction
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Dispatched Operating Point (MW)
-     */
-    val mwDOP: Double,
-
-    /**
-     * A value used to establish priority of the DOP when plotting.
-     * This is only applicable when two DOPs exist for the same time, but with different MW values.  E.g. when indicating a step in the curve.  Its used to determine if the curve steps up or down.
-     */
-    val plotPriority: Int,
-
-    /**
-     * Indication of DOP validity.
-     * Shows the DOP is calculated from the latest run (YES). A NO indicator shows that the DOP is copied from a previous execution.
-     */
-    val runIndicatorDOP: String,
-
-    /**
-     * DOP time stamp
-     */
-    val timestampDOP: String,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    val RegisteredResouce: String
+(override val sup: BasicElement,
+val mwDOP: Double,
+val plotPriority: Int,
+val runIndicatorDOP: String,
+val timestampDOP: String,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val RegisteredResouce: String
 )
 extends
     Element
@@ -746,119 +623,58 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Dispatch Operating Target (DOT) results on a Dispatch interval.
  * This information is only relevant to the RT interval market.
+ * @param sup Reference to the superclass object.
+ * @param actualRampRate Actual ramp rate.
+ * @param compliantIndicator Flag indicating whether or not the resource was in compliance with the instruction (plus/minus 10%).
+ *        Directs if a unit is allowed to set the price (ex-post pricing).
+ * @param economicMaxOverride Economic Max Limit override for unit, this value is null, if it is not, this value overrides the Energy column value.
+ *        Allows dispatcher to override the unit's energy value.
+ * @param expectedEnergy Expected energy.
+ * @param generatorPerformanceDegree The Degree of Generator Performance (DGP) used for the unit.
+ *        Measure of how a generator responds to raise /lower signals.  Calculated every five minutes.
+ * @param hourAheadSchedEnergy HASP results.
+ * @param hourlySchedule Hourly Schedule (DA Energy Schedule).
+ * @param instructionTime The date/time for the instruction.
+ * @param maximumEmergencyInd True if maximum emergency limit activated; false otherwise.
+ *        If unit is requested  to move up to its max emergency limit., this flag is set to true.
+ * @param meterLoadFollowing Meter Sub System Load Following.
+ * @param nonRampRestrictedMW Desired MW that is not ramp restricted.
+ *        If no ramp rate limit existed for the unit, this is the MW value tha t the unit was requested to move to.
+ * @param nonSpinReserve Non Spin Reserve used to procure energy.
+ * @param previousDOTTimeStamp Timestamp when the previous DOT value was issued.
+ * @param rampRateLimit The ramp rate limit for the unit in MWs per minute.
+ *        Participant bidding data.
+ * @param regulationStatus Regulation Status (Yes/No).
+ * @param spinReserve Spin Reserve used to procure energy.
+ * @param standardRampEnergy Standard ramping energy (MWH).
+ * @param supplementalEnergy Supplemental Energy procure by Real Time Dispatch.
+ * @param unitStatus Output results from the case identifying the reason the unit was committed by the software.
+ * @param DOT Dispatch operating target value.
+ * @param RegisteredResource
  */
 case class DotInstruction
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Actual ramp rate.
-     */
-    val actualRampRate: Double,
-
-    /**
-     * Flag indicating whether or not the resource was in compliance with the instruction (plus/minus 10%).
-     * Directs if a unit is allowed to set the price (ex-post pricing).
-     */
-    val compliantIndicator: String,
-
-    /**
-     * Economic Max Limit override for unit, this value is null, if it is not, this value overrides the Energy column value.
-     * Allows dispatcher to override the unit's energy value.
-     */
-    val economicMaxOverride: Double,
-
-    /**
-     * Expected energy.
-     */
-    val expectedEnergy: Double,
-
-    /**
-     * The Degree of Generator Performance (DGP) used for the unit.
-     * Measure of how a generator responds to raise /lower signals.  Calculated every five minutes.
-     */
-    val generatorPerformanceDegree: Double,
-
-    /**
-     * HASP results.
-     */
-    val hourAheadSchedEnergy: Double,
-
-    /**
-     * Hourly Schedule (DA Energy Schedule).
-     */
-    val hourlySchedule: Double,
-
-    /**
-     * The date/time for the instruction.
-     */
-    val instructionTime: String,
-
-    /**
-     * True if maximum emergency limit activated; false otherwise.
-     * If unit is requested  to move up to its max emergency limit., this flag is set to true.
-     */
-    val maximumEmergencyInd: Boolean,
-
-    /**
-     * Meter Sub System Load Following.
-     */
-    val meterLoadFollowing: Double,
-
-    /**
-     * Desired MW that is not ramp restricted.
-     * If no ramp rate limit existed for the unit, this is the MW value tha t the unit was requested to move to.
-     */
-    val nonRampRestrictedMW: Double,
-
-    /**
-     * Non Spin Reserve used to procure energy.
-     */
-    val nonSpinReserve: Double,
-
-    /**
-     * Timestamp when the previous DOT value was issued.
-     */
-    val previousDOTTimeStamp: String,
-
-    /**
-     * The ramp rate limit for the unit in MWs per minute.
-     * Participant bidding data.
-     */
-    val rampRateLimit: Double,
-
-    /**
-     * Regulation Status (Yes/No).
-     */
-    val regulationStatus: String,
-
-    /**
-     * Spin Reserve used to procure energy.
-     */
-    val spinReserve: Double,
-
-    /**
-     * Standard ramping energy (MWH).
-     */
-    val standardRampEnergy: Double,
-
-    /**
-     * Supplemental Energy procure by Real Time Dispatch.
-     */
-    val supplementalEnergy: Double,
-
-    /**
-     * Output results from the case identifying the reason the unit was committed by the software.
-     */
-    val unitStatus: Int,
-
-    /**
-     * Dispatch operating target value.
-     */
-    val DOT: Double,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val actualRampRate: Double,
+val compliantIndicator: String,
+val economicMaxOverride: Double,
+val expectedEnergy: Double,
+val generatorPerformanceDegree: Double,
+val hourAheadSchedEnergy: Double,
+val hourlySchedule: Double,
+val instructionTime: String,
+val maximumEmergencyInd: Boolean,
+val meterLoadFollowing: Double,
+val nonRampRestrictedMW: Double,
+val nonSpinReserve: Double,
+val previousDOTTimeStamp: String,
+val rampRateLimit: Double,
+val regulationStatus: String,
+val spinReserve: Double,
+val standardRampEnergy: Double,
+val supplementalEnergy: Double,
+val unitStatus: Int,
+val DOT: Double,
+val RegisteredResource: String
 )
 extends
     Element
@@ -933,11 +749,10 @@ extends
 
 /**
  * Model of ex-post calcultion of MW losses.
+ * @param sup Reference to the superclass object.
  */
 case class ExPostLoss
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -971,27 +786,20 @@ extends
 /**
  * Model results of ex-post calculation of MW losses.
  * Summarizes loss in two categories losses on the the extra high voltage transmission and total losses. Calculated for each subcontrol area.
+ * @param sup Reference to the superclass object.
+ * @param ehvLossMW EHV MW losses in the company
+ *        Attribute Usage: Information purposes - Output of LPA engine.
+ * @param totalLossMW Total MW losses in the company
+ *        Attribute Usage: Information purposes - Output of LPA engine.
+ * @param ExPostLoss
+ * @param SubControlArea
  */
 case class ExPostLossResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * EHV MW losses in the company
-     * Attribute Usage: Information purposes - Output of LPA engine.
-     */
-    val ehvLossMW: Double,
-
-    /**
-     * Total MW losses in the company
-     * Attribute Usage: Information purposes - Output of LPA engine.
-     */
-    val totalLossMW: Double,
-
-    val ExPostLoss: String,
-
-    val SubControlArea: String
+(override val sup: BasicElement,
+val ehvLossMW: Double,
+val totalLossMW: Double,
+val ExPostLoss: String,
+val SubControlArea: String
 )
 extends
     Element
@@ -1032,13 +840,12 @@ extends
 
 /**
  * Model of ex-post calculation of cleared MW on a regional basis
+ * @param sup Reference to the superclass object.
+ * @param ExPostMarketRegionResults
  */
 case class ExPostMarketRegion
-(
-
-    override val sup: MarketFactors,
-
-    val ExPostMarketRegionResults: String
+(override val sup: MarketFactors,
+val ExPostMarketRegionResults: String
 )
 extends
     Element
@@ -1074,17 +881,16 @@ extends
 /**
  * Model of expost calculation of cleared MW on a region basis.
  * Includes cleared price
+ * @param sup Reference to the superclass object.
+ * @param exPostClearedPrice
+ * @param ExPostMarketRegion
+ * @param MarketRegion
  */
 case class ExPostMarketRegionResults
-(
-
-    override val sup: BasicElement,
-
-    val exPostClearedPrice: Double,
-
-    val ExPostMarketRegion: String,
-
-    val MarketRegion: String
+(override val sup: BasicElement,
+val exPostClearedPrice: Double,
+val ExPostMarketRegion: String,
+val MarketRegion: String
 )
 extends
     Element
@@ -1123,16 +929,12 @@ extends
 
 /**
  * Model of ex-post pricing of nodes
+ * @param sup Reference to the superclass object.
+ * @param energyPrice market energy price
  */
 case class ExPostPricing
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * market energy price
-     */
-    val energyPrice: Double
+(override val sup: MarketFactors,
+val energyPrice: Double
 )
 extends
     Element
@@ -1168,33 +970,23 @@ extends
 /**
  * Model of ex-post pricing of nodes.
  * Includes LMP information, pnode based.
+ * @param sup Reference to the superclass object.
+ * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW; congestion component of the hourly LMP at a specific pricing node
+ *        Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly congestion component of LMP for each pricing node.
+ * @param lmp 5 min weighted average LMP; the Location Marginal Price of the Pnode for which price calculation is carried out.
+ *        Attribute Usage: 5 min weighted average LMP  to be displayed on UI
+ * @param lossLMP Loss component of Location Marginal Price (LMP) in monetary units per MW; loss component of the hourly LMP at a specific pricing node
+ *        Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly loss component of LMP for each pricing node.
+ * @param ExPostPricing
+ * @param Pnode
  */
 case class ExPostPricingResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Congestion component of Location Marginal Price (LMP) in monetary units per MW; congestion component of the hourly LMP at a specific pricing node
-     * Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly congestion component of LMP for each pricing node.
-     */
-    val congestLMP: Double,
-
-    /**
-     * 5 min weighted average LMP; the Location Marginal Price of the Pnode for which price calculation is carried out.
-     * Attribute Usage: 5 min weighted average LMP  to be displayed on UI
-     */
-    val lmp: Double,
-
-    /**
-     * Loss component of Location Marginal Price (LMP) in monetary units per MW; loss component of the hourly LMP at a specific pricing node
-     * Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly loss component of LMP for each pricing node.
-     */
-    val lossLMP: Double,
-
-    val ExPostPricing: String,
-
-    val Pnode: String
+(override val sup: BasicElement,
+val congestLMP: Double,
+val lmp: Double,
+val lossLMP: Double,
+val ExPostPricing: String,
+val Pnode: String
 )
 extends
     Element
@@ -1237,11 +1029,10 @@ extends
 
 /**
  * Model of ex-post pricing of resources.
+ * @param sup Reference to the superclass object.
  */
 case class ExPostResource
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -1275,61 +1066,33 @@ extends
 /**
  * Model of ex-post pricing of resources contains components of LMPs: energy, congestion, loss.
  * Resource based.
+ * @param sup Reference to the superclass object.
+ * @param congestionLMP LMP component in USD (deprecated)
+ * @param desiredMW Desired output of unit
+ * @param dispatchRate Unit Dispatch rate from real time unit dispatch.
+ * @param lmp LMP (Local Marginal Price) in USD at the equipment (deprecated)
+ * @param lossLMP loss lmp (deprecated)
+ * @param maxEconomicMW Economic Maximum MW
+ * @param minEconomicMW Economic Minimum MW
+ * @param resourceMW Current MW output of the equipment
+ *        Attribute Usage: Information purposes - Information purposes - Output of LPA engine.
+ * @param status Status of equipment
+ * @param ExPostResource
+ * @param RegisteredResource
  */
 case class ExPostResourceResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * LMP component in USD (deprecated)
-     */
-    val congestionLMP: Double,
-
-    /**
-     * Desired output of unit
-     */
-    val desiredMW: Double,
-
-    /**
-     * Unit Dispatch rate from real time unit dispatch.
-     */
-    val dispatchRate: Double,
-
-    /**
-     * LMP (Local Marginal Price) in USD at the equipment (deprecated)
-     */
-    val lmp: Double,
-
-    /**
-     * loss lmp (deprecated)
-     */
-    val lossLMP: Double,
-
-    /**
-     * Economic Maximum MW
-     */
-    val maxEconomicMW: Double,
-
-    /**
-     * Economic Minimum MW
-     */
-    val minEconomicMW: Double,
-
-    /**
-     * Current MW output of the equipment
-     * Attribute Usage: Information purposes - Information purposes - Output of LPA engine.
-     */
-    val resourceMW: Double,
-
-    /**
-     * Status of equipment
-     */
-    val status: String,
-
-    val ExPostResource: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val congestionLMP: Double,
+val desiredMW: Double,
+val dispatchRate: Double,
+val lmp: Double,
+val lossLMP: Double,
+val maxEconomicMW: Double,
+val minEconomicMW: Double,
+val resourceMW: Double,
+val status: String,
+val ExPostResource: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1385,11 +1148,10 @@ extends
 /**
  * Model of clearing result of the market run at the market level.
  * Identifies interval
+ * @param sup Reference to the superclass object.
  */
 case class GeneralClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -1422,32 +1184,22 @@ extends
 
 /**
  * Provides the adjusted load forecast value on a load forecast zone basis.
+ * @param sup Reference to the superclass object.
+ * @param loadForecast Load Prediction/Forecast (MW), by Time Period (5', 10', 15')
+ * @param totalLoad Amount of load in the control zone
+ *        Attribute Usage: hourly load value for the specific area
+ * @param totalNetInterchange Amount of interchange for the control zone
+ *        Attribute Usage: hourly interchange value for the specific area
+ * @param GeneralClearing
+ * @param SubControlArea
  */
 case class GeneralClearingResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Load Prediction/Forecast (MW), by Time Period (5', 10', 15')
-     */
-    val loadForecast: Double,
-
-    /**
-     * Amount of load in the control zone
-     * Attribute Usage: hourly load value for the specific area
-     */
-    val totalLoad: Double,
-
-    /**
-     * Amount of interchange for the control zone
-     * Attribute Usage: hourly interchange value for the specific area
-     */
-    val totalNetInterchange: Double,
-
-    val GeneralClearing: String,
-
-    val SubControlArea: String
+(override val sup: BasicElement,
+val loadForecast: Double,
+val totalLoad: Double,
+val totalNetInterchange: Double,
+val GeneralClearing: String,
+val SubControlArea: String
 )
 extends
     Element
@@ -1491,11 +1243,10 @@ extends
 /**
  * Model of market clearing, relating to commitment instructions.
  * Identifies interval
+ * @param sup Reference to the superclass object.
  */
 case class InstructionClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -1529,11 +1280,10 @@ extends
 /**
  * Model of market clearing, related to Dispatch Operating Point.
  * Identifies interval
+ * @param sup Reference to the superclass object.
  */
 case class InstructionClearingDOP
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -1567,18 +1317,14 @@ extends
 /**
  * Model of market clearing, related to Dispatch Operating Target (model of anticipatory dispatch).
  * Identifies interval
+ * @param sup Reference to the superclass object.
+ * @param contingencyActive Indication that the system is currently operating in a contingency mode.
+ * @param dispatchMode
  */
 case class InstructionClearingDOT
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * Indication that the system is currently operating in a contingency mode.
-     */
-    val contingencyActive: String,
-
-    val dispatchMode: String
+(override val sup: MarketFactors,
+val contingencyActive: String,
+val dispatchMode: String
 )
 extends
     Element
@@ -1616,56 +1362,37 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Startup/Shutdown instruction results.
  * This information is relevant to the DA Market (RUC only) as well as the RT Market (HASP, Pre-dispatch, and Interval).
+ * @param sup Reference to the superclass object.
+ * @param bindingDOT
+ * @param bindingInstruction
+ * @param instructionCost Total cost associated with changing the status of the resource.
+ * @param instructionSource instruction source for market quality results (INS, ACT)
+ * @param instructionStartTime Time the resource should be at Pmin (for start ups).
+ *        Time the resource is off line.
+ * @param instructionType Indicator of either a Start-Up or a Shut-Down.
+ * @param manuallyBlocked Manually Blocked Indicator (Yes/No).
+ *        The instruction has been blocked by an Operator.
+ * @param minStatusChangeTime Minimum start up time required to bring the unit online (minutes).
+ *        SCUC commitment period start-up time. Calculated start up time based on the StartUpTimeCurve provided with the Bid.
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param RegisteredResource
  */
 case class Instructions
-(
-
-    override val sup: BasicElement,
-
-    val bindingDOT: Double,
-
-    val bindingInstruction: String,
-
-    /**
-     * Total cost associated with changing the status of the resource.
-     */
-    val instructionCost: Double,
-
-    /**
-     * instruction source for market quality results (INS, ACT)
-     */
-    val instructionSource: String,
-
-    /**
-     * Time the resource should be at Pmin (for start ups).
-     * Time the resource is off line.
-     */
-    val instructionStartTime: String,
-
-    /**
-     * Indicator of either a Start-Up or a Shut-Down.
-     */
-    val instructionType: String,
-
-    /**
-     * Manually Blocked Indicator (Yes/No).
-     * The instruction has been blocked by an Operator.
-     */
-    val manuallyBlocked: String,
-
-    /**
-     * Minimum start up time required to bring the unit online (minutes).
-     * SCUC commitment period start-up time. Calculated start up time based on the StartUpTimeCurve provided with the Bid.
-     */
-    val minStatusChangeTime: Int,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val bindingDOT: Double,
+val bindingInstruction: String,
+val instructionCost: Double,
+val instructionSource: String,
+val instructionStartTime: String,
+val instructionType: String,
+val manuallyBlocked: String,
+val minStatusChangeTime: Int,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1723,34 +1450,24 @@ extends
 /**
  * Model of load following capabilities that are entered by operators on a temporary basis.
  * Related to Registered Resources in Metered Subsystems
+ * @param sup Reference to the superclass object.
+ * @param dataEntryTimeStamp Time the data entry was performed
+ * @param tempLoadFollowingDownManualCap temporarily manually entered LFD capacity
+ * @param tempLoadFollowingUpManualCap temporarily manually entered LFU capacity.
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param RegisteredResource
  */
 case class LoadFollowingOperatorInput
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Time the data entry was performed
-     */
-    val dataEntryTimeStamp: String,
-
-    /**
-     * temporarily manually entered LFD capacity
-     */
-    val tempLoadFollowingDownManualCap: Double,
-
-    /**
-     * temporarily manually entered LFU capacity.
-     */
-    val tempLoadFollowingUpManualCap: Double,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val dataEntryTimeStamp: String,
+val tempLoadFollowingDownManualCap: Double,
+val tempLoadFollowingUpManualCap: Double,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1797,11 +1514,10 @@ extends
 
 /**
  * RT only and is published on 5 minute intervals for the previous RT time interval results.
+ * @param sup Reference to the superclass object.
  */
 case class LossClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -1834,21 +1550,20 @@ extends
 
 /**
  * Provides the MW loss for RUC Zones, subcontrol areas, and the total loss.
+ * @param sup Reference to the superclass object.
+ * @param lossMW
+ * @param HostControlArea
+ * @param LossClearing
+ * @param RUCZone
+ * @param SubControlArea
  */
 case class LossClearingResults
-(
-
-    override val sup: BasicElement,
-
-    val lossMW: Double,
-
-    val HostControlArea: String,
-
-    val LossClearing: String,
-
-    val RUCZone: String,
-
-    val SubControlArea: String
+(override val sup: BasicElement,
+val lossMW: Double,
+val HostControlArea: String,
+val LossClearing: String,
+val RUCZone: String,
+val SubControlArea: String
 )
 extends
     Element
@@ -1892,17 +1607,16 @@ extends
 /**
  * Model of results of Market Power tests, and possible mitigation.
  * Interval based
+ * @param sup Reference to the superclass object.
+ * @param mitigationOccuredFlag
+ * @param LMPMFinalFlag
+ * @param SMPMFinalFlag
  */
 case class MPMClearing
-(
-
-    override val sup: MarketFactors,
-
-    val mitigationOccuredFlag: String,
-
-    val LMPMFinalFlag: String,
-
-    val SMPMFinalFlag: String
+(override val sup: MarketFactors,
+val mitigationOccuredFlag: String,
+val LMPMFinalFlag: String,
+val SMPMFinalFlag: String
 )
 extends
     Element
@@ -1941,21 +1655,17 @@ extends
 
 /**
  * Model of results of Market Power tests, gives status of resource for the associated interval
+ * @param sup Reference to the superclass object.
+ * @param resourceStatus Interval Test Status
+ *        'N' - not applicable
+ * @param MPMTestCategory
+ * @param RegisteredResource
  */
 case class MPMResourceStatus
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Interval Test Status
-     * 'N' - not applicable
-     */
-    val resourceStatus: String,
-
-    val MPMTestCategory: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val resourceStatus: String,
+val MPMTestCategory: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1995,28 +1705,21 @@ extends
 /**
  * Provides the outcome and margin percent (as appropriate) result data for the MPM tests.
  * There are relationships to Zone for Designated Congestion Area Tests, CurveSchedData for bid segment tests, to the SubControlArea for the system wide level tests, and Pnodes for the LMPM impact tests.
+ * @param sup Reference to the superclass object.
+ * @param marginPercent Used to show the Margin % result of the Impact test
+ * @param outcome The results of the test.
+ *        For the Price, Impact, and Conduct tests, typical values are NA, Pass, Fail, Disable, or Skip.
+ * @param AggregatedPnode
+ * @param MPMClearing
+ * @param MPMTestCategory
  */
 case class MPMTestResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Used to show the Margin % result of the Impact test
-     */
-    val marginPercent: Double,
-
-    /**
-     * The results of the test.
-     * For the Price, Impact, and Conduct tests, typical values are NA, Pass, Fail, Disable, or Skip.
-     */
-    val outcome: String,
-
-    val AggregatedPnode: String,
-
-    val MPMClearing: String,
-
-    val MPMTestCategory: String
+(override val sup: BasicElement,
+val marginPercent: Double,
+val outcome: String,
+val AggregatedPnode: String,
+val MPMClearing: String,
+val MPMTestCategory: String
 )
 extends
     Element
@@ -2060,89 +1763,46 @@ extends
 /**
  * Provides all Region Ancillary Service results for the DA and RT markets.
  * The specific data is commodity type (Regulation Up, Regulation Down, Spinning Reserve, Non-spinning Reserve, or Total Up reserves) based for the cleared MW, cleared price, and total capacity required for the region.
+ * @param sup Reference to the superclass object.
+ * @param clearedMW Cleared generation Value in MW.
+ *        For AS, this value is clearedMW = AS Total.  For AS, clearedMW - selfScheduleMW = AS Procured
+ * @param clearedPrice Marginal Price ($/MW) for the commodity (Energy, Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) based on the pricing run.
+ * @param dispatchCtMW Dispatchable MW for Combustion units.
+ * @param dispatchHydroMW Dispatchable MW for Hydro units.
+ * @param dispatchRate Dispatch rate in MW/minutes.
+ * @param dispatchSteamMW Dispatchable MW for Steam units.
+ * @param imbalanceEnergyBias Imbalance Energy Bias (MW) by Time Period (5' only)
+ * @param limitFlag Locational AS Flags indicating whether the Upper or Lower Bound limit of the AS regional procurment is binding
+ * @param lumpyIndicator The "Lumpy Flag"(Y/N)  indicates whether the resource that sets the price is a lumpy generator by hour over the time horizon.
+ *        Only applicable for the Day Ahead Market
+ * @param maxSufficiencyIndex Region requirement maximum limit
+ * @param minSufficiencyIndex Region requirement minimum limit
+ * @param reqMaxMW Region requirement maximum limit
+ * @param reqMinMW Region requirement minimum limit
+ * @param selfScheduleMW Aof AS, selfScheduleMW = AS Self-Provided
+ * @param AncillaryServiceClearing
+ * @param MarketProduct
+ * @param MarketRegion
  */
 case class MarketRegionResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Cleared generation Value in MW.
-     * For AS, this value is clearedMW = AS Total.  For AS, clearedMW - selfScheduleMW = AS Procured
-     */
-    val clearedMW: Double,
-
-    /**
-     * Marginal Price ($/MW) for the commodity (Energy, Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) based on the pricing run.
-     */
-    val clearedPrice: Double,
-
-    /**
-     * Dispatchable MW for Combustion units.
-     */
-    val dispatchCtMW: Double,
-
-    /**
-     * Dispatchable MW for Hydro units.
-     */
-    val dispatchHydroMW: Double,
-
-    /**
-     * Dispatch rate in MW/minutes.
-     */
-    val dispatchRate: Double,
-
-    /**
-     * Dispatchable MW for Steam units.
-     */
-    val dispatchSteamMW: Double,
-
-    /**
-     * Imbalance Energy Bias (MW) by Time Period (5' only)
-     */
-    val imbalanceEnergyBias: Double,
-
-    /**
-     * Locational AS Flags indicating whether the Upper or Lower Bound limit of the AS regional procurment is binding
-     */
-    val limitFlag: String,
-
-    /**
-     * The "Lumpy Flag"(Y/N)  indicates whether the resource that sets the price is a lumpy generator by hour over the time horizon.
-     * Only applicable for the Day Ahead Market
-     */
-    val lumpyIndicator: String,
-
-    /**
-     * Region requirement maximum limit
-     */
-    val maxSufficiencyIndex: Double,
-
-    /**
-     * Region requirement minimum limit
-     */
-    val minSufficiencyIndex: Double,
-
-    /**
-     * Region requirement maximum limit
-     */
-    val reqMaxMW: Double,
-
-    /**
-     * Region requirement minimum limit
-     */
-    val reqMinMW: Double,
-
-    /**
-     * Aof AS, selfScheduleMW = AS Self-Provided
-     */
-    val selfScheduleMW: Double,
-
-    val AncillaryServiceClearing: String,
-
-    val MarketProduct: String,
-
-    val MarketRegion: String
+(override val sup: BasicElement,
+val clearedMW: Double,
+val clearedPrice: Double,
+val dispatchCtMW: Double,
+val dispatchHydroMW: Double,
+val dispatchRate: Double,
+val dispatchSteamMW: Double,
+val imbalanceEnergyBias: Double,
+val limitFlag: String,
+val lumpyIndicator: String,
+val maxSufficiencyIndex: Double,
+val minSufficiencyIndex: Double,
+val reqMaxMW: Double,
+val reqMinMW: Double,
+val selfScheduleMW: Double,
+val AncillaryServiceClearing: String,
+val MarketProduct: String,
+val MarketRegion: String
 )
 extends
     Element
@@ -2210,48 +1870,26 @@ extends
 /**
  * This class holds elements that are single values for the entire market time horizon.
  * That is, for the Day Ahead market, there is 1 value for each element, not hourly based.  Is a summary of the market run
+ * @param sup Reference to the superclass object.
+ * @param ancillarySvcCost Total  AS Cost (i.e., payment) ($) over the time horizon
+ * @param contingentOperatingResAvail Global Contingent Operating Reserve Availability Indicator (Yes/No)
+ * @param energyCost Total Energy Cost ($) over the time horizon
+ * @param minimumLoadCost Total Minimum Load Cost ($) over the time horizon
+ * @param startUpCost Total Start-up Cost ($) over the time horizon
+ * @param totalCost Total Cost (Energy + AS) cost ($) by over the time horizon
+ * @param totalRucCost The total RUC capacity cost for this interval
+ * @param EnergyMarket
  */
 case class MarketResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Total  AS Cost (i.e., payment) ($) over the time horizon
-     */
-    val ancillarySvcCost: Double,
-
-    /**
-     * Global Contingent Operating Reserve Availability Indicator (Yes/No)
-     */
-    val contingentOperatingResAvail: String,
-
-    /**
-     * Total Energy Cost ($) over the time horizon
-     */
-    val energyCost: Double,
-
-    /**
-     * Total Minimum Load Cost ($) over the time horizon
-     */
-    val minimumLoadCost: Double,
-
-    /**
-     * Total Start-up Cost ($) over the time horizon
-     */
-    val startUpCost: Double,
-
-    /**
-     * Total Cost (Energy + AS) cost ($) by over the time horizon
-     */
-    val totalCost: Double,
-
-    /**
-     * The total RUC capacity cost for this interval
-     */
-    val totalRucCost: Double,
-
-    val EnergyMarket: String
+(override val sup: BasicElement,
+val ancillarySvcCost: Double,
+val contingentOperatingResAvail: String,
+val energyCost: Double,
+val minimumLoadCost: Double,
+val startUpCost: Double,
+val totalCost: Double,
+val totalRucCost: Double,
+val EnergyMarket: String
 )
 extends
     Element
@@ -2301,36 +1939,20 @@ extends
 /**
  * A statement is a roll up of statement line items.
  * Each statement along with its line items provide the details of specific charges at any given time.  Used by Billing and Settlement
+ * @param sup Reference to the superclass object.
+ * @param end The end of a bill period.
+ * @param referenceNumber The version number of previous statement (in the case of true up).
+ * @param start The start of a bill period.
+ * @param tradeDate The date of which Settlement is run.
+ * @param transactionDate The date of which this statement is issued.
  */
 case class MarketStatement
-(
-
-    override val sup: Document,
-
-    /**
-     * The end of a bill period.
-     */
-    val end: String,
-
-    /**
-     * The version number of previous statement (in the case of true up).
-     */
-    val referenceNumber: String,
-
-    /**
-     * The start of a bill period.
-     */
-    val start: String,
-
-    /**
-     * The date of which Settlement is run.
-     */
-    val tradeDate: String,
-
-    /**
-     * The date of which this statement is issued.
-     */
-    val transactionDate: String
+(override val sup: Document,
+val end: String,
+val referenceNumber: String,
+val start: String,
+val tradeDate: String,
+val transactionDate: String
 )
 extends
     Element
@@ -2373,109 +1995,54 @@ extends
 
 /**
  * An individual line item on a statement.
+ * @param sup Reference to the superclass object.
+ * @param currentAmount Current settlement amount.
+ * @param currentISOAmount Current ISO settlement amount.
+ * @param currentISOQuantity Current ISO settlement quantity.
+ * @param currentPrice Current settlement price.
+ * @param currentQuantity Current settlement quantity, subject to the UOM.
+ * @param intervalDate The date of which the settlement is run.
+ * @param intervalNumber The number of intervals.
+ * @param netAmount Net settlement amount.
+ * @param netISOAmount Net ISO settlement amount.
+ * @param netISOQuantity Net ISO settlement quantity.
+ * @param netPrice Net settlement price.
+ * @param netQuantity Net settlement quantity, subject to the UOM.
+ * @param previousAmount Previous settlement amount.
+ * @param previousISOAmount Previous ISO settlement amount.
+ * @param previousISOQuantity Previous ISO settlement quantity.
+ * @param previousQuantity Previous settlement quantity, subject to the UOM.
+ * @param previsouPrice Previous settlement price.
+ * @param quantityUOM The unit of measure for the quantity element of the line item.
+ * @param ContainerMarketStatementLineItem
+ * @param MarketStatement
+ * @param MktUserAttribute
+ * @param PassThroughBill
  */
 case class MarketStatementLineItem
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Current settlement amount.
-     */
-    val currentAmount: Double,
-
-    /**
-     * Current ISO settlement amount.
-     */
-    val currentISOAmount: Double,
-
-    /**
-     * Current ISO settlement quantity.
-     */
-    val currentISOQuantity: Double,
-
-    /**
-     * Current settlement price.
-     */
-    val currentPrice: Double,
-
-    /**
-     * Current settlement quantity, subject to the UOM.
-     */
-    val currentQuantity: Double,
-
-    /**
-     * The date of which the settlement is run.
-     */
-    val intervalDate: String,
-
-    /**
-     * The number of intervals.
-     */
-    val intervalNumber: String,
-
-    /**
-     * Net settlement amount.
-     */
-    val netAmount: Double,
-
-    /**
-     * Net ISO settlement amount.
-     */
-    val netISOAmount: Double,
-
-    /**
-     * Net ISO settlement quantity.
-     */
-    val netISOQuantity: Double,
-
-    /**
-     * Net settlement price.
-     */
-    val netPrice: Double,
-
-    /**
-     * Net settlement quantity, subject to the UOM.
-     */
-    val netQuantity: Double,
-
-    /**
-     * Previous settlement amount.
-     */
-    val previousAmount: Double,
-
-    /**
-     * Previous ISO settlement amount.
-     */
-    val previousISOAmount: Double,
-
-    /**
-     * Previous ISO settlement quantity.
-     */
-    val previousISOQuantity: Double,
-
-    /**
-     * Previous settlement quantity, subject to the UOM.
-     */
-    val previousQuantity: Double,
-
-    /**
-     * Previous settlement price.
-     */
-    val previsouPrice: Double,
-
-    /**
-     * The unit of measure for the quantity element of the line item.
-     */
-    val quantityUOM: String,
-
-    val ContainerMarketStatementLineItem: String,
-
-    val MarketStatement: String,
-
-    val MktUserAttribute: List[String],
-
-    val PassThroughBill: String
+(override val sup: IdentifiedObject,
+val currentAmount: Double,
+val currentISOAmount: Double,
+val currentISOQuantity: Double,
+val currentPrice: Double,
+val currentQuantity: Double,
+val intervalDate: String,
+val intervalNumber: String,
+val netAmount: Double,
+val netISOAmount: Double,
+val netISOQuantity: Double,
+val netPrice: Double,
+val netQuantity: Double,
+val previousAmount: Double,
+val previousISOAmount: Double,
+val previousISOQuantity: Double,
+val previousQuantity: Double,
+val previsouPrice: Double,
+val quantityUOM: String,
+val ContainerMarketStatementLineItem: String,
+val MarketStatement: String,
+val MktUserAttribute: List[String],
+val PassThroughBill: String
 )
 extends
     Element
@@ -2552,13 +2119,12 @@ extends
 
 /**
  * Mitigated bid results posted for a given settlement period.
+ * @param sup Reference to the superclass object.
+ * @param Bid
  */
 case class MitigatedBid
-(
-
-    override val sup: IdentifiedObject,
-
-    val Bid: String
+(override val sup: IdentifiedObject,
+val Bid: String
 )
 extends
     Element
@@ -2594,11 +2160,10 @@ extends
 /**
  * Model of market power mitigation through reference or mitigated bids.
  * Interval based.
+ * @param sup Reference to the superclass object.
  */
 case class MitigatedBidClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -2632,27 +2197,20 @@ extends
 /**
  * Model of mitigated bid.
  * Indicates segment of piece-wise linear bid, that has been mitigated
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime
+ * @param segmentMW Mitigated bid segment MW value
+ * @param segmentNumber Mitigated Bid Segment Number
+ * @param thresholdType
+ * @param Bid
  */
 case class MitigatedBidSegment
-(
-
-    override val sup: BasicElement,
-
-    val intervalStartTime: String,
-
-    /**
-     * Mitigated bid segment MW value
-     */
-    val segmentMW: Double,
-
-    /**
-     * Mitigated Bid Segment Number
-     */
-    val segmentNumber: Int,
-
-    val thresholdType: String,
-
-    val Bid: String
+(override val sup: BasicElement,
+val intervalStartTime: String,
+val segmentMW: Double,
+val segmentNumber: Int,
+val thresholdType: String,
+val Bid: String
 )
 extends
     Element
@@ -2698,133 +2256,63 @@ extends
 1)Two sided charge transactions with or without ISO involvement (hence the ?pass thru?)
 2) Specific direct charges or payments that are calculated outside or provided directly to settlements
  * 3) Specific charge bill determinants that are externally supplied and used in charge calculations
+ * @param sup Reference to the superclass object.
+ * @param adjustedAmount
+ * @param amount The charge amount of the product/service.
+ * @param billEnd Bill period end date
+ * @param billRunType The settlement run type, for example: prelim, final, and rerun.
+ * @param billStart Bill period start date
+ * @param billedTo The company to which the PTB transaction is billed.
+ * @param effectiveDate The effective date of the transaction
+ * @param isDisputed Disputed transaction indicator
+ * @param isProfiled A flag indicating whether there is a profile data associated with the PTB.
+ * @param paidTo The company to which the PTB transaction is paid.
+ * @param previousEnd The previous bill period end date
+ * @param previousStart The previous bill period start date
+ * @param price The price of product/service.
+ * @param productCode The product identifier for determining the charge type of the transaction.
+ * @param providedBy The company by which the PTB transaction service is provided.
+ * @param quantity The product quantity.
+ * @param serviceEnd The end date of service provided, if periodic.
+ * @param serviceStart The start date of service provided, if periodic.
+ * @param soldTo The company to which the PTB transaction is sold.
+ * @param taxAmount The tax on services taken.
+ * @param timeZone The time zone code
+ * @param tradeDate The trade date
+ * @param transactionDate The date the transaction occurs.
+ * @param transactionType The type of transaction.
+ *        For example, charge customer, bill customer, matching AR/AP, or bill determinant
+ * @param MarketStatementLineItem
+ * @param MktUserAttribute
  */
 case class PassThroughBill
-(
-
-    override val sup: Document,
-
-    val adjustedAmount: Double,
-
-    /**
-     * The charge amount of the product/service.
-     */
-    val amount: Double,
-
-    /**
-     * Bill period end date
-     */
-    val billEnd: String,
-
-    /**
-     * The settlement run type, for example: prelim, final, and rerun.
-     */
-    val billRunType: String,
-
-    /**
-     * Bill period start date
-     */
-    val billStart: String,
-
-    /**
-     * The company to which the PTB transaction is billed.
-     */
-    val billedTo: String,
-
-    /**
-     * The effective date of the transaction
-     */
-    val effectiveDate: String,
-
-    /**
-     * Disputed transaction indicator
-     */
-    val isDisputed: Boolean,
-
-    /**
-     * A flag indicating whether there is a profile data associated with the PTB.
-     */
-    val isProfiled: Boolean,
-
-    /**
-     * The company to which the PTB transaction is paid.
-     */
-    val paidTo: String,
-
-    /**
-     * The previous bill period end date
-     */
-    val previousEnd: String,
-
-    /**
-     * The previous bill period start date
-     */
-    val previousStart: String,
-
-    /**
-     * The price of product/service.
-     */
-    val price: Double,
-
-    /**
-     * The product identifier for determining the charge type of the transaction.
-     */
-    val productCode: String,
-
-    /**
-     * The company by which the PTB transaction service is provided.
-     */
-    val providedBy: String,
-
-    /**
-     * The product quantity.
-     */
-    val quantity: String,
-
-    /**
-     * The end date of service provided, if periodic.
-     */
-    val serviceEnd: String,
-
-    /**
-     * The start date of service provided, if periodic.
-     */
-    val serviceStart: String,
-
-    /**
-     * The company to which the PTB transaction is sold.
-     */
-    val soldTo: String,
-
-    /**
-     * The tax on services taken.
-     */
-    val taxAmount: Double,
-
-    /**
-     * The time zone code
-     */
-    val timeZone: String,
-
-    /**
-     * The trade date
-     */
-    val tradeDate: String,
-
-    /**
-     * The date the transaction occurs.
-     */
-    val transactionDate: String,
-
-    /**
-     * The type of transaction.
-     * For example, charge customer, bill customer, matching AR/AP, or bill determinant
-     */
-    val transactionType: String,
-
-    val MarketStatementLineItem: String,
-
-    val MktUserAttribute: List[String]
+(override val sup: Document,
+val adjustedAmount: Double,
+val amount: Double,
+val billEnd: String,
+val billRunType: String,
+val billStart: String,
+val billedTo: String,
+val effectiveDate: String,
+val isDisputed: Boolean,
+val isProfiled: Boolean,
+val paidTo: String,
+val previousEnd: String,
+val previousStart: String,
+val price: Double,
+val productCode: String,
+val providedBy: String,
+val quantity: String,
+val serviceEnd: String,
+val serviceStart: String,
+val soldTo: String,
+val taxAmount: Double,
+val timeZone: String,
+val tradeDate: String,
+val transactionDate: String,
+val transactionType: String,
+val MarketStatementLineItem: String,
+val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -2909,11 +2397,10 @@ extends
 
 /**
  * Pricing node clearing results posted for a given settlement period.
+ * @param sup Reference to the superclass object.
  */
 case class PnodeClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -2947,46 +2434,30 @@ extends
 /**
  * Provides the total price, the cost component, the loss component, and the congestion component for Pnodes for the forward and real time markets.
  * There are several prices produced based on the run type (MPM, RUC, Pricing, or Scheduling/Dispatch).
+ * @param sup Reference to the superclass object.
+ * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW.
+ * @param costLMP Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
+ * @param lossLMP Loss component of Location Marginal Price (LMP) in monetary units per MW.
+ * @param marginalClearingPrice Locational Marginal Price (LMP) ($/MWh)
+ * @param scheduledMW total MW schedule at the pnode
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param Pnode
+ * @param PnodeClearing
  */
 case class PnodeResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Congestion component of Location Marginal Price (LMP) in monetary units per MW.
-     */
-    val congestLMP: Double,
-
-    /**
-     * Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
-     */
-    val costLMP: Double,
-
-    /**
-     * Loss component of Location Marginal Price (LMP) in monetary units per MW.
-     */
-    val lossLMP: Double,
-
-    /**
-     * Locational Marginal Price (LMP) ($/MWh)
-     */
-    val marginalClearingPrice: Double,
-
-    /**
-     * total MW schedule at the pnode
-     */
-    val scheduledMW: Double,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    val Pnode: String,
-
-    val PnodeClearing: String
+(override val sup: BasicElement,
+val congestLMP: Double,
+val costLMP: Double,
+val lossLMP: Double,
+val marginalClearingPrice: Double,
+val scheduledMW: Double,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val Pnode: String,
+val PnodeClearing: String
 )
 extends
     Element
@@ -3039,13 +2510,12 @@ extends
 
 /**
  * Indicates whether unit is a reliablity must run unit: required to be on to satisfy Grid Code Reliablitiy criteria, load demand, or voltage support.
+ * @param sup Reference to the superclass object.
+ * @param Bid
  */
 case class RMRDetermination
-(
-
-    override val sup: BasicElement,
-
-    val Bid: String
+(override val sup: BasicElement,
+val Bid: String
 )
 extends
     Element
@@ -3080,24 +2550,20 @@ extends
 
 /**
  * RMR Operator's entry of the RMR requirement per market interval.
+ * @param sup Reference to the superclass object.
+ * @param manuallySchedRMRMw The lower of the original pre-dispatch or the AC run schedule (Also known as the RMR Reguirement) becomes the pre-dispatch value.
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param RegisteredResource
  */
 case class RMROperatorInput
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * The lower of the original pre-dispatch or the AC run schedule (Also known as the RMR Reguirement) becomes the pre-dispatch value.
-     */
-    val manuallySchedRMRMw: Double,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    val RegisteredResource: String
+(override val sup: MarketFactors,
+val manuallySchedRMRMw: Double,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -3140,53 +2606,37 @@ extends
 
 /**
  * This class models the information about the RUC awards
+ * @param sup Reference to the superclass object.
+ * @param clearedPrice Marginal Price ($/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
+ * @param marketProductType major product type may include the following but not limited to:
+
+Energy
+Regulation Up
+Regulation Dn
+Spinning Reserve
+Non-Spinning Reserve
+ *        Operating Reserve
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param RUCAward The RUC Award of a resource is the portion of the RUC Capacity that is not under RA or RMR contracts.
+ *        The RUC Award of a resource is the portion of the RUC Capacity that is eligible for RUC Availability payment.
+ * @param RUCCapacity The RUC Capacity of a resource is the difference between (i) the RUC Schedule and (ii) the higher of the DA Schedule and the Minimum Load.
+ * @param RUCSchedule The RUC Schedule of a resource is its output level that balances the load forecast used in RUC.
+ *        The RUC Schedule in RUC is similar to the DA Schedule in DAM.
+ * @param RegisteredResource
  */
 case class RUCAwardInstruction
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Marginal Price ($/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
-     */
-    val clearedPrice: Double,
-
-    /**
-     * major product type may include the following but not limited to:
-    
-    Energy
-    Regulation Up
-    Regulation Dn
-    Spinning Reserve
-    Non-Spinning Reserve
-     * Operating Reserve
-     */
-    val marketProductType: String,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    /**
-     * The RUC Award of a resource is the portion of the RUC Capacity that is not under RA or RMR contracts.
-     * The RUC Award of a resource is the portion of the RUC Capacity that is eligible for RUC Availability payment.
-     */
-    val RUCAward: Double,
-
-    /**
-     * The RUC Capacity of a resource is the difference between (i) the RUC Schedule and (ii) the higher of the DA Schedule and the Minimum Load.
-     */
-    val RUCCapacity: Double,
-
-    /**
-     * The RUC Schedule of a resource is its output level that balances the load forecast used in RUC.
-     * The RUC Schedule in RUC is similar to the DA Schedule in DAM.
-     */
-    val RUCSchedule: Double,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val clearedPrice: Double,
+val marketProductType: String,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val RUCAward: Double,
+val RUCCapacity: Double,
+val RUCSchedule: Double,
+val RegisteredResource: String
 )
 extends
     Element
@@ -3238,18 +2688,14 @@ extends
 /**
  * Models details of bid and offer market clearing.
  * Class indicates whether a contingency is active and whether the automatic dispatching system is active for this interval of the market solution
+ * @param sup Reference to the superclass object.
+ * @param contingencyActive Indication that the system is currently operating in a contingency mode.
+ * @param dispatchMode
  */
 case class ResourceAwardClearing
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * Indication that the system is currently operating in a contingency mode.
-     */
-    val contingencyActive: String,
-
-    val dispatchMode: String
+(override val sup: MarketFactors,
+val contingencyActive: String,
+val dispatchMode: String
 )
 extends
     Element
@@ -3287,162 +2733,86 @@ extends
 /**
  * Model of market results, instruction for resource.
  * Contains details of award as attributes
+ * @param sup Reference to the superclass object.
+ * @param awardMW For DA Energy: Not Applicable;   
+
+For DA AS: DA AS market award;   
+
+For RT Energy: Not Applicable;
+ *        For RT AS: RT AS market award (excluding DA AS market or self-proviison awards)
+ * @param clearedMW For DA Energy: Total Schedule = DA market schedule + DA self-schedule award;   
+
+For DA AS: DA Ancillary Service Awards = DA AS market award + DA AS self-provision award;   
+
+For RT Energy: Total Schedule = RT market schedule + RT self-schedule award;
+ *        For RT AS: RT Ancillary Service Awards = RT AS self-provision award + RT AS market award + DA AS market award + DA AS self-provision award;
+ * @param clearedPrice Marginal Price ($/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
+ * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW.
+ * @param costLMP Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
+ * @param dispatcherAddedMW The tier2 mw added by dispatcher action
+ *        Market results of the synchronized reserve market
+ * @param economicMax Unit max output for dispatch; bid in economic maximum
+ * @param economicMin Unit min output for dispatch; bid in economic minimum
+ * @param effRegulationDownLimit Effective Regulation Down Limit (MW)
+ * @param effRegulationUpLimit Effective Regulation Up Limit
+ * @param lmp Locational marginal price value
+ * @param lossLMP Loss component of Location Marginal Price (LMP) in monetary units per MW.
+ * @param manuallyBlocked Indicates if an award was manually blocked (Y/N).
+ *        Valid for Spinning and Non-spinning.
+ * @param marginalResourceIndicator Indicator (Yes / No) that this resource set the price for this dispatch / schedule.
+ * @param mustRunInd Identifes if the unit was set to must run by the market participant responsible for bidding in the unit
+ * @param noLoadCost Unit no-load cost in case of energy commodity
+ * @param optimalBidCost Optimal Bid cost
+ * @param optimalBidPay Optimal Bid production payment based on LMP
+ * @param optimalMargin Optimal Bid production margin
+ * @param overrideTimeStamp Time the manual data entry occured.
+ * @param overrideValue Provides the ability for the grid operator to override items, such as spin capacity requirements, prior to running the algorithm.
+ *        This value is market product based (spin, non-spin, reg up, reg down, or RUC).
+ * @param selfSchedMW For DA Energy: DA total self-schedule award;   
+For DA AS: DA AS self-provision award;   
+For RT Energy: RT total self-schedule award;
+ *        For RT AS: RT AS self-provision award (excluding DA AS market or self-provision awards)
+ * @param startUpCost Unit start up cost in case of energy commodity
+ * @param status In or out status of resource
+ * @param totalRevenue Total bid revenue (startup_cost + no_load_cost + bid_pay)
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param MarketProduct
+ * @param RegisteredResource
  */
 case class ResourceAwardInstruction
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * For DA Energy: Not Applicable;   
-    
-    For DA AS: DA AS market award;   
-    
-    For RT Energy: Not Applicable;
-     * For RT AS: RT AS market award (excluding DA AS market or self-proviison awards)
-     */
-    val awardMW: Double,
-
-    /**
-     * For DA Energy: Total Schedule = DA market schedule + DA self-schedule award;   
-    
-    For DA AS: DA Ancillary Service Awards = DA AS market award + DA AS self-provision award;   
-    
-    For RT Energy: Total Schedule = RT market schedule + RT self-schedule award;
-     * For RT AS: RT Ancillary Service Awards = RT AS self-provision award + RT AS market award + DA AS market award + DA AS self-provision award;
-     */
-    val clearedMW: Double,
-
-    /**
-     * Marginal Price ($/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
-     */
-    val clearedPrice: Double,
-
-    /**
-     * Congestion component of Location Marginal Price (LMP) in monetary units per MW.
-     */
-    val congestLMP: Double,
-
-    /**
-     * Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
-     */
-    val costLMP: Double,
-
-    /**
-     * The tier2 mw added by dispatcher action
-     * Market results of the synchronized reserve market
-     */
-    val dispatcherAddedMW: Double,
-
-    /**
-     * Unit max output for dispatch; bid in economic maximum
-     */
-    val economicMax: Double,
-
-    /**
-     * Unit min output for dispatch; bid in economic minimum
-     */
-    val economicMin: Double,
-
-    /**
-     * Effective Regulation Down Limit (MW)
-     */
-    val effRegulationDownLimit: Double,
-
-    /**
-     * Effective Regulation Up Limit
-     */
-    val effRegulationUpLimit: Double,
-
-    /**
-     * Locational marginal price value
-     */
-    val lmp: Double,
-
-    /**
-     * Loss component of Location Marginal Price (LMP) in monetary units per MW.
-     */
-    val lossLMP: Double,
-
-    /**
-     * Indicates if an award was manually blocked (Y/N).
-     * Valid for Spinning and Non-spinning.
-     */
-    val manuallyBlocked: String,
-
-    /**
-     * Indicator (Yes / No) that this resource set the price for this dispatch / schedule.
-     */
-    val marginalResourceIndicator: String,
-
-    /**
-     * Identifes if the unit was set to must run by the market participant responsible for bidding in the unit
-     */
-    val mustRunInd: Boolean,
-
-    /**
-     * Unit no-load cost in case of energy commodity
-     */
-    val noLoadCost: Double,
-
-    /**
-     * Optimal Bid cost
-     */
-    val optimalBidCost: Double,
-
-    /**
-     * Optimal Bid production payment based on LMP
-     */
-    val optimalBidPay: Double,
-
-    /**
-     * Optimal Bid production margin
-     */
-    val optimalMargin: Double,
-
-    /**
-     * Time the manual data entry occured.
-     */
-    val overrideTimeStamp: String,
-
-    /**
-     * Provides the ability for the grid operator to override items, such as spin capacity requirements, prior to running the algorithm.
-     * This value is market product based (spin, non-spin, reg up, reg down, or RUC).
-     */
-    val overrideValue: Double,
-
-    /**
-     * For DA Energy: DA total self-schedule award;   
-    For DA AS: DA AS self-provision award;   
-    For RT Energy: RT total self-schedule award;
-     * For RT AS: RT AS self-provision award (excluding DA AS market or self-provision awards)
-     */
-    val selfSchedMW: Double,
-
-    /**
-     * Unit start up cost in case of energy commodity
-     */
-    val startUpCost: Double,
-
-    /**
-     * In or out status of resource
-     */
-    val status: String,
-
-    /**
-     * Total bid revenue (startup_cost + no_load_cost + bid_pay)
-     */
-    val totalRevenue: Double,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    val MarketProduct: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val awardMW: Double,
+val clearedMW: Double,
+val clearedPrice: Double,
+val congestLMP: Double,
+val costLMP: Double,
+val dispatcherAddedMW: Double,
+val economicMax: Double,
+val economicMin: Double,
+val effRegulationDownLimit: Double,
+val effRegulationUpLimit: Double,
+val lmp: Double,
+val lossLMP: Double,
+val manuallyBlocked: String,
+val marginalResourceIndicator: String,
+val mustRunInd: Boolean,
+val noLoadCost: Double,
+val optimalBidCost: Double,
+val optimalBidPay: Double,
+val optimalMargin: Double,
+val overrideTimeStamp: String,
+val overrideValue: Double,
+val selfSchedMW: Double,
+val startUpCost: Double,
+val status: String,
+val totalRevenue: Double,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val MarketProduct: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -3536,11 +2906,10 @@ extends
 /**
  * Model of market results, including cleaing result of resources.
  * Associated with ResourceDispatchResults.
+ * @param sup Reference to the superclass object.
  */
 case class ResourceClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -3574,92 +2943,49 @@ extends
 /**
  * The ResourceDispatchResults class provides market results that can be provided to a SC.
  * The specific data provided consists of several indicators such as contingency flags, blocked start up, and RMR dispatch. It also provides the projected overall and the regulating status of the resource.
+ * @param sup Reference to the superclass object.
+ * @param blockedDispatch Blocked Dispatch Indicator (Yes/No)
+ * @param blockedPublishDOP Block sending DOP to ADS (Y/N)
+ * @param contingencyFlag Contingent Operating Reserve Indicator (Yes/No).
+ *        Resource participating with AS capacity in contingency dispatch.
+ * @param limitIndicator indicate which limit is the constraints
+ * @param lowerLimit resource energy ramping lower limit
+ * @param maxRampRate maximum ramp rate
+ * @param operatingLimitHigh The upper operating limit incorporating any derate used by the RTD for the Binding Interval.
+ * @param operatingLimitLow The lower operating limit incorporating any derate used by the RTD for the Binding Interval.
+ * @param penaltyDispatchIndicator Penalty Dispatch Indicator (Yes / No) indicating an un-economic adjustment.
+ * @param regulatingLimitHigh The upper regulating limit incorporating any derate used by the RTD for the Binding Interval.
+ * @param regulatingLimitLow The lower regulating limit incorporating any derate used by the RTD for the Binding Interval.
+ * @param resourceStatus Unit Commitment Status (On/Off/Starting)
+ * @param totalSchedule Resource total upward schedule.  total schedule = En + all AS per resource per interval
+ * @param updateTimeStamp
+ * @param updateType
+ * @param updateUser
+ * @param upperLimit resource energy ramping upper limit
+ * @param RegisteredResource
+ * @param ResourceClearing
  */
 case class ResourceDispatchResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Blocked Dispatch Indicator (Yes/No)
-     */
-    val blockedDispatch: String,
-
-    /**
-     * Block sending DOP to ADS (Y/N)
-     */
-    val blockedPublishDOP: String,
-
-    /**
-     * Contingent Operating Reserve Indicator (Yes/No).
-     * Resource participating with AS capacity in contingency dispatch.
-     */
-    val contingencyFlag: String,
-
-    /**
-     * indicate which limit is the constraints
-     */
-    val limitIndicator: String,
-
-    /**
-     * resource energy ramping lower limit
-     */
-    val lowerLimit: Double,
-
-    /**
-     * maximum ramp rate
-     */
-    val maxRampRate: Double,
-
-    /**
-     * The upper operating limit incorporating any derate used by the RTD for the Binding Interval.
-     */
-    val operatingLimitHigh: Double,
-
-    /**
-     * The lower operating limit incorporating any derate used by the RTD for the Binding Interval.
-     */
-    val operatingLimitLow: Double,
-
-    /**
-     * Penalty Dispatch Indicator (Yes / No) indicating an un-economic adjustment.
-     */
-    val penaltyDispatchIndicator: String,
-
-    /**
-     * The upper regulating limit incorporating any derate used by the RTD for the Binding Interval.
-     */
-    val regulatingLimitHigh: Double,
-
-    /**
-     * The lower regulating limit incorporating any derate used by the RTD for the Binding Interval.
-     */
-    val regulatingLimitLow: Double,
-
-    /**
-     * Unit Commitment Status (On/Off/Starting)
-     */
-    val resourceStatus: String,
-
-    /**
-     * Resource total upward schedule.  total schedule = En + all AS per resource per interval
-     */
-    val totalSchedule: Double,
-
-    val updateTimeStamp: String,
-
-    val updateType: String,
-
-    val updateUser: String,
-
-    /**
-     * resource energy ramping upper limit
-     */
-    val upperLimit: Double,
-
-    val RegisteredResource: String,
-
-    val ResourceClearing: String
+(override val sup: BasicElement,
+val blockedDispatch: String,
+val blockedPublishDOP: String,
+val contingencyFlag: String,
+val limitIndicator: String,
+val lowerLimit: Double,
+val maxRampRate: Double,
+val operatingLimitHigh: Double,
+val operatingLimitLow: Double,
+val penaltyDispatchIndicator: String,
+val regulatingLimitHigh: Double,
+val regulatingLimitLow: Double,
+val resourceStatus: String,
+val totalSchedule: Double,
+val updateTimeStamp: String,
+val updateType: String,
+val updateUser: String,
+val upperLimit: Double,
+val RegisteredResource: String,
+val ResourceClearing: String
 )
 extends
     Element
@@ -3730,35 +3056,25 @@ extends
 
 /**
  * Model of market clearing results for resources that bid to follow load
+ * @param sup Reference to the superclass object.
+ * @param calcLoadFollowingMW weighted average for RTPD and RTCD and same for RTID
+ * @param dispWindowHighLimt
+ * @param dispWindowLowLimt
+ * @param instructionID Unique instruction id per instruction, assigned by the SC and provided to ADS.
+ *        ADS passes through.
+ * @param intervalStartTime The start of the time interval for which requirement is defined.
+ * @param RegisteredResource
+ * @param ResourceClearing
  */
 case class ResourceLoadFollowingInst
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * weighted average for RTPD and RTCD and same for RTID
-     */
-    val calcLoadFollowingMW: Double,
-
-    val dispWindowHighLimt: Double,
-
-    val dispWindowLowLimt: Double,
-
-    /**
-     * Unique instruction id per instruction, assigned by the SC and provided to ADS.
-     * ADS passes through.
-     */
-    val instructionID: String,
-
-    /**
-     * The start of the time interval for which requirement is defined.
-     */
-    val intervalStartTime: String,
-
-    val RegisteredResource: String,
-
-    val ResourceClearing: String
+(override val sup: BasicElement,
+val calcLoadFollowingMW: Double,
+val dispWindowHighLimt: Double,
+val dispWindowLowLimt: Double,
+val instructionID: String,
+val intervalStartTime: String,
+val RegisteredResource: String,
+val ResourceClearing: String
 )
 extends
     Element
@@ -3806,23 +3122,16 @@ extends
 /**
  * Model of Self Schedules Results.
  * Includes self schedule MW,and type of self schedule for each self schedule type included in total self schedule MW value found in ResourceAwardInstruction.
+ * @param sup Reference to the superclass object.
+ * @param selfSchedMW Cleared value for the specific self schedule type listed.
+ * @param selfSchedType Self schedule breakdown type.
+ * @param ResourceAwardInstruction
  */
 case class SelfScheduleBreakdown
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Cleared value for the specific self schedule type listed.
-     */
-    val selfSchedMW: Double,
-
-    /**
-     * Self schedule breakdown type.
-     */
-    val selfSchedType: String,
-
-    val ResourceAwardInstruction: String
+(override val sup: BasicElement,
+val selfSchedMW: Double,
+val selfSchedType: String,
+val ResourceAwardInstruction: String
 )
 extends
     Element
@@ -3861,18 +3170,14 @@ extends
 
 /**
  * Specifies a settlement run.
+ * @param sup Reference to the superclass object.
+ * @param tradeDate The trade date on which the settlement is run.
+ * @param EnergyMarket
  */
 case class Settlement
-(
-
-    override val sup: Document,
-
-    /**
-     * The trade date on which the settlement is run.
-     */
-    val tradeDate: String,
-
-    val EnergyMarket: String
+(override val sup: Document,
+val tradeDate: String,
+val EnergyMarket: String
 )
 extends
     Element
@@ -3910,11 +3215,10 @@ extends
 /**
  * Contains the intervals relavent for the associated TransactionBidResults.
  * For example, Day Ahead cleared results for the transaction bids for each interval of the market day.
+ * @param sup Reference to the superclass object.
  */
 case class TransactionBidClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -3947,25 +3251,18 @@ extends
 
 /**
  * Contains the cleared results for each TransactionBid submitted to and accepted by the market.
+ * @param sup Reference to the superclass object.
+ * @param clearedMW The market transaction megawatt
+ * @param clearedPrice The price of the market transaction
+ * @param TransactionBid
+ * @param TransactionBidClearing
  */
 case class TransactionBidResults
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The market transaction megawatt
-     */
-    val clearedMW: Double,
-
-    /**
-     * The price of the market transaction
-     */
-    val clearedPrice: Double,
-
-    val TransactionBid: String,
-
-    val TransactionBidClearing: String
+(override val sup: IdentifiedObject,
+val clearedMW: Double,
+val clearedPrice: Double,
+val TransactionBid: String,
+val TransactionBidClearing: String
 )
 extends
     Element

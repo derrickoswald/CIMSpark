@@ -11,61 +11,30 @@ import ch.ninecode.cim.Context
 
 /**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
+ * @param sup Reference to the superclass object.
+ * @param remoteSignalType Type of input signal.
+ * @param DiscontinuousExcitationControlDynamics Discontinuous excitation control model using this remote input signal.
+ * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model using this remote input signal.
+ * @param PowerSystemStabilizerDynamics Power system stabilizer model using this remote input signal.
+ * @param Terminal Remote terminal with which this input signal is associated.
+ * @param UnderexcitationLimiterDynamics Underexcitation limiter model using this remote input signal.
+ * @param VoltageCompensatorDynamics Voltage compensator model using this remote input signal.
+ * @param WindPlantDynamics The wind plant using the remote signal.
+ * @param WindTurbineType1or2Dynamics Wind generator Type 1 or Type 2 model using this remote input signal.
+ * @param WindTurbineType3or4Dynamics Wind turbine Type 3 or 4 models using this remote input signal.
  */
 case class RemoteInputSignal
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Type of input signal.
-     */
-    val remoteSignalType: String,
-
-    /**
-     * Discontinuous excitation control model using this remote input signal.
-     */
-    val DiscontinuousExcitationControlDynamics: String,
-
-    /**
-     * Power Factor or VAr controller Type I model using this remote input signal.
-     */
-    val PFVArControllerType1Dynamics: String,
-
-    /**
-     * Power system stabilizer model using this remote input signal.
-     */
-    val PowerSystemStabilizerDynamics: String,
-
-    /**
-     * Remote terminal with which this input signal is associated.
-     */
-    val Terminal: String,
-
-    /**
-     * Underexcitation limiter model using this remote input signal.
-     */
-    val UnderexcitationLimiterDynamics: String,
-
-    /**
-     * Voltage compensator model using this remote input signal.
-     */
-    val VoltageCompensatorDynamics: String,
-
-    /**
-     * The wind plant using the remote signal.
-     */
-    val WindPlantDynamics: String,
-
-    /**
-     * Wind generator Type 1 or Type 2 model using this remote input signal.
-     */
-    val WindTurbineType1or2Dynamics: String,
-
-    /**
-     * Wind turbine Type 3 or 4 models using this remote input signal.
-     */
-    val WindTurbineType3or4Dynamics: String
+(override val sup: IdentifiedObject,
+val remoteSignalType: String,
+val DiscontinuousExcitationControlDynamics: String,
+val PFVArControllerType1Dynamics: String,
+val PowerSystemStabilizerDynamics: String,
+val Terminal: String,
+val UnderexcitationLimiterDynamics: String,
+val VoltageCompensatorDynamics: String,
+val WindPlantDynamics: String,
+val WindTurbineType1or2Dynamics: String,
+val WindTurbineType3or4Dynamics: String
 )
 extends
     Element
@@ -118,56 +87,28 @@ extends
 
 /**
  * Type of input signal coming from remote bus.
+ * @param sup Reference to the superclass object.
+ * @param remoteBranchCurrentAmplitude Input is branch current amplitude from remote terminal bus.
+ * @param remoteBusFrequency Input is frequency from remote terminal bus.
+ * @param remoteBusFrequencyDeviation Input is frequency deviation from remote terminal bus.
+ * @param remoteBusVoltage Input is voltage from remote terminal bus.
+ * @param remoteBusVoltageAmplitude Input is voltage amplitude from remote terminal bus.
+ * @param remoteBusVoltageAmplitudeDerivative Input is branch current amplitude derivative from remote terminal bus.
+ * @param remoteBusVoltageFrequency Input is voltage frequency from remote terminal bus.
+ * @param remoteBusVoltageFrequencyDeviation Input is voltage frequency deviation from remote terminal bus.
+ * @param remotePuBusVoltageDerivative Input is PU voltage derivative from remote terminal bus.
  */
 case class RemoteSignalKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Input is branch current amplitude from remote terminal bus.
-     */
-    val remoteBranchCurrentAmplitude: String,
-
-    /**
-     * Input is frequency from remote terminal bus.
-     */
-    val remoteBusFrequency: String,
-
-    /**
-     * Input is frequency deviation from remote terminal bus.
-     */
-    val remoteBusFrequencyDeviation: String,
-
-    /**
-     * Input is voltage from remote terminal bus.
-     */
-    val remoteBusVoltage: String,
-
-    /**
-     * Input is voltage amplitude from remote terminal bus.
-     */
-    val remoteBusVoltageAmplitude: String,
-
-    /**
-     * Input is branch current amplitude derivative from remote terminal bus.
-     */
-    val remoteBusVoltageAmplitudeDerivative: String,
-
-    /**
-     * Input is voltage frequency from remote terminal bus.
-     */
-    val remoteBusVoltageFrequency: String,
-
-    /**
-     * Input is voltage frequency deviation from remote terminal bus.
-     */
-    val remoteBusVoltageFrequencyDeviation: String,
-
-    /**
-     * Input is PU voltage derivative from remote terminal bus.
-     */
-    val remotePuBusVoltageDerivative: String
+(override val sup: BasicElement,
+val remoteBranchCurrentAmplitude: String,
+val remoteBusFrequency: String,
+val remoteBusFrequencyDeviation: String,
+val remoteBusVoltage: String,
+val remoteBusVoltageAmplitude: String,
+val remoteBusVoltageAmplitudeDerivative: String,
+val remoteBusVoltageFrequency: String,
+val remoteBusVoltageFrequencyDeviation: String,
+val remotePuBusVoltageDerivative: String
 )
 extends
     Element

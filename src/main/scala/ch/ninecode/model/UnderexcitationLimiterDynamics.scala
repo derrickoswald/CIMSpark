@@ -12,53 +12,31 @@ import ch.ninecode.cim.Context
 /**
  * This model can be derived from UnderexcLimIEEE2.
  * The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
+ * @param sup Reference to the superclass object.
+ * @param kui Gain Under excitation limiter (Kui).
+ *        Typical Value = 0.1.
+ * @param p0 Segment P initial point (P0).
+ *        Typical Value = 0.
+ * @param p1 Segment P end point (P1).
+ *        Typical Value = 1.
+ * @param q0 Segment Q initial point (Q0).
+ *        Typical Value = -0.31.
+ * @param q1 Segment Q end point (Q1).
+ *        Typical Value = -0.1.
+ * @param vuimax Maximum error signal (V<sub>UImax</sub>).
+ *        Typical Value = 1.
+ * @param vuimin Minimum error signal (V<sub>UImin</sub>).
+ *        Typical Value = 0.
  */
 case class UnderexcLim2Simplified
-(
-
-    override val sup: UnderexcitationLimiterDynamics,
-
-    /**
-     * Gain Under excitation limiter (Kui).
-     * Typical Value = 0.1.
-     */
-    val kui: Double,
-
-    /**
-     * Segment P initial point (P0).
-     * Typical Value = 0.
-     */
-    val p0: Double,
-
-    /**
-     * Segment P end point (P1).
-     * Typical Value = 1.
-     */
-    val p1: Double,
-
-    /**
-     * Segment Q initial point (Q0).
-     * Typical Value = -0.31.
-     */
-    val q0: Double,
-
-    /**
-     * Segment Q end point (Q1).
-     * Typical Value = -0.1.
-     */
-    val q1: Double,
-
-    /**
-     * Maximum error signal (V<sub>UImax</sub>).
-     * Typical Value = 1.
-     */
-    val vuimax: Double,
-
-    /**
-     * Minimum error signal (V<sub>UImin</sub>).
-     * Typical Value = 0.
-     */
-    val vuimin: Double
+(override val sup: UnderexcitationLimiterDynamics,
+val kui: Double,
+val p0: Double,
+val p1: Double,
+val q0: Double,
+val q1: Double,
+val vuimax: Double,
+val vuimin: Double
 )
 extends
     Element
@@ -106,99 +84,53 @@ extends
 /**
  * The class represents the Type UEL1 model which has a circular limit boundary when plotted in terms of machine reactive power vs. real power output.
  * Reference: IEEE UEL1 421.5-2005 Section 10.1.
+ * @param sup Reference to the superclass object.
+ * @param kuc UEL center setting (K<sub>UC</sub>).
+ *        Typical Value = 1.38.
+ * @param kuf UEL excitation system stabilizer gain (K<sub>UF</sub>).
+ *        Typical Value = 3.3.
+ * @param kui UEL integral gain (K<sub>UI</sub>).
+ *        Typical Value = 0.
+ * @param kul UEL proportional gain (K<sub>UL</sub>).
+ *        Typical Value = 100.
+ * @param kur UEL radius setting (K<sub>UR</sub>).
+ *        Typical Value = 1.95.
+ * @param tu1 UEL lead time constant (T<sub>U1</sub>).
+ *        Typical Value = 0.
+ * @param tu2 UEL lag time constant (T<sub>U2</sub>).
+ *        Typical Value = 0.05.
+ * @param tu3 UEL lead time constant (T<sub>U3</sub>).
+ *        Typical Value = 0.
+ * @param tu4 UEL lag time constant (T<sub>U4</sub>).
+ *        Typical Value = 0.
+ * @param vucmax UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).
+ *        Typical Value = 5.8.
+ * @param vuimax UEL integrator output maximum limit (V<sub>UIMAX</sub>).
+ * @param vuimin UEL integrator output minimum limit (V<sub>UIMIN</sub>).
+ * @param vulmax UEL output maximum limit (V<sub>ULMAX</sub>).
+ *        Typical Value = 18.
+ * @param vulmin UEL output minimum limit (V<sub>ULMIN</sub>).
+ *        Typical Value = -18.
+ * @param vurmax UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
+ *        Typical Value = 5.8.
  */
 case class UnderexcLimIEEE1
-(
-
-    override val sup: UnderexcitationLimiterDynamics,
-
-    /**
-     * UEL center setting (K<sub>UC</sub>).
-     * Typical Value = 1.38.
-     */
-    val kuc: Double,
-
-    /**
-     * UEL excitation system stabilizer gain (K<sub>UF</sub>).
-     * Typical Value = 3.3.
-     */
-    val kuf: Double,
-
-    /**
-     * UEL integral gain (K<sub>UI</sub>).
-     * Typical Value = 0.
-     */
-    val kui: Double,
-
-    /**
-     * UEL proportional gain (K<sub>UL</sub>).
-     * Typical Value = 100.
-     */
-    val kul: Double,
-
-    /**
-     * UEL radius setting (K<sub>UR</sub>).
-     * Typical Value = 1.95.
-     */
-    val kur: Double,
-
-    /**
-     * UEL lead time constant (T<sub>U1</sub>).
-     * Typical Value = 0.
-     */
-    val tu1: Double,
-
-    /**
-     * UEL lag time constant (T<sub>U2</sub>).
-     * Typical Value = 0.05.
-     */
-    val tu2: Double,
-
-    /**
-     * UEL lead time constant (T<sub>U3</sub>).
-     * Typical Value = 0.
-     */
-    val tu3: Double,
-
-    /**
-     * UEL lag time constant (T<sub>U4</sub>).
-     * Typical Value = 0.
-     */
-    val tu4: Double,
-
-    /**
-     * UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).
-     * Typical Value = 5.8.
-     */
-    val vucmax: Double,
-
-    /**
-     * UEL integrator output maximum limit (V<sub>UIMAX</sub>).
-     */
-    val vuimax: Double,
-
-    /**
-     * UEL integrator output minimum limit (V<sub>UIMIN</sub>).
-     */
-    val vuimin: Double,
-
-    /**
-     * UEL output maximum limit (V<sub>ULMAX</sub>).
-     * Typical Value = 18.
-     */
-    val vulmax: Double,
-
-    /**
-     * UEL output minimum limit (V<sub>ULMIN</sub>).
-     * Typical Value = -18.
-     */
-    val vulmin: Double,
-
-    /**
-     * UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
-     * Typical Value = 5.8.
-     */
-    val vurmax: Double
+(override val sup: UnderexcitationLimiterDynamics,
+val kuc: Double,
+val kuf: Double,
+val kui: Double,
+val kul: Double,
+val kur: Double,
+val tu1: Double,
+val tu2: Double,
+val tu3: Double,
+val tu4: Double,
+val vucmax: Double,
+val vuimax: Double,
+val vuimin: Double,
+val vulmax: Double,
+val vulmin: Double,
+val vurmax: Double
 )
 extends
     Element
@@ -262,239 +194,118 @@ extends
 /**
  * The class represents the Type UEL2 which has either a straight-line or multi-segment characteristic when plotted in terms of machine reactive power output vs. real power output.
  * Reference: IEEE UEL2 421.5-2005 Section 10.2.  (Limit characteristic lookup table shown in Figure 10.4 (p 32) of the standard).
+ * @param sup Reference to the superclass object.
+ * @param k1 UEL terminal voltage exponent applied to real power input to UEL limit look-up table (k1).
+ *        Typical Value = 2.
+ * @param k2 UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (k2).
+ *        Typical Value = 2.
+ * @param kfb Gain associated with optional integrator feedback input signal to UEL (K<sub>FB</sub>).
+ *        Typical Value = 0.
+ * @param kuf UEL excitation system stabilizer gain (K<sub>UF</sub>).
+ *        Typical Value = 0.
+ * @param kui UEL integral gain (K<sub>UI</sub>).
+ *        Typical Value = 0.5.
+ * @param kul UEL proportional gain (K<sub>UL</sub>).
+ *        Typical Value = 0.8.
+ * @param p0 Real power values for endpoints (P<sub>0</sub>).
+ *        Typical Value = 0.
+ * @param p1 Real power values for endpoints (P<sub>1</sub>).
+ *        Typical Value = 0.3.
+ * @param p10 Real power values for endpoints (P<sub>10</sub>).
+ * @param p2 Real power values for endpoints (P<sub>2</sub>).
+ *        Typical Value = 0.6.
+ * @param p3 Real power values for endpoints (P<sub>3</sub>).
+ *        Typical Value = 0.9.
+ * @param p4 Real power values for endpoints (P<sub>4</sub>).
+ *        Typical Value = 1.02.
+ * @param p5 Real power values for endpoints (P<sub>5</sub>).
+ * @param p6 Real power values for endpoints (P<sub>6</sub>).
+ * @param p7 Real power values for endpoints (P<sub>7</sub>).
+ * @param p8 Real power values for endpoints (P<sub>8</sub>).
+ * @param p9 Real power values for endpoints (P<sub>9</sub>).
+ * @param q0 Reactive power values for endpoints (Q<sub>0</sub>).
+ *        Typical Value = -0.31.
+ * @param q1 Reactive power values for endpoints (Q<sub>1</sub>).
+ *        Typical Value = -0.31.
+ * @param q10 Reactive power values for endpoints (Q<sub>10</sub>).
+ * @param q2 Reactive power values for endpoints (Q<sub>2</sub>).
+ *        Typical Value = -0.28.
+ * @param q3 Reactive power values for endpoints (Q<sub>3</sub>).
+ *        Typical Value = -0.21.
+ * @param q4 Reactive power values for endpoints (Q<sub>4</sub>).
+ *        Typical Value = 0.
+ * @param q5 Reactive power values for endpoints (Q<sub>5</sub>).
+ * @param q6 Reactive power values for endpoints (Q<sub>6</sub>).
+ * @param q7 Reactive power values for endpoints (Q<sub>7</sub>).
+ * @param q8 Reactive power values for endpoints (Q<sub>8</sub>).
+ * @param q9 Reactive power values for endpoints (Q<sub>9</sub>).
+ * @param tu1 UEL lead time constant (T<sub>U1</sub>).
+ *        Typical Value = 0.
+ * @param tu2 UEL lag time constant (T<sub>U2</sub>).
+ *        Typical Value = 0.
+ * @param tu3 UEL lead time constant (T<sub>U3</sub>).
+ *        Typical Value = 0.
+ * @param tu4 UEL lag time constant (T<sub>U4</sub>).
+ *        Typical Value = 0.
+ * @param tul Time constant associated with optional integrator feedback input signal to UEL (T<sub>UL</sub>).
+ *        Typical Value = 0.
+ * @param tup Real power filter time constant (T<sub>UP</sub>).
+ *        Typical Value = 5.
+ * @param tuq Reactive power filter time constant (T<sub>UQ</sub>).
+ *        Typical Value = 0.
+ * @param tuv Voltage filter time constant (T<sub>UV</sub>).
+ *        Typical Value = 5.
+ * @param vuimax UEL integrator output maximum limit (V<sub>UIMAX</sub>).
+ *        Typical Value = 0.25.
+ * @param vuimin UEL integrator output minimum limit (V<sub>UIMIN</sub>).
+ *        Typical Value = 0.
+ * @param vulmax UEL output maximum limit (V<sub>ULMAX</sub>).
+ *        Typical Value = 0.25.
+ * @param vulmin UEL output minimum limit (V<sub>ULMIN</sub>).
+ *        Typical Value = 0.
  */
 case class UnderexcLimIEEE2
-(
-
-    override val sup: UnderexcitationLimiterDynamics,
-
-    /**
-     * UEL terminal voltage exponent applied to real power input to UEL limit look-up table (k1).
-     * Typical Value = 2.
-     */
-    val k1: Double,
-
-    /**
-     * UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (k2).
-     * Typical Value = 2.
-     */
-    val k2: Double,
-
-    /**
-     * Gain associated with optional integrator feedback input signal to UEL (K<sub>FB</sub>).
-     * Typical Value = 0.
-     */
-    val kfb: Double,
-
-    /**
-     * UEL excitation system stabilizer gain (K<sub>UF</sub>).
-     * Typical Value = 0.
-     */
-    val kuf: Double,
-
-    /**
-     * UEL integral gain (K<sub>UI</sub>).
-     * Typical Value = 0.5.
-     */
-    val kui: Double,
-
-    /**
-     * UEL proportional gain (K<sub>UL</sub>).
-     * Typical Value = 0.8.
-     */
-    val kul: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>0</sub>).
-     * Typical Value = 0.
-     */
-    val p0: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>1</sub>).
-     * Typical Value = 0.3.
-     */
-    val p1: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>10</sub>).
-     */
-    val p10: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>2</sub>).
-     * Typical Value = 0.6.
-     */
-    val p2: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>3</sub>).
-     * Typical Value = 0.9.
-     */
-    val p3: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>4</sub>).
-     * Typical Value = 1.02.
-     */
-    val p4: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>5</sub>).
-     */
-    val p5: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>6</sub>).
-     */
-    val p6: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>7</sub>).
-     */
-    val p7: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>8</sub>).
-     */
-    val p8: Double,
-
-    /**
-     * Real power values for endpoints (P<sub>9</sub>).
-     */
-    val p9: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>0</sub>).
-     * Typical Value = -0.31.
-     */
-    val q0: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>1</sub>).
-     * Typical Value = -0.31.
-     */
-    val q1: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>10</sub>).
-     */
-    val q10: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>2</sub>).
-     * Typical Value = -0.28.
-     */
-    val q2: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>3</sub>).
-     * Typical Value = -0.21.
-     */
-    val q3: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>4</sub>).
-     * Typical Value = 0.
-     */
-    val q4: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>5</sub>).
-     */
-    val q5: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>6</sub>).
-     */
-    val q6: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>7</sub>).
-     */
-    val q7: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>8</sub>).
-     */
-    val q8: Double,
-
-    /**
-     * Reactive power values for endpoints (Q<sub>9</sub>).
-     */
-    val q9: Double,
-
-    /**
-     * UEL lead time constant (T<sub>U1</sub>).
-     * Typical Value = 0.
-     */
-    val tu1: Double,
-
-    /**
-     * UEL lag time constant (T<sub>U2</sub>).
-     * Typical Value = 0.
-     */
-    val tu2: Double,
-
-    /**
-     * UEL lead time constant (T<sub>U3</sub>).
-     * Typical Value = 0.
-     */
-    val tu3: Double,
-
-    /**
-     * UEL lag time constant (T<sub>U4</sub>).
-     * Typical Value = 0.
-     */
-    val tu4: Double,
-
-    /**
-     * Time constant associated with optional integrator feedback input signal to UEL (T<sub>UL</sub>).
-     * Typical Value = 0.
-     */
-    val tul: Double,
-
-    /**
-     * Real power filter time constant (T<sub>UP</sub>).
-     * Typical Value = 5.
-     */
-    val tup: Double,
-
-    /**
-     * Reactive power filter time constant (T<sub>UQ</sub>).
-     * Typical Value = 0.
-     */
-    val tuq: Double,
-
-    /**
-     * Voltage filter time constant (T<sub>UV</sub>).
-     * Typical Value = 5.
-     */
-    val tuv: Double,
-
-    /**
-     * UEL integrator output maximum limit (V<sub>UIMAX</sub>).
-     * Typical Value = 0.25.
-     */
-    val vuimax: Double,
-
-    /**
-     * UEL integrator output minimum limit (V<sub>UIMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vuimin: Double,
-
-    /**
-     * UEL output maximum limit (V<sub>ULMAX</sub>).
-     * Typical Value = 0.25.
-     */
-    val vulmax: Double,
-
-    /**
-     * UEL output minimum limit (V<sub>ULMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vulmin: Double
+(override val sup: UnderexcitationLimiterDynamics,
+val k1: Double,
+val k2: Double,
+val kfb: Double,
+val kuf: Double,
+val kui: Double,
+val kul: Double,
+val p0: Double,
+val p1: Double,
+val p10: Double,
+val p2: Double,
+val p3: Double,
+val p4: Double,
+val p5: Double,
+val p6: Double,
+val p7: Double,
+val p8: Double,
+val p9: Double,
+val q0: Double,
+val q1: Double,
+val q10: Double,
+val q2: Double,
+val q3: Double,
+val q4: Double,
+val q5: Double,
+val q6: Double,
+val q7: Double,
+val q8: Double,
+val q9: Double,
+val tu1: Double,
+val tu2: Double,
+val tu3: Double,
+val tu4: Double,
+val tul: Double,
+val tup: Double,
+val tuq: Double,
+val tuv: Double,
+val vuimax: Double,
+val vuimin: Double,
+val vulmax: Double,
+val vulmin: Double
 )
 extends
     Element
@@ -607,41 +418,22 @@ extends
 
 /**
  * <font color="#0f0f0f">Allis-Chalmers minimum excitation limiter.</font>
+ * @param sup Reference to the superclass object.
+ * @param k Minimum excitation limit slope (K) (&gt;0).
+ * @param kf2 Differential gain (Kf2).
+ * @param km Minimum excitation limit gain (Km).
+ * @param melmax Minimum excitation limit value (MELMAX).
+ * @param tf2 Differential time constant (Tf2) (&gt;0).
+ * @param tm Minimum excitation limit time constant (Tm).
  */
 case class UnderexcLimX1
-(
-
-    override val sup: UnderexcitationLimiterDynamics,
-
-    /**
-     * Minimum excitation limit slope (K) (&gt;0).
-     */
-    val k: Double,
-
-    /**
-     * Differential gain (Kf2).
-     */
-    val kf2: Double,
-
-    /**
-     * Minimum excitation limit gain (Km).
-     */
-    val km: Double,
-
-    /**
-     * Minimum excitation limit value (MELMAX).
-     */
-    val melmax: Double,
-
-    /**
-     * Differential time constant (Tf2) (&gt;0).
-     */
-    val tf2: Double,
-
-    /**
-     * Minimum excitation limit time constant (Tm).
-     */
-    val tm: Double
+(override val sup: UnderexcitationLimiterDynamics,
+val k: Double,
+val kf2: Double,
+val km: Double,
+val melmax: Double,
+val tf2: Double,
+val tm: Double
 )
 extends
     Element
@@ -686,46 +478,24 @@ extends
 
 /**
  * <font color="#0f0f0f">Westinghouse minimum excitation limiter.</font>
+ * @param sup Reference to the superclass object.
+ * @param kf2 Differential gain (Kf2).
+ * @param km Minimum excitation limit gain (Km).
+ * @param melmax Minimum excitation limit value (MELMAX).
+ * @param qo Excitation center setting (Qo).
+ * @param r Excitation radius (R).
+ * @param tf2 Differential time constant (Tf2) (&gt;0).
+ * @param tm Minimum excitation limit time constant (Tm).
  */
 case class UnderexcLimX2
-(
-
-    override val sup: UnderexcitationLimiterDynamics,
-
-    /**
-     * Differential gain (Kf2).
-     */
-    val kf2: Double,
-
-    /**
-     * Minimum excitation limit gain (Km).
-     */
-    val km: Double,
-
-    /**
-     * Minimum excitation limit value (MELMAX).
-     */
-    val melmax: Double,
-
-    /**
-     * Excitation center setting (Qo).
-     */
-    val qo: Double,
-
-    /**
-     * Excitation radius (R).
-     */
-    val r: Double,
-
-    /**
-     * Differential time constant (Tf2) (&gt;0).
-     */
-    val tf2: Double,
-
-    /**
-     * Minimum excitation limit time constant (Tm).
-     */
-    val tm: Double
+(override val sup: UnderexcitationLimiterDynamics,
+val kf2: Double,
+val km: Double,
+val melmax: Double,
+val qo: Double,
+val r: Double,
+val tf2: Double,
+val tm: Double
 )
 extends
     Element
@@ -772,21 +542,14 @@ extends
 
 /**
  * Underexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param ExcitationSystemDynamics Excitation system model with which this underexcitation limiter model is associated.
+ * @param RemoteInputSignal Remote input signal used by this underexcitation limiter model.
  */
 case class UnderexcitationLimiterDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Excitation system model with which this underexcitation limiter model is associated.
-     */
-    val ExcitationSystemDynamics: String,
-
-    /**
-     * Remote input signal used by this underexcitation limiter model.
-     */
-    val RemoteInputSignal: String
+(override val sup: DynamicsFunctionBlock,
+val ExcitationSystemDynamics: String,
+val RemoteInputSignal: String
 )
 extends
     Element

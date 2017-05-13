@@ -12,46 +12,27 @@ import ch.ninecode.cim.Context
 /**
  * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
  * Reference: IEEE Standard 421.5-2005 Section 11.1.
+ * @param sup Reference to the superclass object.
+ * @param adjslew Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
+ *        Unit = sec./PU.  Typical Value = 300.
+ * @param taoff Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
+ *        Typical Value = 0.5.
+ * @param taon Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
+ *        Typical Value = 0.1.
+ * @param vadjf Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
+ * @param vadjmax Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
+ *        Typical Value = 1.1.
+ * @param vadjmin Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
+ *        Typical Value = 0.9.
  */
 case class VAdjIEEE
-(
-
-    override val sup: VoltageAdjusterDynamics,
-
-    /**
-     * Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
-     * Unit = sec./PU.  Typical Value = 300.
-     */
-    val adjslew: Double,
-
-    /**
-     * Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
-     * Typical Value = 0.5.
-     */
-    val taoff: Double,
-
-    /**
-     * Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
-     * Typical Value = 0.1.
-     */
-    val taon: Double,
-
-    /**
-     * Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
-     */
-    val vadjf: Double,
-
-    /**
-     * Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
-     * Typical Value = 1.1.
-     */
-    val vadjmax: Double,
-
-    /**
-     * Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
-     * Typical Value = 0.9.
-     */
-    val vadjmin: Double
+(override val sup: VoltageAdjusterDynamics,
+val adjslew: Double,
+val taoff: Double,
+val taon: Double,
+val vadjf: Double,
+val vadjmax: Double,
+val vadjmin: Double
 )
 extends
     Element
@@ -96,16 +77,12 @@ extends
 
 /**
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
  */
 case class VoltageAdjusterDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
-     */
-    val PFVArControllerType1Dynamics: String
+(override val sup: DynamicsFunctionBlock,
+val PFVArControllerType1Dynamics: String
 )
 extends
     Element

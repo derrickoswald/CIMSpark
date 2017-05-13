@@ -7,21 +7,14 @@ import ch.ninecode.cim.Context
 
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
+ * @param sup Reference to the superclass object.
+ * @param capacitiveRating Maximum capacitive reactive power.
+ * @param inductiveRating Maximum inductive reactive power.
  */
 case class SVC
-(
-
-    override val sup: ShuntCompensator,
-
-    /**
-     * Maximum capacitive reactive power.
-     */
-    val capacitiveRating: Double,
-
-    /**
-     * Maximum inductive reactive power.
-     */
-    val inductiveRating: Double
+(override val sup: ShuntCompensator,
+val capacitiveRating: Double,
+val inductiveRating: Double
 )
 extends
     Element
@@ -58,101 +51,49 @@ extends
 
 /**
  * Distribution capacitor bank control settings.
+ * @param sup Reference to the superclass object.
+ * @param branchDirect For VAR, amp, or power factor locally controlled shunt impedances, the flow direction: in, out.
+ * @param cellSize The size of the individual units that make up the bank.
+ * @param controlKind Kind of control (if any).
+ * @param highVoltageOverride For locally controlled shunt impedances which have a voltage override feature, the high voltage override value.
+ *        If the voltage is above this value, the shunt impedance will be turned off regardless of the other local controller settings.
+ * @param localControlKind Kind of local controller.
+ * @param localOffLevel Upper control setting.
+ * @param localOnLevel Lower control setting.
+ * @param localOverride True if the locally controlled capacitor has voltage override capability.
+ * @param lowVoltageOverride For locally controlled shunt impedances which have a voltage override feature, the low voltage override value.
+ *        If the voltage is below this value, the shunt impedance will be turned on regardless of the other local controller settings.
+ * @param maxSwitchOperationCount IdmsShuntImpedanceData.maxNumSwitchOps.
+ * @param normalOpen True if open is normal status for a fixed capacitor bank, otherwise normal status is closed.
+ * @param regBranch For VAR, amp, or power factor locally controlled shunt impedances, the index of the regulation branch.
+ * @param regBranchEnd For VAR, amp, or power factor locally controlled shunt impedances, the end of the branch that is regulated.
+ *        The field has the following values: from side, to side, and tertiary (only if the branch is a transformer).
+ * @param regBranchKind (For VAR, amp, or power factor locally controlled shunt impedances) Kind of regulation branch.
+ * @param sensingPhaseCode Phases that are measured for controlling the device.
+ * @param switchOperationCycle Time interval between consecutive switching operations.
+ * @param vRegLineLine True if regulated voltages are measured line to line, otherwise they are measured line to ground.
+ * @param ShuntCompensatorInfo
  */
 case class ShuntCompensatorControl
-(
-
-    override val sup: RegulatingControl,
-
-    /**
-     * For VAR, amp, or power factor locally controlled shunt impedances, the flow direction: in, out.
-     */
-    val branchDirect: Int,
-
-    /**
-     * The size of the individual units that make up the bank.
-     */
-    val cellSize: Double,
-
-    /**
-     * Kind of control (if any).
-     */
-    val controlKind: String,
-
-    /**
-     * For locally controlled shunt impedances which have a voltage override feature, the high voltage override value.
-     * If the voltage is above this value, the shunt impedance will be turned off regardless of the other local controller settings.
-     */
-    val highVoltageOverride: Double,
-
-    /**
-     * Kind of local controller.
-     */
-    val localControlKind: String,
-
-    /**
-     * Upper control setting.
-     */
-    val localOffLevel: String,
-
-    /**
-     * Lower control setting.
-     */
-    val localOnLevel: String,
-
-    /**
-     * True if the locally controlled capacitor has voltage override capability.
-     */
-    val localOverride: Boolean,
-
-    /**
-     * For locally controlled shunt impedances which have a voltage override feature, the low voltage override value.
-     * If the voltage is below this value, the shunt impedance will be turned on regardless of the other local controller settings.
-     */
-    val lowVoltageOverride: Double,
-
-    /**
-     * IdmsShuntImpedanceData.maxNumSwitchOps.
-     */
-    val maxSwitchOperationCount: Int,
-
-    /**
-     * True if open is normal status for a fixed capacitor bank, otherwise normal status is closed.
-     */
-    val normalOpen: Boolean,
-
-    /**
-     * For VAR, amp, or power factor locally controlled shunt impedances, the index of the regulation branch.
-     */
-    val regBranch: String,
-
-    /**
-     * For VAR, amp, or power factor locally controlled shunt impedances, the end of the branch that is regulated.
-     * The field has the following values: from side, to side, and tertiary (only if the branch is a transformer).
-     */
-    val regBranchEnd: Int,
-
-    /**
-     * (For VAR, amp, or power factor locally controlled shunt impedances) Kind of regulation branch.
-     */
-    val regBranchKind: String,
-
-    /**
-     * Phases that are measured for controlling the device.
-     */
-    val sensingPhaseCode: String,
-
-    /**
-     * Time interval between consecutive switching operations.
-     */
-    val switchOperationCycle: Double,
-
-    /**
-     * True if regulated voltages are measured line to line, otherwise they are measured line to ground.
-     */
-    val vRegLineLine: Boolean,
-
-    val ShuntCompensatorInfo: String
+(override val sup: RegulatingControl,
+val branchDirect: Int,
+val cellSize: Double,
+val controlKind: String,
+val highVoltageOverride: Double,
+val localControlKind: String,
+val localOffLevel: String,
+val localOnLevel: String,
+val localOverride: Boolean,
+val lowVoltageOverride: Double,
+val maxSwitchOperationCount: Int,
+val normalOpen: Boolean,
+val regBranch: String,
+val regBranchEnd: Int,
+val regBranchKind: String,
+val sensingPhaseCode: String,
+val switchOperationCycle: Double,
+val vRegLineLine: Boolean,
+val ShuntCompensatorInfo: String
 )
 extends
     Element

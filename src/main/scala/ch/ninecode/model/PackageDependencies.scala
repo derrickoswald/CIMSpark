@@ -11,23 +11,16 @@ import ch.ninecode.cim.Context
 /**
  * The version of dependencies description among top level subpackages of the combined CIM model.
  * This is not the same as the combined packages version.
+ * @param sup Reference to the superclass object.
+ * @param date Date of last change to the main package dependencies in format YYYY-MM-DD.
+ *        This is updated when the version attribute is updated.
+ * @param version The version of the main subpackages of the combined CIM model.
+ *        The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
  */
 case class PackageDependenciesCIMVersion
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Date of last change to the main package dependencies in format YYYY-MM-DD.
-     * This is updated when the version attribute is updated.
-     */
-    val date: String,
-
-    /**
-     * The version of the main subpackages of the combined CIM model.
-     * The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
-     */
-    val version: String
+(override val sup: BasicElement,
+val date: String,
+val version: String
 )
 extends
     Element

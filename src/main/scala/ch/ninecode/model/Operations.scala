@@ -10,26 +10,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Action on clearance document as a switching step.
+ * @param sup Reference to the superclass object.
+ * @param kind Clearance action to perform.
+ * @param Clearance Clearance associated with this clearance action.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class ClearanceAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Clearance action to perform.
-     */
-    val kind: String,
-
-    /**
-     * Clearance associated with this clearance action.
-     */
-    val Clearance: String,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val kind: String,
+val Clearance: String,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -68,26 +58,16 @@ extends
 
 /**
  * Type of clearance action.
+ * @param sup Reference to the superclass object.
+ * @param issue Issue clearance.
+ * @param release Release clearance.
+ * @param update Update clearance.
  */
 case class ClearanceActionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Issue clearance.
-     */
-    val issue: String,
-
-    /**
-     * Release clearance.
-     */
-    val release: String,
-
-    /**
-     * Update clearance.
-     */
-    val update: String
+(override val sup: BasicElement,
+val issue: String,
+val release: String,
+val update: String
 )
 extends
     Element
@@ -127,31 +107,18 @@ extends
 /**
  * Safety document used to authorise work on conducting equipment in the field.
  * Tagged equipment is not allowed to be operated.
+ * @param sup Reference to the superclass object.
+ * @param mustBeDeenergised If true, the equipment must be deenergised.
+ * @param mustBeGrounded If true, the equipment must be grounded.
+ * @param ClearanceAction Clearance action associated with this clearance.
+ * @param TaggedPSRs All power system resources tagged through this clearance.
  */
 case class ClearanceDocument
-(
-
-    override val sup: SafetyDocument,
-
-    /**
-     * If true, the equipment must be deenergised.
-     */
-    val mustBeDeenergised: Boolean,
-
-    /**
-     * If true, the equipment must be grounded.
-     */
-    val mustBeGrounded: Boolean,
-
-    /**
-     * Clearance action associated with this clearance.
-     */
-    val ClearanceAction: String,
-
-    /**
-     * All power system resources tagged through this clearance.
-     */
-    val TaggedPSRs: List[String]
+(override val sup: SafetyDocument,
+val mustBeDeenergised: Boolean,
+val mustBeGrounded: Boolean,
+val ClearanceAction: String,
+val TaggedPSRs: List[String]
 )
 extends
     Element
@@ -192,26 +159,16 @@ extends
 
 /**
  * Action on cut as a switching step.
+ * @param sup Reference to the superclass object.
+ * @param kind Switching action to perform.
+ * @param Cut Cut on which this action is taken.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class CutAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Switching action to perform.
-     */
-    val kind: String,
-
-    /**
-     * Cut on which this action is taken.
-     */
-    val Cut: String,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val kind: String,
+val Cut: String,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -250,26 +207,16 @@ extends
 
 /**
  * Action on energy source as a switching step.
+ * @param sup Reference to the superclass object.
+ * @param kind Switching action to perform.
+ * @param EnergySource Energy source on which this action is taken.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class EnergySourceAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Switching action to perform.
-     */
-    val kind: String,
-
-    /**
-     * Energy source on which this action is taken.
-     */
-    val EnergySource: String,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val kind: String,
+val EnergySource: String,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -308,16 +255,12 @@ extends
 
 /**
  * An arbitrary switching step.
+ * @param sup Reference to the superclass object.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class GenericAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -352,38 +295,22 @@ extends
 
 /**
  * Action on ground as a switching step.
+ * @param sup Reference to the superclass object.
+ * @param kind Switching action to perform.
+ * @param AlongACLineSegment The line segment that this ground action will affect.
+ *        This is the only way to access relationship to clamp in case the ground needs to be placed along the line segment.
+ * @param Ground Ground on which this action is taken.
+ * @param GroundedEquipment Equipment being grounded with this operation.
+ *        In case of placing a ground anywhere along a line segment, you must use the clamp (to get the distance from one terminal), so use the explicit relation with line segment. In all other cases (including placing the ground at a line segment terminal), reference to one or more conducting equipment is sufficient.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class GroundAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Switching action to perform.
-     */
-    val kind: String,
-
-    /**
-     * The line segment that this ground action will affect.
-     * This is the only way to access relationship to clamp in case the ground needs to be placed along the line segment.
-     */
-    val AlongACLineSegment: String,
-
-    /**
-     * Ground on which this action is taken.
-     */
-    val Ground: String,
-
-    /**
-     * Equipment being grounded with this operation.
-     * In case of placing a ground anywhere along a line segment, you must use the clamp (to get the distance from one terminal), so use the explicit relation with line segment. In all other cases (including placing the ground at a line segment terminal), reference to one or more conducting equipment is sufficient.
-     */
-    val GroundedEquipment: String,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val kind: String,
+val AlongACLineSegment: String,
+val Ground: String,
+val GroundedEquipment: String,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -427,31 +354,18 @@ extends
 /**
  * Description of a problem in the field that may be reported in a trouble ticket or come from another source.
  * It may have to do with an outage.
+ * @param sup Reference to the superclass object.
+ * @param cause Cause of this incident.
+ * @param Outage Outage for this incident.
+ * @param Owner Operator who owns this incident.
+ * @param Works All works addressing this incident.
  */
 case class Incident
-(
-
-    override val sup: Document,
-
-    /**
-     * Cause of this incident.
-     */
-    val cause: String,
-
-    /**
-     * Outage for this incident.
-     */
-    val Outage: String,
-
-    /**
-     * Operator who owns this incident.
-     */
-    val Owner: String,
-
-    /**
-     * All works addressing this incident.
-     */
-    val Works: List[String]
+(override val sup: Document,
+val cause: String,
+val Outage: String,
+val Owner: String,
+val Works: List[String]
 )
 extends
     Element
@@ -492,26 +406,16 @@ extends
 
 /**
  * Action on jumper as a switching step.
+ * @param sup Reference to the superclass object.
+ * @param kind Switching action to perform.
+ * @param Jumper Jumper on which this action is taken.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class JumperAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Switching action to perform.
-     */
-    val kind: String,
-
-    /**
-     * Jumper on which this action is taken.
-     */
-    val Jumper: String,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val kind: String,
+val Jumper: String,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -549,24 +453,10 @@ extends
 }
 
 case class OperationTag
-(
-
-    override val sup: Document,
-
-    /**
-     * Asset on which this operation tag has been placed.
-     */
-    val Asset: String,
-
-    /**
-     * Power system resource on which this tag has been placed.
-     */
-    val PowerSystemResource: String,
-
-    /**
-     * Tag action associated with this tag.
-     */
-    val TagAction: String
+(override val sup: Document,
+val Asset: String,
+val PowerSystemResource: String,
+val TagAction: String
 )
 extends
     Element
@@ -606,31 +496,18 @@ extends
 /**
  * A document that can be associated with equipment to describe any sort of restrictions compared with the original manufacturer's specification or with the usual operational practice e.g. temporary maximum loadings, maximum switching current, do not operate if bus couplers are open, etc.
  * In the UK, for example, if a breaker or switch ever mal-operates, this is reported centrally and utilities use their asset systems to identify all the installed devices of the same manufacturer's type. They then apply operational restrictions in the operational systems to warn operators of potential problems. After appropriate inspection and maintenance, the operational restrictions may be removed.
+ * @param sup Reference to the superclass object.
+ * @param activePeriod Interval during which this restriction is applied.
+ * @param restrictedValue Restricted (new) value; includes unit of measure and potentially multiplier.
+ * @param Equipments All equipments to which this restriction applies.
+ * @param ProductAssetModel Asset model to which this restriction applies.
  */
 case class OperationalRestriction
-(
-
-    override val sup: Document,
-
-    /**
-     * Interval during which this restriction is applied.
-     */
-    val activePeriod: String,
-
-    /**
-     * Restricted (new) value; includes unit of measure and potentially multiplier.
-     */
-    val restrictedValue: String,
-
-    /**
-     * All equipments to which this restriction applies.
-     */
-    val Equipments: List[String],
-
-    /**
-     * Asset model to which this restriction applies.
-     */
-    val ProductAssetModel: String
+(override val sup: Document,
+val activePeriod: String,
+val restrictedValue: String,
+val Equipments: List[String],
+val ProductAssetModel: String
 )
 extends
     Element
@@ -671,21 +548,14 @@ extends
 
 /**
  * Lowered capability because of deterioration or inadequacy (sometimes referred to as derating or partial outage) or other kind of operational rating change.
+ * @param sup Reference to the superclass object.
+ * @param changeType Type of operational updated rating, e.g. a derate, a rerate or a return to normal.
+ * @param PlannedOutage Planned equipment outage with this updated rating.
  */
 case class OperationalUpdatedRating
-(
-
-    override val sup: OperationalRestriction,
-
-    /**
-     * Type of operational updated rating, e.g. a derate, a rerate or a return to normal.
-     */
-    val changeType: String,
-
-    /**
-     * Planned equipment outage with this updated rating.
-     */
-    val PlannedOutage: String
+(override val sup: OperationalRestriction,
+val changeType: String,
+val PlannedOutage: String
 )
 extends
     Element
@@ -723,63 +593,32 @@ extends
 /**
  * Document describing details of an active or planned outage in a part of the electrical network.
  * A non-planned outage may be created upon:
+ * @param sup Reference to the superclass object.
+ * @param actualPeriod Actual outage period; end of the period corresponds to the actual restoration time.
+ * @param cancelledDateTime Date and time planned outage has been cancelled.
+ * @param cause One or more causes of this outage.
+ *        Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).
+ * @param estimatedPeriod Estimated outage period.
+ *        The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.
+ * @param isPlanned True if planned, false otherwise (for example due to a breaker trip).
+ * @param summary Summary counts of service points (customers) affected by this outage.
+ * @param Equipments All equipments associated with this outage.
+ * @param Incident Incident reported in trouble call that results in this outage.
+ * @param OutageSchedule Outage schedule whose execution will result in this outage.
+ * @param UsagePoints All usage points associated with this outage.
  */
 case class Outage
-(
-
-    override val sup: Document,
-
-    /**
-     * Actual outage period; end of the period corresponds to the actual restoration time.
-     */
-    val actualPeriod: String,
-
-    /**
-     * Date and time planned outage has been cancelled.
-     */
-    val cancelledDateTime: String,
-
-    /**
-     * One or more causes of this outage.
-     * Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).
-     */
-    val cause: String,
-
-    /**
-     * Estimated outage period.
-     * The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.
-     */
-    val estimatedPeriod: String,
-
-    /**
-     * True if planned, false otherwise (for example due to a breaker trip).
-     */
-    val isPlanned: Boolean,
-
-    /**
-     * Summary counts of service points (customers) affected by this outage.
-     */
-    val summary: String,
-
-    /**
-     * All equipments associated with this outage.
-     */
-    val Equipments: List[String],
-
-    /**
-     * Incident reported in trouble call that results in this outage.
-     */
-    val Incident: String,
-
-    /**
-     * Outage schedule whose execution will result in this outage.
-     */
-    val OutageSchedule: String,
-
-    /**
-     * All usage points associated with this outage.
-     */
-    val UsagePoints: List[String]
+(override val sup: Document,
+val actualPeriod: String,
+val cancelledDateTime: String,
+val cause: String,
+val estimatedPeriod: String,
+val isPlanned: Boolean,
+val summary: String,
+val Equipments: List[String],
+val Incident: String,
+val OutageSchedule: String,
+val UsagePoints: List[String]
 )
 extends
     Element
@@ -833,11 +672,10 @@ extends
 /**
  * Document containing the definition of planned outages of equipment and/or service (delivery) points (sometimes referred to as customers).
  * It is used as specification for producing switching plans.
+ * @param sup Reference to the superclass object.
  */
 case class OutageSchedule
-(
-
-    override val sup: Document
+(override val sup: Document
 )
 extends
     Element
@@ -870,21 +708,14 @@ extends
 
 /**
  * Event recording the change in operational status of a power system resource; may be for an event that has already occurred or for a planned activity.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of event.
+ * @param PowerSystemResource Power system resource that generated this event.
  */
 case class PSREvent
-(
-
-    override val sup: ActivityRecord,
-
-    /**
-     * Kind of event.
-     */
-    val kind: String,
-
-    /**
-     * Power system resource that generated this event.
-     */
-    val PowerSystemResource: String
+(override val sup: ActivityRecord,
+val kind: String,
+val PowerSystemResource: String
 )
 extends
     Element
@@ -921,46 +752,24 @@ extends
 
 /**
  * Kind of power system resource event.
+ * @param sup Reference to the superclass object.
+ * @param inService Power system resource state change to in service.
+ * @param other Other power system resource state change.
+ * @param outOfService Power system resource state change to out of service.
+ * @param pendingAdd Power system resource state change to pending add.
+ * @param pendingRemove Power system resource state change to pending remove.
+ * @param pendingReplace Power system resource state change to pending replace.
+ * @param unknown Unknown power system resource state change.
  */
 case class PSREventKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Power system resource state change to in service.
-     */
-    val inService: String,
-
-    /**
-     * Other power system resource state change.
-     */
-    val other: String,
-
-    /**
-     * Power system resource state change to out of service.
-     */
-    val outOfService: String,
-
-    /**
-     * Power system resource state change to pending add.
-     */
-    val pendingAdd: String,
-
-    /**
-     * Power system resource state change to pending remove.
-     */
-    val pendingRemove: String,
-
-    /**
-     * Power system resource state change to pending replace.
-     */
-    val pendingReplace: String,
-
-    /**
-     * Unknown power system resource state change.
-     */
-    val unknown: String
+(override val sup: BasicElement,
+val inService: String,
+val other: String,
+val outOfService: String,
+val pendingAdd: String,
+val pendingRemove: String,
+val pendingReplace: String,
+val unknown: String
 )
 extends
     Element
@@ -1007,16 +816,12 @@ extends
 
 /**
  * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
+ * @param sup Reference to the superclass object.
+ * @param SwitchingPlan Switching plan to which this safety document applies.
  */
 case class SafetyDocument
-(
-
-    override val sup: Document,
-
-    /**
-     * Switching plan to which this safety document applies.
-     */
-    val SwitchingPlan: String
+(override val sup: Document,
+val SwitchingPlan: String
 )
 extends
     Element
@@ -1052,21 +857,14 @@ extends
 /**
  * Summary counts of service points affected by an outage.
  * These counts are sometimes referred to as total and critical customer count.
+ * @param sup Reference to the superclass object.
+ * @param criticalCount Number of critical service (delivery) points affected by an outage.
+ * @param totalCount Number of all service (delivery) points affected by an outage.
  */
 case class ServicePointOutageSummary
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Number of critical service (delivery) points affected by an outage.
-     */
-    val criticalCount: Int,
-
-    /**
-     * Number of all service (delivery) points affected by an outage.
-     */
-    val totalCount: Int
+(override val sup: BasicElement,
+val criticalCount: Int,
+val totalCount: Int
 )
 extends
     Element
@@ -1103,31 +901,18 @@ extends
 
 /**
  * Action on switch as a switching step.
+ * @param sup Reference to the superclass object.
+ * @param kind Switching action to perform.
+ * @param OperatedSwitch Switch that is the object of this switch action.
+ * @param PlannedOutage Planned outage for whose scope this switch action applies.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class SwitchAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Switching action to perform.
-     */
-    val kind: String,
-
-    /**
-     * Switch that is the object of this switch action.
-     */
-    val OperatedSwitch: String,
-
-    /**
-     * Planned outage for whose scope this switch action applies.
-     */
-    val PlannedOutage: String,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val kind: String,
+val OperatedSwitch: String,
+val PlannedOutage: String,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -1168,31 +953,18 @@ extends
 
 /**
  * Kind of action on switch.
+ * @param sup Reference to the superclass object.
+ * @param close Close the switch.
+ * @param disableReclosing Disable (automatic) switch reclosing.
+ * @param enableReclosing Enable (automatic) switch reclosing.
+ * @param open Open the switch.
  */
 case class SwitchActionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Close the switch.
-     */
-    val close: String,
-
-    /**
-     * Disable (automatic) switch reclosing.
-     */
-    val disableReclosing: String,
-
-    /**
-     * Enable (automatic) switch reclosing.
-     */
-    val enableReclosing: String,
-
-    /**
-     * Open the switch.
-     */
-    val open: String
+(override val sup: BasicElement,
+val close: String,
+val disableReclosing: String,
+val enableReclosing: String,
+val open: String
 )
 extends
     Element
@@ -1235,26 +1007,16 @@ extends
  * A sequence of grouped or atomic steps intended to:
 - de-energise equipment or part of the network for safe work, and/or
  * - bring back in service previously de-energised equipment or part of the network.
+ * @param sup Reference to the superclass object.
+ * @param purpose Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.
+ * @param rank Ranking in comparison to other switching plans.
+ * @param Outage Outage that will be eliminated when this switching plan gets executed.
  */
 case class SwitchingPlan
-(
-
-    override val sup: SwitchingStepGroup,
-
-    /**
-     * Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.
-     */
-    val purpose: String,
-
-    /**
-     * Ranking in comparison to other switching plans.
-     */
-    val rank: Int,
-
-    /**
-     * Outage that will be eliminated when this switching plan gets executed.
-     */
-    val Outage: String
+(override val sup: SwitchingStepGroup,
+val purpose: String,
+val rank: Int,
+val Outage: String
 )
 extends
     Element
@@ -1293,46 +1055,24 @@ extends
 
 /**
  * Atomic switching step; can be part of a switching step group, or of the switching plan.
+ * @param sup Reference to the superclass object.
+ * @param description Free text description of this activity.
+ * @param executedDateTime Actual date and time of this switching step.
+ * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
+ * @param plannedDateTime Planned date and time of this switching step.
+ * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
+ * @param CrewMember Crew member responsible for this switching step.
+ * @param Operator Operator responsible for this switching step.
  */
 case class SwitchingStep
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Free text description of this activity.
-     */
-    val description: String,
-
-    /**
-     * Actual date and time of this switching step.
-     */
-    val executedDateTime: String,
-
-    /**
-     * If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
-     */
-    val isFreeSequence: Boolean,
-
-    /**
-     * Planned date and time of this switching step.
-     */
-    val plannedDateTime: String,
-
-    /**
-     * Order of this activity in the sequence of activities within the switching plan.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * Crew member responsible for this switching step.
-     */
-    val CrewMember: String,
-
-    /**
-     * Operator responsible for this switching step.
-     */
-    val Operator: String
+(override val sup: BasicElement,
+val description: String,
+val executedDateTime: String,
+val isFreeSequence: Boolean,
+val plannedDateTime: String,
+val sequenceNumber: Int,
+val CrewMember: String,
+val Operator: String
 )
 extends
     Element
@@ -1379,26 +1119,16 @@ extends
 
 /**
  * A logical step, grouping atomic switching steps that are important to distinguish when they may change topology (e.g. placing a jumper between two cuts).
+ * @param sup Reference to the superclass object.
+ * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
+ * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
+ * @param SwitchingPlan Switching plan to which this group belongs.
  */
 case class SwitchingStepGroup
-(
-
-    override val sup: Document,
-
-    /**
-     * If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
-     */
-    val isFreeSequence: Boolean,
-
-    /**
-     * Order of this activity in the sequence of activities within the switching plan.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * Switching plan to which this group belongs.
-     */
-    val SwitchingPlan: String
+(override val sup: Document,
+val isFreeSequence: Boolean,
+val sequenceNumber: Int,
+val SwitchingPlan: String
 )
 extends
     Element
@@ -1437,26 +1167,16 @@ extends
 
 /**
  * Action on operation tag as a switching step.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of tag action.
+ * @param OperationTag Tag associated with this tag action.
+ * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class TagAction
-(
-
-    override val sup: SwitchingStep,
-
-    /**
-     * Kind of tag action.
-     */
-    val kind: String,
-
-    /**
-     * Tag associated with this tag action.
-     */
-    val OperationTag: String,
-
-    /**
-     * Group to which this step belongs.
-     */
-    val SwitchingStepGroup: String
+(override val sup: SwitchingStep,
+val kind: String,
+val OperationTag: String,
+val SwitchingStepGroup: String
 )
 extends
     Element
@@ -1495,26 +1215,16 @@ extends
 
 /**
  * Kind of action on tag.
+ * @param sup Reference to the superclass object.
+ * @param place Place the tag.
+ * @param remove Remove the tag.
+ * @param verify Verify the tag.
  */
 case class TagActionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Place the tag.
-     */
-    val place: String,
-
-    /**
-     * Remove the tag.
-     */
-    val remove: String,
-
-    /**
-     * Verify the tag.
-     */
-    val verify: String
+(override val sup: BasicElement,
+val place: String,
+val remove: String,
+val verify: String
 )
 extends
     Element
@@ -1553,21 +1263,14 @@ extends
 
 /**
  * Kind of action on temporary equipment (such as cut, jumper, ground, energy source).
+ * @param sup Reference to the superclass object.
+ * @param place Place the jumper (close) or the cut (open).
+ * @param remove Remove the jumper (open) or the cut (close).
  */
 case class TempEquipActionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Place the jumper (close) or the cut (open).
-     */
-    val place: String,
-
-    /**
-     * Remove the jumper (open) or the cut (close).
-     */
-    val remove: String
+(override val sup: BasicElement,
+val place: String,
+val remove: String
 )
 extends
     Element

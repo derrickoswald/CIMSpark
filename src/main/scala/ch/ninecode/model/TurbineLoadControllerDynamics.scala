@@ -11,89 +11,52 @@ import ch.ninecode.cim.Context
 /**
  * Turbine Load Controller model developed in the WECC.
  * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
+ * @param sup Reference to the superclass object.
+ * @param db Controller dead band (db).
+ *        Typical Value = 0.
+ * @param emax Maximum control error (Emax) (note 4).
+ *        Typical Value = 0.02.
+ * @param fb Frequency bias gain (Fb).
+ *        Typical Value = 0.
+ * @param fbf Frequency bias flag (Fbf).
+true = enable frequency bias
+false = disable frequency bias.
+ *        Typical Value = false.
+ * @param irmax Maximum turbine speed/load reference bias (Irmax) (note 3).
+ *        Typical Value = 0.
+ * @param ki Integral gain (Ki).
+ *        Typical Value = 0.
+ * @param kp Proportional gain (Kp).
+ *        Typical Value = 0.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pbf Power controller flag (Pbf).
+true = enable load controller
+false = disable load controller.
+ *        Typical Value = false.
+ * @param pmwset Power controller setpoint (Pmwset) (note 1).
+ *        Unit = MW. Typical Value = 0.
+ * @param speedReferenceGovernor Type of turbine governor reference (Type).
+true = speed reference governor
+false = load reference governor.
+ *        Typical Value = true.
+ * @param tpelec Power transducer time constant (Tpelec).
+ *        Typical Value = 0.
  */
 case class TurbLCFB1
-(
-
-    override val sup: TurbineLoadControllerDynamics,
-
-    /**
-     * Controller dead band (db).
-     * Typical Value = 0.
-     */
-    val db: Double,
-
-    /**
-     * Maximum control error (Emax) (note 4).
-     * Typical Value = 0.02.
-     */
-    val emax: Double,
-
-    /**
-     * Frequency bias gain (Fb).
-     * Typical Value = 0.
-     */
-    val fb: Double,
-
-    /**
-     * Frequency bias flag (Fbf).
-    true = enable frequency bias
-    false = disable frequency bias.
-     * Typical Value = false.
-     */
-    val fbf: Boolean,
-
-    /**
-     * Maximum turbine speed/load reference bias (Irmax) (note 3).
-     * Typical Value = 0.
-     */
-    val irmax: Double,
-
-    /**
-     * Integral gain (Ki).
-     * Typical Value = 0.
-     */
-    val ki: Double,
-
-    /**
-     * Proportional gain (Kp).
-     * Typical Value = 0.
-     */
-    val kp: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Power controller flag (Pbf).
-    true = enable load controller
-    false = disable load controller.
-     * Typical Value = false.
-     */
-    val pbf: Boolean,
-
-    /**
-     * Power controller setpoint (Pmwset) (note 1).
-     * Unit = MW. Typical Value = 0.
-     */
-    val pmwset: Double,
-
-    /**
-     * Type of turbine governor reference (Type).
-    true = speed reference governor
-    false = load reference governor.
-     * Typical Value = true.
-     */
-    val speedReferenceGovernor: Boolean,
-
-    /**
-     * Power transducer time constant (Tpelec).
-     * Typical Value = 0.
-     */
-    val tpelec: Double
+(override val sup: TurbineLoadControllerDynamics,
+val db: Double,
+val emax: Double,
+val fb: Double,
+val fbf: Boolean,
+val irmax: Double,
+val ki: Double,
+val kp: Double,
+val mwbase: Double,
+val pbf: Boolean,
+val pmwset: Double,
+val speedReferenceGovernor: Boolean,
+val tpelec: Double
 )
 extends
     Element
@@ -150,16 +113,12 @@ extends
 
 /**
  * Turbine load controller function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param TurbineGovernorDynamics Turbine-governor controlled by this turbine load controller.
  */
 case class TurbineLoadControllerDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Turbine-governor controlled by this turbine load controller.
-     */
-    val TurbineGovernorDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val TurbineGovernorDynamics: String
 )
 extends
     Element

@@ -11,21 +11,14 @@ import ch.ninecode.cim.Context
 
 /**
  * Busbar section data.
+ * @param sup Reference to the superclass object.
+ * @param ratedCurrent Rated current.
+ * @param ratedVoltage Rated voltage.
  */
 case class BusbarSectionInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Rated current.
-     */
-    val ratedCurrent: Double,
-
-    /**
-     * Rated voltage.
-     */
-    val ratedVoltage: Double
+(override val sup: AssetInfo,
+val ratedCurrent: Double,
+val ratedVoltage: Double
 )
 extends
     Element
@@ -62,46 +55,24 @@ extends
 
 /**
  * Kind of cable construction.
+ * @param sup Reference to the superclass object.
+ * @param compacted Compacted cable.
+ * @param compressed Compressed cable.
+ * @param other Other kind of cable construction.
+ * @param sector Sector cable.
+ * @param segmental Segmental cable.
+ * @param solid Solid cable.
+ * @param stranded Stranded cable.
  */
 case class CableConstructionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Compacted cable.
-     */
-    val compacted: String,
-
-    /**
-     * Compressed cable.
-     */
-    val compressed: String,
-
-    /**
-     * Other kind of cable construction.
-     */
-    val other: String,
-
-    /**
-     * Sector cable.
-     */
-    val sector: String,
-
-    /**
-     * Segmental cable.
-     */
-    val segmental: String,
-
-    /**
-     * Solid cable.
-     */
-    val solid: String,
-
-    /**
-     * Stranded cable.
-     */
-    val stranded: String
+(override val sup: BasicElement,
+val compacted: String,
+val compressed: String,
+val other: String,
+val sector: String,
+val segmental: String,
+val solid: String,
+val stranded: String
 )
 extends
     Element
@@ -148,61 +119,30 @@ extends
 
 /**
  * Cable data.
+ * @param sup Reference to the superclass object.
+ * @param constructionKind Kind of construction of this cable.
+ * @param diameterOverCore Diameter over the core, including any semi-con screen; should be the insulating layer's inside diameter.
+ * @param diameterOverInsulation Diameter over the insulating layer, excluding outer screen.
+ * @param diameterOverJacket Diameter over the outermost jacketing layer.
+ * @param diameterOverScreen Diameter over the outer screen; should be the shield's inside diameter.
+ * @param isStrandFill True if wire strands are extruded in a way to fill the voids in the cable.
+ * @param nominalTemperature Maximum nominal design operating temperature.
+ * @param outerJacketKind Kind of outer jacket of this cable.
+ * @param sheathAsNeutral True if sheath / shield is used as a neutral (i.e., bonded).
+ * @param shieldMaterial Material of the shield.
  */
 case class CableInfo
-(
-
-    override val sup: WireInfo,
-
-    /**
-     * Kind of construction of this cable.
-     */
-    val constructionKind: String,
-
-    /**
-     * Diameter over the core, including any semi-con screen; should be the insulating layer's inside diameter.
-     */
-    val diameterOverCore: Double,
-
-    /**
-     * Diameter over the insulating layer, excluding outer screen.
-     */
-    val diameterOverInsulation: Double,
-
-    /**
-     * Diameter over the outermost jacketing layer.
-     */
-    val diameterOverJacket: Double,
-
-    /**
-     * Diameter over the outer screen; should be the shield's inside diameter.
-     */
-    val diameterOverScreen: Double,
-
-    /**
-     * True if wire strands are extruded in a way to fill the voids in the cable.
-     */
-    val isStrandFill: Boolean,
-
-    /**
-     * Maximum nominal design operating temperature.
-     */
-    val nominalTemperature: Double,
-
-    /**
-     * Kind of outer jacket of this cable.
-     */
-    val outerJacketKind: String,
-
-    /**
-     * True if sheath / shield is used as a neutral (i.e., bonded).
-     */
-    val sheathAsNeutral: Boolean,
-
-    /**
-     * Material of the shield.
-     */
-    val shieldMaterial: String
+(override val sup: WireInfo,
+val constructionKind: String,
+val diameterOverCore: Double,
+val diameterOverInsulation: Double,
+val diameterOverJacket: Double,
+val diameterOverScreen: Double,
+val isStrandFill: Boolean,
+val nominalTemperature: Double,
+val outerJacketKind: String,
+val sheathAsNeutral: Boolean,
+val shieldMaterial: String
 )
 extends
     Element
@@ -255,46 +195,24 @@ extends
 
 /**
  * Kind of cable outer jacket.
+ * @param sup Reference to the superclass object.
+ * @param insulating Insulating cable outer jacket.
+ * @param linearLowDensityPolyethylene Linear low density polyethylene cable outer jacket.
+ * @param none Cable has no outer jacket.
+ * @param other Pther kind of cable outer jacket.
+ * @param polyethylene Polyethylene cable outer jacket.
+ * @param pvc PVC cable outer jacket.
+ * @param semiconducting Semiconducting cable outer jacket.
  */
 case class CableOuterJacketKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Insulating cable outer jacket.
-     */
-    val insulating: String,
-
-    /**
-     * Linear low density polyethylene cable outer jacket.
-     */
-    val linearLowDensityPolyethylene: String,
-
-    /**
-     * Cable has no outer jacket.
-     */
-    val none: String,
-
-    /**
-     * Pther kind of cable outer jacket.
-     */
-    val other: String,
-
-    /**
-     * Polyethylene cable outer jacket.
-     */
-    val polyethylene: String,
-
-    /**
-     * PVC cable outer jacket.
-     */
-    val pvc: String,
-
-    /**
-     * Semiconducting cable outer jacket.
-     */
-    val semiconducting: String
+(override val sup: BasicElement,
+val insulating: String,
+val linearLowDensityPolyethylene: String,
+val none: String,
+val other: String,
+val polyethylene: String,
+val pvc: String,
+val semiconducting: String
 )
 extends
     Element
@@ -341,36 +259,20 @@ extends
 
 /**
  * Kind of cable shield material.
+ * @param sup Reference to the superclass object.
+ * @param aluminum Aluminum cable shield.
+ * @param copper Copper cable shield.
+ * @param lead Lead cable shield.
+ * @param other Other kind of cable shield material.
+ * @param steel Steel cable shield.
  */
 case class CableShieldMaterialKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Aluminum cable shield.
-     */
-    val aluminum: String,
-
-    /**
-     * Copper cable shield.
-     */
-    val copper: String,
-
-    /**
-     * Lead cable shield.
-     */
-    val lead: String,
-
-    /**
-     * Other kind of cable shield material.
-     */
-    val other: String,
-
-    /**
-     * Steel cable shield.
-     */
-    val steel: String
+(override val sup: BasicElement,
+val aluminum: String,
+val copper: String,
+val lead: String,
+val other: String,
+val steel: String
 )
 extends
     Element
@@ -413,36 +315,20 @@ extends
 
 /**
  * Concentric neutral cable data.
+ * @param sup Reference to the superclass object.
+ * @param diameterOverNeutral Diameter over the concentric neutral strands.
+ * @param neutralStrandCount Number of concentric neutral strands.
+ * @param neutralStrandGmr Geometric mean radius of the neutral strand.
+ * @param neutralStrandRDC20 DC resistance per unit length of the neutral strand at 20 �C.
+ * @param neutralStrandRadius Outside radius of the neutral strand.
  */
 case class ConcentricNeutralCableInfo
-(
-
-    override val sup: CableInfo,
-
-    /**
-     * Diameter over the concentric neutral strands.
-     */
-    val diameterOverNeutral: Double,
-
-    /**
-     * Number of concentric neutral strands.
-     */
-    val neutralStrandCount: Int,
-
-    /**
-     * Geometric mean radius of the neutral strand.
-     */
-    val neutralStrandGmr: Double,
-
-    /**
-     * DC resistance per unit length of the neutral strand at 20 �C.
-     */
-    val neutralStrandRDC20: Double,
-
-    /**
-     * Outside radius of the neutral strand.
-     */
-    val neutralStrandRadius: Double
+(override val sup: CableInfo,
+val diameterOverNeutral: Double,
+val neutralStrandCount: Int,
+val neutralStrandGmr: Double,
+val neutralStrandRDC20: Double,
+val neutralStrandRadius: Double
 )
 extends
     Element
@@ -486,41 +372,22 @@ extends
 /**
  * No-load test results determine core admittance parameters.
  * They include exciting current and core loss measurements from applying voltage to one winding. The excitation may be positive sequence or zero sequence. The test may be repeated at different voltages to measure saturation.
+ * @param sup Reference to the superclass object.
+ * @param energisedEndVoltage Voltage applied to the winding (end) during test.
+ * @param excitingCurrent Exciting current measured from a positive-sequence or single-phase excitation test.
+ * @param excitingCurrentZero Exciting current measured from a zero-sequence open-circuit excitation test.
+ * @param loss Losses measured from a positive-sequence or single-phase excitation test.
+ * @param lossZero Losses measured from a zero-sequence excitation test.
+ * @param EnergisedEnd Transformer end that current is applied to in this no-load test.
  */
 case class NoLoadTest
-(
-
-    override val sup: TransformerTest,
-
-    /**
-     * Voltage applied to the winding (end) during test.
-     */
-    val energisedEndVoltage: Double,
-
-    /**
-     * Exciting current measured from a positive-sequence or single-phase excitation test.
-     */
-    val excitingCurrent: Double,
-
-    /**
-     * Exciting current measured from a zero-sequence open-circuit excitation test.
-     */
-    val excitingCurrentZero: Double,
-
-    /**
-     * Losses measured from a positive-sequence or single-phase excitation test.
-     */
-    val loss: Double,
-
-    /**
-     * Losses measured from a zero-sequence excitation test.
-     */
-    val lossZero: Double,
-
-    /**
-     * Transformer end that current is applied to in this no-load test.
-     */
-    val EnergisedEnd: String
+(override val sup: TransformerTest,
+val energisedEndVoltage: Double,
+val excitingCurrent: Double,
+val excitingCurrentZero: Double,
+val loss: Double,
+val lossZero: Double,
+val EnergisedEnd: String
 )
 extends
     Element
@@ -566,46 +433,24 @@ extends
 /**
  * Open-circuit test results verify winding turn ratios and phase shifts.
  * They include induced voltage and phase shift measurements on open-circuit windings, with voltage applied to the energised end. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence.
+ * @param sup Reference to the superclass object.
+ * @param energisedEndStep Tap step number for the energised end of the test pair.
+ * @param energisedEndVoltage Voltage applied to the winding (end) during test.
+ * @param openEndStep Tap step number for the open end of the test pair.
+ * @param openEndVoltage Voltage measured at the open-circuited end, with the energised end set to rated voltage and all other ends open.
+ * @param phaseShift Phase shift measured at the open end with the energised end set to rated voltage and all other ends open.
+ * @param EnergisedEnd Transformer end that current is applied to in this open-circuit test.
+ * @param OpenEnd Transformer end measured for induced voltage and angle in this open-circuit test.
  */
 case class OpenCircuitTest
-(
-
-    override val sup: TransformerTest,
-
-    /**
-     * Tap step number for the energised end of the test pair.
-     */
-    val energisedEndStep: Int,
-
-    /**
-     * Voltage applied to the winding (end) during test.
-     */
-    val energisedEndVoltage: Double,
-
-    /**
-     * Tap step number for the open end of the test pair.
-     */
-    val openEndStep: Int,
-
-    /**
-     * Voltage measured at the open-circuited end, with the energised end set to rated voltage and all other ends open.
-     */
-    val openEndVoltage: Double,
-
-    /**
-     * Phase shift measured at the open end with the energised end set to rated voltage and all other ends open.
-     */
-    val phaseShift: Double,
-
-    /**
-     * Transformer end that current is applied to in this open-circuit test.
-     */
-    val EnergisedEnd: String,
-
-    /**
-     * Transformer end measured for induced voltage and angle in this open-circuit test.
-     */
-    val OpenEnd: String
+(override val sup: TransformerTest,
+val energisedEndStep: Int,
+val energisedEndVoltage: Double,
+val openEndStep: Int,
+val openEndVoltage: Double,
+val phaseShift: Double,
+val EnergisedEnd: String,
+val OpenEnd: String
 )
 extends
     Element
@@ -652,11 +497,10 @@ extends
 
 /**
  * Overhead wire data.
+ * @param sup Reference to the superclass object.
  */
 case class OverheadWireInfo
-(
-
-    override val sup: WireInfo
+(override val sup: WireInfo
 )
 extends
     Element
@@ -689,11 +533,10 @@ extends
 
 /**
  * Set of power transformer data, from an equipment library.
+ * @param sup Reference to the superclass object.
  */
 case class PowerTransformerInfo
-(
-
-    override val sup: AssetInfo
+(override val sup: AssetInfo
 )
 extends
     Element
@@ -727,47 +570,25 @@ extends
 /**
  * Short-circuit test results determine mesh impedance parameters.
  * They include load losses and leakage impedances. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence. There shall be at least one grounded winding.
+ * @param sup Reference to the superclass object.
+ * @param energisedEndStep Tap step number for the energised end of the test pair.
+ * @param groundedEndStep Tap step number for the grounded end of the test pair.
+ * @param leakageImpedance Leakage impedance measured from a positive-sequence or single-phase short-circuit test.
+ * @param leakageImpedanceZero Leakage impedance measured from a zero-sequence short-circuit test.
+ * @param loss Load losses from a positive-sequence or single-phase short-circuit test.
+ * @param lossZero Load losses from a zero-sequence short-circuit test.
+ * @param EnergisedEnd Transformer end that voltage is applied to in this short-circuit test.
+ *        The test voltage is chosen to induce rated current in the energised end.
  */
 case class ShortCircuitTest
-(
-
-    override val sup: TransformerTest,
-
-    /**
-     * Tap step number for the energised end of the test pair.
-     */
-    val energisedEndStep: Int,
-
-    /**
-     * Tap step number for the grounded end of the test pair.
-     */
-    val groundedEndStep: Int,
-
-    /**
-     * Leakage impedance measured from a positive-sequence or single-phase short-circuit test.
-     */
-    val leakageImpedance: Double,
-
-    /**
-     * Leakage impedance measured from a zero-sequence short-circuit test.
-     */
-    val leakageImpedanceZero: Double,
-
-    /**
-     * Load losses from a positive-sequence or single-phase short-circuit test.
-     */
-    val loss: Double,
-
-    /**
-     * Load losses from a zero-sequence short-circuit test.
-     */
-    val lossZero: Double,
-
-    /**
-     * Transformer end that voltage is applied to in this short-circuit test.
-     * The test voltage is chosen to induce rated current in the energised end.
-     */
-    val EnergisedEnd: String
+(override val sup: TransformerTest,
+val energisedEndStep: Int,
+val groundedEndStep: Int,
+val leakageImpedance: Double,
+val leakageImpedanceZero: Double,
+val loss: Double,
+val lossZero: Double,
+val EnergisedEnd: String
 )
 extends
     Element
@@ -814,33 +635,20 @@ extends
 
 /**
  * Properties of shunt capacitor, shunt reactor or switchable bank of shunt capacitor or reactor assets.
+ * @param sup Reference to the superclass object.
+ * @param maxPowerLoss Maximum allowed apparent power loss.
+ * @param ratedCurrent Rated current.
+ * @param ratedReactivePower Rated reactive power.
+ * @param ratedVoltage Rated voltage.
+ * @param ShuntCompensatorControl
  */
 case class ShuntCompensatorInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Maximum allowed apparent power loss.
-     */
-    val maxPowerLoss: Double,
-
-    /**
-     * Rated current.
-     */
-    val ratedCurrent: Double,
-
-    /**
-     * Rated reactive power.
-     */
-    val ratedReactivePower: Double,
-
-    /**
-     * Rated voltage.
-     */
-    val ratedVoltage: Double,
-
-    val ShuntCompensatorControl: String
+(override val sup: AssetInfo,
+val maxPowerLoss: Double,
+val ratedCurrent: Double,
+val ratedReactivePower: Double,
+val ratedVoltage: Double,
+val ShuntCompensatorControl: String
 )
 extends
     Element
@@ -883,36 +691,20 @@ extends
 
 /**
  * Switch data.
+ * @param sup Reference to the superclass object.
+ * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
+ * @param isSinglePhase If true, it is a single phase switch.
+ * @param isUnganged If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).
+ * @param ratedCurrent Rated current.
+ * @param ratedVoltage Rated voltage.
  */
 case class SwitchInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * The maximum fault current a breaking device can break safely under prescribed conditions of use.
-     */
-    val breakingCapacity: Double,
-
-    /**
-     * If true, it is a single phase switch.
-     */
-    val isSinglePhase: Boolean,
-
-    /**
-     * If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).
-     */
-    val isUnganged: Boolean,
-
-    /**
-     * Rated current.
-     */
-    val ratedCurrent: Double,
-
-    /**
-     * Rated voltage.
-     */
-    val ratedVoltage: Double
+(override val sup: AssetInfo,
+val breakingCapacity: Double,
+val isSinglePhase: Boolean,
+val isUnganged: Boolean,
+val ratedCurrent: Double,
+val ratedVoltage: Double
 )
 extends
     Element
@@ -955,87 +747,41 @@ extends
 
 /**
  * Tap changer data.
+ * @param sup Reference to the superclass object.
+ * @param bil Basic Insulation Level (BIL) expressed as the impulse crest voltage of a nominal wave, typically 1.2 X 50 microsecond.
+ *        This is a measure of the ability of the insulation to withstand very high voltage surges.
+ * @param ctRating Built-in current transformer primary rating.
+ * @param ctRatio Built-in current transducer ratio.
+ * @param frequency Frequency at which the ratings apply.
+ * @param highStep Highest possible tap step position, advance from neutral.
+ * @param isTcul Whether this tap changer has under load tap changing capabilities.
+ * @param lowStep Lowest possible tap step position, retard from neutral.
+ * @param neutralStep The neutral tap step position for the winding.
+ * @param neutralU Voltage at which the winding operates at the neutral tap setting.
+ * @param ptRatio Built-in voltage transducer ratio.
+ * @param ratedApparentPower Rated apparent power.
+ * @param ratedCurrent Rated current.
+ * @param ratedVoltage Rated voltage.
+ * @param stepPhaseIncrement Phase shift per step position.
+ * @param stepVoltageIncrement Tap step increment, in per cent of rated voltage, per step position.
  */
 case class TapChangerInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Basic Insulation Level (BIL) expressed as the impulse crest voltage of a nominal wave, typically 1.2 X 50 microsecond.
-     * This is a measure of the ability of the insulation to withstand very high voltage surges.
-     */
-    val bil: Double,
-
-    /**
-     * Built-in current transformer primary rating.
-     */
-    val ctRating: Double,
-
-    /**
-     * Built-in current transducer ratio.
-     */
-    val ctRatio: Double,
-
-    /**
-     * Frequency at which the ratings apply.
-     */
-    val frequency: Double,
-
-    /**
-     * Highest possible tap step position, advance from neutral.
-     */
-    val highStep: Int,
-
-    /**
-     * Whether this tap changer has under load tap changing capabilities.
-     */
-    val isTcul: Boolean,
-
-    /**
-     * Lowest possible tap step position, retard from neutral.
-     */
-    val lowStep: Int,
-
-    /**
-     * The neutral tap step position for the winding.
-     */
-    val neutralStep: Int,
-
-    /**
-     * Voltage at which the winding operates at the neutral tap setting.
-     */
-    val neutralU: Double,
-
-    /**
-     * Built-in voltage transducer ratio.
-     */
-    val ptRatio: Double,
-
-    /**
-     * Rated apparent power.
-     */
-    val ratedApparentPower: Double,
-
-    /**
-     * Rated current.
-     */
-    val ratedCurrent: Double,
-
-    /**
-     * Rated voltage.
-     */
-    val ratedVoltage: Double,
-
-    /**
-     * Phase shift per step position.
-     */
-    val stepPhaseIncrement: Double,
-
-    /**
-     * Tap step increment, in per cent of rated voltage, per step position.
-     */
-    val stepVoltageIncrement: Double
+(override val sup: AssetInfo,
+val bil: Double,
+val ctRating: Double,
+val ctRatio: Double,
+val frequency: Double,
+val highStep: Int,
+val isTcul: Boolean,
+val lowStep: Int,
+val neutralStep: Int,
+val neutralU: Double,
+val ptRatio: Double,
+val ratedApparentPower: Double,
+val ratedCurrent: Double,
+val ratedVoltage: Double,
+val stepPhaseIncrement: Double,
+val stepVoltageIncrement: Double
 )
 extends
     Element
@@ -1098,21 +844,14 @@ extends
 
 /**
  * Tape shield cable data.
+ * @param sup Reference to the superclass object.
+ * @param tapeLap Percentage of the tape shield width that overlaps in each wrap, typically 10% to 25%.
+ * @param tapeThickness Thickness of the tape shield, before wrapping.
  */
 case class TapeShieldCableInfo
-(
-
-    override val sup: CableInfo,
-
-    /**
-     * Percentage of the tape shield width that overlaps in each wrap, typically 10% to 25%.
-     */
-    val tapeLap: Double,
-
-    /**
-     * Thickness of the tape shield, before wrapping.
-     */
-    val tapeThickness: Double
+(override val sup: CableInfo,
+val tapeLap: Double,
+val tapeThickness: Double
 )
 extends
     Element
@@ -1149,79 +888,39 @@ extends
 
 /**
  * Transformer end data.
+ * @param sup Reference to the superclass object.
+ * @param connectionKind Kind of connection.
+ * @param emergencyS Apparent power that the winding can carry under emergency conditions (also called long-term emergency power).
+ * @param endNumber Number for this transformer end, corresponding to the end's order in the PowerTransformer.vectorGroup attribute.
+ *        Highest voltage winding should be 1.
+ * @param insulationU Basic insulation level voltage rating.
+ * @param phaseAngleClock Winding phase angle where 360 degrees are represented with clock hours, so the valid values are {0, ..., 11}.
+ *        For example, to express the second winding in code 'Dyn11', set attributes as follows: 'endNumber'=2, 'connectionKind' = Yn and 'phaseAngleClock' = 11.
+ * @param r DC resistance.
+ * @param ratedS Normal apparent power rating.
+ * @param ratedU Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
+ * @param shortTermS Apparent power that this winding can carry for a short period of time (in emergency).
+ * @param CoreAdmittance Core admittance calculated from this transformer end datasheet, representing magnetising current and core losses.
+ *        The full values of the transformer should be supplied for one transformer end info only.
+ * @param ToMeshImpedances All mesh impedances between this 'from' and other 'to' transformer ends.
+ * @param TransformerStarImpedance Transformer star impedance calculated from this transformer end datasheet.
+ * @param TransformerTankInfo Transformer tank data that this end description is part of.
  */
 case class TransformerEndInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Kind of connection.
-     */
-    val connectionKind: String,
-
-    /**
-     * Apparent power that the winding can carry under emergency conditions (also called long-term emergency power).
-     */
-    val emergencyS: Double,
-
-    /**
-     * Number for this transformer end, corresponding to the end's order in the PowerTransformer.vectorGroup attribute.
-     * Highest voltage winding should be 1.
-     */
-    val endNumber: Int,
-
-    /**
-     * Basic insulation level voltage rating.
-     */
-    val insulationU: Double,
-
-    /**
-     * Winding phase angle where 360 degrees are represented with clock hours, so the valid values are {0, ..., 11}.
-     * For example, to express the second winding in code 'Dyn11', set attributes as follows: 'endNumber'=2, 'connectionKind' = Yn and 'phaseAngleClock' = 11.
-     */
-    val phaseAngleClock: Int,
-
-    /**
-     * DC resistance.
-     */
-    val r: Double,
-
-    /**
-     * Normal apparent power rating.
-     */
-    val ratedS: Double,
-
-    /**
-     * Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
-     */
-    val ratedU: Double,
-
-    /**
-     * Apparent power that this winding can carry for a short period of time (in emergency).
-     */
-    val shortTermS: Double,
-
-    /**
-     * Core admittance calculated from this transformer end datasheet, representing magnetising current and core losses.
-     * The full values of the transformer should be supplied for one transformer end info only.
-     */
-    val CoreAdmittance: String,
-
-    /**
-     * All mesh impedances between this 'from' and other 'to' transformer ends.
-     */
-    val ToMeshImpedances: List[String],
-
-    /**
-     * Transformer star impedance calculated from this transformer end datasheet.
-     */
-    val TransformerStarImpedance: String,
-
-    /**
-     * Transformer tank data that this end description is part of.
-     */
-    val TransformerTankInfo: String
+(override val sup: AssetInfo,
+val connectionKind: String,
+val emergencyS: Double,
+val endNumber: Int,
+val insulationU: Double,
+val phaseAngleClock: Int,
+val r: Double,
+val ratedS: Double,
+val ratedU: Double,
+val shortTermS: Double,
+val CoreAdmittance: String,
+val ToMeshImpedances: List[String],
+val TransformerStarImpedance: String,
+val TransformerTankInfo: String
 )
 extends
     Element
@@ -1280,16 +979,12 @@ extends
 
 /**
  * Set of transformer tank data, from an equipment library.
+ * @param sup Reference to the superclass object.
+ * @param PowerTransformerInfo Power transformer data that this tank description is part of.
  */
 case class TransformerTankInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Power transformer data that this tank description is part of.
-     */
-    val PowerTransformerInfo: String
+(override val sup: AssetInfo,
+val PowerTransformerInfo: String
 )
 extends
     Element
@@ -1324,21 +1019,14 @@ extends
 
 /**
  * Test result for transformer ends, such as short-circuit, open-circuit (excitation) or no-load test.
+ * @param sup Reference to the superclass object.
+ * @param basePower Base power at which the tests are conducted, usually equal to the rateds of one of the involved transformer ends.
+ * @param temperature Temperature at which the test is conducted.
  */
 case class TransformerTest
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Base power at which the tests are conducted, usually equal to the rateds of one of the involved transformer ends.
-     */
-    val basePower: Double,
-
-    /**
-     * Temperature at which the test is conducted.
-     */
-    val temperature: Double
+(override val sup: IdentifiedObject,
+val basePower: Double,
+val temperature: Double
 )
 extends
     Element
@@ -1375,92 +1063,43 @@ extends
 
 /**
  * Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.
+ * @param sup Reference to the superclass object.
+ * @param coreRadius (if there is a different core material) Radius of the central core.
+ * @param coreStrandCount (if used) Number of strands in the steel core.
+ * @param gmr Geometric mean radius.
+ *        If we replace the conductor by a thin walled tube of radius GMR, then its reactance is identical to the reactance of the actual conductor.
+ * @param insulated True if conductor is insulated.
+ * @param insulationMaterial (if insulated conductor) Material used for insulation.
+ * @param insulationThickness (if insulated conductor) Thickness of the insulation.
+ * @param material Conductor material.
+ * @param rAC25 AC resistance per unit length of the conductor at 25 �C.
+ * @param rAC50 AC resistance per unit length of the conductor at 50 �C.
+ * @param rAC75 AC resistance per unit length of the conductor at 75 �C.
+ * @param rDC20 DC resistance per unit length of the conductor at 20 �C.
+ * @param radius Outside radius of the wire.
+ * @param ratedCurrent Current carrying capacity of the wire under stated thermal conditions.
+ * @param sizeDescription Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).
+ * @param strandCount Number of strands in the conductor.
+ * @param PerLengthParameters All per-length parameters calculated from this wire datasheet.
  */
 case class WireInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * (if there is a different core material) Radius of the central core.
-     */
-    val coreRadius: Double,
-
-    /**
-     * (if used) Number of strands in the steel core.
-     */
-    val coreStrandCount: Int,
-
-    /**
-     * Geometric mean radius.
-     * If we replace the conductor by a thin walled tube of radius GMR, then its reactance is identical to the reactance of the actual conductor.
-     */
-    val gmr: Double,
-
-    /**
-     * True if conductor is insulated.
-     */
-    val insulated: Boolean,
-
-    /**
-     * (if insulated conductor) Material used for insulation.
-     */
-    val insulationMaterial: String,
-
-    /**
-     * (if insulated conductor) Thickness of the insulation.
-     */
-    val insulationThickness: Double,
-
-    /**
-     * Conductor material.
-     */
-    val material: String,
-
-    /**
-     * AC resistance per unit length of the conductor at 25 �C.
-     */
-    val rAC25: Double,
-
-    /**
-     * AC resistance per unit length of the conductor at 50 �C.
-     */
-    val rAC50: Double,
-
-    /**
-     * AC resistance per unit length of the conductor at 75 �C.
-     */
-    val rAC75: Double,
-
-    /**
-     * DC resistance per unit length of the conductor at 20 �C.
-     */
-    val rDC20: Double,
-
-    /**
-     * Outside radius of the wire.
-     */
-    val radius: Double,
-
-    /**
-     * Current carrying capacity of the wire under stated thermal conditions.
-     */
-    val ratedCurrent: Double,
-
-    /**
-     * Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).
-     */
-    val sizeDescription: String,
-
-    /**
-     * Number of strands in the conductor.
-     */
-    val strandCount: Int,
-
-    /**
-     * All per-length parameters calculated from this wire datasheet.
-     */
-    val PerLengthParameters: List[String]
+(override val sup: AssetInfo,
+val coreRadius: Double,
+val coreStrandCount: Int,
+val gmr: Double,
+val insulated: Boolean,
+val insulationMaterial: String,
+val insulationThickness: Double,
+val material: String,
+val rAC25: Double,
+val rAC50: Double,
+val rAC75: Double,
+val rDC20: Double,
+val radius: Double,
+val ratedCurrent: Double,
+val sizeDescription: String,
+val strandCount: Int,
+val PerLengthParameters: List[String]
 )
 extends
     Element
@@ -1525,101 +1164,46 @@ extends
 
 /**
  * Kind of wire insulation.
+ * @param sup Reference to the superclass object.
+ * @param asbestosAndVarnishedCambric Asbestos and varnished cambric wire insulation.
+ * @param beltedPilc Belted pilc wire insulation.
+ * @param butyl Butyl wire insulation.
+ * @param crosslinkedPolyethylene Crosslinked polyethylene wire insulation.
+ * @param ethylenePropyleneRubber Ethylene propylene rubber wire insulation.
+ * @param highMolecularWeightPolyethylene High nolecular weight polyethylene wire insulation.
+ * @param highPressureFluidFilled High pressure fluid filled wire insulation.
+ * @param lowCapacitanceRubber Low capacitance rubber wire insulation.
+ * @param oilPaper Oil paper wire insulation.
+ * @param other Other kind of wire insulation.
+ * @param ozoneResistantRubber Ozone resistant rubber wire insulation.
+ * @param rubber Rubber wire insulation.
+ * @param siliconRubber Silicon rubber wire insulation.
+ * @param treeResistantHighMolecularWeightPolyethylene Tree resistant high molecular weight polyethylene wire insulation.
+ * @param treeRetardantCrosslinkedPolyethylene Tree retardant crosslinked polyethylene wire insulation.
+ * @param unbeltedPilc Unbelted pilc wire insulation.
+ * @param varnishedCambricCloth Varnished cambric cloth wire insulation.
+ * @param varnishedDacronGlass Varnished dacron glass wire insulation.
  */
 case class WireInsulationKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Asbestos and varnished cambric wire insulation.
-     */
-    val asbestosAndVarnishedCambric: String,
-
-    /**
-     * Belted pilc wire insulation.
-     */
-    val beltedPilc: String,
-
-    /**
-     * Butyl wire insulation.
-     */
-    val butyl: String,
-
-    /**
-     * Crosslinked polyethylene wire insulation.
-     */
-    val crosslinkedPolyethylene: String,
-
-    /**
-     * Ethylene propylene rubber wire insulation.
-     */
-    val ethylenePropyleneRubber: String,
-
-    /**
-     * High nolecular weight polyethylene wire insulation.
-     */
-    val highMolecularWeightPolyethylene: String,
-
-    /**
-     * High pressure fluid filled wire insulation.
-     */
-    val highPressureFluidFilled: String,
-
-    /**
-     * Low capacitance rubber wire insulation.
-     */
-    val lowCapacitanceRubber: String,
-
-    /**
-     * Oil paper wire insulation.
-     */
-    val oilPaper: String,
-
-    /**
-     * Other kind of wire insulation.
-     */
-    val other: String,
-
-    /**
-     * Ozone resistant rubber wire insulation.
-     */
-    val ozoneResistantRubber: String,
-
-    /**
-     * Rubber wire insulation.
-     */
-    val rubber: String,
-
-    /**
-     * Silicon rubber wire insulation.
-     */
-    val siliconRubber: String,
-
-    /**
-     * Tree resistant high molecular weight polyethylene wire insulation.
-     */
-    val treeResistantHighMolecularWeightPolyethylene: String,
-
-    /**
-     * Tree retardant crosslinked polyethylene wire insulation.
-     */
-    val treeRetardantCrosslinkedPolyethylene: String,
-
-    /**
-     * Unbelted pilc wire insulation.
-     */
-    val unbeltedPilc: String,
-
-    /**
-     * Varnished cambric cloth wire insulation.
-     */
-    val varnishedCambricCloth: String,
-
-    /**
-     * Varnished dacron glass wire insulation.
-     */
-    val varnishedDacronGlass: String
+(override val sup: BasicElement,
+val asbestosAndVarnishedCambric: String,
+val beltedPilc: String,
+val butyl: String,
+val crosslinkedPolyethylene: String,
+val ethylenePropyleneRubber: String,
+val highMolecularWeightPolyethylene: String,
+val highPressureFluidFilled: String,
+val lowCapacitanceRubber: String,
+val oilPaper: String,
+val other: String,
+val ozoneResistantRubber: String,
+val rubber: String,
+val siliconRubber: String,
+val treeResistantHighMolecularWeightPolyethylene: String,
+val treeRetardantCrosslinkedPolyethylene: String,
+val unbeltedPilc: String,
+val varnishedCambricCloth: String,
+val varnishedDacronGlass: String
 )
 extends
     Element
@@ -1688,56 +1272,28 @@ extends
 
 /**
  * Kind of wire material.
+ * @param sup Reference to the superclass object.
+ * @param aaac Aluminum-alloy conductor steel reinforced.
+ * @param acsr Aluminum conductor steel reinforced.
+ * @param aluminum Aluminum wire.
+ * @param aluminumAlloy Aluminum-alloy wire.
+ * @param aluminumAlloySteel Aluminum-alloy-steel wire.
+ * @param aluminumSteel Aluminum-steel wire.
+ * @param copper Copper wire.
+ * @param other Other wire material.
+ * @param steel Steel wire.
  */
 case class WireMaterialKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Aluminum-alloy conductor steel reinforced.
-     */
-    val aaac: String,
-
-    /**
-     * Aluminum conductor steel reinforced.
-     */
-    val acsr: String,
-
-    /**
-     * Aluminum wire.
-     */
-    val aluminum: String,
-
-    /**
-     * Aluminum-alloy wire.
-     */
-    val aluminumAlloy: String,
-
-    /**
-     * Aluminum-alloy-steel wire.
-     */
-    val aluminumAlloySteel: String,
-
-    /**
-     * Aluminum-steel wire.
-     */
-    val aluminumSteel: String,
-
-    /**
-     * Copper wire.
-     */
-    val copper: String,
-
-    /**
-     * Other wire material.
-     */
-    val other: String,
-
-    /**
-     * Steel wire.
-     */
-    val steel: String
+(override val sup: BasicElement,
+val aaac: String,
+val acsr: String,
+val aluminum: String,
+val aluminumAlloy: String,
+val aluminumAlloySteel: String,
+val aluminumSteel: String,
+val copper: String,
+val other: String,
+val steel: String
 )
 extends
     Element
@@ -1788,31 +1344,18 @@ extends
 
 /**
  * Identification, spacing and configuration of the wires of a conductor with respect to a structure.
+ * @param sup Reference to the superclass object.
+ * @param phase Single phase or neutral designation for the wire with this position.
+ * @param xCoord Signed horizontal distance from the wire at this position to a common reference point.
+ * @param yCoord Signed vertical distance from the wire at this position: above ground (positive value) or burial depth below ground (negative value).
+ * @param WireSpacingInfo Wire spacing data this wire position belongs to.
  */
 case class WirePosition
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Single phase or neutral designation for the wire with this position.
-     */
-    val phase: String,
-
-    /**
-     * Signed horizontal distance from the wire at this position to a common reference point.
-     */
-    val xCoord: Double,
-
-    /**
-     * Signed vertical distance from the wire at this position: above ground (positive value) or burial depth below ground (negative value).
-     */
-    val yCoord: Double,
-
-    /**
-     * Wire spacing data this wire position belongs to.
-     */
-    val WireSpacingInfo: String
+(override val sup: IdentifiedObject,
+val phase: String,
+val xCoord: Double,
+val yCoord: Double,
+val WireSpacingInfo: String
 )
 extends
     Element
@@ -1854,35 +1397,22 @@ extends
 /**
  * Wire spacing data that associates multiple wire positions with the line segment, and allows to calculate line segment impedances.
  * Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
+ * @param sup Reference to the superclass object.
+ * @param isCable If true, this spacing data describes a cable.
+ * @param phaseWireCount Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).
+ * @param phaseWireSpacing Distance between wire sub-conductors in a symmetrical bundle.
+ * @param usage Usage of the associated wires.
+ * @param DuctBank
+ * @param Structures
  */
 case class WireSpacingInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * If true, this spacing data describes a cable.
-     */
-    val isCable: Boolean,
-
-    /**
-     * Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).
-     */
-    val phaseWireCount: Int,
-
-    /**
-     * Distance between wire sub-conductors in a symmetrical bundle.
-     */
-    val phaseWireSpacing: Double,
-
-    /**
-     * Usage of the associated wires.
-     */
-    val usage: String,
-
-    val DuctBank: String,
-
-    val Structures: List[String]
+(override val sup: AssetInfo,
+val isCable: Boolean,
+val phaseWireCount: Int,
+val phaseWireSpacing: Double,
+val usage: String,
+val DuctBank: String,
+val Structures: List[String]
 )
 extends
     Element
@@ -1927,31 +1457,18 @@ extends
 
 /**
  * Kind of wire usage.
+ * @param sup Reference to the superclass object.
+ * @param distribution Wire is used in medium voltage network.
+ * @param other Other kind of wire usage.
+ * @param secondary Wire is used in low voltage circuit.
+ * @param transmission Wire is used in extra-high voltage or high voltage network.
  */
 case class WireUsageKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Wire is used in medium voltage network.
-     */
-    val distribution: String,
-
-    /**
-     * Other kind of wire usage.
-     */
-    val other: String,
-
-    /**
-     * Wire is used in low voltage circuit.
-     */
-    val secondary: String,
-
-    /**
-     * Wire is used in extra-high voltage or high voltage network.
-     */
-    val transmission: String
+(override val sup: BasicElement,
+val distribution: String,
+val other: String,
+val secondary: String,
+val transmission: String
 )
 extends
     Element

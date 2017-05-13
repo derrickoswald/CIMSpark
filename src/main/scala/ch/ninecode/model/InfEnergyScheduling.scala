@@ -11,43 +11,24 @@ import ch.ninecode.cim.Context
 
 /**
  * The control area's reserve specification.
+ * @param sup Reference to the superclass object.
+ * @param lowerRegMarginReqt Lower regulating margin requirement in MW, the amount of generation that can be dropped by control in 10 minutes
+ * @param opReserveReqt Operating reserve requirement in MW, where operating reserve is the generating capability that is fully available within 30 minutes.
+ *        Operating reserve is composed of primary reserve (t less than 10 min) and secondary reserve (10 less than t less than 30 min).
+ * @param primaryReserveReqt Primary reserve requirement in MW, where primary reserve is generating capability that is fully available within 10 minutes.
+ *        Primary reserve is composed of spinning reserve and quick-start reserve.
+ * @param raiseRegMarginReqt Raise regulating margin requirement in MW, the amount of generation that can be picked up by control in 10 minutes
+ * @param spinningReserveReqt Spinning reserve requirement in MW, spinning reserve is generating capability that is presently synchronized to the network and is fully available within 10 minutes
+ * @param Description Description of the object or instance.
  */
 case class AreaReserveSpec
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Lower regulating margin requirement in MW, the amount of generation that can be dropped by control in 10 minutes
-     */
-    val lowerRegMarginReqt: Double,
-
-    /**
-     * Operating reserve requirement in MW, where operating reserve is the generating capability that is fully available within 30 minutes.
-     * Operating reserve is composed of primary reserve (t less than 10 min) and secondary reserve (10 less than t less than 30 min).
-     */
-    val opReserveReqt: Double,
-
-    /**
-     * Primary reserve requirement in MW, where primary reserve is generating capability that is fully available within 10 minutes.
-     * Primary reserve is composed of spinning reserve and quick-start reserve.
-     */
-    val primaryReserveReqt: Double,
-
-    /**
-     * Raise regulating margin requirement in MW, the amount of generation that can be picked up by control in 10 minutes
-     */
-    val raiseRegMarginReqt: Double,
-
-    /**
-     * Spinning reserve requirement in MW, spinning reserve is generating capability that is presently synchronized to the network and is fully available within 10 minutes
-     */
-    val spinningReserveReqt: Double,
-
-    /**
-     * Description of the object or instance.
-     */
-    val Description: String
+(override val sup: BasicElement,
+val lowerRegMarginReqt: Double,
+val opReserveReqt: Double,
+val primaryReserveReqt: Double,
+val raiseRegMarginReqt: Double,
+val spinningReserveReqt: Double,
+val Description: String
 )
 extends
     Element
@@ -92,31 +73,21 @@ extends
 
 /**
  * Control area emergency schedules
+ * @param sup Reference to the superclass object.
+ * @param emergencyScheduleMW Net tie MW.
+ *        These are three entries, the current emergency schedule interchange and the two future schedules if they exist.
+ * @param emergencyScheduleRampTime Ramp time, the ramping time for a schedule.
+ *        This is calculated as the remaining time to ramp if a schedule is ramping. Measured in seconds, but can be negattive.
+ * @param emergencyScheduleStartTime Net tie time,  the start time for a schedule.
+ *        This is calculated as the current time if a schedule is ramping.
+ * @param InternalControlArea
  */
 case class CurrentEmergencyScheduledInterchange
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Net tie MW.
-     * These are three entries, the current emergency schedule interchange and the two future schedules if they exist.
-     */
-    val emergencyScheduleMW: Double,
-
-    /**
-     * Ramp time, the ramping time for a schedule.
-     * This is calculated as the remaining time to ramp if a schedule is ramping. Measured in seconds, but can be negattive.
-     */
-    val emergencyScheduleRampTime: Int,
-
-    /**
-     * Net tie time,  the start time for a schedule.
-     * This is calculated as the current time if a schedule is ramping.
-     */
-    val emergencyScheduleStartTime: String,
-
-    val InternalControlArea: String
+(override val sup: IdentifiedObject,
+val emergencyScheduleMW: Double,
+val emergencyScheduleRampTime: Int,
+val emergencyScheduleStartTime: String,
+val InternalControlArea: String
 )
 extends
     Element
@@ -157,24 +128,17 @@ extends
 
 /**
  * Control area current net tie (scheduled interchange) sent to real time dispatch.
+ * @param sup Reference to the superclass object.
+ * @param currentNetTieMW Current control area net tie MW (the sum of the tie line flows, i.e the sum of flows into and out of the control area), the current instantaneous scheduled interchange.
+ * @param useEmergencySchedule Use Emergency Schedule
+ *        Attribute Usage: Emergency use indicator, false = Emergency Schedular OFF, true = Emergency Schedular ON.
+ * @param InternalControlArea
  */
 case class CurrentScheduledInterchange
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Current control area net tie MW (the sum of the tie line flows, i.e the sum of flows into and out of the control area), the current instantaneous scheduled interchange.
-     */
-    val currentNetTieMW: Double,
-
-    /**
-     * Use Emergency Schedule
-     * Attribute Usage: Emergency use indicator, false = Emergency Schedular OFF, true = Emergency Schedular ON.
-     */
-    val useEmergencySchedule: Boolean,
-
-    val InternalControlArea: String
+(override val sup: BasicElement,
+val currentNetTieMW: Double,
+val useEmergencySchedule: Boolean,
+val InternalControlArea: String
 )
 extends
     Element
@@ -214,16 +178,12 @@ extends
 /**
  * Curtailing entity must be providing at least one service to the EnergyTransaction.
  * The CurtailmentProfile must be completely contained within the EnergyProfile timeframe for this EnergyTransaction.
+ * @param sup Reference to the superclass object.
+ * @param EnergyTransaction An EnergyTransaction may be curtailed by any of the participating entities.
  */
 case class CurtailmentProfile
-(
-
-    override val sup: Profile,
-
-    /**
-     * An EnergyTransaction may be curtailed by any of the participating entities.
-     */
-    val EnergyTransaction: String
+(override val sup: Profile,
+val EnergyTransaction: String
 )
 extends
     Element
@@ -259,33 +219,20 @@ extends
 /**
  * A continuously variable component of a control area's MW net interchange schedule.
  * Dynamic schedules are sent and received by control areas.
+ * @param sup Reference to the superclass object.
+ * @param dynSchedSignRev Dynamic schedule sign reversal required (true/false)
+ * @param dynSchedStatus The "active" or "inactive" status of the dynamic schedule
+ * @param MktMeasurement
+ * @param Receive_SubControlArea A control area can receive dynamic schedules from other control areas
+ * @param Send_SubControlArea A control area can send dynamic schedules to other control areas
  */
 case class DynamicSchedule
-(
-
-    override val sup: BasicIntervalSchedule,
-
-    /**
-     * Dynamic schedule sign reversal required (true/false)
-     */
-    val dynSchedSignRev: Boolean,
-
-    /**
-     * The "active" or "inactive" status of the dynamic schedule
-     */
-    val dynSchedStatus: String,
-
-    val MktMeasurement: String,
-
-    /**
-     * A control area can receive dynamic schedules from other control areas
-     */
-    val Receive_SubControlArea: String,
-
-    /**
-     * A control area can send dynamic schedules to other control areas
-     */
-    val Send_SubControlArea: String
+(override val sup: BasicIntervalSchedule,
+val dynSchedSignRev: Boolean,
+val dynSchedStatus: String,
+val MktMeasurement: String,
+val Receive_SubControlArea: String,
+val Send_SubControlArea: String
 )
 extends
     Element
@@ -328,23 +275,16 @@ extends
 
 /**
  * An EnergyProduct is offered commercially as a ContractOrTariff.
+ * @param sup Reference to the superclass object.
+ * @param GenerationProvider
+ * @param ResoldBy_Marketer A Marketer may resell an EnergyProduct.
+ * @param TitleHeldBy_Marketer A Marketer holds title to an EnergyProduct.
  */
 case class EnergyProduct
-(
-
-    override val sup: Agreement,
-
-    val GenerationProvider: String,
-
-    /**
-     * A Marketer may resell an EnergyProduct.
-     */
-    val ResoldBy_Marketer: List[String],
-
-    /**
-     * A Marketer holds title to an EnergyProduct.
-     */
-    val TitleHeldBy_Marketer: String
+(override val sup: Agreement,
+val GenerationProvider: String,
+val ResoldBy_Marketer: List[String],
+val TitleHeldBy_Marketer: String
 )
 extends
     Element
@@ -384,16 +324,12 @@ extends
 /**
  * An account for tracking inadvertent interchange versus time for each control area.
  * A control area may have more than one inadvertent account in order to track inadvertent over one or more specific tie points in addition to the usual overall net inadvertent. Separate accounts would also be used to track designated time periods, such as on-peak and off-peak.
+ * @param sup Reference to the superclass object.
+ * @param SubControlArea A control area can have one or more net inadvertent interchange accounts
  */
 case class InadvertentAccount
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * A control area can have one or more net inadvertent interchange accounts
-     */
-    val SubControlArea: String
+(override val sup: BasicElement,
+val SubControlArea: String
 )
 extends
     Element
@@ -429,13 +365,12 @@ extends
 /**
  * There is one internal control area in the system, which is the single control area in the primary network company.
  * Real time generation control affects only the internal control area.
+ * @param sup Reference to the superclass object.
+ * @param CurrentScheduledInterchange
  */
 case class InternalControlArea
-(
-
-    override val sup: IdentifiedObject,
-
-    val CurrentScheduledInterchange: String
+(override val sup: IdentifiedObject,
+val CurrentScheduledInterchange: String
 )
 extends
     Element
@@ -470,22 +405,15 @@ extends
 
 /**
  * LossProfile is associated with an EnerrgyTransaction and must be completely contained within the time frame of the EnergyProfile associated with this EnergyTransaction.
+ * @param sup Reference to the superclass object.
+ * @param EnergyTransaction An EnergyTransaction may have a LossProfile.
+ * @param HasLoss_1 Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
+ *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
  */
 case class LossProfile
-(
-
-    override val sup: Profile,
-
-    /**
-     * An EnergyTransaction may have a LossProfile.
-     */
-    val EnergyTransaction: String,
-
-    /**
-     * Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
-     * If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
-     */
-    val HasLoss_1: String
+(override val sup: Profile,
+val EnergyTransaction: String,
+val HasLoss_1: String
 )
 extends
     Element
@@ -521,29 +449,11 @@ extends
 }
 
 case class TieLine
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * A dynamic energy transaction can act as a pseudo tie line.
-     */
-    val EnergyTransaction: String,
-
-    /**
-     * A CustomerConsumer may ring its perimeter with metering, which can create a unique SubControlArea at the collection of metering points, called a TieLine.
-     */
-    val ParentOfB: String,
-
-    /**
-     * The SubControlArea is on the A side of a collection of metered points which define the SubControlArea's boundary for a ControlAreaOperator or CustomerConsumer.
-     */
-    val SideA_SubControlArea: String,
-
-    /**
-     * The SubControlArea is on the B side of a collection of metered points which define the SubControlArea's boundary for a ControlAreaOperator or CustomerConsumer.
-     */
-    val SideB_SubControlArea: String
+(override val sup: IdentifiedObject,
+val EnergyTransaction: String,
+val ParentOfB: String,
+val SideA_SubControlArea: String,
+val SideB_SubControlArea: String
 )
 extends
     Element
@@ -584,11 +494,10 @@ extends
 
 /**
  * A corridor containing one or more rights of way
+ * @param sup Reference to the superclass object.
  */
 case class TransmissionCorridor
-(
-
-    override val sup: PowerSystemResource
+(override val sup: PowerSystemResource
 )
 extends
     Element
@@ -621,16 +530,12 @@ extends
 
 /**
  * A collection of transmission lines that are close proximity to each other.
+ * @param sup Reference to the superclass object.
+ * @param TransmissionCorridor A transmission right-of-way is a member of a transmission corridor
  */
 case class TransmissionRightOfWay
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * A transmission right-of-way is a member of a transmission corridor
-     */
-    val TransmissionCorridor: String
+(override val sup: PowerSystemResource,
+val TransmissionCorridor: String
 )
 extends
     Element

@@ -11,18 +11,14 @@ import ch.ninecode.cim.Context
 
 /**
  * Abstract parent class for all Dynamics function blocks.
+ * @param sup Reference to the superclass object.
+ * @param enabled Function block used indicator.
+true = use of function block is enabled
+ *        false = use of function block is disabled.
  */
 case class DynamicsFunctionBlock
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Function block used indicator.
-    true = use of function block is enabled
-     * false = use of function block is disabled.
-     */
-    val enabled: Boolean
+(override val sup: IdentifiedObject,
+val enabled: Boolean
 )
 extends
     Element
@@ -57,47 +53,28 @@ extends
 
 /**
  * Abstract parent class for all synchronous and asynchronous machine standard models.
+ * @param sup Reference to the superclass object.
+ * @param damping Damping torque coefficient (D).
+ *        A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical Value = 0.
+ * @param inertia Inertia constant of generator or motor and mechanical load (H) (&gt;0).
+ *        This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW*sec.  For a motor, it includes the motor plus its mechanical load. Conventional units are per unit on the generator MVA base, usually expressed as MW*second/MVA or just second.   This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical Value = 3.
+ * @param saturationFactor Saturation factor at rated terminal voltage (S1) (&gt; or =0).
+ *        Not used by simplified model.  Defined by defined by S(E1) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.02.
+ * @param saturationFactor120 Saturation factor at 120% of rated terminal voltage (S12) (&gt; or =S1).
+ *        Not used by the simplified model, defined by S(E2) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.12.
+ * @param statorLeakageReactance Stator leakage reactance (Xl) (&gt; or =0).
+ *        Typical Value = 0.15.
+ * @param statorResistance Stator (armature) resistance (Rs) (&gt; or =0).
+ *        Typical Value = 0.005.
  */
 case class RotatingMachineDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Damping torque coefficient (D).
-     * A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical Value = 0.
-     */
-    val damping: Double,
-
-    /**
-     * Inertia constant of generator or motor and mechanical load (H) (&gt;0).
-     * This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW*sec.  For a motor, it includes the motor plus its mechanical load. Conventional units are per unit on the generator MVA base, usually expressed as MW*second/MVA or just second.   This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical Value = 3.
-     */
-    val inertia: Double,
-
-    /**
-     * Saturation factor at rated terminal voltage (S1) (&gt; or =0).
-     * Not used by simplified model.  Defined by defined by S(E1) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.02.
-     */
-    val saturationFactor: Double,
-
-    /**
-     * Saturation factor at 120% of rated terminal voltage (S12) (&gt; or =S1).
-     * Not used by the simplified model, defined by S(E2) in the SynchronousMachineSaturationParameters diagram.  Typical Value = 0.12.
-     */
-    val saturationFactor120: Double,
-
-    /**
-     * Stator leakage reactance (Xl) (&gt; or =0).
-     * Typical Value = 0.15.
-     */
-    val statorLeakageReactance: Double,
-
-    /**
-     * Stator (armature) resistance (Rs) (&gt; or =0).
-     * Typical Value = 0.005.
-     */
-    val statorResistance: Double
+(override val sup: DynamicsFunctionBlock,
+val damping: Double,
+val inertia: Double,
+val saturationFactor: Double,
+val saturationFactor120: Double,
+val statorLeakageReactance: Double,
+val statorResistance: Double
 )
 extends
     Element

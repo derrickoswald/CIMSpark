@@ -11,16 +11,12 @@ import ch.ninecode.cim.Context
 /**
  * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
  * These might be created as a consequence of local business processes and associated rules. It is anticipated that this class will be customised extensively to meet local implementation needs.
+ * @param sup Reference to the superclass object.
+ * @param deadline The deadline for compliance.
  */
 case class ComplianceEvent
-(
-
-    override val sup: ActivityRecord,
-
-    /**
-     * The deadline for compliance.
-     */
-    val deadline: String
+(override val sup: ActivityRecord,
+val deadline: String
 )
 extends
     Element
@@ -56,58 +52,33 @@ extends
 /**
  * The creation of the monthly customer billing statements is the method employed to notify Customers of charges, adjustments and credits applied to their account for Services and Products.
  * The actuall billing occurs through an ErpInvoice. The CustomerBillingInfo includes information from the payment, collection, meter reading, installed meter, service, site, customer, customer account, customer agreement, services and pricing subject areas. Each component price shows up as a separate line item on the ErpInvoice.
+ * @param sup Reference to the superclass object.
+ * @param billingDate Business date designated for the billing run which produced this CustomerBillingInfo.
+ * @param dueDate Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
+ *        It takes into consideration the regulatory criteria and the Customer's requested due date. In the absence of a Customer requested due date, the due date is typically calculated from the regulated number of days and the 'billingDate'.
+ * @param kind Kind of bill customer receives.
+ * @param lastPaymentAmt Amount of the last payment received from the customer.
+ *        It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
+ * @param lastPaymentDate Date of the last payment received from the customer.
+ *        It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
+ * @param outBalance Outstanding balance on the CustomerAccount as of the statement date.
+ * @param pymtPlanAmt Monthly amortized amount due during each billing cycle for the CustomerAccount balance for which the Payment Plan is set-up.
+ * @param pymtPlanType Type of payment plan.
+ * @param CustomerAccount
+ * @param ErpInvoiceLineItems
  */
 case class CustomerBillingInfo
-(
-
-    override val sup: Document,
-
-    /**
-     * Business date designated for the billing run which produced this CustomerBillingInfo.
-     */
-    val billingDate: String,
-
-    /**
-     * Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
-     * It takes into consideration the regulatory criteria and the Customer's requested due date. In the absence of a Customer requested due date, the due date is typically calculated from the regulated number of days and the 'billingDate'.
-     */
-    val dueDate: String,
-
-    /**
-     * Kind of bill customer receives.
-     */
-    val kind: String,
-
-    /**
-     * Amount of the last payment received from the customer.
-     * It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
-     */
-    val lastPaymentAmt: Double,
-
-    /**
-     * Date of the last payment received from the customer.
-     * It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
-     */
-    val lastPaymentDate: String,
-
-    /**
-     * Outstanding balance on the CustomerAccount as of the statement date.
-     */
-    val outBalance: Double,
-
-    /**
-     * Monthly amortized amount due during each billing cycle for the CustomerAccount balance for which the Payment Plan is set-up.
-     */
-    val pymtPlanAmt: Double,
-
-    /**
-     * Type of payment plan.
-     */
-    val pymtPlanType: String,
-
-    val CustomerAccount: String,
-
-    val ErpInvoiceLineItems: List[String]
+(override val sup: Document,
+val billingDate: String,
+val dueDate: String,
+val kind: String,
+val lastPaymentAmt: Double,
+val lastPaymentDate: String,
+val outBalance: Double,
+val pymtPlanAmt: Double,
+val pymtPlanType: String,
+val CustomerAccount: String,
+val ErpInvoiceLineItems: List[String]
 )
 extends
     Element
@@ -160,28 +131,18 @@ extends
 
 /**
  * Kind of customer billing.
+ * @param sup Reference to the superclass object.
+ * @param consolidatedEss Consolidated bill from energy service supplier (ESS).
+ * @param consolidatedUdc Consolidated bill from utility distribution company (UDC).
+ * @param other
+ * @param separateEssUdc Separate bills from ESS and UDC.
  */
 case class CustomerBillingKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Consolidated bill from energy service supplier (ESS).
-     */
-    val consolidatedEss: String,
-
-    /**
-     * Consolidated bill from utility distribution company (UDC).
-     */
-    val consolidatedUdc: String,
-
-    val other: String,
-
-    /**
-     * Separate bills from ESS and UDC.
-     */
-    val separateEssUdc: String
+(override val sup: BasicElement,
+val consolidatedEss: String,
+val consolidatedUdc: String,
+val other: String,
+val separateEssUdc: String
 )
 extends
     Element
@@ -223,11 +184,10 @@ extends
 /**
  * A type of customer agreement involving an external agency.
  * For example, a customer may form a contracts with an Energy Service Supplier if Direct Access is permitted.
+ * @param sup Reference to the superclass object.
  */
 case class ExternalCustomerAgreement
-(
-
-    override val sup: Agreement
+(override val sup: Agreement
 )
 extends
     Element
@@ -260,56 +220,28 @@ extends
 
 /**
  * Pricing can be based on power quality.
+ * @param sup Reference to the superclass object.
+ * @param emergencyHighVoltLimit Emergency high voltage limit.
+ * @param emergencyLowVoltLimit Emergency low voltage limit.
+ * @param normalHighVoltLimit Normal high voltage limit.
+ * @param normalLowVoltLimit Normal low voltage limit.
+ * @param powerFactorMin Threshold minimum power factor for this PricingStructure, specified in instances where a special charge is levied if the actual power factor for a Service falls below the value specified here.
+ * @param valueUninterruptedServiceEnergy Value of uninterrupted service (Cost per energy).
+ * @param valueUninterruptedServiceP Value of uninterrupted service (Cost per active power).
+ * @param voltImbalanceViolCost Voltage imbalance violation cost (Cost per unit Voltage).
+ * @param voltLimitViolCost Voltage limit violation cost (Cost per unit Voltage).
  */
 case class PowerQualityPricing
-(
-
-    override val sup: Document,
-
-    /**
-     * Emergency high voltage limit.
-     */
-    val emergencyHighVoltLimit: Double,
-
-    /**
-     * Emergency low voltage limit.
-     */
-    val emergencyLowVoltLimit: Double,
-
-    /**
-     * Normal high voltage limit.
-     */
-    val normalHighVoltLimit: Double,
-
-    /**
-     * Normal low voltage limit.
-     */
-    val normalLowVoltLimit: Double,
-
-    /**
-     * Threshold minimum power factor for this PricingStructure, specified in instances where a special charge is levied if the actual power factor for a Service falls below the value specified here.
-     */
-    val powerFactorMin: Double,
-
-    /**
-     * Value of uninterrupted service (Cost per energy).
-     */
-    val valueUninterruptedServiceEnergy: Double,
-
-    /**
-     * Value of uninterrupted service (Cost per active power).
-     */
-    val valueUninterruptedServiceP: Double,
-
-    /**
-     * Voltage imbalance violation cost (Cost per unit Voltage).
-     */
-    val voltImbalanceViolCost: Double,
-
-    /**
-     * Voltage limit violation cost (Cost per unit Voltage).
-     */
-    val voltLimitViolCost: Double
+(override val sup: Document,
+val emergencyHighVoltLimit: Double,
+val emergencyLowVoltLimit: Double,
+val normalHighVoltLimit: Double,
+val normalLowVoltLimit: Double,
+val powerFactorMin: Double,
+val valueUninterruptedServiceEnergy: Double,
+val valueUninterruptedServiceP: Double,
+val voltImbalanceViolCost: Double,
+val voltLimitViolCost: Double
 )
 extends
     Element
@@ -361,31 +293,18 @@ extends
 /**
  * A service guarantee, often imposed by a regulator, defines conditions that, if not satisfied, will result in the utility making a monetary payment to the customer.
  * Note that guarantee's identifier is in the 'name' attribute and the status of the guarantee is in the 'Status.status' attribute.
+ * @param sup Reference to the superclass object.
+ * @param applicationPeriod Period in which this service guantee applies.
+ * @param automaticPay True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
+ * @param payAmount Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
+ * @param serviceRequirement Explanation of the requirement and conditions for satisfying it.
  */
 case class ServiceGuarantee
-(
-
-    override val sup: Document,
-
-    /**
-     * Period in which this service guantee applies.
-     */
-    val applicationPeriod: String,
-
-    /**
-     * True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
-     */
-    val automaticPay: Boolean,
-
-    /**
-     * Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
-     */
-    val payAmount: Double,
-
-    /**
-     * Explanation of the requirement and conditions for satisfying it.
-     */
-    val serviceRequirement: String
+(override val sup: Document,
+val applicationPeriod: String,
+val automaticPay: Boolean,
+val payAmount: Double,
+val serviceRequirement: String
 )
 extends
     Element
@@ -427,16 +346,12 @@ extends
 /**
  * The Standard Industrial Classification (SIC) are the codes that identify the type of products/service an industry is involved in, and used for statutory reporting purposes.
  * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
+ * @param sup Reference to the superclass object.
+ * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
  */
 case class StandardIndustryCode
-(
-
-    override val sup: Document,
-
-    /**
-     * Standard alphanumeric code assigned to a particular product/service within an industry.
-     */
-    val code: String
+(override val sup: Document,
+val code: String
 )
 extends
     Element
@@ -471,11 +386,10 @@ extends
 
 /**
  * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
+ * @param sup Reference to the superclass object.
  */
 case class SubscribePowerCurve
-(
-
-    override val sup: Curve
+(override val sup: Curve
 )
 extends
     Element
@@ -509,50 +423,28 @@ extends
 /**
  * Billing information for work performed for the customer.
  * The history of Work Billing Info, Invoices, and Payments is to be maintained in associated ActivityRecords.
+ * @param sup Reference to the superclass object.
+ * @param costEstimate Estimated cost for work.
+ * @param deposit Amount of price on deposit.
+ * @param discount Discount from standard price.
+ * @param dueDateTime Date and time by which payment for bill is expected from client.
+ * @param issueDateTime Date and time bill was issued to client.
+ * @param receivedDateTime Date payment was received from client.
+ * @param workPrice Amount of bill.
+ * @param CustomerAccount
+ * @param ErpLineItems
  */
 case class WorkBillingInfo
-(
-
-    override val sup: Document,
-
-    /**
-     * Estimated cost for work.
-     */
-    val costEstimate: Double,
-
-    /**
-     * Amount of price on deposit.
-     */
-    val deposit: Double,
-
-    /**
-     * Discount from standard price.
-     */
-    val discount: Double,
-
-    /**
-     * Date and time by which payment for bill is expected from client.
-     */
-    val dueDateTime: String,
-
-    /**
-     * Date and time bill was issued to client.
-     */
-    val issueDateTime: String,
-
-    /**
-     * Date payment was received from client.
-     */
-    val receivedDateTime: String,
-
-    /**
-     * Amount of bill.
-     */
-    val workPrice: Double,
-
-    val CustomerAccount: String,
-
-    val ErpLineItems: List[String]
+(override val sup: Document,
+val costEstimate: Double,
+val deposit: Double,
+val discount: Double,
+val dueDateTime: String,
+val issueDateTime: String,
+val receivedDateTime: String,
+val workPrice: Double,
+val CustomerAccount: String,
+val ErpLineItems: List[String]
 )
 extends
     Element

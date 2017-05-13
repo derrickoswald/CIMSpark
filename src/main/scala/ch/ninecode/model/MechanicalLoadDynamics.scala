@@ -10,31 +10,18 @@ import ch.ninecode.cim.Context
 
 /**
  * Mechanical load model type 1.
+ * @param sup Reference to the superclass object.
+ * @param a Speed squared coefficient (a).
+ * @param b Speed coefficient (b).
+ * @param d Speed to the exponent coefficient (d).
+ * @param e Exponent (e).
  */
 case class MechLoad1
-(
-
-    override val sup: MechanicalLoadDynamics,
-
-    /**
-     * Speed squared coefficient (a).
-     */
-    val a: Double,
-
-    /**
-     * Speed coefficient (b).
-     */
-    val b: Double,
-
-    /**
-     * Speed to the exponent coefficient (d).
-     */
-    val d: Double,
-
-    /**
-     * Exponent (e).
-     */
-    val e: Double
+(override val sup: MechanicalLoadDynamics,
+val a: Double,
+val b: Double,
+val d: Double,
+val e: Double
 )
 extends
     Element
@@ -75,21 +62,14 @@ extends
 
 /**
  * Mechanical load function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param AsynchronousMachineDynamics Asynchronous machine model with which this mechanical load model is associated.
+ * @param SynchronousMachineDynamics Synchronous machine model with which this mechanical load model is associated.
  */
 case class MechanicalLoadDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Asynchronous machine model with which this mechanical load model is associated.
-     */
-    val AsynchronousMachineDynamics: String,
-
-    /**
-     * Synchronous machine model with which this mechanical load model is associated.
-     */
-    val SynchronousMachineDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val AsynchronousMachineDynamics: String,
+val SynchronousMachineDynamics: String
 )
 extends
     Element

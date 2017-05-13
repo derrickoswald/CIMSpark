@@ -7,76 +7,36 @@ import ch.ninecode.cim.Context
 
 /**
  * The result of a problem (typically an asset failure) diagnosis.
+ * @param sup Reference to the superclass object.
+ * @param effect Effect of problem.
+ * @param failureMode Failuer mode, for example: Failure to Insulate; Failure to conduct; Failure to contain oil; Failure to provide ground plane; Other.
+ * @param finalCause Cause of problem determined during diagnosis.
+ * @param finalCode Code for diagnosed probem type.
+ * @param finalOrigin Origin of problem determined during diagnosis.
+ * @param finalRemark Remarks pertaining to findings during problem diagnosis.
+ * @param phaseCode Phase(s) diagnosed.
+ * @param preliminaryCode Code for problem type determined during preliminary assessment.
+ * @param preliminaryDateTime Date and time preliminary assessment of problem was performed.
+ * @param preliminaryRemark Remarks pertaining to preliminary assessment of problem.
+ * @param rootCause Root cause of problem determined during diagnosis.
+ * @param rootOrigin Root origin of problem determined during diagnosis.
+ * @param rootRemark Remarks pertaining to root cause findings during problem diagnosis.
  */
 case class DiagnosisDataSet
-(
-
-    override val sup: ProcedureDataSet,
-
-    /**
-     * Effect of problem.
-     */
-    val effect: String,
-
-    /**
-     * Failuer mode, for example: Failure to Insulate; Failure to conduct; Failure to contain oil; Failure to provide ground plane; Other.
-     */
-    val failureMode: String,
-
-    /**
-     * Cause of problem determined during diagnosis.
-     */
-    val finalCause: String,
-
-    /**
-     * Code for diagnosed probem type.
-     */
-    val finalCode: String,
-
-    /**
-     * Origin of problem determined during diagnosis.
-     */
-    val finalOrigin: String,
-
-    /**
-     * Remarks pertaining to findings during problem diagnosis.
-     */
-    val finalRemark: String,
-
-    /**
-     * Phase(s) diagnosed.
-     */
-    val phaseCode: String,
-
-    /**
-     * Code for problem type determined during preliminary assessment.
-     */
-    val preliminaryCode: String,
-
-    /**
-     * Date and time preliminary assessment of problem was performed.
-     */
-    val preliminaryDateTime: String,
-
-    /**
-     * Remarks pertaining to preliminary assessment of problem.
-     */
-    val preliminaryRemark: String,
-
-    /**
-     * Root cause of problem determined during diagnosis.
-     */
-    val rootCause: String,
-
-    /**
-     * Root origin of problem determined during diagnosis.
-     */
-    val rootOrigin: String,
-
-    /**
-     * Remarks pertaining to root cause findings during problem diagnosis.
-     */
-    val rootRemark: String
+(override val sup: ProcedureDataSet,
+val effect: String,
+val failureMode: String,
+val finalCause: String,
+val finalCode: String,
+val finalOrigin: String,
+val finalRemark: String,
+val phaseCode: String,
+val preliminaryCode: String,
+val preliminaryDateTime: String,
+val preliminaryRemark: String,
+val rootCause: String,
+val rootOrigin: String,
+val rootRemark: String
 )
 extends
     Element
@@ -135,16 +95,12 @@ extends
 
 /**
  * Documents the result of one inspection, for a given attribute of an asset.
+ * @param sup Reference to the superclass object.
+ * @param locationCondition Description of the conditions of the location where the asset resides.
  */
 case class InspectionDataSet
-(
-
-    override val sup: ProcedureDataSet,
-
-    /**
-     * Description of the conditions of the location where the asset resides.
-     */
-    val locationCondition: String
+(override val sup: ProcedureDataSet,
+val locationCondition: String
 )
 extends
     Element
@@ -179,26 +135,16 @@ extends
 
 /**
  * The result of a maintenance activity, a type of Procedure, for a given attribute of an asset.
+ * @param sup Reference to the superclass object.
+ * @param conditionAfter Condition of asset just following maintenance procedure.
+ * @param conditionBefore Description of the condition of the asset just prior to maintenance being performed.
+ * @param maintCode Code for the type of maintenance performed.
  */
 case class MaintenanceDataSet
-(
-
-    override val sup: ProcedureDataSet,
-
-    /**
-     * Condition of asset just following maintenance procedure.
-     */
-    val conditionAfter: String,
-
-    /**
-     * Description of the condition of the asset just prior to maintenance being performed.
-     */
-    val conditionBefore: String,
-
-    /**
-     * Code for the type of maintenance performed.
-     */
-    val maintCode: String
+(override val sup: ProcedureDataSet,
+val conditionAfter: String,
+val conditionBefore: String,
+val maintCode: String
 )
 extends
     Element
@@ -237,26 +183,16 @@ extends
 
 /**
  * Test results, usually obtained by a lab or other independent organisation.
+ * @param sup Reference to the superclass object.
+ * @param conclusion Conclusion drawn from test results.
+ * @param specimenID Identifier of specimen used in inspection or test.
+ * @param specimenToLabDateTime Date and time the specimen was received by the lab.
  */
 case class TestDataSet
-(
-
-    override val sup: ProcedureDataSet,
-
-    /**
-     * Conclusion drawn from test results.
-     */
-    val conclusion: String,
-
-    /**
-     * Identifier of specimen used in inspection or test.
-     */
-    val specimenID: String,
-
-    /**
-     * Date and time the specimen was received by the lab.
-     */
-    val specimenToLabDateTime: String
+(override val sup: ProcedureDataSet,
+val conclusion: String,
+val specimenID: String,
+val specimenToLabDateTime: String
 )
 extends
     Element

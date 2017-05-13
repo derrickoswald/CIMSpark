@@ -11,26 +11,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Power Factor or VAr controller Type I function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param ExcitationSystemDynamics Excitation system model with which this Power Factor or VAr controller Type I model is associated.
+ * @param RemoteInputSignal Remote input signal used by this Power Factor or VAr controller Type I model.
+ * @param VoltageAdjusterDynamics Voltage adjuster model associated with this Power Factor or VA controller Type I model.
  */
 case class PFVArControllerType1Dynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Excitation system model with which this Power Factor or VAr controller Type I model is associated.
-     */
-    val ExcitationSystemDynamics: String,
-
-    /**
-     * Remote input signal used by this Power Factor or VAr controller Type I model.
-     */
-    val RemoteInputSignal: String,
-
-    /**
-     * Voltage adjuster model associated with this Power Factor or VA controller Type I model.
-     */
-    val VoltageAdjusterDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val ExcitationSystemDynamics: String,
+val RemoteInputSignal: String,
+val VoltageAdjusterDynamics: String
 )
 extends
     Element
@@ -70,55 +60,30 @@ extends
 /**
  * The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.
  * Reference: IEEE Standard 421.5-2005 Section 11.2.
+ * @param sup Reference to the superclass object.
+ * @param ovex Overexcitation Flag (<i>OVEX</i>)
+true = overexcited
+ *        false = underexcited.
+ * @param tpfc PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
+ *        Typical Value = 5.
+ * @param vitmin Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).
+ * @param vpf Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).
+ * @param vpfcbw PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).
+ *        Typical Value = 0.05.
+ * @param vpfref PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).
+ * @param vvtmax Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
+ * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
  */
 case class PFVArType1IEEEPFController
-(
-
-    override val sup: PFVArControllerType1Dynamics,
-
-    /**
-     * Overexcitation Flag (<i>OVEX</i>)
-    true = overexcited
-     * false = underexcited.
-     */
-    val ovex: Boolean,
-
-    /**
-     * PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
-     * Typical Value = 5.
-     */
-    val tpfc: Double,
-
-    /**
-     * Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).
-     */
-    val vitmin: Double,
-
-    /**
-     * Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).
-     */
-    val vpf: Double,
-
-    /**
-     * PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).
-     * Typical Value = 0.05.
-     */
-    val vpfcbw: Double,
-
-    /**
-     * PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).
-     */
-    val vpfref: Double,
-
-    /**
-     * Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
-     */
-    val vvtmax: Double,
-
-    /**
-     * Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
-     */
-    val vvtmin: Double
+(override val sup: PFVArControllerType1Dynamics,
+val ovex: Boolean,
+val tpfc: Double,
+val vitmin: Double,
+val vpf: Double,
+val vpfcbw: Double,
+val vpfref: Double,
+val vvtmax: Double,
+val vvtmin: Double
 )
 extends
     Element
@@ -168,43 +133,24 @@ extends
 /**
  * The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.
  * Reference: IEEE Standard 421.5-2005 Section 11.3.
+ * @param sup Reference to the superclass object.
+ * @param tvarc Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
+ *        Typical Value = 5.
+ * @param vvar Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).
+ * @param vvarcbw Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).
+ *        Typical Value = 0.02.
+ * @param vvarref Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).
+ * @param vvtmax Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
+ * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
  */
 case class PFVArType1IEEEVArController
-(
-
-    override val sup: PFVArControllerType1Dynamics,
-
-    /**
-     * Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
-     * Typical Value = 5.
-     */
-    val tvarc: Double,
-
-    /**
-     * Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).
-     */
-    val vvar: Double,
-
-    /**
-     * Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).
-     * Typical Value = 0.02.
-     */
-    val vvarcbw: Double,
-
-    /**
-     * Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).
-     */
-    val vvarref: Double,
-
-    /**
-     * Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
-     */
-    val vvtmax: Double,
-
-    /**
-     * Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
-     */
-    val vvtmin: Double
+(override val sup: PFVArControllerType1Dynamics,
+val tvarc: Double,
+val vvar: Double,
+val vvarcbw: Double,
+val vvarref: Double,
+val vvtmax: Double,
+val vvtmin: Double
 )
 extends
     Element

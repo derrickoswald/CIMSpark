@@ -12,16 +12,12 @@ import ch.ninecode.cim.Context
 /**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
  * AuxiliaryEquipment is attached to primary eqipment via an association with Terminal.
+ * @param sup Reference to the superclass object.
+ * @param Terminal The Terminal at the equipment where the AuxiliaryEquipment is attached.
  */
 case class AuxiliaryEquipment
-(
-
-    override val sup: Equipment,
-
-    /**
-     * The Terminal at the equipment where the AuxiliaryEquipment is attached.
-     */
-    val Terminal: String
+(override val sup: Equipment,
+val Terminal: String
 )
 extends
     Element
@@ -57,36 +53,20 @@ extends
 /**
  * Instrument transformer used to measure electrical qualities of the circuit that is being protected and/or monitored.
  * Typically used as current transducer for the purpose of metering or protection. A typical secondary current rating would be 5A.
+ * @param sup Reference to the superclass object.
+ * @param accuracyClass CT accuracy classification.
+ * @param accuracyLimit Percent of rated current for which the CT remains accurate within specified limits.
+ * @param coreBurden Power burden of the CT core.
+ * @param ctClass CT classification; i.e. class 10P.
+ * @param usage Intended usage of the CT; i.e. metering, protection.
  */
 case class CurrentTransformer
-(
-
-    override val sup: Sensor,
-
-    /**
-     * CT accuracy classification.
-     */
-    val accuracyClass: String,
-
-    /**
-     * Percent of rated current for which the CT remains accurate within specified limits.
-     */
-    val accuracyLimit: Double,
-
-    /**
-     * Power burden of the CT core.
-     */
-    val coreBurden: Double,
-
-    /**
-     * CT classification; i.e. class 10P.
-     */
-    val ctClass: String,
-
-    /**
-     * Intended usage of the CT; i.e. metering, protection.
-     */
-    val usage: String
+(override val sup: Sensor,
+val accuracyClass: String,
+val accuracyLimit: Double,
+val coreBurden: Double,
+val ctClass: String,
+val usage: String
 )
 extends
     Element
@@ -130,11 +110,10 @@ extends
 /**
  * A FaultIndicator is typically only an indicator (which may or may not be remotely monitored), and not a piece of equipment that actually initiates a protection event.
  * It is used for FLISR (Fault Location, Isolation and Restoration) purposes, assisting with the dispatch of crews to "most likely" part of the network (i.e. assists with determining circuit section where the fault most likely happened).
+ * @param sup Reference to the superclass object.
  */
 case class FaultIndicator
-(
-
-    override val sup: AuxiliaryEquipment
+(override val sup: AuxiliaryEquipment
 )
 extends
     Element
@@ -167,11 +146,10 @@ extends
 
 /**
  * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
+ * @param sup Reference to the superclass object.
  */
 case class PostLineSensor
-(
-
-    override val sup: Sensor
+(override val sup: Sensor
 )
 extends
     Element
@@ -205,31 +183,18 @@ extends
 /**
  * Instrument transformer (also known as Voltage Transformer) used to measure electrical qualities of the circuit that is being protected and/or monitored.
  * Typically used as voltage transducer for the purpose of metering, protection, or sometimes auxiliary substation supply. A typical secondary voltage rating would be 120V.
+ * @param sup Reference to the superclass object.
+ * @param accuracyClass PT accuracy classification.
+ * @param nominalRatio Nominal ratio between the primary and secondary voltage.
+ * @param ptClass Potential transformer (PT) classification covering burden.
+ * @param typ Potential transformer construction type.
  */
 case class PotentialTransformer
-(
-
-    override val sup: Sensor,
-
-    /**
-     * PT accuracy classification.
-     */
-    val accuracyClass: String,
-
-    /**
-     * Nominal ratio between the primary and secondary voltage.
-     */
-    val nominalRatio: Double,
-
-    /**
-     * Potential transformer (PT) classification covering burden.
-     */
-    val ptClass: String,
-
-    /**
-     * Potential transformer construction type.
-     */
-    val typ: String
+(override val sup: Sensor,
+val accuracyClass: String,
+val nominalRatio: Double,
+val ptClass: String,
+val typ: String
 )
 extends
     Element
@@ -270,21 +235,14 @@ extends
 
 /**
  * The construction kind of the potential transformer.
+ * @param sup Reference to the superclass object.
+ * @param capacitiveCoupling The potential transformer is using capacitive coupling to create secondary voltage.
+ * @param inductive The potential transformer is using induction coils to create secondary voltage.
  */
 case class PotentialTransformerKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The potential transformer is using capacitive coupling to create secondary voltage.
-     */
-    val capacitiveCoupling: String,
-
-    /**
-     * The potential transformer is using induction coils to create secondary voltage.
-     */
-    val inductive: String
+(override val sup: BasicElement,
+val capacitiveCoupling: String,
+val inductive: String
 )
 extends
     Element
@@ -321,11 +279,10 @@ extends
 
 /**
  * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
+ * @param sup Reference to the superclass object.
  */
 case class Sensor
-(
-
-    override val sup: AuxiliaryEquipment
+(override val sup: AuxiliaryEquipment
 )
 extends
     Element
@@ -358,11 +315,10 @@ extends
 
 /**
  * Shunt device, installed on the network, usually in the proximity of electrical equipment in order to protect the said equipment against transient voltage transients caused by lightning or switching activity.
+ * @param sup Reference to the superclass object.
  */
 case class SurgeArrester
-(
-
-    override val sup: AuxiliaryEquipment
+(override val sup: AuxiliaryEquipment
 )
 extends
     Element
@@ -395,11 +351,10 @@ extends
 
 /**
  * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
+ * @param sup Reference to the superclass object.
  */
 case class WaveTrap
-(
-
-    override val sup: AuxiliaryEquipment
+(override val sup: AuxiliaryEquipment
 )
 extends
     Element

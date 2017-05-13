@@ -10,16 +10,12 @@ import ch.ninecode.cim.Context
 
 /**
  * An event threatening system reliability, consisting of one or more contingency elements.
+ * @param sup Reference to the superclass object.
+ * @param mustStudy Set true if must study this contingency.
  */
 case class Contingency
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Set true if must study this contingency.
-     */
-    val mustStudy: Boolean
+(override val sup: IdentifiedObject,
+val mustStudy: Boolean
 )
 extends
     Element
@@ -54,11 +50,10 @@ extends
 
 /**
  * An element of a system event to be studied by contingency analysis, representing a change in status of a single piece of equipment.
+ * @param sup Reference to the superclass object.
  */
 case class ContingencyElement
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -91,22 +86,15 @@ extends
 
 /**
  * A equipment to which the in service status is to change such as a power transformer or AC line segment.
+ * @param sup Reference to the superclass object.
+ * @param contingentStatus The status for the associated equipment when in the contingency state.
+ *        This status is independent of the case to which the contingency is originally applied, but defines the equipment status when the contingency is applied.
+ * @param Equipment The single piece of equipment to which to apply the contingency.
  */
 case class ContingencyEquipment
-(
-
-    override val sup: ContingencyElement,
-
-    /**
-     * The status for the associated equipment when in the contingency state.
-     * This status is independent of the case to which the contingency is originally applied, but defines the equipment status when the contingency is applied.
-     */
-    val contingentStatus: String,
-
-    /**
-     * The single piece of equipment to which to apply the contingency.
-     */
-    val Equipment: String
+(override val sup: ContingencyElement,
+val contingentStatus: String,
+val Equipment: String
 )
 extends
     Element
@@ -143,21 +131,14 @@ extends
 
 /**
  * Indicates the state which the contingency equipment is to be in when the contingency is applied.
+ * @param sup Reference to the superclass object.
+ * @param inService The equipment is in service.
+ * @param outOfService The equipment is to be taken out of service.
  */
 case class ContingencyEquipmentStatusKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The equipment is in service.
-     */
-    val inService: String,
-
-    /**
-     * The equipment is to be taken out of service.
-     */
-    val outOfService: String
+(override val sup: BasicElement,
+val inService: String,
+val outOfService: String
 )
 extends
     Element

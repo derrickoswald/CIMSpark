@@ -10,31 +10,18 @@ import ch.ninecode.cim.Context
 
 /**
  * Common representation for work and work tasks.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of work.
+ * @param priority Priority of work.
+ * @param statusKind Kind of work status.
+ * @param WorkLocation Location for this work/task.
  */
 case class BaseWork
-(
-
-    override val sup: Document,
-
-    /**
-     * Kind of work.
-     */
-    val kind: String,
-
-    /**
-     * Priority of work.
-     */
-    val priority: String,
-
-    /**
-     * Kind of work status.
-     */
-    val statusKind: String,
-
-    /**
-     * Location for this work/task.
-     */
-    val WorkLocation: String
+(override val sup: Document,
+val kind: String,
+val priority: String,
+val statusKind: String,
+val WorkLocation: String
 )
 extends
     Element
@@ -75,31 +62,18 @@ extends
 
 /**
  * Location where to perform maintenance work.
+ * @param sup Reference to the superclass object.
+ * @param block (if applicable) Name, identifier, or description of the block in which work is to occur.
+ * @param lot (if applicable) Name, identifier, or description of the lot in which work is to occur.
+ * @param nearestIntersection The names of streets at the nearest intersection to work area.
+ * @param subdivision (if applicable) Name, identifier, or description of the subdivision in which work is to occur.
  */
 case class MaintenanceLocation
-(
-
-    override val sup: WorkLocation,
-
-    /**
-     * (if applicable) Name, identifier, or description of the block in which work is to occur.
-     */
-    val block: String,
-
-    /**
-     * (if applicable) Name, identifier, or description of the lot in which work is to occur.
-     */
-    val lot: String,
-
-    /**
-     * The names of streets at the nearest intersection to work area.
-     */
-    val nearestIntersection: String,
-
-    /**
-     * (if applicable) Name, identifier, or description of the subdivision in which work is to occur.
-     */
-    val subdivision: String
+(override val sup: WorkLocation,
+val block: String,
+val lot: String,
+val nearestIntersection: String,
+val subdivision: String
 )
 extends
     Element
@@ -141,20 +115,16 @@ extends
 /**
  * The physical consumable supply used for work and other purposes.
  * It includes items such as nuts, bolts, brackets, glue, etc.
+ * @param sup Reference to the superclass object.
+ * @param quantity Quantity of material used.
+ * @param TypeMaterial
+ * @param WorkTask
  */
 case class MaterialItem
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Quantity of material used.
-     */
-    val quantity: String,
-
-    val TypeMaterial: String,
-
-    val WorkTask: String
+(override val sup: IdentifiedObject,
+val quantity: String,
+val TypeMaterial: String,
+val WorkTask: String
 )
 extends
     Element
@@ -193,16 +163,12 @@ extends
 
 /**
  * Tool asset.
+ * @param sup Reference to the superclass object.
+ * @param lastCalibrationDate (if applicable) Date the tool was last calibrated.
  */
 case class Tool
-(
-
-    override val sup: WorkAsset,
-
-    /**
-     * (if applicable) Date the tool was last calibrated.
-     */
-    val lastCalibrationDate: String
+(override val sup: WorkAsset,
+val lastCalibrationDate: String
 )
 extends
     Element
@@ -237,27 +203,17 @@ extends
 
 /**
  * Vehicle asset.
+ * @param sup Reference to the superclass object.
+ * @param odometerReadDateTime Date and time the last odometer reading was recorded.
+ * @param odometerReading Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
+ *        Refer to associated ActivityRecords for earlier readings.
+ * @param usageKind Kind of usage of the vehicle.
  */
 case class Vehicle
-(
-
-    override val sup: WorkAsset,
-
-    /**
-     * Date and time the last odometer reading was recorded.
-     */
-    val odometerReadDateTime: String,
-
-    /**
-     * Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
-     * Refer to associated ActivityRecords for earlier readings.
-     */
-    val odometerReading: Double,
-
-    /**
-     * Kind of usage of the vehicle.
-     */
-    val usageKind: String
+(override val sup: WorkAsset,
+val odometerReadDateTime: String,
+val odometerReading: Double,
+val usageKind: String
 )
 extends
     Element
@@ -296,19 +252,18 @@ extends
 
 /**
  * Usage of a vehicle.
+ * @param sup Reference to the superclass object.
+ * @param contractor
+ * @param crew
+ * @param other
+ * @param user
  */
 case class VehicleUsageKind
-(
-
-    override val sup: BasicElement,
-
-    val contractor: String,
-
-    val crew: String,
-
-    val other: String,
-
-    val user: String
+(override val sup: BasicElement,
+val contractor: String,
+val crew: String,
+val other: String,
+val user: String
 )
 extends
     Element
@@ -349,24 +304,20 @@ extends
 
 /**
  * Document used to request, initiate, track and record work.
+ * @param sup Reference to the superclass object.
+ * @param requestDateTime Date and time work was requested.
+ * @param BusinessCase
+ * @param ErpProjectAccounting
+ * @param Project
+ * @param WorkBillingInfo
  */
 case class Work
-(
-
-    override val sup: BaseWork,
-
-    /**
-     * Date and time work was requested.
-     */
-    val requestDateTime: String,
-
-    val BusinessCase: String,
-
-    val ErpProjectAccounting: String,
-
-    val Project: String,
-
-    val WorkBillingInfo: String
+(override val sup: BaseWork,
+val requestDateTime: String,
+val BusinessCase: String,
+val ErpProjectAccounting: String,
+val Project: String,
+val WorkBillingInfo: String
 )
 extends
     Element
@@ -409,16 +360,12 @@ extends
 
 /**
  * Asset used to perform work.
+ * @param sup Reference to the superclass object.
+ * @param Crew Crew using this work asset.
  */
 case class WorkAsset
-(
-
-    override val sup: Asset,
-
-    /**
-     * Crew using this work asset.
-     */
-    val Crew: String
+(override val sup: Asset,
+val Crew: String
 )
 extends
     Element
@@ -453,61 +400,30 @@ extends
 
 /**
  * Kind of work.
+ * @param sup Reference to the superclass object.
+ * @param connect Connect work.
+ * @param construction Construction work.
+ * @param disconnect Disconnect work.
+ * @param inspection Inspection work.
+ * @param maintenance Maintenance work.
+ * @param other Other kind of work.
+ * @param reconnect (use 'connect' instead) Reconnect work.
+ * @param repair Repair work.
+ * @param service Service work.
+ * @param test Test work.
  */
 case class WorkKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Connect work.
-     */
-    val connect: String,
-
-    /**
-     * Construction work.
-     */
-    val construction: String,
-
-    /**
-     * Disconnect work.
-     */
-    val disconnect: String,
-
-    /**
-     * Inspection work.
-     */
-    val inspection: String,
-
-    /**
-     * Maintenance work.
-     */
-    val maintenance: String,
-
-    /**
-     * Other kind of work.
-     */
-    val other: String,
-
-    /**
-     * (use 'connect' instead) Reconnect work.
-     */
-    val reconnect: String,
-
-    /**
-     * Repair work.
-     */
-    val repair: String,
-
-    /**
-     * Service work.
-     */
-    val service: String,
-
-    /**
-     * Test work.
-     */
-    val test: String
+(override val sup: BasicElement,
+val connect: String,
+val construction: String,
+val disconnect: String,
+val inspection: String,
+val maintenance: String,
+val other: String,
+val reconnect: String,
+val repair: String,
+val service: String,
+val test: String
 )
 extends
     Element
@@ -560,13 +476,12 @@ extends
 
 /**
  * Information about a particular location for various forms of work.
+ * @param sup Reference to the superclass object.
+ * @param OneCallRequest
  */
 case class WorkLocation
-(
-
-    override val sup: Location,
-
-    val OneCallRequest: String
+(override val sup: Location,
+val OneCallRequest: String
 )
 extends
     Element
@@ -601,71 +516,34 @@ extends
 
 /**
  * Kind of status, specific to work.
+ * @param sup Reference to the superclass object.
+ * @param approved Work has been approved.
+ * @param cancelled Work has been canceled.
+ * @param closed Work has been closed (typically by a person responsible for work management) and is ready for billing.
+ * @param completed Work has been completed, i.e., crew can leave the work location and is available for another work.
+ * @param dispatched Crew has been dispatched.
+ * @param enroute Crew is 'en route'.
+ * @param inProgress Work is in progress.
+ * @param onSite Crew is on the site.
+ * @param scheduled Work has been scheduled.
+ * @param waitingOnApproval Work approval is pending.
+ * @param waitingOnMaterial Work has been waiting on material.
+ * @param waitingToBeScheduled Work needs to be scheduled.
  */
 case class WorkStatusKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Work has been approved.
-     */
-    val approved: String,
-
-    /**
-     * Work has been canceled.
-     */
-    val cancelled: String,
-
-    /**
-     * Work has been closed (typically by a person responsible for work management) and is ready for billing.
-     */
-    val closed: String,
-
-    /**
-     * Work has been completed, i.e., crew can leave the work location and is available for another work.
-     */
-    val completed: String,
-
-    /**
-     * Crew has been dispatched.
-     */
-    val dispatched: String,
-
-    /**
-     * Crew is 'en route'.
-     */
-    val enroute: String,
-
-    /**
-     * Work is in progress.
-     */
-    val inProgress: String,
-
-    /**
-     * Crew is on the site.
-     */
-    val onSite: String,
-
-    /**
-     * Work has been scheduled.
-     */
-    val scheduled: String,
-
-    /**
-     * Work approval is pending.
-     */
-    val waitingOnApproval: String,
-
-    /**
-     * Work has been waiting on material.
-     */
-    val waitingOnMaterial: String,
-
-    /**
-     * Work needs to be scheduled.
-     */
-    val waitingToBeScheduled: String
+(override val sup: BasicElement,
+val approved: String,
+val cancelled: String,
+val closed: String,
+val completed: String,
+val dispatched: String,
+val enroute: String,
+val inProgress: String,
+val onSite: String,
+val scheduled: String,
+val waitingOnApproval: String,
+val waitingOnMaterial: String,
+val waitingToBeScheduled: String
 )
 extends
     Element
@@ -721,54 +599,16 @@ extends
 }
 
 case class WorkTask
-(
-
-    override val sup: BaseWork,
-
-    /**
-     * Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.
-     */
-    val crewETA: String,
-
-    /**
-     * Instructions for performing this task.
-     */
-    val instruction: String,
-
-    /**
-     * If specified, override schedule and perform this task in accordance with instructions specified here.
-     */
-    val schedOverride: String,
-
-    /**
-     * Kind of work.
-     */
-    val taskKind: String,
-
-    /**
-     * All assets on which this non-replacement work task is performed.
-     */
-    val Assets: List[String],
-
-    /**
-     * All crews participating in this work task.
-     */
-    val Crews: List[String],
-
-    /**
-     * Old asset replaced by this work task.
-     */
-    val OldAsset: String,
-
-    /**
-     * Switching plan executed by this work task.
-     */
-    val SwitchingPlan: String,
-
-    /**
-     * Work this task belongs to.
-     */
-    val Work: String
+(override val sup: BaseWork,
+val crewETA: String,
+val instruction: String,
+val schedOverride: String,
+val taskKind: String,
+val Assets: List[String],
+val Crews: List[String],
+val OldAsset: String,
+val SwitchingPlan: String,
+val Work: String
 )
 extends
     Element
@@ -818,29 +658,11 @@ extends
 }
 
 case class WorkTaskKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Work task deals with exchange of assets.
-     */
-    val exchange: String,
-
-    /**
-     * Work task deals with installation of assets.
-     */
-    val install: String,
-
-    /**
-     * Work task deals with investigation about assets.
-     */
-    val investigate: String,
-
-    /**
-     * Work task deals with removal of assets.
-     */
-    val remove: String
+(override val sup: BasicElement,
+val exchange: String,
+val install: String,
+val investigate: String,
+val remove: String
 )
 extends
     Element
@@ -881,21 +703,14 @@ extends
 
 /**
  * Time schedule specific to work.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of this work schedule.
+ * @param BaseWork Time schedule for this work or work task.
  */
 case class WorkTimeSchedule
-(
-
-    override val sup: TimeSchedule,
-
-    /**
-     * Kind of this work schedule.
-     */
-    val kind: String,
-
-    /**
-     * Time schedule for this work or work task.
-     */
-    val BaseWork: String
+(override val sup: TimeSchedule,
+val kind: String,
+val BaseWork: String
 )
 extends
     Element
@@ -932,21 +747,20 @@ extends
 
 /**
  * Kind of work schedule.
+ * @param sup Reference to the superclass object.
+ * @param actual
+ * @param earliest
+ * @param estimate
+ * @param latest
+ * @param request
  */
 case class WorkTimeScheduleKind
-(
-
-    override val sup: BasicElement,
-
-    val actual: String,
-
-    val earliest: String,
-
-    val estimate: String,
-
-    val latest: String,
-
-    val request: String
+(override val sup: BasicElement,
+val actual: String,
+val earliest: String,
+val estimate: String,
+val latest: String,
+val request: String
 )
 extends
     Element

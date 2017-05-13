@@ -11,16 +11,12 @@ import ch.ninecode.cim.Context
 /**
  * Models Ancillary Service Requirements.
  * Describes interval for which the requirement is applicable.
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime The start of the time interval for which requirement is defined.
  */
 case class ASRequirements
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The start of the time interval for which requirement is defined.
-     */
-    val intervalStartTime: String
+(override val sup: BasicElement,
+val intervalStartTime: String
 )
 extends
     Element
@@ -55,18 +51,14 @@ extends
 
 /**
  * Measurement quality flags for Analog Values.
+ * @param sup Reference to the superclass object.
+ * @param scadaQualityCode The quality code for the given Analog Value.
+ * @param MktAnalogValue
  */
 case class AnalogMeasurementValueQuality
-(
-
-    override val sup: MeasurementValueQuality,
-
-    /**
-     * The quality code for the given Analog Value.
-     */
-    val scadaQualityCode: String,
-
-    val MktAnalogValue: String
+(override val sup: MeasurementValueQuality,
+val scadaQualityCode: String,
+val MktAnalogValue: String
 )
 extends
     Element
@@ -103,22 +95,18 @@ extends
 
 /**
  * Area load curve definition.
+ * @param sup Reference to the superclass object.
+ * @param forecastType Load forecast area type.
+ * @param AggregateNode
+ * @param MktLoadArea
+ * @param TACArea
  */
 case class AreaLoadCurve
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * Load forecast area type.
-     */
-    val forecastType: String,
-
-    val AggregateNode: String,
-
-    val MktLoadArea: String,
-
-    val TACArea: String
+(override val sup: RegularIntervalSchedule,
+val forecastType: String,
+val AggregateNode: String,
+val MktLoadArea: String,
+val TACArea: String
 )
 extends
     Element
@@ -160,13 +148,12 @@ extends
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a contingency analysis base case.
  * Use CurveSchedule XAxisUnits to specify MW or MVA. To be used only if the BaseCaseConstraintLimit differs from the DefaultConstraintLimit.
+ * @param sup Reference to the superclass object.
+ * @param SecurityConstraintSum
  */
 case class BaseCaseConstraintLimit
-(
-
-    override val sup: Curve,
-
-    val SecurityConstraintSum: String
+(override val sup: Curve,
+val SecurityConstraintSum: String
 )
 extends
     Element
@@ -201,43 +188,24 @@ extends
 
 /**
  * Dynamic flows and ratings associated with a branch end.
+ * @param sup Reference to the superclass object.
+ * @param loadDumpRating The Load Dump Rating for the branch
+ * @param longTermRating The Long Term Rating for the branch
+ * @param mVARFlow The MVAR flow on the branch
+ *        Attribute Usage: Reactive power flow at the series device, transformer, phase shifter, or line end
+ * @param mwFlow The MW flow on the branch
+ *        Attribute Usage: Active power flow at the series device, transformer, phase shifter, or line end
+ * @param normalRating The Normal Rating for the branch
+ * @param shortTermRating The Short Term Rating for the branch
  */
 case class BranchEndFlow
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The Load Dump Rating for the branch
-     */
-    val loadDumpRating: Double,
-
-    /**
-     * The Long Term Rating for the branch
-     */
-    val longTermRating: Double,
-
-    /**
-     * The MVAR flow on the branch
-     * Attribute Usage: Reactive power flow at the series device, transformer, phase shifter, or line end
-     */
-    val mVARFlow: Double,
-
-    /**
-     * The MW flow on the branch
-     * Attribute Usage: Active power flow at the series device, transformer, phase shifter, or line end
-     */
-    val mwFlow: Double,
-
-    /**
-     * The Normal Rating for the branch
-     */
-    val normalRating: Double,
-
-    /**
-     * The Short Term Rating for the branch
-     */
-    val shortTermRating: Double
+(override val sup: BasicElement,
+val loadDumpRating: Double,
+val longTermRating: Double,
+val mVARFlow: Double,
+val mwFlow: Double,
+val normalRating: Double,
+val shortTermRating: Double
 )
 extends
     Element
@@ -282,20 +250,16 @@ extends
 
 /**
  * A constraint term is one element of a linear constraint.
+ * @param sup Reference to the superclass object.
+ * @param factor
+ * @param function The function is an enumerated value that can be 'active', 'reactive', or 'VA' to indicate the type of flow.
+ * @param SecurityConstraintSum
  */
 case class ConstraintTerm
-(
-
-    override val sup: IdentifiedObject,
-
-    val factor: String,
-
-    /**
-     * The function is an enumerated value that can be 'active', 'reactive', or 'VA' to indicate the type of flow.
-     */
-    val function: String,
-
-    val SecurityConstraintSum: String
+(override val sup: IdentifiedObject,
+val factor: String,
+val function: String,
+val SecurityConstraintSum: String
 )
 extends
     Element
@@ -335,17 +299,16 @@ extends
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a constraint for a specific contingency.
  * Use CurveSchedule XAxisUnits to specify MW or MVA.
+ * @param sup Reference to the superclass object.
+ * @param MWLimitSchedules
+ * @param MktContingency
+ * @param SecurityConstraintSum
  */
 case class ContingencyConstraintLimit
-(
-
-    override val sup: Curve,
-
-    val MWLimitSchedules: String,
-
-    val MktContingency: String,
-
-    val SecurityConstraintSum: String
+(override val sup: Curve,
+val MWLimitSchedules: String,
+val MktContingency: String,
+val SecurityConstraintSum: String
 )
 extends
     Element
@@ -384,25 +347,18 @@ extends
 
 /**
  * State Estimator Solution Pool Interchange and Losses
+ * @param sup Reference to the superclass object.
+ * @param solvedInterchange Pool MW Interchange
+ *        Attribute Usage: The active power interchange of the pool
+ * @param solvedLosses Pool Losses MW
+ *        Attribute Usage: The active power losses of the pool in MW
+ * @param MktControlArea
  */
 case class ControlAreaSolutionData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Pool MW Interchange
-     * Attribute Usage: The active power interchange of the pool
-     */
-    val solvedInterchange: Double,
-
-    /**
-     * Pool Losses MW
-     * Attribute Usage: The active power losses of the pool in MW
-     */
-    val solvedLosses: Double,
-
-    val MktControlArea: String
+(override val sup: BasicElement,
+val solvedInterchange: Double,
+val solvedLosses: Double,
+val MktControlArea: String
 )
 extends
     Element
@@ -445,30 +401,20 @@ extends
 Default Energy Bid
 A Default Energy Bid is a monotonically increasing staircase function consisting at maximum 10 economic bid segments, or 10 ($/MW, MW) pairs.
  * There are three methods for determining the Default Energy Bid:
+ * @param sup Reference to the superclass object.
+ * @param bidType Default bid type such as Default Energy Bid, Default Minimum Load Bid, and Default Startup Bid
+ * @param minLoadCost Minimum load cost in $/hr
+ * @param peakFlag on-peak, off-peak, or all
+ * @param DefaultBidCurve
+ * @param RegisteredResource
  */
 case class DefaultBid
-(
-
-    override val sup: Bid,
-
-    /**
-     * Default bid type such as Default Energy Bid, Default Minimum Load Bid, and Default Startup Bid
-     */
-    val bidType: String,
-
-    /**
-     * Minimum load cost in $/hr
-     */
-    val minLoadCost: Double,
-
-    /**
-     * on-peak, off-peak, or all
-     */
-    val peakFlag: String,
-
-    val DefaultBidCurve: String,
-
-    val RegisteredResource: String
+(override val sup: Bid,
+val bidType: String,
+val minLoadCost: Double,
+val peakFlag: String,
+val DefaultBidCurve: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -511,23 +457,16 @@ extends
 
 /**
  * Default bid curve for default energy bid curve and default startup curves (cost and time)
+ * @param sup Reference to the superclass object.
+ * @param curveType To indicate a type used for a default energy bid curve, such as LMP, cost or consultative based.
+ * @param debAdderFlag Default energy bid adder flag
+ * @param DefaultBid
  */
 case class DefaultBidCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * To indicate a type used for a default energy bid curve, such as LMP, cost or consultative based.
-     */
-    val curveType: String,
-
-    /**
-     * Default energy bid adder flag
-     */
-    val debAdderFlag: String,
-
-    val DefaultBid: String
+(override val sup: Curve,
+val curveType: String,
+val debAdderFlag: String,
+val DefaultBid: String
 )
 extends
     Element
@@ -566,16 +505,12 @@ extends
 
 /**
  * Curve data for default bid curve and startup cost curve.
+ * @param sup Reference to the superclass object.
+ * @param bidSegmentCalcType Type of calculation basis used to define the default bid segment curve.
  */
 case class DefaultBidCurveData
-(
-
-    override val sup: CurveData,
-
-    /**
-     * Type of calculation basis used to define the default bid segment curve.
-     */
-    val bidSegmentCalcType: String
+(override val sup: CurveData,
+val bidSegmentCalcType: String
 )
 extends
     Element
@@ -611,13 +546,12 @@ extends
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) applied as a default value if no specific constraint limits are specified for a contingency analysis.
  * Use CurveSchedule XAxisUnits to specify MW or MVA.
+ * @param sup Reference to the superclass object.
+ * @param SecurityConstraintSum
  */
 case class DefaultConstraintLimit
-(
-
-    override val sup: Curve,
-
-    val SecurityConstraintSum: String
+(override val sup: Curve,
+val SecurityConstraintSum: String
 )
 extends
     Element
@@ -652,25 +586,18 @@ extends
 
 /**
  * Measurement quality flags for Discrete Values.
+ * @param sup Reference to the superclass object.
+ * @param manualReplaceIndicator Switch Manual Replace Indicator.
+ *        Flag indicating that the switch is manual replace.
+ * @param removeFromOperationIndicator Removed From Operation Indicator.
+ *        Flag indicating that the switch is removed from operation.
+ * @param MktDiscreteValue
  */
 case class DiscreteMeasurementValueQuality
-(
-
-    override val sup: MeasurementValueQuality,
-
-    /**
-     * Switch Manual Replace Indicator.
-     * Flag indicating that the switch is manual replace.
-     */
-    val manualReplaceIndicator: Boolean,
-
-    /**
-     * Removed From Operation Indicator.
-     * Flag indicating that the switch is removed from operation.
-     */
-    val removeFromOperationIndicator: Boolean,
-
-    val MktDiscreteValue: String
+(override val sup: MeasurementValueQuality,
+val manualReplaceIndicator: Boolean,
+val removeFromOperationIndicator: Boolean,
+val MktDiscreteValue: String
 )
 extends
     Element
@@ -710,29 +637,22 @@ extends
 /**
  * A containing class that groups all the distribution factors within a market.
  * This is calculated daily for DA factors and hourly for RT factors.
+ * @param sup Reference to the superclass object.
+ * @param intervalEndTime The end of the time interval for which requirement is defined.
+ * @param intervalStartTime The start of the time interval for which requirement is defined.
+ * @param marketType
+ * @param GenDistributionFactor
+ * @param LoadDistributionFactor
+ * @param SysLoadDistribuFactor
  */
 case class DistributionFactorSet
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The end of the time interval for which requirement is defined.
-     */
-    val intervalEndTime: String,
-
-    /**
-     * The start of the time interval for which requirement is defined.
-     */
-    val intervalStartTime: String,
-
-    val marketType: String,
-
-    val GenDistributionFactor: List[String],
-
-    val LoadDistributionFactor: List[String],
-
-    val SysLoadDistribuFactor: List[String]
+(override val sup: BasicElement,
+val intervalEndTime: String,
+val intervalStartTime: String,
+val marketType: String,
+val GenDistributionFactor: List[String],
+val LoadDistributionFactor: List[String],
+val SysLoadDistribuFactor: List[String]
 )
 extends
     Element
@@ -778,24 +698,17 @@ extends
 /**
  * Optimal Power Flow or State Estimator Load Data for OTS.
  * This is used for RealTime, Study and Maintenance Users
+ * @param sup Reference to the superclass object.
+ * @param loadMVAR The MVAR load
+ *        Attribute Usage: The reactive power consumption of the load in MW
+ * @param loadMW The active power consumption of the load in MW
+ * @param MktEnergyConsumer
  */
 case class EnergyConsumerData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The MVAR load
-     * Attribute Usage: The reactive power consumption of the load in MW
-     */
-    val loadMVAR: Double,
-
-    /**
-     * The active power consumption of the load in MW
-     */
-    val loadMW: Double,
-
-    val MktEnergyConsumer: String
+(override val sup: BasicElement,
+val loadMVAR: Double,
+val loadMW: Double,
+val MktEnergyConsumer: String
 )
 extends
     Element
@@ -835,38 +748,22 @@ extends
 /**
  * An Energy Price Index for each Resource is valid for a period (e.g. daily) that is identified by a Valid Period Start Time and a Valid Period End Time.
  * An Energy Price Index is in $/MWh.
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate End effective date
+ * @param energyPriceIndex Energy price index
+ * @param energyPriceIndexType EPI type such as wholesale or retail
+ * @param lastModified Time updated
+ * @param startEffectiveDate Start effective date
+ * @param RegisteredGenerator
  */
 case class EnergyPriceIndex
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * End effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Energy price index
-     */
-    val energyPriceIndex: Double,
-
-    /**
-     * EPI type such as wholesale or retail
-     */
-    val energyPriceIndexType: String,
-
-    /**
-     * Time updated
-     */
-    val lastModified: String,
-
-    /**
-     * Start effective date
-     */
-    val startEffectiveDate: String,
-
-    val RegisteredGenerator: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val energyPriceIndex: Double,
+val energyPriceIndexType: String,
+val lastModified: String,
+val startEffectiveDate: String,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -911,18 +808,14 @@ extends
 
 /**
  * Specifies the start time, stop time, level for an EnergyTransaction.
+ * @param sup Reference to the superclass object.
+ * @param EnergyTransaction An EnergyTransaction shall have at least one EnergyProfile.
+ * @param TransactionBid
  */
 case class EnergyProfile
-(
-
-    override val sup: Profile,
-
-    /**
-     * An EnergyTransaction shall have at least one EnergyProfile.
-     */
-    val EnergyTransaction: String,
-
-    val TransactionBid: String
+(override val sup: Profile,
+val EnergyTransaction: String,
+val TransactionBid: String
 )
 extends
     Element
@@ -959,77 +852,40 @@ extends
 
 /**
  * Specifies the schedule for energy transfers between interchange areas that are necessary to satisfy the associated interchange transaction.
+ * @param sup Reference to the superclass object.
+ * @param capacityBacked Interchange capacity flag.
+ *        When the flag is set to true, it indicates a transaction is capacity backed.
+ * @param congestChargeMax Maximum congestion charges in monetary units.
+ * @param deliveryPointP Delivery point active power.
+ * @param energyMin Transaction minimum active power if dispatchable.
+ * @param firmInterchangeFlag Firm interchange flag indicates whether or not this energy transaction can be changed without potential financial consequences.
+ * @param payCongestion Willing to Pay congestion flag
+ * @param reason Reason for energy transaction.
+ * @param receiptPointP Receipt point active power.
+ * @param state { Approve | Deny | Study }
+ * @param EnergyPriceCurves
+ * @param EnergyProduct The "Source" for an EnergyTransaction is an EnergyProduct which is injected into a ControlArea.
+ *        Typically this is a ServicePoint.
+ * @param Export_SubControlArea Energy is transferred between interchange areas
+ * @param Import_SubControlArea Energy is transferred between interchange areas
+ * @param TransmissionReservation
  */
 case class EnergyTransaction
-(
-
-    override val sup: Document,
-
-    /**
-     * Interchange capacity flag.
-     * When the flag is set to true, it indicates a transaction is capacity backed.
-     */
-    val capacityBacked: Boolean,
-
-    /**
-     * Maximum congestion charges in monetary units.
-     */
-    val congestChargeMax: Double,
-
-    /**
-     * Delivery point active power.
-     */
-    val deliveryPointP: Double,
-
-    /**
-     * Transaction minimum active power if dispatchable.
-     */
-    val energyMin: Double,
-
-    /**
-     * Firm interchange flag indicates whether or not this energy transaction can be changed without potential financial consequences.
-     */
-    val firmInterchangeFlag: Boolean,
-
-    /**
-     * Willing to Pay congestion flag
-     */
-    val payCongestion: Boolean,
-
-    /**
-     * Reason for energy transaction.
-     */
-    val reason: String,
-
-    /**
-     * Receipt point active power.
-     */
-    val receiptPointP: Double,
-
-    /**
-     * { Approve | Deny | Study }
-     */
-    val state: String,
-
-    val EnergyPriceCurves: List[String],
-
-    /**
-     * The "Source" for an EnergyTransaction is an EnergyProduct which is injected into a ControlArea.
-     * Typically this is a ServicePoint.
-     */
-    val EnergyProduct: String,
-
-    /**
-     * Energy is transferred between interchange areas
-     */
-    val Export_SubControlArea: String,
-
-    /**
-     * Energy is transferred between interchange areas
-     */
-    val Import_SubControlArea: String,
-
-    val TransmissionReservation: String
+(override val sup: Document,
+val capacityBacked: Boolean,
+val congestChargeMax: Double,
+val deliveryPointP: Double,
+val energyMin: Double,
+val firmInterchangeFlag: Boolean,
+val payCongestion: Boolean,
+val reason: String,
+val receiptPointP: Double,
+val state: String,
+val EnergyPriceCurves: List[String],
+val EnergyProduct: String,
+val Export_SubControlArea: String,
+val Import_SubControlArea: String,
+val TransmissionReservation: String
 )
 extends
     Element
@@ -1091,20 +947,16 @@ extends
 /**
  * This class models the generation distribution factors.
  * This class needs to be used along with the AggregatedPnode and the IndividualPnode to show the distriubtion of each individual party.
+ * @param sup Reference to the superclass object.
+ * @param factor Used to calculate generation "participation" of an individual pnond in an AggregatePnode.
+ * @param AggregatedPnode
+ * @param IndividualPnode
  */
 case class GenDistributionFactor
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Used to calculate generation "participation" of an individual pnond in an AggregatePnode.
-     */
-    val factor: Double,
-
-    val AggregatedPnode: String,
-
-    val IndividualPnode: String
+(override val sup: BasicElement,
+val factor: Double,
+val AggregatedPnode: String,
+val IndividualPnode: String
 )
 extends
     Element
@@ -1144,46 +996,27 @@ extends
 /**
  * Optimal Power Flow or State Estimator Unit Data for Operator Training Simulator.
  * This is used for RealTime, Study and Maintenance Users
+ * @param sup Reference to the superclass object.
+ * @param lossFactor Loss Factor
+ * @param mVAR Unit reactive power generation in MVAR
+ * @param maximumMW The maximum active power generation of the unit in MW
+ * @param minimumMW The minimum active power generation of the unit in MW
+ * @param mw Unit active power generation in MW
+ * @param sensitivity Unit sencivity factor.
+ *        The distribution factors (DFAX) for the unit
+ * @param Flowgate
+ * @param MktGeneratingUnit
  */
 case class GeneratingUnitDynamicValues
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Loss Factor
-     */
-    val lossFactor: Double,
-
-    /**
-     * Unit reactive power generation in MVAR
-     */
-    val mVAR: Double,
-
-    /**
-     * The maximum active power generation of the unit in MW
-     */
-    val maximumMW: Double,
-
-    /**
-     * The minimum active power generation of the unit in MW
-     */
-    val minimumMW: Double,
-
-    /**
-     * Unit active power generation in MW
-     */
-    val mw: Double,
-
-    /**
-     * Unit sencivity factor.
-     * The distribution factors (DFAX) for the unit
-     */
-    val sensitivity: Double,
-
-    val Flowgate: String,
-
-    val MktGeneratingUnit: String
+(override val sup: BasicElement,
+val lossFactor: Double,
+val mVAR: Double,
+val maximumMW: Double,
+val minimumMW: Double,
+val mw: Double,
+val sensitivity: Double,
+val Flowgate: String,
+val MktGeneratingUnit: String
 )
 extends
     Element
@@ -1233,31 +1066,18 @@ extends
 /**
  * Generic constraints can represent secure areas, voltage profile, transient stability and voltage collapse limits.
  * The generic constraints can be one of the following forms:
+ * @param sup Reference to the superclass object.
+ * @param intervalEndTime Interval End Time
+ * @param intervalStartTime Interval Start Time
+ * @param maxLimit Maximum Limit (MW)
+ * @param minLimit Minimum Limit (MW)
  */
 case class GenericConstraints
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Interval End Time
-     */
-    val intervalEndTime: String,
-
-    /**
-     * Interval Start Time
-     */
-    val intervalStartTime: String,
-
-    /**
-     * Maximum Limit (MW)
-     */
-    val maxLimit: Double,
-
-    /**
-     * Minimum Limit (MW)
-     */
-    val minLimit: Double
+(override val sup: IdentifiedObject,
+val intervalEndTime: String,
+val intervalStartTime: String,
+val maxLimit: Double,
+val minLimit: Double
 )
 extends
     Element
@@ -1298,23 +1118,16 @@ extends
 
 /**
  * Existing Transmission Contract data for an interchange schedule
+ * @param sup Reference to the superclass object.
+ * @param contractNumber Existing transmission contract number
+ * @param usageMW Existing transmission contract usage MW value
+ * @param InterchangeSchedule
  */
 case class InterchangeETCData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Existing transmission contract number
-     */
-    val contractNumber: String,
-
-    /**
-     * Existing transmission contract usage MW value
-     */
-    val usageMW: Double,
-
-    val InterchangeSchedule: String
+(override val sup: BasicElement,
+val contractNumber: String,
+val usageMW: Double,
+val InterchangeSchedule: String
 )
 extends
     Element
@@ -1353,60 +1166,32 @@ extends
 
 /**
  * Interchange schedule class to hold information for interchange schedules such as import export type, energy type, and etc.
+ * @param sup Reference to the superclass object.
+ * @param checkOutType To indicate a check out type such as adjusted capacity or dispatch capacity.
+ * @param directionType Import or export.
+ * @param energyType Energy product type.
+ * @param intervalLength Interval length.
+ * @param marketType Market type.
+ * @param operatingDate Operating date, hour.
+ * @param outOfMarketType To indicate an out-of-market (OOM) schedule.
+ * @param scheduleType Schedule type.
+ * @param wcrID Wheeling Counter-Resource ID (required when Schedule Type=Wheel).
+ * @param InterTie
+ * @param RegisteredInterTie
  */
 case class InterchangeSchedule
-(
-
-    override val sup: Curve,
-
-    /**
-     * To indicate a check out type such as adjusted capacity or dispatch capacity.
-     */
-    val checkOutType: String,
-
-    /**
-     * Import or export.
-     */
-    val directionType: String,
-
-    /**
-     * Energy product type.
-     */
-    val energyType: String,
-
-    /**
-     * Interval length.
-     */
-    val intervalLength: Int,
-
-    /**
-     * Market type.
-     */
-    val marketType: String,
-
-    /**
-     * Operating date, hour.
-     */
-    val operatingDate: String,
-
-    /**
-     * To indicate an out-of-market (OOM) schedule.
-     */
-    val outOfMarketType: Boolean,
-
-    /**
-     * Schedule type.
-     */
-    val scheduleType: String,
-
-    /**
-     * Wheeling Counter-Resource ID (required when Schedule Type=Wheel).
-     */
-    val wcrID: String,
-
-    val InterTie: String,
-
-    val RegisteredInterTie: String
+(override val sup: Curve,
+val checkOutType: String,
+val directionType: String,
+val energyType: String,
+val intervalLength: Int,
+val marketType: String,
+val operatingDate: String,
+val outOfMarketType: Boolean,
+val scheduleType: String,
+val wcrID: String,
+val InterTie: String,
+val RegisteredInterTie: String
 )
 extends
     Element
@@ -1461,18 +1246,14 @@ extends
 
 /**
  * Indicates whether unit is eligible for treatment as a intermittent variable renewable resource
+ * @param sup Reference to the superclass object.
+ * @param eligibilityStatus Indicates whether a resource is eligible for PIRP program for a given hour
+ * @param RegisteredResource
  */
 case class IntermittentResourceEligibility
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * Indicates whether a resource is eligible for PIRP program for a given hour
-     */
-    val eligibilityStatus: String,
-
-    val RegisteredResource: String
+(override val sup: MarketFactors,
+val eligibilityStatus: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1510,25 +1291,18 @@ extends
 /**
  * This class models the load distribution factors.
  * This class should be used in one of two ways:
+ * @param sup Reference to the superclass object.
+ * @param pDistFactor Real power (MW) load distribution factor
+ * @param qDistFactor Reactive power (MVAr) load distribution factor
+ * @param AggregatedPnode
+ * @param IndividualPnode
  */
 case class LoadDistributionFactor
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Real power (MW) load distribution factor
-     */
-    val pDistFactor: Double,
-
-    /**
-     * Reactive power (MVAr) load distribution factor
-     */
-    val qDistFactor: Double,
-
-    val AggregatedPnode: String,
-
-    val IndividualPnode: String
+(override val sup: BasicElement,
+val pDistFactor: Double,
+val qDistFactor: Double,
+val AggregatedPnode: String,
+val IndividualPnode: String
 )
 extends
     Element
@@ -1569,19 +1343,15 @@ extends
 
 /**
  * Loss sensitivity applied to a ConnectivityNode for a given time interval.
+ * @param sup Reference to the superclass object.
+ * @param lossFactor Loss penalty factor.
+ *        Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value. The typical range of penalty factors is (0,9 to 1,1).
+ * @param MktConnectivityNode
  */
 case class LossSensitivity
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * Loss penalty factor.
-     * Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value. The typical range of penalty factors is (0,9 to 1,1).
-     */
-    val lossFactor: Double,
-
-    val MktConnectivityNode: String
+(override val sup: MarketFactors,
+val lossFactor: Double,
+val MktConnectivityNode: String
 )
 extends
     Element
@@ -1618,13 +1388,12 @@ extends
 
 /**
  * Maximum MW and optionally Minimum MW (Y1 and Y2, respectively)
+ * @param sup Reference to the superclass object.
+ * @param SecurityConstraintLimit
  */
 case class MWLimitSchedule
-(
-
-    override val sup: BasicElement,
-
-    val SecurityConstraintLimit: String
+(override val sup: BasicElement,
+val SecurityConstraintLimit: String
 )
 extends
     Element
@@ -1659,15 +1428,14 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:ACLineSegment
+ * @param sup Reference to the superclass object.
+ * @param EndAFlow
+ * @param EndBFlow
  */
 case class MktACLineSegment
-(
-
-    override val sup: ACLineSegment,
-
-    val EndAFlow: String,
-
-    val EndBFlow: String
+(override val sup: ACLineSegment,
+val EndAFlow: String,
+val EndBFlow: String
 )
 extends
     Element
@@ -1704,28 +1472,21 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:AnalogLimit
+ * @param sup Reference to the superclass object.
+ * @param exceededLimit true if limit exceeded
+ * @param limitType The type of limit the value represents
+Branch Limit Types:
+Short Term
+Medium Term
+Long Term
+Voltage Limits:
+High
+ *        Low
  */
 case class MktAnalogLimit
-(
-
-    override val sup: AnalogLimit,
-
-    /**
-     * true if limit exceeded
-     */
-    val exceededLimit: Boolean,
-
-    /**
-     * The type of limit the value represents
-    Branch Limit Types:
-    Short Term
-    Medium Term
-    Long Term
-    Voltage Limits:
-    High
-     * Low
-     */
-    val limitType: String
+(override val sup: AnalogLimit,
+val exceededLimit: Boolean,
+val limitType: String
 )
 extends
     Element
@@ -1762,16 +1523,12 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:AnalogLimitSet
+ * @param sup Reference to the superclass object.
+ * @param ratingSet Rating set numbers
  */
 case class MktAnalogLimitSet
-(
-
-    override val sup: AnalogLimitSet,
-
-    /**
-     * Rating set numbers
-     */
-    val ratingSet: Int
+(override val sup: AnalogLimitSet,
+val ratingSet: Int
 )
 extends
     Element
@@ -1806,11 +1563,10 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:AnalogValue
+ * @param sup Reference to the superclass object.
  */
 case class MktAnalogValue
-(
-
-    override val sup: AnalogValue
+(override val sup: AnalogValue
 )
 extends
     Element
@@ -1843,11 +1599,10 @@ extends
 
 /**
  * Market subclass of IEC61970:ControlArea
+ * @param sup Reference to the superclass object.
  */
 case class MktControlArea
-(
-
-    override val sup: ControlArea
+(override val sup: ControlArea
 )
 extends
     Element
@@ -1880,11 +1635,10 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:DiscreteValue
+ * @param sup Reference to the superclass object.
  */
 case class MktDiscreteValue
-(
-
-    override val sup: DiscreteValue
+(override val sup: DiscreteValue
 )
 extends
     Element
@@ -1917,15 +1671,14 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:SeriesCompensator
+ * @param sup Reference to the superclass object.
+ * @param EndAFlow
+ * @param EndBFlow
  */
 case class MktSeriesCompensator
-(
-
-    override val sup: SeriesCompensator,
-
-    val EndAFlow: String,
-
-    val EndBFlow: String
+(override val sup: SeriesCompensator,
+val EndAFlow: String,
+val EndBFlow: String
 )
 extends
     Element
@@ -1962,11 +1715,10 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:ShuntCompensator
+ * @param sup Reference to the superclass object.
  */
 case class MktShuntCompensator
-(
-
-    override val sup: ShuntCompensator
+(override val sup: ShuntCompensator
 )
 extends
     Element
@@ -1999,11 +1751,10 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:Switch
+ * @param sup Reference to the superclass object.
  */
 case class MktSwitch
-(
-
-    override val sup: Switch
+(override val sup: Switch
 )
 extends
     Element
@@ -2036,11 +1787,10 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:TapChanger
+ * @param sup Reference to the superclass object.
  */
 case class MktTapChanger
-(
-
-    override val sup: TapChanger
+(override val sup: TapChanger
 )
 extends
     Element
@@ -2074,13 +1824,12 @@ extends
 /**
  * To be used only to constrain a quantity that cannot be associated with a terminal.
  * For example, a registered generating unit that is not electrically connected to the network.
+ * @param sup Reference to the superclass object.
+ * @param MktConnectivityNode
  */
 case class NodeConstraintTerm
-(
-
-    override val sup: ConstraintTerm,
-
-    val MktConnectivityNode: String
+(override val sup: ConstraintTerm,
+val MktConnectivityNode: String
 )
 extends
     Element
@@ -2115,11 +1864,10 @@ extends
 
 /**
  * A profile is a simpler curve type.
+ * @param sup Reference to the superclass object.
  */
 case class Profile
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -2152,51 +1900,26 @@ extends
 
 /**
  * Data for profile.
+ * @param sup Reference to the superclass object.
+ * @param bidPrice Bid price associated with contract
+ * @param capacityLevel Capacity level for the profile, in MW.
+ * @param energyLevel Energy level for the profile, in MWH.
+ * @param minimumLevel Minimum MW value of contract
+ * @param sequenceNumber Sequence to provide item numbering for the profile. { greater than or equal to 1 }
+ * @param startDateTime Start date/time for this profile.
+ * @param stopDateTime Stop date/time for this profile.
+ * @param Profile A profile has profile data associated with it.
  */
 case class ProfileData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Bid price associated with contract
-     */
-    val bidPrice: Double,
-
-    /**
-     * Capacity level for the profile, in MW.
-     */
-    val capacityLevel: Double,
-
-    /**
-     * Energy level for the profile, in MWH.
-     */
-    val energyLevel: Double,
-
-    /**
-     * Minimum MW value of contract
-     */
-    val minimumLevel: Double,
-
-    /**
-     * Sequence to provide item numbering for the profile. { greater than or equal to 1 }
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * Start date/time for this profile.
-     */
-    val startDateTime: String,
-
-    /**
-     * Stop date/time for this profile.
-     */
-    val stopDateTime: String,
-
-    /**
-     * A profile has profile data associated with it.
-     */
-    val Profile: List[String]
+(override val sup: BasicElement,
+val bidPrice: Double,
+val capacityLevel: Double,
+val energyLevel: Double,
+val minimumLevel: Double,
+val sequenceNumber: Int,
+val startDateTime: String,
+val stopDateTime: String,
+val Profile: List[String]
 )
 extends
     Element
@@ -2246,26 +1969,19 @@ extends
 /**
  * Reserve demand curve.
  * Models maximum quantities of reserve required per Market Region and models a reserve demand curve for the minimum quantities of reserve. The ReserveDemandCurve is a relationship between unit operating reserve price in $/MWhr (Y-axis) and unit reserves in MW (X-axis).
+ * @param sup Reference to the superclass object.
+ * @param reqMaxMW Region requirement maximum limit
+ * @param reserveRequirementType Reserve requirement type that the max and curve apply to.
+ *        For example, operating reserve, regulation and contingency.
+ * @param ASRequirements
+ * @param MarketRegion
  */
 case class ReserveDemandCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * Region requirement maximum limit
-     */
-    val reqMaxMW: Double,
-
-    /**
-     * Reserve requirement type that the max and curve apply to.
-     * For example, operating reserve, regulation and contingency.
-     */
-    val reserveRequirementType: String,
-
-    val ASRequirements: String,
-
-    val MarketRegion: String
+(override val sup: Curve,
+val reqMaxMW: Double,
+val reserveRequirementType: String,
+val ASRequirements: String,
+val MarketRegion: String
 )
 extends
     Element
@@ -2306,16 +2022,12 @@ extends
 
 /**
  * Contains information about the update from SCADA
+ * @param sup Reference to the superclass object.
+ * @param timeStamp time of the update from SCADA
  */
 case class SCADAInformation
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * time of the update from SCADA
-     */
-    val timeStamp: String
+(override val sup: BasicElement,
+val timeStamp: String
 )
 extends
     Element
@@ -2351,17 +2063,16 @@ extends
 /**
  * Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.
  * A constraint has N (&gt;=1) constraint terms. A term is represented by an
+ * @param sup Reference to the superclass object.
+ * @param BaseCaseConstraintLimit
+ * @param DefaultConstraintLimit
+ * @param RTO
  */
 case class SecurityConstraintSum
-(
-
-    override val sup: MarketFactors,
-
-    val BaseCaseConstraintLimit: String,
-
-    val DefaultConstraintLimit: String,
-
-    val RTO: String
+(override val sup: MarketFactors,
+val BaseCaseConstraintLimit: String,
+val DefaultConstraintLimit: String,
+val RTO: String
 )
 extends
     Element
@@ -2400,32 +2111,22 @@ extends
 
 /**
  * Typical for regional transmission operators (RTOs), these constraints include transmission as well as generation group constraints identified in both base case and critical contingency cases.
+ * @param sup Reference to the superclass object.
+ * @param actualMW Actual branch or group of branches MW flow (only for transmission constraints)
+ * @param maxMW Maximum MW limit
+ * @param minMW Minimum MW limit (only for transmission constraints).
+ * @param Flowgate
+ * @param GeneratingBid
+ * @param RTO
  */
 case class SecurityConstraints
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Actual branch or group of branches MW flow (only for transmission constraints)
-     */
-    val actualMW: Double,
-
-    /**
-     * Maximum MW limit
-     */
-    val maxMW: Double,
-
-    /**
-     * Minimum MW limit (only for transmission constraints).
-     */
-    val minMW: Double,
-
-    val Flowgate: String,
-
-    val GeneratingBid: String,
-
-    val RTO: String
+(override val sup: IdentifiedObject,
+val actualMW: Double,
+val maxMW: Double,
+val minMW: Double,
+val Flowgate: String,
+val GeneratingBid: String,
+val RTO: String
 )
 extends
     Element
@@ -2471,11 +2172,10 @@ extends
 /**
  * The defined termination points of a transmission path (down to distribution level or to a customer - generation or consumption or both).
  * Service points are defined from the viewpoint of the transmission service. Each service point is contained within (or on the boundary of) an interchange area. A service point is source or destination of a transaction.
+ * @param sup Reference to the superclass object.
  */
 case class ServicePoint
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -2509,38 +2209,22 @@ extends
 /**
  * Optimal Power Flow or State Estimator Filter Bank Data for OTS.
  * This is used for RealTime, Study and Maintenance Users
+ * @param sup Reference to the superclass object.
+ * @param connectionStatus The current status for the Voltage Control Capacitor 1= Connected 0 = Disconnected
+ * @param desiredVoltage The desired voltage for the Voltage Control Capacitor
+ * @param mVARInjection The injection of reactive power of the filter bank in the NA solution or VCS reactive power production
+ * @param stepPosition Voltage control capacitor step position
+ * @param voltageRegulationStatus Indicator if the voltage control this is regulating True = Yes, False = No
+ * @param MktShuntCompensator
  */
 case class ShuntCompensatorDynamicData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The current status for the Voltage Control Capacitor 1= Connected 0 = Disconnected
-     */
-    val connectionStatus: Int,
-
-    /**
-     * The desired voltage for the Voltage Control Capacitor
-     */
-    val desiredVoltage: Double,
-
-    /**
-     * The injection of reactive power of the filter bank in the NA solution or VCS reactive power production
-     */
-    val mVARInjection: Double,
-
-    /**
-     * Voltage control capacitor step position
-     */
-    val stepPosition: Int,
-
-    /**
-     * Indicator if the voltage control this is regulating True = Yes, False = No
-     */
-    val voltageRegulationStatus: Boolean,
-
-    val MktShuntCompensator: String
+(override val sup: BasicElement,
+val connectionStatus: Int,
+val desiredVoltage: Double,
+val mVARInjection: Double,
+val stepPosition: Int,
+val voltageRegulationStatus: Boolean,
+val MktShuntCompensator: String
 )
 extends
     Element
@@ -2585,18 +2269,14 @@ extends
 
 /**
  * Optimal Power Flow or State Estimator Circuit Breaker Status.
+ * @param sup Reference to the superclass object.
+ * @param switchStatus Circuit Breaker Status (closed or open) of the circuit breaker from the power flow.
+ * @param MktSwitch
  */
 case class SwitchStatus
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Circuit Breaker Status (closed or open) of the circuit breaker from the power flow.
-     */
-    val switchStatus: String,
-
-    val MktSwitch: String
+(override val sup: BasicElement,
+val switchStatus: String,
+val MktSwitch: String
 )
 extends
     Element
@@ -2634,20 +2314,16 @@ extends
 /**
  * This class models the system distribution factors.
  * This class needs to be used along with the HostControlArea and the ConnectivityNode to show the distribution of each individual party.
+ * @param sup Reference to the superclass object.
+ * @param factor Used to calculate load "participation" of a connectivity node in an host control area
+ * @param HostControlArea
+ * @param MktConnectivityNode
  */
 case class SysLoadDistributionFactor
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Used to calculate load "participation" of a connectivity node in an host control area
-     */
-    val factor: Double,
-
-    val HostControlArea: String,
-
-    val MktConnectivityNode: String
+(override val sup: BasicElement,
+val factor: Double,
+val HostControlArea: String,
+val MktConnectivityNode: String
 )
 extends
     Element
@@ -2687,23 +2363,16 @@ extends
 /**
  * A Transmission Right(TR) can be a chain of TR's or on individual.
  * When a transmission right is not a chain, this is formally the ETC/TOR Entitlement for each ETC/TOR contract with the inclusion of CVR(Converted Rights) as an ETC. This is the sum of all entitlements on all related transmission interfaces for the same TR.
+ * @param sup Reference to the superclass object.
+ * @param entitlement The entitlement
+ * @param startOperatingDate Operating date and hour when the entitlement applies
+ * @param TransmissionContractRight
  */
 case class TREntitlement
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The entitlement
-     */
-    val entitlement: Double,
-
-    /**
-     * Operating date and hour when the entitlement applies
-     */
-    val startOperatingDate: String,
-
-    val TransmissionContractRight: String
+(override val sup: BasicElement,
+val entitlement: Double,
+val startOperatingDate: String,
+val TransmissionContractRight: String
 )
 extends
     Element
@@ -2743,55 +2412,30 @@ extends
 /**
  * Optimal Power Flow or State Estimator Phase Shifter Data.
  * This is used for RealTime, Study and Maintenance Users. SE Solution Phase Shifter Measurements from the last run of SE
+ * @param sup Reference to the superclass object.
+ * @param angleRegulationStatus True means the phase shifter is regulating.
+ * @param desiredMW Phase Shifter Desired MW.
+ *        The active power regulation setpoint of the phase shifter
+ * @param desiredVoltage The desired voltage for the LTC
+ * @param maximumAngle The maximum phase angle shift of the phase shifter
+ * @param minimumAngle The minimum phase angle shift of the phase shifter
+ * @param solvedAngle Phase Shifter Angle.
+ *        The solved phase angle shift of the phase shifter
+ * @param tapPosition Tap position of the phase shifter, high-side tap position of the transformer, or  low-side tap position of the transformer
+ * @param voltageRegulationStatus Indicator if the LTC transformer is regulating True = Yes, False = No
+ * @param MktTapChanger
  */
 case class TapChangerDynamicData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * True means the phase shifter is regulating.
-     */
-    val angleRegulationStatus: Boolean,
-
-    /**
-     * Phase Shifter Desired MW.
-     * The active power regulation setpoint of the phase shifter
-     */
-    val desiredMW: Double,
-
-    /**
-     * The desired voltage for the LTC
-     */
-    val desiredVoltage: Double,
-
-    /**
-     * The maximum phase angle shift of the phase shifter
-     */
-    val maximumAngle: Double,
-
-    /**
-     * The minimum phase angle shift of the phase shifter
-     */
-    val minimumAngle: Double,
-
-    /**
-     * Phase Shifter Angle.
-     * The solved phase angle shift of the phase shifter
-     */
-    val solvedAngle: Double,
-
-    /**
-     * Tap position of the phase shifter, high-side tap position of the transformer, or  low-side tap position of the transformer
-     */
-    val tapPosition: Double,
-
-    /**
-     * Indicator if the LTC transformer is regulating True = Yes, False = No
-     */
-    val voltageRegulationStatus: Boolean,
-
-    val MktTapChanger: String
+(override val sup: BasicElement,
+val angleRegulationStatus: Boolean,
+val desiredMW: Double,
+val desiredVoltage: Double,
+val maximumAngle: Double,
+val minimumAngle: Double,
+val solvedAngle: Double,
+val tapPosition: Double,
+val voltageRegulationStatus: Boolean,
+val MktTapChanger: String
 )
 extends
     Element
@@ -2842,13 +2486,12 @@ extends
 
 /**
  * A constraint term associated with a specific terminal on a physical piece of equipment.
+ * @param sup Reference to the superclass object.
+ * @param MktTerminal
  */
 case class TerminalConstraintTerm
-(
-
-    override val sup: ConstraintTerm,
-
-    val MktTerminal: String
+(override val sup: ConstraintTerm,
+val MktTerminal: String
 )
 extends
     Element
@@ -2883,15 +2526,14 @@ extends
 
 /**
  * A Transfer Interface is made up of branches such as transmission lines and transformers.
+ * @param sup Reference to the superclass object.
+ * @param HostControlArea
+ * @param TransferInterfaceSolution
  */
 case class TransferInterface
-(
-
-    override val sup: IdentifiedObject,
-
-    val HostControlArea: String,
-
-    val TransferInterfaceSolution: String
+(override val sup: IdentifiedObject,
+val HostControlArea: String,
+val TransferInterfaceSolution: String
 )
 extends
     Element
@@ -2928,34 +2570,24 @@ extends
 
 /**
  * TNA Interface Definitions from OPF for VSA
+ * @param sup Reference to the superclass object.
+ * @param interfaceMargin The margin for the interface
+ * @param postTransferMW Post Transfer MW for step
+ * @param transferLimit Transfer Interface + Limit 
+Attribute Usage: The absoloute of the maximum flow on the transfer interface.
+ *        This is a positive MW value.
+ * @param MktContingencyB
+ * @param TransferInterface
+ * @param _MktContingencyA
  */
 case class TransferInterfaceSolution
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The margin for the interface
-     */
-    val interfaceMargin: Double,
-
-    /**
-     * Post Transfer MW for step
-     */
-    val postTransferMW: Double,
-
-    /**
-     * Transfer Interface + Limit 
-    Attribute Usage: The absoloute of the maximum flow on the transfer interface.
-     * This is a positive MW value.
-     */
-    val transferLimit: Double,
-
-    val MktContingencyB: String,
-
-    val TransferInterface: String,
-
-    val _MktContingencyA: String
+(override val sup: BasicElement,
+val interfaceMargin: Double,
+val postTransferMW: Double,
+val transferLimit: Double,
+val MktContingencyB: String,
+val TransferInterface: String,
+val _MktContingencyA: String
 )
 extends
     Element
@@ -3000,57 +2632,32 @@ extends
 
 /**
  * This class models the transmission (either a transmission interface or a POR/POD pair) capacity including Total Transfer Capacity (TTC), Operating Transfer Capacity (OTC), and Capacity Benefit Margin (CBM)
+ * @param sup Reference to the superclass object.
+ * @param capacityBenefitMargin Capacity Benefit Margin (CBM) is used by Markets to calculate the transmission interface limits.
+ *        This number could be manually or procedurally determined. The CBM is defined per transmission interface (branch group).
+ * @param operationalTransmissionCapacity The Operational Transmission Capacity (OTC) is the transmission capacity under the operating condition during a specific time period, incorporating the effects of derates and current settings of operation controls.
+ *        The OTCs for all transmission interface (branch group) are always provided regardless of outage or switching conditions.
+ * @param startOperatingDate Operating date &amp; hour when the entitlement applies
+ * @param totalTransmissionCapacity Total Transmission Capacity
+ * @param Flowgate
+ * @param GenericConstraints
+ * @param OTC15min_emergency The Operational Transmission Capacity (OTC) 15 minute Emergency Limit
+ * @param OTCemergency The Operational Transmission Capacity (OTC) Emergency Limit.
+ * @param POD point of delivery
+ * @param POR point of receipt
  */
 case class TransmissionCapacity
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Capacity Benefit Margin (CBM) is used by Markets to calculate the transmission interface limits.
-     * This number could be manually or procedurally determined. The CBM is defined per transmission interface (branch group).
-     */
-    val capacityBenefitMargin: Double,
-
-    /**
-     * The Operational Transmission Capacity (OTC) is the transmission capacity under the operating condition during a specific time period, incorporating the effects of derates and current settings of operation controls.
-     * The OTCs for all transmission interface (branch group) are always provided regardless of outage or switching conditions.
-     */
-    val operationalTransmissionCapacity: Double,
-
-    /**
-     * Operating date &amp; hour when the entitlement applies
-     */
-    val startOperatingDate: String,
-
-    /**
-     * Total Transmission Capacity
-     */
-    val totalTransmissionCapacity: Double,
-
-    val Flowgate: String,
-
-    val GenericConstraints: String,
-
-    /**
-     * The Operational Transmission Capacity (OTC) 15 minute Emergency Limit
-     */
-    val OTC15min_emergency: Double,
-
-    /**
-     * The Operational Transmission Capacity (OTC) Emergency Limit.
-     */
-    val OTCemergency: Double,
-
-    /**
-     * point of delivery
-     */
-    val POD: String,
-
-    /**
-     * point of receipt
-     */
-    val POR: String
+(override val sup: BasicElement,
+val capacityBenefitMargin: Double,
+val operationalTransmissionCapacity: Double,
+val startOperatingDate: String,
+val totalTransmissionCapacity: Double,
+val Flowgate: String,
+val GenericConstraints: String,
+val OTC15min_emergency: Double,
+val OTCemergency: Double,
+val POD: String,
+val POR: String
 )
 extends
     Element
@@ -3104,35 +2711,22 @@ extends
 /**
  * This is formally called the branch group ETC/TOR entitlement with the inclusion of CVR as ETC.
  * Is used to represent the entitlements. This could be also used to represent the TR entitlement on a POR/POD.
+ * @param sup Reference to the superclass object.
+ * @param entitlement the entitlement
+ * @param startOperatingDate Operating date and hour when the entitlement applies
+ * @param ContractRight
+ * @param Flowgate
+ * @param POD point of delivery
+ * @param POR point of receipt
  */
 case class TransmissionInterfaceRightEntitlement
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * the entitlement
-     */
-    val entitlement: Double,
-
-    /**
-     * Operating date and hour when the entitlement applies
-     */
-    val startOperatingDate: String,
-
-    val ContractRight: String,
-
-    val Flowgate: String,
-
-    /**
-     * point of delivery
-     */
-    val POD: String,
-
-    /**
-     * point of receipt
-     */
-    val POR: String
+(override val sup: BasicElement,
+val entitlement: Double,
+val startOperatingDate: String,
+val ContractRight: String,
+val Flowgate: String,
+val POD: String,
+val POR: String
 )
 extends
     Element
@@ -3178,41 +2772,22 @@ extends
 /**
  * An electrical connection, link, or line consisting of one or more parallel transmission elements between two areas of the interconnected electric systems, or portions thereof.
  * TransmissionCorridor and TransmissionRightOfWay refer to legal aspects. The TransmissionPath refers to the segments between a TransmissionProvider's ServicePoints.
+ * @param sup Reference to the superclass object.
+ * @param availTransferCapability The available transmission capability of a transmission path for the reference direction.
+ * @param parallelPathFlag Flag which indicates if the transmission path is also a designated interconnection "parallel path".
+ * @param totalTransferCapability The total transmission capability of a transmission path in the reference direction.
+ * @param DeliveryPoint A transmission path has a "point-of-delivery" service point
+ * @param For A TransmissionPath is contained in a TransmissionCorridor.
+ * @param PointOfReceipt A transmission path has a "point-of-receipt" service point
  */
 case class TransmissionPath
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The available transmission capability of a transmission path for the reference direction.
-     */
-    val availTransferCapability: Double,
-
-    /**
-     * Flag which indicates if the transmission path is also a designated interconnection "parallel path".
-     */
-    val parallelPathFlag: Boolean,
-
-    /**
-     * The total transmission capability of a transmission path in the reference direction.
-     */
-    val totalTransferCapability: Double,
-
-    /**
-     * A transmission path has a "point-of-delivery" service point
-     */
-    val DeliveryPoint: String,
-
-    /**
-     * A TransmissionPath is contained in a TransmissionCorridor.
-     */
-    val For: String,
-
-    /**
-     * A transmission path has a "point-of-receipt" service point
-     */
-    val PointOfReceipt: String
+(override val sup: IdentifiedObject,
+val availTransferCapability: Double,
+val parallelPathFlag: Boolean,
+val totalTransferCapability: Double,
+val DeliveryPoint: String,
+val For: String,
+val PointOfReceipt: String
 )
 extends
     Element
@@ -3257,21 +2832,20 @@ extends
 
 /**
  * A transmission reservation is obtained from the OASIS system to reserve transmission for a specified time period, transmission path and transmission product.
+ * @param sup Reference to the superclass object.
+ * @param EnergyTransaction
+ * @param Sink
+ * @param Source
+ * @param TransactionBid
+ * @param TransmissionPath
  */
 case class TransmissionReservation
-(
-
-    override val sup: BasicElement,
-
-    val EnergyTransaction: String,
-
-    val Sink: String,
-
-    val Source: String,
-
-    val TransactionBid: String,
-
-    val TransmissionPath: String
+(override val sup: BasicElement,
+val EnergyTransaction: String,
+val Sink: String,
+val Source: String,
+val TransactionBid: String,
+val TransmissionPath: String
 )
 extends
     Element
@@ -3314,62 +2888,34 @@ extends
 
 /**
  * Resource status at the end of a given clearing period.
+ * @param sup Reference to the superclass object.
+ * @param cumEnergy Cumulative energy production over trading period.
+ * @param cumStatusChanges Cumulative number of status changes of the resource.
+ * @param numberOfStartups Number of start ups in the Operating Day until the end of previous hour.
+ * @param onlineStatus 'true' if the GeneratingUnit is currently On-Line
+ * @param resourceMW Resource MW output at the end of previous clearing period.
+ * @param resourceStatus Resource status at the end of previous clearing period:
+0 - off-line
+1 - on-line production
+2 - in shutdown process
+ *        3 - in startup process
+ * @param statusDate Time and date for resourceStatus
+ * @param timeInStatus Time in market trading intervals the resource is in the state as of the end of the previous clearing period.
+ * @param timeInterval Time interval
+ * @param GeneratingUnit
  */
 case class UnitInitialConditions
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Cumulative energy production over trading period.
-     */
-    val cumEnergy: Double,
-
-    /**
-     * Cumulative number of status changes of the resource.
-     */
-    val cumStatusChanges: Int,
-
-    /**
-     * Number of start ups in the Operating Day until the end of previous hour.
-     */
-    val numberOfStartups: Int,
-
-    /**
-     * 'true' if the GeneratingUnit is currently On-Line
-     */
-    val onlineStatus: Boolean,
-
-    /**
-     * Resource MW output at the end of previous clearing period.
-     */
-    val resourceMW: Double,
-
-    /**
-     * Resource status at the end of previous clearing period:
-    0 - off-line
-    1 - on-line production
-    2 - in shutdown process
-     * 3 - in startup process
-     */
-    val resourceStatus: Int,
-
-    /**
-     * Time and date for resourceStatus
-     */
-    val statusDate: String,
-
-    /**
-     * Time in market trading intervals the resource is in the state as of the end of the previous clearing period.
-     */
-    val timeInStatus: Double,
-
-    /**
-     * Time interval
-     */
-    val timeInterval: String,
-
-    val GeneratingUnit: String
+(override val sup: IdentifiedObject,
+val cumEnergy: Double,
+val cumStatusChanges: Int,
+val numberOfStartups: Int,
+val onlineStatus: Boolean,
+val resourceMW: Double,
+val resourceStatus: Int,
+val statusDate: String,
+val timeInStatus: Double,
+val timeInterval: String,
+val GeneratingUnit: String
 )
 extends
     Element

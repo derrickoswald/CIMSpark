@@ -10,30 +10,20 @@ import ch.ninecode.cim.Context
 
 /**
  * Goups Adjacent Control Areas
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate end effective date
+ * @param lossPercentage_1 Loss percentage
+ * @param startEffectiveDate start effective date
+ * @param HostControlArea
+ * @param RTO
  */
 case class AdjacentCASet
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Loss percentage
-     */
-    val lossPercentage_1: Double,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val HostControlArea: String,
-
-    val RTO: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val lossPercentage_1: Double,
+val startEffectiveDate: String,
+val HostControlArea: String,
+val RTO: String
 )
 extends
     Element
@@ -77,38 +67,25 @@ extends
 /**
  * An aggregated node can define a typed grouping further defined by the AnodeType enumeratuion.
  * Types range from System Zone/Regions to Market Energy Regions to Aggregated Loads and Aggregated Generators.
+ * @param sup Reference to the superclass object.
+ * @param anodeType Type of aggregated node
+ * @param endEffectiveDate end effective date
+ * @param qualifASOrder Processing Order for AS self-provisions for this region.
+ *        The priority of this attribute directs the awards of any resource that resides in overlapping regions. The regions are processed in priority manner.
+ * @param startEffectiveDate start effective date
+ * @param Pnode
+ * @param RTO
+ * @param SubControlArea
  */
 case class AggregateNode
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Type of aggregated node
-     */
-    val anodeType: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Processing Order for AS self-provisions for this region.
-     * The priority of this attribute directs the awards of any resource that resides in overlapping regions. The regions are processed in priority manner.
-     */
-    val qualifASOrder: Int,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val Pnode: List[String],
-
-    val RTO: String,
-
-    val SubControlArea: List[String]
+(override val sup: IdentifiedObject,
+val anodeType: String,
+val endEffectiveDate: String,
+val qualifASOrder: Int,
+val startEffectiveDate: String,
+val Pnode: List[String],
+val RTO: String,
+val SubControlArea: List[String]
 )
 extends
     Element
@@ -155,30 +132,23 @@ extends
 
 /**
  * An aggregated pricing node is a specialized type of pricing node used to model items such as System Zone, Default Price Zone, Custom Price Zone, Control Area, Aggregated Generation, Aggregated Particpating Load, Aggregated Non-Participating Load, Trading Hub, Designated Control Area(DCA) Zone
+ * @param sup Reference to the superclass object.
+ * @param apnodeType Aggregate Price Node Types
+ * @param participationCategory Designated Control Area participation in LMP price measurement
+
+'Y' - Participates in both Local Market Power Mitigation (LMPM) and System Market Power Mitigation (SMPM)
+'N' - Not included in LMP price measures
+'S' - Participatesin SMPM price measures
+ *        'L' - Participatesin LMPM price measures
+ * @param PnodeDistributionFactor
+ * @param TACArea
  */
 case class AggregatedPnode
-(
-
-    override val sup: Pnode,
-
-    /**
-     * Aggregate Price Node Types
-     */
-    val apnodeType: String,
-
-    /**
-     * Designated Control Area participation in LMP price measurement
-    
-    'Y' - Participates in both Local Market Power Mitigation (LMPM) and System Market Power Mitigation (SMPM)
-    'N' - Not included in LMP price measures
-    'S' - Participatesin SMPM price measures
-     * 'L' - Participatesin LMPM price measures
-     */
-    val participationCategory: String,
-
-    val PnodeDistributionFactor: String,
-
-    val TACArea: List[String]
+(override val sup: Pnode,
+val apnodeType: String,
+val participationCategory: String,
+val PnodeDistributionFactor: String,
+val TACArea: List[String]
 )
 extends
     Element
@@ -219,43 +189,24 @@ extends
 
 /**
  * This class represent the bid price cap.
+ * @param sup Reference to the superclass object.
+ * @param bidCeiling Bid Ceiling ($/MWH)
+ * @param bidCeilingAS Bid Ceiling ($/MWH) for generic AS versus a specific market product
+ * @param bidFloor Bid Floor, ($/MWH)
+ * @param bidFloorAS Bid Floor ($/MWH) for generic AS versus a specific market product
+ * @param defaultPrice Bid Default Price($/MWH)
+ * @param marketType Market Type of the cap (DAM or RTM)
+ * @param MarketProduct
  */
 case class BidPriceCap
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Bid Ceiling ($/MWH)
-     */
-    val bidCeiling: Double,
-
-    /**
-     * Bid Ceiling ($/MWH) for generic AS versus a specific market product
-     */
-    val bidCeilingAS: Double,
-
-    /**
-     * Bid Floor, ($/MWH)
-     */
-    val bidFloor: Double,
-
-    /**
-     * Bid Floor ($/MWH) for generic AS versus a specific market product
-     */
-    val bidFloorAS: Double,
-
-    /**
-     * Bid Default Price($/MWH)
-     */
-    val defaultPrice: Double,
-
-    /**
-     * Market Type of the cap (DAM or RTM)
-     */
-    val marketType: String,
-
-    val MarketProduct: String
+(override val sup: BasicElement,
+val bidCeiling: Double,
+val bidCeilingAS: Double,
+val bidFloor: Double,
+val bidFloorAS: Double,
+val defaultPrice: Double,
+val marketType: String,
+val MarketProduct: String
 )
 extends
     Element
@@ -303,29 +254,22 @@ extends
 /**
  * Participation factors per Cnode.
  * Used to calculate "participation" of Cnode in an AggregateNode. Each Cnode associated to an AggregateNode would be assigned a participation factor for its participation within the AggregateNode.
+ * @param sup Reference to the superclass object.
+ * @param factor Used to calculate "participation" of Cnode in an AggregateNode
+ * @param podLossFactor Point of delivery loss factor
+ * @param AggregateNode
+ * @param HostControlArea
+ * @param MktConnectivityNode
+ * @param SubControlArea
  */
 case class CnodeDistributionFactor
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Used to calculate "participation" of Cnode in an AggregateNode
-     */
-    val factor: Double,
-
-    /**
-     * Point of delivery loss factor
-     */
-    val podLossFactor: Double,
-
-    val AggregateNode: String,
-
-    val HostControlArea: String,
-
-    val MktConnectivityNode: String,
-
-    val SubControlArea: String
+(override val sup: IdentifiedObject,
+val factor: Double,
+val podLossFactor: Double,
+val AggregateNode: String,
+val HostControlArea: String,
+val MktConnectivityNode: String,
+val SubControlArea: String
 )
 extends
     Element
@@ -371,28 +315,18 @@ extends
 /**
  * Configuration options for combined cycle units.
  * For example, a Combined Cycle with (CT1, CT2, ST1) will have (CT1, ST1) and (CT2, ST1) configurations as part of(1CT + 1STlogicalconfiguration).
+ * @param sup Reference to the superclass object.
+ * @param primaryConfiguration Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?
+ * @param CombinedCycleLogicalConfiguration
+ * @param ShutdownFlag Whether Combined Cycle Plant can be shut-down in this Configuration?
+ * @param StartupFlag Whether Combined Cycle Plant can be started in this Logical Configuration?
  */
 case class CombinedCycleConfiguration
-(
-
-    override val sup: RegisteredGenerator,
-
-    /**
-     * Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?
-     */
-    val primaryConfiguration: Boolean,
-
-    val CombinedCycleLogicalConfiguration: String,
-
-    /**
-     * Whether Combined Cycle Plant can be shut-down in this Configuration?
-     */
-    val ShutdownFlag: Boolean,
-
-    /**
-     * Whether Combined Cycle Plant can be started in this Logical Configuration?
-     */
-    val StartupFlag: Boolean
+(override val sup: RegisteredGenerator,
+val primaryConfiguration: Boolean,
+val CombinedCycleLogicalConfiguration: String,
+val ShutdownFlag: Boolean,
+val StartupFlag: Boolean
 )
 extends
     Element
@@ -433,25 +367,18 @@ extends
 
 /**
  * Configuration Member of CCP Configuration.
+ * @param sup Reference to the superclass object.
+ * @param primary primary configuration.
+ * @param steam Steam plant.
+ * @param CombinedCycleConfiguration
+ * @param MktThermalGeneratingUnit
  */
 case class CombinedCycleConfigurationMember
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * primary configuration.
-     */
-    val primary: Boolean,
-
-    /**
-     * Steam plant.
-     */
-    val steam: Boolean,
-
-    val CombinedCycleConfiguration: String,
-
-    val MktThermalGeneratingUnit: String
+(override val sup: IdentifiedObject,
+val primary: Boolean,
+val steam: Boolean,
+val CombinedCycleConfiguration: String,
+val MktThermalGeneratingUnit: String
 )
 extends
     Element
@@ -493,13 +420,12 @@ extends
 /**
  * Logical Configuration of a Combined Cycle plant.
  * Operating Combined Cycle Plant (CCP) configurations are represented as Logical CCP Resources. Logical representation shall be used for Market applications to optimize and control Market Operations. Logical representation is also necessary for controlling the number of CCP configurations and to temper performance issues that may otherwise occur.
+ * @param sup Reference to the superclass object.
+ * @param MktCombinedCyclePlant
  */
 case class CombinedCycleLogicalConfiguration
-(
-
-    override val sup: IdentifiedObject,
-
-    val MktCombinedCyclePlant: String
+(override val sup: IdentifiedObject,
+val MktCombinedCyclePlant: String
 )
 extends
     Element
@@ -534,21 +460,17 @@ extends
 
 /**
  * Defines the available from and to Transition States for the Combine Cycle Configurations.
+ * @param sup Reference to the superclass object.
+ * @param upTransition Flag indicating whether this is an UP transition.
+ *        If not, it is a DOWN transition.
+ * @param FromConfiguration
+ * @param ToConfiguration
  */
 case class CombinedCycleTransitionState
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Flag indicating whether this is an UP transition.
-     * If not, it is a DOWN transition.
-     */
-    val upTransition: Boolean,
-
-    val FromConfiguration: String,
-
-    val ToConfiguration: String
+(override val sup: BasicElement,
+val upTransition: Boolean,
+val FromConfiguration: String,
+val ToConfiguration: String
 )
 extends
     Element
@@ -587,13 +509,12 @@ extends
 
 /**
  * Designated Congestion Area Definition (DCA)
+ * @param sup Reference to the superclass object.
+ * @param IndividualPnode
  */
 case class CongestionArea
-(
-
-    override val sup: AggregatedPnode,
-
-    val IndividualPnode: List[String]
+(override val sup: AggregatedPnode,
+val IndividualPnode: List[String]
 )
 extends
     Element
@@ -628,32 +549,22 @@ extends
 
 /**
  * Distribution amoung resources at the sink point or source point
+ * @param sup Reference to the superclass object.
+ * @param factor MW value that this resource provides to the overall contract.
+ * @param sinkFlag This value will be set to YES if the referenced Cnode is defined as the sink point in the contract.
+ * @param sourceFlag This value will be set to YES if the referenced Cnode is defined as the source point in the contract.
+ * @param Flowgate
+ * @param RegisteredResource
+ * @param TransmissionContractRight
  */
 case class ContractDistributionFactor
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * MW value that this resource provides to the overall contract.
-     */
-    val factor: Double,
-
-    /**
-     * This value will be set to YES if the referenced Cnode is defined as the sink point in the contract.
-     */
-    val sinkFlag: String,
-
-    /**
-     * This value will be set to YES if the referenced Cnode is defined as the source point in the contract.
-     */
-    val sourceFlag: String,
-
-    val Flowgate: String,
-
-    val RegisteredResource: String,
-
-    val TransmissionContractRight: String
+(override val sup: BasicElement,
+val factor: Double,
+val sinkFlag: String,
+val sourceFlag: String,
+val Flowgate: String,
+val RegisteredResource: String,
+val TransmissionContractRight: String
 )
 extends
     Element
@@ -699,144 +610,71 @@ extends
 /**
  * Provides definition of Transmission Ownership Right and Existing Transmission Contract identifiers for use by SCUC.
  * RMR contract hosting: Startup lead time, Contract Service Limits, Max Service Hours, Max MWhs, Max Start-ups, Ramp Rate, Max Net Dependable Capacity, Min Capacity and Unit Substitution for DAM/RTM to retrieve;
+ * @param sup Reference to the superclass object.
+ * @param chainOrder When used in conjunction with a Transmission Right contract chain, this is the precedence for the contracts.
+ * @param contractMW MW value of the contract
+ * @param contractPrice Financial value of the contract
+ * @param contractPriority Priority for the contract.
+ *        This should be unique amoung all contracts for a specific resource. This value is the directive for the SCUC algorithm on the order to satisfy/cut contracts.
+ * @param contractStatus Contract status
+ * @param contractType type of the contract.
+ *        Possible values are but not limited by:
+ * @param endEffectiveDate end effective date
+ * @param financialLocation Indicator if the location associated with this contract is financial (e.g. pricing nodes) or physical (e.g. connectivity nodes).
+ * @param financialRightsDAM Flag to indicate this contract provides financial rights in the DA Market
+ * @param financialRightsRTM Flag to indicate this contract provides financial rights in the RT Market
+ * @param fuelAdder Estimated Fuel Adder
+ * @param latestSchedMinutes This indicates the latest schedule minutes (e.g. t - xx) that this resource can be notified to respond.
+ *        This attribute is only used if the market type is not supplied.
+ * @param latestSchedMktType This indicates the latest schedule market type a contract can be applied to.
+ *        This is used in conjunction with the latestSchedMinutes attribute to determine the latest time this contract can be called in. The possible values for this attribute are: DAM, RTM or it can be omitted. If omitted, the latestSchedMinutes attribute defines the value.
+ * @param maxNetDependableCapacity Maximum Net Dependable Capacity
+ * @param maximumScheduleQuantity Maximum schedule MW quantity
+ * @param maximumServiceHours Maximum service hours
+ * @param maximumStartups Maximum startups
+ * @param minimumLoad Minimum Load
+ * @param minimumScheduleQuantity Minimum schedule quanity
+ * @param physicalRightsDAM Flag to indicate this contract provides physical rights in the DA Market
+ * @param physicalRightsRTM Flag to indicate this contract provides physical rights in the RT Market
+ * @param startEffectiveDate start effective date
+ * @param startupLeadTime Start up lead time
+ * @param Chain_TransmissionRightChain
+ * @param Ind_TransmissionRightChain
+ * @param RTO
+ * @param SchedulingCoordinator
+ * @param TRType Transmission Right type - is this an individual contract right or a chain contract right.
+ *        Types = CHAIN or INDIVIDUAL
  */
 case class ContractRight
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * When used in conjunction with a Transmission Right contract chain, this is the precedence for the contracts.
-     */
-    val chainOrder: Int,
-
-    /**
-     * MW value of the contract
-     */
-    val contractMW: Double,
-
-    /**
-     * Financial value of the contract
-     */
-    val contractPrice: Double,
-
-    /**
-     * Priority for the contract.
-     * This should be unique amoung all contracts for a specific resource. This value is the directive for the SCUC algorithm on the order to satisfy/cut contracts.
-     */
-    val contractPriority: Int,
-
-    /**
-     * Contract status
-     */
-    val contractStatus: String,
-
-    /**
-     * type of the contract.
-     * Possible values are but not limited by:
-     */
-    val contractType: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Indicator if the location associated with this contract is financial (e.g. pricing nodes) or physical (e.g. connectivity nodes).
-     */
-    val financialLocation: String,
-
-    /**
-     * Flag to indicate this contract provides financial rights in the DA Market
-     */
-    val financialRightsDAM: String,
-
-    /**
-     * Flag to indicate this contract provides financial rights in the RT Market
-     */
-    val financialRightsRTM: String,
-
-    /**
-     * Estimated Fuel Adder
-     */
-    val fuelAdder: Double,
-
-    /**
-     * This indicates the latest schedule minutes (e.g. t - xx) that this resource can be notified to respond.
-     * This attribute is only used if the market type is not supplied.
-     */
-    val latestSchedMinutes: Int,
-
-    /**
-     * This indicates the latest schedule market type a contract can be applied to.
-     * This is used in conjunction with the latestSchedMinutes attribute to determine the latest time this contract can be called in. The possible values for this attribute are: DAM, RTM or it can be omitted. If omitted, the latestSchedMinutes attribute defines the value.
-     */
-    val latestSchedMktType: String,
-
-    /**
-     * Maximum Net Dependable Capacity
-     */
-    val maxNetDependableCapacity: Double,
-
-    /**
-     * Maximum schedule MW quantity
-     */
-    val maximumScheduleQuantity: Double,
-
-    /**
-     * Maximum service hours
-     */
-    val maximumServiceHours: Int,
-
-    /**
-     * Maximum startups
-     */
-    val maximumStartups: Int,
-
-    /**
-     * Minimum Load
-     */
-    val minimumLoad: Double,
-
-    /**
-     * Minimum schedule quanity
-     */
-    val minimumScheduleQuantity: Double,
-
-    /**
-     * Flag to indicate this contract provides physical rights in the DA Market
-     */
-    val physicalRightsDAM: String,
-
-    /**
-     * Flag to indicate this contract provides physical rights in the RT Market
-     */
-    val physicalRightsRTM: String,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    /**
-     * Start up lead time
-     */
-    val startupLeadTime: Int,
-
-    val Chain_TransmissionRightChain: String,
-
-    val Ind_TransmissionRightChain: String,
-
-    val RTO: String,
-
-    val SchedulingCoordinator: String,
-
-    /**
-     * Transmission Right type - is this an individual contract right or a chain contract right.
-     * Types = CHAIN or INDIVIDUAL
-     */
-    val TRType: String
+(override val sup: IdentifiedObject,
+val chainOrder: Int,
+val contractMW: Double,
+val contractPrice: Double,
+val contractPriority: Int,
+val contractStatus: String,
+val contractType: String,
+val endEffectiveDate: String,
+val financialLocation: String,
+val financialRightsDAM: String,
+val financialRightsRTM: String,
+val fuelAdder: Double,
+val latestSchedMinutes: Int,
+val latestSchedMktType: String,
+val maxNetDependableCapacity: Double,
+val maximumScheduleQuantity: Double,
+val maximumServiceHours: Int,
+val maximumStartups: Int,
+val minimumLoad: Double,
+val minimumScheduleQuantity: Double,
+val physicalRightsDAM: String,
+val physicalRightsRTM: String,
+val startEffectiveDate: String,
+val startupLeadTime: Int,
+val Chain_TransmissionRightChain: String,
+val Ind_TransmissionRightChain: String,
+val RTO: String,
+val SchedulingCoordinator: String,
+val TRType: String
 )
 extends
     Element
@@ -925,25 +763,18 @@ extends
 
 /**
  * Indicates Control Area associated with self-schedule.
+ * @param sup Reference to the superclass object.
+ * @param attained Attained.
+ * @param native Native.
+ * @param RegisteredResource
+ * @param SubControlArea
  */
 case class ControlAreaDesignation
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Attained.
-     */
-    val attained: String,
-
-    /**
-     * Native.
-     */
-    val native: String,
-
-    val RegisteredResource: List[String],
-
-    val SubControlArea: List[String]
+(override val sup: BasicElement,
+val attained: String,
+val native: String,
+val RegisteredResource: List[String],
+val SubControlArea: List[String]
 )
 extends
     Element
@@ -984,52 +815,36 @@ extends
 
 /**
  * A flowgate, is single or group of transmission elements intended to model MW flow impact relating to transmission limitations and transmission service usage.
+ * @param sup Reference to the superclass object.
+ * @param direction The direction of the flowgate, export or import
+ * @param endEffectiveDate end effective date
+ * @param exportMWRating Export MW rating
+ * @param importMWRating Import MW rating
+ * @param startEffectiveDate start effective date
+ * @param CRR
+ * @param From_SubControlArea
+ * @param GenericConstraints
+ * @param HostControlArea
+ * @param MktLine
+ * @param MktPowerTransformer
+ * @param SecurityConstraints
+ * @param To_SubControlArea
  */
 case class Flowgate
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * The direction of the flowgate, export or import
-     */
-    val direction: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Export MW rating
-     */
-    val exportMWRating: Double,
-
-    /**
-     * Import MW rating
-     */
-    val importMWRating: Double,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val CRR: String,
-
-    val From_SubControlArea: String,
-
-    val GenericConstraints: String,
-
-    val HostControlArea: String,
-
-    val MktLine: List[String],
-
-    val MktPowerTransformer: List[String],
-
-    val SecurityConstraints: String,
-
-    val To_SubControlArea: String
+(override val sup: PowerSystemResource,
+val direction: String,
+val endEffectiveDate: String,
+val exportMWRating: Double,
+val importMWRating: Double,
+val startEffectiveDate: String,
+val CRR: String,
+val From_SubControlArea: String,
+val GenericConstraints: String,
+val HostControlArea: String,
+val MktLine: List[String],
+val MktPowerTransformer: List[String],
+val SecurityConstraints: String,
+val To_SubControlArea: String
 )
 extends
     Element
@@ -1088,13 +903,12 @@ extends
 
 /**
  * Flowgate defined partner
+ * @param sup Reference to the superclass object.
+ * @param FlowgateValue
  */
 case class FlowgatePartner
-(
-
-    override val sup: IdentifiedObject,
-
-    val FlowgateValue: String
+(override val sup: IdentifiedObject,
+val FlowgateValue: String
 )
 extends
     Element
@@ -1129,31 +943,21 @@ extends
 
 /**
  * IDC (Interchange Distribution Calulator) sends data for a TLR (Transmission Loading Relief).
+ * @param sup Reference to the superclass object.
+ * @param effectiveDate Date/Time when record becomes effective
+ *        Used to determine when a record becomes effective.
+ * @param idcTargetMktFlow Energy Flow level that should be maintained according to the TLR rules as specified by the IDC.
+ *        For Realtime Markets use in dispatch to control constraints under TLR and calculate unconstrained market flows
+ * @param terminateDate Date/Time when record is no longer effective
+ *        Used to determine when a record is no longer effective
+ * @param Flowgate
  */
 case class FlowgateRelief
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Date/Time when record becomes effective
-     * Used to determine when a record becomes effective.
-     */
-    val effectiveDate: String,
-
-    /**
-     * Energy Flow level that should be maintained according to the TLR rules as specified by the IDC.
-     * For Realtime Markets use in dispatch to control constraints under TLR and calculate unconstrained market flows
-     */
-    val idcTargetMktFlow: Int,
-
-    /**
-     * Date/Time when record is no longer effective
-     * Used to determine when a record is no longer effective
-     */
-    val terminateDate: String,
-
-    val Flowgate: String
+(override val sup: BasicElement,
+val effectiveDate: String,
+val idcTargetMktFlow: Int,
+val terminateDate: String,
+val Flowgate: String
 )
 extends
     Element
@@ -1194,47 +998,28 @@ extends
 
 /**
  * Day Ahead,  Network Native Load, Economic Dispatch, values used for calculation of Network Native Load (NNL) Determinator process.
+ * @param sup Reference to the superclass object.
+ * @param economicDispatchLimit Limit for Economic Dispatch priority 6 energy flow on the specified flowgate for the specified time period.
+ * @param effectiveDate Date/Time when record becomes effective
+ *        Used to determine when a record becomes effective
+ * @param firmNetworkLimit Limit for firm flow on the specified flowgate for the specified time period.
+ *        The amount of energy flow over a specifed flowgate due to generation in the market which can be classified as Firm Network priority.
+ * @param flowDirectionFlag Specifies the direction of energy flow in the flowgate
+ * @param mktFlow The amount of energy flow over a specifed flowgate due to generation in the market.
+ * @param netFirmNetworkLimit Net Energy flow in flowgate for the associated FlowgatePartner
+ * @param Flowgate
+ * @param FlowgatePartner
  */
 case class FlowgateValue
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Limit for Economic Dispatch priority 6 energy flow on the specified flowgate for the specified time period.
-     */
-    val economicDispatchLimit: Int,
-
-    /**
-     * Date/Time when record becomes effective
-     * Used to determine when a record becomes effective
-     */
-    val effectiveDate: String,
-
-    /**
-     * Limit for firm flow on the specified flowgate for the specified time period.
-     * The amount of energy flow over a specifed flowgate due to generation in the market which can be classified as Firm Network priority.
-     */
-    val firmNetworkLimit: Int,
-
-    /**
-     * Specifies the direction of energy flow in the flowgate
-     */
-    val flowDirectionFlag: String,
-
-    /**
-     * The amount of energy flow over a specifed flowgate due to generation in the market.
-     */
-    val mktFlow: Int,
-
-    /**
-     * Net Energy flow in flowgate for the associated FlowgatePartner
-     */
-    val netFirmNetworkLimit: Int,
-
-    val Flowgate: String,
-
-    val FlowgatePartner: String
+(override val sup: BasicElement,
+val economicDispatchLimit: Int,
+val effectiveDate: String,
+val firmNetworkLimit: Int,
+val flowDirectionFlag: String,
+val mktFlow: Int,
+val netFirmNetworkLimit: Int,
+val Flowgate: String,
+val FlowgatePartner: String
 )
 extends
     Element
@@ -1284,31 +1069,18 @@ extends
 /**
  * Forbbiden region is operating ranges where the units are unable to maintain steady operation without causing equipment damage.
  * The four attributes that define a forbidden region are the low MW, the High MW, the crossing time, and the crossing cost.
+ * @param sup Reference to the superclass object.
+ * @param crossTime Time to cross the forbidden region in minutes.
+ * @param crossingCost Cost associated with crossing the forbidden region
+ * @param highMW High end of the region definition
+ * @param lowMW Low end of the region definition.
  */
 case class ForbiddenRegion
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Time to cross the forbidden region in minutes.
-     */
-    val crossTime: Int,
-
-    /**
-     * Cost associated with crossing the forbidden region
-     */
-    val crossingCost: Double,
-
-    /**
-     * High end of the region definition
-     */
-    val highMW: Double,
-
-    /**
-     * Low end of the region definition.
-     */
-    val lowMW: Double
+(override val sup: IdentifiedObject,
+val crossTime: Int,
+val crossingCost: Double,
+val highMW: Double,
+val lowMW: Double
 )
 extends
     Element
@@ -1350,13 +1122,12 @@ extends
 /**
  * Used to indicate former references to the same piece of equipment.
  * The ID, name, and effectivity dates are utilized.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredResource
  */
 case class FormerReference
-(
-
-    override val sup: IdentifiedObject,
-
-    val RegisteredResource: String
+(override val sup: IdentifiedObject,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1391,13 +1162,12 @@ extends
 
 /**
  * Relationship between unit fuel cost in $/kWh(Y-axis) and  unit output in MW (X-axis).
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class FuelCostCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -1432,37 +1202,24 @@ extends
 
 /**
  * Indication of region for fuel inventory purposes
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate end effective date
+ * @param fuelRegionType The type of fuel region
+ * @param lastModified Time of last update
+ * @param startEffectiveDate start effective date
+ * @param GasPrice
+ * @param OilPrice
+ * @param RTO
  */
 case class FuelRegion
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * The type of fuel region
-     */
-    val fuelRegionType: String,
-
-    /**
-     * Time of last update
-     */
-    val lastModified: String,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val GasPrice: String,
-
-    val OilPrice: String,
-
-    val RTO: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val fuelRegionType: String,
+val lastModified: String,
+val startEffectiveDate: String,
+val GasPrice: String,
+val OilPrice: String,
+val RTO: String
 )
 extends
     Element
@@ -1509,18 +1266,14 @@ extends
 
 /**
  * Price of gas in monetary units
+ * @param sup Reference to the superclass object.
+ * @param gasPriceIndex The average natural gas price at a defined fuel region.
+ * @param FuelRegion
  */
 case class GasPrice
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The average natural gas price at a defined fuel region.
-     */
-    val gasPriceIndex: Double,
-
-    val FuelRegion: String
+(override val sup: BasicElement,
+val gasPriceIndex: Double,
+val FuelRegion: String
 )
 extends
     Element
@@ -1558,45 +1311,26 @@ extends
 /**
  * A HostControlArea has a set of tie points and a set of generator controls (i.e., AGC).
  * It also has a total load, including transmission and distribution losses.
+ * @param sup Reference to the superclass object.
+ * @param areaControlMode The area's present control mode: (CF = constant frequency) or (CTL = constant tie-line) or (TLB = tie-line bias) or (OFF = off control)
+ * @param endEffectiveDate end effective date
+ * @param freqSetPoint The present power system frequency set point for automatic generation control
+ * @param frequencyBiasFactor The control area's frequency bias factor, in MW/0.1 Hz, for automatic generation control (AGC)
+ * @param startEffectiveDate start effective date
+ * @param AdjacentCASet
+ * @param Controls A ControlAreaCompany controls a ControlArea.
+ * @param RTO
  */
 case class HostControlArea
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * The area's present control mode: (CF = constant frequency) or (CTL = constant tie-line) or (TLB = tie-line bias) or (OFF = off control)
-     */
-    val areaControlMode: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * The present power system frequency set point for automatic generation control
-     */
-    val freqSetPoint: Double,
-
-    /**
-     * The control area's frequency bias factor, in MW/0.1 Hz, for automatic generation control (AGC)
-     */
-    val frequencyBiasFactor: Double,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val AdjacentCASet: String,
-
-    /**
-     * A ControlAreaCompany controls a ControlArea.
-     */
-    val Controls: String,
-
-    val RTO: String
+(override val sup: PowerSystemResource,
+val areaControlMode: String,
+val endEffectiveDate: String,
+val freqSetPoint: Double,
+val frequencyBiasFactor: Double,
+val startEffectiveDate: String,
+val AdjacentCASet: String,
+val Controls: String,
+val RTO: String
 )
 extends
     Element
@@ -1645,17 +1379,16 @@ extends
 
 /**
  * Individual pricing node based on Pnode
+ * @param sup Reference to the superclass object.
+ * @param GenDistributionFactor
+ * @param LoadDistributionFactor
+ * @param MktConnectivityNode
  */
 case class IndividualPnode
-(
-
-    override val sup: Pnode,
-
-    val GenDistributionFactor: String,
-
-    val LoadDistributionFactor: String,
-
-    val MktConnectivityNode: String
+(override val sup: Pnode,
+val GenDistributionFactor: String,
+val LoadDistributionFactor: String,
+val MktConnectivityNode: String
 )
 extends
     Element
@@ -1695,11 +1428,10 @@ extends
 /**
  * A specialized class of type AggregatedNode type.
  * Defines Load Aggregation Points.
+ * @param sup Reference to the superclass object.
  */
 case class LoadAggregationPoint
-(
-
-    override val sup: AggregateNode
+(override val sup: AggregateNode
 )
 extends
     Element
@@ -1732,28 +1464,18 @@ extends
 
 /**
  * Representing the ratio of the load share for the associated SC.
+ * @param sup Reference to the superclass object.
+ * @param intervalEndTime Interval End Time
+ * @param intervalStartTime Interval Start Time
+ * @param share Share in percentage of total Market load for the selected time interval.
+ * @param SchedulingCoordinator
  */
 case class LoadRatio
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Interval End Time
-     */
-    val intervalEndTime: String,
-
-    /**
-     * Interval Start Time
-     */
-    val intervalStartTime: String,
-
-    /**
-     * Share in percentage of total Market load for the selected time interval.
-     */
-    val share: Double,
-
-    val SchedulingCoordinator: String
+(override val sup: BasicElement,
+val intervalEndTime: String,
+val intervalStartTime: String,
+val share: Double,
+val SchedulingCoordinator: String
 )
 extends
     Element
@@ -1795,17 +1517,13 @@ extends
 /**
  * This is the cureve that describes the load reduction time.
  * Relationship between time (Y1-axis) vs. MW (X-axis).
+ * @param sup Reference to the superclass object.
+ * @param loadReductionTimeCurveType type of the curve: Possible values are but not limited to:
+ *        Max, Min,
  */
 case class LoadReductionTimeCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * type of the curve: Possible values are but not limited to:
-     * Max, Min,
-     */
-    val loadReductionTimeCurveType: String
+(override val sup: Curve,
+val loadReductionTimeCurveType: String
 )
 extends
     Element
@@ -1840,13 +1558,12 @@ extends
 
 /**
  * Allows definition of reliablity areas (eg load pockets) within the ISO/RTO
+ * @param sup Reference to the superclass object.
+ * @param RTO
  */
 case class LocalReliabilityArea
-(
-
-    override val sup: IdentifiedObject,
-
-    val RTO: String
+(override val sup: IdentifiedObject,
+val RTO: String
 )
 extends
     Element
@@ -1882,34 +1599,24 @@ extends
 /**
  * Provides a reference to the Market Power Mitigation test identifiers and methods for the results of the DA or RT markets.
  * Specific data is the test identifier (Price, Conduct, or Impact) and the test method (System MPM, Local MPM, Alternate System MPM, or Alternate Local MPM).
+ * @param sup Reference to the superclass object.
+ * @param purposeFlag Nature of threshold data:
+'M' - Mitigation threshold
+ *        'R' - Reporting threshold
+ * @param testIdentifier 1 - Global Price Test
+2 - Global Conduct Test
+3 - Global Impact Test
+4 - Local Price Test
+5 - Local Conduct Test
+ *        6 - Local Impact Test
+ * @param testMethod The method of performing the market power monitoring.
+ *        Examples are Normal (default) thresholds or Alternate thresholds.
  */
 case class MPMTestCategory
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Nature of threshold data:
-    'M' - Mitigation threshold
-     * 'R' - Reporting threshold
-     */
-    val purposeFlag: String,
-
-    /**
-     * 1 - Global Price Test
-    2 - Global Conduct Test
-    3 - Global Impact Test
-    4 - Local Price Test
-    5 - Local Conduct Test
-     * 6 - Local Impact Test
-     */
-    val testIdentifier: String,
-
-    /**
-     * The method of performing the market power monitoring.
-     * Examples are Normal (default) thresholds or Alternate thresholds.
-     */
-    val testMethod: String
+(override val sup: IdentifiedObject,
+val purposeFlag: String,
+val testIdentifier: String,
+val testMethod: String
 )
 extends
     Element
@@ -1948,30 +1655,20 @@ extends
 
 /**
  * Market Power Mitigation (MPM) test thresholds for resource as well as designated congestion areas (DCAs)
+ * @param sup Reference to the superclass object.
+ * @param marketType Market Type (DAM, RTM)
+ * @param percent Price Threshold in %
+ * @param price Price Threshold in $/MW
+ * @param MPMTestCategory
+ * @param RegisteredResource
  */
 case class MPMTestThreshold
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Market Type (DAM, RTM)
-     */
-    val marketType: String,
-
-    /**
-     * Price Threshold in %
-     */
-    val percent: Double,
-
-    /**
-     * Price Threshold in $/MW
-     */
-    val price: Double,
-
-    val MPMTestCategory: String,
-
-    val RegisteredResource: List[String]
+(override val sup: BasicElement,
+val marketType: String,
+val percent: Double,
+val price: Double,
+val MPMTestCategory: String,
+val RegisteredResource: List[String]
 )
 extends
     Element
@@ -2014,55 +1711,30 @@ extends
 
 /**
  * Metered Sub-System aggregation of MSS Zones.
+ * @param sup Reference to the superclass object.
+ * @param costRecovery Charge for Emission Costs, Start Up Costs, or Minimum Load Costs.
+ * @param endEffectiveDate end effective date
+ * @param grossSettlement MSS Load Following may select Net vs.
+ *        Gross settlement.  Net Settlement requires the net Demand settled at the MSS LAP and Net Supply needs to settle at the equivalent to the weighted average price of the MSS generation.  Gross load will be settled at the System LAP and the Gross supply will be settled at the LMP.  MSS Aggregation that elects gross settlement shall have to identify if its resources are Load Following or not.
+ * @param ignoreLosses Provides an indication if losses are to be ignored for this zone.
+ *        Also refered to as Exclude Marginal Losses.
+ * @param ignoreMarginalLosses Provides an indication if marginal losses are to be ignored for this zone.
+ * @param loadFollowing Indication that this particular MSSA participates in the Load Following function.
+ * @param rucProcurement Indicates that RUC will be procured by the ISO or self provided.
+ * @param startEffectiveDate start effective date
+ * @param RTO
  */
 case class MSSAggregation
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Charge for Emission Costs, Start Up Costs, or Minimum Load Costs.
-     */
-    val costRecovery: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * MSS Load Following may select Net vs.
-     * Gross settlement.  Net Settlement requires the net Demand settled at the MSS LAP and Net Supply needs to settle at the equivalent to the weighted average price of the MSS generation.  Gross load will be settled at the System LAP and the Gross supply will be settled at the LMP.  MSS Aggregation that elects gross settlement shall have to identify if its resources are Load Following or not.
-     */
-    val grossSettlement: String,
-
-    /**
-     * Provides an indication if losses are to be ignored for this zone.
-     * Also refered to as Exclude Marginal Losses.
-     */
-    val ignoreLosses: String,
-
-    /**
-     * Provides an indication if marginal losses are to be ignored for this zone.
-     */
-    val ignoreMarginalLosses: String,
-
-    /**
-     * Indication that this particular MSSA participates in the Load Following function.
-     */
-    val loadFollowing: String,
-
-    /**
-     * Indicates that RUC will be procured by the ISO or self provided.
-     */
-    val rucProcurement: String,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val RTO: String
+(override val sup: IdentifiedObject,
+val costRecovery: String,
+val endEffectiveDate: String,
+val grossSettlement: String,
+val ignoreLosses: String,
+val ignoreMarginalLosses: String,
+val loadFollowing: String,
+val rucProcurement: String,
+val startEffectiveDate: String,
+val RTO: String
 )
 extends
     Element
@@ -2113,30 +1785,20 @@ extends
 
 /**
  * Model to define a zone within a Metered Sub System
+ * @param sup Reference to the superclass object.
+ * @param ignoreLosses Provides an indication if losses are to be ignored for this metered subsystem zone.
+ * @param lossFactor This is the default loss factor for the Metered Sub-System (MSS) zone.
+ *        The actual losses are calculated during the RT market.
+ * @param rucGrossSettlement Metered Sub-System (MSS) Load Following may select Net vs.
+ *        Gross settlement.  Net Settlement requires the net Demand settled at the Metered Sub-Sustem (MSS) Load Aggregation Point (LAP) and Net Supply needs to settle at the equivalent to the weighted average price of the MSS generation.  Gross load will be settled at the System LAP and the Gross supply will be settled at the LMP.  MSS Aggregation that elects gross settlement shall have to identify if its resources are Load Following or not.
+ * @param MeteredSubSystem
  */
 case class MSSZone
-(
-
-    override val sup: AggregateNode,
-
-    /**
-     * Provides an indication if losses are to be ignored for this metered subsystem zone.
-     */
-    val ignoreLosses: String,
-
-    /**
-     * This is the default loss factor for the Metered Sub-System (MSS) zone.
-     * The actual losses are calculated during the RT market.
-     */
-    val lossFactor: Double,
-
-    /**
-     * Metered Sub-System (MSS) Load Following may select Net vs.
-     * Gross settlement.  Net Settlement requires the net Demand settled at the Metered Sub-Sustem (MSS) Load Aggregation Point (LAP) and Net Supply needs to settle at the equivalent to the weighted average price of the MSS generation.  Gross load will be settled at the System LAP and the Gross supply will be settled at the LMP.  MSS Aggregation that elects gross settlement shall have to identify if its resources are Load Following or not.
-     */
-    val rucGrossSettlement: String,
-
-    val MeteredSubSystem: String
+(override val sup: AggregateNode,
+val ignoreLosses: String,
+val lossFactor: Double,
+val rucGrossSettlement: String,
+val MeteredSubSystem: String
 )
 extends
     Element
@@ -2177,79 +1839,39 @@ extends
 
 /**
  * General purpose information for name and other information to contact people.
+ * @param sup Reference to the superclass object.
+ * @param category Category of this person relative to utility operations, classified according to the utility's corporate standards and practices.
+ *        Examples include employee, contractor, agent, not affiliated, etc.
+ * @param electronicAddressAlternate Alternate Electronic address.
+ * @param electronicAddressPrimary Primary Electronic address.
+ * @param firstName Person's first name.
+ * @param governmentID Unique identifier for person relative to its governing authority, for example a federal tax identifier (such as a Social Security number in the United States).
+ * @param landlinePhone Landline phone number.
+ * @param lastName Person's last (family, sir) name.
+ * @param mName Middle name(s) or initial(s).
+ * @param mobilePhone Mobile phone number.
+ * @param prefix A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
+ * @param specialNeed Special service needs for the person (contact) are described; examples include life support, etc.
+ * @param status
+ * @param suffix A suffix for the person's name, such as II, III, etc.
+ * @param userID The user name for the person; required to log in.
  */
 case class MarketPerson
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Category of this person relative to utility operations, classified according to the utility's corporate standards and practices.
-     * Examples include employee, contractor, agent, not affiliated, etc.
-     */
-    val category: String,
-
-    /**
-     * Alternate Electronic address.
-     */
-    val electronicAddressAlternate: String,
-
-    /**
-     * Primary Electronic address.
-     */
-    val electronicAddressPrimary: String,
-
-    /**
-     * Person's first name.
-     */
-    val firstName: String,
-
-    /**
-     * Unique identifier for person relative to its governing authority, for example a federal tax identifier (such as a Social Security number in the United States).
-     */
-    val governmentID: String,
-
-    /**
-     * Landline phone number.
-     */
-    val landlinePhone: String,
-
-    /**
-     * Person's last (family, sir) name.
-     */
-    val lastName: String,
-
-    /**
-     * Middle name(s) or initial(s).
-     */
-    val mName: String,
-
-    /**
-     * Mobile phone number.
-     */
-    val mobilePhone: String,
-
-    /**
-     * A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
-     */
-    val prefix: String,
-
-    /**
-     * Special service needs for the person (contact) are described; examples include life support, etc.
-     */
-    val specialNeed: String,
-
-    val status: String,
-
-    /**
-     * A suffix for the person's name, such as II, III, etc.
-     */
-    val suffix: String,
-
-    /**
-     * The user name for the person; required to log in.
-     */
-    val userID: String
+(override val sup: IdentifiedObject,
+val category: String,
+val electronicAddressAlternate: String,
+val electronicAddressPrimary: String,
+val firstName: String,
+val governmentID: String,
+val landlinePhone: String,
+val lastName: String,
+val mName: String,
+val mobilePhone: String,
+val prefix: String,
+val specialNeed: String,
+val status: String,
+val suffix: String,
+val userID: String
 )
 extends
     Element
@@ -2310,38 +1932,22 @@ extends
 
 /**
  * Certain skills are required and shall be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
+ * @param sup Reference to the superclass object.
+ * @param effectiveDate Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization
+ * @param expirationDate This is the terminate date of the application for the organization
+ *        The specific organization can no longer access the application as of the terminate date
+ * @param qualificationID Qualification identifier.
+ * @param status The status of the privilege.
+ *        Shows the status of the user�s qualification.
+ * @param statusType This is the name of the status of the qualification and is used to display the status of the user's or organization's status.
  */
 case class MarketQualificationRequirement
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization
-     */
-    val effectiveDate: String,
-
-    /**
-     * This is the terminate date of the application for the organization
-     * The specific organization can no longer access the application as of the terminate date
-     */
-    val expirationDate: String,
-
-    /**
-     * Qualification identifier.
-     */
-    val qualificationID: String,
-
-    /**
-     * The status of the privilege.
-     * Shows the status of the user�s qualification.
-     */
-    val status: Int,
-
-    /**
-     * This is the name of the status of the qualification and is used to display the status of the user's or organization's status.
-     */
-    val statusType: String
+(override val sup: IdentifiedObject,
+val effectiveDate: String,
+val expirationDate: String,
+val qualificationID: String,
+val status: Int,
+val statusType: String
 )
 extends
     Element
@@ -2385,11 +1991,10 @@ extends
 /**
  * A specialized class of AggregatedNode type.
  * Defines the MarketRegions. Regions could be system Market Regions, Energy Regions or Ancillary Service Regions.
+ * @param sup Reference to the superclass object.
  */
 case class MarketRegion
-(
-
-    override val sup: AggregateNode
+(override val sup: AggregateNode
 )
 extends
     Element
@@ -2422,30 +2027,20 @@ extends
 
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
+ * @param sup Reference to the superclass object.
+ * @param certificationPeriod Interval between the certification and its expiry.
+ * @param effectiveDateTime Date and time the skill became effective.
+ * @param level Level of skill for a Craft.
+ * @param MarketPerson
+ * @param MarketQualificationRequirements
  */
 case class MarketSkill
-(
-
-    override val sup: Document,
-
-    /**
-     * Interval between the certification and its expiry.
-     */
-    val certificationPeriod: String,
-
-    /**
-     * Date and time the skill became effective.
-     */
-    val effectiveDateTime: String,
-
-    /**
-     * Level of skill for a Craft.
-     */
-    val level: String,
-
-    val MarketPerson: String,
-
-    val MarketQualificationRequirements: List[String]
+(override val sup: Document,
+val certificationPeriod: String,
+val effectiveDateTime: String,
+val level: String,
+val MarketPerson: String,
+val MarketQualificationRequirements: List[String]
 )
 extends
     Element
@@ -2489,11 +2084,10 @@ extends
 /**
  * The maximum Startup costs and time as a function of down time.
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis). This is used to validate the information provided in the Bid.
+ * @param sup Reference to the superclass object.
  */
 case class MaxStartUpCostCurve
-(
-
-    override val sup: Curve
+(override val sup: Curve
 )
 extends
     Element
@@ -2526,13 +2120,12 @@ extends
 
 /**
  * A metered subsystem
+ * @param sup Reference to the superclass object.
+ * @param MSSAggregation
  */
 case class MeteredSubSystem
-(
-
-    override val sup: IdentifiedObject,
-
-    val MSSAggregation: String
+(override val sup: IdentifiedObject,
+val MSSAggregation: String
 )
 extends
     Element
@@ -2568,13 +2161,12 @@ extends
 /**
  * Subclass of Production: CombinedCyclePlant from IEC61970 package.
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency
+ * @param sup Reference to the superclass object.
+ * @param AggregatedPnode
  */
 case class MktCombinedCyclePlant
-(
-
-    override val sup: CombinedCyclePlant,
-
-    val AggregatedPnode: String
+(override val sup: CombinedCyclePlant,
+val AggregatedPnode: String
 )
 extends
     Element
@@ -2609,11 +2201,10 @@ extends
 
 /**
  * Subclass of IEC61970:Core:ConductingEquipment
+ * @param sup Reference to the superclass object.
  */
 case class MktConductingEquipment
-(
-
-    override val sup: ConductingEquipment
+(override val sup: ConductingEquipment
 )
 extends
     Element
@@ -2646,39 +2237,26 @@ extends
 
 /**
  * Subclass of IEC61970:Contingency
+ * @param sup Reference to the superclass object.
+ * @param loadRolloverFlag load change flag
+ *        Flag that indicates whether load rollover and load pickup should be processed for this contingency
+ * @param ltcControlFlag ltc enable flag
+ *        Flag that indicates if LTCs regulate voltage during the solution of the contingency
+ * @param participationFactorSet Participation Factor flag
+ *        An indication which set of generator participation factors should be used to re-allocate generation in this contingency
+ * @param screeningFlag sceening flag for outage
+ *        Flag that indicated whether screening is bypassed for the contingency
+ * @param TransferInterfaceSolutionA
+ * @param TransferInterfaceSolutionB
  */
 case class MktContingency
-(
-
-    override val sup: Contingency,
-
-    /**
-     * load change flag
-     * Flag that indicates whether load rollover and load pickup should be processed for this contingency
-     */
-    val loadRolloverFlag: Boolean,
-
-    /**
-     * ltc enable flag
-     * Flag that indicates if LTCs regulate voltage during the solution of the contingency
-     */
-    val ltcControlFlag: Boolean,
-
-    /**
-     * Participation Factor flag
-     * An indication which set of generator participation factors should be used to re-allocate generation in this contingency
-     */
-    val participationFactorSet: String,
-
-    /**
-     * sceening flag for outage
-     * Flag that indicated whether screening is bypassed for the contingency
-     */
-    val screeningFlag: Boolean,
-
-    val TransferInterfaceSolutionA: String,
-
-    val TransferInterfaceSolutionB: String
+(override val sup: Contingency,
+val loadRolloverFlag: Boolean,
+val ltcControlFlag: Boolean,
+val participationFactorSet: String,
+val screeningFlag: Boolean,
+val TransferInterfaceSolutionA: String,
+val TransferInterfaceSolutionB: String
 )
 extends
     Element
@@ -2723,15 +2301,14 @@ extends
 
 /**
  * Subclass of IEC61970: Generation: Production:HeatRateCurve
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
+ * @param ResourceVerifiableCosts
  */
 case class MktHeatRateCurve
-(
-
-    override val sup: HeatRateCurve,
-
-    val RegisteredGenerator: String,
-
-    val ResourceVerifiableCosts: String
+(override val sup: HeatRateCurve,
+val RegisteredGenerator: String,
+val ResourceVerifiableCosts: String
 )
 extends
     Element
@@ -2768,11 +2345,10 @@ extends
 
 /**
  * Subclass of ThermalGeneratingUnit from Production Package in IEC61970.
+ * @param sup Reference to the superclass object.
  */
 case class MktThermalGeneratingUnit
-(
-
-    override val sup: ThermalGeneratingUnit
+(override val sup: ThermalGeneratingUnit
 )
 extends
     Element
@@ -2805,18 +2381,14 @@ extends
 
 /**
  * Price of oil in monetary units
+ * @param sup Reference to the superclass object.
+ * @param oilPriceIndex The average oil price at a defined fuel region.
+ * @param FuelRegion
  */
 case class OilPrice
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The average oil price at a defined fuel region.
-     */
-    val oilPriceIndex: Double,
-
-    val FuelRegion: String
+(override val sup: BasicElement,
+val oilPriceIndex: Double,
+val FuelRegion: String
 )
 extends
     Element
@@ -2853,30 +2425,20 @@ extends
 
 /**
  * This class models the allocation between asset owners and pricing nodes
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate end effective date
+ * @param maxMWAllocation Maximum MW for the Source/Sink for the Allocation
+ * @param startEffectiveDate start effective date
+ * @param MktOrganisation
+ * @param Pnode
  */
 case class OrgPnodeAllocation
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Maximum MW for the Source/Sink for the Allocation
-     */
-    val maxMWAllocation: Double,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val MktOrganisation: String,
-
-    val Pnode: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val maxMWAllocation: Double,
+val startEffectiveDate: String,
+val MktOrganisation: String,
+val Pnode: String
 )
 extends
     Element
@@ -2919,40 +2481,24 @@ extends
 
 /**
  * This class model the ownership percent and type of ownership between resource and organisation
+ * @param sup Reference to the superclass object.
+ * @param asscType association type for the association between Organisation and Resource:
+ * @param endEffectiveDate end effective date
+ * @param masterSchedulingCoordinatorFlag Flag to indicate that the SC representing the Resource is the Master SC.
+ * @param ownershipPercent ownership percentage for each resource
+ * @param startEffectiveDate start effective date
+ * @param MktOrganisation
+ * @param RegisteredResource
  */
 case class OrgResOwnership
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * association type for the association between Organisation and Resource:
-     */
-    val asscType: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Flag to indicate that the SC representing the Resource is the Master SC.
-     */
-    val masterSchedulingCoordinatorFlag: String,
-
-    /**
-     * ownership percentage for each resource
-     */
-    val ownershipPercent: Double,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val MktOrganisation: String,
-
-    val RegisteredResource: String
+(override val sup: IdentifiedObject,
+val asscType: String,
+val endEffectiveDate: String,
+val masterSchedulingCoordinatorFlag: String,
+val ownershipPercent: Double,
+val startEffectiveDate: String,
+val MktOrganisation: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -3000,50 +2546,34 @@ extends
 /**
  * A pricing node is directly associated with a connectivity node.
  * It is a pricing location for which market participants submit their bids, offers, buy/sell CRRs, and settle.
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate End effective date of the period in which the price node definition is valid.
+ * @param isPublic If true, this Pnode is public (prices are published for DA/RT and FTR markets), otherwise it is private (location is not usable by market for bidding/FTRs/transactions).
+ * @param startEffectiveDate Start effective date of the period in which the price node definition is valid.
+ * @param typ Pnode type
+ * @param usage Price node usage: 
+'Control Area'
+'Regulation Region'
+'Price Zone'
+'Spin Region'
+'Non-Spin Region'
+ *        'Price Hub'
+ * @param RTO
+ * @param SinkCRRSegment
+ * @param SourceCRRSegment
+ * @param SubControlArea
  */
 case class Pnode
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * End effective date of the period in which the price node definition is valid.
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * If true, this Pnode is public (prices are published for DA/RT and FTR markets), otherwise it is private (location is not usable by market for bidding/FTRs/transactions).
-     */
-    val isPublic: Boolean,
-
-    /**
-     * Start effective date of the period in which the price node definition is valid.
-     */
-    val startEffectiveDate: String,
-
-    /**
-     * Pnode type
-     */
-    val typ: String,
-
-    /**
-     * Price node usage: 
-    'Control Area'
-    'Regulation Region'
-    'Price Zone'
-    'Spin Region'
-    'Non-Spin Region'
-     * 'Price Hub'
-     */
-    val usage: String,
-
-    val RTO: String,
-
-    val SinkCRRSegment: List[String],
-
-    val SourceCRRSegment: List[String],
-
-    val SubControlArea: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val isPublic: Boolean,
+val startEffectiveDate: String,
+val typ: String,
+val usage: String,
+val RTO: String,
+val SinkCRRSegment: List[String],
+val SourceCRRSegment: List[String],
+val SubControlArea: String
 )
 extends
     Element
@@ -3094,36 +2624,23 @@ extends
 
 /**
  * This class allows SC to input different distribution factors for pricing node
+ * @param sup Reference to the superclass object.
+ * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
+ *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
+ * @param offPeak Indication that this distribution factor is to apply during off peak.
+ * @param onPeak Indication that this factor is to apply during Peak periods.
+ * @param podLossFactor Point of delivery loss factor
+ * @param BidDistributionFactor
+ * @param IndividualPnode
  */
 case class PnodeDistributionFactor
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Used to calculate "participation" of Pnode in an AggregatePnode.
-     * For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
-     */
-    val factor: Double,
-
-    /**
-     * Indication that this distribution factor is to apply during off peak.
-     */
-    val offPeak: String,
-
-    /**
-     * Indication that this factor is to apply during Peak periods.
-     */
-    val onPeak: String,
-
-    /**
-     * Point of delivery loss factor
-     */
-    val podLossFactor: Double,
-
-    val BidDistributionFactor: String,
-
-    val IndividualPnode: String
+(override val sup: BasicElement,
+val factor: Double,
+val offPeak: String,
+val onPeak: String,
+val podLossFactor: Double,
+val BidDistributionFactor: String,
+val IndividualPnode: String
 )
 extends
     Element
@@ -3168,13 +2685,12 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class RMRHeatRateCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -3209,13 +2725,12 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class RMRStartUpCostCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -3250,13 +2765,12 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class RMRStartUpEnergyCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -3291,13 +2805,12 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class RMRStartUpFuelCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -3332,13 +2845,12 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class RMRStartUpTimeCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -3373,11 +2885,10 @@ extends
 
 /**
  * Regional transmission operator.
+ * @param sup Reference to the superclass object.
  */
 case class RTO
-(
-
-    override val sup: MktOrganisation
+(override val sup: MktOrganisation
 )
 extends
     Element
@@ -3411,11 +2922,10 @@ extends
 /**
  * A specialized class of type AggregatedNode type.
  * Defines RUC Zones. A forecast region represents a collection of Nodes for which the Market operator has developed sufficient historical demand and relevant weather data to perform a demand forecast for such area. The Market Operator may further adjust this forecast to ensure that the Reliability Unit Commitment produces adequate local capacity procurement.
+ * @param sup Reference to the superclass object.
  */
 case class RUCZone
-(
-
-    override val sup: AggregateNode
+(override val sup: AggregateNode
 )
 extends
     Element
@@ -3448,347 +2958,190 @@ extends
 
 /**
  * Model of a generator  that is registered to participate in the market
+ * @param sup Reference to the superclass object.
+ * @param capacityFactor Capacity Factor
+ * @param coldStartTime Cold start time.
+ * @param combinedCyclePlantName Name of the Combined Cycle Plant (valid for Combined Cyle modes or configurations)
+ * @param commericialOperationDate
+ * @param constrainedOutputFlag Constrained Output Generator (COG) Indicator (Yes/No), per Generating Resource
+ * @param costBasis
+ * @param extremeLongStart Some long-start up time units may need to receive start up instruction before DA market results are available.
+ *        Long-Start resources may be either physical resources within the control with start-up times greater than 18 hours or the long-start contractual inter-tie commitment that shall be completed by 6 am one-day ahead.  Therefore, there is a need for a process to determine the commitment of such resources before the DA market.
+ * @param fuelSource Values: Natural Gas Based Resource, Non Natural Gas Based Resource
+"NG" - Natural-Gas-Based Resource - a Resource that is powered by Natural Gas
+ *        "NNG" - Non-Natural-Gas-Based Resource - a Resouce that is powered by some other fuel than Natural Gas
+ * @param highControlLimit High limit for secondary (AGC) control
+ * @param hotIntTime Hot-to-intermediate time (Seasonal)
+ * @param hotStartTime Hot start time.
+ * @param intColdTime Intermediate-to-cold time (Seasonal)
+ * @param intStartTime Intermediate start time.
+ * @param intendedPIRP Provides an indication that this resource is intending to participate in the intermittent resource program.
+ * @param loadFollowingDownMSS Certifies resources for use in MSS Load Following Down
+ * @param loadFollowingUpMSS Certifies resources for use in MSS Load Following Up
+ * @param lowControlLImit Low limit for secondary (AGC) control
+ * @param lowerControlRate Regulation down response rate in MW per minute
+ * @param lowerRampRate
+ * @param maxDependableCap Maximum Dependable Capacity (MNDC).
+ * @param maxLayOffSelfSchedQty
+ * @param maxMinLoadCost The registered maximum Minimum Load Cost of a Generating Resource registered with a Cost Basis of "Bid Cost".
+ * @param maxPumpingLevel max pumping level of a hydro pump unit
+ * @param maxShutdownTime Maximum time this device can be shut down.
+ * @param maxStartUpsPerDay maximum start ups per day
+ * @param maxWeeklyEnergy Maximum weekly Energy (Seasonal)
+ * @param maxWeeklyStarts Maximum weekly starts (seasonal parameter)
+ * @param maximumAllowableSpinningReserve Maximum allowable spinning reserve.
+ *        Spinning reserve will never be considered greater than this value regardless of the current operating point.
+ * @param maximumOperatingMW This is the maximum operating MW limit the dispatcher can enter for this unit
+ * @param minLoadCost minimum load cost.
+ *        Value is (currency/hr)
+ * @param minimumLoadFuelCost The cost for the fuel required to get a Generating Resource to operate at the minimum load level
+ * @param minimumOperatingMW This is the minimum operating MW limit the dispatcher can enter for this unit.
+ * @param mustOfferRA Flag to indicate that this unit is a resource adequacy resource and must offer.
+ * @param nameplateCapacity MW value stated on the nameplate of the Generator -- the value it potentially could provide.
+ * @param operatingMaintenanceCost The portion of the Operating Cost of a Generating Resource that is not related to fuel cost.
+ * @param operatingMode Combined Cycle operating mode.
+ * @param proxyFlag
+ * @param pumpMinDownTime The minimum down time for the pump in a pump storage unit.
+ * @param pumpMinUpTime The minimum up time aspect for the pump in a pump storage unit
+ * @param pumpShutdownCost The cost to shutdown a pump during the pump aspect of a pump storage unit.
+ * @param pumpShutdownTime The shutdown time (minutes) of the pump aspect of a pump storage unit.
+ * @param pumpingCost
+ * @param pumpingFactor Pumping factor for pump storage units, conversion factor between generating and pumping.
+ * @param qualifyingFacilityOwner
+ * @param quickStartFlag Quick start flag (Yes/No)
+ * @param raiseControlRate Regulation up response rate in MW per minute
+ * @param raiseRampRate
+ * @param rampCurveType Ramp curve type:
+0 - Fixed ramp rate independent of rate function unit MW output
+1 - Static ramp rates as a function of unit MW output only
+ *        2 - Dynamic ramp rates as a function of unit MW output and ramping time
+ * @param rampMode Ramping mode
+0: ignore ramping limits
+1: 20-minute ramping rule
+ *        2: 60-minute ramping rule
+ * @param regulationFlag 0 = Unit is not on regulation
+1 = Unit is on AGC and regulating
+ *        2 = Unit is suppose to be on regulation but it is not under regulation now
+ * @param regulationRampRate For the outage scheduling services
+ * @param resourceSubType CCGT90	Combined Cycle greater than 90 MW
+CCLE90	Combined Cycle less than or equal to 90 MW
+CLLIG	Coal and Lignite
+DSL	Diesel
+GASSTM	Gas-Steam
+GSNONR	Gas Steam Non-Reheat Boiler
+GSREH	Gas Steam Reheat Boiler
+GSSUP	Gas Steam Supercritical Boiler
+HYDRO	Hydro
+NUC	Nuclear
+RENEW	Renewable
+SCGT90	Simple Cycle greater than 90 MW
+SCLE90	Simple Cycle less than or equal to 90 MW
+WIND	Wind
+ *        PS         Pumped Storage
+ * @param riverSystem River System the Resource is tied to.
+ * @param spinReserveRamp
+ * @param syncCondCapable Is the Resource Synchronous Condenser capable Resource?
+ * @param unitType Generating unit type: Combined Cycle, Gas Turbine, Hydro Turbine, Other, Photovoltaic, Hydro Pump-Turbine, Reciprocating Engine, Steam Turbine, Synchronous Condenser, Wind Turbine
+ * @param useLimitFlag Use limit flag: indicates if the use-limited resource is fully scheduled (or has some slack for real-time dispatch) (Y/N)
+ * @param EnergyPriceIndex
+ * @param FuelCostCurve
+ * @param FuelRegion
+ * @param LocalReliabilityArea
+ * @param MktHeatRateCurve
+ * @param RMNRFlag Reliability must not run (RMNR) flag: indicated whether the RMR unit is set as an RMNR in the current market
+ * @param RMRFlag Reliability must run (RMR) flag: indicates whether the unit is RMR; Indicates whether the unit is RMR:
+N' - not an RMR unit
+'1' - RMR Condition 1 unit
+ *        '2' - RMR Condition 2 unit
+ * @param RMRHeatRateCurve
+ * @param RMRManualIndicator Indicates the RMR Manual pre-determination status [Y/N]
+ * @param RMRStartUpCostCurve
+ * @param RMRStartUpEnergyCurve
+ * @param RMRStartUpFuelCurve
+ * @param RMRStartUpTimeCurve
+ * @param RMTFlag Reliability must take (RMT) flag (Yes/No): indicates whether the unit is RMT
+ * @param RegulatingLimit
+ * @param StartUpEnergyCurve
+ * @param StartUpFuelCurve
+ * @param StartUpTimeCurve
  */
 case class RegisteredGenerator
-(
-
-    override val sup: RegisteredResource,
-
-    /**
-     * Capacity Factor
-     */
-    val capacityFactor: Double,
-
-    /**
-     * Cold start time.
-     */
-    val coldStartTime: Double,
-
-    /**
-     * Name of the Combined Cycle Plant (valid for Combined Cyle modes or configurations)
-     */
-    val combinedCyclePlantName: String,
-
-    val commericialOperationDate: String,
-
-    /**
-     * Constrained Output Generator (COG) Indicator (Yes/No), per Generating Resource
-     */
-    val constrainedOutputFlag: String,
-
-    val costBasis: String,
-
-    /**
-     * Some long-start up time units may need to receive start up instruction before DA market results are available.
-     * Long-Start resources may be either physical resources within the control with start-up times greater than 18 hours or the long-start contractual inter-tie commitment that shall be completed by 6 am one-day ahead.  Therefore, there is a need for a process to determine the commitment of such resources before the DA market.
-     */
-    val extremeLongStart: String,
-
-    /**
-     * Values: Natural Gas Based Resource, Non Natural Gas Based Resource
-    "NG" - Natural-Gas-Based Resource - a Resource that is powered by Natural Gas
-     * "NNG" - Non-Natural-Gas-Based Resource - a Resouce that is powered by some other fuel than Natural Gas
-     */
-    val fuelSource: String,
-
-    /**
-     * High limit for secondary (AGC) control
-     */
-    val highControlLimit: Double,
-
-    /**
-     * Hot-to-intermediate time (Seasonal)
-     */
-    val hotIntTime: Double,
-
-    /**
-     * Hot start time.
-     */
-    val hotStartTime: Double,
-
-    /**
-     * Intermediate-to-cold time (Seasonal)
-     */
-    val intColdTime: Double,
-
-    /**
-     * Intermediate start time.
-     */
-    val intStartTime: Double,
-
-    /**
-     * Provides an indication that this resource is intending to participate in the intermittent resource program.
-     */
-    val intendedPIRP: String,
-
-    /**
-     * Certifies resources for use in MSS Load Following Down
-     */
-    val loadFollowingDownMSS: String,
-
-    /**
-     * Certifies resources for use in MSS Load Following Up
-     */
-    val loadFollowingUpMSS: String,
-
-    /**
-     * Low limit for secondary (AGC) control
-     */
-    val lowControlLImit: Double,
-
-    /**
-     * Regulation down response rate in MW per minute
-     */
-    val lowerControlRate: Double,
-
-    val lowerRampRate: Double,
-
-    /**
-     * Maximum Dependable Capacity (MNDC).
-     */
-    val maxDependableCap: Double,
-
-    val maxLayOffSelfSchedQty: Double,
-
-    /**
-     * The registered maximum Minimum Load Cost of a Generating Resource registered with a Cost Basis of "Bid Cost".
-     */
-    val maxMinLoadCost: Double,
-
-    /**
-     * max pumping level of a hydro pump unit
-     */
-    val maxPumpingLevel: Double,
-
-    /**
-     * Maximum time this device can be shut down.
-     */
-    val maxShutdownTime: String,
-
-    /**
-     * maximum start ups per day
-     */
-    val maxStartUpsPerDay: Int,
-
-    /**
-     * Maximum weekly Energy (Seasonal)
-     */
-    val maxWeeklyEnergy: Double,
-
-    /**
-     * Maximum weekly starts (seasonal parameter)
-     */
-    val maxWeeklyStarts: Int,
-
-    /**
-     * Maximum allowable spinning reserve.
-     * Spinning reserve will never be considered greater than this value regardless of the current operating point.
-     */
-    val maximumAllowableSpinningReserve: Double,
-
-    /**
-     * This is the maximum operating MW limit the dispatcher can enter for this unit
-     */
-    val maximumOperatingMW: Double,
-
-    /**
-     * minimum load cost.
-     * Value is (currency/hr)
-     */
-    val minLoadCost: Double,
-
-    /**
-     * The cost for the fuel required to get a Generating Resource to operate at the minimum load level
-     */
-    val minimumLoadFuelCost: String,
-
-    /**
-     * This is the minimum operating MW limit the dispatcher can enter for this unit.
-     */
-    val minimumOperatingMW: Double,
-
-    /**
-     * Flag to indicate that this unit is a resource adequacy resource and must offer.
-     */
-    val mustOfferRA: String,
-
-    /**
-     * MW value stated on the nameplate of the Generator -- the value it potentially could provide.
-     */
-    val nameplateCapacity: Double,
-
-    /**
-     * The portion of the Operating Cost of a Generating Resource that is not related to fuel cost.
-     */
-    val operatingMaintenanceCost: Double,
-
-    /**
-     * Combined Cycle operating mode.
-     */
-    val operatingMode: String,
-
-    val proxyFlag: String,
-
-    /**
-     * The minimum down time for the pump in a pump storage unit.
-     */
-    val pumpMinDownTime: Double,
-
-    /**
-     * The minimum up time aspect for the pump in a pump storage unit
-     */
-    val pumpMinUpTime: Double,
-
-    /**
-     * The cost to shutdown a pump during the pump aspect of a pump storage unit.
-     */
-    val pumpShutdownCost: Double,
-
-    /**
-     * The shutdown time (minutes) of the pump aspect of a pump storage unit.
-     */
-    val pumpShutdownTime: Int,
-
-    val pumpingCost: Double,
-
-    /**
-     * Pumping factor for pump storage units, conversion factor between generating and pumping.
-     */
-    val pumpingFactor: Double,
-
-    val qualifyingFacilityOwner: String,
-
-    /**
-     * Quick start flag (Yes/No)
-     */
-    val quickStartFlag: String,
-
-    /**
-     * Regulation up response rate in MW per minute
-     */
-    val raiseControlRate: Double,
-
-    val raiseRampRate: Double,
-
-    /**
-     * Ramp curve type:
-    0 - Fixed ramp rate independent of rate function unit MW output
-    1 - Static ramp rates as a function of unit MW output only
-     * 2 - Dynamic ramp rates as a function of unit MW output and ramping time
-     */
-    val rampCurveType: String,
-
-    /**
-     * Ramping mode
-    0: ignore ramping limits
-    1: 20-minute ramping rule
-     * 2: 60-minute ramping rule
-     */
-    val rampMode: String,
-
-    /**
-     * 0 = Unit is not on regulation
-    1 = Unit is on AGC and regulating
-     * 2 = Unit is suppose to be on regulation but it is not under regulation now
-     */
-    val regulationFlag: Int,
-
-    /**
-     * For the outage scheduling services
-     */
-    val regulationRampRate: Double,
-
-    /**
-     * CCGT90	Combined Cycle greater than 90 MW
-    CCLE90	Combined Cycle less than or equal to 90 MW
-    CLLIG	Coal and Lignite
-    DSL	Diesel
-    GASSTM	Gas-Steam
-    GSNONR	Gas Steam Non-Reheat Boiler
-    GSREH	Gas Steam Reheat Boiler
-    GSSUP	Gas Steam Supercritical Boiler
-    HYDRO	Hydro
-    NUC	Nuclear
-    RENEW	Renewable
-    SCGT90	Simple Cycle greater than 90 MW
-    SCLE90	Simple Cycle less than or equal to 90 MW
-    WIND	Wind
-     * PS         Pumped Storage
-     */
-    val resourceSubType: String,
-
-    /**
-     * River System the Resource is tied to.
-     */
-    val riverSystem: String,
-
-    val spinReserveRamp: Double,
-
-    /**
-     * Is the Resource Synchronous Condenser capable Resource?
-     */
-    val syncCondCapable: String,
-
-    /**
-     * Generating unit type: Combined Cycle, Gas Turbine, Hydro Turbine, Other, Photovoltaic, Hydro Pump-Turbine, Reciprocating Engine, Steam Turbine, Synchronous Condenser, Wind Turbine
-     */
-    val unitType: String,
-
-    /**
-     * Use limit flag: indicates if the use-limited resource is fully scheduled (or has some slack for real-time dispatch) (Y/N)
-     */
-    val useLimitFlag: String,
-
-    val EnergyPriceIndex: String,
-
-    val FuelCostCurve: String,
-
-    val FuelRegion: String,
-
-    val LocalReliabilityArea: String,
-
-    val MktHeatRateCurve: String,
-
-    /**
-     * Reliability must not run (RMNR) flag: indicated whether the RMR unit is set as an RMNR in the current market
-     */
-    val RMNRFlag: String,
-
-    /**
-     * Reliability must run (RMR) flag: indicates whether the unit is RMR; Indicates whether the unit is RMR:
-    N' - not an RMR unit
-    '1' - RMR Condition 1 unit
-     * '2' - RMR Condition 2 unit
-     */
-    val RMRFlag: String,
-
-    val RMRHeatRateCurve: String,
-
-    /**
-     * Indicates the RMR Manual pre-determination status [Y/N]
-     */
-    val RMRManualIndicator: String,
-
-    val RMRStartUpCostCurve: String,
-
-    val RMRStartUpEnergyCurve: String,
-
-    val RMRStartUpFuelCurve: String,
-
-    val RMRStartUpTimeCurve: String,
-
-    /**
-     * Reliability must take (RMT) flag (Yes/No): indicates whether the unit is RMT
-     */
-    val RMTFlag: String,
-
-    val RegulatingLimit: String,
-
-    val StartUpEnergyCurve: String,
-
-    val StartUpFuelCurve: String,
-
-    val StartUpTimeCurve: String
+(override val sup: RegisteredResource,
+val capacityFactor: Double,
+val coldStartTime: Double,
+val combinedCyclePlantName: String,
+val commericialOperationDate: String,
+val constrainedOutputFlag: String,
+val costBasis: String,
+val extremeLongStart: String,
+val fuelSource: String,
+val highControlLimit: Double,
+val hotIntTime: Double,
+val hotStartTime: Double,
+val intColdTime: Double,
+val intStartTime: Double,
+val intendedPIRP: String,
+val loadFollowingDownMSS: String,
+val loadFollowingUpMSS: String,
+val lowControlLImit: Double,
+val lowerControlRate: Double,
+val lowerRampRate: Double,
+val maxDependableCap: Double,
+val maxLayOffSelfSchedQty: Double,
+val maxMinLoadCost: Double,
+val maxPumpingLevel: Double,
+val maxShutdownTime: String,
+val maxStartUpsPerDay: Int,
+val maxWeeklyEnergy: Double,
+val maxWeeklyStarts: Int,
+val maximumAllowableSpinningReserve: Double,
+val maximumOperatingMW: Double,
+val minLoadCost: Double,
+val minimumLoadFuelCost: String,
+val minimumOperatingMW: Double,
+val mustOfferRA: String,
+val nameplateCapacity: Double,
+val operatingMaintenanceCost: Double,
+val operatingMode: String,
+val proxyFlag: String,
+val pumpMinDownTime: Double,
+val pumpMinUpTime: Double,
+val pumpShutdownCost: Double,
+val pumpShutdownTime: Int,
+val pumpingCost: Double,
+val pumpingFactor: Double,
+val qualifyingFacilityOwner: String,
+val quickStartFlag: String,
+val raiseControlRate: Double,
+val raiseRampRate: Double,
+val rampCurveType: String,
+val rampMode: String,
+val regulationFlag: Int,
+val regulationRampRate: Double,
+val resourceSubType: String,
+val riverSystem: String,
+val spinReserveRamp: Double,
+val syncCondCapable: String,
+val unitType: String,
+val useLimitFlag: String,
+val EnergyPriceIndex: String,
+val FuelCostCurve: String,
+val FuelRegion: String,
+val LocalReliabilityArea: String,
+val MktHeatRateCurve: String,
+val RMNRFlag: String,
+val RMRFlag: String,
+val RMRHeatRateCurve: String,
+val RMRManualIndicator: String,
+val RMRStartUpCostCurve: String,
+val RMRStartUpEnergyCurve: String,
+val RMRStartUpFuelCurve: String,
+val RMRStartUpTimeCurve: String,
+val RMTFlag: String,
+val RegulatingLimit: String,
+val StartUpEnergyCurve: String,
+val StartUpFuelCurve: String,
+val StartUpTimeCurve: String
 )
 extends
     Element
@@ -3971,40 +3324,24 @@ extends
 
 /**
  * This class represents the inter tie resource.
+ * @param sup Reference to the superclass object.
+ * @param direction indicate the direction (export/import) of an intertie resource
+ * @param energyProductType Under each major product type, the commodity type can be applied to further specify the type.
+ * @param isDCTie Flag to indicated whether this Inter-tie is a DC Tie.
+ * @param isDynamicInterchange check if the inter-tie resource is registered for the dynamic interchange..
+ * @param minHourlyBlockLimit The registered upper bound of minimum hourly block for an Inter-Tie Resource
+ * @param Flowgate
+ * @param InterTieBid
  */
 case class RegisteredInterTie
-(
-
-    override val sup: RegisteredResource,
-
-    /**
-     * indicate the direction (export/import) of an intertie resource
-     */
-    val direction: String,
-
-    /**
-     * Under each major product type, the commodity type can be applied to further specify the type.
-     */
-    val energyProductType: String,
-
-    /**
-     * Flag to indicated whether this Inter-tie is a DC Tie.
-     */
-    val isDCTie: String,
-
-    /**
-     * check if the inter-tie resource is registered for the dynamic interchange..
-     */
-    val isDynamicInterchange: String,
-
-    /**
-     * The registered upper bound of minimum hourly block for an Inter-Tie Resource
-     */
-    val minHourlyBlockLimit: Int,
-
-    val Flowgate: String,
-
-    val InterTieBid: String
+(override val sup: RegisteredResource,
+val direction: String,
+val energyProductType: String,
+val isDCTie: String,
+val isDynamicInterchange: String,
+val minHourlyBlockLimit: Int,
+val Flowgate: String,
+val InterTieBid: String
 )
 extends
     Element
@@ -4051,118 +3388,60 @@ extends
 
 /**
  * Model of a load that is registered to participate in the market (demand reduction)
+ * @param sup Reference to the superclass object.
+ * @param blockLoadTransferFlag Flag to indicate that the Resource is Block Load pseudo resource (&lsquo;Y&rsquo;, &lsquo; N&rsquo;)
+ * @param dynamicallyScheduledLoadResourceFlag Flag to indicate that a Load Resource is part of a DSR Load
+ * @param dynamicallyScheduledQualificationFlag Qualification status (used for DSR qualification)
+ * @param loadRegistryMSS Non-participating load registry as a MSS load
+ * @param maxBaseLoad Maximum Base Load (MW), per Participating Load Resource
+ * @param maxDeploymentTime Maximum Deployment time (seconds)
+ * @param maxLoadRedTimesPerDay Maximum Number of Daily Load Curtailments
+ * @param maxLoadReduction maximum load reduction
+ * @param maxReductionTime Maxiimum Load Reduction Time (min), per Participating Load Resource
+ * @param maxWeeklyDeployment Maximum weekly deployments
+ * @param minLoadReduction Minimum MW for a load reduction (e.g., MW rating of a discrete pump.
+ *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ * @param minLoadReductionCost minimum load reduction cost.
+ *        Single number for the load
+ * @param minLoadReductionInterval Shortest period load reduction shall be maintained before load can be restored to normal levels.
+ *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ * @param minReductionTime Minimum Load Reduction Time (min), per Participating Load Resource
+ * @param minTimeBetLoadRed Shortest time that load shall be left at normal levels before a new load reduction.
+ *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ * @param participatingLoad Participating Load flag: indicates whether the load resource is participates in load reduction actions.
+ * @param reqNoticeTime Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
+ *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ * @param resourceSubType CLR	Controllable Load
+ *        NCLR	Non-Controllable Load
+ * @param LoadReductionPriceCurve
+ * @param LoadReductionTimeCurve
+ * @param MktLoadArea
+ * @param NPLCustomLoadAggregation A Non-Participating Load Resource aggregation scheme with resource-specific Distribution Factors that are submitted with the Bid and for which the distributed Energy is settled at the relevant Distribution Location marginal prices.
  */
 case class RegisteredLoad
-(
-
-    override val sup: RegisteredResource,
-
-    /**
-     * Flag to indicate that the Resource is Block Load pseudo resource (&lsquo;Y&rsquo;, &lsquo; N&rsquo;)
-     */
-    val blockLoadTransferFlag: String,
-
-    /**
-     * Flag to indicate that a Load Resource is part of a DSR Load
-     */
-    val dynamicallyScheduledLoadResourceFlag: String,
-
-    /**
-     * Qualification status (used for DSR qualification)
-     */
-    val dynamicallyScheduledQualificationFlag: String,
-
-    /**
-     * Non-participating load registry as a MSS load
-     */
-    val loadRegistryMSS: String,
-
-    /**
-     * Maximum Base Load (MW), per Participating Load Resource
-     */
-    val maxBaseLoad: Double,
-
-    /**
-     * Maximum Deployment time (seconds)
-     */
-    val maxDeploymentTime: Double,
-
-    /**
-     * Maximum Number of Daily Load Curtailments
-     */
-    val maxLoadRedTimesPerDay: Int,
-
-    /**
-     * maximum load reduction
-     */
-    val maxLoadReduction: Double,
-
-    /**
-     * Maxiimum Load Reduction Time (min), per Participating Load Resource
-     */
-    val maxReductionTime: Double,
-
-    /**
-     * Maximum weekly deployments
-     */
-    val maxWeeklyDeployment: Int,
-
-    /**
-     * Minimum MW for a load reduction (e.g., MW rating of a discrete pump.
-     * This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
-     */
-    val minLoadReduction: Double,
-
-    /**
-     * minimum load reduction cost.
-     * Single number for the load
-     */
-    val minLoadReductionCost: Double,
-
-    /**
-     * Shortest period load reduction shall be maintained before load can be restored to normal levels.
-     * This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
-     */
-    val minLoadReductionInterval: Double,
-
-    /**
-     * Minimum Load Reduction Time (min), per Participating Load Resource
-     */
-    val minReductionTime: Double,
-
-    /**
-     * Shortest time that load shall be left at normal levels before a new load reduction.
-     * This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
-     */
-    val minTimeBetLoadRed: Double,
-
-    /**
-     * Participating Load flag: indicates whether the load resource is participates in load reduction actions.
-     */
-    val participatingLoad: String,
-
-    /**
-     * Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
-     * This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
-     */
-    val reqNoticeTime: Double,
-
-    /**
-     * CLR	Controllable Load
-     * NCLR	Non-Controllable Load
-     */
-    val resourceSubType: String,
-
-    val LoadReductionPriceCurve: List[String],
-
-    val LoadReductionTimeCurve: List[String],
-
-    val MktLoadArea: String,
-
-    /**
-     * A Non-Participating Load Resource aggregation scheme with resource-specific Distribution Factors that are submitted with the Bid and for which the distributed Energy is settled at the relevant Distribution Location marginal prices.
-     */
-    val NPLCustomLoadAggregation: String
+(override val sup: RegisteredResource,
+val blockLoadTransferFlag: String,
+val dynamicallyScheduledLoadResourceFlag: String,
+val dynamicallyScheduledQualificationFlag: String,
+val loadRegistryMSS: String,
+val maxBaseLoad: Double,
+val maxDeploymentTime: Double,
+val maxLoadRedTimesPerDay: Int,
+val maxLoadReduction: Double,
+val maxReductionTime: Double,
+val maxWeeklyDeployment: Int,
+val minLoadReduction: Double,
+val minLoadReductionCost: Double,
+val minLoadReductionInterval: Double,
+val minReductionTime: Double,
+val minTimeBetLoadRed: Double,
+val participatingLoad: String,
+val reqNoticeTime: Double,
+val resourceSubType: String,
+val LoadReductionPriceCurve: List[String],
+val LoadReductionTimeCurve: List[String],
+val MktLoadArea: String,
+val NPLCustomLoadAggregation: String
 )
 extends
     Element
@@ -4239,17 +3518,16 @@ extends
 
 /**
  * This class represents the physical characteristc of a generator regarding the regulating limit
+ * @param sup Reference to the superclass object.
+ * @param highLimit
+ * @param lowLimit
+ * @param RegisteredGenerator
  */
 case class RegulatingLimit
-(
-
-    override val sup: IdentifiedObject,
-
-    val highLimit: Double,
-
-    val lowLimit: Double,
-
-    val RegisteredGenerator: String
+(override val sup: IdentifiedObject,
+val highLimit: Double,
+val lowLimit: Double,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -4288,46 +3566,24 @@ extends
 
 /**
  * Ancillary Services that a resource is qualified to provide.
+ * @param sup Reference to the superclass object.
+ * @param certifiedCapacity Certified capacity for associated resource and market type and ancillary service type product
+ * @param endEffectiveDate Ancillary Service Qualification end date
+ * @param market market type
+ * @param qualificationFlag Status of the qualification ('Y' = Active, 'N' = Inactive)
+ * @param startEffectiveDate Ancillary Service Qualification effective from date
+ * @param typ Type of service based on ResourceAncillaryServiceType enumeration
+ * @param RegisteredResource RegisteredResources are qualified for resource ancillary service types (which include market product types as well as other types such as BlackStart) by the association to the class ResourceAncillaryServiceQualification.
  */
 case class ResourceAncillaryServiceQualification
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Certified capacity for associated resource and market type and ancillary service type product
-     */
-    val certifiedCapacity: Double,
-
-    /**
-     * Ancillary Service Qualification end date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * market type
-     */
-    val market: String,
-
-    /**
-     * Status of the qualification ('Y' = Active, 'N' = Inactive)
-     */
-    val qualificationFlag: String,
-
-    /**
-     * Ancillary Service Qualification effective from date
-     */
-    val startEffectiveDate: String,
-
-    /**
-     * Type of service based on ResourceAncillaryServiceType enumeration
-     */
-    val typ: String,
-
-    /**
-     * RegisteredResources are qualified for resource ancillary service types (which include market product types as well as other types such as BlackStart) by the association to the class ResourceAncillaryServiceQualification.
-     */
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val certifiedCapacity: Double,
+val endEffectiveDate: String,
+val market: String,
+val qualificationFlag: String,
+val startEffectiveDate: String,
+val typ: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -4375,40 +3631,27 @@ extends
 /**
  * This class model the various capacities of a resource.
  * A resource may have numbers of capacities related to operating, ancillary services, energy trade and so forth. The types are but not limited to:
+ * @param sup Reference to the superclass object.
+ * @param capacityType capacity type
+
+The types are but not limited to:
+
+Regulation Up
+Regulation Dn
+Spinning Reserve
+Non-Spinning Reserve
+FOO capacity
+ *        MOO capacity
+ * @param defaultCapacity default capacity
+ * @param maximumCapacity maximum capacity
+ * @param minimumCapacity minimum capacity
  */
 case class ResourceCapacity
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * capacity type
-    
-    The types are but not limited to:
-    
-    Regulation Up
-    Regulation Dn
-    Spinning Reserve
-    Non-Spinning Reserve
-    FOO capacity
-     * MOO capacity
-     */
-    val capacityType: String,
-
-    /**
-     * default capacity
-     */
-    val defaultCapacity: Double,
-
-    /**
-     * maximum capacity
-     */
-    val maximumCapacity: Double,
-
-    /**
-     * minimum capacity
-     */
-    val minimumCapacity: Double
+(override val sup: BasicElement,
+val capacityType: String,
+val defaultCapacity: Double,
+val maximumCapacity: Double,
+val minimumCapacity: Double
 )
 extends
     Element
@@ -4449,48 +3692,26 @@ extends
 
 /**
  * To model the Operation and Maintenance (O and M) costs of a generation resource.
+ * @param sup Reference to the superclass object.
+ * @param gasPercentAboveLowSustainedLimit Percentage of Fuel Index Price (gas) for operating above Low Sustained Limit (LSL)
+ * @param oilPercentAboveLowSustainedLimit Percentage of Fuel Oil Price (FOP) for operating above Low Sustained Limit (LSL)
+ * @param omCostColdStartup Verifiable O&amp;M Cost ($), Cold Startup
+ * @param omCostHotStartup Verifiable O&amp;M Cost ($), Hot Startup
+ * @param omCostIntermediateStartup Verifiable O&amp;M Cost ($), Intermediate Startup
+ * @param omCostLowSustainedLimit Verifiable O&amp;M Cost ($/MWh), LSL
+ * @param solidfuelPercentAboveLowSustainedLimit Percentage of Solid Fuel for operating above Low Sustained Limit (LSL)
+ * @param ResourceVerifiableCosts
  */
 case class ResourceOperationMaintenanceCost
-(
-
-    override val sup: Curve,
-
-    /**
-     * Percentage of Fuel Index Price (gas) for operating above Low Sustained Limit (LSL)
-     */
-    val gasPercentAboveLowSustainedLimit: Double,
-
-    /**
-     * Percentage of Fuel Oil Price (FOP) for operating above Low Sustained Limit (LSL)
-     */
-    val oilPercentAboveLowSustainedLimit: Double,
-
-    /**
-     * Verifiable O&amp;M Cost ($), Cold Startup
-     */
-    val omCostColdStartup: Double,
-
-    /**
-     * Verifiable O&amp;M Cost ($), Hot Startup
-     */
-    val omCostHotStartup: Double,
-
-    /**
-     * Verifiable O&amp;M Cost ($), Intermediate Startup
-     */
-    val omCostIntermediateStartup: Double,
-
-    /**
-     * Verifiable O&amp;M Cost ($/MWh), LSL
-     */
-    val omCostLowSustainedLimit: Double,
-
-    /**
-     * Percentage of Solid Fuel for operating above Low Sustained Limit (LSL)
-     */
-    val solidfuelPercentAboveLowSustainedLimit: Double,
-
-    val ResourceVerifiableCosts: String
+(override val sup: Curve,
+val gasPercentAboveLowSustainedLimit: Double,
+val oilPercentAboveLowSustainedLimit: Double,
+val omCostColdStartup: Double,
+val omCostHotStartup: Double,
+val omCostIntermediateStartup: Double,
+val omCostLowSustainedLimit: Double,
+val solidfuelPercentAboveLowSustainedLimit: Double,
+val ResourceVerifiableCosts: String
 )
 extends
     Element
@@ -4539,91 +3760,42 @@ extends
 
 /**
  * To model the startup costs of a generation resource.
+ * @param sup Reference to the superclass object.
+ * @param fuelColdStartup Verifiable Cold Start Up Fuel (MMBtu per start)
+ * @param fuelHotStartup Verifiable Hot Start Up Fuel (MMBtu per start)
+ * @param fuelIntermediateStartup Verifiable Intermediate Start Up Fuel (MMBtu per start)
+ * @param fuelLowSustainedLimit Minimum-Energy fuel, MMBtu/MWh
+ * @param gasPercentColdStartup Percentage of Fuel Index Price (gas) for cold startup
+ * @param gasPercentHotStartup Percentage of Fuel Index Price (gas) for hot startup
+ * @param gasPercentIntermediateStartup Percentage of Fuel Index Price (gas) for intermediate startup
+ * @param gasPercentLowSustainedLimit Percentage of FIP (gas) for operating at LSL
+ * @param oilPercentColdStartup Percentage of Fuel Oil Price (FOP) for cold startup
+ * @param oilPercentHotStartup Percentage of Fuel Oil Price (FOP) for hot startup
+ * @param oilPercentIntermediateStartup Percentage of Fuel Oil Price (FOP) for intermediate startup
+ * @param oilPercentLowSustainedLimit Percentage of FOP (oil) for operating at LSL
+ * @param solidfuelPercentColdStartup Percentage of Solid Fuel for cold startup
+ * @param solidfuelPercentHotStartup Percentage of Solid Fuel for hot startup
+ * @param solidfuelPercentIntermediateStartup Percentage of Solid Fuel for intermedite startup
+ * @param solidfuelPercentLowSustainedLimit Percentage of Solid Fuel for operating at LSL
  */
 case class ResourceStartupCost
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Verifiable Cold Start Up Fuel (MMBtu per start)
-     */
-    val fuelColdStartup: Double,
-
-    /**
-     * Verifiable Hot Start Up Fuel (MMBtu per start)
-     */
-    val fuelHotStartup: Double,
-
-    /**
-     * Verifiable Intermediate Start Up Fuel (MMBtu per start)
-     */
-    val fuelIntermediateStartup: Double,
-
-    /**
-     * Minimum-Energy fuel, MMBtu/MWh
-     */
-    val fuelLowSustainedLimit: Double,
-
-    /**
-     * Percentage of Fuel Index Price (gas) for cold startup
-     */
-    val gasPercentColdStartup: Double,
-
-    /**
-     * Percentage of Fuel Index Price (gas) for hot startup
-     */
-    val gasPercentHotStartup: Double,
-
-    /**
-     * Percentage of Fuel Index Price (gas) for intermediate startup
-     */
-    val gasPercentIntermediateStartup: Double,
-
-    /**
-     * Percentage of FIP (gas) for operating at LSL
-     */
-    val gasPercentLowSustainedLimit: Double,
-
-    /**
-     * Percentage of Fuel Oil Price (FOP) for cold startup
-     */
-    val oilPercentColdStartup: Double,
-
-    /**
-     * Percentage of Fuel Oil Price (FOP) for hot startup
-     */
-    val oilPercentHotStartup: Double,
-
-    /**
-     * Percentage of Fuel Oil Price (FOP) for intermediate startup
-     */
-    val oilPercentIntermediateStartup: Double,
-
-    /**
-     * Percentage of FOP (oil) for operating at LSL
-     */
-    val oilPercentLowSustainedLimit: Double,
-
-    /**
-     * Percentage of Solid Fuel for cold startup
-     */
-    val solidfuelPercentColdStartup: Double,
-
-    /**
-     * Percentage of Solid Fuel for hot startup
-     */
-    val solidfuelPercentHotStartup: Double,
-
-    /**
-     * Percentage of Solid Fuel for intermedite startup
-     */
-    val solidfuelPercentIntermediateStartup: Double,
-
-    /**
-     * Percentage of Solid Fuel for operating at LSL
-     */
-    val solidfuelPercentLowSustainedLimit: Double
+(override val sup: BasicElement,
+val fuelColdStartup: Double,
+val fuelHotStartup: Double,
+val fuelIntermediateStartup: Double,
+val fuelLowSustainedLimit: Double,
+val gasPercentColdStartup: Double,
+val gasPercentHotStartup: Double,
+val gasPercentIntermediateStartup: Double,
+val gasPercentLowSustainedLimit: Double,
+val oilPercentColdStartup: Double,
+val oilPercentHotStartup: Double,
+val oilPercentIntermediateStartup: Double,
+val oilPercentLowSustainedLimit: Double,
+val solidfuelPercentColdStartup: Double,
+val solidfuelPercentHotStartup: Double,
+val solidfuelPercentIntermediateStartup: Double,
+val solidfuelPercentLowSustainedLimit: Double
 )
 extends
     Element
@@ -4688,17 +3860,16 @@ extends
 
 /**
  * This class is defined to describe the verifiable costs associated with a generation resource.
+ * @param sup Reference to the superclass object.
+ * @param MktHeatRateCurve
+ * @param RegisteredResource
+ * @param ResourceOperationMaintenanceCost
  */
 case class ResourceVerifiableCosts
-(
-
-    override val sup: BasicElement,
-
-    val MktHeatRateCurve: String,
-
-    val RegisteredResource: String,
-
-    val ResourceOperationMaintenanceCost: String
+(override val sup: BasicElement,
+val MktHeatRateCurve: String,
+val RegisteredResource: String,
+val ResourceOperationMaintenanceCost: String
 )
 extends
     Element
@@ -4738,20 +3909,16 @@ extends
 /**
  * Market participants could be represented by Scheduling Coordinators (SCs) that are registered with the RTO/ISO.
  * One participant could register multiple SCs with the RTO/ISO. Many market participants can do business with the RTO/ISO using a single SC. One SC could schedule multiple generators. A load scheduling point could be used by multiple SCs. Each SC could schedule load at multiple scheduling points. An inter-tie scheduling point can be used by multiple SCs. Each SC can schedule interchange at multiple inter-tie scheduling points.
+ * @param sup Reference to the superclass object.
+ * @param scid This is the short name or Scheduling Coordinator ID field.
+ * @param LoadRatio
+ * @param MktOrgansation
  */
 case class SchedulingCoordinator
-(
-
-    override val sup: MktOrganisation,
-
-    /**
-     * This is the short name or Scheduling Coordinator ID field.
-     */
-    val scid: String,
-
-    val LoadRatio: String,
-
-    val MktOrgansation: String
+(override val sup: MktOrganisation,
+val scid: String,
+val LoadRatio: String,
+val MktOrgansation: String
 )
 extends
     Element
@@ -4790,31 +3957,18 @@ extends
 
 /**
  * Describing users of a Scheduling Coordinator
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate Login ID Expiration Date
+ * @param loginID Login ID
+ * @param loginRole Assigned roles (these are roles with either Read or Read/Write privileges on different Market Systems)
+ * @param startEffectiveDate Login ID Effective Date
  */
 case class SchedulingCoordinatorUser
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Login ID Expiration Date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Login ID
-     */
-    val loginID: String,
-
-    /**
-     * Assigned roles (these are roles with either Read or Read/Write privileges on different Market Systems)
-     */
-    val loginRole: String,
-
-    /**
-     * Login ID Effective Date
-     */
-    val startEffectiveDate: String
+(override val sup: BasicElement,
+val endEffectiveDate: String,
+val loginID: String,
+val loginRole: String,
+val startEffectiveDate: String
 )
 extends
     Element
@@ -4855,23 +4009,16 @@ extends
 
 /**
  * Connection to other organizations at the boundary of the ISO/RTO.
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate End effective date.
+ * @param startEffectiveDate Start effective date.
+ * @param Flowgate
  */
 case class SchedulingPoint
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * End effective date.
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Start effective date.
-     */
-    val startEffectiveDate: String,
-
-    val Flowgate: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val startEffectiveDate: String,
+val Flowgate: String
 )
 extends
     Element
@@ -4911,13 +4058,12 @@ extends
 /**
  * The energy consumption of a generating resource to complete a start-up from the StartUpEnergyCurve.
  * Definition of the StartUpEnergyCurve includes, xvalue as the cooling time and y1value as the MW value.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class StartUpEnergyCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -4952,13 +4098,12 @@ extends
 
 /**
  * The fuel consumption of a Generating Resource to complete a Start-Up.(x=cooling time) Form Startup Fuel Curve. xAxisData -&gt; cooling time, y1AxisData -&gt; MBtu
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class StartUpFuelCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -4993,79 +4138,42 @@ extends
 
 /**
  * An area defined for the purpose of tracking interchange with surrounding areas via tie points; may or may not serve as a control area.
+ * @param sup Reference to the superclass object.
+ * @param areaShortName Market area short name, which is the regulation zone.
+ *        It references AGC regulation zone name.
+ * @param constantCoefficient Loss estimate constant coefficient
+ * @param embeddedControlArea Used in conjunction with the InternalCA flag.
+ *        If the InternalCA flag is YES, this flag does not apply. If the InternaCA flag is NO, this flag provides an indication of AdjacentCA (NO) or Embedded CA (YES).
+ * @param endEffectiveDate end effective date
+ * @param internalCA A Yes/No indication that this control area is contained internal to the system.
+ * @param linearCoefficient Loss estimate linear coefficient
+ * @param localCA Indication that this control area is the local control area.
+ * @param maxSelfSchedMW Maximum amount of self schedule MWs allowed for an embedded control area.
+ * @param minSelfSchedMW Minimum amount of self schedule MW allowed for an embedded control area.
+ * @param quadraticCoefficient Loss estimate quadratic coefficient
+ * @param startEffectiveDate start effective date
+ * @param AdjacentCASet
+ * @param AreaReserveSpecification
+ * @param HostControlArea The interchange area  may operate as a control area
+ * @param RTO
  */
 case class SubControlArea
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * Market area short name, which is the regulation zone.
-     * It references AGC regulation zone name.
-     */
-    val areaShortName: String,
-
-    /**
-     * Loss estimate constant coefficient
-     */
-    val constantCoefficient: Double,
-
-    /**
-     * Used in conjunction with the InternalCA flag.
-     * If the InternalCA flag is YES, this flag does not apply. If the InternaCA flag is NO, this flag provides an indication of AdjacentCA (NO) or Embedded CA (YES).
-     */
-    val embeddedControlArea: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * A Yes/No indication that this control area is contained internal to the system.
-     */
-    val internalCA: String,
-
-    /**
-     * Loss estimate linear coefficient
-     */
-    val linearCoefficient: Double,
-
-    /**
-     * Indication that this control area is the local control area.
-     */
-    val localCA: String,
-
-    /**
-     * Maximum amount of self schedule MWs allowed for an embedded control area.
-     */
-    val maxSelfSchedMW: Double,
-
-    /**
-     * Minimum amount of self schedule MW allowed for an embedded control area.
-     */
-    val minSelfSchedMW: Double,
-
-    /**
-     * Loss estimate quadratic coefficient
-     */
-    val quadraticCoefficient: Double,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val AdjacentCASet: String,
-
-    val AreaReserveSpecification: String,
-
-    /**
-     * The interchange area  may operate as a control area
-     */
-    val HostControlArea: String,
-
-    val RTO: String
+(override val sup: PowerSystemResource,
+val areaShortName: String,
+val constantCoefficient: Double,
+val embeddedControlArea: String,
+val endEffectiveDate: String,
+val internalCA: String,
+val linearCoefficient: Double,
+val localCA: String,
+val maxSelfSchedMW: Double,
+val minSelfSchedMW: Double,
+val quadraticCoefficient: Double,
+val startEffectiveDate: String,
+val AdjacentCASet: String,
+val AreaReserveSpecification: String,
+val HostControlArea: String,
+val RTO: String
 )
 extends
     Element
@@ -5129,21 +4237,17 @@ extends
 /**
  * List of resources that can be substituted for within the bounds of a Contract definition.
  * This class has a precedence and a resource.
+ * @param sup Reference to the superclass object.
+ * @param precedence An indicator of the order a resource should be substituted.
+ *        The lower the number the higher the precedence.
+ * @param RegisteredResource
+ * @param TransmissionContractRight
  */
 case class SubstitutionResourceList
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * An indicator of the order a resource should be substituted.
-     * The lower the number the higher the precedence.
-     */
-    val precedence: Int,
-
-    val RegisteredResource: String,
-
-    val TransmissionContractRight: String
+(override val sup: BasicElement,
+val precedence: Int,
+val RegisteredResource: String,
+val TransmissionContractRight: String
 )
 extends
     Element
@@ -5183,21 +4287,14 @@ extends
 /**
  * Transmission Access Charge Area.
  * Charges assessed, on behalf of the Participating Transmission Owner, to parties who require access to the controlled grid.
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate end effective date
+ * @param startEffectiveDate start effective date
  */
 case class TACArea
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val startEffectiveDate: String
 )
 extends
     Element
@@ -5235,25 +4332,18 @@ extends
 /**
  * Allows chaining of TransmissionContractRights.
  * Many individual contract rights can be included in the definition of a TransmissionRightChain. A TransmissionRightChain is also defined as a TransmissionContractRight itself.
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate end effective date
+ * @param startEffectiveDate start effective date
+ * @param Chain_ContractRight
+ * @param RTO
  */
 case class TransmissionRightChain
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val Chain_ContractRight: String,
-
-    val RTO: String
+(override val sup: IdentifiedObject,
+val endEffectiveDate: String,
+val startEffectiveDate: String,
+val Chain_ContractRight: String,
+val RTO: String
 )
 extends
     Element
@@ -5294,13 +4384,12 @@ extends
 
 /**
  * Counter party in a wheeling transaction.
+ * @param sup Reference to the superclass object.
+ * @param RegisteredInterTie
  */
 case class WheelingCounterParty
-(
-
-    override val sup: IdentifiedObject,
-
-    val RegisteredInterTie: List[String]
+(override val sup: IdentifiedObject,
+val RegisteredInterTie: List[String]
 )
 extends
     Element

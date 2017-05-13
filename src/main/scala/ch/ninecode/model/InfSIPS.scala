@@ -11,41 +11,22 @@ import ch.ninecode.cim.Context
 
 /**
  * Categories of analog to digital (or logical result) comparison.
+ * @param sup Reference to the superclass object.
+ * @param eq Equal (like) comparison operation.
+ * @param ge Greater or equal comparison operation.
+ * @param gt Greater than comparison operation.
+ * @param le Less or equal comparison operation.
+ * @param lt Less than comparison operation.
+ * @param ne Not equal (unlike) comparison operation.
  */
 case class AnalogToDigitalLogicKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Equal (like) comparison operation.
-     */
-    val eq: String,
-
-    /**
-     * Greater or equal comparison operation.
-     */
-    val ge: String,
-
-    /**
-     * Greater than comparison operation.
-     */
-    val gt: String,
-
-    /**
-     * Less or equal comparison operation.
-     */
-    val le: String,
-
-    /**
-     * Less than comparison operation.
-     */
-    val lt: String,
-
-    /**
-     * Not equal (unlike) comparison operation.
-     */
-    val ne: String
+(override val sup: BasicElement,
+val eq: String,
+val ge: String,
+val gt: String,
+val le: String,
+val lt: String,
+val ne: String
 )
 extends
     Element
@@ -90,31 +71,18 @@ extends
 
 /**
  * Categorisation of calculation operation that can be done to Measurement.
+ * @param sup Reference to the superclass object.
+ * @param div Division operation the input values (operands).
+ * @param mul Multiplication operation the input values (operands).
+ * @param sqrt Square root operator - only one input value (operands).
+ * @param sum Summation operation over the input values (operands).
  */
 case class CalculationKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Division operation the input values (operands).
-     */
-    val div: String,
-
-    /**
-     * Multiplication operation the input values (operands).
-     */
-    val mul: String,
-
-    /**
-     * Square root operator - only one input value (operands).
-     */
-    val sqrt: String,
-
-    /**
-     * Summation operation over the input values (operands).
-     */
-    val sum: String
+(override val sup: BasicElement,
+val div: String,
+val mul: String,
+val sqrt: String,
+val sum: String
 )
 extends
     Element
@@ -155,16 +123,12 @@ extends
 
 /**
  * Logical gate than support logical operation based on the input.
+ * @param sup Reference to the superclass object.
+ * @param kind The logical operation of the gate.
  */
 case class Gate
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The logical operation of the gate.
-     */
-    val kind: String
+(override val sup: IdentifiedObject,
+val kind: String
 )
 extends
     Element
@@ -200,44 +164,25 @@ extends
 /**
  * Input pin for a logical gate.
  * The condition described in the input pin will give a logical true or false. Result from measurement and calculation are converted to a true or false.
+ * @param sup Reference to the superclass object.
+ * @param aDLogicKind The compare operation.
+ * @param absoluteValue If true, use the absolute value for compare..
+ * @param duration The duration the compare condition need to be present before given a true.
+ *        Default is 0 seconds.
+ * @param negate Invert/negate the result of the compare.
+ * @param thresholdPercentage The threshold percentage that should be used for compare with the percentage change between input value and threshold value.
+ * @param thresholdValue The threshold value that should be used for compare with the input value.
+ * @param Gate
  */
 case class GateInputPin
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The compare operation.
-     */
-    val aDLogicKind: String,
-
-    /**
-     * If true, use the absolute value for compare..
-     */
-    val absoluteValue: Boolean,
-
-    /**
-     * The duration the compare condition need to be present before given a true.
-     * Default is 0 seconds.
-     */
-    val duration: Double,
-
-    /**
-     * Invert/negate the result of the compare.
-     */
-    val negate: Boolean,
-
-    /**
-     * The threshold percentage that should be used for compare with the percentage change between input value and threshold value.
-     */
-    val thresholdPercentage: Double,
-
-    /**
-     * The threshold value that should be used for compare with the input value.
-     */
-    val thresholdValue: Double,
-
-    val Gate: String
+(override val sup: IdentifiedObject,
+val aDLogicKind: String,
+val absoluteValue: Boolean,
+val duration: Double,
+val negate: Boolean,
+val thresholdPercentage: Double,
+val thresholdValue: Double,
+val Gate: String
 )
 extends
     Element
@@ -284,53 +229,31 @@ extends
 
 /**
  * Define the different logical operations.
+ * @param sup Reference to the superclass object.
+ * @param and A logical AND operation.
+ *        True when all input are true.
+ * @param nand A logical NAND operation.
+ *        False when all input are true.
+ * @param nor A logical NOR operation.
+ *        False when one or more input are true.
+ * @param not A logical NOT operation.
+ *        Only one input and true input will give false out and false in will give true out. An inverter.
+ * @param or A logical OR operation.
+ *        True when one or more input are true.
+ * @param xnor A logical XNOR operation.
+ *        The function is the inverse of the exclusive OR (XOR) gate. All input false or true will give true. Otherwise false.
+ * @param xor A logical XOR operation.
+ *        All input false or true will give false. Otherwise true.
  */
 case class GateLogicKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * A logical AND operation.
-     * True when all input are true.
-     */
-    val and: String,
-
-    /**
-     * A logical NAND operation.
-     * False when all input are true.
-     */
-    val nand: String,
-
-    /**
-     * A logical NOR operation.
-     * False when one or more input are true.
-     */
-    val nor: String,
-
-    /**
-     * A logical NOT operation.
-     * Only one input and true input will give false out and false in will give true out. An inverter.
-     */
-    val not: String,
-
-    /**
-     * A logical OR operation.
-     * True when one or more input are true.
-     */
-    val or: String,
-
-    /**
-     * A logical XNOR operation.
-     * The function is the inverse of the exclusive OR (XOR) gate. All input false or true will give true. Otherwise false.
-     */
-    val xnor: String,
-
-    /**
-     * A logical XOR operation.
-     * All input false or true will give false. Otherwise true.
-     */
-    val xor: String
+(override val sup: BasicElement,
+val and: String,
+val nand: String,
+val nor: String,
+val not: String,
+val or: String,
+val xnor: String,
+val xor: String
 )
 extends
     Element
@@ -377,16 +300,12 @@ extends
 
 /**
  * Result of a calculation of one or more measurement.
+ * @param sup Reference to the superclass object.
+ * @param kind Calculation operation executed on the operants.
  */
 case class MeasurementCalculator
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Calculation operation executed on the operants.
-     */
-    val kind: String
+(override val sup: IdentifiedObject,
+val kind: String
 )
 extends
     Element
@@ -422,26 +341,19 @@ extends
 /**
  * Input to measurement calculation.
  * Support Analog, Discrete and Accumulator.
+ * @param sup Reference to the superclass object.
+ * @param absoluteValue If true, use the absolute value for the calculation.
+ * @param order Positive number that defines the order of the operant in the calculation. 0 = default.
+ *        The order is not relevant (e.g. summation).
+ * @param Measurement
+ * @param MeasurementCalculator
  */
 case class MeasurementCalculatorInput
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * If true, use the absolute value for the calculation.
-     */
-    val absoluteValue: Boolean,
-
-    /**
-     * Positive number that defines the order of the operant in the calculation. 0 = default.
-     * The order is not relevant (e.g. summation).
-     */
-    val order: Int,
-
-    val Measurement: String,
-
-    val MeasurementCalculator: String
+(override val sup: IdentifiedObject,
+val absoluteValue: Boolean,
+val order: Int,
+val Measurement: String,
+val MeasurementCalculator: String
 )
 extends
     Element
@@ -482,18 +394,14 @@ extends
 
 /**
  * Value associated with branch group is used as compare.
+ * @param sup Reference to the superclass object.
+ * @param kind The compare operation done on the branch group.
+ * @param BranchGroup
  */
 case class PinBranchGroup
-(
-
-    override val sup: GateInputPin,
-
-    /**
-     * The compare operation done on the branch group.
-     */
-    val kind: String,
-
-    val BranchGroup: String
+(override val sup: GateInputPin,
+val kind: String,
+val BranchGroup: String
 )
 extends
     Element
@@ -530,21 +438,14 @@ extends
 
 /**
  * Categorisation of type of compare done on a branch group.
+ * @param sup Reference to the superclass object.
+ * @param activePower Active power in the branch group.
+ * @param reactivePower reactive power in the branch group.
  */
 case class PinBranchGroupKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Active power in the branch group.
-     */
-    val activePower: String,
-
-    /**
-     * reactive power in the branch group.
-     */
-    val reactivePower: String
+(override val sup: BasicElement,
+val activePower: String,
+val reactivePower: String
 )
 extends
     Element
@@ -581,18 +482,14 @@ extends
 
 /**
  * Value associated with Equipment is used as compare.
+ * @param sup Reference to the superclass object.
+ * @param kind The compare operation done on the equipment.
+ * @param Equipment
  */
 case class PinEquipment
-(
-
-    override val sup: GateInputPin,
-
-    /**
-     * The compare operation done on the equipment.
-     */
-    val kind: String,
-
-    val Equipment: String
+(override val sup: GateInputPin,
+val kind: String,
+val Equipment: String
 )
 extends
     Element
@@ -629,46 +526,24 @@ extends
 
 /**
  * Categorisation of type of compare done on Equipment.
+ * @param sup Reference to the superclass object.
+ * @param activePowerLimit Compare load flow result against the active limit for active power for the given equipment.
+ * @param apparentPowerLimit Compare load flow result against the active limit for apparent power for the given equipment.
+ * @param connected Check if all terminal on the equipment is connected.
+ * @param currentLimit Compare load flow result against the active current limit for the equipment.
+ * @param inService Check if equipment is in service, True if in service otherwise false.
+ * @param ratedCurrent Compare load flow result against rated current on the equipment (switch).
+ * @param voltageLimit Compare load flow result against the active voltage limit for the equipment.
  */
 case class PinEquipmentKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Compare load flow result against the active limit for active power for the given equipment.
-     */
-    val activePowerLimit: String,
-
-    /**
-     * Compare load flow result against the active limit for apparent power for the given equipment.
-     */
-    val apparentPowerLimit: String,
-
-    /**
-     * Check if all terminal on the equipment is connected.
-     */
-    val connected: String,
-
-    /**
-     * Compare load flow result against the active current limit for the equipment.
-     */
-    val currentLimit: String,
-
-    /**
-     * Check if equipment is in service, True if in service otherwise false.
-     */
-    val inService: String,
-
-    /**
-     * Compare load flow result against rated current on the equipment (switch).
-     */
-    val ratedCurrent: String,
-
-    /**
-     * Compare load flow result against the active voltage limit for the equipment.
-     */
-    val voltageLimit: String
+(override val sup: BasicElement,
+val activePowerLimit: String,
+val apparentPowerLimit: String,
+val connected: String,
+val currentLimit: String,
+val inService: String,
+val ratedCurrent: String,
+val voltageLimit: String
 )
 extends
     Element
@@ -715,13 +590,12 @@ extends
 
 /**
  * An output from one gate represent an input to another gate.
+ * @param sup Reference to the superclass object.
+ * @param GateOutput
  */
 case class PinGate
-(
-
-    override val sup: GateInputPin,
-
-    val GateOutput: String
+(override val sup: GateInputPin,
+val GateOutput: String
 )
 extends
     Element
@@ -756,15 +630,14 @@ extends
 
 /**
  * Gate input pin that is associated with a Measurement or a calculation of Measurement.
+ * @param sup Reference to the superclass object.
+ * @param Measurement
+ * @param MeasurementCalculator
  */
 case class PinMeasurement
-(
-
-    override val sup: GateInputPin,
-
-    val Measurement: String,
-
-    val MeasurementCalculator: String
+(override val sup: GateInputPin,
+val Measurement: String,
+val MeasurementCalculator: String
 )
 extends
     Element
@@ -801,18 +674,14 @@ extends
 
 /**
  * Value associated with Terminal is used as compare.
+ * @param sup Reference to the superclass object.
+ * @param kind The compare operation done on the terminal.
+ * @param Terminal
  */
 case class PinTerminal
-(
-
-    override val sup: GateInputPin,
-
-    /**
-     * The compare operation done on the terminal.
-     */
-    val kind: String,
-
-    val Terminal: String
+(override val sup: GateInputPin,
+val kind: String,
+val Terminal: String
 )
 extends
     Element
@@ -849,31 +718,18 @@ extends
 
 /**
  * Categorisation of type of compare done on Terminal.
+ * @param sup Reference to the superclass object.
+ * @param activePower Active Power on the Terminal.
+ * @param apparentPower Apparent Power on the Terminal.
+ * @param reactivePower Reactive Power on the Terminal.
+ * @param voltage Voltage on the Terminal.
  */
 case class PinTerminalKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Active Power on the Terminal.
-     */
-    val activePower: String,
-
-    /**
-     * Apparent Power on the Terminal.
-     */
-    val apparentPower: String,
-
-    /**
-     * Reactive Power on the Terminal.
-     */
-    val reactivePower: String,
-
-    /**
-     * Voltage on the Terminal.
-     */
-    val voltage: String
+(override val sup: BasicElement,
+val activePower: String,
+val apparentPower: String,
+val reactivePower: String,
+val voltage: String
 )
 extends
     Element
@@ -914,30 +770,23 @@ extends
 
 /**
  * A protective action for supporting the integrity of the power system.
+ * @param sup Reference to the superclass object.
+ * @param enabled The status of the class set by operation or by signal.
+ *        Optional field that will override other status fields.
+ * @param normalEnabled The default/normal value used when other active signal/values are missing.
+ * @param GateComCondition
+ * @param GateEnabledCondition
+ * @param ProtectionEquipment
+ * @param ProtectiveActionCollection
  */
 case class ProtectiveAction
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The status of the class set by operation or by signal.
-     * Optional field that will override other status fields.
-     */
-    val enabled: Boolean,
-
-    /**
-     * The default/normal value used when other active signal/values are missing.
-     */
-    val normalEnabled: Boolean,
-
-    val GateComCondition: String,
-
-    val GateEnabledCondition: String,
-
-    val ProtectionEquipment: String,
-
-    val ProtectiveActionCollection: String
+(override val sup: IdentifiedObject,
+val enabled: Boolean,
+val normalEnabled: Boolean,
+val GateComCondition: String,
+val GateEnabledCondition: String,
+val ProtectionEquipment: String,
+val ProtectiveActionCollection: String
 )
 extends
     Element
@@ -983,44 +832,28 @@ extends
 /**
  * Protective actions on non-switching equipment.
  * The operating condition is adjusted.
+ * @param sup Reference to the superclass object.
+ * @param byPercentage The adjustment is given in percent of the active value.
+ * @param byValue The adjustment is given in value of the active value.
+ * @param kind Defines the kind of adjustment that should be done.
+ *        With this value the correct attribute containing the value needs to be used.
+ * @param reduce If true, the adjusted value is an reduction.
+ *        Other wise it is an increase in the value.
+ * @param setValue The adjustment is given by a new active value.
+ * @param ConductingEquipment
+ * @param DCConductingEquipment
+ * @param Measurement
  */
 case class ProtectiveActionAdjustment
-(
-
-    override val sup: ProtectiveAction,
-
-    /**
-     * The adjustment is given in percent of the active value.
-     */
-    val byPercentage: Double,
-
-    /**
-     * The adjustment is given in value of the active value.
-     */
-    val byValue: Double,
-
-    /**
-     * Defines the kind of adjustment that should be done.
-     * With this value the correct attribute containing the value needs to be used.
-     */
-    val kind: String,
-
-    /**
-     * If true, the adjusted value is an reduction.
-     * Other wise it is an increase in the value.
-     */
-    val reduce: Boolean,
-
-    /**
-     * The adjustment is given by a new active value.
-     */
-    val setValue: Double,
-
-    val ConductingEquipment: String,
-
-    val DCConductingEquipment: String,
-
-    val Measurement: String
+(override val sup: ProtectiveAction,
+val byPercentage: Double,
+val byValue: Double,
+val kind: String,
+val reduce: Boolean,
+val setValue: Double,
+val ConductingEquipment: String,
+val DCConductingEquipment: String,
+val Measurement: String
 )
 extends
     Element
@@ -1069,31 +902,18 @@ extends
 
 /**
  * Categorisation of different protective action adjustments that can be performed on equipment.
+ * @param sup Reference to the superclass object.
+ * @param byPercentage The adjustment is in percentage of the active value.
+ * @param byValue The adjustment is in given by a value that defined the changes that will be done to the active value.
+ * @param measurement The equipment will operating on a value given by a measurement.
+ * @param setValue The equipment will operate on the new value.
  */
 case class ProtectiveActionAdjustmentKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The adjustment is in percentage of the active value.
-     */
-    val byPercentage: String,
-
-    /**
-     * The adjustment is in given by a value that defined the changes that will be done to the active value.
-     */
-    val byValue: String,
-
-    /**
-     * The equipment will operating on a value given by a measurement.
-     */
-    val measurement: String,
-
-    /**
-     * The equipment will operate on the new value.
-     */
-    val setValue: String
+(override val sup: BasicElement,
+val byPercentage: String,
+val byValue: String,
+val measurement: String,
+val setValue: String
 )
 extends
     Element
@@ -1134,11 +954,10 @@ extends
 
 /**
  * A collection of protective actions to protect the integrity of the power system.
+ * @param sup Reference to the superclass object.
  */
 case class ProtectiveActionCollection
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1171,18 +990,14 @@ extends
 
 /**
  * Protective action to put an Equipment in-service/out-of-service.
+ * @param sup Reference to the superclass object.
+ * @param inService If true the equipment is put in-service, otherwise out-of-service.
+ * @param Equipment
  */
 case class ProtectiveActionEquipment
-(
-
-    override val sup: ProtectiveAction,
-
-    /**
-     * If true the equipment is put in-service, otherwise out-of-service.
-     */
-    val inService: Boolean,
-
-    val Equipment: String
+(override val sup: ProtectiveAction,
+val inService: Boolean,
+val Equipment: String
 )
 extends
     Element
@@ -1219,24 +1034,17 @@ extends
 
 /**
  * Protective action to change regulation to Equipment.
+ * @param sup Reference to the superclass object.
+ * @param isRegulating If true the regulator is put in-service, otherwise out-of-service (no regulation).
+ * @param targetValue The target value specified the new case input for the regulator.
+ *        The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.
+ * @param RegulatingControl
  */
 case class ProtectiveActionRegulation
-(
-
-    override val sup: ProtectiveAction,
-
-    /**
-     * If true the regulator is put in-service, otherwise out-of-service (no regulation).
-     */
-    val isRegulating: Boolean,
-
-    /**
-     * The target value specified the new case input for the regulator.
-     * The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.
-     */
-    val targetValue: Double,
-
-    val RegulatingControl: String
+(override val sup: ProtectiveAction,
+val isRegulating: Boolean,
+val targetValue: Double,
+val RegulatingControl: String
 )
 extends
     Element
@@ -1275,29 +1083,19 @@ extends
 
 /**
  * Remedial Action Scheme (RAS), Special Protection Schemes (SPS), System Protection Schemes (SPS) or System Integrity Protection Schemes (SIPS).
+ * @param sup Reference to the superclass object.
+ * @param armed The status of the class set by operation or by signal.
+ *        Optional field that will override other status fields.
+ * @param kind Kind of Remedial Action Scheme (RAS)
+ * @param normalArmed The default/normal value used when other active signal/values are missing.
+ * @param GateArmed
  */
 case class RemedialActionScheme
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * The status of the class set by operation or by signal.
-     * Optional field that will override other status fields.
-     */
-    val armed: Boolean,
-
-    /**
-     * Kind of Remedial Action Scheme (RAS)
-     */
-    val kind: String,
-
-    /**
-     * The default/normal value used when other active signal/values are missing.
-     */
-    val normalArmed: Boolean,
-
-    val GateArmed: String
+(override val sup: PowerSystemResource,
+val armed: Boolean,
+val kind: String,
+val normalArmed: Boolean,
+val GateArmed: String
 )
 extends
     Element
@@ -1338,21 +1136,14 @@ extends
 
 /**
  * Classification of Remedial Action Scheme.
+ * @param sup Reference to the superclass object.
+ * @param rAP Remedial Action Plan (RAP)
+ * @param rAS Remedial Action Scheme (RAS).
  */
 case class RemedialActionSchemeKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Remedial Action Plan (RAP)
-     */
-    val rAP: String,
-
-    /**
-     * Remedial Action Scheme (RAS).
-     */
-    val rAS: String
+(override val sup: BasicElement,
+val rAP: String,
+val rAS: String
 )
 extends
     Element
@@ -1389,19 +1180,15 @@ extends
 
 /**
  * Stage of a remedial action scheme.
+ * @param sup Reference to the superclass object.
+ * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+ *        A stage with higher priority needs be activated before a lower stage can be activated.
+ * @param RemedialActionScheme
  */
 case class Stage
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
-     * A stage with higher priority needs be activated before a lower stage can be activated.
-     */
-    val priority: Int,
-
-    val RemedialActionScheme: String
+(override val sup: IdentifiedObject,
+val priority: Int,
+val RemedialActionScheme: String
 )
 extends
     Element
@@ -1438,38 +1225,28 @@ extends
 
 /**
  * Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
+ * @param sup Reference to the superclass object.
+ * @param armed The status of the class set by operation or by signal.
+ *        Optional field that will override other status fields.
+ * @param normalArmed The default/normal value used when other active signal/values are missing.
+ * @param priority Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+ *        A trigger with the highest priority will trigger first.
+ * @param GateArmed
+ * @param GateComCondition
+ * @param GateTrigger
+ * @param ProtectiveActionCollection
+ * @param Stage
  */
 case class StageTrigger
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The status of the class set by operation or by signal.
-     * Optional field that will override other status fields.
-     */
-    val armed: Boolean,
-
-    /**
-     * The default/normal value used when other active signal/values are missing.
-     */
-    val normalArmed: Boolean,
-
-    /**
-     * Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
-     * A trigger with the highest priority will trigger first.
-     */
-    val priority: Int,
-
-    val GateArmed: String,
-
-    val GateComCondition: String,
-
-    val GateTrigger: String,
-
-    val ProtectiveActionCollection: String,
-
-    val Stage: String
+(override val sup: IdentifiedObject,
+val armed: Boolean,
+val normalArmed: Boolean,
+val priority: Int,
+val GateArmed: String,
+val GateComCondition: String,
+val GateTrigger: String,
+val ProtectiveActionCollection: String,
+val Stage: String
 )
 extends
     Element
@@ -1518,15 +1295,14 @@ extends
 
 /**
  * A conditions that can trigger remedial actions.
+ * @param sup Reference to the superclass object.
+ * @param GateTrigger
+ * @param RemedialActionScheme
  */
 case class TriggerCondition
-(
-
-    override val sup: IdentifiedObject,
-
-    val GateTrigger: String,
-
-    val RemedialActionScheme: String
+(override val sup: IdentifiedObject,
+val GateTrigger: String,
+val RemedialActionScheme: String
 )
 extends
     Element

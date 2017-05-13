@@ -16,31 +16,18 @@ import ch.ninecode.cim.Context
 <ol>
 	<li>Asynchronous machine parameters such as <b>Xl, Xs</b> etc. are actually used as inductances (L) in the model, but are commonly referred to as reactances since, at nominal frequency, the per unit values are the same.
  * However, some references use the symbol L instead of X. </li>
+ * @param sup Reference to the superclass object.
+ * @param AsynchronousMachine Asynchronous machine to which this asynchronous machine dynamics model applies.
+ * @param MechanicalLoadDynamics Mechanical load model associated with this asynchronous machine model.
+ * @param TurbineGovernorDynamics Turbine-governor model associated with this asynchronous machine model.
+ * @param WindTurbineType1or2Dynamics Wind generator type 1 or 2 model associated with this asynchronous machine model.
  */
 case class AsynchronousMachineDynamics
-(
-
-    override val sup: RotatingMachineDynamics,
-
-    /**
-     * Asynchronous machine to which this asynchronous machine dynamics model applies.
-     */
-    val AsynchronousMachine: String,
-
-    /**
-     * Mechanical load model associated with this asynchronous machine model.
-     */
-    val MechanicalLoadDynamics: String,
-
-    /**
-     * Turbine-governor model associated with this asynchronous machine model.
-     */
-    val TurbineGovernorDynamics: String,
-
-    /**
-     * Wind generator type 1 or 2 model associated with this asynchronous machine model.
-     */
-    val WindTurbineType1or2Dynamics: String
+(override val sup: RotatingMachineDynamics,
+val AsynchronousMachine: String,
+val MechanicalLoadDynamics: String,
+val TurbineGovernorDynamics: String,
+val WindTurbineType1or2Dynamics: String
 )
 extends
     Element
@@ -95,36 +82,20 @@ xp = RotatingMachineDynamics.statorLeakageReactance + xm * xlr1 / (xm + xlr1)
 xpp = RotatingMachineDynamics.statorLeakageReactance + xm * xlr1* xlr2 / (xm * xlr1 + xm * xlr2 + xlr1 * xlr2)
 tpo = (xm + xlr1) / (2*pi*nominal frequency * rr1)
  * tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (xm + xlr1).
+ * @param sup Reference to the superclass object.
+ * @param rr1 Damper 1 winding resistance.
+ * @param rr2 Damper 2 winding resistance.
+ * @param xlr1 Damper 1 winding leakage reactance.
+ * @param xlr2 Damper 2 winding leakage reactance.
+ * @param xm Magnetizing reactance.
  */
 case class AsynchronousMachineEquivalentCircuit
-(
-
-    override val sup: AsynchronousMachineDynamics,
-
-    /**
-     * Damper 1 winding resistance.
-     */
-    val rr1: Double,
-
-    /**
-     * Damper 2 winding resistance.
-     */
-    val rr2: Double,
-
-    /**
-     * Damper 1 winding leakage reactance.
-     */
-    val xlr1: Double,
-
-    /**
-     * Damper 2 winding leakage reactance.
-     */
-    val xlr2: Double,
-
-    /**
-     * Magnetizing reactance.
-     */
-    val xm: Double
+(override val sup: AsynchronousMachineDynamics,
+val rr1: Double,
+val rr2: Double,
+val xlr1: Double,
+val xlr2: Double,
+val xm: Double
 )
 extends
     Element
@@ -187,41 +158,25 @@ The parameters used for models expressed in time constant reactance form include
 	<li>.tpo (T'o)</li>
 	<li>.tppo (T''o).</li>
  * </ul>
+ * @param sup Reference to the superclass object.
+ * @param tpo Transient rotor time constant (T'o) (&gt; T''o).
+ *        Typical Value = 5.
+ * @param tppo Subtransient rotor time constant (T''o) (&gt; 0).
+ *        Typical Value = 0.03.
+ * @param xp Transient reactance (unsaturated) (X') (&gt;=X'').
+ *        Typical Value = 0.5.
+ * @param xpp Subtransient reactance (unsaturated) (X'') (&gt; Xl).
+ *        Typical Value = 0.2.
+ * @param xs Synchronous reactance (Xs) (&gt;= X').
+ *        Typical Value = 1.8.
  */
 case class AsynchronousMachineTimeConstantReactance
-(
-
-    override val sup: AsynchronousMachineDynamics,
-
-    /**
-     * Transient rotor time constant (T'o) (&gt; T''o).
-     * Typical Value = 5.
-     */
-    val tpo: Double,
-
-    /**
-     * Subtransient rotor time constant (T''o) (&gt; 0).
-     * Typical Value = 0.03.
-     */
-    val tppo: Double,
-
-    /**
-     * Transient reactance (unsaturated) (X') (&gt;=X'').
-     * Typical Value = 0.5.
-     */
-    val xp: Double,
-
-    /**
-     * Subtransient reactance (unsaturated) (X'') (&gt; Xl).
-     * Typical Value = 0.2.
-     */
-    val xpp: Double,
-
-    /**
-     * Synchronous reactance (Xs) (&gt;= X').
-     * Typical Value = 1.8.
-     */
-    val xs: Double
+(override val sup: AsynchronousMachineDynamics,
+val tpo: Double,
+val tppo: Double,
+val xp: Double,
+val xpp: Double,
+val xs: Double
 )
 extends
     Element

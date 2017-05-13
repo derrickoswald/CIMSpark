@@ -12,65 +12,34 @@ import ch.ninecode.cim.Context
 /**
  * Input signal type.
  * In Dynamics modelling, commonly represented by j parameter.
+ * @param sup Reference to the superclass object.
+ * @param branchCurrent Input signal is amplitude of remote branch current.
+ * @param busFrequency Input signal is bus voltage fr<font color="#0f0f0f">equency.
+ *        This could be a terminal frequency or remote frequency.</font>
+ * @param busFrequencyDeviation Input signal is deviation of bus voltage frequ<font color="#0f0f0f">ency.
+ *        This could be a terminal frequency deviation or remote frequency deviation.</font>
+ * @param busVoltage Input signal <font color="#0f0f0f">is bus voltage.
+ *        This could be a terminal voltage or remote voltage.</font>
+ * @param busVoltageDerivative Input signal is derivative of bus voltag<font color="#0f0f0f">e.
+ *        This could be a terminal voltage derivative or remote voltage derivative.</font>
+ * @param fieldCurrent Input signal is generator field current.
+ * @param generatorAcceleratingPower Input signal is generating accelerating power.
+ * @param generatorElectricalPower Input signal is generator electrical power on rated S.
+ * @param rotorAngularFrequencyDeviation Input signal is rotor or shaft angular frequency deviation.
+ * @param rotorSpeed Input signal is rotor or shaft speed (angular frequency).
  */
 case class InputSignalKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Input signal is amplitude of remote branch current.
-     */
-    val branchCurrent: String,
-
-    /**
-     * Input signal is bus voltage fr<font color="#0f0f0f">equency.
-     * This could be a terminal frequency or remote frequency.</font>
-     */
-    val busFrequency: String,
-
-    /**
-     * Input signal is deviation of bus voltage frequ<font color="#0f0f0f">ency.
-     * This could be a terminal frequency deviation or remote frequency deviation.</font>
-     */
-    val busFrequencyDeviation: String,
-
-    /**
-     * Input signal <font color="#0f0f0f">is bus voltage.
-     * This could be a terminal voltage or remote voltage.</font>
-     */
-    val busVoltage: String,
-
-    /**
-     * Input signal is derivative of bus voltag<font color="#0f0f0f">e.
-     * This could be a terminal voltage derivative or remote voltage derivative.</font>
-     */
-    val busVoltageDerivative: String,
-
-    /**
-     * Input signal is generator field current.
-     */
-    val fieldCurrent: String,
-
-    /**
-     * Input signal is generating accelerating power.
-     */
-    val generatorAcceleratingPower: String,
-
-    /**
-     * Input signal is generator electrical power on rated S.
-     */
-    val generatorElectricalPower: String,
-
-    /**
-     * Input signal is rotor or shaft angular frequency deviation.
-     */
-    val rotorAngularFrequencyDeviation: String,
-
-    /**
-     * Input signal is rotor or shaft speed (angular frequency).
-     */
-    val rotorSpeed: String
+(override val sup: BasicElement,
+val branchCurrent: String,
+val busFrequency: String,
+val busFrequencyDeviation: String,
+val busVoltage: String,
+val busVoltageDerivative: String,
+val fieldCurrent: String,
+val generatorAcceleratingPower: String,
+val generatorElectricalPower: String,
+val rotorAngularFrequencyDeviation: String,
+val rotorSpeed: String
 )
 extends
     Element
@@ -123,16 +92,12 @@ extends
 
 /**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param ExcitationSystemDynamics Excitation system model with which this power system stabilizer model is associated.
  */
 case class PowerSystemStabilizerDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Excitation system model with which this power system stabilizer model is associated.
-     */
-    val ExcitationSystemDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val ExcitationSystemDynamics: String
 )
 extends
     Element
@@ -167,103 +132,57 @@ extends
 
 /**
  * Italian PSS - three input PSS (speed, frequency, power).
+ * @param sup Reference to the superclass object.
+ * @param kf Frequency power input gain (K<sub>F</sub>).
+ *        Typical Value = 5.
+ * @param kpe Electric power input gain (K<sub>PE</sub>).
+ *        Typical Value = 0.3.
+ * @param ks PSS gain (K<sub>S</sub>).
+ *        Typical Value = 1.
+ * @param kw Shaft speed power input gain (K<sub>W</sub>).
+ *        Typical Value = 0.
+ * @param pmin Minimum power PSS enabling (P<sub>MIN</sub>).
+ *        Typical Value = 0.25.
+ * @param t10 Lead/lag time constant (T<sub>10</sub>).
+ *        Typical Value = 0.
+ * @param t5 Washout (T<sub>5</sub>).
+ *        Typical Value = 3.5.
+ * @param t6 Filter time constant (T<sub>6</sub>).
+ *        Typical Value = 0.
+ * @param t7 Lead/lag time constant (T<sub>7</sub>).
+ *        Typical Value = 0.
+ * @param t8 Lead/lag time constant (T<sub>8</sub>).
+ *        Typical Value = 0.
+ * @param t9 Lead/lag time constant (T<sub>9</sub>).
+ *        Typical Value = 0.
+ * @param tpe Electric power filter time constant (T<sub>PE</sub>).
+ *        Typical Value = 0.05.
+ * @param vadat <font color="#0f0f0f">Signal selector (V<sub>adAt</sub>).</font>
+<font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
+<font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
+ *        <font color="#0f0f0f">Typical Value = true.</font>
+ * @param vsmn Stabilizer output max limit (V<sub>SMN</sub>).
+ *        Typical Value = -0.06.
+ * @param vsmx Stabilizer output min limit (V<sub>SMX</sub>).
+ *        Typical Value = 0.06.
  */
 case class Pss1
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Frequency power input gain (K<sub>F</sub>).
-     * Typical Value = 5.
-     */
-    val kf: Double,
-
-    /**
-     * Electric power input gain (K<sub>PE</sub>).
-     * Typical Value = 0.3.
-     */
-    val kpe: Double,
-
-    /**
-     * PSS gain (K<sub>S</sub>).
-     * Typical Value = 1.
-     */
-    val ks: Double,
-
-    /**
-     * Shaft speed power input gain (K<sub>W</sub>).
-     * Typical Value = 0.
-     */
-    val kw: Double,
-
-    /**
-     * Minimum power PSS enabling (P<sub>MIN</sub>).
-     * Typical Value = 0.25.
-     */
-    val pmin: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>10</sub>).
-     * Typical Value = 0.
-     */
-    val t10: Double,
-
-    /**
-     * Washout (T<sub>5</sub>).
-     * Typical Value = 3.5.
-     */
-    val t5: Double,
-
-    /**
-     * Filter time constant (T<sub>6</sub>).
-     * Typical Value = 0.
-     */
-    val t6: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>7</sub>).
-     * Typical Value = 0.
-     */
-    val t7: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>8</sub>).
-     * Typical Value = 0.
-     */
-    val t8: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>9</sub>).
-     * Typical Value = 0.
-     */
-    val t9: Double,
-
-    /**
-     * Electric power filter time constant (T<sub>PE</sub>).
-     * Typical Value = 0.05.
-     */
-    val tpe: Double,
-
-    /**
-     * <font color="#0f0f0f">Signal selector (V<sub>adAt</sub>).</font>
-    <font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
-    <font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
-     * <font color="#0f0f0f">Typical Value = true.</font>
-     */
-    val vadat: Boolean,
-
-    /**
-     * Stabilizer output max limit (V<sub>SMN</sub>).
-     * Typical Value = -0.06.
-     */
-    val vsmn: Double,
-
-    /**
-     * Stabilizer output min limit (V<sub>SMX</sub>).
-     * Typical Value = 0.06.
-     */
-    val vsmx: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val kf: Double,
+val kpe: Double,
+val ks: Double,
+val kw: Double,
+val pmin: Double,
+val t10: Double,
+val t5: Double,
+val t6: Double,
+val t7: Double,
+val t8: Double,
+val t9: Double,
+val tpe: Double,
+val vadat: Boolean,
+val vsmn: Double,
+val vsmx: Double
 )
 extends
     Element
@@ -327,123 +246,56 @@ extends
 /**
  * Single input power system stabilizer.
  * It is a modified version in order to allow representation of various vendors' implementations on PSS type 1A.
+ * @param sup Reference to the superclass object.
+ * @param a1 Notch filter parameter (A1).
+ * @param a2 Notch filter parameter (A2).
+ * @param a3 Notch filter parameter (A3).
+ * @param a4 Notch filter parameter (A4).
+ * @param a5 Notch filter parameter (A5).
+ * @param a6 Notch filter parameter (A6).
+ * @param a7 Notch filter parameter (A7).
+ * @param a8 Notch filter parameter (A8).
+ * @param inputSignalType Type of input signal.
+ * @param kd Selector (Kd). 
+true = e<sup>-sTdelay</sup> used
+ *        false = e<sup>-sTdelay</sup> not used.
+ * @param ks Stabilizer gain (Ks).
+ * @param t1 Lead/lag time constant (T1).
+ * @param t2 Lead/lag time constant (T2).
+ * @param t3 Lead/lag time constant (T3).
+ * @param t4 Lead/lag time constant (T4).
+ * @param t5 Washout time constant (T5).
+ * @param t6 Transducer time constant (T6).
+ * @param tdelay Time constant (Tdelay).
+ * @param vcl Stabilizer input cutoff threshold (Vcl).
+ * @param vcu Stabilizer input cutoff threshold (Vcu).
+ * @param vrmax Maximum stabilizer output (Vrmax).
+ * @param vrmin Minimum stabilizer output (Vrmin).
  */
 case class Pss1A
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Notch filter parameter (A1).
-     */
-    val a1: Double,
-
-    /**
-     * Notch filter parameter (A2).
-     */
-    val a2: Double,
-
-    /**
-     * Notch filter parameter (A3).
-     */
-    val a3: Double,
-
-    /**
-     * Notch filter parameter (A4).
-     */
-    val a4: Double,
-
-    /**
-     * Notch filter parameter (A5).
-     */
-    val a5: Double,
-
-    /**
-     * Notch filter parameter (A6).
-     */
-    val a6: Double,
-
-    /**
-     * Notch filter parameter (A7).
-     */
-    val a7: Double,
-
-    /**
-     * Notch filter parameter (A8).
-     */
-    val a8: Double,
-
-    /**
-     * Type of input signal.
-     */
-    val inputSignalType: String,
-
-    /**
-     * Selector (Kd). 
-    true = e<sup>-sTdelay</sup> used
-     * false = e<sup>-sTdelay</sup> not used.
-     */
-    val kd: Boolean,
-
-    /**
-     * Stabilizer gain (Ks).
-     */
-    val ks: Double,
-
-    /**
-     * Lead/lag time constant (T1).
-     */
-    val t1: Double,
-
-    /**
-     * Lead/lag time constant (T2).
-     */
-    val t2: Double,
-
-    /**
-     * Lead/lag time constant (T3).
-     */
-    val t3: Double,
-
-    /**
-     * Lead/lag time constant (T4).
-     */
-    val t4: Double,
-
-    /**
-     * Washout time constant (T5).
-     */
-    val t5: Double,
-
-    /**
-     * Transducer time constant (T6).
-     */
-    val t6: Double,
-
-    /**
-     * Time constant (Tdelay).
-     */
-    val tdelay: Double,
-
-    /**
-     * Stabilizer input cutoff threshold (Vcl).
-     */
-    val vcl: Double,
-
-    /**
-     * Stabilizer input cutoff threshold (Vcu).
-     */
-    val vcu: Double,
-
-    /**
-     * Maximum stabilizer output (Vrmax).
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum stabilizer output (Vrmin).
-     */
-    val vrmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val a1: Double,
+val a2: Double,
+val a3: Double,
+val a4: Double,
+val a5: Double,
+val a6: Double,
+val a7: Double,
+val a8: Double,
+val inputSignalType: String,
+val kd: Boolean,
+val ks: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val tdelay: Double,
+val vcl: Double,
+val vcu: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -521,197 +373,103 @@ extends
 /**
  * Modified IEEE PSS2B Model.
  * Extra lead/lag (or rate) block added at end (up to 4 lead/lags total).
+ * @param sup Reference to the superclass object.
+ * @param a Numerator constant (a).
+ *        Typical Value = 1.
+ * @param inputSignal1Type Type of input signal #1.
+ *        Typical Value = rotorSpeed.
+ * @param inputSignal2Type Type of input signal #2.
+ *        Typical Value = generatorElectricalPower.
+ * @param ks1 Stabilizer gain (Ks1).
+ *        Typical Value = 12.
+ * @param ks2 Gain on signal #2 (Ks2).
+ *        Typical Value = 0.2.
+ * @param ks3 Gain on signal #2 input before ramp-tracking filter (Ks3).
+ *        Typical Value = 1.
+ * @param ks4 Gain on signal #2 input after ramp-tracking filter (Ks4).
+ *        Typical Value = 1.
+ * @param m Denominator order of ramp tracking filter (M).
+ *        Typical Value = 5.
+ * @param n Order of ramp tracking filter (N).
+ *        Typical Value = 1.
+ * @param t1 Lead/lag time constant (T1).
+ *        Typical Value = 0.12.
+ * @param t10 Lead/lag time constant (T10).
+ *        Typical Value = 0.
+ * @param t11 Lead/lag time constant (T11).
+ *        Typical Value = 0.
+ * @param t2 Lead/lag time constant (T2).
+ *        Typical Value = 0.02.
+ * @param t3 Lead/lag time constant (T3).
+ *        Typical Value = 0.3.
+ * @param t4 Lead/lag time constant (T4).
+ *        Typical Value = 0.02.
+ * @param t6 Time constant on signal #1 (T6).
+ *        Typical Value = 0.
+ * @param t7 Time constant on signal #2 (T7).
+ *        Typical Value = 2.
+ * @param t8 Lead of ramp tracking filter (T8).
+ *        Typical Value = 0.2.
+ * @param t9 Lag of ramp tracking filter (T9).
+ *        Typical Value = 0.1.
+ * @param ta Lead constant (Ta).
+ *        Typical Value = 0.
+ * @param tb Lag time constant (Tb).
+ *        Typical Value = 0.
+ * @param tw1 First washout on signal #1 (Tw1).
+ *        Typical Value = 2.
+ * @param tw2 Second washout on signal #1 (Tw2).
+ *        Typical Value = 2.
+ * @param tw3 First washout on signal #2 (Tw3).
+ *        Typical Value = 2.
+ * @param tw4 Second washout on signal #2 (Tw4).
+ *        Typical Value = 0.
+ * @param vsi1max Input signal #1 max limit (Vsi1max).
+ *        Typical Value = 2.
+ * @param vsi1min Input signal #1 min limit (Vsi1min).
+ *        Typical Value = -2.
+ * @param vsi2max Input signal #2 max limit (Vsi2max).
+ *        Typical Value = 2.
+ * @param vsi2min Input signal #2 min limit (Vsi2min).
+ *        Typical Value = -2.
+ * @param vstmax Stabilizer output max limit (Vstmax).
+ *        Typical Value = 0.1.
+ * @param vstmin Stabilizer output min limit (Vstmin).
+ *        Typical Value = -0.1.
  */
 case class Pss2B
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Numerator constant (a).
-     * Typical Value = 1.
-     */
-    val a: Double,
-
-    /**
-     * Type of input signal #1.
-     * Typical Value = rotorSpeed.
-     */
-    val inputSignal1Type: String,
-
-    /**
-     * Type of input signal #2.
-     * Typical Value = generatorElectricalPower.
-     */
-    val inputSignal2Type: String,
-
-    /**
-     * Stabilizer gain (Ks1).
-     * Typical Value = 12.
-     */
-    val ks1: Double,
-
-    /**
-     * Gain on signal #2 (Ks2).
-     * Typical Value = 0.2.
-     */
-    val ks2: Double,
-
-    /**
-     * Gain on signal #2 input before ramp-tracking filter (Ks3).
-     * Typical Value = 1.
-     */
-    val ks3: Double,
-
-    /**
-     * Gain on signal #2 input after ramp-tracking filter (Ks4).
-     * Typical Value = 1.
-     */
-    val ks4: Double,
-
-    /**
-     * Denominator order of ramp tracking filter (M).
-     * Typical Value = 5.
-     */
-    val m: Int,
-
-    /**
-     * Order of ramp tracking filter (N).
-     * Typical Value = 1.
-     */
-    val n: Int,
-
-    /**
-     * Lead/lag time constant (T1).
-     * Typical Value = 0.12.
-     */
-    val t1: Double,
-
-    /**
-     * Lead/lag time constant (T10).
-     * Typical Value = 0.
-     */
-    val t10: Double,
-
-    /**
-     * Lead/lag time constant (T11).
-     * Typical Value = 0.
-     */
-    val t11: Double,
-
-    /**
-     * Lead/lag time constant (T2).
-     * Typical Value = 0.02.
-     */
-    val t2: Double,
-
-    /**
-     * Lead/lag time constant (T3).
-     * Typical Value = 0.3.
-     */
-    val t3: Double,
-
-    /**
-     * Lead/lag time constant (T4).
-     * Typical Value = 0.02.
-     */
-    val t4: Double,
-
-    /**
-     * Time constant on signal #1 (T6).
-     * Typical Value = 0.
-     */
-    val t6: Double,
-
-    /**
-     * Time constant on signal #2 (T7).
-     * Typical Value = 2.
-     */
-    val t7: Double,
-
-    /**
-     * Lead of ramp tracking filter (T8).
-     * Typical Value = 0.2.
-     */
-    val t8: Double,
-
-    /**
-     * Lag of ramp tracking filter (T9).
-     * Typical Value = 0.1.
-     */
-    val t9: Double,
-
-    /**
-     * Lead constant (Ta).
-     * Typical Value = 0.
-     */
-    val ta: Double,
-
-    /**
-     * Lag time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * First washout on signal #1 (Tw1).
-     * Typical Value = 2.
-     */
-    val tw1: Double,
-
-    /**
-     * Second washout on signal #1 (Tw2).
-     * Typical Value = 2.
-     */
-    val tw2: Double,
-
-    /**
-     * First washout on signal #2 (Tw3).
-     * Typical Value = 2.
-     */
-    val tw3: Double,
-
-    /**
-     * Second washout on signal #2 (Tw4).
-     * Typical Value = 0.
-     */
-    val tw4: Double,
-
-    /**
-     * Input signal #1 max limit (Vsi1max).
-     * Typical Value = 2.
-     */
-    val vsi1max: Double,
-
-    /**
-     * Input signal #1 min limit (Vsi1min).
-     * Typical Value = -2.
-     */
-    val vsi1min: Double,
-
-    /**
-     * Input signal #2 max limit (Vsi2max).
-     * Typical Value = 2.
-     */
-    val vsi2max: Double,
-
-    /**
-     * Input signal #2 min limit (Vsi2min).
-     * Typical Value = -2.
-     */
-    val vsi2min: Double,
-
-    /**
-     * Stabilizer output max limit (Vstmax).
-     * Typical Value = 0.1.
-     */
-    val vstmax: Double,
-
-    /**
-     * Stabilizer output min limit (Vstmin).
-     * Typical Value = -0.1.
-     */
-    val vstmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val a: Double,
+val inputSignal1Type: String,
+val inputSignal2Type: String,
+val ks1: Double,
+val ks2: Double,
+val ks3: Double,
+val ks4: Double,
+val m: Int,
+val n: Int,
+val t1: Double,
+val t10: Double,
+val t11: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t6: Double,
+val t7: Double,
+val t8: Double,
+val t9: Double,
+val ta: Double,
+val tb: Double,
+val tw1: Double,
+val tw2: Double,
+val tw3: Double,
+val tw4: Double,
+val vsi1max: Double,
+val vsi1min: Double,
+val vsi2max: Double,
+val vsi2min: Double,
+val vstmax: Double,
+val vstmin: Double
 )
 extends
     Element
@@ -806,103 +564,48 @@ extends
 
 /**
  * PTI Microprocessor-Based Stabilizer type 1.
+ * @param sup Reference to the superclass object.
+ * @param inputSignal1Type Type of input signal #1.
+ *        Typical Value = rotorAngularFrequencyDeviation.
+ * @param inputSignal2Type Type of input signal #2.
+ *        Typical Value = generatorElectricalPower.
+ * @param k1 Gain (K1).
+ * @param k2 Gain (K2).
+ * @param lsmax Limiter (Lsmax).
+ * @param lsmin Limiter (Lsmin).
+ * @param t1 Time constant (T1).
+ * @param t10 Time constant (T10).
+ * @param t2 Time constant (T2).
+ * @param t3 Time constant (T3).
+ * @param t4 Time constant (T4).
+ * @param t5 Time constant (T5).
+ * @param t6 Time constant (T6).
+ * @param t7 Time constant (T7).
+ * @param t8 Time constant (T8).
+ * @param t9 Time constant (T9).
+ * @param vcl Cutoff limiter (Vcl).
+ * @param vcu Cutoff limiter (Vcu).
  */
 case class Pss2ST
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Type of input signal #1.
-     * Typical Value = rotorAngularFrequencyDeviation.
-     */
-    val inputSignal1Type: String,
-
-    /**
-     * Type of input signal #2.
-     * Typical Value = generatorElectricalPower.
-     */
-    val inputSignal2Type: String,
-
-    /**
-     * Gain (K1).
-     */
-    val k1: Double,
-
-    /**
-     * Gain (K2).
-     */
-    val k2: Double,
-
-    /**
-     * Limiter (Lsmax).
-     */
-    val lsmax: Double,
-
-    /**
-     * Limiter (Lsmin).
-     */
-    val lsmin: Double,
-
-    /**
-     * Time constant (T1).
-     */
-    val t1: Double,
-
-    /**
-     * Time constant (T10).
-     */
-    val t10: Double,
-
-    /**
-     * Time constant (T2).
-     */
-    val t2: Double,
-
-    /**
-     * Time constant (T3).
-     */
-    val t3: Double,
-
-    /**
-     * Time constant (T4).
-     */
-    val t4: Double,
-
-    /**
-     * Time constant (T5).
-     */
-    val t5: Double,
-
-    /**
-     * Time constant (T6).
-     */
-    val t6: Double,
-
-    /**
-     * Time constant (T7).
-     */
-    val t7: Double,
-
-    /**
-     * Time constant (T8).
-     */
-    val t8: Double,
-
-    /**
-     * Time constant (T9).
-     */
-    val t9: Double,
-
-    /**
-     * Cutoff limiter (Vcl).
-     */
-    val vcl: Double,
-
-    /**
-     * Cutoff limiter (Vcu).
-     */
-    val vcu: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val inputSignal1Type: String,
+val inputSignal2Type: String,
+val k1: Double,
+val k2: Double,
+val lsmax: Double,
+val lsmin: Double,
+val t1: Double,
+val t10: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val t7: Double,
+val t8: Double,
+val t9: Double,
+val vcl: Double,
+val vcu: Double
 )
 extends
     Element
@@ -971,119 +674,67 @@ extends
 
 /**
  * Italian PSS - Detailed PSS.
+ * @param sup Reference to the superclass object.
+ * @param ctw2 Selector for Second washout enabling (C<sub>TW2</sub>).
+true = second washout filter is bypassed
+false = second washout filter in use.
+ *        Typical Value = true.
+ * @param deadband Stabilizer output dead band (DeadBand).
+ *        Typical Value = 0.
+ * @param isfreq Selector for Frequency/shaft speed input (IsFreq).
+true = speed
+false = frequency.
+ *        Typical Value = true.
+ * @param kf Frequency/shaft speed input gain (K<sub>F</sub>).
+ *        Typical Value = 5.
+ * @param kpe Electric power input gain (K<sub>PE</sub>).
+ *        Typical Value = 0.3.
+ * @param kpss PSS gain (K<sub>PSS</sub>).
+ *        Typical Value = 1.
+ * @param pmm Minimum power PSS enabling (P<sub>mn</sub>).
+ *        Typical Value = 0.25.
+ * @param tl1 Lead/lag time constant (T<sub>L1</sub>).
+ *        Typical Value = 0.
+ * @param tl2 Lead/lag time constant (T<sub>L2</sub>).
+ *        Typical Value = 0.
+ * @param tl3 Lead/lag time constant (T<sub>L3</sub>).
+ *        Typical Value = 0.
+ * @param tl4 Lead/lag time constant (T<sub>L4</sub>).
+ *        Typical Value = 0.
+ * @param tpe Electric power filter time constant (T<sub>PE</sub>).
+ *        Typical Value = 0.05.
+ * @param tw1 First WashOut (T<sub>w1</sub>).
+ *        Typical Value = 3.5.
+ * @param tw2 Second WashOut (T<sub>w2</sub>).
+ *        Typical Value = 0.
+ * @param vadat <font color="#0f0f0f">Signal selector (V<sub>adAtt</sub>).</font>
+<font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
+<font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
+ *        <font color="#0f0f0f">Typical Value = true.</font>
+ * @param vsmn Stabilizer output max limit (V<sub>SMN</sub>).
+ *        Typical Value = -0.1.
+ * @param vsmx Stabilizer output min limit (V<sub>SMX</sub>).
+ *        Typical Value = 0.1.
  */
 case class Pss5
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Selector for Second washout enabling (C<sub>TW2</sub>).
-    true = second washout filter is bypassed
-    false = second washout filter in use.
-     * Typical Value = true.
-     */
-    val ctw2: Boolean,
-
-    /**
-     * Stabilizer output dead band (DeadBand).
-     * Typical Value = 0.
-     */
-    val deadband: Double,
-
-    /**
-     * Selector for Frequency/shaft speed input (IsFreq).
-    true = speed
-    false = frequency.
-     * Typical Value = true.
-     */
-    val isfreq: Boolean,
-
-    /**
-     * Frequency/shaft speed input gain (K<sub>F</sub>).
-     * Typical Value = 5.
-     */
-    val kf: Double,
-
-    /**
-     * Electric power input gain (K<sub>PE</sub>).
-     * Typical Value = 0.3.
-     */
-    val kpe: Double,
-
-    /**
-     * PSS gain (K<sub>PSS</sub>).
-     * Typical Value = 1.
-     */
-    val kpss: Double,
-
-    /**
-     * Minimum power PSS enabling (P<sub>mn</sub>).
-     * Typical Value = 0.25.
-     */
-    val pmm: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>L1</sub>).
-     * Typical Value = 0.
-     */
-    val tl1: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>L2</sub>).
-     * Typical Value = 0.
-     */
-    val tl2: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>L3</sub>).
-     * Typical Value = 0.
-     */
-    val tl3: Double,
-
-    /**
-     * Lead/lag time constant (T<sub>L4</sub>).
-     * Typical Value = 0.
-     */
-    val tl4: Double,
-
-    /**
-     * Electric power filter time constant (T<sub>PE</sub>).
-     * Typical Value = 0.05.
-     */
-    val tpe: Double,
-
-    /**
-     * First WashOut (T<sub>w1</sub>).
-     * Typical Value = 3.5.
-     */
-    val tw1: Double,
-
-    /**
-     * Second WashOut (T<sub>w2</sub>).
-     * Typical Value = 0.
-     */
-    val tw2: Double,
-
-    /**
-     * <font color="#0f0f0f">Signal selector (V<sub>adAtt</sub>).</font>
-    <font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
-    <font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
-     * <font color="#0f0f0f">Typical Value = true.</font>
-     */
-    val vadat: Boolean,
-
-    /**
-     * Stabilizer output max limit (V<sub>SMN</sub>).
-     * Typical Value = -0.1.
-     */
-    val vsmn: Double,
-
-    /**
-     * Stabilizer output min limit (V<sub>SMX</sub>).
-     * Typical Value = 0.1.
-     */
-    val vsmx: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val ctw2: Boolean,
+val deadband: Double,
+val isfreq: Boolean,
+val kf: Double,
+val kpe: Double,
+val kpss: Double,
+val pmm: Double,
+val tl1: Double,
+val tl2: Double,
+val tl3: Double,
+val tl4: Double,
+val tpe: Double,
+val tw1: Double,
+val tw2: Double,
+val vadat: Boolean,
+val vsmn: Double,
+val vsmx: Double
 )
 extends
     Element
@@ -1150,77 +801,43 @@ extends
 
 /**
  * Power system stabilizer typically associated with ExcELIN2 (though PssIEEE2B or Pss2B can also be used).
+ * @param sup Reference to the superclass object.
+ * @param apss Coefficient (a_PSS).
+ *        Typical Value = 0.1.
+ * @param ks1 Gain (Ks1).
+ *        Typical Value = 1.
+ * @param ks2 Gain (Ks2).
+ *        Typical Value = 0.1.
+ * @param ppss Coefficient (p_PSS) (&gt;=0 and &lt;=4).
+ *        Typical Value = 0.1.
+ * @param psslim PSS limiter (psslim).
+ *        Typical Value = 0.1.
+ * @param ts1 Time constant (Ts1).
+ *        Typical Value = 0.
+ * @param ts2 Time constant (Ts2).
+ *        Typical Value = 1.
+ * @param ts3 Time constant (Ts3).
+ *        Typical Value = 1.
+ * @param ts4 Time constant (Ts4).
+ *        Typical Value = 0.1.
+ * @param ts5 Time constant (Ts5).
+ *        Typical Value = 0.
+ * @param ts6 Time constant (Ts6).
+ *        Typical Value = 1.
  */
 case class PssELIN2
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Coefficient (a_PSS).
-     * Typical Value = 0.1.
-     */
-    val apss: Double,
-
-    /**
-     * Gain (Ks1).
-     * Typical Value = 1.
-     */
-    val ks1: Double,
-
-    /**
-     * Gain (Ks2).
-     * Typical Value = 0.1.
-     */
-    val ks2: Double,
-
-    /**
-     * Coefficient (p_PSS) (&gt;=0 and &lt;=4).
-     * Typical Value = 0.1.
-     */
-    val ppss: Double,
-
-    /**
-     * PSS limiter (psslim).
-     * Typical Value = 0.1.
-     */
-    val psslim: Double,
-
-    /**
-     * Time constant (Ts1).
-     * Typical Value = 0.
-     */
-    val ts1: Double,
-
-    /**
-     * Time constant (Ts2).
-     * Typical Value = 1.
-     */
-    val ts2: Double,
-
-    /**
-     * Time constant (Ts3).
-     * Typical Value = 1.
-     */
-    val ts3: Double,
-
-    /**
-     * Time constant (Ts4).
-     * Typical Value = 0.1.
-     */
-    val ts4: Double,
-
-    /**
-     * Time constant (Ts5).
-     * Typical Value = 0.
-     */
-    val ts5: Double,
-
-    /**
-     * Time constant (Ts6).
-     * Typical Value = 1.
-     */
-    val ts6: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val apss: Double,
+val ks1: Double,
+val ks2: Double,
+val ppss: Double,
+val psslim: Double,
+val ts1: Double,
+val ts2: Double,
+val ts3: Double,
+val ts4: Double,
+val ts5: Double,
+val ts6: Double
 )
 extends
     Element
@@ -1276,83 +893,46 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type PSS1A power system stabilizer model.
  * PSS1A is the generalized form of a PSS with a single input. Some common stabilizer input signals are speed, frequency, and power.
+ * @param sup Reference to the superclass object.
+ * @param a1 PSS signal conditioning frequency filter constant (A1).
+ *        Typical Value = 0.061.
+ * @param a2 PSS signal conditioning frequency filter constant (A2).
+ *        Typical Value = 0.0017.
+ * @param inputSignalType Type of input signal.
+ *        Typical Value = rotorAngularFrequencyDeviation.
+ * @param ks Stabilizer gain (Ks).
+ *        Typical Value = 5.
+ * @param t1 Lead/lag time constant (T1).
+ *        Typical Value = 0.3.
+ * @param t2 Lead/lag time constant (T2).
+ *        Typical Value = 0.03.
+ * @param t3 Lead/lag time constant (T3).
+ *        Typical Value = 0.3.
+ * @param t4 Lead/lag time constant (T4).
+ *        Typical Value = 0.03.
+ * @param t5 Washout time constant (T5).
+ *        Typical Value = 10.
+ * @param t6 Transducer time constant (T6).
+ *        Typical Value = 0.01.
+ * @param vrmax Maximum stabilizer output (Vrmax).
+ *        Typical Value = 0.05.
+ * @param vrmin Minimum stabilizer output (Vrmin).
+ *        Typical Value = -0.05.
  */
 case class PssIEEE1A
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * PSS signal conditioning frequency filter constant (A1).
-     * Typical Value = 0.061.
-     */
-    val a1: Double,
-
-    /**
-     * PSS signal conditioning frequency filter constant (A2).
-     * Typical Value = 0.0017.
-     */
-    val a2: Double,
-
-    /**
-     * Type of input signal.
-     * Typical Value = rotorAngularFrequencyDeviation.
-     */
-    val inputSignalType: String,
-
-    /**
-     * Stabilizer gain (Ks).
-     * Typical Value = 5.
-     */
-    val ks: Double,
-
-    /**
-     * Lead/lag time constant (T1).
-     * Typical Value = 0.3.
-     */
-    val t1: Double,
-
-    /**
-     * Lead/lag time constant (T2).
-     * Typical Value = 0.03.
-     */
-    val t2: Double,
-
-    /**
-     * Lead/lag time constant (T3).
-     * Typical Value = 0.3.
-     */
-    val t3: Double,
-
-    /**
-     * Lead/lag time constant (T4).
-     * Typical Value = 0.03.
-     */
-    val t4: Double,
-
-    /**
-     * Washout time constant (T5).
-     * Typical Value = 10.
-     */
-    val t5: Double,
-
-    /**
-     * Transducer time constant (T6).
-     * Typical Value = 0.01.
-     */
-    val t6: Double,
-
-    /**
-     * Maximum stabilizer output (Vrmax).
-     * Typical Value = 0.05.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum stabilizer output (Vrmin).
-     * Typical Value = -0.05.
-     */
-    val vrmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val a1: Double,
+val a2: Double,
+val inputSignalType: String,
+val ks: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -1410,173 +990,91 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
  * This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
+ * @param sup Reference to the superclass object.
+ * @param inputSignal1Type Type of input signal #1.
+ *        Typical Value = rotorSpeed.
+ * @param inputSignal2Type Type of input signal #2.
+ *        Typical Value = generatorElectricalPower.
+ * @param ks1 Stabilizer gain (Ks1).
+ *        Typical Value = 12.
+ * @param ks2 Gain on signal #2 (Ks2).
+ *        Typical Value = 0.2.
+ * @param ks3 Gain on signal #2 input before ramp-tracking filter (Ks3).
+ *        Typical Value = 1.
+ * @param m Denominator order of ramp tracking filter (M).
+ *        Typical Value = 5.
+ * @param n Order of ramp tracking filter (N).
+ *        Typical Value = 1.
+ * @param t1 Lead/lag time constant (T1).
+ *        Typical Value = 0.12.
+ * @param t10 Lead/lag time constant (T10).
+ *        Typical Value = 0.
+ * @param t11 Lead/lag time constant (T11).
+ *        Typical Value = 0.
+ * @param t2 Lead/lag time constant (T2).
+ *        Typical Value = 0.02.
+ * @param t3 Lead/lag time constant (T3).
+ *        Typical Value = 0.3.
+ * @param t4 Lead/lag time constant (T4).
+ *        Typical Value = 0.02.
+ * @param t6 Time constant on signal #1 (T6).
+ *        Typical Value = 0.
+ * @param t7 Time constant on signal #2 (T7).
+ *        Typical Value = 2.
+ * @param t8 Lead of ramp tracking filter (T8).
+ *        Typical Value = 0.2.
+ * @param t9 Lag of ramp tracking filter (T9).
+ *        Typical Value = 0.1.
+ * @param tw1 First washout on signal #1 (Tw1).
+ *        Typical Value = 2.
+ * @param tw2 Second washout on signal #1 (Tw2).
+ *        Typical Value = 2.
+ * @param tw3 First washout on signal #2 (Tw3).
+ *        Typical Value = 2.
+ * @param tw4 Second washout on signal #2 (Tw4).
+ *        Typical Value = 0.
+ * @param vsi1max Input signal #1 max limit (Vsi1max).
+ *        Typical Value = 2.
+ * @param vsi1min Input signal #1 min limit (Vsi1min).
+ *        Typical Value = -2.
+ * @param vsi2max Input signal #2 max limit (Vsi2max).
+ *        Typical Value = 2.
+ * @param vsi2min Input signal #2 min limit (Vsi2min).
+ *        Typical Value = -2.
+ * @param vstmax Stabilizer output max limit (Vstmax).
+ *        Typical Value = 0.1.
+ * @param vstmin Stabilizer output min limit (Vstmin).
+ *        Typical Value = -0.1.
  */
 case class PssIEEE2B
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Type of input signal #1.
-     * Typical Value = rotorSpeed.
-     */
-    val inputSignal1Type: String,
-
-    /**
-     * Type of input signal #2.
-     * Typical Value = generatorElectricalPower.
-     */
-    val inputSignal2Type: String,
-
-    /**
-     * Stabilizer gain (Ks1).
-     * Typical Value = 12.
-     */
-    val ks1: Double,
-
-    /**
-     * Gain on signal #2 (Ks2).
-     * Typical Value = 0.2.
-     */
-    val ks2: Double,
-
-    /**
-     * Gain on signal #2 input before ramp-tracking filter (Ks3).
-     * Typical Value = 1.
-     */
-    val ks3: Double,
-
-    /**
-     * Denominator order of ramp tracking filter (M).
-     * Typical Value = 5.
-     */
-    val m: Int,
-
-    /**
-     * Order of ramp tracking filter (N).
-     * Typical Value = 1.
-     */
-    val n: Int,
-
-    /**
-     * Lead/lag time constant (T1).
-     * Typical Value = 0.12.
-     */
-    val t1: Double,
-
-    /**
-     * Lead/lag time constant (T10).
-     * Typical Value = 0.
-     */
-    val t10: Double,
-
-    /**
-     * Lead/lag time constant (T11).
-     * Typical Value = 0.
-     */
-    val t11: Double,
-
-    /**
-     * Lead/lag time constant (T2).
-     * Typical Value = 0.02.
-     */
-    val t2: Double,
-
-    /**
-     * Lead/lag time constant (T3).
-     * Typical Value = 0.3.
-     */
-    val t3: Double,
-
-    /**
-     * Lead/lag time constant (T4).
-     * Typical Value = 0.02.
-     */
-    val t4: Double,
-
-    /**
-     * Time constant on signal #1 (T6).
-     * Typical Value = 0.
-     */
-    val t6: Double,
-
-    /**
-     * Time constant on signal #2 (T7).
-     * Typical Value = 2.
-     */
-    val t7: Double,
-
-    /**
-     * Lead of ramp tracking filter (T8).
-     * Typical Value = 0.2.
-     */
-    val t8: Double,
-
-    /**
-     * Lag of ramp tracking filter (T9).
-     * Typical Value = 0.1.
-     */
-    val t9: Double,
-
-    /**
-     * First washout on signal #1 (Tw1).
-     * Typical Value = 2.
-     */
-    val tw1: Double,
-
-    /**
-     * Second washout on signal #1 (Tw2).
-     * Typical Value = 2.
-     */
-    val tw2: Double,
-
-    /**
-     * First washout on signal #2 (Tw3).
-     * Typical Value = 2.
-     */
-    val tw3: Double,
-
-    /**
-     * Second washout on signal #2 (Tw4).
-     * Typical Value = 0.
-     */
-    val tw4: Double,
-
-    /**
-     * Input signal #1 max limit (Vsi1max).
-     * Typical Value = 2.
-     */
-    val vsi1max: Double,
-
-    /**
-     * Input signal #1 min limit (Vsi1min).
-     * Typical Value = -2.
-     */
-    val vsi1min: Double,
-
-    /**
-     * Input signal #2 max limit (Vsi2max).
-     * Typical Value = 2.
-     */
-    val vsi2max: Double,
-
-    /**
-     * Input signal #2 min limit (Vsi2min).
-     * Typical Value = -2.
-     */
-    val vsi2min: Double,
-
-    /**
-     * Stabilizer output max limit (Vstmax).
-     * Typical Value = 0.1.
-     */
-    val vstmax: Double,
-
-    /**
-     * Stabilizer output min limit (Vstmin).
-     * Typical Value = -0.1.
-     */
-    val vstmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val inputSignal1Type: String,
+val inputSignal2Type: String,
+val ks1: Double,
+val ks2: Double,
+val ks3: Double,
+val m: Int,
+val n: Int,
+val t1: Double,
+val t10: Double,
+val t11: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t6: Double,
+val t7: Double,
+val t8: Double,
+val t9: Double,
+val tw1: Double,
+val tw2: Double,
+val tw3: Double,
+val tw4: Double,
+val vsi1max: Double,
+val vsi1min: Double,
+val vsi2max: Double,
+val vsi2min: Double,
+val vstmax: Double,
+val vstmin: Double
 )
 extends
     Element
@@ -1664,125 +1162,67 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type PSS3B power system stabilizer model.
  * The PSS model PSS3B has dual inputs of electrical power and rotor angular frequency deviation. The signals are used to derive an equivalent mechanical power signal.
+ * @param sup Reference to the superclass object.
+ * @param a1 Notch filter parameter (A1).
+ *        Typical Value = 0.359.
+ * @param a2 Notch filter parameter (A2).
+ *        Typical Value = 0.586.
+ * @param a3 Notch filter parameter (A3).
+ *        Typical Value = 0.429.
+ * @param a4 Notch filter parameter (A4).
+ *        Typical Value = 0.564.
+ * @param a5 Notch filter parameter (A5).
+ *        Typical Value = 0.001.
+ * @param a6 Notch filter parameter (A6).
+ *        Typical Value = 0.
+ * @param a7 Notch filter parameter (A7).
+ *        Typical Value = 0.031.
+ * @param a8 Notch filter parameter (A8).
+ *        Typical Value = 0.
+ * @param inputSignal1Type Type of input signal #1.
+ *        Typical Value = generatorElectricalPower.
+ * @param inputSignal2Type Type of input signal #2.
+ *        Typical Value = rotorSpeed.
+ * @param ks1 Gain on signal # 1 (Ks1).
+ *        Typical Value = -0.602.
+ * @param ks2 Gain on signal # 2 (Ks2).
+ *        Typical Value = 30.12.
+ * @param t1 Transducer time constant (T1).
+ *        Typical Value = 0.012.
+ * @param t2 Transducer time constant (T2).
+ *        Typical Value = 0.012.
+ * @param tw1 Washout time constant (Tw1).
+ *        Typical Value = 0.3.
+ * @param tw2 Washout time constant (Tw2).
+ *        Typical Value = 0.3.
+ * @param tw3 Washout time constant (Tw3).
+ *        Typical Value = 0.6.
+ * @param vstmax Stabilizer output max limit (Vstmax).
+ *        Typical Value = 0.1.
+ * @param vstmin Stabilizer output min limit (Vstmin).
+ *        Typical Value = -0.1.
  */
 case class PssIEEE3B
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Notch filter parameter (A1).
-     * Typical Value = 0.359.
-     */
-    val a1: Double,
-
-    /**
-     * Notch filter parameter (A2).
-     * Typical Value = 0.586.
-     */
-    val a2: Double,
-
-    /**
-     * Notch filter parameter (A3).
-     * Typical Value = 0.429.
-     */
-    val a3: Double,
-
-    /**
-     * Notch filter parameter (A4).
-     * Typical Value = 0.564.
-     */
-    val a4: Double,
-
-    /**
-     * Notch filter parameter (A5).
-     * Typical Value = 0.001.
-     */
-    val a5: Double,
-
-    /**
-     * Notch filter parameter (A6).
-     * Typical Value = 0.
-     */
-    val a6: Double,
-
-    /**
-     * Notch filter parameter (A7).
-     * Typical Value = 0.031.
-     */
-    val a7: Double,
-
-    /**
-     * Notch filter parameter (A8).
-     * Typical Value = 0.
-     */
-    val a8: Double,
-
-    /**
-     * Type of input signal #1.
-     * Typical Value = generatorElectricalPower.
-     */
-    val inputSignal1Type: String,
-
-    /**
-     * Type of input signal #2.
-     * Typical Value = rotorSpeed.
-     */
-    val inputSignal2Type: String,
-
-    /**
-     * Gain on signal # 1 (Ks1).
-     * Typical Value = -0.602.
-     */
-    val ks1: Double,
-
-    /**
-     * Gain on signal # 2 (Ks2).
-     * Typical Value = 30.12.
-     */
-    val ks2: Double,
-
-    /**
-     * Transducer time constant (T1).
-     * Typical Value = 0.012.
-     */
-    val t1: Double,
-
-    /**
-     * Transducer time constant (T2).
-     * Typical Value = 0.012.
-     */
-    val t2: Double,
-
-    /**
-     * Washout time constant (Tw1).
-     * Typical Value = 0.3.
-     */
-    val tw1: Double,
-
-    /**
-     * Washout time constant (Tw2).
-     * Typical Value = 0.3.
-     */
-    val tw2: Double,
-
-    /**
-     * Washout time constant (Tw3).
-     * Typical Value = 0.6.
-     */
-    val tw3: Double,
-
-    /**
-     * Stabilizer output max limit (Vstmax).
-     * Typical Value = 0.1.
-     */
-    val vstmax: Double,
-
-    /**
-     * Stabilizer output min limit (Vstmin).
-     * Typical Value = -0.1.
-     */
-    val vstmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val a1: Double,
+val a2: Double,
+val a3: Double,
+val a4: Double,
+val a5: Double,
+val a6: Double,
+val a7: Double,
+val a8: Double,
+val inputSignal1Type: String,
+val inputSignal2Type: String,
+val ks1: Double,
+val ks2: Double,
+val t1: Double,
+val t2: Double,
+val tw1: Double,
+val tw2: Double,
+val tw3: Double,
+val vstmax: Double,
+val vstmin: Double
 )
 extends
     Element
@@ -1854,405 +1294,203 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
  * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta-omega (speed input) PSS.
+ * @param sup Reference to the superclass object.
+ * @param bwh1 Notch filter 1 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
+ * @param bwh2 Notch filter 2 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
+ * @param bwl1 Notch filter 1 (low-frequency band): Three dB bandwidth (B<sub>wi</sub>).
+ * @param bwl2 Notch filter 2 (low-frequency band): Three dB bandwidth (B<sub>wi</sub>).
+ * @param kh High band gain (K<sub>H</sub>).
+ *        Typical Value = 120.
+ * @param kh1 High band differential filter gain (K<sub>H1</sub>).
+ *        Typical Value = 66.
+ * @param kh11 High band first lead-lag blocks coefficient (K<sub>H11</sub>).
+ *        Typical Value = 1.
+ * @param kh17 High band first lead-lag blocks coefficient (K<sub>H17</sub>).
+ *        Typical Value = 1.
+ * @param kh2 High band differential filter gain (K<sub>H2</sub>).
+ *        Typical Value = 66.
+ * @param ki Intermediate band gain (K<sub>I</sub>).
+ *        Typical Value = 30.
+ * @param ki1 Intermediate band differential filter gain (K<sub>I1</sub>).
+ *        Typical Value = 66.
+ * @param ki11 Intermediate band first lead-lag blocks coefficient (K<sub>I11</sub>).
+ *        Typical Value = 1.
+ * @param ki17 Intermediate band first lead-lag blocks coefficient (K<sub>I17</sub>).
+ *        Typical Value = 1.
+ * @param ki2 Intermediate band differential filter gain (K<sub>I2</sub>).
+ *        Typical Value = 66.
+ * @param kl Low band gain (K<sub>L</sub>).
+ *        Typical Value = 7.5.
+ * @param kl1 Low band differential filter gain (K<sub>L1</sub>).
+ *        Typical Value = 66.
+ * @param kl11 Low band first lead-lag blocks coefficient (K<sub>L11</sub>).
+ *        Typical Value = 1.
+ * @param kl17 Low band first lead-lag blocks coefficient (K<sub>L17</sub>).
+ *        Typical Value = 1.
+ * @param kl2 Low band differential filter gain (K<sub>L2</sub>).
+ *        Typical Value = 66.
+ * @param omeganh1 Notch filter 1 (high-frequency band): filter frequency (omega<sub>ni</sub>).
+ * @param omeganh2 Notch filter 2 (high-frequency band): filter frequency (omega<sub>ni</sub>).
+ * @param omeganl1 Notch filter 1 (low-frequency band): filter frequency (omega<sub>ni</sub>).
+ * @param omeganl2 Notch filter 2 (low-frequency band): filter frequency (omega<sub>ni</sub>).
+ * @param th1 High band time constant (T<sub>H1</sub>).
+ *        Typical Value = 0.01513.
+ * @param th10 High band time constant (T<sub>H10</sub>).
+ *        Typical Value = 0.
+ * @param th11 High band time constant (T<sub>H11</sub>).
+ *        Typical Value = 0.
+ * @param th12 High band time constant (T<sub>H12</sub>).
+ *        Typical Value = 0.
+ * @param th2 High band time constant (T<sub>H2</sub>).
+ *        Typical Value = 0.01816.
+ * @param th3 High band time constant (T<sub>H3</sub>).
+ *        Typical Value = 0.
+ * @param th4 High band time constant (T<sub>H4</sub>).
+ *        Typical Value = 0.
+ * @param th5 High band time constant (T<sub>H5</sub>).
+ *        Typical Value = 0.
+ * @param th6 High band time constant (T<sub>H6</sub>).
+ *        Typical Value = 0.
+ * @param th7 High band time constant (T<sub>H7</sub>).
+ *        Typical Value = 0.01816.
+ * @param th8 High band time constant (T<sub>H8</sub>).
+ *        Typical Value = 0.02179.
+ * @param th9 High band time constant (T<sub>H9</sub>).
+ *        Typical Value = 0.
+ * @param ti1 Intermediate band time constant (T<sub>I1</sub>).
+ *        Typical Value = 0.173.
+ * @param ti10 Intermediate band time constant (T<sub>I11</sub>).
+ *        Typical Value = 0.
+ * @param ti11 Intermediate band time constant (T<sub>I11</sub>).
+ *        Typical Value = 0.
+ * @param ti12 Intermediate band time constant (T<sub>I2</sub>).
+ *        Typical Value = 0.
+ * @param ti2 Intermediate band time constant (T<sub>I2</sub>).
+ *        Typical Value = 0.2075.
+ * @param ti3 Intermediate band time constant (T<sub>I3</sub>).
+ *        Typical Value = 0.
+ * @param ti4 Intermediate band time constant (T<sub>I4</sub>).
+ *        Typical Value = 0.
+ * @param ti5 Intermediate band time constant (T<sub>I5</sub>).
+ *        Typical Value = 0.
+ * @param ti6 Intermediate band time constant (T<sub>I6</sub>).
+ *        Typical Value = 0.
+ * @param ti7 Intermediate band time constant (T<sub>I7</sub>).
+ *        Typical Value = 0.2075.
+ * @param ti8 Intermediate band time constant (T<sub>I8</sub>).
+ *        Typical Value = 0.2491.
+ * @param ti9 Intermediate band time constant (T<sub>I9</sub>).
+ *        Typical Value = 0.
+ * @param tl1 Low band time constant (T<sub>L1</sub>).
+ *        Typical Value = 1.73.
+ * @param tl10 Low band time constant (T<sub>L10</sub>).
+ *        Typical Value = 0.
+ * @param tl11 Low band time constant (T<sub>L11</sub>).
+ *        Typical Value = 0.
+ * @param tl12 Low band time constant (T<sub>L12</sub>).
+ *        Typical Value = 0.
+ * @param tl2 Low band time constant (T<sub>L2</sub>).
+ *        Typical Value = 2.075.
+ * @param tl3 Low band time constant (T<sub>L3</sub>).
+ *        Typical Value = 0.
+ * @param tl4 Low band time constant (T<sub>L4</sub>).
+ *        Typical Value = 0.
+ * @param tl5 Low band time constant (T<sub>L5</sub>).
+ *        Typical Value = 0.
+ * @param tl6 Low band time constant (T<sub>L6</sub>).
+ *        Typical Value = 0.
+ * @param tl7 Low band time constant (T<sub>L7</sub>).
+ *        Typical Value = 2.075.
+ * @param tl8 Low band time constant (T<sub>L8</sub>).
+ *        Typical Value = 2.491.
+ * @param tl9 Low band time constant (T<sub>L9</sub>).
+ *        Typical Value = 0.
+ * @param vhmax High band output maximum limit (V<sub>Hmax</sub>).
+ *        Typical Value = 0.6.
+ * @param vhmin High band output minimum limit (V<sub>Hmin</sub>).
+ *        Typical Value = -0.6.
+ * @param vimax Intermediate band output maximum limit (V<sub>Imax</sub>).
+ *        Typical Value = 0.6.
+ * @param vimin Intermediate band output minimum limit (V<sub>Imin</sub>).
+ *        Typical Value = -0.6.
+ * @param vlmax Low band output maximum limit (V<sub>Lmax</sub>).
+ *        Typical Value = 0.075.
+ * @param vlmin Low band output minimum limit (V<sub>Lmin</sub>).
+ *        Typical Value = -0.075.
+ * @param vstmax PSS output maximum limit (V<sub>STmax</sub>).
+ *        Typical Value = 0.15.
+ * @param vstmin PSS output minimum limit (V<sub>STmin</sub>).
+ *        Typical Value = -0.15.
  */
 case class PssIEEE4B
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Notch filter 1 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
-     */
-    val bwh1: Double,
-
-    /**
-     * Notch filter 2 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
-     */
-    val bwh2: Double,
-
-    /**
-     * Notch filter 1 (low-frequency band): Three dB bandwidth (B<sub>wi</sub>).
-     */
-    val bwl1: Double,
-
-    /**
-     * Notch filter 2 (low-frequency band): Three dB bandwidth (B<sub>wi</sub>).
-     */
-    val bwl2: Double,
-
-    /**
-     * High band gain (K<sub>H</sub>).
-     * Typical Value = 120.
-     */
-    val kh: Double,
-
-    /**
-     * High band differential filter gain (K<sub>H1</sub>).
-     * Typical Value = 66.
-     */
-    val kh1: Double,
-
-    /**
-     * High band first lead-lag blocks coefficient (K<sub>H11</sub>).
-     * Typical Value = 1.
-     */
-    val kh11: Double,
-
-    /**
-     * High band first lead-lag blocks coefficient (K<sub>H17</sub>).
-     * Typical Value = 1.
-     */
-    val kh17: Double,
-
-    /**
-     * High band differential filter gain (K<sub>H2</sub>).
-     * Typical Value = 66.
-     */
-    val kh2: Double,
-
-    /**
-     * Intermediate band gain (K<sub>I</sub>).
-     * Typical Value = 30.
-     */
-    val ki: Double,
-
-    /**
-     * Intermediate band differential filter gain (K<sub>I1</sub>).
-     * Typical Value = 66.
-     */
-    val ki1: Double,
-
-    /**
-     * Intermediate band first lead-lag blocks coefficient (K<sub>I11</sub>).
-     * Typical Value = 1.
-     */
-    val ki11: Double,
-
-    /**
-     * Intermediate band first lead-lag blocks coefficient (K<sub>I17</sub>).
-     * Typical Value = 1.
-     */
-    val ki17: Double,
-
-    /**
-     * Intermediate band differential filter gain (K<sub>I2</sub>).
-     * Typical Value = 66.
-     */
-    val ki2: Double,
-
-    /**
-     * Low band gain (K<sub>L</sub>).
-     * Typical Value = 7.5.
-     */
-    val kl: Double,
-
-    /**
-     * Low band differential filter gain (K<sub>L1</sub>).
-     * Typical Value = 66.
-     */
-    val kl1: Double,
-
-    /**
-     * Low band first lead-lag blocks coefficient (K<sub>L11</sub>).
-     * Typical Value = 1.
-     */
-    val kl11: Double,
-
-    /**
-     * Low band first lead-lag blocks coefficient (K<sub>L17</sub>).
-     * Typical Value = 1.
-     */
-    val kl17: Double,
-
-    /**
-     * Low band differential filter gain (K<sub>L2</sub>).
-     * Typical Value = 66.
-     */
-    val kl2: Double,
-
-    /**
-     * Notch filter 1 (high-frequency band): filter frequency (omega<sub>ni</sub>).
-     */
-    val omeganh1: Double,
-
-    /**
-     * Notch filter 2 (high-frequency band): filter frequency (omega<sub>ni</sub>).
-     */
-    val omeganh2: Double,
-
-    /**
-     * Notch filter 1 (low-frequency band): filter frequency (omega<sub>ni</sub>).
-     */
-    val omeganl1: Double,
-
-    /**
-     * Notch filter 2 (low-frequency band): filter frequency (omega<sub>ni</sub>).
-     */
-    val omeganl2: Double,
-
-    /**
-     * High band time constant (T<sub>H1</sub>).
-     * Typical Value = 0.01513.
-     */
-    val th1: Double,
-
-    /**
-     * High band time constant (T<sub>H10</sub>).
-     * Typical Value = 0.
-     */
-    val th10: Double,
-
-    /**
-     * High band time constant (T<sub>H11</sub>).
-     * Typical Value = 0.
-     */
-    val th11: Double,
-
-    /**
-     * High band time constant (T<sub>H12</sub>).
-     * Typical Value = 0.
-     */
-    val th12: Double,
-
-    /**
-     * High band time constant (T<sub>H2</sub>).
-     * Typical Value = 0.01816.
-     */
-    val th2: Double,
-
-    /**
-     * High band time constant (T<sub>H3</sub>).
-     * Typical Value = 0.
-     */
-    val th3: Double,
-
-    /**
-     * High band time constant (T<sub>H4</sub>).
-     * Typical Value = 0.
-     */
-    val th4: Double,
-
-    /**
-     * High band time constant (T<sub>H5</sub>).
-     * Typical Value = 0.
-     */
-    val th5: Double,
-
-    /**
-     * High band time constant (T<sub>H6</sub>).
-     * Typical Value = 0.
-     */
-    val th6: Double,
-
-    /**
-     * High band time constant (T<sub>H7</sub>).
-     * Typical Value = 0.01816.
-     */
-    val th7: Double,
-
-    /**
-     * High band time constant (T<sub>H8</sub>).
-     * Typical Value = 0.02179.
-     */
-    val th8: Double,
-
-    /**
-     * High band time constant (T<sub>H9</sub>).
-     * Typical Value = 0.
-     */
-    val th9: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I1</sub>).
-     * Typical Value = 0.173.
-     */
-    val ti1: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I11</sub>).
-     * Typical Value = 0.
-     */
-    val ti10: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I11</sub>).
-     * Typical Value = 0.
-     */
-    val ti11: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I2</sub>).
-     * Typical Value = 0.
-     */
-    val ti12: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I2</sub>).
-     * Typical Value = 0.2075.
-     */
-    val ti2: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I3</sub>).
-     * Typical Value = 0.
-     */
-    val ti3: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I4</sub>).
-     * Typical Value = 0.
-     */
-    val ti4: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I5</sub>).
-     * Typical Value = 0.
-     */
-    val ti5: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I6</sub>).
-     * Typical Value = 0.
-     */
-    val ti6: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I7</sub>).
-     * Typical Value = 0.2075.
-     */
-    val ti7: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I8</sub>).
-     * Typical Value = 0.2491.
-     */
-    val ti8: Double,
-
-    /**
-     * Intermediate band time constant (T<sub>I9</sub>).
-     * Typical Value = 0.
-     */
-    val ti9: Double,
-
-    /**
-     * Low band time constant (T<sub>L1</sub>).
-     * Typical Value = 1.73.
-     */
-    val tl1: Double,
-
-    /**
-     * Low band time constant (T<sub>L10</sub>).
-     * Typical Value = 0.
-     */
-    val tl10: Double,
-
-    /**
-     * Low band time constant (T<sub>L11</sub>).
-     * Typical Value = 0.
-     */
-    val tl11: Double,
-
-    /**
-     * Low band time constant (T<sub>L12</sub>).
-     * Typical Value = 0.
-     */
-    val tl12: Double,
-
-    /**
-     * Low band time constant (T<sub>L2</sub>).
-     * Typical Value = 2.075.
-     */
-    val tl2: Double,
-
-    /**
-     * Low band time constant (T<sub>L3</sub>).
-     * Typical Value = 0.
-     */
-    val tl3: Double,
-
-    /**
-     * Low band time constant (T<sub>L4</sub>).
-     * Typical Value = 0.
-     */
-    val tl4: Double,
-
-    /**
-     * Low band time constant (T<sub>L5</sub>).
-     * Typical Value = 0.
-     */
-    val tl5: Double,
-
-    /**
-     * Low band time constant (T<sub>L6</sub>).
-     * Typical Value = 0.
-     */
-    val tl6: Double,
-
-    /**
-     * Low band time constant (T<sub>L7</sub>).
-     * Typical Value = 2.075.
-     */
-    val tl7: Double,
-
-    /**
-     * Low band time constant (T<sub>L8</sub>).
-     * Typical Value = 2.491.
-     */
-    val tl8: Double,
-
-    /**
-     * Low band time constant (T<sub>L9</sub>).
-     * Typical Value = 0.
-     */
-    val tl9: Double,
-
-    /**
-     * High band output maximum limit (V<sub>Hmax</sub>).
-     * Typical Value = 0.6.
-     */
-    val vhmax: Double,
-
-    /**
-     * High band output minimum limit (V<sub>Hmin</sub>).
-     * Typical Value = -0.6.
-     */
-    val vhmin: Double,
-
-    /**
-     * Intermediate band output maximum limit (V<sub>Imax</sub>).
-     * Typical Value = 0.6.
-     */
-    val vimax: Double,
-
-    /**
-     * Intermediate band output minimum limit (V<sub>Imin</sub>).
-     * Typical Value = -0.6.
-     */
-    val vimin: Double,
-
-    /**
-     * Low band output maximum limit (V<sub>Lmax</sub>).
-     * Typical Value = 0.075.
-     */
-    val vlmax: Double,
-
-    /**
-     * Low band output minimum limit (V<sub>Lmin</sub>).
-     * Typical Value = -0.075.
-     */
-    val vlmin: Double,
-
-    /**
-     * PSS output maximum limit (V<sub>STmax</sub>).
-     * Typical Value = 0.15.
-     */
-    val vstmax: Double,
-
-    /**
-     * PSS output minimum limit (V<sub>STmin</sub>).
-     * Typical Value = -0.15.
-     */
-    val vstmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val bwh1: Double,
+val bwh2: Double,
+val bwl1: Double,
+val bwl2: Double,
+val kh: Double,
+val kh1: Double,
+val kh11: Double,
+val kh17: Double,
+val kh2: Double,
+val ki: Double,
+val ki1: Double,
+val ki11: Double,
+val ki17: Double,
+val ki2: Double,
+val kl: Double,
+val kl1: Double,
+val kl11: Double,
+val kl17: Double,
+val kl2: Double,
+val omeganh1: Double,
+val omeganh2: Double,
+val omeganl1: Double,
+val omeganl2: Double,
+val th1: Double,
+val th10: Double,
+val th11: Double,
+val th12: Double,
+val th2: Double,
+val th3: Double,
+val th4: Double,
+val th5: Double,
+val th6: Double,
+val th7: Double,
+val th8: Double,
+val th9: Double,
+val ti1: Double,
+val ti10: Double,
+val ti11: Double,
+val ti12: Double,
+val ti2: Double,
+val ti3: Double,
+val ti4: Double,
+val ti5: Double,
+val ti6: Double,
+val ti7: Double,
+val ti8: Double,
+val ti9: Double,
+val tl1: Double,
+val tl10: Double,
+val tl11: Double,
+val tl12: Double,
+val tl2: Double,
+val tl3: Double,
+val tl4: Double,
+val tl5: Double,
+val tl6: Double,
+val tl7: Double,
+val tl8: Double,
+val tl9: Double,
+val vhmax: Double,
+val vhmin: Double,
+val vimax: Double,
+val vimin: Double,
+val vlmax: Double,
+val vlmin: Double,
+val vstmax: Double,
+val vstmin: Double
 )
 extends
     Element
@@ -2419,77 +1657,43 @@ extends
 
 /**
  * PTI Microprocessor-Based Stabilizer type 1.
+ * @param sup Reference to the superclass object.
+ * @param dtc Time step related to activation of controls (Dtc).
+ *        Typical Value = 0.025.
+ * @param dtf Time step frequency calculation (Dtf).
+ *        Typical Value = 0.025.
+ * @param dtp Time step active power calculation (Dtp).
+ *        Typical Value = 0.0125.
+ * @param k Gain (K).
+ *        Typical Value = 9.
+ * @param m (M).
+ *        M=2*H.  Typical Value = 5.
+ * @param t1 Time constant (T1).
+ *        Typical Value = 0.3.
+ * @param t2 Time constant (T2).
+ *        Typical Value = 1.
+ * @param t3 Time constant (T3).
+ *        Typical Value = 0.2.
+ * @param t4 Time constant (T4).
+ *        Typical Value = 0.05.
+ * @param tf Time constant (Tf).
+ *        Typical Value = 0.2.
+ * @param tp Time constant (Tp).
+ *        Typical Value = 0.2.
  */
 case class PssPTIST1
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Time step related to activation of controls (Dtc).
-     * Typical Value = 0.025.
-     */
-    val dtc: Double,
-
-    /**
-     * Time step frequency calculation (Dtf).
-     * Typical Value = 0.025.
-     */
-    val dtf: Double,
-
-    /**
-     * Time step active power calculation (Dtp).
-     * Typical Value = 0.0125.
-     */
-    val dtp: Double,
-
-    /**
-     * Gain (K).
-     * Typical Value = 9.
-     */
-    val k: Double,
-
-    /**
-     * (M).
-     * M=2*H.  Typical Value = 5.
-     */
-    val m: Double,
-
-    /**
-     * Time constant (T1).
-     * Typical Value = 0.3.
-     */
-    val t1: Double,
-
-    /**
-     * Time constant (T2).
-     * Typical Value = 1.
-     */
-    val t2: Double,
-
-    /**
-     * Time constant (T3).
-     * Typical Value = 0.2.
-     */
-    val t3: Double,
-
-    /**
-     * Time constant (T4).
-     * Typical Value = 0.05.
-     */
-    val t4: Double,
-
-    /**
-     * Time constant (Tf).
-     * Typical Value = 0.2.
-     */
-    val tf: Double,
-
-    /**
-     * Time constant (Tp).
-     * Typical Value = 0.2.
-     */
-    val tp: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val dtc: Double,
+val dtf: Double,
+val dtp: Double,
+val k: Double,
+val m: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val tf: Double,
+val tp: Double
 )
 extends
     Element
@@ -2544,196 +1748,93 @@ extends
 
 /**
  * PTI Microprocessor-Based Stabilizer type 3.
+ * @param sup Reference to the superclass object.
+ * @param a0 Filter coefficient (A0).
+ * @param a1 Limiter (Al).
+ * @param a2 Filter coefficient (A2).
+ * @param a3 Filter coefficient (A3).
+ * @param a4 Filter coefficient (A4).
+ * @param a5 Filter coefficient (A5).
+ * @param al Limiter (Al).
+ * @param athres Threshold value above which output averaging will be bypassed (Athres).
+ *        Typical Value = 0.005.
+ * @param b0 Filter coefficient (B0).
+ * @param b1 Filter coefficient (B1).
+ * @param b2 Filter coefficient (B2).
+ * @param b3 Filter coefficient (B3).
+ * @param b4 Filter coefficient (B4).
+ * @param b5 Filter coefficient (B5).
+ * @param dl Limiter (Dl).
+ * @param dtc Time step related to activation of controls (0.03 for 50 Hz) (Dtc).
+ *        Typical Value = 0.025.
+ * @param dtf Time step frequency calculation (0.03 for 50 Hz) (Dtf).
+ *        Typical Value = 0.025.
+ * @param dtp Time step active power calculation (0.015 for 50 Hz) (Dtp).
+ *        Typical Value = 0.0125.
+ * @param isw Digital/analog output switch (Isw).
+true = produce analog output
+ *        false = convert to digital output, using tap selection table.
+ * @param k Gain (K).
+ *        Typical Value = 9.
+ * @param lthres Threshold value (Lthres).
+ * @param m (M).
+ *        M=2*H.  Typical Value = 5.
+ * @param nav Number of control outputs to average (Nav) (1 &lt;= Nav &lt;= 16).
+ *        Typical Value = 4.
+ * @param ncl Number of counts at limit to active limit function (Ncl) (&gt;0).
+ * @param ncr Number of counts until reset after limit function is triggered (Ncr).
+ * @param pmin (Pmin).
+ * @param t1 Time constant (T1).
+ *        Typical Value = 0.3.
+ * @param t2 Time constant (T2).
+ *        Typical Value = 1.
+ * @param t3 Time constant (T3).
+ *        Typical Value = 0.2.
+ * @param t4 Time constant (T4).
+ *        Typical Value = 0.05.
+ * @param t5 Time constant (T5).
+ * @param t6 Time constant (T6).
+ * @param tf Time constant (Tf).
+ *        Typical Value = 0.2.
+ * @param tp Time constant (Tp).
+ *        Typical Value = 0.2.
  */
 case class PssPTIST3
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Filter coefficient (A0).
-     */
-    val a0: Double,
-
-    /**
-     * Limiter (Al).
-     */
-    val a1: Double,
-
-    /**
-     * Filter coefficient (A2).
-     */
-    val a2: Double,
-
-    /**
-     * Filter coefficient (A3).
-     */
-    val a3: Double,
-
-    /**
-     * Filter coefficient (A4).
-     */
-    val a4: Double,
-
-    /**
-     * Filter coefficient (A5).
-     */
-    val a5: Double,
-
-    /**
-     * Limiter (Al).
-     */
-    val al: Double,
-
-    /**
-     * Threshold value above which output averaging will be bypassed (Athres).
-     * Typical Value = 0.005.
-     */
-    val athres: Double,
-
-    /**
-     * Filter coefficient (B0).
-     */
-    val b0: Double,
-
-    /**
-     * Filter coefficient (B1).
-     */
-    val b1: Double,
-
-    /**
-     * Filter coefficient (B2).
-     */
-    val b2: Double,
-
-    /**
-     * Filter coefficient (B3).
-     */
-    val b3: Double,
-
-    /**
-     * Filter coefficient (B4).
-     */
-    val b4: Double,
-
-    /**
-     * Filter coefficient (B5).
-     */
-    val b5: Double,
-
-    /**
-     * Limiter (Dl).
-     */
-    val dl: Double,
-
-    /**
-     * Time step related to activation of controls (0.03 for 50 Hz) (Dtc).
-     * Typical Value = 0.025.
-     */
-    val dtc: Double,
-
-    /**
-     * Time step frequency calculation (0.03 for 50 Hz) (Dtf).
-     * Typical Value = 0.025.
-     */
-    val dtf: Double,
-
-    /**
-     * Time step active power calculation (0.015 for 50 Hz) (Dtp).
-     * Typical Value = 0.0125.
-     */
-    val dtp: Double,
-
-    /**
-     * Digital/analog output switch (Isw).
-    true = produce analog output
-     * false = convert to digital output, using tap selection table.
-     */
-    val isw: Boolean,
-
-    /**
-     * Gain (K).
-     * Typical Value = 9.
-     */
-    val k: Double,
-
-    /**
-     * Threshold value (Lthres).
-     */
-    val lthres: Double,
-
-    /**
-     * (M).
-     * M=2*H.  Typical Value = 5.
-     */
-    val m: Double,
-
-    /**
-     * Number of control outputs to average (Nav) (1 &lt;= Nav &lt;= 16).
-     * Typical Value = 4.
-     */
-    val nav: Double,
-
-    /**
-     * Number of counts at limit to active limit function (Ncl) (&gt;0).
-     */
-    val ncl: Double,
-
-    /**
-     * Number of counts until reset after limit function is triggered (Ncr).
-     */
-    val ncr: Double,
-
-    /**
-     * (Pmin).
-     */
-    val pmin: Double,
-
-    /**
-     * Time constant (T1).
-     * Typical Value = 0.3.
-     */
-    val t1: Double,
-
-    /**
-     * Time constant (T2).
-     * Typical Value = 1.
-     */
-    val t2: Double,
-
-    /**
-     * Time constant (T3).
-     * Typical Value = 0.2.
-     */
-    val t3: Double,
-
-    /**
-     * Time constant (T4).
-     * Typical Value = 0.05.
-     */
-    val t4: Double,
-
-    /**
-     * Time constant (T5).
-     */
-    val t5: Double,
-
-    /**
-     * Time constant (T6).
-     */
-    val t6: Double,
-
-    /**
-     * Time constant (Tf).
-     * Typical Value = 0.2.
-     */
-    val tf: Double,
-
-    /**
-     * Time constant (Tp).
-     * Typical Value = 0.2.
-     */
-    val tp: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val a0: Double,
+val a1: Double,
+val a2: Double,
+val a3: Double,
+val a4: Double,
+val a5: Double,
+val al: Double,
+val athres: Double,
+val b0: Double,
+val b1: Double,
+val b2: Double,
+val b3: Double,
+val b4: Double,
+val b5: Double,
+val dl: Double,
+val dtc: Double,
+val dtf: Double,
+val dtp: Double,
+val isw: Boolean,
+val k: Double,
+val lthres: Double,
+val m: Double,
+val nav: Double,
+val ncl: Double,
+val ncr: Double,
+val pmin: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val tf: Double,
+val tp: Double
 )
 extends
     Element
@@ -2834,66 +1935,32 @@ extends
 
 /**
  * Power sensitive stabilizer model.
+ * @param sup Reference to the superclass object.
+ * @param kx Gain (Kx).
+ * @param ta Time constant (Ta).
+ * @param tb Time constant (Tb).
+ * @param tc Time constant (Tc).
+ * @param td Time constant (Td).
+ * @param te Time constant (Te).
+ * @param tt Time constant (Tt).
+ * @param tx1 Reset time constant (Tx1).
+ * @param tx2 Time constant (Tx2).
+ * @param vsmax Limiter (Vsmax).
+ * @param vsmin Limiter (Vsmin).
  */
 case class PssSB4
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Gain (Kx).
-     */
-    val kx: Double,
-
-    /**
-     * Time constant (Ta).
-     */
-    val ta: Double,
-
-    /**
-     * Time constant (Tb).
-     */
-    val tb: Double,
-
-    /**
-     * Time constant (Tc).
-     */
-    val tc: Double,
-
-    /**
-     * Time constant (Td).
-     */
-    val td: Double,
-
-    /**
-     * Time constant (Te).
-     */
-    val te: Double,
-
-    /**
-     * Time constant (Tt).
-     */
-    val tt: Double,
-
-    /**
-     * Reset time constant (Tx1).
-     */
-    val tx1: Double,
-
-    /**
-     * Time constant (Tx2).
-     */
-    val tx2: Double,
-
-    /**
-     * Limiter (Vsmax).
-     */
-    val vsmax: Double,
-
-    /**
-     * Limiter (Vsmin).
-     */
-    val vsmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val kx: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val td: Double,
+val te: Double,
+val tt: Double,
+val tx1: Double,
+val tx2: Double,
+val vsmax: Double,
+val vsmin: Double
 )
 extends
     Element
@@ -2948,89 +2015,49 @@ extends
 
 /**
  * Model for Siemens �H infinity� power system stabilizer with generator electrical power input.
+ * @param sup Reference to the superclass object.
+ * @param k Main gain (K).
+ *        Typical Value = 1.
+ * @param k0 Gain 0 (K0).
+ *        Typical Value = 0.012.
+ * @param k1 Gain 1 (K1).
+ *        Typical Value = 0.488.
+ * @param k2 Gain 2 (K2).
+ *        Typical Value = 0.064.
+ * @param k3 Gain 3 (K3).
+ *        Typical Value = 0.224.
+ * @param k4 Gain 4 (K4).
+ *        Typical Value = 0.1.
+ * @param t1 Time constant 1 (T1).
+ *        Typical Value = 0.076.
+ * @param t2 Time constant 2 (T2).
+ *        Typical Value = 0.086.
+ * @param t3 Time constant 3 (T3).
+ *        Typical Value = 1.068.
+ * @param t4 Time constant 4 (T4).
+ *        Typical Value = 1.913.
+ * @param td Input time constant (Td).
+ *        Typical Value = 10.
+ * @param vsmax Output maximum limit (Vsmax).
+ *        Typical Value = 0.1.
+ * @param vsmin Output minimum limit (Vsmin).
+ *        Typical Value = -0.1.
  */
 case class PssSH
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Main gain (K).
-     * Typical Value = 1.
-     */
-    val k: Double,
-
-    /**
-     * Gain 0 (K0).
-     * Typical Value = 0.012.
-     */
-    val k0: Double,
-
-    /**
-     * Gain 1 (K1).
-     * Typical Value = 0.488.
-     */
-    val k1: Double,
-
-    /**
-     * Gain 2 (K2).
-     * Typical Value = 0.064.
-     */
-    val k2: Double,
-
-    /**
-     * Gain 3 (K3).
-     * Typical Value = 0.224.
-     */
-    val k3: Double,
-
-    /**
-     * Gain 4 (K4).
-     * Typical Value = 0.1.
-     */
-    val k4: Double,
-
-    /**
-     * Time constant 1 (T1).
-     * Typical Value = 0.076.
-     */
-    val t1: Double,
-
-    /**
-     * Time constant 2 (T2).
-     * Typical Value = 0.086.
-     */
-    val t2: Double,
-
-    /**
-     * Time constant 3 (T3).
-     * Typical Value = 1.068.
-     */
-    val t3: Double,
-
-    /**
-     * Time constant 4 (T4).
-     * Typical Value = 1.913.
-     */
-    val t4: Double,
-
-    /**
-     * Input time constant (Td).
-     * Typical Value = 10.
-     */
-    val td: Double,
-
-    /**
-     * Output maximum limit (Vsmax).
-     * Typical Value = 0.1.
-     */
-    val vsmax: Double,
-
-    /**
-     * Output minimum limit (Vsmin).
-     * Typical Value = -0.1.
-     */
-    val vsmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val k: Double,
+val k0: Double,
+val k1: Double,
+val k2: Double,
+val k3: Double,
+val k4: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val td: Double,
+val vsmax: Double,
+val vsmin: Double
 )
 extends
     Element
@@ -3089,77 +2116,43 @@ extends
 
 /**
  * PSS Slovakian type � three inputs.
+ * @param sup Reference to the superclass object.
+ * @param k1 Gain P (K1).
+ *        Typical Value = -0.3.
+ * @param k2 Gain fe (K2).
+ *        Typical Value = -0.15.
+ * @param k3 Gain If (K3).
+ *        Typical Value = 10.
+ * @param t1 Denominator time constant (T1).
+ *        Typical Value = 0.3.
+ * @param t2 Filter time constant (T2).
+ *        Typical Value = 0.35.
+ * @param t3 Denominator time constant (T3).
+ *        Typical Value = 0.22.
+ * @param t4 Filter time constant (T4).
+ *        Typical Value = 0.02.
+ * @param t5 Denominator time constant (T5).
+ *        Typical Value = 0.02.
+ * @param t6 Filter time constant (T6).
+ *        Typical Value = 0.02.
+ * @param vsmax Stabilizer output max limit (Vsmax).
+ *        Typical Value = 0.4.
+ * @param vsmin Stabilizer output min limit (Vsmin).
+ *        Typical Value = -0.4.
  */
 case class PssSK
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Gain P (K1).
-     * Typical Value = -0.3.
-     */
-    val k1: Double,
-
-    /**
-     * Gain fe (K2).
-     * Typical Value = -0.15.
-     */
-    val k2: Double,
-
-    /**
-     * Gain If (K3).
-     * Typical Value = 10.
-     */
-    val k3: Double,
-
-    /**
-     * Denominator time constant (T1).
-     * Typical Value = 0.3.
-     */
-    val t1: Double,
-
-    /**
-     * Filter time constant (T2).
-     * Typical Value = 0.35.
-     */
-    val t2: Double,
-
-    /**
-     * Denominator time constant (T3).
-     * Typical Value = 0.22.
-     */
-    val t3: Double,
-
-    /**
-     * Filter time constant (T4).
-     * Typical Value = 0.02.
-     */
-    val t4: Double,
-
-    /**
-     * Denominator time constant (T5).
-     * Typical Value = 0.02.
-     */
-    val t5: Double,
-
-    /**
-     * Filter time constant (T6).
-     * Typical Value = 0.02.
-     */
-    val t6: Double,
-
-    /**
-     * Stabilizer output max limit (Vsmax).
-     * Typical Value = 0.4.
-     */
-    val vsmax: Double,
-
-    /**
-     * Stabilizer output min limit (Vsmin).
-     * Typical Value = -0.4.
-     */
-    val vsmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val k1: Double,
+val k2: Double,
+val k3: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val vsmax: Double,
+val vsmin: Double
 )
 extends
     Element
@@ -3214,101 +2207,46 @@ extends
 
 /**
  * Dual input Power System Stabilizer, based on IEEE type 2, with modified output limiter defined by WECC (Western Electricity Coordinating Council, USA).
+ * @param sup Reference to the superclass object.
+ * @param inputSignal1Type Type of input signal #1.
+ * @param inputSignal2Type Type of input signal #2.
+ * @param k1 Input signal 1 gain  (K<sub>1</sub>).
+ * @param k2 Input signal 2 gain (K<sub>2</sub>).
+ * @param t1 Input signal 1 transducer time constant (T<sub>1</sub>).
+ * @param t10 Lag time constant (T<sub>10</sub>).
+ * @param t2 Input signal 2 transducer time constant (T<sub>2</sub>).
+ * @param t3 Stabilizer washout time constant (T<sub>3</sub>).
+ * @param t4 Stabilizer washout time lag constant (T<sub>4</sub>) (&gt;0).
+ * @param t5 Lead time constant (T<sub>5</sub>).
+ * @param t6 Lag time constant (T<sub>6</sub>).
+ * @param t7 Lead time constant (T<sub>7</sub>).
+ * @param t8 Lag time constant (T<sub>8</sub>).
+ * @param t9 Lead time constant (T<sub>9</sub>).
+ * @param vcl Minimum value for voltage compensator output (V<sub>CL</sub>).
+ * @param vcu Maximum value for voltage compensator output (V<sub>CU</sub>).
+ * @param vsmax Maximum output signal (Vsmax).
+ * @param vsmin Minimum output signal (Vsmin).
  */
 case class PssWECC
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Type of input signal #1.
-     */
-    val inputSignal1Type: String,
-
-    /**
-     * Type of input signal #2.
-     */
-    val inputSignal2Type: String,
-
-    /**
-     * Input signal 1 gain  (K<sub>1</sub>).
-     */
-    val k1: Double,
-
-    /**
-     * Input signal 2 gain (K<sub>2</sub>).
-     */
-    val k2: Double,
-
-    /**
-     * Input signal 1 transducer time constant (T<sub>1</sub>).
-     */
-    val t1: Double,
-
-    /**
-     * Lag time constant (T<sub>10</sub>).
-     */
-    val t10: Double,
-
-    /**
-     * Input signal 2 transducer time constant (T<sub>2</sub>).
-     */
-    val t2: Double,
-
-    /**
-     * Stabilizer washout time constant (T<sub>3</sub>).
-     */
-    val t3: Double,
-
-    /**
-     * Stabilizer washout time lag constant (T<sub>4</sub>) (&gt;0).
-     */
-    val t4: Double,
-
-    /**
-     * Lead time constant (T<sub>5</sub>).
-     */
-    val t5: Double,
-
-    /**
-     * Lag time constant (T<sub>6</sub>).
-     */
-    val t6: Double,
-
-    /**
-     * Lead time constant (T<sub>7</sub>).
-     */
-    val t7: Double,
-
-    /**
-     * Lag time constant (T<sub>8</sub>).
-     */
-    val t8: Double,
-
-    /**
-     * Lead time constant (T<sub>9</sub>).
-     */
-    val t9: Double,
-
-    /**
-     * Minimum value for voltage compensator output (V<sub>CL</sub>).
-     */
-    val vcl: Double,
-
-    /**
-     * Maximum value for voltage compensator output (V<sub>CU</sub>).
-     */
-    val vcu: Double,
-
-    /**
-     * Maximum output signal (Vsmax).
-     */
-    val vsmax: Double,
-
-    /**
-     * Minimum output signal (Vsmin).
-     */
-    val vsmin: Double
+(override val sup: PowerSystemStabilizerDynamics,
+val inputSignal1Type: String,
+val inputSignal2Type: String,
+val k1: Double,
+val k2: Double,
+val t1: Double,
+val t10: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val t7: Double,
+val t8: Double,
+val t9: Double,
+val vcl: Double,
+val vcu: Double,
+val vsmax: Double,
+val vsmin: Double
 )
 extends
     Element

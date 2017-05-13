@@ -8,13 +8,12 @@ import ch.ninecode.cim.Context
 /**
  * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
  * Each catalogue item is for a specific product (AssetModel) available from a specific supplier.
+ * @param sup Reference to the superclass object.
+ * @param status
  */
 case class AssetModelCatalogue
-(
-
-    override val sup: IdentifiedObject,
-
-    val status: String
+(override val sup: IdentifiedObject,
+val status: String
 )
 extends
     Element
@@ -50,21 +49,17 @@ extends
 /**
  * Provides pricing and other relevant information about a specific manufacturer's product (i.e., AssetModel), and its price from a given supplier.
  * A single AssetModel may be availble from multiple suppliers. Note that manufacturer and supplier are both types of organisation, which the association is inherited from Document.
+ * @param sup Reference to the superclass object.
+ * @param unitCost Unit cost for an asset model from a specific supplier, either for a unit cost or cost per unit length.
+ *        Cost is for material or asset only and does not include labor to install/construct or configure it.
+ * @param AssetModel
+ * @param AssetModelCatalogue
  */
 case class AssetModelCatalogueItem
-(
-
-    override val sup: Document,
-
-    /**
-     * Unit cost for an asset model from a specific supplier, either for a unit cost or cost per unit length.
-     * Cost is for material or asset only and does not include labor to install/construct or configure it.
-     */
-    val unitCost: Double,
-
-    val AssetModel: String,
-
-    val AssetModelCatalogue: String
+(override val sup: Document,
+val unitCost: Double,
+val AssetModel: String,
+val AssetModelCatalogue: String
 )
 extends
     Element
@@ -103,16 +98,12 @@ extends
 
 /**
  * Properties of breaker assets.
+ * @param sup Reference to the superclass object.
+ * @param phaseTrip Phase trip rating.
  */
 case class BreakerInfo
-(
-
-    override val sup: OldSwitchInfo,
-
-    /**
-     * Phase trip rating.
-     */
-    val phaseTrip: Double
+(override val sup: OldSwitchInfo,
+val phaseTrip: Double
 )
 extends
     Element
@@ -147,56 +138,28 @@ extends
 
 /**
  * Properties of a composite switch.
+ * @param sup Reference to the superclass object.
+ * @param ganged True if multi-phase switch controls all phases concurrently.
+ * @param initOpMode Initial operating mode, with the following values: Automatic, Manual.
+ * @param interruptingRating Breaking capacity, or short circuit rating, is the maximum rated current which the device can safely interrupt at the rated voltage.
+ * @param kind Kind of composite switch.
+ * @param phaseCode Phases carried, if applicable.
+ * @param phaseCount Supported number of phases, typically 0, 1 or 3.
+ * @param ratedVoltage Rated voltage.
+ * @param remote True if device is capable of being operated by remote control.
+ * @param switchStateCount Number of switch states represented by the composite switch.
  */
 case class CompositeSwitchInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * True if multi-phase switch controls all phases concurrently.
-     */
-    val ganged: Boolean,
-
-    /**
-     * Initial operating mode, with the following values: Automatic, Manual.
-     */
-    val initOpMode: String,
-
-    /**
-     * Breaking capacity, or short circuit rating, is the maximum rated current which the device can safely interrupt at the rated voltage.
-     */
-    val interruptingRating: Double,
-
-    /**
-     * Kind of composite switch.
-     */
-    val kind: String,
-
-    /**
-     * Phases carried, if applicable.
-     */
-    val phaseCode: String,
-
-    /**
-     * Supported number of phases, typically 0, 1 or 3.
-     */
-    val phaseCount: Int,
-
-    /**
-     * Rated voltage.
-     */
-    val ratedVoltage: Double,
-
-    /**
-     * True if device is capable of being operated by remote control.
-     */
-    val remote: Boolean,
-
-    /**
-     * Number of switch states represented by the composite switch.
-     */
-    val switchStateCount: Int
+(override val sup: AssetInfo,
+val ganged: Boolean,
+val initOpMode: String,
+val interruptingRating: Double,
+val kind: String,
+val phaseCode: String,
+val phaseCount: Int,
+val ratedVoltage: Double,
+val remote: Boolean,
+val switchStateCount: Int
 )
 extends
     Element
@@ -247,25 +210,24 @@ extends
 
 /**
  * Kind of composite switch.
+ * @param sup Reference to the superclass object.
+ * @param escoThrowOver
+ * @param gral
+ * @param other
+ * @param ral
+ * @param regulatorBypass
+ * @param throwOver
+ * @param ugMultiSwitch
  */
 case class CompositeSwitchKind
-(
-
-    override val sup: BasicElement,
-
-    val escoThrowOver: String,
-
-    val gral: String,
-
-    val other: String,
-
-    val ral: String,
-
-    val regulatorBypass: String,
-
-    val throwOver: String,
-
-    val ugMultiSwitch: String
+(override val sup: BasicElement,
+val escoThrowOver: String,
+val gral: String,
+val other: String,
+val ral: String,
+val regulatorBypass: String,
+val throwOver: String,
+val ugMultiSwitch: String
 )
 extends
     Element
@@ -312,88 +274,42 @@ extends
 
 /**
  * Properties of current transformer asset.
+ * @param sup Reference to the superclass object.
+ * @param accuracyClass CT accuracy classification.
+ * @param accuracyLimit Accuracy limit.
+ * @param coreCount Number of cores.
+ * @param ctClass
+ * @param kneePointCurrent Maximum primary current where the CT still displays linear characteristicts.
+ * @param kneePointVoltage Maximum voltage across the secondary terminals where the CT still displays linear characteristicts.
+ * @param maxRatio Maximum ratio between the primary and secondary current.
+ * @param nominalRatio Nominal ratio between the primary and secondary current; i.e. 100:5.
+ * @param primaryFlsRating Full load secondary (FLS) rating for primary winding.
+ * @param primaryRatio Ratio for the primary winding tap changer.
+ * @param ratedCurrent Rated current on the primary side.
+ * @param secondaryFlsRating Full load secondary (FLS) rating for secondary winding.
+ * @param secondaryRatio Ratio for the secondary winding tap changer.
+ * @param tertiaryFlsRating Full load secondary (FLS) rating for tertiary winding.
+ * @param tertiaryRatio Ratio for the tertiary winding tap changer.
+ * @param usage Usage: eg. metering, protection, etc.
  */
 case class CurrentTransformerInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * CT accuracy classification.
-     */
-    val accuracyClass: String,
-
-    /**
-     * Accuracy limit.
-     */
-    val accuracyLimit: Double,
-
-    /**
-     * Number of cores.
-     */
-    val coreCount: Int,
-
-    val ctClass: String,
-
-    /**
-     * Maximum primary current where the CT still displays linear characteristicts.
-     */
-    val kneePointCurrent: Double,
-
-    /**
-     * Maximum voltage across the secondary terminals where the CT still displays linear characteristicts.
-     */
-    val kneePointVoltage: Double,
-
-    /**
-     * Maximum ratio between the primary and secondary current.
-     */
-    val maxRatio: String,
-
-    /**
-     * Nominal ratio between the primary and secondary current; i.e. 100:5.
-     */
-    val nominalRatio: String,
-
-    /**
-     * Full load secondary (FLS) rating for primary winding.
-     */
-    val primaryFlsRating: Double,
-
-    /**
-     * Ratio for the primary winding tap changer.
-     */
-    val primaryRatio: String,
-
-    /**
-     * Rated current on the primary side.
-     */
-    val ratedCurrent: Double,
-
-    /**
-     * Full load secondary (FLS) rating for secondary winding.
-     */
-    val secondaryFlsRating: Double,
-
-    /**
-     * Ratio for the secondary winding tap changer.
-     */
-    val secondaryRatio: String,
-
-    /**
-     * Full load secondary (FLS) rating for tertiary winding.
-     */
-    val tertiaryFlsRating: Double,
-
-    /**
-     * Ratio for the tertiary winding tap changer.
-     */
-    val tertiaryRatio: String,
-
-    /**
-     * Usage: eg. metering, protection, etc.
-     */
-    val usage: String
+(override val sup: AssetInfo,
+val accuracyClass: String,
+val accuracyLimit: Double,
+val coreCount: Int,
+val ctClass: String,
+val kneePointCurrent: Double,
+val kneePointVoltage: Double,
+val maxRatio: String,
+val nominalRatio: String,
+val primaryFlsRating: Double,
+val primaryRatio: String,
+val ratedCurrent: Double,
+val secondaryFlsRating: Double,
+val secondaryRatio: String,
+val tertiaryFlsRating: Double,
+val tertiaryRatio: String,
+val usage: String
 )
 extends
     Element
@@ -458,16 +374,12 @@ extends
 
 /**
  * Parameters of fault indicator asset.
+ * @param sup Reference to the superclass object.
+ * @param resetKind Kind of reset mechanisim of this fault indicator.
  */
 case class FaultIndicatorInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Kind of reset mechanisim of this fault indicator.
-     */
-    val resetKind: String
+(override val sup: AssetInfo,
+val resetKind: String
 )
 extends
     Element
@@ -502,19 +414,18 @@ extends
 
 /**
  * Kind of resetting the fault indicators.
+ * @param sup Reference to the superclass object.
+ * @param automatic
+ * @param manual
+ * @param other
+ * @param remote
  */
 case class FaultIndicatorResetKind
-(
-
-    override val sup: BasicElement,
-
-    val automatic: String,
-
-    val manual: String,
-
-    val other: String,
-
-    val remote: String
+(override val sup: BasicElement,
+val automatic: String,
+val manual: String,
+val other: String,
+val remote: String
 )
 extends
     Element
@@ -555,19 +466,18 @@ extends
 
 /**
  * Kind of oil preservation.
+ * @param sup Reference to the superclass object.
+ * @param conservator
+ * @param freeBreathing
+ * @param nitrogenBlanket
+ * @param other
  */
 case class OilPreservationKind
-(
-
-    override val sup: BasicElement,
-
-    val conservator: String,
-
-    val freeBreathing: String,
-
-    val nitrogenBlanket: String,
-
-    val other: String
+(override val sup: BasicElement,
+val conservator: String,
+val freeBreathing: String,
+val nitrogenBlanket: String,
+val other: String
 )
 extends
     Element
@@ -608,47 +518,25 @@ extends
 
 /**
  * Properties of switch assets.
+ * @param sup Reference to the superclass object.
+ * @param dielectricStrength The maximum rms voltage that may be applied across an open contact without breaking down the dielectric properties of the switch in the open position.
+ * @param loadBreak True if switch has load breaking capabiity.
+ *        Unless specified false, this is always assumed to be true for breakers and reclosers.
+ * @param makingCapacity The highest value of current the switch can make at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
+ * @param minimumCurrent The lowest value of current that the switch can make, carry and break in uninterrupted duty at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
+ * @param poleCount Number of poles (i.e. of current carrying conductors that are switched).
+ * @param remote True if device is capable of being operated by remote control.
+ * @param withstandCurrent The highest value of current the switch can carry in the closed position at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
  */
 case class OldSwitchInfo
-(
-
-    override val sup: SwitchInfo,
-
-    /**
-     * The maximum rms voltage that may be applied across an open contact without breaking down the dielectric properties of the switch in the open position.
-     */
-    val dielectricStrength: Double,
-
-    /**
-     * True if switch has load breaking capabiity.
-     * Unless specified false, this is always assumed to be true for breakers and reclosers.
-     */
-    val loadBreak: Boolean,
-
-    /**
-     * The highest value of current the switch can make at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
-     */
-    val makingCapacity: Double,
-
-    /**
-     * The lowest value of current that the switch can make, carry and break in uninterrupted duty at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
-     */
-    val minimumCurrent: Double,
-
-    /**
-     * Number of poles (i.e. of current carrying conductors that are switched).
-     */
-    val poleCount: Int,
-
-    /**
-     * True if device is capable of being operated by remote control.
-     */
-    val remote: Boolean,
-
-    /**
-     * The highest value of current the switch can carry in the closed position at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
-     */
-    val withstandCurrent: Double
+(override val sup: SwitchInfo,
+val dielectricStrength: Double,
+val loadBreak: Boolean,
+val makingCapacity: Double,
+val minimumCurrent: Double,
+val poleCount: Int,
+val remote: Boolean,
+val withstandCurrent: Double
 )
 extends
     Element
@@ -694,29 +582,11 @@ extends
 }
 
 case class OldTransformerEndInfo
-(
-
-    override val sup: TransformerEndInfo,
-
-    /**
-     * Overload rating for 24 hours.
-     */
-    val dayOverLoadRating: Double,
-
-    /**
-     * Overload rating for 1 hour.
-     */
-    val hourOverLoadRating: Double,
-
-    /**
-     * Weight of solid insultation in transformer.
-     */
-    val solidInsulationWeight: Double,
-
-    /**
-     * Type of insultation used for transformer windings.
-     */
-    val windingInsulationKind: String
+(override val sup: TransformerEndInfo,
+val dayOverLoadRating: Double,
+val hourOverLoadRating: Double,
+val solidInsulationWeight: Double,
+val windingInsulationKind: String
 )
 extends
     Element
@@ -756,39 +626,13 @@ extends
 }
 
 case class OldTransformerTankInfo
-(
-
-    override val sup: TransformerTankInfo,
-
-    /**
-     * Kind of construction for this transformer.
-     */
-    val constructionKind: String,
-
-    /**
-     * Weight of core and coils in transformer.
-     */
-    val coreCoilsWeight: Double,
-
-    /**
-     * Core kind of this transformer product.
-     */
-    val coreKind: String,
-
-    /**
-     * Function of this transformer.
-     */
-    val function: String,
-
-    /**
-     * Basic insulation level of neutral.
-     */
-    val neutralBIL: Double,
-
-    /**
-     * Kind of oil preservation system.
-     */
-    val oilPreservationKind: String
+(override val sup: TransformerTankInfo,
+val constructionKind: String,
+val coreCoilsWeight: Double,
+val coreKind: String,
+val function: String,
+val neutralBIL: Double,
+val oilPreservationKind: String
 )
 extends
     Element
@@ -833,37 +677,24 @@ extends
 
 /**
  * Properties of potential transformer asset.
+ * @param sup Reference to the superclass object.
+ * @param accuracyClass
+ * @param nominalRatio
+ * @param primaryRatio Ratio for the primary winding tap changer.
+ * @param ptClass
+ * @param ratedVoltage Rated voltage on the primary side.
+ * @param secondaryRatio Ratio for the secondary winding tap changer.
+ * @param tertiaryRatio Ratio for the tertiary winding tap changer.
  */
 case class PotentialTransformerInfo
-(
-
-    override val sup: AssetInfo,
-
-    val accuracyClass: String,
-
-    val nominalRatio: String,
-
-    /**
-     * Ratio for the primary winding tap changer.
-     */
-    val primaryRatio: String,
-
-    val ptClass: String,
-
-    /**
-     * Rated voltage on the primary side.
-     */
-    val ratedVoltage: Double,
-
-    /**
-     * Ratio for the secondary winding tap changer.
-     */
-    val secondaryRatio: String,
-
-    /**
-     * Ratio for the tertiary winding tap changer.
-     */
-    val tertiaryRatio: String
+(override val sup: AssetInfo,
+val accuracyClass: String,
+val nominalRatio: String,
+val primaryRatio: String,
+val ptClass: String,
+val ratedVoltage: Double,
+val secondaryRatio: String,
+val tertiaryRatio: String
 )
 extends
     Element
@@ -910,21 +741,14 @@ extends
 
 /**
  * Properties of protection equipment asset.
+ * @param sup Reference to the superclass object.
+ * @param groundTrip Actual ground trip for this type of relay, if applicable.
+ * @param phaseTrip Actual phase trip for this type of relay, if applicable.
  */
 case class ProtectionEquipmentInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Actual ground trip for this type of relay, if applicable.
-     */
-    val groundTrip: Double,
-
-    /**
-     * Actual phase trip for this type of relay, if applicable.
-     */
-    val phaseTrip: Double
+(override val sup: AssetInfo,
+val groundTrip: Double,
+val phaseTrip: Double
 )
 extends
     Element
@@ -961,36 +785,20 @@ extends
 
 /**
  * Properties of recloser assets.
+ * @param sup Reference to the superclass object.
+ * @param groundTripCapable True if device has ground trip capability.
+ * @param groundTripNormalEnabled True if normal status of ground trip is enabled.
+ * @param groundTripRating Ground trip rating.
+ * @param phaseTripRating Phase trip rating.
+ * @param recloseLockoutCount Total number of phase reclose operations.
  */
 case class RecloserInfo
-(
-
-    override val sup: OldSwitchInfo,
-
-    /**
-     * True if device has ground trip capability.
-     */
-    val groundTripCapable: Boolean,
-
-    /**
-     * True if normal status of ground trip is enabled.
-     */
-    val groundTripNormalEnabled: Boolean,
-
-    /**
-     * Ground trip rating.
-     */
-    val groundTripRating: Double,
-
-    /**
-     * Phase trip rating.
-     */
-    val phaseTripRating: Double,
-
-    /**
-     * Total number of phase reclose operations.
-     */
-    val recloseLockoutCount: Int
+(override val sup: OldSwitchInfo,
+val groundTripCapable: Boolean,
+val groundTripNormalEnabled: Boolean,
+val groundTripRating: Double,
+val phaseTripRating: Double,
+val recloseLockoutCount: Int
 )
 extends
     Element
@@ -1033,27 +841,26 @@ extends
 
 /**
  * Kind of regulation branch for shunt impedance.
+ * @param sup Reference to the superclass object.
+ * @param breaker
+ * @param fuse
+ * @param line
+ * @param other
+ * @param recloser
+ * @param sectionner
+ * @param switch
+ * @param transformer
  */
 case class RegulationBranchKind
-(
-
-    override val sup: BasicElement,
-
-    val breaker: String,
-
-    val fuse: String,
-
-    val line: String,
-
-    val other: String,
-
-    val recloser: String,
-
-    val sectionner: String,
-
-    val switch: String,
-
-    val transformer: String
+(override val sup: BasicElement,
+val breaker: String,
+val fuse: String,
+val line: String,
+val other: String,
+val recloser: String,
+val sectionner: String,
+val switch: String,
+val transformer: String
 )
 extends
     Element
@@ -1102,19 +909,18 @@ extends
 
 /**
  * Kind of control for shunt impedance.
+ * @param sup Reference to the superclass object.
+ * @param fixed
+ * @param localOnly
+ * @param remoteOnly
+ * @param remoteWithLocalOverride
  */
 case class ShuntImpedanceControlKind
-(
-
-    override val sup: BasicElement,
-
-    val fixed: String,
-
-    val localOnly: String,
-
-    val remoteOnly: String,
-
-    val remoteWithLocalOverride: String
+(override val sup: BasicElement,
+val fixed: String,
+val localOnly: String,
+val remoteOnly: String,
+val remoteWithLocalOverride: String
 )
 extends
     Element
@@ -1155,25 +961,24 @@ extends
 
 /**
  * Kind of local control for shunt impedance.
+ * @param sup Reference to the superclass object.
+ * @param current
+ * @param none
+ * @param powerFactor
+ * @param reactivePower
+ * @param temperature
+ * @param time
+ * @param voltage
  */
 case class ShuntImpedanceLocalControlKind
-(
-
-    override val sup: BasicElement,
-
-    val current: String,
-
-    val none: String,
-
-    val powerFactor: String,
-
-    val reactivePower: String,
-
-    val temperature: String,
-
-    val time: String,
-
-    val voltage: String
+(override val sup: BasicElement,
+val current: String,
+val none: String,
+val powerFactor: String,
+val reactivePower: String,
+val temperature: String,
+val time: String,
+val voltage: String
 )
 extends
     Element
@@ -1220,59 +1025,31 @@ extends
 
 /**
  * Properties of surge arrester.
+ * @param sup Reference to the superclass object.
+ * @param continuousOperatingVoltage Maximum continuous power frequency voltage allowed on the surge arrester.
+ * @param isPolymer If true, the arrester has a polymer housing, porcelain otherwise.
+ * @param lightningImpulseDischargeVoltage Residual voltage during an 8x20 microsecond current impulse at the nominal discharge current level.
+ * @param lineDischargeClass Determines the arrester energy discharge capability.
+ *        Choices are limited to 0 (none) through 5 (highest) by IEC 60099. Classes 1..3 require a 10-kA nominal discharge current. Classes 4..5 require a 20-kA nominal discharge current. Lower nominal discharge currents must use class 0.
+ * @param nominalDischargeCurrent The lightning discharge current used to classify the arrester.
+ *        Choices are limited to 1.5, 2.5, 5, 10, and 20 kA by IEC 60099.
+ * @param pressureReliefClass Fault current level at which all parts of the failed arrester lie within a circle prescribed by IEC 60099.
+ * @param ratedVoltage The temporary overvoltage (TOV) level at power frequency that the surge arrester withstands for 10 seconds.
+ * @param steepFrontDischargeVoltage Residual voltage during a current impulse with front time of 1 microsecond, and magnitude equal to the nominal discharge current level.
+ * @param switchingImpulseDischargeVoltage Residual voltage during a current impulse with front time of at least 30 microseconds, and magnitude specified in IEC 60099 for the line discharge class.
+ *        Does not apply to line discharge class 0.
  */
 case class SurgeArresterInfo
-(
-
-    override val sup: AssetInfo,
-
-    /**
-     * Maximum continuous power frequency voltage allowed on the surge arrester.
-     */
-    val continuousOperatingVoltage: Double,
-
-    /**
-     * If true, the arrester has a polymer housing, porcelain otherwise.
-     */
-    val isPolymer: Boolean,
-
-    /**
-     * Residual voltage during an 8x20 microsecond current impulse at the nominal discharge current level.
-     */
-    val lightningImpulseDischargeVoltage: Double,
-
-    /**
-     * Determines the arrester energy discharge capability.
-     * Choices are limited to 0 (none) through 5 (highest) by IEC 60099. Classes 1..3 require a 10-kA nominal discharge current. Classes 4..5 require a 20-kA nominal discharge current. Lower nominal discharge currents must use class 0.
-     */
-    val lineDischargeClass: Int,
-
-    /**
-     * The lightning discharge current used to classify the arrester.
-     * Choices are limited to 1.5, 2.5, 5, 10, and 20 kA by IEC 60099.
-     */
-    val nominalDischargeCurrent: Double,
-
-    /**
-     * Fault current level at which all parts of the failed arrester lie within a circle prescribed by IEC 60099.
-     */
-    val pressureReliefClass: Double,
-
-    /**
-     * The temporary overvoltage (TOV) level at power frequency that the surge arrester withstands for 10 seconds.
-     */
-    val ratedVoltage: Double,
-
-    /**
-     * Residual voltage during a current impulse with front time of 1 microsecond, and magnitude equal to the nominal discharge current level.
-     */
-    val steepFrontDischargeVoltage: Double,
-
-    /**
-     * Residual voltage during a current impulse with front time of at least 30 microseconds, and magnitude specified in IEC 60099 for the line discharge class.
-     * Does not apply to line discharge class 0.
-     */
-    val switchingImpulseDischargeVoltage: Double
+(override val sup: AssetInfo,
+val continuousOperatingVoltage: Double,
+val isPolymer: Boolean,
+val lightningImpulseDischargeVoltage: Double,
+val lineDischargeClass: Int,
+val nominalDischargeCurrent: Double,
+val pressureReliefClass: Double,
+val ratedVoltage: Double,
+val steepFrontDischargeVoltage: Double,
+val switchingImpulseDischargeVoltage: Double
 )
 extends
     Element
@@ -1323,43 +1100,42 @@ extends
 
 /**
  * Kind of transformer construction.
+ * @param sup Reference to the superclass object.
+ * @param aerial
+ * @param dryType
+ * @param network
+ * @param onePhase
+ * @param overhead
+ * @param padmountDeadFront
+ * @param padmountFeedThrough
+ * @param padmountLiveFront
+ * @param padmountLoopThrough
+ * @param padmounted
+ * @param subway
+ * @param threePhase
+ * @param underground
+ * @param unknown
+ * @param vault
+ * @param vaultThreePhase
  */
 case class TransformerConstructionKind
-(
-
-    override val sup: BasicElement,
-
-    val aerial: String,
-
-    val dryType: String,
-
-    val network: String,
-
-    val onePhase: String,
-
-    val overhead: String,
-
-    val padmountDeadFront: String,
-
-    val padmountFeedThrough: String,
-
-    val padmountLiveFront: String,
-
-    val padmountLoopThrough: String,
-
-    val padmounted: String,
-
-    val subway: String,
-
-    val threePhase: String,
-
-    val underground: String,
-
-    val unknown: String,
-
-    val vault: String,
-
-    val vaultThreePhase: String
+(override val sup: BasicElement,
+val aerial: String,
+val dryType: String,
+val network: String,
+val onePhase: String,
+val overhead: String,
+val padmountDeadFront: String,
+val padmountFeedThrough: String,
+val padmountLiveFront: String,
+val padmountLoopThrough: String,
+val padmounted: String,
+val subway: String,
+val threePhase: String,
+val underground: String,
+val unknown: String,
+val vault: String,
+val vaultThreePhase: String
 )
 extends
     Element
@@ -1424,15 +1200,14 @@ extends
 
 /**
  * Kind of transformer construction.
+ * @param sup Reference to the superclass object.
+ * @param core
+ * @param shell
  */
 case class TransformerCoreKind
-(
-
-    override val sup: BasicElement,
-
-    val core: String,
-
-    val shell: String
+(override val sup: BasicElement,
+val core: String,
+val shell: String
 )
 extends
     Element
@@ -1469,21 +1244,20 @@ extends
 
 /**
  * Function of a transformer.
+ * @param sup Reference to the superclass object.
+ * @param autotransformer
+ * @param other
+ * @param powerTransformer
+ * @param secondaryTransformer
+ * @param voltageRegulator
  */
 case class TransformerFunctionKind
-(
-
-    override val sup: BasicElement,
-
-    val autotransformer: String,
-
-    val other: String,
-
-    val powerTransformer: String,
-
-    val secondaryTransformer: String,
-
-    val voltageRegulator: String
+(override val sup: BasicElement,
+val autotransformer: String,
+val other: String,
+val powerTransformer: String,
+val secondaryTransformer: String,
+val voltageRegulator: String
 )
 extends
     Element
@@ -1526,19 +1300,18 @@ extends
 
 /**
  * Insulation kind for windings.
+ * @param sup Reference to the superclass object.
+ * @param nomex
+ * @param other
+ * @param paper
+ * @param thermallyUpgradedPaper
  */
 case class WindingInsulationKind
-(
-
-    override val sup: BasicElement,
-
-    val nomex: String,
-
-    val other: String,
-
-    val paper: String,
-
-    val thermallyUpgradedPaper: String
+(override val sup: BasicElement,
+val nomex: String,
+val other: String,
+val paper: String,
+val thermallyUpgradedPaper: String
 )
 extends
     Element

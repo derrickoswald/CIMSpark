@@ -11,46 +11,24 @@ import ch.ninecode.cim.Context
 
 /**
  * A device that checks current flow values in any direction or designated direction.
+ * @param sup Reference to the superclass object.
+ * @param currentLimit1 Current limit number one 1 for inverse time pickup.
+ * @param currentLimit2 Current limit number 2 for inverse time pickup.
+ * @param currentLimit3 Current limit number 3 for inverse time pickup.
+ * @param inverseTimeFlag Set true if the current relay has inverse time characteristic.
+ * @param timeDelay1 Inverse time delay number 1 for current limit number 1.
+ * @param timeDelay2 Inverse time delay number 2 for current limit number 2.
+ * @param timeDelay3 Inverse time delay number 3 for current limit number 3.
  */
 case class CurrentRelay
-(
-
-    override val sup: ProtectionEquipment,
-
-    /**
-     * Current limit number one 1 for inverse time pickup.
-     */
-    val currentLimit1: Double,
-
-    /**
-     * Current limit number 2 for inverse time pickup.
-     */
-    val currentLimit2: Double,
-
-    /**
-     * Current limit number 3 for inverse time pickup.
-     */
-    val currentLimit3: Double,
-
-    /**
-     * Set true if the current relay has inverse time characteristic.
-     */
-    val inverseTimeFlag: Boolean,
-
-    /**
-     * Inverse time delay number 1 for current limit number 1.
-     */
-    val timeDelay1: Double,
-
-    /**
-     * Inverse time delay number 2 for current limit number 2.
-     */
-    val timeDelay2: Double,
-
-    /**
-     * Inverse time delay number 3 for current limit number 3.
-     */
-    val timeDelay3: Double
+(override val sup: ProtectionEquipment,
+val currentLimit1: Double,
+val currentLimit2: Double,
+val currentLimit3: Double,
+val inverseTimeFlag: Boolean,
+val timeDelay1: Double,
+val timeDelay2: Double,
+val timeDelay3: Double
 )
 extends
     Element
@@ -98,51 +76,26 @@ extends
 /**
  * An electrical device designed to respond to input conditions in a prescribed manner and after specified conditions are met to cause contact operation or similar abrupt change in associated electric control circuits, or simply to display the detected condition.
  * Protection equipment are associated with conducting equipment and usually operate circuit breakers.
+ * @param sup Reference to the superclass object.
+ * @param highLimit The maximum allowable value.
+ * @param lowLimit The minimum allowable value.
+ * @param powerDirectionFlag Direction same as positive active power flow value.
+ * @param relayDelayTime The time delay from detection of abnormal conditions to relay operation.
+ * @param unitMultiplier The unit multiplier of the value.
+ * @param unitSymbol The unit of measure of the value.
+ * @param ConductingEquipments Protection equipment may be used to protect specific conducting equipment.
+ * @param ProtectedSwitches Protected switches operated by this ProtectionEquipment.
  */
 case class ProtectionEquipment
-(
-
-    override val sup: Equipment,
-
-    /**
-     * The maximum allowable value.
-     */
-    val highLimit: Double,
-
-    /**
-     * The minimum allowable value.
-     */
-    val lowLimit: Double,
-
-    /**
-     * Direction same as positive active power flow value.
-     */
-    val powerDirectionFlag: Boolean,
-
-    /**
-     * The time delay from detection of abnormal conditions to relay operation.
-     */
-    val relayDelayTime: Double,
-
-    /**
-     * The unit multiplier of the value.
-     */
-    val unitMultiplier: String,
-
-    /**
-     * The unit of measure of the value.
-     */
-    val unitSymbol: String,
-
-    /**
-     * Protection equipment may be used to protect specific conducting equipment.
-     */
-    val ConductingEquipments: List[String],
-
-    /**
-     * Protected switches operated by this ProtectionEquipment.
-     */
-    val ProtectedSwitches: List[String]
+(override val sup: Equipment,
+val highLimit: Double,
+val lowLimit: Double,
+val powerDirectionFlag: Boolean,
+val relayDelayTime: Double,
+val unitMultiplier: String,
+val unitSymbol: String,
+val ConductingEquipments: List[String],
+val ProtectedSwitches: List[String]
 )
 extends
     Element
@@ -191,26 +144,16 @@ extends
 
 /**
  * A reclose sequence (open and close) is defined for each possible reclosure of a breaker.
+ * @param sup Reference to the superclass object.
+ * @param recloseDelay Indicates the time lapse before the reclose step will execute a reclose.
+ * @param recloseStep Indicates the ordinal position of the reclose step relative to other steps in the sequence.
+ * @param ProtectedSwitch A breaker may have zero or more automatic reclosures after a trip occurs.
  */
 case class RecloseSequence
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Indicates the time lapse before the reclose step will execute a reclose.
-     */
-    val recloseDelay: Double,
-
-    /**
-     * Indicates the ordinal position of the reclose step relative to other steps in the sequence.
-     */
-    val recloseStep: Int,
-
-    /**
-     * A breaker may have zero or more automatic reclosures after a trip occurs.
-     */
-    val ProtectedSwitch: String
+(override val sup: IdentifiedObject,
+val recloseDelay: Double,
+val recloseStep: Int,
+val ProtectedSwitch: String
 )
 extends
     Element
@@ -250,26 +193,16 @@ extends
 /**
  * A device that operates when two AC circuits are within the desired limits of frequency, phase angle, and voltage, to permit or to cause the paralleling of these two circuits.
  * Used to prevent the paralleling of non-synchronous topological islands.
+ * @param sup Reference to the superclass object.
+ * @param maxAngleDiff The maximum allowable voltage vector phase angle difference across the open device.
+ * @param maxFreqDiff The maximum allowable frequency difference across the open device.
+ * @param maxVoltDiff The maximum allowable difference voltage across the open device.
  */
 case class SynchrocheckRelay
-(
-
-    override val sup: ProtectionEquipment,
-
-    /**
-     * The maximum allowable voltage vector phase angle difference across the open device.
-     */
-    val maxAngleDiff: Double,
-
-    /**
-     * The maximum allowable frequency difference across the open device.
-     */
-    val maxFreqDiff: Double,
-
-    /**
-     * The maximum allowable difference voltage across the open device.
-     */
-    val maxVoltDiff: Double
+(override val sup: ProtectionEquipment,
+val maxAngleDiff: Double,
+val maxFreqDiff: Double,
+val maxVoltDiff: Double
 )
 extends
     Element

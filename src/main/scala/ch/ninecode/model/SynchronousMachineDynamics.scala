@@ -11,26 +11,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Excitation base system mode.
+ * @param sup Reference to the superclass object.
+ * @param ifag Air gap line mode.  ifdBaseValue is computed, not defined by the user, in this mode.
+ * @param iffl Full load system mode.  ifdBaseValue is computed, not defined by the user, in this mode.
+ * @param ifnl No load system with saturation mode.  ifdBaseValue is computed, not defined by the user, in this mode.
  */
 case class IfdBaseKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Air gap line mode.  ifdBaseValue is computed, not defined by the user, in this mode.
-     */
-    val ifag: String,
-
-    /**
-     * Full load system mode.  ifdBaseValue is computed, not defined by the user, in this mode.
-     */
-    val iffl: String,
-
-    /**
-     * No load system with saturation mode.  ifdBaseValue is computed, not defined by the user, in this mode.
-     */
-    val ifnl: String
+(override val sup: BasicElement,
+val ifag: String,
+val iffl: String,
+val ifnl: String
 )
 extends
     Element
@@ -69,21 +59,14 @@ extends
 
 /**
  * Type of rotor on physical machine.
+ * @param sup Reference to the superclass object.
+ * @param roundRotor Round rotor type of synchronous machine.
+ * @param salientPole Salient pole type of synchronous machine.
  */
 case class RotorKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Round rotor type of synchronous machine.
-     */
-    val roundRotor: String,
-
-    /**
-     * Salient pole type of synchronous machine.
-     */
-    val salientPole: String
+(override val sup: BasicElement,
+val roundRotor: String,
+val salientPole: String
 )
 extends
     Element
@@ -121,35 +104,22 @@ extends
 /**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
  * The several variations differ in the following ways:
+ * @param sup Reference to the superclass object.
+ * @param efdBaseRatio Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
+ *        Typical Value = 1.
+ * @param ifdBaseType Excitation base system mode.
+ *        It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.
+ * @param saturationFactor120QAxis Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
+ *        Typical Value = 0.12.
+ * @param saturationFactorQAxis Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
+ *        Typical Value = 0.02.
  */
 case class SynchronousMachineDetailed
-(
-
-    override val sup: SynchronousMachineDynamics,
-
-    /**
-     * Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
-     * Typical Value = 1.
-     */
-    val efdBaseRatio: Double,
-
-    /**
-     * Excitation base system mode.
-     * It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.
-     */
-    val ifdBaseType: String,
-
-    /**
-     * Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
-     * Typical Value = 0.12.
-     */
-    val saturationFactor120QAxis: Double,
-
-    /**
-     * Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
-     * Typical Value = 0.02.
-     */
-    val saturationFactorQAxis: Double
+(override val sup: SynchronousMachineDynamics,
+val efdBaseRatio: Double,
+val ifdBaseType: String,
+val saturationFactor120QAxis: Double,
+val saturationFactorQAxis: Double
 )
 extends
     Element
@@ -201,31 +171,18 @@ extends
 <font color="#0f0f0f">
 </font><font color="#0f0f0f"><b>Note:</b>  It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.
  * In this case a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as ordinary load.</font>
+ * @param sup Reference to the superclass object.
+ * @param ExcitationSystemDynamics Excitation system model associated with this synchronous machine model.
+ * @param MechanicalLoadDynamics Mechanical load model associated with this synchronous machine model.
+ * @param SynchronousMachine Synchronous machine to which synchronous machine dynamics model applies.
+ * @param TurbineGovernorDynamics Turbine-governor model associated with this synchronous machine model.
  */
 case class SynchronousMachineDynamics
-(
-
-    override val sup: RotatingMachineDynamics,
-
-    /**
-     * Excitation system model associated with this synchronous machine model.
-     */
-    val ExcitationSystemDynamics: String,
-
-    /**
-     * Mechanical load model associated with this synchronous machine model.
-     */
-    val MechanicalLoadDynamics: String,
-
-    /**
-     * Synchronous machine to which synchronous machine dynamics model applies.
-     */
-    val SynchronousMachine: String,
-
-    /**
-     * Turbine-governor model associated with this synchronous machine model.
-     */
-    val TurbineGovernorDynamics: List[String]
+(override val sup: RotatingMachineDynamics,
+val ExcitationSystemDynamics: String,
+val MechanicalLoadDynamics: String,
+val SynchronousMachine: String,
+val TurbineGovernorDynamics: List[String]
 )
 extends
     Element
@@ -291,66 +248,32 @@ tppdo = (xad * xfd + xad * x1d + xfd * x1d) / (2*pi*nominal frequency * r1d * (x
 tpqo = (xaq + x1q) / (2*pi*nominal frequency * r1q)
 tppqo = (xaq * x1q + xaq * x2q + x1q * x2q)/ (2*pi*nominal frequency * r2q * (xaq + x1q).
  * Are only valid for a simplified model where "Canay" reactance is zero.
+ * @param sup Reference to the superclass object.
+ * @param r1d D-axis damper 1 winding resistance.
+ * @param r1q Q-axis damper 1 winding resistance.
+ * @param r2q Q-axis damper 2 winding resistance.
+ * @param rfd Field winding resistance.
+ * @param x1d D-axis damper 1 winding leakage reactance.
+ * @param x1q Q-axis damper 1 winding leakage reactance.
+ * @param x2q Q-axis damper 2 winding leakage reactance.
+ * @param xad D-axis mutual reactance.
+ * @param xaq Q-axis mutual reactance.
+ * @param xf1d Differential mutual (�Canay�) reactance.
+ * @param xfd Field winding leakage reactance.
  */
 case class SynchronousMachineEquivalentCircuit
-(
-
-    override val sup: SynchronousMachineDetailed,
-
-    /**
-     * D-axis damper 1 winding resistance.
-     */
-    val r1d: Double,
-
-    /**
-     * Q-axis damper 1 winding resistance.
-     */
-    val r1q: Double,
-
-    /**
-     * Q-axis damper 2 winding resistance.
-     */
-    val r2q: Double,
-
-    /**
-     * Field winding resistance.
-     */
-    val rfd: Double,
-
-    /**
-     * D-axis damper 1 winding leakage reactance.
-     */
-    val x1d: Double,
-
-    /**
-     * Q-axis damper 1 winding leakage reactance.
-     */
-    val x1q: Double,
-
-    /**
-     * Q-axis damper 2 winding leakage reactance.
-     */
-    val x2q: Double,
-
-    /**
-     * D-axis mutual reactance.
-     */
-    val xad: Double,
-
-    /**
-     * Q-axis mutual reactance.
-     */
-    val xaq: Double,
-
-    /**
-     * Differential mutual (�Canay�) reactance.
-     */
-    val xf1d: Double,
-
-    /**
-     * Field winding leakage reactance.
-     */
-    val xfd: Double
+(override val sup: SynchronousMachineDetailed,
+val r1d: Double,
+val r1q: Double,
+val r2q: Double,
+val rfd: Double,
+val x1d: Double,
+val x1q: Double,
+val x2q: Double,
+val xad: Double,
+val xaq: Double,
+val xf1d: Double,
+val xfd: Double
 )
 extends
     Element
@@ -405,36 +328,20 @@ extends
 
 /**
  * Type of synchronous machine model used in Dynamic simulation applications.
+ * @param sup Reference to the superclass object.
+ * @param subtransient Subtransient synchronous machine model.
+ * @param subtransientSimplified Simplified version of subtransient synchronous machine model where magnetic coupling between the direct and quadrature axes is ignored.
+ * @param subtransientSimplifiedDirectAxis Simplified version of a subtransient synchronous machine model with no damper circuit on d-axis.
+ * @param subtransientTypeF WECC Type F variant of subtransient synchronous machine model.
+ * @param subtransientTypeJ WECC Type J variant of subtransient synchronous machine model.
  */
 case class SynchronousMachineModelKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Subtransient synchronous machine model.
-     */
-    val subtransient: String,
-
-    /**
-     * Simplified version of subtransient synchronous machine model where magnetic coupling between the direct and quadrature axes is ignored.
-     */
-    val subtransientSimplified: String,
-
-    /**
-     * Simplified version of a subtransient synchronous machine model with no damper circuit on d-axis.
-     */
-    val subtransientSimplifiedDirectAxis: String,
-
-    /**
-     * WECC Type F variant of subtransient synchronous machine model.
-     */
-    val subtransientTypeF: String,
-
-    /**
-     * WECC Type J variant of subtransient synchronous machine model.
-     */
-    val subtransientTypeJ: String
+(override val sup: BasicElement,
+val subtransient: String,
+val subtransientSimplified: String,
+val subtransientSimplifiedDirectAxis: String,
+val subtransientTypeF: String,
+val subtransientTypeJ: String
 )
 extends
     Element
@@ -478,11 +385,10 @@ extends
 /**
  * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance (<b>Rs</b> + <b>jXp</b>) as shown in the Simplified diagram.
  * Since internal voltage is held constant, there is no <b>Efd</b> input and any excitation system model will be ignored.  There is also no <b>Ifd</b> output.
+ * @param sup Reference to the superclass object.
  */
 case class SynchronousMachineSimplified
-(
-
-    override val sup: SynchronousMachineDynamics
+(override val sup: SynchronousMachineDynamics
 )
 extends
     Element
@@ -548,93 +454,50 @@ extends
 	<li>.tppqo (T''qo)</li>
 	<li>.tc.</li>
  * </ul>
+ * @param sup Reference to the superclass object.
+ * @param ks Saturation loading correction factor (Ks) (&gt;= 0).
+ *        Used only by Type J model.  Typical Value = 0.
+ * @param modelType Type of synchronous machine model used in Dynamic simulation applications.
+ * @param rotorType Type of rotor on physical machine.
+ * @param tc Damping time constant for �Canay� reactance.
+ *        Typical Value = 0.
+ * @param tpdo Direct-axis transient rotor time constant (T'do) (&gt; T''do).
+ *        Typical Value = 5.
+ * @param tppdo Direct-axis subtransient rotor time constant (T''do) (&gt; 0).
+ *        Typical Value = 0.03.
+ * @param tppqo Quadrature-axis subtransient rotor time constant (T''qo) (&gt; 0).
+ *        Typical Value = 0.03.
+ * @param tpqo Quadrature-axis transient rotor time constant (T'qo) (&gt; T''qo).
+ *        Typical Value = 0.5.
+ * @param xDirectSubtrans Direct-axis subtransient reactance (unsaturated) (X''d) (&gt; Xl).
+ *        Typical Value = 0.2.
+ * @param xDirectSync Direct-axis synchronous reactance (Xd) (&gt;= X'd).
+ *        The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.
+ * @param xDirectTrans Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X''d).
+ *        Typical Value = 0.5.
+ * @param xQuadSubtrans Quadrature-axis subtransient reactance (X''q) (&gt; Xl).
+ *        Typical Value = 0.2.
+ * @param xQuadSync Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
+ *        The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.
+ * @param xQuadTrans Quadrature-axis transient reactance (X'q) (&gt; =X''q).
+ *        Typical Value = 0.3.
  */
 case class SynchronousMachineTimeConstantReactance
-(
-
-    override val sup: SynchronousMachineDetailed,
-
-    /**
-     * Saturation loading correction factor (Ks) (&gt;= 0).
-     * Used only by Type J model.  Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Type of synchronous machine model used in Dynamic simulation applications.
-     */
-    val modelType: String,
-
-    /**
-     * Type of rotor on physical machine.
-     */
-    val rotorType: String,
-
-    /**
-     * Damping time constant for �Canay� reactance.
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Direct-axis transient rotor time constant (T'do) (&gt; T''do).
-     * Typical Value = 5.
-     */
-    val tpdo: Double,
-
-    /**
-     * Direct-axis subtransient rotor time constant (T''do) (&gt; 0).
-     * Typical Value = 0.03.
-     */
-    val tppdo: Double,
-
-    /**
-     * Quadrature-axis subtransient rotor time constant (T''qo) (&gt; 0).
-     * Typical Value = 0.03.
-     */
-    val tppqo: Double,
-
-    /**
-     * Quadrature-axis transient rotor time constant (T'qo) (&gt; T''qo).
-     * Typical Value = 0.5.
-     */
-    val tpqo: Double,
-
-    /**
-     * Direct-axis subtransient reactance (unsaturated) (X''d) (&gt; Xl).
-     * Typical Value = 0.2.
-     */
-    val xDirectSubtrans: Double,
-
-    /**
-     * Direct-axis synchronous reactance (Xd) (&gt;= X'd).
-     * The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.
-     */
-    val xDirectSync: Double,
-
-    /**
-     * Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X''d).
-     * Typical Value = 0.5.
-     */
-    val xDirectTrans: Double,
-
-    /**
-     * Quadrature-axis subtransient reactance (X''q) (&gt; Xl).
-     * Typical Value = 0.2.
-     */
-    val xQuadSubtrans: Double,
-
-    /**
-     * Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
-     * The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.
-     */
-    val xQuadSync: Double,
-
-    /**
-     * Quadrature-axis transient reactance (X'q) (&gt; =X''q).
-     * Typical Value = 0.3.
-     */
-    val xQuadTrans: Double
+(override val sup: SynchronousMachineDetailed,
+val ks: Double,
+val modelType: String,
+val rotorType: String,
+val tc: Double,
+val tpdo: Double,
+val tppdo: Double,
+val tppqo: Double,
+val tpqo: Double,
+val xDirectSubtrans: Double,
+val xDirectSync: Double,
+val xDirectTrans: Double,
+val xQuadSubtrans: Double,
+val xQuadSync: Double,
+val xQuadTrans: Double
 )
 extends
     Element

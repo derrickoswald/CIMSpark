@@ -7,11 +7,10 @@ import ch.ninecode.cim.Context
 
 /**
  * Used to define the type of generation for scheduling purposes.
+ * @param sup Reference to the superclass object.
  */
 case class EnergySchedulingType
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element

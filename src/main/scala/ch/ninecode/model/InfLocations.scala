@@ -7,17 +7,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Demographic kind of a land property.
+ * @param sup Reference to the superclass object.
+ * @param other
+ * @param rural
+ * @param urban
  */
 case class DemographicKind
-(
-
-    override val sup: BasicElement,
-
-    val other: String,
-
-    val rural: String,
-
-    val urban: String
+(override val sup: BasicElement,
+val other: String,
+val rural: String,
+val urban: String
 )
 extends
     Element
@@ -57,36 +56,23 @@ extends
 /**
  * Information about a particular piece of (land) property such as its use.
  * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
+ * @param sup Reference to the superclass object.
+ * @param demographicKind Demographics around the site.
+ * @param externalRecordReference Reference allocated by the governing organisation (such as municipality) to this piece of land that has a formal reference to Surveyor General's records.
+ *        The governing organisation is specified in associated Organisation.
+ * @param kind Kind of (land) property, categorised according to its main functional use from the utility's perspective.
+ * @param status
+ * @param AssetContainers
+ * @param Locations The spatail description of a piece of property.
  */
 case class LandProperty
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Demographics around the site.
-     */
-    val demographicKind: String,
-
-    /**
-     * Reference allocated by the governing organisation (such as municipality) to this piece of land that has a formal reference to Surveyor General's records.
-     * The governing organisation is specified in associated Organisation.
-     */
-    val externalRecordReference: String,
-
-    /**
-     * Kind of (land) property, categorised according to its main functional use from the utility's perspective.
-     */
-    val kind: String,
-
-    val status: String,
-
-    val AssetContainers: List[String],
-
-    /**
-     * The spatail description of a piece of property.
-     */
-    val Locations: List[String]
+(override val sup: IdentifiedObject,
+val demographicKind: String,
+val externalRecordReference: String,
+val kind: String,
+val status: String,
+val AssetContainers: List[String],
+val Locations: List[String]
 )
 extends
     Element
@@ -131,46 +117,24 @@ extends
 
 /**
  * Kind of (land) property.
+ * @param sup Reference to the superclass object.
+ * @param building Site enclosed within a building.
+ * @param customerPremise Site with a customer.
+ * @param depot Storehouse for supplies that also serves as a station for supporting crews.
+ * @param external Property owned or used by an external party that is not a customer.
+ * @param gridSupplyPoint Substation where the distribution and transmission networks meet and hence have mixed ownership and mixed operational control.
+ * @param store Place of storage (e.g., a warehouse) to put aside, or accumulate, material and equipment for use when needed.
+ * @param substation Transmission network switchyard.
  */
 case class LandPropertyKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Site enclosed within a building.
-     */
-    val building: String,
-
-    /**
-     * Site with a customer.
-     */
-    val customerPremise: String,
-
-    /**
-     * Storehouse for supplies that also serves as a station for supporting crews.
-     */
-    val depot: String,
-
-    /**
-     * Property owned or used by an external party that is not a customer.
-     */
-    val external: String,
-
-    /**
-     * Substation where the distribution and transmission networks meet and hence have mixed ownership and mixed operational control.
-     */
-    val gridSupplyPoint: String,
-
-    /**
-     * Place of storage (e.g., a warehouse) to put aside, or accumulate, material and equipment for use when needed.
-     */
-    val store: String,
-
-    /**
-     * Transmission network switchyard.
-     */
-    val substation: String
+(override val sup: BasicElement,
+val building: String,
+val customerPremise: String,
+val depot: String,
+val external: String,
+val gridSupplyPoint: String,
+val store: String,
+val substation: String
 )
 extends
     Element
@@ -218,22 +182,15 @@ extends
 /**
  * A grant provides a right, as defined by type, for a parcel of land.
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
+ * @param sup Reference to the superclass object.
+ * @param propertyData Property related information that describes the Grant's land parcel.
+ *        For example, it may be a deed book number, deed book page number, and parcel number.
+ * @param LandProperty Land property this location grant applies to.
  */
 case class LocationGrant
-(
-
-    override val sup: Agreement,
-
-    /**
-     * Property related information that describes the Grant's land parcel.
-     * For example, it may be a deed book number, deed book page number, and parcel number.
-     */
-    val propertyData: String,
-
-    /**
-     * Land property this location grant applies to.
-     */
-    val LandProperty: String
+(override val sup: Agreement,
+val propertyData: String,
+val LandProperty: String
 )
 extends
     Element
@@ -271,13 +228,12 @@ extends
 /**
  * This class is used for handling the accompanying annotations, time stamp, author, etc. of designs, drawings and maps.
  * A red line can be associated with any Location object.
+ * @param sup Reference to the superclass object.
+ * @param status
  */
 case class RedLine
-(
-
-    override val sup: IdentifiedObject,
-
-    val status: String
+(override val sup: IdentifiedObject,
+val status: String
 )
 extends
     Element
@@ -313,22 +269,15 @@ extends
 /**
  * A right-of-way (ROW) is for land where it is lawful to use for a public road, an electric power line, etc.
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
+ * @param sup Reference to the superclass object.
+ * @param propertyData Property related information that describes the ROW's land parcel.
+ *        For example, it may be a deed book number, deed book page number, and parcel number.
+ * @param LandProperties All land properties this right of way applies to.
  */
 case class RightOfWay
-(
-
-    override val sup: Agreement,
-
-    /**
-     * Property related information that describes the ROW's land parcel.
-     * For example, it may be a deed book number, deed book page number, and parcel number.
-     */
-    val propertyData: String,
-
-    /**
-     * All land properties this right of way applies to.
-     */
-    val LandProperties: List[String]
+(override val sup: Agreement,
+val propertyData: String,
+val LandProperties: List[String]
 )
 extends
     Element
@@ -365,20 +314,16 @@ extends
 
 /**
  * Route that is followed, for example by service crews.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param typ Classification by utility's work management standards and practices.
+ * @param Locations
  */
 case class Route
-(
-
-    override val sup: IdentifiedObject,
-
-    val status: String,
-
-    /**
-     * Classification by utility's work management standards and practices.
-     */
-    val typ: String,
-
-    val Locations: List[String]
+(override val sup: IdentifiedObject,
+val status: String,
+val typ: String,
+val Locations: List[String]
 )
 extends
     Element
@@ -418,16 +363,12 @@ extends
 /**
  * Area divided off from other areas.
  * It may be part of the electrical network, a land area where special restrictions apply, weather areas, etc. For weather, it is an area where a set of relatively homogenous weather measurements apply.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of this zone.
  */
 case class Zone
-(
-
-    override val sup: Location,
-
-    /**
-     * Kind of this zone.
-     */
-    val kind: String
+(override val sup: Location,
+val kind: String
 )
 extends
     Element
@@ -462,19 +403,18 @@ extends
 
 /**
  * Kind of zone.
+ * @param sup Reference to the superclass object.
+ * @param electricalNetwork
+ * @param other
+ * @param specialRestrictionLand
+ * @param weatherZone
  */
 case class ZoneKind
-(
-
-    override val sup: BasicElement,
-
-    val electricalNetwork: String,
-
-    val other: String,
-
-    val specialRestrictionLand: String,
-
-    val weatherZone: String
+(override val sup: BasicElement,
+val electricalNetwork: String,
+val other: String,
+val specialRestrictionLand: String,
+val weatherZone: String
 )
 extends
     Element

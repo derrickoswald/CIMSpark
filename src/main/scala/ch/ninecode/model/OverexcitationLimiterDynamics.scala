@@ -12,35 +12,22 @@ import ch.ninecode.cim.Context
 /**
  * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
  * Irated is the rated machine excitation current (calculated from nameplate conditions: V<sub>nom</sub>, P<sub>nom</sub>, CosPhi<sub>nom</sub>).
+ * @param sup Reference to the superclass object.
+ * @param ifdlim Limit value of rated field current (I<sub>FDLIM</sub>).
+ *        Typical Value = 1.05.
+ * @param koi Gain Over excitation limiter (K<sub>OI</sub>).
+ *        Typical Value = 0.1.
+ * @param voimax Maximum error signal (V<sub>OIMAX</sub>).
+ *        Typical Value = 0.
+ * @param voimin Minimum error signal (V<sub>OIMIN</sub>).
+ *        Typical Value = -9999.
  */
 case class OverexcLim2
-(
-
-    override val sup: OverexcitationLimiterDynamics,
-
-    /**
-     * Limit value of rated field current (I<sub>FDLIM</sub>).
-     * Typical Value = 1.05.
-     */
-    val ifdlim: Double,
-
-    /**
-     * Gain Over excitation limiter (K<sub>OI</sub>).
-     * Typical Value = 0.1.
-     */
-    val koi: Double,
-
-    /**
-     * Maximum error signal (V<sub>OIMAX</sub>).
-     * Typical Value = 0.
-     */
-    val voimax: Double,
-
-    /**
-     * Minimum error signal (V<sub>OIMIN</sub>).
-     * Typical Value = -9999.
-     */
-    val voimin: Double
+(override val sup: OverexcitationLimiterDynamics,
+val ifdlim: Double,
+val koi: Double,
+val voimax: Double,
+val voimin: Double
 )
 extends
     Element
@@ -82,47 +69,28 @@ extends
 /**
  * The over excitation limiter model is intended to represent the significant features of OELs necessary for some large-scale system studies.
  * It is the result of a pragmatic approach to obtain a model that can be widely applied with attainable data from generator owners. An attempt to include all variations in the functionality of OELs and duplicate how they interact with the rest of the excitation systems would likely result in a level of application insufficient for the studies for which they are intended.
+ * @param sup Reference to the superclass object.
+ * @param hyst OEL pickup/drop-out hysteresis (HYST).
+ *        Typical Value = 0.03.
+ * @param ifdlim OEL timed field current limit (I<sub>FDLIM</sub>).
+ *        Typical Value = 1.05.
+ * @param ifdmax OEL instantaneous field current limit (I<sub>FDMAX</sub>).
+ *        Typical Value = 1.5.
+ * @param itfpu OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
+ *        Typical Value = 1.05.
+ * @param kcd OEL cooldown gain (K<sub>CD</sub>).
+ *        Typical Value = 1.
+ * @param kramp OEL ramped limit rate (K<sub>RAMP</sub>).
+ *        Unit = PU/sec.  Typical Value = 10.
  */
 case class OverexcLimIEEE
-(
-
-    override val sup: OverexcitationLimiterDynamics,
-
-    /**
-     * OEL pickup/drop-out hysteresis (HYST).
-     * Typical Value = 0.03.
-     */
-    val hyst: Double,
-
-    /**
-     * OEL timed field current limit (I<sub>FDLIM</sub>).
-     * Typical Value = 1.05.
-     */
-    val ifdlim: Double,
-
-    /**
-     * OEL instantaneous field current limit (I<sub>FDMAX</sub>).
-     * Typical Value = 1.5.
-     */
-    val ifdmax: Double,
-
-    /**
-     * OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
-     * Typical Value = 1.05.
-     */
-    val itfpu: Double,
-
-    /**
-     * OEL cooldown gain (K<sub>CD</sub>).
-     * Typical Value = 1.
-     */
-    val kcd: Double,
-
-    /**
-     * OEL ramped limit rate (K<sub>RAMP</sub>).
-     * Unit = PU/sec.  Typical Value = 10.
-     */
-    val kramp: Double
+(override val sup: OverexcitationLimiterDynamics,
+val hyst: Double,
+val ifdlim: Double,
+val ifdmax: Double,
+val itfpu: Double,
+val kcd: Double,
+val kramp: Double
 )
 extends
     Element
@@ -167,70 +135,39 @@ extends
 
 /**
  * Field voltage over excitation limiter.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Low voltage point on the inverse time characteristic (EFD<sub>1</sub>).
+ *        Typical Value = 1.1.
+ * @param efd2 Mid voltage point on the inverse time characteristic (EFD<sub>2</sub>).
+ *        Typical Value = 1.2.
+ * @param efd3 High voltage point on the inverse time characteristic (EFD<sub>3</sub>).
+ *        Typical Value = 1.5.
+ * @param efddes Desired field voltage (EFD<sub>DES</sub>).
+ *        Typical Value = 0.9.
+ * @param efdrated Rated field voltage (EFD<sub>RATED</sub>).
+ *        Typical Value = 1.05.
+ * @param kmx Gain (K<sub>MX</sub>).
+ *        Typical Value = 0.01.
+ * @param t1 Time to trip the exciter at the low voltage point on the inverse time characteristic (TIME<sub>1</sub>).
+ *        Typical Value = 120.
+ * @param t2 Time to trip the exciter at the mid voltage point on the inverse time characteristic (TIME<sub>2</sub>).
+ *        Typical Value = 40.
+ * @param t3 Time to trip the exciter at the high voltage point on the inverse time characteristic (TIME<sub>3</sub>).
+ *        Typical Value = 15.
+ * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
  */
 case class OverexcLimX1
-(
-
-    override val sup: OverexcitationLimiterDynamics,
-
-    /**
-     * Low voltage point on the inverse time characteristic (EFD<sub>1</sub>).
-     * Typical Value = 1.1.
-     */
-    val efd1: Double,
-
-    /**
-     * Mid voltage point on the inverse time characteristic (EFD<sub>2</sub>).
-     * Typical Value = 1.2.
-     */
-    val efd2: Double,
-
-    /**
-     * High voltage point on the inverse time characteristic (EFD<sub>3</sub>).
-     * Typical Value = 1.5.
-     */
-    val efd3: Double,
-
-    /**
-     * Desired field voltage (EFD<sub>DES</sub>).
-     * Typical Value = 0.9.
-     */
-    val efddes: Double,
-
-    /**
-     * Rated field voltage (EFD<sub>RATED</sub>).
-     * Typical Value = 1.05.
-     */
-    val efdrated: Double,
-
-    /**
-     * Gain (K<sub>MX</sub>).
-     * Typical Value = 0.01.
-     */
-    val kmx: Double,
-
-    /**
-     * Time to trip the exciter at the low voltage point on the inverse time characteristic (TIME<sub>1</sub>).
-     * Typical Value = 120.
-     */
-    val t1: Double,
-
-    /**
-     * Time to trip the exciter at the mid voltage point on the inverse time characteristic (TIME<sub>2</sub>).
-     * Typical Value = 40.
-     */
-    val t2: Double,
-
-    /**
-     * Time to trip the exciter at the high voltage point on the inverse time characteristic (TIME<sub>3</sub>).
-     * Typical Value = 15.
-     */
-    val t3: Double,
-
-    /**
-     * Low voltage limit (V<sub>LOW</sub>) (&gt;0).
-     */
-    val vlow: Double
+(override val sup: OverexcitationLimiterDynamics,
+val efd1: Double,
+val efd2: Double,
+val efd3: Double,
+val efddes: Double,
+val efdrated: Double,
+val kmx: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val vlow: Double
 )
 extends
     Element
@@ -283,77 +220,43 @@ extends
 
 /**
  * Field Voltage or Current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Low voltage or current point on the inverse time characteristic (EFD<sub>1</sub>).
+ *        Typical Value = 1.1.
+ * @param efd2 Mid voltage or current point on the inverse time characteristic (EFD<sub>2</sub>).
+ *        Typical Value = 1.2.
+ * @param efd3 High voltage or current point on the inverse time characteristic (EFD<sub>3</sub>).
+ *        Typical Value = 1.5.
+ * @param efddes Desired field voltage if m=F or field current if m=T (EFD<sub>DES</sub>).
+ *        Typical Value = 1.
+ * @param efdrated Rated field voltage if m=F or field current if m=T (EFD<sub>RATED</sub>).
+ *        Typical Value = 1.05.
+ * @param kmx Gain (K<sub>MX</sub>).
+ *        Typical Value = 0.002.
+ * @param m (m).
+true = IFD limiting
+ *        false = EFD limiting.
+ * @param t1 Time to trip the exciter at the low voltage or current point on the inverse time characteristic (TIME<sub>1</sub>).
+ *        Typical Value = 120.
+ * @param t2 Time to trip the exciter at the mid voltage or current point on the inverse time characteristic (TIME<sub>2</sub>).
+ *        Typical Value = 40.
+ * @param t3 Time to trip the exciter at the high voltage or current point on the inverse time characteristic (TIME<sub>3</sub>).
+ *        Typical Value = 15.
+ * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
  */
 case class OverexcLimX2
-(
-
-    override val sup: OverexcitationLimiterDynamics,
-
-    /**
-     * Low voltage or current point on the inverse time characteristic (EFD<sub>1</sub>).
-     * Typical Value = 1.1.
-     */
-    val efd1: Double,
-
-    /**
-     * Mid voltage or current point on the inverse time characteristic (EFD<sub>2</sub>).
-     * Typical Value = 1.2.
-     */
-    val efd2: Double,
-
-    /**
-     * High voltage or current point on the inverse time characteristic (EFD<sub>3</sub>).
-     * Typical Value = 1.5.
-     */
-    val efd3: Double,
-
-    /**
-     * Desired field voltage if m=F or field current if m=T (EFD<sub>DES</sub>).
-     * Typical Value = 1.
-     */
-    val efddes: Double,
-
-    /**
-     * Rated field voltage if m=F or field current if m=T (EFD<sub>RATED</sub>).
-     * Typical Value = 1.05.
-     */
-    val efdrated: Double,
-
-    /**
-     * Gain (K<sub>MX</sub>).
-     * Typical Value = 0.002.
-     */
-    val kmx: Double,
-
-    /**
-     * (m).
-    true = IFD limiting
-     * false = EFD limiting.
-     */
-    val m: Boolean,
-
-    /**
-     * Time to trip the exciter at the low voltage or current point on the inverse time characteristic (TIME<sub>1</sub>).
-     * Typical Value = 120.
-     */
-    val t1: Double,
-
-    /**
-     * Time to trip the exciter at the mid voltage or current point on the inverse time characteristic (TIME<sub>2</sub>).
-     * Typical Value = 40.
-     */
-    val t2: Double,
-
-    /**
-     * Time to trip the exciter at the high voltage or current point on the inverse time characteristic (TIME<sub>3</sub>).
-     * Typical Value = 15.
-     */
-    val t3: Double,
-
-    /**
-     * Low voltage limit (V<sub>LOW</sub>) (&gt;0).
-     */
-    val vlow: Double
+(override val sup: OverexcitationLimiterDynamics,
+val efd1: Double,
+val efd2: Double,
+val efd3: Double,
+val efddes: Double,
+val efdrated: Double,
+val kmx: Double,
+val m: Boolean,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val vlow: Double
 )
 extends
     Element
@@ -408,16 +311,12 @@ extends
 
 /**
  * <font color="#0f0f0f">O</font>Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param ExcitationSystemDynamics Excitation system model with which this overexcitation limiter model is associated.
  */
 case class OverexcitationLimiterDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Excitation system model with which this overexcitation limiter model is associated.
-     */
-    val ExcitationSystemDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val ExcitationSystemDynamics: String
 )
 extends
     Element

@@ -11,58 +11,33 @@ import ch.ninecode.cim.Context
 
 /**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
+ * @param sup Reference to the superclass object.
+ * @param eventCount Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
+ * @param isConnected True if this function is in the connected state.
+ * @param isDelayedDiscon If set true, the switch may disconnect the service at the end of a specified time delay after the disconnect signal has been given.
+ *        If set false, the switch may disconnect the service immediately after the disconnect signal has been given. This is typically the case for over current circuit-breakers which are classified as either instantaneous or slow acting.
+ * @param isLocalAutoDisconOp If set true and if disconnection can be operated locally, the operation happens automatically.
+ *        Otherwise it happens manually.
+ * @param isLocalAutoReconOp If set true and if reconnection can be operated locally, then the operation happens automatically.
+ *        Otherwise, it happens manually.
+ * @param isRemoteAutoDisconOp If set true and if disconnection can be operated remotely, then the operation happens automatically.
+ *        If set false and if disconnection can be operated remotely, then the operation happens manually.
+ * @param isRemoteAutoReconOp If set true and if reconnection can be operated remotely, then the operation happens automatically.
+ *        If set false and if reconnection can be operated remotely, then the operation happens manually.
+ * @param rcdInfo Information on remote connect disconnect switch.
+ * @param Switches
  */
 case class ConnectDisconnectFunction
-(
-
-    override val sup: EndDeviceFunction,
-
-    /**
-     * Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
-     */
-    val eventCount: Int,
-
-    /**
-     * True if this function is in the connected state.
-     */
-    val isConnected: Boolean,
-
-    /**
-     * If set true, the switch may disconnect the service at the end of a specified time delay after the disconnect signal has been given.
-     * If set false, the switch may disconnect the service immediately after the disconnect signal has been given. This is typically the case for over current circuit-breakers which are classified as either instantaneous or slow acting.
-     */
-    val isDelayedDiscon: Boolean,
-
-    /**
-     * If set true and if disconnection can be operated locally, the operation happens automatically.
-     * Otherwise it happens manually.
-     */
-    val isLocalAutoDisconOp: Boolean,
-
-    /**
-     * If set true and if reconnection can be operated locally, then the operation happens automatically.
-     * Otherwise, it happens manually.
-     */
-    val isLocalAutoReconOp: Boolean,
-
-    /**
-     * If set true and if disconnection can be operated remotely, then the operation happens automatically.
-     * If set false and if disconnection can be operated remotely, then the operation happens manually.
-     */
-    val isRemoteAutoDisconOp: Boolean,
-
-    /**
-     * If set true and if reconnection can be operated remotely, then the operation happens automatically.
-     * If set false and if reconnection can be operated remotely, then the operation happens manually.
-     */
-    val isRemoteAutoReconOp: Boolean,
-
-    /**
-     * Information on remote connect disconnect switch.
-     */
-    val rcdInfo: String,
-
-    val Switches: List[String]
+(override val sup: EndDeviceFunction,
+val eventCount: Int,
+val isConnected: Boolean,
+val isDelayedDiscon: Boolean,
+val isLocalAutoDisconOp: Boolean,
+val isLocalAutoReconOp: Boolean,
+val isRemoteAutoDisconOp: Boolean,
+val isRemoteAutoReconOp: Boolean,
+val rcdInfo: String,
+val Switches: List[String]
 )
 extends
     Element
@@ -113,71 +88,34 @@ extends
 
 /**
  * Details of remote connect and disconnect function.
+ * @param sup Reference to the superclass object.
+ * @param armedTimeout Setting of the timeout elapsed time.
+ * @param customerVoltageLimit Voltage limit on customer side of RCD switch above which the connect should not be made.
+ * @param energyLimit Limit of energy before disconnect.
+ * @param energyUsageStartDateTime Start date and time to accumulate energy for energy usage limiting.
+ * @param energyUsageWarning Warning energy limit, used to trigger event code that energy usage is nearing limit.
+ * @param isArmConnect True if the RCD switch has to be armed before a connect action can be initiated.
+ * @param isArmDisconnect True if the RCD switch has to be armed before a disconnect action can be initiated.
+ * @param isEnergyLimiting True if the energy usage is limited and the customer will be disconnected if they go over the limit.
+ * @param needsPowerLimitCheck True if load limit has to be checked to issue an immediate disconnect (after a connect) if load is over the limit.
+ * @param needsVoltageLimitCheck True if voltage limit has to be checked to prevent connect if voltage is over the limit.
+ * @param powerLimit Load limit above which the connect should either not take place or should cause an immediate disconnect.
+ * @param usePushbutton True if pushbutton has to be used for connect.
  */
 case class RemoteConnectDisconnectInfo
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Setting of the timeout elapsed time.
-     */
-    val armedTimeout: Double,
-
-    /**
-     * Voltage limit on customer side of RCD switch above which the connect should not be made.
-     */
-    val customerVoltageLimit: Double,
-
-    /**
-     * Limit of energy before disconnect.
-     */
-    val energyLimit: Double,
-
-    /**
-     * Start date and time to accumulate energy for energy usage limiting.
-     */
-    val energyUsageStartDateTime: String,
-
-    /**
-     * Warning energy limit, used to trigger event code that energy usage is nearing limit.
-     */
-    val energyUsageWarning: Double,
-
-    /**
-     * True if the RCD switch has to be armed before a connect action can be initiated.
-     */
-    val isArmConnect: Boolean,
-
-    /**
-     * True if the RCD switch has to be armed before a disconnect action can be initiated.
-     */
-    val isArmDisconnect: Boolean,
-
-    /**
-     * True if the energy usage is limited and the customer will be disconnected if they go over the limit.
-     */
-    val isEnergyLimiting: Boolean,
-
-    /**
-     * True if load limit has to be checked to issue an immediate disconnect (after a connect) if load is over the limit.
-     */
-    val needsPowerLimitCheck: Boolean,
-
-    /**
-     * True if voltage limit has to be checked to prevent connect if voltage is over the limit.
-     */
-    val needsVoltageLimitCheck: Boolean,
-
-    /**
-     * Load limit above which the connect should either not take place or should cause an immediate disconnect.
-     */
-    val powerLimit: Double,
-
-    /**
-     * True if pushbutton has to be used for connect.
-     */
-    val usePushbutton: Boolean
+(override val sup: BasicElement,
+val armedTimeout: Double,
+val customerVoltageLimit: Double,
+val energyLimit: Double,
+val energyUsageStartDateTime: String,
+val energyUsageWarning: Double,
+val isArmConnect: Boolean,
+val isArmDisconnect: Boolean,
+val isEnergyLimiting: Boolean,
+val needsPowerLimitCheck: Boolean,
+val needsVoltageLimitCheck: Boolean,
+val powerLimit: Double,
+val usePushbutton: Boolean
 )
 extends
     Element

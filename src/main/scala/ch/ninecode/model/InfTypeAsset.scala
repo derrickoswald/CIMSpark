@@ -8,91 +8,42 @@ import ch.ninecode.cim.Context
 /**
  * Generic generation equipment that may be used for various purposes such as work planning.
  * It defines both the Real and Reactive power properties (modelled at the PSR level as a GeneratingUnit + SynchronousMachine).
+ * @param sup Reference to the superclass object.
+ * @param maxP Maximum real power limit.
+ * @param maxQ Maximum reactive power limit.
+ * @param minP Minimum real power generated.
+ * @param minQ Minimum reactive power generated.
+ * @param rDirectSubtrans Direct-axis subtransient resistance.
+ * @param rDirectSync Direct-axis synchronous resistance.
+ * @param rDirectTrans Direct-axis transient resistance.
+ * @param rQuadSubtrans Quadrature-axis subtransient resistance.
+ * @param rQuadSync Quadrature-axis synchronous resistance.
+ * @param rQuadTrans Quadrature-axis transient resistance.
+ * @param xDirectSubtrans Direct-axis subtransient reactance.
+ * @param xDirectSync Direct-axis synchronous reactance.
+ * @param xDirectTrans Direct-axis transient reactance.
+ * @param xQuadSubtrans Quadrature-axis subtransient reactance.
+ * @param xQuadSync Quadrature-axis synchronous reactance.
+ * @param xQuadTrans Quadrature-axis transient reactance.
  */
 case class GeneratorTypeAsset
-(
-
-    override val sup: GenericAssetModelOrMaterial,
-
-    /**
-     * Maximum real power limit.
-     */
-    val maxP: Double,
-
-    /**
-     * Maximum reactive power limit.
-     */
-    val maxQ: Double,
-
-    /**
-     * Minimum real power generated.
-     */
-    val minP: Double,
-
-    /**
-     * Minimum reactive power generated.
-     */
-    val minQ: Double,
-
-    /**
-     * Direct-axis subtransient resistance.
-     */
-    val rDirectSubtrans: Double,
-
-    /**
-     * Direct-axis synchronous resistance.
-     */
-    val rDirectSync: Double,
-
-    /**
-     * Direct-axis transient resistance.
-     */
-    val rDirectTrans: Double,
-
-    /**
-     * Quadrature-axis subtransient resistance.
-     */
-    val rQuadSubtrans: Double,
-
-    /**
-     * Quadrature-axis synchronous resistance.
-     */
-    val rQuadSync: Double,
-
-    /**
-     * Quadrature-axis transient resistance.
-     */
-    val rQuadTrans: Double,
-
-    /**
-     * Direct-axis subtransient reactance.
-     */
-    val xDirectSubtrans: Double,
-
-    /**
-     * Direct-axis synchronous reactance.
-     */
-    val xDirectSync: Double,
-
-    /**
-     * Direct-axis transient reactance.
-     */
-    val xDirectTrans: Double,
-
-    /**
-     * Quadrature-axis subtransient reactance.
-     */
-    val xQuadSubtrans: Double,
-
-    /**
-     * Quadrature-axis synchronous reactance.
-     */
-    val xQuadSync: Double,
-
-    /**
-     * Quadrature-axis transient reactance.
-     */
-    val xQuadTrans: Double
+(override val sup: GenericAssetModelOrMaterial,
+val maxP: Double,
+val maxQ: Double,
+val minP: Double,
+val minQ: Double,
+val rDirectSubtrans: Double,
+val rDirectSync: Double,
+val rDirectTrans: Double,
+val rQuadSubtrans: Double,
+val rQuadSync: Double,
+val rQuadTrans: Double,
+val xDirectSubtrans: Double,
+val xDirectSync: Double,
+val xDirectTrans: Double,
+val xQuadSubtrans: Double,
+val xQuadSync: Double,
+val xQuadTrans: Double
 )
 extends
     Element
@@ -158,13 +109,12 @@ extends
 /**
  * Catalogue of generic types of assets (TypeAsset) that may be used for design purposes.
  * It is not associated with a particular manufacturer.
+ * @param sup Reference to the superclass object.
+ * @param status
  */
 case class TypeAssetCatalogue
-(
-
-    override val sup: IdentifiedObject,
-
-    val status: String
+(override val sup: IdentifiedObject,
+val status: String
 )
 extends
     Element

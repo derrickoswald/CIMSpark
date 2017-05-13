@@ -10,16 +10,12 @@ import ch.ninecode.cim.Context
 
 /**
  * Action type associated with an ActionRequest against a ParticipantInterfaces::Trade.
+ * @param sup Reference to the superclass object.
+ * @param CANCEL Cancel a trade.
  */
 case class ActionType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Cancel a trade.
-     */
-    val CANCEL: String
+(override val sup: BasicElement,
+val CANCEL: String
 )
 extends
     Element
@@ -54,36 +50,20 @@ extends
 
 /**
  * Limit type specified for AnalogLimits.
+ * @param sup Reference to the superclass object.
+ * @param BranchLongTerm Branch Long Term Limit
+ * @param BranchMediumTerm Branch Medium Term Limit
+ * @param BranchShortTerm Branch Short Term Limit
+ * @param VoltageHigh Voltage High Limit
+ * @param VoltageLow Voltage Low Limit
  */
 case class AnalogLimitType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Branch Long Term Limit
-     */
-    val BranchLongTerm: String,
-
-    /**
-     * Branch Medium Term Limit
-     */
-    val BranchMediumTerm: String,
-
-    /**
-     * Branch Short Term Limit
-     */
-    val BranchShortTerm: String,
-
-    /**
-     * Voltage High Limit
-     */
-    val VoltageHigh: String,
-
-    /**
-     * Voltage Low Limit
-     */
-    val VoltageLow: String
+(override val sup: BasicElement,
+val BranchLongTerm: String,
+val BranchMediumTerm: String,
+val BranchShortTerm: String,
+val VoltageHigh: String,
+val VoltageLow: String
 )
 extends
     Element
@@ -159,66 +139,32 @@ extends
 <ul>
 	<li>ECA - Embedded Control Area</li>
  * </ul>
+ * @param sup Reference to the superclass object.
+ * @param ACA Adjacent Control Area
+ * @param AGR Aggregate Generation Resource;
+ * @param ALR Aggregate Load Resource;
+ * @param ASR Aggregated System Resource
+ * @param ECA Embedded Control Area
+ * @param LFZ Load Forecast Zone
+ * @param LTAC Load TransmissionAccessCharge (TAC) Group;
+ * @param POD Point of Delivery;
+ * @param REG Market Energy/Ancillary Service Region;
+ * @param RUC RUC Zone
+ * @param SYS System Zone/Region;
  */
 case class AnodeType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Adjacent Control Area
-     */
-    val ACA: String,
-
-    /**
-     * Aggregate Generation Resource;
-     */
-    val AGR: String,
-
-    /**
-     * Aggregate Load Resource;
-     */
-    val ALR: String,
-
-    /**
-     * Aggregated System Resource
-     */
-    val ASR: String,
-
-    /**
-     * Embedded Control Area
-     */
-    val ECA: String,
-
-    /**
-     * Load Forecast Zone
-     */
-    val LFZ: String,
-
-    /**
-     * Load TransmissionAccessCharge (TAC) Group;
-     */
-    val LTAC: String,
-
-    /**
-     * Point of Delivery;
-     */
-    val POD: String,
-
-    /**
-     * Market Energy/Ancillary Service Region;
-     */
-    val REG: String,
-
-    /**
-     * RUC Zone
-     */
-    val RUC: String,
-
-    /**
-     * System Zone/Region;
-     */
-    val SYS: String
+(override val sup: BasicElement,
+val ACA: String,
+val AGR: String,
+val ALR: String,
+val ASR: String,
+val ECA: String,
+val LFZ: String,
+val LTAC: String,
+val POD: String,
+val REG: String,
+val RUC: String,
+val SYS: String
 )
 extends
     Element
@@ -287,76 +233,36 @@ GH - generic hub
 ZN - zone
 INT - Interface
  * BUS - Bus
+ * @param sup Reference to the superclass object.
+ * @param AG Aggregated Generation
+ * @param BUS Bus
+ * @param CA Control Area
+ * @param CPZ Custom Price Zone
+ * @param DCA Designated Congestion Area
+ * @param DPZ Default Price Zone
+ * @param EHV 500 kV - Extra High Voltage aggregate price nodes
+ * @param GA generic aggregation
+ * @param GH generic hub
+ * @param INT Interface
+ * @param SYS System Zone
+ * @param TH Trading  Hub
+ * @param ZN Zone
  */
 case class ApnodeType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Aggregated Generation
-     */
-    val AG: String,
-
-    /**
-     * Bus
-     */
-    val BUS: String,
-
-    /**
-     * Control Area
-     */
-    val CA: String,
-
-    /**
-     * Custom Price Zone
-     */
-    val CPZ: String,
-
-    /**
-     * Designated Congestion Area
-     */
-    val DCA: String,
-
-    /**
-     * Default Price Zone
-     */
-    val DPZ: String,
-
-    /**
-     * 500 kV - Extra High Voltage aggregate price nodes
-     */
-    val EHV: String,
-
-    /**
-     * generic aggregation
-     */
-    val GA: String,
-
-    /**
-     * generic hub
-     */
-    val GH: String,
-
-    /**
-     * Interface
-     */
-    val INT: String,
-
-    /**
-     * System Zone
-     */
-    val SYS: String,
-
-    /**
-     * Trading  Hub
-     */
-    val TH: String,
-
-    /**
-     * Zone
-     */
-    val ZN: String
+(override val sup: BasicElement,
+val AG: String,
+val BUS: String,
+val CA: String,
+val CPZ: String,
+val DCA: String,
+val DPZ: String,
+val EHV: String,
+val GA: String,
+val GH: String,
+val INT: String,
+val SYS: String,
+val TH: String,
+val ZN: String
 )
 extends
     Element
@@ -415,31 +321,18 @@ extends
 
 /**
  * Area's present control mode
+ * @param sup Reference to the superclass object.
+ * @param CF CF = Constant Frequency
+ * @param CTL Constant Tie-Line
+ * @param OFF Off control
+ * @param TLB Tie-Line Bias
  */
 case class AreaControlMode
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * CF = Constant Frequency
-     */
-    val CF: String,
-
-    /**
-     * Constant Tie-Line
-     */
-    val CTL: String,
-
-    /**
-     * Off control
-     */
-    val OFF: String,
-
-    /**
-     * Tie-Line Bias
-     */
-    val TLB: String
+(override val sup: BasicElement,
+val CF: String,
+val CTL: String,
+val OFF: String,
+val TLB: String
 )
 extends
     Element
@@ -480,21 +373,14 @@ extends
 
 /**
  * Commitment instruction types.
+ * @param sup Reference to the superclass object.
+ * @param SHUT_DOWN Shut down instruction type
+ * @param START_UP Start up instruction type
  */
 case class AutomaticDispInstTypeCommitment
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Shut down instruction type
-     */
-    val SHUT_DOWN: String,
-
-    /**
-     * Start up instruction type
-     */
-    val START_UP: String
+(override val sup: BasicElement,
+val SHUT_DOWN: String,
+val START_UP: String
 )
 extends
     Element
@@ -531,23 +417,16 @@ extends
 
 /**
  * Automatic Dispatch mode
+ * @param sup Reference to the superclass object.
+ * @param CONTINGENCY Contingnency occurance, redispatch of contingency reserves
+ * @param INTERVAL
+ * @param MANUAL Operator override
  */
 case class AutomaticDispatchMode
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Contingnency occurance, redispatch of contingency reserves
-     */
-    val CONTINGENCY: String,
-
-    val INTERVAL: String,
-
-    /**
-     * Operator override
-     */
-    val MANUAL: String
+(override val sup: BasicElement,
+val CONTINGENCY: String,
+val INTERVAL: String,
+val MANUAL: String
 )
 extends
     Element
@@ -586,26 +465,16 @@ extends
 
 /**
  * The basis used to calculate the bid price curve for an energy default bid.
+ * @param sup Reference to the superclass object.
+ * @param COST_BASED Based on unit generation characteristics and a cost of fuel.
+ * @param LMP_BASED Based on prices paid at particular pricing location.
+ * @param NEGOTIATED An amount negotiated with the designated Independent Entity.
  */
 case class BidCalculationBasis
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Based on unit generation characteristics and a cost of fuel.
-     */
-    val COST_BASED: String,
-
-    /**
-     * Based on prices paid at particular pricing location.
-     */
-    val LMP_BASED: String,
-
-    /**
-     * An amount negotiated with the designated Independent Entity.
-     */
-    val NEGOTIATED: String
+(override val sup: BasicElement,
+val COST_BASED: String,
+val LMP_BASED: String,
+val NEGOTIATED: String
 )
 extends
     Element
@@ -650,23 +519,22 @@ extends
 'M' - Mitigated because of "misconduct" both by SMPM and LMPM
 'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
  * 'O' - original
+ * @param sup Reference to the superclass object.
+ * @param B
+ * @param L
+ * @param M
+ * @param O
+ * @param R
+ * @param S
  */
 case class BidMitigationStatus
-(
-
-    override val sup: BasicElement,
-
-    val B: String,
-
-    val L: String,
-
-    val M: String,
-
-    val O: String,
-
-    val R: String,
-
-    val S: String
+(override val sup: BasicElement,
+val B: String,
+val L: String,
+val M: String,
+val O: String,
+val R: String,
+val S: String
 )
 extends
     Element
@@ -713,15 +581,14 @@ extends
  * For example:
 Initial
  * Final
+ * @param sup Reference to the superclass object.
+ * @param F
+ * @param I
  */
 case class BidMitigationType
-(
-
-    override val sup: BasicElement,
-
-    val F: String,
-
-    val I: String
+(override val sup: BasicElement,
+val F: String,
+val I: String
 )
 extends
     Element
@@ -761,17 +628,16 @@ extends
 DEFAULT_ENERGY_BID
 DEFAULT_STARTUP_BID
  * DEFAULT_MINIMUM_LOAD_BID
+ * @param sup Reference to the superclass object.
+ * @param DEFAULT_ENERGY_BID
+ * @param DEFAULT_MINIMUM_LOAD_BID
+ * @param DEFAULT_STARTUP_BID
  */
 case class BidType
-(
-
-    override val sup: BasicElement,
-
-    val DEFAULT_ENERGY_BID: String,
-
-    val DEFAULT_MINIMUM_LOAD_BID: String,
-
-    val DEFAULT_STARTUP_BID: String
+(override val sup: BasicElement,
+val DEFAULT_ENERGY_BID: String,
+val DEFAULT_MINIMUM_LOAD_BID: String,
+val DEFAULT_STARTUP_BID: String
 )
 extends
     Element
@@ -810,21 +676,14 @@ extends
 
 /**
  * Bid self schedule type has two types as the required output of requirements and qualified pre-dispatch.
+ * @param sup Reference to the superclass object.
+ * @param QUALIFIED_PREDISPATCH Output of requirements bid self schedule type.
+ * @param REQUIREMENTS Qualified pre-dispatch bid self schedule type.
  */
 case class BidTypeRMR
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Output of requirements bid self schedule type.
-     */
-    val QUALIFIED_PREDISPATCH: String,
-
-    /**
-     * Qualified pre-dispatch bid self schedule type.
-     */
-    val REQUIREMENTS: String
+(override val sup: BasicElement,
+val QUALIFIED_PREDISPATCH: String,
+val REQUIREMENTS: String
 )
 extends
     Element
@@ -861,21 +720,14 @@ extends
 
 /**
  * Congestion Revenue Rights category types
+ * @param sup Reference to the superclass object.
+ * @param NSR Network Service
+ * @param PTP Point to Point
  */
 case class CRRCategoryType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Network Service
-     */
-    val NSR: String,
-
-    /**
-     * Point to Point
-     */
-    val PTP: String
+(override val sup: BasicElement,
+val NSR: String,
+val PTP: String
 )
 extends
     Element
@@ -912,15 +764,14 @@ extends
 
 /**
  * Congestion Revenue Right hedge type
+ * @param sup Reference to the superclass object.
+ * @param OBLIGATION
+ * @param OPTION
  */
 case class CRRHedgeType
-(
-
-    override val sup: BasicElement,
-
-    val OBLIGATION: String,
-
-    val OPTION: String
+(override val sup: BasicElement,
+val OBLIGATION: String,
+val OPTION: String
 )
 extends
     Element
@@ -957,17 +808,16 @@ extends
 
 /**
  * Role types an organisation can play with respect to a congestion revenue right.
+ * @param sup Reference to the superclass object.
+ * @param BUYER
+ * @param OWNER
+ * @param SELLER
  */
 case class CRRRoleType
-(
-
-    override val sup: BasicElement,
-
-    val BUYER: String,
-
-    val OWNER: String,
-
-    val SELLER: String
+(override val sup: BasicElement,
+val BUYER: String,
+val OWNER: String,
+val SELLER: String
 )
 extends
     Element
@@ -1006,42 +856,26 @@ extends
 
 /**
  * Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
+ * @param sup Reference to the superclass object.
+ * @param AUC
+ * @param CAP
+ * @param CF
+ * @param CVR Converted rights.
+ * @param ETC Existing Transmission Contract.
+ * @param LSE Load Serving Entity.
+ * @param MT Merchant transmission.
+ * @param TOR Transmission Ownership Rights.
  */
 case class CRRSegmentType
-(
-
-    override val sup: BasicElement,
-
-    val AUC: String,
-
-    val CAP: String,
-
-    val CF: String,
-
-    /**
-     * Converted rights.
-     */
-    val CVR: String,
-
-    /**
-     * Existing Transmission Contract.
-     */
-    val ETC: String,
-
-    /**
-     * Load Serving Entity.
-     */
-    val LSE: String,
-
-    /**
-     * Merchant transmission.
-     */
-    val MT: String,
-
-    /**
-     * Transmission Ownership Rights.
-     */
-    val TOR: String
+(override val sup: BasicElement,
+val AUC: String,
+val CAP: String,
+val CF: String,
+val CVR: String,
+val ETC: String,
+val LSE: String,
+val MT: String,
+val TOR: String
 )
 extends
     Element
@@ -1090,17 +924,16 @@ extends
 
 /**
  * To indicate a check out type such as adjusted capacity or dispatch capacity
+ * @param sup Reference to the superclass object.
+ * @param AFTER_THE_FACT
+ * @param PRE_HOUR
+ * @param PRE_SCHEDULE
  */
 case class CheckOutType
-(
-
-    override val sup: BasicElement,
-
-    val AFTER_THE_FACT: String,
-
-    val PRE_HOUR: String,
-
-    val PRE_SCHEDULE: String
+(override val sup: BasicElement,
+val AFTER_THE_FACT: String,
+val PRE_HOUR: String,
+val PRE_SCHEDULE: String
 )
 extends
     Element
@@ -1142,17 +975,16 @@ extends
 SELF - Self commitment
 ISO - New commitment for this market period
  * UC - Existing commitment that was a hold over from a previous market.
+ * @param sup Reference to the superclass object.
+ * @param ISO
+ * @param SELF
+ * @param UC
  */
 case class CommitmentType
-(
-
-    override val sup: BasicElement,
-
-    val ISO: String,
-
-    val SELF: String,
-
-    val UC: String
+(override val sup: BasicElement,
+val ISO: String,
+val SELF: String,
+val UC: String
 )
 extends
     Element
@@ -1193,15 +1025,14 @@ extends
  * Binding constraint results limit type, For example:
 MAXIMUM
  * MINIMUM
+ * @param sup Reference to the superclass object.
+ * @param MAXIMUM
+ * @param MINIMUM
  */
 case class ConstraintLimitType
-(
-
-    override val sup: BasicElement,
-
-    val MAXIMUM: String,
-
-    val MINIMUM: String
+(override val sup: BasicElement,
+val MAXIMUM: String,
+val MINIMUM: String
 )
 extends
     Element
@@ -1238,15 +1069,14 @@ extends
 
 /**
  * Constraint Ramp type
+ * @param sup Reference to the superclass object.
+ * @param FAST
+ * @param SLOW
  */
 case class ConstraintRampType
-(
-
-    override val sup: BasicElement,
-
-    val FAST: String,
-
-    val SLOW: String
+(override val sup: BasicElement,
+val FAST: String,
+val SLOW: String
 )
 extends
     Element
@@ -1291,51 +1121,26 @@ RMT - RMT Contract
 TOR - Transmission Ownership Right  
 RMR - Reliability Must Run Contract
  * CVR - Converted contract.
+ * @param sup Reference to the superclass object.
+ * @param CVR CVR - Converted contract.
+ * @param ETC ETC - Existing Transmission Contract
+ * @param O O - Other
+ * @param RMR RMR - Reliability Must Run Contract
+ * @param RMT RMT - RMT Contract
+ * @param TE TE - Transmission Export
+ * @param TI TI - Transmission Import
+ * @param TOR TOR - Transmission Ownership Right
  */
 case class ContractType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * CVR - Converted contract.
-     */
-    val CVR: String,
-
-    /**
-     * ETC - Existing Transmission Contract
-     */
-    val ETC: String,
-
-    /**
-     * O - Other
-     */
-    val O: String,
-
-    /**
-     * RMR - Reliability Must Run Contract
-     */
-    val RMR: String,
-
-    /**
-     * RMT - RMT Contract
-     */
-    val RMT: String,
-
-    /**
-     * TE - Transmission Export
-     */
-    val TE: String,
-
-    /**
-     * TI - Transmission Import
-     */
-    val TI: String,
-
-    /**
-     * TOR - Transmission Ownership Right
-     */
-    val TOR: String
+(override val sup: BasicElement,
+val CVR: String,
+val ETC: String,
+val O: String,
+val RMR: String,
+val RMT: String,
+val TE: String,
+val TI: String,
+val TOR: String
 )
 extends
     Element
@@ -1387,17 +1192,16 @@ extends
 Bid Cost
 Proxy Cost
  * Registered Cost
+ * @param sup Reference to the superclass object.
+ * @param BIDC
+ * @param PRXC
+ * @param REGC
  */
 case class CostBasis
-(
-
-    override val sup: BasicElement,
-
-    val BIDC: String,
-
-    val PRXC: String,
-
-    val REGC: String
+(override val sup: BasicElement,
+val BIDC: String,
+val PRXC: String,
+val REGC: String
 )
 extends
     Element
@@ -1440,19 +1244,18 @@ NON_RESPONSE
 ACCEPT
 DECLINE
  * PARTIAL.
+ * @param sup Reference to the superclass object.
+ * @param ACCEPT
+ * @param DECLINE
+ * @param NON_RESPONSE
+ * @param PARTIAL
  */
 case class DispatchResponseType
-(
-
-    override val sup: BasicElement,
-
-    val ACCEPT: String,
-
-    val DECLINE: String,
-
-    val NON_RESPONSE: String,
-
-    val PARTIAL: String
+(override val sup: BasicElement,
+val ACCEPT: String,
+val DECLINE: String,
+val NON_RESPONSE: String,
+val PARTIAL: String
 )
 extends
     Element
@@ -1496,17 +1299,16 @@ extends
 WHOLESALE
 RETAIL
  * BOTH
+ * @param sup Reference to the superclass object.
+ * @param BOTH
+ * @param RETAIL
+ * @param WHOLESALE
  */
 case class EnergyPriceIndexType
-(
-
-    override val sup: BasicElement,
-
-    val BOTH: String,
-
-    val RETAIL: String,
-
-    val WHOLESALE: String
+(override val sup: BasicElement,
+val BOTH: String,
+val RETAIL: String,
+val WHOLESALE: String
 )
 extends
     Element
@@ -1545,31 +1347,18 @@ extends
 
 /**
  * Energy product type
+ * @param sup Reference to the superclass object.
+ * @param DYN Dynamic
+ * @param FIRM Firm
+ * @param NFRM Non Firm
+ * @param WHL Wheeling
  */
 case class EnergyProductType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Dynamic
-     */
-    val DYN: String,
-
-    /**
-     * Firm
-     */
-    val FIRM: String,
-
-    /**
-     * Non Firm
-     */
-    val NFRM: String,
-
-    /**
-     * Wheeling
-     */
-    val WHL: String
+(override val sup: BasicElement,
+val DYN: String,
+val FIRM: String,
+val NFRM: String,
+val WHL: String
 )
 extends
     Element
@@ -1610,26 +1399,16 @@ extends
 
 /**
  * Defines the state of a transaction.
+ * @param sup Reference to the superclass object.
+ * @param approve Approve
+ * @param deny Deny
+ * @param study Study
  */
 case class EnergyTransactionType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Approve
-     */
-    val approve: String,
-
-    /**
-     * Deny
-     */
-    val deny: String,
-
-    /**
-     * Study
-     */
-    val study: String
+(override val sup: BasicElement,
+val approve: String,
+val deny: String,
+val study: String
 )
 extends
     Element
@@ -1668,21 +1447,14 @@ extends
 
 /**
  * Status of equipment
+ * @param sup Reference to the superclass object.
+ * @param In Equipment is in.
+ * @param Out Equipment is out.
  */
 case class EquipmentStatusType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Equipment is in.
-     */
-    val In: String,
-
-    /**
-     * Equipment is out.
-     */
-    val Out: String
+(override val sup: BasicElement,
+val In: String,
+val Out: String
 )
 extends
     Element
@@ -1719,31 +1491,18 @@ extends
 
 /**
  * Execution types of Market Runs
+ * @param sup Reference to the superclass object.
+ * @param DA Day Ahead
+ * @param HASP Real TIme Hour Ahead Execution
+ * @param RTD Real Time Dispatch
+ * @param RTPD Real Time Pre-dispatch
  */
 case class ExecutionType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Day Ahead
-     */
-    val DA: String,
-
-    /**
-     * Real TIme Hour Ahead Execution
-     */
-    val HASP: String,
-
-    /**
-     * Real Time Dispatch
-     */
-    val RTD: String,
-
-    /**
-     * Real Time Pre-dispatch
-     */
-    val RTPD: String
+(override val sup: BasicElement,
+val DA: String,
+val HASP: String,
+val RTD: String,
+val RTPD: String
 )
 extends
     Element
@@ -1787,26 +1546,16 @@ extends
 N' - not an RMR unit
 '1' - RMR Condition 1 unit
  * '2' - RMR Condition 2 unit
+ * @param sup Reference to the superclass object.
+ * @param N 'N' - not an RMR unit
+ * @param _1 '1' - RMR Condition 1 unit
+ * @param _2 '2' - RMR Condition 2 unit
  */
 case class FlagTypeRMR
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * 'N' - not an RMR unit
-     */
-    val N: String,
-
-    /**
-     * '1' - RMR Condition 1 unit
-     */
-    val _1: String,
-
-    /**
-     * '2' - RMR Condition 2 unit
-     */
-    val _2: String
+(override val sup: BasicElement,
+val N: String,
+val _1: String,
+val _2: String
 )
 extends
     Element
@@ -1845,21 +1594,14 @@ extends
 
 /**
  * Specifies the direction of energy flow in the flowgate.
+ * @param sup Reference to the superclass object.
+ * @param Forward Forward direction.
+ * @param Reverse Reverse direction.
  */
 case class FlowDirectionType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Forward direction.
-     */
-    val Forward: String,
-
-    /**
-     * Reverse direction.
-     */
-    val Reverse: String
+(override val sup: BasicElement,
+val Forward: String,
+val Reverse: String
 )
 extends
     Element
@@ -1911,81 +1653,44 @@ Solar
 Waste to Energy
 Water
  * Wind
+ * @param sup Reference to the superclass object.
+ * @param BGAS Bio Gas (Landfill, Sewage, Digester, etc.)
+ * @param BIOM Biomass
+ * @param COAL Coal
+ * @param DIST
+ * @param GAS
+ * @param GEOT GeoThermal
+ * @param HRCV
+ * @param NG Natural Gas
+ * @param NNG Non-Natural Gas
+ * @param NONE
+ * @param NUCL Nuclear
+ * @param OIL
+ * @param OTHR Other
+ * @param SOLR Solar
+ * @param WAST Waste to Energy
+ * @param WATR Water
+ * @param WIND Wind
  */
 case class FuelSource
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Bio Gas (Landfill, Sewage, Digester, etc.)
-     */
-    val BGAS: String,
-
-    /**
-     * Biomass
-     */
-    val BIOM: String,
-
-    /**
-     * Coal
-     */
-    val COAL: String,
-
-    val DIST: String,
-
-    val GAS: String,
-
-    /**
-     * GeoThermal
-     */
-    val GEOT: String,
-
-    val HRCV: String,
-
-    /**
-     * Natural Gas
-     */
-    val NG: String,
-
-    /**
-     * Non-Natural Gas
-     */
-    val NNG: String,
-
-    val NONE: String,
-
-    /**
-     * Nuclear
-     */
-    val NUCL: String,
-
-    val OIL: String,
-
-    /**
-     * Other
-     */
-    val OTHR: String,
-
-    /**
-     * Solar
-     */
-    val SOLR: String,
-
-    /**
-     * Waste to Energy
-     */
-    val WAST: String,
-
-    /**
-     * Water
-     */
-    val WATR: String,
-
-    /**
-     * Wind
-     */
-    val WIND: String
+(override val sup: BasicElement,
+val BGAS: String,
+val BIOM: String,
+val COAL: String,
+val DIST: String,
+val GAS: String,
+val GEOT: String,
+val HRCV: String,
+val NG: String,
+val NNG: String,
+val NONE: String,
+val NUCL: String,
+val OIL: String,
+val OTHR: String,
+val SOLR: String,
+val WAST: String,
+val WATR: String,
+val WIND: String
 )
 extends
     Element
@@ -2052,21 +1757,14 @@ extends
 
 /**
  * Direction of an intertie.
+ * @param sup Reference to the superclass object.
+ * @param E Export.
+ * @param I Import.
  */
 case class InterTieDirection
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Export.
-     */
-    val E: String,
-
-    /**
-     * Import.
-     */
-    val I: String
+(override val sup: BasicElement,
+val E: String,
+val I: String
 )
 extends
     Element
@@ -2103,21 +1801,14 @@ extends
 
 /**
  * Load forecast zone types.
+ * @param sup Reference to the superclass object.
+ * @param LFZ Load forecast zone.
+ * @param LZMS Metered sub system zone.
  */
 case class LoadForecastType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Load forecast zone.
-     */
-    val LFZ: String,
-
-    /**
-     * Metered sub system zone.
-     */
-    val LZMS: String
+(override val sup: BasicElement,
+val LFZ: String,
+val LZMS: String
 )
 extends
     Element
@@ -2161,41 +1852,22 @@ extends
 4 ? Local Price Test
 5 ? Local Conduct Test
  * 6 ? Local Impact Test
+ * @param sup Reference to the superclass object.
+ * @param _1 1 - Global Price Test.
+ * @param _2 2 - Global Conduct Test.
+ * @param _3 3 - Global Impact Test.
+ * @param _4 4 - Local Price Test.
+ * @param _5 5 - Local Conduct Test.
+ * @param _6 6 - Local Impact Test.
  */
 case class MPMTestIdentifierType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * 1 - Global Price Test.
-     */
-    val _1: String,
-
-    /**
-     * 2 - Global Conduct Test.
-     */
-    val _2: String,
-
-    /**
-     * 3 - Global Impact Test.
-     */
-    val _3: String,
-
-    /**
-     * 4 - Local Price Test.
-     */
-    val _4: String,
-
-    /**
-     * 5 - Local Conduct Test.
-     */
-    val _5: String,
-
-    /**
-     * 6 - Local Impact Test.
-     */
-    val _6: String
+(override val sup: BasicElement,
+val _1: String,
+val _2: String,
+val _3: String,
+val _4: String,
+val _5: String,
+val _6: String
 )
 extends
     Element
@@ -2241,21 +1913,14 @@ extends
 /**
  * Market power mitigation test method type.
  * Tests with the normal (default) thresholds or tests with the alternate thresholds.
+ * @param sup Reference to the superclass object.
+ * @param ALTERNATE Alternate.
+ * @param NORMAL Normal.
  */
 case class MPMTestMethodType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Alternate.
-     */
-    val ALTERNATE: String,
-
-    /**
-     * Normal.
-     */
-    val NORMAL: String
+(override val sup: BasicElement,
+val ALTERNATE: String,
+val NORMAL: String
 )
 extends
     Element
@@ -2296,31 +1961,18 @@ Passed
 Failed
 Disabled
  * Skipped
+ * @param sup Reference to the superclass object.
+ * @param D Disabled
+ * @param F Failed
+ * @param P Passed
+ * @param S Skipped
  */
 case class MPMTestOutcome
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Disabled
-     */
-    val D: String,
-
-    /**
-     * Failed
-     */
-    val F: String,
-
-    /**
-     * Passed
-     */
-    val P: String,
-
-    /**
-     * Skipped
-     */
-    val S: String
+(override val sup: BasicElement,
+val D: String,
+val F: String,
+val P: String,
+val S: String
 )
 extends
     Element
@@ -2363,15 +2015,14 @@ extends
  * For example:
 ADD - add
  * CHG - change
+ * @param sup Reference to the superclass object.
+ * @param ADD
+ * @param CHG
  */
 case class MQSCHGType
-(
-
-    override val sup: BasicElement,
-
-    val ADD: String,
-
-    val CHG: String
+(override val sup: BasicElement,
+val ADD: String,
+val CHG: String
 )
 extends
     Element
@@ -2410,15 +2061,14 @@ extends
  * Valid values, for example: 
 INS - Instruction from RTM
  * ACT - Actual instruction after the fact
+ * @param sup Reference to the superclass object.
+ * @param ACT
+ * @param INS
  */
 case class MQSInstructionSource
-(
-
-    override val sup: BasicElement,
-
-    val ACT: String,
-
-    val INS: String
+(override val sup: BasicElement,
+val ACT: String,
+val INS: String
 )
 extends
     Element
@@ -2455,56 +2105,28 @@ extends
 
 /**
  * Market product self schedule bid types.
+ * @param sup Reference to the superclass object.
+ * @param ETC Existing Transmission Contract.
+ * @param LPT Low price taker.
+ * @param PT Price taker.
+ * @param RA Resource adequacy.
+ * @param RGMR Regulatory must run.
+ * @param RMR Reliability Must Run.
+ * @param RMT Reliability must take.
+ * @param SP Self provision.
+ * @param TOR Transmission Ownership Right.
  */
 case class MarketProductSelfSchedType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Existing Transmission Contract.
-     */
-    val ETC: String,
-
-    /**
-     * Low price taker.
-     */
-    val LPT: String,
-
-    /**
-     * Price taker.
-     */
-    val PT: String,
-
-    /**
-     * Resource adequacy.
-     */
-    val RA: String,
-
-    /**
-     * Regulatory must run.
-     */
-    val RGMR: String,
-
-    /**
-     * Reliability Must Run.
-     */
-    val RMR: String,
-
-    /**
-     * Reliability must take.
-     */
-    val RMT: String,
-
-    /**
-     * Self provision.
-     */
-    val SP: String,
-
-    /**
-     * Transmission Ownership Right.
-     */
-    val TOR: String
+(override val sup: BasicElement,
+val ETC: String,
+val LPT: String,
+val PT: String,
+val RA: String,
+val RGMR: String,
+val RMR: String,
+val RMT: String,
+val SP: String,
+val TOR: String
 )
 extends
     Element
@@ -2556,56 +2178,28 @@ extends
 /**
  * For example:
  * Energy, Reg Up, Reg Down, Spin Reserve, Nonspin Reserve, RUC, Load Folloing Up, and Load Following Down.
+ * @param sup Reference to the superclass object.
+ * @param EN energy type
+ * @param LFD Load following down
+ * @param LFU Load following up
+ * @param NR non spinning reserve
+ * @param RC Residual Unit Commitment
+ * @param RD regulation down
+ * @param REG Regulation
+ * @param RU regulation up
+ * @param SR spinning reserve
  */
 case class MarketProductType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * energy type
-     */
-    val EN: String,
-
-    /**
-     * Load following down
-     */
-    val LFD: String,
-
-    /**
-     * Load following up
-     */
-    val LFU: String,
-
-    /**
-     * non spinning reserve
-     */
-    val NR: String,
-
-    /**
-     * Residual Unit Commitment
-     */
-    val RC: String,
-
-    /**
-     * regulation down
-     */
-    val RD: String,
-
-    /**
-     * Regulation
-     */
-    val REG: String,
-
-    /**
-     * regulation up
-     */
-    val RU: String,
-
-    /**
-     * spinning reserve
-     */
-    val SR: String
+(override val sup: BasicElement,
+val EN: String,
+val LFD: String,
+val LFU: String,
+val NR: String,
+val RC: String,
+val RD: String,
+val REG: String,
+val RU: String,
+val SR: String
 )
 extends
     Element
@@ -2656,31 +2250,18 @@ extends
 
 /**
  * Maket type.
+ * @param sup Reference to the superclass object.
+ * @param DAM Day ahead market.
+ * @param HAM Hour Ahead Market.
+ * @param RTM Real time market.
+ * @param RUC Residual Unit Commitment.
  */
 case class MarketType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Day ahead market.
-     */
-    val DAM: String,
-
-    /**
-     * Hour Ahead Market.
-     */
-    val HAM: String,
-
-    /**
-     * Real time market.
-     */
-    val RTM: String,
-
-    /**
-     * Residual Unit Commitment.
-     */
-    val RUC: String
+(override val sup: BasicElement,
+val DAM: String,
+val HAM: String,
+val RTM: String,
+val RUC: String
 )
 extends
     Element
@@ -2721,19 +2302,18 @@ extends
 
 /**
  * Kind of Market account.
+ * @param sup Reference to the superclass object.
+ * @param estimate
+ * @param normal
+ * @param reversal
+ * @param statistical
  */
 case class MktAccountKind
-(
-
-    override val sup: BasicElement,
-
-    val estimate: String,
-
-    val normal: String,
-
-    val reversal: String,
-
-    val statistical: String
+(override val sup: BasicElement,
+val estimate: String,
+val normal: String,
+val reversal: String,
+val statistical: String
 )
 extends
     Element
@@ -2774,17 +2354,16 @@ extends
 
 /**
  * Kind of bill media.
+ * @param sup Reference to the superclass object.
+ * @param electronic
+ * @param other
+ * @param paper
  */
 case class MktBillMediaKind
-(
-
-    override val sup: BasicElement,
-
-    val electronic: String,
-
-    val other: String,
-
-    val paper: String
+(override val sup: BasicElement,
+val electronic: String,
+val other: String,
+val paper: String
 )
 extends
     Element
@@ -2823,17 +2402,16 @@ extends
 
 /**
  * Kind of invoice line item.
+ * @param sup Reference to the superclass object.
+ * @param initial
+ * @param other
+ * @param recalculation
  */
 case class MktInvoiceLineItemKind
-(
-
-    override val sup: BasicElement,
-
-    val initial: String,
-
-    val other: String,
-
-    val recalculation: String
+(override val sup: BasicElement,
+val initial: String,
+val other: String,
+val recalculation: String
 )
 extends
     Element
@@ -2873,15 +2451,14 @@ extends
 /**
  * ON
  * OFF
+ * @param sup Reference to the superclass object.
+ * @param OFF
+ * @param ON
  */
 case class OnOff
-(
-
-    override val sup: BasicElement,
-
-    val OFF: String,
-
-    val ON: String
+(override val sup: BasicElement,
+val OFF: String,
+val ON: String
 )
 extends
     Element
@@ -2922,19 +2499,18 @@ extends
 'N' - Not included in LMP price measures
 'S' - Participates in SMPM price measures
  * 'L' - Participates in LMPM price measures
+ * @param sup Reference to the superclass object.
+ * @param L
+ * @param N
+ * @param S
+ * @param Y
  */
 case class ParticipationCategoryMPM
-(
-
-    override val sup: BasicElement,
-
-    val L: String,
-
-    val N: String,
-
-    val S: String,
-
-    val Y: String
+(override val sup: BasicElement,
+val L: String,
+val N: String,
+val S: String,
+val Y: String
 )
 extends
     Element
@@ -2975,56 +2551,28 @@ extends
 
 /**
  * Defines the individual passes that produce results per execution type/market type
+ * @param sup Reference to the superclass object.
+ * @param DA Day Ahead
+ * @param HA_SCUC Hour Ahead Security Constrained Unit Commitment
+ * @param MPM_1 Market Power Mitigation Pass 1
+ * @param MPM_2 Market Power Mitigation Pass 2
+ * @param MPM_3 Market Power Mitigation Pass 3
+ * @param MPM_4 Market Power Mitigation Pass 4
+ * @param RTED Real Time Economic Dispatch
+ * @param RTPD Real Time Pre Dispatch
+ * @param RUC Residual Unit Commitment
  */
 case class PassIndicatorType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Day Ahead
-     */
-    val DA: String,
-
-    /**
-     * Hour Ahead Security Constrained Unit Commitment
-     */
-    val HA_SCUC: String,
-
-    /**
-     * Market Power Mitigation Pass 1
-     */
-    val MPM_1: String,
-
-    /**
-     * Market Power Mitigation Pass 2
-     */
-    val MPM_2: String,
-
-    /**
-     * Market Power Mitigation Pass 3
-     */
-    val MPM_3: String,
-
-    /**
-     * Market Power Mitigation Pass 4
-     */
-    val MPM_4: String,
-
-    /**
-     * Real Time Economic Dispatch
-     */
-    val RTED: String,
-
-    /**
-     * Real Time Pre Dispatch
-     */
-    val RTPD: String,
-
-    /**
-     * Residual Unit Commitment
-     */
-    val RUC: String
+(override val sup: BasicElement,
+val DA: String,
+val HA_SCUC: String,
+val MPM_1: String,
+val MPM_2: String,
+val MPM_3: String,
+val MPM_4: String,
+val RTED: String,
+val RTPD: String,
+val RUC: String
 )
 extends
     Element
@@ -3079,15 +2627,14 @@ extends
 Nature of threshold data:
 'M' - Mitigation threshold
  * 'R' - Reporting threshold
+ * @param sup Reference to the superclass object.
+ * @param M
+ * @param R
  */
 case class PurposeFlagType
-(
-
-    override val sup: BasicElement,
-
-    val M: String,
-
-    val R: String
+(override val sup: BasicElement,
+val M: String,
+val R: String
 )
 extends
     Element
@@ -3127,26 +2674,16 @@ extends
 0 - Fixed ramp rate independent of rate function unit MW output
 1 - Static ramp rates as a function of unit MW output only
  * 2 - Dynamic ramp rates as a function of unit MW output and ramping time
+ * @param sup Reference to the superclass object.
+ * @param _0 Fixed ramp rate independent of rate function unit MW output
+ * @param _1 Static ramp rates as a function of unit MW output only
+ * @param _2 Dynamic ramp rates as a function of unit MW output and ramping time
  */
 case class RampCurveType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Fixed ramp rate independent of rate function unit MW output
-     */
-    val _0: String,
-
-    /**
-     * Static ramp rates as a function of unit MW output only
-     */
-    val _1: String,
-
-    /**
-     * Dynamic ramp rates as a function of unit MW output and ramping time
-     */
-    val _2: String
+(override val sup: BasicElement,
+val _0: String,
+val _1: String,
+val _2: String
 )
 extends
     Element
@@ -3188,26 +2725,16 @@ extends
 0: ignore ramping limits, 
 1: 20-minute ramping rule,
  * 2: 60-minute ramping rule
+ * @param sup Reference to the superclass object.
+ * @param _0 Ignore ramping limits
+ * @param _1 20-minute ramping rule,
+ * @param _2 60-minute ramping rule
  */
 case class RampModeType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Ignore ramping limits
-     */
-    val _0: String,
-
-    /**
-     * 20-minute ramping rule,
-     */
-    val _1: String,
-
-    /**
-     * 60-minute ramping rule
-     */
-    val _2: String
+(override val sup: BasicElement,
+val _0: String,
+val _1: String,
+val _2: String
 )
 extends
     Element
@@ -3246,22 +2773,18 @@ extends
 
 /**
  * Ramp rate condition
+ * @param sup Reference to the superclass object.
+ * @param BEST
+ * @param NA not applicable
+ * @param NORMAL
+ * @param WORST
  */
 case class RampRateCondition
-(
-
-    override val sup: BasicElement,
-
-    val BEST: String,
-
-    /**
-     * not applicable
-     */
-    val NA: String,
-
-    val NORMAL: String,
-
-    val WORST: String
+(override val sup: BasicElement,
+val BEST: String,
+val NA: String,
+val NORMAL: String,
+val WORST: String
 )
 extends
     Element
@@ -3302,41 +2825,22 @@ extends
 
 /**
  * Ramp rate curve type.
+ * @param sup Reference to the superclass object.
+ * @param INTERTIE Intertie ramp rate.
+ * @param LD_DROP Load drop ramp rate.
+ * @param LD_PICKUP Load pick up rate.
+ * @param OP Operational ramp rate.
+ * @param OP_RES Operating reserve ramp rate.
+ * @param REG Regulating ramp rate.
  */
 case class RampRateType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Intertie ramp rate.
-     */
-    val INTERTIE: String,
-
-    /**
-     * Load drop ramp rate.
-     */
-    val LD_DROP: String,
-
-    /**
-     * Load pick up rate.
-     */
-    val LD_PICKUP: String,
-
-    /**
-     * Operational ramp rate.
-     */
-    val OP: String,
-
-    /**
-     * Operating reserve ramp rate.
-     */
-    val OP_RES: String,
-
-    /**
-     * Regulating ramp rate.
-     */
-    val REG: String
+(override val sup: BasicElement,
+val INTERTIE: String,
+val LD_DROP: String,
+val LD_PICKUP: String,
+val OP: String,
+val OP_RES: String,
+val REG: String
 )
 extends
     Element
@@ -3382,26 +2886,16 @@ extends
 /**
  * For example:
  * Operating Reserve, Regulation, Contingency
+ * @param sup Reference to the superclass object.
+ * @param CONT Contingency
+ * @param OPRSV Operating Reserve
+ * @param REG Regulation
  */
 case class ReserveRequirementType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Contingency
-     */
-    val CONT: String,
-
-    /**
-     * Operating Reserve
-     */
-    val OPRSV: String,
-
-    /**
-     * Regulation
-     */
-    val REG: String
+(override val sup: BasicElement,
+val CONT: String,
+val OPRSV: String,
+val REG: String
 )
 extends
     Element
@@ -3440,58 +2934,30 @@ extends
 
 /**
  * Types used for resource AS qualifications
+ * @param sup Reference to the superclass object.
+ * @param BLACKSTART Black start
+ * @param DSR Demand Side Reponse
+ * @param NONSPIN Non Spinning Reserve
+ * @param PIRP Intermittant resource
+ * @param REGDN Regulation Down
+ * @param REGUP Regulation Up
+ * @param RMR Reliability Must Run
+ * @param RRSPIN Spinning Reserve
+ * @param RUC Reliability unit commitment
+ * @param SYNCCOND
  */
 case class ResourceAncillaryServiceType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Black start
-     */
-    val BLACKSTART: String,
-
-    /**
-     * Demand Side Reponse
-     */
-    val DSR: String,
-
-    /**
-     * Non Spinning Reserve
-     */
-    val NONSPIN: String,
-
-    /**
-     * Intermittant resource
-     */
-    val PIRP: String,
-
-    /**
-     * Regulation Down
-     */
-    val REGDN: String,
-
-    /**
-     * Regulation Up
-     */
-    val REGUP: String,
-
-    /**
-     * Reliability Must Run
-     */
-    val RMR: String,
-
-    /**
-     * Spinning Reserve
-     */
-    val RRSPIN: String,
-
-    /**
-     * Reliability unit commitment
-     */
-    val RUC: String,
-
-    val SYNCCOND: String
+(override val sup: BasicElement,
+val BLACKSTART: String,
+val DSR: String,
+val NONSPIN: String,
+val PIRP: String,
+val REGDN: String,
+val REGUP: String,
+val RMR: String,
+val RRSPIN: String,
+val RUC: String,
+val SYNCCOND: String
 )
 extends
     Element
@@ -3549,21 +3015,20 @@ Asset Owner Source designator for use by CRR
 Reliability Must Run  
 Scheduling Coordinator
  * Load Serving Entity
+ * @param sup Reference to the superclass object.
+ * @param CSNK
+ * @param CSRC
+ * @param LSE
+ * @param RMR
+ * @param SC
  */
 case class ResourceAssnType
-(
-
-    override val sup: BasicElement,
-
-    val CSNK: String,
-
-    val CSRC: String,
-
-    val LSE: String,
-
-    val RMR: String,
-
-    val SC: String
+(override val sup: BasicElement,
+val CSNK: String,
+val CSRC: String,
+val LSE: String,
+val RMR: String,
+val SC: String
 )
 extends
     Element
@@ -3606,51 +3071,26 @@ extends
 
 /**
  * Resource capacity type.
+ * @param sup Reference to the superclass object.
+ * @param FO Flexible Offer.
+ * @param MO Must Offer.
+ * @param NR Non spinning reserve.
+ * @param RA Resource Adequacy.
+ * @param RD Regulation Down.
+ * @param RMR Reliability Must Run.
+ * @param RU Regulation Up.
+ * @param SR Spinning reserve.
  */
 case class ResourceCapacityType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Flexible Offer.
-     */
-    val FO: String,
-
-    /**
-     * Must Offer.
-     */
-    val MO: String,
-
-    /**
-     * Non spinning reserve.
-     */
-    val NR: String,
-
-    /**
-     * Resource Adequacy.
-     */
-    val RA: String,
-
-    /**
-     * Regulation Down.
-     */
-    val RD: String,
-
-    /**
-     * Reliability Must Run.
-     */
-    val RMR: String,
-
-    /**
-     * Regulation Up.
-     */
-    val RU: String,
-
-    /**
-     * Spinning reserve.
-     */
-    val SR: String
+(override val sup: BasicElement,
+val FO: String,
+val MO: String,
+val NR: String,
+val RA: String,
+val RD: String,
+val RMR: String,
+val RU: String,
+val SR: String
 )
 extends
     Element
@@ -3699,15 +3139,14 @@ extends
 
 /**
  * Locational AS Flags indicating whether the Upper or Lower Bound limit of the AS regional procurment is binding
+ * @param sup Reference to the superclass object.
+ * @param LOWER
+ * @param UPPER
  */
 case class ResourceLimitIndicator
-(
-
-    override val sup: BasicElement,
-
-    val LOWER: String,
-
-    val UPPER: String
+(override val sup: BasicElement,
+val LOWER: String,
+val UPPER: String
 )
 extends
     Element
@@ -3749,31 +3188,18 @@ Active
 Mothballed
 Planned
  * Decommissioned
+ * @param sup Reference to the superclass object.
+ * @param Active Resource registration is active
+ * @param Decommissioned Resource registration status is decommissioned
+ * @param Mothballed Resource registration has been suspended
+ * @param Planned Registration status is in the planning stage
  */
 case class ResourceRegistrationStatus
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Resource registration is active
-     */
-    val Active: String,
-
-    /**
-     * Resource registration status is decommissioned
-     */
-    val Decommissioned: String,
-
-    /**
-     * Resource registration has been suspended
-     */
-    val Mothballed: String,
-
-    /**
-     * Registration status is in the planning stage
-     */
-    val Planned: String
+(override val sup: BasicElement,
+val Active: String,
+val Decommissioned: String,
+val Mothballed: String,
+val Planned: String
 )
 extends
     Element
@@ -3814,31 +3240,18 @@ extends
 
 /**
  * Market results binding constraint types.
+ * @param sup Reference to the superclass object.
+ * @param Actual Actual.
+ * @param Contingency Contingency.
+ * @param FG_act Flowgate actual base case
+ * @param Interface Interface.
  */
 case class ResultsConstraintType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Actual.
-     */
-    val Actual: String,
-
-    /**
-     * Contingency.
-     */
-    val Contingency: String,
-
-    /**
-     * Flowgate actual base case
-     */
-    val FG_act: String,
-
-    /**
-     * Interface.
-     */
-    val Interface: String
+(override val sup: BasicElement,
+val Actual: String,
+val Contingency: String,
+val FG_act: String,
+val Interface: String
 )
 extends
     Element
@@ -3879,21 +3292,14 @@ extends
 
 /**
  * Indication of which type of self schedule is being referenced.
+ * @param sup Reference to the superclass object.
+ * @param ETC Existing transmission contract.
+ * @param TOR Transmission ownership right.
  */
 case class SelfSchedReferenceType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Existing transmission contract.
-     */
-    val ETC: String,
-
-    /**
-     * Transmission ownership right.
-     */
-    val TOR: String
+(override val sup: BasicElement,
+val ETC: String,
+val TOR: String
 )
 extends
     Element
@@ -3930,26 +3336,16 @@ extends
 
 /**
  * Self schedule breakdown type.
+ * @param sup Reference to the superclass object.
+ * @param ETC Existing transmission contract.
+ * @param LPT Low price taker.
+ * @param TOR Transmission ownership right.
  */
 case class SelfScheduleBreakdownType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Existing transmission contract.
-     */
-    val ETC: String,
-
-    /**
-     * Low price taker.
-     */
-    val LPT: String,
-
-    /**
-     * Transmission ownership right.
-     */
-    val TOR: String
+(override val sup: BasicElement,
+val ETC: String,
+val LPT: String,
+val TOR: String
 )
 extends
     Element
@@ -3988,21 +3384,14 @@ extends
 
 /**
  * Circuit Breaker Status (closed or open) of the circuit breaker.
+ * @param sup Reference to the superclass object.
+ * @param Closed Closed status.
+ * @param Open Open status.
  */
 case class SwitchStatusType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Closed status.
-     */
-    val Closed: String,
-
-    /**
-     * Open status.
-     */
-    val Open: String
+(override val sup: BasicElement,
+val Closed: String,
+val Open: String
 )
 extends
     Element
@@ -4040,21 +3429,14 @@ extends
 /**
  * Transmission Contract Right type -for example:
  * individual or chain of contract rights
+ * @param sup Reference to the superclass object.
+ * @param CHAIN TR chain
+ * @param INDIVIDUAL Individual TR
  */
 case class TRType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * TR chain
-     */
-    val CHAIN: String,
-
-    /**
-     * Individual TR
-     */
-    val INDIVIDUAL: String
+(override val sup: BasicElement,
+val CHAIN: String,
+val INDIVIDUAL: String
 )
 extends
     Element
@@ -4092,26 +3474,16 @@ extends
 /**
  * Time of Use used by a CRR definition for specifying the time the CRR spans.
  * ON - CRR spans the on peak hours of the day, OFF - CRR spans the off peak hours of the day, 24HR - CRR spans the entire day.
+ * @param sup Reference to the superclass object.
+ * @param OFF Time of use spans only the off peak hours of the day.
+ * @param ON Time of use spans only the on peak hours of the day.
+ * @param _24HR Time of use spans the entire day, 24 hours.
  */
 case class TimeOfUse
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Time of use spans only the off peak hours of the day.
-     */
-    val OFF: String,
-
-    /**
-     * Time of use spans only the on peak hours of the day.
-     */
-    val ON: String,
-
-    /**
-     * Time of use spans the entire day, 24 hours.
-     */
-    val _24HR: String
+(override val sup: BasicElement,
+val OFF: String,
+val ON: String,
+val _24HR: String
 )
 extends
     Element
@@ -4150,26 +3522,16 @@ extends
 
 /**
  * Trade type.
+ * @param sup Reference to the superclass object.
+ * @param AST Ancillary Services Trade.
+ * @param IST InterSC Trade.
+ * @param UCT Unit Commitment Trade.
  */
 case class TradeType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Ancillary Services Trade.
-     */
-    val AST: String,
-
-    /**
-     * InterSC Trade.
-     */
-    val IST: String,
-
-    /**
-     * Unit Commitment Trade.
-     */
-    val UCT: String
+(override val sup: BasicElement,
+val AST: String,
+val IST: String,
+val UCT: String
 )
 extends
     Element
@@ -4217,61 +3579,30 @@ Reciprocating Engine
 Steam Turbine
 Synchronous Condenser
  * Wind Turbine
+ * @param sup Reference to the superclass object.
+ * @param CCYC Combined Cycle
+ * @param GTUR Gas Turbine
+ * @param HYDR Hydro Turbine
+ * @param OTHR Other
+ * @param PHOT Photovoltaic
+ * @param PTUR Hydro Pump-Turbine
+ * @param RECP Reciprocating Engine
+ * @param STUR Steam Turbine
+ * @param SYNC Synchronous Condenser
+ * @param WIND Wind Turbine
  */
 case class UnitType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Combined Cycle
-     */
-    val CCYC: String,
-
-    /**
-     * Gas Turbine
-     */
-    val GTUR: String,
-
-    /**
-     * Hydro Turbine
-     */
-    val HYDR: String,
-
-    /**
-     * Other
-     */
-    val OTHR: String,
-
-    /**
-     * Photovoltaic
-     */
-    val PHOT: String,
-
-    /**
-     * Hydro Pump-Turbine
-     */
-    val PTUR: String,
-
-    /**
-     * Reciprocating Engine
-     */
-    val RECP: String,
-
-    /**
-     * Steam Turbine
-     */
-    val STUR: String,
-
-    /**
-     * Synchronous Condenser
-     */
-    val SYNC: String,
-
-    /**
-     * Wind Turbine
-     */
-    val WIND: String
+(override val sup: BasicElement,
+val CCYC: String,
+val GTUR: String,
+val HYDR: String,
+val OTHR: String,
+val PHOT: String,
+val PTUR: String,
+val RECP: String,
+val STUR: String,
+val SYNC: String,
+val WIND: String
 )
 extends
     Element
@@ -4324,15 +3655,14 @@ extends
 
 /**
  * Used as a flag set to Yes or No.
+ * @param sup Reference to the superclass object.
+ * @param NO
+ * @param YES
  */
 case class YesNo
-(
-
-    override val sup: BasicElement,
-
-    val NO: String,
-
-    val YES: String
+(override val sup: BasicElement,
+val NO: String,
+val YES: String
 )
 extends
     Element

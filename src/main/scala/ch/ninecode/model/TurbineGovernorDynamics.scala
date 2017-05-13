@@ -11,34 +11,21 @@ import ch.ninecode.cim.Context
 
 /**
  * Governor droop signal feedback source.
+ * @param sup Reference to the superclass object.
+ * @param electricalPower Electrical power feedback (connection indicated as 1 in the block diagrams of models, e.g.
+ *        GovCT1, GovCT2).
+ * @param fuelValveStroke Fuel valve stroke feedback (true stroke) (connection indicated as 2 in the block diagrams of model, e.g.
+ *        GovCT1, GovCT2).
+ * @param governorOutput Governor output feedback (requested stroke) (connection indicated as 3 in the block diagrams of models, e.g.
+ *        GovCT1, GovCT2).
+ * @param none No droop signal feedback, is isochronous governor.
  */
 case class DroopSignalFeedbackKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Electrical power feedback (connection indicated as 1 in the block diagrams of models, e.g.
-     * GovCT1, GovCT2).
-     */
-    val electricalPower: String,
-
-    /**
-     * Fuel valve stroke feedback (true stroke) (connection indicated as 2 in the block diagrams of model, e.g.
-     * GovCT1, GovCT2).
-     */
-    val fuelValveStroke: String,
-
-    /**
-     * Governor output feedback (requested stroke) (connection indicated as 3 in the block diagrams of models, e.g.
-     * GovCT1, GovCT2).
-     */
-    val governorOutput: String,
-
-    /**
-     * No droop signal feedback, is isochronous governor.
-     */
-    val none: String
+(override val sup: BasicElement,
+val electricalPower: String,
+val fuelValveStroke: String,
+val governorOutput: String,
+val none: String
 )
 extends
     Element
@@ -79,26 +66,16 @@ extends
 
 /**
  * Governor control flag for Francis hydro model.
+ * @param sup Reference to the superclass object.
+ * @param electromechanicalElectrohydraulic Electromechanical and electrohydraulic regulator (Cflag=3).
+ * @param mechanicHydraulicTransientFeedback Mechanic-hydraulic regulator with transient feedback (Cflag=2).
+ * @param mechanicHydrolicTachoAccelerator Mechanic-hydraulic regulator with tacho-accelerometer (Cflag = 1).
  */
 case class FrancisGovernorControlKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Electromechanical and electrohydraulic regulator (Cflag=3).
-     */
-    val electromechanicalElectrohydraulic: String,
-
-    /**
-     * Mechanic-hydraulic regulator with transient feedback (Cflag=2).
-     */
-    val mechanicHydraulicTransientFeedback: String,
-
-    /**
-     * Mechanic-hydraulic regulator with tacho-accelerometer (Cflag = 1).
-     */
-    val mechanicHydrolicTachoAccelerator: String
+(override val sup: BasicElement,
+val electromechanicalElectrohydraulic: String,
+val mechanicHydraulicTransientFeedback: String,
+val mechanicHydrolicTachoAccelerator: String
 )
 extends
     Element
@@ -138,223 +115,117 @@ extends
 /**
  * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
  * This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for representation of
+ * @param sup Reference to the superclass object.
+ * @param aset Acceleration limiter setpoint (Aset).
+ *        Unit = PU/sec.  Typical Value = 0.01.
+ * @param db Speed governor dead band in per unit speed (db).
+ *        In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.
+ * @param dm Speed sensitivity coefficient (Dm).
+ *        Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.
+ * @param ka Acceleration limiter gain (Ka).
+ *        Typical Value = 10.
+ * @param kdgov Governor derivative gain (Kdgov).
+ *        Typical Value = 0.
+ * @param kigov Governor integral gain (Kigov).
+ *        Typical Value = 2.
+ * @param kiload Load limiter integral gain for PI controller (Kiload).
+ *        Typical Value = 0.67.
+ * @param kimw Power controller (reset) gain (Kimw).
+ *        The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.01.
+ * @param kpgov Governor proportional gain (Kpgov).
+ *        Typical Value = 10.
+ * @param kpload Load limiter proportional gain for PI controller (Kpload).
+ *        Typical Value = 2.
+ * @param kturb Turbine gain (Kturb) (&gt;0).
+ *        Typical Value = 1.5.
+ * @param ldref Load limiter reference value (Ldref).
+ *        Typical Value = 1.
+ * @param maxerr Maximum value for speed error signal (maxerr).
+ *        Typical Value = 0.05.
+ * @param minerr Minimum value for speed error signal (minerr).
+ *        Typical Value = -0.05.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param r Permanent droop (R).
+ *        Typical Value = 0.04.
+ * @param rclose Minimum valve closing rate (Rclose).
+ *        Unit = PU/sec.  Typical Value = -0.1.
+ * @param rdown Maximum rate of load limit decrease (Rdown).
+ *        Typical Value = -99.
+ * @param ropen Maximum valve opening rate (Ropen).
+ *        Unit = PU/sec.  Typical Value = 0.10.
+ * @param rselect Feedback signal for droop (Rselect).
+ *        Typical Value = electricalPower.
+ * @param rup Maximum rate of load limit increase (Rup).
+ *        Typical Value = 99.
+ * @param ta Acceleration limiter time constant (Ta) (&gt;0).
+ *        Typical Value = 0.1.
+ * @param tact Actuator time constant (Tact).
+ *        Typical Value = 0.5.
+ * @param tb Turbine lag time constant (Tb) (&gt;0).
+ *        Typical Value = 0.5.
+ * @param tc Turbine lead time constant (Tc).
+ *        Typical Value = 0.
+ * @param tdgov Governor derivative controller time constant (Tdgov).
+ *        Typical Value = 1.
+ * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
+ *        Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.
+ * @param tfload Load Limiter time constant (Tfload) (&gt;0).
+ *        Typical Value = 3.
+ * @param tpelec Electrical power transducer time constant (Tpelec) (&gt;0).
+ *        Typical Value = 1.
+ * @param tsa Temperature detection lead time constant (Tsa).
+ *        Typical Value = 4.
+ * @param tsb Temperature detection lag time constant (Tsb).
+ *        Typical Value = 5.
+ * @param vmax Maximum valve position limit (Vmax).
+ *        Typical Value = 1.
+ * @param vmin Minimum valve position limit (Vmin).
+ *        Typical Value = 0.15.
+ * @param wfnl No load fuel flow (Wfnl).
+ *        Typical Value = 0.2.
+ * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+false = fuel control system keeps fuel flow independent of engine speed.
+ *        Typical Value = true.
  */
 case class GovCT1
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Acceleration limiter setpoint (Aset).
-     * Unit = PU/sec.  Typical Value = 0.01.
-     */
-    val aset: Double,
-
-    /**
-     * Speed governor dead band in per unit speed (db).
-     * In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.
-     */
-    val db: Double,
-
-    /**
-     * Speed sensitivity coefficient (Dm).
-     * Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.
-     */
-    val dm: Double,
-
-    /**
-     * Acceleration limiter gain (Ka).
-     * Typical Value = 10.
-     */
-    val ka: Double,
-
-    /**
-     * Governor derivative gain (Kdgov).
-     * Typical Value = 0.
-     */
-    val kdgov: Double,
-
-    /**
-     * Governor integral gain (Kigov).
-     * Typical Value = 2.
-     */
-    val kigov: Double,
-
-    /**
-     * Load limiter integral gain for PI controller (Kiload).
-     * Typical Value = 0.67.
-     */
-    val kiload: Double,
-
-    /**
-     * Power controller (reset) gain (Kimw).
-     * The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.01.
-     */
-    val kimw: Double,
-
-    /**
-     * Governor proportional gain (Kpgov).
-     * Typical Value = 10.
-     */
-    val kpgov: Double,
-
-    /**
-     * Load limiter proportional gain for PI controller (Kpload).
-     * Typical Value = 2.
-     */
-    val kpload: Double,
-
-    /**
-     * Turbine gain (Kturb) (&gt;0).
-     * Typical Value = 1.5.
-     */
-    val kturb: Double,
-
-    /**
-     * Load limiter reference value (Ldref).
-     * Typical Value = 1.
-     */
-    val ldref: Double,
-
-    /**
-     * Maximum value for speed error signal (maxerr).
-     * Typical Value = 0.05.
-     */
-    val maxerr: Double,
-
-    /**
-     * Minimum value for speed error signal (minerr).
-     * Typical Value = -0.05.
-     */
-    val minerr: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Permanent droop (R).
-     * Typical Value = 0.04.
-     */
-    val r: Double,
-
-    /**
-     * Minimum valve closing rate (Rclose).
-     * Unit = PU/sec.  Typical Value = -0.1.
-     */
-    val rclose: Double,
-
-    /**
-     * Maximum rate of load limit decrease (Rdown).
-     * Typical Value = -99.
-     */
-    val rdown: Double,
-
-    /**
-     * Maximum valve opening rate (Ropen).
-     * Unit = PU/sec.  Typical Value = 0.10.
-     */
-    val ropen: Double,
-
-    /**
-     * Feedback signal for droop (Rselect).
-     * Typical Value = electricalPower.
-     */
-    val rselect: String,
-
-    /**
-     * Maximum rate of load limit increase (Rup).
-     * Typical Value = 99.
-     */
-    val rup: Double,
-
-    /**
-     * Acceleration limiter time constant (Ta) (&gt;0).
-     * Typical Value = 0.1.
-     */
-    val ta: Double,
-
-    /**
-     * Actuator time constant (Tact).
-     * Typical Value = 0.5.
-     */
-    val tact: Double,
-
-    /**
-     * Turbine lag time constant (Tb) (&gt;0).
-     * Typical Value = 0.5.
-     */
-    val tb: Double,
-
-    /**
-     * Turbine lead time constant (Tc).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Governor derivative controller time constant (Tdgov).
-     * Typical Value = 1.
-     */
-    val tdgov: Double,
-
-    /**
-     * Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
-     * Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.
-     */
-    val teng: Double,
-
-    /**
-     * Load Limiter time constant (Tfload) (&gt;0).
-     * Typical Value = 3.
-     */
-    val tfload: Double,
-
-    /**
-     * Electrical power transducer time constant (Tpelec) (&gt;0).
-     * Typical Value = 1.
-     */
-    val tpelec: Double,
-
-    /**
-     * Temperature detection lead time constant (Tsa).
-     * Typical Value = 4.
-     */
-    val tsa: Double,
-
-    /**
-     * Temperature detection lag time constant (Tsb).
-     * Typical Value = 5.
-     */
-    val tsb: Double,
-
-    /**
-     * Maximum valve position limit (Vmax).
-     * Typical Value = 1.
-     */
-    val vmax: Double,
-
-    /**
-     * Minimum valve position limit (Vmin).
-     * Typical Value = 0.15.
-     */
-    val vmin: Double,
-
-    /**
-     * No load fuel flow (Wfnl).
-     * Typical Value = 0.2.
-     */
-    val wfnl: Double,
-
-    /**
-     * Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
-    true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
-    false = fuel control system keeps fuel flow independent of engine speed.
-     * Typical Value = true.
-     */
-    val wfspd: Boolean
+(override val sup: TurbineGovernorDynamics,
+val aset: Double,
+val db: Double,
+val dm: Double,
+val ka: Double,
+val kdgov: Double,
+val kigov: Double,
+val kiload: Double,
+val kimw: Double,
+val kpgov: Double,
+val kpload: Double,
+val kturb: Double,
+val ldref: Double,
+val maxerr: Double,
+val minerr: Double,
+val mwbase: Double,
+val r: Double,
+val rclose: Double,
+val rdown: Double,
+val ropen: Double,
+val rselect: String,
+val rup: Double,
+val ta: Double,
+val tact: Double,
+val tb: Double,
+val tc: Double,
+val tdgov: Double,
+val teng: Double,
+val tfload: Double,
+val tpelec: Double,
+val tsa: Double,
+val tsb: Double,
+val vmax: Double,
+val vmin: Double,
+val wfnl: Double,
+val wfspd: Boolean
 )
 extends
     Element
@@ -458,349 +329,180 @@ extends
 /**
  * General governor model with frequency-dependent fuel flow limit.
  * This model is a modification of the GovCT1<b> </b>model in order to represent the frequency-dependent fuel flow limit of a specific gas turbine manufacturer.
+ * @param sup Reference to the superclass object.
+ * @param aset Acceleration limiter setpoint (Aset).
+ *        Unit = PU/sec.  Typical Value = 10.
+ * @param db Speed governor dead band in per unit speed (db).
+ *        In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.
+ * @param dm Speed sensitivity coefficient (Dm).
+ *        Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.
+ * @param flim1 Frequency threshold 1 (Flim1).
+ *        Unit = Hz.  Typical Value = 59.
+ * @param flim10 Frequency threshold 10 (Flim10).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim2 Frequency threshold 2 (Flim2).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim3 Frequency threshold 3 (Flim3).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim4 Frequency threshold 4 (Flim4).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim5 Frequency threshold 5 (Flim5).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim6 Frequency threshold 6 (Flim6).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim7 Frequency threshold 7 (Flim7).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim8 Frequency threshold 8 (Flim8).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param flim9 Frequency threshold 9 (Flim9).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param ka Acceleration limiter Gain (Ka).
+ *        Typical Value = 10.
+ * @param kdgov Governor derivative gain (Kdgov).
+ *        Typical Value = 0.
+ * @param kigov Governor integral gain (Kigov).
+ *        Typical Value = 0.45.
+ * @param kiload Load limiter integral gain for PI controller (Kiload).
+ *        Typical Value = 1.
+ * @param kimw Power controller (reset) gain (Kimw).
+ *        The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.
+ * @param kpgov Governor proportional gain (Kpgov).
+ *        Typical Value = 4.
+ * @param kpload Load limiter proportional gain for PI controller (Kpload).
+ *        Typical Value = 1.
+ * @param kturb Turbine gain (Kturb).
+ *        Typical Value = 1.9168.
+ * @param ldref Load limiter reference value (Ldref).
+ *        Typical Value = 1.
+ * @param maxerr Maximum value for speed error signal (Maxerr).
+ *        Typical Value = 1.
+ * @param minerr Minimum value for speed error signal (Minerr).
+ *        Typical Value = -1.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param plim1 Power limit 1 (Plim1).
+ *        Typical Value = 0.8325.
+ * @param plim10 Power limit 10 (Plim10).
+ *        Typical Value = 0.
+ * @param plim2 Power limit 2 (Plim2).
+ *        Typical Value = 0.
+ * @param plim3 Power limit 3 (Plim3).
+ *        Typical Value = 0.
+ * @param plim4 Power limit 4 (Plim4).
+ *        Typical Value = 0.
+ * @param plim5 Power limit 5 (Plim5).
+ *        Typical Value = 0.
+ * @param plim6 Power limit 6 (Plim6).
+ *        Typical Value = 0.
+ * @param plim7 Power limit 7 (Plim7).
+ *        Typical Value = 0.
+ * @param plim8 Power limit 8 (Plim8).
+ *        Typical Value = 0.
+ * @param plim9 Power Limit 9 (Plim9).
+ *        Typical Value = 0.
+ * @param prate Ramp rate for frequency-dependent power limit (Prate).
+ *        Typical Value = 0.017.
+ * @param r Permanent droop (R).
+ *        Typical Value = 0.05.
+ * @param rclose Minimum valve closing rate (Rclose).
+ *        Unit = PU/sec.  Typical Value = -99.
+ * @param rdown Maximum rate of load limit decrease (Rdown).
+ *        Typical Value = -99.
+ * @param ropen Maximum valve opening rate (Ropen).
+ *        Unit = PU/sec.  Typical Value = 99.
+ * @param rselect Feedback signal for droop (Rselect).
+ *        Typical Value = electricalPower.
+ * @param rup Maximum rate of load limit increase (Rup).
+ *        Typical Value = 99.
+ * @param ta Acceleration limiter time constant (Ta).
+ *        Typical Value = 1.
+ * @param tact Actuator time constant (Tact).
+ *        Typical Value = 0.4.
+ * @param tb Turbine lag time constant (Tb).
+ *        Typical Value = 0.1.
+ * @param tc Turbine lead time constant (Tc).
+ *        Typical Value = 0.
+ * @param tdgov Governor derivative controller time constant (Tdgov).
+ *        Typical Value = 1.
+ * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
+ *        Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.
+ * @param tfload Load Limiter time constant (Tfload).
+ *        Typical Value = 3.
+ * @param tpelec Electrical power transducer time constant (Tpelec).
+ *        Typical Value = 2.5.
+ * @param tsa Temperature detection lead time constant (Tsa).
+ *        Typical Value = 0.
+ * @param tsb Temperature detection lag time constant (Tsb).
+ *        Typical Value = 50.
+ * @param vmax Maximum valve position limit (Vmax).
+ *        Typical Value = 1.
+ * @param vmin Minimum valve position limit (Vmin).
+ *        Typical Value = 0.175.
+ * @param wfnl No load fuel flow (Wfnl).
+ *        Typical Value = 0.187.
+ * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+false = fuel control system keeps fuel flow independent of engine speed.
+ *        Typical Value = false.
  */
 case class GovCT2
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Acceleration limiter setpoint (Aset).
-     * Unit = PU/sec.  Typical Value = 10.
-     */
-    val aset: Double,
-
-    /**
-     * Speed governor dead band in per unit speed (db).
-     * In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.
-     */
-    val db: Double,
-
-    /**
-     * Speed sensitivity coefficient (Dm).
-     * Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.
-     */
-    val dm: Double,
-
-    /**
-     * Frequency threshold 1 (Flim1).
-     * Unit = Hz.  Typical Value = 59.
-     */
-    val flim1: Double,
-
-    /**
-     * Frequency threshold 10 (Flim10).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim10: Double,
-
-    /**
-     * Frequency threshold 2 (Flim2).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim2: Double,
-
-    /**
-     * Frequency threshold 3 (Flim3).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim3: Double,
-
-    /**
-     * Frequency threshold 4 (Flim4).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim4: Double,
-
-    /**
-     * Frequency threshold 5 (Flim5).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim5: Double,
-
-    /**
-     * Frequency threshold 6 (Flim6).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim6: Double,
-
-    /**
-     * Frequency threshold 7 (Flim7).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim7: Double,
-
-    /**
-     * Frequency threshold 8 (Flim8).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim8: Double,
-
-    /**
-     * Frequency threshold 9 (Flim9).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val flim9: Double,
-
-    /**
-     * Acceleration limiter Gain (Ka).
-     * Typical Value = 10.
-     */
-    val ka: Double,
-
-    /**
-     * Governor derivative gain (Kdgov).
-     * Typical Value = 0.
-     */
-    val kdgov: Double,
-
-    /**
-     * Governor integral gain (Kigov).
-     * Typical Value = 0.45.
-     */
-    val kigov: Double,
-
-    /**
-     * Load limiter integral gain for PI controller (Kiload).
-     * Typical Value = 1.
-     */
-    val kiload: Double,
-
-    /**
-     * Power controller (reset) gain (Kimw).
-     * The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.
-     */
-    val kimw: Double,
-
-    /**
-     * Governor proportional gain (Kpgov).
-     * Typical Value = 4.
-     */
-    val kpgov: Double,
-
-    /**
-     * Load limiter proportional gain for PI controller (Kpload).
-     * Typical Value = 1.
-     */
-    val kpload: Double,
-
-    /**
-     * Turbine gain (Kturb).
-     * Typical Value = 1.9168.
-     */
-    val kturb: Double,
-
-    /**
-     * Load limiter reference value (Ldref).
-     * Typical Value = 1.
-     */
-    val ldref: Double,
-
-    /**
-     * Maximum value for speed error signal (Maxerr).
-     * Typical Value = 1.
-     */
-    val maxerr: Double,
-
-    /**
-     * Minimum value for speed error signal (Minerr).
-     * Typical Value = -1.
-     */
-    val minerr: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Power limit 1 (Plim1).
-     * Typical Value = 0.8325.
-     */
-    val plim1: Double,
-
-    /**
-     * Power limit 10 (Plim10).
-     * Typical Value = 0.
-     */
-    val plim10: Double,
-
-    /**
-     * Power limit 2 (Plim2).
-     * Typical Value = 0.
-     */
-    val plim2: Double,
-
-    /**
-     * Power limit 3 (Plim3).
-     * Typical Value = 0.
-     */
-    val plim3: Double,
-
-    /**
-     * Power limit 4 (Plim4).
-     * Typical Value = 0.
-     */
-    val plim4: Double,
-
-    /**
-     * Power limit 5 (Plim5).
-     * Typical Value = 0.
-     */
-    val plim5: Double,
-
-    /**
-     * Power limit 6 (Plim6).
-     * Typical Value = 0.
-     */
-    val plim6: Double,
-
-    /**
-     * Power limit 7 (Plim7).
-     * Typical Value = 0.
-     */
-    val plim7: Double,
-
-    /**
-     * Power limit 8 (Plim8).
-     * Typical Value = 0.
-     */
-    val plim8: Double,
-
-    /**
-     * Power Limit 9 (Plim9).
-     * Typical Value = 0.
-     */
-    val plim9: Double,
-
-    /**
-     * Ramp rate for frequency-dependent power limit (Prate).
-     * Typical Value = 0.017.
-     */
-    val prate: Double,
-
-    /**
-     * Permanent droop (R).
-     * Typical Value = 0.05.
-     */
-    val r: Double,
-
-    /**
-     * Minimum valve closing rate (Rclose).
-     * Unit = PU/sec.  Typical Value = -99.
-     */
-    val rclose: Double,
-
-    /**
-     * Maximum rate of load limit decrease (Rdown).
-     * Typical Value = -99.
-     */
-    val rdown: Double,
-
-    /**
-     * Maximum valve opening rate (Ropen).
-     * Unit = PU/sec.  Typical Value = 99.
-     */
-    val ropen: Double,
-
-    /**
-     * Feedback signal for droop (Rselect).
-     * Typical Value = electricalPower.
-     */
-    val rselect: String,
-
-    /**
-     * Maximum rate of load limit increase (Rup).
-     * Typical Value = 99.
-     */
-    val rup: Double,
-
-    /**
-     * Acceleration limiter time constant (Ta).
-     * Typical Value = 1.
-     */
-    val ta: Double,
-
-    /**
-     * Actuator time constant (Tact).
-     * Typical Value = 0.4.
-     */
-    val tact: Double,
-
-    /**
-     * Turbine lag time constant (Tb).
-     * Typical Value = 0.1.
-     */
-    val tb: Double,
-
-    /**
-     * Turbine lead time constant (Tc).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Governor derivative controller time constant (Tdgov).
-     * Typical Value = 1.
-     */
-    val tdgov: Double,
-
-    /**
-     * Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
-     * Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.
-     */
-    val teng: Double,
-
-    /**
-     * Load Limiter time constant (Tfload).
-     * Typical Value = 3.
-     */
-    val tfload: Double,
-
-    /**
-     * Electrical power transducer time constant (Tpelec).
-     * Typical Value = 2.5.
-     */
-    val tpelec: Double,
-
-    /**
-     * Temperature detection lead time constant (Tsa).
-     * Typical Value = 0.
-     */
-    val tsa: Double,
-
-    /**
-     * Temperature detection lag time constant (Tsb).
-     * Typical Value = 50.
-     */
-    val tsb: Double,
-
-    /**
-     * Maximum valve position limit (Vmax).
-     * Typical Value = 1.
-     */
-    val vmax: Double,
-
-    /**
-     * Minimum valve position limit (Vmin).
-     * Typical Value = 0.175.
-     */
-    val vmin: Double,
-
-    /**
-     * No load fuel flow (Wfnl).
-     * Typical Value = 0.187.
-     */
-    val wfnl: Double,
-
-    /**
-     * Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
-    true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
-    false = fuel control system keeps fuel flow independent of engine speed.
-     * Typical Value = false.
-     */
-    val wfspd: Boolean
+(override val sup: TurbineGovernorDynamics,
+val aset: Double,
+val db: Double,
+val dm: Double,
+val flim1: Double,
+val flim10: Double,
+val flim2: Double,
+val flim3: Double,
+val flim4: Double,
+val flim5: Double,
+val flim6: Double,
+val flim7: Double,
+val flim8: Double,
+val flim9: Double,
+val ka: Double,
+val kdgov: Double,
+val kigov: Double,
+val kiload: Double,
+val kimw: Double,
+val kpgov: Double,
+val kpload: Double,
+val kturb: Double,
+val ldref: Double,
+val maxerr: Double,
+val minerr: Double,
+val mwbase: Double,
+val plim1: Double,
+val plim10: Double,
+val plim2: Double,
+val plim3: Double,
+val plim4: Double,
+val plim5: Double,
+val plim6: Double,
+val plim7: Double,
+val plim8: Double,
+val plim9: Double,
+val prate: Double,
+val r: Double,
+val rclose: Double,
+val rdown: Double,
+val ropen: Double,
+val rselect: String,
+val rup: Double,
+val ta: Double,
+val tact: Double,
+val tb: Double,
+val tc: Double,
+val tdgov: Double,
+val teng: Double,
+val tfload: Double,
+val tpelec: Double,
+val tsa: Double,
+val tsb: Double,
+val vmax: Double,
+val vmin: Double,
+val wfnl: Double,
+val wfspd: Boolean
 )
 extends
     Element
@@ -945,70 +647,39 @@ extends
 
 /**
  * Single shaft gas turbine.
+ * @param sup Reference to the superclass object.
+ * @param at Ambient temperature load limit (Load Limit).
+ *        Typical Value = 1.
+ * @param dturb Turbine damping factor (Dturb).
+ *        Typical Value = 0.18.
+ * @param kt Temperature limiter gain (Kt).
+ *        Typical Value = 3.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param r Permanent droop (R).
+ *        Typical Value = 0.04.
+ * @param t1 Governor mechanism time constant (T1).
+ *        T1 represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.  Typical Value = 0.5.
+ * @param t2 Turbine power time constant (T2).
+ *        T2 represents delay due to internal energy storage of the gas turbine engine. T2 can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of a the free power turbine of an aero-derivative unit, for example.  Typical Value = 0.5.
+ * @param t3 Turbine exhaust temperature time constant (T3).
+ *        Typical Value = 3.
+ * @param vmax Maximum turbine power, PU of MWbase (Vmax).
+ *        Typical Value = 1.
+ * @param vmin Minimum turbine power, PU of MWbase (Vmin).
+ *        Typical Value = 0.
  */
 case class GovGAST
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Ambient temperature load limit (Load Limit).
-     * Typical Value = 1.
-     */
-    val at: Double,
-
-    /**
-     * Turbine damping factor (Dturb).
-     * Typical Value = 0.18.
-     */
-    val dturb: Double,
-
-    /**
-     * Temperature limiter gain (Kt).
-     * Typical Value = 3.
-     */
-    val kt: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     */
-    val mwbase: Double,
-
-    /**
-     * Permanent droop (R).
-     * Typical Value = 0.04.
-     */
-    val r: Double,
-
-    /**
-     * Governor mechanism time constant (T1).
-     * T1 represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.  Typical Value = 0.5.
-     */
-    val t1: Double,
-
-    /**
-     * Turbine power time constant (T2).
-     * T2 represents delay due to internal energy storage of the gas turbine engine. T2 can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of a the free power turbine of an aero-derivative unit, for example.  Typical Value = 0.5.
-     */
-    val t2: Double,
-
-    /**
-     * Turbine exhaust temperature time constant (T3).
-     * Typical Value = 3.
-     */
-    val t3: Double,
-
-    /**
-     * Maximum turbine power, PU of MWbase (Vmax).
-     * Typical Value = 1.
-     */
-    val vmax: Double,
-
-    /**
-     * Minimum turbine power, PU of MWbase (Vmin).
-     * Typical Value = 0.
-     */
-    val vmin: Double
+(override val sup: TurbineGovernorDynamics,
+val at: Double,
+val dturb: Double,
+val kt: Double,
+val mwbase: Double,
+val r: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val vmax: Double,
+val vmin: Double
 )
 extends
     Element
@@ -1061,215 +732,112 @@ extends
 
 /**
  * Modified single shaft gas turbine.
+ * @param sup Reference to the superclass object.
+ * @param a Turbine power time constant numerator scale factor (a).
+ *        Typical Value = 0.8.
+ * @param b Turbine power time constant denominator scale factor (b).
+ *        Typical Value = 1.
+ * @param db1 Intentional dead-band width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional dead-band (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param fidle Fuel flow at zero power output (Fidle).
+ *        Typical Value = 0.18.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain point 2,PU gv (Gv2).
+ *        Typical Value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
+ *        Typical Value = 0.
+ * @param ka Governor gain (Ka).
+ *        Typical Value = 0.
+ * @param kt Temperature limiter gain (Kt).
+ *        Typical Value = 3.
+ * @param lmax Ambient temperature load limit (Lmax).
+ *        Lmax is the turbine power output corresponding to the limiting exhaust gas temperature.  Typical Value = 1.
+ * @param loadinc Valve position change allowed at fast rate (Loadinc).
+ *        Typical Value = 0.05.
+ * @param ltrate Maximum long term fuel valve opening rate (Ltrate).
+ *        Typical Value = 0.02.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
+ *        Typical Value = 0.
+ * @param r Permanent droop (R).
+ *        Typical Value = 0.04.
+ * @param rmax Maximum fuel valve opening rate (Rmax).
+ *        Unit = PU/sec.  Typical Value = 1.
+ * @param t1 Governor mechanism time constant (T1).
+ *        T1 represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.  Typical Value = 0.5.
+ * @param t2 Turbine power time constant (T2).
+ *        T2 represents delay due to internal energy storage of the gas turbine engine. T2 can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of the free power turbine of an aero-derivative unit, for example.  Typical Value = 0.5.
+ * @param t3 Turbine exhaust temperature time constant (T3).
+ *        T3 represents delay in the exhaust temperature and load limiting system. Typical Value = 3.
+ * @param t4 Governor lead time constant (T4).
+ *        Typical Value = 0.
+ * @param t5 Governor lag time constant (T5).
+ *        Typical Value = 0.
+ * @param tltr Valve position averaging time constant (Tltr).
+ *        Typical Value = 10.
+ * @param vmax Maximum turbine power, PU of MWbase (Vmax).
+ *        Typical Value = 1.
+ * @param vmin Minimum turbine power, PU of MWbase (Vmin).
+ *        Typical Value = 0.
  */
 case class GovGAST1
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine power time constant numerator scale factor (a).
-     * Typical Value = 0.8.
-     */
-    val a: Double,
-
-    /**
-     * Turbine power time constant denominator scale factor (b).
-     * Typical Value = 1.
-     */
-    val b: Double,
-
-    /**
-     * Intentional dead-band width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional dead-band (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Fuel flow at zero power output (Fidle).
-     * Typical Value = 0.18.
-     */
-    val fidle: Double,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2,PU gv (Gv2).
-     * Typical Value = 0.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU gv (Gv6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Governor gain (Ka).
-     * Typical Value = 0.
-     */
-    val ka: Double,
-
-    /**
-     * Temperature limiter gain (Kt).
-     * Typical Value = 3.
-     */
-    val kt: Double,
-
-    /**
-     * Ambient temperature load limit (Lmax).
-     * Lmax is the turbine power output corresponding to the limiting exhaust gas temperature.  Typical Value = 1.
-     */
-    val lmax: Double,
-
-    /**
-     * Valve position change allowed at fast rate (Loadinc).
-     * Typical Value = 0.05.
-     */
-    val loadinc: Double,
-
-    /**
-     * Maximum long term fuel valve opening rate (Ltrate).
-     * Typical Value = 0.02.
-     */
-    val ltrate: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU power (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Permanent droop (R).
-     * Typical Value = 0.04.
-     */
-    val r: Double,
-
-    /**
-     * Maximum fuel valve opening rate (Rmax).
-     * Unit = PU/sec.  Typical Value = 1.
-     */
-    val rmax: Double,
-
-    /**
-     * Governor mechanism time constant (T1).
-     * T1 represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.  Typical Value = 0.5.
-     */
-    val t1: Double,
-
-    /**
-     * Turbine power time constant (T2).
-     * T2 represents delay due to internal energy storage of the gas turbine engine. T2 can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of the free power turbine of an aero-derivative unit, for example.  Typical Value = 0.5.
-     */
-    val t2: Double,
-
-    /**
-     * Turbine exhaust temperature time constant (T3).
-     * T3 represents delay in the exhaust temperature and load limiting system. Typical Value = 3.
-     */
-    val t3: Double,
-
-    /**
-     * Governor lead time constant (T4).
-     * Typical Value = 0.
-     */
-    val t4: Double,
-
-    /**
-     * Governor lag time constant (T5).
-     * Typical Value = 0.
-     */
-    val t5: Double,
-
-    /**
-     * Valve position averaging time constant (Tltr).
-     * Typical Value = 10.
-     */
-    val tltr: Double,
-
-    /**
-     * Maximum turbine power, PU of MWbase (Vmax).
-     * Typical Value = 1.
-     */
-    val vmax: Double,
-
-    /**
-     * Minimum turbine power, PU of MWbase (Vmin).
-     * Typical Value = 0.
-     */
-    val vmin: Double
+(override val sup: TurbineGovernorDynamics,
+val a: Double,
+val b: Double,
+val db1: Double,
+val db2: Double,
+val eps: Double,
+val fidle: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val ka: Double,
+val kt: Double,
+val lmax: Double,
+val loadinc: Double,
+val ltrate: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val r: Double,
+val rmax: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val tltr: Double,
+val vmax: Double,
+val vmin: Double
 )
 extends
     Element
@@ -1370,180 +938,83 @@ extends
 
 /**
  * Gas turbine model.
+ * @param sup Reference to the superclass object.
+ * @param a Valve positioner (A).
+ * @param af1 Exhaust temperature Parameter (Af1).
+ *        Unit = per unit temperature.  Based on temperature in degrees C.
+ * @param af2 Coefficient equal to 0.5(1-speed) (Af2).
+ * @param b Valve positioner (B).
+ * @param bf1 (Bf1).
+ *        Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.  Unit = per unit temperature.  Based on temperature in degrees C.
+ * @param bf2 Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).
+ * @param c Valve positioner (C).
+ * @param cf2 Coefficient defining fuel flow where power output is 0% (Cf2).
+ *        Synchronous but no output.  Typically 0.23 x K<sub>hhv</sub> (23% fuel flow).
+ * @param ecr Combustion reaction time delay (Ecr).
+ * @param etd Turbine and exhaust delay (Etd).
+ * @param k3 Ratio of Fuel Adjustment (K3).
+ * @param k4 Gain of radiation shield (K4).
+ * @param k5 Gain of radiation shield (K5).
+ * @param k6 Minimum fuel flow (K6).
+ * @param kf Fuel system feedback (Kf).
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param t Fuel Control Time Constant (T).
+ * @param t3 Radiation shield time constant (T3).
+ * @param t4 Thermocouple time constant (T4).
+ * @param t5 Temperature control time constant (T5).
+ * @param tc Temperature control (Tc).
+ *        Unit = �F or �C depending on constants Af1 and Bf1.
+ * @param tcd Compressor discharge time constant (Tcd).
+ * @param tf Fuel system time constant (Tf).
+ * @param tmax Maximum Turbine limit (Tmax).
+ * @param tmin Minimum Turbine limit (Tmin).
+ * @param tr Rated temperature (Tr).
+ *        Unit = �C depending on parameters Af1 and Bf1.
+ * @param trate Turbine rating (Trate).
+ *        Unit = MW.
+ * @param tt Temperature controller integration rate (Tt).
+ * @param w Governor gain (1/droop) on turbine rating (W).
+ * @param x Governor lead time constant (X).
+ * @param y Governor lag time constant (Y) (&gt;0).
+ * @param z Governor mode (Z).
+true = Droop
+ *        false = ISO.
  */
 case class GovGAST2
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Valve positioner (A).
-     */
-    val a: Double,
-
-    /**
-     * Exhaust temperature Parameter (Af1).
-     * Unit = per unit temperature.  Based on temperature in degrees C.
-     */
-    val af1: Double,
-
-    /**
-     * Coefficient equal to 0.5(1-speed) (Af2).
-     */
-    val af2: Double,
-
-    /**
-     * Valve positioner (B).
-     */
-    val b: Double,
-
-    /**
-     * (Bf1).
-     * Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.  Unit = per unit temperature.  Based on temperature in degrees C.
-     */
-    val bf1: Double,
-
-    /**
-     * Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).
-     */
-    val bf2: Double,
-
-    /**
-     * Valve positioner (C).
-     */
-    val c: Double,
-
-    /**
-     * Coefficient defining fuel flow where power output is 0% (Cf2).
-     * Synchronous but no output.  Typically 0.23 x K<sub>hhv</sub> (23% fuel flow).
-     */
-    val cf2: Double,
-
-    /**
-     * Combustion reaction time delay (Ecr).
-     */
-    val ecr: Double,
-
-    /**
-     * Turbine and exhaust delay (Etd).
-     */
-    val etd: Double,
-
-    /**
-     * Ratio of Fuel Adjustment (K3).
-     */
-    val k3: Double,
-
-    /**
-     * Gain of radiation shield (K4).
-     */
-    val k4: Double,
-
-    /**
-     * Gain of radiation shield (K5).
-     */
-    val k5: Double,
-
-    /**
-     * Minimum fuel flow (K6).
-     */
-    val k6: Double,
-
-    /**
-     * Fuel system feedback (Kf).
-     */
-    val kf: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Fuel Control Time Constant (T).
-     */
-    val t: Double,
-
-    /**
-     * Radiation shield time constant (T3).
-     */
-    val t3: Double,
-
-    /**
-     * Thermocouple time constant (T4).
-     */
-    val t4: Double,
-
-    /**
-     * Temperature control time constant (T5).
-     */
-    val t5: Double,
-
-    /**
-     * Temperature control (Tc).
-     * Unit = �F or �C depending on constants Af1 and Bf1.
-     */
-    val tc: Double,
-
-    /**
-     * Compressor discharge time constant (Tcd).
-     */
-    val tcd: Double,
-
-    /**
-     * Fuel system time constant (Tf).
-     */
-    val tf: Double,
-
-    /**
-     * Maximum Turbine limit (Tmax).
-     */
-    val tmax: Double,
-
-    /**
-     * Minimum Turbine limit (Tmin).
-     */
-    val tmin: Double,
-
-    /**
-     * Rated temperature (Tr).
-     * Unit = �C depending on parameters Af1 and Bf1.
-     */
-    val tr: Double,
-
-    /**
-     * Turbine rating (Trate).
-     * Unit = MW.
-     */
-    val trate: Double,
-
-    /**
-     * Temperature controller integration rate (Tt).
-     */
-    val tt: Double,
-
-    /**
-     * Governor gain (1/droop) on turbine rating (W).
-     */
-    val w: Double,
-
-    /**
-     * Governor lead time constant (X).
-     */
-    val x: Double,
-
-    /**
-     * Governor lag time constant (Y) (&gt;0).
-     */
-    val y: Double,
-
-    /**
-     * Governor mode (Z).
-    true = Droop
-     * false = ISO.
-     */
-    val z: Boolean
+(override val sup: TurbineGovernorDynamics,
+val a: Double,
+val af1: Double,
+val af2: Double,
+val b: Double,
+val bf1: Double,
+val bf2: Double,
+val c: Double,
+val cf2: Double,
+val ecr: Double,
+val etd: Double,
+val k3: Double,
+val k4: Double,
+val k5: Double,
+val k6: Double,
+val kf: Double,
+val mwbase: Double,
+val t: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val tc: Double,
+val tcd: Double,
+val tf: Double,
+val tmax: Double,
+val tmin: Double,
+val tr: Double,
+val trate: Double,
+val tt: Double,
+val w: Double,
+val x: Double,
+val y: Double,
+val z: Boolean
 )
 extends
     Element
@@ -1640,137 +1111,73 @@ extends
 
 /**
  * Generic turbogas with acceleration and temperature controller.
+ * @param sup Reference to the superclass object.
+ * @param bca Acceleration limit set-point (Bca).
+ *        Unit = 1/s.  Typical Value = 0.01.
+ * @param bp Droop (bp).
+ *        Typical Value = 0.05.
+ * @param dtc Exhaust temperature variation due to fuel flow increasing from 0 to 1 PU (deltaTc).
+ *        Typical Value = 390.
+ * @param ka Minimum fuel flow (Ka).
+ *        Typical Value = 0.23.
+ * @param kac Fuel system feedback (K<sub>AC</sub>).
+ *        Typical Value = 0.
+ * @param kca Acceleration control integral gain (Kca).
+ *        Unit = 1/s.  Typical Value = 100.
+ * @param ksi Gain of radiation shield (Ksi).
+ *        Typical Value = 0.8.
+ * @param ky Coefficient of transfer function of fuel valve positioner (Ky).
+ *        Typical Value = 1.
+ * @param mnef Fuel flow maximum negative error value (MN<sub>EF</sub>).
+ *        Typical Value = -0.05.
+ * @param mxef Fuel flow maximum positive error value (MX<sub>EF</sub>).
+ *        Typical Value = 0.05.
+ * @param rcmn Minimum fuel flow (RCMN).
+ *        Typical Value = -0.1.
+ * @param rcmx Maximum fuel flow (RCMX).
+ *        Typical Value = 1.
+ * @param tac Fuel control time constant (Tac).
+ *        Typical Value = 0.1.
+ * @param tc Compressor discharge volume time constant (Tc).
+ *        Typical Value = 0.2.
+ * @param td Temperature controller derivative gain (Td).
+ *        Typical Value = 3.3.
+ * @param tfen Turbine rated exhaust temperature correspondent to Pm=1 PU (Tfen).
+ *        Typical Value = 540.
+ * @param tg Time constant of speed governor (Tg).
+ *        Typical Value = 0.05.
+ * @param tsi Time constant of radiation shield (Tsi).
+ *        Typical Value = 15.
+ * @param tt Temperature controller integration rate (Tt).
+ *        Typical Value = 250.
+ * @param ttc Time constant of thermocouple (Ttc).
+ *        Typical Value = 2.5.
+ * @param ty Time constant of fuel valve positioner (Ty).
+ *        Typical Value = 0.2.
  */
 case class GovGAST3
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Acceleration limit set-point (Bca).
-     * Unit = 1/s.  Typical Value = 0.01.
-     */
-    val bca: Double,
-
-    /**
-     * Droop (bp).
-     * Typical Value = 0.05.
-     */
-    val bp: Double,
-
-    /**
-     * Exhaust temperature variation due to fuel flow increasing from 0 to 1 PU (deltaTc).
-     * Typical Value = 390.
-     */
-    val dtc: Double,
-
-    /**
-     * Minimum fuel flow (Ka).
-     * Typical Value = 0.23.
-     */
-    val ka: Double,
-
-    /**
-     * Fuel system feedback (K<sub>AC</sub>).
-     * Typical Value = 0.
-     */
-    val kac: Double,
-
-    /**
-     * Acceleration control integral gain (Kca).
-     * Unit = 1/s.  Typical Value = 100.
-     */
-    val kca: Double,
-
-    /**
-     * Gain of radiation shield (Ksi).
-     * Typical Value = 0.8.
-     */
-    val ksi: Double,
-
-    /**
-     * Coefficient of transfer function of fuel valve positioner (Ky).
-     * Typical Value = 1.
-     */
-    val ky: Double,
-
-    /**
-     * Fuel flow maximum negative error value (MN<sub>EF</sub>).
-     * Typical Value = -0.05.
-     */
-    val mnef: Double,
-
-    /**
-     * Fuel flow maximum positive error value (MX<sub>EF</sub>).
-     * Typical Value = 0.05.
-     */
-    val mxef: Double,
-
-    /**
-     * Minimum fuel flow (RCMN).
-     * Typical Value = -0.1.
-     */
-    val rcmn: Double,
-
-    /**
-     * Maximum fuel flow (RCMX).
-     * Typical Value = 1.
-     */
-    val rcmx: Double,
-
-    /**
-     * Fuel control time constant (Tac).
-     * Typical Value = 0.1.
-     */
-    val tac: Double,
-
-    /**
-     * Compressor discharge volume time constant (Tc).
-     * Typical Value = 0.2.
-     */
-    val tc: Double,
-
-    /**
-     * Temperature controller derivative gain (Td).
-     * Typical Value = 3.3.
-     */
-    val td: Double,
-
-    /**
-     * Turbine rated exhaust temperature correspondent to Pm=1 PU (Tfen).
-     * Typical Value = 540.
-     */
-    val tfen: Double,
-
-    /**
-     * Time constant of speed governor (Tg).
-     * Typical Value = 0.05.
-     */
-    val tg: Double,
-
-    /**
-     * Time constant of radiation shield (Tsi).
-     * Typical Value = 15.
-     */
-    val tsi: Double,
-
-    /**
-     * Temperature controller integration rate (Tt).
-     * Typical Value = 250.
-     */
-    val tt: Double,
-
-    /**
-     * Time constant of thermocouple (Ttc).
-     * Typical Value = 2.5.
-     */
-    val ttc: Double,
-
-    /**
-     * Time constant of fuel valve positioner (Ty).
-     * Typical Value = 0.2.
-     */
-    val ty: Double
+(override val sup: TurbineGovernorDynamics,
+val bca: Double,
+val bp: Double,
+val dtc: Double,
+val ka: Double,
+val kac: Double,
+val kca: Double,
+val ksi: Double,
+val ky: Double,
+val mnef: Double,
+val mxef: Double,
+val rcmn: Double,
+val rcmx: Double,
+val tac: Double,
+val tc: Double,
+val td: Double,
+val tfen: Double,
+val tg: Double,
+val tsi: Double,
+val tt: Double,
+val ttc: Double,
+val ty: Double
 )
 extends
     Element
@@ -1845,77 +1252,43 @@ extends
 
 /**
  * Generic turbogas.
+ * @param sup Reference to the superclass object.
+ * @param bp Droop (bp).
+ *        Typical Value = 0.05.
+ * @param ktm Compressor gain (K<sub>tm</sub>).
+ *        Typical Value = 0.
+ * @param mnef Fuel flow maximum negative error value (MN<sub>EF</sub>).
+ *        Typical Value = -0.05.
+ * @param mxef Fuel flow maximum positive error value (MX<sub>EF</sub>).
+ *        Typical Value = 0.05.
+ * @param rymn Minimum valve opening (RYMN).
+ *        Typical Value = 0.
+ * @param rymx Maximum valve opening (RYMX).
+ *        Typical Value = 1.1.
+ * @param ta Maximum gate opening velocity (T<sub>A</sub>).
+ *        Typical Value = 3.
+ * @param tc Maximum gate closing velocity (T<sub>c</sub>).
+ *        Typical Value = 0.5.
+ * @param tcm Fuel control time constant (T<sub>cm</sub>).
+ *        Typical Value = 0.1.
+ * @param tm Compressor discharge volume time constant (T<sub>m</sub>).
+ *        Typical Value = 0.2.
+ * @param tv Time constant of fuel valve positioner (T<sub>y</sub>).
+ *        Typical Value = 0.1.
  */
 case class GovGAST4
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Droop (bp).
-     * Typical Value = 0.05.
-     */
-    val bp: Double,
-
-    /**
-     * Compressor gain (K<sub>tm</sub>).
-     * Typical Value = 0.
-     */
-    val ktm: Double,
-
-    /**
-     * Fuel flow maximum negative error value (MN<sub>EF</sub>).
-     * Typical Value = -0.05.
-     */
-    val mnef: Double,
-
-    /**
-     * Fuel flow maximum positive error value (MX<sub>EF</sub>).
-     * Typical Value = 0.05.
-     */
-    val mxef: Double,
-
-    /**
-     * Minimum valve opening (RYMN).
-     * Typical Value = 0.
-     */
-    val rymn: Double,
-
-    /**
-     * Maximum valve opening (RYMX).
-     * Typical Value = 1.1.
-     */
-    val rymx: Double,
-
-    /**
-     * Maximum gate opening velocity (T<sub>A</sub>).
-     * Typical Value = 3.
-     */
-    val ta: Double,
-
-    /**
-     * Maximum gate closing velocity (T<sub>c</sub>).
-     * Typical Value = 0.5.
-     */
-    val tc: Double,
-
-    /**
-     * Fuel control time constant (T<sub>cm</sub>).
-     * Typical Value = 0.1.
-     */
-    val tcm: Double,
-
-    /**
-     * Compressor discharge volume time constant (T<sub>m</sub>).
-     * Typical Value = 0.2.
-     */
-    val tm: Double,
-
-    /**
-     * Time constant of fuel valve positioner (T<sub>y</sub>).
-     * Typical Value = 0.1.
-     */
-    val tv: Double
+(override val sup: TurbineGovernorDynamics,
+val bp: Double,
+val ktm: Double,
+val mnef: Double,
+val mxef: Double,
+val rymn: Double,
+val rymx: Double,
+val ta: Double,
+val tc: Double,
+val tcm: Double,
+val tm: Double,
+val tv: Double
 )
 extends
     Element
@@ -1970,180 +1343,80 @@ extends
 
 /**
  * Woodward Gas turbine governor model.
+ * @param sup Reference to the superclass object.
+ * @param a Valve positioner (<i>A</i>).
+ * @param af1 Exhaust temperature Parameter (Af1).
+ * @param af2 Coefficient equal to 0.5(1-speed) (Af2).
+ * @param b Valve positioner (<i>B</i>).
+ * @param bf1 (Bf1).
+ *        Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.
+ * @param bf2 Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).
+ * @param c Valve positioner (<i>C</i>).
+ * @param cf2 Coefficient defining fuel flow where power output is 0% (Cf2).
+ *        Synchronous but no output.  Typically 0.23 x K<sub>hhv </sub>(23% fuel flow).
+ * @param ecr Combustion reaction time delay (Ecr).
+ * @param etd Turbine and exhaust delay (Etd).
+ * @param k3 Ratio of Fuel Adjustment (K3).
+ * @param k4 Gain of radiation shield (K4).
+ * @param k5 Gain of radiation shield (K5).
+ * @param k6 Minimum fuel flow (K6).
+ * @param kd Drop Governor Gain (Kd).
+ * @param kdroop (Kdroop).
+ * @param kf Fuel system feedback (Kf).
+ * @param ki Isochronous Governor Gain (Ki).
+ * @param kp PID Proportional gain (Kp).
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param t Fuel Control Time Constant (T).
+ * @param t3 Radiation shield time constant (T3).
+ * @param t4 Thermocouple time constant (T4).
+ * @param t5 Temperature control time constant (T5).
+ * @param tc Temperature control (Tc).
+ * @param tcd Compressor discharge time constant (Tcd).
+ * @param td Power transducer time constant (Td).
+ * @param tf Fuel system time constant (Tf).
+ * @param tmax Maximum Turbine limit (Tmax).
+ * @param tmin Minimum Turbine limit (Tmin).
+ * @param tr Rated temperature (Tr).
+ * @param trate Turbine rating (Trate).
+ *        Unit = MW.
+ * @param tt Temperature controller integration rate (Tt).
  */
 case class GovGASTWD
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Valve positioner (<i>A</i>).
-     */
-    val a: Double,
-
-    /**
-     * Exhaust temperature Parameter (Af1).
-     */
-    val af1: Double,
-
-    /**
-     * Coefficient equal to 0.5(1-speed) (Af2).
-     */
-    val af2: Double,
-
-    /**
-     * Valve positioner (<i>B</i>).
-     */
-    val b: Double,
-
-    /**
-     * (Bf1).
-     * Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.
-     */
-    val bf1: Double,
-
-    /**
-     * Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).
-     */
-    val bf2: Double,
-
-    /**
-     * Valve positioner (<i>C</i>).
-     */
-    val c: Double,
-
-    /**
-     * Coefficient defining fuel flow where power output is 0% (Cf2).
-     * Synchronous but no output.  Typically 0.23 x K<sub>hhv </sub>(23% fuel flow).
-     */
-    val cf2: Double,
-
-    /**
-     * Combustion reaction time delay (Ecr).
-     */
-    val ecr: Double,
-
-    /**
-     * Turbine and exhaust delay (Etd).
-     */
-    val etd: Double,
-
-    /**
-     * Ratio of Fuel Adjustment (K3).
-     */
-    val k3: Double,
-
-    /**
-     * Gain of radiation shield (K4).
-     */
-    val k4: Double,
-
-    /**
-     * Gain of radiation shield (K5).
-     */
-    val k5: Double,
-
-    /**
-     * Minimum fuel flow (K6).
-     */
-    val k6: Double,
-
-    /**
-     * Drop Governor Gain (Kd).
-     */
-    val kd: Double,
-
-    /**
-     * (Kdroop).
-     */
-    val kdroop: Double,
-
-    /**
-     * Fuel system feedback (Kf).
-     */
-    val kf: Double,
-
-    /**
-     * Isochronous Governor Gain (Ki).
-     */
-    val ki: Double,
-
-    /**
-     * PID Proportional gain (Kp).
-     */
-    val kp: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Fuel Control Time Constant (T).
-     */
-    val t: Double,
-
-    /**
-     * Radiation shield time constant (T3).
-     */
-    val t3: Double,
-
-    /**
-     * Thermocouple time constant (T4).
-     */
-    val t4: Double,
-
-    /**
-     * Temperature control time constant (T5).
-     */
-    val t5: Double,
-
-    /**
-     * Temperature control (Tc).
-     */
-    val tc: Double,
-
-    /**
-     * Compressor discharge time constant (Tcd).
-     */
-    val tcd: Double,
-
-    /**
-     * Power transducer time constant (Td).
-     */
-    val td: Double,
-
-    /**
-     * Fuel system time constant (Tf).
-     */
-    val tf: Double,
-
-    /**
-     * Maximum Turbine limit (Tmax).
-     */
-    val tmax: Double,
-
-    /**
-     * Minimum Turbine limit (Tmin).
-     */
-    val tmin: Double,
-
-    /**
-     * Rated temperature (Tr).
-     */
-    val tr: Double,
-
-    /**
-     * Turbine rating (Trate).
-     * Unit = MW.
-     */
-    val trate: Double,
-
-    /**
-     * Temperature controller integration rate (Tt).
-     */
-    val tt: Double
+(override val sup: TurbineGovernorDynamics,
+val a: Double,
+val af1: Double,
+val af2: Double,
+val b: Double,
+val bf1: Double,
+val bf2: Double,
+val c: Double,
+val cf2: Double,
+val ecr: Double,
+val etd: Double,
+val k3: Double,
+val k4: Double,
+val k5: Double,
+val k6: Double,
+val kd: Double,
+val kdroop: Double,
+val kf: Double,
+val ki: Double,
+val kp: Double,
+val mwbase: Double,
+val t: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val tc: Double,
+val tcd: Double,
+val td: Double,
+val tf: Double,
+val tmax: Double,
+val tmin: Double,
+val tr: Double,
+val trate: Double,
+val tt: Double
 )
 extends
     Element
@@ -2242,95 +1515,52 @@ extends
 
 /**
  * Basic Hydro turbine governor model.
+ * @param sup Reference to the superclass object.
+ * @param at Turbine gain (At) (&gt;0).
+ *        Typical Value = 1.2.
+ * @param dturb Turbine damping factor (Dturb) (&gt;=0).
+ *        Typical Value = 0.5.
+ * @param gmax Maximum gate opening (Gmax) (&gt;0).
+ *        Typical Value = 1.
+ * @param gmin Minimum gate opening (Gmin) (&gt;=0).
+ *        Typical Value = 0.
+ * @param hdam Turbine nominal head (hdam).
+ *        Typical Value = 1.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param qnl No-load flow at nominal head (qnl) (&gt;=0).
+ *        Typical Value = 0.08.
+ * @param rperm Permanent droop (R) (&gt;0).
+ *        Typical Value = 0.04.
+ * @param rtemp Temporary droop (r) (&gt;R).
+ *        Typical Value = 0.3.
+ * @param tf Filter time constant (<i>Tf</i>) (&gt;0).
+ *        Typical Value = 0.05.
+ * @param tg Gate servo time constant (Tg) (&gt;0).
+ *        Typical Value = 0.5.
+ * @param tr Washout time constant (Tr) (&gt;0).
+ *        Typical Value = 5.
+ * @param tw Water inertia time constant (Tw) (&gt;0).
+ *        Typical Value = 1.
+ * @param velm Maximum gate velocity (Vlem) (&gt;0).
+ *        Typical Value = 0.2.
  */
 case class GovHydro1
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine gain (At) (&gt;0).
-     * Typical Value = 1.2.
-     */
-    val at: Double,
-
-    /**
-     * Turbine damping factor (Dturb) (&gt;=0).
-     * Typical Value = 0.5.
-     */
-    val dturb: Double,
-
-    /**
-     * Maximum gate opening (Gmax) (&gt;0).
-     * Typical Value = 1.
-     */
-    val gmax: Double,
-
-    /**
-     * Minimum gate opening (Gmin) (&gt;=0).
-     * Typical Value = 0.
-     */
-    val gmin: Double,
-
-    /**
-     * Turbine nominal head (hdam).
-     * Typical Value = 1.
-     */
-    val hdam: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * No-load flow at nominal head (qnl) (&gt;=0).
-     * Typical Value = 0.08.
-     */
-    val qnl: Double,
-
-    /**
-     * Permanent droop (R) (&gt;0).
-     * Typical Value = 0.04.
-     */
-    val rperm: Double,
-
-    /**
-     * Temporary droop (r) (&gt;R).
-     * Typical Value = 0.3.
-     */
-    val rtemp: Double,
-
-    /**
-     * Filter time constant (<i>Tf</i>) (&gt;0).
-     * Typical Value = 0.05.
-     */
-    val tf: Double,
-
-    /**
-     * Gate servo time constant (Tg) (&gt;0).
-     * Typical Value = 0.5.
-     */
-    val tg: Double,
-
-    /**
-     * Washout time constant (Tr) (&gt;0).
-     * Typical Value = 5.
-     */
-    val tr: Double,
-
-    /**
-     * Water inertia time constant (Tw) (&gt;0).
-     * Typical Value = 1.
-     */
-    val tw: Double,
-
-    /**
-     * Maximum gate velocity (Vlem) (&gt;0).
-     * Typical Value = 0.2.
-     */
-    val velm: Double
+(override val sup: TurbineGovernorDynamics,
+val at: Double,
+val dturb: Double,
+val gmax: Double,
+val gmin: Double,
+val hdam: Double,
+val mwbase: Double,
+val qnl: Double,
+val rperm: Double,
+val rtemp: Double,
+val tf: Double,
+val tg: Double,
+val tr: Double,
+val tw: Double,
+val velm: Double
 )
 extends
     Element
@@ -2391,185 +1621,97 @@ extends
 
 /**
  * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
+ * @param sup Reference to the superclass object.
+ * @param aturb Turbine numerator multiplier (Aturb).
+ *        Typical Value = -1.
+ * @param bturb Turbine denominator multiplier (Bturb).
+ *        Typical Value = 0.5.
+ * @param db1 Intentional deadband width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional deadband (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
+ *        Typical Value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
+ *        Typical Value = 0.
+ * @param kturb Turbine gain (Kturb).
+ *        Typical Value = 1.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
+ *        Typical Value = 0.
+ * @param pmax Maximum gate opening (Pmax).
+ *        Typical Value = 1.
+ * @param pmin Minimum gate opening; (<i>Pmin</i>).
+ *        Typical Value = 0.
+ * @param rperm Permanent droop (Rperm).
+ *        Typical Value = 0.05.
+ * @param rtemp Temporary droop (Rtemp).
+ *        Typical Value = 0.5.
+ * @param tg Gate servo time constant (Tg).
+ *        Typical Value = 0.5.
+ * @param tp Pilot servo valve time constant (Tp).
+ *        Typical Value = 0.03.
+ * @param tr Dashpot time constant (Tr).
+ *        Typical Value = 12.
+ * @param tw Water inertia time constant (Tw).
+ *        Typical Value = 2.
+ * @param uc Maximum gate closing velocity (Uc) (&lt;0).
+ *        Unit = PU/sec.   Typical Value = -0.1.
+ * @param uo Maximum gate opening velocity (Uo).
+ *        Unit = PU/sec.  Typical Value = 0.1.
  */
 case class GovHydro2
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine numerator multiplier (Aturb).
-     * Typical Value = -1.
-     */
-    val aturb: Double,
-
-    /**
-     * Turbine denominator multiplier (Bturb).
-     * Typical Value = 0.5.
-     */
-    val bturb: Double,
-
-    /**
-     * Intentional deadband width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional deadband (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU gv (Gv2).
-     * Typical Value = 0.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU gv (Gv6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Turbine gain (Kturb).
-     * Typical Value = 1.
-     */
-    val kturb: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU power (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Maximum gate opening (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum gate opening; (<i>Pmin</i>).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Permanent droop (Rperm).
-     * Typical Value = 0.05.
-     */
-    val rperm: Double,
-
-    /**
-     * Temporary droop (Rtemp).
-     * Typical Value = 0.5.
-     */
-    val rtemp: Double,
-
-    /**
-     * Gate servo time constant (Tg).
-     * Typical Value = 0.5.
-     */
-    val tg: Double,
-
-    /**
-     * Pilot servo valve time constant (Tp).
-     * Typical Value = 0.03.
-     */
-    val tp: Double,
-
-    /**
-     * Dashpot time constant (Tr).
-     * Typical Value = 12.
-     */
-    val tr: Double,
-
-    /**
-     * Water inertia time constant (Tw).
-     * Typical Value = 2.
-     */
-    val tw: Double,
-
-    /**
-     * Maximum gate closing velocity (Uc) (&lt;0).
-     * Unit = PU/sec.   Typical Value = -0.1.
-     */
-    val uc: Double,
-
-    /**
-     * Maximum gate opening velocity (Uo).
-     * Unit = PU/sec.  Typical Value = 0.1.
-     */
-    val uo: Double
+(override val sup: TurbineGovernorDynamics,
+val aturb: Double,
+val bturb: Double,
+val db1: Double,
+val db2: Double,
+val eps: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val kturb: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val pmax: Double,
+val pmin: Double,
+val rperm: Double,
+val rtemp: Double,
+val tg: Double,
+val tp: Double,
+val tr: Double,
+val tw: Double,
+val uc: Double,
+val uo: Double
 )
 extends
     Element
@@ -2661,229 +1803,120 @@ extends
 /**
  * Modified IEEE Hydro Governor-Turbine Model.
  * This model differs from that defined in the IEEE modeling guideline paper in that the limits on gate position and velocity do not permit "wind up" of the upstream signals.
+ * @param sup Reference to the superclass object.
+ * @param at Turbine gain (At).
+ *        Typical Value = 1.2.
+ * @param db1 Intentional dead-band width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional dead-band (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param dturb Turbine damping factor (Dturb).
+ *        Typical Value = 0.2.
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param governorControl Governor control flag (Cflag).
+true = PID control is active
+false = double derivative control is active.
+ *        Typical Value = true.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
+ *        Typical Value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
+ *        Typical Value = 0.
+ * @param h0 Turbine nominal head (H0).
+ *        Typical Value = 1.
+ * @param k1 Derivative gain (K1).
+ *        Typical Value = 0.01.
+ * @param k2 Double derivative gain, if Cflag = -1 (K2).
+ *        Typical Value = 2.5.
+ * @param kg Gate servo gain (Kg).
+ *        Typical Value = 2.
+ * @param ki Integral gain (Ki).
+ *        Typical Value = 0.5.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
+ *        Typical Value = 0.
+ * @param pmax Maximum gate opening, PU of MWbase (Pmax).
+ *        Typical Value = 1.
+ * @param pmin Minimum gate opening, PU of MWbase (Pmin).
+ *        Typical Value = 0.
+ * @param qnl No-load turbine flow at nominal head (Qnl).
+ *        Typical Value = 0.08.
+ * @param relec Steady-state droop, PU, for electrical power feedback (Relec).
+ *        Typical Value = 0.05.
+ * @param rgate Steady-state droop, PU, for governor output feedback (Rgate).
+ *        Typical Value = 0.
+ * @param td Input filter time constant (Td).
+ *        Typical Value = 0.05.
+ * @param tf Washout time constant (Tf).
+ *        Typical Value = 0.1.
+ * @param tp Gate servo time constant (Tp).
+ *        Typical Value = 0.05.
+ * @param tt Power feedback time constant (Tt).
+ *        Typical Value = 0.2.
+ * @param tw Water inertia time constant (Tw).
+ *        Typical Value = 1.
+ * @param velcl Maximum gate closing velocity (Velcl).
+ *        Unit = PU/sec.  Typical Value = -0.2.
+ * @param velop Maximum gate opening velocity (Velop).
+ *        Unit = PU/sec. Typical Value = 0.2.
  */
 case class GovHydro3
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine gain (At).
-     * Typical Value = 1.2.
-     */
-    val at: Double,
-
-    /**
-     * Intentional dead-band width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional dead-band (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Turbine damping factor (Dturb).
-     * Typical Value = 0.2.
-     */
-    val dturb: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Governor control flag (Cflag).
-    true = PID control is active
-    false = double derivative control is active.
-     * Typical Value = true.
-     */
-    val governorControl: Boolean,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU gv (Gv2).
-     * Typical Value = 0.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU gv (Gv6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Turbine nominal head (H0).
-     * Typical Value = 1.
-     */
-    val h0: Double,
-
-    /**
-     * Derivative gain (K1).
-     * Typical Value = 0.01.
-     */
-    val k1: Double,
-
-    /**
-     * Double derivative gain, if Cflag = -1 (K2).
-     * Typical Value = 2.5.
-     */
-    val k2: Double,
-
-    /**
-     * Gate servo gain (Kg).
-     * Typical Value = 2.
-     */
-    val kg: Double,
-
-    /**
-     * Integral gain (Ki).
-     * Typical Value = 0.5.
-     */
-    val ki: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU power (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Maximum gate opening, PU of MWbase (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum gate opening, PU of MWbase (Pmin).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * No-load turbine flow at nominal head (Qnl).
-     * Typical Value = 0.08.
-     */
-    val qnl: Double,
-
-    /**
-     * Steady-state droop, PU, for electrical power feedback (Relec).
-     * Typical Value = 0.05.
-     */
-    val relec: Double,
-
-    /**
-     * Steady-state droop, PU, for governor output feedback (Rgate).
-     * Typical Value = 0.
-     */
-    val rgate: Double,
-
-    /**
-     * Input filter time constant (Td).
-     * Typical Value = 0.05.
-     */
-    val td: Double,
-
-    /**
-     * Washout time constant (Tf).
-     * Typical Value = 0.1.
-     */
-    val tf: Double,
-
-    /**
-     * Gate servo time constant (Tp).
-     * Typical Value = 0.05.
-     */
-    val tp: Double,
-
-    /**
-     * Power feedback time constant (Tt).
-     * Typical Value = 0.2.
-     */
-    val tt: Double,
-
-    /**
-     * Water inertia time constant (Tw).
-     * Typical Value = 1.
-     */
-    val tw: Double,
-
-    /**
-     * Maximum gate closing velocity (Velcl).
-     * Unit = PU/sec.  Typical Value = -0.2.
-     */
-    val velcl: Double,
-
-    /**
-     * Maximum gate opening velocity (Velop).
-     * Unit = PU/sec. Typical Value = 0.2.
-     */
-    val velop: Double
+(override val sup: TurbineGovernorDynamics,
+val at: Double,
+val db1: Double,
+val db2: Double,
+val dturb: Double,
+val eps: Double,
+val governorControl: Boolean,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val h0: Double,
+val k1: Double,
+val k2: Double,
+val kg: Double,
+val ki: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val pmax: Double,
+val pmin: Double,
+val qnl: Double,
+val relec: Double,
+val rgate: Double,
+val td: Double,
+val tf: Double,
+val tp: Double,
+val tt: Double,
+val tw: Double,
+val velcl: Double,
+val velop: Double
 )
 extends
     Element
@@ -2989,239 +2022,124 @@ extends
 /**
  * Hydro turbine and governor.
  * Represents plants with straight-forward penstock configurations and hydraulic governors of traditional 'dashpot' type.  This model can be used to represent simple, Francis, Pelton or Kaplan turbines.
+ * @param sup Reference to the superclass object.
+ * @param at Turbine gain (At).
+ *        Typical Value = 1.2.
+ * @param bgv0 Kaplan blade servo point 0 (Bgv0).
+ *        Typical Value = 0.
+ * @param bgv1 Kaplan blade servo point 1 (Bgv1).
+ *        Typical Value = 0.
+ * @param bgv2 Kaplan blade servo point 2 (Bgv2).
+ *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.1.
+ * @param bgv3 Kaplan blade servo point 3 (Bgv3).
+ *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.667.
+ * @param bgv4 Kaplan blade servo point 4 (Bgv4).
+ *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.9.
+ * @param bgv5 Kaplan blade servo point 5 (Bgv5).
+ *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 1.
+ * @param bmax Maximum blade adjustment factor (Bmax).
+ *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 1.1276.
+ * @param db1 Intentional deadband width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional dead-band (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param dturb Turbine damping factor (Dturb).
+ *        Unit = delta P (PU of MWbase) / delta speed (PU).
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param gmax Maximum gate opening, PU of MWbase (Gmax).
+ *        Typical Value = 1.
+ * @param gmin Minimum gate opening, PU of MWbase (Gmin).
+ *        Typical Value = 0.
+ * @param gv0 Nonlinear gain point 0, PU gv (Gv0).
+ *        Typical Value = 0.  Typical Value Francis = 0.1, Kaplan = 0.1.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.  Typical Value Francis = 0.4, Kaplan = 0.4.
+ * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
+ *        Typical Value = 0.  Typical Value Francis = 0.5, Kaplan = 0.5.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.  Typical Value Francis = 0.7, Kaplan = 0.7.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.  Typical Value Francis = 0.8, Kaplan = 0.8.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.  Typical Value Francis = 0.9, Kaplan = 0.9.
+ * @param hdam Head available at dam (hdam).
+ *        Typical Value = 1.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pgv0 Nonlinear gain point 0, PU power (Pgv0).
+ *        Typical Value = 0.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.  Typical Value Francis = 0.42, Kaplan = 0.35.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.  Typical Value Francis = 0.56, Kaplan = 0.468.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.  Typical Value Francis = 0.8, Kaplan = 0.796.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.  Typical Value Francis = 0.9, Kaplan = 0.917.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.  Typical Value Francis = 0.97, Kaplan = 0.99.
+ * @param qn1 No-load flow at nominal head (Qnl).
+ *        Typical Value = 0.08.  Typical Value Francis = 0, Kaplan = 0.
+ * @param rperm Permanent droop (Rperm).
+ *        Typical Value = 0.05.
+ * @param rtemp Temporary droop (Rtemp).
+ *        Typical Value = 0.3.
+ * @param tblade Blade servo time constant (Tblade).
+ *        Typical Value = 100.
+ * @param tg Gate servo time constant (Tg) (&gt;0).
+ *        Typical Value = 0.5.
+ * @param tp Pilot servo time constant (Tp).
+ *        Typical Value = 0.1.
+ * @param tr Dashpot time constant (Tr) (&gt;0).
+ *        Typical Value = 5.
+ * @param tw Water inertia time constant (Tw) (&gt;0).
+ *        Typical Value = 1.
+ * @param uc Max gate closing velocity (Uc).
+ *        Typical Value = 0.2.
+ * @param uo Max gate opening velocity (Uo).
+ *        Typical Value = 0.2.
  */
 case class GovHydro4
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine gain (At).
-     * Typical Value = 1.2.
-     */
-    val at: Double,
-
-    /**
-     * Kaplan blade servo point 0 (Bgv0).
-     * Typical Value = 0.
-     */
-    val bgv0: Double,
-
-    /**
-     * Kaplan blade servo point 1 (Bgv1).
-     * Typical Value = 0.
-     */
-    val bgv1: Double,
-
-    /**
-     * Kaplan blade servo point 2 (Bgv2).
-     * Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.1.
-     */
-    val bgv2: Double,
-
-    /**
-     * Kaplan blade servo point 3 (Bgv3).
-     * Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.667.
-     */
-    val bgv3: Double,
-
-    /**
-     * Kaplan blade servo point 4 (Bgv4).
-     * Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.9.
-     */
-    val bgv4: Double,
-
-    /**
-     * Kaplan blade servo point 5 (Bgv5).
-     * Typical Value = 0.  Typical Value Francis = 0, Kaplan = 1.
-     */
-    val bgv5: Double,
-
-    /**
-     * Maximum blade adjustment factor (Bmax).
-     * Typical Value = 0.  Typical Value Francis = 0, Kaplan = 1.1276.
-     */
-    val bmax: Double,
-
-    /**
-     * Intentional deadband width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional dead-band (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Turbine damping factor (Dturb).
-     * Unit = delta P (PU of MWbase) / delta speed (PU).
-     */
-    val dturb: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Maximum gate opening, PU of MWbase (Gmax).
-     * Typical Value = 1.
-     */
-    val gmax: Double,
-
-    /**
-     * Minimum gate opening, PU of MWbase (Gmin).
-     * Typical Value = 0.
-     */
-    val gmin: Double,
-
-    /**
-     * Nonlinear gain point 0, PU gv (Gv0).
-     * Typical Value = 0.  Typical Value Francis = 0.1, Kaplan = 0.1.
-     */
-    val gv0: Double,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.  Typical Value Francis = 0.4, Kaplan = 0.4.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU gv (Gv2).
-     * Typical Value = 0.  Typical Value Francis = 0.5, Kaplan = 0.5.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.  Typical Value Francis = 0.7, Kaplan = 0.7.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.  Typical Value Francis = 0.8, Kaplan = 0.8.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.  Typical Value Francis = 0.9, Kaplan = 0.9.
-     */
-    val gv5: Double,
-
-    /**
-     * Head available at dam (hdam).
-     * Typical Value = 1.
-     */
-    val hdam: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 0, PU power (Pgv0).
-     * Typical Value = 0.
-     */
-    val pgv0: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.  Typical Value Francis = 0.42, Kaplan = 0.35.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.  Typical Value Francis = 0.56, Kaplan = 0.468.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.  Typical Value Francis = 0.8, Kaplan = 0.796.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.  Typical Value Francis = 0.9, Kaplan = 0.917.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.  Typical Value Francis = 0.97, Kaplan = 0.99.
-     */
-    val pgv5: Double,
-
-    /**
-     * No-load flow at nominal head (Qnl).
-     * Typical Value = 0.08.  Typical Value Francis = 0, Kaplan = 0.
-     */
-    val qn1: Double,
-
-    /**
-     * Permanent droop (Rperm).
-     * Typical Value = 0.05.
-     */
-    val rperm: Double,
-
-    /**
-     * Temporary droop (Rtemp).
-     * Typical Value = 0.3.
-     */
-    val rtemp: Double,
-
-    /**
-     * Blade servo time constant (Tblade).
-     * Typical Value = 100.
-     */
-    val tblade: Double,
-
-    /**
-     * Gate servo time constant (Tg) (&gt;0).
-     * Typical Value = 0.5.
-     */
-    val tg: Double,
-
-    /**
-     * Pilot servo time constant (Tp).
-     * Typical Value = 0.1.
-     */
-    val tp: Double,
-
-    /**
-     * Dashpot time constant (Tr) (&gt;0).
-     * Typical Value = 5.
-     */
-    val tr: Double,
-
-    /**
-     * Water inertia time constant (Tw) (&gt;0).
-     * Typical Value = 1.
-     */
-    val tw: Double,
-
-    /**
-     * Max gate closing velocity (Uc).
-     * Typical Value = 0.2.
-     */
-    val uc: Double,
-
-    /**
-     * Max gate opening velocity (Uo).
-     * Typical Value = 0.2.
-     */
-    val uo: Double
+(override val sup: TurbineGovernorDynamics,
+val at: Double,
+val bgv0: Double,
+val bgv1: Double,
+val bgv2: Double,
+val bgv3: Double,
+val bgv4: Double,
+val bgv5: Double,
+val bmax: Double,
+val db1: Double,
+val db2: Double,
+val dturb: Double,
+val eps: Double,
+val gmax: Double,
+val gmin: Double,
+val gv0: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val hdam: Double,
+val mwbase: Double,
+val pgv0: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val qn1: Double,
+val rperm: Double,
+val rtemp: Double,
+val tblade: Double,
+val tg: Double,
+val tp: Double,
+val tr: Double,
+val tw: Double,
+val uc: Double,
+val uo: Double
 )
 extends
     Element
@@ -3330,223 +2248,117 @@ extends
 
 /**
  * Double derivative hydro governor and turbine.
+ * @param sup Reference to the superclass object.
+ * @param aturb Turbine numerator multiplier (Aturb) (note 3).
+ *        Typical Value = -1.
+ * @param bturb Turbine denominator multiplier (Bturb) (note 3).
+ *        Typical Value = 0.5.
+ * @param db1 Intentional dead-band width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional dead-band (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param gmax Maximum gate opening (Gmax).
+ *        Typical Value = 0.
+ * @param gmin Minimum gate opening (Gmin).
+ *        Typical Value = 0.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
+ *        Typical Value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
+ *        Typical Value = 0.
+ * @param inputSignal Input signal switch (Flag). 
+true = Pe input is used
+false = feedback is received from CV.
+ *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.
+ * @param k1 Single derivative gain (K1).
+ *        Typical Value = 3.6.
+ * @param k2 Double derivative gain (K2).
+ *        Typical Value = 0.2.
+ * @param kg Gate servo gain (Kg).
+ *        Typical Value = 3.
+ * @param ki Integral gain (Ki).
+ *        Typical Value = 1.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
+ *        Typical Value = 0.
+ * @param pmax Maximum gate opening, PU of MWbase (Pmax).
+ *        Typical Value = 1.
+ * @param pmin Minimum gate opening, PU of MWbase (Pmin).
+ *        Typical Value = 0.
+ * @param r Steady state droop (R).
+ *        Typical Value = 0.05.
+ * @param td Input filter time constant (Td).
+ *        Typical Value = 0.
+ * @param tf Washout time constant (Tf).
+ *        Typical Value = 0.1.
+ * @param tp Gate servo time constant (Tp).
+ *        Typical Value = 0.35.
+ * @param tt Power feedback time constant (Tt).
+ *        Typical Value = 0.02.
+ * @param tturb Turbine time constant (Tturb) (note 3).
+ *        Typical Value = 0.8.
+ * @param velcl Maximum gate closing velocity (Velcl).
+ *        Unit = PU/sec.  Typical Value = -0.14.
+ * @param velop Maximum gate opening velocity (Velop).
+ *        Unit = PU/sec.  Typical Value = 0.09.
  */
 case class GovHydroDD
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine numerator multiplier (Aturb) (note 3).
-     * Typical Value = -1.
-     */
-    val aturb: Double,
-
-    /**
-     * Turbine denominator multiplier (Bturb) (note 3).
-     * Typical Value = 0.5.
-     */
-    val bturb: Double,
-
-    /**
-     * Intentional dead-band width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional dead-band (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Maximum gate opening (Gmax).
-     * Typical Value = 0.
-     */
-    val gmax: Double,
-
-    /**
-     * Minimum gate opening (Gmin).
-     * Typical Value = 0.
-     */
-    val gmin: Double,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU gv (Gv2).
-     * Typical Value = 0.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU gv (Gv6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Input signal switch (Flag). 
-    true = Pe input is used
-    false = feedback is received from CV.
-     * Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.
-     */
-    val inputSignal: Boolean,
-
-    /**
-     * Single derivative gain (K1).
-     * Typical Value = 3.6.
-     */
-    val k1: Double,
-
-    /**
-     * Double derivative gain (K2).
-     * Typical Value = 0.2.
-     */
-    val k2: Double,
-
-    /**
-     * Gate servo gain (Kg).
-     * Typical Value = 3.
-     */
-    val kg: Double,
-
-    /**
-     * Integral gain (Ki).
-     * Typical Value = 1.
-     */
-    val ki: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU power (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Maximum gate opening, PU of MWbase (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum gate opening, PU of MWbase (Pmin).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Steady state droop (R).
-     * Typical Value = 0.05.
-     */
-    val r: Double,
-
-    /**
-     * Input filter time constant (Td).
-     * Typical Value = 0.
-     */
-    val td: Double,
-
-    /**
-     * Washout time constant (Tf).
-     * Typical Value = 0.1.
-     */
-    val tf: Double,
-
-    /**
-     * Gate servo time constant (Tp).
-     * Typical Value = 0.35.
-     */
-    val tp: Double,
-
-    /**
-     * Power feedback time constant (Tt).
-     * Typical Value = 0.02.
-     */
-    val tt: Double,
-
-    /**
-     * Turbine time constant (Tturb) (note 3).
-     * Typical Value = 0.8.
-     */
-    val tturb: Double,
-
-    /**
-     * Maximum gate closing velocity (Velcl).
-     * Unit = PU/sec.  Typical Value = -0.14.
-     */
-    val velcl: Double,
-
-    /**
-     * Maximum gate opening velocity (Velop).
-     * Unit = PU/sec.  Typical Value = 0.09.
-     */
-    val velop: Double
+(override val sup: TurbineGovernorDynamics,
+val aturb: Double,
+val bturb: Double,
+val db1: Double,
+val db2: Double,
+val eps: Double,
+val gmax: Double,
+val gmin: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val inputSignal: Boolean,
+val k1: Double,
+val k2: Double,
+val kg: Double,
+val ki: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val pmax: Double,
+val pmin: Double,
+val r: Double,
+val td: Double,
+val tf: Double,
+val tp: Double,
+val tt: Double,
+val tturb: Double,
+val velcl: Double,
+val velop: Double
 )
 extends
     Element
@@ -3650,175 +2462,93 @@ extends
 /**
  * Detailed hydro unit - Francis model.
  * This model can be used to represent three types of governors.
+ * @param sup Reference to the superclass object.
+ * @param am Opening section S<sub>eff</sub> at the maximum efficiency (Am).
+ *        Typical Value = 0.7.
+ * @param av0 Area of the surge tank (A<sub>V0</sub>).
+ *        Unit = m<sup>2</sup>. Typical Value = 30.
+ * @param av1 Area of the compensation tank (A<sub>V1</sub>).
+ *        Unit = m<sup>2</sup>. Typical Value = 700.
+ * @param bp Droop (Bp).
+ *        Typical Value = 0.05.
+ * @param db1 Intentional dead-band width (DB1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param etamax Maximum efficiency (EtaMax).
+ *        Typical Value = 1.05.
+ * @param governorControl Governor control flag (Cflag).
+ *        Typical Value = mechanicHydrolicTachoAccelerator.
+ * @param h1 Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
+ *        Unit = m. Typical Value = 4.
+ * @param h2 Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
+ *        Unit = m. Typical Value = 40.
+ * @param hn Rated hydraulic head (H<sub>n</sub>).
+ *        Unit = m. Typical Value = 250.
+ * @param kc Penstock loss coefficient (due to friction) (Kc).
+ *        Typical Value = 0.025.
+ * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
+ *        Typical Value = 0.025.
+ * @param kt Washout gain (Kt).
+ *        Typical Value = 0.25.
+ * @param qc0 No-load turbine flow at nominal head (Qc0).
+ *        Typical Value = 0.21.
+ * @param qn Rated flow (Q<sub>n</sub>).
+ *        Unit = m<sup>3</sup>/s. Typical Value = 40.
+ * @param ta Derivative gain (Ta).
+ *        Typical Value = 3.
+ * @param td Washout time constant (Td).
+ *        Typical Value = 3.
+ * @param ts Gate servo time constant (Ts).
+ *        Typical Value = 0.5.
+ * @param twnc Water inertia time constant (Twnc).
+ *        Typical Value = 1.
+ * @param twng Water tunnel and surge chamber inertia time constant (Twng).
+ *        Typical Value = 3.
+ * @param tx Derivative feedback gain (Tx).
+ *        Typical Value = 1.
+ * @param va Maximum gate opening velocity (Va).
+ *        Unit = PU/sec.  Typical Value = 0.011.
+ * @param valvmax Maximum gate opening (ValvMax).
+ *        Typical Value = 1.
+ * @param valvmin Minimum gate opening (ValvMin).
+ *        Typical Value = 0.
+ * @param vc Maximum gate closing velocity (Vc).
+ *        Unit = PU/sec.  Typical Value = -0.011.
+ * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (Tflag).
+true = enable of water tunnel and surge chamber simulation
+false = inhibit of water tunnel and surge chamber simulation.
+ *        Typical Value = false.
+ * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
+ *        Unit = m.  Typical Value = 25.
  */
 case class GovHydroFrancis
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Opening section S<sub>eff</sub> at the maximum efficiency (Am).
-     * Typical Value = 0.7.
-     */
-    val am: Double,
-
-    /**
-     * Area of the surge tank (A<sub>V0</sub>).
-     * Unit = m<sup>2</sup>. Typical Value = 30.
-     */
-    val av0: Double,
-
-    /**
-     * Area of the compensation tank (A<sub>V1</sub>).
-     * Unit = m<sup>2</sup>. Typical Value = 700.
-     */
-    val av1: Double,
-
-    /**
-     * Droop (Bp).
-     * Typical Value = 0.05.
-     */
-    val bp: Double,
-
-    /**
-     * Intentional dead-band width (DB1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Maximum efficiency (EtaMax).
-     * Typical Value = 1.05.
-     */
-    val etamax: Double,
-
-    /**
-     * Governor control flag (Cflag).
-     * Typical Value = mechanicHydrolicTachoAccelerator.
-     */
-    val governorControl: String,
-
-    /**
-     * Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
-     * Unit = m. Typical Value = 4.
-     */
-    val h1: Double,
-
-    /**
-     * Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
-     * Unit = m. Typical Value = 40.
-     */
-    val h2: Double,
-
-    /**
-     * Rated hydraulic head (H<sub>n</sub>).
-     * Unit = m. Typical Value = 250.
-     */
-    val hn: Double,
-
-    /**
-     * Penstock loss coefficient (due to friction) (Kc).
-     * Typical Value = 0.025.
-     */
-    val kc: Double,
-
-    /**
-     * Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
-     * Typical Value = 0.025.
-     */
-    val kg: Double,
-
-    /**
-     * Washout gain (Kt).
-     * Typical Value = 0.25.
-     */
-    val kt: Double,
-
-    /**
-     * No-load turbine flow at nominal head (Qc0).
-     * Typical Value = 0.21.
-     */
-    val qc0: Double,
-
-    /**
-     * Rated flow (Q<sub>n</sub>).
-     * Unit = m<sup>3</sup>/s. Typical Value = 40.
-     */
-    val qn: Double,
-
-    /**
-     * Derivative gain (Ta).
-     * Typical Value = 3.
-     */
-    val ta: Double,
-
-    /**
-     * Washout time constant (Td).
-     * Typical Value = 3.
-     */
-    val td: Double,
-
-    /**
-     * Gate servo time constant (Ts).
-     * Typical Value = 0.5.
-     */
-    val ts: Double,
-
-    /**
-     * Water inertia time constant (Twnc).
-     * Typical Value = 1.
-     */
-    val twnc: Double,
-
-    /**
-     * Water tunnel and surge chamber inertia time constant (Twng).
-     * Typical Value = 3.
-     */
-    val twng: Double,
-
-    /**
-     * Derivative feedback gain (Tx).
-     * Typical Value = 1.
-     */
-    val tx: Double,
-
-    /**
-     * Maximum gate opening velocity (Va).
-     * Unit = PU/sec.  Typical Value = 0.011.
-     */
-    val va: Double,
-
-    /**
-     * Maximum gate opening (ValvMax).
-     * Typical Value = 1.
-     */
-    val valvmax: Double,
-
-    /**
-     * Minimum gate opening (ValvMin).
-     * Typical Value = 0.
-     */
-    val valvmin: Double,
-
-    /**
-     * Maximum gate closing velocity (Vc).
-     * Unit = PU/sec.  Typical Value = -0.011.
-     */
-    val vc: Double,
-
-    /**
-     * Water tunnel and surge chamber simulation (Tflag).
-    true = enable of water tunnel and surge chamber simulation
-    false = inhibit of water tunnel and surge chamber simulation.
-     * Typical Value = false.
-     */
-    val waterTunnelSurgeChamberSimulation: Boolean,
-
-    /**
-     * Head of upper water level with respect to the level of penstock (Zsfc).
-     * Unit = m.  Typical Value = 25.
-     */
-    val zsfc: Double
+(override val sup: TurbineGovernorDynamics,
+val am: Double,
+val av0: Double,
+val av1: Double,
+val bp: Double,
+val db1: Double,
+val etamax: Double,
+val governorControl: String,
+val h1: Double,
+val h2: Double,
+val hn: Double,
+val kc: Double,
+val kg: Double,
+val kt: Double,
+val qc0: Double,
+val qn: Double,
+val ta: Double,
+val td: Double,
+val ts: Double,
+val twnc: Double,
+val twng: Double,
+val tx: Double,
+val va: Double,
+val valvmax: Double,
+val valvmin: Double,
+val vc: Double,
+val waterTunnelSurgeChamberSimulation: Boolean,
+val zsfc: Double
 )
 extends
     Element
@@ -3906,55 +2636,30 @@ extends
 /**
  * IEEE Simplified Hydro Governor-Turbine Model.
  * Used for Mechanical-Hydraulic and Electro-Hydraulic turbine governors, with our without steam feedback. Typical values given are for Mechanical-Hydraulic.
+ * @param sup Reference to the superclass object.
+ * @param k Governor gain (K<i>)</i>.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param pmax Gate maximum (Pmax).
+ * @param pmin Gate minimum (Pmin).
+ * @param t1 Governor lag time constant (T1).
+ *        Typical Value = 0.25.
+ * @param t2 Governor lead time constant (T2<i>)</i>.
+ *        Typical Value = 0.
+ * @param t3 Gate actuator time constant (T3).
+ *        Typical Value = 0.1.
+ * @param t4 Water starting time (T4).
  */
 case class GovHydroIEEE0
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Governor gain (K<i>)</i>.
-     */
-    val k: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Gate maximum (Pmax).
-     */
-    val pmax: Double,
-
-    /**
-     * Gate minimum (Pmin).
-     */
-    val pmin: Double,
-
-    /**
-     * Governor lag time constant (T1).
-     * Typical Value = 0.25.
-     */
-    val t1: Double,
-
-    /**
-     * Governor lead time constant (T2<i>)</i>.
-     * Typical Value = 0.
-     */
-    val t2: Double,
-
-    /**
-     * Gate actuator time constant (T3).
-     * Typical Value = 0.1.
-     */
-    val t3: Double,
-
-    /**
-     * Water starting time (T4).
-     */
-    val t4: Double
+(override val sup: TurbineGovernorDynamics,
+val k: Double,
+val mwbase: Double,
+val pmax: Double,
+val pmin: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double
 )
 extends
     Element
@@ -4004,167 +2709,88 @@ extends
 /**
  * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
+ * @param sup Reference to the superclass object.
+ * @param aturb Turbine numerator multiplier (Aturb).
+ *        Typical Value = -1.
+ * @param bturb Turbine denominator multiplier (Bturb).
+ *        Typical Value = 0.5.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
+ *        Typical Value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
+ *        Typical Value = 0.
+ * @param kturb Turbine gain (Kturb).
+ *        Typical Value = 1.
+ * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
+ *        Typical Value = 0.
+ * @param pmax Maximum gate opening (Pmax).
+ *        Typical Value = 1.
+ * @param pmin Minimum gate opening (Pmin).
+ *        Typical Value = 0.
+ * @param rperm Permanent droop (Rperm).
+ *        Typical Value = 0.05.
+ * @param rtemp Temporary droop (Rtemp).
+ *        Typical Value = 0.5.
+ * @param tg Gate servo time constant (Tg).
+ *        Typical Value = 0.5.
+ * @param tp Pilot servo valve time constant (Tp).
+ *        Typical Value = 0.03.
+ * @param tr Dashpot time constant (Tr).
+ *        Typical Value = 12.
+ * @param tw Water inertia time constant (Tw).
+ *        Typical Value = 2.
+ * @param uc Maximum gate closing velocity (Uc) (&lt;0).
+ *        Typical Value = -0.1.
+ * @param uo Maximum gate opening velocity (Uo).
+ *        Unit = PU/sec.  Typical Value = 0.1.
  */
 case class GovHydroIEEE2
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine numerator multiplier (Aturb).
-     * Typical Value = -1.
-     */
-    val aturb: Double,
-
-    /**
-     * Turbine denominator multiplier (Bturb).
-     * Typical Value = 0.5.
-     */
-    val bturb: Double,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU gv (Gv2).
-     * Typical Value = 0.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU gv (Gv6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Turbine gain (Kturb).
-     * Typical Value = 1.
-     */
-    val kturb: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU power (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Maximum gate opening (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum gate opening (Pmin).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Permanent droop (Rperm).
-     * Typical Value = 0.05.
-     */
-    val rperm: Double,
-
-    /**
-     * Temporary droop (Rtemp).
-     * Typical Value = 0.5.
-     */
-    val rtemp: Double,
-
-    /**
-     * Gate servo time constant (Tg).
-     * Typical Value = 0.5.
-     */
-    val tg: Double,
-
-    /**
-     * Pilot servo valve time constant (Tp).
-     * Typical Value = 0.03.
-     */
-    val tp: Double,
-
-    /**
-     * Dashpot time constant (Tr).
-     * Typical Value = 12.
-     */
-    val tr: Double,
-
-    /**
-     * Water inertia time constant (Tw).
-     * Typical Value = 2.
-     */
-    val tw: Double,
-
-    /**
-     * Maximum gate closing velocity (Uc) (&lt;0).
-     * Typical Value = -0.1.
-     */
-    val uc: Double,
-
-    /**
-     * Maximum gate opening velocity (Uo).
-     * Unit = PU/sec.  Typical Value = 0.1.
-     */
-    val uo: Double
+(override val sup: TurbineGovernorDynamics,
+val aturb: Double,
+val bturb: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val kturb: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val pmax: Double,
+val pmin: Double,
+val rperm: Double,
+val rtemp: Double,
+val tg: Double,
+val tp: Double,
+val tr: Double,
+val tw: Double,
+val uc: Double,
+val uo: Double
 )
 extends
     Element
@@ -4249,211 +2875,111 @@ extends
 
 /**
  * PID governor and turbine.
+ * @param sup Reference to the superclass object.
+ * @param aturb Turbine numerator multiplier (Aturb) (note 3).
+ *        Typical Value -1.
+ * @param bturb Turbine denominator multiplier (Bturb) (note 3).
+ *        Typical Value = 0.5.
+ * @param db1 Intentional dead-band width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional dead-band (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
+ *        Typical Value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
+ *        Typical Value = 0.
+ * @param inputSignal Input signal switch (Flag). 
+true = Pe input is used
+false = feedback is received from CV.
+ *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
+ * @param kd Derivative gain (Kd).
+ *        Typical Value = 1.11.
+ * @param kg Gate servo gain (Kg).
+ *        Typical Value = 2.5.
+ * @param ki Integral gain (Ki).
+ *        Typical Value = 0.36.
+ * @param kp Proportional gain (Kp).
+ *        Typical Value = 0.1.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
+ *        Typical Value = 0.
+ * @param pmax Maximum gate opening, PU of MWbase (Pmax).
+ *        Typical Value = 1.
+ * @param pmin Minimum gate opening, PU of MWbase (Pmin).
+ *        Typical Value = 0.
+ * @param r Steady state droop (R).
+ *        Typical Value = 0.05.
+ * @param td Input filter time constant (Td).
+ *        Typical Value = 0.
+ * @param tf Washout time constant (Tf).
+ *        Typical Value = 0.1.
+ * @param tp Gate servo time constant (Tp).
+ *        Typical Value = 0.35.
+ * @param tt Power feedback time constant (Tt).
+ *        Typical Value = 0.02.
+ * @param tturb Turbine time constant (Tturb) (note 3).
+ *        Typical Value = 0.8.
+ * @param velcl Maximum gate closing velocity (Velcl).
+ *        Unit = PU/sec.  Typical Value = -0.14.
+ * @param velop Maximum gate opening velocity (Velop).
+ *        Unit = PU/sec.  Typical Value = 0.09.
  */
 case class GovHydroPID
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine numerator multiplier (Aturb) (note 3).
-     * Typical Value -1.
-     */
-    val aturb: Double,
-
-    /**
-     * Turbine denominator multiplier (Bturb) (note 3).
-     * Typical Value = 0.5.
-     */
-    val bturb: Double,
-
-    /**
-     * Intentional dead-band width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional dead-band (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU gv (Gv2).
-     * Typical Value = 0.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU gv (Gv6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Input signal switch (Flag). 
-    true = Pe input is used
-    false = feedback is received from CV.
-     * Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
-     */
-    val inputSignal: Boolean,
-
-    /**
-     * Derivative gain (Kd).
-     * Typical Value = 1.11.
-     */
-    val kd: Double,
-
-    /**
-     * Gate servo gain (Kg).
-     * Typical Value = 2.5.
-     */
-    val kg: Double,
-
-    /**
-     * Integral gain (Ki).
-     * Typical Value = 0.36.
-     */
-    val ki: Double,
-
-    /**
-     * Proportional gain (Kp).
-     * Typical Value = 0.1.
-     */
-    val kp: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU power (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Maximum gate opening, PU of MWbase (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum gate opening, PU of MWbase (Pmin).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Steady state droop (R).
-     * Typical Value = 0.05.
-     */
-    val r: Double,
-
-    /**
-     * Input filter time constant (Td).
-     * Typical Value = 0.
-     */
-    val td: Double,
-
-    /**
-     * Washout time constant (Tf).
-     * Typical Value = 0.1.
-     */
-    val tf: Double,
-
-    /**
-     * Gate servo time constant (Tp).
-     * Typical Value = 0.35.
-     */
-    val tp: Double,
-
-    /**
-     * Power feedback time constant (Tt).
-     * Typical Value = 0.02.
-     */
-    val tt: Double,
-
-    /**
-     * Turbine time constant (Tturb) (note 3).
-     * Typical Value = 0.8.
-     */
-    val tturb: Double,
-
-    /**
-     * Maximum gate closing velocity (Velcl).
-     * Unit = PU/sec.  Typical Value = -0.14.
-     */
-    val velcl: Double,
-
-    /**
-     * Maximum gate opening velocity (Velop).
-     * Unit = PU/sec.  Typical Value = 0.09.
-     */
-    val velop: Double
+(override val sup: TurbineGovernorDynamics,
+val aturb: Double,
+val bturb: Double,
+val db1: Double,
+val db2: Double,
+val eps: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val inputSignal: Boolean,
+val kd: Double,
+val kg: Double,
+val ki: Double,
+val kp: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val pmax: Double,
+val pmin: Double,
+val r: Double,
+val td: Double,
+val tf: Double,
+val tp: Double,
+val tt: Double,
+val tturb: Double,
+val velcl: Double,
+val velop: Double
 )
 extends
     Element
@@ -4553,144 +3079,77 @@ extends
 /**
  * Hydro turbine and governor.
  * Represents plants with straight forward penstock configurations and "three term" electro-hydraulic governors (i.e. Woodard electronic).
+ * @param sup Reference to the superclass object.
+ * @param atw Factor multiplying Tw (Atw).
+ *        Typical Value = 0.
+ * @param d Turbine damping factor (D).
+ *        Unit = delta P / delta speed.  Typical Value = 0.
+ * @param feedbackSignal Feedback signal type flag (Flag).
+true = use gate position feedback signal
+ *        false = use Pe.
+ * @param g0 Gate opening at speed no load (G0).
+ *        Typical Value = 0.
+ * @param g1 Intermediate gate opening (G1).
+ *        Typical Value = 0.
+ * @param g2 Intermediate gate opening (G2).
+ *        Typical Value = 0.
+ * @param gmax Maximum gate opening (Gmax).
+ *        Typical Value = 0.
+ * @param gmin Minimum gate opening (Gmin).
+ *        Typical Value = 0.
+ * @param kd Derivative gain (Kd).
+ *        Typical Value = 0.
+ * @param ki Reset gain (Ki).
+ *        Unit = PU/ sec.  Typical Value = 0.
+ * @param kp Proportional gain (Kp).
+ *        Typical Value = 0.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param p1 Power at gate opening G1 (P1).
+ *        Typical Value = 0.
+ * @param p2 Power at gate opening G2 (P2).
+ *        Typical Value = 0.
+ * @param p3 Power at full opened gate (P3).
+ *        Typical Value = 0.
+ * @param rperm Permanent drop (Rperm).
+ *        Typical Value = 0.
+ * @param ta Controller time constant (Ta) (&gt;0).
+ *        Typical Value = 0.
+ * @param tb Gate servo time constant (Tb) (&gt;0).
+ *        Typical Value = 0.
+ * @param treg Speed detector time constant (Treg).
+ *        Typical Value = 0.
+ * @param tw Water inertia time constant (Tw) (&gt;0).
+ *        Typical Value = 0.
+ * @param velmax Maximum gate opening velocity (Velmax).
+ *        Unit = PU/sec.  Typical Value = 0.
+ * @param velmin Maximum gate closing velocity (Velmin).
+ *        Unit = PU/sec.  Typical Value = 0.
  */
 case class GovHydroPID2
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Factor multiplying Tw (Atw).
-     * Typical Value = 0.
-     */
-    val atw: Double,
-
-    /**
-     * Turbine damping factor (D).
-     * Unit = delta P / delta speed.  Typical Value = 0.
-     */
-    val d: Double,
-
-    /**
-     * Feedback signal type flag (Flag).
-    true = use gate position feedback signal
-     * false = use Pe.
-     */
-    val feedbackSignal: Boolean,
-
-    /**
-     * Gate opening at speed no load (G0).
-     * Typical Value = 0.
-     */
-    val g0: Double,
-
-    /**
-     * Intermediate gate opening (G1).
-     * Typical Value = 0.
-     */
-    val g1: Double,
-
-    /**
-     * Intermediate gate opening (G2).
-     * Typical Value = 0.
-     */
-    val g2: Double,
-
-    /**
-     * Maximum gate opening (Gmax).
-     * Typical Value = 0.
-     */
-    val gmax: Double,
-
-    /**
-     * Minimum gate opening (Gmin).
-     * Typical Value = 0.
-     */
-    val gmin: Double,
-
-    /**
-     * Derivative gain (Kd).
-     * Typical Value = 0.
-     */
-    val kd: Double,
-
-    /**
-     * Reset gain (Ki).
-     * Unit = PU/ sec.  Typical Value = 0.
-     */
-    val ki: Double,
-
-    /**
-     * Proportional gain (Kp).
-     * Typical Value = 0.
-     */
-    val kp: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Power at gate opening G1 (P1).
-     * Typical Value = 0.
-     */
-    val p1: Double,
-
-    /**
-     * Power at gate opening G2 (P2).
-     * Typical Value = 0.
-     */
-    val p2: Double,
-
-    /**
-     * Power at full opened gate (P3).
-     * Typical Value = 0.
-     */
-    val p3: Double,
-
-    /**
-     * Permanent drop (Rperm).
-     * Typical Value = 0.
-     */
-    val rperm: Double,
-
-    /**
-     * Controller time constant (Ta) (&gt;0).
-     * Typical Value = 0.
-     */
-    val ta: Double,
-
-    /**
-     * Gate servo time constant (Tb) (&gt;0).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Speed detector time constant (Treg).
-     * Typical Value = 0.
-     */
-    val treg: Double,
-
-    /**
-     * Water inertia time constant (Tw) (&gt;0).
-     * Typical Value = 0.
-     */
-    val tw: Double,
-
-    /**
-     * Maximum gate opening velocity (Velmax).
-     * Unit = PU/sec.  Typical Value = 0.
-     */
-    val velmax: Double,
-
-    /**
-     * Maximum gate closing velocity (Velmin).
-     * Unit = PU/sec.  Typical Value = 0.
-     */
-    val velmin: Double
+(override val sup: TurbineGovernorDynamics,
+val atw: Double,
+val d: Double,
+val feedbackSignal: Boolean,
+val g0: Double,
+val g1: Double,
+val g2: Double,
+val gmax: Double,
+val gmin: Double,
+val kd: Double,
+val ki: Double,
+val kp: Double,
+val mwbase: Double,
+val p1: Double,
+val p2: Double,
+val p3: Double,
+val rperm: Double,
+val ta: Double,
+val tb: Double,
+val treg: Double,
+val tw: Double,
+val velmax: Double,
+val velmin: Double
 )
 extends
     Element
@@ -4768,185 +3227,100 @@ extends
 /**
  * Detailed hydro unit - Pelton model.
  * This model can be used to represent the dynamic related to water tunnel and surge chamber.
+ * @param sup Reference to the superclass object.
+ * @param av0 Area of the surge tank (A<sub>V0</sub>).
+ *        Unit = m<sup>2</sup>. Typical Value = 30.
+ * @param av1 Area of the compensation tank (A<sub>V1</sub>).
+ *        Unit = m<sup>2</sup>. Typical Value = 700.
+ * @param bp Droop (bp).
+ *        Typical Value = 0.05.
+ * @param db1 Intentional dead-band width (DB1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Intentional dead-band width of valve opening error (DB2).
+ *        Unit = Hz.  Typical Value = 0.01.
+ * @param h1 Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
+ *        Unit = m. Typical Value = 4.
+ * @param h2 Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
+ *        Unit = m. Typical Value = 40.
+ * @param hn Rated hydraulic head (H<sub>n</sub>).
+ *        Unit = m. Typical Value = 250.
+ * @param kc Penstock loss coefficient (due to friction) (Kc).
+ *        Typical Value = 0.025.
+ * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
+ *        Typical Value = -0.025.
+ * @param qc0 No-load turbine flow at nominal head (Qc0).
+ *        Typical Value = 0.05.
+ * @param qn Rated flow (Q<sub>n</sub>).
+ *        Unit = m<sup>3</sup>/s. Typical Value = 40.
+ * @param simplifiedPelton Simplified Pelton model simulation (Sflag).
+true = enable of simplified Pelton model simulation
+false = enable of complete Pelton model simulation (non linear gain).
+ *        Typical Value = false.
+ * @param staticCompensating Static compensating characteristic (Cflag).
+true = enable of static compensating characteristic 
+false = inhibit of static compensating characteristic.
+ *        Typical Value = false.
+ * @param ta Derivative gain (accelerometer time constant) (Ta).
+ *        Typical Value = 3.
+ * @param ts Gate servo time constant (Ts).
+ *        Typical Value = 0.15.
+ * @param tv Servomotor integrator time constant (TV).
+ *        Typical Value = 0.3.
+ * @param twnc Water inertia time constant (Twnc).
+ *        Typical Value = 1.
+ * @param twng Water tunnel and surge chamber inertia time constant (Twng).
+ *        Typical Value = 3.
+ * @param tx Electronic integrator time constant (Tx).
+ *        Typical Value = 0.5.
+ * @param va Maximum gate opening velocity (Va).
+ *        Unit = PU/sec.  Typical Value = 0.016.
+ * @param valvmax Maximum gate opening (ValvMax).
+ *        Typical Value = 1.
+ * @param valvmin Minimum gate opening (ValvMin).
+ *        Typical Value = 0.
+ * @param vav Maximum servomotor valve opening velocity (Vav).
+ *        Typical Value = 0.017.
+ * @param vc Maximum gate closing velocity (Vc).
+ *        Unit = PU/sec.  Typical Value = -0.016.
+ * @param vcv Maximum servomotor valve closing velocity (Vcv).
+ *        Typical Value = -0.017.
+ * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (Tflag).
+true = enable of water tunnel and surge chamber simulation
+false = inhibit of water tunnel and surge chamber simulation.
+ *        Typical Value = false.
+ * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
+ *        Unit = m. Typical Value = 25.
  */
 case class GovHydroPelton
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Area of the surge tank (A<sub>V0</sub>).
-     * Unit = m<sup>2</sup>. Typical Value = 30.
-     */
-    val av0: Double,
-
-    /**
-     * Area of the compensation tank (A<sub>V1</sub>).
-     * Unit = m<sup>2</sup>. Typical Value = 700.
-     */
-    val av1: Double,
-
-    /**
-     * Droop (bp).
-     * Typical Value = 0.05.
-     */
-    val bp: Double,
-
-    /**
-     * Intentional dead-band width (DB1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Intentional dead-band width of valve opening error (DB2).
-     * Unit = Hz.  Typical Value = 0.01.
-     */
-    val db2: Double,
-
-    /**
-     * Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
-     * Unit = m. Typical Value = 4.
-     */
-    val h1: Double,
-
-    /**
-     * Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
-     * Unit = m. Typical Value = 40.
-     */
-    val h2: Double,
-
-    /**
-     * Rated hydraulic head (H<sub>n</sub>).
-     * Unit = m. Typical Value = 250.
-     */
-    val hn: Double,
-
-    /**
-     * Penstock loss coefficient (due to friction) (Kc).
-     * Typical Value = 0.025.
-     */
-    val kc: Double,
-
-    /**
-     * Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
-     * Typical Value = -0.025.
-     */
-    val kg: Double,
-
-    /**
-     * No-load turbine flow at nominal head (Qc0).
-     * Typical Value = 0.05.
-     */
-    val qc0: Double,
-
-    /**
-     * Rated flow (Q<sub>n</sub>).
-     * Unit = m<sup>3</sup>/s. Typical Value = 40.
-     */
-    val qn: Double,
-
-    /**
-     * Simplified Pelton model simulation (Sflag).
-    true = enable of simplified Pelton model simulation
-    false = enable of complete Pelton model simulation (non linear gain).
-     * Typical Value = false.
-     */
-    val simplifiedPelton: Boolean,
-
-    /**
-     * Static compensating characteristic (Cflag).
-    true = enable of static compensating characteristic 
-    false = inhibit of static compensating characteristic.
-     * Typical Value = false.
-     */
-    val staticCompensating: Boolean,
-
-    /**
-     * Derivative gain (accelerometer time constant) (Ta).
-     * Typical Value = 3.
-     */
-    val ta: Double,
-
-    /**
-     * Gate servo time constant (Ts).
-     * Typical Value = 0.15.
-     */
-    val ts: Double,
-
-    /**
-     * Servomotor integrator time constant (TV).
-     * Typical Value = 0.3.
-     */
-    val tv: Double,
-
-    /**
-     * Water inertia time constant (Twnc).
-     * Typical Value = 1.
-     */
-    val twnc: Double,
-
-    /**
-     * Water tunnel and surge chamber inertia time constant (Twng).
-     * Typical Value = 3.
-     */
-    val twng: Double,
-
-    /**
-     * Electronic integrator time constant (Tx).
-     * Typical Value = 0.5.
-     */
-    val tx: Double,
-
-    /**
-     * Maximum gate opening velocity (Va).
-     * Unit = PU/sec.  Typical Value = 0.016.
-     */
-    val va: Double,
-
-    /**
-     * Maximum gate opening (ValvMax).
-     * Typical Value = 1.
-     */
-    val valvmax: Double,
-
-    /**
-     * Minimum gate opening (ValvMin).
-     * Typical Value = 0.
-     */
-    val valvmin: Double,
-
-    /**
-     * Maximum servomotor valve opening velocity (Vav).
-     * Typical Value = 0.017.
-     */
-    val vav: Double,
-
-    /**
-     * Maximum gate closing velocity (Vc).
-     * Unit = PU/sec.  Typical Value = -0.016.
-     */
-    val vc: Double,
-
-    /**
-     * Maximum servomotor valve closing velocity (Vcv).
-     * Typical Value = -0.017.
-     */
-    val vcv: Double,
-
-    /**
-     * Water tunnel and surge chamber simulation (Tflag).
-    true = enable of water tunnel and surge chamber simulation
-    false = inhibit of water tunnel and surge chamber simulation.
-     * Typical Value = false.
-     */
-    val waterTunnelSurgeChamberSimulation: Boolean,
-
-    /**
-     * Head of upper water level with respect to the level of penstock (Zsfc).
-     * Unit = m. Typical Value = 25.
-     */
-    val zsfc: Double
+(override val sup: TurbineGovernorDynamics,
+val av0: Double,
+val av1: Double,
+val bp: Double,
+val db1: Double,
+val db2: Double,
+val h1: Double,
+val h2: Double,
+val hn: Double,
+val kc: Double,
+val kg: Double,
+val qc0: Double,
+val qn: Double,
+val simplifiedPelton: Boolean,
+val staticCompensating: Boolean,
+val ta: Double,
+val ts: Double,
+val tv: Double,
+val twnc: Double,
+val twng: Double,
+val tx: Double,
+val va: Double,
+val valvmax: Double,
+val valvmin: Double,
+val vav: Double,
+val vc: Double,
+val vcv: Double,
+val waterTunnelSurgeChamberSimulation: Boolean,
+val zsfc: Double
 )
 extends
     Element
@@ -5035,265 +3409,138 @@ extends
 
 /**
  * Fourth order lead-lag governor and hydro turbine.
+ * @param sup Reference to the superclass object.
+ * @param at Turbine gain (At).
+ *        Typical Value = 1.2.
+ * @param db1 Intentional dead-band width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional dead-band (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param dturb Turbine damping factor (Dturb).
+ *        Typical Value = 0.2.
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param gmax Maximum governor output (Gmax).
+ *        Typical Value = 1.05.
+ * @param gmin Minimum governor output (Gmin).
+ *        Typical Value = -0.05.
+ * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
+ *        Typical Value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
+ *        Typical Value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
+ *        Typical Value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
+ *        Typical Value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
+ *        Typical Value = 0.
+ * @param h0 Turbine nominal head (H0).
+ *        Typical Value = 1.
+ * @param inputSignal Input signal switch (Flag).
+true = Pe input is used
+false = feedback is received from CV.
+ *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
+ * @param kg Gate servo gain (Kg).
+ *        Typical Value = 2.
+ * @param ki Integral gain (Ki).
+ *        Typical Value = 0.5.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
+ *        Typical Value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
+ *        Typical Value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
+ *        Typical Value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
+ *        Typical Value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
+ *        Typical Value = 0.
+ * @param pmax Maximum gate opening, PU of MWbase (Pmax).
+ *        Typical Value = 1.
+ * @param pmin Minimum gate opening, PU of MWbase (Pmin).
+ *        Typical Value = 0.
+ * @param qnl No-load turbine flow at nominal head (Qnl).
+ *        Typical Value = 0.08.
+ * @param r Steady-state droop (R).
+ *        Typical Value = 0.05.
+ * @param t1 Lead time constant 1 (T1).
+ *        Typical Value = 1.5.
+ * @param t2 Lag time constant 1 (T2).
+ *        Typical Value = 0.1.
+ * @param t3 Lead time constant 2 (T3).
+ *        Typical Value = 1.5.
+ * @param t4 Lag time constant 2 (T4).
+ *        Typical Value = 0.1.
+ * @param t5 Lead time constant 3 (T5).
+ *        Typical Value = 0.
+ * @param t6 Lag time constant 3 (T6).
+ *        Typical Value = 0.05.
+ * @param t7 Lead time constant 4 (T7).
+ *        Typical Value = 0.
+ * @param t8 Lag time constant 4 (T8).
+ *        Typical Value = 0.05.
+ * @param td Input filter time constant (Td).
+ *        Typical Value = 0.05.
+ * @param tp Gate servo time constant (Tp).
+ *        Typical Value = 0.05.
+ * @param tt Power feedback time constant (Tt).
+ *        Typical Value = 0.
+ * @param tw Water inertia time constant (Tw).
+ *        Typical Value = 1.
+ * @param velcl Maximum gate closing velocity (Velcl).
+ *        Unit = PU/sec.  Typical Value = -0.2.
+ * @param velop Maximum gate opening velocity (Velop).
+ *        Unit = PU/sec.  Typical Value = 0.2.
  */
 case class GovHydroR
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine gain (At).
-     * Typical Value = 1.2.
-     */
-    val at: Double,
-
-    /**
-     * Intentional dead-band width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional dead-band (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Turbine damping factor (Dturb).
-     * Typical Value = 0.2.
-     */
-    val dturb: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Maximum governor output (Gmax).
-     * Typical Value = 1.05.
-     */
-    val gmax: Double,
-
-    /**
-     * Minimum governor output (Gmin).
-     * Typical Value = -0.05.
-     */
-    val gmin: Double,
-
-    /**
-     * Nonlinear gain point 1, PU gv (Gv1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU gv (Gv2).
-     * Typical Value = 0.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU gv (Gv3).
-     * Typical Value = 0.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU gv (Gv4).
-     * Typical Value = 0.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU gv (Gv5).
-     * Typical Value = 0.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU gv (Gv6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Turbine nominal head (H0).
-     * Typical Value = 1.
-     */
-    val h0: Double,
-
-    /**
-     * Input signal switch (Flag).
-    true = Pe input is used
-    false = feedback is received from CV.
-     * Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
-     */
-    val inputSignal: Boolean,
-
-    /**
-     * Gate servo gain (Kg).
-     * Typical Value = 2.
-     */
-    val kg: Double,
-
-    /**
-     * Integral gain (Ki).
-     * Typical Value = 0.5.
-     */
-    val ki: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain point 1, PU power (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain point 2, PU power (Pgv2).
-     * Typical Value = 0.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain point 3, PU power (Pgv3).
-     * Typical Value = 0.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain point 4, PU power (Pgv4).
-     * Typical Value = 0.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain point 5, PU power (Pgv5).
-     * Typical Value = 0.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain point 6, PU power (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Maximum gate opening, PU of MWbase (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum gate opening, PU of MWbase (Pmin).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * No-load turbine flow at nominal head (Qnl).
-     * Typical Value = 0.08.
-     */
-    val qnl: Double,
-
-    /**
-     * Steady-state droop (R).
-     * Typical Value = 0.05.
-     */
-    val r: Double,
-
-    /**
-     * Lead time constant 1 (T1).
-     * Typical Value = 1.5.
-     */
-    val t1: Double,
-
-    /**
-     * Lag time constant 1 (T2).
-     * Typical Value = 0.1.
-     */
-    val t2: Double,
-
-    /**
-     * Lead time constant 2 (T3).
-     * Typical Value = 1.5.
-     */
-    val t3: Double,
-
-    /**
-     * Lag time constant 2 (T4).
-     * Typical Value = 0.1.
-     */
-    val t4: Double,
-
-    /**
-     * Lead time constant 3 (T5).
-     * Typical Value = 0.
-     */
-    val t5: Double,
-
-    /**
-     * Lag time constant 3 (T6).
-     * Typical Value = 0.05.
-     */
-    val t6: Double,
-
-    /**
-     * Lead time constant 4 (T7).
-     * Typical Value = 0.
-     */
-    val t7: Double,
-
-    /**
-     * Lag time constant 4 (T8).
-     * Typical Value = 0.05.
-     */
-    val t8: Double,
-
-    /**
-     * Input filter time constant (Td).
-     * Typical Value = 0.05.
-     */
-    val td: Double,
-
-    /**
-     * Gate servo time constant (Tp).
-     * Typical Value = 0.05.
-     */
-    val tp: Double,
-
-    /**
-     * Power feedback time constant (Tt).
-     * Typical Value = 0.
-     */
-    val tt: Double,
-
-    /**
-     * Water inertia time constant (Tw).
-     * Typical Value = 1.
-     */
-    val tw: Double,
-
-    /**
-     * Maximum gate closing velocity (Velcl).
-     * Unit = PU/sec.  Typical Value = -0.2.
-     */
-    val velcl: Double,
-
-    /**
-     * Maximum gate opening velocity (Velop).
-     * Unit = PU/sec.  Typical Value = 0.2.
-     */
-    val velop: Double
+(override val sup: TurbineGovernorDynamics,
+val at: Double,
+val db1: Double,
+val db2: Double,
+val dturb: Double,
+val eps: Double,
+val gmax: Double,
+val gmin: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val h0: Double,
+val inputSignal: Boolean,
+val kg: Double,
+val ki: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val pmax: Double,
+val pmin: Double,
+val qnl: Double,
+val r: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val t7: Double,
+val t8: Double,
+val td: Double,
+val tp: Double,
+val tt: Double,
+val tw: Double,
+val velcl: Double,
+val velop: Double
 )
 extends
     Element
@@ -5410,301 +3657,147 @@ extends
 
 /**
  * Woodward Electric Hydro Governor Model.
+ * @param sup Reference to the superclass object.
+ * @param db Speed Dead Band (db).
+ * @param dicn Value to allow the integral controller to advance beyond the gate limits (Dicn).
+ * @param dpv Value to allow the Pilot valve controller to advance beyond the gate limits (Dpv).
+ * @param dturb Turbine damping factor (Dturb).
+ *        Unit = delta P (PU of MWbase) / delta speed (PU).
+ * @param feedbackSignal Feedback signal selection (Sw).
+true = PID Output (if R-Perm-Gate=droop and R-Perm-Pe=0)
+false = Electrical Power (if R-Perm-Gate=0 and R-Perm-Pe=droop) or
+ *        false = Gate Position (if R-Perm-Gate=droop and R-Perm-Pe=0).
+ * @param fl1 Flow Gate 1 (Fl1).
+ *        Flow value for gate position point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl2 Flow Gate 2 (Fl2).
+ *        Flow value for gate position point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl3 Flow Gate 3 (Fl3).
+ *        Flow value for gate position point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl4 Flow Gate 4 (Fl4).
+ *        Flow value for gate position point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl5 Flow Gate 5 (Fl5).
+ *        Flow value for gate position point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fp1 Flow P1 (Fp1).
+ *        Turbine Flow value for point 1 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp10 Flow P10 (Fp10).
+ *        Turbine Flow value for point 10 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp2 Flow P2 (Fp2).
+ *        Turbine Flow value for point 2 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp3 Flow P3 (Fp3).
+ *        Turbine Flow value for point 3 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp4 Flow P4 (Fp4).
+ *        Turbine Flow value for point 4 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp5 Flow P5 (Fp5).
+ *        Turbine Flow value for point 5 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp6 Flow P6 (Fp6).
+ *        Turbine Flow value for point 6 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp7 Flow P7 (Fp7).
+ *        Turbine Flow value for point 7 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp8 Flow P8 (Fp8).
+ *        Turbine Flow value for point 8 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp9 Flow P9 (Fp9).
+ *        Turbine Flow value for point 9 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param gmax Maximum Gate Position (Gmax).
+ * @param gmin Minimum Gate Position (Gmin).
+ * @param gtmxcl Maximum gate closing rate (Gtmxcl).
+ * @param gtmxop Maximum gate opening rate (Gtmxop).
+ * @param gv1 Gate 1 (Gv1).
+ *        Gate Position value for point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv2 Gate 2 (Gv2).
+ *        Gate Position value for point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv3 Gate 3 (Gv3).
+ *        Gate Position value for point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv4 Gate 4 (Gv4).
+ *        Gate Position value for point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv5 Gate 5 (Gv5).
+ *        Gate Position value for point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param kd Derivative controller derivative gain (Kd).
+ * @param ki Derivative controller Integral gain (Ki).
+ * @param kp Derivative control gain (Kp).
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pmss1 Pmss Flow P1 (Pmss1).
+ *        Mechanical Power output Pmss for Turbine Flow point 1 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss10 Pmss Flow P10 (Pmss10).
+ *        Mechanical Power output Pmss for Turbine Flow point 10 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss2 Pmss Flow P2 (Pmss2).
+ *        Mechanical Power output Pmss for Turbine Flow point 2 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss3 Pmss Flow P3 (Pmss3).
+ *        Mechanical Power output Pmss for Turbine Flow point 3 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss4 Pmss Flow P4 (Pmss4).
+ *        Mechanical Power output Pmss for Turbine Flow point 4 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss5 Pmss Flow P5 (Pmss5).
+ *        Mechanical Power output Pmss for Turbine Flow point 5 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss6 Pmss Flow P6 (Pmss6).
+ *        Mechanical Power output Pmss for Turbine Flow point 6 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss7 Pmss Flow P7 (Pmss7).
+ *        Mechanical Power output Pmss for Turbine Flow point 7 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss8 Pmss Flow P8 (Pmss8).
+ *        Mechanical Power output Pmss for Turbine Flow point 8 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss9 Pmss Flow P9 (Pmss9).
+ *        Mechanical Power output Pmss for Turbine Flow point 9 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
+ * @param rpg Permanent droop for governor output feedback (R-Perm-Gate).
+ * @param rpp Permanent droop for electrical power feedback (R-Perm-Pe).
+ * @param td Derivative controller time constant to limit the derivative characteristic beyond a breakdown frequency to avoid amplification of high-frequency noise (Td).
+ * @param tdv Distributive Valve time lag time constant (Tdv).
+ * @param tg Value to allow the Distribution valve controller to advance beyond the gate movement rate limit (Tg).
+ * @param tp Pilot Valve time lag time constant (Tp).
+ * @param tpe Electrical power droop time constant (Tpe).
+ * @param tw Water inertia time constant (Tw) (&gt;0).
  */
 case class GovHydroWEH
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Speed Dead Band (db).
-     */
-    val db: Double,
-
-    /**
-     * Value to allow the integral controller to advance beyond the gate limits (Dicn).
-     */
-    val dicn: Double,
-
-    /**
-     * Value to allow the Pilot valve controller to advance beyond the gate limits (Dpv).
-     */
-    val dpv: Double,
-
-    /**
-     * Turbine damping factor (Dturb).
-     * Unit = delta P (PU of MWbase) / delta speed (PU).
-     */
-    val dturb: Double,
-
-    /**
-     * Feedback signal selection (Sw).
-    true = PID Output (if R-Perm-Gate=droop and R-Perm-Pe=0)
-    false = Electrical Power (if R-Perm-Gate=0 and R-Perm-Pe=droop) or
-     * false = Gate Position (if R-Perm-Gate=droop and R-Perm-Pe=0).
-     */
-    val feedbackSignal: Boolean,
-
-    /**
-     * Flow Gate 1 (Fl1).
-     * Flow value for gate position point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val fl1: Double,
-
-    /**
-     * Flow Gate 2 (Fl2).
-     * Flow value for gate position point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val fl2: Double,
-
-    /**
-     * Flow Gate 3 (Fl3).
-     * Flow value for gate position point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val fl3: Double,
-
-    /**
-     * Flow Gate 4 (Fl4).
-     * Flow value for gate position point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val fl4: Double,
-
-    /**
-     * Flow Gate 5 (Fl5).
-     * Flow value for gate position point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val fl5: Double,
-
-    /**
-     * Flow P1 (Fp1).
-     * Turbine Flow value for point 1 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp1: Double,
-
-    /**
-     * Flow P10 (Fp10).
-     * Turbine Flow value for point 10 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp10: Double,
-
-    /**
-     * Flow P2 (Fp2).
-     * Turbine Flow value for point 2 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp2: Double,
-
-    /**
-     * Flow P3 (Fp3).
-     * Turbine Flow value for point 3 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp3: Double,
-
-    /**
-     * Flow P4 (Fp4).
-     * Turbine Flow value for point 4 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp4: Double,
-
-    /**
-     * Flow P5 (Fp5).
-     * Turbine Flow value for point 5 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp5: Double,
-
-    /**
-     * Flow P6 (Fp6).
-     * Turbine Flow value for point 6 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp6: Double,
-
-    /**
-     * Flow P7 (Fp7).
-     * Turbine Flow value for point 7 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp7: Double,
-
-    /**
-     * Flow P8 (Fp8).
-     * Turbine Flow value for point 8 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp8: Double,
-
-    /**
-     * Flow P9 (Fp9).
-     * Turbine Flow value for point 9 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val fp9: Double,
-
-    /**
-     * Maximum Gate Position (Gmax).
-     */
-    val gmax: Double,
-
-    /**
-     * Minimum Gate Position (Gmin).
-     */
-    val gmin: Double,
-
-    /**
-     * Maximum gate closing rate (Gtmxcl).
-     */
-    val gtmxcl: Double,
-
-    /**
-     * Maximum gate opening rate (Gtmxop).
-     */
-    val gtmxop: Double,
-
-    /**
-     * Gate 1 (Gv1).
-     * Gate Position value for point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val gv1: Double,
-
-    /**
-     * Gate 2 (Gv2).
-     * Gate Position value for point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val gv2: Double,
-
-    /**
-     * Gate 3 (Gv3).
-     * Gate Position value for point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val gv3: Double,
-
-    /**
-     * Gate 4 (Gv4).
-     * Gate Position value for point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val gv4: Double,
-
-    /**
-     * Gate 5 (Gv5).
-     * Gate Position value for point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
-     */
-    val gv5: Double,
-
-    /**
-     * Derivative controller derivative gain (Kd).
-     */
-    val kd: Double,
-
-    /**
-     * Derivative controller Integral gain (Ki).
-     */
-    val ki: Double,
-
-    /**
-     * Derivative control gain (Kp).
-     */
-    val kp: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Pmss Flow P1 (Pmss1).
-     * Mechanical Power output Pmss for Turbine Flow point 1 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss1: Double,
-
-    /**
-     * Pmss Flow P10 (Pmss10).
-     * Mechanical Power output Pmss for Turbine Flow point 10 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss10: Double,
-
-    /**
-     * Pmss Flow P2 (Pmss2).
-     * Mechanical Power output Pmss for Turbine Flow point 2 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss2: Double,
-
-    /**
-     * Pmss Flow P3 (Pmss3).
-     * Mechanical Power output Pmss for Turbine Flow point 3 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss3: Double,
-
-    /**
-     * Pmss Flow P4 (Pmss4).
-     * Mechanical Power output Pmss for Turbine Flow point 4 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss4: Double,
-
-    /**
-     * Pmss Flow P5 (Pmss5).
-     * Mechanical Power output Pmss for Turbine Flow point 5 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss5: Double,
-
-    /**
-     * Pmss Flow P6 (Pmss6).
-     * Mechanical Power output Pmss for Turbine Flow point 6 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss6: Double,
-
-    /**
-     * Pmss Flow P7 (Pmss7).
-     * Mechanical Power output Pmss for Turbine Flow point 7 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss7: Double,
-
-    /**
-     * Pmss Flow P8 (Pmss8).
-     * Mechanical Power output Pmss for Turbine Flow point 8 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss8: Double,
-
-    /**
-     * Pmss Flow P9 (Pmss9).
-     * Mechanical Power output Pmss for Turbine Flow point 9 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
-     */
-    val pmss9: Double,
-
-    /**
-     * Permanent droop for governor output feedback (R-Perm-Gate).
-     */
-    val rpg: Double,
-
-    /**
-     * Permanent droop for electrical power feedback (R-Perm-Pe).
-     */
-    val rpp: Double,
-
-    /**
-     * Derivative controller time constant to limit the derivative characteristic beyond a breakdown frequency to avoid amplification of high-frequency noise (Td).
-     */
-    val td: Double,
-
-    /**
-     * Distributive Valve time lag time constant (Tdv).
-     */
-    val tdv: Double,
-
-    /**
-     * Value to allow the Distribution valve controller to advance beyond the gate movement rate limit (Tg).
-     */
-    val tg: Double,
-
-    /**
-     * Pilot Valve time lag time constant (Tp).
-     */
-    val tp: Double,
-
-    /**
-     * Electrical power droop time constant (Tpe).
-     */
-    val tpe: Double,
-
-    /**
-     * Water inertia time constant (Tw) (&gt;0).
-     */
-    val tw: Double
+(override val sup: TurbineGovernorDynamics,
+val db: Double,
+val dicn: Double,
+val dpv: Double,
+val dturb: Double,
+val feedbackSignal: Boolean,
+val fl1: Double,
+val fl2: Double,
+val fl3: Double,
+val fl4: Double,
+val fl5: Double,
+val fp1: Double,
+val fp10: Double,
+val fp2: Double,
+val fp3: Double,
+val fp4: Double,
+val fp5: Double,
+val fp6: Double,
+val fp7: Double,
+val fp8: Double,
+val fp9: Double,
+val gmax: Double,
+val gmin: Double,
+val gtmxcl: Double,
+val gtmxop: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val kd: Double,
+val ki: Double,
+val kp: Double,
+val mwbase: Double,
+val pmss1: Double,
+val pmss10: Double,
+val pmss2: Double,
+val pmss3: Double,
+val pmss4: Double,
+val pmss5: Double,
+val pmss6: Double,
+val pmss7: Double,
+val pmss8: Double,
+val pmss9: Double,
+val rpg: Double,
+val rpp: Double,
+val td: Double,
+val tdv: Double,
+val tg: Double,
+val tp: Double,
+val tpe: Double,
+val tw: Double
 )
 extends
     Element
@@ -5839,131 +3932,64 @@ extends
 
 /**
  * Woodward PID Hydro Governor.
+ * @param sup Reference to the superclass object.
+ * @param d Turbine damping factor (D).
+ *        Unit = delta P / delta speed.
+ * @param gatmax Gate opening Limit Maximum (Gatmax).
+ * @param gatmin Gate opening Limit Minimum (Gatmin).
+ * @param gv1 Gate position 1 (Gv1).
+ * @param gv2 Gate position 2 (Gv2).
+ * @param gv3 Gate position 3 (Gv3).
+ * @param kd Derivative gain (Kd).
+ *        Typical Value = 1.11.
+ * @param ki Reset gain (Ki).
+ *        Typical Value = 0.36.
+ * @param kp Proportional gain (Kp).
+ *        Typical Value = 0.1.
+ * @param mwbase Base for power values  (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pgv1 Output at Gv1 PU of MWbase (Pgv1).
+ * @param pgv2 Output at Gv2 PU of MWbase (Pgv2).
+ * @param pgv3 Output at Gv3 PU of MWbase (Pgv3).
+ * @param pmax Maximum Power Output (Pmax).
+ * @param pmin Minimum Power Output (Pmin).
+ * @param reg Permanent drop (Reg).
+ * @param ta Controller time constant (Ta) (&gt;0).
+ *        Typical Value = 0.
+ * @param tb Gate servo time constant (Tb) (&gt;0).
+ *        Typical Value = 0.
+ * @param treg Speed detector time constant (Treg).
+ * @param tw Water inertia time constant (Tw) (&gt;0).
+ *        Typical Value = 0.
+ * @param velmax Maximum gate opening velocity (Velmax).
+ *        Unit = PU/sec.  Typical Value = 0.
+ * @param velmin Maximum gate closing velocity (Velmin).
+ *        Unit = PU/sec.  Typical Value = 0.
  */
 case class GovHydroWPID
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine damping factor (D).
-     * Unit = delta P / delta speed.
-     */
-    val d: Double,
-
-    /**
-     * Gate opening Limit Maximum (Gatmax).
-     */
-    val gatmax: Double,
-
-    /**
-     * Gate opening Limit Minimum (Gatmin).
-     */
-    val gatmin: Double,
-
-    /**
-     * Gate position 1 (Gv1).
-     */
-    val gv1: Double,
-
-    /**
-     * Gate position 2 (Gv2).
-     */
-    val gv2: Double,
-
-    /**
-     * Gate position 3 (Gv3).
-     */
-    val gv3: Double,
-
-    /**
-     * Derivative gain (Kd).
-     * Typical Value = 1.11.
-     */
-    val kd: Double,
-
-    /**
-     * Reset gain (Ki).
-     * Typical Value = 0.36.
-     */
-    val ki: Double,
-
-    /**
-     * Proportional gain (Kp).
-     * Typical Value = 0.1.
-     */
-    val kp: Double,
-
-    /**
-     * Base for power values  (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Output at Gv1 PU of MWbase (Pgv1).
-     */
-    val pgv1: Double,
-
-    /**
-     * Output at Gv2 PU of MWbase (Pgv2).
-     */
-    val pgv2: Double,
-
-    /**
-     * Output at Gv3 PU of MWbase (Pgv3).
-     */
-    val pgv3: Double,
-
-    /**
-     * Maximum Power Output (Pmax).
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum Power Output (Pmin).
-     */
-    val pmin: Double,
-
-    /**
-     * Permanent drop (Reg).
-     */
-    val reg: Double,
-
-    /**
-     * Controller time constant (Ta) (&gt;0).
-     * Typical Value = 0.
-     */
-    val ta: Double,
-
-    /**
-     * Gate servo time constant (Tb) (&gt;0).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Speed detector time constant (Treg).
-     */
-    val treg: Double,
-
-    /**
-     * Water inertia time constant (Tw) (&gt;0).
-     * Typical Value = 0.
-     */
-    val tw: Double,
-
-    /**
-     * Maximum gate opening velocity (Velmax).
-     * Unit = PU/sec.  Typical Value = 0.
-     */
-    val velmax: Double,
-
-    /**
-     * Maximum gate closing velocity (Velmin).
-     * Unit = PU/sec.  Typical Value = 0.
-     */
-    val velmin: Double
+(override val sup: TurbineGovernorDynamics,
+val d: Double,
+val gatmax: Double,
+val gatmin: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val kd: Double,
+val ki: Double,
+val kp: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pmax: Double,
+val pmin: Double,
+val reg: Double,
+val ta: Double,
+val tb: Double,
+val treg: Double,
+val tw: Double,
+val velmax: Double,
+val velmin: Double
 )
 extends
     Element
@@ -6040,59 +4066,34 @@ extends
 
 /**
  * A simplified steam turbine governor model.
+ * @param sup Reference to the superclass object.
+ * @param dt Turbine damping coefficient (Dt).
+ *        Unit = delta P / delta speed. Typical Value = 0.
+ * @param mwbase Base for power values (MWbase)  (&gt;0).
+ *        Unit = MW.
+ * @param r Permanent droop (R).
+ *        Typical Value = 0.05.
+ * @param t1 Steam bowl time constant (T1).
+ *        Typical Value = 0.5.
+ * @param t2 Numerator time constant of T2/T3 block (T2).
+ *        Typical Value = 3.
+ * @param t3 Reheater time constant (T3).
+ *        Typical Value = 10.
+ * @param vmax Maximum valve position, PU of mwcap (Vmax).
+ *        Typical Value = 1.
+ * @param vmin Minimum valve position, PU of mwcap (Vmin).
+ *        Typical Value = 0.
  */
 case class GovSteam0
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Turbine damping coefficient (Dt).
-     * Unit = delta P / delta speed. Typical Value = 0.
-     */
-    val dt: Double,
-
-    /**
-     * Base for power values (MWbase)  (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Permanent droop (R).
-     * Typical Value = 0.05.
-     */
-    val r: Double,
-
-    /**
-     * Steam bowl time constant (T1).
-     * Typical Value = 0.5.
-     */
-    val t1: Double,
-
-    /**
-     * Numerator time constant of T2/T3 block (T2).
-     * Typical Value = 3.
-     */
-    val t2: Double,
-
-    /**
-     * Reheater time constant (T3).
-     * Typical Value = 10.
-     */
-    val t3: Double,
-
-    /**
-     * Maximum valve position, PU of mwcap (Vmax).
-     * Typical Value = 1.
-     */
-    val vmax: Double,
-
-    /**
-     * Minimum valve position, PU of mwcap (Vmin).
-     * Typical Value = 0.
-     */
-    val vmin: Double
+(override val sup: TurbineGovernorDynamics,
+val dt: Double,
+val mwbase: Double,
+val r: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val vmax: Double,
+val vmin: Double
 )
 extends
     Element
@@ -6141,251 +4142,133 @@ extends
 
 /**
  * Steam turbine governor model, based on the GovSteamIEEE1 model  (with optional deadband and nonlinear valve gain added).
+ * @param sup Reference to the superclass object.
+ * @param db1 Intentional deadband width (db1).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param db2 Unintentional deadband (db2).
+ *        Unit = MW.  Typical Value = 0.
+ * @param eps Intentional db hysteresis (eps).
+ *        Unit = Hz.  Typical Value = 0.
+ * @param gv1 Nonlinear gain valve position point 1 (GV1).
+ *        Typical Value = 0.
+ * @param gv2 Nonlinear gain valve position point 2 (GV2).
+ *        Typical Value = 0.4.
+ * @param gv3 Nonlinear gain valve position point 3 (GV3).
+ *        Typical Value = 0.5.
+ * @param gv4 Nonlinear gain valve position point 4 (GV4).
+ *        Typical Value = 0.6.
+ * @param gv5 Nonlinear gain valve position point 5 (GV5).
+ *        Typical Value = 1.
+ * @param gv6 Nonlinear gain valve position point 6 (GV6).
+ *        Typical Value = 0.
+ * @param k Governor gain (reciprocal of droop) (K) (&gt;0).
+ *        Typical Value = 25.
+ * @param k1 Fraction of HP shaft power after first boiler pass (K1).
+ *        Typical Value = 0.2.
+ * @param k2 Fraction of LP shaft power after first boiler pass (K2).
+ *        Typical Value = 0.
+ * @param k3 Fraction of HP shaft power after second boiler pass (K3).
+ *        Typical Value = 0.3.
+ * @param k4 Fraction of LP shaft power after second boiler pass (K4).
+ *        Typical Value = 0.
+ * @param k5 Fraction of HP shaft power after third boiler pass (K5).
+ *        Typical Value = 0.5.
+ * @param k6 Fraction of LP shaft power after third boiler pass (K6).
+ *        Typical Value = 0.
+ * @param k7 Fraction of HP shaft power after fourth boiler pass (K7).
+ *        Typical Value = 0.
+ * @param k8 Fraction of LP shaft power after fourth boiler pass (K8).
+ *        Typical Value = 0.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pgv1 Nonlinear gain power value point 1 (Pgv1).
+ *        Typical Value = 0.
+ * @param pgv2 Nonlinear gain power value point 2 (Pgv2).
+ *        Typical Value = 0.75.
+ * @param pgv3 Nonlinear gain power value point 3 (Pgv3).
+ *        Typical Value = 0.91.
+ * @param pgv4 Nonlinear gain power value point 4 (Pgv4).
+ *        Typical Value = 0.98.
+ * @param pgv5 Nonlinear gain power value point 5 (Pgv5).
+ *        Typical Value = 1.
+ * @param pgv6 Nonlinear gain power value point 6 (Pgv6).
+ *        Typical Value = 0.
+ * @param pmax Maximum valve opening (Pmax) (&gt; Pmin).
+ *        Typical Value = 1.
+ * @param pmin Minimum valve opening (Pmin) (&gt;=0).
+ *        Typical Value = 0.
+ * @param sdb1 Intentional deadband indicator.
+true = intentional deadband is applied
+false = intentional deadband is not applied.
+ *        Typical Value = true.
+ * @param sdb2 Unintentional deadband location.
+true = intentional deadband is applied before point "A"
+false = intentional deadband is applied after point "A".
+ *        Typical Value = true.
+ * @param t1 Governor lag time constant (T1).
+ *        Typical Value = 0.
+ * @param t2 Governor lead time constant (T2).
+ *        Typical Value = 0.
+ * @param t3 Valve positioner time constant (T3<i>) </i>(&gt;0).
+ *        Typical Value = 0.1.
+ * @param t4 Inlet piping/steam bowl time constant (T4).
+ *        Typical Value = 0.3.
+ * @param t5 Time constant of second boiler pass (T5).
+ *        Typical Value = 5.
+ * @param t6 Time constant of third boiler pass (T6).
+ *        Typical Value = 0.5.
+ * @param t7 Time constant of fourth boiler pass (T7).
+ *        Typical Value = 0.
+ * @param uc Maximum valve closing velocity (Uc) (&lt;0).
+ *        Unit = PU/sec.  Typical Value = -10.
+ * @param uo Maximum valve opening velocity (Uo) (&gt;0).
+ *        Unit = PU/sec.  Typical Value = 1.
+ * @param valve Nonlinear valve characteristic.
+true = nonlinear valve characteristic is used
+false = nonlinear valve characteristic is not used.
+ *        Typical Value = true.
  */
 case class GovSteam1
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Intentional deadband width (db1).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Unintentional deadband (db2).
-     * Unit = MW.  Typical Value = 0.
-     */
-    val db2: Double,
-
-    /**
-     * Intentional db hysteresis (eps).
-     * Unit = Hz.  Typical Value = 0.
-     */
-    val eps: Double,
-
-    /**
-     * Nonlinear gain valve position point 1 (GV1).
-     * Typical Value = 0.
-     */
-    val gv1: Double,
-
-    /**
-     * Nonlinear gain valve position point 2 (GV2).
-     * Typical Value = 0.4.
-     */
-    val gv2: Double,
-
-    /**
-     * Nonlinear gain valve position point 3 (GV3).
-     * Typical Value = 0.5.
-     */
-    val gv3: Double,
-
-    /**
-     * Nonlinear gain valve position point 4 (GV4).
-     * Typical Value = 0.6.
-     */
-    val gv4: Double,
-
-    /**
-     * Nonlinear gain valve position point 5 (GV5).
-     * Typical Value = 1.
-     */
-    val gv5: Double,
-
-    /**
-     * Nonlinear gain valve position point 6 (GV6).
-     * Typical Value = 0.
-     */
-    val gv6: Double,
-
-    /**
-     * Governor gain (reciprocal of droop) (K) (&gt;0).
-     * Typical Value = 25.
-     */
-    val k: Double,
-
-    /**
-     * Fraction of HP shaft power after first boiler pass (K1).
-     * Typical Value = 0.2.
-     */
-    val k1: Double,
-
-    /**
-     * Fraction of LP shaft power after first boiler pass (K2).
-     * Typical Value = 0.
-     */
-    val k2: Double,
-
-    /**
-     * Fraction of HP shaft power after second boiler pass (K3).
-     * Typical Value = 0.3.
-     */
-    val k3: Double,
-
-    /**
-     * Fraction of LP shaft power after second boiler pass (K4).
-     * Typical Value = 0.
-     */
-    val k4: Double,
-
-    /**
-     * Fraction of HP shaft power after third boiler pass (K5).
-     * Typical Value = 0.5.
-     */
-    val k5: Double,
-
-    /**
-     * Fraction of LP shaft power after third boiler pass (K6).
-     * Typical Value = 0.
-     */
-    val k6: Double,
-
-    /**
-     * Fraction of HP shaft power after fourth boiler pass (K7).
-     * Typical Value = 0.
-     */
-    val k7: Double,
-
-    /**
-     * Fraction of LP shaft power after fourth boiler pass (K8).
-     * Typical Value = 0.
-     */
-    val k8: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Nonlinear gain power value point 1 (Pgv1).
-     * Typical Value = 0.
-     */
-    val pgv1: Double,
-
-    /**
-     * Nonlinear gain power value point 2 (Pgv2).
-     * Typical Value = 0.75.
-     */
-    val pgv2: Double,
-
-    /**
-     * Nonlinear gain power value point 3 (Pgv3).
-     * Typical Value = 0.91.
-     */
-    val pgv3: Double,
-
-    /**
-     * Nonlinear gain power value point 4 (Pgv4).
-     * Typical Value = 0.98.
-     */
-    val pgv4: Double,
-
-    /**
-     * Nonlinear gain power value point 5 (Pgv5).
-     * Typical Value = 1.
-     */
-    val pgv5: Double,
-
-    /**
-     * Nonlinear gain power value point 6 (Pgv6).
-     * Typical Value = 0.
-     */
-    val pgv6: Double,
-
-    /**
-     * Maximum valve opening (Pmax) (&gt; Pmin).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum valve opening (Pmin) (&gt;=0).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Intentional deadband indicator.
-    true = intentional deadband is applied
-    false = intentional deadband is not applied.
-     * Typical Value = true.
-     */
-    val sdb1: Boolean,
-
-    /**
-     * Unintentional deadband location.
-    true = intentional deadband is applied before point "A"
-    false = intentional deadband is applied after point "A".
-     * Typical Value = true.
-     */
-    val sdb2: Boolean,
-
-    /**
-     * Governor lag time constant (T1).
-     * Typical Value = 0.
-     */
-    val t1: Double,
-
-    /**
-     * Governor lead time constant (T2).
-     * Typical Value = 0.
-     */
-    val t2: Double,
-
-    /**
-     * Valve positioner time constant (T3<i>) </i>(&gt;0).
-     * Typical Value = 0.1.
-     */
-    val t3: Double,
-
-    /**
-     * Inlet piping/steam bowl time constant (T4).
-     * Typical Value = 0.3.
-     */
-    val t4: Double,
-
-    /**
-     * Time constant of second boiler pass (T5).
-     * Typical Value = 5.
-     */
-    val t5: Double,
-
-    /**
-     * Time constant of third boiler pass (T6).
-     * Typical Value = 0.5.
-     */
-    val t6: Double,
-
-    /**
-     * Time constant of fourth boiler pass (T7).
-     * Typical Value = 0.
-     */
-    val t7: Double,
-
-    /**
-     * Maximum valve closing velocity (Uc) (&lt;0).
-     * Unit = PU/sec.  Typical Value = -10.
-     */
-    val uc: Double,
-
-    /**
-     * Maximum valve opening velocity (Uo) (&gt;0).
-     * Unit = PU/sec.  Typical Value = 1.
-     */
-    val uo: Double,
-
-    /**
-     * Nonlinear valve characteristic.
-    true = nonlinear valve characteristic is used
-    false = nonlinear valve characteristic is not used.
-     * Typical Value = true.
-     */
-    val valve: Boolean
+(override val sup: TurbineGovernorDynamics,
+val db1: Double,
+val db2: Double,
+val eps: Double,
+val gv1: Double,
+val gv2: Double,
+val gv3: Double,
+val gv4: Double,
+val gv5: Double,
+val gv6: Double,
+val k: Double,
+val k1: Double,
+val k2: Double,
+val k3: Double,
+val k4: Double,
+val k5: Double,
+val k6: Double,
+val k7: Double,
+val k8: Double,
+val mwbase: Double,
+val pgv1: Double,
+val pgv2: Double,
+val pgv3: Double,
+val pgv4: Double,
+val pgv5: Double,
+val pgv6: Double,
+val pmax: Double,
+val pmin: Double,
+val sdb1: Boolean,
+val sdb2: Boolean,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val t7: Double,
+val uc: Double,
+val uo: Double,
+val valve: Boolean
 )
 extends
     Element
@@ -6496,59 +4379,34 @@ extends
 
 /**
  * Simplified governor model.
+ * @param sup Reference to the superclass object.
+ * @param dbf Frequency dead band (DBF).
+ *        Typical Value = 0.
+ * @param k Governor gain (reciprocal of droop) (K).
+ *        Typical Value = 20.
+ * @param mnef Fuel flow maximum negative error value (MN<sub>EF</sub>).
+ *        Typical Value = -1.
+ * @param mxef Fuel flow maximum positive error value (MX<sub>EF</sub>).
+ *        Typical Value = 1.
+ * @param pmax Maximum fuel flow (P<sub>MAX</sub>).
+ *        Typical Value = 1.
+ * @param pmin Minimum fuel flow (P<sub>MIN</sub>).
+ *        Typical Value = 0.
+ * @param t1 Governor lag time constant (T<sub>1</sub>) (&gt;0).
+ *        Typical Value = 0.45.
+ * @param t2 Governor lead time constant (T<sub>2</sub>) (may be 0).
+ *        Typical Value = 0.
  */
 case class GovSteam2
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Frequency dead band (DBF).
-     * Typical Value = 0.
-     */
-    val dbf: Double,
-
-    /**
-     * Governor gain (reciprocal of droop) (K).
-     * Typical Value = 20.
-     */
-    val k: Double,
-
-    /**
-     * Fuel flow maximum negative error value (MN<sub>EF</sub>).
-     * Typical Value = -1.
-     */
-    val mnef: Double,
-
-    /**
-     * Fuel flow maximum positive error value (MX<sub>EF</sub>).
-     * Typical Value = 1.
-     */
-    val mxef: Double,
-
-    /**
-     * Maximum fuel flow (P<sub>MAX</sub>).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum fuel flow (P<sub>MIN</sub>).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Governor lag time constant (T<sub>1</sub>) (&gt;0).
-     * Typical Value = 0.45.
-     */
-    val t1: Double,
-
-    /**
-     * Governor lead time constant (T<sub>2</sub>) (may be 0).
-     * Typical Value = 0.
-     */
-    val t2: Double
+(override val sup: TurbineGovernorDynamics,
+val dbf: Double,
+val k: Double,
+val mnef: Double,
+val mxef: Double,
+val pmax: Double,
+val pmin: Double,
+val t1: Double,
+val t2: Double
 )
 extends
     Element
@@ -6597,113 +4455,61 @@ extends
 
 /**
  * Cross compound turbine governor model.
+ * @param sup Reference to the superclass object.
+ * @param dhp HP damping factor (Dhp).
+ *        Typical Value = 0.
+ * @param dlp LP damping factor (Dlp).
+ *        Typical Value = 0.
+ * @param fhp Fraction of HP power ahead of reheater (Fhp).
+ *        Typical Value = 0.3.
+ * @param flp Fraction of LP power ahead of reheater (Flp).
+ *        Typical Value = 0.7.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pmaxhp Maximum HP value position (Pmaxhp).
+ *        Typical Value = 1.
+ * @param pmaxlp Maximum LP value position (Pmaxlp).
+ *        Typical Value = 1.
+ * @param rhp HP governor droop (Rhp).
+ *        Typical Value = 0.05.
+ * @param rlp LP governor droop (Rlp).
+ *        Typical Value = 0.05.
+ * @param t1hp HP governor time constant (T1hp).
+ *        Typical Value = 0.1.
+ * @param t1lp LP governor time constant (T1lp).
+ *        Typical Value = 0.1.
+ * @param t3hp HP turbine time constant (T3hp).
+ *        Typical Value = 0.1.
+ * @param t3lp LP turbine time constant (T3lp).
+ *        Typical Value = 0.1.
+ * @param t4hp HP turbine time constant (T4hp).
+ *        Typical Value = 0.1.
+ * @param t4lp LP turbine time constant (T4lp).
+ *        Typical Value = 0.1.
+ * @param t5hp HP reheater time constant (T5hp).
+ *        Typical Value = 10.
+ * @param t5lp LP reheater time constant (T5lp).
+ *        Typical Value = 10.
  */
 case class GovSteamCC
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * HP damping factor (Dhp).
-     * Typical Value = 0.
-     */
-    val dhp: Double,
-
-    /**
-     * LP damping factor (Dlp).
-     * Typical Value = 0.
-     */
-    val dlp: Double,
-
-    /**
-     * Fraction of HP power ahead of reheater (Fhp).
-     * Typical Value = 0.3.
-     */
-    val fhp: Double,
-
-    /**
-     * Fraction of LP power ahead of reheater (Flp).
-     * Typical Value = 0.7.
-     */
-    val flp: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Maximum HP value position (Pmaxhp).
-     * Typical Value = 1.
-     */
-    val pmaxhp: Double,
-
-    /**
-     * Maximum LP value position (Pmaxlp).
-     * Typical Value = 1.
-     */
-    val pmaxlp: Double,
-
-    /**
-     * HP governor droop (Rhp).
-     * Typical Value = 0.05.
-     */
-    val rhp: Double,
-
-    /**
-     * LP governor droop (Rlp).
-     * Typical Value = 0.05.
-     */
-    val rlp: Double,
-
-    /**
-     * HP governor time constant (T1hp).
-     * Typical Value = 0.1.
-     */
-    val t1hp: Double,
-
-    /**
-     * LP governor time constant (T1lp).
-     * Typical Value = 0.1.
-     */
-    val t1lp: Double,
-
-    /**
-     * HP turbine time constant (T3hp).
-     * Typical Value = 0.1.
-     */
-    val t3hp: Double,
-
-    /**
-     * LP turbine time constant (T3lp).
-     * Typical Value = 0.1.
-     */
-    val t3lp: Double,
-
-    /**
-     * HP turbine time constant (T4hp).
-     * Typical Value = 0.1.
-     */
-    val t4hp: Double,
-
-    /**
-     * LP turbine time constant (T4lp).
-     * Typical Value = 0.1.
-     */
-    val t4lp: Double,
-
-    /**
-     * HP reheater time constant (T5hp).
-     * Typical Value = 10.
-     */
-    val t5hp: Double,
-
-    /**
-     * LP reheater time constant (T5lp).
-     * Typical Value = 10.
-     */
-    val t5lp: Double
+(override val sup: TurbineGovernorDynamics,
+val dhp: Double,
+val dlp: Double,
+val fhp: Double,
+val flp: Double,
+val mwbase: Double,
+val pmaxhp: Double,
+val pmaxlp: Double,
+val rhp: Double,
+val rlp: Double,
+val t1hp: Double,
+val t1lp: Double,
+val t3hp: Double,
+val t3lp: Double,
+val t4hp: Double,
+val t4lp: Double,
+val t5hp: Double,
+val t5lp: Double
 )
 extends
     Element
@@ -6770,221 +4576,115 @@ extends
 
 /**
  * Simplified model  of boiler and steam turbine with PID governor.
+ * @param sup Reference to the superclass object.
+ * @param chc Control valves rate closing limit (Chc).
+ *        Unit = PU/sec.  Typical Value = -3.3.
+ * @param cho Control valves rate opening limit (Cho).
+ *        Unit = PU/sec.  Typical Value = 0.17.
+ * @param cic Intercept valves rate closing limit (Cic).
+ *        Typical Value = -2.2.
+ * @param cio Intercept valves rate opening limit (Cio).
+ *        Typical Value = 0.123.
+ * @param db1 Dead band of the frequency corrector (db1).
+ *        Typical Value = 0.
+ * @param db2 Dead band of the speed governor (db2).
+ *        Typical Value = 0.0004.
+ * @param hhpmax Maximum control valve position (Hhpmax).
+ *        Typical Value = 1.
+ * @param ke Gain of the power controller (Ke).
+ *        Typical Value = 0.65.
+ * @param kfcor Gain of the frequency corrector (Kfcor).
+ *        Typical Value = 20.
+ * @param khp Fraction of total turbine output generated by HP part (Khp).
+ *        Typical Value = 0.277.
+ * @param klp Fraction of total turbine output generated by HP part (Klp).
+ *        Typical Value = 0.723.
+ * @param kwcor Gain of the speed governor (Kwcor).
+ *        Typical Value = 20.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pmax Maximal active power of the turbine (Pmax).
+ *        Typical Value = 1.
+ * @param prhmax Maximum low pressure limit (Prhmax).
+ *        Typical Value = 1.4.
+ * @param simx Intercept valves transfer limit (Simx).
+ *        Typical Value = 0.425.
+ * @param tb Boiler time constant (Tb).
+ *        Typical Value = 100.
+ * @param tdp Derivative time constant of the power controller (Tdp).
+ *        Typical Value = 0.
+ * @param ten Electro hydraulic transducer (Ten).
+ *        Typical Value = 0.1.
+ * @param tf Frequency transducer time constant (Tf).
+ *        Typical Value = 0.
+ * @param tfp Time constant of the power controller (Tfp).
+ *        Typical Value = 0.
+ * @param thp High pressure (HP) time constant of the turbine (Thp).
+ *        Typical Value = 0.31.
+ * @param tip Integral time constant of the power controller (Tip).
+ *        Typical Value = 2.
+ * @param tlp Low pressure(LP) time constant of the turbine (Tlp).
+ *        Typical Value = 0.45.
+ * @param tp Power transducer time constant (Tp).
+ *        Typical Value = 0.07.
+ * @param trh Reheater  time constant of the turbine (Trh).
+ *        Typical Value = 8.
+ * @param tvhp Control valves servo time constant (Tvhp).
+ *        Typical Value = 0.1.
+ * @param tvip Intercept valves servo time constant (Tvip).
+ *        Typical Value = 0.15.
+ * @param tw Speed transducer time constant (Tw).
+ *        Typical Value = 0.02.
+ * @param wfmax Upper limit for frequency correction (Wfmax).
+ *        Typical Value = 0.05.
+ * @param wfmin Lower limit for frequency correction (Wfmin).
+ *        Typical Value = -0.05.
+ * @param wmax1 Emergency speed control lower limit (wmax1).
+ *        Typical Value = 1.025.
+ * @param wmax2 Emergency speed control upper limit (wmax2).
+ *        Typical Value = 1.05.
+ * @param wwmax Upper limit for the speed governor (Wwmax).
+ *        Typical Value = 0.1.
+ * @param wwmin Lower limit for the speed governor frequency correction (Wwmin).
+ *        Typical Value = -1.
  */
 case class GovSteamEU
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Control valves rate closing limit (Chc).
-     * Unit = PU/sec.  Typical Value = -3.3.
-     */
-    val chc: Double,
-
-    /**
-     * Control valves rate opening limit (Cho).
-     * Unit = PU/sec.  Typical Value = 0.17.
-     */
-    val cho: Double,
-
-    /**
-     * Intercept valves rate closing limit (Cic).
-     * Typical Value = -2.2.
-     */
-    val cic: Double,
-
-    /**
-     * Intercept valves rate opening limit (Cio).
-     * Typical Value = 0.123.
-     */
-    val cio: Double,
-
-    /**
-     * Dead band of the frequency corrector (db1).
-     * Typical Value = 0.
-     */
-    val db1: Double,
-
-    /**
-     * Dead band of the speed governor (db2).
-     * Typical Value = 0.0004.
-     */
-    val db2: Double,
-
-    /**
-     * Maximum control valve position (Hhpmax).
-     * Typical Value = 1.
-     */
-    val hhpmax: Double,
-
-    /**
-     * Gain of the power controller (Ke).
-     * Typical Value = 0.65.
-     */
-    val ke: Double,
-
-    /**
-     * Gain of the frequency corrector (Kfcor).
-     * Typical Value = 20.
-     */
-    val kfcor: Double,
-
-    /**
-     * Fraction of total turbine output generated by HP part (Khp).
-     * Typical Value = 0.277.
-     */
-    val khp: Double,
-
-    /**
-     * Fraction of total turbine output generated by HP part (Klp).
-     * Typical Value = 0.723.
-     */
-    val klp: Double,
-
-    /**
-     * Gain of the speed governor (Kwcor).
-     * Typical Value = 20.
-     */
-    val kwcor: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Maximal active power of the turbine (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Maximum low pressure limit (Prhmax).
-     * Typical Value = 1.4.
-     */
-    val prhmax: Double,
-
-    /**
-     * Intercept valves transfer limit (Simx).
-     * Typical Value = 0.425.
-     */
-    val simx: Double,
-
-    /**
-     * Boiler time constant (Tb).
-     * Typical Value = 100.
-     */
-    val tb: Double,
-
-    /**
-     * Derivative time constant of the power controller (Tdp).
-     * Typical Value = 0.
-     */
-    val tdp: Double,
-
-    /**
-     * Electro hydraulic transducer (Ten).
-     * Typical Value = 0.1.
-     */
-    val ten: Double,
-
-    /**
-     * Frequency transducer time constant (Tf).
-     * Typical Value = 0.
-     */
-    val tf: Double,
-
-    /**
-     * Time constant of the power controller (Tfp).
-     * Typical Value = 0.
-     */
-    val tfp: Double,
-
-    /**
-     * High pressure (HP) time constant of the turbine (Thp).
-     * Typical Value = 0.31.
-     */
-    val thp: Double,
-
-    /**
-     * Integral time constant of the power controller (Tip).
-     * Typical Value = 2.
-     */
-    val tip: Double,
-
-    /**
-     * Low pressure(LP) time constant of the turbine (Tlp).
-     * Typical Value = 0.45.
-     */
-    val tlp: Double,
-
-    /**
-     * Power transducer time constant (Tp).
-     * Typical Value = 0.07.
-     */
-    val tp: Double,
-
-    /**
-     * Reheater  time constant of the turbine (Trh).
-     * Typical Value = 8.
-     */
-    val trh: Double,
-
-    /**
-     * Control valves servo time constant (Tvhp).
-     * Typical Value = 0.1.
-     */
-    val tvhp: Double,
-
-    /**
-     * Intercept valves servo time constant (Tvip).
-     * Typical Value = 0.15.
-     */
-    val tvip: Double,
-
-    /**
-     * Speed transducer time constant (Tw).
-     * Typical Value = 0.02.
-     */
-    val tw: Double,
-
-    /**
-     * Upper limit for frequency correction (Wfmax).
-     * Typical Value = 0.05.
-     */
-    val wfmax: Double,
-
-    /**
-     * Lower limit for frequency correction (Wfmin).
-     * Typical Value = -0.05.
-     */
-    val wfmin: Double,
-
-    /**
-     * Emergency speed control lower limit (wmax1).
-     * Typical Value = 1.025.
-     */
-    val wmax1: Double,
-
-    /**
-     * Emergency speed control upper limit (wmax2).
-     * Typical Value = 1.05.
-     */
-    val wmax2: Double,
-
-    /**
-     * Upper limit for the speed governor (Wwmax).
-     * Typical Value = 0.1.
-     */
-    val wwmax: Double,
-
-    /**
-     * Lower limit for the speed governor frequency correction (Wwmin).
-     * Typical Value = -1.
-     */
-    val wwmin: Double
+(override val sup: TurbineGovernorDynamics,
+val chc: Double,
+val cho: Double,
+val cic: Double,
+val cio: Double,
+val db1: Double,
+val db2: Double,
+val hhpmax: Double,
+val ke: Double,
+val kfcor: Double,
+val khp: Double,
+val klp: Double,
+val kwcor: Double,
+val mwbase: Double,
+val pmax: Double,
+val prhmax: Double,
+val simx: Double,
+val tb: Double,
+val tdp: Double,
+val ten: Double,
+val tf: Double,
+val tfp: Double,
+val thp: Double,
+val tip: Double,
+val tlp: Double,
+val tp: Double,
+val trh: Double,
+val tvhp: Double,
+val tvip: Double,
+val tw: Double,
+val wfmax: Double,
+val wfmin: Double,
+val wmax1: Double,
+val wmax2: Double,
+val wwmax: Double,
+val wwmin: Double
 )
 extends
     Element
@@ -7087,77 +4787,37 @@ extends
 
 /**
  * Steam turbine governor with reheat time constants and modeling of the effects of fast valve closing to reduce mechanical power.
+ * @param sup Reference to the superclass object.
+ * @param dt (Dt).
+ * @param k Fraction of the turbine power developed by turbine sections not involved in fast valving (K).
+ * @param mwbase Alternate Base used instead of Machine base in equipment model if necessary (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param r (R).
+ * @param t1 Governor time constant (T1).
+ * @param t3 Reheater time constant (T3).
+ * @param ta Time after initial time for valve to close (Ta).
+ * @param tb Time after initial time for valve to begin opening (Tb).
+ * @param tc Time after initial time for valve to become fully open (Tc).
+ * @param ti Initial time to begin fast valving (Ti).
+ * @param tt Time constant with which power falls off after intercept valve closure (Tt).
+ * @param vmax (Vmax).
+ * @param vmin (Vmin).
  */
 case class GovSteamFV2
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * (Dt).
-     */
-    val dt: Double,
-
-    /**
-     * Fraction of the turbine power developed by turbine sections not involved in fast valving (K).
-     */
-    val k: Double,
-
-    /**
-     * Alternate Base used instead of Machine base in equipment model if necessary (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * (R).
-     */
-    val r: Double,
-
-    /**
-     * Governor time constant (T1).
-     */
-    val t1: Double,
-
-    /**
-     * Reheater time constant (T3).
-     */
-    val t3: Double,
-
-    /**
-     * Time after initial time for valve to close (Ta).
-     */
-    val ta: Double,
-
-    /**
-     * Time after initial time for valve to begin opening (Tb).
-     */
-    val tb: Double,
-
-    /**
-     * Time after initial time for valve to become fully open (Tc).
-     */
-    val tc: Double,
-
-    /**
-     * Initial time to begin fast valving (Ti).
-     */
-    val ti: Double,
-
-    /**
-     * Time constant with which power falls off after intercept valve closure (Tt).
-     */
-    val tt: Double,
-
-    /**
-     * (Vmax).
-     */
-    val vmax: Double,
-
-    /**
-     * (Vmin).
-     */
-    val vmin: Double
+(override val sup: TurbineGovernorDynamics,
+val dt: Double,
+val k: Double,
+val mwbase: Double,
+val r: Double,
+val t1: Double,
+val t3: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val ti: Double,
+val tt: Double,
+val vmax: Double,
+val vmin: Double
 )
 extends
     Element
@@ -7216,125 +4876,67 @@ extends
 
 /**
  * Simplified GovSteamIEEE1 Steam turbine governor model with Prmax limit and fast valving.
+ * @param sup Reference to the superclass object.
+ * @param k Governor gain, (reciprocal of droop) (K).
+ *        Typical Value = 20.
+ * @param k1 Fraction of turbine power developed after first boiler pass (K1).
+ *        Typical Value = 0.2.
+ * @param k2 Fraction of turbine power developed after second boiler pass (K2).
+ *        Typical Value = 0.2.
+ * @param k3 Fraction of hp turbine power developed after crossover or third boiler pass (K3).
+ *        Typical Value = 0.6.
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pmax Maximum valve opening, PU of MWbase (Pmax).
+ *        Typical Value = 1.
+ * @param pmin Minimum valve opening, PU of MWbase (Pmin).
+ *        Typical Value = 0.
+ * @param prmax Max. pressure in reheater (Prmax).
+ *        Typical Value = 1.
+ * @param t1 Governor lead time constant (T1).
+ *        Typical Value = 0.
+ * @param t2 Governor lag time constant (T2).
+ *        Typical Value = 0.
+ * @param t3 Valve positioner time constant (T3).
+ *        Typical Value = 0.
+ * @param t4 Inlet piping/steam bowl time constant (T4).
+ *        Typical Value = 0.2.
+ * @param t5 Time constant of second boiler pass (i.e. reheater) (T5).
+ *        Typical Value = 0.5.
+ * @param t6 Time constant of crossover or third boiler pass (T6).
+ *        Typical Value = 10.
+ * @param ta Time to close intercept valve (IV) (Ta).
+ *        Typical Value = 0.97.
+ * @param tb Time until IV starts to reopen (Tb).
+ *        Typical Value = 0.98.
+ * @param tc Time until IV is fully open (Tc).
+ *        Typical Value = 0.99.
+ * @param uc Maximum valve closing velocity (Uc).
+ *        Unit = PU/sec.  Typical Value = -1.
+ * @param uo Maximum valve opening velocity (Uo).
+ *        Unit = PU/sec.  Typical Value = 0.1.
  */
 case class GovSteamFV3
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Governor gain, (reciprocal of droop) (K).
-     * Typical Value = 20.
-     */
-    val k: Double,
-
-    /**
-     * Fraction of turbine power developed after first boiler pass (K1).
-     * Typical Value = 0.2.
-     */
-    val k1: Double,
-
-    /**
-     * Fraction of turbine power developed after second boiler pass (K2).
-     * Typical Value = 0.2.
-     */
-    val k2: Double,
-
-    /**
-     * Fraction of hp turbine power developed after crossover or third boiler pass (K3).
-     * Typical Value = 0.6.
-     */
-    val k3: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Maximum valve opening, PU of MWbase (Pmax).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum valve opening, PU of MWbase (Pmin).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Max. pressure in reheater (Prmax).
-     * Typical Value = 1.
-     */
-    val prmax: Double,
-
-    /**
-     * Governor lead time constant (T1).
-     * Typical Value = 0.
-     */
-    val t1: Double,
-
-    /**
-     * Governor lag time constant (T2).
-     * Typical Value = 0.
-     */
-    val t2: Double,
-
-    /**
-     * Valve positioner time constant (T3).
-     * Typical Value = 0.
-     */
-    val t3: Double,
-
-    /**
-     * Inlet piping/steam bowl time constant (T4).
-     * Typical Value = 0.2.
-     */
-    val t4: Double,
-
-    /**
-     * Time constant of second boiler pass (i.e. reheater) (T5).
-     * Typical Value = 0.5.
-     */
-    val t5: Double,
-
-    /**
-     * Time constant of crossover or third boiler pass (T6).
-     * Typical Value = 10.
-     */
-    val t6: Double,
-
-    /**
-     * Time to close intercept valve (IV) (Ta).
-     * Typical Value = 0.97.
-     */
-    val ta: Double,
-
-    /**
-     * Time until IV starts to reopen (Tb).
-     * Typical Value = 0.98.
-     */
-    val tb: Double,
-
-    /**
-     * Time until IV is fully open (Tc).
-     * Typical Value = 0.99.
-     */
-    val tc: Double,
-
-    /**
-     * Maximum valve closing velocity (Uc).
-     * Unit = PU/sec.  Typical Value = -1.
-     */
-    val uc: Double,
-
-    /**
-     * Maximum valve opening velocity (Uo).
-     * Unit = PU/sec.  Typical Value = 0.1.
-     */
-    val uo: Double
+(override val sup: TurbineGovernorDynamics,
+val k: Double,
+val k1: Double,
+val k2: Double,
+val k3: Double,
+val mwbase: Double,
+val pmax: Double,
+val pmin: Double,
+val prmax: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val uc: Double,
+val uo: Double
 )
 extends
     Element
@@ -7405,317 +5007,163 @@ extends
 
 /**
  * Detailed electro-hydraulic governor for steam unit.
+ * @param sup Reference to the superclass object.
+ * @param cpsmn Minimum value of pressure regulator output (Cpsmn).
+ *        Typical Value = -1.
+ * @param cpsmx Maximum value of pressure regulator output (Cpsmx).
+ *        Typical Value = 1.
+ * @param crmn Minimum value of regulator set-point (Crmn).
+ *        Typical Value = 0.
+ * @param crmx Maximum value of regulator set-point (Crmx).
+ *        Typical Value = 1.2.
+ * @param kdc Derivative gain of pressure regulator (Kdc).
+ *        Typical Value = 1.
+ * @param kf1 Frequency bias (reciprocal of droop) (Kf1).
+ *        Typical Value = 20.
+ * @param kf3 Frequency control (reciprocal of droop) (Kf3).
+ *        Typical Value = 20.
+ * @param khp Fraction  of total turbine output generated by HP part (Khp).
+ *        Typical Value = 0.35.
+ * @param kic Integral gain of pressure regulator (Kic).
+ *        Typical Value = 0.0033.
+ * @param kip Integral gain of pressure feedback regulator (Kip).
+ *        Typical Value = 0.5.
+ * @param kit Integral gain of electro-hydraulic regulator (Kit).
+ *        Typical Value = 0.04.
+ * @param kmp1 First gain coefficient of  intercept valves characteristic (Kmp1).
+ *        Typical Value = 0.5.
+ * @param kmp2 Second gain coefficient of intercept valves characteristic (Kmp2).
+ *        Typical Value = 3.5.
+ * @param kpc Proportional gain of pressure regulator (Kpc).
+ *        Typical Value = 0.5.
+ * @param kpp Proportional gain of pressure feedback regulator (Kpp).
+ *        Typical Value = 1.
+ * @param kpt Proportional gain of electro-hydraulic regulator (Kpt).
+ *        Typical Value = 0.3.
+ * @param krc Maximum variation of fuel flow (Krc).
+ *        Typical Value = 0.05.
+ * @param ksh Pressure loss due to flow friction in the boiler tubes (Ksh).
+ *        Typical Value = 0.08.
+ * @param lpi Maximum negative power error (Lpi).
+ *        Typical Value = -0.15.
+ * @param lps Maximum positive power error (Lps).
+ *        Typical Value = 0.03.
+ * @param mnef Lower limit for frequency correction (MN<sub>EF</sub>).
+ *        Typical Value = -0.05.
+ * @param mxef Upper limit for frequency correction (MX<sub>EF</sub>).
+ *        Typical Value = 0.05.
+ * @param pr1 First value of pressure set point static characteristic (Pr1).
+ *        Typical Value = 0.2.
+ * @param pr2 Second value of pressure set point static characteristic, corresponding to Ps0 = 1.0 PU (Pr2).
+ *        Typical Value = 0.75.
+ * @param psmn Minimum value of pressure set point static characteristic (Psmn).
+ *        Typical Value = 1.
+ * @param rsmimn Minimum value of integral regulator (Rsmimn).
+ *        Typical Value = 0.
+ * @param rsmimx Maximum value of integral regulator (Rsmimx).
+ *        Typical Value = 1.1.
+ * @param rvgmn Minimum value of integral regulator (Rvgmn).
+ *        Typical Value = 0.
+ * @param rvgmx Maximum value of integral regulator (Rvgmx).
+ *        Typical Value = 1.2.
+ * @param srmn Minimum valve opening (Srmn).
+ *        Typical Value = 0.
+ * @param srmx Maximum valve opening (Srmx).
+ *        Typical Value = 1.1.
+ * @param srsmp Intercept valves characteristic discontinuity point (Srsmp).
+ *        Typical Value = 0.43.
+ * @param svmn Maximum regulator gate closing velocity (Svmn).
+ *        Typical Value = -0.0333.
+ * @param svmx Maximum regulator gate opening velocity (Svmx).
+ *        Typical Value = 0.0333.
+ * @param ta Control valves rate opening time (Ta).
+ *        Typical Value = 0.8.
+ * @param tam Intercept valves rate opening time (Tam).
+ *        Typical Value = 0.8.
+ * @param tc Control valves rate closing time (Tc).
+ *        Typical Value = 0.5.
+ * @param tcm Intercept valves rate closing time (Tcm).
+ *        Typical Value = 0.5.
+ * @param tdc Derivative time constant of pressure regulator (Tdc).
+ *        Typical Value = 90.
+ * @param tf1 Time constant of fuel regulation (Tf1).
+ *        Typical Value = 10.
+ * @param tf2 Time constant of steam chest (Tf2).
+ *        Typical Value = 10.
+ * @param thp High pressure (HP) time constant of the turbine (Thp).
+ *        Typical Value = 0.15.
+ * @param tmp Low pressure (LP) time constant of the turbine (Tmp).
+ *        Typical Value = 0.4.
+ * @param trh Reheater  time constant of the turbine (Trh).
+ *        Typical Value = 10.
+ * @param tv Boiler time constant (Tv).
+ *        Typical Value = 60.
+ * @param ty Control valves servo time constant (Ty).
+ *        Typical Value = 0.1.
+ * @param y Coefficient of linearized equations of turbine (Stodola formulation) (Y).
+ *        Typical Value = 0.13.
+ * @param yhpmn Minimum control valve position (Yhpmn).
+ *        Typical Value = 0.
+ * @param yhpmx Maximum control valve position (Yhpmx).
+ *        Typical Value = 1.1.
+ * @param ympmn Minimum intercept valve position (Ympmn).
+ *        Typical Value = 0.
+ * @param ympmx Maximum intercept valve position (Ympmx).
+ *        Typical Value = 1.1.
  */
 case class GovSteamFV4
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Minimum value of pressure regulator output (Cpsmn).
-     * Typical Value = -1.
-     */
-    val cpsmn: Double,
-
-    /**
-     * Maximum value of pressure regulator output (Cpsmx).
-     * Typical Value = 1.
-     */
-    val cpsmx: Double,
-
-    /**
-     * Minimum value of regulator set-point (Crmn).
-     * Typical Value = 0.
-     */
-    val crmn: Double,
-
-    /**
-     * Maximum value of regulator set-point (Crmx).
-     * Typical Value = 1.2.
-     */
-    val crmx: Double,
-
-    /**
-     * Derivative gain of pressure regulator (Kdc).
-     * Typical Value = 1.
-     */
-    val kdc: Double,
-
-    /**
-     * Frequency bias (reciprocal of droop) (Kf1).
-     * Typical Value = 20.
-     */
-    val kf1: Double,
-
-    /**
-     * Frequency control (reciprocal of droop) (Kf3).
-     * Typical Value = 20.
-     */
-    val kf3: Double,
-
-    /**
-     * Fraction  of total turbine output generated by HP part (Khp).
-     * Typical Value = 0.35.
-     */
-    val khp: Double,
-
-    /**
-     * Integral gain of pressure regulator (Kic).
-     * Typical Value = 0.0033.
-     */
-    val kic: Double,
-
-    /**
-     * Integral gain of pressure feedback regulator (Kip).
-     * Typical Value = 0.5.
-     */
-    val kip: Double,
-
-    /**
-     * Integral gain of electro-hydraulic regulator (Kit).
-     * Typical Value = 0.04.
-     */
-    val kit: Double,
-
-    /**
-     * First gain coefficient of  intercept valves characteristic (Kmp1).
-     * Typical Value = 0.5.
-     */
-    val kmp1: Double,
-
-    /**
-     * Second gain coefficient of intercept valves characteristic (Kmp2).
-     * Typical Value = 3.5.
-     */
-    val kmp2: Double,
-
-    /**
-     * Proportional gain of pressure regulator (Kpc).
-     * Typical Value = 0.5.
-     */
-    val kpc: Double,
-
-    /**
-     * Proportional gain of pressure feedback regulator (Kpp).
-     * Typical Value = 1.
-     */
-    val kpp: Double,
-
-    /**
-     * Proportional gain of electro-hydraulic regulator (Kpt).
-     * Typical Value = 0.3.
-     */
-    val kpt: Double,
-
-    /**
-     * Maximum variation of fuel flow (Krc).
-     * Typical Value = 0.05.
-     */
-    val krc: Double,
-
-    /**
-     * Pressure loss due to flow friction in the boiler tubes (Ksh).
-     * Typical Value = 0.08.
-     */
-    val ksh: Double,
-
-    /**
-     * Maximum negative power error (Lpi).
-     * Typical Value = -0.15.
-     */
-    val lpi: Double,
-
-    /**
-     * Maximum positive power error (Lps).
-     * Typical Value = 0.03.
-     */
-    val lps: Double,
-
-    /**
-     * Lower limit for frequency correction (MN<sub>EF</sub>).
-     * Typical Value = -0.05.
-     */
-    val mnef: Double,
-
-    /**
-     * Upper limit for frequency correction (MX<sub>EF</sub>).
-     * Typical Value = 0.05.
-     */
-    val mxef: Double,
-
-    /**
-     * First value of pressure set point static characteristic (Pr1).
-     * Typical Value = 0.2.
-     */
-    val pr1: Double,
-
-    /**
-     * Second value of pressure set point static characteristic, corresponding to Ps0 = 1.0 PU (Pr2).
-     * Typical Value = 0.75.
-     */
-    val pr2: Double,
-
-    /**
-     * Minimum value of pressure set point static characteristic (Psmn).
-     * Typical Value = 1.
-     */
-    val psmn: Double,
-
-    /**
-     * Minimum value of integral regulator (Rsmimn).
-     * Typical Value = 0.
-     */
-    val rsmimn: Double,
-
-    /**
-     * Maximum value of integral regulator (Rsmimx).
-     * Typical Value = 1.1.
-     */
-    val rsmimx: Double,
-
-    /**
-     * Minimum value of integral regulator (Rvgmn).
-     * Typical Value = 0.
-     */
-    val rvgmn: Double,
-
-    /**
-     * Maximum value of integral regulator (Rvgmx).
-     * Typical Value = 1.2.
-     */
-    val rvgmx: Double,
-
-    /**
-     * Minimum valve opening (Srmn).
-     * Typical Value = 0.
-     */
-    val srmn: Double,
-
-    /**
-     * Maximum valve opening (Srmx).
-     * Typical Value = 1.1.
-     */
-    val srmx: Double,
-
-    /**
-     * Intercept valves characteristic discontinuity point (Srsmp).
-     * Typical Value = 0.43.
-     */
-    val srsmp: Double,
-
-    /**
-     * Maximum regulator gate closing velocity (Svmn).
-     * Typical Value = -0.0333.
-     */
-    val svmn: Double,
-
-    /**
-     * Maximum regulator gate opening velocity (Svmx).
-     * Typical Value = 0.0333.
-     */
-    val svmx: Double,
-
-    /**
-     * Control valves rate opening time (Ta).
-     * Typical Value = 0.8.
-     */
-    val ta: Double,
-
-    /**
-     * Intercept valves rate opening time (Tam).
-     * Typical Value = 0.8.
-     */
-    val tam: Double,
-
-    /**
-     * Control valves rate closing time (Tc).
-     * Typical Value = 0.5.
-     */
-    val tc: Double,
-
-    /**
-     * Intercept valves rate closing time (Tcm).
-     * Typical Value = 0.5.
-     */
-    val tcm: Double,
-
-    /**
-     * Derivative time constant of pressure regulator (Tdc).
-     * Typical Value = 90.
-     */
-    val tdc: Double,
-
-    /**
-     * Time constant of fuel regulation (Tf1).
-     * Typical Value = 10.
-     */
-    val tf1: Double,
-
-    /**
-     * Time constant of steam chest (Tf2).
-     * Typical Value = 10.
-     */
-    val tf2: Double,
-
-    /**
-     * High pressure (HP) time constant of the turbine (Thp).
-     * Typical Value = 0.15.
-     */
-    val thp: Double,
-
-    /**
-     * Low pressure (LP) time constant of the turbine (Tmp).
-     * Typical Value = 0.4.
-     */
-    val tmp: Double,
-
-    /**
-     * Reheater  time constant of the turbine (Trh).
-     * Typical Value = 10.
-     */
-    val trh: Double,
-
-    /**
-     * Boiler time constant (Tv).
-     * Typical Value = 60.
-     */
-    val tv: Double,
-
-    /**
-     * Control valves servo time constant (Ty).
-     * Typical Value = 0.1.
-     */
-    val ty: Double,
-
-    /**
-     * Coefficient of linearized equations of turbine (Stodola formulation) (Y).
-     * Typical Value = 0.13.
-     */
-    val y: Double,
-
-    /**
-     * Minimum control valve position (Yhpmn).
-     * Typical Value = 0.
-     */
-    val yhpmn: Double,
-
-    /**
-     * Maximum control valve position (Yhpmx).
-     * Typical Value = 1.1.
-     */
-    val yhpmx: Double,
-
-    /**
-     * Minimum intercept valve position (Ympmn).
-     * Typical Value = 0.
-     */
-    val ympmn: Double,
-
-    /**
-     * Maximum intercept valve position (Ympmx).
-     * Typical Value = 1.1.
-     */
-    val ympmx: Double
+(override val sup: TurbineGovernorDynamics,
+val cpsmn: Double,
+val cpsmx: Double,
+val crmn: Double,
+val crmx: Double,
+val kdc: Double,
+val kf1: Double,
+val kf3: Double,
+val khp: Double,
+val kic: Double,
+val kip: Double,
+val kit: Double,
+val kmp1: Double,
+val kmp2: Double,
+val kpc: Double,
+val kpp: Double,
+val kpt: Double,
+val krc: Double,
+val ksh: Double,
+val lpi: Double,
+val lps: Double,
+val mnef: Double,
+val mxef: Double,
+val pr1: Double,
+val pr2: Double,
+val psmn: Double,
+val rsmimn: Double,
+val rsmimx: Double,
+val rvgmn: Double,
+val rvgmx: Double,
+val srmn: Double,
+val srmx: Double,
+val srsmp: Double,
+val svmn: Double,
+val svmx: Double,
+val ta: Double,
+val tam: Double,
+val tc: Double,
+val tcm: Double,
+val tdc: Double,
+val tf1: Double,
+val tf2: Double,
+val thp: Double,
+val tmp: Double,
+val trh: Double,
+val tv: Double,
+val ty: Double,
+val y: Double,
+val yhpmn: Double,
+val yhpmx: Double,
+val ympmn: Double,
+val ympmx: Double
 )
 extends
     Element
@@ -7851,136 +5299,72 @@ extends
 /**
  * IEEE steam turbine governor model.
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
+ * @param sup Reference to the superclass object.
+ * @param k Governor gain (reciprocal of droop) (K) (&gt; 0).
+ *        Typical Value = 25.
+ * @param k1 Fraction of HP shaft power after first boiler pass (K1).
+ *        Typical Value = 0.2.
+ * @param k2 Fraction of LP shaft power after first boiler pass (K2).
+ *        Typical Value = 0.
+ * @param k3 Fraction of HP shaft power after second boiler pass (K3).
+ *        Typical Value = 0.3.
+ * @param k4 Fraction of LP shaft power after second boiler pass (K4).
+ *        Typical Value = 0.
+ * @param k5 Fraction of HP shaft power after third boiler pass (K5).
+ *        Typical Value = 0.5.
+ * @param k6 Fraction of LP shaft power after third boiler pass (K6).
+ *        Typical Value = 0.
+ * @param k7 Fraction of HP shaft power after fourth boiler pass (K7).
+ *        Typical Value = 0.
+ * @param k8 Fraction of LP shaft power after fourth boiler pass (K8).
+ *        Typical Value = 0.
+ * @param mwbase Base for power values (MWbase) (&gt; 0)<i>.</i>
+ * @param pmax Maximum valve opening (Pmax) (&gt; Pmin).
+ *        Typical Value = 1.
+ * @param pmin Minimum valve opening (Pmin) (&gt;= 0).
+ *        Typical Value = 0.
+ * @param t1 Governor lag time constant (T1).
+ *        Typical Value = 0.
+ * @param t2 Governor lead time constant (T2).
+ *        Typical Value = 0.
+ * @param t3 Valve positioner time constant (T3) (&gt; 0).
+ *        Typical Value = 0.1.
+ * @param t4 Inlet piping/steam bowl time constant (T4).
+ *        Typical Value = 0.3.
+ * @param t5 Time constant of second boiler pass (T5).
+ *        Typical Value = 5.
+ * @param t6 Time constant of third boiler pass (T6).
+ *        Typical Value = 0.5.
+ * @param t7 Time constant of fourth boiler pass (T7).
+ *        Typical Value = 0.
+ * @param uc Maximum valve closing velocity (Uc) (&lt; 0).
+ *        Unit = PU/sec.  Typical Value = -10.
+ * @param uo Maximum valve opening velocity (Uo) (&gt; 0).
+ *        Unit = PU/sec.  Typical Value = 1.
  */
 case class GovSteamIEEE1
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Governor gain (reciprocal of droop) (K) (&gt; 0).
-     * Typical Value = 25.
-     */
-    val k: Double,
-
-    /**
-     * Fraction of HP shaft power after first boiler pass (K1).
-     * Typical Value = 0.2.
-     */
-    val k1: Double,
-
-    /**
-     * Fraction of LP shaft power after first boiler pass (K2).
-     * Typical Value = 0.
-     */
-    val k2: Double,
-
-    /**
-     * Fraction of HP shaft power after second boiler pass (K3).
-     * Typical Value = 0.3.
-     */
-    val k3: Double,
-
-    /**
-     * Fraction of LP shaft power after second boiler pass (K4).
-     * Typical Value = 0.
-     */
-    val k4: Double,
-
-    /**
-     * Fraction of HP shaft power after third boiler pass (K5).
-     * Typical Value = 0.5.
-     */
-    val k5: Double,
-
-    /**
-     * Fraction of LP shaft power after third boiler pass (K6).
-     * Typical Value = 0.
-     */
-    val k6: Double,
-
-    /**
-     * Fraction of HP shaft power after fourth boiler pass (K7).
-     * Typical Value = 0.
-     */
-    val k7: Double,
-
-    /**
-     * Fraction of LP shaft power after fourth boiler pass (K8).
-     * Typical Value = 0.
-     */
-    val k8: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt; 0)<i>.</i>
-     */
-    val mwbase: Double,
-
-    /**
-     * Maximum valve opening (Pmax) (&gt; Pmin).
-     * Typical Value = 1.
-     */
-    val pmax: Double,
-
-    /**
-     * Minimum valve opening (Pmin) (&gt;= 0).
-     * Typical Value = 0.
-     */
-    val pmin: Double,
-
-    /**
-     * Governor lag time constant (T1).
-     * Typical Value = 0.
-     */
-    val t1: Double,
-
-    /**
-     * Governor lead time constant (T2).
-     * Typical Value = 0.
-     */
-    val t2: Double,
-
-    /**
-     * Valve positioner time constant (T3) (&gt; 0).
-     * Typical Value = 0.1.
-     */
-    val t3: Double,
-
-    /**
-     * Inlet piping/steam bowl time constant (T4).
-     * Typical Value = 0.3.
-     */
-    val t4: Double,
-
-    /**
-     * Time constant of second boiler pass (T5).
-     * Typical Value = 5.
-     */
-    val t5: Double,
-
-    /**
-     * Time constant of third boiler pass (T6).
-     * Typical Value = 0.5.
-     */
-    val t6: Double,
-
-    /**
-     * Time constant of fourth boiler pass (T7).
-     * Typical Value = 0.
-     */
-    val t7: Double,
-
-    /**
-     * Maximum valve closing velocity (Uc) (&lt; 0).
-     * Unit = PU/sec.  Typical Value = -10.
-     */
-    val uc: Double,
-
-    /**
-     * Maximum valve opening velocity (Uo) (&gt; 0).
-     * Unit = PU/sec.  Typical Value = 1.
-     */
-    val uo: Double
+(override val sup: TurbineGovernorDynamics,
+val k: Double,
+val k1: Double,
+val k2: Double,
+val k3: Double,
+val k4: Double,
+val k5: Double,
+val k6: Double,
+val k7: Double,
+val k8: Double,
+val mwbase: Double,
+val pmax: Double,
+val pmin: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val t7: Double,
+val uc: Double,
+val uo: Double
 )
 extends
     Element
@@ -8055,72 +5439,35 @@ extends
 
 /**
  * Simplified Steam turbine governor model.
+ * @param sup Reference to the superclass object.
+ * @param k1 One/per unit regulation (K1).
+ * @param k2 Fraction (K2).
+ * @param k3 Fraction (K3).
+ * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Unit = MW.
+ * @param pmax Upper power limit (Pmax).
+ * @param pmin Lower power limit (Pmin).
+ * @param t1 Controller lag (T1).
+ * @param t2 Controller lead compensation (T2).
+ * @param t3 Governor lag (T3) (&gt;0).
+ * @param t4 Delay due to steam inlet volumes associated with steam chest and inlet piping (T4).
+ * @param t5 Reheater delay including hot and cold leads (T5).
+ * @param t6 Delay due to IP-LP turbine, crossover pipes and LP end hoods (T6).
  */
 case class GovSteamSGO
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * One/per unit regulation (K1).
-     */
-    val k1: Double,
-
-    /**
-     * Fraction (K2).
-     */
-    val k2: Double,
-
-    /**
-     * Fraction (K3).
-     */
-    val k3: Double,
-
-    /**
-     * Base for power values (MWbase) (&gt;0).
-     * Unit = MW.
-     */
-    val mwbase: Double,
-
-    /**
-     * Upper power limit (Pmax).
-     */
-    val pmax: Double,
-
-    /**
-     * Lower power limit (Pmin).
-     */
-    val pmin: Double,
-
-    /**
-     * Controller lag (T1).
-     */
-    val t1: Double,
-
-    /**
-     * Controller lead compensation (T2).
-     */
-    val t2: Double,
-
-    /**
-     * Governor lag (T3) (&gt;0).
-     */
-    val t3: Double,
-
-    /**
-     * Delay due to steam inlet volumes associated with steam chest and inlet piping (T4).
-     */
-    val t4: Double,
-
-    /**
-     * Reheater delay including hot and cold leads (T5).
-     */
-    val t5: Double,
-
-    /**
-     * Delay due to IP-LP turbine, crossover pipes and LP end hoods (T6).
-     */
-    val t6: Double
+(override val sup: TurbineGovernorDynamics,
+val k1: Double,
+val k2: Double,
+val k3: Double,
+val mwbase: Double,
+val pmax: Double,
+val pmin: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double
 )
 extends
     Element
@@ -8177,21 +5524,14 @@ extends
 
 /**
  * Turbine-governor function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param AsynchronousMachineDynamics Asynchronous machine model with which this turbine-governor model is associated.
+ * @param TurbineLoadControllerDynamics Turbine load controller providing input to this turbine-governor.
  */
 case class TurbineGovernorDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Asynchronous machine model with which this turbine-governor model is associated.
-     */
-    val AsynchronousMachineDynamics: String,
-
-    /**
-     * Turbine load controller providing input to this turbine-governor.
-     */
-    val TurbineLoadControllerDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val AsynchronousMachineDynamics: String,
+val TurbineLoadControllerDynamics: String
 )
 extends
     Element

@@ -12,11 +12,10 @@ import ch.ninecode.cim.Context
 /**
  * The connection to remote units is through one or more communication links.
  * Reduntant links may exist. The CommunicationLink class inherit PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
+ * @param sup Reference to the superclass object.
  */
 case class CommunicationLink
-(
-
-    override val sup: PowerSystemResource
+(override val sup: PowerSystemResource
 )
 extends
     Element
@@ -49,31 +48,18 @@ extends
 
 /**
  * Remote controls are ouputs that are sent by the remote unit to actuators in the process.
+ * @param sup Reference to the superclass object.
+ * @param actuatorMaximum The maximum set point value accepted by the remote control point.
+ * @param actuatorMinimum The minimum set point value accepted by the remote control point.
+ * @param remoteControlled Set to true if the actuator is remotely controlled.
+ * @param Control The Control for the RemoteControl point.
  */
 case class RemoteControl
-(
-
-    override val sup: RemotePoint,
-
-    /**
-     * The maximum set point value accepted by the remote control point.
-     */
-    val actuatorMaximum: Double,
-
-    /**
-     * The minimum set point value accepted by the remote control point.
-     */
-    val actuatorMinimum: Double,
-
-    /**
-     * Set to true if the actuator is remotely controlled.
-     */
-    val remoteControlled: Boolean,
-
-    /**
-     * The Control for the RemoteControl point.
-     */
-    val Control: String
+(override val sup: RemotePoint,
+val actuatorMaximum: Double,
+val actuatorMinimum: Double,
+val remoteControlled: Boolean,
+val Control: String
 )
 extends
     Element
@@ -115,16 +101,12 @@ extends
 /**
  * For a RTU remote points correspond to telemetered values or control outputs.
  * Other units (e.g. control centers) usually also contain calculated values.
+ * @param sup Reference to the superclass object.
+ * @param RemoteUnit Remote unit this point belongs to.
  */
 case class RemotePoint
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Remote unit this point belongs to.
-     */
-    val RemoteUnit: String
+(override val sup: IdentifiedObject,
+val RemoteUnit: String
 )
 extends
     Element
@@ -159,36 +141,20 @@ extends
 
 /**
  * Remote sources are state variables that are telemetered or calculated within the remote unit.
+ * @param sup Reference to the superclass object.
+ * @param deadband The smallest change in value to be reported.
+ * @param scanInterval The time interval between scans.
+ * @param sensorMaximum The maximum value the telemetry item can return.
+ * @param sensorMinimum The minimum value the telemetry item can return.
+ * @param MeasurementValue Link to the physical telemetered point associated with this measurement.
  */
 case class RemoteSource
-(
-
-    override val sup: RemotePoint,
-
-    /**
-     * The smallest change in value to be reported.
-     */
-    val deadband: Double,
-
-    /**
-     * The time interval between scans.
-     */
-    val scanInterval: Double,
-
-    /**
-     * The maximum value the telemetry item can return.
-     */
-    val sensorMaximum: Double,
-
-    /**
-     * The minimum value the telemetry item can return.
-     */
-    val sensorMinimum: Double,
-
-    /**
-     * Link to the physical telemetered point associated with this measurement.
-     */
-    val MeasurementValue: String
+(override val sup: RemotePoint,
+val deadband: Double,
+val scanInterval: Double,
+val sensorMaximum: Double,
+val sensorMinimum: Double,
+val MeasurementValue: String
 )
 extends
     Element
@@ -232,16 +198,12 @@ extends
 /**
  * A remote unit can be a RTU, IED, substation control system, control center etc.
  * The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570 etc.). A remote unit contain remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherit PowerSystemResource. The intention is to allow RemotUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure etc.
+ * @param sup Reference to the superclass object.
+ * @param remoteUnitType Type of remote unit.
  */
 case class RemoteUnit
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * Type of remote unit.
-     */
-    val remoteUnitType: String
+(override val sup: PowerSystemResource,
+val remoteUnitType: String
 )
 extends
     Element
@@ -276,31 +238,18 @@ extends
 
 /**
  * Type of remote unit.
+ * @param sup Reference to the superclass object.
+ * @param ControlCenter Control center.
+ * @param IED Intelligent electronic device (IED).
+ * @param RTU Remote terminal unit.
+ * @param SubstationControlSystem Substation control system.
  */
 case class RemoteUnitType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Control center.
-     */
-    val ControlCenter: String,
-
-    /**
-     * Intelligent electronic device (IED).
-     */
-    val IED: String,
-
-    /**
-     * Remote terminal unit.
-     */
-    val RTU: String,
-
-    /**
-     * Substation control system.
-     */
-    val SubstationControlSystem: String
+(override val sup: BasicElement,
+val ControlCenter: String,
+val IED: String,
+val RTU: String,
+val SubstationControlSystem: String
 )
 extends
     Element
@@ -341,26 +290,16 @@ extends
 
 /**
  * Source gives information related to the origin of a value.
+ * @param sup Reference to the superclass object.
+ * @param DEFAULTED The value contains a default value.
+ * @param PROCESS The value is provided by input from the process I/O or being calculated from some function.
+ * @param SUBSTITUTED The value is provided by input of an operator or by an automatic source.
  */
 case class Source
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The value contains a default value.
-     */
-    val DEFAULTED: String,
-
-    /**
-     * The value is provided by input from the process I/O or being calculated from some function.
-     */
-    val PROCESS: String,
-
-    /**
-     * The value is provided by input of an operator or by an automatic source.
-     */
-    val SUBSTITUTED: String
+(override val sup: BasicElement,
+val DEFAULTED: String,
+val PROCESS: String,
+val SUBSTITUTED: String
 )
 extends
     Element

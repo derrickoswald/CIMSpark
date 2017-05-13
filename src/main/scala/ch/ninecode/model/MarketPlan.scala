@@ -10,16 +10,12 @@ import ch.ninecode.cim.Context
 
 /**
  * Model that describes the Congestion Revenue Rights Auction Market
+ * @param sup Reference to the superclass object.
+ * @param labelID labelID - an ID for a set of apnodes/pnodes used in a CRR market
  */
 case class CRRMarket
-(
-
-    override val sup: Market,
-
-    /**
-     * labelID - an ID for a set of apnodes/pnodes used in a CRR market
-     */
-    val labelID: String
+(override val sup: Market,
+val labelID: String
 )
 extends
     Element
@@ -55,17 +51,16 @@ extends
 /**
  * Energy and Ancillary Market (e.g.
  * Energy, Spinning Reserve, Non-Spinning Reserve) with a description of the Market operation control parameters.
+ * @param sup Reference to the superclass object.
+ * @param MarketResults
+ * @param RTO
+ * @param RegisteredResources
  */
 case class EnergyMarket
-(
-
-    override val sup: Market,
-
-    val MarketResults: String,
-
-    val RTO: String,
-
-    val RegisteredResources: List[String]
+(override val sup: Market,
+val MarketResults: String,
+val RTO: String,
+val RegisteredResources: List[String]
 )
 extends
     Element
@@ -105,69 +100,38 @@ extends
 /**
  * Market (e.g.
  * Day Ahead Market, RealTime Market) with a description of the the Market operation control parameters.
+ * @param sup Reference to the superclass object.
+ * @param actualEnd Market ending time - actual market end
+ * @param actualStart Market starting time - actual market start
+ * @param dst True if daylight savings time (DST) is in effect.
+ * @param end Market end time.
+ * @param localTimeZone Local time zone.
+ * @param start Market start time.
+ * @param status Market Status
+ *        'OPEN', 'CLOSED', 'CLEARED', 'BLOCKED'
+ * @param timeIntervalLength Trading time interval length.
+ * @param tradingDay Market trading date
+ * @param tradingPeriod Trading period that describes the market, possibilities could be for an Energy Market:
+Day
+Hour
+
+For a CRR Market:
+Year
+Month
+ *        Season
  */
 case class Market
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Market ending time - actual market end
-     */
-    val actualEnd: String,
-
-    /**
-     * Market starting time - actual market start
-     */
-    val actualStart: String,
-
-    /**
-     * True if daylight savings time (DST) is in effect.
-     */
-    val dst: Boolean,
-
-    /**
-     * Market end time.
-     */
-    val end: String,
-
-    /**
-     * Local time zone.
-     */
-    val localTimeZone: String,
-
-    /**
-     * Market start time.
-     */
-    val start: String,
-
-    /**
-     * Market Status
-     * 'OPEN', 'CLOSED', 'CLEARED', 'BLOCKED'
-     */
-    val status: String,
-
-    /**
-     * Trading time interval length.
-     */
-    val timeIntervalLength: Double,
-
-    /**
-     * Market trading date
-     */
-    val tradingDay: String,
-
-    /**
-     * Trading period that describes the market, possibilities could be for an Energy Market:
-    Day
-    Hour
-    
-    For a CRR Market:
-    Year
-    Month
-     * Season
-     */
-    val tradingPeriod: String
+(override val sup: IdentifiedObject,
+val actualEnd: String,
+val actualStart: String,
+val dst: Boolean,
+val end: String,
+val localTimeZone: String,
+val start: String,
+val status: String,
+val timeIntervalLength: Double,
+val tradingDay: String,
+val tradingPeriod: String
 )
 extends
     Element
@@ -220,37 +184,21 @@ extends
 
 /**
  * This class represent the actual instance of an event.
+ * @param sup Reference to the superclass object.
+ * @param description Description of the event.
+ * @param eventID Actual event ID.
+ * @param eventTime Start time of the event.
+ * @param MarketRun Market run triggered by this actual event.
+ *        For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.
+ * @param PlannedMarketEvent Planned event executed by this actual event.
  */
 case class MarketActualEvent
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Description of the event.
-     */
-    val description: String,
-
-    /**
-     * Actual event ID.
-     */
-    val eventID: String,
-
-    /**
-     * Start time of the event.
-     */
-    val eventTime: String,
-
-    /**
-     * Market run triggered by this actual event.
-     * For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.
-     */
-    val MarketRun: String,
-
-    /**
-     * Planned event executed by this actual event.
-     */
-    val PlannedMarketEvent: String
+(override val sup: BasicElement,
+val description: String,
+val eventID: String,
+val eventTime: String,
+val MarketRun: String,
+val PlannedMarketEvent: String
 )
 extends
     Element
@@ -293,25 +241,18 @@ extends
 
 /**
  * Aggregation of market information relative for a specific time interval.
+ * @param sup Reference to the superclass object.
+ * @param intervalEndTime The end of the time interval for which requirement is defined.
+ * @param intervalStartTime The start of the time interval for which requirement is defined.
+ * @param Market
+ * @param MktActivityRecord
  */
 case class MarketFactors
-(
-
-    override val sup: Document,
-
-    /**
-     * The end of the time interval for which requirement is defined.
-     */
-    val intervalEndTime: String,
-
-    /**
-     * The start of the time interval for which requirement is defined.
-     */
-    val intervalStartTime: String,
-
-    val Market: String,
-
-    val MktActivityRecord: List[String]
+(override val sup: Document,
+val intervalEndTime: String,
+val intervalStartTime: String,
+val Market: String,
+val MktActivityRecord: List[String]
 )
 extends
     Element
@@ -353,31 +294,18 @@ extends
 /**
  * This class identifies a set of planned markets.
  * This class is a container of these planned markets
+ * @param sup Reference to the superclass object.
+ * @param description Description of the planned market.
+ * @param marketPlanID Planned market identifier.
+ * @param name Name of the planned market.
+ * @param tradingDay Planned market trading day.
  */
 case class MarketPlan
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Description of the planned market.
-     */
-    val description: String,
-
-    /**
-     * Planned market identifier.
-     */
-    val marketPlanID: String,
-
-    /**
-     * Name of the planned market.
-     */
-    val name: String,
-
-    /**
-     * Planned market trading day.
-     */
-    val tradingDay: String
+(override val sup: BasicElement,
+val description: String,
+val marketPlanID: String,
+val name: String,
+val tradingDay: String
 )
 extends
     Element
@@ -419,33 +347,26 @@ extends
 /**
  * A product traded by an RTO (e.g. energy, 10 minute spinning reserve).
  * Ancillary service product examples include:Regulation UpRegulation DnSpinning ReserveNon-Spinning ReserveOperating Reserve
+ * @param sup Reference to the superclass object.
+ * @param marketProductType Market product type examples:
+
+EN (Energy)
+RU (Regulation Up)
+RD (Regulation Dn)
+SR (Spinning Reserve)
+NR (Non-Spinning Reserve)
+ *        RC (RUC)
+ * @param rampInterval Ramping time interval for the specific market product type specified by marketProductType attribute.
+ *        For example, if marketProductType = EN (from enumeration MarketProductType), then the rampInterval is the ramping time interval for Energy.
+ * @param Market
+ * @param MarketRegionResults
  */
 case class MarketProduct
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Market product type examples:
-    
-    EN (Energy)
-    RU (Regulation Up)
-    RD (Regulation Dn)
-    SR (Spinning Reserve)
-    NR (Non-Spinning Reserve)
-     * RC (RUC)
-     */
-    val marketProductType: String,
-
-    /**
-     * Ramping time interval for the specific market product type specified by marketProductType attribute.
-     * For example, if marketProductType = EN (from enumeration MarketProductType), then the rampInterval is the ramping time interval for Energy.
-     */
-    val rampInterval: Double,
-
-    val Market: String,
-
-    val MarketRegionResults: String
+(override val sup: IdentifiedObject,
+val marketProductType: String,
+val rampInterval: Double,
+val Market: String,
+val MarketRegionResults: String
 )
 extends
     Element
@@ -487,73 +408,39 @@ extends
 /**
  * This class represent an actual instance of a planned market.
  * For example, a Day Ahead market opens with the Bid Submission, ends with the closing of the Bid Submission. The market run represent the whole process. MarketRuns can be defined for markets such as Day Ahead Market, Real Time Market, Hour Ahead Market, Week Ahead Market,...
+ * @param sup Reference to the superclass object.
+ * @param executionType The execution type; Day Ahead, Intra Day, Real Time Pre-Dispatch, Real Time Dispatch
+ * @param marketApprovalTime Approved time for case.
+ *        Identifies the time that the dispatcher approved a specific real time unit dispatch case
+ * @param marketApprovedStatus Set to true when the plan is approved by authority and becomes the official plan for the day ahead market.
+ *        Identifies the approved case for the market for the specified time interval.
+ * @param marketEndTime The end time defined as the end of the market, market end time.
+ * @param marketID An identification that defines the attributes of the Market.
+ *        In todays terms: Market Type: DA, RTM, Trade Date:  1/25/04, Trade Hour: 1-25
+ * @param marketRunID A unique identifier that differentiates the different runs of the same Market ID.
+ *        More specifically, if the market is re-opened and re-closed and rerun completely, the first set of results and the second set of results produced will have the same Market ID but will have different Market Run IDs since the multiple run is for the same market.
+ * @param marketStartTime The start time defined as the beginning of the market, market start time.
+ * @param marketType The market type, Day Ahead Market or Real Time Market.
+ * @param reportedState This is the state of market run activitie as reported by market systems to the market definition services.
+ * @param runState This is the state controlled by market defintion service.
+ *        possible values could be but not limited by: Open, Close.
+ * @param Market
+ * @param PlannedMarket A planned market could have multiple market runs for the reason that a planned market could have a rerun.
  */
 case class MarketRun
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The execution type; Day Ahead, Intra Day, Real Time Pre-Dispatch, Real Time Dispatch
-     */
-    val executionType: String,
-
-    /**
-     * Approved time for case.
-     * Identifies the time that the dispatcher approved a specific real time unit dispatch case
-     */
-    val marketApprovalTime: String,
-
-    /**
-     * Set to true when the plan is approved by authority and becomes the official plan for the day ahead market.
-     * Identifies the approved case for the market for the specified time interval.
-     */
-    val marketApprovedStatus: Boolean,
-
-    /**
-     * The end time defined as the end of the market, market end time.
-     */
-    val marketEndTime: String,
-
-    /**
-     * An identification that defines the attributes of the Market.
-     * In todays terms: Market Type: DA, RTM, Trade Date:  1/25/04, Trade Hour: 1-25
-     */
-    val marketID: String,
-
-    /**
-     * A unique identifier that differentiates the different runs of the same Market ID.
-     * More specifically, if the market is re-opened and re-closed and rerun completely, the first set of results and the second set of results produced will have the same Market ID but will have different Market Run IDs since the multiple run is for the same market.
-     */
-    val marketRunID: String,
-
-    /**
-     * The start time defined as the beginning of the market, market start time.
-     */
-    val marketStartTime: String,
-
-    /**
-     * The market type, Day Ahead Market or Real Time Market.
-     */
-    val marketType: String,
-
-    /**
-     * This is the state of market run activitie as reported by market systems to the market definition services.
-     */
-    val reportedState: String,
-
-    /**
-     * This is the state controlled by market defintion service.
-     * possible values could be but not limited by: Open, Close.
-     */
-    val runState: String,
-
-    val Market: String,
-
-    /**
-     * A planned market could have multiple market runs for the reason that a planned market could have a rerun.
-     */
-    val PlannedMarket: String
+(override val sup: BasicElement,
+val executionType: String,
+val marketApprovalTime: String,
+val marketApprovedStatus: Boolean,
+val marketEndTime: String,
+val marketID: String,
+val marketRunID: String,
+val marketStartTime: String,
+val marketType: String,
+val reportedState: String,
+val runState: String,
+val Market: String,
+val PlannedMarket: String
 )
 extends
     Element
@@ -611,37 +498,21 @@ extends
 /**
  * Represent a planned market.
  * For example an planned DA/HA/RT market.
+ * @param sup Reference to the superclass object.
+ * @param marketEndTime Market end time.
+ * @param marketID An identification that defines the attributes of the Market.
+ *        In todays terms: Market Type: DA, RTM, Trade Date:  1/25/04, Trade Hour: 1-25.
+ * @param marketStartTime Market start time.
+ * @param marketType Market type.
+ * @param MarketPlan a market plan has a number of markets (DA, HA, RT)
  */
 case class PlannedMarket
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Market end time.
-     */
-    val marketEndTime: String,
-
-    /**
-     * An identification that defines the attributes of the Market.
-     * In todays terms: Market Type: DA, RTM, Trade Date:  1/25/04, Trade Hour: 1-25.
-     */
-    val marketID: String,
-
-    /**
-     * Market start time.
-     */
-    val marketStartTime: String,
-
-    /**
-     * Market type.
-     */
-    val marketType: String,
-
-    /**
-     * a market plan has a number of markets (DA, HA, RT)
-     */
-    val MarketPlan: String
+(override val sup: BasicElement,
+val marketEndTime: String,
+val marketID: String,
+val marketStartTime: String,
+val marketType: String,
+val MarketPlan: String
 )
 extends
     Element
@@ -685,32 +556,19 @@ extends
 /**
  * This class represents planned events.
  * Used to model the various planned events in a market (closing time, clearing time, etc).
+ * @param sup Reference to the superclass object.
+ * @param description Description of the planned event.
+ * @param eventType Planned event type.
+ * @param plannedEventID Planned event identifier.
+ * @param plannedTime This is relative time so that this attribute can be used by more than one planned market.
+ *        For example the bid submission is 10am everyday.
  */
 case class PlannedMarketEvent
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Description of the planned event.
-     */
-    val description: String,
-
-    /**
-     * Planned event type.
-     */
-    val eventType: String,
-
-    /**
-     * Planned event identifier.
-     */
-    val plannedEventID: String,
-
-    /**
-     * This is relative time so that this attribute can be used by more than one planned market.
-     * For example the bid submission is 10am everyday.
-     */
-    val plannedTime: Int
+(override val sup: BasicElement,
+val description: String,
+val eventType: String,
+val plannedEventID: String,
+val plannedTime: Int
 )
 extends
     Element

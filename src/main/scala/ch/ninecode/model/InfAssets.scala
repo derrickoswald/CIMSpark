@@ -11,25 +11,24 @@ import ch.ninecode.cim.Context
 
 /**
  * Kind of anchor.
+ * @param sup Reference to the superclass object.
+ * @param concrete
+ * @param helix
+ * @param multiHelix
+ * @param other
+ * @param rod
+ * @param screw
+ * @param unknown
  */
 case class AnchorKind
-(
-
-    override val sup: BasicElement,
-
-    val concrete: String,
-
-    val helix: String,
-
-    val multiHelix: String,
-
-    val other: String,
-
-    val rod: String,
-
-    val screw: String,
-
-    val unknown: String
+(override val sup: BasicElement,
+val concrete: String,
+val helix: String,
+val multiHelix: String,
+val other: String,
+val rod: String,
+val screw: String,
+val unknown: String
 )
 extends
     Element
@@ -77,13 +76,12 @@ extends
 /**
  * An Asset Property that is described through curves rather than as a data point.
  * The relationship is to be defined between an independent variable (X-axis) and one or two dependent variables (Y1-axis and Y2-axis).
+ * @param sup Reference to the superclass object.
+ * @param Specification
  */
 case class AssetPropertyCurve
-(
-
-    override val sup: Curve,
-
-    val Specification: String
+(override val sup: Curve,
+val Specification: String
 )
 extends
     Element
@@ -118,38 +116,22 @@ extends
 
 /**
  * Bushing asset.
+ * @param sup Reference to the superclass object.
+ * @param c1Capacitance Factory measured capacitance, measured between the power factor tap and the bushing conductor.
+ * @param c1PowerFactor Factory measured insulation power factor, measured between the power factor tap and the bushing conductor.
+ * @param c2Capacitance Factory measured capacitance measured between the power factor tap and ground.
+ * @param c2PowerFactor Factory measured insulation power factor, measured between the power factor tap and ground.
+ * @param insulationKind Kind of insulation.
+ * @param Terminal
  */
 case class Bushing
-(
-
-    override val sup: Asset,
-
-    /**
-     * Factory measured capacitance, measured between the power factor tap and the bushing conductor.
-     */
-    val c1Capacitance: Double,
-
-    /**
-     * Factory measured insulation power factor, measured between the power factor tap and the bushing conductor.
-     */
-    val c1PowerFactor: Double,
-
-    /**
-     * Factory measured capacitance measured between the power factor tap and ground.
-     */
-    val c2Capacitance: Double,
-
-    /**
-     * Factory measured insulation power factor, measured between the power factor tap and ground.
-     */
-    val c2PowerFactor: Double,
-
-    /**
-     * Kind of insulation.
-     */
-    val insulationKind: String,
-
-    val Terminal: String
+(override val sup: Asset,
+val c1Capacitance: Double,
+val c1PowerFactor: Double,
+val c2Capacitance: Double,
+val c2PowerFactor: Double,
+val insulationKind: String,
+val Terminal: String
 )
 extends
     Element
@@ -194,19 +176,18 @@ extends
 
 /**
  * Insulation kind for bushings.
+ * @param sup Reference to the superclass object.
+ * @param compound
+ * @param other
+ * @param paperoil
+ * @param solidPorcelain
  */
 case class BushingInsulationKind
-(
-
-    override val sup: BasicElement,
-
-    val compound: String,
-
-    val other: String,
-
-    val paperoil: String,
-
-    val solidPorcelain: String
+(override val sup: BasicElement,
+val compound: String,
+val other: String,
+val paperoil: String,
+val solidPorcelain: String
 )
 extends
     Element
@@ -248,22 +229,18 @@ extends
 /**
  * Bushing insulation power factor condition as a result of a test.
  * Typical status values are: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param testKind Kind of test for this bushing.
+ * @param Bushing
+ * @param TransformerObservation
  */
 case class BushingInsulationPF
-(
-
-    override val sup: IdentifiedObject,
-
-    val status: String,
-
-    /**
-     * Kind of test for this bushing.
-     */
-    val testKind: String,
-
-    val Bushing: String,
-
-    val TransformerObservation: String
+(override val sup: IdentifiedObject,
+val status: String,
+val testKind: String,
+val Bushing: String,
+val TransformerObservation: String
 )
 extends
     Element
@@ -304,21 +281,14 @@ extends
 
 /**
  * Kind of PF test for bushing insulation.
+ * @param sup Reference to the superclass object.
+ * @param c1 Power factor tap-to-ground.
+ * @param c2 Power factor tap-to-conductor.
  */
 case class BushingInsulationPfTestKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Power factor tap-to-ground.
-     */
-    val c1: String,
-
-    /**
-     * Power factor tap-to-conductor.
-     */
-    val c2: String
+(override val sup: BasicElement,
+val c1: String,
+val c2: String
 )
 extends
     Element
@@ -355,11 +325,10 @@ extends
 
 /**
  * Enclosure that offers protection to the equipment it contains and/or safety to people/animals outside it.
+ * @param sup Reference to the superclass object.
  */
 case class Cabinet
-(
-
-    override val sup: AssetContainer
+(override val sup: AssetContainer
 )
 extends
     Element
@@ -392,19 +361,18 @@ extends
 
 /**
  * Kind of cooling.
+ * @param sup Reference to the superclass object.
+ * @param forcedAir
+ * @param forcedOilAndAir
+ * @param other
+ * @param selfCooling
  */
 case class CoolingKind
-(
-
-    override val sup: BasicElement,
-
-    val forcedAir: String,
-
-    val forcedOilAndAir: String,
-
-    val other: String,
-
-    val selfCooling: String
+(override val sup: BasicElement,
+val forcedAir: String,
+val forcedOilAndAir: String,
+val other: String,
+val selfCooling: String
 )
 extends
     Element
@@ -446,28 +414,18 @@ extends
 /**
  * There are often stages of power which are associated with stages of cooling.
  * For instance, a transformer may be rated 121kV on the primary, 15kV on the secondary and 4kV on the tertiary winding. These are voltage ratings and the power ratings are generally the same for all three windings and independent of the voltage ratings, there are instances where the tertiary may have a lower power rating.
+ * @param sup Reference to the superclass object.
+ * @param coolingKind Kind of cooling system.
+ * @param powerRating The power rating associated with type of cooling specified for this stage.
+ * @param stage Stage of cooling and associated power rating.
+ * @param Reconditionings
  */
 case class CoolingPowerRating
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Kind of cooling system.
-     */
-    val coolingKind: String,
-
-    /**
-     * The power rating associated with type of cooling specified for this stage.
-     */
-    val powerRating: Double,
-
-    /**
-     * Stage of cooling and associated power rating.
-     */
-    val stage: Int,
-
-    val Reconditionings: List[String]
+(override val sup: IdentifiedObject,
+val coolingKind: String,
+val powerRating: Double,
+val stage: Int,
+val Reconditionings: List[String]
 )
 extends
     Element
@@ -509,39 +467,23 @@ extends
 /**
  * As applicable, the basic linear, area, or volume dimensions of an asset, asset type (AssetModel) or other type of object (such as land area).
  * Units and multipliers are specified per dimension.
+ * @param sup Reference to the superclass object.
+ * @param orientation A description of the orientation of the object relative to the dimensions.
+ *        As an example, a vault may have north-south orientation for the sizeLength measurement and sizeDepth may be the height of the vault.
+ * @param sizeDepth Depth measurement.
+ * @param sizeDiameter Diameter measurement.
+ * @param sizeLength Length measurement.
+ * @param sizeWidth Width measurement.
+ * @param Specifications
  */
 case class DimensionsInfo
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * A description of the orientation of the object relative to the dimensions.
-     * As an example, a vault may have north-south orientation for the sizeLength measurement and sizeDepth may be the height of the vault.
-     */
-    val orientation: String,
-
-    /**
-     * Depth measurement.
-     */
-    val sizeDepth: Double,
-
-    /**
-     * Diameter measurement.
-     */
-    val sizeDiameter: Double,
-
-    /**
-     * Length measurement.
-     */
-    val sizeLength: Double,
-
-    /**
-     * Width measurement.
-     */
-    val sizeWidth: Double,
-
-    val Specifications: List[String]
+(override val sup: IdentifiedObject,
+val orientation: String,
+val sizeDepth: Double,
+val sizeDiameter: Double,
+val sizeLength: Double,
+val sizeWidth: Double,
+val Specifications: List[String]
 )
 extends
     Element
@@ -586,17 +528,13 @@ extends
 
 /**
  * A duct contains individual wires in the layout as specified with associated wire spacing instances; number of them gives the number of conductors in this duct.
+ * @param sup Reference to the superclass object.
+ * @param circuitCount Number of circuits in duct bank.
+ *        Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
  */
 case class DuctBank
-(
-
-    override val sup: AssetContainer,
-
-    /**
-     * Number of circuits in duct bank.
-     * Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
-     */
-    val circuitCount: Int
+(override val sup: AssetContainer,
+val circuitCount: Int
 )
 extends
     Element
@@ -631,16 +569,12 @@ extends
 
 /**
  * FACTS device asset.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of FACTS device.
  */
 case class FACTSDevice
-(
-
-    override val sup: Asset,
-
-    /**
-     * Kind of FACTS device.
-     */
-    val kind: String
+(override val sup: Asset,
+val kind: String
 )
 extends
     Element
@@ -675,51 +609,26 @@ extends
 
 /**
  * Kind of FACTS device.
+ * @param sup Reference to the superclass object.
+ * @param statcom Static synchronous compensator.
+ * @param svc Static VAr compensator.
+ * @param tcpar Thyristor-controlled phase-angle regulator.
+ * @param tcsc Thyristor-controlled series capacitor.
+ * @param tcvl Thyristor-controlled voltage limiter.
+ * @param tsbr Thyristor-switched braking resistor.
+ * @param tssc Thyristor-switched series capacitor.
+ * @param upfc Unified power flow controller.
  */
 case class FACTSDeviceKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Static synchronous compensator.
-     */
-    val statcom: String,
-
-    /**
-     * Static VAr compensator.
-     */
-    val svc: String,
-
-    /**
-     * Thyristor-controlled phase-angle regulator.
-     */
-    val tcpar: String,
-
-    /**
-     * Thyristor-controlled series capacitor.
-     */
-    val tcsc: String,
-
-    /**
-     * Thyristor-controlled voltage limiter.
-     */
-    val tcvl: String,
-
-    /**
-     * Thyristor-switched braking resistor.
-     */
-    val tsbr: String,
-
-    /**
-     * Thyristor-switched series capacitor.
-     */
-    val tssc: String,
-
-    /**
-     * Unified power flow controller.
-     */
-    val upfc: String
+(override val sup: BasicElement,
+val statcom: String,
+val svc: String,
+val tcpar: String,
+val tcsc: String,
+val tcvl: String,
+val tsbr: String,
+val tssc: String,
+val upfc: String
 )
 extends
     Element
@@ -768,16 +677,12 @@ extends
 
 /**
  * A facility may contain buildings, storage facilities, switching facilities, power generation, manufacturing facilities, maintenance facilities, etc.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of this facility.
  */
 case class Facility
-(
-
-    override val sup: AssetContainer,
-
-    /**
-     * Kind of this facility.
-     */
-    val kind: String
+(override val sup: AssetContainer,
+val kind: String
 )
 extends
     Element
@@ -812,32 +717,19 @@ extends
 
 /**
  * An event where an asset has failed to perform its functions within specified parameters.
+ * @param sup Reference to the superclass object.
+ * @param corporateCode Code for asset failure.
+ * @param failureIsolationMethod How the asset failure was isolated from the system.
+ * @param faultLocatingMethod The method used for locating the faulted part of the asset.
+ *        For example, cable options include: Cap Discharge-Thumping, Bridge Method, Visual Inspection, Other.
+ * @param location Failure location on an object.
  */
 case class FailureEvent
-(
-
-    override val sup: ActivityRecord,
-
-    /**
-     * Code for asset failure.
-     */
-    val corporateCode: String,
-
-    /**
-     * How the asset failure was isolated from the system.
-     */
-    val failureIsolationMethod: String,
-
-    /**
-     * The method used for locating the faulted part of the asset.
-     * For example, cable options include: Cap Discharge-Thumping, Bridge Method, Visual Inspection, Other.
-     */
-    val faultLocatingMethod: String,
-
-    /**
-     * Failure location on an object.
-     */
-    val location: String
+(override val sup: ActivityRecord,
+val corporateCode: String,
+val failureIsolationMethod: String,
+val faultLocatingMethod: String,
+val location: String
 )
 extends
     Element
@@ -878,21 +770,20 @@ extends
 
 /**
  * How the failure has been isolated.
+ * @param sup Reference to the superclass object.
+ * @param breakerOperation
+ * @param burnedInTheClear
+ * @param fuse
+ * @param manuallyIsolated
+ * @param other
  */
 case class FailureIsolationMethodKind
-(
-
-    override val sup: BasicElement,
-
-    val breakerOperation: String,
-
-    val burnedInTheClear: String,
-
-    val fuse: String,
-
-    val manuallyIsolated: String,
-
-    val other: String
+(override val sup: BasicElement,
+val breakerOperation: String,
+val burnedInTheClear: String,
+val fuse: String,
+val manuallyIsolated: String,
+val other: String
 )
 extends
     Element
@@ -936,69 +827,35 @@ extends
 /**
  * Various current financial properties associated with a particular asset.
  * Historical properties may be determined by ActivityRecords associated with the asset.
+ * @param sup Reference to the superclass object.
+ * @param account The account to which this actual material item is charged.
+ * @param actualPurchaseCost The actual purchase cost of this particular asset.
+ * @param costDescription Description of the cost.
+ * @param costType Type of cost to which this Material Item belongs.
+ * @param financialValue Value of asset as of 'valueDateTime'.
+ * @param plantTransferDateTime Date and time asset's financial value was put in plant for regulatory accounting purposes (e.g., for rate base calculations).
+ *        This is sometime referred to as the "in-service date".
+ * @param purchaseDateTime Date and time asset was purchased.
+ * @param purchaseOrderNumber Purchase order identifier.
+ * @param quantity The quantity of the asset if per unit length, for example conductor.
+ * @param valueDateTime Date and time at which the financial value was last established.
+ * @param warrantyEndDateTime Date and time warranty on asset expires.
+ * @param Asset
  */
 case class FinancialInfo
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The account to which this actual material item is charged.
-     */
-    val account: String,
-
-    /**
-     * The actual purchase cost of this particular asset.
-     */
-    val actualPurchaseCost: Double,
-
-    /**
-     * Description of the cost.
-     */
-    val costDescription: String,
-
-    /**
-     * Type of cost to which this Material Item belongs.
-     */
-    val costType: String,
-
-    /**
-     * Value of asset as of 'valueDateTime'.
-     */
-    val financialValue: Double,
-
-    /**
-     * Date and time asset's financial value was put in plant for regulatory accounting purposes (e.g., for rate base calculations).
-     * This is sometime referred to as the "in-service date".
-     */
-    val plantTransferDateTime: String,
-
-    /**
-     * Date and time asset was purchased.
-     */
-    val purchaseDateTime: String,
-
-    /**
-     * Purchase order identifier.
-     */
-    val purchaseOrderNumber: String,
-
-    /**
-     * The quantity of the asset if per unit length, for example conductor.
-     */
-    val quantity: String,
-
-    /**
-     * Date and time at which the financial value was last established.
-     */
-    val valueDateTime: String,
-
-    /**
-     * Date and time warranty on asset expires.
-     */
-    val warrantyEndDateTime: String,
-
-    val Asset: String
+(override val sup: IdentifiedObject,
+val account: String,
+val actualPurchaseCost: Double,
+val costDescription: String,
+val costType: String,
+val financialValue: Double,
+val plantTransferDateTime: String,
+val purchaseDateTime: String,
+val purchaseOrderNumber: String,
+val quantity: String,
+val valueDateTime: String,
+val warrantyEndDateTime: String,
+val Asset: String
 )
 extends
     Element
@@ -1055,33 +912,23 @@ extends
 
 /**
  * Generic asset or material item that may be used for planning, work or design purposes.
+ * @param sup Reference to the superclass object.
+ * @param estimatedUnitCost Estimated unit cost (or cost per unit length) of this type of asset.
+ *        It does not include labor to install/construct or configure it.
+ * @param quantity The value, unit of measure, and multiplier for the quantity.
+ * @param stockItem True if item is a stock item (default).
+ * @param CUAsset
+ * @param CUWorkEquipmentAsset
+ * @param TypeAssetCatalogue
  */
 case class GenericAssetModelOrMaterial
-(
-
-    override val sup: AssetModel,
-
-    /**
-     * Estimated unit cost (or cost per unit length) of this type of asset.
-     * It does not include labor to install/construct or configure it.
-     */
-    val estimatedUnitCost: Double,
-
-    /**
-     * The value, unit of measure, and multiplier for the quantity.
-     */
-    val quantity: String,
-
-    /**
-     * True if item is a stock item (default).
-     */
-    val stockItem: Boolean,
-
-    val CUAsset: String,
-
-    val CUWorkEquipmentAsset: String,
-
-    val TypeAssetCatalogue: String
+(override val sup: AssetModel,
+val estimatedUnitCost: Double,
+val quantity: String,
+val stockItem: Boolean,
+val CUAsset: String,
+val CUWorkEquipmentAsset: String,
+val TypeAssetCatalogue: String
 )
 extends
     Element
@@ -1127,26 +974,16 @@ extends
 /**
  * Joint connects two or more cables.
  * It includes the portion of cable under wipes, welds, or other seals.
+ * @param sup Reference to the superclass object.
+ * @param configurationKind Configuration of joint.
+ * @param fillKind Material used to fill the joint.
+ * @param insulation The type of insulation around the joint, classified according to the utility's asset management standards and practices.
  */
 case class Joint
-(
-
-    override val sup: Asset,
-
-    /**
-     * Configuration of joint.
-     */
-    val configurationKind: String,
-
-    /**
-     * Material used to fill the joint.
-     */
-    val fillKind: String,
-
-    /**
-     * The type of insulation around the joint, classified according to the utility's asset management standards and practices.
-     */
-    val insulation: String
+(override val sup: Asset,
+val configurationKind: String,
+val fillKind: String,
+val insulation: String
 )
 extends
     Element
@@ -1185,19 +1022,18 @@ extends
 
 /**
  * Kind of configuration for joints.
+ * @param sup Reference to the superclass object.
+ * @param other
+ * @param wires1to1
+ * @param wires2to1
+ * @param wires3to1
  */
 case class JointConfigurationKind
-(
-
-    override val sup: BasicElement,
-
-    val other: String,
-
-    val wires1to1: String,
-
-    val wires2to1: String,
-
-    val wires3to1: String
+(override val sup: BasicElement,
+val other: String,
+val wires1to1: String,
+val wires2to1: String,
+val wires3to1: String
 )
 extends
     Element
@@ -1238,31 +1074,30 @@ extends
 
 /**
  * Kind of fill for Joint.
+ * @param sup Reference to the superclass object.
+ * @param airNoFilling
+ * @param asphaltic
+ * @param bluefill254
+ * @param epoxy
+ * @param insoluseal
+ * @param noFillPrefab
+ * @param noVoid
+ * @param oil
+ * @param other
+ * @param petrolatum
  */
 case class JointFillKind
-(
-
-    override val sup: BasicElement,
-
-    val airNoFilling: String,
-
-    val asphaltic: String,
-
-    val bluefill254: String,
-
-    val epoxy: String,
-
-    val insoluseal: String,
-
-    val noFillPrefab: String,
-
-    val noVoid: String,
-
-    val oil: String,
-
-    val other: String,
-
-    val petrolatum: String
+(override val sup: BasicElement,
+val airNoFilling: String,
+val asphaltic: String,
+val bluefill254: String,
+val epoxy: String,
+val insoluseal: String,
+val noFillPrefab: String,
+val noVoid: String,
+val oil: String,
+val other: String,
+val petrolatum: String
 )
 extends
     Element
@@ -1315,26 +1150,19 @@ extends
 
 /**
  * A substance that either (1) provides the means of transmission of a force or effect, such as hydraulic fluid, or (2) is used for a surrounding or enveloping substance, such as oil in a transformer or circuit breaker.
+ * @param sup Reference to the superclass object.
+ * @param kind Kind of this medium.
+ * @param volumeSpec The volume of the medium specified for this application.
+ *        Note that the actual volume is a type of measurement associated witht the asset.
+ * @param Assets
+ * @param Specification
  */
 case class Medium
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Kind of this medium.
-     */
-    val kind: String,
-
-    /**
-     * The volume of the medium specified for this application.
-     * Note that the actual volume is a type of measurement associated witht the asset.
-     */
-    val volumeSpec: Double,
-
-    val Assets: List[String],
-
-    val Specification: String
+(override val sup: IdentifiedObject,
+val kind: String,
+val volumeSpec: Double,
+val Assets: List[String],
+val Specification: String
 )
 extends
     Element
@@ -1375,17 +1203,16 @@ extends
 
 /**
  * Kind of medium.
+ * @param sup Reference to the superclass object.
+ * @param gas
+ * @param liquid
+ * @param solid
  */
 case class MediumKind
-(
-
-    override val sup: BasicElement,
-
-    val gas: String,
-
-    val liquid: String,
-
-    val solid: String
+(override val sup: BasicElement,
+val gas: String,
+val liquid: String,
+val solid: String
 )
 extends
     Element
@@ -1424,68 +1251,34 @@ extends
 
 /**
  * Pole asset.
+ * @param sup Reference to the superclass object.
+ * @param baseKind Kind of base for this pole.
+ * @param breastBlock True if a block of material has been attached to base of pole in ground for stability.
+ *        This technique is used primarily when anchors can not be used.
+ * @param classification Pole class: 1, 2, 3, 4, 5, 6, 7, H1, H2, Other, Unknown.
+ * @param construction The framing structure mounted on the pole.
+ * @param diameter Diameter of the pole.
+ * @param jpaReference Joint pole agreement reference number.
+ * @param len Length of the pole (inclusive of any section of the pole that may be underground post-installation).
+ * @param preservativeKind Kind of preservative for this pole.
+ * @param speciesType Pole species.
+ *        Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown.
+ * @param treatedDateTime Date and time pole was last treated with preservative.
+ * @param treatmentKind Kind of treatment for this pole.
  */
 case class Pole
-(
-
-    override val sup: Structure,
-
-    /**
-     * Kind of base for this pole.
-     */
-    val baseKind: String,
-
-    /**
-     * True if a block of material has been attached to base of pole in ground for stability.
-     * This technique is used primarily when anchors can not be used.
-     */
-    val breastBlock: Boolean,
-
-    /**
-     * Pole class: 1, 2, 3, 4, 5, 6, 7, H1, H2, Other, Unknown.
-     */
-    val classification: String,
-
-    /**
-     * The framing structure mounted on the pole.
-     */
-    val construction: String,
-
-    /**
-     * Diameter of the pole.
-     */
-    val diameter: Double,
-
-    /**
-     * Joint pole agreement reference number.
-     */
-    val jpaReference: String,
-
-    /**
-     * Length of the pole (inclusive of any section of the pole that may be underground post-installation).
-     */
-    val len: Double,
-
-    /**
-     * Kind of preservative for this pole.
-     */
-    val preservativeKind: String,
-
-    /**
-     * Pole species.
-     * Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown.
-     */
-    val speciesType: String,
-
-    /**
-     * Date and time pole was last treated with preservative.
-     */
-    val treatedDateTime: String,
-
-    /**
-     * Kind of treatment for this pole.
-     */
-    val treatmentKind: String
+(override val sup: Structure,
+val baseKind: String,
+val breastBlock: Boolean,
+val classification: String,
+val construction: String,
+val diameter: Double,
+val jpaReference: String,
+val len: Double,
+val preservativeKind: String,
+val speciesType: String,
+val treatedDateTime: String,
+val treatmentKind: String
 )
 extends
     Element
@@ -1540,21 +1333,20 @@ extends
 
 /**
  * Kind of base for poles.
+ * @param sup Reference to the superclass object.
+ * @param asphalt
+ * @param cement
+ * @param dirt
+ * @param other
+ * @param unknown
  */
 case class PoleBaseKind
-(
-
-    override val sup: BasicElement,
-
-    val asphalt: String,
-
-    val cement: String,
-
-    val dirt: String,
-
-    val other: String,
-
-    val unknown: String
+(override val sup: BasicElement,
+val asphalt: String,
+val cement: String,
+val dirt: String,
+val other: String,
+val unknown: String
 )
 extends
     Element
@@ -1597,25 +1389,24 @@ extends
 
 /**
  * Preservative kind for poles.
+ * @param sup Reference to the superclass object.
+ * @param cellon
+ * @param chemonite
+ * @param creosote
+ * @param naphthena
+ * @param other
+ * @param penta
+ * @param unknown
  */
 case class PolePreservativeKind
-(
-
-    override val sup: BasicElement,
-
-    val cellon: String,
-
-    val chemonite: String,
-
-    val creosote: String,
-
-    val naphthena: String,
-
-    val other: String,
-
-    val penta: String,
-
-    val unknown: String
+(override val sup: BasicElement,
+val cellon: String,
+val chemonite: String,
+val creosote: String,
+val naphthena: String,
+val other: String,
+val penta: String,
+val unknown: String
 )
 extends
     Element
@@ -1662,27 +1453,26 @@ extends
 
 /**
  * Kind of treatment for poles.
+ * @param sup Reference to the superclass object.
+ * @param butt
+ * @param full
+ * @param grayStain
+ * @param greenStain
+ * @param natural
+ * @param other
+ * @param penta
+ * @param unknown
  */
 case class PoleTreatmentKind
-(
-
-    override val sup: BasicElement,
-
-    val butt: String,
-
-    val full: String,
-
-    val grayStain: String,
-
-    val greenStain: String,
-
-    val natural: String,
-
-    val other: String,
-
-    val penta: String,
-
-    val unknown: String
+(override val sup: BasicElement,
+val butt: String,
+val full: String,
+val grayStain: String,
+val greenStain: String,
+val natural: String,
+val other: String,
+val penta: String,
+val unknown: String
 )
 extends
     Element
@@ -1731,18 +1521,14 @@ extends
 
 /**
  * Reconditioning information for an asset.
+ * @param sup Reference to the superclass object.
+ * @param dateTime Date and time this reconditioning (or a major overhaul) has been performed.
+ * @param Asset
  */
 case class Reconditioning
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Date and time this reconditioning (or a major overhaul) has been performed.
-     */
-    val dateTime: String,
-
-    val Asset: String
+(override val sup: IdentifiedObject,
+val dateTime: String,
+val Asset: String
 )
 extends
     Element
@@ -1779,25 +1565,18 @@ extends
 
 /**
  * Information regarding the experienced and expected reliability of a specific asset, type of asset, or asset model.
+ * @param sup Reference to the superclass object.
+ * @param mTTR Mean time to repair (MTTR - hours).
+ * @param momFailureRate Momentary failure rate (temporary failures/kft-year).
+ * @param Assets
+ * @param Specification
  */
 case class ReliabilityInfo
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Mean time to repair (MTTR - hours).
-     */
-    val mTTR: Double,
-
-    /**
-     * Momentary failure rate (temporary failures/kft-year).
-     */
-    val momFailureRate: Double,
-
-    val Assets: List[String],
-
-    val Specification: String
+(override val sup: IdentifiedObject,
+val mTTR: Double,
+val momFailureRate: Double,
+val Assets: List[String],
+val Specification: String
 )
 extends
     Element
@@ -1839,11 +1618,10 @@ extends
 /**
  * Specification can be used for various purposes relative to an asset, a logical device (PowerSystemResource), location, etc.
  * Examples include documents supplied by manufacturers such as asset installation instructions, asset maintenance instructions, etc.
+ * @param sup Reference to the superclass object.
  */
 case class Specification
-(
-
-    override val sup: Document
+(override val sup: Document
 )
 extends
     Element
@@ -1876,32 +1654,19 @@ extends
 
 /**
  * Streetlight asset.
+ * @param sup Reference to the superclass object.
+ * @param armLength Length of arm.
+ *        Note that a new light may be placed on an existing arm.
+ * @param lampKind Lamp kind.
+ * @param lightRating Power rating of light.
+ * @param Pole Pole to which thiss streetlight is attached.
  */
 case class Streetlight
-(
-
-    override val sup: Asset,
-
-    /**
-     * Length of arm.
-     * Note that a new light may be placed on an existing arm.
-     */
-    val armLength: Double,
-
-    /**
-     * Lamp kind.
-     */
-    val lampKind: String,
-
-    /**
-     * Power rating of light.
-     */
-    val lightRating: Double,
-
-    /**
-     * Pole to which thiss streetlight is attached.
-     */
-    val Pole: String
+(override val sup: Asset,
+val armLength: Double,
+val lampKind: String,
+val lightRating: Double,
+val Pole: String
 )
 extends
     Element
@@ -1942,19 +1707,18 @@ extends
 
 /**
  * Kind of lamp for the streetlight.
+ * @param sup Reference to the superclass object.
+ * @param highPressureSodium
+ * @param mercuryVapor
+ * @param metalHalide
+ * @param other
  */
 case class StreetlightLampKind
-(
-
-    override val sup: BasicElement,
-
-    val highPressureSodium: String,
-
-    val mercuryVapor: String,
-
-    val metalHalide: String,
-
-    val other: String
+(override val sup: BasicElement,
+val highPressureSodium: String,
+val mercuryVapor: String,
+val metalHalide: String,
+val other: String
 )
 extends
     Element
@@ -1996,47 +1760,25 @@ extends
 /**
  * Construction holding assets such as conductors, transformers, switchgear, etc.
  * Where applicable, number of conductors can be derived from the number of associated wire spacing instances.
+ * @param sup Reference to the superclass object.
+ * @param fumigantAppliedDate Date fumigant was last applied.
+ * @param fumigantName Name of fumigant.
+ * @param height Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc.
+ *        Refer to associated DimensionPropertiesInfo for other types of dimensions.
+ * @param materialKind Material this structure is made of.
+ * @param ratedVoltage Maximum rated voltage of the equipment that can be mounted on/contained within the structure.
+ * @param removeWeed True if weeds are to be removed around asset.
+ * @param weedRemovedDate Date weed were last removed.
  */
 case class Structure
-(
-
-    override val sup: AssetContainer,
-
-    /**
-     * Date fumigant was last applied.
-     */
-    val fumigantAppliedDate: String,
-
-    /**
-     * Name of fumigant.
-     */
-    val fumigantName: String,
-
-    /**
-     * Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc.
-     * Refer to associated DimensionPropertiesInfo for other types of dimensions.
-     */
-    val height: Double,
-
-    /**
-     * Material this structure is made of.
-     */
-    val materialKind: String,
-
-    /**
-     * Maximum rated voltage of the equipment that can be mounted on/contained within the structure.
-     */
-    val ratedVoltage: Double,
-
-    /**
-     * True if weeds are to be removed around asset.
-     */
-    val removeWeed: Boolean,
-
-    /**
-     * Date weed were last removed.
-     */
-    val weedRemovedDate: String
+(override val sup: AssetContainer,
+val fumigantAppliedDate: String,
+val fumigantName: String,
+val height: Double,
+val materialKind: String,
+val ratedVoltage: Double,
+val removeWeed: Boolean,
+val weedRemovedDate: String
 )
 extends
     Element
@@ -2083,19 +1825,18 @@ extends
 
 /**
  * Kind of material used for structures.
+ * @param sup Reference to the superclass object.
+ * @param concrete
+ * @param other
+ * @param steel
+ * @param wood
  */
 case class StructureMaterialKind
-(
-
-    override val sup: BasicElement,
-
-    val concrete: String,
-
-    val other: String,
-
-    val steel: String,
-
-    val wood: String
+(override val sup: BasicElement,
+val concrete: String,
+val other: String,
+val steel: String,
+val wood: String
 )
 extends
     Element
@@ -2136,48 +1877,26 @@ extends
 
 /**
  * Support for structure assets.
+ * @param sup Reference to the superclass object.
+ * @param anchorKind (if anchor) Kind of anchor.
+ * @param anchorRodCount (if anchor) Number of rods used.
+ * @param anchorRodLength (if anchor) Length of rod used.
+ * @param direction Direction of this support structure.
+ * @param kind Kind of structure support.
+ * @param len Length of this support structure.
+ * @param size1 Size of this support structure.
+ * @param SecuredStructure
  */
 case class StructureSupport
-(
-
-    override val sup: Asset,
-
-    /**
-     * (if anchor) Kind of anchor.
-     */
-    val anchorKind: String,
-
-    /**
-     * (if anchor) Number of rods used.
-     */
-    val anchorRodCount: Int,
-
-    /**
-     * (if anchor) Length of rod used.
-     */
-    val anchorRodLength: Double,
-
-    /**
-     * Direction of this support structure.
-     */
-    val direction: Double,
-
-    /**
-     * Kind of structure support.
-     */
-    val kind: String,
-
-    /**
-     * Length of this support structure.
-     */
-    val len: Double,
-
-    /**
-     * Size of this support structure.
-     */
-    val size1: String,
-
-    val SecuredStructure: String
+(override val sup: Asset,
+val anchorKind: String,
+val anchorRodCount: Int,
+val anchorRodLength: Double,
+val direction: Double,
+val kind: String,
+val len: Double,
+val size1: String,
+val SecuredStructure: String
 )
 extends
     Element
@@ -2226,15 +1945,14 @@ extends
 
 /**
  * Kind of structure support.
+ * @param sup Reference to the superclass object.
+ * @param anchor
+ * @param guy
  */
 case class StructureSupportKind
-(
-
-    override val sup: BasicElement,
-
-    val anchor: String,
-
-    val guy: String
+(override val sup: BasicElement,
+val anchor: String,
+val guy: String
 )
 extends
     Element
@@ -2272,16 +1990,12 @@ extends
 /**
  * Tower asset.
  * Dimensions of the Tower are specified in associated DimensionsInfo class.
+ * @param sup Reference to the superclass object.
+ * @param constructionKind Construction structure on the tower.
  */
 case class Tower
-(
-
-    override val sup: Structure,
-
-    /**
-     * Construction structure on the tower.
-     */
-    val constructionKind: String
+(override val sup: Structure,
+val constructionKind: String
 )
 extends
     Element
@@ -2316,15 +2030,14 @@ extends
 
 /**
  * Kind of tower construction.
+ * @param sup Reference to the superclass object.
+ * @param suspension
+ * @param tension
  */
 case class TowerConstructionKind
-(
-
-    override val sup: BasicElement,
-
-    val suspension: String,
-
-    val tension: String
+(override val sup: BasicElement,
+val suspension: String,
+val tension: String
 )
 extends
     Element
@@ -2362,85 +2075,45 @@ extends
 /**
  * Common information captured during transformer inspections and/or diagnostics.
  * Note that some properties may be measured through other means and therefore have measurement values in addition to the observed values recorded here.
+ * @param sup Reference to the superclass object.
+ * @param bushingTemp Bushing temperature.
+ * @param dga Dissolved Gas Analysis.
+ *        Typical values are: Acceptable, Overheating, Corona, Sparking, Arcing.
+ * @param freqResp Frequency Response Analysis.
+ *        Typical values are: acceptable, slight movement, significant movement, failed, near failure. A graphic of the response diagram, which is a type of document, may be associated with this analysis through the recursive document relationship of the ProcedureDataSet.
+ * @param furfuralDP Overall measure of furfural in oil and mechanical strength of paper.
+ *        DP, the degree of polymerization, is the strength of the paper. Furfural is a measure of furfural compounds, often expressed in parts per million.
+ * @param hotSpotTemp Hotspot oil temperature.
+ * @param oilColor Oil Quality Analysis-Color.
+ * @param oilDielectricStrength Oil Quality Analysis-Dielectric Strength.
+ * @param oilIFT Oil Quality Analysis- inter facial tension (IFT) - number-Dynes/CM.
+ * @param oilLevel The level of oil in the transformer.
+ * @param oilNeutralizationNumber Oil Quality Analysis-Neutralization Number - Number - Mg KOH.
+ * @param pumpVibration Pump vibration, with typical values being: nominal, high.
+ * @param status
+ * @param topOilTemp Top oil temperature.
+ * @param waterContent Water Content expressed in parts per million.
+ * @param Reconditioning
+ * @param Transformer
  */
 case class TransformerObservation
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Bushing temperature.
-     */
-    val bushingTemp: Double,
-
-    /**
-     * Dissolved Gas Analysis.
-     * Typical values are: Acceptable, Overheating, Corona, Sparking, Arcing.
-     */
-    val dga: String,
-
-    /**
-     * Frequency Response Analysis.
-     * Typical values are: acceptable, slight movement, significant movement, failed, near failure. A graphic of the response diagram, which is a type of document, may be associated with this analysis through the recursive document relationship of the ProcedureDataSet.
-     */
-    val freqResp: String,
-
-    /**
-     * Overall measure of furfural in oil and mechanical strength of paper.
-     * DP, the degree of polymerization, is the strength of the paper. Furfural is a measure of furfural compounds, often expressed in parts per million.
-     */
-    val furfuralDP: String,
-
-    /**
-     * Hotspot oil temperature.
-     */
-    val hotSpotTemp: Double,
-
-    /**
-     * Oil Quality Analysis-Color.
-     */
-    val oilColor: String,
-
-    /**
-     * Oil Quality Analysis-Dielectric Strength.
-     */
-    val oilDielectricStrength: Double,
-
-    /**
-     * Oil Quality Analysis- inter facial tension (IFT) - number-Dynes/CM.
-     */
-    val oilIFT: String,
-
-    /**
-     * The level of oil in the transformer.
-     */
-    val oilLevel: String,
-
-    /**
-     * Oil Quality Analysis-Neutralization Number - Number - Mg KOH.
-     */
-    val oilNeutralizationNumber: String,
-
-    /**
-     * Pump vibration, with typical values being: nominal, high.
-     */
-    val pumpVibration: String,
-
-    val status: String,
-
-    /**
-     * Top oil temperature.
-     */
-    val topOilTemp: Double,
-
-    /**
-     * Water Content expressed in parts per million.
-     */
-    val waterContent: String,
-
-    val Reconditioning: String,
-
-    val Transformer: String
+(override val sup: IdentifiedObject,
+val bushingTemp: Double,
+val dga: String,
+val freqResp: String,
+val furfuralDP: String,
+val hotSpotTemp: Double,
+val oilColor: String,
+val oilDielectricStrength: Double,
+val oilIFT: String,
+val oilLevel: String,
+val oilNeutralizationNumber: String,
+val pumpVibration: String,
+val status: String,
+val topOilTemp: Double,
+val waterContent: String,
+val Reconditioning: String,
+val Transformer: String
 )
 extends
     Element
@@ -2505,31 +2178,18 @@ extends
 
 /**
  * Underground structure.
+ * @param sup Reference to the superclass object.
+ * @param hasVentilation True if vault is ventilating.
+ * @param kind True if vault is ventilating.
+ * @param material Primary material of underground structure.
+ * @param sealingWarrantyExpiresDate Date sealing warranty expires.
  */
 case class UndergroundStructure
-(
-
-    override val sup: Structure,
-
-    /**
-     * True if vault is ventilating.
-     */
-    val hasVentilation: Boolean,
-
-    /**
-     * True if vault is ventilating.
-     */
-    val kind: String,
-
-    /**
-     * Primary material of underground structure.
-     */
-    val material: String,
-
-    /**
-     * Date sealing warranty expires.
-     */
-    val sealingWarrantyExpiresDate: String
+(override val sup: Structure,
+val hasVentilation: Boolean,
+val kind: String,
+val material: String,
+val sealingWarrantyExpiresDate: String
 )
 extends
     Element
@@ -2570,31 +2230,30 @@ extends
 
 /**
  * Kind of underground structure.
+ * @param sup Reference to the superclass object.
+ * @param burd
+ * @param enclosure
+ * @param handhole
+ * @param manhole
+ * @param pad
+ * @param pullbox
+ * @param subsurfaceEnclosure
+ * @param trench
+ * @param tunnel
+ * @param vault
  */
 case class UndergroundStructureKind
-(
-
-    override val sup: BasicElement,
-
-    val burd: String,
-
-    val enclosure: String,
-
-    val handhole: String,
-
-    val manhole: String,
-
-    val pad: String,
-
-    val pullbox: String,
-
-    val subsurfaceEnclosure: String,
-
-    val trench: String,
-
-    val tunnel: String,
-
-    val vault: String
+(override val sup: BasicElement,
+val burd: String,
+val enclosure: String,
+val handhole: String,
+val manhole: String,
+val pad: String,
+val pullbox: String,
+val subsurfaceEnclosure: String,
+val trench: String,
+val tunnel: String,
+val vault: String
 )
 extends
     Element
@@ -2647,35 +2306,25 @@ extends
 
 /**
  * Winding insulation condition as a result of a test.
+ * @param sup Reference to the superclass object.
+ * @param insulationPFStatus Status of Winding Insulation Power Factor as of statusDate: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
+ * @param insulationResistance For testType, status of Winding Insulation Resistance as of statusDate.
+ *        Typical values are: Acceptable, Questionable, Failed.
+ * @param leakageReactance As of statusDate, the leakage reactance measured at the "from" winding with the "to" winding short-circuited and all other windings open-circuited.
+ * @param status
+ * @param FromWinding
+ * @param ToWinding
+ * @param TransformerObservation
  */
 case class WindingInsulation
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Status of Winding Insulation Power Factor as of statusDate: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
-     */
-    val insulationPFStatus: String,
-
-    /**
-     * For testType, status of Winding Insulation Resistance as of statusDate.
-     * Typical values are: Acceptable, Questionable, Failed.
-     */
-    val insulationResistance: String,
-
-    /**
-     * As of statusDate, the leakage reactance measured at the "from" winding with the "to" winding short-circuited and all other windings open-circuited.
-     */
-    val leakageReactance: Double,
-
-    val status: String,
-
-    val FromWinding: String,
-
-    val ToWinding: String,
-
-    val TransformerObservation: String
+(override val sup: IdentifiedObject,
+val insulationPFStatus: String,
+val insulationResistance: String,
+val leakageReactance: Double,
+val status: String,
+val FromWinding: String,
+val ToWinding: String,
+val TransformerObservation: String
 )
 extends
     Element

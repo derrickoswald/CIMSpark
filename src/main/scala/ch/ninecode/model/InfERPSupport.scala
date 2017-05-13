@@ -11,17 +11,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Kind of bill media.
+ * @param sup Reference to the superclass object.
+ * @param electronic
+ * @param other
+ * @param paper
  */
 case class BillMediaKind
-(
-
-    override val sup: BasicElement,
-
-    val electronic: String,
-
-    val other: String,
-
-    val paper: String
+(override val sup: BasicElement,
+val electronic: String,
+val other: String,
+val paper: String
 )
 extends
     Element
@@ -60,19 +59,18 @@ extends
 
 /**
  * Kind of ERP account.
+ * @param sup Reference to the superclass object.
+ * @param estimate
+ * @param normal
+ * @param reversal
+ * @param statistical
  */
 case class ErpAccountKind
-(
-
-    override val sup: BasicElement,
-
-    val estimate: String,
-
-    val normal: String,
-
-    val reversal: String,
-
-    val statistical: String
+(override val sup: BasicElement,
+val estimate: String,
+val normal: String,
+val reversal: String,
+val statistical: String
 )
 extends
     Element
@@ -114,13 +112,12 @@ extends
 /**
  * Information that generally describes the Bill of Material Structure and its contents for a utility.
  * This is used by ERP systems to transfer Bill of Material information between two business applications.
+ * @param sup Reference to the superclass object.
+ * @param Design
  */
 case class ErpBOM
-(
-
-    override val sup: ErpDocument,
-
-    val Design: String
+(override val sup: ErpDocument,
+val Design: String
 )
 extends
     Element
@@ -156,16 +153,12 @@ extends
 /**
  * Relationship under a particular name, usually evidenced by a deposit against which withdrawals can be made.
  * Types of bank accounts include: demand, time, custodial, joint, trustee, corporate, special, and regular accounts.
+ * @param sup Reference to the superclass object.
+ * @param bankABA Bank ABA.
  */
 case class ErpBankAccount
-(
-
-    override val sup: BankAccount,
-
-    /**
-     * Bank ABA.
-     */
-    val bankABA: String
+(override val sup: BankAccount,
+val bankABA: String
 )
 extends
     Element
@@ -200,17 +193,16 @@ extends
 
 /**
  * An individual item on a bill of materials.
+ * @param sup Reference to the superclass object.
+ * @param DesignLocation
+ * @param ErpBOM
+ * @param TypeAsset
  */
 case class ErpBomItemData
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val DesignLocation: String,
-
-    val ErpBOM: String,
-
-    val TypeAsset: String
+(override val sup: ErpIdentifiedObject,
+val DesignLocation: String,
+val ErpBOM: String,
+val TypeAsset: String
 )
 extends
     Element
@@ -250,11 +242,10 @@ extends
 /**
  * Accounting structure of a business.
  * Each account represents a financial aspect of a business, such as its Accounts Payable, or the value of its inventory, or its office supply expenses.
+ * @param sup Reference to the superclass object.
  */
 case class ErpChartOfAccounts
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -288,11 +279,10 @@ extends
 /**
  * Information that describes aptitudes of a utility employee.
  * Unlike Skills that an ErpPerson must be certified to perform before undertaking certain type of assignments (to be able to perfrom a Craft), ErpCompetency has more to do with typical Human Resource (HR) matters such as schooling, training, etc.
+ * @param sup Reference to the superclass object.
  */
 case class ErpCompetency
-(
-
-    override val sup: ErpIdentifiedObject
+(override val sup: ErpIdentifiedObject
 )
 extends
     Element
@@ -326,11 +316,10 @@ extends
 /**
  * Shadow class for Document, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
+ * @param sup Reference to the superclass object.
  */
 case class ErpDocument
-(
-
-    override val sup: Document
+(override val sup: Document
 )
 extends
     Element
@@ -363,11 +352,10 @@ extends
 
 /**
  * General Utility Engineering Change Order information.
+ * @param sup Reference to the superclass object.
  */
 case class ErpEngChangeOrder
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -401,11 +389,10 @@ extends
 /**
  * Shadow class for IdentifiedObject, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
+ * @param sup Reference to the superclass object.
  */
 case class ErpIdentifiedObject
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -439,15 +426,14 @@ extends
 /**
  * Utility inventory-related information about an item or part (and not for description of the item and its attributes).
  * It is used by ERP applications to enable the synchronization of Inventory data that exists on separate Item Master databases. This data is not the master data that describes the attributes of the item such as dimensions, weight, or unit of measure - it describes the item as it exists at a specific location.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param Asset
  */
 case class ErpInventory
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val Asset: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val Asset: String
 )
 extends
     Element
@@ -485,15 +471,14 @@ extends
 /**
  * This is related to Inventory physical counts organized by AssetModel.
  * Note that a count of a type of asset can be accomplished by the association inherited by AssetModel (from Document) to Asset.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param AssetModel
  */
 case class ErpInventoryCount
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val AssetModel: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val AssetModel: String
 )
 extends
     Element
@@ -531,59 +516,31 @@ extends
 /**
  * A roll up of invoice line items.
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
+ * @param sup Reference to the superclass object.
+ * @param amount Total amount due on this invoice based on line items and applicable adjustments.
+ * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
+ * @param dueDate Calculated date upon which the Invoice amount is due.
+ * @param kind Kind of invoice (default is 'sales').
+ * @param mailedDate Date on which the customer billing statement/invoice was printed/mailed.
+ * @param proForma True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
+ *        EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
+ * @param referenceNumber Number of an invoice to be reference by this invoice.
+ * @param transactionDateTime Date and time when the invoice is issued.
+ * @param transferType Type of invoice transfer.
+ * @param CustomerAccount
  */
 case class ErpInvoice
-(
-
-    override val sup: ErpDocument,
-
-    /**
-     * Total amount due on this invoice based on line items and applicable adjustments.
-     */
-    val amount: Double,
-
-    /**
-     * Kind of media by which the CustomerBillingInfo was delivered.
-     */
-    val billMediaKind: String,
-
-    /**
-     * Calculated date upon which the Invoice amount is due.
-     */
-    val dueDate: String,
-
-    /**
-     * Kind of invoice (default is 'sales').
-     */
-    val kind: String,
-
-    /**
-     * Date on which the customer billing statement/invoice was printed/mailed.
-     */
-    val mailedDate: String,
-
-    /**
-     * True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
-     * EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
-     */
-    val proForma: Boolean,
-
-    /**
-     * Number of an invoice to be reference by this invoice.
-     */
-    val referenceNumber: String,
-
-    /**
-     * Date and time when the invoice is issued.
-     */
-    val transactionDateTime: String,
-
-    /**
-     * Type of invoice transfer.
-     */
-    val transferType: String,
-
-    val CustomerAccount: String
+(override val sup: ErpDocument,
+val amount: Double,
+val billMediaKind: String,
+val dueDate: String,
+val kind: String,
+val mailedDate: String,
+val proForma: Boolean,
+val referenceNumber: String,
+val transactionDateTime: String,
+val transferType: String,
+val CustomerAccount: String
 )
 extends
     Element
@@ -636,15 +593,14 @@ extends
 
 /**
  * Kind of ERP invoice.
+ * @param sup Reference to the superclass object.
+ * @param purchase
+ * @param sale
  */
 case class ErpInvoiceKind
-(
-
-    override val sup: BasicElement,
-
-    val purchase: String,
-
-    val sale: String
+(override val sup: BasicElement,
+val purchase: String,
+val sale: String
 )
 extends
     Element
@@ -681,72 +637,44 @@ extends
 
 /**
  * An individual line item on an invoice.
+ * @param sup Reference to the superclass object.
+ * @param billPeriod Bill period for the line item.
+ * @param glAccount General Ledger account code, must be a valid combination.
+ * @param glDateTime Date and time line item will be posted to the General Ledger.
+ * @param kind Kind of line item.
+ * @param lineAmount Amount due for this line item.
+ * @param lineNumber Line item number on invoice statement.
+ * @param lineVersion Version number of the bill run.
+ * @param netAmount Net line item charge amount.
+ * @param previousAmount Previous line item charge amount.
+ * @param ContainerErpInvoiceLineItem
+ * @param ErpInvoice
+ * @param ErpPayableLineItem
+ * @param ErpPayments
+ * @param ErpQuoteLineItem
+ * @param ErpRecDelvLineItem
+ * @param ErpRecLineItem
+ * @param UserAttributes
  */
 case class ErpInvoiceLineItem
-(
-
-    override val sup: ErpDocument,
-
-    /**
-     * Bill period for the line item.
-     */
-    val billPeriod: String,
-
-    /**
-     * General Ledger account code, must be a valid combination.
-     */
-    val glAccount: String,
-
-    /**
-     * Date and time line item will be posted to the General Ledger.
-     */
-    val glDateTime: String,
-
-    /**
-     * Kind of line item.
-     */
-    val kind: String,
-
-    /**
-     * Amount due for this line item.
-     */
-    val lineAmount: Double,
-
-    /**
-     * Line item number on invoice statement.
-     */
-    val lineNumber: String,
-
-    /**
-     * Version number of the bill run.
-     */
-    val lineVersion: String,
-
-    /**
-     * Net line item charge amount.
-     */
-    val netAmount: Double,
-
-    /**
-     * Previous line item charge amount.
-     */
-    val previousAmount: Double,
-
-    val ContainerErpInvoiceLineItem: String,
-
-    val ErpInvoice: String,
-
-    val ErpPayableLineItem: String,
-
-    val ErpPayments: List[String],
-
-    val ErpQuoteLineItem: String,
-
-    val ErpRecDelvLineItem: String,
-
-    val ErpRecLineItem: String,
-
-    val UserAttributes: List[String]
+(override val sup: ErpDocument,
+val billPeriod: String,
+val glAccount: String,
+val glDateTime: String,
+val kind: String,
+val lineAmount: Double,
+val lineNumber: String,
+val lineVersion: String,
+val netAmount: Double,
+val previousAmount: Double,
+val ContainerErpInvoiceLineItem: String,
+val ErpInvoice: String,
+val ErpPayableLineItem: String,
+val ErpPayments: List[String],
+val ErpQuoteLineItem: String,
+val ErpRecDelvLineItem: String,
+val ErpRecLineItem: String,
+val UserAttributes: List[String]
 )
 extends
     Element
@@ -813,17 +741,16 @@ extends
 
 /**
  * Kind of invoice line item.
+ * @param sup Reference to the superclass object.
+ * @param initial
+ * @param other
+ * @param recalculation
  */
 case class ErpInvoiceLineItemKind
-(
-
-    override val sup: BasicElement,
-
-    val initial: String,
-
-    val other: String,
-
-    val recalculation: String
+(override val sup: BasicElement,
+val initial: String,
+val other: String,
+val recalculation: String
 )
 extends
     Element
@@ -862,17 +789,16 @@ extends
 
 /**
  * Can be used to request an application to process an issue or request information about an issue.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param TypeAsset
+ * @param TypeMaterial
  */
 case class ErpIssueInventory
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val TypeAsset: String,
-
-    val TypeMaterial: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val TypeAsset: String,
+val TypeMaterial: String
 )
 extends
     Element
@@ -912,15 +838,14 @@ extends
 /**
  * Any unique purchased part for manufactured product tracked by ERP systems for a utility.
  * Item, as used by the OAG, refers to the basic information about an item, including its attributes, cost, and locations. It does not include item quantities. Compare to the Inventory, which includes all quantities and other location-specific information.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param Asset
  */
 case class ErpItemMaster
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val Asset: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val Asset: String
 )
 extends
     Element
@@ -958,11 +883,10 @@ extends
 /**
  * Book for recording accounting transactions as they occur.
  * Transactions and adjustments are first recorded in a journal, which is like a diary of instructions, advising which account to be charged and by how much.
+ * @param sup Reference to the superclass object.
  */
 case class ErpJournal
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -995,44 +919,28 @@ extends
 
 /**
  * Details of an individual entry in a journal, which is to be posted to a ledger on the posting date.
+ * @param sup Reference to the superclass object.
+ * @param accountID Account identifier for this entry.
+ * @param amount The amount of the debit or credit for this account.
+ * @param postingDateTime Date and time this entry is to be posted to the ledger.
+ * @param sourceID The identifer of the source for this entry.
+ * @param status
+ * @param transactionDateTime Date and time journal entry was recorded.
+ * @param ErpInvoiceLineItem
+ * @param ErpJournal
+ * @param ErpLedgerEntry
  */
 case class ErpJournalEntry
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    /**
-     * Account identifier for this entry.
-     */
-    val accountID: String,
-
-    /**
-     * The amount of the debit or credit for this account.
-     */
-    val amount: Double,
-
-    /**
-     * Date and time this entry is to be posted to the ledger.
-     */
-    val postingDateTime: String,
-
-    /**
-     * The identifer of the source for this entry.
-     */
-    val sourceID: String,
-
-    val status: String,
-
-    /**
-     * Date and time journal entry was recorded.
-     */
-    val transactionDateTime: String,
-
-    val ErpInvoiceLineItem: String,
-
-    val ErpJournal: String,
-
-    val ErpLedgerEntry: String
+(override val sup: ErpIdentifiedObject,
+val accountID: String,
+val amount: Double,
+val postingDateTime: String,
+val sourceID: String,
+val status: String,
+val transactionDateTime: String,
+val ErpInvoiceLineItem: String,
+val ErpJournal: String,
+val ErpLedgerEntry: String
 )
 extends
     Element
@@ -1083,17 +991,16 @@ extends
 
 /**
  * Individual entry of a given Ledger Budget, typically containing information such as amount, accounting date, accounting period, and is associated with the applicable general ledger account.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param ErpLedBudLineItem_attr
+ * @param ErpLedgerBudget
  */
 case class ErpLedBudLineItem
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val ErpLedBudLineItem_attr: String,
-
-    val ErpLedgerBudget: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val ErpLedBudLineItem_attr: String,
+val ErpLedgerBudget: String
 )
 extends
     Element
@@ -1133,11 +1040,10 @@ extends
 /**
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
+ * @param sup Reference to the superclass object.
  */
 case class ErpLedger
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1171,11 +1077,10 @@ extends
 /**
  * Information for utility Ledger Budgets.
  * They support the transfer budget amounts between all possible source applications throughout an enterprise and a general ledger or budget application.
+ * @param sup Reference to the superclass object.
  */
 case class ErpLedgerBudget
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1208,46 +1113,30 @@ extends
 
 /**
  * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
+ * @param sup Reference to the superclass object.
+ * @param accountID Account identifier for this entry.
+ * @param accountKind Kind of account for this entry.
+ * @param amount The amount of the debit or credit for this account.
+ * @param postedDateTime Date and time this entry was posted to the ledger.
+ * @param status
+ * @param transactionDateTime Date and time journal entry was recorded.
+ * @param ErpJounalEntry
+ * @param ErpLedger
+ * @param ErpLedgerEntry_attr
+ * @param UserAttributes
  */
 case class ErpLedgerEntry
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    /**
-     * Account identifier for this entry.
-     */
-    val accountID: String,
-
-    /**
-     * Kind of account for this entry.
-     */
-    val accountKind: String,
-
-    /**
-     * The amount of the debit or credit for this account.
-     */
-    val amount: Double,
-
-    /**
-     * Date and time this entry was posted to the ledger.
-     */
-    val postedDateTime: String,
-
-    val status: String,
-
-    /**
-     * Date and time journal entry was recorded.
-     */
-    val transactionDateTime: String,
-
-    val ErpJounalEntry: String,
-
-    val ErpLedger: String,
-
-    val ErpLedgerEntry_attr: String,
-
-    val UserAttributes: List[String]
+(override val sup: ErpIdentifiedObject,
+val accountID: String,
+val accountKind: String,
+val amount: Double,
+val postedDateTime: String,
+val status: String,
+val transactionDateTime: String,
+val ErpJounalEntry: String,
+val ErpLedger: String,
+val ErpLedgerEntry_attr: String,
+val UserAttributes: List[String]
 )
 extends
     Element
@@ -1300,19 +1189,18 @@ extends
 
 /**
  * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
+ * @param sup Reference to the superclass object.
+ * @param AssetModelCatalogueItem
+ * @param ErpPurchaseOrder
+ * @param ErpRecDelLineItem
+ * @param ErpReqLineItem
  */
 case class ErpPOLineItem
-(
-
-    override val sup: ErpDocument,
-
-    val AssetModelCatalogueItem: String,
-
-    val ErpPurchaseOrder: String,
-
-    val ErpRecDelLineItem: String,
-
-    val ErpReqLineItem: String
+(override val sup: ErpDocument,
+val AssetModelCatalogueItem: String,
+val ErpPurchaseOrder: String,
+val ErpRecDelLineItem: String,
+val ErpReqLineItem: String
 )
 extends
     Element
@@ -1354,11 +1242,10 @@ extends
 /**
  * A transaction that represents an invoice from a supplier.
  * A payable (or voucher) is an open item, approved and ready for payment, in the Accounts Payable ledger.
+ * @param sup Reference to the superclass object.
  */
 case class ErpPayable
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1391,21 +1278,20 @@ extends
 
 /**
  * Of an ErpPayable, a line item references an ErpInvoiceLineitem or other source such as credit memos.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param ErpInvoiceLineItem
+ * @param ErpJournalEntries
+ * @param ErpPayable
+ * @param ErpPayments
  */
 case class ErpPayableLineItem
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val ErpInvoiceLineItem: String,
-
-    val ErpJournalEntries: List[String],
-
-    val ErpPayable: String,
-
-    val ErpPayments: List[String]
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val ErpInvoiceLineItem: String,
+val ErpJournalEntries: List[String],
+val ErpPayable: String,
+val ErpPayments: List[String]
 )
 extends
     Element
@@ -1449,16 +1335,12 @@ extends
 /**
  * Payment infromation and status for any individual line item of an ErpInvoice (e.g., when payment is from a customer).
  * ErpPayable is also updated when payment is to a supplier and ErpReceivable is updated when payment is from a customer. Multiple payments can be made against a single line item and an individual payment can apply to more that one line item.
+ * @param sup Reference to the superclass object.
+ * @param termsPayment Payment terms (e.g., net 30).
  */
 case class ErpPayment
-(
-
-    override val sup: ErpDocument,
-
-    /**
-     * Payment terms (e.g., net 30).
-     */
-    val termsPayment: String
+(override val sup: ErpDocument,
+val termsPayment: String
 )
 extends
     Element
@@ -1493,13 +1375,12 @@ extends
 
 /**
  * Information that applies to the basic data about a utility person, used by ERP applications to transfer Personnel data for a worker.
+ * @param sup Reference to the superclass object.
+ * @param status
  */
 case class ErpPersonnel
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String
+(override val sup: ErpIdentifiedObject,
+val status: String
 )
 extends
     Element
@@ -1535,11 +1416,10 @@ extends
 /**
  * Utility Project Accounting information, used by ERP applications to enable all relevant sub-systems that submit single sided transactions to transfer information with a Project Accounting Application.
  * This would include, but not necessarily be limited to: Accounts Payable, Accounts Receivable, Budget, Order Management, Purchasing, Time and Labor, Travel and Expense.
+ * @param sup Reference to the superclass object.
  */
 case class ErpProjectAccounting
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1573,11 +1453,10 @@ extends
 /**
  * A document that communicates an order to purchase goods from a buyer to a supplier.
  * The PurchaseOrder carries information to and from the buyer and supplier. It is a legally binding document once both Parties agree to the contents and the specified terms and conditions of the order.
+ * @param sup Reference to the superclass object.
  */
 case class ErpPurchaseOrder
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1611,11 +1490,10 @@ extends
 /**
  * Document describing the prices of goods or services provided by a supplier.
  * It includes the terms of the purchase, delivery proposals, identification of goods or services ordered, as well as their quantities.
+ * @param sup Reference to the superclass object.
  */
 case class ErpQuote
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1648,27 +1526,23 @@ extends
 
 /**
  * Of an ErpQuote, the item or product quoted along with quantity, price and other descriptive information.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param AssetModelCatalogueItem
+ * @param Design
+ * @param ErpInvoiceLineItem Some utilities provide quotes to customer for services, where the customer accepts the quote by making a payment.
+ *        An invoice is required for this to occur.
+ * @param ErpQuote
+ * @param ErpReqLineItem
  */
 case class ErpQuoteLineItem
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val AssetModelCatalogueItem: String,
-
-    val Design: String,
-
-    /**
-     * Some utilities provide quotes to customer for services, where the customer accepts the quote by making a payment.
-     * An invoice is required for this to occur.
-     */
-    val ErpInvoiceLineItem: String,
-
-    val ErpQuote: String,
-
-    val ErpReqLineItem: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val AssetModelCatalogueItem: String,
+val Design: String,
+val ErpInvoiceLineItem: String,
+val ErpQuote: String,
+val ErpReqLineItem: String
 )
 extends
     Element
@@ -1714,19 +1588,18 @@ extends
 /**
  * Of an ErpReceiveDelivery, this is an individually received good or service by the Organisation receiving goods or services.
  * It may be used to indicate receipt of goods in conjunction with a purchase order line item.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param ErpInvoiceLineItem
+ * @param ErpPOLineItem
+ * @param ErpReceiveDelivery
  */
 case class ErpRecDelvLineItem
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val ErpInvoiceLineItem: String,
-
-    val ErpPOLineItem: String,
-
-    val ErpReceiveDelivery: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val ErpInvoiceLineItem: String,
+val ErpPOLineItem: String,
+val ErpReceiveDelivery: String
 )
 extends
     Element
@@ -1767,21 +1640,20 @@ extends
 
 /**
  * Individual entry of an ErpReceivable, it is a particular transaction representing an invoice, credit memo or debit memo to a customer.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param ErpInvoiceLineItem
+ * @param ErpJournalEntries
+ * @param ErpPayments
+ * @param ErpReceivable
  */
 case class ErpRecLineItem
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val ErpInvoiceLineItem: String,
-
-    val ErpJournalEntries: List[String],
-
-    val ErpPayments: List[String],
-
-    val ErpReceivable: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val ErpInvoiceLineItem: String,
+val ErpJournalEntries: List[String],
+val ErpPayments: List[String],
+val ErpReceivable: String
 )
 extends
     Element
@@ -1825,11 +1697,10 @@ extends
 /**
  * Transaction representing an invoice, credit memo or debit memo to a customer.
  * It is an open (unpaid) item in the Accounts Receivable ledger.
+ * @param sup Reference to the superclass object.
  */
 case class ErpReceivable
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1863,11 +1734,10 @@ extends
 /**
  * Transaction for an Organisation receiving goods or services that may be used to indicate receipt of goods in conjunction with a purchase order.
  * A receivable is an open (unpaid) item in the Accounts Receivable ledger.
+ * @param sup Reference to the superclass object.
  */
 case class ErpReceiveDelivery
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -1900,37 +1770,30 @@ extends
 
 /**
  * Information that describes a requested item and its attributes.
+ * @param sup Reference to the superclass object.
+ * @param code
+ * @param cost Cost of material.
+ * @param deliveryDate
+ * @param quantity Quantity of item requisitioned.
+ * @param status
+ * @param ErpPOLineItem
+ * @param ErpQuoteLineItem
+ * @param ErpRequisition
+ * @param TypeAsset
+ * @param TypeMaterial
  */
 case class ErpReqLineItem
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val code: String,
-
-    /**
-     * Cost of material.
-     */
-    val cost: Double,
-
-    val deliveryDate: String,
-
-    /**
-     * Quantity of item requisitioned.
-     */
-    val quantity: Int,
-
-    val status: String,
-
-    val ErpPOLineItem: String,
-
-    val ErpQuoteLineItem: String,
-
-    val ErpRequisition: String,
-
-    val TypeAsset: String,
-
-    val TypeMaterial: String
+(override val sup: ErpIdentifiedObject,
+val code: String,
+val cost: Double,
+val deliveryDate: String,
+val quantity: Int,
+val status: String,
+val ErpPOLineItem: String,
+val ErpQuoteLineItem: String,
+val ErpRequisition: String,
+val TypeAsset: String,
+val TypeMaterial: String
 )
 extends
     Element
@@ -1984,11 +1847,10 @@ extends
 /**
  * General information that applies to a utility requisition that is a request for the purchase of goods or services.
  * Typically, a requisition leads to the creation of a purchase order to a specific supplier.
+ * @param sup Reference to the superclass object.
  */
 case class ErpRequisition
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -2022,11 +1884,10 @@ extends
 /**
  * General purpose Sales Order is used for utility service orders, etc.
  * As used by the OAG, the SalesOrder is a step beyond a PurchaseOrder in that the receiving entity of the order also communicates SalesInformoration about the Order along with the Order itself.
+ * @param sup Reference to the superclass object.
  */
 case class ErpSalesOrder
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element
@@ -2060,15 +1921,14 @@ extends
 /**
  * For a utility, general information that describes physical locations of organizations or the location codes and their meanings.
  * This enables ERP applications to ensure that the physical location identifiers are synchronized between the business applications.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param LandProperty
  */
 case class ErpSiteLevelData
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val LandProperty: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val LandProperty: String
 )
 extends
     Element
@@ -2105,17 +1965,16 @@ extends
 
 /**
  * An individual entry on an ErpTimeSheet.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param ErpProjectAccounting
+ * @param ErpTimeSheet
  */
 case class ErpTimeEntry
-(
-
-    override val sup: ErpIdentifiedObject,
-
-    val status: String,
-
-    val ErpProjectAccounting: String,
-
-    val ErpTimeSheet: String
+(override val sup: ErpIdentifiedObject,
+val status: String,
+val ErpProjectAccounting: String,
+val ErpTimeSheet: String
 )
 extends
     Element
@@ -2155,11 +2014,10 @@ extends
 /**
  * Time sheet for employees and contractors.
  * Note that ErpTimeSheet inherits the relationship to ErpPerson from Document.
+ * @param sup Reference to the superclass object.
  */
 case class ErpTimeSheet
-(
-
-    override val sup: ErpDocument
+(override val sup: ErpDocument
 )
 extends
     Element

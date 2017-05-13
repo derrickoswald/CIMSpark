@@ -2,7 +2,7 @@ package ch.ninecode.cim.CIMTool
 
 import java.util.regex.Pattern
 
-case class JavaDoc (note: String, leftpad: Int)
+case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List())
 {
     lazy val spaces = (for (i <- 0 until leftpad) yield " ").mkString ("")
     val regex = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""")
@@ -17,7 +17,7 @@ case class JavaDoc (note: String, leftpad: Int)
                 ({ (if (null != matcher.group (1)) matcher.group (1) else matcher.group (3)).trim },
                  { (if (null != matcher.group (2)) matcher.group (2) else matcher.group (4)).trim })
              else
-                 (note, "")
+                 (note.trim, "")
         }
 
     def asText (): String =
@@ -34,6 +34,8 @@ case class JavaDoc (note: String, leftpad: Int)
                     | * """.stripMargin)
                 s.append (body.replace ("\n", "\n * "))
             }
+            for (member <- members)
+                s.append ("\n" + member.javaDoc)
             s.append ("""
                 | */
                 |""".stripMargin)

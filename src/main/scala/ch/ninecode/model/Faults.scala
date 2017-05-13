@@ -11,16 +11,12 @@ import ch.ninecode.cim.Context
 /**
  * A fault applied at the terminal, external to the equipment.
  * This class is not used to specify faults internal to the equipment.
+ * @param sup Reference to the superclass object.
+ * @param Terminal The terminal connecting to the bus to which the fault is applied.
  */
 case class EquipmentFault
-(
-
-    override val sup: Fault,
-
-    /**
-     * The terminal connecting to the bus to which the fault is applied.
-     */
-    val Terminal: String
+(override val sup: Fault,
+val Terminal: String
 )
 extends
     Element
@@ -55,43 +51,24 @@ extends
 
 /**
  * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).
+ * @param sup Reference to the superclass object.
+ * @param impedance Fault impedance.
+ *        Its usage is described by 'kind'.
+ * @param kind The kind of phase fault.
+ * @param phases The phases participating in the fault.
+ *        The fault connections into these phases are further specified by the type of fault.
+ * @param FaultCauseTypes All types of fault cause.
+ * @param FaultyEquipment Equipment carrying this fault.
+ * @param Outage Outage associated with this fault.
  */
 case class Fault
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Fault impedance.
-     * Its usage is described by 'kind'.
-     */
-    val impedance: String,
-
-    /**
-     * The kind of phase fault.
-     */
-    val kind: String,
-
-    /**
-     * The phases participating in the fault.
-     * The fault connections into these phases are further specified by the type of fault.
-     */
-    val phases: String,
-
-    /**
-     * All types of fault cause.
-     */
-    val FaultCauseTypes: List[String],
-
-    /**
-     * Equipment carrying this fault.
-     */
-    val FaultyEquipment: String,
-
-    /**
-     * Outage associated with this fault.
-     */
-    val Outage: String
+(override val sup: IdentifiedObject,
+val impedance: String,
+val kind: String,
+val phases: String,
+val FaultCauseTypes: List[String],
+val FaultyEquipment: String,
+val Outage: String
 )
 extends
     Element
@@ -136,11 +113,10 @@ extends
 
 /**
  * Type of cause of the fault.
+ * @param sup Reference to the superclass object.
  */
 case class FaultCauseType
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -173,31 +149,18 @@ extends
 
 /**
  * Impedance description for the fault.
+ * @param sup Reference to the superclass object.
+ * @param rGround The resistance of the fault between phases and ground.
+ * @param rLineToLine The resistance of the fault between phases.
+ * @param xGround The reactance of the fault between phases and ground.
+ * @param xLineToLine The reactance of the fault between phases.
  */
 case class FaultImpedance
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The resistance of the fault between phases and ground.
-     */
-    val rGround: Double,
-
-    /**
-     * The resistance of the fault between phases.
-     */
-    val rLineToLine: Double,
-
-    /**
-     * The reactance of the fault between phases and ground.
-     */
-    val xGround: Double,
-
-    /**
-     * The reactance of the fault between phases.
-     */
-    val xLineToLine: Double
+(override val sup: BasicElement,
+val rGround: Double,
+val rLineToLine: Double,
+val xGround: Double,
+val xLineToLine: Double
 )
 extends
     Element
@@ -238,21 +201,14 @@ extends
 
 /**
  * A fault that occurs on an AC line segment at some point along the length.
+ * @param sup Reference to the superclass object.
+ * @param lengthFromTerminal1 The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.
+ * @param ACLineSegment The line segment of this line fault.
  */
 case class LineFault
-(
-
-    override val sup: Fault,
-
-    /**
-     * The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.
-     */
-    val lengthFromTerminal1: Double,
-
-    /**
-     * The line segment of this line fault.
-     */
-    val ACLineSegment: String
+(override val sup: Fault,
+val lengthFromTerminal1: Double,
+val ACLineSegment: String
 )
 extends
     Element
@@ -289,29 +245,19 @@ extends
 
 /**
  * The type of fault connection among phases.
+ * @param sup Reference to the superclass object.
+ * @param lineToGround The fault connects the indicated phases to ground.
+ *        The line to line fault impedance is not used and assumed infinite. The full ground impedance is connected between each phase specified in the fault and ground, but not between the phases.
+ * @param lineToLine The fault connects the specified phases together without a connection to ground.
+ *        The ground impedance of this fault is ignored. The line to line impedance is connected between each of the phases specified in the fault. For example three times for a three phase fault, one time for a two phase fault.  A single phase fault should not be specified.
+ * @param lineToLineToGround The fault connects the indicated phases to ground and to each other.
+ *        The line to line impedance is connected between each of the phases specified in the fault in a full mesh. For example three times for a three phase fault, one time for a two phase fault. A single phase fault should not be specified. The full ground impedance is connected between each phase specified in the fault and ground.
  */
 case class PhaseConnectedFaultKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The fault connects the indicated phases to ground.
-     * The line to line fault impedance is not used and assumed infinite. The full ground impedance is connected between each phase specified in the fault and ground, but not between the phases.
-     */
-    val lineToGround: String,
-
-    /**
-     * The fault connects the specified phases together without a connection to ground.
-     * The ground impedance of this fault is ignored. The line to line impedance is connected between each of the phases specified in the fault. For example three times for a three phase fault, one time for a two phase fault.  A single phase fault should not be specified.
-     */
-    val lineToLine: String,
-
-    /**
-     * The fault connects the indicated phases to ground and to each other.
-     * The line to line impedance is connected between each of the phases specified in the fault in a full mesh. For example three times for a three phase fault, one time for a two phase fault. A single phase fault should not be specified. The full ground impedance is connected between each phase specified in the fault and ground.
-     */
-    val lineToLineToGround: String
+(override val sup: BasicElement,
+val lineToGround: String,
+val lineToLine: String,
+val lineToLineToGround: String
 )
 extends
     Element

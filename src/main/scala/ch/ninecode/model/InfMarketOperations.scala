@@ -7,59 +7,34 @@ import ch.ninecode.cim.Context
 
 /**
  * Bilateral transaction
+ * @param sup Reference to the superclass object.
+ * @param curtailTimeMax Maximum curtailment time in number of trading intervals
+ * @param curtailTimeMin Minimum curtailment time in number of trading intervals
+ * @param marketType Market type (default=DA)
+DA - Day Ahead
+RT - Real Time
+ *        HA - Hour Ahead
+ * @param purchaseTimeMax Maximum purchase time in number of trading intervals
+ * @param purchaseTimeMin Minimum purchase time in number of trading intervals
+ * @param scope Transaction scope:
+'Internal' (default)
+ *        'External'
+ * @param totalTranChargeMax Maximum total transmission (congestion) charges in monetary units
+ * @param transactionType Transaction type (default 1)
+1 - Fixed
+2 - Dispatchable continuous
+ *        3 - Dispatchable block-loading
  */
 case class BilateralTransaction
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Maximum curtailment time in number of trading intervals
-     */
-    val curtailTimeMax: Int,
-
-    /**
-     * Minimum curtailment time in number of trading intervals
-     */
-    val curtailTimeMin: Int,
-
-    /**
-     * Market type (default=DA)
-    DA - Day Ahead
-    RT - Real Time
-     * HA - Hour Ahead
-     */
-    val marketType: String,
-
-    /**
-     * Maximum purchase time in number of trading intervals
-     */
-    val purchaseTimeMax: Int,
-
-    /**
-     * Minimum purchase time in number of trading intervals
-     */
-    val purchaseTimeMin: Int,
-
-    /**
-     * Transaction scope:
-    'Internal' (default)
-     * 'External'
-     */
-    val scope: String,
-
-    /**
-     * Maximum total transmission (congestion) charges in monetary units
-     */
-    val totalTranChargeMax: Double,
-
-    /**
-     * Transaction type (default 1)
-    1 - Fixed
-    2 - Dispatchable continuous
-     * 3 - Dispatchable block-loading
-     */
-    val transactionType: String
+(override val sup: BasicElement,
+val curtailTimeMax: Int,
+val curtailTimeMin: Int,
+val marketType: String,
+val purchaseTimeMax: Int,
+val purchaseTimeMin: Int,
+val scope: String,
+val totalTranChargeMax: Double,
+val transactionType: String
 )
 extends
     Element
@@ -108,17 +83,13 @@ extends
 
 /**
  * Participation level of a given Pnode in a given AggregatePnode.
+ * @param sup Reference to the superclass object.
+ * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
+ *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
  */
 case class Participation
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Used to calculate "participation" of Pnode in an AggregatePnode.
-     * For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
-     */
-    val factor: Double
+(override val sup: IdentifiedObject,
+val factor: Double
 )
 extends
     Element
@@ -154,37 +125,36 @@ extends
 /**
  * This class represent the resource certification for a specific product type.
  * For example, a resource is certified for Non-Spinning reserve for RTM.
+ * @param sup Reference to the superclass object.
+ * @param certifiedDAM
+ * @param certifiedNonspinDAM
+ * @param certifiedNonspinDAMMw
+ * @param certifiedNonspinRTM
+ * @param certifiedNonspinRTMMw
+ * @param certifiedPIRP
+ * @param certifiedRTM
+ * @param certifiedRUC
+ * @param certifiedRegulation
+ * @param certifiedRegulationMw
+ * @param certifiedReplaceAS
+ * @param certifiedSpin
+ * @param certifiedSpinMw
  */
 case class ResourceCertification
-(
-
-    override val sup: BasicElement,
-
-    val certifiedDAM: String,
-
-    val certifiedNonspinDAM: String,
-
-    val certifiedNonspinDAMMw: Double,
-
-    val certifiedNonspinRTM: String,
-
-    val certifiedNonspinRTMMw: Double,
-
-    val certifiedPIRP: String,
-
-    val certifiedRTM: String,
-
-    val certifiedRUC: String,
-
-    val certifiedRegulation: String,
-
-    val certifiedRegulationMw: Double,
-
-    val certifiedReplaceAS: String,
-
-    val certifiedSpin: String,
-
-    val certifiedSpinMw: Double
+(override val sup: BasicElement,
+val certifiedDAM: String,
+val certifiedNonspinDAM: String,
+val certifiedNonspinDAMMw: Double,
+val certifiedNonspinRTM: String,
+val certifiedNonspinRTMMw: Double,
+val certifiedPIRP: String,
+val certifiedRTM: String,
+val certifiedRUC: String,
+val certifiedRegulation: String,
+val certifiedRegulationMw: Double,
+val certifiedReplaceAS: String,
+val certifiedSpin: String,
+val certifiedSpinMw: Double
 )
 extends
     Element

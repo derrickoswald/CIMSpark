@@ -12,36 +12,20 @@ import ch.ninecode.cim.Context
 /**
  * A permit is sometimes needed to provide legal access to land or equipment.
  * For example, local authority permission for road works.
+ * @param sup Reference to the superclass object.
+ * @param applicationNumber Permit application number that is used by municipality, state, province, etc.
+ * @param effectiveDate Date that permit became official.
+ * @param expirationDate Permit expiration date.
+ * @param payment Total cost of permit.
+ * @param permitID Permit identifier.
  */
 case class AccessPermit
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * Permit application number that is used by municipality, state, province, etc.
-     */
-    val applicationNumber: String,
-
-    /**
-     * Date that permit became official.
-     */
-    val effectiveDate: String,
-
-    /**
-     * Permit expiration date.
-     */
-    val expirationDate: String,
-
-    /**
-     * Total cost of permit.
-     */
-    val payment: Double,
-
-    /**
-     * Permit identifier.
-     */
-    val permitID: String
+(override val sup: WorkDocument,
+val applicationNumber: String,
+val effectiveDate: String,
+val expirationDate: String,
+val payment: Double,
+val permitID: String
 )
 extends
     Element
@@ -85,16 +69,12 @@ extends
 /**
  * An assignment is given to an ErpPerson, Crew, Organisation, Equipment Item, Tool, etc. and may be used to perform Work, WorkTasks, Procedures, etc.
  * TimeSchedules may be set up directly for Assignments or indirectly via the associated WorkTask. Note that these associations are all inherited through the recursive relationship on Document.
+ * @param sup Reference to the superclass object.
+ * @param effectivePeriod Period between the assignment becoming effective and its expiration.
  */
 case class Assignment
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * Period between the assignment becoming effective and its expiration.
-     */
-    val effectivePeriod: String
+(override val sup: WorkDocument,
+val effectivePeriod: String
 )
 extends
     Element
@@ -129,16 +109,12 @@ extends
 
 /**
  * Business justification for capital expenditures, usually addressing operations and maintenance costs as well.
+ * @param sup Reference to the superclass object.
+ * @param corporateCode A codified representation of the business case (i.e., codes for highway relocation, replace substation transformers, etc.).
  */
 case class BusinessCase
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * A codified representation of the business case (i.e., codes for highway relocation, replace substation transformers, etc.).
-     */
-    val corporateCode: String
+(override val sup: WorkDocument,
+val corporateCode: String
 )
 extends
     Element
@@ -173,13 +149,12 @@ extends
 
 /**
  * Allowed actions: Install, Remove, Transfer, Abandon, etc.
+ * @param sup Reference to the superclass object.
+ * @param status
  */
 case class CUAllowableAction
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    val status: String
+(override val sup: WorkIdentifiedObject,
+val status: String
 )
 extends
     Element
@@ -214,25 +189,18 @@ extends
 
 /**
  * Compatible unit for various types of assets such as transformers switches, substation fences, poles, etc..
+ * @param sup Reference to the superclass object.
+ * @param quantity Quantity of the type asset within the CU.
+ * @param status
+ * @param typeAssetCode The code for this type of asset.
+ * @param TypeAsset
  */
 case class CUAsset
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Quantity of the type asset within the CU.
-     */
-    val quantity: String,
-
-    val status: String,
-
-    /**
-     * The code for this type of asset.
-     */
-    val typeAssetCode: String,
-
-    val TypeAsset: String
+(override val sup: WorkIdentifiedObject,
+val quantity: String,
+val status: String,
+val typeAssetCode: String,
+val TypeAsset: String
 )
 extends
     Element
@@ -273,25 +241,18 @@ extends
 
 /**
  * Compatible unit contractor item.
+ * @param sup Reference to the superclass object.
+ * @param activityCode Activity code identifies a specific and distinguishable unit of work.
+ * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
+ * @param status
+ * @param CompatibleUnits
  */
 case class CUContractorItem
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Activity code identifies a specific and distinguishable unit of work.
-     */
-    val activityCode: String,
-
-    /**
-     * The amount that a given contractor will charge for performing this unit of work.
-     */
-    val bidAmount: Double,
-
-    val status: String,
-
-    val CompatibleUnits: List[String]
+(override val sup: WorkIdentifiedObject,
+val activityCode: String,
+val bidAmount: Double,
+val status: String,
+val CompatibleUnits: List[String]
 )
 extends
     Element
@@ -332,15 +293,14 @@ extends
 
 /**
  * A Compatible Unit Group identifies a set of compatible units which may be jointly utilized for estimating and designating jobs.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param ChildCUGroups
  */
 case class CUGroup
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    val status: String,
-
-    val ChildCUGroups: List[String]
+(override val sup: WorkIdentifiedObject,
+val status: String,
+val ChildCUGroups: List[String]
 )
 extends
     Element
@@ -377,18 +337,14 @@ extends
 
 /**
  * Labor code associated with various compatible unit labor items.
+ * @param sup Reference to the superclass object.
+ * @param code Labor code.
+ * @param status
  */
 case class CULaborCode
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Labor code.
-     */
-    val code: String,
-
-    val status: String
+(override val sup: WorkIdentifiedObject,
+val code: String,
+val status: String
 )
 extends
     Element
@@ -425,34 +381,24 @@ extends
 
 /**
  * Compatible unit labor item.
+ * @param sup Reference to the superclass object.
+ * @param activityCode Activity code identifies a specific and distinguishable unit of work.
+ * @param laborDuration Estimated time to perform work.
+ * @param laborRate The labor rate applied for work.
+ * @param status
+ * @param CULaborCode
+ * @param CompatibleUnits
+ * @param QualificationRequirements
  */
 case class CULaborItem
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Activity code identifies a specific and distinguishable unit of work.
-     */
-    val activityCode: String,
-
-    /**
-     * Estimated time to perform work.
-     */
-    val laborDuration: Double,
-
-    /**
-     * The labor rate applied for work.
-     */
-    val laborRate: Double,
-
-    val status: String,
-
-    val CULaborCode: String,
-
-    val CompatibleUnits: List[String],
-
-    val QualificationRequirements: List[String]
+(override val sup: WorkIdentifiedObject,
+val activityCode: String,
+val laborDuration: Double,
+val laborRate: Double,
+val status: String,
+val CULaborCode: String,
+val CompatibleUnits: List[String],
+val QualificationRequirements: List[String]
 )
 extends
     Element
@@ -500,27 +446,20 @@ extends
 /**
  * Compatible unit of a consumable supply item.
  * For example, nuts, bolts, brackets, glue, etc.
+ * @param sup Reference to the superclass object.
+ * @param corporateCode Code for material.
+ * @param quantity Quantity of the TypeMaterial for this CU, used to determine estimated costs based on a per unit cost or a cost per unit length specified in the TypeMaterial.
+ * @param status
+ * @param CompatibleUnits
+ * @param TypeMaterial
  */
 case class CUMaterialItem
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Code for material.
-     */
-    val corporateCode: String,
-
-    /**
-     * Quantity of the TypeMaterial for this CU, used to determine estimated costs based on a per unit cost or a cost per unit length specified in the TypeMaterial.
-     */
-    val quantity: String,
-
-    val status: String,
-
-    val CompatibleUnits: List[String],
-
-    val TypeMaterial: String
+(override val sup: WorkIdentifiedObject,
+val corporateCode: String,
+val quantity: String,
+val status: String,
+val CompatibleUnits: List[String],
+val TypeMaterial: String
 )
 extends
     Element
@@ -563,27 +502,20 @@ extends
 
 /**
  * Compatible unit for various types of WorkEquipmentAssets, including vehicles.
+ * @param sup Reference to the superclass object.
+ * @param equipCode The equipment type code.
+ * @param rate Standard usage rate for the type of vehicle.
+ * @param status
+ * @param CompatibleUnits
+ * @param TypeAsset
  */
 case class CUWorkEquipmentItem
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * The equipment type code.
-     */
-    val equipCode: String,
-
-    /**
-     * Standard usage rate for the type of vehicle.
-     */
-    val rate: Double,
-
-    val status: String,
-
-    val CompatibleUnits: List[String],
-
-    val TypeAsset: String
+(override val sup: WorkIdentifiedObject,
+val equipCode: String,
+val rate: Double,
+val status: String,
+val CompatibleUnits: List[String],
+val TypeAsset: String
 )
 extends
     Element
@@ -626,34 +558,24 @@ extends
 
 /**
  * Capabilities of a crew.
+ * @param sup Reference to the superclass object.
+ * @param performanceFactor Capability performance factor.
+ * @param status
+ * @param typ Classification by utility's work management standards and practices.
+ * @param validityInterval Date and time interval for which this capability is valid (when it became effective and when it expires).
+ * @param Crafts
+ * @param Crew
+ * @param WorkTasks
  */
 case class Capability
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Capability performance factor.
-     */
-    val performanceFactor: String,
-
-    val status: String,
-
-    /**
-     * Classification by utility's work management standards and practices.
-     */
-    val typ: String,
-
-    /**
-     * Date and time interval for which this capability is valid (when it became effective and when it expires).
-     */
-    val validityInterval: String,
-
-    val Crafts: List[String],
-
-    val Crew: String,
-
-    val WorkTasks: List[String]
+(override val sup: WorkIdentifiedObject,
+val performanceFactor: String,
+val status: String,
+val typ: String,
+val validityInterval: String,
+val Crafts: List[String],
+val Crew: String,
+val WorkTasks: List[String]
 )
 extends
     Element
@@ -700,35 +622,28 @@ extends
 
 /**
  * A pre-planned job model containing labor, material, and accounting requirements for standardized job planning.
+ * @param sup Reference to the superclass object.
+ * @param estCost Estimated total cost for perfoming CU.
+ * @param quantity The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
+ * @param CUAllowableAction
+ * @param CUAssets
+ * @param CUGroup
+ * @param CostType
+ * @param DesignLocationCUs
+ * @param Procedures
+ * @param PropertyUnit
  */
 case class CompatibleUnit
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * Estimated total cost for perfoming CU.
-     */
-    val estCost: Double,
-
-    /**
-     * The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
-     */
-    val quantity: String,
-
-    val CUAllowableAction: String,
-
-    val CUAssets: List[String],
-
-    val CUGroup: String,
-
-    val CostType: String,
-
-    val DesignLocationCUs: List[String],
-
-    val Procedures: List[String],
-
-    val PropertyUnit: String
+(override val sup: WorkDocument,
+val estCost: Double,
+val quantity: String,
+val CUAllowableAction: String,
+val CUAssets: List[String],
+val CUGroup: String,
+val CostType: String,
+val DesignLocationCUs: List[String],
+val Procedures: List[String],
+val PropertyUnit: String
 )
 extends
     Element
@@ -779,23 +694,16 @@ extends
 
 /**
  * This is to specify the various condition factors for a design that may alter the cost estimate or the allocation.
+ * @param sup Reference to the superclass object.
+ * @param cfValue The actual value of the condition factor, such as labor flat fee or percentage.
+ * @param kind Kind of this condition factor.
+ * @param status
  */
 case class ConditionFactor
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * The actual value of the condition factor, such as labor flat fee or percentage.
-     */
-    val cfValue: String,
-
-    /**
-     * Kind of this condition factor.
-     */
-    val kind: String,
-
-    val status: String
+(override val sup: WorkIdentifiedObject,
+val cfValue: String,
+val kind: String,
+val status: String
 )
 extends
     Element
@@ -834,21 +742,20 @@ extends
 
 /**
  * Kind of condition factor.
+ * @param sup Reference to the superclass object.
+ * @param accountAllocation
+ * @param labor
+ * @param material
+ * @param other
+ * @param travel
  */
 case class ConditionFactorKind
-(
-
-    override val sup: BasicElement,
-
-    val accountAllocation: String,
-
-    val labor: String,
-
-    val material: String,
-
-    val other: String,
-
-    val travel: String
+(override val sup: BasicElement,
+val accountAllocation: String,
+val labor: String,
+val material: String,
+val other: String,
+val travel: String
 )
 extends
     Element
@@ -891,34 +798,24 @@ extends
 
 /**
  * Contractor information for work task.
+ * @param sup Reference to the superclass object.
+ * @param activityCode Activity code identifies a specific and distinguishable unit of work.
+ * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
+ * @param cost The total amount charged.
+ * @param status
+ * @param ErpPayables
+ * @param WorkCostDetail
+ * @param WorkTask
  */
 case class ContractorItem
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Activity code identifies a specific and distinguishable unit of work.
-     */
-    val activityCode: String,
-
-    /**
-     * The amount that a given contractor will charge for performing this unit of work.
-     */
-    val bidAmount: Double,
-
-    /**
-     * The total amount charged.
-     */
-    val cost: Double,
-
-    val status: String,
-
-    val ErpPayables: List[String],
-
-    val WorkCostDetail: String,
-
-    val WorkTask: String
+(override val sup: WorkIdentifiedObject,
+val activityCode: String,
+val bidAmount: Double,
+val cost: Double,
+val status: String,
+val ErpPayables: List[String],
+val WorkCostDetail: String,
+val WorkTask: String
 )
 extends
     Element
@@ -966,37 +863,24 @@ extends
 /**
  * A categorization for resources, often costs, in accounting transactions.
  * Examples include: material components, building in service, coal sales, overhead, etc.
+ * @param sup Reference to the superclass object.
+ * @param amountAssignable True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).
+ * @param code A codified representation of the resource element.
+ * @param level The level of the resource element in the hierarchy of resource elements (recursive relationship).
+ * @param stage The stage for which this costType applies: estimated design, estimated actual or actual actual.
+ * @param status
+ * @param ErpJournalEntries
+ * @param ParentCostType
  */
 case class CostType
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).
-     */
-    val amountAssignable: Boolean,
-
-    /**
-     * A codified representation of the resource element.
-     */
-    val code: String,
-
-    /**
-     * The level of the resource element in the hierarchy of resource elements (recursive relationship).
-     */
-    val level: String,
-
-    /**
-     * The stage for which this costType applies: estimated design, estimated actual or actual actual.
-     */
-    val stage: String,
-
-    val status: String,
-
-    val ErpJournalEntries: List[String],
-
-    val ParentCostType: String
+(override val sup: WorkIdentifiedObject,
+val amountAssignable: Boolean,
+val code: String,
+val level: String,
+val stage: String,
+val status: String,
+val ErpJournalEntries: List[String],
+val ParentCostType: String
 )
 extends
     Element
@@ -1044,32 +928,22 @@ extends
 /**
  * A design for consideration by customers, potential customers, or internal work.
  * Note that the Version of design is the revision attribute that is inherited from Document.
+ * @param sup Reference to the superclass object.
+ * @param costEstimate Estimated cost (not price) of design.
+ * @param kind Kind of this design.
+ * @param price Price to customer for implementing design.
+ * @param ConditionFactors
+ * @param ErpQuoteLineItem
+ * @param Work
  */
 case class Design
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * Estimated cost (not price) of design.
-     */
-    val costEstimate: Double,
-
-    /**
-     * Kind of this design.
-     */
-    val kind: String,
-
-    /**
-     * Price to customer for implementing design.
-     */
-    val price: Double,
-
-    val ConditionFactors: List[String],
-
-    val ErpQuoteLineItem: String,
-
-    val Work: String
+(override val sup: WorkDocument,
+val costEstimate: Double,
+val kind: String,
+val price: Double,
+val ConditionFactors: List[String],
+val ErpQuoteLineItem: String,
+val Work: String
 )
 extends
     Element
@@ -1114,17 +988,16 @@ extends
 
 /**
  * Kind of design.
+ * @param sup Reference to the superclass object.
+ * @param asBuilt
+ * @param estimated
+ * @param other
  */
 case class DesignKind
-(
-
-    override val sup: BasicElement,
-
-    val asBuilt: String,
-
-    val estimated: String,
-
-    val other: String
+(override val sup: BasicElement,
+val asBuilt: String,
+val estimated: String,
+val other: String
 )
 extends
     Element
@@ -1164,20 +1037,16 @@ extends
 /**
  * A logical part of the design (e.g., pole and all equipment on a pole).
  * This includes points and spans.
+ * @param sup Reference to the superclass object.
+ * @param spanLength The legth of the span from the previous pole to this pole.
+ * @param status
+ * @param ConditionFactors
  */
 case class DesignLocation
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * The legth of the span from the previous pole to this pole.
-     */
-    val spanLength: Double,
-
-    val status: String,
-
-    val ConditionFactors: List[String]
+(override val sup: WorkIdentifiedObject,
+val spanLength: Double,
+val status: String,
+val ConditionFactors: List[String]
 )
 extends
     Element
@@ -1216,54 +1085,35 @@ extends
 
 /**
  * Compatible unit at a given design location.
+ * @param sup Reference to the superclass object.
+ * @param cuAccount A code that helps direct accounting (capital, expense, or accounting treatment).
+ * @param cuAction A code that instructs the crew what action to perform.
+ * @param cuQuantity The quantity of the CU being assigned to this location.
+ * @param cuUsage As the same CU can be used for different purposes and accounting purposes, usage must be specified.
+ *        Examples include: distribution, transmission, substation.
+ * @param removalDate Year when a CU that represents an asset is removed.
+ * @param status
+ * @param toBeEnergised True if associated electrical equipment is intended to be energized while work is being performed.
+ * @param CUGroups
+ * @param ConditionFactors
+ * @param DesignLocation
+ * @param Designs
+ * @param WorkTasks
  */
 case class DesignLocationCU
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * A code that helps direct accounting (capital, expense, or accounting treatment).
-     */
-    val cuAccount: String,
-
-    /**
-     * A code that instructs the crew what action to perform.
-     */
-    val cuAction: String,
-
-    /**
-     * The quantity of the CU being assigned to this location.
-     */
-    val cuQuantity: String,
-
-    /**
-     * As the same CU can be used for different purposes and accounting purposes, usage must be specified.
-     * Examples include: distribution, transmission, substation.
-     */
-    val cuUsage: String,
-
-    /**
-     * Year when a CU that represents an asset is removed.
-     */
-    val removalDate: String,
-
-    val status: String,
-
-    /**
-     * True if associated electrical equipment is intended to be energized while work is being performed.
-     */
-    val toBeEnergised: Boolean,
-
-    val CUGroups: List[String],
-
-    val ConditionFactors: List[String],
-
-    val DesignLocation: String,
-
-    val Designs: List[String],
-
-    val WorkTasks: List[String]
+(override val sup: WorkIdentifiedObject,
+val cuAccount: String,
+val cuAction: String,
+val cuQuantity: String,
+val cuUsage: String,
+val removalDate: String,
+val status: String,
+val toBeEnergised: Boolean,
+val CUGroups: List[String],
+val ConditionFactors: List[String],
+val DesignLocation: String,
+val Designs: List[String],
+val WorkTasks: List[String]
 )
 extends
     Element
@@ -1321,47 +1171,25 @@ extends
 /**
  * Questions and answers associated with a type of document for purposes of clarification.
  * Questions may be predefined or ad hoc.
+ * @param sup Reference to the superclass object.
+ * @param answer Answer to question.
+ * @param answerDateTime The date and time the quesiton was answered.
+ * @param answerRemark Remarks to qualify the answer.
+ * @param questionCode The question code.
+ *        If blank, refer to questionText.
+ * @param questionRemark Remarks to qualify the question in this situation.
+ * @param questionText For non-coded questions, the question is provided here.
+ * @param questionType The type of the question.
  */
 case class InfoQuestion
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * Answer to question.
-     */
-    val answer: String,
-
-    /**
-     * The date and time the quesiton was answered.
-     */
-    val answerDateTime: String,
-
-    /**
-     * Remarks to qualify the answer.
-     */
-    val answerRemark: String,
-
-    /**
-     * The question code.
-     * If blank, refer to questionText.
-     */
-    val questionCode: String,
-
-    /**
-     * Remarks to qualify the question in this situation.
-     */
-    val questionRemark: String,
-
-    /**
-     * For non-coded questions, the question is provided here.
-     */
-    val questionText: String,
-
-    /**
-     * The type of the question.
-     */
-    val questionType: String
+(override val sup: WorkDocument,
+val answer: String,
+val answerDateTime: String,
+val answerRemark: String,
+val questionCode: String,
+val questionRemark: String,
+val questionText: String,
+val questionType: String
 )
 extends
     Element
@@ -1408,38 +1236,25 @@ extends
 
 /**
  * Labor used for work order.
+ * @param sup Reference to the superclass object.
+ * @param activityCode Activity code identifies a specific and distinguishable unit of work.
+ * @param cost Total cost for labor.
+ *        Note that this may not be able to be derived from labor rate and time charged.
+ * @param laborDuration Time required to perform work.
+ * @param laborRate The labor rate applied for work.
+ * @param status
+ * @param WorkCostDetail
+ * @param WorkTask
  */
 case class LaborItem
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Activity code identifies a specific and distinguishable unit of work.
-     */
-    val activityCode: String,
-
-    /**
-     * Total cost for labor.
-     * Note that this may not be able to be derived from labor rate and time charged.
-     */
-    val cost: Double,
-
-    /**
-     * Time required to perform work.
-     */
-    val laborDuration: Double,
-
-    /**
-     * The labor rate applied for work.
-     */
-    val laborRate: Double,
-
-    val status: String,
-
-    val WorkCostDetail: String,
-
-    val WorkTask: String
+(override val sup: WorkIdentifiedObject,
+val activityCode: String,
+val cost: Double,
+val laborDuration: Double,
+val laborRate: Double,
+val status: String,
+val WorkCostDetail: String,
+val WorkTask: String
 )
 extends
     Element
@@ -1487,44 +1302,28 @@ extends
 /**
  * Various cost items that are not associated with compatible units.
  * Examples include rental equipment, labor, materials, contractor costs, permits - anything not covered in a CU.
+ * @param sup Reference to the superclass object.
+ * @param account This drives the accounting treatment for this misc. item.
+ * @param costPerUnit The cost per unit for this misc. item.
+ * @param costType The cost type for accounting, such as material, labor, vehicle, contractor, equipment, overhead.
+ * @param externalRefID External reference identifier (e.g. purchase order number, serial number) .
+ * @param quantity The quantity of the misc. item being assigned to this location.
+ * @param status
+ * @param DesignLocation
+ * @param WorkCostDetail
+ * @param WorkTask
  */
 case class MiscCostItem
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * This drives the accounting treatment for this misc. item.
-     */
-    val account: String,
-
-    /**
-     * The cost per unit for this misc. item.
-     */
-    val costPerUnit: Double,
-
-    /**
-     * The cost type for accounting, such as material, labor, vehicle, contractor, equipment, overhead.
-     */
-    val costType: String,
-
-    /**
-     * External reference identifier (e.g. purchase order number, serial number) .
-     */
-    val externalRefID: String,
-
-    /**
-     * The quantity of the misc. item being assigned to this location.
-     */
-    val quantity: String,
-
-    val status: String,
-
-    val DesignLocation: String,
-
-    val WorkCostDetail: String,
-
-    val WorkTask: String
+(override val sup: WorkIdentifiedObject,
+val account: String,
+val costPerUnit: Double,
+val costType: String,
+val externalRefID: String,
+val quantity: String,
+val status: String,
+val DesignLocation: String,
+val WorkCostDetail: String,
+val WorkTask: String
 )
 extends
     Element
@@ -1575,16 +1374,12 @@ extends
 
 /**
  * This document provides information for non-standard items like customer contributions (e.g., customer digs trench), vouchers (e.g., credit), and contractor bids.
+ * @param sup Reference to the superclass object.
+ * @param amount The projected cost for this item.
  */
 case class NonStandardItem
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * The projected cost for this item.
-     */
-    val amount: Double
+(override val sup: WorkDocument,
+val amount: Double
 )
 extends
     Element
@@ -1619,19 +1414,18 @@ extends
 
 /**
  * A set of tasks is required to implement a design.
+ * @param sup Reference to the superclass object.
+ * @param Design
+ * @param OverheadCost
+ * @param QualificationRequirements
+ * @param WorkFlowStep
  */
 case class OldWorkTask
-(
-
-    override val sup: WorkTask,
-
-    val Design: String,
-
-    val OverheadCost: String,
-
-    val QualificationRequirements: List[String],
-
-    val WorkFlowStep: String
+(override val sup: WorkTask,
+val Design: String,
+val OverheadCost: String,
+val QualificationRequirements: List[String],
+val WorkFlowStep: String
 )
 extends
     Element
@@ -1672,26 +1466,16 @@ extends
 
 /**
  * A request for other utilities to mark their underground facilities prior to commencement of construction and/or maintenance.
+ * @param sup Reference to the superclass object.
+ * @param explosivesUsed True if explosives have been or are planned to be used.
+ * @param markedIndicator True if work location has been marked, for example for a dig area.
+ * @param markingInstruction Instructions for marking a dig area, if applicable.
  */
 case class OneCallRequest
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * True if explosives have been or are planned to be used.
-     */
-    val explosivesUsed: Boolean,
-
-    /**
-     * True if work location has been marked, for example for a dig area.
-     */
-    val markedIndicator: Boolean,
-
-    /**
-     * Instructions for marking a dig area, if applicable.
-     */
-    val markingInstruction: String
+(override val sup: WorkDocument,
+val explosivesUsed: Boolean,
+val markedIndicator: Boolean,
+val markingInstruction: String
 )
 extends
     Element
@@ -1730,23 +1514,16 @@ extends
 
 /**
  * Overhead cost applied to work order.
+ * @param sup Reference to the superclass object.
+ * @param code Overhead code.
+ * @param cost The overhead cost to be applied.
+ * @param status
  */
 case class OverheadCost
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Overhead code.
-     */
-    val code: String,
-
-    /**
-     * The overhead cost to be applied.
-     */
-    val cost: Double,
-
-    val status: String
+(override val sup: WorkIdentifiedObject,
+val code: String,
+val cost: Double,
+val status: String
 )
 extends
     Element
@@ -1786,22 +1563,18 @@ extends
 /**
  * A collection of related work.
  * For construction projects and maintenance projects, multiple phases may be performed.
+ * @param sup Reference to the superclass object.
+ * @param budget Overall project budget.
+ * @param BusinessCase
+ * @param ErpProjectAccounting
+ * @param ParentProject
  */
 case class Project
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * Overall project budget.
-     */
-    val budget: Double,
-
-    val BusinessCase: String,
-
-    val ErpProjectAccounting: String,
-
-    val ParentProject: String
+(override val sup: WorkDocument,
+val budget: Double,
+val BusinessCase: String,
+val ErpProjectAccounting: String,
+val ParentProject: String
 )
 extends
     Element
@@ -1842,31 +1615,21 @@ extends
 
 /**
  * Unit of property for reporting purposes.
+ * @param sup Reference to the superclass object.
+ * @param accountingUsage A code that identifies appropriate type of property accounts such as distribution, streetlgihts, communications.
+ * @param activityCode Activity code identifies a specific and distinguishable work action.
+ * @param propertyAccount Used for property record accounting.
+ *        For example, in the USA, this would be a FERC account.
+ * @param status
+ * @param CUMaterialItems
  */
 case class PropertyUnit
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * A code that identifies appropriate type of property accounts such as distribution, streetlgihts, communications.
-     */
-    val accountingUsage: String,
-
-    /**
-     * Activity code identifies a specific and distinguishable work action.
-     */
-    val activityCode: String,
-
-    /**
-     * Used for property record accounting.
-     * For example, in the USA, this would be a FERC account.
-     */
-    val propertyAccount: String,
-
-    val status: String,
-
-    val CUMaterialItems: List[String]
+(override val sup: WorkIdentifiedObject,
+val accountingUsage: String,
+val activityCode: String,
+val propertyAccount: String,
+val status: String,
+val CUMaterialItems: List[String]
 )
 extends
     Element
@@ -1909,18 +1672,14 @@ extends
 
 /**
  * Certain skills are required and must be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
+ * @param sup Reference to the superclass object.
+ * @param qualificationID Qualification identifier.
+ * @param Specifications
  */
 case class QualificationRequirement
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Qualification identifier.
-     */
-    val qualificationID: String,
-
-    val Specifications: List[String]
+(override val sup: WorkIdentifiedObject,
+val qualificationID: String,
+val Specifications: List[String]
 )
 extends
     Element
@@ -1958,16 +1717,12 @@ extends
 /**
  * Special requirements and/or regulations may pertain to certain types of assets or work.
  * For example, fire protection and scaffolding.
+ * @param sup Reference to the superclass object.
+ * @param referenceNumber External reference to regulation, if applicable.
  */
 case class Regulation
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * External reference to regulation, if applicable.
-     */
-    val referenceNumber: String
+(override val sup: WorkDocument,
+val referenceNumber: String
 )
 extends
     Element
@@ -2002,28 +1757,18 @@ extends
 
 /**
  * The patterns of shifts worked by people or crews.
+ * @param sup Reference to the superclass object.
+ * @param assignmentType Type of assignement intended to be worked on this shift, for example, temporary, standard, etc.
+ * @param cycleCount Number of cycles for a temporary shift.
+ * @param status
+ * @param validityInterval Date and time interval for which this shift pattern is valid (when it became effective and when it expires).
  */
 case class ShiftPattern
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Type of assignement intended to be worked on this shift, for example, temporary, standard, etc.
-     */
-    val assignmentType: String,
-
-    /**
-     * Number of cycles for a temporary shift.
-     */
-    val cycleCount: Int,
-
-    val status: String,
-
-    /**
-     * Date and time interval for which this shift pattern is valid (when it became effective and when it expires).
-     */
-    val validityInterval: String
+(override val sup: WorkIdentifiedObject,
+val assignmentType: String,
+val cycleCount: Int,
+val status: String,
+val validityInterval: String
 )
 extends
     Element
@@ -2065,32 +1810,19 @@ extends
 /**
  * Documentation for a generic material item that may be used for design, work and other purposes.
  * Any number of MaterialItems manufactured by various vendors may be used to perform this TypeMaterial.
+ * @param sup Reference to the superclass object.
+ * @param costType The type of cost to which this Material Item belongs.
+ * @param estUnitCost The estimated unit cost of this type of material, either for a unit cost or cost per unit length.
+ *        Cost is for material or asset only and does not include labor to install/construct or configure it.
+ * @param quantity The value, unit of measure, and multiplier for the quantity.
+ * @param stockItem True if item is a stock item (default).
  */
 case class TypeMaterial
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * The type of cost to which this Material Item belongs.
-     */
-    val costType: String,
-
-    /**
-     * The estimated unit cost of this type of material, either for a unit cost or cost per unit length.
-     * Cost is for material or asset only and does not include labor to install/construct or configure it.
-     */
-    val estUnitCost: Double,
-
-    /**
-     * The value, unit of measure, and multiplier for the quantity.
-     */
-    val quantity: String,
-
-    /**
-     * True if item is a stock item (default).
-     */
-    val stockItem: Boolean
+(override val sup: WorkDocument,
+val costType: String,
+val estUnitCost: Double,
+val quantity: String,
+val stockItem: Boolean
 )
 extends
     Element
@@ -2132,15 +1864,14 @@ extends
 /**
  * The way material and assets are used to perform a certain type of work task.
  * The way is described in text in the inheritied description attribute.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param WorkTask
  */
 case class Usage
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    val status: String,
-
-    val WorkTask: String
+(override val sup: WorkIdentifiedObject,
+val status: String,
+val WorkTask: String
 )
 extends
     Element
@@ -2177,31 +1908,18 @@ extends
 
 /**
  * Kinds of activities to be performed on a Compatible Unit.
+ * @param sup Reference to the superclass object.
+ * @param abandon Leave it in place but not use it.
+ * @param install Install.
+ * @param remove Remove.
+ * @param transfer Remove from one and install at another loctation.
  */
 case class WorkActionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Leave it in place but not use it.
-     */
-    val abandon: String,
-
-    /**
-     * Install.
-     */
-    val install: String,
-
-    /**
-     * Remove.
-     */
-    val remove: String,
-
-    /**
-     * Remove from one and install at another loctation.
-     */
-    val transfer: String
+(override val sup: BasicElement,
+val abandon: String,
+val install: String,
+val remove: String,
+val transfer: String
 )
 extends
     Element
@@ -2242,43 +1960,33 @@ extends
 
 /**
  * A collection of all of the individual cost items collected from multiple sources.
+ * @param sup Reference to the superclass object.
+ * @param amount Amount in designated currency for work, either a total or an individual element.
+ *        As defined in the attribute "type," multiple instances are applicable to each work for: planned cost, actual cost, authorized cost, budgeted cost, forecasted cost, other.
+ * @param isDebit True if 'amount' is a debit, false if it is a credit.
+ * @param transactionDateTime Date and time that 'amount' is posted to the work.
+ * @param CostType
+ * @param Design
+ * @param ErpProjectAccounting
+ * @param OverheadCost
+ * @param PropertyUnits
+ * @param WorkCostSummary
+ * @param WorkTask
+ * @param Works
  */
 case class WorkCostDetail
-(
-
-    override val sup: WorkDocument,
-
-    /**
-     * Amount in designated currency for work, either a total or an individual element.
-     * As defined in the attribute "type," multiple instances are applicable to each work for: planned cost, actual cost, authorized cost, budgeted cost, forecasted cost, other.
-     */
-    val amount: Double,
-
-    /**
-     * True if 'amount' is a debit, false if it is a credit.
-     */
-    val isDebit: Boolean,
-
-    /**
-     * Date and time that 'amount' is posted to the work.
-     */
-    val transactionDateTime: String,
-
-    val CostType: String,
-
-    val Design: String,
-
-    val ErpProjectAccounting: String,
-
-    val OverheadCost: String,
-
-    val PropertyUnits: List[String],
-
-    val WorkCostSummary: String,
-
-    val WorkTask: String,
-
-    val Works: List[String]
+(override val sup: WorkDocument,
+val amount: Double,
+val isDebit: Boolean,
+val transactionDateTime: String,
+val CostType: String,
+val Design: String,
+val ErpProjectAccounting: String,
+val OverheadCost: String,
+val PropertyUnits: List[String],
+val WorkCostSummary: String,
+val WorkTask: String,
+val Works: List[String]
 )
 extends
     Element
@@ -2334,13 +2042,12 @@ extends
 /**
  * A roll up by cost type for the entire cost of a work order.
  * For example, total labor.
+ * @param sup Reference to the superclass object.
+ * @param WorkCostDetail
  */
 case class WorkCostSummary
-(
-
-    override val sup: WorkDocument,
-
-    val WorkCostDetail: String
+(override val sup: WorkDocument,
+val WorkCostDetail: String
 )
 extends
     Element
@@ -2376,11 +2083,10 @@ extends
 /**
  * Shadow class for Document, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
+ * @param sup Reference to the superclass object.
  */
 case class WorkDocument
-(
-
-    override val sup: Document
+(override val sup: Document
 )
 extends
     Element
@@ -2413,20 +2119,16 @@ extends
 
 /**
  * A pre-defined set of work steps for a given type of work.
+ * @param sup Reference to the superclass object.
+ * @param sequenceNumber Used to define dependencies of each work flow step, which is for the instance of WorkTask associated with a given instance of WorkFlow.
+ * @param status
+ * @param Work
  */
 case class WorkFlowStep
-(
-
-    override val sup: WorkIdentifiedObject,
-
-    /**
-     * Used to define dependencies of each work flow step, which is for the instance of WorkTask associated with a given instance of WorkFlow.
-     */
-    val sequenceNumber: Int,
-
-    val status: String,
-
-    val Work: String
+(override val sup: WorkIdentifiedObject,
+val sequenceNumber: Int,
+val status: String,
+val Work: String
 )
 extends
     Element
@@ -2466,11 +2168,10 @@ extends
 /**
  * Shadow class for IdentifiedObject, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
+ * @param sup Reference to the superclass object.
  */
 case class WorkIdentifiedObject
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -2503,16 +2204,12 @@ extends
 
 /**
  * A type of ActivityRecord that records information about the status of an item, such as a Work or WorkTask, at a point in time.
+ * @param sup Reference to the superclass object.
+ * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
  */
 case class WorkStatusEntry
-(
-
-    override val sup: ActivityRecord,
-
-    /**
-     * Estimated percentage of completion of this individual work task or overall work order.
-     */
-    val percentComplete: Double
+(override val sup: ActivityRecord,
+val percentComplete: Double
 )
 extends
     Element

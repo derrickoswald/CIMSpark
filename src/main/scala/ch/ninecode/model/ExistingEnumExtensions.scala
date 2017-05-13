@@ -8,146 +8,64 @@ import ch.ninecode.cim.Context
 /**
  * Enumeration of phase identifiers.
  * Allows designation of phases for both transmission and distribution equipment, circuits and loads.
+ * @param sup Reference to the superclass object.
+ * @param none Not applicable to any phase
+ * @param A Phase A.
+ * @param AB Phases A to B
+ * @param ABC Involving all phases
+ * @param ABCN ABC to Neutral
+ * @param ABN AB to Neutral
+ * @param AC Phases A and C
+ * @param ACN Phases A, C and neutral.
+ * @param AN Phases A to neutral.
+ * @param AtoAv Phase A current relative to Phase A voltage
+ * @param B Phase B.
+ * @param BAv Phase B current or voltage relative to Phase A voltage
+ * @param BC Phases B to C
+ * @param BCN BC to neutral.
+ * @param BN Phases B to neutral.
+ * @param C Phase C.
+ * @param CAN CA to Neutral
+ * @param CAv hase C current or voltage relative to Phase A voltage
+ * @param CN Phases C to neutral.
+ * @param N Neutral
+ * @param NG Neutral to ground
+ * @param S1 Phase S1
+ * @param S12 Phase S1 to S2
+ * @param S12N Phase S1, S2 to neutral.
+ * @param S1N Phase S1 to Neutral
+ * @param S2 Phase S2.
+ * @param S2N Phase S2 to neutral.
  */
 case class ExtPhaseCodeKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Not applicable to any phase
-     */
-    val none: String,
-
-    /**
-     * Phase A.
-     */
-    val A: String,
-
-    /**
-     * Phases A to B
-     */
-    val AB: String,
-
-    /**
-     * Involving all phases
-     */
-    val ABC: String,
-
-    /**
-     * ABC to Neutral
-     */
-    val ABCN: String,
-
-    /**
-     * AB to Neutral
-     */
-    val ABN: String,
-
-    /**
-     * Phases A and C
-     */
-    val AC: String,
-
-    /**
-     * Phases A, C and neutral.
-     */
-    val ACN: String,
-
-    /**
-     * Phases A to neutral.
-     */
-    val AN: String,
-
-    /**
-     * Phase A current relative to Phase A voltage
-     */
-    val AtoAv: String,
-
-    /**
-     * Phase B.
-     */
-    val B: String,
-
-    /**
-     * Phase B current or voltage relative to Phase A voltage
-     */
-    val BAv: String,
-
-    /**
-     * Phases B to C
-     */
-    val BC: String,
-
-    /**
-     * BC to neutral.
-     */
-    val BCN: String,
-
-    /**
-     * Phases B to neutral.
-     */
-    val BN: String,
-
-    /**
-     * Phase C.
-     */
-    val C: String,
-
-    /**
-     * CA to Neutral
-     */
-    val CAN: String,
-
-    /**
-     * hase C current or voltage relative to Phase A voltage
-     */
-    val CAv: String,
-
-    /**
-     * Phases C to neutral.
-     */
-    val CN: String,
-
-    /**
-     * Neutral
-     */
-    val N: String,
-
-    /**
-     * Neutral to ground
-     */
-    val NG: String,
-
-    /**
-     * Phase S1
-     */
-    val S1: String,
-
-    /**
-     * Phase S1 to S2
-     */
-    val S12: String,
-
-    /**
-     * Phase S1, S2 to neutral.
-     */
-    val S12N: String,
-
-    /**
-     * Phase S1 to Neutral
-     */
-    val S1N: String,
-
-    /**
-     * Phase S2.
-     */
-    val S2: String,
-
-    /**
-     * Phase S2 to neutral.
-     */
-    val S2N: String
+(override val sup: BasicElement,
+val none: String,
+val A: String,
+val AB: String,
+val ABC: String,
+val ABCN: String,
+val ABN: String,
+val AC: String,
+val ACN: String,
+val AN: String,
+val AtoAv: String,
+val B: String,
+val BAv: String,
+val BC: String,
+val BCN: String,
+val BN: String,
+val C: String,
+val CAN: String,
+val CAv: String,
+val CN: String,
+val N: String,
+val NG: String,
+val S1: String,
+val S12: String,
+val S12N: String,
+val S1N: String,
+val S2: String,
+val S2N: String
 )
 extends
     Element
@@ -234,76 +152,36 @@ extends
 
 /**
  * The unit multipliers defined for the CIM.
+ * @param sup Reference to the superclass object.
+ * @param c Centi 10**-2
+ * @param d Deci 10**-1
+ * @param da deca 10**1
+ * @param h hecto 10**2
+ * @param k Kilo 10**3
+ * @param m Milli 10**-3
+ * @param micro Micro 10**-6
+ * @param n Nano 10**-9
+ * @param none Not Applicable or "x1"
+ * @param p Pico 10**-12
+ * @param G Giga 10**9
+ * @param M Mega 10**6
+ * @param T Tera 10**12
  */
 case class ExtUnitMultiplierKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Centi 10**-2
-     */
-    val c: String,
-
-    /**
-     * Deci 10**-1
-     */
-    val d: String,
-
-    /**
-     * deca 10**1
-     */
-    val da: String,
-
-    /**
-     * hecto 10**2
-     */
-    val h: String,
-
-    /**
-     * Kilo 10**3
-     */
-    val k: String,
-
-    /**
-     * Milli 10**-3
-     */
-    val m: String,
-
-    /**
-     * Micro 10**-6
-     */
-    val micro: String,
-
-    /**
-     * Nano 10**-9
-     */
-    val n: String,
-
-    /**
-     * Not Applicable or "x1"
-     */
-    val none: String,
-
-    /**
-     * Pico 10**-12
-     */
-    val p: String,
-
-    /**
-     * Giga 10**9
-     */
-    val G: String,
-
-    /**
-     * Mega 10**6
-     */
-    val M: String,
-
-    /**
-     * Tera 10**12
-     */
-    val T: String
+(override val sup: BasicElement,
+val c: String,
+val d: String,
+val da: String,
+val h: String,
+val k: String,
+val m: String,
+val micro: String,
+val n: String,
+val none: String,
+val p: String,
+val G: String,
+val M: String,
+val T: String
 )
 extends
     Element
@@ -362,647 +240,271 @@ extends
 
 /**
  * The units defiend for usage in the CIM.
+ * @param sup Reference to the superclass object.
+ * @param aPerM A/m, magnetic field strength, Ampere per metre, A/m
+ * @param b Sound pressure level, Bel, acoustic, Combine with multiplier prefix �d� to form decibels of Sound Pressure Level
+ *        �dB (SPL).�, B (SPL)
+ * @param bm Signal Strength, Bel-mW, normalized to 1mW.
+ *        Note: to form �dBm� combine �Bm� with multiplier �d�. Bm
+ * @param bq Radioactivity, Becquerel (1/s), Bq
+ * @param btu Energy, British Thermal Units, BTU
+ * @param btuPerH Power, BTU per hour, BTU/h
+ * @param cd Luminous intensity, candela, cd
+ * @param char Number of characters, characters, char
+ * @param charPerSec Data rate, characters per second, char/s
+ * @param code Application Value, encoded value, code
+ * @param cosTheta Power factor, Dimensionless &lt;img src="HTS_1.
+ *        PNG" width="64" height="29" border="0" alt="graphic"/&gt;, cos?
+ * @param count Amount of substance, counter value, count
+ * @param deg Plane angle, degrees, deg
+ * @param degC Relative temperature in degrees Celsius.
+ *        In the SI unit system the symbol is �C. Electric charge is measured in coulomb that has the unit symbol C. To destinguish degree Celsius form coulomb the symbol used in the UML is degC. Reason for not using �C is the special character � is difficult to manage in software.
+ * @param ft3 Volume, cubic feet, ft�
+ * @param ft3compensated Volume, cubic feet, ft�(compensated)
+ * @param ft3compensatedPerH Volumetric flow rate, compensated cubic feet per hour, ft�(compensated)/h
+ * @param g Mass in gram, g
+ * @param gM2 Turbine inertia, gram�meter2 (Combine with multiplier prefix �k� to form kg�m2.), gm�
+ * @param gPerG Concentration, The ratio of the mass of a solute divided by the mass of the solution., g/g
+ * @param gy Absorbed dose, Gray (J/kg), GY
+ * @param h Time, hour = minute * 60, h
+ * @param imperialGal Volume, imperial gallons, ImperialGal
+ * @param imperialGalPerH Volumetric flow rate, Imperial gallons per hour, ImperialGal/h
+ * @param jPerK Heat capacity, Joule/Kelvin, J/K
+ * @param jPerKg Specific energy, Joules / kg, J/kg
+ * @param kat Catalytic activity, katal = mol / s, kat
+ * @param kgM Moment of mass ,kilogram meter (kg�m), M
+ * @param kgPerM3 Density, gram/cubic meter (combine with prefix multiplier �k� to form kg/ m�), g/m�
+ * @param litre Volume, litre = dm3 = m3/1000., L
+ * @param litreCompensated Volume, litre, with the value compensated for weather effects, L(compensated)
+ * @param litreCompensatedPerH Volumetric flow rate, litres (compensated) per hour, L(compensated)/h
+ * @param litrePerH Volumetric flow rate, litres per hour, L/h
+ * @param litrePerLitre Concentration, The ratio of the volume of a solute divided by the volume of  the solution., L/L
+ * @param litrePerSec Volumetric flow rate, Volumetric flow rate, L/s
+ * @param litreUncompensated Volume, litre, with the value uncompensated for weather effects., L(uncompensated)
+ * @param litreUncompensatedPerH Volumetric flow rate, litres (uncompensated) per hour, L(uncompensated)/h
+ * @param lm Luminous flux, lumen (cd sr), Lm
+ * @param lx Illuminance lux, (lm/m�), L(uncompensated)/h
+ * @param m Length, meter, m
+ * @param m2 Area, square meter, m�
+ * @param m2PerSec Viscosity, meter squared / second, m�/s
+ *        m�/h
+ * @param m3 Volume, cubic meter, m�
+ * @param m3PerH Volumetric flow rate, cubic meters per hour, m�/h
+ * @param m3PerSec m3PerSec, cubic meters per second, m�/s
+ * @param m3compensated Volume, cubic meter, with the value compensated for weather effects., m3(compensated)
+ * @param m3compensatedPerH Volumetric flow rate, compensated cubic meters per hour, �(compensated)/h
+ * @param m3uncompensated m3uncompensated, cubic meter, with the value uncompensated for weather effects., m3(uncompensated)
+ * @param m3uncompensatedPerH Volumetric flow rate, uncompensated cubic meters per hour, m�(uncompensated)/h
+ * @param mPerM Length, Ratio of length, m/m
+ * @param mPerM3 Fuel efficiency, meters / cubic meter, m/m�
+ * @param mPerSec Velocity, meters per second (m/s), m/s
+ * @param mPerSec2 Acceleration, meters per second squared, m/s�
+ * @param meCode EndDeviceEvent, value to be interpreted as a EndDeviceEventCode, meCode
+ * @param min Time, minute  = s * 60, min
+ * @param mol Amount of substance, mole, mol
+ * @param molPerKg Concentration, Molality, the amount of solute in moles and the amount of solvent in kilograms., mol/kg
+ * @param molPerM3 Concentration, The amount of substance concentration, (c), the amount of solvent in moles divided by the volume of solution in m�., mol/ m�
+ * @param molPerMol Concentration, Molar fraction (?), the ratio of the molar amount of a solute divided by the molar amount of the solution.,mol/mol
+ * @param money Monetary unit, Generic money (Note: Specific monetary units are identified the currency class)., �
+ * @param n Force newton, (kg m/s�), N
+ * @param none N/A, None
+ * @param ohm Electric resistance, Ohm (V/A), O
+ * @param ohmM resistivity, ? (rho), ?m
+ * @param pa Pressure, Pascal (N/m�)
+(Note: the absolute or relative measurement of pressure is implied with this entry.
+ *        See below for more explicit forms.), Pa
+ * @param paA Pressure, Pascal, absolute pressure, PaA
+ * @param paG Pressure, Pascal, gauge pressure, PaG
+ * @param psiA Pressure, Pounds per square inch, absolute, psiA
+ * @param psiG Pressure, Pounds per square inch, gauge, psiG
+ * @param q Quantity power, Q, Q
+ * @param q45 Quantity power, Q measured at 45�, Q45
+ * @param q45h Quantity energy, Q measured at 45�, Q45h
+ * @param q60 Quantity power, Q measured at 60�, Q60
+ * @param q60h Quantity energy, Qh measured at 60�, Q60h
+ * @param qh Quantity energy, Qh, Qh
+ * @param rad Plane angle, Radian (m/m), rad
+ * @param radPerSec Angular velocity, radians per second, rad/s
+ * @param rev Amount of rotation, Revolutions, rev
+ * @param revPerSec Rotational speed, Rotations per second, rev/s
+ * @param sec Time,  seconds, s
+ * @param secPerSec Time, Ratio of time (can be combined with an multiplier prefix to show rates such as a clock drift rate, e.g. ��s/s�), s/s
+ * @param siemens Electric conductance, Siemens (A / V = 1 / O), S
+ * @param sr Solid angle, Steradian (m2/m2), sr
+ * @param status State, "1" = "true", "live", "on", "high", "set"; 
+"0" = "false", "dead", "off", "low", "cleared"
+ *        Note: A Boolean value is preferred but other values may be supported, status
+ * @param sv Doe equivalent, Sievert (J/kg), Sv
+ * @param t Magnetic flux density, Tesla (Wb/m2), T
+ * @param therm Energy, Therm, therm
+ * @param timeStamp Timestamp, time and date per ISO 8601 format, timeStamp
+ * @param usGal Volume, US gallons, <u>Gal</u>
+ * @param usGalPerH Volumetric flow rate, US gallons per hour, USGal/h
+ * @param wPerMK Thermal conductivity, Watt/meter Kelvin, W/m K
+ * @param wb Magnetic flux, Weber (V s)<b>, Wb</b>
+ * @param A Current, ampere, A
+ * @param A2 Amps squared,  amp squared, A2
+ * @param A2h ampere-squared, Ampere-squared hour, A�h
+ * @param A2s Amps squared time, square amp second, A�s
+ * @param APerA Current, Ratio of Amperages, A/A
+ * @param Ah Ampere-hours, Ampere-hours, Ah
+ * @param As Amp seconds, amp seconds, As
+ * @param F Electric capacitance, Farad (C/V), �C
+ * @param H Electric inductance, Henry (Wb/A), H
+ * @param Hz Frequency hertz, (1/s), Hz
+ * @param HzPerHz Frequency, Rate of frequency change, Hz/Hz
+ * @param HzPerSec Rate of change of frequency, hertz per second, Hz/s
+ * @param J Energy joule, (N�m = C�V = W�s), J
+ * @param K Temperature, Kelvin, K
+ * @param V Electric potential, Volt (W/A), V
+ * @param V2 Volts squared, Volt squared (W2/A2), V�
+ * @param V2h volt-squared hour, Volt-squared-hours, V�h
+ * @param VA Apparent power, Volt Ampere (See also real power and reactive power.), VA
+ * @param VAh Apparent energy, Volt Ampere hours, VAh
+ * @param VAhPerRev Kh-Vah, apparent energy metering constant, VAh/rev
+ * @param VAr Reactive power, Volt Ampere reactive.
+ *        The �reactive� or �imaginary� component of electrical power (VISin?). (See also real power and apparent power)., VAr
+ * @param VArh Reactive energy, Volt Ampere reactive hours, VArh
+ * @param VArhPerRev Kh-VArh, reactive energy metering constant, VArh/rev
+ * @param VPerHz Magnetic flux, Volts per Hertz, V/Hz
+ * @param VPerV Voltage, Ratio of voltages (e.g. mV/V), V/V
+ * @param Vs Volt seconds, Volt seconds (Ws/A), Vs
+ * @param W Real power, Watt.
+ *        By definition, one Watt equals oneJoule per second. Electrical power may have real and reactive components. The real portion of electrical power (I�R) or VIcos?, is expressed in Watts. (See also apparent power and reactive power.), W
+ * @param WPerSec Ramp rate, Watts per second, W/s
+ * @param WPerVA Power Factor, PF, W/VA
+ * @param WPerW Signal Strength, Ratio of power, W/W
+ * @param Wh Real energy, Watt hours, Wh
+ * @param WhPerM3 Wh/m3, energy per volume, Wh/m�
+ * @param WhPerRev Kh-Wh, active energy metering constant, Wh/rev
  */
 case class ExtUnitSymbolKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * A/m, magnetic field strength, Ampere per metre, A/m
-     */
-    val aPerM: String,
-
-    /**
-     * Sound pressure level, Bel, acoustic, Combine with multiplier prefix �d� to form decibels of Sound Pressure Level
-     * �dB (SPL).�, B (SPL)
-     */
-    val b: String,
-
-    /**
-     * Signal Strength, Bel-mW, normalized to 1mW.
-     * Note: to form �dBm� combine �Bm� with multiplier �d�. Bm
-     */
-    val bm: String,
-
-    /**
-     * Radioactivity, Becquerel (1/s), Bq
-     */
-    val bq: String,
-
-    /**
-     * Energy, British Thermal Units, BTU
-     */
-    val btu: String,
-
-    /**
-     * Power, BTU per hour, BTU/h
-     */
-    val btuPerH: String,
-
-    /**
-     * Luminous intensity, candela, cd
-     */
-    val cd: String,
-
-    /**
-     * Number of characters, characters, char
-     */
-    val char: String,
-
-    /**
-     * Data rate, characters per second, char/s
-     */
-    val charPerSec: String,
-
-    /**
-     * Application Value, encoded value, code
-     */
-    val code: String,
-
-    /**
-     * Power factor, Dimensionless &lt;img src="HTS_1.
-     * PNG" width="64" height="29" border="0" alt="graphic"/&gt;, cos?
-     */
-    val cosTheta: String,
-
-    /**
-     * Amount of substance, counter value, count
-     */
-    val count: String,
-
-    /**
-     * Plane angle, degrees, deg
-     */
-    val deg: String,
-
-    /**
-     * Relative temperature in degrees Celsius.
-     * In the SI unit system the symbol is �C. Electric charge is measured in coulomb that has the unit symbol C. To destinguish degree Celsius form coulomb the symbol used in the UML is degC. Reason for not using �C is the special character � is difficult to manage in software.
-     */
-    val degC: String,
-
-    /**
-     * Volume, cubic feet, ft�
-     */
-    val ft3: String,
-
-    /**
-     * Volume, cubic feet, ft�(compensated)
-     */
-    val ft3compensated: String,
-
-    /**
-     * Volumetric flow rate, compensated cubic feet per hour, ft�(compensated)/h
-     */
-    val ft3compensatedPerH: String,
-
-    /**
-     * Mass in gram, g
-     */
-    val g: String,
-
-    /**
-     * Turbine inertia, gram�meter2 (Combine with multiplier prefix �k� to form kg�m2.), gm�
-     */
-    val gM2: String,
-
-    /**
-     * Concentration, The ratio of the mass of a solute divided by the mass of the solution., g/g
-     */
-    val gPerG: String,
-
-    /**
-     * Absorbed dose, Gray (J/kg), GY
-     */
-    val gy: String,
-
-    /**
-     * Time, hour = minute * 60, h
-     */
-    val h: String,
-
-    /**
-     * Volume, imperial gallons, ImperialGal
-     */
-    val imperialGal: String,
-
-    /**
-     * Volumetric flow rate, Imperial gallons per hour, ImperialGal/h
-     */
-    val imperialGalPerH: String,
-
-    /**
-     * Heat capacity, Joule/Kelvin, J/K
-     */
-    val jPerK: String,
-
-    /**
-     * Specific energy, Joules / kg, J/kg
-     */
-    val jPerKg: String,
-
-    /**
-     * Catalytic activity, katal = mol / s, kat
-     */
-    val kat: String,
-
-    /**
-     * Moment of mass ,kilogram meter (kg�m), M
-     */
-    val kgM: String,
-
-    /**
-     * Density, gram/cubic meter (combine with prefix multiplier �k� to form kg/ m�), g/m�
-     */
-    val kgPerM3: String,
-
-    /**
-     * Volume, litre = dm3 = m3/1000., L
-     */
-    val litre: String,
-
-    /**
-     * Volume, litre, with the value compensated for weather effects, L(compensated)
-     */
-    val litreCompensated: String,
-
-    /**
-     * Volumetric flow rate, litres (compensated) per hour, L(compensated)/h
-     */
-    val litreCompensatedPerH: String,
-
-    /**
-     * Volumetric flow rate, litres per hour, L/h
-     */
-    val litrePerH: String,
-
-    /**
-     * Concentration, The ratio of the volume of a solute divided by the volume of  the solution., L/L
-     */
-    val litrePerLitre: String,
-
-    /**
-     * Volumetric flow rate, Volumetric flow rate, L/s
-     */
-    val litrePerSec: String,
-
-    /**
-     * Volume, litre, with the value uncompensated for weather effects., L(uncompensated)
-     */
-    val litreUncompensated: String,
-
-    /**
-     * Volumetric flow rate, litres (uncompensated) per hour, L(uncompensated)/h
-     */
-    val litreUncompensatedPerH: String,
-
-    /**
-     * Luminous flux, lumen (cd sr), Lm
-     */
-    val lm: String,
-
-    /**
-     * Illuminance lux, (lm/m�), L(uncompensated)/h
-     */
-    val lx: String,
-
-    /**
-     * Length, meter, m
-     */
-    val m: String,
-
-    /**
-     * Area, square meter, m�
-     */
-    val m2: String,
-
-    /**
-     * Viscosity, meter squared / second, m�/s
-     * m�/h
-     */
-    val m2PerSec: String,
-
-    /**
-     * Volume, cubic meter, m�
-     */
-    val m3: String,
-
-    /**
-     * Volumetric flow rate, cubic meters per hour, m�/h
-     */
-    val m3PerH: String,
-
-    /**
-     * m3PerSec, cubic meters per second, m�/s
-     */
-    val m3PerSec: String,
-
-    /**
-     * Volume, cubic meter, with the value compensated for weather effects., m3(compensated)
-     */
-    val m3compensated: String,
-
-    /**
-     * Volumetric flow rate, compensated cubic meters per hour, �(compensated)/h
-     */
-    val m3compensatedPerH: String,
-
-    /**
-     * m3uncompensated, cubic meter, with the value uncompensated for weather effects., m3(uncompensated)
-     */
-    val m3uncompensated: String,
-
-    /**
-     * Volumetric flow rate, uncompensated cubic meters per hour, m�(uncompensated)/h
-     */
-    val m3uncompensatedPerH: String,
-
-    /**
-     * Length, Ratio of length, m/m
-     */
-    val mPerM: String,
-
-    /**
-     * Fuel efficiency, meters / cubic meter, m/m�
-     */
-    val mPerM3: String,
-
-    /**
-     * Velocity, meters per second (m/s), m/s
-     */
-    val mPerSec: String,
-
-    /**
-     * Acceleration, meters per second squared, m/s�
-     */
-    val mPerSec2: String,
-
-    /**
-     * EndDeviceEvent, value to be interpreted as a EndDeviceEventCode, meCode
-     */
-    val meCode: String,
-
-    /**
-     * Time, minute  = s * 60, min
-     */
-    val min: String,
-
-    /**
-     * Amount of substance, mole, mol
-     */
-    val mol: String,
-
-    /**
-     * Concentration, Molality, the amount of solute in moles and the amount of solvent in kilograms., mol/kg
-     */
-    val molPerKg: String,
-
-    /**
-     * Concentration, The amount of substance concentration, (c), the amount of solvent in moles divided by the volume of solution in m�., mol/ m�
-     */
-    val molPerM3: String,
-
-    /**
-     * Concentration, Molar fraction (?), the ratio of the molar amount of a solute divided by the molar amount of the solution.,mol/mol
-     */
-    val molPerMol: String,
-
-    /**
-     * Monetary unit, Generic money (Note: Specific monetary units are identified the currency class)., �
-     */
-    val money: String,
-
-    /**
-     * Force newton, (kg m/s�), N
-     */
-    val n: String,
-
-    /**
-     * N/A, None
-     */
-    val none: String,
-
-    /**
-     * Electric resistance, Ohm (V/A), O
-     */
-    val ohm: String,
-
-    /**
-     * resistivity, ? (rho), ?m
-     */
-    val ohmM: String,
-
-    /**
-     * Pressure, Pascal (N/m�)
-    (Note: the absolute or relative measurement of pressure is implied with this entry.
-     * See below for more explicit forms.), Pa
-     */
-    val pa: String,
-
-    /**
-     * Pressure, Pascal, absolute pressure, PaA
-     */
-    val paA: String,
-
-    /**
-     * Pressure, Pascal, gauge pressure, PaG
-     */
-    val paG: String,
-
-    /**
-     * Pressure, Pounds per square inch, absolute, psiA
-     */
-    val psiA: String,
-
-    /**
-     * Pressure, Pounds per square inch, gauge, psiG
-     */
-    val psiG: String,
-
-    /**
-     * Quantity power, Q, Q
-     */
-    val q: String,
-
-    /**
-     * Quantity power, Q measured at 45�, Q45
-     */
-    val q45: String,
-
-    /**
-     * Quantity energy, Q measured at 45�, Q45h
-     */
-    val q45h: String,
-
-    /**
-     * Quantity power, Q measured at 60�, Q60
-     */
-    val q60: String,
-
-    /**
-     * Quantity energy, Qh measured at 60�, Q60h
-     */
-    val q60h: String,
-
-    /**
-     * Quantity energy, Qh, Qh
-     */
-    val qh: String,
-
-    /**
-     * Plane angle, Radian (m/m), rad
-     */
-    val rad: String,
-
-    /**
-     * Angular velocity, radians per second, rad/s
-     */
-    val radPerSec: String,
-
-    /**
-     * Amount of rotation, Revolutions, rev
-     */
-    val rev: String,
-
-    /**
-     * Rotational speed, Rotations per second, rev/s
-     */
-    val revPerSec: String,
-
-    /**
-     * Time,  seconds, s
-     */
-    val sec: String,
-
-    /**
-     * Time, Ratio of time (can be combined with an multiplier prefix to show rates such as a clock drift rate, e.g. ��s/s�), s/s
-     */
-    val secPerSec: String,
-
-    /**
-     * Electric conductance, Siemens (A / V = 1 / O), S
-     */
-    val siemens: String,
-
-    /**
-     * Solid angle, Steradian (m2/m2), sr
-     */
-    val sr: String,
-
-    /**
-     * State, "1" = "true", "live", "on", "high", "set"; 
-    "0" = "false", "dead", "off", "low", "cleared"
-     * Note: A Boolean value is preferred but other values may be supported, status
-     */
-    val status: String,
-
-    /**
-     * Doe equivalent, Sievert (J/kg), Sv
-     */
-    val sv: String,
-
-    /**
-     * Magnetic flux density, Tesla (Wb/m2), T
-     */
-    val t: String,
-
-    /**
-     * Energy, Therm, therm
-     */
-    val therm: String,
-
-    /**
-     * Timestamp, time and date per ISO 8601 format, timeStamp
-     */
-    val timeStamp: String,
-
-    /**
-     * Volume, US gallons, <u>Gal</u>
-     */
-    val usGal: String,
-
-    /**
-     * Volumetric flow rate, US gallons per hour, USGal/h
-     */
-    val usGalPerH: String,
-
-    /**
-     * Thermal conductivity, Watt/meter Kelvin, W/m K
-     */
-    val wPerMK: String,
-
-    /**
-     * Magnetic flux, Weber (V s)<b>, Wb</b>
-     */
-    val wb: String,
-
-    /**
-     * Current, ampere, A
-     */
-    val A: String,
-
-    /**
-     * Amps squared,  amp squared, A2
-     */
-    val A2: String,
-
-    /**
-     * ampere-squared, Ampere-squared hour, A�h
-     */
-    val A2h: String,
-
-    /**
-     * Amps squared time, square amp second, A�s
-     */
-    val A2s: String,
-
-    /**
-     * Current, Ratio of Amperages, A/A
-     */
-    val APerA: String,
-
-    /**
-     * Ampere-hours, Ampere-hours, Ah
-     */
-    val Ah: String,
-
-    /**
-     * Amp seconds, amp seconds, As
-     */
-    val As: String,
-
-    /**
-     * Electric capacitance, Farad (C/V), �C
-     */
-    val F: String,
-
-    /**
-     * Electric inductance, Henry (Wb/A), H
-     */
-    val H: String,
-
-    /**
-     * Frequency hertz, (1/s), Hz
-     */
-    val Hz: String,
-
-    /**
-     * Frequency, Rate of frequency change, Hz/Hz
-     */
-    val HzPerHz: String,
-
-    /**
-     * Rate of change of frequency, hertz per second, Hz/s
-     */
-    val HzPerSec: String,
-
-    /**
-     * Energy joule, (N�m = C�V = W�s), J
-     */
-    val J: String,
-
-    /**
-     * Temperature, Kelvin, K
-     */
-    val K: String,
-
-    /**
-     * Electric potential, Volt (W/A), V
-     */
-    val V: String,
-
-    /**
-     * Volts squared, Volt squared (W2/A2), V�
-     */
-    val V2: String,
-
-    /**
-     * volt-squared hour, Volt-squared-hours, V�h
-     */
-    val V2h: String,
-
-    /**
-     * Apparent power, Volt Ampere (See also real power and reactive power.), VA
-     */
-    val VA: String,
-
-    /**
-     * Apparent energy, Volt Ampere hours, VAh
-     */
-    val VAh: String,
-
-    /**
-     * Kh-Vah, apparent energy metering constant, VAh/rev
-     */
-    val VAhPerRev: String,
-
-    /**
-     * Reactive power, Volt Ampere reactive.
-     * The �reactive� or �imaginary� component of electrical power (VISin?). (See also real power and apparent power)., VAr
-     */
-    val VAr: String,
-
-    /**
-     * Reactive energy, Volt Ampere reactive hours, VArh
-     */
-    val VArh: String,
-
-    /**
-     * Kh-VArh, reactive energy metering constant, VArh/rev
-     */
-    val VArhPerRev: String,
-
-    /**
-     * Magnetic flux, Volts per Hertz, V/Hz
-     */
-    val VPerHz: String,
-
-    /**
-     * Voltage, Ratio of voltages (e.g. mV/V), V/V
-     */
-    val VPerV: String,
-
-    /**
-     * Volt seconds, Volt seconds (Ws/A), Vs
-     */
-    val Vs: String,
-
-    /**
-     * Real power, Watt.
-     * By definition, one Watt equals oneJoule per second. Electrical power may have real and reactive components. The real portion of electrical power (I�R) or VIcos?, is expressed in Watts. (See also apparent power and reactive power.), W
-     */
-    val W: String,
-
-    /**
-     * Ramp rate, Watts per second, W/s
-     */
-    val WPerSec: String,
-
-    /**
-     * Power Factor, PF, W/VA
-     */
-    val WPerVA: String,
-
-    /**
-     * Signal Strength, Ratio of power, W/W
-     */
-    val WPerW: String,
-
-    /**
-     * Real energy, Watt hours, Wh
-     */
-    val Wh: String,
-
-    /**
-     * Wh/m3, energy per volume, Wh/m�
-     */
-    val WhPerM3: String,
-
-    /**
-     * Kh-Wh, active energy metering constant, Wh/rev
-     */
-    val WhPerRev: String
+(override val sup: BasicElement,
+val aPerM: String,
+val b: String,
+val bm: String,
+val bq: String,
+val btu: String,
+val btuPerH: String,
+val cd: String,
+val char: String,
+val charPerSec: String,
+val code: String,
+val cosTheta: String,
+val count: String,
+val deg: String,
+val degC: String,
+val ft3: String,
+val ft3compensated: String,
+val ft3compensatedPerH: String,
+val g: String,
+val gM2: String,
+val gPerG: String,
+val gy: String,
+val h: String,
+val imperialGal: String,
+val imperialGalPerH: String,
+val jPerK: String,
+val jPerKg: String,
+val kat: String,
+val kgM: String,
+val kgPerM3: String,
+val litre: String,
+val litreCompensated: String,
+val litreCompensatedPerH: String,
+val litrePerH: String,
+val litrePerLitre: String,
+val litrePerSec: String,
+val litreUncompensated: String,
+val litreUncompensatedPerH: String,
+val lm: String,
+val lx: String,
+val m: String,
+val m2: String,
+val m2PerSec: String,
+val m3: String,
+val m3PerH: String,
+val m3PerSec: String,
+val m3compensated: String,
+val m3compensatedPerH: String,
+val m3uncompensated: String,
+val m3uncompensatedPerH: String,
+val mPerM: String,
+val mPerM3: String,
+val mPerSec: String,
+val mPerSec2: String,
+val meCode: String,
+val min: String,
+val mol: String,
+val molPerKg: String,
+val molPerM3: String,
+val molPerMol: String,
+val money: String,
+val n: String,
+val none: String,
+val ohm: String,
+val ohmM: String,
+val pa: String,
+val paA: String,
+val paG: String,
+val psiA: String,
+val psiG: String,
+val q: String,
+val q45: String,
+val q45h: String,
+val q60: String,
+val q60h: String,
+val qh: String,
+val rad: String,
+val radPerSec: String,
+val rev: String,
+val revPerSec: String,
+val sec: String,
+val secPerSec: String,
+val siemens: String,
+val sr: String,
+val status: String,
+val sv: String,
+val t: String,
+val therm: String,
+val timeStamp: String,
+val usGal: String,
+val usGalPerH: String,
+val wPerMK: String,
+val wb: String,
+val A: String,
+val A2: String,
+val A2h: String,
+val A2s: String,
+val APerA: String,
+val Ah: String,
+val As: String,
+val F: String,
+val H: String,
+val Hz: String,
+val HzPerHz: String,
+val HzPerSec: String,
+val J: String,
+val K: String,
+val V: String,
+val V2: String,
+val V2h: String,
+val VA: String,
+val VAh: String,
+val VAhPerRev: String,
+val VAr: String,
+val VArh: String,
+val VArhPerRev: String,
+val VPerHz: String,
+val VPerV: String,
+val Vs: String,
+val W: String,
+val WPerSec: String,
+val WPerVA: String,
+val WPerW: String,
+val Wh: String,
+val WhPerM3: String,
+val WhPerRev: String
 )
 extends
     Element

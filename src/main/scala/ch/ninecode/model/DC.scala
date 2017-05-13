@@ -10,120 +10,65 @@ import ch.ninecode.cim.Context
 
 /**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
+ * @param sup Reference to the superclass object.
+ * @param baseS Base apparent power of the converter pole.
+ * @param idc Converter DC current, also called Id.
+ *        Converter state variable, result from power flow.
+ * @param idleLoss Active power loss in pole at no power transfer.
+ *        Converter configuration data used in power flow.
+ * @param maxUdc The maximum voltage on the DC side at which the converter should operate.
+ *        Converter configuration data used in power flow.
+ * @param minUdc Min allowed converter DC voltage.
+ *        Converter configuration data used in power flow.
+ * @param numberOfValves Number of valves in the converter.
+ *        Used in loss calculations.
+ * @param p Active power at the point of common coupling.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param poleLossP The active power loss at a DC Pole 
+= idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc^2
+For lossless operation Pdc=Pac
+For rectifier operation with losses Pdc=Pac-lossP
+For inverter operation with losses Pdc=Pac+lossP
+ *        Converter state variable used in power flow.
+ * @param q Reactive power at the point of common coupling.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param ratedUdc Rated converter DC voltage, also called UdN.
+ *        Converter configuration data used in power flow.
+ * @param resistiveLoss Converter configuration data used in power flow.
+ *        Refer to poleLossP.
+ * @param switchingLoss Switching losses, relative to the base apparent power 'baseS'.
+ *        Refer to poleLossP.
+ * @param targetPpcc Real power injection target in AC grid, at point of common coupling.
+ * @param targetUdc Target value for DC voltage magnitude.
+ * @param uc Line-to-line converter voltage, the voltage at the AC side of the valve.
+ *        Converter state variable, result from power flow.
+ * @param udc Converter voltage at the DC side, also called Ud.
+ *        Converter state variable, result from power flow.
+ * @param valveU0 Valve threshold voltage, also called Uvalve.
+ *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
+ * @param PccTerminal Point of common coupling terminal for this converter DC side.
+ *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
  */
 case class ACDCConverter
-(
-
-    override val sup: ConductingEquipment,
-
-    /**
-     * Base apparent power of the converter pole.
-     */
-    val baseS: Double,
-
-    /**
-     * Converter DC current, also called Id.
-     * Converter state variable, result from power flow.
-     */
-    val idc: Double,
-
-    /**
-     * Active power loss in pole at no power transfer.
-     * Converter configuration data used in power flow.
-     */
-    val idleLoss: Double,
-
-    /**
-     * The maximum voltage on the DC side at which the converter should operate.
-     * Converter configuration data used in power flow.
-     */
-    val maxUdc: Double,
-
-    /**
-     * Min allowed converter DC voltage.
-     * Converter configuration data used in power flow.
-     */
-    val minUdc: Double,
-
-    /**
-     * Number of valves in the converter.
-     * Used in loss calculations.
-     */
-    val numberOfValves: Int,
-
-    /**
-     * Active power at the point of common coupling.
-     * Load sign convention is used, i.e. positive sign means flow out from a node.
-     */
-    val p: Double,
-
-    /**
-     * The active power loss at a DC Pole 
-    = idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc^2
-    For lossless operation Pdc=Pac
-    For rectifier operation with losses Pdc=Pac-lossP
-    For inverter operation with losses Pdc=Pac+lossP
-     * Converter state variable used in power flow.
-     */
-    val poleLossP: Double,
-
-    /**
-     * Reactive power at the point of common coupling.
-     * Load sign convention is used, i.e. positive sign means flow out from a node.
-     */
-    val q: Double,
-
-    /**
-     * Rated converter DC voltage, also called UdN.
-     * Converter configuration data used in power flow.
-     */
-    val ratedUdc: Double,
-
-    /**
-     * Converter configuration data used in power flow.
-     * Refer to poleLossP.
-     */
-    val resistiveLoss: Double,
-
-    /**
-     * Switching losses, relative to the base apparent power 'baseS'.
-     * Refer to poleLossP.
-     */
-    val switchingLoss: Double,
-
-    /**
-     * Real power injection target in AC grid, at point of common coupling.
-     */
-    val targetPpcc: Double,
-
-    /**
-     * Target value for DC voltage magnitude.
-     */
-    val targetUdc: Double,
-
-    /**
-     * Line-to-line converter voltage, the voltage at the AC side of the valve.
-     * Converter state variable, result from power flow.
-     */
-    val uc: Double,
-
-    /**
-     * Converter voltage at the DC side, also called Ud.
-     * Converter state variable, result from power flow.
-     */
-    val udc: Double,
-
-    /**
-     * Valve threshold voltage, also called Uvalve.
-     * Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
-     */
-    val valveU0: Double,
-
-    /**
-     * Point of common coupling terminal for this converter DC side.
-     * It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
-     */
-    val PccTerminal: String
+(override val sup: ConductingEquipment,
+val baseS: Double,
+val idc: Double,
+val idleLoss: Double,
+val maxUdc: Double,
+val minUdc: Double,
+val numberOfValves: Int,
+val p: Double,
+val poleLossP: Double,
+val q: Double,
+val ratedUdc: Double,
+val resistiveLoss: Double,
+val switchingLoss: Double,
+val targetPpcc: Double,
+val targetUdc: Double,
+val uc: Double,
+val udc: Double,
+val valveU0: Double,
+val PccTerminal: String
 )
 extends
     Element
@@ -193,18 +138,14 @@ extends
 /**
  * A DC electrical connection point at the AC/DC converter.
  * The AC/DC converter is electrically connected also to the AC side. The AC connection is inherited from the AC conducting equipment in the same way as any other AC equipment. The AC/DC converter DC terminal is separate from generic DC terminal to restrict the connection with the AC side to AC/DC converter and so that no other DC conducting equipment can be connected to the AC side.
+ * @param sup Reference to the superclass object.
+ * @param polarity Represents the normal network polarity condition.
+ * @param DCConductingEquipment
  */
 case class ACDCConverterDCTerminal
-(
-
-    override val sup: DCBaseTerminal,
-
-    /**
-     * Represents the normal network polarity condition.
-     */
-    val polarity: String,
-
-    val DCConductingEquipment: String
+(override val sup: DCBaseTerminal,
+val polarity: String,
+val DCConductingEquipment: String
 )
 extends
     Element
@@ -241,91 +182,51 @@ extends
 
 /**
  * DC side of the current source converter (CSC).
+ * @param sup Reference to the superclass object.
+ * @param alpha Firing angle, typical value between 10 and 18 degrees for a rectifier.
+ *        CSC state variable, result from power flow.
+ * @param gamma Extinction angle.
+ *        CSC state variable, result from power flow.
+ * @param maxAlpha Maximum firing angle.
+ *        CSC configuration data used in power flow.
+ * @param maxGamma Maximum extinction angle.
+ *        CSC configuration data used in power flow.
+ * @param maxIdc The maximum direct current (Id) on the DC side at which the converter should operate.
+ *        Converter configuration data use in power flow.
+ * @param minAlpha Minimum firing angle.
+ *        CSC configuration data used in power flow.
+ * @param minGamma Minimum extinction angle.
+ *        CSC configuration data used in power flow.
+ * @param minIdc The minimum direct current (Id) on the DC side at which the converter should operate.
+ *        CSC configuration data used in power flow.
+ * @param operatingMode Indicates whether the DC pole is operating as an inverter or as a rectifier.
+ *        CSC control variable used in power flow.
+ * @param pPccControl
+ * @param ratedIdc Rated converter DC current, also called IdN.
+ *        Converter configuration data used in power flow.
+ * @param targetAlpha Target firing angle.
+ *        CSC control variable used in power flow.
+ * @param targetGamma Target extinction angle.
+ *        CSC  control variable used in power flow.
+ * @param targetIdc DC current target value.
+ *        CSC control variable used in power flow.
  */
 case class CsConverter
-(
-
-    override val sup: ACDCConverter,
-
-    /**
-     * Firing angle, typical value between 10 and 18 degrees for a rectifier.
-     * CSC state variable, result from power flow.
-     */
-    val alpha: Double,
-
-    /**
-     * Extinction angle.
-     * CSC state variable, result from power flow.
-     */
-    val gamma: Double,
-
-    /**
-     * Maximum firing angle.
-     * CSC configuration data used in power flow.
-     */
-    val maxAlpha: Double,
-
-    /**
-     * Maximum extinction angle.
-     * CSC configuration data used in power flow.
-     */
-    val maxGamma: Double,
-
-    /**
-     * The maximum direct current (Id) on the DC side at which the converter should operate.
-     * Converter configuration data use in power flow.
-     */
-    val maxIdc: Double,
-
-    /**
-     * Minimum firing angle.
-     * CSC configuration data used in power flow.
-     */
-    val minAlpha: Double,
-
-    /**
-     * Minimum extinction angle.
-     * CSC configuration data used in power flow.
-     */
-    val minGamma: Double,
-
-    /**
-     * The minimum direct current (Id) on the DC side at which the converter should operate.
-     * CSC configuration data used in power flow.
-     */
-    val minIdc: Double,
-
-    /**
-     * Indicates whether the DC pole is operating as an inverter or as a rectifier.
-     * CSC control variable used in power flow.
-     */
-    val operatingMode: String,
-
-    val pPccControl: String,
-
-    /**
-     * Rated converter DC current, also called IdN.
-     * Converter configuration data used in power flow.
-     */
-    val ratedIdc: Double,
-
-    /**
-     * Target firing angle.
-     * CSC control variable used in power flow.
-     */
-    val targetAlpha: Double,
-
-    /**
-     * Target extinction angle.
-     * CSC  control variable used in power flow.
-     */
-    val targetGamma: Double,
-
-    /**
-     * DC current target value.
-     * CSC control variable used in power flow.
-     */
-    val targetIdc: Double
+(override val sup: ACDCConverter,
+val alpha: Double,
+val gamma: Double,
+val maxAlpha: Double,
+val maxGamma: Double,
+val maxIdc: Double,
+val minAlpha: Double,
+val minGamma: Double,
+val minIdc: Double,
+val operatingMode: String,
+val pPccControl: String,
+val ratedIdc: Double,
+val targetAlpha: Double,
+val targetGamma: Double,
+val targetIdc: Double
 )
 extends
     Element
@@ -386,21 +287,14 @@ extends
 
 /**
  * Operating mode for HVDC line operating as Current Source Converter.
+ * @param sup Reference to the superclass object.
+ * @param inverter Operating as inverter
+ * @param rectifier Operating as rectifier.
  */
 case class CsOperatingModeKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Operating as inverter
-     */
-    val inverter: String,
-
-    /**
-     * Operating as rectifier.
-     */
-    val rectifier: String
+(override val sup: BasicElement,
+val inverter: String,
+val rectifier: String
 )
 extends
     Element
@@ -437,26 +331,16 @@ extends
 
 /**
  * Active power control modes for HVDC line operating as Current Source Converter.
+ * @param sup Reference to the superclass object.
+ * @param activePower Active power control at AC side.
+ * @param dcCurrent DC current control
+ * @param dcVoltage DC voltage control.
  */
 case class CsPpccControlKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Active power control at AC side.
-     */
-    val activePower: String,
-
-    /**
-     * DC current control
-     */
-    val dcCurrent: String,
-
-    /**
-     * DC voltage control.
-     */
-    val dcVoltage: String
+(override val sup: BasicElement,
+val activePower: String,
+val dcCurrent: String,
+val dcVoltage: String
 )
 extends
     Element
@@ -496,19 +380,15 @@ extends
 /**
  * An electrical connection point at a piece of DC conducting equipment.
  * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
+ * @param sup Reference to the superclass object.
+ * @param DCNode
+ * @param DCTopologicalNode See association end Terminal.
+ *        TopologicalNode.
  */
 case class DCBaseTerminal
-(
-
-    override val sup: ACDCTerminal,
-
-    val DCNode: String,
-
-    /**
-     * See association end Terminal.
-     * TopologicalNode.
-     */
-    val DCTopologicalNode: String
+(override val sup: ACDCTerminal,
+val DCNode: String,
+val DCTopologicalNode: String
 )
 extends
     Element
@@ -545,11 +425,10 @@ extends
 
 /**
  * A breaker within a DC system.
+ * @param sup Reference to the superclass object.
  */
 case class DCBreaker
-(
-
-    override val sup: DCSwitch
+(override val sup: DCSwitch
 )
 extends
     Element
@@ -582,11 +461,10 @@ extends
 
 /**
  * A busbar within a DC system.
+ * @param sup Reference to the superclass object.
  */
 case class DCBusbar
-(
-
-    override val sup: DCConductingEquipment
+(override val sup: DCConductingEquipment
 )
 extends
     Element
@@ -620,11 +498,10 @@ extends
 /**
  * Low resistance equipment used in the internal DC circuit to balance voltages.
  * It has typically positive and negative pole terminals and a ground.
+ * @param sup Reference to the superclass object.
  */
 case class DCChopper
-(
-
-    override val sup: DCConductingEquipment
+(override val sup: DCConductingEquipment
 )
 extends
     Element
@@ -657,11 +534,10 @@ extends
 
 /**
  * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
+ * @param sup Reference to the superclass object.
  */
 case class DCConductingEquipment
-(
-
-    override val sup: Equipment
+(override val sup: Equipment
 )
 extends
     Element
@@ -694,26 +570,16 @@ extends
 
 /**
  * The operating mode of an HVDC bipole.
+ * @param sup Reference to the superclass object.
+ * @param bipolar Bipolar operation.
+ * @param monopolarGroundReturn Monopolar operation with ground return
+ * @param monopolarMetallicReturn Monopolar operation with metallic return
  */
 case class DCConverterOperatingModeKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Bipolar operation.
-     */
-    val bipolar: String,
-
-    /**
-     * Monopolar operation with ground return
-     */
-    val monopolarGroundReturn: String,
-
-    /**
-     * Monopolar operation with metallic return
-     */
-    val monopolarMetallicReturn: String
+(override val sup: BasicElement,
+val bipolar: String,
+val monopolarGroundReturn: String,
+val monopolarMetallicReturn: String
 )
 extends
     Element
@@ -752,13 +618,12 @@ extends
 
 /**
  * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
+ * @param sup Reference to the superclass object.
+ * @param operationMode
  */
 case class DCConverterUnit
-(
-
-    override val sup: DCEquipmentContainer,
-
-    val operationMode: String
+(override val sup: DCEquipmentContainer,
+val operationMode: String
 )
 extends
     Element
@@ -793,11 +658,10 @@ extends
 
 /**
  * A disconnector within a DC system.
+ * @param sup Reference to the superclass object.
  */
 case class DCDisconnector
-(
-
-    override val sup: DCSwitch
+(override val sup: DCSwitch
 )
 extends
     Element
@@ -831,11 +695,10 @@ extends
 /**
  * A modeling construct to provide a root class for containment of DC as well as AC equipment.
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
+ * @param sup Reference to the superclass object.
  */
 case class DCEquipmentContainer
-(
-
-    override val sup: EquipmentContainer
+(override val sup: EquipmentContainer
 )
 extends
     Element
@@ -868,21 +731,14 @@ extends
 
 /**
  * A ground within a DC system.
+ * @param sup Reference to the superclass object.
+ * @param inductance Inductance to ground.
+ * @param r Resistance to ground.
  */
 case class DCGround
-(
-
-    override val sup: DCConductingEquipment,
-
-    /**
-     * Inductance to ground.
-     */
-    val inductance: Double,
-
-    /**
-     * Resistance to ground.
-     */
-    val r: Double
+(override val sup: DCConductingEquipment,
+val inductance: Double,
+val r: Double
 )
 extends
     Element
@@ -919,13 +775,12 @@ extends
 
 /**
  * Overhead lines and/or cables connecting two or more HVDC substations.
+ * @param sup Reference to the superclass object.
+ * @param Region
  */
 case class DCLine
-(
-
-    override val sup: DCEquipmentContainer,
-
-    val Region: String
+(override val sup: DCEquipmentContainer,
+val Region: String
 )
 extends
     Element
@@ -960,38 +815,22 @@ extends
 
 /**
  * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
+ * @param sup Reference to the superclass object.
+ * @param capacitance Capacitance of the DC line segment.
+ *        Significant for cables only.
+ * @param inductance Inductance of the DC line segment.
+ *        Neglectable compared with DCSeriesDevice used for smoothing.
+ * @param len Segment length for calculating line section capabilities.
+ * @param resistance Resistance of the DC line segment.
+ * @param PerLengthParameter Set of per-length parameters for this line segment.
  */
 case class DCLineSegment
-(
-
-    override val sup: DCConductingEquipment,
-
-    /**
-     * Capacitance of the DC line segment.
-     * Significant for cables only.
-     */
-    val capacitance: Double,
-
-    /**
-     * Inductance of the DC line segment.
-     * Neglectable compared with DCSeriesDevice used for smoothing.
-     */
-    val inductance: Double,
-
-    /**
-     * Segment length for calculating line section capabilities.
-     */
-    val len: Double,
-
-    /**
-     * Resistance of the DC line segment.
-     */
-    val resistance: Double,
-
-    /**
-     * Set of per-length parameters for this line segment.
-     */
-    val PerLengthParameter: String
+(override val sup: DCConductingEquipment,
+val capacitance: Double,
+val inductance: Double,
+val len: Double,
+val resistance: Double,
+val PerLengthParameter: String
 )
 extends
     Element
@@ -1034,19 +873,15 @@ extends
 
 /**
  * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
+ * @param sup Reference to the superclass object.
+ * @param DCEquipmentContainer
+ * @param DCTopologicalNode See association end ConnectivityNode.
+ *        TopologicalNode.
  */
 case class DCNode
-(
-
-    override val sup: IdentifiedObject,
-
-    val DCEquipmentContainer: String,
-
-    /**
-     * See association end ConnectivityNode.
-     * TopologicalNode.
-     */
-    val DCTopologicalNode: String
+(override val sup: IdentifiedObject,
+val DCEquipmentContainer: String,
+val DCTopologicalNode: String
 )
 extends
     Element
@@ -1083,26 +918,16 @@ extends
 
 /**
  * Polarity for DC circuits.
+ * @param sup Reference to the superclass object.
+ * @param middle Middle pole, potentially grounded.
+ * @param negative Negative pole.
+ * @param positive Positive pole.
  */
 case class DCPolarityKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Middle pole, potentially grounded.
-     */
-    val middle: String,
-
-    /**
-     * Negative pole.
-     */
-    val negative: String,
-
-    /**
-     * Positive pole.
-     */
-    val positive: String
+(override val sup: BasicElement,
+val middle: String,
+val negative: String,
+val positive: String
 )
 extends
     Element
@@ -1142,27 +967,17 @@ extends
 /**
  * A series device within the DC system, typically a reactor used for filtering or smoothing.
  * Needed for transient and short circuit studies.
+ * @param sup Reference to the superclass object.
+ * @param inductance Inductance of the device.
+ * @param ratedUdc Rated DC device voltage.
+ *        Converter configuration data used in power flow.
+ * @param resistance Resistance of the DC device.
  */
 case class DCSeriesDevice
-(
-
-    override val sup: DCConductingEquipment,
-
-    /**
-     * Inductance of the device.
-     */
-    val inductance: Double,
-
-    /**
-     * Rated DC device voltage.
-     * Converter configuration data used in power flow.
-     */
-    val ratedUdc: Double,
-
-    /**
-     * Resistance of the DC device.
-     */
-    val resistance: Double
+(override val sup: DCConductingEquipment,
+val inductance: Double,
+val ratedUdc: Double,
+val resistance: Double
 )
 extends
     Element
@@ -1202,27 +1017,17 @@ extends
 /**
  * A shunt device within the DC system, typically used for filtering.
  * Needed for transient and short circuit studies.
+ * @param sup Reference to the superclass object.
+ * @param capacitance Capacitance of the DC shunt.
+ * @param ratedUdc Rated DC device voltage.
+ *        Converter configuration data used in power flow.
+ * @param resistance Resistance of the DC device.
  */
 case class DCShunt
-(
-
-    override val sup: DCConductingEquipment,
-
-    /**
-     * Capacitance of the DC shunt.
-     */
-    val capacitance: Double,
-
-    /**
-     * Rated DC device voltage.
-     * Converter configuration data used in power flow.
-     */
-    val ratedUdc: Double,
-
-    /**
-     * Resistance of the DC device.
-     */
-    val resistance: Double
+(override val sup: DCConductingEquipment,
+val capacitance: Double,
+val ratedUdc: Double,
+val resistance: Double
 )
 extends
     Element
@@ -1261,11 +1066,10 @@ extends
 
 /**
  * A switch within the DC system.
+ * @param sup Reference to the superclass object.
  */
 case class DCSwitch
-(
-
-    override val sup: DCConductingEquipment
+(override val sup: DCConductingEquipment
 )
 extends
     Element
@@ -1298,13 +1102,12 @@ extends
 
 /**
  * An electrical connection point to generic DC conducting equipment.
+ * @param sup Reference to the superclass object.
+ * @param DCConductingEquipment
  */
 case class DCTerminal
-(
-
-    override val sup: DCBaseTerminal,
-
-    val DCConductingEquipment: String
+(override val sup: DCBaseTerminal,
+val DCConductingEquipment: String
 )
 extends
     Element
@@ -1340,11 +1143,10 @@ extends
 /**
  * An electrically connected subset of the network.
  * DC topological islands can change as the current network state changes: e.g. due to
+ * @param sup Reference to the superclass object.
  */
 case class DCTopologicalIsland
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1376,24 +1178,10 @@ extends
 }
 
 case class PerLengthDCLineParameter
-(
-
-    override val sup: PerLengthLineParameter,
-
-    /**
-     * Capacitance per unit of length of the DC line segment; significant for cables only.
-     */
-    val capacitance: Double,
-
-    /**
-     * Inductance per unit of length of the DC line segment.
-     */
-    val inductance: Double,
-
-    /**
-     * Resistance per length of the DC line segment.
-     */
-    val resistance: Double
+(override val sup: PerLengthLineParameter,
+val capacitance: Double,
+val inductance: Double,
+val resistance: Double
 )
 extends
     Element
@@ -1432,11 +1220,10 @@ extends
 
 /**
  * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
+ * @param sup Reference to the superclass object.
  */
 case class VsCapabilityCurve
-(
-
-    override val sup: Curve
+(override val sup: Curve
 )
 extends
     Element
@@ -1469,73 +1256,39 @@ extends
 
 /**
  * DC side of the voltage source converter (VSC).
+ * @param sup Reference to the superclass object.
+ * @param delta Angle between uf and uc.
+ *        Converter state variable used in power flow.
+ * @param droop Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.
+ * @param droopCompensation Compensation constant.
+ *        Used to compensate for voltage drop when controlling voltage at a distant bus.
+ * @param maxModulationIndex The max quotient between the AC converter voltage (Uc) and DC voltage (Ud).
+ *        A factor typically less than 1. VSC configuration data used in power flow.
+ * @param maxValveCurrent The maximum current through a valve.
+ *        This current limit is the basis for calculating the capability diagram. VSC  configuration data.
+ * @param pPccControl Kind of control of real power and/or DC voltage.
+ * @param qPccControl
+ * @param qShare Reactive power sharing factor among parallel converters on Uac control.
+ * @param targetQpcc Reactive power injection target in AC grid, at point of common coupling.
+ * @param targetUpcc Voltage target in AC grid, at point of common coupling.
+ * @param uf Line-to-line voltage on the valve side of the converter transformer.
+ *        Converter state variable, result from power flow.
+ * @param CapabilityCurve Capability curve of this converter.
  */
 case class VsConverter
-(
-
-    override val sup: ACDCConverter,
-
-    /**
-     * Angle between uf and uc.
-     * Converter state variable used in power flow.
-     */
-    val delta: Double,
-
-    /**
-     * Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.
-     */
-    val droop: Double,
-
-    /**
-     * Compensation constant.
-     * Used to compensate for voltage drop when controlling voltage at a distant bus.
-     */
-    val droopCompensation: Double,
-
-    /**
-     * The max quotient between the AC converter voltage (Uc) and DC voltage (Ud).
-     * A factor typically less than 1. VSC configuration data used in power flow.
-     */
-    val maxModulationIndex: Double,
-
-    /**
-     * The maximum current through a valve.
-     * This current limit is the basis for calculating the capability diagram. VSC  configuration data.
-     */
-    val maxValveCurrent: Double,
-
-    /**
-     * Kind of control of real power and/or DC voltage.
-     */
-    val pPccControl: String,
-
-    val qPccControl: String,
-
-    /**
-     * Reactive power sharing factor among parallel converters on Uac control.
-     */
-    val qShare: Double,
-
-    /**
-     * Reactive power injection target in AC grid, at point of common coupling.
-     */
-    val targetQpcc: Double,
-
-    /**
-     * Voltage target in AC grid, at point of common coupling.
-     */
-    val targetUpcc: Double,
-
-    /**
-     * Line-to-line voltage on the valve side of the converter transformer.
-     * Converter state variable, result from power flow.
-     */
-    val uf: Double,
-
-    /**
-     * Capability curve of this converter.
-     */
-    val CapabilityCurve: String
+(override val sup: ACDCConverter,
+val delta: Double,
+val droop: Double,
+val droopCompensation: Double,
+val maxModulationIndex: Double,
+val maxValveCurrent: Double,
+val pPccControl: String,
+val qPccControl: String,
+val qShare: Double,
+val targetQpcc: Double,
+val targetUpcc: Double,
+val uf: Double,
+val CapabilityCurve: String
 )
 extends
     Element
@@ -1592,36 +1345,20 @@ extends
 
 /**
  * Types applicable to the control of real power and/or DC voltage by voltage source converter.
+ * @param sup Reference to the superclass object.
+ * @param pPcc Control variable (target) is real power at PCC bus.
+ * @param pPccAndUdcDroop Control variables (targets) are both active power at point of common coupling and local DC voltage, with the droop.
+ * @param pPccAndUdcDroopPilot Control variables (targets) are both active power at point of common coupling and the pilot DC voltage, with the droop.
+ * @param pPccAndUdcDroopWithCompensation Control variables (targets) are both active power at point of common coupling and compensated DC voltage, with the droop; compensation factor is the resistance, as an approximation of the DC voltage of a common (real or virtual) node in the DC network.
+ * @param udc Control variable (target) is DC voltage and real power at PCC bus is derived.
  */
 case class VsPpccControlKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Control variable (target) is real power at PCC bus.
-     */
-    val pPcc: String,
-
-    /**
-     * Control variables (targets) are both active power at point of common coupling and local DC voltage, with the droop.
-     */
-    val pPccAndUdcDroop: String,
-
-    /**
-     * Control variables (targets) are both active power at point of common coupling and the pilot DC voltage, with the droop.
-     */
-    val pPccAndUdcDroopPilot: String,
-
-    /**
-     * Control variables (targets) are both active power at point of common coupling and compensated DC voltage, with the droop; compensation factor is the resistance, as an approximation of the DC voltage of a common (real or virtual) node in the DC network.
-     */
-    val pPccAndUdcDroopWithCompensation: String,
-
-    /**
-     * Control variable (target) is DC voltage and real power at PCC bus is derived.
-     */
-    val udc: String
+(override val sup: BasicElement,
+val pPcc: String,
+val pPccAndUdcDroop: String,
+val pPccAndUdcDroopPilot: String,
+val pPccAndUdcDroopWithCompensation: String,
+val udc: String
 )
 extends
     Element
@@ -1663,15 +1400,10 @@ extends
 }
 
 case class VsQpccControlKind
-(
-
-    override val sup: BasicElement,
-
-    val powerFactorPcc: String,
-
-    val reactivePcc: String,
-
-    val voltagePcc: String
+(override val sup: BasicElement,
+val powerFactorPcc: String,
+val reactivePcc: String,
+val voltagePcc: String
 )
 extends
     Element

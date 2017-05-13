@@ -11,21 +11,14 @@ import ch.ninecode.cim.Context
 
 /**
  * Type of generic non-linear load model.
+ * @param sup Reference to the superclass object.
+ * @param exponentialRecovery Exponential recovery model.
+ * @param loadAdaptive Load adaptive model.
  */
 case class GenericNonLinearLoadModelKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Exponential recovery model.
-     */
-    val exponentialRecovery: String,
-
-    /**
-     * Load adaptive model.
-     */
-    val loadAdaptive: String
+(override val sup: BasicElement,
+val exponentialRecovery: String,
+val loadAdaptive: String
 )
 extends
     Element
@@ -63,21 +56,14 @@ extends
 /**
  * Standard aggregate load model comprised of static and/or dynamic components.
  * A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can used to represent the aggregate response of the motor components of the load.
+ * @param sup Reference to the superclass object.
+ * @param LoadMotor Aggregate motor (dynamic) load associated with this aggregate load.
+ * @param LoadStatic Aggregate static load associated with this aggregate load.
  */
 case class LoadAggregate
-(
-
-    override val sup: LoadDynamics,
-
-    /**
-     * Aggregate motor (dynamic) load associated with this aggregate load.
-     */
-    val LoadMotor: String,
-
-    /**
-     * Aggregate static load associated with this aggregate load.
-     */
-    val LoadStatic: String
+(override val sup: LoadDynamics,
+val LoadMotor: String,
+val LoadStatic: String
 )
 extends
     Element
@@ -115,77 +101,43 @@ extends
 /**
  * This model combines static load and induction motor load effects.
  * The dynamics of the motor are simplified by linearizing the induction machine equations.
+ * @param sup Reference to the superclass object.
+ * @param epfd Active load-frequency dependence index (dynamic) (Epfd).
+ *        Typical Value = 1.5.
+ * @param epfs Active load-frequency dependence index (static) (Epfs).
+ *        Typical Value = 1.5.
+ * @param epvd Active load-voltage dependence index (dynamic) (Epvd).
+ *        Typical Value = 0.7.
+ * @param epvs Active load-voltage dependence index (static) (Epvs).
+ *        Typical Value = 0.7.
+ * @param eqfd Reactive load-frequency dependence index (dynamic) (Eqfd).
+ *        Typical Value = 0.
+ * @param eqfs Reactive load-frequency dependence index (static) (Eqfs).
+ *        Typical Value = 0.
+ * @param eqvd Reactive load-voltage dependence index (dynamic) (Eqvd).
+ *        Typical Value = 2.
+ * @param eqvs Reactive load-voltage dependence index (static) (Eqvs).
+ *        Typical Value = 2.
+ * @param h Inertia constant (H).
+ *        Typical Value = 2.5.
+ * @param lfrac Loading factor � ratio of initial P to motor MVA base (Lfrac).
+ *        Typical Value = 0.8.
+ * @param pfrac Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
+ *        Typical Value = 0.5.
  */
 case class LoadComposite
-(
-
-    override val sup: LoadDynamics,
-
-    /**
-     * Active load-frequency dependence index (dynamic) (Epfd).
-     * Typical Value = 1.5.
-     */
-    val epfd: Double,
-
-    /**
-     * Active load-frequency dependence index (static) (Epfs).
-     * Typical Value = 1.5.
-     */
-    val epfs: Double,
-
-    /**
-     * Active load-voltage dependence index (dynamic) (Epvd).
-     * Typical Value = 0.7.
-     */
-    val epvd: Double,
-
-    /**
-     * Active load-voltage dependence index (static) (Epvs).
-     * Typical Value = 0.7.
-     */
-    val epvs: Double,
-
-    /**
-     * Reactive load-frequency dependence index (dynamic) (Eqfd).
-     * Typical Value = 0.
-     */
-    val eqfd: Double,
-
-    /**
-     * Reactive load-frequency dependence index (static) (Eqfs).
-     * Typical Value = 0.
-     */
-    val eqfs: Double,
-
-    /**
-     * Reactive load-voltage dependence index (dynamic) (Eqvd).
-     * Typical Value = 2.
-     */
-    val eqvd: Double,
-
-    /**
-     * Reactive load-voltage dependence index (static) (Eqvs).
-     * Typical Value = 2.
-     */
-    val eqvs: Double,
-
-    /**
-     * Inertia constant (H).
-     * Typical Value = 2.5.
-     */
-    val h: Double,
-
-    /**
-     * Loading factor � ratio of initial P to motor MVA base (Lfrac).
-     * Typical Value = 0.8.
-     */
-    val lfrac: Double,
-
-    /**
-     * Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
-     * Typical Value = 0.5.
-     */
-    val pfrac: Double
+(override val sup: LoadDynamics,
+val epfd: Double,
+val epfs: Double,
+val epvd: Double,
+val epvs: Double,
+val eqfd: Double,
+val eqfs: Double,
+val eqvd: Double,
+val eqvs: Double,
+val h: Double,
+val lfrac: Double,
+val pfrac: Double
 )
 extends
     Element
@@ -243,11 +195,10 @@ extends
 
 A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single aggregate load definition.
  * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data. This load is usually the aggregation of many individual load devices and the load model is approximate representation of the aggregate response of the load devices to system disturbances. The load model is always applied to individual bus loads (energy consumers) but a single set of load model parameters can used for all loads in the grouping.
+ * @param sup Reference to the superclass object.
  */
 case class LoadDynamics
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -280,56 +231,28 @@ extends
 
 /**
  * These load models (known also as generic non-linear dynamic (GNLD) load models) can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as they can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
+ * @param sup Reference to the superclass object.
+ * @param bs Steady state voltage index for reactive power (BS).
+ * @param bt Transient voltage index for reactive power (BT).
+ * @param genericNonLinearLoadModelType Type of generic non-linear load model.
+ * @param ls Steady state voltage index for active power (LS).
+ * @param lt Transient voltage index for active power (LT).
+ * @param pt Dynamic portion of active load (P<sub>T</sub>).
+ * @param qt Dynamic portion of reactive load (Q<sub>T</sub>).
+ * @param tp Time constant of lag function of active power (T<sub>P</sub>).
+ * @param tq Time constant of lag function of reactive power (T<sub>Q</sub>).
  */
 case class LoadGenericNonLinear
-(
-
-    override val sup: LoadDynamics,
-
-    /**
-     * Steady state voltage index for reactive power (BS).
-     */
-    val bs: Double,
-
-    /**
-     * Transient voltage index for reactive power (BT).
-     */
-    val bt: Double,
-
-    /**
-     * Type of generic non-linear load model.
-     */
-    val genericNonLinearLoadModelType: String,
-
-    /**
-     * Steady state voltage index for active power (LS).
-     */
-    val ls: Double,
-
-    /**
-     * Transient voltage index for active power (LT).
-     */
-    val lt: Double,
-
-    /**
-     * Dynamic portion of active load (P<sub>T</sub>).
-     */
-    val pt: Double,
-
-    /**
-     * Dynamic portion of reactive load (Q<sub>T</sub>).
-     */
-    val qt: Double,
-
-    /**
-     * Time constant of lag function of active power (T<sub>P</sub>).
-     */
-    val tp: Double,
-
-    /**
-     * Time constant of lag function of reactive power (T<sub>Q</sub>).
-     */
-    val tq: Double
+(override val sup: LoadDynamics,
+val bs: Double,
+val bt: Double,
+val genericNonLinearLoadModelType: String,
+val ls: Double,
+val lt: Double,
+val pt: Double,
+val qt: Double,
+val tp: Double,
+val tq: Double
 )
 extends
     Element
@@ -381,94 +304,51 @@ extends
 /**
  * Aggregate induction motor load.
  * This model  is used to represent a fraction of an ordinary load as "induction motor load".  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If <b>Lpp</b> = 0. or <b>Lpp</b> = <b>Lp</b>, or <b>Tppo</b> = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a "one-cage" or "two-cage" model of the induction machine can be modelled. Magnetic saturation is not modelled.
+ * @param sup Reference to the superclass object.
+ * @param d Damping factor (D).
+ *        Unit = delta P/delta speed.  Typical Value = 2.
+ * @param h Inertia constant (H) (not=0).
+ *        Typical Value = 0.4.
+ * @param lfac Loading factor � ratio of initial P to motor MVA base (Lfac).
+ *        Typical Value = 0.8.
+ * @param lp Transient reactance (Lp).
+ *        Typical Value = 0.15.
+ * @param lpp Subtransient reactance (Lpp).
+ *        Typical Value = 0.15.
+ * @param ls Synchronous reactance (Ls).
+ *        Typical Value = 3.2.
+ * @param pfrac Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
+ *        Typical Value = 0.3.
+ * @param ra Stator resistance (Ra).
+ *        Typical Value = 0.
+ * @param tbkr Circuit breaker operating time (Tbkr).
+ *        Typical Value = 0.08.
+ * @param tpo Transient rotor time constant (Tpo) (not=0).
+ *        Typical Value = 1.
+ * @param tppo Subtransient rotor time constant (Tppo).
+ *        Typical Value = 0.02.
+ * @param tv Voltage trip pickup time (Tv).
+ *        Typical Value = 0.1.
+ * @param vt Voltage threshold for tripping (Vt).
+ *        Typical Value = 0.7.
+ * @param LoadAggregate Aggregate load to which this aggregate motor (dynamic) load belongs.
  */
 case class LoadMotor
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Damping factor (D).
-     * Unit = delta P/delta speed.  Typical Value = 2.
-     */
-    val d: Double,
-
-    /**
-     * Inertia constant (H) (not=0).
-     * Typical Value = 0.4.
-     */
-    val h: Double,
-
-    /**
-     * Loading factor � ratio of initial P to motor MVA base (Lfac).
-     * Typical Value = 0.8.
-     */
-    val lfac: Double,
-
-    /**
-     * Transient reactance (Lp).
-     * Typical Value = 0.15.
-     */
-    val lp: Double,
-
-    /**
-     * Subtransient reactance (Lpp).
-     * Typical Value = 0.15.
-     */
-    val lpp: Double,
-
-    /**
-     * Synchronous reactance (Ls).
-     * Typical Value = 3.2.
-     */
-    val ls: Double,
-
-    /**
-     * Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
-     * Typical Value = 0.3.
-     */
-    val pfrac: Double,
-
-    /**
-     * Stator resistance (Ra).
-     * Typical Value = 0.
-     */
-    val ra: Double,
-
-    /**
-     * Circuit breaker operating time (Tbkr).
-     * Typical Value = 0.08.
-     */
-    val tbkr: Double,
-
-    /**
-     * Transient rotor time constant (Tpo) (not=0).
-     * Typical Value = 1.
-     */
-    val tpo: Double,
-
-    /**
-     * Subtransient rotor time constant (Tppo).
-     * Typical Value = 0.02.
-     */
-    val tppo: Double,
-
-    /**
-     * Voltage trip pickup time (Tv).
-     * Typical Value = 0.1.
-     */
-    val tv: Double,
-
-    /**
-     * Voltage threshold for tripping (Vt).
-     * Typical Value = 0.7.
-     */
-    val vt: Double,
-
-    /**
-     * Aggregate load to which this aggregate motor (dynamic) load belongs.
-     */
-    val LoadAggregate: String
+(override val sup: IdentifiedObject,
+val d: Double,
+val h: Double,
+val lfac: Double,
+val lp: Double,
+val lpp: Double,
+val ls: Double,
+val pfrac: Double,
+val ra: Double,
+val tbkr: Double,
+val tpo: Double,
+val tppo: Double,
+val tv: Double,
+val vt: Double,
+val LoadAggregate: String
 )
 extends
     Element
@@ -529,118 +409,63 @@ extends
 
 /**
  * General static load model representing the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
+ * @param sup Reference to the superclass object.
+ * @param ep1 First term voltage exponent for active power (Ep1).
+ *        Used only when .staticLoadModelType = exponential.
+ * @param ep2 Second term voltage exponent for active power (Ep2).
+ *        Used only when .staticLoadModelType = exponential.
+ * @param ep3 Third term voltage exponent for active power (Ep3).
+ *        Used only when .staticLoadModelType = exponential.
+ * @param eq1 First term voltage exponent for reactive power (Eq1).
+ *        Used only when .staticLoadModelType = exponential.
+ * @param eq2 Second term voltage exponent for reactive power (Eq2).
+ *        Used only when .staticLoadModelType = exponential.
+ * @param eq3 Third term voltage exponent for reactive power (Eq3).
+ *        Used only when .staticLoadModelType = exponential.
+ * @param kp1 First term voltage coefficient for active power (Kp1).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param kp2 Second term voltage coefficient for active power (Kp2).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param kp3 Third term voltage coefficient for active power (Kp3).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param kp4 Frequency coefficient for active power (Kp4).
+ *        Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.
+ * @param kpf Frequency deviation coefficient for active power (Kpf).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param kq1 First term voltage coefficient for reactive power (Kq1).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param kq2 Second term voltage coefficient for reactive power (Kq2).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param kq3 Third term voltage coefficient for reactive power (Kq3).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param kq4 Frequency coefficient for reactive power (Kq4).
+ *        Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.
+ * @param kqf Frequency deviation coefficient for reactive power (Kqf).
+ *        Not used when .staticLoadModelType = constantZ.
+ * @param staticLoadModelType Type of static load model.
+ *        Typical Value = constantZ.
+ * @param LoadAggregate Aggregate load to which this aggregate static load belongs.
  */
 case class LoadStatic
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * First term voltage exponent for active power (Ep1).
-     * Used only when .staticLoadModelType = exponential.
-     */
-    val ep1: Double,
-
-    /**
-     * Second term voltage exponent for active power (Ep2).
-     * Used only when .staticLoadModelType = exponential.
-     */
-    val ep2: Double,
-
-    /**
-     * Third term voltage exponent for active power (Ep3).
-     * Used only when .staticLoadModelType = exponential.
-     */
-    val ep3: Double,
-
-    /**
-     * First term voltage exponent for reactive power (Eq1).
-     * Used only when .staticLoadModelType = exponential.
-     */
-    val eq1: Double,
-
-    /**
-     * Second term voltage exponent for reactive power (Eq2).
-     * Used only when .staticLoadModelType = exponential.
-     */
-    val eq2: Double,
-
-    /**
-     * Third term voltage exponent for reactive power (Eq3).
-     * Used only when .staticLoadModelType = exponential.
-     */
-    val eq3: Double,
-
-    /**
-     * First term voltage coefficient for active power (Kp1).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kp1: Double,
-
-    /**
-     * Second term voltage coefficient for active power (Kp2).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kp2: Double,
-
-    /**
-     * Third term voltage coefficient for active power (Kp3).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kp3: Double,
-
-    /**
-     * Frequency coefficient for active power (Kp4).
-     * Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.
-     */
-    val kp4: Double,
-
-    /**
-     * Frequency deviation coefficient for active power (Kpf).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kpf: Double,
-
-    /**
-     * First term voltage coefficient for reactive power (Kq1).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kq1: Double,
-
-    /**
-     * Second term voltage coefficient for reactive power (Kq2).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kq2: Double,
-
-    /**
-     * Third term voltage coefficient for reactive power (Kq3).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kq3: Double,
-
-    /**
-     * Frequency coefficient for reactive power (Kq4).
-     * Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.
-     */
-    val kq4: Double,
-
-    /**
-     * Frequency deviation coefficient for reactive power (Kqf).
-     * Not used when .staticLoadModelType = constantZ.
-     */
-    val kqf: Double,
-
-    /**
-     * Type of static load model.
-     * Typical Value = constantZ.
-     */
-    val staticLoadModelType: String,
-
-    /**
-     * Aggregate load to which this aggregate static load belongs.
-     */
-    val LoadAggregate: String
+(override val sup: IdentifiedObject,
+val ep1: Double,
+val ep2: Double,
+val ep3: Double,
+val eq1: Double,
+val eq2: Double,
+val eq3: Double,
+val kp1: Double,
+val kp2: Double,
+val kp3: Double,
+val kp4: Double,
+val kpf: Double,
+val kq1: Double,
+val kq2: Double,
+val kq3: Double,
+val kq4: Double,
+val kqf: Double,
+val staticLoadModelType: String,
+val LoadAggregate: String
 )
 extends
     Element
@@ -709,37 +534,24 @@ extends
 
 /**
  * Type of static load model.
+ * @param sup Reference to the superclass object.
+ * @param constantZ The load is represented as a constant impedance.
+ *        ConstantZ P and Q equations are used and no attributes are required.
+ * @param exponential Exponential P and Q equations are used and the following attributes are required:
+kp1, kp2, kp3, kpf, ep1, ep2, ep3
+ *        kq1, kq2, kq3, kqf, eq1, eq2, eq3.
+ * @param zIP1 ZIP1 P and Q equations are used and the following attributes are required:
+kp1, kp2, kp3, kpf
+ *        kq1, kq2, kq3, kqf.
+ * @param zIP2 This model separates the frequency-dependent load (primarily motors) from other load.
+ *        ZIP2 P and Q equations are used and the following attributes are required:
  */
 case class StaticLoadModelKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The load is represented as a constant impedance.
-     * ConstantZ P and Q equations are used and no attributes are required.
-     */
-    val constantZ: String,
-
-    /**
-     * Exponential P and Q equations are used and the following attributes are required:
-    kp1, kp2, kp3, kpf, ep1, ep2, ep3
-     * kq1, kq2, kq3, kqf, eq1, eq2, eq3.
-     */
-    val exponential: String,
-
-    /**
-     * ZIP1 P and Q equations are used and the following attributes are required:
-    kp1, kp2, kp3, kpf
-     * kq1, kq2, kq3, kqf.
-     */
-    val zIP1: String,
-
-    /**
-     * This model separates the frequency-dependent load (primarily motors) from other load.
-     * ZIP2 P and Q equations are used and the following attributes are required:
-     */
-    val zIP2: String
+(override val sup: BasicElement,
+val constantZ: String,
+val exponential: String,
+val zIP1: String,
+val zIP2: String
 )
 extends
     Element

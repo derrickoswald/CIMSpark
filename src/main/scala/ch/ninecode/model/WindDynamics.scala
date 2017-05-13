@@ -12,16 +12,12 @@ import ch.ninecode.cim.Context
 /**
  * The constant aerodynamic torque model assumes that the aerodynamic torque is constant.
  * Reference: IEC Standard 61400-27-1 Section 5.6.1.1.
+ * @param sup Reference to the superclass object.
+ * @param WindGenTurbineType1aIEC Wind turbine type 1A model with which this wind aerodynamic model is associated.
  */
 case class WindAeroConstIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Wind turbine type 1A model with which this wind aerodynamic model is associated.
-     */
-    val WindGenTurbineType1aIEC: String
+(override val sup: IdentifiedObject,
+val WindGenTurbineType1aIEC: String
 )
 extends
     Element
@@ -57,28 +53,18 @@ extends
 /**
  * One-dimensional aerodynamic model.
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.2.
+ * @param sup Reference to the superclass object.
+ * @param ka Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
+ *        It is type dependent parameter.
+ * @param thetaomega Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
+ *        It is case dependent parameter.
+ * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
  */
 case class WindAeroOneDimIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
-     * It is type dependent parameter.
-     */
-    val ka: Double,
-
-    /**
-     * Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
-     * It is case dependent parameter.
-     */
-    val thetaomega: Double,
-
-    /**
-     * Wind turbine type 3 model with which this wind aerodynamic model is associated.
-     */
-    val WindTurbineType3IEC: String
+(override val sup: IdentifiedObject,
+val ka: Double,
+val thetaomega: Double,
+val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -118,58 +104,33 @@ extends
 /**
  * Two-dimensional aerodynamic model.
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.3.
+ * @param sup Reference to the superclass object.
+ * @param dpomega Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
+ *        It is type dependent parameter.
+ * @param dptheta Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
+ *        It is type dependent parameter.
+ * @param dpv1 Partial derivative (<i>dp</i><sub>v1</sub>).
+ *        It is type dependent parameter.
+ * @param omegazero Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
+ *        It is type dependent parameter.
+ * @param pavail Available aerodynamic power (<i>p</i><sub>avail</sub>).
+ *        It is case dependent parameter.
+ * @param thetav2 Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
+ *        It is type dependent parameter.
+ * @param thetazero Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
+ *        It is case dependent parameter.
+ * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
  */
 case class WindAeroTwoDimIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
-     * It is type dependent parameter.
-     */
-    val dpomega: Double,
-
-    /**
-     * Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
-     * It is type dependent parameter.
-     */
-    val dptheta: Double,
-
-    /**
-     * Partial derivative (<i>dp</i><sub>v1</sub>).
-     * It is type dependent parameter.
-     */
-    val dpv1: Double,
-
-    /**
-     * Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
-     * It is type dependent parameter.
-     */
-    val omegazero: Double,
-
-    /**
-     * Available aerodynamic power (<i>p</i><sub>avail</sub>).
-     * It is case dependent parameter.
-     */
-    val pavail: Double,
-
-    /**
-     * Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
-     * It is type dependent parameter.
-     */
-    val thetav2: Double,
-
-    /**
-     * Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
-     * It is case dependent parameter.
-     */
-    val thetazero: Double,
-
-    /**
-     * Wind turbine type 3 model with which this wind aerodynamic model is associated.
-     */
-    val WindTurbineType3IEC: String
+(override val sup: IdentifiedObject,
+val dpomega: Double,
+val dptheta: Double,
+val dpv1: Double,
+val omegazero: Double,
+val pavail: Double,
+val thetav2: Double,
+val thetazero: Double,
+val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -219,62 +180,37 @@ extends
 /**
  * Current limitation model.
  * The current limitation model combines the physical limits and the control limits.
+ * @param sup Reference to the superclass object.
+ * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
+ *        It is type dependent parameter.
+ * @param imaxdip Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).
+ *        It is project dependent parameter.
+ * @param kpqu Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).
+ *        It is type dependent parameter.
+ * @param mdfslim Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>): 
+- false=0: total current limitation, 
+- true=1: stator current limitation).
+ *        It is type dependent parameter.
+ * @param mqpri Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):
+- true = 1: reactive power priority,
+- false = 0: active power priority.
+ *        It is project dependent parameter.
+ * @param tufiltcl Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).
+ *        It is type dependent parameter.
+ * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
  */
 case class WindContCurrLimIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
-     * It is type dependent parameter.
-     */
-    val imax: Double,
-
-    /**
-     * Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).
-     * It is project dependent parameter.
-     */
-    val imaxdip: Double,
-
-    /**
-     * Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).
-     * It is type dependent parameter.
-     */
-    val kpqu: Double,
-
-    /**
-     * Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>): 
-    - false=0: total current limitation, 
-    - true=1: stator current limitation).
-     * It is type dependent parameter.
-     */
-    val mdfslim: Boolean,
-
-    /**
-     * Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):
-    - true = 1: reactive power priority,
-    - false = 0: active power priority.
-     * It is project dependent parameter.
-     */
-    val mqpri: Boolean,
-
-    /**
-     * Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).
-     * It is type dependent parameter.
-     */
-    val tufiltcl: Double,
-
-    /**
-     * Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
-     * It is type dependent parameter.
-     */
-    val upqumax: Double,
-
-    /**
-     * Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
-     */
-    val WindTurbineType3or4IEC: String
+(override val sup: IdentifiedObject,
+val imax: Double,
+val imaxdip: Double,
+val kpqu: Double,
+val mdfslim: Boolean,
+val mqpri: Boolean,
+val tufiltcl: Double,
+val upqumax: Double,
+val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -324,156 +260,83 @@ extends
 /**
  * P control model Type 3.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.4.
+ * @param sup Reference to the superclass object.
+ * @param dpmax Maximum wind turbine power ramp rate (<i>dp</i><sub>max</sub>).
+ *        It is type dependent parameter.
+ * @param dprefmax Maximum ramp rate of wind turbine reference power (d<i>p</i><sub>refmax</sub>).
+ *        It is project dependent parameter.
+ * @param dprefmin Minimum ramp rate of wind turbine reference power (d<i>p</i><sub>refmin</sub>).
+ *        It is project dependent parameter.
+ * @param dthetamax Ramp limitation of torque, required in some grid codes (d<i>t</i><sub>max</sub>).
+ *        It is project dependent parameter.
+ * @param dthetamaxuvrt Limitation of torque rise rate during UVRT (d<i>theta</i><sub>maxUVRT</sub>).
+ *        It is project dependent parameter.
+ * @param kdtd Gain for active drive train damping (<i>K</i><sub>DTD</sub>).
+ *        It is type dependent parameter.
+ * @param kip PI controller integration parameter (<i>K</i><sub>Ip</sub>).
+ *        It is type dependent parameter.
+ * @param kpp PI controller proportional gain (<i>K</i><sub>Pp</sub>).
+ *        It is type dependent parameter.
+ * @param mpuvrt Enable UVRT power control mode (M<sub>pUVRT).</sub>
+true = 1: voltage control
+false = 0: reactive power control.
+ *        It is project dependent parameter.
+ * @param omegaoffset Offset to reference value that limits controller action during rotor speed changes (omega<sub>offset</sub>).
+ *        It is case dependent parameter.
+ * @param pdtdmax Maximum active drive train damping power (<i>p</i><sub>DTDmax</sub>).
+ *        It is type dependent parameter.
+ * @param tdvs Time<sub> </sub>delay after deep voltage sags (T<sub>DVS</sub>).
+ *        It is project dependent parameter.
+ * @param thetaemin Minimum electrical generator torque (<i>t</i><sub>emin</sub>).
+ *        It is type dependent parameter.
+ * @param thetauscale Voltage scaling factor of reset-torque (<i>t</i><sub>uscale</sub>).
+ *        It is project dependent parameter.
+ * @param tomegafiltp3 Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltp3</sub>).
+ *        It is type dependent parameter.
+ * @param tpfiltp3 Filter time constant for power measurement (<i>T</i><sub>pfiltp3</sub>).
+ *        It is type dependent parameter.
+ * @param tpord Time constant in power order lag (<i>T</i><sub>pord</sub>).
+ *        It is type dependent parameter.
+ * @param tufiltp3 Filter time constant for voltage measurement (<i>T</i><sub>ufiltp3</sub>).
+ *        It is type dependent parameter.
+ * @param twref Time constant in speed reference filter (<i>T</i><sub>omega,ref</sub>).
+ *        It is type dependent parameter.
+ * @param udvs Voltage limit for hold UVRT status after deep voltage sags (<i>u</i><i><sub>DVS</sub></i>).
+ *        It is project dependent parameter.
+ * @param updip Voltage dip threshold for P-control (<i>u</i><sub>Pdip</sub>).
+ *        Part of turbine control, often different (e.g 0.8) from converter thresholds. It is project dependent parameter.
+ * @param wdtd Active drive train damping frequency (omega<sub>DTD</sub>).
+ *        It can be calculated from two mass model parameters. It is type dependent parameter.
+ * @param zeta Coefficient for active drive train damping (zeta).
+ *        It is type dependent parameter.
+ * @param WindTurbineType3IEC Wind turbine type 3 model with which this Wind control P type 3 model is associated.
  */
 case class WindContPType3IEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum wind turbine power ramp rate (<i>dp</i><sub>max</sub>).
-     * It is type dependent parameter.
-     */
-    val dpmax: Double,
-
-    /**
-     * Maximum ramp rate of wind turbine reference power (d<i>p</i><sub>refmax</sub>).
-     * It is project dependent parameter.
-     */
-    val dprefmax: Double,
-
-    /**
-     * Minimum ramp rate of wind turbine reference power (d<i>p</i><sub>refmin</sub>).
-     * It is project dependent parameter.
-     */
-    val dprefmin: Double,
-
-    /**
-     * Ramp limitation of torque, required in some grid codes (d<i>t</i><sub>max</sub>).
-     * It is project dependent parameter.
-     */
-    val dthetamax: Double,
-
-    /**
-     * Limitation of torque rise rate during UVRT (d<i>theta</i><sub>maxUVRT</sub>).
-     * It is project dependent parameter.
-     */
-    val dthetamaxuvrt: Double,
-
-    /**
-     * Gain for active drive train damping (<i>K</i><sub>DTD</sub>).
-     * It is type dependent parameter.
-     */
-    val kdtd: Double,
-
-    /**
-     * PI controller integration parameter (<i>K</i><sub>Ip</sub>).
-     * It is type dependent parameter.
-     */
-    val kip: Double,
-
-    /**
-     * PI controller proportional gain (<i>K</i><sub>Pp</sub>).
-     * It is type dependent parameter.
-     */
-    val kpp: Double,
-
-    /**
-     * Enable UVRT power control mode (M<sub>pUVRT).</sub>
-    true = 1: voltage control
-    false = 0: reactive power control.
-     * It is project dependent parameter.
-     */
-    val mpuvrt: Boolean,
-
-    /**
-     * Offset to reference value that limits controller action during rotor speed changes (omega<sub>offset</sub>).
-     * It is case dependent parameter.
-     */
-    val omegaoffset: Double,
-
-    /**
-     * Maximum active drive train damping power (<i>p</i><sub>DTDmax</sub>).
-     * It is type dependent parameter.
-     */
-    val pdtdmax: Double,
-
-    /**
-     * Time<sub> </sub>delay after deep voltage sags (T<sub>DVS</sub>).
-     * It is project dependent parameter.
-     */
-    val tdvs: Double,
-
-    /**
-     * Minimum electrical generator torque (<i>t</i><sub>emin</sub>).
-     * It is type dependent parameter.
-     */
-    val thetaemin: Double,
-
-    /**
-     * Voltage scaling factor of reset-torque (<i>t</i><sub>uscale</sub>).
-     * It is project dependent parameter.
-     */
-    val thetauscale: Double,
-
-    /**
-     * Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltp3</sub>).
-     * It is type dependent parameter.
-     */
-    val tomegafiltp3: Double,
-
-    /**
-     * Filter time constant for power measurement (<i>T</i><sub>pfiltp3</sub>).
-     * It is type dependent parameter.
-     */
-    val tpfiltp3: Double,
-
-    /**
-     * Time constant in power order lag (<i>T</i><sub>pord</sub>).
-     * It is type dependent parameter.
-     */
-    val tpord: Double,
-
-    /**
-     * Filter time constant for voltage measurement (<i>T</i><sub>ufiltp3</sub>).
-     * It is type dependent parameter.
-     */
-    val tufiltp3: Double,
-
-    /**
-     * Time constant in speed reference filter (<i>T</i><sub>omega,ref</sub>).
-     * It is type dependent parameter.
-     */
-    val twref: Double,
-
-    /**
-     * Voltage limit for hold UVRT status after deep voltage sags (<i>u</i><i><sub>DVS</sub></i>).
-     * It is project dependent parameter.
-     */
-    val udvs: Double,
-
-    /**
-     * Voltage dip threshold for P-control (<i>u</i><sub>Pdip</sub>).
-     * Part of turbine control, often different (e.g 0.8) from converter thresholds. It is project dependent parameter.
-     */
-    val updip: Double,
-
-    /**
-     * Active drive train damping frequency (omega<sub>DTD</sub>).
-     * It can be calculated from two mass model parameters. It is type dependent parameter.
-     */
-    val wdtd: Double,
-
-    /**
-     * Coefficient for active drive train damping (zeta).
-     * It is type dependent parameter.
-     */
-    val zeta: Double,
-
-    /**
-     * Wind turbine type 3 model with which this Wind control P type 3 model is associated.
-     */
-    val WindTurbineType3IEC: String
+(override val sup: IdentifiedObject,
+val dpmax: Double,
+val dprefmax: Double,
+val dprefmin: Double,
+val dthetamax: Double,
+val dthetamaxuvrt: Double,
+val kdtd: Double,
+val kip: Double,
+val kpp: Double,
+val mpuvrt: Boolean,
+val omegaoffset: Double,
+val pdtdmax: Double,
+val tdvs: Double,
+val thetaemin: Double,
+val thetauscale: Double,
+val tomegafiltp3: Double,
+val tpfiltp3: Double,
+val tpord: Double,
+val tufiltp3: Double,
+val twref: Double,
+val udvs: Double,
+val updip: Double,
+val wdtd: Double,
+val zeta: Double,
+val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -555,34 +418,21 @@ extends
 /**
  * P control model Type 4A.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.5.
+ * @param sup Reference to the superclass object.
+ * @param dpmaxp4a Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4A</sub>).
+ *        It is project dependent parameter.
+ * @param tpordp4a Time constant in power order lag (<i>T</i><sub>pordp4A</sub>).
+ *        It is type dependent parameter.
+ * @param tufiltp4a Voltage measurement filter time constant (<i>T</i><sub>ufiltp4A</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType4aIEC Wind turbine type 4A model with which this wind control P type 4A model is associated.
  */
 case class WindContPType4aIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4A</sub>).
-     * It is project dependent parameter.
-     */
-    val dpmaxp4a: Double,
-
-    /**
-     * Time constant in power order lag (<i>T</i><sub>pordp4A</sub>).
-     * It is type dependent parameter.
-     */
-    val tpordp4a: Double,
-
-    /**
-     * Voltage measurement filter time constant (<i>T</i><sub>ufiltp4A</sub>).
-     * It is type dependent parameter.
-     */
-    val tufiltp4a: Double,
-
-    /**
-     *  Wind turbine type 4A model with which this wind control P type 4A model is associated.
-     */
-    val WindTurbineType4aIEC: String
+(override val sup: IdentifiedObject,
+val dpmaxp4a: Double,
+val tpordp4a: Double,
+val tufiltp4a: Double,
+val WindTurbineType4aIEC: String
 )
 extends
     Element
@@ -624,40 +474,24 @@ extends
 /**
  * P control model Type 4B.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.6.
+ * @param sup Reference to the superclass object.
+ * @param dpmaxp4b Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4B</sub>).
+ *        It is project dependent parameter.
+ * @param tpaero Time constant in aerodynamic power response (<i>T</i><sub>paero</sub>).
+ *        It is type dependent parameter.
+ * @param tpordp4b Time constant in power order lag (<i>T</i><sub>pordp4B</sub>).
+ *        It is type dependent parameter.
+ * @param tufiltp4b Voltage measurement filter time constant (<i>T</i><sub>ufiltp4B</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind control P type 4B model is associated.
  */
 case class WindContPType4bIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4B</sub>).
-     * It is project dependent parameter.
-     */
-    val dpmaxp4b: Double,
-
-    /**
-     * Time constant in aerodynamic power response (<i>T</i><sub>paero</sub>).
-     * It is type dependent parameter.
-     */
-    val tpaero: Double,
-
-    /**
-     * Time constant in power order lag (<i>T</i><sub>pordp4B</sub>).
-     * It is type dependent parameter.
-     */
-    val tpordp4b: Double,
-
-    /**
-     * Voltage measurement filter time constant (<i>T</i><sub>ufiltp4B</sub>).
-     * It is type dependent parameter.
-     */
-    val tufiltp4b: Double,
-
-    /**
-     * Wind turbine type 4B model with which this wind control P type 4B model is associated.
-     */
-    val WindTurbineType4bIEC: String
+(override val sup: IdentifiedObject,
+val dpmaxp4b: Double,
+val tpaero: Double,
+val tpordp4b: Double,
+val tufiltp4b: Double,
+val WindTurbineType4bIEC: String
 )
 extends
     Element
@@ -701,76 +535,42 @@ extends
 /**
  * Pitch angle control model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.2.
+ * @param sup Reference to the superclass object.
+ * @param dthetamax Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
+ *        It is type dependent parameter. Unit = degrees/sec.
+ * @param dthetamin Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).
+ *        It is type dependent parameter. Unit = degrees/sec.
+ * @param kic Power PI controller integration gain (<i>K</i><sub>Ic</sub>).
+ *        It is type dependent parameter.
+ * @param kiomega Speed PI controller integration gain (<i>K</i><sub>Iomega</sub>).
+ *        It is type dependent parameter.
+ * @param kpc Power PI controller proportional gain (<i>K</i><sub>Pc</sub>).
+ *        It is type dependent parameter.
+ * @param kpomega Speed PI controller proportional gain (<i>K</i><sub>Pomega</sub>).
+ *        It is type dependent parameter.
+ * @param kpx Pitch cross coupling gain (K<sub>PX</sub>).
+ *        It is type dependent parameter.
+ * @param thetamax Maximum pitch angle (<i>theta</i><sub>max</sub>).
+ *        It is type dependent parameter.
+ * @param thetamin Minimum pitch angle (<i>theta</i><sub>min</sub>).
+ *        It is type dependent parameter.
+ * @param ttheta Pitch time constant (t<i>theta</i>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType3IEC Wind turbine type 3 model with which this pitch control model is associated.
  */
 case class WindContPitchAngleIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
-     * It is type dependent parameter. Unit = degrees/sec.
-     */
-    val dthetamax: Double,
-
-    /**
-     * Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).
-     * It is type dependent parameter. Unit = degrees/sec.
-     */
-    val dthetamin: Double,
-
-    /**
-     * Power PI controller integration gain (<i>K</i><sub>Ic</sub>).
-     * It is type dependent parameter.
-     */
-    val kic: Double,
-
-    /**
-     * Speed PI controller integration gain (<i>K</i><sub>Iomega</sub>).
-     * It is type dependent parameter.
-     */
-    val kiomega: Double,
-
-    /**
-     * Power PI controller proportional gain (<i>K</i><sub>Pc</sub>).
-     * It is type dependent parameter.
-     */
-    val kpc: Double,
-
-    /**
-     * Speed PI controller proportional gain (<i>K</i><sub>Pomega</sub>).
-     * It is type dependent parameter.
-     */
-    val kpomega: Double,
-
-    /**
-     * Pitch cross coupling gain (K<sub>PX</sub>).
-     * It is type dependent parameter.
-     */
-    val kpx: Double,
-
-    /**
-     * Maximum pitch angle (<i>theta</i><sub>max</sub>).
-     * It is type dependent parameter.
-     */
-    val thetamax: Double,
-
-    /**
-     * Minimum pitch angle (<i>theta</i><sub>min</sub>).
-     * It is type dependent parameter.
-     */
-    val thetamin: Double,
-
-    /**
-     * Pitch time constant (t<i>theta</i>).
-     * It is type dependent parameter.
-     */
-    val ttheta: Double,
-
-    /**
-     * Wind turbine type 3 model with which this pitch control model is associated.
-     */
-    val WindTurbineType3IEC: String
+(override val sup: IdentifiedObject,
+val dthetamax: Double,
+val dthetamin: Double,
+val kic: Double,
+val kiomega: Double,
+val kpc: Double,
+val kpomega: Double,
+val kpx: Double,
+val thetamax: Double,
+val thetamin: Double,
+val ttheta: Double,
+val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -826,154 +626,81 @@ extends
 /**
  * Q control model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.7.
+ * @param sup Reference to the superclass object.
+ * @param iqh1 Maximum reactive current injection during dip (i<sub>qh1</sub>).
+ *        It is type dependent parameter.
+ * @param iqmax Maximum reactive current injection (i<sub>qmax</sub>).
+ *        It is type dependent parameter.
+ * @param iqmin Minimum reactive current injection (i<sub>qmin</sub>).
+ *        It is type dependent parameter.
+ * @param iqpost Post fault reactive current injection (<i>i</i><sub>qpost</sub>).
+ *        It is project dependent parameter.
+ * @param kiq Reactive power PI controller integration gain (<i>K</i><sub>I,q</sub>).
+ *        It is type dependent parameter.
+ * @param kiu Voltage PI controller integration gain (<i>K</i><sub>I,u</sub>).
+ *        It is type dependent parameter.
+ * @param kpq Reactive power PI controller proportional gain (<i>K</i><sub>P,q</sub>).
+ *        It is type dependent parameter.
+ * @param kpu Voltage PI controller proportional gain (<i>K</i><sub>P,u</sub>).
+ *        It is type dependent parameter.
+ * @param kqv Voltage scaling factor for UVRT current (<i>K</i><sub>qv</sub>).
+ *        It is project dependent parameter.
+ * @param rdroop Resistive component of voltage drop impedance (<i>r</i><sub>droop</sub>).
+ *        It is project dependent parameter.
+ * @param tpfiltq Power measurement filter time constant (<i>T</i><sub>pfiltq</sub>).
+ *        It is type dependent parameter.
+ * @param tpost Length of time period where post fault reactive power is injected (<i>T</i><sub>post</sub>).
+ *        It is project dependent parameter.
+ * @param tqord Time constant in reactive power order lag (<i>T</i><sub>qord</sub>).
+ *        It is type dependent parameter.
+ * @param tufiltq Voltage measurement filter time constant (<i>T</i><sub>ufiltq</sub>).
+ *        It is type dependent parameter.
+ * @param udb1 Voltage dead band lower limit (<i>u</i><sub>db1</sub>).
+ *        It is type dependent parameter.
+ * @param udb2 Voltage dead band upper limit (<i>u</i><sub>db2</sub>).
+ *        It is type dependent parameter.
+ * @param umax Maximum voltage in voltage PI controller integral term (u<sub>max</sub>).
+ *        It is type dependent parameter.
+ * @param umin Minimum voltage in voltage PI controller integral term (u<sub>min</sub>).
+ *        It is type dependent parameter.
+ * @param uqdip Voltage threshold for UVRT detection in q control (<i>u</i><sub>qdip</sub>).
+ *        It is type dependent parameter.
+ * @param uref0 User defined bias in voltage reference (<i>u</i><sub>ref0</sub>), used when <i>M</i><sub>qG</sub> is set to voltage control.
+ *        It is case dependent parameter.
+ * @param windQcontrolModesType Types of general wind turbine Q control modes (<i>M</i><sub>qG</sub>).
+ *        It is project dependent parameter.
+ * @param windUVRTQcontrolModesType Types of UVRT Q control modes (<i>M</i><sub>qUVRT</sub>).
+ *        It is project dependent parameter.
+ * @param xdroop Inductive component of voltage drop impedance (<i>x</i><sub>droop</sub>).
+ *        It is project dependent parameter.
+ * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reactive control model is associated.
  */
 case class WindContQIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum reactive current injection during dip (i<sub>qh1</sub>).
-     * It is type dependent parameter.
-     */
-    val iqh1: Double,
-
-    /**
-     * Maximum reactive current injection (i<sub>qmax</sub>).
-     * It is type dependent parameter.
-     */
-    val iqmax: Double,
-
-    /**
-     * Minimum reactive current injection (i<sub>qmin</sub>).
-     * It is type dependent parameter.
-     */
-    val iqmin: Double,
-
-    /**
-     * Post fault reactive current injection (<i>i</i><sub>qpost</sub>).
-     * It is project dependent parameter.
-     */
-    val iqpost: Double,
-
-    /**
-     * Reactive power PI controller integration gain (<i>K</i><sub>I,q</sub>).
-     * It is type dependent parameter.
-     */
-    val kiq: Double,
-
-    /**
-     * Voltage PI controller integration gain (<i>K</i><sub>I,u</sub>).
-     * It is type dependent parameter.
-     */
-    val kiu: Double,
-
-    /**
-     * Reactive power PI controller proportional gain (<i>K</i><sub>P,q</sub>).
-     * It is type dependent parameter.
-     */
-    val kpq: Double,
-
-    /**
-     * Voltage PI controller proportional gain (<i>K</i><sub>P,u</sub>).
-     * It is type dependent parameter.
-     */
-    val kpu: Double,
-
-    /**
-     * Voltage scaling factor for UVRT current (<i>K</i><sub>qv</sub>).
-     * It is project dependent parameter.
-     */
-    val kqv: Double,
-
-    /**
-     * Resistive component of voltage drop impedance (<i>r</i><sub>droop</sub>).
-     * It is project dependent parameter.
-     */
-    val rdroop: Double,
-
-    /**
-     * Power measurement filter time constant (<i>T</i><sub>pfiltq</sub>).
-     * It is type dependent parameter.
-     */
-    val tpfiltq: Double,
-
-    /**
-     * Length of time period where post fault reactive power is injected (<i>T</i><sub>post</sub>).
-     * It is project dependent parameter.
-     */
-    val tpost: Double,
-
-    /**
-     * Time constant in reactive power order lag (<i>T</i><sub>qord</sub>).
-     * It is type dependent parameter.
-     */
-    val tqord: Double,
-
-    /**
-     * Voltage measurement filter time constant (<i>T</i><sub>ufiltq</sub>).
-     * It is type dependent parameter.
-     */
-    val tufiltq: Double,
-
-    /**
-     * Voltage dead band lower limit (<i>u</i><sub>db1</sub>).
-     * It is type dependent parameter.
-     */
-    val udb1: Double,
-
-    /**
-     * Voltage dead band upper limit (<i>u</i><sub>db2</sub>).
-     * It is type dependent parameter.
-     */
-    val udb2: Double,
-
-    /**
-     * Maximum voltage in voltage PI controller integral term (u<sub>max</sub>).
-     * It is type dependent parameter.
-     */
-    val umax: Double,
-
-    /**
-     * Minimum voltage in voltage PI controller integral term (u<sub>min</sub>).
-     * It is type dependent parameter.
-     */
-    val umin: Double,
-
-    /**
-     * Voltage threshold for UVRT detection in q control (<i>u</i><sub>qdip</sub>).
-     * It is type dependent parameter.
-     */
-    val uqdip: Double,
-
-    /**
-     * User defined bias in voltage reference (<i>u</i><sub>ref0</sub>), used when <i>M</i><sub>qG</sub> is set to voltage control.
-     * It is case dependent parameter.
-     */
-    val uref0: Double,
-
-    /**
-     * Types of general wind turbine Q control modes (<i>M</i><sub>qG</sub>).
-     * It is project dependent parameter.
-     */
-    val windQcontrolModesType: String,
-
-    /**
-     * Types of UVRT Q control modes (<i>M</i><sub>qUVRT</sub>).
-     * It is project dependent parameter.
-     */
-    val windUVRTQcontrolModesType: String,
-
-    /**
-     * Inductive component of voltage drop impedance (<i>x</i><sub>droop</sub>).
-     * It is project dependent parameter.
-     */
-    val xdroop: Double,
-
-    /**
-     * Wind turbine type 3 or 4 model with which this reactive control model is associated.
-     */
-    val WindTurbineType3or4IEC: String
+(override val sup: IdentifiedObject,
+val iqh1: Double,
+val iqmax: Double,
+val iqmin: Double,
+val iqpost: Double,
+val kiq: Double,
+val kiu: Double,
+val kpq: Double,
+val kpu: Double,
+val kqv: Double,
+val rdroop: Double,
+val tpfiltq: Double,
+val tpost: Double,
+val tqord: Double,
+val tufiltq: Double,
+val udb1: Double,
+val udb2: Double,
+val umax: Double,
+val umin: Double,
+val uqdip: Double,
+val uref0: Double,
+val windQcontrolModesType: String,
+val windUVRTQcontrolModesType: String,
+val xdroop: Double,
+val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -1055,28 +782,18 @@ extends
 /**
  * Constant Q limitation model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.9.
+ * @param sup Reference to the superclass object.
+ * @param qmax Maximum reactive power (<i>q</i><sub>max</sub>).
+ *        It is type dependent parameter.
+ * @param qmin Minimum reactive power (<i>q</i><sub>min</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this constant Q limitation model is associated.
  */
 case class WindContQLimIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum reactive power (<i>q</i><sub>max</sub>).
-     * It is type dependent parameter.
-     */
-    val qmax: Double,
-
-    /**
-     * Minimum reactive power (<i>q</i><sub>min</sub>).
-     * It is type dependent parameter.
-     */
-    val qmin: Double,
-
-    /**
-     * Wind generator type 3 or 4 model with which this constant Q limitation model is associated.
-     */
-    val WindTurbineType3or4IEC: String
+(override val sup: IdentifiedObject,
+val qmax: Double,
+val qmin: Double,
+val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -1116,28 +833,18 @@ extends
 /**
  * QP and QU limitation model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.10.
+ * @param sup Reference to the superclass object.
+ * @param tpfiltql Power measurement filter time constant for Q capacity (<i>T</i><sub>pfiltql</sub>).
+ *        It is type dependent parameter.
+ * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><sub>ufiltql</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
  */
 case class WindContQPQULimIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Power measurement filter time constant for Q capacity (<i>T</i><sub>pfiltql</sub>).
-     * It is type dependent parameter.
-     */
-    val tpfiltql: Double,
-
-    /**
-     * Voltage measurement filter time constant for Q capacity (<i>T</i><sub>ufiltql</sub>).
-     * It is type dependent parameter.
-     */
-    val tufiltql: Double,
-
-    /**
-     * Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
-     */
-    val WindTurbineType3or4IEC: String
+(override val sup: IdentifiedObject,
+val tpfiltql: Double,
+val tufiltql: Double,
+val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -1177,64 +884,36 @@ extends
 /**
  * Rotor resistance control model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.3.
+ * @param sup Reference to the superclass object.
+ * @param kirr Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
+ *        It is type dependent parameter.
+ * @param komegafilt Filter gain for generator speed measurement (K<sub>omegafilt</sub>).
+ *        It is type dependent parameter.
+ * @param kpfilt Filter gain for power measurement (<i>K</i><sub>pfilt</sub>).
+ *        It is type dependent parameter.
+ * @param kprr Proportional gain in rotor resistance PI controller (<i>K</i><sub>Prr</sub>).
+ *        It is type dependent parameter.
+ * @param rmax Maximum rotor resistance (<i>r</i><sub>max</sub>).
+ *        It is type dependent parameter.
+ * @param rmin Minimum rotor resistance (<i>r</i><sub>min</sub>).
+ *        It is type dependent parameter.
+ * @param tomegafiltrr Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltrr</sub>).
+ *        It is type dependent parameter.
+ * @param tpfiltrr Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
+ *        It is type dependent parameter.
+ * @param WindGenTurbineType2IEC Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
  */
 case class WindContRotorRIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
-     * It is type dependent parameter.
-     */
-    val kirr: Double,
-
-    /**
-     * Filter gain for generator speed measurement (K<sub>omegafilt</sub>).
-     * It is type dependent parameter.
-     */
-    val komegafilt: Double,
-
-    /**
-     * Filter gain for power measurement (<i>K</i><sub>pfilt</sub>).
-     * It is type dependent parameter.
-     */
-    val kpfilt: Double,
-
-    /**
-     * Proportional gain in rotor resistance PI controller (<i>K</i><sub>Prr</sub>).
-     * It is type dependent parameter.
-     */
-    val kprr: Double,
-
-    /**
-     * Maximum rotor resistance (<i>r</i><sub>max</sub>).
-     * It is type dependent parameter.
-     */
-    val rmax: Double,
-
-    /**
-     * Minimum rotor resistance (<i>r</i><sub>min</sub>).
-     * It is type dependent parameter.
-     */
-    val rmin: Double,
-
-    /**
-     * Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltrr</sub>).
-     * It is type dependent parameter.
-     */
-    val tomegafiltrr: Double,
-
-    /**
-     * Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
-     * It is type dependent parameter.
-     */
-    val tpfiltrr: Double,
-
-    /**
-     * Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
-     */
-    val WindGenTurbineType2IEC: String
+(override val sup: IdentifiedObject,
+val kirr: Double,
+val komegafilt: Double,
+val kpfilt: Double,
+val kprr: Double,
+val rmax: Double,
+val rmin: Double,
+val tomegafiltrr: Double,
+val tpfiltrr: Double,
+val WindGenTurbineType2IEC: String
 )
 extends
     Element
@@ -1285,76 +964,36 @@ extends
 
 /**
  * The class models a look up table for the purpose of wind standard models.
+ * @param sup Reference to the superclass object.
+ * @param input Input value (x) for the lookup table function.
+ * @param lookupTableFunctionType Type of the lookup table function.
+ * @param output Output value (y) for the lookup table function.
+ * @param sequence Sequence numbers of the pairs of the input (x) and the output (y) of the lookup table function.
+ * @param WindContCurrLimIEC The current control limitation model with which this wind dynamics lookup table is associated.
+ * @param WindContPType3IEC The P control type 3 model with which this wind dynamics lookup table is associated.
+ * @param WindContQPQULimIEC The QP and QU limitation model with which this wind dynamics lookup table is associated.
+ * @param WindContRotorRIEC The rotor resistance control model with which this wind dynamics lookup table is associated.
+ * @param WindGenType3bIEC The generator type 3B model with which this wind dynamics lookup table is associated.
+ * @param WindPitchContPowerIEC The pitch control power model with which this wind dynamics lookup table is associated.
+ * @param WindPlantFreqPcontrolIEC The frequency and active power wind plant control model with which this wind dynamics lookup table is associated.
+ * @param WindPlantReactiveControlIEC The voltage and reactive power wind plant control model with which this wind dynamics lookup table is associated.
+ * @param WindProtectionIEC The grid protection model with which this wind dynamics lookup table is associated.
  */
 case class WindDynamicsLookupTable
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Input value (x) for the lookup table function.
-     */
-    val input: Double,
-
-    /**
-     * Type of the lookup table function.
-     */
-    val lookupTableFunctionType: String,
-
-    /**
-     * Output value (y) for the lookup table function.
-     */
-    val output: Double,
-
-    /**
-     * Sequence numbers of the pairs of the input (x) and the output (y) of the lookup table function.
-     */
-    val sequence: Int,
-
-    /**
-     * The current control limitation model with which this wind dynamics lookup table is associated.
-     */
-    val WindContCurrLimIEC: String,
-
-    /**
-     * The P control type 3 model with which this wind dynamics lookup table is associated.
-     */
-    val WindContPType3IEC: String,
-
-    /**
-     * The QP and QU limitation model with which this wind dynamics lookup table is associated.
-     */
-    val WindContQPQULimIEC: String,
-
-    /**
-     * The rotor resistance control model with which this wind dynamics lookup table is associated.
-     */
-    val WindContRotorRIEC: String,
-
-    /**
-     * The generator type 3B model with which this wind dynamics lookup table is associated.
-     */
-    val WindGenType3bIEC: String,
-
-    /**
-     * The pitch control power model with which this wind dynamics lookup table is associated.
-     */
-    val WindPitchContPowerIEC: String,
-
-    /**
-     * The frequency and active power wind plant control model with which this wind dynamics lookup table is associated.
-     */
-    val WindPlantFreqPcontrolIEC: String,
-
-    /**
-     * The voltage and reactive power wind plant control model with which this wind dynamics lookup table is associated.
-     */
-    val WindPlantReactiveControlIEC: String,
-
-    /**
-     * The grid protection model with which this wind dynamics lookup table is associated.
-     */
-    val WindProtectionIEC: String
+(override val sup: IdentifiedObject,
+val input: Double,
+val lookupTableFunctionType: String,
+val output: Double,
+val sequence: Int,
+val WindContCurrLimIEC: String,
+val WindContPType3IEC: String,
+val WindContQPQULimIEC: String,
+val WindContRotorRIEC: String,
+val WindGenType3bIEC: String,
+val WindPitchContPowerIEC: String,
+val WindPlantFreqPcontrolIEC: String,
+val WindPlantReactiveControlIEC: String,
+val WindProtectionIEC: String
 )
 extends
     Element
@@ -1414,16 +1053,12 @@ extends
 /**
  * Wind turbine IEC Type 1A.
  * Reference: IEC Standard 61400-27-1, section 5.5.2.2.
+ * @param sup Reference to the superclass object.
+ * @param WindAeroConstIEC Wind aerodynamic model associated with this wind turbine type 1A model.
  */
 case class WindGenTurbineType1aIEC
-(
-
-    override val sup: WindTurbineType1or2IEC,
-
-    /**
-     * Wind aerodynamic model associated with this wind turbine type 1A model.
-     */
-    val WindAeroConstIEC: String
+(override val sup: WindTurbineType1or2IEC,
+val WindAeroConstIEC: String
 )
 extends
     Element
@@ -1459,16 +1094,12 @@ extends
 /**
  * Wind turbine IEC Type 1B.
  * Reference: IEC Standard 61400-27-1, section 5.5.2.3.
+ * @param sup Reference to the superclass object.
+ * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 1B model.
  */
 case class WindGenTurbineType1bIEC
-(
-
-    override val sup: WindTurbineType1or2IEC,
-
-    /**
-     * Pitch control power model associated with this wind turbine type 1B model.
-     */
-    val WindPitchContPowerIEC: String
+(override val sup: WindTurbineType1or2IEC,
+val WindPitchContPowerIEC: String
 )
 extends
     Element
@@ -1504,21 +1135,14 @@ extends
 /**
  * Wind turbine IEC Type 2.
  * Reference: IEC Standard 61400-27-1, section 5.5.3.
+ * @param sup Reference to the superclass object.
+ * @param WindContRotorRIEC Wind control rotor resistance model associated with wind turbine type 2 model.
+ * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 2 model.
  */
 case class WindGenTurbineType2IEC
-(
-
-    override val sup: WindTurbineType1or2IEC,
-
-    /**
-     * Wind control rotor resistance model associated with wind turbine type 2 model.
-     */
-    val WindContRotorRIEC: String,
-
-    /**
-     * Pitch control power model associated with this wind turbine type 2 model.
-     */
-    val WindPitchContPowerIEC: String
+(override val sup: WindTurbineType1or2IEC,
+val WindContRotorRIEC: String,
+val WindPitchContPowerIEC: String
 )
 extends
     Element
@@ -1555,34 +1179,21 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 generator models of IEC type 3A and 3B.
+ * @param sup Reference to the superclass object.
+ * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
+ *        It is project dependent parameter.
+ * @param diqmax Maximum reactive current ramp rate (di<sub>qmax</sub>).
+ *        It is project dependent parameter.
+ * @param xs Electromagnetic transient reactance (x<sub>S</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind generator type 3 is associated.
  */
 case class WindGenType3IEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum active current ramp rate (di<sub>pmax</sub>).
-     * It is project dependent parameter.
-     */
-    val dipmax: Double,
-
-    /**
-     * Maximum reactive current ramp rate (di<sub>qmax</sub>).
-     * It is project dependent parameter.
-     */
-    val diqmax: Double,
-
-    /**
-     * Electromagnetic transient reactance (x<sub>S</sub>).
-     * It is type dependent parameter.
-     */
-    val xs: Double,
-
-    /**
-     * Wind turbine type 3 model with which this wind generator type 3 is associated. 
-     */
-    val WindTurbineType3IEC: String
+(override val sup: IdentifiedObject,
+val dipmax: Double,
+val diqmax: Double,
+val xs: Double,
+val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -1624,28 +1235,18 @@ extends
 /**
  * IEC Type 3A generator set model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.2.
+ * @param sup Reference to the superclass object.
+ * @param kpc Current PI controller proportional gain (K<sub>Pc</sub>).
+ *        It is type dependent parameter.
+ * @param tic Current PI controller integration time constant (T<sub>Ic</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType4IEC Wind turbine type 4 model with which this wind generator type 3A model is associated.
  */
 case class WindGenType3aIEC
-(
-
-    override val sup: WindGenType3IEC,
-
-    /**
-     * Current PI controller proportional gain (K<sub>Pc</sub>).
-     * It is type dependent parameter.
-     */
-    val kpc: Double,
-
-    /**
-     * Current PI controller integration time constant (T<sub>Ic</sub>).
-     * It is type dependent parameter.
-     */
-    val tic: Double,
-
-    /**
-     * Wind turbine type 4 model with which this wind generator type 3A model is associated.
-     */
-    val WindTurbineType4IEC: String
+(override val sup: WindGenType3IEC,
+val kpc: Double,
+val tic: Double,
+val WindTurbineType4IEC: String
 )
 extends
     Element
@@ -1685,33 +1286,23 @@ extends
 /**
  * IEC Type 3B generator set model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.3.
+ * @param sup Reference to the superclass object.
+ * @param mwtcwp Crowbar control mode (<i>M</i><sub>WTcwp</sub>). 
+<ul>
+	<li>true = 1 in the model</li>
+	<li>false = 0 in the model.</li>
+</ul>
+ *        The parameter is case dependent parameter.
+ * @param tg Current generation Time constant (<i>T</i><sub>g</sub>).
+ *        It is type dependent parameter.
+ * @param two Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
+ *        It is case dependent parameter.
  */
 case class WindGenType3bIEC
-(
-
-    override val sup: WindGenType3IEC,
-
-    /**
-     * Crowbar control mode (<i>M</i><sub>WTcwp</sub>). 
-    <ul>
-    	<li>true = 1 in the model</li>
-    	<li>false = 0 in the model.</li>
-    </ul>
-     * The parameter is case dependent parameter.
-     */
-    val mwtcwp: Boolean,
-
-    /**
-     * Current generation Time constant (<i>T</i><sub>g</sub>).
-     * It is type dependent parameter.
-     */
-    val tg: Double,
-
-    /**
-     * Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
-     * It is case dependent parameter.
-     */
-    val two: Double
+(override val sup: WindGenType3IEC,
+val mwtcwp: Boolean,
+val tg: Double,
+val two: Double
 )
 extends
     Element
@@ -1751,45 +1342,26 @@ extends
 /**
  * IEC Type 4 generator set model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.4.
+ * @param sup Reference to the superclass object.
+ * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
+ *        It is project dependent parameter.
+ * @param diqmax Maximum reactive current ramp rate (di<sub>qmax</sub>).
+ *        It is project dependent parameter.
+ * @param diqmin Minimum reactive current ramp rate (d<i>i</i><sub>qmin</sub>).
+ *        It is case dependent parameter.
+ * @param tg Time constant (T<sub>g</sub>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType4aIEC Wind turbine type 4A model with which this wind generator type 4 model is associated.
+ * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind generator type 4 model is associated.
  */
 case class WindGenType4IEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum active current ramp rate (di<sub>pmax</sub>).
-     * It is project dependent parameter.
-     */
-    val dipmax: Double,
-
-    /**
-     * Maximum reactive current ramp rate (di<sub>qmax</sub>).
-     * It is project dependent parameter.
-     */
-    val diqmax: Double,
-
-    /**
-     * Minimum reactive current ramp rate (d<i>i</i><sub>qmin</sub>).
-     * It is case dependent parameter.
-     */
-    val diqmin: Double,
-
-    /**
-     * Time constant (T<sub>g</sub>).
-     * It is type dependent parameter.
-     */
-    val tg: Double,
-
-    /**
-     * Wind turbine type 4A model with which this wind generator type 4 model is associated.
-     */
-    val WindTurbineType4aIEC: String,
-
-    /**
-     * Wind turbine type 4B model with which this wind generator type 4 model is associated.
-     */
-    val WindTurbineType4bIEC: String
+(override val sup: IdentifiedObject,
+val dipmax: Double,
+val diqmax: Double,
+val diqmin: Double,
+val tg: Double,
+val WindTurbineType4aIEC: String,
+val WindTurbineType4bIEC: String
 )
 extends
     Element
@@ -1834,107 +1406,58 @@ extends
 
 /**
  * Function of the lookup table.
+ * @param sup Reference to the superclass object.
+ * @param ipmax Lookup table for voltage dependency of active current limits (i<sub>pmax</sub>(u<sub>WT</sub>)).
+ *        It is used for current limitation model, IEC 61400-27-1, section 5.6.5.8.
+ * @param iqmax Lookup table for voltage dependency of reactive current limits (i<sub>qmax</sub>(u<sub>WT</sub>)).
+ *        It is used for current limitation model, IEC 61400-27-1, section 5.6.5.8.
+ * @param omegap Power vs. speed lookup table (omega(p)).
+ *        It is used for P control model type 3, IEC 61400-27-1, section 5.6.5.4.
+ * @param prr Power versus speed change (negative slip) lookup table (p<sub>rr</sub>(deltaomega)).
+ *        It is used for rotor resistance control model, IEC 61400-27-1, section 5.6.5.3.
+ * @param pwp Power vs. frequency lookup table (p<sub>WPbias</sub>(f)).
+ *        It is used for wind power plant frequency and active power control model, IEC 61400-27-1, Annex D.
+ * @param qmaxp Lookup table for active power dependency of reactive power maximum limit (q<sub>maxp</sub>(p)).
+ *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
+ * @param qmaxu Lookup table for voltage dependency of reactive power maximum limit (q<sub>maxu</sub>(p)).
+ *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
+ * @param qminp Lookup table for active power dependency of reactive power minimum limit (q<sub>minp</sub>(p)).
+ *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
+ * @param qminu Lookup table for voltage dependency of reactive power minimum limit (q<sub>minu</sub>(p)).
+ *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
+ * @param qwp Look up table for the UQ static mode (q<sub>WP</sub>(u<sub>err</sub>)).
+ *        It is used for voltage and reactive power control model, IEC 61400-27-1, Annex D.
+ * @param tcwdu Crowbar duration versus voltage variation look-up table (T<sub>CW</sub>(du)).
+ *        It is case dependent parameter. It is used for type 3B generator set model, IEC 61400-27-1, section 5.6.3.3.
+ * @param tduwt Lookup table to determine the duration of the power reduction after a voltage dip, depending on the size of the voltage dip (T<sub>d</sub>(u<sub>WT</sub>)).
+ *        It is type dependent parameter. It is used for pitch control power model, IEC 61400-27-1, section 5.6.5.1.
+ * @param tfover Disconnection time versus over frequency lookup table (T<sub>fover</sub>(f<sub>WT</sub>)).
+ *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
+ * @param tfunder Disconnection time versus under frequency lookup table (T<sub>funder</sub>(f<sub>WT</sub>)).
+ *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
+ * @param tuover Disconnection time versus over voltage lookup table (T<sub>uover</sub>(u<sub>WT</sub>)).
+ *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
+ * @param tuunder Disconnection time versus under voltage lookup table (T<sub>uunder</sub>(u<sub>WT</sub>)).
+ *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
  */
 case class WindLookupTableFunctionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Lookup table for voltage dependency of active current limits (i<sub>pmax</sub>(u<sub>WT</sub>)).
-     * It is used for current limitation model, IEC 61400-27-1, section 5.6.5.8.
-     */
-    val ipmax: String,
-
-    /**
-     * Lookup table for voltage dependency of reactive current limits (i<sub>qmax</sub>(u<sub>WT</sub>)).
-     * It is used for current limitation model, IEC 61400-27-1, section 5.6.5.8.
-     */
-    val iqmax: String,
-
-    /**
-     * Power vs. speed lookup table (omega(p)).
-     * It is used for P control model type 3, IEC 61400-27-1, section 5.6.5.4.
-     */
-    val omegap: String,
-
-    /**
-     * Power versus speed change (negative slip) lookup table (p<sub>rr</sub>(deltaomega)).
-     * It is used for rotor resistance control model, IEC 61400-27-1, section 5.6.5.3.
-     */
-    val prr: String,
-
-    /**
-     * Power vs. frequency lookup table (p<sub>WPbias</sub>(f)).
-     * It is used for wind power plant frequency and active power control model, IEC 61400-27-1, Annex D.
-     */
-    val pwp: String,
-
-    /**
-     * Lookup table for active power dependency of reactive power maximum limit (q<sub>maxp</sub>(p)).
-     * It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
-     */
-    val qmaxp: String,
-
-    /**
-     * Lookup table for voltage dependency of reactive power maximum limit (q<sub>maxu</sub>(p)).
-     * It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
-     */
-    val qmaxu: String,
-
-    /**
-     * Lookup table for active power dependency of reactive power minimum limit (q<sub>minp</sub>(p)).
-     * It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
-     */
-    val qminp: String,
-
-    /**
-     * Lookup table for voltage dependency of reactive power minimum limit (q<sub>minu</sub>(p)).
-     * It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
-     */
-    val qminu: String,
-
-    /**
-     * Look up table for the UQ static mode (q<sub>WP</sub>(u<sub>err</sub>)).
-     * It is used for voltage and reactive power control model, IEC 61400-27-1, Annex D.
-     */
-    val qwp: String,
-
-    /**
-     * Crowbar duration versus voltage variation look-up table (T<sub>CW</sub>(du)).
-     * It is case dependent parameter. It is used for type 3B generator set model, IEC 61400-27-1, section 5.6.3.3.
-     */
-    val tcwdu: String,
-
-    /**
-     * Lookup table to determine the duration of the power reduction after a voltage dip, depending on the size of the voltage dip (T<sub>d</sub>(u<sub>WT</sub>)).
-     * It is type dependent parameter. It is used for pitch control power model, IEC 61400-27-1, section 5.6.5.1.
-     */
-    val tduwt: String,
-
-    /**
-     * Disconnection time versus over frequency lookup table (T<sub>fover</sub>(f<sub>WT</sub>)).
-     * It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
-     */
-    val tfover: String,
-
-    /**
-     * Disconnection time versus under frequency lookup table (T<sub>funder</sub>(f<sub>WT</sub>)).
-     * It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
-     */
-    val tfunder: String,
-
-    /**
-     * Disconnection time versus over voltage lookup table (T<sub>uover</sub>(u<sub>WT</sub>)).
-     * It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
-     */
-    val tuover: String,
-
-    /**
-     * Disconnection time versus under voltage lookup table (T<sub>uunder</sub>(u<sub>WT</sub>)).
-     * It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
-     */
-    val tuunder: String
+(override val sup: BasicElement,
+val ipmax: String,
+val iqmax: String,
+val omegap: String,
+val prr: String,
+val pwp: String,
+val qmaxp: String,
+val qmaxu: String,
+val qminp: String,
+val qminu: String,
+val qwp: String,
+val tcwdu: String,
+val tduwt: String,
+val tfover: String,
+val tfunder: String,
+val tuover: String,
+val tuunder: String
 )
 extends
     Element
@@ -2000,50 +1523,28 @@ extends
 /**
  * Two mass model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.2.1.
+ * @param sup Reference to the superclass object.
+ * @param cdrt Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
+ *        It is type dependent parameter.
+ * @param hgen Inertia constant of generator (<i>H</i><sub>gen</sub>).
+ *        It is type dependent parameter.
+ * @param hwtr Inertia constant of wind turbine rotor (<i>H</i><sub>WTR</sub>).
+ *        It is type dependent parameter.
+ * @param kdrt Drive train stiffness (<i>k</i><i><sub>drt</sub></i>).
+ *        It is type dependent parameter.
+ * @param WindTurbineType1or2IEC Wind generator type 1 or 2 model with which this wind mechanical model is associated.
+ * @param WindTurbineType3IEC Wind turbine Type 3 model with which this wind mechanical model is associated.
+ * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind mechanical model is associated.
  */
 case class WindMechIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
-     * It is type dependent parameter.
-     */
-    val cdrt: Double,
-
-    /**
-     * Inertia constant of generator (<i>H</i><sub>gen</sub>).
-     * It is type dependent parameter.
-     */
-    val hgen: Double,
-
-    /**
-     * Inertia constant of wind turbine rotor (<i>H</i><sub>WTR</sub>).
-     * It is type dependent parameter.
-     */
-    val hwtr: Double,
-
-    /**
-     * Drive train stiffness (<i>k</i><i><sub>drt</sub></i>).
-     * It is type dependent parameter.
-     */
-    val kdrt: Double,
-
-    /**
-     * Wind generator type 1 or 2 model with which this wind mechanical model is associated.
-     */
-    val WindTurbineType1or2IEC: String,
-
-    /**
-     * Wind turbine Type 3 model with which this wind mechanical model is associated.
-     */
-    val WindTurbineType3IEC: String,
-
-    /**
-     * Wind turbine type 4B model with which this wind mechanical model is associated.
-     */
-    val WindTurbineType4bIEC: String
+(override val sup: IdentifiedObject,
+val cdrt: Double,
+val hgen: Double,
+val hwtr: Double,
+val kdrt: Double,
+val WindTurbineType1or2IEC: String,
+val WindTurbineType3IEC: String,
+val WindTurbineType4bIEC: String
 )
 extends
     Element
@@ -2091,63 +1592,35 @@ extends
 /**
  * Pitch control power model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.1.
+ * @param sup Reference to the superclass object.
+ * @param dpmax Rate limit for increasing power (d<i>p</i><sub>max</sub>).
+ *        It is type dependent parameter.
+ * @param dpmin Rate limit for decreasing power (d<i>p</i><sub>min</sub>).
+ *        It is type dependent parameter.
+ * @param pmin Minimum power setting (<i>p</i><sub>min</sub>).
+ *        It is type dependent parameter.
+ * @param pset If <i>p</i><sub>init </sub>&lt; <i>p</i><sub>set </sub>then power will ne ramped down to <i>p</i><sub>min</sub>.
+ *        It is (<i>p</i><sub>set</sub>) in the IEC 61400-27-1. It is type dependent parameter.
+ * @param t1 Lag time constant (<i>T</i><sub>1</sub>).
+ *        It is type dependent parameter.
+ * @param tr Voltage measurement time constant (<i>T</i><sub>r</sub>).
+ *        It is type dependent parameter.
+ * @param uuvrt Dip detection threshold (u<sub>UVRT</sub>).
+ *        It is type dependent parameter.
+ * @param WindGenTurbineType1bIEC Wind turbine type 1B model with which this Pitch control power model is associated.
+ * @param WindGenTurbineType2IEC Wind turbine type 2 model with which this Pitch control power model is associated.
  */
 case class WindPitchContPowerIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Rate limit for increasing power (d<i>p</i><sub>max</sub>).
-     * It is type dependent parameter.
-     */
-    val dpmax: Double,
-
-    /**
-     * Rate limit for decreasing power (d<i>p</i><sub>min</sub>).
-     * It is type dependent parameter.
-     */
-    val dpmin: Double,
-
-    /**
-     * Minimum power setting (<i>p</i><sub>min</sub>).
-     * It is type dependent parameter.
-     */
-    val pmin: Double,
-
-    /**
-     * If <i>p</i><sub>init </sub>&lt; <i>p</i><sub>set </sub>then power will ne ramped down to <i>p</i><sub>min</sub>.
-     * It is (<i>p</i><sub>set</sub>) in the IEC 61400-27-1. It is type dependent parameter.
-     */
-    val pset: Double,
-
-    /**
-     * Lag time constant (<i>T</i><sub>1</sub>).
-     * It is type dependent parameter.
-     */
-    val t1: Double,
-
-    /**
-     * Voltage measurement time constant (<i>T</i><sub>r</sub>).
-     * It is type dependent parameter.
-     */
-    val tr: Double,
-
-    /**
-     * Dip detection threshold (u<sub>UVRT</sub>).
-     * It is type dependent parameter.
-     */
-    val uuvrt: Double,
-
-    /**
-     * Wind turbine type 1B model with which this Pitch control power model is associated.
-     */
-    val WindGenTurbineType1bIEC: String,
-
-    /**
-     * Wind turbine type 2 model with which this Pitch control power model is associated.
-     */
-    val WindGenTurbineType2IEC: String
+(override val sup: IdentifiedObject,
+val dpmax: Double,
+val dpmin: Double,
+val pmin: Double,
+val pset: Double,
+val t1: Double,
+val tr: Double,
+val uuvrt: Double,
+val WindGenTurbineType1bIEC: String,
+val WindGenTurbineType2IEC: String
 )
 extends
     Element
@@ -2198,16 +1671,12 @@ extends
 
 /**
  * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant IEC and user defined wind plants including their control models.
+ * @param sup Reference to the superclass object.
+ * @param RemoteInputSignal The remote signal with which this power plant is associated.
  */
 case class WindPlantDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * The remote signal with which this power plant is associated.
-     */
-    val RemoteInputSignal: String
+(override val sup: DynamicsFunctionBlock,
+val RemoteInputSignal: String
 )
 extends
     Element
@@ -2243,106 +1712,57 @@ extends
 /**
  * Frequency and active power controller model.
  * Reference: IEC Standard 61400-27-1 Annex D.
+ * @param sup Reference to the superclass object.
+ * @param dprefmax Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
+ *        It is case dependent parameter.
+ * @param dprefmin Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).
+ *        It is project dependent parameter.
+ * @param dpwprefmax Maximum positive ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmax</sub>).
+ *        It is project dependent parameter.
+ * @param dpwprefmin Maximum negative ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmin</sub>).
+ *        It is project dependent parameter.
+ * @param kiwpp Plant P controller integral gain (<i>K</i><sub>IWPp</sub>).
+ *        It is project dependent parameter.
+ * @param kiwppmax Maximum PI integrator term (<i>K</i><sub>IWPpmax</sub>).
+ *        It is project dependent parameter.
+ * @param kiwppmin Minimum PI integrator term (<i>K</i><sub>IWPpmin</sub>).
+ *        It is project dependent parameter.
+ * @param kpwpp Plant P controller proportional gain (<i>K</i><sub>PWPp</sub>).
+ *        It is project dependent parameter.
+ * @param kwppref Power reference gain (<i>K</i><sub>WPpref</sub>).
+ *        It is project dependent parameter.
+ * @param prefmax Maximum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmax</sub>).
+ *        It is project dependent parameter.
+ * @param prefmin Minimum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmin</sub>).
+ *        It is project dependent parameter.
+ * @param tpft Lead time constant in reference value transfer function (<i>T</i><sub>pft</sub>).
+ *        It is project dependent parameter.
+ * @param tpfv Lag time constant in reference value transfer function (<i>T</i><sub>pfv</sub>).
+ *        It is project dependent parameter.
+ * @param twpffiltp Filter time constant for frequency measurement (<i>T</i><sub>WPffiltp</sub>).
+ *        It is project dependent parameter.
+ * @param twppfiltp Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
+ *        It is project dependent parameter.
+ * @param WindPlantIEC Wind plant model with which this wind plant frequency and active power control is associated.
  */
 case class WindPlantFreqPcontrolIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
-     * It is case dependent parameter.
-     */
-    val dprefmax: Double,
-
-    /**
-     * Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).
-     * It is project dependent parameter.
-     */
-    val dprefmin: Double,
-
-    /**
-     * Maximum positive ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmax</sub>).
-     * It is project dependent parameter.
-     */
-    val dpwprefmax: Double,
-
-    /**
-     * Maximum negative ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmin</sub>).
-     * It is project dependent parameter.
-     */
-    val dpwprefmin: Double,
-
-    /**
-     * Plant P controller integral gain (<i>K</i><sub>IWPp</sub>).
-     * It is project dependent parameter.
-     */
-    val kiwpp: Double,
-
-    /**
-     * Maximum PI integrator term (<i>K</i><sub>IWPpmax</sub>).
-     * It is project dependent parameter.
-     */
-    val kiwppmax: Double,
-
-    /**
-     * Minimum PI integrator term (<i>K</i><sub>IWPpmin</sub>).
-     * It is project dependent parameter.
-     */
-    val kiwppmin: Double,
-
-    /**
-     * Plant P controller proportional gain (<i>K</i><sub>PWPp</sub>).
-     * It is project dependent parameter.
-     */
-    val kpwpp: Double,
-
-    /**
-     * Power reference gain (<i>K</i><sub>WPpref</sub>).
-     * It is project dependent parameter.
-     */
-    val kwppref: Double,
-
-    /**
-     * Maximum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmax</sub>).
-     * It is project dependent parameter.
-     */
-    val prefmax: Double,
-
-    /**
-     * Minimum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmin</sub>).
-     * It is project dependent parameter.
-     */
-    val prefmin: Double,
-
-    /**
-     * Lead time constant in reference value transfer function (<i>T</i><sub>pft</sub>).
-     * It is project dependent parameter.
-     */
-    val tpft: Double,
-
-    /**
-     * Lag time constant in reference value transfer function (<i>T</i><sub>pfv</sub>).
-     * It is project dependent parameter.
-     */
-    val tpfv: Double,
-
-    /**
-     * Filter time constant for frequency measurement (<i>T</i><sub>WPffiltp</sub>).
-     * It is project dependent parameter.
-     */
-    val twpffiltp: Double,
-
-    /**
-     * Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
-     * It is project dependent parameter.
-     */
-    val twppfiltp: Double,
-
-    /**
-     * Wind plant model with which this wind plant frequency and active power control is associated.
-     */
-    val WindPlantIEC: String
+(override val sup: IdentifiedObject,
+val dprefmax: Double,
+val dprefmin: Double,
+val dpwprefmax: Double,
+val dpwprefmin: Double,
+val kiwpp: Double,
+val kiwppmax: Double,
+val kiwppmin: Double,
+val kpwpp: Double,
+val kwppref: Double,
+val prefmax: Double,
+val prefmin: Double,
+val tpft: Double,
+val tpfv: Double,
+val twpffiltp: Double,
+val twppfiltp: Double,
+val WindPlantIEC: String
 )
 extends
     Element
@@ -2408,21 +1828,14 @@ extends
 /**
  * Simplified IEC type plant level model.
  * Reference: IEC 61400-27-1, Annex D.
+ * @param sup Reference to the superclass object.
+ * @param WindPlantFreqPcontrolIEC Wind plant frequency and active power control model associated with this wind plant.
+ * @param WindPlantReactiveControlIEC Wind plant model with which this wind reactive control is associated.
  */
 case class WindPlantIEC
-(
-
-    override val sup: WindPlantDynamics,
-
-    /**
-     * Wind plant frequency and active power control model associated with this wind plant.
-     */
-    val WindPlantFreqPcontrolIEC: String,
-
-    /**
-     * Wind plant model with which this wind reactive control is associated.
-     */
-    val WindPlantReactiveControlIEC: String
+(override val sup: WindPlantDynamics,
+val WindPlantFreqPcontrolIEC: String,
+val WindPlantReactiveControlIEC: String
 )
 extends
     Element
@@ -2459,31 +1872,18 @@ extends
 
 /**
  * Reactive power/voltage controller mode.
+ * @param sup Reference to the superclass object.
+ * @param powerFactor Power factor reference.
+ * @param reactivePower Reactive power reference.
+ * @param uqStatic UQ static.
+ * @param voltageControl Voltage control.
  */
 case class WindPlantQcontrolModeKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Power factor reference.
-     */
-    val powerFactor: String,
-
-    /**
-     * Reactive power reference.
-     */
-    val reactivePower: String,
-
-    /**
-     * UQ static.
-     */
-    val uqStatic: String,
-
-    /**
-     * Voltage control.
-     */
-    val voltageControl: String
+(override val sup: BasicElement,
+val powerFactor: String,
+val reactivePower: String,
+val uqStatic: String,
+val voltageControl: String
 )
 extends
     Element
@@ -2525,124 +1925,66 @@ extends
 /**
  * Simplified plant voltage and reactive power control model for use with type 3 and type 4 wind turbine models.
  * Reference: IEC Standard 61400-27-1 Annex D.
+ * @param sup Reference to the superclass object.
+ * @param dxrefmax Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmax</sub>).
+ *        It is project dependent parameter.
+ * @param dxrefmin Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmin</sub>).
+ *        It is project dependent parameter.
+ * @param kiwpx Plant Q controller integral gain (<i>K</i><sub>IWPx</sub>).
+ *        It is project dependent parameter.
+ * @param kiwpxmax Maximum reactive Power/voltage reference from integration (<i>K</i><sub>IWPxmax</sub>).
+ *        It is project dependent parameter.
+ * @param kiwpxmin Minimum reactive Power/voltage reference from integration (<i>K</i><sub>IWPxmin</sub>).
+ *        It is project dependent parameter.
+ * @param kpwpx Plant Q controller proportional gain (<i>K</i><sub>PWPx</sub>).
+ *        It is project dependent parameter.
+ * @param kwpqref Reactive power reference gain (<i>K</i><sub>WPqref</sub>).
+ *        It is project dependent parameter.
+ * @param kwpqu Plant voltage control droop (<i>K</i><sub>WPqu</sub>).
+ *        It is project dependent parameter.
+ * @param tuqfilt Filter time constant for voltage dependent reactive power (<i>T</i><sub>uqfilt</sub>).
+ *        It is project dependent parameter.
+ * @param twppfiltq Filter time constant for active power measurement (<i>T</i><sub>WPpfiltq</sub>).
+ *        It is project dependent parameter.
+ * @param twpqfiltq Filter time constant for reactive power measurement (<i>T</i><sub>WPqfiltq</sub>).
+ *        It is project dependent parameter.
+ * @param twpufiltq Filter time constant for voltage measurement (<i>T</i><sub>WPufiltq</sub>).
+ *        It is project dependent parameter.
+ * @param txft Lead time constant in reference value transfer function (<i>T</i><sub>xft</sub>).
+ *        It is project dependent parameter.
+ * @param txfv Lag time constant in reference value transfer function (<i>T</i><sub>xfv</sub>).
+ *        It is project dependent parameter.
+ * @param uwpqdip Voltage threshold for UVRT detection in q control (<i>u</i><sub>WPqdip</sub>).
+ *        It is project dependent parameter.
+ * @param windPlantQcontrolModesType Reactive power/voltage controller mode (<i>M</i><sub>WPqmode</sub>).
+ *        It is case dependent parameter.
+ * @param xrefmax Maximum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta <i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmax</sub>).
+ *        It is case dependent parameter.
+ * @param xrefmin Minimum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta<i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmin</sub>).
+ *        It is project dependent parameter.
+ * @param WindPlantIEC Wind plant reactive control model associated with this wind plant.
  */
 case class WindPlantReactiveControlIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmax</sub>).
-     * It is project dependent parameter.
-     */
-    val dxrefmax: Double,
-
-    /**
-     * Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmin</sub>).
-     * It is project dependent parameter.
-     */
-    val dxrefmin: Double,
-
-    /**
-     * Plant Q controller integral gain (<i>K</i><sub>IWPx</sub>).
-     * It is project dependent parameter.
-     */
-    val kiwpx: Double,
-
-    /**
-     * Maximum reactive Power/voltage reference from integration (<i>K</i><sub>IWPxmax</sub>).
-     * It is project dependent parameter.
-     */
-    val kiwpxmax: Double,
-
-    /**
-     * Minimum reactive Power/voltage reference from integration (<i>K</i><sub>IWPxmin</sub>).
-     * It is project dependent parameter.
-     */
-    val kiwpxmin: Double,
-
-    /**
-     * Plant Q controller proportional gain (<i>K</i><sub>PWPx</sub>).
-     * It is project dependent parameter.
-     */
-    val kpwpx: Double,
-
-    /**
-     * Reactive power reference gain (<i>K</i><sub>WPqref</sub>).
-     * It is project dependent parameter.
-     */
-    val kwpqref: Double,
-
-    /**
-     * Plant voltage control droop (<i>K</i><sub>WPqu</sub>).
-     * It is project dependent parameter.
-     */
-    val kwpqu: Double,
-
-    /**
-     * Filter time constant for voltage dependent reactive power (<i>T</i><sub>uqfilt</sub>).
-     * It is project dependent parameter.
-     */
-    val tuqfilt: Double,
-
-    /**
-     * Filter time constant for active power measurement (<i>T</i><sub>WPpfiltq</sub>).
-     * It is project dependent parameter.
-     */
-    val twppfiltq: Double,
-
-    /**
-     * Filter time constant for reactive power measurement (<i>T</i><sub>WPqfiltq</sub>).
-     * It is project dependent parameter.
-     */
-    val twpqfiltq: Double,
-
-    /**
-     * Filter time constant for voltage measurement (<i>T</i><sub>WPufiltq</sub>).
-     * It is project dependent parameter.
-     */
-    val twpufiltq: Double,
-
-    /**
-     * Lead time constant in reference value transfer function (<i>T</i><sub>xft</sub>).
-     * It is project dependent parameter.
-     */
-    val txft: Double,
-
-    /**
-     * Lag time constant in reference value transfer function (<i>T</i><sub>xfv</sub>).
-     * It is project dependent parameter.
-     */
-    val txfv: Double,
-
-    /**
-     * Voltage threshold for UVRT detection in q control (<i>u</i><sub>WPqdip</sub>).
-     * It is project dependent parameter.
-     */
-    val uwpqdip: Double,
-
-    /**
-     * Reactive power/voltage controller mode (<i>M</i><sub>WPqmode</sub>).
-     * It is case dependent parameter.
-     */
-    val windPlantQcontrolModesType: String,
-
-    /**
-     * Maximum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta <i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmax</sub>).
-     * It is case dependent parameter.
-     */
-    val xrefmax: Double,
-
-    /**
-     * Minimum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta<i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmin</sub>).
-     * It is project dependent parameter.
-     */
-    val xrefmin: Double,
-
-    /**
-     * Wind plant reactive control model associated with this wind plant.
-     */
-    val WindPlantIEC: String
+(override val sup: IdentifiedObject,
+val dxrefmax: Double,
+val dxrefmin: Double,
+val kiwpx: Double,
+val kiwpxmax: Double,
+val kiwpxmin: Double,
+val kpwpx: Double,
+val kwpqref: Double,
+val kwpqu: Double,
+val tuqfilt: Double,
+val twppfiltq: Double,
+val twpqfiltq: Double,
+val twpufiltq: Double,
+val txft: Double,
+val txfv: Double,
+val uwpqdip: Double,
+val windPlantQcontrolModesType: String,
+val xrefmax: Double,
+val xrefmin: Double,
+val WindPlantIEC: String
 )
 extends
     Element
@@ -2714,63 +2056,35 @@ extends
 /**
  * The grid protection model includes protection against over and under voltage, and against over and under frequency.
  * Reference: IEC Standard 614000-27-1 Section 5.6.6.
+ * @param sup Reference to the superclass object.
+ * @param dfimax Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
+ *        It is type dependent parameter.
+ * @param fover Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
+ *        It is project dependent parameter.
+ * @param funder Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
+ *        It is project dependent parameter.
+ * @param mzc Zero crossing measurement mode (<i>Mzc</i>).
+ *        True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.
+ * @param tfma Time interval of moving average window (<i>TfMA</i>).
+ *        It is type dependent parameter.
+ * @param uover Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
+ *        It is project dependent parameter.
+ * @param uunder Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
+ *        It is project dependent parameter.
+ * @param WindTurbineType1or2IEC Wind generator type 1 or 2 model with which this wind turbine protection model is associated.
+ * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
  */
 case class WindProtectionIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
-     * It is type dependent parameter.
-     */
-    val dfimax: Double,
-
-    /**
-     * Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
-     * It is project dependent parameter.
-     */
-    val fover: Double,
-
-    /**
-     * Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
-     * It is project dependent parameter.
-     */
-    val funder: Double,
-
-    /**
-     * Zero crossing measurement mode (<i>Mzc</i>).
-     * True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.
-     */
-    val mzc: Boolean,
-
-    /**
-     * Time interval of moving average window (<i>TfMA</i>).
-     * It is type dependent parameter.
-     */
-    val tfma: Double,
-
-    /**
-     * Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
-     * It is project dependent parameter.
-     */
-    val uover: Double,
-
-    /**
-     * Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
-     * It is project dependent parameter.
-     */
-    val uunder: Double,
-
-    /**
-     * Wind generator type 1 or 2 model with which this wind turbine protection model is associated.
-     */
-    val WindTurbineType1or2IEC: String,
-
-    /**
-     * Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
-     */
-    val WindTurbineType3or4IEC: String
+(override val sup: IdentifiedObject,
+val dfimax: Double,
+val fover: Double,
+val funder: Double,
+val mzc: Boolean,
+val tfma: Double,
+val uover: Double,
+val uunder: Double,
+val WindTurbineType1or2IEC: String,
+val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -2821,36 +2135,20 @@ extends
 
 /**
  * General wind turbine Q control modes <i>M</i><sub>qG</sub>.
+ * @param sup Reference to the superclass object.
+ * @param openLoopReactivePower Open loop reactive power control (only used with closed loop at plant level) (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 2).
+ * @param openLooppowerFactor Open loop power factor control (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 4).
+ * @param powerFactor Power factor control (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 3).
+ * @param reactivePower Reactive power control (<i>M</i><i><sub>q</sub></i><sub>G</sub> equals 1).
+ * @param voltage Voltage control (<i>M</i><i><sub>q</sub></i><sub>G</sub> equals 0).
  */
 case class WindQcontrolModeKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Open loop reactive power control (only used with closed loop at plant level) (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 2).
-     */
-    val openLoopReactivePower: String,
-
-    /**
-     * Open loop power factor control (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 4).
-     */
-    val openLooppowerFactor: String,
-
-    /**
-     * Power factor control (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 3).
-     */
-    val powerFactor: String,
-
-    /**
-     * Reactive power control (<i>M</i><i><sub>q</sub></i><sub>G</sub> equals 1).
-     */
-    val reactivePower: String,
-
-    /**
-     * Voltage control (<i>M</i><i><sub>q</sub></i><sub>G</sub> equals 0).
-     */
-    val voltage: String
+(override val sup: BasicElement,
+val openLoopReactivePower: String,
+val openLooppowerFactor: String,
+val powerFactor: String,
+val reactivePower: String,
+val voltage: String
 )
 extends
     Element
@@ -2894,34 +2192,21 @@ extends
 /**
  * Reference frame rotation model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.5.
+ * @param sup Reference to the superclass object.
+ * @param tpll Time constant for PLL first order filter model (T<sub>PLL</sub>).
+ *        It is type dependent parameter.
+ * @param upll1 Voltage below which the angle of the voltage is filtered and possibly also frozen (u<sub>PLL1</sub>).
+ *        It is type dependent parameter.
+ * @param upll2 Voltage (u<sub>PLL2</sub>) below which the angle of the voltage is frozen if u<sub>PLL2 </sub>is smaller or equal to u<sub>PLL1</sub> .
+ *        It is type dependent parameter.
+ * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reference frame rotation model is associated.
  */
 case class WindRefFrameRotIEC
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Time constant for PLL first order filter model (T<sub>PLL</sub>).
-     * It is type dependent parameter.
-     */
-    val tpll: Double,
-
-    /**
-     * Voltage below which the angle of the voltage is filtered and possibly also frozen (u<sub>PLL1</sub>).
-     * It is type dependent parameter.
-     */
-    val upll1: Double,
-
-    /**
-     * Voltage (u<sub>PLL2</sub>) below which the angle of the voltage is frozen if u<sub>PLL2 </sub>is smaller or equal to u<sub>PLL1</sub> .
-     * It is type dependent parameter.
-     */
-    val upll2: Double,
-
-    /**
-     * Wind turbine type 3 or 4 model with which this reference frame rotation model is associated.
-     */
-    val WindTurbineType3or4IEC: String
+(override val sup: IdentifiedObject,
+val tpll: Double,
+val upll1: Double,
+val upll2: Double,
+val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -2962,21 +2247,14 @@ extends
 
 /**
  * Parent class supporting relationships to wind turbines Type 1 and 2 and their control models.
+ * @param sup Reference to the superclass object.
+ * @param AsynchronousMachineDynamics Asynchronous machine model with which this wind generator type 1 or 2 model is associated.
+ * @param RemoteInputSignal Remote input signal used by this wind generator Type 1 or Type 2 model.
  */
 case class WindTurbineType1or2Dynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Asynchronous machine model with which this wind generator type 1 or 2 model is associated.
-     */
-    val AsynchronousMachineDynamics: String,
-
-    /**
-     * Remote input signal used by this wind generator Type 1 or Type 2 model.
-     */
-    val RemoteInputSignal: String
+(override val sup: DynamicsFunctionBlock,
+val AsynchronousMachineDynamics: String,
+val RemoteInputSignal: String
 )
 extends
     Element
@@ -3014,21 +2292,14 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines Type 1 and 2 including their control models.
  * Generator model for wind turbine of IEC Type 1 or Type 2 is a standard asynchronous generator model.
+ * @param sup Reference to the superclass object.
+ * @param WindMechIEC Wind mechanical model associated with this wind generator type 1 or 2 model.
+ * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 1 or 2 model.
  */
 case class WindTurbineType1or2IEC
-(
-
-    override val sup: WindTurbineType1or2Dynamics,
-
-    /**
-     * Wind mechanical model associated with this wind generator type 1 or 2 model.
-     */
-    val WindMechIEC: String,
-
-    /**
-     * Wind turbune protection model associated with this wind generator type 1 or 2 model.
-     */
-    val WindProtectionIEC: String
+(override val sup: WindTurbineType1or2Dynamics,
+val WindMechIEC: String,
+val WindProtectionIEC: String
 )
 extends
     Element
@@ -3065,41 +2336,22 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 including their control models.
+ * @param sup Reference to the superclass object.
+ * @param WindAeroOneDimIEC Wind aerodynamic model associated with this wind generator type 3 model.
+ * @param WindAeroTwoDimIEC Wind aerodynamic model associated with this wind turbine type 3 model.
+ * @param WindContPType3IEC Wind control P type 3 model associated with this wind turbine type 3 model.
+ * @param WindContPitchAngleIEC Wind control pitch angle model associated with this wind turbine type 3.
+ * @param WindGenType3IEC Wind generator Type 3 model associated with this wind turbine type 3 model.
+ * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 3 model.
  */
 case class WindTurbineType3IEC
-(
-
-    override val sup: WindTurbineType3or4IEC,
-
-    /**
-     * Wind aerodynamic model associated with this wind generator type 3 model.
-     */
-    val WindAeroOneDimIEC: String,
-
-    /**
-     * Wind aerodynamic model associated with this wind turbine type 3 model.
-     */
-    val WindAeroTwoDimIEC: String,
-
-    /**
-     * Wind control P type 3 model associated with this wind turbine type 3 model.
-     */
-    val WindContPType3IEC: String,
-
-    /**
-     * Wind control pitch angle model associated with this wind turbine type 3.
-     */
-    val WindContPitchAngleIEC: String,
-
-    /**
-     * Wind generator Type 3 model associated with this wind turbine type 3 model.
-     */
-    val WindGenType3IEC: String,
-
-    /**
-     * Wind mechanical model associated with this wind turbine Type 3 model.
-     */
-    val WindMechIEC: String
+(override val sup: WindTurbineType3or4IEC,
+val WindAeroOneDimIEC: String,
+val WindAeroTwoDimIEC: String,
+val WindContPType3IEC: String,
+val WindContPitchAngleIEC: String,
+val WindGenType3IEC: String,
+val WindMechIEC: String
 )
 extends
     Element
@@ -3144,26 +2396,16 @@ extends
 
 /**
  * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant including their control models.
+ * @param sup Reference to the superclass object.
+ * @param EnergySource Energy Source (current source) with which this wind Type 3 or 4 dynamics model is asoociated.
+ * @param RemoteInputSignal Remote input signal used by these wind turbine Type 3 or 4 models.
+ * @param WindPlantDynamics The wind plant with which the wind turbines type 3 or 4 are associated.
  */
 case class WindTurbineType3or4Dynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Energy Source (current source) with which this wind Type 3 or 4 dynamics model is asoociated.
-     */
-    val EnergySource: String,
-
-    /**
-     * Remote input signal used by these wind turbine Type 3 or 4 models.
-     */
-    val RemoteInputSignal: String,
-
-    /**
-     * The wind plant with which the wind turbines type 3 or 4 are associated.
-     */
-    val WindPlantDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val EnergySource: String,
+val RemoteInputSignal: String,
+val WindPlantDynamics: String
 )
 extends
     Element
@@ -3202,41 +2444,22 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 and 4 including their control models.
+ * @param sup Reference to the superclass object.
+ * @param WIndContQIEC Wind control Q model associated with this wind turbine type 3 or 4 model.
+ * @param WindContCurrLimIEC Wind control current limitation model associated with this wind turbine type 3 or 4 model.
+ * @param WindContQLimIEC Constant Q limitation model associated with this wind generator type 3 or 4 model.
+ * @param WindContQPQULimIEC QP and QU limitation model associated with this wind generator type 3 or 4 model.
+ * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 3 or 4 model.
+ * @param WindRefFrameRotIEC Reference frame rotation model associated with this wind turbine type 3 or 4 model.
  */
 case class WindTurbineType3or4IEC
-(
-
-    override val sup: WindTurbineType3or4Dynamics,
-
-    /**
-     * Wind control Q model associated with this wind turbine type 3 or 4 model.
-     */
-    val WIndContQIEC: String,
-
-    /**
-     * Wind control current limitation model associated with this wind turbine type 3 or 4 model.
-     */
-    val WindContCurrLimIEC: String,
-
-    /**
-     * Constant Q limitation model associated with this wind generator type 3 or 4 model.
-     */
-    val WindContQLimIEC: String,
-
-    /**
-     * QP and QU limitation model associated with this wind generator type 3 or 4 model.
-     */
-    val WindContQPQULimIEC: String,
-
-    /**
-     * Wind turbune protection model associated with this wind generator type 3 or 4 model.
-     */
-    val WindProtectionIEC: String,
-
-    /**
-     * Reference frame rotation model associated with this wind turbine type 3 or 4 model.
-     */
-    val WindRefFrameRotIEC: String
+(override val sup: WindTurbineType3or4Dynamics,
+val WIndContQIEC: String,
+val WindContCurrLimIEC: String,
+val WindContQLimIEC: String,
+val WindContQPQULimIEC: String,
+val WindProtectionIEC: String,
+val WindRefFrameRotIEC: String
 )
 extends
     Element
@@ -3281,16 +2504,12 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 4 including their control models.
+ * @param sup Reference to the superclass object.
+ * @param WindGenType3aIEC Wind generator type 3A model associated with this wind turbine type 4 model.
  */
 case class WindTurbineType4IEC
-(
-
-    override val sup: WindTurbineType3or4IEC,
-
-    /**
-     * Wind generator type 3A model associated with this wind turbine type 4 model.
-     */
-    val WindGenType3aIEC: String
+(override val sup: WindTurbineType3or4IEC,
+val WindGenType3aIEC: String
 )
 extends
     Element
@@ -3326,21 +2545,14 @@ extends
 /**
  * Wind turbine IEC Type 4A.
  * Reference: IEC Standard 61400-27-1, section 5.5.5.3.
+ * @param sup Reference to the superclass object.
+ * @param WindContPType4aIEC Wind control P type 4A model associated with this wind turbine type 4A model.
+ * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4A model.
  */
 case class WindTurbineType4aIEC
-(
-
-    override val sup: WindTurbineType4IEC,
-
-    /**
-     * Wind control P type 4A model associated with this wind turbine type 4A model.
-     */
-    val WindContPType4aIEC: String,
-
-    /**
-     * Wind generator type 4 model associated with this wind turbine type 4A model.
-     */
-    val WindGenType4IEC: String
+(override val sup: WindTurbineType4IEC,
+val WindContPType4aIEC: String,
+val WindGenType4IEC: String
 )
 extends
     Element
@@ -3378,26 +2590,16 @@ extends
 /**
  * Wind turbine IEC Type 4A.
  * Reference: IEC Standard 61400-27-1, section 5.5.5.2.
+ * @param sup Reference to the superclass object.
+ * @param WindContPType4bIEC Wind control P type 4B model associated with this wind turbine type 4B model.
+ * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4B model.
+ * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 4B model.
  */
 case class WindTurbineType4bIEC
-(
-
-    override val sup: WindTurbineType4IEC,
-
-    /**
-     * Wind control P type 4B model associated with this wind turbine type 4B model.
-     */
-    val WindContPType4bIEC: String,
-
-    /**
-     * Wind generator type 4 model associated with this wind turbine type 4B model.
-     */
-    val WindGenType4IEC: String,
-
-    /**
-     * Wind mechanical model associated with this wind turbine Type 4B model.
-     */
-    val WindMechIEC: String
+(override val sup: WindTurbineType4IEC,
+val WindContPType4bIEC: String,
+val WindGenType4IEC: String,
+val WindMechIEC: String
 )
 extends
     Element
@@ -3436,26 +2638,16 @@ extends
 
 /**
  * UVRT Q control modes <i>M</i><sub>qUVRT</sub>.
+ * @param sup Reference to the superclass object.
+ * @param mode0 Voltage dependent reactive current injection (<i>M</i><i><sub>q</sub></i><sub>UVRT </sub>equals 0).
+ * @param mode1 Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection (<i>M</i><i><sub>q</sub></i><sub>UVRT</sub> equals 1).
+ * @param mode2 Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection during fault, and as the pre-fault value plus an additional constant reactive current injection post fault (<i>M</i><i><sub>q</sub></i><sub>UVRT </sub>equals 2).
  */
 case class WindUVRTQcontrolModeKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Voltage dependent reactive current injection (<i>M</i><i><sub>q</sub></i><sub>UVRT </sub>equals 0).
-     */
-    val mode0: String,
-
-    /**
-     * Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection (<i>M</i><i><sub>q</sub></i><sub>UVRT</sub> equals 1).
-     */
-    val mode1: String,
-
-    /**
-     * Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection during fault, and as the pre-fault value plus an additional constant reactive current injection post fault (<i>M</i><i><sub>q</sub></i><sub>UVRT </sub>equals 2).
-     */
-    val mode2: String
+(override val sup: BasicElement,
+val mode0: String,
+val mode1: String,
+val mode2: String
 )
 extends
     Element

@@ -10,22 +10,15 @@ import ch.ninecode.cim.Context
 
 /**
  * IEC 62325 version number assigned to this UML model.
+ * @param sup Reference to the superclass object.
+ * @param date Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
+ * @param version Form is IEC62325CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
+ *        For example IEC62325CIM10v03.
  */
 case class IEC62325CIMVersion
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
-     */
-    val date: String,
-
-    /**
-     * Form is IEC62325CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
-     * For example IEC62325CIM10v03.
-     */
-    val version: String
+(override val sup: BasicElement,
+val date: String,
+val version: String
 )
 extends
     Element

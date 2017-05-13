@@ -12,28 +12,18 @@ import ch.ninecode.cim.Context
 /**
  * An electrical connection point (AC or DC) to a piece of conducting equipment.
  * Terminals are connected at physical connection points called connectivity nodes.
+ * @param sup Reference to the superclass object.
+ * @param connected The connected status is related to a bus-branch model and the topological node to terminal relation.
+ *        True implies the terminal is connected to the related topological node and false implies it is not.
+ * @param sequenceNumber The orientation of the terminal connections for a multiple terminal conducting equipment.
+ *        The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.
+ * @param BusNameMarker The bus name marker used to name the bus (topological node).
  */
 case class ACDCTerminal
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The connected status is related to a bus-branch model and the topological node to terminal relation.
-     * True implies the terminal is connected to the related topological node and false implies it is not.
-     */
-    val connected: Boolean,
-
-    /**
-     * The orientation of the terminal connections for a multiple terminal conducting equipment.
-     * The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * The bus name marker used to name the bus (topological node).
-     */
-    val BusNameMarker: String
+(override val sup: IdentifiedObject,
+val connected: Boolean,
+val sequenceNumber: Int,
+val BusNameMarker: String
 )
 extends
     Element
@@ -73,16 +63,12 @@ extends
 /**
  * The class describe a base frequency for a power system network.
  * In case of multiple power networks with different frequencies, e.g. 50 or 60 Hertz each network will have it's own base frequency class. Hence it is assumed that power system objects having different base frequencies appear in separate documents where each document has a single base frequency instance.
+ * @param sup Reference to the superclass object.
+ * @param frequency The base frequency.
  */
 case class BaseFrequency
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The base frequency.
-     */
-    val frequency: Double
+(override val sup: IdentifiedObject,
+val frequency: Double
 )
 extends
     Element
@@ -117,16 +103,12 @@ extends
 
 /**
  * The BasePower class defines the base power used in the per unit calculations.
+ * @param sup Reference to the superclass object.
+ * @param basePower Value used as base power.
  */
 case class BasePower
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Value used as base power.
-     */
-    val basePower: Double
+(override val sup: IdentifiedObject,
+val basePower: Double
 )
 extends
     Element
@@ -161,16 +143,12 @@ extends
 
 /**
  * Defines a system base voltage which is referenced.
+ * @param sup Reference to the superclass object.
+ * @param nominalVoltage The power system resource's base voltage.
  */
 case class BaseVoltage
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The power system resource's base voltage.
-     */
-    val nominalVoltage: Double
+(override val sup: IdentifiedObject,
+val nominalVoltage: Double
 )
 extends
     Element
@@ -205,36 +183,20 @@ extends
 
 /**
  * Schedule of values at points in time.
+ * @param sup Reference to the superclass object.
+ * @param startTime The time for the first time point.
+ * @param value1Multiplier Multiplier for value1.
+ * @param value1Unit Value1 units of measure.
+ * @param value2Multiplier Multiplier for value2.
+ * @param value2Unit Value2 units of measure.
  */
 case class BasicIntervalSchedule
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The time for the first time point.
-     */
-    val startTime: String,
-
-    /**
-     * Multiplier for value1.
-     */
-    val value1Multiplier: String,
-
-    /**
-     * Value1 units of measure.
-     */
-    val value1Unit: String,
-
-    /**
-     * Multiplier for value2.
-     */
-    val value2Multiplier: String,
-
-    /**
-     * Value2 units of measure.
-     */
-    val value2Unit: String
+(override val sup: IdentifiedObject,
+val startTime: String,
+val value1Multiplier: String,
+val value1Unit: String,
+val value2Multiplier: String,
+val value2Unit: String
 )
 extends
     Element
@@ -278,41 +240,22 @@ extends
 /**
  * A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.
  * A bay typically represents a physical grouping related to modularization of equipment.
+ * @param sup Reference to the superclass object.
+ * @param bayEnergyMeasFlag Indicates the presence/absence of energy measurements.
+ * @param bayPowerMeasFlag Indicates the presence/absence of active/reactive power measurements.
+ * @param breakerConfiguration Breaker configuration.
+ * @param busBarConfiguration Bus bar configuration.
+ * @param Substation Substation containing the bay.
+ * @param VoltageLevel The voltage level containing this bay.
  */
 case class Bay
-(
-
-    override val sup: EquipmentContainer,
-
-    /**
-     * Indicates the presence/absence of energy measurements.
-     */
-    val bayEnergyMeasFlag: Boolean,
-
-    /**
-     * Indicates the presence/absence of active/reactive power measurements.
-     */
-    val bayPowerMeasFlag: Boolean,
-
-    /**
-     * Breaker configuration.
-     */
-    val breakerConfiguration: String,
-
-    /**
-     * Bus bar configuration.
-     */
-    val busBarConfiguration: String,
-
-    /**
-     * Substation containing the bay.
-     */
-    val Substation: String,
-
-    /**
-     * The voltage level containing this bay.
-     */
-    val VoltageLevel: String
+(override val sup: EquipmentContainer,
+val bayEnergyMeasFlag: Boolean,
+val bayPowerMeasFlag: Boolean,
+val breakerConfiguration: String,
+val busBarConfiguration: String,
+val Substation: String,
+val VoltageLevel: String
 )
 extends
     Element
@@ -357,31 +300,18 @@ extends
 
 /**
  * Switching arrangement for bay.
+ * @param sup Reference to the superclass object.
+ * @param breakerAndAHalf Breaker and a half.
+ * @param doubleBreaker Double breaker.
+ * @param noBreaker No breaker.
+ * @param singleBreaker Single breaker.
  */
 case class BreakerConfiguration
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Breaker and a half.
-     */
-    val breakerAndAHalf: String,
-
-    /**
-     * Double breaker.
-     */
-    val doubleBreaker: String,
-
-    /**
-     * No breaker.
-     */
-    val noBreaker: String,
-
-    /**
-     * Single breaker.
-     */
-    val singleBreaker: String
+(override val sup: BasicElement,
+val breakerAndAHalf: String,
+val doubleBreaker: String,
+val noBreaker: String,
+val singleBreaker: String
 )
 extends
     Element
@@ -422,31 +352,18 @@ extends
 
 /**
  * Busbar layout for bay.
+ * @param sup Reference to the superclass object.
+ * @param doubleBus Double bus.
+ * @param mainWithTransfer Main bus with transfer bus.
+ * @param ringBus Ring bus.
+ * @param singleBus Single bus.
  */
 case class BusbarConfiguration
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Double bus.
-     */
-    val doubleBus: String,
-
-    /**
-     * Main bus with transfer bus.
-     */
-    val mainWithTransfer: String,
-
-    /**
-     * Ring bus.
-     */
-    val ringBus: String,
-
-    /**
-     * Single bus.
-     */
-    val singleBus: String
+(override val sup: BasicElement,
+val doubleBus: String,
+val mainWithTransfer: String,
+val ringBus: String,
+val singleBus: String
 )
 extends
     Element
@@ -487,32 +404,19 @@ extends
 
 /**
  * The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
+ * @param sup Reference to the superclass object.
+ * @param BaseVoltage Base voltage of this conducting equipment.
+ *        Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.
+ * @param GroundingAction Action involving grounding operation on this conducting equipment.
+ * @param JumpingAction Jumper action involving jumping operation on this conducting equipment.
+ * @param SvStatus The status state variable associated with this conducting equipment.
  */
 case class ConductingEquipment
-(
-
-    override val sup: Equipment,
-
-    /**
-     * Base voltage of this conducting equipment.
-     * Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.
-     */
-    val BaseVoltage: String,
-
-    /**
-     * Action involving grounding operation on this conducting equipment.
-     */
-    val GroundingAction: String,
-
-    /**
-     * Jumper action involving jumping operation on this conducting equipment.
-     */
-    val JumpingAction: String,
-
-    /**
-     * The status state variable associated with this conducting equipment.
-     */
-    val SvStatus: String
+(override val sup: Equipment,
+val BaseVoltage: String,
+val GroundingAction: String,
+val JumpingAction: String,
+val SvStatus: String
 )
 extends
     Element
@@ -553,22 +457,15 @@ extends
 
 /**
  * Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.
+ * @param sup Reference to the superclass object.
+ * @param ConnectivityNodeContainer Container of this connectivity node.
+ * @param TopologicalNode The topological node to which this connectivity node is assigned.
+ *        May depend on the current state of switches in the network.
  */
 case class ConnectivityNode
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Container of this connectivity node.
-     */
-    val ConnectivityNodeContainer: String,
-
-    /**
-     * The topological node to which this connectivity node is assigned.
-     * May depend on the current state of switches in the network.
-     */
-    val TopologicalNode: String
+(override val sup: IdentifiedObject,
+val ConnectivityNodeContainer: String,
+val TopologicalNode: String
 )
 extends
     Element
@@ -605,11 +502,10 @@ extends
 
 /**
  * A base class for all objects that may contain connectivity nodes or topological nodes.
+ * @param sup Reference to the superclass object.
  */
 case class ConnectivityNodeContainer
-(
-
-    override val sup: PowerSystemResource
+(override val sup: PowerSystemResource
 )
 extends
     Element
@@ -642,56 +538,28 @@ extends
 
 /**
  * A multi-purpose curve or functional relationship between an independent variable (X-axis) and dependent (Y-axis) variables.
+ * @param sup Reference to the superclass object.
+ * @param curveStyle The style or shape of the curve.
+ * @param xMultiplier Multiplier for X-axis.
+ * @param xUnit The X-axis units of measure.
+ * @param y1Multiplier Multiplier for Y1-axis.
+ * @param y1Unit The Y1-axis units of measure.
+ * @param y2Multiplier Multiplier for Y2-axis.
+ * @param y2Unit The Y2-axis units of measure.
+ * @param y3Multiplier Multiplier for Y3-axis.
+ * @param y3Unit The Y3-axis units of measure.
  */
 case class Curve
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The style or shape of the curve.
-     */
-    val curveStyle: String,
-
-    /**
-     * Multiplier for X-axis.
-     */
-    val xMultiplier: String,
-
-    /**
-     * The X-axis units of measure.
-     */
-    val xUnit: String,
-
-    /**
-     * Multiplier for Y1-axis.
-     */
-    val y1Multiplier: String,
-
-    /**
-     * The Y1-axis units of measure.
-     */
-    val y1Unit: String,
-
-    /**
-     * Multiplier for Y2-axis.
-     */
-    val y2Multiplier: String,
-
-    /**
-     * The Y2-axis units of measure.
-     */
-    val y2Unit: String,
-
-    /**
-     * Multiplier for Y3-axis.
-     */
-    val y3Multiplier: String,
-
-    /**
-     * The Y3-axis units of measure.
-     */
-    val y3Unit: String
+(override val sup: IdentifiedObject,
+val curveStyle: String,
+val xMultiplier: String,
+val xUnit: String,
+val y1Multiplier: String,
+val y1Unit: String,
+val y2Multiplier: String,
+val y2Unit: String,
+val y3Multiplier: String,
+val y3Unit: String
 )
 extends
     Element
@@ -743,36 +611,20 @@ extends
 /**
  * Multi-purpose data points for defining a curve.
  * The use of this generic class is discouraged if a more specific class  can be used to specify the x and y axis values along with their specific data types.
+ * @param sup Reference to the superclass object.
+ * @param xvalue The data value of the X-axis variable,  depending on the X-axis units.
+ * @param y1value The data value of the  first Y-axis variable, depending on the Y-axis units.
+ * @param y2value The data value of the second Y-axis variable (if present), depending on the Y-axis units.
+ * @param y3value The data value of the third Y-axis variable (if present), depending on the Y-axis units.
+ * @param Curve The curve of  this curve data point.
  */
 case class CurveData
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The data value of the X-axis variable,  depending on the X-axis units.
-     */
-    val xvalue: Double,
-
-    /**
-     * The data value of the  first Y-axis variable, depending on the Y-axis units.
-     */
-    val y1value: Double,
-
-    /**
-     * The data value of the second Y-axis variable (if present), depending on the Y-axis units.
-     */
-    val y2value: Double,
-
-    /**
-     * The data value of the third Y-axis variable (if present), depending on the Y-axis units.
-     */
-    val y3value: Double,
-
-    /**
-     * The curve of  this curve data point.
-     */
-    val Curve: String
+(override val sup: BasicElement,
+val xvalue: Double,
+val y1value: Double,
+val y2value: Double,
+val y3value: Double,
+val Curve: String
 )
 extends
     Element
@@ -815,22 +667,15 @@ extends
 
 /**
  * Style or shape of curve.
+ * @param sup Reference to the superclass object.
+ * @param constantYValue The Y-axis values are assumed constant until the next curve point and prior to the first curve point.
+ * @param straightLineYValues The Y-axis values are assumed to be a straight line between values.
+ *        Also known as linear interpolation.
  */
 case class CurveStyle
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The Y-axis values are assumed constant until the next curve point and prior to the first curve point.
-     */
-    val constantYValue: String,
-
-    /**
-     * The Y-axis values are assumed to be a straight line between values.
-     * Also known as linear interpolation.
-     */
-    val straightLineYValues: String
+(override val sup: BasicElement,
+val constantYValue: String,
+val straightLineYValues: String
 )
 extends
     Element
@@ -867,29 +712,19 @@ extends
 
 /**
  * The parts of a power system that are physical devices, electronic or mechanical.
+ * @param sup Reference to the superclass object.
+ * @param aggregate The single instance of equipment represents multiple pieces of equipment that have been modeled together as an aggregate.
+ *        Examples would be power transformers or synchronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.
+ * @param normallyInService If true, the equipment is normally in service.
+ * @param EquipmentContainer Container of this equipment.
+ * @param WeatherStation
  */
 case class Equipment
-(
-
-    override val sup: PowerSystemResource,
-
-    /**
-     * The single instance of equipment represents multiple pieces of equipment that have been modeled together as an aggregate.
-     * Examples would be power transformers or synchronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.
-     */
-    val aggregate: Boolean,
-
-    /**
-     * If true, the equipment is normally in service.
-     */
-    val normallyInService: Boolean,
-
-    /**
-     * Container of this equipment.
-     */
-    val EquipmentContainer: String,
-
-    val WeatherStation: List[String]
+(override val sup: PowerSystemResource,
+val aggregate: Boolean,
+val normallyInService: Boolean,
+val EquipmentContainer: String,
+val WeatherStation: List[String]
 )
 extends
     Element
@@ -930,11 +765,10 @@ extends
 
 /**
  * A modeling construct to provide a root class for containing equipment.
+ * @param sup Reference to the superclass object.
  */
 case class EquipmentContainer
-(
-
-    override val sup: ConnectivityNodeContainer
+(override val sup: ConnectivityNodeContainer
 )
 extends
     Element
@@ -967,11 +801,10 @@ extends
 
 /**
  * A geographical region of a power system network model.
+ * @param sup Reference to the superclass object.
  */
 case class GeographicalRegion
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1004,34 +837,21 @@ extends
 
 /**
  * This is a root class to provide common identification for all classes needing identification and naming attributes.
+ * @param sup Reference to the superclass object.
+ * @param aliasName The aliasName is free text human readable name of the object alternative to IdentifiedObject.name.
+ *        It may be non unique and may not correlate to a naming hierarchy.
+ * @param description The description is a free human readable text describing or naming the object.
+ *        It may be non unique and may not correlate to a naming hierarchy.
+ * @param mRID Master resource identifier issued by a model authority.
+ *        The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.
+ * @param name The name is any free human readable and possibly non unique text naming the object.
  */
 case class IdentifiedObject
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The aliasName is free text human readable name of the object alternative to IdentifiedObject.name.
-     * It may be non unique and may not correlate to a naming hierarchy.
-     */
-    val aliasName: String,
-
-    /**
-     * The description is a free human readable text describing or naming the object.
-     * It may be non unique and may not correlate to a naming hierarchy.
-     */
-    val description: String,
-
-    /**
-     * Master resource identifier issued by a model authority.
-     * The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.
-     */
-    val mRID: String,
-
-    /**
-     * The name is any free human readable and possibly non unique text naming the object.
-     */
-    val name: String
+(override val sup: BasicElement,
+val aliasName: String,
+val description: String,
+val mRID: String,
+val name: String
 )
 extends
     Element
@@ -1072,11 +892,10 @@ extends
 
 /**
  * The schedule has time points where the time between them varies.
+ * @param sup Reference to the superclass object.
  */
 case class IrregularIntervalSchedule
-(
-
-    override val sup: BasicIntervalSchedule
+(override val sup: BasicIntervalSchedule
 )
 extends
     Element
@@ -1109,33 +928,20 @@ extends
 
 /**
  * TimePoints for a schedule where the time between the points varies.
+ * @param sup Reference to the superclass object.
+ * @param time The time is relative to the schedule starting time.
+ * @param value1 The first value at the time.
+ *        The meaning of the value is defined by the derived type of the associated schedule.
+ * @param value2 The second value at the time.
+ *        The meaning of the value is defined by the derived type of the associated schedule.
+ * @param IntervalSchedule An IrregularTimePoint belongs to an IrregularIntervalSchedule.
  */
 case class IrregularTimePoint
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The time is relative to the schedule starting time.
-     */
-    val time: Double,
-
-    /**
-     * The first value at the time.
-     * The meaning of the value is defined by the derived type of the associated schedule.
-     */
-    val value1: Double,
-
-    /**
-     * The second value at the time.
-     * The meaning of the value is defined by the derived type of the associated schedule.
-     */
-    val value2: Double,
-
-    /**
-     * An IrregularTimePoint belongs to an IrregularIntervalSchedule.
-     */
-    val IntervalSchedule: String
+(override val sup: BasicElement,
+val time: Double,
+val value1: Double,
+val value2: Double,
+val IntervalSchedule: String
 )
 extends
     Element
@@ -1177,26 +983,16 @@ extends
 /**
  * The Name class provides the means to define any number of human readable  names for an object.
  * A name is <b>not</b> to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.
+ * @param sup Reference to the superclass object.
+ * @param name Any free text that name the object.
+ * @param IdentifiedObject Identified object that this name designates.
+ * @param NameType Type of this name.
  */
 case class Name
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Any free text that name the object.
-     */
-    val name: String,
-
-    /**
-     * Identified object that this name designates.
-     */
-    val IdentifiedObject: String,
-
-    /**
-     * Type of this name.
-     */
-    val NameType: String
+(override val sup: BasicElement,
+val name: String,
+val IdentifiedObject: String,
+val NameType: String
 )
 extends
     Element
@@ -1236,26 +1032,16 @@ extends
 /**
  * Type of name.
  * Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:
+ * @param sup Reference to the superclass object.
+ * @param description Description of the name type.
+ * @param name Name of the name type.
+ * @param NameTypeAuthority Authority responsible for managing names of this type.
  */
 case class NameType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Description of the name type.
-     */
-    val description: String,
-
-    /**
-     * Name of the name type.
-     */
-    val name: String,
-
-    /**
-     * Authority responsible for managing names of this type.
-     */
-    val NameTypeAuthority: String
+(override val sup: BasicElement,
+val description: String,
+val name: String,
+val NameTypeAuthority: String
 )
 extends
     Element
@@ -1294,21 +1080,14 @@ extends
 
 /**
  * Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.
+ * @param sup Reference to the superclass object.
+ * @param description Description of the name type authority.
+ * @param name Name of the name type authority.
  */
 case class NameTypeAuthority
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Description of the name type authority.
-     */
-    val description: String,
-
-    /**
-     * Name of the name type authority.
-     */
-    val name: String
+(override val sup: BasicElement,
+val description: String,
+val name: String
 )
 extends
     Element
@@ -1346,11 +1125,10 @@ extends
 /**
  * An operator of multiple power system resource objects.
  * Note multple operating participants may operate the same power system resource object.   This can be used for modeling jointly owned units where each owner operates as a contractual share.
+ * @param sup Reference to the superclass object.
  */
 case class OperatingParticipant
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1383,27 +1161,17 @@ extends
 
 /**
  * Specifies the operations contract relationship between a power system resource and a contract participant.
+ * @param sup Reference to the superclass object.
+ * @param percentage Percentage operational ownership between the pair (power system resource and operatging participant) associated with this share.
+ *        The total percentage ownership for a power system resource should add to 100%.
+ * @param OperatingParticipant The operating participant having this share with the associated power system resource.
+ * @param PowerSystemResource The power system resource to which the share applies.
  */
 case class OperatingShare
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Percentage operational ownership between the pair (power system resource and operatging participant) associated with this share.
-     * The total percentage ownership for a power system resource should add to 100%.
-     */
-    val percentage: Double,
-
-    /**
-     * The operating participant having this share with the associated power system resource.
-     */
-    val OperatingParticipant: String,
-
-    /**
-     * The power system resource to which the share applies.
-     */
-    val PowerSystemResource: String
+(override val sup: BasicElement,
+val percentage: Double,
+val OperatingParticipant: String,
+val PowerSystemResource: String
 )
 extends
     Element
@@ -1443,11 +1211,10 @@ extends
 /**
  * Classifying instances of the same class, e.g. overhead and underground ACLineSegments.
  * This classification mechanism is intended to provide flexibility outside the scope of this standard, i.e. provide customisation that is non standard.
+ * @param sup Reference to the superclass object.
  */
 case class PSRType
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1481,116 +1248,52 @@ extends
 /**
  * Enumeration of phase identifiers.
  * Allows designation of phases for both transmission and distribution equipment, circuits and loads.
+ * @param sup Reference to the superclass object.
+ * @param s1 Secondary phase 1.
+ * @param s12 Secondary phase 1 and 2.
+ * @param s12N Secondary phases 1, 2, and neutral.
+ * @param s1N Secondary phase 1 and neutral.
+ * @param s2 Secondary phase 2.
+ * @param s2N Secondary phase 2 and neutral.
+ * @param A Phase A.
+ * @param AB Phases A and B.
+ * @param ABC Phases A, B, and C.
+ * @param ABCN Phases A, B, C, and N.
+ * @param ABN Phases A, B, and neutral.
+ * @param AC Phases A and C.
+ * @param ACN Phases A, C and neutral.
+ * @param AN Phases A and neutral.
+ * @param B Phase B.
+ * @param BC Phases B and C.
+ * @param BCN Phases B, C, and neutral.
+ * @param BN Phases B and neutral.
+ * @param C Phase C.
+ * @param CN Phases C and neutral.
+ * @param N Neutral phase.
  */
 case class PhaseCode
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Secondary phase 1.
-     */
-    val s1: String,
-
-    /**
-     * Secondary phase 1 and 2.
-     */
-    val s12: String,
-
-    /**
-     * Secondary phases 1, 2, and neutral.
-     */
-    val s12N: String,
-
-    /**
-     * Secondary phase 1 and neutral.
-     */
-    val s1N: String,
-
-    /**
-     * Secondary phase 2.
-     */
-    val s2: String,
-
-    /**
-     * Secondary phase 2 and neutral.
-     */
-    val s2N: String,
-
-    /**
-     * Phase A.
-     */
-    val A: String,
-
-    /**
-     * Phases A and B.
-     */
-    val AB: String,
-
-    /**
-     * Phases A, B, and C.
-     */
-    val ABC: String,
-
-    /**
-     * Phases A, B, C, and N.
-     */
-    val ABCN: String,
-
-    /**
-     * Phases A, B, and neutral.
-     */
-    val ABN: String,
-
-    /**
-     * Phases A and C.
-     */
-    val AC: String,
-
-    /**
-     * Phases A, C and neutral.
-     */
-    val ACN: String,
-
-    /**
-     * Phases A and neutral.
-     */
-    val AN: String,
-
-    /**
-     * Phase B.
-     */
-    val B: String,
-
-    /**
-     * Phases B and C.
-     */
-    val BC: String,
-
-    /**
-     * Phases B, C, and neutral.
-     */
-    val BCN: String,
-
-    /**
-     * Phases B and neutral.
-     */
-    val BN: String,
-
-    /**
-     * Phase C.
-     */
-    val C: String,
-
-    /**
-     * Phases C and neutral.
-     */
-    val CN: String,
-
-    /**
-     * Neutral phase.
-     */
-    val N: String
+(override val sup: BasicElement,
+val s1: String,
+val s12: String,
+val s12N: String,
+val s1N: String,
+val s2: String,
+val s2N: String,
+val A: String,
+val AB: String,
+val ABC: String,
+val ABCN: String,
+val ABN: String,
+val AC: String,
+val ACN: String,
+val AN: String,
+val B: String,
+val BC: String,
+val BCN: String,
+val BN: String,
+val C: String,
+val CN: String,
+val N: String
 )
 extends
     Element
@@ -1666,26 +1369,16 @@ extends
 /**
  * A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area.
  * Power system resources can have measurements associated.
+ * @param sup Reference to the superclass object.
+ * @param AssetDatasheet Datasheet information for this power system resource.
+ * @param Location Location of this power system resource.
+ * @param PSRType Custom classification for this power system resource.
  */
 case class PowerSystemResource
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Datasheet information for this power system resource.
-     */
-    val AssetDatasheet: String,
-
-    /**
-     * Location of this power system resource.
-     */
-    val Location: String,
-
-    /**
-     * Custom classification for this power system resource.
-     */
-    val PSRType: String
+(override val sup: IdentifiedObject,
+val AssetDatasheet: String,
+val Location: String,
+val PSRType: String
 )
 extends
     Element
@@ -1724,21 +1417,14 @@ extends
 
 /**
  * The schedule has time points where the time between them is constant.
+ * @param sup Reference to the superclass object.
+ * @param endTime The time for the last time point.
+ * @param timeStep The time between each pair of subsequent regular time points in sequence order.
  */
 case class RegularIntervalSchedule
-(
-
-    override val sup: BasicIntervalSchedule,
-
-    /**
-     * The time for the last time point.
-     */
-    val endTime: String,
-
-    /**
-     * The time between each pair of subsequent regular time points in sequence order.
-     */
-    val timeStep: Double
+(override val sup: BasicIntervalSchedule,
+val endTime: String,
+val timeStep: Double
 )
 extends
     Element
@@ -1775,34 +1461,21 @@ extends
 
 /**
  * Time point for a schedule where the time between the consecutive points is constant.
+ * @param sup Reference to the superclass object.
+ * @param sequenceNumber The position of the regular time point in the sequence.
+ *        Note that time points don't have to be sequential, i.e. time points may be omitted. The actual time for a RegularTimePoint is computed by multiplying the associated regular interval schedule's time step with the regular time point sequence number and adding the associated schedules start time.
+ * @param value1 The first value at the time.
+ *        The meaning of the value is defined by the derived type of the associated schedule.
+ * @param value2 The second value at the time.
+ *        The meaning of the value is defined by the derived type of the associated schedule.
+ * @param IntervalSchedule Regular interval schedule containing this time point.
  */
 case class RegularTimePoint
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The position of the regular time point in the sequence.
-     * Note that time points don't have to be sequential, i.e. time points may be omitted. The actual time for a RegularTimePoint is computed by multiplying the associated regular interval schedule's time step with the regular time point sequence number and adding the associated schedules start time.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * The first value at the time.
-     * The meaning of the value is defined by the derived type of the associated schedule.
-     */
-    val value1: Double,
-
-    /**
-     * The second value at the time.
-     * The meaning of the value is defined by the derived type of the associated schedule.
-     */
-    val value2: Double,
-
-    /**
-     * Regular interval schedule containing this time point.
-     */
-    val IntervalSchedule: String
+(override val sup: BasicElement,
+val sequenceNumber: Int,
+val value1: Double,
+val value2: Double,
+val IntervalSchedule: String
 )
 extends
     Element
@@ -1843,16 +1516,12 @@ extends
 
 /**
  * A reporting group is used for various ad-hoc groupings used for reporting.
+ * @param sup Reference to the superclass object.
+ * @param PowerSystemResource Power system resources which belong to this reporting group.
  */
 case class ReportingGroup
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Power system resources which belong to this reporting group.
-     */
-    val PowerSystemResource: List[String]
+(override val sup: IdentifiedObject,
+val PowerSystemResource: List[String]
 )
 extends
     Element
@@ -1887,11 +1556,10 @@ extends
 
 /**
  * A reporting super group, groups reporting groups for a higher level report.
+ * @param sup Reference to the superclass object.
  */
 case class ReportingSuperGroup
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1924,16 +1592,12 @@ extends
 
 /**
  * A subset of a geographical region of a power system network model.
+ * @param sup Reference to the superclass object.
+ * @param Region The geographical region to which this sub-geographical region is within.
  */
 case class SubGeographicalRegion
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The geographical region to which this sub-geographical region is within.
-     */
-    val Region: String
+(override val sup: IdentifiedObject,
+val Region: String
 )
 extends
     Element
@@ -1968,16 +1632,12 @@ extends
 
 /**
  * A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
+ * @param sup Reference to the superclass object.
+ * @param Region The SubGeographicalRegion containing the substation.
  */
 case class Substation
-(
-
-    override val sup: EquipmentContainer,
-
-    /**
-     * The SubGeographicalRegion containing the substation.
-     */
-    val Region: String
+(override val sup: EquipmentContainer,
+val Region: String
 )
 extends
     Element
@@ -2013,41 +1673,25 @@ extends
 /**
  * An AC electrical connection point to a piece of conducting equipment.
  * Terminals are connected at physical connection points called connectivity nodes.
+ * @param sup Reference to the superclass object.
+ * @param phases Represents the normal network phasing condition.
+ *        If the attribute is missing three phases (ABC or ABCN) shall be assumed.
+ * @param Bushing
+ * @param ConductingEquipment The conducting equipment of the terminal.
+ *        Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.
+ * @param ConnectivityNode The connectivity node to which this terminal connects with zero impedance.
+ * @param SvPowerFlow The power flow state variable associated with the terminal.
+ * @param TopologicalNode The topological node associated with the terminal.
+ *        This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.
  */
 case class Terminal
-(
-
-    override val sup: ACDCTerminal,
-
-    /**
-     * Represents the normal network phasing condition.
-     * If the attribute is missing three phases (ABC or ABCN) shall be assumed.
-     */
-    val phases: String,
-
-    val Bushing: String,
-
-    /**
-     * The conducting equipment of the terminal.
-     * Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.
-     */
-    val ConductingEquipment: String,
-
-    /**
-     * The connectivity node to which this terminal connects with zero impedance.
-     */
-    val ConnectivityNode: String,
-
-    /**
-     * The power flow state variable associated with the terminal.
-     */
-    val SvPowerFlow: String,
-
-    /**
-     * The topological node associated with the terminal.
-     * This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.
-     */
-    val TopologicalNode: String
+(override val sup: ACDCTerminal,
+val phases: String,
+val Bushing: String,
+val ConductingEquipment: String,
+val ConnectivityNode: String,
+val SvPowerFlow: String,
+val TopologicalNode: String
 )
 extends
     Element
@@ -2093,31 +1737,18 @@ extends
 /**
  * A collection of equipment at one common system voltage forming a switchgear.
  * The equipment typically consist of breakers, busbars, instrumentation, control, regulation and protection devices as well as assemblies of all these.
+ * @param sup Reference to the superclass object.
+ * @param highVoltageLimit The bus bar's high voltage limit
+ * @param lowVoltageLimit The bus bar's low voltage limit
+ * @param BaseVoltage The base voltage used for all equipment within the voltage level.
+ * @param Substation The substation of the voltage level.
  */
 case class VoltageLevel
-(
-
-    override val sup: EquipmentContainer,
-
-    /**
-     * The bus bar's high voltage limit
-     */
-    val highVoltageLimit: Double,
-
-    /**
-     * The bus bar's low voltage limit
-     */
-    val lowVoltageLimit: Double,
-
-    /**
-     * The base voltage used for all equipment within the voltage level.
-     */
-    val BaseVoltage: String,
-
-    /**
-     * The substation of the voltage level.
-     */
-    val Substation: String
+(override val sup: EquipmentContainer,
+val highVoltageLimit: Double,
+val lowVoltageLimit: Double,
+val BaseVoltage: String,
+val Substation: String
 )
 extends
     Element

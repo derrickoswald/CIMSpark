@@ -6,72 +6,18 @@ import ch.ninecode.cim.Context
 
 
 case class AccumulationKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * A time-independent cumulative quantity much a BulkQuantity or a LatchingQuantity, except that the accumulation stops at the maximum or minimum values.
-     * When the maximum is reached, any additional positive accumulation is discarded, but negative accumulation may be accepted (thus lowering the counter.) Likewise, when the negative bound is reached, any additional negative accumulation is discarded, but positive accumulation is accepted (thus increasing the counter.)
-     */
-    val boundedQuantity: String,
-
-    /**
-     * A value from a register which represents the bulk quantity of a commodity.
-     * This quantity is computed as the integral of the commodity usage rate. This value is typically used as the basis for the dial reading at the meter, and as a result, will roll over upon reaching a maximum dial value.
-     */
-    val bulkQuantity: String,
-
-    /**
-     * The sum of the previous billing period values and the present period value.
-     * Note: �ContinuousCumulative� is commonly used in conjunction with �demand.� The �ContinuousCumulative Demand� would be the cumulative sum of the previous billing period maximum demand values (as occurring with each demand reset) summed with the present period maximum demand value (which has yet to be reset.)
-     */
-    val continuousCumulative: String,
-
-    /**
-     * The sum of the previous billing period values.
-     * Note: �Cumulative� is commonly used in conjunction with �demand.� Each demand reset causes the maximum demand value for the present billing period (since the last demand reset) to accumulate as an accumulative total of all maximum demands. So instead of �zeroing� the demand register, a demand reset has the affect of adding the present maximum demand to this accumulating total.
-     */
-    val cumulative: String,
-
-    /**
-     * The difference between the value at the end of the prescribed interval and the beginning of the interval.
-     * This is used for incremental interval data.
-     */
-    val deltaData: String,
-
-    /**
-     * As if a needle is swung out on the meter face to a value to indicate the current value. (Note: An �indicating� value is typically measured over hundreds of milliseconds or greater, or may imply a �pusher� mechanism to capture a value.
-     * Compare this to �instantaneous� which is measured over a shorter period of time.)
-     */
-    val indicating: String,
-
-    /**
-     * Typically measured over the fastest period of time allowed by the definition of the metric (usually milliseconds or tens of milliseconds.) (Note: �Instantaneous� was moved to attribute #3 in 61968-9Ed2 from attribute #1 in 61968-9Ed1.)
-     */
-    val instantaneous: String,
-
-    /**
-     * When this description is applied to a metered value, it implies that the value is a time-independent cumulative quantity much a BulkQuantity, except that it latches upon the maximum value upon reaching that value.
-     * Any additional accumulation (positive or negative) is discarded until a reset occurs.
-     */
-    val latchingQuantity: String,
-
-    /**
-     * Not Applicable, or implied by the unit of measure.
-     */
-    val none: String,
-
-    /**
-     * A form of accumulation which is selective with respect to time.
-     * Note : �Summation� could be considered a specialization of �Bulk Quantity� according to the rules of inheritance where �Summation� selectively accumulates pulses over a timing pattern, and �BulkQuantity� accumulates pulses all of the time.
-     */
-    val summation: String,
-
-    /**
-     * A form of computation which introduces a time delay characteristic to the data value
-     */
-    val timeDelay: String
+(override val sup: BasicElement,
+val boundedQuantity: String,
+val bulkQuantity: String,
+val continuousCumulative: String,
+val cumulative: String,
+val deltaData: String,
+val indicating: String,
+val instantaneous: String,
+val latchingQuantity: String,
+val none: String,
+val summation: String,
+val timeDelay: String
 )
 extends
     Element
@@ -125,75 +71,22 @@ extends
 }
 
 case class AggregateKind
-(
-
-    override val sup: BasicElement,
-
-    val average: String,
-
-    /**
-     * The value represents an amount over which a threshold was exceeded.
-     */
-    val excess: String,
-
-    /**
-     * The fifth highest value observed
-     */
-    val fifthMaximum: String,
-
-    /**
-     * The fourth highest value observed
-     */
-    val fourthMaximum: String,
-
-    /**
-     * The value represents a programmed threshold.
-     */
-    val highThreshold: String,
-
-    /**
-     * The value represents a programmed threshold.
-     */
-    val lowThreshold: String,
-
-    /**
-     * The highest value observed
-     */
-    val maximum: String,
-
-    /**
-     * The smallest value observed
-     */
-    val minimum: String,
-
-    val nominal: String,
-
-    /**
-     * Not Applicable
-     */
-    val none: String,
-
-    val normal: String,
-
-    /**
-     * The second highest value observed
-     */
-    val secondMaximum: String,
-
-    /**
-     * The second smallest value observed
-     */
-    val secondMinimum: String,
-
-    /**
-     * The accumulated sum
-     */
-    val sum: String,
-
-    /**
-     * The third highest value observed
-     */
-    val thirdMaximum: String
+(override val sup: BasicElement,
+val average: String,
+val excess: String,
+val fifthMaximum: String,
+val fourthMaximum: String,
+val highThreshold: String,
+val lowThreshold: String,
+val maximum: String,
+val minimum: String,
+val nominal: String,
+val none: String,
+val normal: String,
+val secondMaximum: String,
+val secondMinimum: String,
+val sum: String,
+val thirdMaximum: String
 )
 extends
     Element
@@ -255,128 +148,33 @@ extends
 }
 
 case class CommodityKind
-(
-
-    override val sup: BasicElement,
-
-    val air: String,
-
-    val carbon: String,
-
-    /**
-     * Methane CH<sub>4</sub>
-     */
-    val ch4: String,
-
-    /**
-     * Carbon Dioxide CO<sub>2</sub>
-     */
-    val co2: String,
-
-    /**
-     * A measurement of the communication infrastructure itself.
-     */
-    val communication: String,
-
-    /**
-     * The cool fluid returns warmer than when it was sent.
-     * The heat conveyed may be metered.
-     */
-    val coolingFluid: String,
-
-    /**
-     * It is possible for a meter to be outfitted with an external VT and/or CT.
-     * The meter might not be aware of these devices, and the display not compensate for their presence. Ultimately, when these scalars are applied, the value that represents the service value is called the �primary metered� value. The �index� in sub-category 3 mirrors those of sub-category 0.
-     */
-    val electricityPrimaryMetered: String,
-
-    /**
-     * All types of metered quantities.
-     * This type of reading comes from the meter and represents a �secondary� metered value.
-     */
-    val electricitySecondaryMetered: String,
-
-    /**
-     * Hexachlorocyclohexane HCH
-     */
-    val hch: String,
-
-    /**
-     * This fluid is likely in liquid form.
-     * It is not necessarily water or water based. The warm fluid returns cooler than when it was sent. The heat conveyed may be metered.
-     */
-    val heatingFluid: String,
-
-    /**
-     * (SF<sub>6</sub> is found separately below.)
-     */
-    val insulativeGas: String,
-
-    val insulativeOil: String,
-
-    /**
-     * Internet service
-     */
-    val internet: String,
-
-    val naturalGas: String,
-
-    /**
-     * Not Applicable
-     */
-    val none: String,
-
-    /**
-     * Reclaimed water � possibly used for irrigation but not sufficiently treated to be considered safe for drinking.
-     */
-    val nonpotableWater: String,
-
-    /**
-     * Nitrous Oxides NO<sub>X</sub>
-     */
-    val nox: String,
-
-    /**
-     * Perfluorocarbons PFC
-     */
-    val pfc: String,
-
-    /**
-     * Drinkable water
-     */
-    val potableWater: String,
-
-    val propane: String,
-
-    /**
-     * trash
-     */
-    val refuse: String,
-
-    /**
-     * Sulfurhexafluoride SF<sub>6</sub>
-     */
-    val sf6: String,
-
-    /**
-     * Sulfur Dioxide SO<sub>2</sub>
-     */
-    val so2: String,
-
-    /**
-     * Water in steam form, usually used for heating.
-     */
-    val steam: String,
-
-    /**
-     * Television
-     */
-    val tvLicence: String,
-
-    /**
-     * (Sewerage)
-     */
-    val wasteWater: String
+(override val sup: BasicElement,
+val air: String,
+val carbon: String,
+val ch4: String,
+val co2: String,
+val communication: String,
+val coolingFluid: String,
+val electricityPrimaryMetered: String,
+val electricitySecondaryMetered: String,
+val hch: String,
+val heatingFluid: String,
+val insulativeGas: String,
+val insulativeOil: String,
+val internet: String,
+val naturalGas: String,
+val none: String,
+val nonpotableWater: String,
+val nox: String,
+val pfc: String,
+val potableWater: String,
+val propane: String,
+val refuse: String,
+val sf6: String,
+val so2: String,
+val steam: String,
+val tvLicence: String,
+val wasteWater: String
 )
 extends
     Element
@@ -460,123 +258,28 @@ extends
 }
 
 case class FlowDirectionKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * "Delivered," or "Imported" as defined 61968-2.
-     * Forward Active Energy is a positive kWh value as one would naturally expect to find as energy is supplied by the utility and consumed at the service.
-     */
-    val forward: String,
-
-    /**
-     * Typically used to describe that a power factor is lagging the reference value.
-     * Note 1: When used to describe VA, �lagging� describes a form of measurement where reactive power is considered in all four quadrants, but real power is considered only in quadrants I and IV.
-     */
-    val lagging: String,
-
-    /**
-     * Typically used to describe that a power factor is leading the reference value.
-     * Note: Leading power factors typically indicate capacitive loading.
-     */
-    val leading: String,
-
-    /**
-     * |Forward| - |Reverse|, See 61968-2.
-     * Note: In some systems, the value passed as a �net� value could become negative. In other systems the value passed as a �net� value is always a positive number, and rolls-over and rolls-under as needed.
-     */
-    val net: String,
-
-    /**
-     * Not Applicable (N/A)
-     */
-    val none: String,
-
-    /**
-     * Q1 minus Q4
-     */
-    val q1minusQ4: String,
-
-    /**
-     * Reactive positive quadrants. (The term �lagging� is preferred.)
-     */
-    val q1plusQ2: String,
-
-    /**
-     * Quadrants 1 and 3
-     */
-    val q1plusQ3: String,
-
-    /**
-     * Quadrants 1 and 4 usually represent forward active energy
-     */
-    val q1plusQ4: String,
-
-    /**
-     * Q2 minus Q3
-     */
-    val q2minusQ3: String,
-
-    /**
-     * Quadrants 2 and 3 usually represent reverse active energy
-     */
-    val q2plusQ3: String,
-
-    /**
-     * Quadrants 2 and 4
-     */
-    val q2plusQ4: String,
-
-    /**
-     * Q3 minus Q2
-     */
-    val q3minusQ2: String,
-
-    /**
-     * Reactive negative quadrants. (The term �leading� is preferred.)
-     */
-    val q3plusQ4: String,
-
-    /**
-     * Q1 only
-     */
-    val quadrant1: String,
-
-    /**
-     * Q2 only
-     */
-    val quadrant2: String,
-
-    /**
-     * Q3 only
-     */
-    val quadrant3: String,
-
-    /**
-     * Q4 only
-     */
-    val quadrant4: String,
-
-    /**
-     * Reverse Active Energy is equivalent to "Received," or "Exported" as defined in 61968-2.
-     * Reverse Active Energy is a positive kWh value as one would expect to find when energy is backfed by the service onto the utility network.
-     */
-    val reverse: String,
-
-    /**
-     * |Forward| + |Reverse|, See 61968-2.
-     * The sum of the commodity in all quadrants Q1+Q2+Q3+Q4.
-     */
-    val total: String,
-
-    /**
-     * In polyphase metering, the total by phase energy register is incremented when the sum of the absolute values of the phase energies is greater than zero:
-    
-    &lt;img src="HTS_1.
-     * PNG" width="234" height="16" border="0" alt="graphic"/&gt;
-     */
-    val totalByPhase: String
+(override val sup: BasicElement,
+val forward: String,
+val lagging: String,
+val leading: String,
+val net: String,
+val none: String,
+val q1minusQ4: String,
+val q1plusQ2: String,
+val q1plusQ3: String,
+val q1plusQ4: String,
+val q2minusQ3: String,
+val q2plusQ3: String,
+val q2plusQ4: String,
+val q3minusQ2: String,
+val q3plusQ4: String,
+val quadrant1: String,
+val quadrant2: String,
+val quadrant3: String,
+val quadrant4: String,
+val reverse: String,
+val total: String,
+val totalByPhase: String
 )
 extends
     Element
@@ -650,49 +353,14 @@ extends
 }
 
 case class MacroPeriodKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Captured during the billing period starting at midnight of the first day of the billing period (as defined by the billing cycle day).
-     * If during the current billing period, it specifies a period from the start of the current billing period until "now".
-     */
-    val billingPeriod: String,
-
-    /**
-     * Daily Period starting at midnight.
-     * If for the current day, this specifies the time from midnight to "now".
-     */
-    val daily: String,
-
-    /**
-     * Monthly period starting at midnight on the first day of the month.
-     * If within the current month, this specifies the period from the start of the month until "now."
-     */
-    val monthly: String,
-
-    /**
-     * Not Applicable
-     */
-    val none: String,
-
-    /**
-     * A season of time spanning multiple months.
-     * E.g. "Summer," "Spring," "Fall," and "Winter" based cycle. If within the current season, it specifies the period from the start of the current season until "now."
-     */
-    val seasonal: String,
-
-    /**
-     * For the period defined by the start and end of the TimePeriod element in the message.
-     */
-    val specifiedPeriod: String,
-
-    /**
-     * Weekly period starting at midnight on the first day of the week and ending the instant before midnight the last day of the week.
-     * If within the current week, it specifies the period from the start of the week until "now."
-     */
-    val weekly: String
+(override val sup: BasicElement,
+val billingPeriod: String,
+val daily: String,
+val monthly: String,
+val none: String,
+val seasonal: String,
+val specifiedPeriod: String,
+val weekly: String
 )
 extends
     Element
@@ -738,301 +406,132 @@ extends
 }
 
 case class MeasurementKind
-(
-
-    override val sup: BasicElement,
-
-    val alarm: String,
-
-    val apTitle: String,
-
-    val apparentPowerFactor: String,
-
-    val applicationContext: String,
-
-    val assetNumber: String,
-
-    /**
-     * Sound
-     */
-    val audibleVolume: String,
-
-    val bandwidth: String,
-
-    val batteryCarryover: String,
-
-    val batteryVoltage: String,
-
-    /**
-     * Customer�s bill for the (Currency)
-     */
-    val billCarryover: String,
-
-    /**
-     * Customer�s bill for the previous billing period (Currency)
-     */
-    val billLastPeriod: String,
-
-    /**
-     * Customer�s bill, as known thus far within the present billing period (Currency)
-     */
-    val billToDate: String,
-
-    val broadcastAddress: String,
-
-    /**
-     * Monthly fee for connection to commodity.
-     */
-    val connectionFee: String,
-
-    /**
-     * funds
-     */
-    val currency: String,
-
-    val current: String,
-
-    val currentAngle: String,
-
-    val currentImbalance: String,
-
-    val dataOverflowAlarm: String,
-
-    val date: String,
-
-    val demand: String,
-
-    val demandLimit: String,
-
-    /**
-     * Usually expressed as a count as part of a billing cycle
-     */
-    val demandReset: String,
-
-    val deviceAddressType1: String,
-
-    val deviceAddressType2: String,
-
-    val deviceAddressType3: String,
-
-    val deviceAddressType4: String,
-
-    val deviceClass: String,
-
-    val diagnostic: String,
-
-    val distance: String,
-
-    val distortionPowerFactor: String,
-
-    val distortionVoltAmp: String,
-
-    val electronicSerialNumber: String,
-
-    val emergencyLimit: String,
-
-    val encoderTamper: String,
-
-    val endDeviceID: String,
-
-    val energization: String,
-
-    val energizationLoadSide: String,
-
-    val energy: String,
-
-    val fan: String,
-
-    val frequency: String,
-
-    /**
-     * Usually expressed as a �count�
-     */
-    val frequencyExcursion: String,
-
-    /**
-     * Dup with �currency�
-     */
-    val fund: String,
-
-    val groupAddressType1: String,
-
-    val groupAddressType2: String,
-
-    val groupAddressType3: String,
-
-    val groupAddressType4: String,
-
-    val ieee1366ASAI: String,
-
-    val ieee1366ASIDI: String,
-
-    val ieee1366ASIFI: String,
-
-    val ieee1366CAIDI: String,
-
-    val ieee1366CAIFI: String,
-
-    val ieee1366CEMIn: String,
-
-    val ieee1366CEMSMIn: String,
-
-    val ieee1366CTAIDI: String,
-
-    val ieee1366MAIFI: String,
-
-    val ieee1366MAIFIe: String,
-
-    val ieee1366MomentaryInterruption: String,
-
-    val ieee1366MomentaryInterruptionEvent: String,
-
-    val ieee1366SAIDI: String,
-
-    val ieee1366SAIFI: String,
-
-    val ieee1366SustainedInterruption: String,
-
-    val interruptionBehaviour: String,
-
-    val inversionTamper: String,
-
-    val ipAddress: String,
-
-    val lineLoss: String,
-
-    val loadInterrupt: String,
-
-    val loadShed: String,
-
-    val loss: String,
-
-    val macAddress: String,
-
-    val maintenance: String,
-
-    val mfgAssignedConfigurationID: String,
-
-    val mfgAssignedPhysicalSerialNumber: String,
-
-    val mfgAssignedProductNumber: String,
-
-    val mfgAssignedUniqueCommunicationAddress: String,
-
-    val multiCastAddress: String,
-
-    val negativeSequence: String,
-
-    /**
-     * Not Applicable
-     */
-    val none: String,
-
-    val oneWayAddress: String,
-
-    val phasorPowerFactor: String,
-
-    val phasorReactivePower: String,
-
-    val physicalTamper: String,
-
-    val positiveSequence: String,
-
-    val power: String,
-
-    val powerFactor: String,
-
-    val powerLossTamper: String,
-
-    val powerOutage: String,
-
-    val powerQuality: String,
-
-    val powerRestoration: String,
-
-    val programmed: String,
-
-    val pushbutton: String,
-
-    val quantityPower: String,
-
-    val relayActivation: String,
-
-    /**
-     * Usually expressed as a count
-     */
-    val relayCycle: String,
-
-    val removalTamper: String,
-
-    val reprogrammingTamper: String,
-
-    val reverseRotationTamper: String,
-
-    /**
-     * or Voltage Dip
-     */
-    val sag: String,
-
-    val signalStrength: String,
-
-    /**
-     * Moved here from Attribute #9 UOM
-     */
-    val signaltoNoiseRatio: String,
-
-    val swell: String,
-
-    val switchArmed: String,
-
-    val switchDisabled: String,
-
-    val switchPosition: String,
-
-    val tamper: String,
-
-    val tapPosition: String,
-
-    val tariffRate: String,
-
-    val temperature: String,
-
-    val totalHarmonicDistortion: String,
-
-    val transformerLoss: String,
-
-    val twoWayAddress: String,
-
-    val unipedeVoltageDip10to15: String,
-
-    val unipedeVoltageDip15to30: String,
-
-    val unipedeVoltageDip30to60: String,
-
-    val unipedeVoltageDip60to90: String,
-
-    val unipedeVoltageDip90to100: String,
-
-    val voltage: String,
-
-    val voltageAngle: String,
-
-    val voltageExcursion: String,
-
-    val voltageImbalance: String,
-
-    /**
-     * Clarified  from Ed. 1. to indicate fluid volume
-     */
-    val volume: String,
-
-    val volumetricFlow: String,
-
-    val watchdogTimeout: String,
-
-    val zeroFlowDuration: String,
-
-    val zeroSequence: String
+(override val sup: BasicElement,
+val alarm: String,
+val apTitle: String,
+val apparentPowerFactor: String,
+val applicationContext: String,
+val assetNumber: String,
+val audibleVolume: String,
+val bandwidth: String,
+val batteryCarryover: String,
+val batteryVoltage: String,
+val billCarryover: String,
+val billLastPeriod: String,
+val billToDate: String,
+val broadcastAddress: String,
+val connectionFee: String,
+val currency: String,
+val current: String,
+val currentAngle: String,
+val currentImbalance: String,
+val dataOverflowAlarm: String,
+val date: String,
+val demand: String,
+val demandLimit: String,
+val demandReset: String,
+val deviceAddressType1: String,
+val deviceAddressType2: String,
+val deviceAddressType3: String,
+val deviceAddressType4: String,
+val deviceClass: String,
+val diagnostic: String,
+val distance: String,
+val distortionPowerFactor: String,
+val distortionVoltAmp: String,
+val electronicSerialNumber: String,
+val emergencyLimit: String,
+val encoderTamper: String,
+val endDeviceID: String,
+val energization: String,
+val energizationLoadSide: String,
+val energy: String,
+val fan: String,
+val frequency: String,
+val frequencyExcursion: String,
+val fund: String,
+val groupAddressType1: String,
+val groupAddressType2: String,
+val groupAddressType3: String,
+val groupAddressType4: String,
+val ieee1366ASAI: String,
+val ieee1366ASIDI: String,
+val ieee1366ASIFI: String,
+val ieee1366CAIDI: String,
+val ieee1366CAIFI: String,
+val ieee1366CEMIn: String,
+val ieee1366CEMSMIn: String,
+val ieee1366CTAIDI: String,
+val ieee1366MAIFI: String,
+val ieee1366MAIFIe: String,
+val ieee1366MomentaryInterruption: String,
+val ieee1366MomentaryInterruptionEvent: String,
+val ieee1366SAIDI: String,
+val ieee1366SAIFI: String,
+val ieee1366SustainedInterruption: String,
+val interruptionBehaviour: String,
+val inversionTamper: String,
+val ipAddress: String,
+val lineLoss: String,
+val loadInterrupt: String,
+val loadShed: String,
+val loss: String,
+val macAddress: String,
+val maintenance: String,
+val mfgAssignedConfigurationID: String,
+val mfgAssignedPhysicalSerialNumber: String,
+val mfgAssignedProductNumber: String,
+val mfgAssignedUniqueCommunicationAddress: String,
+val multiCastAddress: String,
+val negativeSequence: String,
+val none: String,
+val oneWayAddress: String,
+val phasorPowerFactor: String,
+val phasorReactivePower: String,
+val physicalTamper: String,
+val positiveSequence: String,
+val power: String,
+val powerFactor: String,
+val powerLossTamper: String,
+val powerOutage: String,
+val powerQuality: String,
+val powerRestoration: String,
+val programmed: String,
+val pushbutton: String,
+val quantityPower: String,
+val relayActivation: String,
+val relayCycle: String,
+val removalTamper: String,
+val reprogrammingTamper: String,
+val reverseRotationTamper: String,
+val sag: String,
+val signalStrength: String,
+val signaltoNoiseRatio: String,
+val swell: String,
+val switchArmed: String,
+val switchDisabled: String,
+val switchPosition: String,
+val tamper: String,
+val tapPosition: String,
+val tariffRate: String,
+val temperature: String,
+val totalHarmonicDistortion: String,
+val transformerLoss: String,
+val twoWayAddress: String,
+val unipedeVoltageDip10to15: String,
+val unipedeVoltageDip15to30: String,
+val unipedeVoltageDip30to60: String,
+val unipedeVoltageDip60to90: String,
+val unipedeVoltageDip90to100: String,
+val voltage: String,
+val voltageAngle: String,
+val voltageExcursion: String,
+val voltageImbalance: String,
+val volume: String,
+val volumetricFlow: String,
+val watchdogTimeout: String,
+val zeroFlowDuration: String,
+val zeroSequence: String
 )
 extends
     Element
@@ -1314,214 +813,48 @@ extends
 }
 
 case class MeasuringPeriodKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * 15-minute
-     */
-    val fifteenMinute: String,
-
-    /**
-     * 5-minute
-     */
-    val fiveMinute: String,
-
-    /**
-     * 10-minute Fixed Block
-     */
-    val fixedBlock10Min: String,
-
-    /**
-     * 15-minute Fixed Block
-     */
-    val fixedBlock15Min: String,
-
-    /**
-     * 1-minute Fixed Block
-     */
-    val fixedBlock1Min: String,
-
-    /**
-     * 20-minute Fixed Block
-     */
-    val fixedBlock20Min: String,
-
-    /**
-     * 30-minute Fixed Block
-     */
-    val fixedBlock30Min: String,
-
-    /**
-     * 5-minute Fixed Block
-     */
-    val fixedBlock5Min: String,
-
-    /**
-     * 60-minute Fixed Block
-     */
-    val fixedBlock60Min: String,
-
-    /**
-     * Not Applicable
-     */
-    val none: String,
-
-    /**
-     * 1-minute
-     */
-    val oneMinute: String,
-
-    /**
-     * Within the present period of time
-     */
-    val present: String,
-
-    /**
-     * Shifted within the previous monthly cycle and data set
-     */
-    val previous: String,
-
-    /**
-     * 10-minute Rolling Block with 1-minute sub-intervals
-     */
-    val rollingBlock10MinIntvl1MinSubIntvl: String,
-
-    /**
-     * 10-minute Rolling Block with 2-minute sub-intervals
-     */
-    val rollingBlock10MinIntvl2MinSubIntvl: String,
-
-    /**
-     * 10-minute Rolling Block with 5-minute sub-intervals
-     */
-    val rollingBlock10MinIntvl5MinSubIntvl: String,
-
-    /**
-     * 15-minute Rolling Block with 1-minute sub-intervals
-     */
-    val rollingBlock15MinIntvl1MinSubIntvl: String,
-
-    /**
-     * 15-minute Rolling Block with 3-minute sub-intervals
-     */
-    val rollingBlock15MinIntvl3MinSubIntvl: String,
-
-    /**
-     * 15-minute Rolling Block with 5-minute sub-intervals
-     */
-    val rollingBlock15MinIntvl5MinSubIntvl: String,
-
-    /**
-     * 30-minute Rolling Block with 10-minute sub-intervals
-     */
-    val rollingBlock30MinIntvl10MinSubIntvl: String,
-
-    /**
-     * 30-minute Rolling Block with 15-minute sub-intervals
-     */
-    val rollingBlock30MinIntvl15MinSubIntvl: String,
-
-    /**
-     * 30-minute Rolling Block with 2-minute sub-intervals
-     */
-    val rollingBlock30MinIntvl2MinSubIntvl: String,
-
-    /**
-     * 30-minute Rolling Block with 3-minute sub-intervals
-     */
-    val rollingBlock30MinIntvl3MinSubIntvl: String,
-
-    /**
-     * 30-minute Rolling Block with 5-minute sub-intervals
-     */
-    val rollingBlock30MinIntvl5MinSubIntvl: String,
-
-    /**
-     * 30-minute Rolling Block with 6-minute sub-intervals
-     */
-    val rollingBlock30MinIntvl6MinSubIntvl: String,
-
-    /**
-     * 5-minute Rolling Block with 1-minute sub-intervals
-     */
-    val rollingBlock5MinIntvl1MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 10-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl10MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 12-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl12MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 15-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl15MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 20-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl20MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 30-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl30MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 4-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl4MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 5-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl5MinSubIntvl: String,
-
-    /**
-     * 60-minute Rolling Block with 6-minute sub-intervals
-     */
-    val rollingBlock60MinIntvl6MinSubIntvl: String,
-
-    /**
-     * 60-minute
-     */
-    val sixtyMinute: String,
-
-    /**
-     * 10-minute
-     */
-    val tenMinute: String,
-
-    /**
-     * 30-minute
-     */
-    val thirtyMinute: String,
-
-    /**
-     * 3-minute
-     */
-    val threeMinute: String,
-
-    /**
-     * 20-minute interval
-     */
-    val twentyMinute: String,
-
-    /**
-     * 24-hour
-     */
-    val twentyfourHour: String,
-
-    /**
-     * 2-minute
-     */
-    val twoMinute: String
+(override val sup: BasicElement,
+val fifteenMinute: String,
+val fiveMinute: String,
+val fixedBlock10Min: String,
+val fixedBlock15Min: String,
+val fixedBlock1Min: String,
+val fixedBlock20Min: String,
+val fixedBlock30Min: String,
+val fixedBlock5Min: String,
+val fixedBlock60Min: String,
+val none: String,
+val oneMinute: String,
+val present: String,
+val previous: String,
+val rollingBlock10MinIntvl1MinSubIntvl: String,
+val rollingBlock10MinIntvl2MinSubIntvl: String,
+val rollingBlock10MinIntvl5MinSubIntvl: String,
+val rollingBlock15MinIntvl1MinSubIntvl: String,
+val rollingBlock15MinIntvl3MinSubIntvl: String,
+val rollingBlock15MinIntvl5MinSubIntvl: String,
+val rollingBlock30MinIntvl10MinSubIntvl: String,
+val rollingBlock30MinIntvl15MinSubIntvl: String,
+val rollingBlock30MinIntvl2MinSubIntvl: String,
+val rollingBlock30MinIntvl3MinSubIntvl: String,
+val rollingBlock30MinIntvl5MinSubIntvl: String,
+val rollingBlock30MinIntvl6MinSubIntvl: String,
+val rollingBlock5MinIntvl1MinSubIntvl: String,
+val rollingBlock60MinIntvl10MinSubIntvl: String,
+val rollingBlock60MinIntvl12MinSubIntvl: String,
+val rollingBlock60MinIntvl15MinSubIntvl: String,
+val rollingBlock60MinIntvl20MinSubIntvl: String,
+val rollingBlock60MinIntvl30MinSubIntvl: String,
+val rollingBlock60MinIntvl4MinSubIntvl: String,
+val rollingBlock60MinIntvl5MinSubIntvl: String,
+val rollingBlock60MinIntvl6MinSubIntvl: String,
+val sixtyMinute: String,
+val tenMinute: String,
+val thirtyMinute: String,
+val threeMinute: String,
+val twentyMinute: String,
+val twentyfourHour: String,
+val twoMinute: String
 )
 extends
     Element

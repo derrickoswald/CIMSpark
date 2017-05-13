@@ -8,11 +8,10 @@ import ch.ninecode.cim.Context
 /**
  * Model of market clearing related to results at the inter-ties.
  * Identifies interval
+ * @param sup Reference to the superclass object.
  */
 case class InterTieClearing
-(
-
-    override val sup: MarketFactors
+(override val sup: MarketFactors
 )
 extends
     Element
@@ -46,25 +45,18 @@ extends
 /**
  * Provides the tie point specific output from the market applications.
  * Currently, this is defined as the loop flow compensation MW value.
+ * @param sup Reference to the superclass object.
+ * @param baseMW Net Actual MW Flow
+ * @param clearedValue Net Dispatched MW
+ * @param Flowgate
+ * @param InterTieClearing
  */
 case class InterTieResults
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Net Actual MW Flow
-     */
-    val baseMW: Double,
-
-    /**
-     * Net Dispatched MW
-     */
-    val clearedValue: Double,
-
-    val Flowgate: String,
-
-    val InterTieClearing: String
+(override val sup: BasicElement,
+val baseMW: Double,
+val clearedValue: Double,
+val Flowgate: String,
+val InterTieClearing: String
 )
 extends
     Element
@@ -105,34 +97,24 @@ extends
 
 /**
  * Market case clearing results are posted for a given settlement period.
+ * @param sup Reference to the superclass object.
+ * @param caseType Settlement period:
+'DA - Bid-in'
+'DA - Reliability'
+'DA - Amp1'
+'DA - Amp2'
+'RT - Ex-Ante'
+'RT - Ex-Post'
+'RT - Amp1'
+ *        'RT - Amp2'
+ * @param modifiedDate Last time and date clearing results were manually modified.
+ * @param postedDate Bid clearing results posted time and date.
  */
 case class MarketCaseClearing
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * Settlement period:
-    'DA - Bid-in'
-    'DA - Reliability'
-    'DA - Amp1'
-    'DA - Amp2'
-    'RT - Ex-Ante'
-    'RT - Ex-Post'
-    'RT - Amp1'
-     * 'RT - Amp2'
-     */
-    val caseType: String,
-
-    /**
-     * Last time and date clearing results were manually modified.
-     */
-    val modifiedDate: String,
-
-    /**
-     * Bid clearing results posted time and date.
-     */
-    val postedDate: String
+(override val sup: MarketFactors,
+val caseType: String,
+val modifiedDate: String,
+val postedDate: String
 )
 extends
     Element
@@ -171,26 +153,16 @@ extends
 
 /**
  * Binding security constrained clearing results posted for a given settlement period.
+ * @param sup Reference to the superclass object.
+ * @param mwFlow Optimal MW flow
+ * @param mwLimit Binding MW limit.
+ * @param shadowPrice Security constraint shadow price.
  */
 case class SecurityConstraintsClearing
-(
-
-    override val sup: MarketFactors,
-
-    /**
-     * Optimal MW flow
-     */
-    val mwFlow: Double,
-
-    /**
-     * Binding MW limit.
-     */
-    val mwLimit: Double,
-
-    /**
-     * Security constraint shadow price.
-     */
-    val shadowPrice: Double
+(override val sup: MarketFactors,
+val mwFlow: Double,
+val mwLimit: Double,
+val shadowPrice: Double
 )
 extends
     Element

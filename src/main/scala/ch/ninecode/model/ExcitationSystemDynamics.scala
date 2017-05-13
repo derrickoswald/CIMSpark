@@ -11,145 +11,78 @@ import ch.ninecode.cim.Context
 
 /**
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
+ * @param sup Reference to the superclass object.
+ * @param hvlvgates Indicates if both HV gate and LV gate are active (HVLVgates).
+true = gates are used
+false = gates are not used.
+ *        Typical Value = true.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 400.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.2.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
+ *        Typical Value = 0.38.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (Kf).
+ *        Typical Value = 0.03.
+ * @param kf1 Coefficient to allow different usage of the model (Kf1).
+ *        Typical Value = 0.
+ * @param kf2 Coefficient to allow different usage of the model (Kf2).
+ *        Typical Value = 1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
+ *        Typical Value = 0.1.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
+ *        Typical Value = 0.03.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.02.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>c</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 0.8.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (V<sub>amax</sub>).
+ *        Typical Value = 14.5.
+ * @param vamin Minimum voltage regulator output (V<sub>amin</sub>).
+ *        Typical Value = -14.5.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
+ *        Typical Value = 4.18.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
+ *        Typical Value = 3.14.
+ * @param vrmax Maximum voltage regulator outputs (Vrmax).
+ *        Typical Value = 6.03.
+ * @param vrmin Minimum voltage regulator outputs (Rrmin).
+ *        Typical Value = -5.43.
  */
 case class ExcAC1A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Indicates if both HV gate and LV gate are active (HVLVgates).
-    true = gates are used
-    false = gates are not used.
-     * Typical Value = true.
-     */
-    val hvlvgates: Boolean,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 400.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.2.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (Kd).
-     * Typical Value = 0.38.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (Kf).
-     * Typical Value = 0.03.
-     */
-    val kf: Double,
-
-    /**
-     * Coefficient to allow different usage of the model (Kf1).
-     * Typical Value = 0.
-     */
-    val kf1: Double,
-
-    /**
-     * Coefficient to allow different usage of the model (Kf2).
-     * Typical Value = 1.
-     */
-    val kf2: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
-     * Typical Value = 0.1.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
-     * Typical Value = 0.03.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>c</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 0.8.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>amax</sub>).
-     * Typical Value = 14.5.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>amin</sub>).
-     * Typical Value = -14.5.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
-     * Typical Value = 4.18.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
-     * Typical Value = 3.14.
-     */
-    val ve2: Double,
-
-    /**
-     * Maximum voltage regulator outputs (Vrmax).
-     * Typical Value = 6.03.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (Rrmin).
-     * Typical Value = -5.43.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val hvlvgates: Boolean,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val kf1: Double,
+val kf2: Double,
+val ks: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -226,183 +159,98 @@ extends
 
 /**
  * Modified IEEE AC2A alternator-supplied rectifier excitation system with different field current limit.
+ * @param sup Reference to the superclass object.
+ * @param hvgate Indicates if HV gate is active (HVgate).
+true = gate is used
+false = gate is not used.
+ *        Typical Value = true.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 400.
+ * @param kb Second stage regulator gain (Kb) (&gt;0).
+ *        Exciter field current controller gain.  Typical Value = 25.
+ * @param kb1 Second stage regulator gain (Kb1).
+ *        It is exciter field current controller gain used as alternative to Kb to represent a variant of the ExcAC2A model.  Typical Value = 25.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.28.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
+ *        Typical Value = 0.35.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (Kf).
+ *        Typical Value = 0.03.
+ * @param kh Exciter field current feedback gain (Kh).
+ *        Typical Value = 1.
+ * @param kl Exciter field current limiter gain (Kl).
+ *        Typical Value = 10.
+ * @param kl1 Coefficient to allow different usage of the model (Kl1).
+ *        Typical Value = 1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param lvgate Indicates if LV gate is active (LVgate).
+true = gate is used
+false = gate is not used.
+ *        Typical Value = true.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
+ *        Typical Value = 0.037.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
+ *        Typical Value = 0.012.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.02.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>c</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 0.6.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (V<sub>amax</sub>).
+ *        Typical Value = 8.
+ * @param vamin Minimum voltage regulator output (V<sub>amin</sub>).
+ *        Typical Value = -8.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
+ *        Typical Value = 4.4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
+ *        Typical Value = 3.3.
+ * @param vfemax Exciter field current limit reference (Vfemax).
+ *        Typical Value = 4.4.
+ * @param vlr Maximum exciter field current (Vlr).
+ *        Typical Value = 4.4.
+ * @param vrmax Maximum voltage regulator outputs (Vrmax).
+ *        Typical Value = 105.
+ * @param vrmin Minimum voltage regulator outputs (Vrmin).
+ *        Typical Value = -95.
  */
 case class ExcAC2A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Indicates if HV gate is active (HVgate).
-    true = gate is used
-    false = gate is not used.
-     * Typical Value = true.
-     */
-    val hvgate: Boolean,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 400.
-     */
-    val ka: Double,
-
-    /**
-     * Second stage regulator gain (Kb) (&gt;0).
-     * Exciter field current controller gain.  Typical Value = 25.
-     */
-    val kb: Double,
-
-    /**
-     * Second stage regulator gain (Kb1).
-     * It is exciter field current controller gain used as alternative to Kb to represent a variant of the ExcAC2A model.  Typical Value = 25.
-     */
-    val kb1: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.28.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (Kd).
-     * Typical Value = 0.35.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (Kf).
-     * Typical Value = 0.03.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter field current feedback gain (Kh).
-     * Typical Value = 1.
-     */
-    val kh: Double,
-
-    /**
-     * Exciter field current limiter gain (Kl).
-     * Typical Value = 10.
-     */
-    val kl: Double,
-
-    /**
-     * Coefficient to allow different usage of the model (Kl1).
-     * Typical Value = 1.
-     */
-    val kl1: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Indicates if LV gate is active (LVgate).
-    true = gate is used
-    false = gate is not used.
-     * Typical Value = true.
-     */
-    val lvgate: Boolean,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
-     * Typical Value = 0.037.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
-     * Typical Value = 0.012.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>c</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 0.6.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>amax</sub>).
-     * Typical Value = 8.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>amin</sub>).
-     * Typical Value = -8.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
-     * Typical Value = 4.4.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
-     * Typical Value = 3.3.
-     */
-    val ve2: Double,
-
-    /**
-     * Exciter field current limit reference (Vfemax).
-     * Typical Value = 4.4.
-     */
-    val vfemax: Double,
-
-    /**
-     * Maximum exciter field current (Vlr).
-     * Typical Value = 4.4.
-     */
-    val vlr: Double,
-
-    /**
-     * Maximum voltage regulator outputs (Vrmax).
-     * Typical Value = 105.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (Vrmin).
-     * Typical Value = -95.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val hvgate: Boolean,
+val ka: Double,
+val kb: Double,
+val kb1: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val kh: Double,
+val kl: Double,
+val kl1: Double,
+val ks: Double,
+val lvgate: Boolean,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vfemax: Double,
+val vlr: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -491,167 +339,88 @@ extends
 
 /**
  * Modified IEEE AC3A alternator-supplied rectifier excitation system with different field current limit.
+ * @param sup Reference to the superclass object.
+ * @param efdn Value of <i>EFD </i>at which feedback gain changes (Efdn).
+ *        Typical Value = 2.36.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 45.62.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.104.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
+ *        Typical Value = 0.499.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (Kf).
+ *        Typical Value = 0.143.
+ * @param kf1 Coefficient to allow different usage of the model (Kf1).
+ *        Typical Value = 1.
+ * @param kf2 Coefficient to allow different usage of the model (Kf2).
+ *        Typical Value = 0.
+ * @param klv Gain used in the minimum field voltage limiter loop (Klv).
+ *        Typical Value = 0.194.
+ * @param kn Excitation control system stabilizer gain (Kn).
+ *        Typical Value =0.05.
+ * @param kr Constant associated with regulator and alternator field power supply (Kr).
+ *        Typical Value =3.77.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
+ *        Typical Value = 1.143.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
+ *        Typical Value = 0.1.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.013.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>c</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 1.17.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (V<sub>amax</sub>).
+ *        Typical Value = 1.
+ * @param vamin Minimum voltage regulator output (V<sub>amin</sub>).
+ *        Typical Value = -0.95.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1) equals Vemax (Ve1).
+ *        Typical Value = 6.24.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
+ *        Typical Value = 4.68.
+ * @param vemin Minimum exciter voltage output (Vemin).
+ *        Typical Value = 0.1.
+ * @param vfemax Exciter field current limit reference (Vfemax).
+ *        Typical Value = 16.
+ * @param vlv Field voltage used in the minimum field voltage limiter loop (Vlv).
+ *        Typical Value = 0.79.
  */
 case class ExcAC3A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Value of <i>EFD </i>at which feedback gain changes (Efdn).
-     * Typical Value = 2.36.
-     */
-    val efdn: Double,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 45.62.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.104.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (Kd).
-     * Typical Value = 0.499.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (Kf).
-     * Typical Value = 0.143.
-     */
-    val kf: Double,
-
-    /**
-     * Coefficient to allow different usage of the model (Kf1).
-     * Typical Value = 1.
-     */
-    val kf1: Double,
-
-    /**
-     * Coefficient to allow different usage of the model (Kf2).
-     * Typical Value = 0.
-     */
-    val kf2: Double,
-
-    /**
-     * Gain used in the minimum field voltage limiter loop (Klv).
-     * Typical Value = 0.194.
-     */
-    val klv: Double,
-
-    /**
-     * Excitation control system stabilizer gain (Kn).
-     * Typical Value =0.05.
-     */
-    val kn: Double,
-
-    /**
-     * Constant associated with regulator and alternator field power supply (Kr).
-     * Typical Value =3.77.
-     */
-    val kr: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
-     * Typical Value = 1.143.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
-     * Typical Value = 0.1.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.013.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>c</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 1.17.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>amax</sub>).
-     * Typical Value = 1.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>amin</sub>).
-     * Typical Value = -0.95.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1) equals Vemax (Ve1).
-     * Typical Value = 6.24.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
-     * Typical Value = 4.68.
-     */
-    val ve2: Double,
-
-    /**
-     * Minimum exciter voltage output (Vemin).
-     * Typical Value = 0.1.
-     */
-    val vemin: Double,
-
-    /**
-     * Exciter field current limit reference (Vfemax).
-     * Typical Value = 16.
-     */
-    val vfemax: Double,
-
-    /**
-     * Field voltage used in the minimum field voltage limiter loop (Vlv).
-     * Typical Value = 0.79.
-     */
-    val vlv: Double
+(override val sup: ExcitationSystemDynamics,
+val efdn: Double,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val kf1: Double,
+val kf2: Double,
+val klv: Double,
+val kn: Double,
+val kr: Double,
+val ks: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vemin: Double,
+val vfemax: Double,
+val vlv: Double
 )
 extends
     Element
@@ -736,65 +505,37 @@ extends
 
 /**
  * Modified IEEE AC4A alternator-supplied rectifier excitation system with different minimum controller output.
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 200.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.015.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 10.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 1.
+ * @param vimax Maximum voltage regulator input limit (Vimax).
+ *        Typical Value = 10.
+ * @param vimin Minimum voltage regulator input limit (Vimin).
+ *        Typical Value = -10.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 5.64.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = -4.53.
  */
 case class ExcAC4A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 200.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.
-     */
-    val kc: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.015.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 10.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 1.
-     */
-    val tc: Double,
-
-    /**
-     * Maximum voltage regulator input limit (Vimax).
-     * Typical Value = 10.
-     */
-    val vimax: Double,
-
-    /**
-     * Minimum voltage regulator input limit (Vimin).
-     * Typical Value = -10.
-     */
-    val vimin: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 5.64.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = -4.53.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kc: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val vimax: Double,
+val vimin: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -845,119 +586,64 @@ extends
 
 /**
  * Modified IEEE AC5A alternator-supplied rectifier excitation system with different minimum controller output.
+ * @param sup Reference to the superclass object.
+ * @param a Coefficient to allow different usage of the model (a).
+ *        Typical Value = 1.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
+ *        Typical Value = 5.6.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
+ *        Typical Value = 4.2.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 400.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (Kf).
+ *        Typical Value = 0.03.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (S<sub>E</sub>[Efd1]).
+ *        Typical Value = 0.86.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd2 (S<sub>E</sub>[Efd2]).
+ *        Typical Value = 0.5.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.02.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 0.8.
+ * @param tf1 Excitation control system stabilizer time constant (Tf1).
+ *        Typical Value  = 1.
+ * @param tf2 Excitation control system stabilizer time constant (Tf2).
+ *        Typical Value = 0.8.
+ * @param tf3 Excitation control system stabilizer time constant (Tf3).
+ *        Typical Value = 0.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 7.3.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value =-7.3.
  */
 case class ExcAC5A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Coefficient to allow different usage of the model (a).
-     * Typical Value = 1.
-     */
-    val a: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd1).
-     * Typical Value = 5.6.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd2).
-     * Typical Value = 4.2.
-     */
-    val efd2: Double,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 400.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (Kf).
-     * Typical Value = 0.03.
-     */
-    val kf: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd1 (S<sub>E</sub>[Efd1]).
-     * Typical Value = 0.86.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd2 (S<sub>E</sub>[Efd2]).
-     * Typical Value = 0.5.
-     */
-    val seefd2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 0.8.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf1).
-     * Typical Value  = 1.
-     */
-    val tf1: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf2).
-     * Typical Value = 0.8.
-     */
-    val tf2: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf3).
-     * Typical Value = 0.
-     */
-    val tf3: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 7.3.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value =-7.3.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val a: Double,
+val efd1: Double,
+val efd2: Double,
+val ka: Double,
+val ke: Double,
+val kf: Double,
+val ks: Double,
+val seefd1: Double,
+val seefd2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf1: Double,
+val tf2: Double,
+val tf3: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -1026,149 +712,79 @@ extends
 
 /**
  * Modified IEEE AC6A alternator-supplied rectifier excitation system with speed input.
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 536.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.173.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
+ *        Typical Value = 1.91.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.6.
+ * @param kh Exciter field current limiter gain (Kh).
+ *        Typical Value = 92.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
+ *        Typical Value = 0.214.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
+ *        Typical Value = 0.044.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.086.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 9.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 3.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 1.
+ * @param th Exciter field current limiter time constant (Th).
+ *        Typical Value = 0.08.
+ * @param tj Exciter field current limiter time constant (Tj).
+ *        Typical Value = 0.02.
+ * @param tk Voltage regulator time constant (Tk).
+ *        Typical Value = 0.18.
+ * @param vamax Maximum voltage regulator output (Vamax).
+ *        Typical Value = 75.
+ * @param vamin Minimum voltage regulator output (Vamin).
+ *        Typical Value = -75.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
+ *        Typical Value = 7.4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
+ *        Typical Value = 5.55.
+ * @param vfelim Exciter field current limit reference (Vfelim).
+ *        Typical Value = 19.
+ * @param vhmax Maximum field current limiter signal reference (Vhmax).
+ *        Typical Value = 75.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 44.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = -36.
  */
 case class ExcAC6A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 536.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.173.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (Kd).
-     * Typical Value = 1.91.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.6.
-     */
-    val ke: Double,
-
-    /**
-     * Exciter field current limiter gain (Kh).
-     * Typical Value = 92.
-     */
-    val kh: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
-     * Typical Value = 0.214.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
-     * Typical Value = 0.044.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.086.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 9.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 3.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 1.
-     */
-    val te: Double,
-
-    /**
-     * Exciter field current limiter time constant (Th).
-     * Typical Value = 0.08.
-     */
-    val th: Double,
-
-    /**
-     * Exciter field current limiter time constant (Tj).
-     * Typical Value = 0.02.
-     */
-    val tj: Double,
-
-    /**
-     * Voltage regulator time constant (Tk).
-     * Typical Value = 0.18.
-     */
-    val tk: Double,
-
-    /**
-     * Maximum voltage regulator output (Vamax).
-     * Typical Value = 75.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vamin).
-     * Typical Value = -75.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
-     * Typical Value = 7.4.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
-     * Typical Value = 5.55.
-     */
-    val ve2: Double,
-
-    /**
-     * Exciter field current limit reference (Vfelim).
-     * Typical Value = 19.
-     */
-    val vfelim: Double,
-
-    /**
-     * Maximum field current limiter signal reference (Vhmax).
-     * Typical Value = 75.
-     */
-    val vhmax: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 44.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = -36.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kh: Double,
+val ks: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val th: Double,
+val tj: Double,
+val tk: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vfelim: Double,
+val vhmax: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -1247,179 +863,97 @@ extends
 
 /**
  * Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
+ * @param sup Reference to the superclass object.
+ * @param inlim Input limiter indicator.
+true = input limiter Vimax and Vimin is considered
+false = input limiter Vimax and Vimin is not considered.
+ *        Typical Value = true.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 1.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.55.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
+ *        Typical Value = 1.1.
+ * @param kdr Voltage regulator derivative gain (Kdr).
+ *        Typical Value = 10.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kir Voltage regulator integral gain (Kir).
+ *        Typical Value = 5.
+ * @param kpr Voltage regulator proportional gain (Kpr).
+ *        Typical Value = 80.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param pidlim PID limiter indicator.
+true = input limiter Vpidmax and Vpidmin is considered
+false = input limiter Vpidmax and Vpidmin is not considered.
+ *        Typical Value = true.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve1]).
+ *        Typical Value = 0.3.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve2]).
+ *        Typical Value = 3.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.
+ * @param tdr Lag time constant (Tdr).
+ *        Typical Value = 0.1.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 1.2.
+ * @param telim Selector for the limiter on the block [1/sTe].
+ *        See diagram for meaning of true and false.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>) equals V<sub>EMAX</sub> (Ve1).
+ *        Typical Value = 6.5.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
+ *        Typical Value = 9.
+ * @param vemin Minimum exciter voltage output (Vemin).
+ *        Typical Value = 0.
+ * @param vfemax Exciter field current limit reference (Vfemax).
+ *        Typical Value = 6.
+ * @param vimax Input signal maximum (Vimax).
+ *        Typical Value = 35.
+ * @param vimin Input signal minimum (Vimin).
+ *        Typical Value = -10.
+ * @param vpidmax PID maximum controller output (Vpidmax).
+ *        Typical Value = 35.
+ * @param vpidmin PID minimum controller output (Vpidmin).
+ *        Typical Value = -10.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 35.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = 0.
+ * @param vtmult Multiply by generator's terminal voltage indicator.
+true =the limits Vrmax and Vrmin are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
+false = limits are not multiplied by generator's terminal voltage.
+ *        Typical Value = false.
  */
 case class ExcAC8B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Input limiter indicator.
-    true = input limiter Vimax and Vimin is considered
-    false = input limiter Vimax and Vimin is not considered.
-     * Typical Value = true.
-     */
-    val inlim: Boolean,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 1.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.55.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (Kd).
-     * Typical Value = 1.1.
-     */
-    val kd: Double,
-
-    /**
-     * Voltage regulator derivative gain (Kdr).
-     * Typical Value = 10.
-     */
-    val kdr: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Voltage regulator integral gain (Kir).
-     * Typical Value = 5.
-     */
-    val kir: Double,
-
-    /**
-     * Voltage regulator proportional gain (Kpr).
-     * Typical Value = 80.
-     */
-    val kpr: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * PID limiter indicator.
-    true = input limiter Vpidmax and Vpidmin is considered
-    false = input limiter Vpidmax and Vpidmin is not considered.
-     * Typical Value = true.
-     */
-    val pidlim: Boolean,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve1]).
-     * Typical Value = 0.3.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve2]).
-     * Typical Value = 3.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.
-     */
-    val ta: Double,
-
-    /**
-     * Lag time constant (Tdr).
-     * Typical Value = 0.1.
-     */
-    val tdr: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 1.2.
-     */
-    val te: Double,
-
-    /**
-     * Selector for the limiter on the block [1/sTe].
-     * See diagram for meaning of true and false.
-     */
-    val telim: Boolean,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>) equals V<sub>EMAX</sub> (Ve1).
-     * Typical Value = 6.5.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
-     * Typical Value = 9.
-     */
-    val ve2: Double,
-
-    /**
-     * Minimum exciter voltage output (Vemin).
-     * Typical Value = 0.
-     */
-    val vemin: Double,
-
-    /**
-     * Exciter field current limit reference (Vfemax).
-     * Typical Value = 6.
-     */
-    val vfemax: Double,
-
-    /**
-     * Input signal maximum (Vimax).
-     * Typical Value = 35.
-     */
-    val vimax: Double,
-
-    /**
-     * Input signal minimum (Vimin).
-     * Typical Value = -10.
-     */
-    val vimin: Double,
-
-    /**
-     * PID maximum controller output (Vpidmax).
-     * Typical Value = 35.
-     */
-    val vpidmax: Double,
-
-    /**
-     * PID minimum controller output (Vpidmin).
-     * Typical Value = -10.
-     */
-    val vpidmin: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 35.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = 0.
-     */
-    val vrmin: Double,
-
-    /**
-     * Multiply by generator's terminal voltage indicator.
-    true =the limits Vrmax and Vrmin are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
-    false = limits are not multiplied by generator's terminal voltage.
-     * Typical Value = false.
-     */
-    val vtmult: Boolean
+(override val sup: ExcitationSystemDynamics,
+val inlim: Boolean,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val kdr: Double,
+val ke: Double,
+val kir: Double,
+val kpr: Double,
+val ks: Double,
+val pidlim: Boolean,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tdr: Double,
+val te: Double,
+val telim: Boolean,
+val ve1: Double,
+val ve2: Double,
+val vemin: Double,
+val vfemax: Double,
+val vimax: Double,
+val vimin: Double,
+val vpidmax: Double,
+val vpidmin: Double,
+val vrmax: Double,
+val vrmin: Double,
+val vtmult: Boolean
 )
 extends
     Element
@@ -1507,101 +1041,58 @@ extends
 /**
  * Italian excitation system.
  * It represents static field voltage or excitation current feedback excitation system.
+ * @param sup Reference to the superclass object.
+ * @param blint Governor Control Flag (BLINT). 
+0 = lead-lag regulator
+1 = proportional integral regulator.
+ *        Typical Value = 0.
+ * @param ifmn Minimum exciter current (I<sub>FMN</sub>).
+ *        Typical Value = -5.2.
+ * @param ifmx Maximum exciter current (I<sub>FMX</sub>).
+ *        Typical Value = 6.5.
+ * @param k2 Exciter gain (K<sub>2</sub>).
+ *        Typical Value = 20.
+ * @param k3 AVR gain (K<sub>3</sub>).
+ *        Typical Value = 1000.
+ * @param kce Ceiling factor (K<sub>CE</sub>).
+ *        Typical Value = 1.
+ * @param krvecc Feedback enabling (K<sub>RVECC</sub>). 
+0 = Open loop control
+1 = Closed loop control.
+ *        Typical Value = 1.
+ * @param kvfif Rate feedback signal flag (K<sub>VFIF</sub>). 
+0 = output voltage of the exciter
+1 = exciter field current.
+ *        Typical Value = 0.
+ * @param t1 Time constant (T<sub>1</sub>).
+ *        Typical Value = 20.
+ * @param t2 Time constant (T<sub>2</sub>).
+ *        Typical Value = 0.05.
+ * @param t3 Time constant (T<sub>3</sub>).
+ *        Typical Value = 1.6.
+ * @param tb Exciter time constant (T<sub>B</sub>).
+ *        Typical Value = 0.04.
+ * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
+ *        Typical Value = -5.2.
+ * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
+ *        Typical Value = 6.5.
  */
 case class ExcANS
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Governor Control Flag (BLINT). 
-    0 = lead-lag regulator
-    1 = proportional integral regulator.
-     * Typical Value = 0.
-     */
-    val blint: Int,
-
-    /**
-     * Minimum exciter current (I<sub>FMN</sub>).
-     * Typical Value = -5.2.
-     */
-    val ifmn: Double,
-
-    /**
-     * Maximum exciter current (I<sub>FMX</sub>).
-     * Typical Value = 6.5.
-     */
-    val ifmx: Double,
-
-    /**
-     * Exciter gain (K<sub>2</sub>).
-     * Typical Value = 20.
-     */
-    val k2: Double,
-
-    /**
-     * AVR gain (K<sub>3</sub>).
-     * Typical Value = 1000.
-     */
-    val k3: Double,
-
-    /**
-     * Ceiling factor (K<sub>CE</sub>).
-     * Typical Value = 1.
-     */
-    val kce: Double,
-
-    /**
-     * Feedback enabling (K<sub>RVECC</sub>). 
-    0 = Open loop control
-    1 = Closed loop control.
-     * Typical Value = 1.
-     */
-    val krvecc: Int,
-
-    /**
-     * Rate feedback signal flag (K<sub>VFIF</sub>). 
-    0 = output voltage of the exciter
-    1 = exciter field current.
-     * Typical Value = 0.
-     */
-    val kvfif: Int,
-
-    /**
-     * Time constant (T<sub>1</sub>).
-     * Typical Value = 20.
-     */
-    val t1: Double,
-
-    /**
-     * Time constant (T<sub>2</sub>).
-     * Typical Value = 0.05.
-     */
-    val t2: Double,
-
-    /**
-     * Time constant (T<sub>3</sub>).
-     * Typical Value = 1.6.
-     */
-    val t3: Double,
-
-    /**
-     * Exciter time constant (T<sub>B</sub>).
-     * Typical Value = 0.04.
-     */
-    val tb: Double,
-
-    /**
-     * Minimum AVR output (V<sub>RMN</sub>).
-     * Typical Value = -5.2.
-     */
-    val vrmn: Double,
-
-    /**
-     * Maximum AVR output (V<sub>RMX</sub>).
-     * Typical Value = 6.5.
-     */
-    val vrmx: Double
+(override val sup: ExcitationSystemDynamics,
+val blint: Int,
+val ifmn: Double,
+val ifmx: Double,
+val k2: Double,
+val k3: Double,
+val kce: Double,
+val krvecc: Int,
+val kvfif: Int,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val tb: Double,
+val vrmn: Double,
+val vrmx: Double
 )
 extends
     Element
@@ -1663,83 +1154,46 @@ extends
 /**
  * Italian excitation system corresponding to IEEE (1968) Type 1 Model.
  * It represents exciter dynamo and electromechanical regulator.
+ * @param sup Reference to the superclass object.
+ * @param e1 Field voltage value 1  (E1).
+ *        Typical Value = 4.18.
+ * @param e2 Field voltage value 2 (E2).
+ *        Typical Value = 3.14.
+ * @param ka AVR gain (K<sub>A</sub>).
+ *        Typical Value = 500.
+ * @param kf Rate feedback gain (K<sub>F</sub>).
+ *        Typical Value = 0.12.
+ * @param se1 Saturation factor at E1 (S(E1)).
+ *        Typical Value = 0.1.
+ * @param se2 Saturation factor at E2 (S(E2)).
+ *        Typical Value = 0.03.
+ * @param ta AVR time constant (T<sub>A</sub>).
+ *        Typical Value = 0.2.
+ * @param tb AVR time constant (T<sub>B</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant (T<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param tf Rate feedback time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
+ *        Typical Value = -6.
+ * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
+ *        Typical Value = 7.
  */
 case class ExcAVR1
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Field voltage value 1  (E1).
-     * Typical Value = 4.18.
-     */
-    val e1: Double,
-
-    /**
-     * Field voltage value 2 (E2).
-     * Typical Value = 3.14.
-     */
-    val e2: Double,
-
-    /**
-     * AVR gain (K<sub>A</sub>).
-     * Typical Value = 500.
-     */
-    val ka: Double,
-
-    /**
-     * Rate feedback gain (K<sub>F</sub>).
-     * Typical Value = 0.12.
-     */
-    val kf: Double,
-
-    /**
-     * Saturation factor at E1 (S(E1)).
-     * Typical Value = 0.1.
-     */
-    val se1: Double,
-
-    /**
-     * Saturation factor at E2 (S(E2)).
-     * Typical Value = 0.03.
-     */
-    val se2: Double,
-
-    /**
-     * AVR time constant (T<sub>A</sub>).
-     * Typical Value = 0.2.
-     */
-    val ta: Double,
-
-    /**
-     * AVR time constant (T<sub>B</sub>).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Exciter time constant (T<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val te: Double,
-
-    /**
-     * Rate feedback time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Minimum AVR output (V<sub>RMN</sub>).
-     * Typical Value = -6.
-     */
-    val vrmn: Double,
-
-    /**
-     * Maximum AVR output (V<sub>RMX</sub>).
-     * Typical Value = 7.
-     */
-    val vrmx: Double
+(override val sup: ExcitationSystemDynamics,
+val e1: Double,
+val e2: Double,
+val ka: Double,
+val kf: Double,
+val se1: Double,
+val se2: Double,
+val ta: Double,
+val tb: Double,
+val te: Double,
+val tf: Double,
+val vrmn: Double,
+val vrmx: Double
 )
 extends
     Element
@@ -1797,89 +1251,49 @@ extends
 /**
  * Italian excitation system corresponding to IEEE (1968) Type 2 Model.
  * It represents alternator and rotating diodes and electromechanic voltage regulators.
+ * @param sup Reference to the superclass object.
+ * @param e1 Field voltage value 1 (E1).
+ *        Typical Value = 4.18.
+ * @param e2 Field voltage value 2 (E2).
+ *        Typical Value = 3.14.
+ * @param ka AVR gain (K<sub>A</sub>).
+ *        Typical Value = 500.
+ * @param kf Rate feedback gain (K<sub>F</sub>).
+ *        Typical Value = 0.12.
+ * @param se1 Saturation factor at E1 (S(E1)).
+ *        Typical Value = 0.1.
+ * @param se2 Saturation factor at E2 (S(E2)).
+ *        Typical Value = 0.03.
+ * @param ta AVR time constant (T<sub>A</sub>).
+ *        Typical Value = 0.02.
+ * @param tb AVR time constant (T<sub>B</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant (T<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param tf1 Rate feedback time constant (T<sub>F1</sub>).
+ *        Typical Value = 1.
+ * @param tf2 Rate feedback time constant (T<sub>F2</sub>).
+ *        Typical Value = 1.
+ * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
+ *        Typical Value = -6.
+ * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
+ *        Typical Value = 7.
  */
 case class ExcAVR2
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Field voltage value 1 (E1).
-     * Typical Value = 4.18.
-     */
-    val e1: Double,
-
-    /**
-     * Field voltage value 2 (E2).
-     * Typical Value = 3.14.
-     */
-    val e2: Double,
-
-    /**
-     * AVR gain (K<sub>A</sub>).
-     * Typical Value = 500.
-     */
-    val ka: Double,
-
-    /**
-     * Rate feedback gain (K<sub>F</sub>).
-     * Typical Value = 0.12.
-     */
-    val kf: Double,
-
-    /**
-     * Saturation factor at E1 (S(E1)).
-     * Typical Value = 0.1.
-     */
-    val se1: Double,
-
-    /**
-     * Saturation factor at E2 (S(E2)).
-     * Typical Value = 0.03.
-     */
-    val se2: Double,
-
-    /**
-     * AVR time constant (T<sub>A</sub>).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * AVR time constant (T<sub>B</sub>).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Exciter time constant (T<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val te: Double,
-
-    /**
-     * Rate feedback time constant (T<sub>F1</sub>).
-     * Typical Value = 1.
-     */
-    val tf1: Double,
-
-    /**
-     * Rate feedback time constant (T<sub>F2</sub>).
-     * Typical Value = 1.
-     */
-    val tf2: Double,
-
-    /**
-     * Minimum AVR output (V<sub>RMN</sub>).
-     * Typical Value = -6.
-     */
-    val vrmn: Double,
-
-    /**
-     * Maximum AVR output (V<sub>RMX</sub>).
-     * Typical Value = 7.
-     */
-    val vrmx: Double
+(override val sup: ExcitationSystemDynamics,
+val e1: Double,
+val e2: Double,
+val ka: Double,
+val kf: Double,
+val se1: Double,
+val se2: Double,
+val ta: Double,
+val tb: Double,
+val te: Double,
+val tf1: Double,
+val tf2: Double,
+val vrmn: Double,
+val vrmx: Double
 )
 extends
     Element
@@ -1939,83 +1353,46 @@ extends
 /**
  * Italian excitation system.
  * It represents exciter dynamo and electric regulator.
+ * @param sup Reference to the superclass object.
+ * @param e1 Field voltage value 1 (E1).
+ *        Typical Value = 4.18.
+ * @param e2 Field voltage value 2 (E2).
+ *        Typical Value = 3.14.
+ * @param ka AVR gain (K<sub>A</sub>).
+ *        Typical Value = 100.
+ * @param se1 Saturation factor at E1 (S(E1)).
+ *        Typical Value = 0.1.
+ * @param se2 Saturation factor at E2 (S(E2)).
+ *        Typical Value = 0.03.
+ * @param t1 AVR time constant (T<sub>1</sub>).
+ *        Typical Value = 20.
+ * @param t2 AVR time constant (T<sub>2</sub>).
+ *        Typical Value = 1.6.
+ * @param t3 AVR time constant (T<sub>3</sub>).
+ *        Typical Value = 0.66.
+ * @param t4 AVR time constant (T<sub>4</sub>).
+ *        Typical Value = 0.07.
+ * @param te Exciter time constant (T<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
+ *        Typical Value = -7.5.
+ * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
+ *        Typical Value = 7.5.
  */
 case class ExcAVR3
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Field voltage value 1 (E1).
-     * Typical Value = 4.18.
-     */
-    val e1: Double,
-
-    /**
-     * Field voltage value 2 (E2).
-     * Typical Value = 3.14.
-     */
-    val e2: Double,
-
-    /**
-     * AVR gain (K<sub>A</sub>).
-     * Typical Value = 100.
-     */
-    val ka: Double,
-
-    /**
-     * Saturation factor at E1 (S(E1)).
-     * Typical Value = 0.1.
-     */
-    val se1: Double,
-
-    /**
-     * Saturation factor at E2 (S(E2)).
-     * Typical Value = 0.03.
-     */
-    val se2: Double,
-
-    /**
-     * AVR time constant (T<sub>1</sub>).
-     * Typical Value = 20.
-     */
-    val t1: Double,
-
-    /**
-     * AVR time constant (T<sub>2</sub>).
-     * Typical Value = 1.6.
-     */
-    val t2: Double,
-
-    /**
-     * AVR time constant (T<sub>3</sub>).
-     * Typical Value = 0.66.
-     */
-    val t3: Double,
-
-    /**
-     * AVR time constant (T<sub>4</sub>).
-     * Typical Value = 0.07.
-     */
-    val t4: Double,
-
-    /**
-     * Exciter time constant (T<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val te: Double,
-
-    /**
-     * Minimum AVR output (V<sub>RMN</sub>).
-     * Typical Value = -7.5.
-     */
-    val vrmn: Double,
-
-    /**
-     * Maximum AVR output (V<sub>RMX</sub>).
-     * Typical Value = 7.5.
-     */
-    val vrmx: Double
+(override val sup: ExcitationSystemDynamics,
+val e1: Double,
+val e2: Double,
+val ka: Double,
+val se1: Double,
+val se2: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val te: Double,
+val vrmn: Double,
+val vrmx: Double
 )
 extends
     Element
@@ -2073,97 +1450,54 @@ extends
 /**
  * Italian excitation system.
  * It represents static exciter and electric voltage regulator.
+ * @param sup Reference to the superclass object.
+ * @param imul AVR output voltage dependency selector (Imul).
+true = selector is connected
+false = selector is not connected.
+ *        Typical Value = true.
+ * @param ka AVR gain (K<sub>A</sub>).
+ *        Typical Value = 300.
+ * @param ke Exciter gain (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kif Exciter internal reactance (K<sub>IF</sub>).
+ *        Typical Value = 0.
+ * @param t1 AVR time constant (T<sub>1</sub>).
+ *        Typical Value = 4.8.
+ * @param t1if Exciter current feedback time constant (T<sub>1IF</sub>).
+ *        Typical Value = 60.
+ * @param t2 AVR time constant (T<sub>2</sub>).
+ *        Typical Value = 1.5.
+ * @param t3 AVR time constant (T<sub>3</sub>).
+ *        Typical Value = 0.
+ * @param t4 AVR time constant (T<sub>4</sub>).
+ *        Typical Value = 0.
+ * @param tif Exciter current feedback time constant (T<sub>IF</sub>).
+ *        Typical Value = 0.
+ * @param vfmn Minimum exciter output (V<sub>FMN</sub>).
+ *        Typical Value = 0.
+ * @param vfmx Maximum exciter output (V<sub>FMX</sub>).
+ *        Typical Value = 5.
+ * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
+ *        Typical Value = 0.
+ * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
+ *        Typical Value = 5.
  */
 case class ExcAVR4
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * AVR output voltage dependency selector (Imul).
-    true = selector is connected
-    false = selector is not connected.
-     * Typical Value = true.
-     */
-    val imul: Boolean,
-
-    /**
-     * AVR gain (K<sub>A</sub>).
-     * Typical Value = 300.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter gain (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Exciter internal reactance (K<sub>IF</sub>).
-     * Typical Value = 0.
-     */
-    val kif: Double,
-
-    /**
-     * AVR time constant (T<sub>1</sub>).
-     * Typical Value = 4.8.
-     */
-    val t1: Double,
-
-    /**
-     * Exciter current feedback time constant (T<sub>1IF</sub>).
-     * Typical Value = 60.
-     */
-    val t1if: Double,
-
-    /**
-     * AVR time constant (T<sub>2</sub>).
-     * Typical Value = 1.5.
-     */
-    val t2: Double,
-
-    /**
-     * AVR time constant (T<sub>3</sub>).
-     * Typical Value = 0.
-     */
-    val t3: Double,
-
-    /**
-     * AVR time constant (T<sub>4</sub>).
-     * Typical Value = 0.
-     */
-    val t4: Double,
-
-    /**
-     * Exciter current feedback time constant (T<sub>IF</sub>).
-     * Typical Value = 0.
-     */
-    val tif: Double,
-
-    /**
-     * Minimum exciter output (V<sub>FMN</sub>).
-     * Typical Value = 0.
-     */
-    val vfmn: Double,
-
-    /**
-     * Maximum exciter output (V<sub>FMX</sub>).
-     * Typical Value = 5.
-     */
-    val vfmx: Double,
-
-    /**
-     * Minimum AVR output (V<sub>RMN</sub>).
-     * Typical Value = 0.
-     */
-    val vrmn: Double,
-
-    /**
-     * Maximum AVR output (V<sub>RMX</sub>).
-     * Typical Value = 5.
-     */
-    val vrmx: Double
+(override val sup: ExcitationSystemDynamics,
+val imul: Boolean,
+val ka: Double,
+val ke: Double,
+val kif: Double,
+val t1: Double,
+val t1if: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val tif: Double,
+val vfmn: Double,
+val vfmx: Double,
+val vrmn: Double,
+val vrmx: Double
 )
 extends
     Element
@@ -2225,27 +1559,17 @@ extends
 /**
  * Manual excitation control with field circuit resistance.
  * This model can be used as a very simple representation of manual voltage control.
+ * @param sup Reference to the superclass object.
+ * @param ka Gain (Ka).
+ * @param rex Effective Output Resistance (Rex).
+ *        Rex represents the effective output resistance seen by the excitation system.
+ * @param ta Time constant (Ta).
  */
 case class ExcAVR5
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Gain (Ka).
-     */
-    val ka: Double,
-
-    /**
-     * Effective Output Resistance (Rex).
-     * Rex represents the effective output resistance seen by the excitation system.
-     */
-    val rex: Double,
-
-    /**
-     * Time constant (Ta).
-     */
-    val ta: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val rex: Double,
+val ta: Double
 )
 extends
     Element
@@ -2284,137 +1608,73 @@ extends
 
 /**
  * IVO excitation system.
+ * @param sup Reference to the superclass object.
+ * @param a1 Lead coefficient (A1).
+ *        Typical Value = 0.5.
+ * @param a2 Lag coefficient (A2).
+ *        Typical Value = 0.5.
+ * @param a3 Lead coefficient (A3).
+ *        Typical Value = 0.5.
+ * @param a4 Lag coefficient (A4).
+ *        Typical Value = 0.5.
+ * @param a5 Lead coefficient (A5).
+ *        Typical Value = 0.5.
+ * @param a6 Lag coefficient (A6).
+ *        Typical Value = 0.5.
+ * @param k1 Gain (K1).
+ *        Typical Value = 1.
+ * @param k3 Gain (K3).
+ *        Typical Value = 3.
+ * @param k5 Gain (K5).
+ *        Typical Value = 1.
+ * @param t1 Lead time constant (T1).
+ *        Typical Value = 0.05.
+ * @param t2 Lag time constant (T2).
+ *        Typical Value = 0.1.
+ * @param t3 Lead time constant (T3).
+ *        Typical Value = 0.1.
+ * @param t4 Lag time constant (T4).
+ *        Typical Value = 0.1.
+ * @param t5 Lead time constant (T5).
+ *        Typical Value = 0.1.
+ * @param t6 Lag time constant (T6).
+ *        Typical Value = 0.1.
+ * @param vmax1 Lead-lag max. limit (Vmax1).
+ *        Typical Value = 5.
+ * @param vmax3 Lead-lag max. limit (Vmax3).
+ *        Typical Value = 5.
+ * @param vmax5 Lead-lag max. limit (Vmax5).
+ *        Typical Value = 5.
+ * @param vmin1 Lead-lag min. limit (Vmin1).
+ *        Typical Value = -5.
+ * @param vmin3 Lead-lag min. limit (Vmin3).
+ *        Typical Value = -5.
+ * @param vmin5 Lead-lag min. limit (Vmin5).
+ *        Typical Value = -2.
  */
 case class ExcAVR7
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Lead coefficient (A1).
-     * Typical Value = 0.5.
-     */
-    val a1: Double,
-
-    /**
-     * Lag coefficient (A2).
-     * Typical Value = 0.5.
-     */
-    val a2: Double,
-
-    /**
-     * Lead coefficient (A3).
-     * Typical Value = 0.5.
-     */
-    val a3: Double,
-
-    /**
-     * Lag coefficient (A4).
-     * Typical Value = 0.5.
-     */
-    val a4: Double,
-
-    /**
-     * Lead coefficient (A5).
-     * Typical Value = 0.5.
-     */
-    val a5: Double,
-
-    /**
-     * Lag coefficient (A6).
-     * Typical Value = 0.5.
-     */
-    val a6: Double,
-
-    /**
-     * Gain (K1).
-     * Typical Value = 1.
-     */
-    val k1: Double,
-
-    /**
-     * Gain (K3).
-     * Typical Value = 3.
-     */
-    val k3: Double,
-
-    /**
-     * Gain (K5).
-     * Typical Value = 1.
-     */
-    val k5: Double,
-
-    /**
-     * Lead time constant (T1).
-     * Typical Value = 0.05.
-     */
-    val t1: Double,
-
-    /**
-     * Lag time constant (T2).
-     * Typical Value = 0.1.
-     */
-    val t2: Double,
-
-    /**
-     * Lead time constant (T3).
-     * Typical Value = 0.1.
-     */
-    val t3: Double,
-
-    /**
-     * Lag time constant (T4).
-     * Typical Value = 0.1.
-     */
-    val t4: Double,
-
-    /**
-     * Lead time constant (T5).
-     * Typical Value = 0.1.
-     */
-    val t5: Double,
-
-    /**
-     * Lag time constant (T6).
-     * Typical Value = 0.1.
-     */
-    val t6: Double,
-
-    /**
-     * Lead-lag max. limit (Vmax1).
-     * Typical Value = 5.
-     */
-    val vmax1: Double,
-
-    /**
-     * Lead-lag max. limit (Vmax3).
-     * Typical Value = 5.
-     */
-    val vmax3: Double,
-
-    /**
-     * Lead-lag max. limit (Vmax5).
-     * Typical Value = 5.
-     */
-    val vmax5: Double,
-
-    /**
-     * Lead-lag min. limit (Vmin1).
-     * Typical Value = -5.
-     */
-    val vmin1: Double,
-
-    /**
-     * Lead-lag min. limit (Vmin3).
-     * Typical Value = -5.
-     */
-    val vmin3: Double,
-
-    /**
-     * Lead-lag min. limit (Vmin5).
-     * Typical Value = -2.
-     */
-    val vmin5: Double
+(override val sup: ExcitationSystemDynamics,
+val a1: Double,
+val a2: Double,
+val a3: Double,
+val a4: Double,
+val a5: Double,
+val a6: Double,
+val k1: Double,
+val k3: Double,
+val k5: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val vmax1: Double,
+val vmax3: Double,
+val vmax5: Double,
+val vmin1: Double,
+val vmin3: Double,
+val vmin5: Double
 )
 extends
     Element
@@ -2490,79 +1750,45 @@ extends
 /**
  * Transformer fed static excitation system (static with ABB regulator).
  * This model represents a static excitation system in which a gated thyristor bridge fed by a transformer at the main generator terminals feeds the main generator directly.
+ * @param sup Reference to the superclass object.
+ * @param efdmax Maximum open circuit exciter voltage (Efdmax).
+ *        Typical Value = 5.
+ * @param efdmin Minimum open circuit exciter voltage (Efdmin).
+ *        Typical Value = -5.
+ * @param k Steady state gain (K).
+ *        Typical Value = 300.
+ * @param switch Supplementary signal routing selector (switch).
+true = Vs connected to 3rd summing point
+false =  Vs connected to 1st summing point (see diagram).
+ *        Typical Value = true.
+ * @param t1 Controller time constant (T1).
+ *        Typical Value = 6.
+ * @param t2 Controller time constant (T2).
+ *        Typical Value = 1.
+ * @param t3 Lead/lag time constant (T3).
+ *        Typical Value = 0.05.
+ * @param t4 Lead/lag time constant (T4).
+ *        Typical Value = 0.01.
+ * @param vrmax Maximum control element output (Vrmax).
+ *        Typical Value = 5.
+ * @param vrmin Minimum control element output (Vrmin).
+ *        Typical Value = -5.
+ * @param xe Effective excitation transformer reactance (Xe).
+ *        Typical Value = 0.05.
  */
 case class ExcBBC
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Maximum open circuit exciter voltage (Efdmax).
-     * Typical Value = 5.
-     */
-    val efdmax: Double,
-
-    /**
-     * Minimum open circuit exciter voltage (Efdmin).
-     * Typical Value = -5.
-     */
-    val efdmin: Double,
-
-    /**
-     * Steady state gain (K).
-     * Typical Value = 300.
-     */
-    val k: Double,
-
-    /**
-     * Supplementary signal routing selector (switch).
-    true = Vs connected to 3rd summing point
-    false =  Vs connected to 1st summing point (see diagram).
-     * Typical Value = true.
-     */
-    val switch: Boolean,
-
-    /**
-     * Controller time constant (T1).
-     * Typical Value = 6.
-     */
-    val t1: Double,
-
-    /**
-     * Controller time constant (T2).
-     * Typical Value = 1.
-     */
-    val t2: Double,
-
-    /**
-     * Lead/lag time constant (T3).
-     * Typical Value = 0.05.
-     */
-    val t3: Double,
-
-    /**
-     * Lead/lag time constant (T4).
-     * Typical Value = 0.01.
-     */
-    val t4: Double,
-
-    /**
-     * Maximum control element output (Vrmax).
-     * Typical Value = 5.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum control element output (Vrmin).
-     * Typical Value = -5.
-     */
-    val vrmin: Double,
-
-    /**
-     * Effective excitation transformer reactance (Xe).
-     * Typical Value = 0.05.
-     */
-    val xe: Double
+(override val sup: ExcitationSystemDynamics,
+val efdmax: Double,
+val efdmin: Double,
+val k: Double,
+val switch: Boolean,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val vrmax: Double,
+val vrmin: Double,
+val xe: Double
 )
 extends
     Element
@@ -2617,61 +1843,30 @@ extends
 
 /**
  * Czech Proportion/Integral Exciter.
+ * @param sup Reference to the superclass object.
+ * @param efdmax Exciter output maximum limit (Efdmax).
+ * @param efdmin Exciter output minimum limit (Efdmin).
+ * @param ka Regulator gain (Ka).
+ * @param ke Exciter constant related to self-excited field (Ke).
+ * @param kp Regulator proportional gain (Kp).
+ * @param ta Regulator time constant (Ta).
+ * @param tc Regulator integral time constant (Tc).
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ * @param vrmax Voltage regulator maximum limit (Vrmax).
+ * @param vrmin Voltage regulator minimum limit (Vrmin).
  */
 case class ExcCZ
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter output maximum limit (Efdmax).
-     */
-    val efdmax: Double,
-
-    /**
-     * Exciter output minimum limit (Efdmin).
-     */
-    val efdmin: Double,
-
-    /**
-     * Regulator gain (Ka).
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     */
-    val ke: Double,
-
-    /**
-     * Regulator proportional gain (Kp).
-     */
-    val kp: Double,
-
-    /**
-     * Regulator time constant (Ta).
-     */
-    val ta: Double,
-
-    /**
-     * Regulator integral time constant (Tc).
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     */
-    val te: Double,
-
-    /**
-     * Voltage regulator maximum limit (Vrmax).
-     */
-    val vrmax: Double,
-
-    /**
-     * Voltage regulator minimum limit (Vrmin).
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efdmax: Double,
+val efdmin: Double,
+val ka: Double,
+val ke: Double,
+val kp: Double,
+val ta: Double,
+val tc: Double,
+val te: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -2724,119 +1919,64 @@ extends
 
 /**
  * Modified IEEE DC1A direct current commutator exciter with speed input and without underexcitation limiters (UEL) inputs.
+ * @param sup Reference to the superclass object.
+ * @param edfmax Maximum voltage exciter output limiter (Efdmax).
+ *        Typical Value = 99.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
+ *        Typical Value = 3.1.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
+ *        Typical Value = 2.3.
+ * @param efdmin Minimum voltage exciter output limiter (Efdmin).
+ *        Typical Value = -99.
+ * @param exclim (exclim).
+ *        IEEE standard is ambiguous about lower limit on exciter output.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 46.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 0.
+ * @param kf Excitation control system stabilizer gain (Kf).
+ *        Typical Value = 0.1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
+ *        Typical Value = 0.33.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
+ *        Typical Value = 0.33.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.06.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 0.46.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 1.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = -0.9.
  */
 case class ExcDC1A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Maximum voltage exciter output limiter (Efdmax).
-     * Typical Value = 99.
-     */
-    val edfmax: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd1).
-     * Typical Value = 3.1.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd2).
-     * Typical Value = 2.3.
-     */
-    val efd2: Double,
-
-    /**
-     * Minimum voltage exciter output limiter (Efdmin).
-     * Typical Value = -99.
-     */
-    val efdmin: Double,
-
-    /**
-     * (exclim).
-     * IEEE standard is ambiguous about lower limit on exciter output.
-     */
-    val exclim: Boolean,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 46.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 0.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gain (Kf).
-     * Typical Value = 0.1.
-     */
-    val kf: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
-     * Typical Value = 0.33.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
-     * Typical Value = 0.33.
-     */
-    val seefd2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.06.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 0.46.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = -0.9.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val edfmax: Double,
+val efd1: Double,
+val efd2: Double,
+val efdmin: Double,
+val exclim: Boolean,
+val ka: Double,
+val ke: Double,
+val kf: Double,
+val ks: Double,
+val seefd1: Double,
+val seefd2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -2906,121 +2046,66 @@ extends
 /**
  * Modified IEEE DC2A direct current commutator exciters with speed input, one more leg block in feedback loop and without underexcitation limiters (UEL) inputs.
  * DC type 2 excitation system model with added speed multiplier, added lead-lag, and voltage-dependent limits.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
+ *        Typical Value = 3.05.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
+ *        Typical Value = 2.29.
+ * @param exclim (exclim).
+ *        IEEE standard is ambiguous about lower limit on exciter output.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 300.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        If Ke is entered as zero, the model calculates an effective value of Ke such that the initial condition value of Vr is zero. The zero value of Ke is not changed.  If Ke is entered as non-zero, its value is used directly, without change.  Typical Value = 1.
+ * @param kf Excitation control system stabilizer gain (Kf).
+ *        Typical Value = 0.1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
+ *        Typical Value = 0.279.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
+ *        Typical Value = 0.117.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.01.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 1.33.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 0.675.
+ * @param tf1 Excitation control system stabilizer time constant (Tf1).
+ *        Typical Value = 0.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 4.95.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = -4.9.
+ * @param vtlim (Vtlim).
+true = limiter at the block [Ka/(1+sTa)] is dependent on Vt 
+false = limiter at the block is not dependent on Vt.
+ *        Typical Value = true.
  */
 case class ExcDC2A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd1).
-     * Typical Value = 3.05.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd2).
-     * Typical Value = 2.29.
-     */
-    val efd2: Double,
-
-    /**
-     * (exclim).
-     * IEEE standard is ambiguous about lower limit on exciter output.
-     */
-    val exclim: Boolean,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 300.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * If Ke is entered as zero, the model calculates an effective value of Ke such that the initial condition value of Vr is zero. The zero value of Ke is not changed.  If Ke is entered as non-zero, its value is used directly, without change.  Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gain (Kf).
-     * Typical Value = 0.1.
-     */
-    val kf: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
-     * Typical Value = 0.279.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
-     * Typical Value = 0.117.
-     */
-    val seefd2: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.01.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 1.33.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 0.675.
-     */
-    val tf: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf1).
-     * Typical Value = 0.
-     */
-    val tf1: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 4.95.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = -4.9.
-     */
-    val vrmin: Double,
-
-    /**
-     * (Vtlim).
-    true = limiter at the block [Ka/(1+sTa)] is dependent on Vt 
-    false = limiter at the block is not dependent on Vt.
-     * Typical Value = true.
-     */
-    val vtlim: Boolean
+(override val sup: ExcitationSystemDynamics,
+val efd1: Double,
+val efd2: Double,
+val exclim: Boolean,
+val ka: Double,
+val ke: Double,
+val kf: Double,
+val ks: Double,
+val seefd1: Double,
+val seefd2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val tf1: Double,
+val vrmax: Double,
+val vrmin: Double,
+val vtlim: Boolean
 )
 extends
     Element
@@ -3090,109 +2175,60 @@ extends
 /**
  * This is modified IEEE DC3A direct current commutator exciters with speed input, and death band.
  * DC old type 4.
+ * @param sup Reference to the superclass object.
+ * @param edfmax Maximum voltage exciter output limiter (Efdmax).
+ *        Typical Value = 99.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
+ *        Typical Value = 2.6.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
+ *        Typical Value = 3.45.
+ * @param efdlim (Efdlim).
+true = exciter output limiter is active
+false = exciter output limiter not active.
+ *        Typical Value = true.
+ * @param efdmin Minimum voltage exciter output limiter (Efdmin).
+ *        Typical Value = -99.
+ * @param exclim (exclim).
+ *        IEEE standard is ambiguous about lower limit on exciter output.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kr Death band (Kr).
+ *        If Kr is not zero, the voltage regulator input changes at a constant rate if Verr &gt; Kr or Verr &lt; -Kr as per the IEEE (1968) Type 4 model. If Kr is zero, the error signal drives the voltage regulator continuously as per the IEEE (1980) DC3 and IEEE (1992, 2005) DC3A models.  Typical Value = 0.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param kv Fast raise/lower contact setting (Kv).
+ *        Typical Value = 0.05.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
+ *        Typical Value = 0.1.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
+ *        Typical Value = 0.35.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 1.83.
+ * @param trh Rheostat travel time (Trh).
+ *        Typical Value = 20.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 5.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = 0.
  */
 case class ExcDC3A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Maximum voltage exciter output limiter (Efdmax).
-     * Typical Value = 99.
-     */
-    val edfmax: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd1).
-     * Typical Value = 2.6.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (Efd2).
-     * Typical Value = 3.45.
-     */
-    val efd2: Double,
-
-    /**
-     * (Efdlim).
-    true = exciter output limiter is active
-    false = exciter output limiter not active.
-     * Typical Value = true.
-     */
-    val efdlim: Boolean,
-
-    /**
-     * Minimum voltage exciter output limiter (Efdmin).
-     * Typical Value = -99.
-     */
-    val efdmin: Double,
-
-    /**
-     * (exclim).
-     * IEEE standard is ambiguous about lower limit on exciter output.
-     */
-    val exclim: Boolean,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Death band (Kr).
-     * If Kr is not zero, the voltage regulator input changes at a constant rate if Verr &gt; Kr or Verr &lt; -Kr as per the IEEE (1968) Type 4 model. If Kr is zero, the error signal drives the voltage regulator continuously as per the IEEE (1980) DC3 and IEEE (1992, 2005) DC3A models.  Typical Value = 0.
-     */
-    val kr: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Fast raise/lower contact setting (Kv).
-     * Typical Value = 0.05.
-     */
-    val kv: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
-     * Typical Value = 0.1.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
-     * Typical Value = 0.35.
-     */
-    val seefd2: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 1.83.
-     */
-    val te: Double,
-
-    /**
-     * Rheostat travel time (Trh).
-     * Typical Value = 20.
-     */
-    val trh: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 5.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = 0.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val edfmax: Double,
+val efd1: Double,
+val efd2: Double,
+val efdlim: Boolean,
+val efdmin: Double,
+val exclim: Boolean,
+val ke: Double,
+val kr: Double,
+val ks: Double,
+val kv: Double,
+val seefd1: Double,
+val seefd2: Double,
+val te: Double,
+val trh: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -3257,99 +2293,56 @@ extends
 
 /**
  * This is modified old IEEE type 3 excitation system.
+ * @param sup Reference to the superclass object.
+ * @param exclim (exclim).
+true = lower limit of zero is applied to integrator output
+false = lower limit of zero not applied to integrator output.
+ *        Typical Value = true.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 300.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gain (Kf).
+ *        Typical Value = 0.1.
+ * @param ki Potential circuit gain coefficient (Ki).
+ *        Typical Value = 4.83.
+ * @param kp Potential circuit gain coefficient (Kp).
+ *        Typical Value = 4.37.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.01.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 1.83.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 0.675.
+ * @param vb1max Available exciter voltage limiter (Vb1max).
+ *        Typical Value = 11.63.
+ * @param vblim Vb limiter indicator.
+true = exciter Vbmax limiter is active
+false = Vb1max is active.
+ *        Typical Value = true.
+ * @param vbmax Available exciter voltage limiter (Vbmax).
+ *        Typical Value = 11.63.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 5.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = 0.
  */
 case class ExcDC3A1
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * (exclim).
-    true = lower limit of zero is applied to integrator output
-    false = lower limit of zero not applied to integrator output.
-     * Typical Value = true.
-     */
-    val exclim: Boolean,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 300.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gain (Kf).
-     * Typical Value = 0.1.
-     */
-    val kf: Double,
-
-    /**
-     * Potential circuit gain coefficient (Ki).
-     * Typical Value = 4.83.
-     */
-    val ki: Double,
-
-    /**
-     * Potential circuit gain coefficient (Kp).
-     * Typical Value = 4.37.
-     */
-    val kp: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.01.
-     */
-    val ta: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 1.83.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 0.675.
-     */
-    val tf: Double,
-
-    /**
-     * Available exciter voltage limiter (Vb1max).
-     * Typical Value = 11.63.
-     */
-    val vb1max: Double,
-
-    /**
-     * Vb limiter indicator.
-    true = exciter Vbmax limiter is active
-    false = Vb1max is active.
-     * Typical Value = true.
-     */
-    val vblim: Boolean,
-
-    /**
-     * Available exciter voltage limiter (Vbmax).
-     * Typical Value = 11.63.
-     */
-    val vbmax: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 5.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = 0.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val exclim: Boolean,
+val ka: Double,
+val ke: Double,
+val kf: Double,
+val ki: Double,
+val kp: Double,
+val ta: Double,
+val te: Double,
+val tf: Double,
+val vb1max: Double,
+val vblim: Boolean,
+val vbmax: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -3411,101 +2404,55 @@ extends
 /**
  * Static PI transformer fed excitation system: ELIN (VATECH) - simplified model.
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  A power system stabilizer with power input is included in the model.
+ * @param sup Reference to the superclass object.
+ * @param dpnf Controller follow up dead band (Dpnf).
+ *        Typical Value = 0.
+ * @param efmax Maximum open circuit excitation voltage (Efmax).
+ *        Typical Value = 5.
+ * @param efmin Minimum open circuit excitation voltage (Efmin).
+ *        Typical Value = -5.
+ * @param ks1 Stabilizer Gain 1 (Ks1).
+ *        Typical Value = 0.
+ * @param ks2 Stabilizer Gain 2 (Ks2).
+ *        Typical Value = 0.
+ * @param smax Stabilizer Limit Output (smax).
+ *        Typical Value = 0.1.
+ * @param tfi Current transducer time constant (Tfi).
+ *        Typical Value = 0.
+ * @param tnu Controller reset time constant (Tnu).
+ *        Typical Value = 2.
+ * @param ts1 Stabilizer Phase Lag Time Constant (Ts1).
+ *        Typical Value = 1.
+ * @param ts2 Stabilizer Filter Time Constant (Ts2).
+ *        Typical Value = 1.
+ * @param tsw Stabilizer parameters (Tsw).
+ *        Typical Value = 3.
+ * @param vpi Current controller gain (Vpi).
+ *        Typical Value = 12.45.
+ * @param vpnf Controller follow up gain (Vpnf).
+ *        Typical Value = 2.
+ * @param vpu Voltage controller proportional gain (Vpu).
+ *        Typical Value = 34.5.
+ * @param xe Excitation transformer effective reactance (Xe) (&gt;=0).
+ *        Xe represents the regulation of the transformer/rectifier unit.  Typical Value = 0.06.
  */
 case class ExcELIN1
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Controller follow up dead band (Dpnf).
-     * Typical Value = 0.
-     */
-    val dpnf: Double,
-
-    /**
-     * Maximum open circuit excitation voltage (Efmax).
-     * Typical Value = 5.
-     */
-    val efmax: Double,
-
-    /**
-     * Minimum open circuit excitation voltage (Efmin).
-     * Typical Value = -5.
-     */
-    val efmin: Double,
-
-    /**
-     * Stabilizer Gain 1 (Ks1).
-     * Typical Value = 0.
-     */
-    val ks1: Double,
-
-    /**
-     * Stabilizer Gain 2 (Ks2).
-     * Typical Value = 0.
-     */
-    val ks2: Double,
-
-    /**
-     * Stabilizer Limit Output (smax).
-     * Typical Value = 0.1.
-     */
-    val smax: Double,
-
-    /**
-     * Current transducer time constant (Tfi).
-     * Typical Value = 0.
-     */
-    val tfi: Double,
-
-    /**
-     * Controller reset time constant (Tnu).
-     * Typical Value = 2.
-     */
-    val tnu: Double,
-
-    /**
-     * Stabilizer Phase Lag Time Constant (Ts1).
-     * Typical Value = 1.
-     */
-    val ts1: Double,
-
-    /**
-     * Stabilizer Filter Time Constant (Ts2).
-     * Typical Value = 1.
-     */
-    val ts2: Double,
-
-    /**
-     * Stabilizer parameters (Tsw).
-     * Typical Value = 3.
-     */
-    val tsw: Double,
-
-    /**
-     * Current controller gain (Vpi).
-     * Typical Value = 12.45.
-     */
-    val vpi: Double,
-
-    /**
-     * Controller follow up gain (Vpnf).
-     * Typical Value = 2.
-     */
-    val vpnf: Double,
-
-    /**
-     * Voltage controller proportional gain (Vpu).
-     * Typical Value = 34.5.
-     */
-    val vpu: Double,
-
-    /**
-     * Excitation transformer effective reactance (Xe) (&gt;=0).
-     * Xe represents the regulation of the transformer/rectifier unit.  Typical Value = 0.06.
-     */
-    val xe: Double
+(override val sup: ExcitationSystemDynamics,
+val dpnf: Double,
+val efmax: Double,
+val efmin: Double,
+val ks1: Double,
+val ks2: Double,
+val smax: Double,
+val tfi: Double,
+val tnu: Double,
+val ts1: Double,
+val ts2: Double,
+val tsw: Double,
+val vpi: Double,
+val vpnf: Double,
+val vpu: Double,
+val xe: Double
 )
 extends
     Element
@@ -3569,173 +2516,91 @@ extends
 /**
  * Detailed Excitation System Model - ELIN (VATECH).
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  Power system stabilizer models used in conjunction with this excitation system model: PssELIN2, PssIEEE2B, Pss2B.
+ * @param sup Reference to the superclass object.
+ * @param efdbas Gain (Efdbas).
+ *        Typical Value = 0.1.
+ * @param iefmax Limiter (Iefmax).
+ *        Typical Value = 1.
+ * @param iefmax2 Minimum open circuit excitation voltage (Iefmax2).
+ *        Typical Value = -5.
+ * @param iefmin Limiter (Iefmin).
+ *        Typical Value = 1.
+ * @param k1 Voltage regulator input gain (K1).
+ *        Typical Value = 0.
+ * @param k1ec Voltage regulator input limit (K1ec).
+ *        Typical Value = 2.
+ * @param k2 Gain (K2).
+ *        Typical Value = 5.
+ * @param k3 Gain (K3).
+ *        Typical Value = 0.1.
+ * @param k4 Gain (K4).
+ *        Typical Value = 0.
+ * @param kd1 Voltage controller derivative gain (Kd1).
+ *        Typical Value = 34.5.
+ * @param ke2 Gain (Ke2).
+ *        Typical Value = 0.1.
+ * @param ketb Gain (Ketb).
+ *        Typical Value = 0.06.
+ * @param pid1max Controller follow up gain (PID1max).
+ *        Typical Value = 2.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
+ *        Typical Value = 0.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
+ *        Typical Value = 1.
+ * @param tb1 Voltage controller derivative washout time constant (Tb1).
+ *        Typical Value = 12.45.
+ * @param te Time constant (Te).
+ *        Typical Value = 0.
+ * @param te2 Time Constant (Te2).
+ *        Typical Value = 1.
+ * @param ti1 Controller follow up dead band (Ti1).
+ *        Typical Value = 0.
+ * @param ti3 Time constant (Ti3).
+ *        Typical Value = 3.
+ * @param ti4 Time constant (Ti4).
+ *        Typical Value = 0.
+ * @param tr4 Time constant (Tr4).
+ *        Typical Value = 1.
+ * @param upmax Limiter (Upmax).
+ *        Typical Value = 3.
+ * @param upmin Limiter (Upmin).
+ *        Typical Value = 0.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
+ *        Typical Value = 3.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
+ *        Typical Value = 0.
+ * @param xp Excitation transformer effective reactance (Xp).
+ *        Typical Value = 1.
  */
 case class ExcELIN2
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Gain (Efdbas).
-     * Typical Value = 0.1.
-     */
-    val efdbas: Double,
-
-    /**
-     * Limiter (Iefmax).
-     * Typical Value = 1.
-     */
-    val iefmax: Double,
-
-    /**
-     * Minimum open circuit excitation voltage (Iefmax2).
-     * Typical Value = -5.
-     */
-    val iefmax2: Double,
-
-    /**
-     * Limiter (Iefmin).
-     * Typical Value = 1.
-     */
-    val iefmin: Double,
-
-    /**
-     * Voltage regulator input gain (K1).
-     * Typical Value = 0.
-     */
-    val k1: Double,
-
-    /**
-     * Voltage regulator input limit (K1ec).
-     * Typical Value = 2.
-     */
-    val k1ec: Double,
-
-    /**
-     * Gain (K2).
-     * Typical Value = 5.
-     */
-    val k2: Double,
-
-    /**
-     * Gain (K3).
-     * Typical Value = 0.1.
-     */
-    val k3: Double,
-
-    /**
-     * Gain (K4).
-     * Typical Value = 0.
-     */
-    val k4: Double,
-
-    /**
-     * Voltage controller derivative gain (Kd1).
-     * Typical Value = 34.5.
-     */
-    val kd1: Double,
-
-    /**
-     * Gain (Ke2).
-     * Typical Value = 0.1.
-     */
-    val ke2: Double,
-
-    /**
-     * Gain (Ketb).
-     * Typical Value = 0.06.
-     */
-    val ketb: Double,
-
-    /**
-     * Controller follow up gain (PID1max).
-     * Typical Value = 2.
-     */
-    val pid1max: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
-     * Typical Value = 0.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
-     * Typical Value = 1.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage controller derivative washout time constant (Tb1).
-     * Typical Value = 12.45.
-     */
-    val tb1: Double,
-
-    /**
-     * Time constant (Te).
-     * Typical Value = 0.
-     */
-    val te: Double,
-
-    /**
-     * Time Constant (Te2).
-     * Typical Value = 1.
-     */
-    val te2: Double,
-
-    /**
-     * Controller follow up dead band (Ti1).
-     * Typical Value = 0.
-     */
-    val ti1: Double,
-
-    /**
-     * Time constant (Ti3).
-     * Typical Value = 3.
-     */
-    val ti3: Double,
-
-    /**
-     * Time constant (Ti4).
-     * Typical Value = 0.
-     */
-    val ti4: Double,
-
-    /**
-     * Time constant (Tr4).
-     * Typical Value = 1.
-     */
-    val tr4: Double,
-
-    /**
-     * Limiter (Upmax).
-     * Typical Value = 3.
-     */
-    val upmax: Double,
-
-    /**
-     * Limiter (Upmin).
-     * Typical Value = 0.
-     */
-    val upmin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
-     * Typical Value = 3.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
-     * Typical Value = 0.
-     */
-    val ve2: Double,
-
-    /**
-     * Excitation transformer effective reactance (Xp).
-     * Typical Value = 1.
-     */
-    val xp: Double
+(override val sup: ExcitationSystemDynamics,
+val efdbas: Double,
+val iefmax: Double,
+val iefmax2: Double,
+val iefmin: Double,
+val k1: Double,
+val k1ec: Double,
+val k2: Double,
+val k3: Double,
+val k4: Double,
+val kd1: Double,
+val ke2: Double,
+val ketb: Double,
+val pid1max: Double,
+val seve1: Double,
+val seve2: Double,
+val tb1: Double,
+val te: Double,
+val te2: Double,
+val ti1: Double,
+val ti3: Double,
+val ti4: Double,
+val tr4: Double,
+val upmax: Double,
+val upmin: Double,
+val ve1: Double,
+val ve2: Double,
+val xp: Double
 )
 extends
     Element
@@ -3822,83 +2687,46 @@ extends
 
 /**
  * Hungarian Excitation System Model, with built-in voltage transducer.
+ * @param sup Reference to the superclass object.
+ * @param ae Major loop PI tag gain factor (Ae).
+ *        Typical Value = 3.
+ * @param ai Minor loop PI tag gain factor (Ai).
+ *        Typical Value = 22.
+ * @param atr AVR constant (Atr).
+ *        Typical Value = 2.19.
+ * @param emax Field voltage control signal upper limit on AVR base (Emax).
+ *        Typical Value = 0.996.
+ * @param emin Field voltage control signal lower limit on AVR base (Emin).
+ *        Typical Value = -0.866.
+ * @param imax Major loop PI tag output signal upper limit (Imax).
+ *        Typical Value = 2.19.
+ * @param imin Major loop PI tag output signal lower limit (Imin).
+ *        Typical Value = 0.1.
+ * @param ke Voltage base conversion constant (Ke).
+ *        Typical Value = 4.666.
+ * @param ki Current base conversion constant (Ki).
+ *        Typical Value = 0.21428.
+ * @param te Major loop PI tag integration time constant (Te).
+ *        Typical Value = 0.154.
+ * @param ti Minor loop PI control tag integration time constant (Ti).
+ *        Typical Value = 0.01333.
+ * @param tr Filter time constant (Tr).
+ *        If a voltage compensator is used in conjunction with this excitation system model, Tr should be set to 0.  Typical Value = 0.01.
  */
 case class ExcHU
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Major loop PI tag gain factor (Ae).
-     * Typical Value = 3.
-     */
-    val ae: Double,
-
-    /**
-     * Minor loop PI tag gain factor (Ai).
-     * Typical Value = 22.
-     */
-    val ai: Double,
-
-    /**
-     * AVR constant (Atr).
-     * Typical Value = 2.19.
-     */
-    val atr: Double,
-
-    /**
-     * Field voltage control signal upper limit on AVR base (Emax).
-     * Typical Value = 0.996.
-     */
-    val emax: Double,
-
-    /**
-     * Field voltage control signal lower limit on AVR base (Emin).
-     * Typical Value = -0.866.
-     */
-    val emin: Double,
-
-    /**
-     * Major loop PI tag output signal upper limit (Imax).
-     * Typical Value = 2.19.
-     */
-    val imax: Double,
-
-    /**
-     * Major loop PI tag output signal lower limit (Imin).
-     * Typical Value = 0.1.
-     */
-    val imin: Double,
-
-    /**
-     * Voltage base conversion constant (Ke).
-     * Typical Value = 4.666.
-     */
-    val ke: Double,
-
-    /**
-     * Current base conversion constant (Ki).
-     * Typical Value = 0.21428.
-     */
-    val ki: Double,
-
-    /**
-     * Major loop PI tag integration time constant (Te).
-     * Typical Value = 0.154.
-     */
-    val te: Double,
-
-    /**
-     * Minor loop PI control tag integration time constant (Ti).
-     * Typical Value = 0.01333.
-     */
-    val ti: Double,
-
-    /**
-     * Filter time constant (Tr).
-     * If a voltage compensator is used in conjunction with this excitation system model, Tr should be set to 0.  Typical Value = 0.01.
-     */
-    val tr: Double
+(override val sup: ExcitationSystemDynamics,
+val ae: Double,
+val ai: Double,
+val atr: Double,
+val emax: Double,
+val emin: Double,
+val imax: Double,
+val imin: Double,
+val ke: Double,
+val ki: Double,
+val te: Double,
+val ti: Double,
+val tr: Double
 )
 extends
     Element
@@ -3956,119 +2784,64 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC1A model.
  * The model represents the field-controlled alternator-rectifier excitation systems designated Type AC1A. These excitation systems consist of an alternator main exciter with non-controlled rectifiers.
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 400.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.2.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
+ *        Typical Value = 0.38.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
+ *        Typical Value = 0.03.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
+ *        Typical Value = 0.1.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
+ *        Typical Value = 0.03.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.02.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 0.8.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
+ *        Typical Value = 14.5.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
+ *        Typical Value = -14.5.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
+ *        Typical Value = 4.18.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
+ *        Typical Value = 3.14.
+ * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
+ *        Typical Value = 6.03.
+ * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
+ *        Typical Value = -5.43.
  */
 case class ExcIEEEAC1A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 400.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.2.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
-     * Typical Value = 0.38.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (K<sub>F</sub>).
-     * Typical Value = 0.03.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
-     * Typical Value = 0.1.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
-     * Typical Value = 0.03.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 0.8.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>AMAX</sub>).
-     * Typical Value = 14.5.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>AMIN</sub>).
-     * Typical Value = -14.5.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
-     * Typical Value = 4.18.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
-     * Typical Value = 3.14.
-     */
-    val ve2: Double,
-
-    /**
-     * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
-     * Typical Value = 6.03.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
-     * Typical Value = -5.43.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -4138,137 +2911,73 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC2A model.
  * The model represents a high initial response field-controlled alternator-rectifier excitation system. The alternator main exciter is used with non-controlled rectifiers. The Type AC2A model is similar to that of Type AC1A except for the inclusion of exciter time constant compensation and exciter field current limiting elements.
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 400.
+ * @param kb Second stage regulator gain (K<sub>B</sub>).
+ *        Typical Value = 25.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.28.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
+ *        Typical Value = 0.35.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
+ *        Typical Value = 0.03.
+ * @param kh Exciter field current feedback gain (K<sub>H</sub>).
+ *        Typical Value = 1.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
+ *        Typical Value = 0.037.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
+ *        Typical Value = 0.012.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.02.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 0.6.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
+ *        Typical Value = 8.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
+ *        Typical Value = -8.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
+ *        Typical Value = 4.4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
+ *        Typical Value = 3.3.
+ * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
+ *        Typical Value = 4.4.
+ * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
+ *        Typical Value = 105.
+ * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
+ *        Typical Value = -95.
  */
 case class ExcIEEEAC2A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 400.
-     */
-    val ka: Double,
-
-    /**
-     * Second stage regulator gain (K<sub>B</sub>).
-     * Typical Value = 25.
-     */
-    val kb: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.28.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
-     * Typical Value = 0.35.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (K<sub>F</sub>).
-     * Typical Value = 0.03.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter field current feedback gain (K<sub>H</sub>).
-     * Typical Value = 1.
-     */
-    val kh: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
-     * Typical Value = 0.037.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
-     * Typical Value = 0.012.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 0.6.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>AMAX</sub>).
-     * Typical Value = 8.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>AMIN</sub>).
-     * Typical Value = -8.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
-     * Typical Value = 4.4.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
-     * Typical Value = 3.3.
-     */
-    val ve2: Double,
-
-    /**
-     * Exciter field current limit reference (V<sub>FEMAX</sub>).
-     * Typical Value = 4.4.
-     */
-    val vfemax: Double,
-
-    /**
-     * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
-     * Typical Value = 105.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
-     * Typical Value = -95.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kb: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val kh: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vfemax: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -4344,137 +3053,73 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC3A model.
  * The model represents the field-controlled alternator-rectifier excitation systems designated Type AC3A. These excitation systems include an alternator main exciter with non-controlled rectifiers. The exciter employs self-excitation, and the voltage regulator power is derived from the exciter output voltage.  Therefore, this system has an additional nonlinearity, simulated by the use of a multiplier
+ * @param sup Reference to the superclass object.
+ * @param efdn Value of <i>EFD </i>at which feedback gain changes (E<sub>FDN</sub>).
+ *        Typical Value = 2.36.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 45.62.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.104.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
+ *        Typical Value = 0.499.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
+ *        Typical Value = 0.143.
+ * @param kn Excitation control system stabilizer gain (K<sub>N</sub>).
+ *        Typical Value = 0.05.
+ * @param kr Constant associated with regulator and alternator field power supply (K<sub>R</sub>).
+ *        Typical Value = 3.77.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
+ *        Typical Value = 1.143.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
+ *        Typical Value = 0.1.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.013.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 1.17.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
+ *        Typical Value = 1.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
+ *        Typical Value = -0.95.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
+ *        Typical Value = 6.24.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
+ *        Typical Value = 4.68.
+ * @param vemin Minimum exciter voltage output (V<sub>EMIN</sub>).
+ *        Typical Value = 0.1.
+ * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
+ *        Typical Value = 16.
  */
 case class ExcIEEEAC3A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Value of <i>EFD </i>at which feedback gain changes (E<sub>FDN</sub>).
-     * Typical Value = 2.36.
-     */
-    val efdn: Double,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 45.62.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.104.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
-     * Typical Value = 0.499.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (K<sub>F</sub>).
-     * Typical Value = 0.143.
-     */
-    val kf: Double,
-
-    /**
-     * Excitation control system stabilizer gain (K<sub>N</sub>).
-     * Typical Value = 0.05.
-     */
-    val kn: Double,
-
-    /**
-     * Constant associated with regulator and alternator field power supply (K<sub>R</sub>).
-     * Typical Value = 3.77.
-     */
-    val kr: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
-     * Typical Value = 1.143.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
-     * Typical Value = 0.1.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.013.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 1.17.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>AMAX</sub>).
-     * Typical Value = 1.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>AMIN</sub>).
-     * Typical Value = -0.95.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
-     * Typical Value = 6.24.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
-     * Typical Value = 4.68.
-     */
-    val ve2: Double,
-
-    /**
-     * Minimum exciter voltage output (V<sub>EMIN</sub>).
-     * Typical Value = 0.1.
-     */
-    val vemin: Double,
-
-    /**
-     * Exciter field current limit reference (V<sub>FEMAX</sub>).
-     * Typical Value = 16.
-     */
-    val vfemax: Double
+(override val sup: ExcitationSystemDynamics,
+val efdn: Double,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val kn: Double,
+val kr: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vemin: Double,
+val vfemax: Double
 )
 extends
     Element
@@ -4550,65 +3195,37 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC4A model.
  * The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other type ac systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modeled; however, transient loading effects on the exciter alternator are included.
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 200.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.015.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 10.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 1.
+ * @param vimax Maximum voltage regulator input limit (V<sub>IMAX</sub>).
+ *        Typical Value = 10.
+ * @param vimin Minimum voltage regulator input limit (V<sub>IMIN</sub>).
+ *        Typical Value = -10.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 5.64.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -4.53.
  */
 case class ExcIEEEAC4A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 200.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.
-     */
-    val kc: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.015.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 10.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 1.
-     */
-    val tc: Double,
-
-    /**
-     * Maximum voltage regulator input limit (V<sub>IMAX</sub>).
-     * Typical Value = 10.
-     */
-    val vimax: Double,
-
-    /**
-     * Minimum voltage regulator input limit (V<sub>IMIN</sub>).
-     * Typical Value = -10.
-     */
-    val vimin: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 5.64.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -4.53.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kc: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val vimax: Double,
+val vimin: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -4660,95 +3277,52 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC5A model.
  * The model represents a simplified model for brushless excitation systems. The regulator is supplied from a source, such as a permanent magnet generator, which is not affected by system disturbances.  Unlike other ac models, this model uses loaded rather than open circuit exciter saturation data in the same way as it is used for the dc models.  Because the model has been widely implemented by the industry, it is sometimes used to represent other types of systems when either detailed data for them are not available or simplified models are required.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
+ *        Typical Value = 5.6.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
+ *        Typical Value = 4.2.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 400.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
+ *        Typical Value = 0.03.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
+ *        Typical Value = 0.86.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
+ *        Typical Value = 0.5.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.02.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 0.8.
+ * @param tf1 Excitation control system stabilizer time constant (T<sub>F1</sub>).
+ *        Typical Value = 1.
+ * @param tf2 Excitation control system stabilizer time constant (T<sub>F2</sub>).
+ *        Typical Value = 1.
+ * @param tf3 Excitation control system stabilizer time constant (T<sub>F3</sub>).
+ *        Typical Value = 1.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 7.3.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -7.3.
  */
 case class ExcIEEEAC5A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-     * Typical Value = 5.6.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-     * Typical Value = 4.2.
-     */
-    val efd2: Double,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 400.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (K<sub>F</sub>).
-     * Typical Value = 0.03.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-     * Typical Value = 0.86.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-     * Typical Value = 0.5.
-     */
-    val seefd2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 0.8.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F1</sub>).
-     * Typical Value = 1.
-     */
-    val tf1: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F2</sub>).
-     * Typical Value = 1.
-     */
-    val tf2: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F3</sub>).
-     * Typical Value = 1.
-     */
-    val tf3: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 7.3.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -7.3.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efd1: Double,
+val efd2: Double,
+val ka: Double,
+val ke: Double,
+val kf: Double,
+val seefd1: Double,
+val seefd2: Double,
+val ta: Double,
+val te: Double,
+val tf1: Double,
+val tf2: Double,
+val tf3: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -4810,143 +3384,76 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC6A model.
  * The model represents field-controlled alternator-rectifier excitation systems with system-supplied electronic voltage regulators.  The maximum output of the regulator, <b><i>V</i></b><b><i><sub>R</sub></i></b>, is a function of terminal voltage, <b><i>V</i></b><b><i><sub>T</sub></i></b>. The field current limiter included in the original model AC6A remains in the 2005 update.
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 536.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.173.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
+ *        Typical Value = 1.91.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.6.
+ * @param kh Exciter field current limiter gain (K<sub>H</sub>).
+ *        Typical Value = 92.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
+ *        Typical Value = 0.214.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
+ *        Typical Value = 0.044.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.086.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 9.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 3.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param th Exciter field current limiter time constant (T<sub>H</sub>).
+ *        Typical Value = 0.08.
+ * @param tj Exciter field current limiter time constant (T<sub>J</sub>).
+ *        Typical Value = 0.02.
+ * @param tk Voltage regulator time constant (T<sub>K</sub>).
+ *        Typical Value = 0.18.
+ * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
+ *        Typical Value = 75.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
+ *        Typical Value = -75.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
+ *        Typical Value = 7.4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
+ *        Typical Value = 5.55.
+ * @param vfelim Exciter field current limit reference (V<sub>FELIM</sub>).
+ *        Typical Value = 19.
+ * @param vhmax Maximum field current limiter signal reference (V<sub>HMAX</sub>).
+ *        Typical Value = 75.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 44.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -36.
  */
 case class ExcIEEEAC6A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 536.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.173.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
-     * Typical Value = 1.91.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.6.
-     */
-    val ke: Double,
-
-    /**
-     * Exciter field current limiter gain (K<sub>H</sub>).
-     * Typical Value = 92.
-     */
-    val kh: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
-     * Typical Value = 0.214.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
-     * Typical Value = 0.044.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.086.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 9.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 3.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val te: Double,
-
-    /**
-     * Exciter field current limiter time constant (T<sub>H</sub>).
-     * Typical Value = 0.08.
-     */
-    val th: Double,
-
-    /**
-     * Exciter field current limiter time constant (T<sub>J</sub>).
-     * Typical Value = 0.02.
-     */
-    val tj: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>K</sub>).
-     * Typical Value = 0.18.
-     */
-    val tk: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>AMAX</sub>).
-     * Typical Value = 75.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>AMIN</sub>).
-     * Typical Value = -75.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
-     * Typical Value = 7.4.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
-     * Typical Value = 5.55.
-     */
-    val ve2: Double,
-
-    /**
-     * Exciter field current limit reference (V<sub>FELIM</sub>).
-     * Typical Value = 19.
-     */
-    val vfelim: Double,
-
-    /**
-     * Maximum field current limiter signal reference (V<sub>HMAX</sub>).
-     * Typical Value = 75.
-     */
-    val vhmax: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 44.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -36.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kh: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val th: Double,
+val tj: Double,
+val tk: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vfelim: Double,
+val vhmax: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -5024,167 +3531,88 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC7B model.
  * The model represents excitation systems which consist of an ac alternator with either stationary or rotating rectifiers to produce the dc field requirements. It is an upgrade to earlier ac excitation systems, which replace only the controls but retain the ac alternator and diode rectifier bridge.
+ * @param sup Reference to the superclass object.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.18.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
+ *        Typical Value = 0.02.
+ * @param kdr Voltage regulator derivative gain (K<sub>DR</sub>).
+ *        Typical Value = 0.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf1 Excitation control system stabilizer gain (K<sub>F1</sub>).
+ *        Typical Value = 0.212.
+ * @param kf2 Excitation control system stabilizer gain (K<sub>F2</sub>).
+ *        Typical Value = 0.
+ * @param kf3 Excitation control system stabilizer gain (K<sub>F3</sub>).
+ *        Typical Value = 0.
+ * @param kia Voltage regulator integral gain (K<sub>IA</sub>).
+ *        Typical Value = 59.69.
+ * @param kir Voltage regulator integral gain (K<sub>IR</sub>).
+ *        Typical Value = 4.24.
+ * @param kl Exciter field voltage lower limit parameter (K<sub>L</sub>).
+ *        Typical Value = 10.
+ * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
+ *        Typical Value = 4.96.
+ * @param kpa Voltage regulator proportional gain (K<sub>PA</sub>).
+ *        Typical Value = 65.36.
+ * @param kpr Voltage regulator proportional gain (K<sub>PR</sub>).
+ *        Typical Value = 4.24.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
+ *        Typical Value = 0.44.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
+ *        Typical Value = 0.075.
+ * @param tdr Lag time constant (T<sub>DR</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 1.1.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
+ *        Typical Value = 1.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
+ *        Typical Value = -0.95.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
+ *        Typical Value = 6.3.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
+ *        Typical Value = 3.02.
+ * @param vemin Minimum exciter voltage output (V<sub>EMIN</sub>).
+ *        Typical Value = 0.
+ * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
+ *        Typical Value = 6.9.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 5.79.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -5.79.
  */
 case class ExcIEEEAC7B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.18.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
-     * Typical Value = 0.02.
-     */
-    val kd: Double,
-
-    /**
-     * Voltage regulator derivative gain (K<sub>DR</sub>).
-     * Typical Value = 0.
-     */
-    val kdr: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gain (K<sub>F1</sub>).
-     * Typical Value = 0.212.
-     */
-    val kf1: Double,
-
-    /**
-     * Excitation control system stabilizer gain (K<sub>F2</sub>).
-     * Typical Value = 0.
-     */
-    val kf2: Double,
-
-    /**
-     * Excitation control system stabilizer gain (K<sub>F3</sub>).
-     * Typical Value = 0.
-     */
-    val kf3: Double,
-
-    /**
-     * Voltage regulator integral gain (K<sub>IA</sub>).
-     * Typical Value = 59.69.
-     */
-    val kia: Double,
-
-    /**
-     * Voltage regulator integral gain (K<sub>IR</sub>).
-     * Typical Value = 4.24.
-     */
-    val kir: Double,
-
-    /**
-     * Exciter field voltage lower limit parameter (K<sub>L</sub>).
-     * Typical Value = 10.
-     */
-    val kl: Double,
-
-    /**
-     * Potential circuit gain coefficient (K<sub>P</sub>).
-     * Typical Value = 4.96.
-     */
-    val kp: Double,
-
-    /**
-     * Voltage regulator proportional gain (K<sub>PA</sub>).
-     * Typical Value = 65.36.
-     */
-    val kpa: Double,
-
-    /**
-     * Voltage regulator proportional gain (K<sub>PR</sub>).
-     * Typical Value = 4.24.
-     */
-    val kpr: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
-     * Typical Value = 0.44.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
-     * Typical Value = 0.075.
-     */
-    val seve2: Double,
-
-    /**
-     * Lag time constant (T<sub>DR</sub>).
-     * Typical Value = 0.
-     */
-    val tdr: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 1.1.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>AMAX</sub>).
-     * Typical Value = 1.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>AMIN</sub>).
-     * Typical Value = -0.95.
-     */
-    val vamin: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
-     * Typical Value = 6.3.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
-     * Typical Value = 3.02.
-     */
-    val ve2: Double,
-
-    /**
-     * Minimum exciter voltage output (V<sub>EMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vemin: Double,
-
-    /**
-     * Exciter field current limit reference (V<sub>FEMAX</sub>).
-     * Typical Value = 6.9.
-     */
-    val vfemax: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 5.79.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -5.79.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val kc: Double,
+val kd: Double,
+val kdr: Double,
+val ke: Double,
+val kf1: Double,
+val kf2: Double,
+val kf3: Double,
+val kia: Double,
+val kir: Double,
+val kl: Double,
+val kp: Double,
+val kpa: Double,
+val kpr: Double,
+val seve1: Double,
+val seve2: Double,
+val tdr: Double,
+val te: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val ve1: Double,
+val ve2: Double,
+val vemin: Double,
+val vfemax: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -5270,119 +3698,64 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type AC8B model.
  * This model represents a PID voltage regulator with either a brushless exciter or dc exciter. The AVR in this model consists of PID control, with separate constants for the proportional (<b>K</b><b><sub>PR</sub></b>), integral (<b>K</b><b><sub>IR</sub></b>), and derivative (<b>K</b><b><sub>DR</sub></b>) gains. The representation of the brushless exciter (<b>T</b><b><sub>E</sub></b>, <b>K</b><b><sub>E</sub></b>, <b>S</b><b><sub>E</sub></b>, <b>K</b><b><sub>C</sub></b>, <b>K</b><b><sub>D</sub></b>) is similar to the model Type AC2A. The Type AC8B model can be used to represent static voltage regulators applied to brushless excitation systems. Digitally based voltage regulators feeding dc rotating main exciters can be represented with the AC Type AC8B model with the parameters <b>K</b><b><sub>C</sub></b> and <b>K</b><b><sub>D</sub></b> set to 0.  For thyristor power stages fed from the generator terminals, the limits <b>V</b><b><sub>RMAX</sub></b> and <b>V</b><b><sub>RMIN</sub></b> should be a function of terminal voltage: <b>V</b><b><sub>T</sub></b> * <b>V</b><b><sub>RMAX</sub></b><sub> </sub>and <b>V</b><b><sub>T</sub></b> * <b>V</b><b><sub>RMIN</sub></b>.
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 1.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.55.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
+ *        Typical Value = 1.1.
+ * @param kdr Voltage regulator derivative gain (K<sub>DR</sub>).
+ *        Typical Value = 10.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kir Voltage regulator integral gain (K<sub>IR</sub>).
+ *        Typical Value = 5.
+ * @param kpr Voltage regulator proportional gain (K<sub>PR</sub>).
+ *        Typical Value = 80.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
+ *        Typical Value = 0.3.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
+ *        Typical Value = 3.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.
+ * @param tdr Lag time constant (T<sub>DR</sub>).
+ *        Typical Value = 0.1.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 1.2.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
+ *        Typical Value = 6.5.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
+ *        Typical Value = 9.
+ * @param vemin Minimum exciter voltage output (V<sub>EMIN</sub>).
+ *        Typical Value = 0.
+ * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
+ *        Typical Value = 6.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 35.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = 0.
  */
 case class ExcIEEEAC8B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 1.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.55.
-     */
-    val kc: Double,
-
-    /**
-     * Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
-     * Typical Value = 1.1.
-     */
-    val kd: Double,
-
-    /**
-     * Voltage regulator derivative gain (K<sub>DR</sub>).
-     * Typical Value = 10.
-     */
-    val kdr: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Voltage regulator integral gain (K<sub>IR</sub>).
-     * Typical Value = 5.
-     */
-    val kir: Double,
-
-    /**
-     * Voltage regulator proportional gain (K<sub>PR</sub>).
-     * Typical Value = 80.
-     */
-    val kpr: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
-     * Typical Value = 0.3.
-     */
-    val seve1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
-     * Typical Value = 3.
-     */
-    val seve2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.
-     */
-    val ta: Double,
-
-    /**
-     * Lag time constant (T<sub>DR</sub>).
-     * Typical Value = 0.1.
-     */
-    val tdr: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 1.2.
-     */
-    val te: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
-     * Typical Value = 6.5.
-     */
-    val ve1: Double,
-
-    /**
-     * Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
-     * Typical Value = 9.
-     */
-    val ve2: Double,
-
-    /**
-     * Minimum exciter voltage output (V<sub>EMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vemin: Double,
-
-    /**
-     * Exciter field current limit reference (V<sub>FEMAX</sub>).
-     * Typical Value = 6.
-     */
-    val vfemax: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 35.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val kdr: Double,
+val ke: Double,
+val kir: Double,
+val kpr: Double,
+val seve1: Double,
+val seve2: Double,
+val ta: Double,
+val tdr: Double,
+val te: Double,
+val ve1: Double,
+val ve2: Double,
+val vemin: Double,
+val vfemax: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -5452,109 +3825,60 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type DC1A model.
  * This model represents field-controlled dc commutator exciters with continuously acting voltage regulators (especially the direct-acting rheostatic, rotating amplifier, and magnetic amplifier types).  Because this model has been widely implemented by the industry, it is sometimes used to represent other types of systems when detailed data for them are not available or when a simplified model is required.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
+ *        Typical Value = 3.1.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
+ *        Typical Value = 2.3.
+ * @param exclim (exclim).
+ *        IEEE standard is ambiguous about lower limit on exciter output.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 46.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 0.
+ * @param kf Excitation control system stabilizer gain (K<sub>F</sub>).
+ *        Typical Value = 0.1.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
+ *        Typical Value = 0.33.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
+ *        Typical Value = 0.1.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.06.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 0.46.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param uelin UEL input (uelin).
+true = input is connected to the HV gate
+false = input connects to the error signal.
+ *        Typical Value = true.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -0.9.
  */
 case class ExcIEEEDC1A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-     * Typical Value = 3.1.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-     * Typical Value = 2.3.
-     */
-    val efd2: Double,
-
-    /**
-     * (exclim).
-     * IEEE standard is ambiguous about lower limit on exciter output.
-     */
-    val exclim: Boolean,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 46.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 0.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gain (K<sub>F</sub>).
-     * Typical Value = 0.1.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-     * Typical Value = 0.33.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-     * Typical Value = 0.1.
-     */
-    val seefd2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.06.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 0.46.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * UEL input (uelin).
-    true = input is connected to the HV gate
-    false = input connects to the error signal.
-     * Typical Value = true.
-     */
-    val uelin: Boolean,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -0.9.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efd1: Double,
+val efd2: Double,
+val exclim: Boolean,
+val ka: Double,
+val ke: Double,
+val kf: Double,
+val seefd1: Double,
+val seefd2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val uelin: Boolean,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -5620,109 +3944,60 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type DC2A model.
  * This model represents represent field-controlled dc commutator exciters with continuously acting voltage regulators having supplies obtained from the generator or auxiliary bus.  It differs from the Type DC1A model only in the voltage regulator output limits, which are now proportional to terminal voltage <b>V</b><b><sub>T</sub></b>.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
+ *        Typical Value = 3.05.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
+ *        Typical Value = 2.29.
+ * @param exclim (exclim).
+ *        IEEE standard is ambiguous about lower limit on exciter output. Typical Value = - 999  which means that there is no limit applied.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 300.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gain (K<sub>F</sub>).
+ *        Typical Value = 0.1.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
+ *        Typical Value = 0.279.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
+ *        Typical Value = 0.117.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.01.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 1.33.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 0.675.
+ * @param uelin UEL input (uelin).
+true = input is connected to the HV gate
+false = input connects to the error signal.
+ *        Typical Value = true.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 4.95.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -4.9.
  */
 case class ExcIEEEDC2A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-     * Typical Value = 3.05.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-     * Typical Value = 2.29.
-     */
-    val efd2: Double,
-
-    /**
-     * (exclim).
-     * IEEE standard is ambiguous about lower limit on exciter output. Typical Value = - 999  which means that there is no limit applied.
-     */
-    val exclim: Double,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 300.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gain (K<sub>F</sub>).
-     * Typical Value = 0.1.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-     * Typical Value = 0.279.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-     * Typical Value = 0.117.
-     */
-    val seefd2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.01.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 1.33.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 0.675.
-     */
-    val tf: Double,
-
-    /**
-     * UEL input (uelin).
-    true = input is connected to the HV gate
-    false = input connects to the error signal.
-     * Typical Value = true.
-     */
-    val uelin: Boolean,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 4.95.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -4.9.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efd1: Double,
+val efd2: Double,
+val exclim: Double,
+val ka: Double,
+val ke: Double,
+val kf: Double,
+val seefd1: Double,
+val seefd2: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val uelin: Boolean,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -5788,77 +4063,43 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type DC3A model.
  * This model represents represent older systems, in particular those dc commutator exciters with non-continuously acting regulators that were commonly used before the development of the continuously acting varieties.  These systems respond at basically two different rates, depending upon the magnitude of voltage error. For small errors, adjustment is made periodically with a signal to a motor-operated rheostat. Larger errors cause resistors to be quickly shorted or inserted and a strong forcing signal applied to the exciter. Continuous motion of the motor-operated rheostat occurs for these larger error signals, even though it is bypassed by contactor action.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
+ *        Typical Value = 3.375.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
+ *        Typical Value = 3.15.
+ * @param exclim (exclim).
+ *        IEEE standard is ambiguous about lower limit on exciter output.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 0.05.
+ * @param kv Fast raise/lower contact setting (K<sub>V</sub>).
+ *        Typical Value = 0.05.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
+ *        Typical Value = 0.267.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
+ *        Typical Value = 0.068.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 0.5.
+ * @param trh Rheostat travel time (T<sub>RH</sub>).
+ *        Typical Value = 20.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = 0.
  */
 case class ExcIEEEDC3A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-     * Typical Value = 3.375.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-     * Typical Value = 3.15.
-     */
-    val efd2: Double,
-
-    /**
-     * (exclim).
-     * IEEE standard is ambiguous about lower limit on exciter output.
-     */
-    val exclim: Boolean,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 0.05.
-     */
-    val ke: Double,
-
-    /**
-     * Fast raise/lower contact setting (K<sub>V</sub>).
-     * Typical Value = 0.05.
-     */
-    val kv: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-     * Typical Value = 0.267.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-     * Typical Value = 0.068.
-     */
-    val seefd2: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 0.5.
-     */
-    val te: Double,
-
-    /**
-     * Rheostat travel time (T<sub>RH</sub>).
-     * Typical Value = 20.
-     */
-    val trh: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efd1: Double,
+val efd2: Double,
+val exclim: Boolean,
+val ke: Double,
+val kv: Double,
+val seefd1: Double,
+val seefd2: Double,
+val te: Double,
+val trh: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -5914,129 +4155,71 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type DC4B model.
  * These excitation systems utilize a field-controlled dc commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
+ * @param sup Reference to the superclass object.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
+ *        Typical Value = 1.75.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
+ *        Typical Value = 2.33.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 1.
+ * @param kd Regulator derivative gain (K<sub>D</sub>).
+ *        Typical Value = 20.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gain (K<sub>F</sub>).
+ *        Typical Value = 0.
+ * @param ki Regulator integral gain (K<sub>I</sub>).
+ *        Typical Value = 20.
+ * @param kp Regulator proportional gain (K<sub>P</sub>).
+ *        Typical Value = 20.
+ * @param oelin OEL input (OELin).
+true = LV gate
+false = subtract from error signal.
+ *        Typical Value = true.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
+ *        Typical Value = 0.08.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
+ *        Typical Value = 0.27.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.2.
+ * @param td Regulator derivative filter time constant(T<sub>D</sub>).
+ *        Typical Value = 0.01.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 0.8.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param uelin UEL input (UELin).
+true = HV gate
+false = add to error signal.
+ *        Typical Value = true.
+ * @param vemin Minimum exciter voltage output(V<sub>EMIN</sub>).
+ *        Typical Value = 0.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 2.7.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -0.9.
  */
 case class ExcIEEEDC4B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
-     * Typical Value = 1.75.
-     */
-    val efd1: Double,
-
-    /**
-     * Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
-     * Typical Value = 2.33.
-     */
-    val efd2: Double,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 1.
-     */
-    val ka: Double,
-
-    /**
-     * Regulator derivative gain (K<sub>D</sub>).
-     * Typical Value = 20.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gain (K<sub>F</sub>).
-     * Typical Value = 0.
-     */
-    val kf: Double,
-
-    /**
-     * Regulator integral gain (K<sub>I</sub>).
-     * Typical Value = 20.
-     */
-    val ki: Double,
-
-    /**
-     * Regulator proportional gain (K<sub>P</sub>).
-     * Typical Value = 20.
-     */
-    val kp: Double,
-
-    /**
-     * OEL input (OELin).
-    true = LV gate
-    false = subtract from error signal.
-     * Typical Value = true.
-     */
-    val oelin: Boolean,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
-     * Typical Value = 0.08.
-     */
-    val seefd1: Double,
-
-    /**
-     * Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
-     * Typical Value = 0.27.
-     */
-    val seefd2: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.2.
-     */
-    val ta: Double,
-
-    /**
-     * Regulator derivative filter time constant(T<sub>D</sub>).
-     * Typical Value = 0.01.
-     */
-    val td: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 0.8.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * UEL input (UELin).
-    true = HV gate
-    false = add to error signal.
-     * Typical Value = true.
-     */
-    val uelin: Boolean,
-
-    /**
-     * Minimum exciter voltage output(V<sub>EMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vemin: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 2.7.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -0.9.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efd1: Double,
+val efd2: Double,
+val ka: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val ki: Double,
+val kp: Double,
+val oelin: Boolean,
+val seefd1: Double,
+val seefd2: Double,
+val ta: Double,
+val td: Double,
+val te: Double,
+val tf: Double,
+val uelin: Boolean,
+val vemin: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -6108,127 +4291,69 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type ST1A model.
  * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit�s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
+ * @param sup Reference to the superclass object.
+ * @param ilr Exciter output current limit reference (I<sub>LR</sub>).
+ *        Typical Value = 0.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 190.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.08.
+ * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
+ *        Typical Value = 0.
+ * @param klr Exciter output current limiter gain (K<sub>LR</sub>).
+ *        Typical Value = 0.
+ * @param pssin Selector of the Power System Stabilizer (PSS) input (PSSin).
+true = PSS input (Vs) added to error signal
+false = PSS input (Vs) added to voltage regulator output.
+ *        Typical Value = true.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 10.
+ * @param tb1 Voltage regulator time constant (T<sub>B1</sub>).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 1.
+ * @param tc1 Voltage regulator time constant (T<sub>C1</sub>).
+ *        Typical Value = 0.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param uelin Selector of the connection of the UEL input (UELin).
+ *        Typical Value = ignoreUELsignal.
+ * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
+ *        Typical Value = 14.5.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
+ *        Typical Value = -14.5.
+ * @param vimax Maximum voltage regulator input limit (V<sub>IMAX</sub>).
+ *        Typical Value = 999.
+ * @param vimin Minimum voltage regulator input limit (V<sub>IMIN</sub>).
+ *        Typical Value = -999.
+ * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
+ *        Typical Value = 7.8.
+ * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
+ *        Typical Value = -6.7.
  */
 case class ExcIEEEST1A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter output current limit reference (I<sub>LR</sub>).
-     * Typical Value = 0.
-     */
-    val ilr: Double,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 190.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.08.
-     */
-    val kc: Double,
-
-    /**
-     * Excitation control system stabilizer gains (K<sub>F</sub>).
-     * Typical Value = 0.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter output current limiter gain (K<sub>LR</sub>).
-     * Typical Value = 0.
-     */
-    val klr: Double,
-
-    /**
-     * Selector of the Power System Stabilizer (PSS) input (PSSin).
-    true = PSS input (Vs) added to error signal
-    false = PSS input (Vs) added to voltage regulator output.
-     * Typical Value = true.
-     */
-    val pssin: Boolean,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 10.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B1</sub>).
-     * Typical Value = 0.
-     */
-    val tb1: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 1.
-     */
-    val tc: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C1</sub>).
-     * Typical Value = 0.
-     */
-    val tc1: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Selector of the connection of the UEL input (UELin).
-     * Typical Value = ignoreUELsignal.
-     */
-    val uelin: String,
-
-    /**
-     * Maximum voltage regulator output (V<sub>AMAX</sub>).
-     * Typical Value = 14.5.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>AMIN</sub>).
-     * Typical Value = -14.5.
-     */
-    val vamin: Double,
-
-    /**
-     * Maximum voltage regulator input limit (V<sub>IMAX</sub>).
-     * Typical Value = 999.
-     */
-    val vimax: Double,
-
-    /**
-     * Minimum voltage regulator input limit (V<sub>IMIN</sub>).
-     * Typical Value = -999.
-     */
-    val vimin: Double,
-
-    /**
-     * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
-     * Typical Value = 7.8.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
-     * Typical Value = -6.7.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ilr: Double,
+val ka: Double,
+val kc: Double,
+val kf: Double,
+val klr: Double,
+val pssin: Boolean,
+val ta: Double,
+val tb: Double,
+val tb1: Double,
+val tc: Double,
+val tc1: Double,
+val tf: Double,
+val uelin: String,
+val vamax: Double,
+val vamin: Double,
+val vimax: Double,
+val vimin: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -6299,31 +4424,18 @@ extends
 
 /**
  * Type of connection for the UEL input used in ExcIEEEST1A.
+ * @param sup Reference to the superclass object.
+ * @param ignoreUELsignal Ignore UEL signal.
+ * @param inputAddedToErrorSignal UEL input added to error signal.
+ * @param inputHVgateErrorSignal UEL input HV gate with error signal.
+ * @param inputHVgateVoltageOutput UEL input HV gate with voltage regulator output.
  */
 case class ExcIEEEST1AUELselectorKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Ignore UEL signal.
-     */
-    val ignoreUELsignal: String,
-
-    /**
-     * UEL input added to error signal.
-     */
-    val inputAddedToErrorSignal: String,
-
-    /**
-     * UEL input HV gate with error signal.
-     */
-    val inputHVgateErrorSignal: String,
-
-    /**
-     * UEL input HV gate with voltage regulator output.
-     */
-    val inputHVgateVoltageOutput: String
+(override val sup: BasicElement,
+val ignoreUELsignal: String,
+val inputAddedToErrorSignal: String,
+val inputHVgateErrorSignal: String,
+val inputHVgateVoltageOutput: String
 )
 extends
     Element
@@ -6365,91 +4477,51 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type ST2A model.
  * Some static systems utilize both current and voltage sources (generator terminal quantities) to comprise the power source.  The regulator controls the exciter output through controlled saturation of the power transformer components.  These compound-source rectifier excitation systems are designated Type ST2A and are represented by ExcIEEEST2A.
+ * @param sup Reference to the superclass object.
+ * @param efdmax Maximum field voltage (E<sub>FDMax</sub>).
+ *        Typical Value = 99.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        Typical Value = 120.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 1.82.
+ * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
+ *        Typical Value = 0.05.
+ * @param ki Potential circuit gain coefficient (K<sub>I</sub>).
+ *        Typical Value = 8.
+ * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
+ *        Typical Value = 4.88.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.15.
+ * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
+ *        Typical Value = 0.5.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value = 1.
+ * @param uelin UEL input (UELin).
+true = HV gate
+false = add to error signal.
+ *        Typical Value = true.
+ * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
+ *        Typical Value = 0.
  */
 case class ExcIEEEST2A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Maximum field voltage (E<sub>FDMax</sub>).
-     * Typical Value = 99.
-     */
-    val efdmax: Double,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * Typical Value = 120.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 1.82.
-     */
-    val kc: Double,
-
-    /**
-     * Exciter constant related to self-excited field (K<sub>E</sub>).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (K<sub>F</sub>).
-     * Typical Value = 0.05.
-     */
-    val kf: Double,
-
-    /**
-     * Potential circuit gain coefficient (K<sub>I</sub>).
-     * Typical Value = 8.
-     */
-    val ki: Double,
-
-    /**
-     * Potential circuit gain coefficient (K<sub>P</sub>).
-     * Typical Value = 4.88.
-     */
-    val kp: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.15.
-     */
-    val ta: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
-     * Typical Value = 0.5.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * UEL input (UELin).
-    true = HV gate
-    false = add to error signal.
-     * Typical Value = true.
-     */
-    val uelin: Boolean,
-
-    /**
-     * Maximum voltage regulator outputs (V<sub>RMAX</sub>).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (V<sub>RMIN</sub>).
-     * Typical Value = 0.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efdmax: Double,
+val ka: Double,
+val kc: Double,
+val ke: Double,
+val kf: Double,
+val ki: Double,
+val kp: Double,
+val ta: Double,
+val te: Double,
+val tf: Double,
+val uelin: Boolean,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -6509,131 +4581,70 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type ST3A model.
  * Some static systems utilize a field voltage control loop to linearize the exciter control characteristic. This also makes the output independent of supply source variations until supply limitations are reached.  These systems utilize a variety of controlled-rectifier designs: full thyristor complements or hybrid bridges
+ * @param sup Reference to the superclass object.
+ * @param ka Voltage regulator gain (K<sub>A</sub>).
+ *        This is parameter K in the IEEE Std. Typical Value = 200.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.2.
+ * @param kg Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
+ *        Typical Value = 1.
+ * @param ki Potential circuit gain coefficient (K<sub>I</sub>).
+ *        Typical Value = 0.
+ * @param km Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
+ *        Typical Value = 7.93.
+ * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
+ *        Typical Value = 6.15.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.
+ * @param tb Voltage regulator time constant (T<sub>B</sub>).
+ *        Typical Value = 10.
+ * @param tc Voltage regulator time constant (T<sub>C</sub>).
+ *        Typical Value = 1.
+ * @param thetap Potential circuit phase angle (thetap).
+ *        Typical Value = 0.
+ * @param tm Forward time constant of inner loop field regulator (T<sub>M</sub>).
+ *        Typical Value = 0.4.
+ * @param vbmax Maximum excitation voltage (V<sub>BMax</sub>).
+ *        Typical Value = 6.9.
+ * @param vgmax Maximum inner loop feedback voltage (V<sub>GMax</sub>).
+ *        Typical Value = 5.8.
+ * @param vimax Maximum voltage regulator input limit (V<sub>IMAX</sub>).
+ *        Typical Value = 0.2.
+ * @param vimin Minimum voltage regulator input limit (V<sub>IMIN</sub>).
+ *        Typical Value = -0.2.
+ * @param vmmax Maximum inner loop output (V<sub>MMax</sub>).
+ *        Typical Value = 1.
+ * @param vmmin Minimum inner loop output (V<sub>MMin</sub>).
+ *        Typical Value = 0.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 10.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -10.
+ * @param xl Reactance associated with potential source (X<sub>L</sub>).
+ *        Typical Value = 0.081.
  */
 case class ExcIEEEST3A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Voltage regulator gain (K<sub>A</sub>).
-     * This is parameter K in the IEEE Std. Typical Value = 200.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.2.
-     */
-    val kc: Double,
-
-    /**
-     * Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
-     * Typical Value = 1.
-     */
-    val kg: Double,
-
-    /**
-     * Potential circuit gain coefficient (K<sub>I</sub>).
-     * Typical Value = 0.
-     */
-    val ki: Double,
-
-    /**
-     * Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
-     * Typical Value = 7.93.
-     */
-    val km: Double,
-
-    /**
-     * Potential circuit gain coefficient (K<sub>P</sub>).
-     * Typical Value = 6.15.
-     */
-    val kp: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>B</sub>).
-     * Typical Value = 10.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>C</sub>).
-     * Typical Value = 1.
-     */
-    val tc: Double,
-
-    /**
-     * Potential circuit phase angle (thetap).
-     * Typical Value = 0.
-     */
-    val thetap: Double,
-
-    /**
-     * Forward time constant of inner loop field regulator (T<sub>M</sub>).
-     * Typical Value = 0.4.
-     */
-    val tm: Double,
-
-    /**
-     * Maximum excitation voltage (V<sub>BMax</sub>).
-     * Typical Value = 6.9.
-     */
-    val vbmax: Double,
-
-    /**
-     * Maximum inner loop feedback voltage (V<sub>GMax</sub>).
-     * Typical Value = 5.8.
-     */
-    val vgmax: Double,
-
-    /**
-     * Maximum voltage regulator input limit (V<sub>IMAX</sub>).
-     * Typical Value = 0.2.
-     */
-    val vimax: Double,
-
-    /**
-     * Minimum voltage regulator input limit (V<sub>IMIN</sub>).
-     * Typical Value = -0.2.
-     */
-    val vimin: Double,
-
-    /**
-     * Maximum inner loop output (V<sub>MMax</sub>).
-     * Typical Value = 1.
-     */
-    val vmmax: Double,
-
-    /**
-     * Minimum inner loop output (V<sub>MMin</sub>).
-     * Typical Value = 0.
-     */
-    val vmmin: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 10.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -10.
-     */
-    val vrmin: Double,
-
-    /**
-     * Reactance associated with potential source (X<sub>L</sub>).
-     * Typical Value = 0.081.
-     */
-    val xl: Double
+(override val sup: ExcitationSystemDynamics,
+val ka: Double,
+val kc: Double,
+val kg: Double,
+val ki: Double,
+val km: Double,
+val kp: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val thetap: Double,
+val tm: Double,
+val vbmax: Double,
+val vgmax: Double,
+val vimax: Double,
+val vimin: Double,
+val vmmax: Double,
+val vmmin: Double,
+val vrmax: Double,
+val vrmin: Double,
+val xl: Double
 )
 extends
     Element
@@ -6707,107 +4718,58 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type ST4B model.
  * This model is a variation of the Type ST3A model, with a proportional plus integral (PI) regulator block replacing the lag-lead regulator characteristic that is in the ST3A model. Both potential and compound source rectifier excitation systems are modeled.  The PI regulator blocks have non-windup limits that are represented. The voltage regulator of this model is typically implemented digitally.
+ * @param sup Reference to the superclass object.
+ * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
+ *        Typical Value = 0.113.
+ * @param kg Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
+ *        Typical Value = 0.
+ * @param ki Potential circuit gain coefficient (K<sub>I</sub>).
+ *        Typical Value = 0.
+ * @param kim Voltage regulator integral gain output (K<sub>IM</sub>).
+ *        Typical Value = 0.
+ * @param kir Voltage regulator integral gain (K<sub>IR</sub>).
+ *        Typical Value = 10.75.
+ * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
+ *        Typical Value = 9.3.
+ * @param kpm Voltage regulator proportional gain output (K<sub>PM</sub>).
+ *        Typical Value = 1.
+ * @param kpr Voltage regulator proportional gain (K<sub>PR</sub>).
+ *        Typical Value = 10.75.
+ * @param ta Voltage regulator time constant (T<sub>A</sub>).
+ *        Typical Value = 0.02.
+ * @param thetap Potential circuit phase angle (thetap).
+ *        Typical Value = 0.
+ * @param vbmax Maximum excitation voltage (V<sub>BMax</sub>).
+ *        Typical Value = 11.63.
+ * @param vmmax Maximum inner loop output (V<sub>MMax</sub>).
+ *        Typical Value = 99.
+ * @param vmmin Minimum inner loop output (V<sub>MMin</sub>).
+ *        Typical Value = -99.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -0.87.
+ * @param xl Reactance associated with potential source (X<sub>L</sub>).
+ *        Typical Value = 0.124.
  */
 case class ExcIEEEST4B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
-     * Typical Value = 0.113.
-     */
-    val kc: Double,
-
-    /**
-     * Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
-     * Typical Value = 0.
-     */
-    val kg: Double,
-
-    /**
-     * Potential circuit gain coefficient (K<sub>I</sub>).
-     * Typical Value = 0.
-     */
-    val ki: Double,
-
-    /**
-     * Voltage regulator integral gain output (K<sub>IM</sub>).
-     * Typical Value = 0.
-     */
-    val kim: Double,
-
-    /**
-     * Voltage regulator integral gain (K<sub>IR</sub>).
-     * Typical Value = 10.75.
-     */
-    val kir: Double,
-
-    /**
-     * Potential circuit gain coefficient (K<sub>P</sub>).
-     * Typical Value = 9.3.
-     */
-    val kp: Double,
-
-    /**
-     * Voltage regulator proportional gain output (K<sub>PM</sub>).
-     * Typical Value = 1.
-     */
-    val kpm: Double,
-
-    /**
-     * Voltage regulator proportional gain (K<sub>PR</sub>).
-     * Typical Value = 10.75.
-     */
-    val kpr: Double,
-
-    /**
-     * Voltage regulator time constant (T<sub>A</sub>).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Potential circuit phase angle (thetap).
-     * Typical Value = 0.
-     */
-    val thetap: Double,
-
-    /**
-     * Maximum excitation voltage (V<sub>BMax</sub>).
-     * Typical Value = 11.63.
-     */
-    val vbmax: Double,
-
-    /**
-     * Maximum inner loop output (V<sub>MMax</sub>).
-     * Typical Value = 99.
-     */
-    val vmmax: Double,
-
-    /**
-     * Minimum inner loop output (V<sub>MMin</sub>).
-     * Typical Value = -99.
-     */
-    val vmmin: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -0.87.
-     */
-    val vrmin: Double,
-
-    /**
-     * Reactance associated with potential source (X<sub>L</sub>).
-     * Typical Value = 0.124.
-     */
-    val xl: Double
+(override val sup: ExcitationSystemDynamics,
+val kc: Double,
+val kg: Double,
+val ki: Double,
+val kim: Double,
+val kir: Double,
+val kp: Double,
+val kpm: Double,
+val kpr: Double,
+val ta: Double,
+val thetap: Double,
+val vbmax: Double,
+val vmmax: Double,
+val vmmin: Double,
+val vrmax: Double,
+val vrmin: Double,
+val xl: Double
 )
 extends
     Element
@@ -6873,113 +4835,61 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type ST5B model.
  * The Type ST5B excitation system is a variation of the Type ST1A model, with alternative overexcitation and underexcitation inputs and additional limits.
+ * @param sup Reference to the superclass object.
+ * @param kc Rectifier regulation factor (K<sub>C</sub>).
+ *        Typical Value = 0.004.
+ * @param kr Regulator gain (K<sub>R</sub>).
+ *        Typical Value = 200.
+ * @param t1 Firing circuit time constant (T1).
+ *        Typical Value = 0.004.
+ * @param tb1 Regulator lag time constant (T<sub>B1</sub>).
+ *        Typical Value = 6.
+ * @param tb2 Regulator lag time constant (T<sub>B2</sub>).
+ *        Typical Value = 0.01.
+ * @param tc1 Regulator lead time constant (T<sub>C1</sub>).
+ *        Typical Value = 0.8.
+ * @param tc2 Regulator lead time constant (T<sub>C2</sub>).
+ *        Typical Value = 0.08.
+ * @param tob1 OEL lag time constant (T<sub>OB1</sub>).
+ *        Typical Value = 2.
+ * @param tob2 OEL lag time constant (T<sub>OB2</sub>).
+ *        Typical Value = 0.08.
+ * @param toc1 OEL lead time constant (T<sub>OC1</sub>).
+ *        Typical Value = 0.1.
+ * @param toc2 OEL lead time constant (T<sub>OC2</sub>).
+ *        Typical Value = 0.08.
+ * @param tub1 UEL lag time constant (T<sub>UB1</sub>).
+ *        Typical Value = 10.
+ * @param tub2 UEL lag time constant (T<sub>UB2</sub>).
+ *        Typical Value = 0.05.
+ * @param tuc1 UEL lead time constant (T<sub>UC1</sub>).
+ *        Typical Value = 2.
+ * @param tuc2 UEL lead time constant (T<sub>UC2</sub>).
+ *        Typical Value = 0.1.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 5.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -4.
  */
 case class ExcIEEEST5B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Rectifier regulation factor (K<sub>C</sub>).
-     * Typical Value = 0.004.
-     */
-    val kc: Double,
-
-    /**
-     * Regulator gain (K<sub>R</sub>).
-     * Typical Value = 200.
-     */
-    val kr: Double,
-
-    /**
-     * Firing circuit time constant (T1).
-     * Typical Value = 0.004.
-     */
-    val t1: Double,
-
-    /**
-     * Regulator lag time constant (T<sub>B1</sub>).
-     * Typical Value = 6.
-     */
-    val tb1: Double,
-
-    /**
-     * Regulator lag time constant (T<sub>B2</sub>).
-     * Typical Value = 0.01.
-     */
-    val tb2: Double,
-
-    /**
-     * Regulator lead time constant (T<sub>C1</sub>).
-     * Typical Value = 0.8.
-     */
-    val tc1: Double,
-
-    /**
-     * Regulator lead time constant (T<sub>C2</sub>).
-     * Typical Value = 0.08.
-     */
-    val tc2: Double,
-
-    /**
-     * OEL lag time constant (T<sub>OB1</sub>).
-     * Typical Value = 2.
-     */
-    val tob1: Double,
-
-    /**
-     * OEL lag time constant (T<sub>OB2</sub>).
-     * Typical Value = 0.08.
-     */
-    val tob2: Double,
-
-    /**
-     * OEL lead time constant (T<sub>OC1</sub>).
-     * Typical Value = 0.1.
-     */
-    val toc1: Double,
-
-    /**
-     * OEL lead time constant (T<sub>OC2</sub>).
-     * Typical Value = 0.08.
-     */
-    val toc2: Double,
-
-    /**
-     * UEL lag time constant (T<sub>UB1</sub>).
-     * Typical Value = 10.
-     */
-    val tub1: Double,
-
-    /**
-     * UEL lag time constant (T<sub>UB2</sub>).
-     * Typical Value = 0.05.
-     */
-    val tub2: Double,
-
-    /**
-     * UEL lead time constant (T<sub>UC1</sub>).
-     * Typical Value = 2.
-     */
-    val tuc1: Double,
-
-    /**
-     * UEL lead time constant (T<sub>UC2</sub>).
-     * Typical Value = 0.1.
-     */
-    val tuc2: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 5.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -4.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val kc: Double,
+val kr: Double,
+val t1: Double,
+val tb1: Double,
+val tb2: Double,
+val tc1: Double,
+val tc2: Double,
+val tob1: Double,
+val tob2: Double,
+val toc1: Double,
+val toc2: Double,
+val tub1: Double,
+val tub2: Double,
+val tuc1: Double,
+val tuc2: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -7047,95 +4957,52 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type ST6B model.
  * This model consists of a PI voltage regulator with an inner loop field voltage regulator and pre-control. The field voltage regulator implements a proportional control. The pre-control and the delay in the feedback circuit increase the dynamic response.
+ * @param sup Reference to the superclass object.
+ * @param ilr Exciter output current limit reference (I<sub>LR</sub>).
+ *        Typical Value = 4.164.
+ * @param kci Exciter output current limit adjustment (K<sub>CI</sub>).
+ *        Typical Value = 1.0577.
+ * @param kff Pre-control gain constant of the inner loop field regulator (K<sub>FF</sub>).
+ *        Typical Value = 1.
+ * @param kg Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
+ *        Typical Value = 1.
+ * @param kia Voltage regulator integral gain (K<sub>IA</sub>).
+ *        Typical Value = 45.094.
+ * @param klr Exciter output current limiter gain (K<sub>LR</sub>).
+ *        Typical Value = 17.33.
+ * @param km Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
+ *        Typical Value = 1.
+ * @param kpa Voltage regulator proportional gain (K<sub>PA</sub>).
+ *        Typical Value = 18.038.
+ * @param oelin OEL input selector (OELin).
+ *        Typical Value = noOELinput.
+ * @param tg Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
+ *        Typical Value = 0.02.
+ * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
+ *        Typical Value = 4.81.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
+ *        Typical Value = -3.85.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 4.81.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -3.85.
  */
 case class ExcIEEEST6B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter output current limit reference (I<sub>LR</sub>).
-     * Typical Value = 4.164.
-     */
-    val ilr: Double,
-
-    /**
-     * Exciter output current limit adjustment (K<sub>CI</sub>).
-     * Typical Value = 1.0577.
-     */
-    val kci: Double,
-
-    /**
-     * Pre-control gain constant of the inner loop field regulator (K<sub>FF</sub>).
-     * Typical Value = 1.
-     */
-    val kff: Double,
-
-    /**
-     * Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
-     * Typical Value = 1.
-     */
-    val kg: Double,
-
-    /**
-     * Voltage regulator integral gain (K<sub>IA</sub>).
-     * Typical Value = 45.094.
-     */
-    val kia: Double,
-
-    /**
-     * Exciter output current limiter gain (K<sub>LR</sub>).
-     * Typical Value = 17.33.
-     */
-    val klr: Double,
-
-    /**
-     * Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
-     * Typical Value = 1.
-     */
-    val km: Double,
-
-    /**
-     * Voltage regulator proportional gain (K<sub>PA</sub>).
-     * Typical Value = 18.038.
-     */
-    val kpa: Double,
-
-    /**
-     * OEL input selector (OELin).
-     * Typical Value = noOELinput.
-     */
-    val oelin: String,
-
-    /**
-     * Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
-     * Typical Value = 0.02.
-     */
-    val tg: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>AMAX</sub>).
-     * Typical Value = 4.81.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>AMIN</sub>).
-     * Typical Value = -3.85.
-     */
-    val vamin: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 4.81.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -3.85.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val ilr: Double,
+val kci: Double,
+val kff: Double,
+val kg: Double,
+val kia: Double,
+val klr: Double,
+val km: Double,
+val kpa: Double,
+val oelin: String,
+val tg: Double,
+val vamax: Double,
+val vamin: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -7197,101 +5064,55 @@ extends
 /**
  * The class represents IEEE Std 421.5-2005 type ST7B model.
  * This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from Type PSS1A, PSS2A, or PSS2B) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
+ * @param sup Reference to the superclass object.
+ * @param kh High-value gate feedback gain (K<sub>H</sub>).
+ *        Typical Value 1.
+ * @param kia Voltage regulator integral gain (K<sub>IA</sub>).
+ *        Typical Value = 1.
+ * @param kl Low-value gate feedback gain (K<sub>L</sub>).
+ *        Typical Value 1.
+ * @param kpa Voltage regulator proportional gain (K<sub>PA</sub>).
+ *        Typical Value = 40.
+ * @param oelin OEL input selector (OELin).
+ *        Typical Value = noOELinput.
+ * @param tb Regulator lag time constant (T<sub>B</sub>).
+ *        Typical Value 1.
+ * @param tc Regulator lead time constant (T<sub>C</sub>).
+ *        Typical Value 1.
+ * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
+ *        Typical Value 1.
+ * @param tg Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
+ *        Typical Value 1.
+ * @param tia Feedback time constant (T<sub>IA</sub>).
+ *        Typical Value = 3.
+ * @param uelin UEL input selector (UELin).
+ *        Typical Value = noUELinput.
+ * @param vmax Maximum voltage reference signal (V<sub>MAX</sub>).
+ *        Typical Value = 1.1.
+ * @param vmin Minimum voltage reference signal (V<sub>MIN</sub>).
+ *        Typical Value = 0.9.
+ * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
+ *        Typical Value = 5.
+ * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
+ *        Typical Value = -4.5.
  */
 case class ExcIEEEST7B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * High-value gate feedback gain (K<sub>H</sub>).
-     * Typical Value 1.
-     */
-    val kh: Double,
-
-    /**
-     * Voltage regulator integral gain (K<sub>IA</sub>).
-     * Typical Value = 1.
-     */
-    val kia: Double,
-
-    /**
-     * Low-value gate feedback gain (K<sub>L</sub>).
-     * Typical Value 1.
-     */
-    val kl: Double,
-
-    /**
-     * Voltage regulator proportional gain (K<sub>PA</sub>).
-     * Typical Value = 40.
-     */
-    val kpa: Double,
-
-    /**
-     * OEL input selector (OELin).
-     * Typical Value = noOELinput.
-     */
-    val oelin: String,
-
-    /**
-     * Regulator lag time constant (T<sub>B</sub>).
-     * Typical Value 1.
-     */
-    val tb: Double,
-
-    /**
-     * Regulator lead time constant (T<sub>C</sub>).
-     * Typical Value 1.
-     */
-    val tc: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (T<sub>F</sub>).
-     * Typical Value 1.
-     */
-    val tf: Double,
-
-    /**
-     * Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
-     * Typical Value 1.
-     */
-    val tg: Double,
-
-    /**
-     * Feedback time constant (T<sub>IA</sub>).
-     * Typical Value = 3.
-     */
-    val tia: Double,
-
-    /**
-     * UEL input selector (UELin).
-     * Typical Value = noUELinput.
-     */
-    val uelin: String,
-
-    /**
-     * Maximum voltage reference signal (V<sub>MAX</sub>).
-     * Typical Value = 1.1.
-     */
-    val vmax: Double,
-
-    /**
-     * Minimum voltage reference signal (V<sub>MIN</sub>).
-     * Typical Value = 0.9.
-     */
-    val vmin: Double,
-
-    /**
-     * Maximum voltage regulator output (V<sub>RMAX</sub>).
-     * Typical Value = 5.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (V<sub>RMIN</sub>).
-     * Typical Value = -4.5.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val kh: Double,
+val kia: Double,
+val kl: Double,
+val kpa: Double,
+val oelin: String,
+val tb: Double,
+val tc: Double,
+val tf: Double,
+val tg: Double,
+val tia: Double,
+val uelin: String,
+val vmax: Double,
+val vmin: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -7354,106 +5175,48 @@ extends
 
 /**
  * Modified IEEE Type ST1 Excitation System with semi-continuous and acting terminal voltage limiter.
+ * @param sup Reference to the superclass object.
+ * @param e1 Saturation parameter (E<sub>1</sub>).
+ * @param e2 Saturation parameter (E<sub>2</sub>).
+ * @param ka Gain (K<sub>A</sub>).
+ * @param kc Gain (K<sub>C</sub>).
+ * @param kd Gain (K<sub>D</sub>).
+ * @param ke Gain (K<sub>E</sub>).
+ * @param kf Gain (K<sub>F</sub>).
+ * @param see1 Saturation parameter (S<sub>E</sub>(E<sub>1</sub>)).
+ * @param see2 Saturation parameter (S<sub>E</sub>(E<sub>2</sub>)).
+ * @param t1 Time constant (T<sub>1</sub>).
+ * @param t2 Time constant (T<sub>2</sub>).
+ * @param t3 Time constant (T<sub>3</sub>).
+ * @param t4 Time constant (T<sub>4</sub>).
+ * @param t5 Time constant (T<sub>5</sub>).
+ * @param t6 Time constant (T<sub>6</sub>).
+ * @param te Time constant (T<sub>E</sub>).
+ * @param tf Time constant (T<sub>F</sub>).
+ * @param vrmax Limiter (V<sub>RMAX</sub>).
+ * @param vrmin Limiter (V<sub>RMIN</sub>).
  */
 case class ExcOEX3T
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Saturation parameter (E<sub>1</sub>).
-     */
-    val e1: Double,
-
-    /**
-     * Saturation parameter (E<sub>2</sub>).
-     */
-    val e2: Double,
-
-    /**
-     * Gain (K<sub>A</sub>).
-     */
-    val ka: Double,
-
-    /**
-     * Gain (K<sub>C</sub>).
-     */
-    val kc: Double,
-
-    /**
-     * Gain (K<sub>D</sub>).
-     */
-    val kd: Double,
-
-    /**
-     * Gain (K<sub>E</sub>).
-     */
-    val ke: Double,
-
-    /**
-     * Gain (K<sub>F</sub>).
-     */
-    val kf: Double,
-
-    /**
-     * Saturation parameter (S<sub>E</sub>(E<sub>1</sub>)).
-     */
-    val see1: Double,
-
-    /**
-     * Saturation parameter (S<sub>E</sub>(E<sub>2</sub>)).
-     */
-    val see2: Double,
-
-    /**
-     * Time constant (T<sub>1</sub>).
-     */
-    val t1: Double,
-
-    /**
-     * Time constant (T<sub>2</sub>).
-     */
-    val t2: Double,
-
-    /**
-     * Time constant (T<sub>3</sub>).
-     */
-    val t3: Double,
-
-    /**
-     * Time constant (T<sub>4</sub>).
-     */
-    val t4: Double,
-
-    /**
-     * Time constant (T<sub>5</sub>).
-     */
-    val t5: Double,
-
-    /**
-     * Time constant (T<sub>6</sub>).
-     */
-    val t6: Double,
-
-    /**
-     * Time constant (T<sub>E</sub>).
-     */
-    val te: Double,
-
-    /**
-     * Time constant (T<sub>F</sub>).
-     */
-    val tf: Double,
-
-    /**
-     * Limiter (V<sub>RMAX</sub>).
-     */
-    val vrmax: Double,
-
-    /**
-     * Limiter (V<sub>RMIN</sub>).
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val e1: Double,
+val e2: Double,
+val ka: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kf: Double,
+val see1: Double,
+val see2: Double,
+val t1: Double,
+val t2: Double,
+val t3: Double,
+val t4: Double,
+val t5: Double,
+val t6: Double,
+val te: Double,
+val tf: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -7525,149 +5288,79 @@ extends
 /**
  * Proportional/Integral Regulator Excitation System Model.
  * This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
+ * @param sup Reference to the superclass object.
+ * @param e1 Field voltage value 1 (E1).
+ *        Typical Value = 0.
+ * @param e2 Field voltage value 2 (E2).
+ *        Typical Value = 0.
+ * @param efdmax Exciter maximum limit (Efdmax).
+ *        Typical Value = 8.
+ * @param efdmin Exciter minimum limit (Efdmin).
+ *        Typical Value = -0.87.
+ * @param ka PI controller gain (Ka).
+ *        Typical Value = 3.15.
+ * @param kc Exciter regulation factor (Kc).
+ *        Typical Value = 0.08.
+ * @param ke Exciter constant (Ke).
+ *        Typical Value = 0.
+ * @param kf Rate feedback gain (Kf).
+ *        Typical Value = 0.
+ * @param ki Current source gain (Ki).
+ *        Typical Value = 0.
+ * @param kp Potential source gain (Kp).
+ *        Typical Value = 6.5.
+ * @param se1 Saturation factor at E1 (Se1).
+ *        Typical Value = 0.
+ * @param se2 Saturation factor at E2 (Se2).
+ *        Typical Value = 0.
+ * @param ta1 PI controller time constant (Ta1).
+ *        Typical Value = 1.
+ * @param ta2 Voltage regulator time constant (Ta2).
+ *        Typical Value = 0.01.
+ * @param ta3 Lead time constant (Ta3).
+ *        Typical Value = 0.
+ * @param ta4 Lag time constant (Ta4).
+ *        Typical Value = 0.
+ * @param te Exciter time constant (Te).
+ *        Typical Value = 0.
+ * @param tf1 Rate feedback time constant (Tf1).
+ *        Typical Value = 0.
+ * @param tf2 Rate feedback lag time constant (Tf2).
+ *        Typical Value = 0.
+ * @param vr1 PI maximum limit (Vr1).
+ *        Typical Value = 1.
+ * @param vr2 PI minimum limit (Vr2).
+ *        Typical Value = -0.87.
+ * @param vrmax Voltage regulator maximum limit (Vrmax).
+ *        Typical Value = 1.
+ * @param vrmin Voltage regulator minimum limit (Vrmin).
+ *        Typical Value = -0.87.
  */
 case class ExcPIC
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Field voltage value 1 (E1).
-     * Typical Value = 0.
-     */
-    val e1: Double,
-
-    /**
-     * Field voltage value 2 (E2).
-     * Typical Value = 0.
-     */
-    val e2: Double,
-
-    /**
-     * Exciter maximum limit (Efdmax).
-     * Typical Value = 8.
-     */
-    val efdmax: Double,
-
-    /**
-     * Exciter minimum limit (Efdmin).
-     * Typical Value = -0.87.
-     */
-    val efdmin: Double,
-
-    /**
-     * PI controller gain (Ka).
-     * Typical Value = 3.15.
-     */
-    val ka: Double,
-
-    /**
-     * Exciter regulation factor (Kc).
-     * Typical Value = 0.08.
-     */
-    val kc: Double,
-
-    /**
-     * Exciter constant (Ke).
-     * Typical Value = 0.
-     */
-    val ke: Double,
-
-    /**
-     * Rate feedback gain (Kf).
-     * Typical Value = 0.
-     */
-    val kf: Double,
-
-    /**
-     * Current source gain (Ki).
-     * Typical Value = 0.
-     */
-    val ki: Double,
-
-    /**
-     * Potential source gain (Kp).
-     * Typical Value = 6.5.
-     */
-    val kp: Double,
-
-    /**
-     * Saturation factor at E1 (Se1).
-     * Typical Value = 0.
-     */
-    val se1: Double,
-
-    /**
-     * Saturation factor at E2 (Se2).
-     * Typical Value = 0.
-     */
-    val se2: Double,
-
-    /**
-     * PI controller time constant (Ta1).
-     * Typical Value = 1.
-     */
-    val ta1: Double,
-
-    /**
-     * Voltage regulator time constant (Ta2).
-     * Typical Value = 0.01.
-     */
-    val ta2: Double,
-
-    /**
-     * Lead time constant (Ta3).
-     * Typical Value = 0.
-     */
-    val ta3: Double,
-
-    /**
-     * Lag time constant (Ta4).
-     * Typical Value = 0.
-     */
-    val ta4: Double,
-
-    /**
-     * Exciter time constant (Te).
-     * Typical Value = 0.
-     */
-    val te: Double,
-
-    /**
-     * Rate feedback time constant (Tf1).
-     * Typical Value = 0.
-     */
-    val tf1: Double,
-
-    /**
-     * Rate feedback lag time constant (Tf2).
-     * Typical Value = 0.
-     */
-    val tf2: Double,
-
-    /**
-     * PI maximum limit (Vr1).
-     * Typical Value = 1.
-     */
-    val vr1: Double,
-
-    /**
-     * PI minimum limit (Vr2).
-     * Typical Value = -0.87.
-     */
-    val vr2: Double,
-
-    /**
-     * Voltage regulator maximum limit (Vrmax).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Voltage regulator minimum limit (Vrmin).
-     * Typical Value = -0.87.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val e1: Double,
+val e2: Double,
+val efdmax: Double,
+val efdmin: Double,
+val ka: Double,
+val kc: Double,
+val ke: Double,
+val kf: Double,
+val ki: Double,
+val kp: Double,
+val se1: Double,
+val se2: Double,
+val ta1: Double,
+val ta2: Double,
+val ta3: Double,
+val ta4: Double,
+val te: Double,
+val tf1: Double,
+val tf2: Double,
+val vr1: Double,
+val vr2: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -7747,227 +5440,118 @@ extends
 /**
  * General Purpose Rotating Excitation System Model.
  * This model can be used to represent a wide range of excitation systems whose DC power source is an AC or DC generator. It encompasses IEEE type AC1, AC2, DC1, and DC2 excitation system models.
+ * @param sup Reference to the superclass object.
+ * @param e1 Field voltage value 1 (E1).
+ *        Typical Value = 3.
+ * @param e2 Field voltage value 2 (E2).
+ *        Typical Value = 4.
+ * @param fbf Rate feedback signal flag (Fbf).
+ *        Typical Value = fieldCurrent.
+ * @param flimf Limit type flag (Flimf).
+ *        Typical Value = 0.
+ * @param kc Rectifier regulation factor (Kc).
+ *        Typical Value = 0.05.
+ * @param kd Exciter regulation factor (Kd).
+ *        Typical Value = 2.
+ * @param ke Exciter field proportional constant (Ke).
+ *        Typical Value = 1.
+ * @param kefd Field voltage feedback gain (Kefd).
+ *        Typical Value = 0.
+ * @param kf Rate feedback gain (Kf).
+ *        Typical Value = 0.05.
+ * @param kh Field voltage controller feedback gain (Kh).
+ *        Typical Value = 0.
+ * @param kii Field Current Regulator Integral Gain (Kii).
+ *        Typical Value = 0.
+ * @param kip Field Current Regulator Proportional Gain (Kip).
+ *        Typical Value = 1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param kvi Voltage Regulator Integral Gain (Kvi).
+ *        Typical Value = 0.
+ * @param kvp Voltage Regulator Proportional Gain (Kvp).
+ *        Typical Value = 2800.
+ * @param kvphz V/Hz limiter gain (Kvphz).
+ *        Typical Value = 0.
+ * @param nvphz Pickup speed of V/Hz limiter (Nvphz).
+ *        Typical Value = 0.
+ * @param se1 Saturation factor at E1 (Se1).
+ *        Typical Value = 0.0001.
+ * @param se2 Saturation factor at E2 (Se2).
+ *        Typical Value = 0.001.
+ * @param ta Voltage Regulator time constant (Ta).
+ *        Typical Value = 0.01.
+ * @param tb1 Lag time constant (Tb1).
+ *        Typical Value = 0.
+ * @param tb2 Lag time constant (Tb2).
+ *        Typical Value = 0.
+ * @param tc1 Lead time constant (Tc1).
+ *        Typical Value = 0.
+ * @param tc2 Lead time constant (Tc2).
+ *        Typical Value = 0.
+ * @param te Exciter field time constant (Te).
+ *        Typical Value = 1.2.
+ * @param tf Rate feedback time constant (Tf).
+ *        Typical Value = 1.
+ * @param tf1 Feedback lead time constant (Tf1).
+ *        Typical Value = 0.
+ * @param tf2 Feedback lag time constant (Tf2).
+ *        Typical Value = 0.
+ * @param tp Field current Bridge time constant (Tp).
+ *        Typical Value = 0.
+ * @param vcmax Maximum compounding voltage (Vcmax).
+ *        Typical Value = 0.
+ * @param vfmax Maximum Exciter Field Current (Vfmax).
+ *        Typical Value = 47.
+ * @param vfmin Minimum Exciter Field Current (Vfmin).
+ *        Typical Value = -20.
+ * @param vimax Voltage Regulator Input Limit (Vimax).
+ *        Typical Value = 0.1.
+ * @param vrmax Maximum controller output (Vrmax).
+ *        Typical Value = 47.
+ * @param vrmin Minimum controller output (Vrmin).
+ *        Typical Value = -20.
+ * @param xc Exciter compounding reactance (Xc).
+ *        Typical Value = 0.
  */
 case class ExcREXS
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Field voltage value 1 (E1).
-     * Typical Value = 3.
-     */
-    val e1: Double,
-
-    /**
-     * Field voltage value 2 (E2).
-     * Typical Value = 4.
-     */
-    val e2: Double,
-
-    /**
-     * Rate feedback signal flag (Fbf).
-     * Typical Value = fieldCurrent.
-     */
-    val fbf: String,
-
-    /**
-     * Limit type flag (Flimf).
-     * Typical Value = 0.
-     */
-    val flimf: Double,
-
-    /**
-     * Rectifier regulation factor (Kc).
-     * Typical Value = 0.05.
-     */
-    val kc: Double,
-
-    /**
-     * Exciter regulation factor (Kd).
-     * Typical Value = 2.
-     */
-    val kd: Double,
-
-    /**
-     * Exciter field proportional constant (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Field voltage feedback gain (Kefd).
-     * Typical Value = 0.
-     */
-    val kefd: Double,
-
-    /**
-     * Rate feedback gain (Kf).
-     * Typical Value = 0.05.
-     */
-    val kf: Double,
-
-    /**
-     * Field voltage controller feedback gain (Kh).
-     * Typical Value = 0.
-     */
-    val kh: Double,
-
-    /**
-     * Field Current Regulator Integral Gain (Kii).
-     * Typical Value = 0.
-     */
-    val kii: Double,
-
-    /**
-     * Field Current Regulator Proportional Gain (Kip).
-     * Typical Value = 1.
-     */
-    val kip: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Voltage Regulator Integral Gain (Kvi).
-     * Typical Value = 0.
-     */
-    val kvi: Double,
-
-    /**
-     * Voltage Regulator Proportional Gain (Kvp).
-     * Typical Value = 2800.
-     */
-    val kvp: Double,
-
-    /**
-     * V/Hz limiter gain (Kvphz).
-     * Typical Value = 0.
-     */
-    val kvphz: Double,
-
-    /**
-     * Pickup speed of V/Hz limiter (Nvphz).
-     * Typical Value = 0.
-     */
-    val nvphz: Double,
-
-    /**
-     * Saturation factor at E1 (Se1).
-     * Typical Value = 0.0001.
-     */
-    val se1: Double,
-
-    /**
-     * Saturation factor at E2 (Se2).
-     * Typical Value = 0.001.
-     */
-    val se2: Double,
-
-    /**
-     * Voltage Regulator time constant (Ta).
-     * Typical Value = 0.01.
-     */
-    val ta: Double,
-
-    /**
-     * Lag time constant (Tb1).
-     * Typical Value = 0.
-     */
-    val tb1: Double,
-
-    /**
-     * Lag time constant (Tb2).
-     * Typical Value = 0.
-     */
-    val tb2: Double,
-
-    /**
-     * Lead time constant (Tc1).
-     * Typical Value = 0.
-     */
-    val tc1: Double,
-
-    /**
-     * Lead time constant (Tc2).
-     * Typical Value = 0.
-     */
-    val tc2: Double,
-
-    /**
-     * Exciter field time constant (Te).
-     * Typical Value = 1.2.
-     */
-    val te: Double,
-
-    /**
-     * Rate feedback time constant (Tf).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Feedback lead time constant (Tf1).
-     * Typical Value = 0.
-     */
-    val tf1: Double,
-
-    /**
-     * Feedback lag time constant (Tf2).
-     * Typical Value = 0.
-     */
-    val tf2: Double,
-
-    /**
-     * Field current Bridge time constant (Tp).
-     * Typical Value = 0.
-     */
-    val tp: Double,
-
-    /**
-     * Maximum compounding voltage (Vcmax).
-     * Typical Value = 0.
-     */
-    val vcmax: Double,
-
-    /**
-     * Maximum Exciter Field Current (Vfmax).
-     * Typical Value = 47.
-     */
-    val vfmax: Double,
-
-    /**
-     * Minimum Exciter Field Current (Vfmin).
-     * Typical Value = -20.
-     */
-    val vfmin: Double,
-
-    /**
-     * Voltage Regulator Input Limit (Vimax).
-     * Typical Value = 0.1.
-     */
-    val vimax: Double,
-
-    /**
-     * Maximum controller output (Vrmax).
-     * Typical Value = 47.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum controller output (Vrmin).
-     * Typical Value = -20.
-     */
-    val vrmin: Double,
-
-    /**
-     * Exciter compounding reactance (Xc).
-     * Typical Value = 0.
-     */
-    val xc: Double
+(override val sup: ExcitationSystemDynamics,
+val e1: Double,
+val e2: Double,
+val fbf: String,
+val flimf: Double,
+val kc: Double,
+val kd: Double,
+val ke: Double,
+val kefd: Double,
+val kf: Double,
+val kh: Double,
+val kii: Double,
+val kip: Double,
+val ks: Double,
+val kvi: Double,
+val kvp: Double,
+val kvphz: Double,
+val nvphz: Double,
+val se1: Double,
+val se2: Double,
+val ta: Double,
+val tb1: Double,
+val tb2: Double,
+val tc1: Double,
+val tc2: Double,
+val te: Double,
+val tf: Double,
+val tf1: Double,
+val tf2: Double,
+val tp: Double,
+val vcmax: Double,
+val vfmax: Double,
+val vfmin: Double,
+val vimax: Double,
+val vrmax: Double,
+val vrmin: Double,
+val xc: Double
 )
 extends
     Element
@@ -8072,27 +5656,17 @@ extends
 
 /**
  * Type of rate feedback signals.
+ * @param sup Reference to the superclass object.
+ * @param fieldCurrent The exciter field current is used.
+ * @param fieldVoltage The voltage regulator output voltage is used.
+ *        It is the same as exciter field voltage.
+ * @param outputVoltage The output voltage of the exciter is used.
  */
 case class ExcREXSFeedbackSignalKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The exciter field current is used.
-     */
-    val fieldCurrent: String,
-
-    /**
-     * The voltage regulator output voltage is used.
-     * It is the same as exciter field voltage.
-     */
-    val fieldVoltage: String,
-
-    /**
-     * The output voltage of the exciter is used.
-     */
-    val outputVoltage: String
+(override val sup: BasicElement,
+val fieldCurrent: String,
+val fieldVoltage: String,
+val outputVoltage: String
 )
 extends
     Element
@@ -8131,60 +5705,35 @@ extends
 
 /**
  * Simple excitation system model representing generic characteristics of many excitation systems; intended for use where negative field current may be a problem.
+ * @param sup Reference to the superclass object.
+ * @param cswitch Power source switch (Cswitch).
+true = fixed voltage of 1.0 PU
+ *        false = generator terminal voltage.
+ * @param emax Maximum field voltage output (Emax).
+ *        Typical Value = 5.
+ * @param emin Minimum field voltage output (Emin).
+ *        Typical Value = 0.
+ * @param k Gain (K) (&gt;0).
+ *        Typical Value = 200.
+ * @param rcrfd Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).
+ *        Typical Value = 0.
+ * @param tatb Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
+ *        The parameter Ta is not defined explicitly.  Typical Value = 0.1.
+ * @param tb Denominator time constant of lag-lead block (Tb).
+ *        Typical Value = 10.
+ * @param te Time constant of gain block (Te) (&gt;0).
+ *        Typical Value = 0.02.
  */
 case class ExcSCRX
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Power source switch (Cswitch).
-    true = fixed voltage of 1.0 PU
-     * false = generator terminal voltage.
-     */
-    val cswitch: Boolean,
-
-    /**
-     * Maximum field voltage output (Emax).
-     * Typical Value = 5.
-     */
-    val emax: Double,
-
-    /**
-     * Minimum field voltage output (Emin).
-     * Typical Value = 0.
-     */
-    val emin: Double,
-
-    /**
-     * Gain (K) (&gt;0).
-     * Typical Value = 200.
-     */
-    val k: Double,
-
-    /**
-     * Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).
-     * Typical Value = 0.
-     */
-    val rcrfd: Double,
-
-    /**
-     * Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
-     * The parameter Ta is not defined explicitly.  Typical Value = 0.1.
-     */
-    val tatb: Double,
-
-    /**
-     * Denominator time constant of lag-lead block (Tb).
-     * Typical Value = 10.
-     */
-    val tb: Double,
-
-    /**
-     * Time constant of gain block (Te) (&gt;0).
-     * Typical Value = 0.02.
-     */
-    val te: Double
+(override val sup: ExcitationSystemDynamics,
+val cswitch: Boolean,
+val emax: Double,
+val emin: Double,
+val k: Double,
+val rcrfd: Double,
+val tatb: Double,
+val tb: Double,
+val te: Double
 )
 extends
     Element
@@ -8233,71 +5782,40 @@ extends
 
 /**
  * Simplified Excitation System Model.
+ * @param sup Reference to the superclass object.
+ * @param efdmax Field voltage clipping maximum limit (Efdmax).
+ *        Typical Value = 5.
+ * @param efdmin Field voltage clipping minimum limit (Efdmin).
+ *        Typical Value = -5.
+ * @param emax Maximum field voltage output (Emax).
+ *        Typical Value = 5.
+ * @param emin Minimum field voltage output (Emin).
+ *        Typical Value = -5.
+ * @param k Gain (K) (&gt;0).
+ *        Typical Value = 100.
+ * @param kc PI controller gain (Kc).
+ *        Typical Value = 0.08.
+ * @param tatb Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
+ *        Typical Value = 0.1.
+ * @param tb Denominator time constant of lag-lead block (Tb).
+ *        Typical Value = 10.
+ * @param tc PI controller phase lead time constant (Tc).
+ *        Typical Value = 0.
+ * @param te Time constant of gain block (Te).
+ *        Typical Value = 0.05.
  */
 case class ExcSEXS
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Field voltage clipping maximum limit (Efdmax).
-     * Typical Value = 5.
-     */
-    val efdmax: Double,
-
-    /**
-     * Field voltage clipping minimum limit (Efdmin).
-     * Typical Value = -5.
-     */
-    val efdmin: Double,
-
-    /**
-     * Maximum field voltage output (Emax).
-     * Typical Value = 5.
-     */
-    val emax: Double,
-
-    /**
-     * Minimum field voltage output (Emin).
-     * Typical Value = -5.
-     */
-    val emin: Double,
-
-    /**
-     * Gain (K) (&gt;0).
-     * Typical Value = 100.
-     */
-    val k: Double,
-
-    /**
-     * PI controller gain (Kc).
-     * Typical Value = 0.08.
-     */
-    val kc: Double,
-
-    /**
-     * Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
-     * Typical Value = 0.1.
-     */
-    val tatb: Double,
-
-    /**
-     * Denominator time constant of lag-lead block (Tb).
-     * Typical Value = 10.
-     */
-    val tb: Double,
-
-    /**
-     * PI controller phase lead time constant (Tc).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Time constant of gain block (Te).
-     * Typical Value = 0.05.
-     */
-    val te: Double
+(override val sup: ExcitationSystemDynamics,
+val efdmax: Double,
+val efdmin: Double,
+val emax: Double,
+val emin: Double,
+val k: Double,
+val kc: Double,
+val tatb: Double,
+val tb: Double,
+val tc: Double,
+val te: Double
 )
 extends
     Element
@@ -8351,203 +5869,106 @@ extends
 /**
  * Slovakian Excitation System Model.
  * UEL and secondary voltage control are included in this model. When this model is used, there cannot be a separate underexcitation limiter or VAr controller model.
+ * @param sup Reference to the superclass object.
+ * @param efdmax Field voltage clipping limit (Efdmax).
+ * @param efdmin Field voltage clipping limit (Efdmin).
+ * @param emax Maximum field voltage output (Emax).
+ *        Typical Value = 20.
+ * @param emin Minimum field voltage output (Emin).
+ *        Typical Value = -20.
+ * @param k Gain (K).
+ *        Typical Value = 1.
+ * @param k1 Parameter of underexcitation limit (K1).
+ *        Typical Value = 0.1364.
+ * @param k2 Parameter of underexcitation limit (K2).
+ *        Typical Value = -0.3861.
+ * @param kc PI controller gain (Kc).
+ *        Typical Value = 70.
+ * @param kce Rectifier regulation factor (Kce).
+ *        Typical Value = 0.
+ * @param kd Exciter internal reactance (Kd).
+ *        Typical Value = 0.
+ * @param kgob P controller gain (Kgob).
+ *        Typical Value = 10.
+ * @param kp PI controller gain (Kp).
+ *        Typical Value = 1.
+ * @param kqi PI controller gain of integral component (Kqi).
+ *        Typical Value = 0.
+ * @param kqob Rate of rise of the reactive power (Kqob).
+ * @param kqp PI controller gain (Kqp).
+ *        Typical Value = 0.
+ * @param nq Dead band of reactive power (nq).
+ *        Determines the range of sensitivity.  Typical Value = 0.001.
+ * @param qconoff Secondary voltage control state (Qc_on_off).
+true = secondary voltage control is ON
+false = secondary voltage control is OFF.
+ *        Typical Value = false.
+ * @param qz Desired value (setpoint) of reactive power, manual setting (Qz).
+ * @param remote Selector to apply automatic calculation in secondary controller model.
+true = automatic calculation is activated
+false = manual set is active; the use of desired value of reactive power (Qz) is required.
+ *        Typical Value = true.
+ * @param sbase Apparent power of the unit (Sbase).
+ *        Unit = MVA.  Typical Value = 259.
+ * @param tc PI controller phase lead time constant (Tc).
+ *        Typical Value = 8.
+ * @param te Time constant of gain block (Te).
+ *        Typical Value = 0.1.
+ * @param ti PI controller phase lead time constant (Ti).
+ *        Typical Value = 2.
+ * @param tp Time constant (Tp).
+ *        Typical Value = 0.1.
+ * @param tr Voltage transducer time constant (Tr).
+ *        Typical Value = 0.01.
+ * @param uimax Maximum error (Uimax).
+ *        Typical Value = 10.
+ * @param uimin Minimum error (UImin).
+ *        Typical Value = -10.
+ * @param urmax Maximum controller output (URmax).
+ *        Typical Value = 10.
+ * @param urmin Minimum controller output (URmin).
+ *        Typical Value = -10.
+ * @param vtmax Maximum terminal voltage input (Vtmax).
+ *        Determines the range of voltage dead band.  Typical Value = 1.05.
+ * @param vtmin Minimum terminal voltage input (Vtmin).
+ *        Determines the range of voltage dead band.  Typical Value = 0.95.
+ * @param yp Maximum output (Yp).
+ *        Minimum output = 0.  Typical Value = 1.
  */
 case class ExcSK
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Field voltage clipping limit (Efdmax).
-     */
-    val efdmax: Double,
-
-    /**
-     * Field voltage clipping limit (Efdmin).
-     */
-    val efdmin: Double,
-
-    /**
-     * Maximum field voltage output (Emax).
-     * Typical Value = 20.
-     */
-    val emax: Double,
-
-    /**
-     * Minimum field voltage output (Emin).
-     * Typical Value = -20.
-     */
-    val emin: Double,
-
-    /**
-     * Gain (K).
-     * Typical Value = 1.
-     */
-    val k: Double,
-
-    /**
-     * Parameter of underexcitation limit (K1).
-     * Typical Value = 0.1364.
-     */
-    val k1: Double,
-
-    /**
-     * Parameter of underexcitation limit (K2).
-     * Typical Value = -0.3861.
-     */
-    val k2: Double,
-
-    /**
-     * PI controller gain (Kc).
-     * Typical Value = 70.
-     */
-    val kc: Double,
-
-    /**
-     * Rectifier regulation factor (Kce).
-     * Typical Value = 0.
-     */
-    val kce: Double,
-
-    /**
-     * Exciter internal reactance (Kd).
-     * Typical Value = 0.
-     */
-    val kd: Double,
-
-    /**
-     * P controller gain (Kgob).
-     * Typical Value = 10.
-     */
-    val kgob: Double,
-
-    /**
-     * PI controller gain (Kp).
-     * Typical Value = 1.
-     */
-    val kp: Double,
-
-    /**
-     * PI controller gain of integral component (Kqi).
-     * Typical Value = 0.
-     */
-    val kqi: Double,
-
-    /**
-     * Rate of rise of the reactive power (Kqob).
-     */
-    val kqob: Double,
-
-    /**
-     * PI controller gain (Kqp).
-     * Typical Value = 0.
-     */
-    val kqp: Double,
-
-    /**
-     * Dead band of reactive power (nq).
-     * Determines the range of sensitivity.  Typical Value = 0.001.
-     */
-    val nq: Double,
-
-    /**
-     * Secondary voltage control state (Qc_on_off).
-    true = secondary voltage control is ON
-    false = secondary voltage control is OFF.
-     * Typical Value = false.
-     */
-    val qconoff: Boolean,
-
-    /**
-     * Desired value (setpoint) of reactive power, manual setting (Qz).
-     */
-    val qz: Double,
-
-    /**
-     * Selector to apply automatic calculation in secondary controller model.
-    true = automatic calculation is activated
-    false = manual set is active; the use of desired value of reactive power (Qz) is required.
-     * Typical Value = true.
-     */
-    val remote: Boolean,
-
-    /**
-     * Apparent power of the unit (Sbase).
-     * Unit = MVA.  Typical Value = 259.
-     */
-    val sbase: Double,
-
-    /**
-     * PI controller phase lead time constant (Tc).
-     * Typical Value = 8.
-     */
-    val tc: Double,
-
-    /**
-     * Time constant of gain block (Te).
-     * Typical Value = 0.1.
-     */
-    val te: Double,
-
-    /**
-     * PI controller phase lead time constant (Ti).
-     * Typical Value = 2.
-     */
-    val ti: Double,
-
-    /**
-     * Time constant (Tp).
-     * Typical Value = 0.1.
-     */
-    val tp: Double,
-
-    /**
-     * Voltage transducer time constant (Tr).
-     * Typical Value = 0.01.
-     */
-    val tr: Double,
-
-    /**
-     * Maximum error (Uimax).
-     * Typical Value = 10.
-     */
-    val uimax: Double,
-
-    /**
-     * Minimum error (UImin).
-     * Typical Value = -10.
-     */
-    val uimin: Double,
-
-    /**
-     * Maximum controller output (URmax).
-     * Typical Value = 10.
-     */
-    val urmax: Double,
-
-    /**
-     * Minimum controller output (URmin).
-     * Typical Value = -10.
-     */
-    val urmin: Double,
-
-    /**
-     * Maximum terminal voltage input (Vtmax).
-     * Determines the range of voltage dead band.  Typical Value = 1.05.
-     */
-    val vtmax: Double,
-
-    /**
-     * Minimum terminal voltage input (Vtmin).
-     * Determines the range of voltage dead band.  Typical Value = 0.95.
-     */
-    val vtmin: Double,
-
-    /**
-     * Maximum output (Yp).
-     * Minimum output = 0.  Typical Value = 1.
-     */
-    val yp: Double
+(override val sup: ExcitationSystemDynamics,
+val efdmax: Double,
+val efdmin: Double,
+val emax: Double,
+val emin: Double,
+val k: Double,
+val k1: Double,
+val k2: Double,
+val kc: Double,
+val kce: Double,
+val kd: Double,
+val kgob: Double,
+val kp: Double,
+val kqi: Double,
+val kqob: Double,
+val kqp: Double,
+val nq: Double,
+val qconoff: Boolean,
+val qz: Double,
+val remote: Boolean,
+val sbase: Double,
+val tc: Double,
+val te: Double,
+val ti: Double,
+val tp: Double,
+val tr: Double,
+val uimax: Double,
+val uimin: Double,
+val urmax: Double,
+val urmin: Double,
+val vtmax: Double,
+val vtmin: Double,
+val yp: Double
 )
 extends
     Element
@@ -8644,119 +6065,64 @@ extends
 
 /**
  * Modification of an old IEEE ST1A static excitation system without overexcitation limiter (OEL) and underexcitation limiter (UEL).
+ * @param sup Reference to the superclass object.
+ * @param ilr Exciter output current limit reference (Ilr).
+ *        Typical Value = 0.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 190.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.05.
+ * @param kf Excitation control system stabilizer gains (Kf).
+ *        Typical Value = 0.
+ * @param klr Exciter output current limiter gain (Klr).
+ *        Typical Value = 0.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.02.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 10.
+ * @param tb1 Voltage regulator time constant (Tb<sub>1</sub>).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 1.
+ * @param tc1 Voltage regulator time constant (Tc<sub>1</sub>).
+ *        Typical Value = 0.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 1.
+ * @param vamax Maximum voltage regulator output (Vamax).
+ *        Typical Value = 999.
+ * @param vamin Minimum voltage regulator output (Vamin).
+ *        Typical Value = -999.
+ * @param vimax Maximum voltage regulator input limit (Vimax).
+ *        Typical Value = 999.
+ * @param vimin Minimum voltage regulator input limit (Vimin).
+ *        Typical Value = -999.
+ * @param vrmax Maximum voltage regulator outputs (Vrmax).
+ *        Typical Value = 7.8.
+ * @param vrmin Minimum voltage regulator outputs (Vrmin).
+ *        Typical Value = -6.7.
+ * @param xe Excitation xfmr effective reactance (Xe).
+ *        Typical Value = 0.04.
  */
 case class ExcST1A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter output current limit reference (Ilr).
-     * Typical Value = 0.
-     */
-    val ilr: Double,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 190.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.05.
-     */
-    val kc: Double,
-
-    /**
-     * Excitation control system stabilizer gains (Kf).
-     * Typical Value = 0.
-     */
-    val kf: Double,
-
-    /**
-     * Exciter output current limiter gain (Klr).
-     * Typical Value = 0.
-     */
-    val klr: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 10.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tb<sub>1</sub>).
-     * Typical Value = 0.
-     */
-    val tb1: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 1.
-     */
-    val tc: Double,
-
-    /**
-     * Voltage regulator time constant (Tc<sub>1</sub>).
-     * Typical Value = 0.
-     */
-    val tc1: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Maximum voltage regulator output (Vamax).
-     * Typical Value = 999.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vamin).
-     * Typical Value = -999.
-     */
-    val vamin: Double,
-
-    /**
-     * Maximum voltage regulator input limit (Vimax).
-     * Typical Value = 999.
-     */
-    val vimax: Double,
-
-    /**
-     * Minimum voltage regulator input limit (Vimin).
-     * Typical Value = -999.
-     */
-    val vimin: Double,
-
-    /**
-     * Maximum voltage regulator outputs (Vrmax).
-     * Typical Value = 7.8.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (Vrmin).
-     * Typical Value = -6.7.
-     */
-    val vrmin: Double,
-
-    /**
-     * Excitation xfmr effective reactance (Xe).
-     * Typical Value = 0.04.
-     */
-    val xe: Double
+(override val sup: ExcitationSystemDynamics,
+val ilr: Double,
+val ka: Double,
+val kc: Double,
+val kf: Double,
+val klr: Double,
+val ta: Double,
+val tb: Double,
+val tb1: Double,
+val tc: Double,
+val tc1: Double,
+val tf: Double,
+val vamax: Double,
+val vamin: Double,
+val vimax: Double,
+val vimin: Double,
+val vrmax: Double,
+val vrmin: Double,
+val xe: Double
 )
 extends
     Element
@@ -8825,103 +6191,57 @@ extends
 
 /**
  * Modified IEEE ST2A static excitation system - another lead-lag block added to match  the model defined by WECC.
+ * @param sup Reference to the superclass object.
+ * @param efdmax Maximum field voltage (Efdmax).
+ *        Typical Value = 99.
+ * @param ka Voltage regulator gain (Ka).
+ *        Typical Value = 120.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 1.82.
+ * @param ke Exciter constant related to self-excited field (Ke).
+ *        Typical Value = 1.
+ * @param kf Excitation control system stabilizer gains (Kf).
+ *        Typical Value = 0.05.
+ * @param ki Potential circuit gain coefficient (Ki).
+ *        Typical Value = 8.
+ * @param kp Potential circuit gain coefficient (Kp).
+ *        Typical Value = 4.88.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.15.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 0.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (Te).
+ *        Typical Value = 0.5.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 0.7.
+ * @param uelin UEL input (UELin).
+true = HV gate
+false = add to error signal.
+ *        Typical Value = false.
+ * @param vrmax Maximum voltage regulator outputs (Vrmax).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator outputs (Vrmin).
+ *        Typical Value = -1.
  */
 case class ExcST2A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Maximum field voltage (Efdmax).
-     * Typical Value = 99.
-     */
-    val efdmax: Double,
-
-    /**
-     * Voltage regulator gain (Ka).
-     * Typical Value = 120.
-     */
-    val ka: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 1.82.
-     */
-    val kc: Double,
-
-    /**
-     * Exciter constant related to self-excited field (Ke).
-     * Typical Value = 1.
-     */
-    val ke: Double,
-
-    /**
-     * Excitation control system stabilizer gains (Kf).
-     * Typical Value = 0.05.
-     */
-    val kf: Double,
-
-    /**
-     * Potential circuit gain coefficient (Ki).
-     * Typical Value = 8.
-     */
-    val ki: Double,
-
-    /**
-     * Potential circuit gain coefficient (Kp).
-     * Typical Value = 4.88.
-     */
-    val kp: Double,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.15.
-     */
-    val ta: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 0.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 0.
-     */
-    val tc: Double,
-
-    /**
-     * Exciter time constant, integration rate associated with exciter control (Te).
-     * Typical Value = 0.5.
-     */
-    val te: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 0.7.
-     */
-    val tf: Double,
-
-    /**
-     * UEL input (UELin).
-    true = HV gate
-    false = add to error signal.
-     * Typical Value = false.
-     */
-    val uelin: Boolean,
-
-    /**
-     * Maximum voltage regulator outputs (Vrmax).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator outputs (Vrmin).
-     * Typical Value = -1.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val efdmax: Double,
+val ka: Double,
+val kc: Double,
+val ke: Double,
+val kf: Double,
+val ki: Double,
+val kp: Double,
+val ta: Double,
+val tb: Double,
+val tc: Double,
+val te: Double,
+val tf: Double,
+val uelin: Boolean,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -8984,131 +6304,70 @@ extends
 
 /**
  * Modified IEEE ST3A static excitation system with added speed multiplier.
+ * @param sup Reference to the superclass object.
+ * @param efdmax Maximum AVR output (Efdmax).
+ *        Typical Value = 6.9.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 1.1.
+ * @param kg Feedback gain constant of the inner loop field regulator (Kg).
+ *        Typical Value = 1.
+ * @param ki Potential circuit gain coefficient (Ki).
+ *        Typical Value = 4.83.
+ * @param kj AVR gain (Kj).
+ *        Typical Value = 200.
+ * @param km Forward gain constant of the inner loop field regulator (Km).
+ *        Typical Value = 7.04.
+ * @param kp Potential source gain (Kp) (&gt;0).
+ *        Typical Value = 4.37.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
+ *        Typical Value = 0.
+ * @param ks1 Coefficient to allow different usage of the model-speed coefficient (Ks1).
+ *        Typical Value = 0.
+ * @param tb Voltage regulator time constant (Tb).
+ *        Typical Value = 6.67.
+ * @param tc Voltage regulator time constant (Tc).
+ *        Typical Value = 1.
+ * @param thetap Potential circuit phase angle (thetap).
+ *        Typical Value = 20.
+ * @param tm Forward time constant of inner loop field regulator (Tm).
+ *        Typical Value = 1.
+ * @param vbmax Maximum excitation voltage (Vbmax).
+ *        Typical Value = 8.63.
+ * @param vgmax Maximum inner loop feedback voltage (Vgmax).
+ *        Typical Value = 6.53.
+ * @param vimax Maximum voltage regulator input limit (Vimax).
+ *        Typical Value = 0.2.
+ * @param vimin Minimum voltage regulator input limit (Vimin).
+ *        Typical Value = -0.2.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = 0.
+ * @param xl Reactance associated with potential source (Xl).
+ *        Typical Value = 0.09.
  */
 case class ExcST3A
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Maximum AVR output (Efdmax).
-     * Typical Value = 6.9.
-     */
-    val efdmax: Double,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 1.1.
-     */
-    val kc: Double,
-
-    /**
-     * Feedback gain constant of the inner loop field regulator (Kg).
-     * Typical Value = 1.
-     */
-    val kg: Double,
-
-    /**
-     * Potential circuit gain coefficient (Ki).
-     * Typical Value = 4.83.
-     */
-    val ki: Double,
-
-    /**
-     * AVR gain (Kj).
-     * Typical Value = 200.
-     */
-    val kj: Double,
-
-    /**
-     * Forward gain constant of the inner loop field regulator (Km).
-     * Typical Value = 7.04.
-     */
-    val km: Double,
-
-    /**
-     * Potential source gain (Kp) (&gt;0).
-     * Typical Value = 4.37.
-     */
-    val kp: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks).
-     * Typical Value = 0.
-     */
-    val ks: Double,
-
-    /**
-     * Coefficient to allow different usage of the model-speed coefficient (Ks1).
-     * Typical Value = 0.
-     */
-    val ks1: Double,
-
-    /**
-     * Voltage regulator time constant (Tb).
-     * Typical Value = 6.67.
-     */
-    val tb: Double,
-
-    /**
-     * Voltage regulator time constant (Tc).
-     * Typical Value = 1.
-     */
-    val tc: Double,
-
-    /**
-     * Potential circuit phase angle (thetap).
-     * Typical Value = 20.
-     */
-    val thetap: Double,
-
-    /**
-     * Forward time constant of inner loop field regulator (Tm).
-     * Typical Value = 1.
-     */
-    val tm: Double,
-
-    /**
-     * Maximum excitation voltage (Vbmax).
-     * Typical Value = 8.63.
-     */
-    val vbmax: Double,
-
-    /**
-     * Maximum inner loop feedback voltage (Vgmax).
-     * Typical Value = 6.53.
-     */
-    val vgmax: Double,
-
-    /**
-     * Maximum voltage regulator input limit (Vimax).
-     * Typical Value = 0.2.
-     */
-    val vimax: Double,
-
-    /**
-     * Minimum voltage regulator input limit (Vimin).
-     * Typical Value = -0.2.
-     */
-    val vimin: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = 0.
-     */
-    val vrmin: Double,
-
-    /**
-     * Reactance associated with potential source (Xl).
-     * Typical Value = 0.09.
-     */
-    val xl: Double
+(override val sup: ExcitationSystemDynamics,
+val efdmax: Double,
+val kc: Double,
+val kg: Double,
+val ki: Double,
+val kj: Double,
+val km: Double,
+val kp: Double,
+val ks: Double,
+val ks1: Double,
+val tb: Double,
+val tc: Double,
+val thetap: Double,
+val tm: Double,
+val vbmax: Double,
+val vgmax: Double,
+val vimax: Double,
+val vimin: Double,
+val vrmax: Double,
+val vrmin: Double,
+val xl: Double
 )
 extends
     Element
@@ -9181,129 +6440,71 @@ extends
 
 /**
  * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <b>Vgmax</b>.
+ * @param sup Reference to the superclass object.
+ * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
+ *        Typical Value = 0.113.
+ * @param kg Feedback gain constant of the inner loop field regulator (Kg).
+ *        Typical Value = 0.
+ * @param ki Potential circuit gain coefficient (Ki).
+ *        Typical Value = 0.
+ * @param kim Voltage regulator integral gain output (Kim).
+ *        Typical Value = 0.
+ * @param kir Voltage regulator integral gain (Kir).
+ *        Typical Value = 10.75.
+ * @param kp Potential circuit gain coefficient (Kp).
+ *        Typical Value = 9.3.
+ * @param kpm Voltage regulator proportional gain output (Kpm).
+ *        Typical Value = 1.
+ * @param kpr Voltage regulator proportional gain (Kpr).
+ *        Typical Value = 10.75.
+ * @param lvgate Selector (LVgate).
+true = LVgate is part of the block diagram
+false = LVgate is not part of the block diagram.
+ *        Typical Value = false.
+ * @param ta Voltage regulator time constant (Ta).
+ *        Typical Value = 0.02.
+ * @param thetap Potential circuit phase angle (thetap).
+ *        Typical Value = 0.
+ * @param uel Selector (Uel).
+true = UEL is part of block diagram
+false = UEL is not part of block diagram.
+ *        Typical Value = false.
+ * @param vbmax Maximum excitation voltage (Vbmax).
+ *        Typical Value = 11.63.
+ * @param vgmax Maximum inner loop feedback voltage (Vgmax).
+ *        Typical Value = 5.8.
+ * @param vmmax Maximum inner loop output (Vmmax).
+ *        Typical Value = 99.
+ * @param vmmin Minimum inner loop output (Vmmin).
+ *        Typical Value = -99.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 1.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = -0.87.
+ * @param xl Reactance associated with potential source (Xl).
+ *        Typical Value = 0.124.
  */
 case class ExcST4B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Rectifier loading factor proportional to commutating reactance (Kc).
-     * Typical Value = 0.113.
-     */
-    val kc: Double,
-
-    /**
-     * Feedback gain constant of the inner loop field regulator (Kg).
-     * Typical Value = 0.
-     */
-    val kg: Double,
-
-    /**
-     * Potential circuit gain coefficient (Ki).
-     * Typical Value = 0.
-     */
-    val ki: Double,
-
-    /**
-     * Voltage regulator integral gain output (Kim).
-     * Typical Value = 0.
-     */
-    val kim: Double,
-
-    /**
-     * Voltage regulator integral gain (Kir).
-     * Typical Value = 10.75.
-     */
-    val kir: Double,
-
-    /**
-     * Potential circuit gain coefficient (Kp).
-     * Typical Value = 9.3.
-     */
-    val kp: Double,
-
-    /**
-     * Voltage regulator proportional gain output (Kpm).
-     * Typical Value = 1.
-     */
-    val kpm: Double,
-
-    /**
-     * Voltage regulator proportional gain (Kpr).
-     * Typical Value = 10.75.
-     */
-    val kpr: Double,
-
-    /**
-     * Selector (LVgate).
-    true = LVgate is part of the block diagram
-    false = LVgate is not part of the block diagram.
-     * Typical Value = false.
-     */
-    val lvgate: Boolean,
-
-    /**
-     * Voltage regulator time constant (Ta).
-     * Typical Value = 0.02.
-     */
-    val ta: Double,
-
-    /**
-     * Potential circuit phase angle (thetap).
-     * Typical Value = 0.
-     */
-    val thetap: Double,
-
-    /**
-     * Selector (Uel).
-    true = UEL is part of block diagram
-    false = UEL is not part of block diagram.
-     * Typical Value = false.
-     */
-    val uel: Boolean,
-
-    /**
-     * Maximum excitation voltage (Vbmax).
-     * Typical Value = 11.63.
-     */
-    val vbmax: Double,
-
-    /**
-     * Maximum inner loop feedback voltage (Vgmax).
-     * Typical Value = 5.8.
-     */
-    val vgmax: Double,
-
-    /**
-     * Maximum inner loop output (Vmmax).
-     * Typical Value = 99.
-     */
-    val vmmax: Double,
-
-    /**
-     * Minimum inner loop output (Vmmin).
-     * Typical Value = -99.
-     */
-    val vmmin: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 1.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = -0.87.
-     */
-    val vrmin: Double,
-
-    /**
-     * Reactance associated with potential source (Xl).
-     * Typical Value = 0.124.
-     */
-    val xl: Double
+(override val sup: ExcitationSystemDynamics,
+val kc: Double,
+val kg: Double,
+val ki: Double,
+val kim: Double,
+val kir: Double,
+val kp: Double,
+val kpm: Double,
+val kpr: Double,
+val lvgate: Boolean,
+val ta: Double,
+val thetap: Double,
+val uel: Boolean,
+val vbmax: Double,
+val vgmax: Double,
+val vmmax: Double,
+val vmmin: Double,
+val vrmax: Double,
+val vrmin: Double,
+val xl: Double
 )
 extends
     Element
@@ -9374,155 +6575,85 @@ extends
 
 /**
  * Modified IEEE ST6B static excitation system with PID controller and optional inner feedbacks loop.
+ * @param sup Reference to the superclass object.
+ * @param ilr Exciter output current limit reference (Ilr).
+ *        Typical Value = 4.164.
+ * @param k1 Selector (K1).
+true = feedback is from Ifd
+false = feedback is not from Ifd.
+ *        Typical Value = true.
+ * @param kcl Exciter output current limit adjustment (Kcl).
+ *        Typical Value = 1.0577.
+ * @param kff Pre-control gain constant of the inner loop field regulator (Kff).
+ *        Typical Value = 1.
+ * @param kg Feedback gain constant of the inner loop field regulator (Kg).
+ *        Typical Value = 1.
+ * @param kia Voltage regulator integral gain (Kia).
+ *        Typical Value = 45.094.
+ * @param klr Exciter output current limit adjustment (Kcl).
+ *        Typical Value = 17.33.
+ * @param km Forward gain constant of the inner loop field regulator (Km).
+ *        Typical Value = 1.
+ * @param kpa Voltage regulator proportional gain (Kpa).
+ *        Typical Value = 18.038.
+ * @param kvd Voltage regulator derivative gain (Kvd).
+ *        Typical Value = 0.
+ * @param oelin OEL input selector (OELin).
+ *        Typical Value = noOELinput.
+ * @param tg Feedback time constant of inner loop field voltage regulator (Tg).
+ *        Typical Value = 0.02.
+ * @param ts Rectifier firing time constant (Ts).
+ *        Typical Value = 0.
+ * @param tvd Voltage regulator derivative gain (Tvd).
+ *        Typical Value = 0.
+ * @param vamax Maximum voltage regulator output (Vamax).
+ *        Typical Value = 4.81.
+ * @param vamin Minimum voltage regulator output (Vamin).
+ *        Typical Value = -3.85.
+ * @param vilim Selector (Vilim).
+true = Vimin-Vimax limiter is active
+false = Vimin-Vimax limiter is not active.
+ *        Typical Value = true.
+ * @param vimax Maximum voltage regulator input limit (Vimax).
+ *        Typical Value = 10.
+ * @param vimin Minimum voltage regulator input limit (Vimin).
+ *        Typical Value = -10.
+ * @param vmult Selector (Vmult).
+true = multiply regulator output by terminal voltage
+false = do not multiply regulator output by terminal voltage.
+ *        Typical Value = true.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 4.81.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = -3.85.
+ * @param xc Excitation source reactance (Xc).
+ *        Typical Value = 0.05.
  */
 case class ExcST6B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Exciter output current limit reference (Ilr).
-     * Typical Value = 4.164.
-     */
-    val ilr: Double,
-
-    /**
-     * Selector (K1).
-    true = feedback is from Ifd
-    false = feedback is not from Ifd.
-     * Typical Value = true.
-     */
-    val k1: Boolean,
-
-    /**
-     * Exciter output current limit adjustment (Kcl).
-     * Typical Value = 1.0577.
-     */
-    val kcl: Double,
-
-    /**
-     * Pre-control gain constant of the inner loop field regulator (Kff).
-     * Typical Value = 1.
-     */
-    val kff: Double,
-
-    /**
-     * Feedback gain constant of the inner loop field regulator (Kg).
-     * Typical Value = 1.
-     */
-    val kg: Double,
-
-    /**
-     * Voltage regulator integral gain (Kia).
-     * Typical Value = 45.094.
-     */
-    val kia: Double,
-
-    /**
-     * Exciter output current limit adjustment (Kcl).
-     * Typical Value = 17.33.
-     */
-    val klr: Double,
-
-    /**
-     * Forward gain constant of the inner loop field regulator (Km).
-     * Typical Value = 1.
-     */
-    val km: Double,
-
-    /**
-     * Voltage regulator proportional gain (Kpa).
-     * Typical Value = 18.038.
-     */
-    val kpa: Double,
-
-    /**
-     * Voltage regulator derivative gain (Kvd).
-     * Typical Value = 0.
-     */
-    val kvd: Double,
-
-    /**
-     * OEL input selector (OELin).
-     * Typical Value = noOELinput.
-     */
-    val oelin: String,
-
-    /**
-     * Feedback time constant of inner loop field voltage regulator (Tg).
-     * Typical Value = 0.02.
-     */
-    val tg: Double,
-
-    /**
-     * Rectifier firing time constant (Ts).
-     * Typical Value = 0.
-     */
-    val ts: Double,
-
-    /**
-     * Voltage regulator derivative gain (Tvd).
-     * Typical Value = 0.
-     */
-    val tvd: Double,
-
-    /**
-     * Maximum voltage regulator output (Vamax).
-     * Typical Value = 4.81.
-     */
-    val vamax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vamin).
-     * Typical Value = -3.85.
-     */
-    val vamin: Double,
-
-    /**
-     * Selector (Vilim).
-    true = Vimin-Vimax limiter is active
-    false = Vimin-Vimax limiter is not active.
-     * Typical Value = true.
-     */
-    val vilim: Boolean,
-
-    /**
-     * Maximum voltage regulator input limit (Vimax).
-     * Typical Value = 10.
-     */
-    val vimax: Double,
-
-    /**
-     * Minimum voltage regulator input limit (Vimin).
-     * Typical Value = -10.
-     */
-    val vimin: Double,
-
-    /**
-     * Selector (Vmult).
-    true = multiply regulator output by terminal voltage
-    false = do not multiply regulator output by terminal voltage.
-     * Typical Value = true.
-     */
-    val vmult: Boolean,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 4.81.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = -3.85.
-     */
-    val vrmin: Double,
-
-    /**
-     * Excitation source reactance (Xc).
-     * Typical Value = 0.05.
-     */
-    val xc: Double
+(override val sup: ExcitationSystemDynamics,
+val ilr: Double,
+val k1: Boolean,
+val kcl: Double,
+val kff: Double,
+val kg: Double,
+val kia: Double,
+val klr: Double,
+val km: Double,
+val kpa: Double,
+val kvd: Double,
+val oelin: String,
+val tg: Double,
+val ts: Double,
+val tvd: Double,
+val vamax: Double,
+val vamin: Double,
+val vilim: Boolean,
+val vimax: Double,
+val vimin: Double,
+val vmult: Boolean,
+val vrmax: Double,
+val vrmin: Double,
+val xc: Double
 )
 extends
     Element
@@ -9601,26 +6732,16 @@ extends
 
 /**
  * Type of connection for the OEL input used for static excitation systems type 6B.
+ * @param sup Reference to the superclass object.
+ * @param afterUEL The connection is after UEL.
+ * @param beforeUEL The connection is before UEL.
+ * @param noOELinput No OEL input is used.
  */
 case class ExcST6BOELselectorKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The connection is after UEL.
-     */
-    val afterUEL: String,
-
-    /**
-     * The connection is before UEL.
-     */
-    val beforeUEL: String,
-
-    /**
-     * No OEL input is used.
-     */
-    val noOELinput: String
+(override val sup: BasicElement,
+val afterUEL: String,
+val beforeUEL: String,
+val noOELinput: String
 )
 extends
     Element
@@ -9659,107 +6780,58 @@ extends
 
 /**
  * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
+ * @param sup Reference to the superclass object.
+ * @param kh High-value gate feedback gain (Kh).
+ *        Typical Value = 1.
+ * @param kia Voltage regulator integral gain (Kia).
+ *        Typical Value = 1.
+ * @param kl Low-value gate feedback gain (Kl).
+ *        Typical Value = 1.
+ * @param kpa Voltage regulator proportional gain (Kpa).
+ *        Typical Value = 40.
+ * @param oelin OEL input selector (OELin).
+ *        Typical Value = noOELinput.
+ * @param tb Regulator lag time constant (Tb).
+ *        Typical Value = 1.
+ * @param tc Regulator lead time constant (Tc).
+ *        Typical Value = 1.
+ * @param tf Excitation control system stabilizer time constant (Tf).
+ *        Typical Value = 1.
+ * @param tg Feedback time constant of inner loop field voltage regulator (Tg).
+ *        Typical Value = 1.
+ * @param tia Feedback time constant (Tia).
+ *        Typical Value = 3.
+ * @param ts Rectifier firing time constant (Ts).
+ *        Typical Value = 0.
+ * @param uelin UEL input selector (UELin).
+ *        Typical Value = noUELinput.
+ * @param vmax Maximum voltage reference signal (Vmax).
+ *        Typical Value = 1.1.
+ * @param vmin Minimum voltage reference signal (Vmin).
+ *        Typical Value = 0.9.
+ * @param vrmax Maximum voltage regulator output (Vrmax).
+ *        Typical Value = 5.
+ * @param vrmin Minimum voltage regulator output (Vrmin).
+ *        Typical Value = -4.5.
  */
 case class ExcST7B
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * High-value gate feedback gain (Kh).
-     * Typical Value = 1.
-     */
-    val kh: Double,
-
-    /**
-     * Voltage regulator integral gain (Kia).
-     * Typical Value = 1.
-     */
-    val kia: Double,
-
-    /**
-     * Low-value gate feedback gain (Kl).
-     * Typical Value = 1.
-     */
-    val kl: Double,
-
-    /**
-     * Voltage regulator proportional gain (Kpa).
-     * Typical Value = 40.
-     */
-    val kpa: Double,
-
-    /**
-     * OEL input selector (OELin).
-     * Typical Value = noOELinput.
-     */
-    val oelin: String,
-
-    /**
-     * Regulator lag time constant (Tb).
-     * Typical Value = 1.
-     */
-    val tb: Double,
-
-    /**
-     * Regulator lead time constant (Tc).
-     * Typical Value = 1.
-     */
-    val tc: Double,
-
-    /**
-     * Excitation control system stabilizer time constant (Tf).
-     * Typical Value = 1.
-     */
-    val tf: Double,
-
-    /**
-     * Feedback time constant of inner loop field voltage regulator (Tg).
-     * Typical Value = 1.
-     */
-    val tg: Double,
-
-    /**
-     * Feedback time constant (Tia).
-     * Typical Value = 3.
-     */
-    val tia: Double,
-
-    /**
-     * Rectifier firing time constant (Ts).
-     * Typical Value = 0.
-     */
-    val ts: Double,
-
-    /**
-     * UEL input selector (UELin).
-     * Typical Value = noUELinput.
-     */
-    val uelin: String,
-
-    /**
-     * Maximum voltage reference signal (Vmax).
-     * Typical Value = 1.1.
-     */
-    val vmax: Double,
-
-    /**
-     * Minimum voltage reference signal (Vmin).
-     * Typical Value = 0.9.
-     */
-    val vmin: Double,
-
-    /**
-     * Maximum voltage regulator output (Vrmax).
-     * Typical Value = 5.
-     */
-    val vrmax: Double,
-
-    /**
-     * Minimum voltage regulator output (Vrmin).
-     * Typical Value = -4.5.
-     */
-    val vrmin: Double
+(override val sup: ExcitationSystemDynamics,
+val kh: Double,
+val kia: Double,
+val kl: Double,
+val kpa: Double,
+val oelin: String,
+val tb: Double,
+val tc: Double,
+val tf: Double,
+val tg: Double,
+val tia: Double,
+val ts: Double,
+val uelin: String,
+val vmax: Double,
+val vmin: Double,
+val vrmax: Double,
+val vrmin: Double
 )
 extends
     Element
@@ -9824,31 +6896,18 @@ extends
 
 /**
  * Type of connection for the OEL input used for static excitation systems type 7B.
+ * @param sup Reference to the superclass object.
+ * @param addVref The signal is added to Vref.
+ * @param inputLVgate The signal is connected in the input of the LV gate.
+ * @param noOELinput No OEL input is used.
+ * @param outputLVgate The signal is connected in the output of the LV gate.
  */
 case class ExcST7BOELselectorKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The signal is added to Vref.
-     */
-    val addVref: String,
-
-    /**
-     * The signal is connected in the input of the LV gate.
-     */
-    val inputLVgate: String,
-
-    /**
-     * No OEL input is used.
-     */
-    val noOELinput: String,
-
-    /**
-     * The signal is connected in the output of the LV gate.
-     */
-    val outputLVgate: String
+(override val sup: BasicElement,
+val addVref: String,
+val inputLVgate: String,
+val noOELinput: String,
+val outputLVgate: String
 )
 extends
     Element
@@ -9889,31 +6948,18 @@ extends
 
 /**
  * Type of connection for the UEL input used for static excitation systems type 7B.
+ * @param sup Reference to the superclass object.
+ * @param addVref The signal is added to Vref.
+ * @param inputHVgate The signal is connected in the input of the HV gate.
+ * @param noUELinput No UEL input is used.
+ * @param outputHVgate The signal is connected in the output of the HV gate.
  */
 case class ExcST7BUELselectorKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The signal is added to Vref.
-     */
-    val addVref: String,
-
-    /**
-     * The signal is connected in the input of the HV gate.
-     */
-    val inputHVgate: String,
-
-    /**
-     * No UEL input is used.
-     */
-    val noUELinput: String,
-
-    /**
-     * The signal is connected in the output of the HV gate.
-     */
-    val outputHVgate: String
+(override val sup: BasicElement,
+val addVref: String,
+val inputHVgate: String,
+val noUELinput: String,
+val outputHVgate: String
 )
 extends
     Element
@@ -9954,51 +7000,26 @@ extends
 
 /**
  * Excitation system function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param DiscontinuousExcitationControlDynamics Discontinuous excitation control model associated with this excitation system model.
+ * @param OverexcitationLimiterDynamics Overexcitation limiter model associated with this excitation system model.
+ * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model associated with this excitation system model.
+ * @param PFVArControllerType2Dynamics Power Factor or VAr controller Type II model associated with this excitation system model.
+ * @param PowerSystemStabilizerDynamics Power system stabilizer model associated with this excitation system model.
+ * @param SynchronousMachineDynamics Synchronous machine model with which this excitation system model is associated.
+ * @param UnderexcitationLimiterDynamics Undrexcitation limiter model associated with this excitation system model.
+ * @param VoltageCompensatorDynamics Voltage compensator model associated with this excitation system model.
  */
 case class ExcitationSystemDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Discontinuous excitation control model associated with this excitation system model.
-     */
-    val DiscontinuousExcitationControlDynamics: String,
-
-    /**
-     * Overexcitation limiter model associated with this excitation system model.
-     */
-    val OverexcitationLimiterDynamics: String,
-
-    /**
-     * Power Factor or VAr controller Type I model associated with this excitation system model.
-     */
-    val PFVArControllerType1Dynamics: String,
-
-    /**
-     * Power Factor or VAr controller Type II model associated with this excitation system model.
-     */
-    val PFVArControllerType2Dynamics: String,
-
-    /**
-     * Power system stabilizer model associated with this excitation system model.
-     */
-    val PowerSystemStabilizerDynamics: String,
-
-    /**
-     * Synchronous machine model with which this excitation system model is associated.
-     */
-    val SynchronousMachineDynamics: String,
-
-    /**
-     * Undrexcitation limiter model associated with this excitation system model.
-     */
-    val UnderexcitationLimiterDynamics: String,
-
-    /**
-     * Voltage compensator model associated with this excitation system model.
-     */
-    val VoltageCompensatorDynamics: String
+(override val sup: DynamicsFunctionBlock,
+val DiscontinuousExcitationControlDynamics: String,
+val OverexcitationLimiterDynamics: String,
+val PFVArControllerType1Dynamics: String,
+val PFVArControllerType2Dynamics: String,
+val PowerSystemStabilizerDynamics: String,
+val SynchronousMachineDynamics: String,
+val UnderexcitationLimiterDynamics: String,
+val VoltageCompensatorDynamics: String
 )
 extends
     Element

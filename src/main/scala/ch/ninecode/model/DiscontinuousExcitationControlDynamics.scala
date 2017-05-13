@@ -12,118 +12,63 @@ import ch.ninecode.cim.Context
 /**
  * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
  * Reference: IEEE Standard 421.5-2005 Section 12.2.
+ * @param sup Reference to the superclass object.
+ * @param esc Speed change reference (<i>E</i><i><sub>SC</sub></i>).
+ *        Typical Value = 0.0015.
+ * @param kan Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
+ *        Typical Value = 400.
+ * @param ketl Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
+ *        Typical Value = 47.
+ * @param tan Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).
+ *        Typical Value = 0.08.
+ * @param td Time constant (<i>T</i><i><sub>D</sub></i>).
+ *        Typical Value = 0.03.
+ * @param tl1 Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).
+ *        Typical Value = 0.025.
+ * @param tl2 Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).
+ *        Typical Value = 1.25.
+ * @param tw5 DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
+ *        Typical Value = 5.
+ * @param vanmax Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
+ * @param vomax Limiter (<i>V</i><i><sub>OMAX</sub></i>).
+ *        Typical Value = 0.3.
+ * @param vomin Limiter (<i>V</i><i><sub>OMIN</sub></i>).
+ *        Typical Value = 0.1.
+ * @param vsmax Limiter (<i>V</i><i><sub>SMAX</sub></i>).
+ *        Typical Value = 0.2.
+ * @param vsmin Limiter (<i>V</i><i><sub>SMIN</sub></i>).
+ *        Typical Value = -0.066.
+ * @param vtc Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
+ *        Typical Value = 0.95.
+ * @param vtlmt Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
+ *        Typical Value = 1.1.
+ * @param vtm Voltage limits (<i>V</i><i><sub>TM</sub></i>).
+ *        Typical Value = 1.13.
+ * @param vtn Voltage limits (<i>V</i><i><sub>TN</sub></i>).
+ *        Typical Value = 1.12.
+ * @param _val Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
+ *        Typical Value = 5.5.
  */
 case class DiscExcContIEEEDEC1A
-(
-
-    override val sup: DiscontinuousExcitationControlDynamics,
-
-    /**
-     * Speed change reference (<i>E</i><i><sub>SC</sub></i>).
-     * Typical Value = 0.0015.
-     */
-    val esc: Double,
-
-    /**
-     * Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
-     * Typical Value = 400.
-     */
-    val kan: Double,
-
-    /**
-     * Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
-     * Typical Value = 47.
-     */
-    val ketl: Double,
-
-    /**
-     * Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).
-     * Typical Value = 0.08.
-     */
-    val tan: Double,
-
-    /**
-     * Time constant (<i>T</i><i><sub>D</sub></i>).
-     * Typical Value = 0.03.
-     */
-    val td: Double,
-
-    /**
-     * Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).
-     * Typical Value = 0.025.
-     */
-    val tl1: Double,
-
-    /**
-     * Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).
-     * Typical Value = 1.25.
-     */
-    val tl2: Double,
-
-    /**
-     * DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
-     * Typical Value = 5.
-     */
-    val tw5: Double,
-
-    /**
-     * Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
-     */
-    val vanmax: Double,
-
-    /**
-     * Limiter (<i>V</i><i><sub>OMAX</sub></i>).
-     * Typical Value = 0.3.
-     */
-    val vomax: Double,
-
-    /**
-     * Limiter (<i>V</i><i><sub>OMIN</sub></i>).
-     * Typical Value = 0.1.
-     */
-    val vomin: Double,
-
-    /**
-     * Limiter (<i>V</i><i><sub>SMAX</sub></i>).
-     * Typical Value = 0.2.
-     */
-    val vsmax: Double,
-
-    /**
-     * Limiter (<i>V</i><i><sub>SMIN</sub></i>).
-     * Typical Value = -0.066.
-     */
-    val vsmin: Double,
-
-    /**
-     * Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
-     * Typical Value = 0.95.
-     */
-    val vtc: Double,
-
-    /**
-     * Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
-     * Typical Value = 1.1.
-     */
-    val vtlmt: Double,
-
-    /**
-     * Voltage limits (<i>V</i><i><sub>TM</sub></i>).
-     * Typical Value = 1.13.
-     */
-    val vtm: Double,
-
-    /**
-     * Voltage limits (<i>V</i><i><sub>TN</sub></i>).
-     * Typical Value = 1.12.
-     */
-    val vtn: Double,
-
-    /**
-     * Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
-     * Typical Value = 5.5.
-     */
-    val _val: Double
+(override val sup: DiscontinuousExcitationControlDynamics,
+val esc: Double,
+val kan: Double,
+val ketl: Double,
+val tan: Double,
+val td: Double,
+val tl1: Double,
+val tl2: Double,
+val tw5: Double,
+val vanmax: Double,
+val vomax: Double,
+val vomin: Double,
+val vsmax: Double,
+val vsmin: Double,
+val vtc: Double,
+val vtlmt: Double,
+val vtm: Double,
+val vtn: Double,
+val _val: Double
 )
 extends
     Element
@@ -193,36 +138,20 @@ extends
 /**
  * The class represents IEEE Type DEC2A model for the discontinuous excitation control.
  * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
+ * @param sup Reference to the superclass object.
+ * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).
+ * @param td2 Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).
+ * @param vdmax Limiter (<i>V</i><i><sub>DMAX</sub></i>).
+ * @param vdmin Limiter (<i>V</i><i><sub>DMIN</sub></i>).
+ * @param vk Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
  */
 case class DiscExcContIEEEDEC2A
-(
-
-    override val sup: DiscontinuousExcitationControlDynamics,
-
-    /**
-     * Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).
-     */
-    val td1: Double,
-
-    /**
-     * Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).
-     */
-    val td2: Double,
-
-    /**
-     * Limiter (<i>V</i><i><sub>DMAX</sub></i>).
-     */
-    val vdmax: Double,
-
-    /**
-     * Limiter (<i>V</i><i><sub>DMIN</sub></i>).
-     */
-    val vdmin: Double,
-
-    /**
-     * Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
-     */
-    val vk: Double
+(override val sup: DiscontinuousExcitationControlDynamics,
+val td1: Double,
+val td2: Double,
+val vdmax: Double,
+val vdmin: Double,
+val vk: Double
 )
 extends
     Element
@@ -266,21 +195,14 @@ extends
 /**
  * The class represents IEEE Type DEC3A model.
  * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
+ * @param sup Reference to the superclass object.
+ * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>).
+ * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
  */
 case class DiscExcContIEEEDEC3A
-(
-
-    override val sup: DiscontinuousExcitationControlDynamics,
-
-    /**
-     * Reset time delay (<i>T</i><i><sub>DR</sub></i>).
-     */
-    val tdr: Double,
-
-    /**
-     * Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
-     */
-    val vtmin: Double
+(override val sup: DiscontinuousExcitationControlDynamics,
+val tdr: Double,
+val vtmin: Double
 )
 extends
     Element
@@ -317,21 +239,14 @@ extends
 
 /**
  * Discontinuous excitation control function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model</font>.
+ * @param sup Reference to the superclass object.
+ * @param ExcitationSystemDynamics Excitation system model with which this discontinuous excitation control model is associated.
+ * @param RemoteInputSignal Remote input signal used by this discontinuous excitation control system model.
  */
 case class DiscontinuousExcitationControlDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Excitation system model with which this discontinuous excitation control model is associated.
-     */
-    val ExcitationSystemDynamics: String,
-
-    /**
-     * Remote input signal used by this discontinuous excitation control system model.
-     */
-    val RemoteInputSignal: String
+(override val sup: DynamicsFunctionBlock,
+val ExcitationSystemDynamics: String,
+val RemoteInputSignal: String
 )
 extends
     Element

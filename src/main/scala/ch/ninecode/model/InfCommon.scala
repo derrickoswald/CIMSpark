@@ -10,21 +10,14 @@ import ch.ninecode.cim.Context
 
 /**
  * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
+ * @param sup Reference to the superclass object.
+ * @param bic Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
+ * @param iban International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
  */
 case class Bank
-(
-
-    override val sup: OrganisationRole,
-
-    /**
-     * Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
-     */
-    val bic: String,
-
-    /**
-     * International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
-     */
-    val iban: String
+(override val sup: OrganisationRole,
+val bic: String,
+val iban: String
 )
 extends
     Element
@@ -61,26 +54,16 @@ extends
 
 /**
  * Bank account.
+ * @param sup Reference to the superclass object.
+ * @param accountNumber Account reference number.
+ * @param Bank Bank that provides this BankAccount.
+ * @param ServiceSupplier ServiceSupplier that is owner of this BankAccount.
  */
 case class BankAccount
-(
-
-    override val sup: Document,
-
-    /**
-     * Account reference number.
-     */
-    val accountNumber: String,
-
-    /**
-     * Bank that provides this BankAccount.
-     */
-    val Bank: String,
-
-    /**
-     * ServiceSupplier that is owner of this BankAccount.
-     */
-    val ServiceSupplier: String
+(override val sup: Document,
+val accountNumber: String,
+val Bank: String,
+val ServiceSupplier: String
 )
 extends
     Element
@@ -120,11 +103,10 @@ extends
 /**
  * A BusinessPlan is an organized sequence of predetermined actions required to complete a future organizational objective.
  * It is a type of document that typically references a schedule, physical and/or logical resources (assets and/or PowerSystemResources), locations, etc.
+ * @param sup Reference to the superclass object.
  */
 case class BusinessPlan
-(
-
-    override val sup: Document
+(override val sup: Document
 )
 extends
     Element
@@ -158,18 +140,14 @@ extends
 /**
  * A business role that this organisation plays.
  * A single organisation typically performs many functions, each one described as a role.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param typ Classification by utility's corporate standards and practices.
  */
 case class BusinessRole
-(
-
-    override val sup: OrganisationRole,
-
-    val status: String,
-
-    /**
-     * Classification by utility's corporate standards and practices.
-     */
-    val typ: String
+(override val sup: OrganisationRole,
+val status: String,
+val typ: String
 )
 extends
     Element
@@ -207,20 +185,16 @@ extends
 /**
  * Craft of a person or a crew.
  * Examples include overhead electric, underground electric, high pressure gas, etc. This ensures necessary knowledge and skills before being allowed to perform certain types of work.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param typ Classification by utility's work mangement standards and practices.
+ * @param ErpPersons
  */
 case class Craft
-(
-
-    override val sup: IdentifiedObject,
-
-    val status: String,
-
-    /**
-     * Classification by utility's work mangement standards and practices.
-     */
-    val typ: String,
-
-    val ErpPersons: List[String]
+(override val sup: IdentifiedObject,
+val status: String,
+val typ: String,
+val ErpPersons: List[String]
 )
 extends
     Element
@@ -259,11 +233,10 @@ extends
 
 /**
  * Role an organisation plays with respect to documents.
+ * @param sup Reference to the superclass object.
  */
 case class DocumentOrganisationRole
-(
-
-    override val sup: OrganisationRole
+(override val sup: OrganisationRole
 )
 extends
     Element
@@ -296,27 +269,20 @@ extends
 
 /**
  * A crew is a group of people with specific skills, tools, and vehicles.
+ * @param sup Reference to the superclass object.
+ * @param typ Classification by utility's work management standards and practices.
+ * @param Assignments All Assignments for this Crew.
+ * @param Locations
+ * @param Route
+ * @param ShiftPatterns
  */
 case class OldCrew
-(
-
-    override val sup: Crew,
-
-    /**
-     * Classification by utility's work management standards and practices.
-     */
-    val typ: String,
-
-    /**
-     * All Assignments for this Crew.
-     */
-    val Assignments: List[String],
-
-    val Locations: List[String],
-
-    val Route: String,
-
-    val ShiftPatterns: List[String]
+(override val sup: Crew,
+val typ: String,
+val Assignments: List[String],
+val Locations: List[String],
+val Route: String,
+val ShiftPatterns: List[String]
 )
 extends
     Element
@@ -359,27 +325,23 @@ extends
 
 /**
  * General purpose information for name and other information to contact people.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param typ Utility-specific classification for this person, according to the utility's corporate standards and practices.
+ *        Examples include employee, contractor, agent, not affiliated, etc.
+ * @param CustomerData
+ * @param ErpCompetency
+ * @param ErpPersonnel
+ * @param LaborItems
  */
 case class OldPerson
-(
-
-    override val sup: Person,
-
-    val status: String,
-
-    /**
-     * Utility-specific classification for this person, according to the utility's corporate standards and practices.
-     * Examples include employee, contractor, agent, not affiliated, etc.
-     */
-    val typ: String,
-
-    val CustomerData: String,
-
-    val ErpCompetency: String,
-
-    val ErpPersonnel: String,
-
-    val LaborItems: List[String]
+(override val sup: Person,
+val status: String,
+val typ: String,
+val CustomerData: String,
+val ErpCompetency: String,
+val ErpPersonnel: String,
+val LaborItems: List[String]
 )
 extends
     Element
@@ -425,16 +387,12 @@ extends
 /**
  * Roles played between Organisations and other Organisations.
  * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
+ * @param sup Reference to the superclass object.
+ * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
  */
 case class OrgOrgRole
-(
-
-    override val sup: OrganisationRole,
-
-    /**
-     * Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
-     */
-    val clientID: String
+(override val sup: OrganisationRole,
+val clientID: String
 )
 extends
     Element
@@ -469,13 +427,12 @@ extends
 
 /**
  * Roles played between Persons and Documents.
+ * @param sup Reference to the superclass object.
+ * @param Person
  */
 case class PersonDocumentRole
-(
-
-    override val sup: Role,
-
-    val Person: String
+(override val sup: Role,
+val Person: String
 )
 extends
     Element
@@ -510,18 +467,14 @@ extends
 
 /**
  * Role an organisation plays with respect to persons.
+ * @param sup Reference to the superclass object.
+ * @param clientID Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
+ * @param ErpPerson
  */
 case class PersonOrganisationRole
-(
-
-    override val sup: OrganisationRole,
-
-    /**
-     * Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
-     */
-    val clientID: String,
-
-    val ErpPerson: String
+(override val sup: OrganisationRole,
+val clientID: String,
+val ErpPerson: String
 )
 extends
     Element
@@ -559,15 +512,14 @@ extends
 /**
  * The role of a person relative to a given piece of property.
  * Examples of roles include: owner, renter, contractor, etc.
+ * @param sup Reference to the superclass object.
+ * @param LandProperty
+ * @param Person
  */
 case class PersonPropertyRole
-(
-
-    override val sup: Role,
-
-    val LandProperty: String,
-
-    val Person: String
+(override val sup: Role,
+val LandProperty: String,
+val Person: String
 )
 extends
     Element
@@ -604,11 +556,10 @@ extends
 
 /**
  * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
+ * @param sup Reference to the superclass object.
  */
 case class PropertyOrganisationRole
-(
-
-    override val sup: OrganisationRole
+(override val sup: OrganisationRole
 )
 extends
     Element
@@ -641,21 +592,14 @@ extends
 
 /**
  * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
+ * @param sup Reference to the superclass object.
+ * @param denominator The part of a fraction that is below the line and that functions as the divisor of the numerator.
+ * @param numerator The part of a fraction that is above the line and signifies the number to be divided by the denominator.
  */
 case class Ratio
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The part of a fraction that is below the line and that functions as the divisor of the numerator.
-     */
-    val denominator: Double,
-
-    /**
-     * The part of a fraction that is above the line and signifies the number to be divided by the denominator.
-     */
-    val numerator: Double
+(override val sup: BasicElement,
+val denominator: Double,
+val numerator: Double
 )
 extends
     Element
@@ -692,18 +636,14 @@ extends
 
 /**
  * Enumeration of potential roles that might be played by one object relative to another.
+ * @param sup Reference to the superclass object.
+ * @param status
+ * @param typ Type of role.
  */
 case class Role
-(
-
-    override val sup: IdentifiedObject,
-
-    val status: String,
-
-    /**
-     * Type of role.
-     */
-    val typ: String
+(override val sup: IdentifiedObject,
+val status: String,
+val typ: String
 )
 extends
     Element
@@ -740,32 +680,22 @@ extends
 
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
+ * @param sup Reference to the superclass object.
+ * @param certificationPeriod Interval between the certification and its expiry.
+ * @param effectiveDateTime Date and time the skill became effective.
+ * @param level Level of skill for a Craft.
+ * @param Crafts
+ * @param ErpPerson
+ * @param QualificationRequirements
  */
 case class Skill
-(
-
-    override val sup: Document,
-
-    /**
-     * Interval between the certification and its expiry.
-     */
-    val certificationPeriod: String,
-
-    /**
-     * Date and time the skill became effective.
-     */
-    val effectiveDateTime: String,
-
-    /**
-     * Level of skill for a Craft.
-     */
-    val level: String,
-
-    val Crafts: List[String],
-
-    val ErpPerson: String,
-
-    val QualificationRequirements: List[String]
+(override val sup: Document,
+val certificationPeriod: String,
+val effectiveDateTime: String,
+val level: String,
+val Crafts: List[String],
+val ErpPerson: String,
+val QualificationRequirements: List[String]
 )
 extends
     Element
@@ -810,19 +740,18 @@ extends
 
 /**
  * Kind of skill level.
+ * @param sup Reference to the superclass object.
+ * @param apprentice
+ * @param master
+ * @param other
+ * @param standard
  */
 case class SkillLevelKind
-(
-
-    override val sup: BasicElement,
-
-    val apprentice: String,
-
-    val master: String,
-
-    val other: String,
-
-    val standard: String
+(override val sup: BasicElement,
+val apprentice: String,
+val master: String,
+val other: String,
+val standard: String
 )
 extends
     Element

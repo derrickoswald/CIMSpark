@@ -11,31 +11,18 @@ import ch.ninecode.cim.Context
 
 /**
  * This class provides the resistive and reactive components of compensation for the generator associated with the IEEE Type 2 voltage compensator for current flow out of one of the other generators in the interconnection.
+ * @param sup Reference to the superclass object.
+ * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
+ * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
+ * @param SynchronousMachineDynamics Standard synchronous machine out of which current flow is being compensated for.
+ * @param VcompIEEEType2 The standard IEEE Type 2 voltage compensator of this compensation.
  */
 case class GenICompensationForGenJ
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
-     */
-    val rcij: Double,
-
-    /**
-     * <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
-     */
-    val xcij: Double,
-
-    /**
-     * Standard synchronous machine out of which current flow is being compensated for.
-     */
-    val SynchronousMachineDynamics: String,
-
-    /**
-     * The standard IEEE Type 2 voltage compensator of this compensation.
-     */
-    val VcompIEEEType2: String
+(override val sup: IdentifiedObject,
+val rcij: Double,
+val xcij: Double,
+val SynchronousMachineDynamics: String,
+val VcompIEEEType2: String
 )
 extends
     Element
@@ -77,26 +64,16 @@ extends
 /**
  * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
  * This model is common to all excitation system models described in the IEEE Standard. </font>
+ * @param sup Reference to the superclass object.
+ * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (Rc).</font>
+ * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
+ * @param xc <font color="#0f0f0f">Reactive component of compensation of a generator (Xc).</font>
  */
 case class VCompIEEEType1
-(
-
-    override val sup: VoltageCompensatorDynamics,
-
-    /**
-     * <font color="#0f0f0f">Resistive component of compensation of a generator (Rc).</font>
-     */
-    val rc: Double,
-
-    /**
-     * <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
-     */
-    val tr: Double,
-
-    /**
-     * <font color="#0f0f0f">Reactive component of compensation of a generator (Xc).</font>
-     */
-    val xc: Double
+(override val sup: VoltageCompensatorDynamics,
+val rc: Double,
+val tr: Double,
+val xc: Double
 )
 extends
     Element
@@ -136,16 +113,12 @@ extends
 /**
  * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
  * This model is designed to cover the following types of compensation: </font>
+ * @param sup Reference to the superclass object.
+ * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
  */
 case class VCompIEEEType2
-(
-
-    override val sup: VoltageCompensatorDynamics,
-
-    /**
-     * <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
-     */
-    val tr: Double
+(override val sup: VoltageCompensatorDynamics,
+val tr: Double
 )
 extends
     Element
@@ -180,21 +153,14 @@ extends
 
 /**
  * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param ExcitationSystemDynamics Excitation system model with which this voltage compensator is associated.
+ * @param RemoteInputSignal Remote input signal used by this voltage compensator model.
  */
 case class VoltageCompensatorDynamics
-(
-
-    override val sup: DynamicsFunctionBlock,
-
-    /**
-     * Excitation system model with which this voltage compensator is associated.
-     */
-    val ExcitationSystemDynamics: String,
-
-    /**
-     * Remote input signal used by this voltage compensator model.
-     */
-    val RemoteInputSignal: String
+(override val sup: DynamicsFunctionBlock,
+val ExcitationSystemDynamics: String,
+val RemoteInputSignal: String
 )
 extends
     Element

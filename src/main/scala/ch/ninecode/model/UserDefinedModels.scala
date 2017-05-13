@@ -13,18 +13,14 @@ import ch.ninecode.cim.Context
 
 /**
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class AsynchronousMachineUserDefined
-(
-
-    override val sup: AsynchronousMachineDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: AsynchronousMachineDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -59,18 +55,14 @@ extends
 
 /**
  * Discontinuous excitation control function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class DiscontinuousExcitationControlUserDefined
-(
-
-    override val sup: DiscontinuousExcitationControlDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: DiscontinuousExcitationControlDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -105,18 +97,14 @@ extends
 
 /**
  * Excitation system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class ExcitationSystemUserDefined
-(
-
-    override val sup: ExcitationSystemDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: ExcitationSystemDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -151,18 +139,14 @@ extends
 
 /**
  * Load whose dynamic behaviour is described by a user-defined model.
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class LoadUserDefined
-(
-
-    override val sup: LoadDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: LoadDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -197,18 +181,14 @@ extends
 
 /**
  * Mechanical load function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class MechanicalLoadUserDefined
-(
-
-    override val sup: MechanicalLoadDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: MechanicalLoadDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -243,18 +223,14 @@ extends
 
 /**
  * Overexcitation limiter system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class OverexcitationLimiterUserDefined
-(
-
-    override val sup: OverexcitationLimiterDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: OverexcitationLimiterDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -289,18 +265,14 @@ extends
 
 /**
  * Power Factor or VAr controller Type I function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PFVArControllerType1UserDefined
-(
-
-    override val sup: PFVArControllerType1Dynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: PFVArControllerType1Dynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -335,18 +307,14 @@ extends
 
 /**
  * Power Factor or VAr controller Type II function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PFVArControllerType2UserDefined
-(
-
-    override val sup: PFVArControllerType2Dynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: PFVArControllerType2Dynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -381,18 +349,14 @@ extends
 
 /**
  * <font color="#0f0f0f">Power system stabilizer</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PowerSystemStabilizerUserDefined
-(
-
-    override val sup: PowerSystemStabilizerDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: PowerSystemStabilizerDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -428,124 +392,57 @@ extends
 /**
  * Supports definition of one or more parameters of several different datatypes for use by proprietary user-defined models.
  * NOTE: This class does not inherit from IdentifiedObject since it is not intended that a single instance of it be referenced by more than one proprietary user-defined model instance.
+ * @param sup Reference to the superclass object.
+ * @param booleanParameterValue Used for boolean parameter value.
+ *        If this attribute is populated, integerParameterValue and floatParameterValue will not be.
+ * @param floatParameterValue Used for floating point parameter value.
+ *        If this attribute is populated, booleanParameterValue and integerParameterValue will not be.
+ * @param integerParameterValue Used for integer parameter value.
+ *        If this attribute is populated, booleanParameterValue and floatParameterValue will not be.
+ * @param parameterNumber Sequence number of the parameter among the set of parameters associated with the related proprietary user-defined model.
+ * @param AsynchronousMachineUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param DiscontinuousExcitationControlUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param ExcitationSystemUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param LoadUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param MechanicalLoadUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param OverexcitationLimiterUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param PFVArControllerType1UserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param PFVArControllerType2UserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param PowerSystemStabilizerUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param SynchronousMachineUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param TurbineGovernorUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param TurbineLoadControllerUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param UnderexcitationLimiterUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param VoltageAdjusterUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param VoltageCompensatorUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param WindPlantUserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param WindType1or2UserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param WindType3or4UserDefined Proprietary user-defined model with which this parameter is associated.
  */
 case class ProprietaryParameterDynamics
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Used for boolean parameter value.
-     * If this attribute is populated, integerParameterValue and floatParameterValue will not be.
-     */
-    val booleanParameterValue: Boolean,
-
-    /**
-     * Used for floating point parameter value.
-     * If this attribute is populated, booleanParameterValue and integerParameterValue will not be.
-     */
-    val floatParameterValue: Double,
-
-    /**
-     * Used for integer parameter value.
-     * If this attribute is populated, booleanParameterValue and floatParameterValue will not be.
-     */
-    val integerParameterValue: Int,
-
-    /**
-     * Sequence number of the parameter among the set of parameters associated with the related proprietary user-defined model.
-     */
-    val parameterNumber: Int,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val AsynchronousMachineUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val DiscontinuousExcitationControlUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val ExcitationSystemUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val LoadUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val MechanicalLoadUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val OverexcitationLimiterUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val PFVArControllerType1UserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val PFVArControllerType2UserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val PowerSystemStabilizerUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val SynchronousMachineUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val TurbineGovernorUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val TurbineLoadControllerUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val UnderexcitationLimiterUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val VoltageAdjusterUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val VoltageCompensatorUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val WindPlantUserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val WindType1or2UserDefined: String,
-
-    /**
-     * Proprietary user-defined model with which this parameter is associated.
-     */
-    val WindType3or4UserDefined: String
+(override val sup: BasicElement,
+val booleanParameterValue: Boolean,
+val floatParameterValue: Double,
+val integerParameterValue: Int,
+val parameterNumber: Int,
+val AsynchronousMachineUserDefined: String,
+val DiscontinuousExcitationControlUserDefined: String,
+val ExcitationSystemUserDefined: String,
+val LoadUserDefined: String,
+val MechanicalLoadUserDefined: String,
+val OverexcitationLimiterUserDefined: String,
+val PFVArControllerType1UserDefined: String,
+val PFVArControllerType2UserDefined: String,
+val PowerSystemStabilizerUserDefined: String,
+val SynchronousMachineUserDefined: String,
+val TurbineGovernorUserDefined: String,
+val TurbineLoadControllerUserDefined: String,
+val UnderexcitationLimiterUserDefined: String,
+val VoltageAdjusterUserDefined: String,
+val VoltageCompensatorUserDefined: String,
+val WindPlantUserDefined: String,
+val WindType1or2UserDefined: String,
+val WindType3or4UserDefined: String
 )
 extends
     Element
@@ -622,18 +519,14 @@ extends
 
 /**
  * Synchronous machine whose dynamic behaviour is described by a user-defined model.
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class SynchronousMachineUserDefined
-(
-
-    override val sup: SynchronousMachineDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: SynchronousMachineDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -668,18 +561,14 @@ extends
 
 /**
  * Turbine-governor function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class TurbineGovernorUserDefined
-(
-
-    override val sup: TurbineGovernorDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: TurbineGovernorDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -714,18 +603,14 @@ extends
 
 /**
  * Turbine load controller function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class TurbineLoadControllerUserDefined
-(
-
-    override val sup: TurbineLoadControllerDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: TurbineLoadControllerDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -760,18 +645,14 @@ extends
 
 /**
  * Underexcitation limiter function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class UnderexcitationLimiterUserDefined
-(
-
-    override val sup: UnderexcitationLimiterDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: UnderexcitationLimiterDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -806,18 +687,14 @@ extends
 
 /**
  * <font color="#0f0f0f">Voltage adjuster</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class VoltageAdjusterUserDefined
-(
-
-    override val sup: VoltageAdjusterDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: VoltageAdjusterDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -852,18 +729,14 @@ extends
 
 /**
  * Voltage compensator function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class VoltageCompensatorUserDefined
-(
-
-    override val sup: VoltageCompensatorDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: VoltageCompensatorDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -898,18 +771,14 @@ extends
 
 /**
  * Wind plant function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindPlantUserDefined
-(
-
-    override val sup: WindPlantDynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: WindPlantDynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -944,18 +813,14 @@ extends
 
 /**
  * Wind Type 1 or Type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindType1or2UserDefined
-(
-
-    override val sup: WindTurbineType1or2Dynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: WindTurbineType1or2Dynamics,
+val proprietary: Boolean
 )
 extends
     Element
@@ -990,18 +855,14 @@ extends
 
 /**
  * Wind Type 3 or Type 4 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
+ * @param sup Reference to the superclass object.
+ * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindType3or4UserDefined
-(
-
-    override val sup: WindTurbineType3or4Dynamics,
-
-    /**
-     * Behaviour is based on proprietary model as opposed to detailed model.
-    true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
-     * false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
-     */
-    val proprietary: Boolean
+(override val sup: WindTurbineType3or4Dynamics,
+val proprietary: Boolean
 )
 extends
     Element

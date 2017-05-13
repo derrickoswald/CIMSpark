@@ -11,11 +11,10 @@ import ch.ninecode.cim.Context
 
 /**
  * This is a environmental based limit dependency model for calculating operational limits.
+ * @param sup Reference to the superclass object.
  */
 case class EnvironmentalDependentLimit
-(
-
-    override val sup: LimitDependency
+(override val sup: LimitDependency
 )
 extends
     Element
@@ -48,17 +47,13 @@ extends
 
 /**
  * This represents one instance of an equipment that contributes to the calculation of an operational limit.
+ * @param sup Reference to the superclass object.
+ * @param Equipment Equipment contributing toward the series limit.
+ *        The reference here is to Equipment rather than a specific limit on the equipment so the grouiping can be reused for multiple limits of different types on the same instance of equipment.
  */
 case class EquipmentLimitSeriesComponent
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Equipment contributing toward the series limit.
-     * The reference here is to Equipment rather than a specific limit on the equipment so the grouiping can be reused for multiple limits of different types on the same instance of equipment.
-     */
-    val Equipment: String
+(override val sup: IdentifiedObject,
+val Equipment: String
 )
 extends
     Element
@@ -94,16 +89,12 @@ extends
 /**
  * A limit calculation model used to compute an operational limit based on external input such as temperature.
  * These are intended to be shared among operational limits with the same calculation form that apply to a piece of equipment..
+ * @param sup Reference to the superclass object.
+ * @param Equipment The equipment for which this limit dependency model is organized under.
  */
 case class LimitDependency
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The equipment for which this limit dependency model is organized under.
-     */
-    val Equipment: String
+(override val sup: IdentifiedObject,
+val Equipment: String
 )
 extends
     Element
@@ -138,18 +129,14 @@ extends
 
 /**
  * Specifies an operational  limit is calculated by scaling another operational limit.
+ * @param sup Reference to the superclass object.
+ * @param limitScalingPercent The associated source limit is scaled by this value to compute the limit of the dependency model.
+ * @param SourceOperationalLimit
  */
 case class LimitScalingLimit
-(
-
-    override val sup: LimitDependency,
-
-    /**
-     * The associated source limit is scaled by this value to compute the limit of the dependency model.
-     */
-    val limitScalingPercent: Double,
-
-    val SourceOperationalLimit: String
+(override val sup: LimitDependency,
+val limitScalingPercent: Double,
+val SourceOperationalLimit: String
 )
 extends
     Element
@@ -187,21 +174,17 @@ extends
 /**
  * One operational limit type scales values of another operational limit type when under the same operational limit set.
  * This applies to any operational limit assigned to the target operational limit type and without other limit dependency models.
+ * @param sup Reference to the superclass object.
+ * @param scalingPercent The percentage scaling of the source limit to compute the target limit.
+ *        Applys to operational limits within an operaitonal limit set when both source and target operational limit types exist.
+ * @param SourceOperationalLimitType
+ * @param TargetOperationalLimit
  */
 case class OperatonalLimitTypeScaling
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The percentage scaling of the source limit to compute the target limit.
-     * Applys to operational limits within an operaitonal limit set when both source and target operational limit types exist.
-     */
-    val scalingPercent: Double,
-
-    val SourceOperationalLimitType: String,
-
-    val TargetOperationalLimit: String
+(override val sup: BasicElement,
+val scalingPercent: Double,
+val SourceOperationalLimitType: String,
+val TargetOperationalLimit: String
 )
 extends
     Element
@@ -239,11 +222,8 @@ extends
 }
 
 case class ScheduledActivePowerLimitValue
-(
-
-    override val sup: ScheduledLimitValue,
-
-    val value: Double
+(override val sup: ScheduledLimitValue,
+val value: Double
 )
 extends
     Element
@@ -278,16 +258,12 @@ extends
 
 /**
  * A time scheduled value for apparent power limit.
+ * @param sup Reference to the superclass object.
+ * @param value The apparent power limit value for the scheduled time.
  */
 case class ScheduledApparentPowerLimitValue
-(
-
-    override val sup: ScheduledLimitValue,
-
-    /**
-     * The apparent power limit value for the scheduled time.
-     */
-    val value: Double
+(override val sup: ScheduledLimitValue,
+val value: Double
 )
 extends
     Element
@@ -322,16 +298,12 @@ extends
 
 /**
  * A current limit that is scheduled.
+ * @param sup Reference to the superclass object.
+ * @param value The current flow limit value applicable at the scheduled time.
  */
 case class ScheduledCurrentLimitValue
-(
-
-    override val sup: ScheduledLimitValue,
-
-    /**
-     * The current flow limit value applicable at the scheduled time.
-     */
-    val value: Double
+(override val sup: ScheduledLimitValue,
+val value: Double
 )
 extends
     Element
@@ -365,9 +337,7 @@ extends
 }
 
 case class ScheduledLimitDependency
-(
-
-    override val sup: LimitDependency
+(override val sup: LimitDependency
 )
 extends
     Element
@@ -400,17 +370,13 @@ extends
 
 /**
  * A limit that is applicable during a scheduled time period.
+ * @param sup Reference to the superclass object.
+ * @param Season The season for which the scheduled limits applies.
+ *        If not specified, then applicable ot any season.
  */
 case class ScheduledLimitValue
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The season for which the scheduled limits applies.
-     * If not specified, then applicable ot any season.
-     */
-    val Season: String
+(override val sup: IdentifiedObject,
+val Season: String
 )
 extends
     Element
@@ -445,16 +411,12 @@ extends
 
 /**
  * A voltage limit value for a scheduled time.
+ * @param sup Reference to the superclass object.
+ * @param value The voltage limit value for the scheduled time.
  */
 case class ScheduledVoltageLimitValue
-(
-
-    override val sup: ScheduledLimitValue,
-
-    /**
-     * The voltage limit value for the scheduled time.
-     */
-    val value: Double
+(override val sup: ScheduledLimitValue,
+val value: Double
 )
 extends
     Element
@@ -490,11 +452,10 @@ extends
 /**
  * Limit based on most restrictive series equipment limit.
  * A specification of  of equipment that determines the calculated operational limit values based upon other equipment and their ratings.  The most restrictive limit connected in series within the group is used.   The physical connection based on switch status for example may also impact which elements in the group are considered. Any equipment in the group that are presently connected in series with the equipment of the directly associated operational limit are used.   This provides a means to indicate which potentially series equipment limits are considered for a computed operational limit. The operational limit of the same operational limit type is assumed to be used from the grouped equipment.   It is also possible to make assumptions or calculations regarding how flow might split if the equipment is not simply in series.
+ * @param sup Reference to the superclass object.
  */
 case class SeriesEquipmentDependentLimit
-(
-
-    override val sup: LimitDependency
+(override val sup: LimitDependency
 )
 extends
     Element
@@ -527,21 +488,14 @@ extends
 
 /**
  * A point on a table of limit verses temperature.
+ * @param sup Reference to the superclass object.
+ * @param limitPercent The scaling of the operational limit in percent.
+ * @param temperature The temperature of the table point.
  */
 case class TemperatureDependentLimitPoint
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The scaling of the operational limit in percent.
-     */
-    val limitPercent: Double,
-
-    /**
-     * The temperature of the table point.
-     */
-    val temperature: Double
+(override val sup: BasicElement,
+val limitPercent: Double,
+val temperature: Double
 )
 extends
     Element
@@ -578,11 +532,10 @@ extends
 
 /**
  * This is a table lookup that provides limit values corresponding to a temperature input.
+ * @param sup Reference to the superclass object.
  */
 case class TemperatureDependentLimitTable
-(
-
-    override val sup: EnvironmentalDependentLimit
+(override val sup: EnvironmentalDependentLimit
 )
 extends
     Element
@@ -615,36 +568,20 @@ extends
 
 /**
  * This describes the coefficients of a polynomial function that has temperature as input and calculates limit values as output.
+ * @param sup Reference to the superclass object.
+ * @param coefficient0 The polinomial coefficent of power 0.
+ * @param coefficient1 The polinomial coefficent of power 1.
+ * @param coefficient2 The polinomial coefficent of power 2.
+ * @param coefficient3 The polinomial coefficent of power 3.
+ * @param coefficient4 The polinomial coefficent of power 4.
  */
 case class TemperaturePolynomialLimit
-(
-
-    override val sup: EnvironmentalDependentLimit,
-
-    /**
-     * The polinomial coefficent of power 0.
-     */
-    val coefficient0: Double,
-
-    /**
-     * The polinomial coefficent of power 1.
-     */
-    val coefficient1: Double,
-
-    /**
-     * The polinomial coefficent of power 2.
-     */
-    val coefficient2: Double,
-
-    /**
-     * The polinomial coefficent of power 3.
-     */
-    val coefficient3: Double,
-
-    /**
-     * The polinomial coefficent of power 4.
-     */
-    val coefficient4: Double
+(override val sup: EnvironmentalDependentLimit,
+val coefficient0: Double,
+val coefficient1: Double,
+val coefficient2: Double,
+val coefficient3: Double,
+val coefficient4: Double
 )
 extends
     Element
@@ -687,11 +624,10 @@ extends
 
 /**
  * This represents a source of ambient temperature.
+ * @param sup Reference to the superclass object.
  */
 case class WeatherStation
-(
-
-    override val sup: PowerSystemResource
+(override val sup: PowerSystemResource
 )
 extends
     Element

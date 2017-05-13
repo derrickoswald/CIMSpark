@@ -10,20 +10,16 @@ import ch.ninecode.cim.Context
 
 /**
  * The Area Control Error tariff type that is applied or used.
+ * @param sup Reference to the superclass object.
+ * @param typ The coded type of an ACE tariff.
+ * @param MarketDocument
+ * @param Unit
  */
 case class AceTariffType
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The coded type of an ACE tariff.
-     */
-    val typ: String,
-
-    val MarketDocument: List[String],
-
-    val Unit: List[String]
+(override val sup: BasicElement,
+val typ: String,
+val MarketDocument: List[String],
+val Unit: List[String]
 )
 extends
     Element
@@ -62,28 +58,18 @@ extends
 
 /**
  * A class used to provide information about an attribute.
+ * @param sup Reference to the superclass object.
+ * @param attribute The identification of the formal name of an attribute.
+ * @param attributeValue The instance value of the attribute.
+ * @param position A sequential value representing a relative sequence number.
+ * @param TimeSeries
  */
 case class AttributeInstanceComponent
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The identification of the formal name of an attribute.
-     */
-    val attribute: String,
-
-    /**
-     * The instance value of the attribute.
-     */
-    val attributeValue: String,
-
-    /**
-     * A sequential value representing a relative sequence number.
-     */
-    val position: Int,
-
-    val TimeSeries: List[String]
+(override val sup: BasicElement,
+val attribute: String,
+val attributeValue: String,
+val position: Int,
+val TimeSeries: List[String]
 )
 extends
     Element
@@ -124,43 +110,24 @@ extends
 
 /**
  * A class providing the identification and type of an auction.
+ * @param sup Reference to the superclass object.
+ * @param allocationMode Identification of the method of allocation in an auction.
+ * @param cancelled An indicator that signifies that the auction has been cancelled.
+ * @param category The product category of an auction.
+ * @param paymentTerms The terms which dictate the determination of the bid payment price.
+ * @param rights The rights of use the transmission capacity acquired in an auction.
+ * @param typ The kind of the Auction (e.g. implicit, explicit ...).
+ * @param TimeSeries
  */
 case class Auction
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Identification of the method of allocation in an auction.
-     */
-    val allocationMode: String,
-
-    /**
-     * An indicator that signifies that the auction has been cancelled.
-     */
-    val cancelled: String,
-
-    /**
-     * The product category of an auction.
-     */
-    val category: String,
-
-    /**
-     * The terms which dictate the determination of the bid payment price.
-     */
-    val paymentTerms: String,
-
-    /**
-     * The rights of use the transmission capacity acquired in an auction.
-     */
-    val rights: String,
-
-    /**
-     * The kind of the Auction (e.g. implicit, explicit ...).
-     */
-    val typ: String,
-
-    val TimeSeries: List[String]
+(override val sup: IdentifiedObject,
+val allocationMode: String,
+val cancelled: String,
+val category: String,
+val paymentTerms: String,
+val rights: String,
+val typ: String,
+val TimeSeries: List[String]
 )
 extends
     Element
@@ -207,42 +174,23 @@ extends
 
 /**
  * The formal specification of specific characteristics related to a bid.
+ * @param sup Reference to the superclass object.
+ * @param blockBid Indication that  the values in the period are considered as a whole.
+ *        They cannot be changed or subdivided.
+ * @param direction The coded identification of the energy flow.
+ * @param divisible An indication whether or not each element of the bid may be partially accepted or not.
+ * @param linkedBidsIdentification Unique identification associated with all linked bids.
+ * @param minimumActivationQuantity The minimum quantity of energy that can be activated at a given time interval.
+ * @param stepIncrementQuantity The minimum increment that can be applied for an increase in an activation request.
  */
 case class BidTimeSeries
-(
-
-    override val sup: TimeSeries,
-
-    /**
-     * Indication that  the values in the period are considered as a whole.
-     * They cannot be changed or subdivided.
-     */
-    val blockBid: String,
-
-    /**
-     * The coded identification of the energy flow.
-     */
-    val direction: String,
-
-    /**
-     * An indication whether or not each element of the bid may be partially accepted or not.
-     */
-    val divisible: String,
-
-    /**
-     * Unique identification associated with all linked bids.
-     */
-    val linkedBidsIdentification: String,
-
-    /**
-     * The minimum quantity of energy that can be activated at a given time interval.
-     */
-    val minimumActivationQuantity: Double,
-
-    /**
-     * The minimum increment that can be applied for an increase in an activation request.
-     */
-    val stepIncrementQuantity: Double
+(override val sup: TimeSeries,
+val blockBid: String,
+val direction: String,
+val divisible: String,
+val linkedBidsIdentification: String,
+val minimumActivationQuantity: Double,
+val stepIncrementQuantity: Double
 )
 extends
     Element
@@ -287,21 +235,14 @@ extends
 
 /**
  * The date and or the time.
+ * @param sup Reference to the superclass object.
+ * @param date Date as "yyyy-mm-dd", which conforms with ISO 8601
+ * @param time Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
  */
 case class DateAndOrTime
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Date as "yyyy-mm-dd", which conforms with ISO 8601
-     */
-    val date: String,
-
-    /**
-     * Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
-     */
-    val time: String
+(override val sup: BasicElement,
+val date: String,
+val time: String
 )
 extends
     Element
@@ -338,11 +279,10 @@ extends
 
 /**
  * An area of activity defined within the energy market.
+ * @param sup Reference to the superclass object.
  */
 case class Domain
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -375,16 +315,12 @@ extends
 
 /**
  * The coded identification of the direction of energy flow.
+ * @param sup Reference to the superclass object.
+ * @param direction The coded identification of the direction of energy flow.
  */
 case class FlowDirection
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The coded identification of the direction of energy flow.
-     */
-    val direction: String
+(override val sup: BasicElement,
+val direction: String
 )
 extends
     Element
@@ -419,11 +355,10 @@ extends
 
 /**
  * An identification  or eventually the contents of an agreement between two or more parties.
+ * @param sup Reference to the superclass object.
  */
 case class MarketAgreement
-(
-
-    override val sup: MarketDocument
+(override val sup: MarketDocument
 )
 extends
     Element
@@ -456,19 +391,18 @@ extends
 
 /**
  * Electronic document containing the information necessary to satisfy a given business process set of requirements.
+ * @param sup Reference to the superclass object.
+ * @param selfMarketDocument
+ * @param AttributeInstanceComponent
+ * @param Domain
+ * @param Period
  */
 case class MarketDocument
-(
-
-    override val sup: Document,
-
-    val selfMarketDocument: List[String],
-
-    val AttributeInstanceComponent: List[String],
-
-    val Domain: List[String],
-
-    val Period: List[String]
+(override val sup: Document,
+val selfMarketDocument: List[String],
+val AttributeInstanceComponent: List[String],
+val Domain: List[String],
+val Period: List[String]
 )
 extends
     Element
@@ -509,11 +443,10 @@ extends
 
 /**
  * The identification of an entity where energy products are measured or computed.
+ * @param sup Reference to the superclass object.
  */
 case class MarketEvaluationPoint
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -546,18 +479,14 @@ extends
 
 /**
  * The condition or position of an object with regard to its standing.
+ * @param sup Reference to the superclass object.
+ * @param status The coded condition or position of an object with regard to its standing.
+ * @param TimeSeries
  */
 case class MarketObjectStatus
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The coded condition or position of an object with regard to its standing.
-     */
-    val status: String,
-
-    val TimeSeries: List[String]
+(override val sup: BasicElement,
+val status: String,
+val TimeSeries: List[String]
 )
 extends
     Element
@@ -594,18 +523,14 @@ extends
 
 /**
  * The type of a power system resource.
+ * @param sup Reference to the superclass object.
+ * @param psrType The coded type of a power system resource.
+ * @param TimeSeries
  */
 case class MktPSRType
-(
-
-    override val sup: PSRType,
-
-    /**
-     * The coded type of a power system resource.
-     */
-    val psrType: String,
-
-    val TimeSeries: List[String]
+(override val sup: PSRType,
+val psrType: String,
+val TimeSeries: List[String]
 )
 extends
     Element
@@ -642,23 +567,16 @@ extends
 
 /**
  * An identification of a time interval that may have a given resolution.
+ * @param sup Reference to the superclass object.
+ * @param resolution The number of units of time that compose an individual step within a period.
+ * @param timeInterval The start and end date and time for a given interval.
+ * @param Reason
  */
 case class Period
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The number of units of time that compose an individual step within a period.
-     */
-    val resolution: String,
-
-    /**
-     * The start and end date and time for a given interval.
-     */
-    val timeInterval: String,
-
-    val Reason: List[String]
+(override val sup: BasicElement,
+val resolution: String,
+val timeInterval: String,
+val Reason: List[String]
 )
 extends
     Element
@@ -697,38 +615,25 @@ extends
 
 /**
  * An identification of a set of values beeing adressed within a specific interval of time.
+ * @param sup Reference to the superclass object.
+ * @param position A sequential value representing the relative position within a given time interval.
+ * @param quality The quality of the information being provided.
+ *        This quality may be estimated, not available, as provided, etc.
+ * @param quantity Principal quantity identified for a point.
+ * @param secondaryQuantity Secondary quantity identified for a point.
+ * @param AceTariffType
+ * @param Period
+ * @param TimeSeries
  */
 case class Point
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * A sequential value representing the relative position within a given time interval.
-     */
-    val position: Int,
-
-    /**
-     * The quality of the information being provided.
-     * This quality may be estimated, not available, as provided, etc.
-     */
-    val quality: String,
-
-    /**
-     * Principal quantity identified for a point.
-     */
-    val quantity: Double,
-
-    /**
-     * Secondary quantity identified for a point.
-     */
-    val secondaryQuantity: Double,
-
-    val AceTariffType: List[String],
-
-    val Period: String,
-
-    val TimeSeries: List[String]
+(override val sup: BasicElement,
+val position: Int,
+val quality: String,
+val quantity: Double,
+val secondaryQuantity: Double,
+val AceTariffType: List[String],
+val Period: String,
+val TimeSeries: List[String]
 )
 extends
     Element
@@ -775,29 +680,19 @@ extends
 
 /**
  * The cost corresponding to a specific measure and expressed in a currency.
+ * @param sup Reference to the superclass object.
+ * @param amount A number of monetary units specified in a unit of currency.
+ * @param category The category of a price to be used in a price calculation.
+ *        The price category is mutually agreed between System Operators.
+ * @param direction The direction indicates whether a System Operator pays the Market Parties or inverse.
+ * @param Point
  */
 case class Price
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * A number of monetary units specified in a unit of currency.
-     */
-    val amount: Double,
-
-    /**
-     * The category of a price to be used in a price calculation.
-     * The price category is mutually agreed between System Operators.
-     */
-    val category: String,
-
-    /**
-     * The direction indicates whether a System Operator pays the Market Parties or inverse.
-     */
-    val direction: String,
-
-    val Point: String
+(override val sup: BasicElement,
+val amount: Double,
+val category: String,
+val direction: String,
+val Point: String
 )
 extends
     Element
@@ -838,24 +733,17 @@ extends
 
 /**
  * The formal specification of a set of business transactions having the same business goal.
+ * @param sup Reference to the superclass object.
+ * @param classificationType The classification mechanism used to group a set of objects together within a business process.
+ *        The grouping may be of a detailed or a summary nature.
+ * @param processType The kind of business process.
+ * @param MarketDocument
  */
 case class Process
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The classification mechanism used to group a set of objects together within a business process.
-     * The grouping may be of a detailed or a summary nature.
-     */
-    val classificationType: String,
-
-    /**
-     * The kind of business process.
-     */
-    val processType: String,
-
-    val MarketDocument: List[String]
+(override val sup: IdentifiedObject,
+val classificationType: String,
+val processType: String,
+val MarketDocument: List[String]
 )
 extends
     Element
@@ -894,25 +782,18 @@ extends
 
 /**
  * The motivation of an act.
+ * @param sup Reference to the superclass object.
+ * @param code The motivation of an act in coded form.
+ * @param text The textual explanation corresponding to the reason code.
+ * @param MarketDocument
+ * @param Point
  */
 case class Reason
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The motivation of an act in coded form.
-     */
-    val code: String,
-
-    /**
-     * The textual explanation corresponding to the reason code.
-     */
-    val text: String,
-
-    val MarketDocument: List[String],
-
-    val Point: List[String]
+(override val sup: BasicElement,
+val code: String,
+val text: String,
+val MarketDocument: List[String],
+val Point: List[String]
 )
 extends
     Element
@@ -953,57 +834,38 @@ extends
 
 /**
  * A set of regular time-ordered measurements or values of quantitative nature of an individual or collective phenomenon taken at successive, in most cases equidistant, periods / points of time.
+ * @param sup Reference to the superclass object.
+ * @param businessType The identification of the nature of the time series.
+ * @param cancelledTS An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.
+ * @param curveType The coded representation of the type of curve being described.
+ * @param objectAggregation Identification of the object that is the common dominator used to aggregate a time series.
+ * @param product The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.
+ * @param version Version of the time series.
+ * @param DateAndOrTime
+ * @param Domain
+ * @param FlowDirection
+ * @param MarketDocument
+ * @param MarketEvaluationPoint
+ * @param MarketParticipant
+ * @param Period
+ * @param Reason
  */
 case class TimeSeries
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The identification of the nature of the time series.
-     */
-    val businessType: String,
-
-    /**
-     * An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.
-     */
-    val cancelledTS: String,
-
-    /**
-     * The coded representation of the type of curve being described.
-     */
-    val curveType: String,
-
-    /**
-     * Identification of the object that is the common dominator used to aggregate a time series.
-     */
-    val objectAggregation: String,
-
-    /**
-     * The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.
-     */
-    val product: String,
-
-    /**
-     * Version of the time series.
-     */
-    val version: String,
-
-    val DateAndOrTime: List[String],
-
-    val Domain: List[String],
-
-    val FlowDirection: List[String],
-
-    val MarketDocument: List[String],
-
-    val MarketEvaluationPoint: List[String],
-
-    val MarketParticipant: List[String],
-
-    val Period: List[String],
-
-    val Reason: List[String]
+(override val sup: IdentifiedObject,
+val businessType: String,
+val cancelledTS: String,
+val curveType: String,
+val objectAggregation: String,
+val product: String,
+val version: String,
+val DateAndOrTime: List[String],
+val Domain: List[String],
+val FlowDirection: List[String],
+val MarketDocument: List[String],
+val MarketEvaluationPoint: List[String],
+val MarketParticipant: List[String],
+val Period: List[String],
+val Reason: List[String]
 )
 extends
     Element
@@ -1064,18 +926,14 @@ extends
 
 /**
  * The identification of the unit name for the time series quantities.
+ * @param sup Reference to the superclass object.
+ * @param name The coded representation of the unit.
+ * @param TimeSeries
  */
 case class Unit_
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The coded representation of the unit.
-     */
-    val name: String,
-
-    val TimeSeries: List[String]
+(override val sup: BasicElement,
+val name: String,
+val TimeSeries: List[String]
 )
 extends
     Element

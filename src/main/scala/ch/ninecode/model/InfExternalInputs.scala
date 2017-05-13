@@ -7,20 +7,16 @@ import ch.ninecode.cim.Context
 
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
+ * @param sup Reference to the superclass object.
+ * @param MarketProduct Market product associated with reserve requirement must be a reserve or regulation product.
+ * @param ReserveReqCurve
+ * @param SensitivityPriceCurve
  */
 case class ReserveReq
-(
-
-    override val sup: ResourceGroupReq,
-
-    /**
-     * Market product associated with reserve requirement must be a reserve or regulation product.
-     */
-    val MarketProduct: String,
-
-    val ReserveReqCurve: String,
-
-    val SensitivityPriceCurve: String
+(override val sup: ResourceGroupReq,
+val MarketProduct: String,
+val ReserveReqCurve: String,
+val SensitivityPriceCurve: String
 )
 extends
     Element
@@ -60,13 +56,12 @@ extends
 /**
  * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
  * The  curve can be based on "absolute" time or on "normalized' time.
+ * @param sup Reference to the superclass object.
+ * @param ReserveReq
  */
 case class ReserveReqCurve
-(
-
-    override val sup: Curve,
-
-    val ReserveReq: String
+(override val sup: Curve,
+val ReserveReq: String
 )
 extends
     Element
@@ -101,21 +96,14 @@ extends
 
 /**
  * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
+ * @param sup Reference to the superclass object.
+ * @param status Status of this group.
+ * @param typ Type of this group.
  */
 case class ResourceGroup
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Status of this group.
-     */
-    val status: String,
-
-    /**
-     * Type of this group.
-     */
-    val typ: String
+(override val sup: IdentifiedObject,
+val status: String,
+val typ: String
 )
 extends
     Element
@@ -152,15 +140,14 @@ extends
 
 /**
  * Ancillary service requirements for a market.
+ * @param sup Reference to the superclass object.
+ * @param RTOs
+ * @param ResourceGroup
  */
 case class ResourceGroupReq
-(
-
-    override val sup: IdentifiedObject,
-
-    val RTOs: List[String],
-
-    val ResourceGroup: String
+(override val sup: IdentifiedObject,
+val RTOs: List[String],
+val ResourceGroup: String
 )
 extends
     Element
@@ -198,13 +185,12 @@ extends
 /**
  * Optionally, this curve expresses elasticity of the associated requirement.
  * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of $1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
+ * @param sup Reference to the superclass object.
+ * @param ReserveReq
  */
 case class SensitivityPriceCurve
-(
-
-    override val sup: Curve,
-
-    val ReserveReq: String
+(override val sup: Curve,
+val ReserveReq: String
 )
 extends
     Element

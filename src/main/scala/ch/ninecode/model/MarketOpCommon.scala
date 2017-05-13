@@ -11,57 +11,29 @@ import ch.ninecode.cim.Context
 /**
  * A roll up of invoice line items.
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
+ * @param sup Reference to the superclass object.
+ * @param amount Total amount due on this invoice based on line items and applicable adjustments.
+ * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
+ * @param dueDate Calculated date upon which the Invoice amount is due.
+ * @param kind Kind of invoice (default is 'sales').
+ * @param mailedDate Date on which the customer billing statement/invoice was printed/mailed.
+ * @param proForma True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
+ *        EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
+ * @param referenceNumber Number of an invoice to be reference by this invoice.
+ * @param transactionDateTime Date and time when the invoice is issued.
+ * @param transferType Type of invoice transfer.
  */
 case class MarketInvoice
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Total amount due on this invoice based on line items and applicable adjustments.
-     */
-    val amount: Double,
-
-    /**
-     * Kind of media by which the CustomerBillingInfo was delivered.
-     */
-    val billMediaKind: String,
-
-    /**
-     * Calculated date upon which the Invoice amount is due.
-     */
-    val dueDate: String,
-
-    /**
-     * Kind of invoice (default is 'sales').
-     */
-    val kind: String,
-
-    /**
-     * Date on which the customer billing statement/invoice was printed/mailed.
-     */
-    val mailedDate: String,
-
-    /**
-     * True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
-     * EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
-     */
-    val proForma: Boolean,
-
-    /**
-     * Number of an invoice to be reference by this invoice.
-     */
-    val referenceNumber: String,
-
-    /**
-     * Date and time when the invoice is issued.
-     */
-    val transactionDateTime: String,
-
-    /**
-     * Type of invoice transfer.
-     */
-    val transferType: String
+(override val sup: BasicElement,
+val amount: Double,
+val billMediaKind: String,
+val dueDate: String,
+val kind: String,
+val mailedDate: String,
+val proForma: Boolean,
+val referenceNumber: String,
+val transactionDateTime: String,
+val transferType: String
 )
 extends
     Element
@@ -112,62 +84,34 @@ extends
 
 /**
  * An individual line item on an invoice.
+ * @param sup Reference to the superclass object.
+ * @param billPeriod Bill period for the line item.
+ * @param glAccount General Ledger account code, shall be a valid combination.
+ * @param glDateTime Date and time line item will be posted to the General Ledger.
+ * @param kind Kind of line item.
+ * @param lineAmount Amount due for this line item.
+ * @param lineNumber Line item number on invoice statement.
+ * @param lineVersion Version number of the bill run.
+ * @param netAmount Net line item charge amount.
+ * @param previousAmount Previous line item charge amount.
+ * @param ContainerMarketInvoiceLineItem
+ * @param MarketInvoice
+ * @param Settlement
  */
 case class MarketInvoiceLineItem
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Bill period for the line item.
-     */
-    val billPeriod: String,
-
-    /**
-     * General Ledger account code, shall be a valid combination.
-     */
-    val glAccount: String,
-
-    /**
-     * Date and time line item will be posted to the General Ledger.
-     */
-    val glDateTime: String,
-
-    /**
-     * Kind of line item.
-     */
-    val kind: String,
-
-    /**
-     * Amount due for this line item.
-     */
-    val lineAmount: Double,
-
-    /**
-     * Line item number on invoice statement.
-     */
-    val lineNumber: String,
-
-    /**
-     * Version number of the bill run.
-     */
-    val lineVersion: String,
-
-    /**
-     * Net line item charge amount.
-     */
-    val netAmount: Double,
-
-    /**
-     * Previous line item charge amount.
-     */
-    val previousAmount: Double,
-
-    val ContainerMarketInvoiceLineItem: String,
-
-    val MarketInvoice: String,
-
-    val Settlement: List[String]
+(override val sup: BasicElement,
+val billPeriod: String,
+val glAccount: String,
+val glDateTime: String,
+val kind: String,
+val lineAmount: Double,
+val lineNumber: String,
+val lineVersion: String,
+val netAmount: Double,
+val previousAmount: Double,
+val ContainerMarketInvoiceLineItem: String,
+val MarketInvoice: String,
+val Settlement: List[String]
 )
 extends
     Element
@@ -225,11 +169,10 @@ extends
 /**
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
+ * @param sup Reference to the superclass object.
  */
 case class MarketLedger
-(
-
-    override val sup: BasicElement
+(override val sup: BasicElement
 )
 extends
     Element
@@ -262,45 +205,26 @@ extends
 
 /**
  * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
+ * @param sup Reference to the superclass object.
+ * @param accountID Account identifier for this entry.
+ * @param accountKind Kind of account for this entry.
+ * @param amount The amount of the debit or credit for this account.
+ * @param postedDateTime Date and time this entry was posted to the ledger.
+ * @param status Status of ledger entry.
+ * @param transactionDateTime Date and time journal entry was recorded.
+ * @param MarketLedger
+ * @param Settlement
  */
 case class MarketLedgerEntry
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Account identifier for this entry.
-     */
-    val accountID: String,
-
-    /**
-     * Kind of account for this entry.
-     */
-    val accountKind: String,
-
-    /**
-     * The amount of the debit or credit for this account.
-     */
-    val amount: Double,
-
-    /**
-     * Date and time this entry was posted to the ledger.
-     */
-    val postedDateTime: String,
-
-    /**
-     * Status of ledger entry.
-     */
-    val status: String,
-
-    /**
-     * Date and time journal entry was recorded.
-     */
-    val transactionDateTime: String,
-
-    val MarketLedger: String,
-
-    val Settlement: List[String]
+(override val sup: BasicElement,
+val accountID: String,
+val accountKind: String,
+val amount: Double,
+val postedDateTime: String,
+val status: String,
+val transactionDateTime: String,
+val MarketLedger: String,
+val Settlement: List[String]
 )
 extends
     Element
@@ -349,11 +273,10 @@ extends
 
 /**
  * Subclass of IEC61968: Common:ActivityRecord
+ * @param sup Reference to the superclass object.
  */
 case class MktActivityRecord
-(
-
-    override val sup: ActivityRecord
+(override val sup: ActivityRecord
 )
 extends
     Element
@@ -386,27 +309,20 @@ extends
 
 /**
  * Subclass of IEC61970:Topology:ConnectivityNode
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate end effective date
+ * @param startEffectiveDate start effective date
+ * @param IndividualPnode
+ * @param RTO
+ * @param SysLoadDistribuFactor
  */
 case class MktConnectivityNode
-(
-
-    override val sup: ConnectivityNode,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val IndividualPnode: String,
-
-    val RTO: String,
-
-    val SysLoadDistribuFactor: String
+(override val sup: ConnectivityNode,
+val endEffectiveDate: String,
+val startEffectiveDate: String,
+val IndividualPnode: String,
+val RTO: String,
+val SysLoadDistribuFactor: String
 )
 extends
     Element
@@ -449,13 +365,12 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:EnergyConsumer
+ * @param sup Reference to the superclass object.
+ * @param RegisteredLoad
  */
 case class MktEnergyConsumer
-(
-
-    override val sup: EnergyConsumer,
-
-    val RegisteredLoad: String
+(override val sup: EnergyConsumer,
+val RegisteredLoad: String
 )
 extends
     Element
@@ -490,13 +405,12 @@ extends
 
 /**
  * Subclass of IEC61970:Production:GeneratingUnit
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class MktGeneratingUnit
-(
-
-    override val sup: GeneratingUnit,
-
-    val RegisteredGenerator: String
+(override val sup: GeneratingUnit,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -531,13 +445,12 @@ extends
 
 /**
  * Subclass for IEC61970:Wires:Line
+ * @param sup Reference to the superclass object.
+ * @param TransmissionRightOfWay
  */
 case class MktLine
-(
-
-    override val sup: Line,
-
-    val TransmissionRightOfWay: String
+(override val sup: Line,
+val TransmissionRightOfWay: String
 )
 extends
     Element
@@ -572,11 +485,10 @@ extends
 
 /**
  * Subclass of IEC61970:LoadModel: LoadArea
+ * @param sup Reference to the superclass object.
  */
 case class MktLoadArea
-(
-
-    override val sup: LoadArea
+(override val sup: LoadArea
 )
 extends
     Element
@@ -609,23 +521,16 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:Measurement
+ * @param sup Reference to the superclass object.
+ * @param ByTiePoint A measurement is made on the B side of a tie point
+ * @param ForTiePoint A measurement is made on the A side of a tie point
+ * @param Pnode
  */
 case class MktMeasurement
-(
-
-    override val sup: Measurement,
-
-    /**
-     * A measurement is made on the B side of a tie point
-     */
-    val ByTiePoint: String,
-
-    /**
-     * A measurement is made on the A side of a tie point
-     */
-    val ForTiePoint: String,
-
-    val Pnode: String
+(override val sup: Measurement,
+val ByTiePoint: String,
+val ForTiePoint: String,
+val Pnode: String
 )
 extends
     Element
@@ -664,48 +569,26 @@ extends
 
 /**
  * Subclass of IEC61968:Core2:TopLevel:Organisation
+ * @param sup Reference to the superclass object.
+ * @param creditFlag Flag to indicate creditworthiness (Y, N)
+ * @param creditStartEffectiveDate Date that the organisation becomes creditworthy.
+ * @param endEffectiveDate end effective date
+ * @param lastModified Indication of the last time this Organization information was modified.
+ * @param organisationID Organisation (internal) ID
+ * @param qualificationStatus Organisation qualification status, Qualified, Not Qualified, or Disqualified
+ * @param startEffectiveDate start effective date
+ * @param MarketPerson
  */
 case class MktOrganisation
-(
-
-    override val sup: Organisation,
-
-    /**
-     * Flag to indicate creditworthiness (Y, N)
-     */
-    val creditFlag: String,
-
-    /**
-     * Date that the organisation becomes creditworthy.
-     */
-    val creditStartEffectiveDate: String,
-
-    /**
-     * end effective date
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * Indication of the last time this Organization information was modified.
-     */
-    val lastModified: String,
-
-    /**
-     * Organisation (internal) ID
-     */
-    val organisationID: Int,
-
-    /**
-     * Organisation qualification status, Qualified, Not Qualified, or Disqualified
-     */
-    val qualificationStatus: String,
-
-    /**
-     * start effective date
-     */
-    val startEffectiveDate: String,
-
-    val MarketPerson: List[String]
+(override val sup: Organisation,
+val creditFlag: String,
+val creditStartEffectiveDate: String,
+val endEffectiveDate: String,
+val lastModified: String,
+val organisationID: Int,
+val qualificationStatus: String,
+val startEffectiveDate: String,
+val MarketPerson: List[String]
 )
 extends
     Element
@@ -754,15 +637,14 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:PowerTransformer
+ * @param sup Reference to the superclass object.
+ * @param EndAFlow
+ * @param EndBFlow
  */
 case class MktPowerTransformer
-(
-
-    override val sup: PowerTransformer,
-
-    val EndAFlow: String,
-
-    val EndBFlow: String
+(override val sup: PowerTransformer,
+val EndAFlow: String,
+val EndBFlow: String
 )
 extends
     Element
@@ -799,23 +681,16 @@ extends
 
 /**
  * Subclass of IEC61970:Core:Terminal
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate This is the end date/time of the element eligibility for the flowgate.
+ * @param startEffectiveDate This is the begin date/time of the element eligibility for the flowgate.
+ * @param Flowgate
  */
 case class MktTerminal
-(
-
-    override val sup: Terminal,
-
-    /**
-     * This is the end date/time of the element eligibility for the flowgate.
-     */
-    val endEffectiveDate: String,
-
-    /**
-     * This is the begin date/time of the element eligibility for the flowgate.
-     */
-    val startEffectiveDate: String,
-
-    val Flowgate: String
+(override val sup: Terminal,
+val endEffectiveDate: String,
+val startEffectiveDate: String,
+val Flowgate: String
 )
 extends
     Element
@@ -854,11 +729,10 @@ extends
 
 /**
  * Subclass of IEC61968:Domain2:UserAttribute
+ * @param sup Reference to the superclass object.
  */
 case class MktUserAttribute
-(
-
-    override val sup: UserAttribute
+(override val sup: UserAttribute
 )
 extends
     Element

@@ -11,21 +11,14 @@ import ch.ninecode.cim.Context
 
 /**
  * Interval between two dates.
+ * @param sup Reference to the superclass object.
+ * @param end End date of this interval.
+ * @param start Start date of this interval.
  */
 case class DateInterval
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * End date of this interval.
-     */
-    val end: String,
-
-    /**
-     * Start date of this interval.
-     */
-    val start: String
+(override val sup: BasicElement,
+val end: String,
+val start: String
 )
 extends
     Element
@@ -62,21 +55,14 @@ extends
 
 /**
  * Interval between two date and time points.
+ * @param sup Reference to the superclass object.
+ * @param end End date and time of this interval.
+ * @param start Start date and time of this interval.
  */
 case class DateTimeInterval
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * End date and time of this interval.
-     */
-    val end: String,
-
-    /**
-     * Start date and time of this interval.
-     */
-    val start: String
+(override val sup: BasicElement,
+val end: String,
+val start: String
 )
 extends
     Element
@@ -112,20 +98,11 @@ extends
 }
 
 case class DecimalQuantity
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Quantity with decimal value and associated unit or currency information.
-     */
-    val currency: String,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: Double
+(override val sup: BasicElement,
+val currency: String,
+val multiplier: String,
+val unit: String,
+val value: Double
 )
 extends
     Element
@@ -166,17 +143,16 @@ extends
 
 /**
  * Quantity with float value and associated unit information.
+ * @param sup Reference to the superclass object.
+ * @param multiplier
+ * @param unit
+ * @param value
  */
 case class FloatQuantity
-(
-
-    override val sup: BasicElement,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: Double
+(override val sup: BasicElement,
+val multiplier: String,
+val unit: String,
+val value: Double
 )
 extends
     Element
@@ -215,17 +191,16 @@ extends
 
 /**
  * Quantity with integer value and associated unit information.
+ * @param sup Reference to the superclass object.
+ * @param multiplier
+ * @param unit
+ * @param value
  */
 case class IntegerQuantity
-(
-
-    override val sup: BasicElement,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: Int
+(override val sup: BasicElement,
+val multiplier: String,
+val unit: String,
+val value: Int
 )
 extends
     Element
@@ -264,21 +239,14 @@ extends
 
 /**
  * Interval between two times specified as mont and date.
+ * @param sup Reference to the superclass object.
+ * @param end End time of this interval.
+ * @param start Start time of this interval.
  */
 case class MonthDayInterval
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * End time of this interval.
-     */
-    val end: String,
-
-    /**
-     * Start time of this interval.
-     */
-    val start: String
+(override val sup: BasicElement,
+val end: String,
+val start: String
 )
 extends
     Element
@@ -315,17 +283,16 @@ extends
 
 /**
  * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
+ * @param sup Reference to the superclass object.
+ * @param multiplier
+ * @param unit
+ * @param value
  */
 case class StringQuantity
-(
-
-    override val sup: BasicElement,
-
-    val multiplier: String,
-
-    val unit: String,
-
-    val value: String
+(override val sup: BasicElement,
+val multiplier: String,
+val unit: String,
+val value: String
 )
 extends
     Element
@@ -364,21 +331,14 @@ extends
 
 /**
  * Interval between two times.
+ * @param sup Reference to the superclass object.
+ * @param end End time of this interval.
+ * @param start Start time of this interval.
  */
 case class TimeInterval
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * End time of this interval.
-     */
-    val end: String,
-
-    /**
-     * Start time of this interval.
-     */
-    val start: String
+(override val sup: BasicElement,
+val end: String,
+val start: String
 )
 extends
     Element

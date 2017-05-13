@@ -12,41 +12,22 @@ import ch.ninecode.cim.Context
 /**
  * The diagram being exchanged.
  * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
+ * @param sup Reference to the superclass object.
+ * @param orientation Coordinate system orientation of the diagram.
+ * @param x1InitialView X coordinate of the first corner of the initial view.
+ * @param x2InitialView X coordinate of the second corner of the initial view.
+ * @param y1InitialView Y coordinate of the first corner of the initial view.
+ * @param y2InitialView Y coordinate of the second corner of the initial view.
+ * @param DiagramStyle A Diagram may have a DiagramStyle.
  */
 case class Diagram
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Coordinate system orientation of the diagram.
-     */
-    val orientation: String,
-
-    /**
-     * X coordinate of the first corner of the initial view.
-     */
-    val x1InitialView: Double,
-
-    /**
-     * X coordinate of the second corner of the initial view.
-     */
-    val x2InitialView: Double,
-
-    /**
-     * Y coordinate of the first corner of the initial view.
-     */
-    val y1InitialView: Double,
-
-    /**
-     * Y coordinate of the second corner of the initial view.
-     */
-    val y2InitialView: Double,
-
-    /**
-     * A Diagram may have a DiagramStyle.
-     */
-    val DiagramStyle: String
+(override val sup: IdentifiedObject,
+val orientation: String,
+val x1InitialView: Double,
+val x2InitialView: Double,
+val y1InitialView: Double,
+val y2InitialView: Double,
+val DiagramStyle: String
 )
 extends
     Element
@@ -92,61 +73,33 @@ extends
 /**
  * An object that defines one or more points in a given space.
  * This object can be associated with anything that specializes IdentifiedObject. For single line diagrams such objects typically include such items as analog values, breakers, disconnectors, power transformers, and transmission lines.
+ * @param sup Reference to the superclass object.
+ * @param drawingOrder The drawing order of this element.
+ *        The higher the number, the later the element is drawn in sequence. This is used to ensure that elements that overlap are rendered in the correct order.
+ * @param isPolygon Defines whether or not the diagram objects points define the boundaries of a polygon or the routing of a polyline.
+ *        If this value is true then a receiving application should consider the first and last points to be connected.
+ * @param offsetX The offset in the X direction.
+ *        This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
+ * @param offsetY The offset in the Y direction.
+ *        This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
+ * @param rotation Sets the angle of rotation of the diagram object.
+ *        Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.
+ * @param Diagram A diagram object is part of a diagram.
+ * @param DiagramObjectStyle A diagram object has a style associated that provides a reference for the style used in the originating system.
+ * @param IdentifiedObject_attr The domain object to which this diagram object is associated.
+ * @param VisibilityLayers A diagram object can be part of multiple visibility layers.
  */
 case class DiagramObject
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The drawing order of this element.
-     * The higher the number, the later the element is drawn in sequence. This is used to ensure that elements that overlap are rendered in the correct order.
-     */
-    val drawingOrder: Int,
-
-    /**
-     * Defines whether or not the diagram objects points define the boundaries of a polygon or the routing of a polyline.
-     * If this value is true then a receiving application should consider the first and last points to be connected.
-     */
-    val isPolygon: Boolean,
-
-    /**
-     * The offset in the X direction.
-     * This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
-     */
-    val offsetX: Double,
-
-    /**
-     * The offset in the Y direction.
-     * This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
-     */
-    val offsetY: Double,
-
-    /**
-     * Sets the angle of rotation of the diagram object.
-     * Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.
-     */
-    val rotation: Double,
-
-    /**
-     * A diagram object is part of a diagram.
-     */
-    val Diagram: String,
-
-    /**
-     * A diagram object has a style associated that provides a reference for the style used in the originating system.
-     */
-    val DiagramObjectStyle: String,
-
-    /**
-     * The domain object to which this diagram object is associated.
-     */
-    val IdentifiedObject_attr: String,
-
-    /**
-     * A diagram object can be part of multiple visibility layers.
-     */
-    val VisibilityLayers: List[String]
+(override val sup: IdentifiedObject,
+val drawingOrder: Int,
+val isPolygon: Boolean,
+val offsetX: Double,
+val offsetY: Double,
+val rotation: Double,
+val Diagram: String,
+val DiagramObjectStyle: String,
+val IdentifiedObject_attr: String,
+val VisibilityLayers: List[String]
 )
 extends
     Element
@@ -197,11 +150,10 @@ extends
 
 /**
  * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
+ * @param sup Reference to the superclass object.
  */
 case class DiagramObjectGluePoint
-(
-
-    override val sup: BasicElement
+(override val sup: BasicElement
 )
 extends
     Element
@@ -235,41 +187,22 @@ extends
 /**
  * A point in a given space defined by 3 coordinates and associated to a diagram object.
  * The coordinates may be positive or negative as the origin does not have to be in the corner of a diagram.
+ * @param sup Reference to the superclass object.
+ * @param sequenceNumber The sequence position of the point, used for defining the order of points for diagram objects acting as a polyline or polygon with more than one point.
+ * @param xPosition The X coordinate of this point.
+ * @param yPosition The Y coordinate of this point.
+ * @param zPosition The Z coordinate of this point.
+ * @param DiagramObject The diagram object with which the points are associated.
+ * @param DiagramObjectGluePoint The 'glue' point to which this point is associated.
  */
 case class DiagramObjectPoint
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The sequence position of the point, used for defining the order of points for diagram objects acting as a polyline or polygon with more than one point.
-     */
-    val sequenceNumber: Int,
-
-    /**
-     * The X coordinate of this point.
-     */
-    val xPosition: Double,
-
-    /**
-     * The Y coordinate of this point.
-     */
-    val yPosition: Double,
-
-    /**
-     * The Z coordinate of this point.
-     */
-    val zPosition: Double,
-
-    /**
-     * The diagram object with which the points are associated.
-     */
-    val DiagramObject: String,
-
-    /**
-     * The 'glue' point to which this point is associated.
-     */
-    val DiagramObjectGluePoint: String
+(override val sup: BasicElement,
+val sequenceNumber: Int,
+val xPosition: Double,
+val yPosition: Double,
+val zPosition: Double,
+val DiagramObject: String,
+val DiagramObjectGluePoint: String
 )
 extends
     Element
@@ -315,11 +248,10 @@ extends
 /**
  * A reference to a style used by the originating system for a diagram object.
  * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
+ * @param sup Reference to the superclass object.
  */
 case class DiagramObjectStyle
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -353,11 +285,10 @@ extends
 /**
  * The diagram style refer to a style used by the originating system for a diagram.
  * A diagram style describes information such as schematic, geographic, bus-branch etc.
+ * @param sup Reference to the superclass object.
  */
 case class DiagramStyle
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -390,23 +321,16 @@ extends
 
 /**
  * The orientation of the coordinate system with respect to top, left, and the coordinate number system.
+ * @param sup Reference to the superclass object.
+ * @param negative For 2D diagrams, a negative orientation gives the left-hand orientation (favoured by computer graphics displays) with X values increasing from left to right and Y values increasing from top to bottom.
+ *        This is also known as a left hand orientation.
+ * @param positive For 2D diagrams, a positive orientation will result in X values increasing from left to right and Y values increasing from bottom to top.
+ *        This is also known as a right hand orientation.
  */
 case class OrientationKind
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * For 2D diagrams, a negative orientation gives the left-hand orientation (favoured by computer graphics displays) with X values increasing from left to right and Y values increasing from top to bottom.
-     * This is also known as a left hand orientation.
-     */
-    val negative: String,
-
-    /**
-     * For 2D diagrams, a positive orientation will result in X values increasing from left to right and Y values increasing from bottom to top.
-     * This is also known as a right hand orientation.
-     */
-    val positive: String
+(override val sup: BasicElement,
+val negative: String,
+val positive: String
 )
 extends
     Element
@@ -443,16 +367,12 @@ extends
 
 /**
  * A diagram object for placing free-text or text derived from an associated domain object.
+ * @param sup Reference to the superclass object.
+ * @param text The text that is displayed by this text diagram object.
  */
 case class TextDiagramObject
-(
-
-    override val sup: DiagramObject,
-
-    /**
-     * The text that is displayed by this text diagram object.
-     */
-    val text: String
+(override val sup: DiagramObject,
+val text: String
 )
 extends
     Element
@@ -488,17 +408,13 @@ extends
 /**
  * Layers are typically used for grouping diagram objects according to themes and scales.
  * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
+ * @param sup Reference to the superclass object.
+ * @param drawingOrder The drawing order for this layer.
+ *        The higher the number, the later the layer and the objects within it are rendered.
  */
 case class VisibilityLayer
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The drawing order for this layer.
-     * The higher the number, the later the layer and the objects within it are rendered.
-     */
-    val drawingOrder: Int
+(override val sup: IdentifiedObject,
+val drawingOrder: Int
 )
 extends
     Element

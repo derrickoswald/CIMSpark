@@ -10,22 +10,15 @@ import ch.ninecode.cim.Context
 
 /**
  * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
+ * @param sup Reference to the superclass object.
+ * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
+ *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
+ * @param LimitSets A measurement may have zero or more limit ranges defined for it.
  */
 case class Accumulator
-(
-
-    override val sup: Measurement,
-
-    /**
-     * Normal value range maximum for any of the MeasurementValue.values.
-     * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-     */
-    val maxValue: Int,
-
-    /**
-     * A measurement may have zero or more limit ranges defined for it.
-     */
-    val LimitSets: List[String]
+(override val sup: Measurement,
+val maxValue: Int,
+val LimitSets: List[String]
 )
 extends
     Element
@@ -62,22 +55,15 @@ extends
 
 /**
  * Limit values for Accumulator measurements.
+ * @param sup Reference to the superclass object.
+ * @param value The value to supervise against.
+ *        The value is positive.
+ * @param LimitSet The set of limits.
  */
 case class AccumulatorLimit
-(
-
-    override val sup: Limit,
-
-    /**
-     * The value to supervise against.
-     * The value is positive.
-     */
-    val value: Int,
-
-    /**
-     * The set of limits.
-     */
-    val LimitSet: String
+(override val sup: Limit,
+val value: Int,
+val LimitSet: String
 )
 extends
     Element
@@ -114,11 +100,10 @@ extends
 
 /**
  * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
+ * @param sup Reference to the superclass object.
  */
 case class AccumulatorLimitSet
-(
-
-    override val sup: LimitSet
+(override val sup: LimitSet
 )
 extends
     Element
@@ -151,16 +136,12 @@ extends
 
 /**
  * This command reset the counter value to zero.
+ * @param sup Reference to the superclass object.
+ * @param AccumulatorValue The accumulator value that is reset by the command.
  */
 case class AccumulatorReset
-(
-
-    override val sup: Control,
-
-    /**
-     * The accumulator value that is reset by the command.
-     */
-    val AccumulatorValue: String
+(override val sup: Control,
+val AccumulatorValue: String
 )
 extends
     Element
@@ -195,27 +176,17 @@ extends
 
 /**
  * AccumulatorValue represents an accumulated (counted) MeasurementValue.
+ * @param sup Reference to the superclass object.
+ * @param value The value to supervise.
+ *        The value is positive.
+ * @param Accumulator Measurement to which this value is connected.
+ * @param AccumulatorReset The command that reset the accumulator value.
  */
 case class AccumulatorValue
-(
-
-    override val sup: MeasurementValue,
-
-    /**
-     * The value to supervise.
-     * The value is positive.
-     */
-    val value: Int,
-
-    /**
-     * Measurement to which this value is connected.
-     */
-    val Accumulator: String,
-
-    /**
-     * The command that reset the accumulator value.
-     */
-    val AccumulatorReset: String
+(override val sup: MeasurementValue,
+val value: Int,
+val Accumulator: String,
+val AccumulatorReset: String
 )
 extends
     Element
@@ -254,38 +225,22 @@ extends
 
 /**
  * Analog represents an analog Measurement.
+ * @param sup Reference to the superclass object.
+ * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
+ *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
+ * @param minValue Normal value range minimum for any of the MeasurementValue.values.
+ *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
+ * @param normalValue Normal measurement value, e.g., used for percentage calculations.
+ * @param positiveFlowIn If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource.
+ * @param LimitSets A measurement may have zero or more limit ranges defined for it.
  */
 case class Analog
-(
-
-    override val sup: Measurement,
-
-    /**
-     * Normal value range maximum for any of the MeasurementValue.values.
-     * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-     */
-    val maxValue: Double,
-
-    /**
-     * Normal value range minimum for any of the MeasurementValue.values.
-     * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-     */
-    val minValue: Double,
-
-    /**
-     * Normal measurement value, e.g., used for percentage calculations.
-     */
-    val normalValue: Double,
-
-    /**
-     * If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource.
-     */
-    val positiveFlowIn: Boolean,
-
-    /**
-     * A measurement may have zero or more limit ranges defined for it.
-     */
-    val LimitSets: List[String]
+(override val sup: Measurement,
+val maxValue: Double,
+val minValue: Double,
+val normalValue: Double,
+val positiveFlowIn: Boolean,
+val LimitSets: List[String]
 )
 extends
     Element
@@ -328,28 +283,18 @@ extends
 
 /**
  * An analog control used for supervisory control.
+ * @param sup Reference to the superclass object.
+ * @param maxValue Normal value range maximum for any of the Control.value.
+ *        Used for scaling, e.g. in bar graphs.
+ * @param minValue Normal value range minimum for any of the Control.value.
+ *        Used for scaling, e.g. in bar graphs.
+ * @param AnalogValue The MeasurementValue that is controlled.
  */
 case class AnalogControl
-(
-
-    override val sup: Control,
-
-    /**
-     * Normal value range maximum for any of the Control.value.
-     * Used for scaling, e.g. in bar graphs.
-     */
-    val maxValue: Double,
-
-    /**
-     * Normal value range minimum for any of the Control.value.
-     * Used for scaling, e.g. in bar graphs.
-     */
-    val minValue: Double,
-
-    /**
-     * The MeasurementValue that is controlled.
-     */
-    val AnalogValue: String
+(override val sup: Control,
+val maxValue: Double,
+val minValue: Double,
+val AnalogValue: String
 )
 extends
     Element
@@ -388,21 +333,14 @@ extends
 
 /**
  * Limit values for Analog measurements.
+ * @param sup Reference to the superclass object.
+ * @param value The value to supervise against.
+ * @param LimitSet The set of limits.
  */
 case class AnalogLimit
-(
-
-    override val sup: Limit,
-
-    /**
-     * The value to supervise against.
-     */
-    val value: Double,
-
-    /**
-     * The set of limits.
-     */
-    val LimitSet: String
+(override val sup: Limit,
+val value: Double,
+val LimitSet: String
 )
 extends
     Element
@@ -439,11 +377,10 @@ extends
 
 /**
  * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
+ * @param sup Reference to the superclass object.
  */
 case class AnalogLimitSet
-(
-
-    override val sup: LimitSet
+(override val sup: LimitSet
 )
 extends
     Element
@@ -476,26 +413,16 @@ extends
 
 /**
  * AnalogValue represents an analog MeasurementValue.
+ * @param sup Reference to the superclass object.
+ * @param value The value to supervise.
+ * @param Analog Measurement to which this value is connected.
+ * @param AnalogControl The Control variable associated with the MeasurementValue.
  */
 case class AnalogValue
-(
-
-    override val sup: MeasurementValue,
-
-    /**
-     * The value to supervise.
-     */
-    val value: Double,
-
-    /**
-     * Measurement to which this value is connected.
-     */
-    val Analog: String,
-
-    /**
-     * The Control variable associated with the MeasurementValue.
-     */
-    val AnalogControl: String
+(override val sup: MeasurementValue,
+val value: Double,
+val Analog: String,
+val AnalogControl: String
 )
 extends
     Element
@@ -534,31 +461,18 @@ extends
 
 /**
  * A Command is a discrete control used for supervisory control.
+ * @param sup Reference to the superclass object.
+ * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
+ * @param value The value representing the actuator output.
+ * @param DiscreteValue The MeasurementValue that is controlled.
+ * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
  */
 case class Command
-(
-
-    override val sup: Control,
-
-    /**
-     * Normal value for Control.value e.g. used for percentage scaling.
-     */
-    val normalValue: Int,
-
-    /**
-     * The value representing the actuator output.
-     */
-    val value: Int,
-
-    /**
-     * The MeasurementValue that is controlled.
-     */
-    val DiscreteValue: String,
-
-    /**
-     * The ValueAliasSet used for translation of a Control value to a name.
-     */
-    val ValueAliasSet: String
+(override val sup: Control,
+val normalValue: Int,
+val value: Int,
+val DiscreteValue: String,
+val ValueAliasSet: String
 )
 extends
     Element
@@ -600,47 +514,25 @@ extends
 /**
  * Control is used for supervisory/device control.
  * It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
+ * @param sup Reference to the superclass object.
+ * @param controlType Specifies the type of Control, e.g.
+ *        BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
+ * @param operationInProgress Indicates that a client is currently sending control commands that has not completed.
+ * @param timeStamp The last time a control output was sent.
+ * @param unitMultiplier The unit multiplier of the controlled quantity.
+ * @param unitSymbol The unit of measure of the controlled quantity.
+ * @param PowerSystemResource Regulating device governed by this control output.
+ * @param RemoteControl The remote point controlling the physical actuator.
  */
 case class Control
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Specifies the type of Control, e.g.
-     * BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
-     */
-    val controlType: String,
-
-    /**
-     * Indicates that a client is currently sending control commands that has not completed.
-     */
-    val operationInProgress: Boolean,
-
-    /**
-     * The last time a control output was sent.
-     */
-    val timeStamp: String,
-
-    /**
-     * The unit multiplier of the controlled quantity.
-     */
-    val unitMultiplier: String,
-
-    /**
-     * The unit of measure of the controlled quantity.
-     */
-    val unitSymbol: String,
-
-    /**
-     * Regulating device governed by this control output.
-     */
-    val PowerSystemResource: String,
-
-    /**
-     * The remote point controlling the physical actuator.
-     */
-    val RemoteControl: String
+(override val sup: IdentifiedObject,
+val controlType: String,
+val operationInProgress: Boolean,
+val timeStamp: String,
+val unitMultiplier: String,
+val unitSymbol: String,
+val PowerSystemResource: String,
+val RemoteControl: String
 )
 extends
     Element
@@ -687,33 +579,20 @@ extends
 
 /**
  * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
+ * @param sup Reference to the superclass object.
+ * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
+ *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
+ * @param minValue Normal value range minimum for any of the MeasurementValue.values.
+ *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
+ * @param normalValue Normal measurement value, e.g., used for percentage calculations.
+ * @param ValueAliasSet The ValueAliasSet used for translation of a MeasurementValue.value to a name.
  */
 case class Discrete
-(
-
-    override val sup: Measurement,
-
-    /**
-     * Normal value range maximum for any of the MeasurementValue.values.
-     * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-     */
-    val maxValue: Int,
-
-    /**
-     * Normal value range minimum for any of the MeasurementValue.values.
-     * Used for scaling, e.g. in bar graphs or of telemetered raw values.
-     */
-    val minValue: Int,
-
-    /**
-     * Normal measurement value, e.g., used for percentage calculations.
-     */
-    val normalValue: Int,
-
-    /**
-     * The ValueAliasSet used for translation of a MeasurementValue.value to a name.
-     */
-    val ValueAliasSet: String
+(override val sup: Measurement,
+val maxValue: Int,
+val minValue: Int,
+val normalValue: Int,
+val ValueAliasSet: String
 )
 extends
     Element
@@ -753,9 +632,7 @@ extends
 }
 
 case class DiscreteCommand
-(
-
-    override val sup: Command
+(override val sup: Command
 )
 extends
     Element
@@ -788,26 +665,16 @@ extends
 
 /**
  * DiscreteValue represents a discrete MeasurementValue.
+ * @param sup Reference to the superclass object.
+ * @param value The value to supervise.
+ * @param Command The Control variable associated with the MeasurementValue.
+ * @param Discrete Measurement to which this value is connected.
  */
 case class DiscreteValue
-(
-
-    override val sup: MeasurementValue,
-
-    /**
-     * The value to supervise.
-     */
-    val value: Int,
-
-    /**
-     * The Control variable associated with the MeasurementValue.
-     */
-    val Command: String,
-
-    /**
-     * Measurement to which this value is connected.
-     */
-    val Discrete: String
+(override val sup: MeasurementValue,
+val value: Int,
+val Command: String,
+val Discrete: String
 )
 extends
     Element
@@ -847,11 +714,10 @@ extends
 /**
  * Specifies one limit value for a Measurement.
  * A Measurement typically has several limits that are kept together by the LimitSet class. The actual meaning and use of a Limit instance (i.e., if it is an alarm or warning limit or if it is a high or low limit) is not captured in the Limit class. However the name of a Limit instance may indicate both meaning and use.
+ * @param sup Reference to the superclass object.
  */
 case class Limit
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -885,16 +751,12 @@ extends
 /**
  * Specifies a set of Limits that are associated with a Measurement.
  * A Measurement may have several LimitSets corresponding to seasonal or other changing conditions. The condition is captured in the name and description attributes. The same LimitSet may be used for several Measurements. In particular percentage limits are used this way.
+ * @param sup Reference to the superclass object.
+ * @param isPercentageLimits Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
  */
 case class LimitSet
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
-     */
-    val isPercentageLimits: Boolean
+(override val sup: IdentifiedObject,
+val isPercentageLimits: Boolean
 )
 extends
     Element
@@ -930,45 +792,26 @@ extends
 /**
  * A Measurement represents any measured, calculated or non-measured non-calculated quantity.
  * Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.
+ * @param sup Reference to the superclass object.
+ * @param measurementType Specifies the type of measurement.
+ *        For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
+ * @param phases Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
+ *        The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
+ * @param unitMultiplier The unit multiplier of the measured quantity.
+ * @param unitSymbol The unit of measure of the measured quantity.
+ * @param Asset
+ * @param PowerSystemResource The power system resource that contains the measurement.
+ * @param Terminal One or more measurements may be associated with a terminal in the network.
  */
 case class Measurement
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Specifies the type of measurement.
-     * For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
-     */
-    val measurementType: String,
-
-    /**
-     * Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
-     * The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
-     */
-    val phases: String,
-
-    /**
-     * The unit multiplier of the measured quantity.
-     */
-    val unitMultiplier: String,
-
-    /**
-     * The unit of measure of the measured quantity.
-     */
-    val unitSymbol: String,
-
-    val Asset: String,
-
-    /**
-     * The power system resource that contains the measurement.
-     */
-    val PowerSystemResource: String,
-
-    /**
-     * One or more measurements may be associated with a terminal in the network.
-     */
-    val Terminal: String
+(override val sup: IdentifiedObject,
+val measurementType: String,
+val phases: String,
+val unitMultiplier: String,
+val unitSymbol: String,
+val Asset: String,
+val PowerSystemResource: String,
+val Terminal: String
 )
 extends
     Element
@@ -1016,41 +859,25 @@ extends
 /**
  * The current state for a measurement.
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
+ * @param sup Reference to the superclass object.
+ * @param attr
+ * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
+ * @param timeStamp The time when the value was last updated
+ * @param ErpPerson
+ * @param MeasurementValueQuality A MeasurementValue has a MeasurementValueQuality associated with it.
+ * @param MeasurementValueSource A reference to the type of source that updates the MeasurementValue, e.g.
+ *        SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
+ * @param RemoteSource Link to the physical telemetered point associated with this measurement.
  */
 case class MeasurementValue
-(
-
-    override val sup: IdentifiedObject,
-
-    val attr: String,
-
-    /**
-     * The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
-     */
-    val sensorAccuracy: Double,
-
-    /**
-     * The time when the value was last updated
-     */
-    val timeStamp: String,
-
-    val ErpPerson: String,
-
-    /**
-     * A MeasurementValue has a MeasurementValueQuality associated with it.
-     */
-    val MeasurementValueQuality: String,
-
-    /**
-     * A reference to the type of source that updates the MeasurementValue, e.g.
-     * SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
-     */
-    val MeasurementValueSource: String,
-
-    /**
-     * Link to the physical telemetered point associated with this measurement.
-     */
-    val RemoteSource: String
+(override val sup: IdentifiedObject,
+val attr: String,
+val sensorAccuracy: Double,
+val timeStamp: String,
+val ErpPerson: String,
+val MeasurementValueQuality: String,
+val MeasurementValueSource: String,
+val RemoteSource: String
 )
 extends
     Element
@@ -1098,16 +925,12 @@ extends
 /**
  * Measurement quality flags.
  * Bits 0-10 are defined for substation automation in draft IEC 61850 part 7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
+ * @param sup Reference to the superclass object.
+ * @param MeasurementValue A MeasurementValue has a MeasurementValueQuality associated with it.
  */
 case class MeasurementValueQuality
-(
-
-    override val sup: Quality61850,
-
-    /**
-     * A MeasurementValue has a MeasurementValueQuality associated with it.
-     */
-    val MeasurementValue: String
+(override val sup: Quality61850,
+val MeasurementValue: String
 )
 extends
     Element
@@ -1143,11 +966,10 @@ extends
 /**
  * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
  * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
+ * @param sup Reference to the superclass object.
  */
 case class MeasurementValueSource
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1180,75 +1002,38 @@ extends
 
 /**
  * Quality flags in this class are as defined in IEC 61850, except for estimatorReplaced, which has been included in this class for convenience.
+ * @param sup Reference to the superclass object.
+ * @param badReference Measurement value may be incorrect due to a reference being out of calibration.
+ * @param estimatorReplaced Value has been replaced by State Estimator. estimatorReplaced is not an IEC61850 quality bit but has been put in this class for convenience.
+ * @param failure This identifier indicates that a supervision function has detected an internal or external failure, e.g. communication failure.
+ * @param oldData Measurement value is old and possibly invalid, as it has not been successfully updated during a specified time interval.
+ * @param operatorBlocked Measurement value is blocked and hence unavailable for transmission.
+ * @param oscillatory To prevent some overload of the communication it is sensible to detect and suppress oscillating (fast changing) binary inputs.
+ *        If a signal changes in a defined time (tosc) twice in the same direction (from 0 to 1 or from 1 to 0) then oscillation is detected and the detail quality identifier "oscillatory" is set. If it is detected a configured numbers of transient changes could be passed by. In this time the validity status "questionable" is set. If after this defined numbers of changes the signal is still in the oscillating state the value shall be set either to the opposite state of the previous stable value or to a defined default value. In this case the validity status "questionable" is reset and "invalid" is set as long as the signal is oscillating. If it is configured such that no transient changes should be passed by then the validity status "invalid" is set immediately in addition to the detail quality identifier "oscillatory" (used for status information only).
+ * @param outOfRange Measurement value is beyond a predefined range of value.
+ * @param overFlow Measurement value is beyond the capability of being  represented properly.
+ *        For example, a counter value overflows from maximum count back to a value of zero.
+ * @param source Source gives information related to the origin of a value.
+ *        The value may be acquired from the process, defaulted or substituted.
+ * @param suspect A correlation function has detected that the value is not consitent with other values.
+ *        Typically set by a network State Estimator.
+ * @param test Measurement value is transmitted for test purposes.
+ * @param validity Validity of the measurement value.
  */
 case class Quality61850
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Measurement value may be incorrect due to a reference being out of calibration.
-     */
-    val badReference: Boolean,
-
-    /**
-     * Value has been replaced by State Estimator. estimatorReplaced is not an IEC61850 quality bit but has been put in this class for convenience.
-     */
-    val estimatorReplaced: Boolean,
-
-    /**
-     * This identifier indicates that a supervision function has detected an internal or external failure, e.g. communication failure.
-     */
-    val failure: Boolean,
-
-    /**
-     * Measurement value is old and possibly invalid, as it has not been successfully updated during a specified time interval.
-     */
-    val oldData: Boolean,
-
-    /**
-     * Measurement value is blocked and hence unavailable for transmission.
-     */
-    val operatorBlocked: Boolean,
-
-    /**
-     * To prevent some overload of the communication it is sensible to detect and suppress oscillating (fast changing) binary inputs.
-     * If a signal changes in a defined time (tosc) twice in the same direction (from 0 to 1 or from 1 to 0) then oscillation is detected and the detail quality identifier "oscillatory" is set. If it is detected a configured numbers of transient changes could be passed by. In this time the validity status "questionable" is set. If after this defined numbers of changes the signal is still in the oscillating state the value shall be set either to the opposite state of the previous stable value or to a defined default value. In this case the validity status "questionable" is reset and "invalid" is set as long as the signal is oscillating. If it is configured such that no transient changes should be passed by then the validity status "invalid" is set immediately in addition to the detail quality identifier "oscillatory" (used for status information only).
-     */
-    val oscillatory: Boolean,
-
-    /**
-     * Measurement value is beyond a predefined range of value.
-     */
-    val outOfRange: Boolean,
-
-    /**
-     * Measurement value is beyond the capability of being  represented properly.
-     * For example, a counter value overflows from maximum count back to a value of zero.
-     */
-    val overFlow: Boolean,
-
-    /**
-     * Source gives information related to the origin of a value.
-     * The value may be acquired from the process, defaulted or substituted.
-     */
-    val source: String,
-
-    /**
-     * A correlation function has detected that the value is not consitent with other values.
-     * Typically set by a network State Estimator.
-     */
-    val suspect: Boolean,
-
-    /**
-     * Measurement value is transmitted for test purposes.
-     */
-    val test: Boolean,
-
-    /**
-     * Validity of the measurement value.
-     */
-    val validity: String
+(override val sup: BasicElement,
+val badReference: Boolean,
+val estimatorReplaced: Boolean,
+val failure: Boolean,
+val oldData: Boolean,
+val operatorBlocked: Boolean,
+val oscillatory: Boolean,
+val outOfRange: Boolean,
+val overFlow: Boolean,
+val source: String,
+val suspect: Boolean,
+val test: Boolean,
+val validity: String
 )
 extends
     Element
@@ -1305,16 +1090,12 @@ extends
 
 /**
  * An analog control that increase or decrease a set point value with pulses.
+ * @param sup Reference to the superclass object.
+ * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
  */
 case class RaiseLowerCommand
-(
-
-    override val sup: AnalogControl,
-
-    /**
-     * The ValueAliasSet used for translation of a Control value to a name.
-     */
-    val ValueAliasSet: String
+(override val sup: AnalogControl,
+val ValueAliasSet: String
 )
 extends
     Element
@@ -1349,21 +1130,14 @@ extends
 
 /**
  * An analog control that issue a set point value.
+ * @param sup Reference to the superclass object.
+ * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
+ * @param value The value representing the actuator output.
  */
 case class SetPoint
-(
-
-    override val sup: AnalogControl,
-
-    /**
-     * Normal value for Control.value e.g. used for percentage scaling.
-     */
-    val normalValue: Double,
-
-    /**
-     * The value representing the actuator output.
-     */
-    val value: Double
+(override val sup: AnalogControl,
+val normalValue: Double,
+val value: Double
 )
 extends
     Element
@@ -1400,11 +1174,10 @@ extends
 
 /**
  * StringMeasurement represents a measurement with values of type string.
+ * @param sup Reference to the superclass object.
  */
 case class StringMeasurement
-(
-
-    override val sup: Measurement
+(override val sup: Measurement
 )
 extends
     Element
@@ -1437,21 +1210,14 @@ extends
 
 /**
  * StringMeasurementValue represents a measurement value of type string.
+ * @param sup Reference to the superclass object.
+ * @param value The value to supervise.
+ * @param StringMeasurement Measurement to which this value is connected.
  */
 case class StringMeasurementValue
-(
-
-    override val sup: MeasurementValue,
-
-    /**
-     * The value to supervise.
-     */
-    val value: String,
-
-    /**
-     * Measurement to which this value is connected.
-     */
-    val StringMeasurement: String
+(override val sup: MeasurementValue,
+val value: String,
+val StringMeasurement: String
 )
 extends
     Element
@@ -1488,28 +1254,18 @@ extends
 
 /**
  * Validity for MeasurementValue.
+ * @param sup Reference to the superclass object.
+ * @param GOOD The value is marked good if no abnormal condition of the acquisition function or the information source is detected.
+ * @param INVALID The value is marked invalid when a supervision function recognises abnormal conditions of the acquisition function or the information source (missing or non-operating updating devices).
+ *        The value is not defined under this condition. The mark invalid is used to indicate to the client that the value may be incorrect and shall not be used.
+ * @param QUESTIONABLE The value is marked questionable if a supervision function detects an abnormal behaviour, however the value could still be valid.
+ *        The client is responsible for determining whether or not values marked "questionable" should be used.
  */
 case class Validity
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The value is marked good if no abnormal condition of the acquisition function or the information source is detected.
-     */
-    val GOOD: String,
-
-    /**
-     * The value is marked invalid when a supervision function recognises abnormal conditions of the acquisition function or the information source (missing or non-operating updating devices).
-     * The value is not defined under this condition. The mark invalid is used to indicate to the client that the value may be incorrect and shall not be used.
-     */
-    val INVALID: String,
-
-    /**
-     * The value is marked questionable if a supervision function detects an abnormal behaviour, however the value could still be valid.
-     * The client is responsible for determining whether or not values marked "questionable" should be used.
-     */
-    val QUESTIONABLE: String
+(override val sup: BasicElement,
+val GOOD: String,
+val INVALID: String,
+val QUESTIONABLE: String
 )
 extends
     Element
@@ -1549,11 +1305,10 @@ extends
 /**
  * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
+ * @param sup Reference to the superclass object.
  */
 case class ValueAliasSet
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1586,21 +1341,14 @@ extends
 
 /**
  * Describes the translation of one particular value into a name, e.g. 1 as "Open".
+ * @param sup Reference to the superclass object.
+ * @param value The value that is mapped.
+ * @param ValueAliasSet The ValueAliasSet having the ValueToAlias mappings.
  */
 case class ValueToAlias
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The value that is mapped.
-     */
-    val value: Int,
-
-    /**
-     * The ValueAliasSet having the ValueToAlias mappings.
-     */
-    val ValueAliasSet: String
+(override val sup: IdentifiedObject,
+val value: Int,
+val ValueAliasSet: String
 )
 extends
     Element

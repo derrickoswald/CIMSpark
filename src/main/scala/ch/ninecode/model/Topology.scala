@@ -12,22 +12,15 @@ import ch.ninecode.cim.Context
 /**
  * Used to apply user standard names to topology buses.
  * Typically used for "bus/branch" case generation. Associated with one or more terminals that are normally connected with the bus name.    The associated terminals are normally connected by non-retained switches. For a ring bus station configuration, all busbar terminals in the ring are typically associated.   For a breaker and a half scheme, both busbars would normally be associated.  For a ring bus, all busbars would normally be associated.  For a "straight" busbar configuration, normally only the main terminal at the busbar would be associated.
+ * @param sup Reference to the superclass object.
+ * @param priority Priority of bus name marker for use as topology bus name.
+ *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
+ * @param ReportingGroup The reporting group to which this bus name marker belongs.
  */
 case class BusNameMarker
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Priority of bus name marker for use as topology bus name.
-     * Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
-     */
-    val priority: Int,
-
-    /**
-     * The reporting group to which this bus name marker belongs.
-     */
-    val ReportingGroup: String
+(override val sup: IdentifiedObject,
+val priority: Int,
+val ReportingGroup: String
 )
 extends
     Element
@@ -64,13 +57,12 @@ extends
 
 /**
  * DC bus.
+ * @param sup Reference to the superclass object.
+ * @param DCEquipmentContainer
  */
 case class DCTopologicalNode
-(
-
-    override val sup: IdentifiedObject,
-
-    val DCEquipmentContainer: String
+(override val sup: IdentifiedObject,
+val DCEquipmentContainer: String
 )
 extends
     Element
@@ -106,17 +98,13 @@ extends
 /**
  * An electrically connected subset of the network.
  * Topological islands can change as the current network state changes: e.g. due to
+ * @param sup Reference to the superclass object.
+ * @param AngleRefTopologicalNode The angle reference for the island.
+ *        Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.
  */
 case class TopologicalIsland
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The angle reference for the island.
-     * Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.
-     */
-    val AngleRefTopologicalNode: String
+(override val sup: IdentifiedObject,
+val AngleRefTopologicalNode: String
 )
 extends
     Element
@@ -152,59 +140,31 @@ extends
 /**
  * For a detailed substation model a topological node is a set of connectivity nodes that, in the current network state, are connected together through any type of closed switches, including  jumpers.
  * Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).
+ * @param sup Reference to the superclass object.
+ * @param pInjection The active power injected into the bus at this location in addition to injections from equipment.
+ *        Positive sign means injection into the TopologicalNode (bus).
+ * @param qInjection The reactive power injected into the bus at this location in addition to injections from equipment.
+ *        Positive sign means injection into the TopologicalNode (bus).
+ * @param AngleRefTopologicalIsland The island for which the node is an angle reference.
+ *        Normally there is one angle reference node for each island.
+ * @param BaseVoltage The base voltage of the topologocial node.
+ * @param ConnectivityNodeContainer The connectivity node container to which the toplogical node belongs.
+ * @param ReportingGroup The reporting group to which the topological node belongs.
+ * @param SvInjection The injection flows state variables associated with the topological node.
+ * @param SvVoltage The state voltage associated with the topological node.
+ * @param TopologicalIsland A topological node belongs to a topological island.
  */
 case class TopologicalNode
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The active power injected into the bus at this location in addition to injections from equipment.
-     * Positive sign means injection into the TopologicalNode (bus).
-     */
-    val pInjection: Double,
-
-    /**
-     * The reactive power injected into the bus at this location in addition to injections from equipment.
-     * Positive sign means injection into the TopologicalNode (bus).
-     */
-    val qInjection: Double,
-
-    /**
-     * The island for which the node is an angle reference.
-     * Normally there is one angle reference node for each island.
-     */
-    val AngleRefTopologicalIsland: String,
-
-    /**
-     * The base voltage of the topologocial node.
-     */
-    val BaseVoltage: String,
-
-    /**
-     * The connectivity node container to which the toplogical node belongs.
-     */
-    val ConnectivityNodeContainer: String,
-
-    /**
-     * The reporting group to which the topological node belongs.
-     */
-    val ReportingGroup: String,
-
-    /**
-     * The injection flows state variables associated with the topological node.
-     */
-    val SvInjection: String,
-
-    /**
-     * The state voltage associated with the topological node.
-     */
-    val SvVoltage: String,
-
-    /**
-     * A topological node belongs to a topological island.
-     */
-    val TopologicalIsland: String
+(override val sup: IdentifiedObject,
+val pInjection: Double,
+val qInjection: Double,
+val AngleRefTopologicalIsland: String,
+val BaseVoltage: String,
+val ConnectivityNodeContainer: String,
+val ReportingGroup: String,
+val SvInjection: String,
+val SvVoltage: String,
+val TopologicalIsland: String
 )
 extends
     Element

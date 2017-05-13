@@ -12,17 +12,16 @@ import ch.ninecode.cim.Context
 /**
  * Models Market clearing results.
  * Indicates market horizon, interval based. Used by a market quality system for billing and settlement purposes
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime
+ * @param updateTimeStamp
+ * @param updateUser
  */
 case class AllocationResult
-(
-
-    override val sup: BasicElement,
-
-    val intervalStartTime: String,
-
-    val updateTimeStamp: String,
-
-    val updateUser: String
+(override val sup: BasicElement,
+val intervalStartTime: String,
+val updateTimeStamp: String,
+val updateUser: String
 )
 extends
     Element
@@ -61,38 +60,31 @@ extends
 
 /**
  * Models Market clearing results in terms of price and MW values
+ * @param sup Reference to the superclass object.
+ * @param aggregateType "1" --  "Detail",
+"2" --  "Aggregate by Market service type", in which case, the "AllocationEnergyType" field will not be filled;
+ *        "3" --  "Aggregate by "AllocationEnergyType", in which case "MarketServiceType" will not be filled.
+ * @param allocationMwHour
+ * @param allocationPrice
+ * @param energyTypeCode
+ * @param marketServiceType Choices are: 
+ME - Market Energy Capacity; 
+SR - Spinning Reserve Capacity; 
+NR - Non-Spinning Reserve Capacity; 
+DAC - Day Ahead Capacity;
+ *        DEC - Derate Capacity
+ * @param AllocationResult
+ * @param RegisteredResource
  */
 case class AllocationResultValues
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * "1" --  "Detail",
-    "2" --  "Aggregate by Market service type", in which case, the "AllocationEnergyType" field will not be filled;
-     * "3" --  "Aggregate by "AllocationEnergyType", in which case "MarketServiceType" will not be filled.
-     */
-    val aggregateType: String,
-
-    val allocationMwHour: Double,
-
-    val allocationPrice: Double,
-
-    val energyTypeCode: String,
-
-    /**
-     * Choices are: 
-    ME - Market Energy Capacity; 
-    SR - Spinning Reserve Capacity; 
-    NR - Non-Spinning Reserve Capacity; 
-    DAC - Day Ahead Capacity;
-     * DEC - Derate Capacity
-     */
-    val marketServiceType: String,
-
-    val AllocationResult: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val aggregateType: String,
+val allocationMwHour: Double,
+val allocationPrice: Double,
+val energyTypeCode: String,
+val marketServiceType: String,
+val AllocationResult: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -139,19 +131,18 @@ extends
 
 /**
  * Models Market clearing results for Auxillary costs
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime
+ * @param marketType
+ * @param updateTimeStamp
+ * @param updateUser
  */
 case class AuxiliaryCost
-(
-
-    override val sup: BasicElement,
-
-    val intervalStartTime: String,
-
-    val marketType: String,
-
-    val updateTimeStamp: String,
-
-    val updateUser: String
+(override val sup: BasicElement,
+val intervalStartTime: String,
+val marketType: String,
+val updateTimeStamp: String,
+val updateUser: String
 )
 extends
     Element
@@ -192,15 +183,14 @@ extends
 
 /**
  * Models Auxillary Values
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
+ * @param RegisteredLoad
  */
 case class AuxiliaryObject
-(
-
-    override val sup: BasicElement,
-
-    val RegisteredGenerator: String,
-
-    val RegisteredLoad: String
+(override val sup: BasicElement,
+val RegisteredGenerator: String,
+val RegisteredLoad: String
 )
 extends
     Element
@@ -237,33 +227,32 @@ extends
 
 /**
  * Models Auxillary Values
+ * @param sup Reference to the superclass object.
+ * @param availUndispatchedQ
+ * @param incrementalORAvail
+ * @param maxExpostCapacity
+ * @param minExpostCapacity
+ * @param noLoadCost
+ * @param noLoadCostEligibilityFlag
+ * @param startUpCost
+ * @param startUpCostEligibilityFlag
+ * @param AuxillaryCost
+ * @param FiveMinAuxillaryData
+ * @param TenMinAuxillaryData
  */
 case class AuxiliaryValues
-(
-
-    override val sup: AuxiliaryObject,
-
-    val availUndispatchedQ: Double,
-
-    val incrementalORAvail: Double,
-
-    val maxExpostCapacity: Double,
-
-    val minExpostCapacity: Double,
-
-    val noLoadCost: Double,
-
-    val noLoadCostEligibilityFlag: String,
-
-    val startUpCost: Double,
-
-    val startUpCostEligibilityFlag: String,
-
-    val AuxillaryCost: String,
-
-    val FiveMinAuxillaryData: String,
-
-    val TenMinAuxillaryData: String
+(override val sup: AuxiliaryObject,
+val availUndispatchedQ: Double,
+val incrementalORAvail: Double,
+val maxExpostCapacity: Double,
+val minExpostCapacity: Double,
+val noLoadCost: Double,
+val noLoadCostEligibilityFlag: String,
+val startUpCost: Double,
+val startUpCostEligibilityFlag: String,
+val AuxillaryCost: String,
+val FiveMinAuxillaryData: String,
+val TenMinAuxillaryData: String
 )
 extends
     Element
@@ -318,17 +307,16 @@ extends
 
 /**
  * Model Expected Energy  from Market Clearing, interval based
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime
+ * @param updateTimeStamp
+ * @param updateUser
  */
 case class ExpectedEnergy
-(
-
-    override val sup: BasicElement,
-
-    val intervalStartTime: String,
-
-    val updateTimeStamp: String,
-
-    val updateUser: String
+(override val sup: BasicElement,
+val intervalStartTime: String,
+val updateTimeStamp: String,
+val updateUser: String
 )
 extends
     Element
@@ -367,19 +355,18 @@ extends
 
 /**
  * Model Expected Energy  from Market Clearing
+ * @param sup Reference to the superclass object.
+ * @param energyTypeCode
+ * @param expectedMwh
+ * @param ExpectedEnergy
+ * @param RegisteredResource
  */
 case class ExpectedEnergyValues
-(
-
-    override val sup: BasicElement,
-
-    val energyTypeCode: String,
-
-    val expectedMwh: Double,
-
-    val ExpectedEnergy: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val energyTypeCode: String,
+val expectedMwh: Double,
+val ExpectedEnergy: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -420,17 +407,16 @@ extends
 
 /**
  * Models 5-Minutes Auxillary Data
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime
+ * @param updateTimeStamp
+ * @param updateUser
  */
 case class FiveMinAuxiliaryData
-(
-
-    override val sup: BasicElement,
-
-    val intervalStartTime: String,
-
-    val updateTimeStamp: String,
-
-    val updateUser: String
+(override val sup: BasicElement,
+val intervalStartTime: String,
+val updateTimeStamp: String,
+val updateUser: String
 )
 extends
     Element
@@ -469,17 +455,16 @@ extends
 
 /**
  * Models 10-Minutes Auxillary Data
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime
+ * @param updateTimeStamp
+ * @param updateUser
  */
 case class TenMinAuxiliaryData
-(
-
-    override val sup: BasicElement,
-
-    val intervalStartTime: String,
-
-    val updateTimeStamp: String,
-
-    val updateUser: String
+(override val sup: BasicElement,
+val intervalStartTime: String,
+val updateTimeStamp: String,
+val updateUser: String
 )
 extends
     Element
@@ -518,19 +503,18 @@ extends
 
 /**
  * Models prices at Trading Hubs, interval based
+ * @param sup Reference to the superclass object.
+ * @param intervalStartTime
+ * @param marketType
+ * @param updateTimeStamp
+ * @param updateUser
  */
 case class TradingHubPrice
-(
-
-    override val sup: BasicElement,
-
-    val intervalStartTime: String,
-
-    val marketType: String,
-
-    val updateTimeStamp: String,
-
-    val updateUser: String
+(override val sup: BasicElement,
+val intervalStartTime: String,
+val marketType: String,
+val updateTimeStamp: String,
+val updateUser: String
 )
 extends
     Element
@@ -571,21 +555,17 @@ extends
 
 /**
  * Models prices at Trading Hubs
+ * @param sup Reference to the superclass object.
+ * @param price Utilizes the Market type.
+ *        For DA, the price is hourly. For RTM the price is a 5 minute price.
+ * @param AggregatedPnode
+ * @param TradingHubPrice
  */
 case class TradingHubValues
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Utilizes the Market type.
-     * For DA, the price is hourly. For RTM the price is a 5 minute price.
-     */
-    val price: Double,
-
-    val AggregatedPnode: String,
-
-    val TradingHubPrice: String
+(override val sup: BasicElement,
+val price: Double,
+val AggregatedPnode: String,
+val TradingHubPrice: String
 )
 extends
     Element

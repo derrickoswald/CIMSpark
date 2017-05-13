@@ -10,16 +10,12 @@ import ch.ninecode.cim.Context
 
 /**
  * Action request against an existing Trade.
+ * @param sup Reference to the superclass object.
+ * @param actionName Action name type for the action request.
  */
 case class ActionRequest
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Action name type for the action request.
-     */
-    val actionName: String
+(override val sup: BasicElement,
+val actionName: String
 )
 extends
     Element
@@ -55,17 +51,13 @@ extends
 /**
  * AreaLoadBid is not submitted by a market participant into the Markets.
  * Instead, it is simply an aggregation of all LoadBids contained wtihin a specific SubControlArea. This entity should inherit from Bid for representation of the timeframe (startTime, stopTime) and the market type.
+ * @param sup Reference to the superclass object.
+ * @param demandBidMW The Demand Bid Megawatt for the area case.
+ *        Attribute Usage: This is Scheduled demand MW in Day Ahead
  */
 case class AreaLoadBid
-(
-
-    override val sup: Bid,
-
-    /**
-     * The Demand Bid Megawatt for the area case.
-     * Attribute Usage: This is Scheduled demand MW in Day Ahead
-     */
-    val demandBidMW: Double
+(override val sup: Bid,
+val demandBidMW: Double
 )
 extends
     Element
@@ -100,19 +92,18 @@ extends
 
 /**
  * Property for a particular attribute that contains name and value
+ * @param sup Reference to the superclass object.
+ * @param propertyName
+ * @param propertyValue
+ * @param sequence
+ * @param MktUserAttribute
  */
 case class AttributeProperty
-(
-
-    override val sup: BasicElement,
-
-    val propertyName: String,
-
-    val propertyValue: String,
-
-    val sequence: String,
-
-    val MktUserAttribute: String
+(override val sup: BasicElement,
+val propertyName: String,
+val propertyValue: String,
+val sequence: String,
+val MktUserAttribute: String
 )
 extends
     Element
@@ -153,34 +144,24 @@ extends
 
 /**
  * Represents both bids to purchase and offers to sell energy or ancillary services in an RTO-sponsored market.
+ * @param sup Reference to the superclass object.
+ * @param marketType The market type, DAM or RTM.
+ * @param startTime Start time and date for which bid applies.
+ * @param stopTime Stop time and date for which bid is applicable.
+ * @param ActionRequest
+ * @param EnergyMarket
+ * @param MarketParticipant
+ * @param SchedulingCoordinator
  */
 case class Bid
-(
-
-    override val sup: Document,
-
-    /**
-     * The market type, DAM or RTM.
-     */
-    val marketType: String,
-
-    /**
-     * Start time and date for which bid applies.
-     */
-    val startTime: String,
-
-    /**
-     * Stop time and date for which bid is applicable.
-     */
-    val stopTime: String,
-
-    val ActionRequest: String,
-
-    val EnergyMarket: String,
-
-    val MarketParticipant: String,
-
-    val SchedulingCoordinator: String
+(override val sup: Document,
+val marketType: String,
+val startTime: String,
+val stopTime: String,
+val ActionRequest: String,
+val EnergyMarket: String,
+val MarketParticipant: String,
+val SchedulingCoordinator: String
 )
 extends
     Element
@@ -227,23 +208,16 @@ extends
 
 /**
  * This class allows SC to input different time intervals for distribution factors
+ * @param sup Reference to the superclass object.
+ * @param timeIntervalEnd End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
+ * @param timeIntervalStart Start of the time interval in which bid is valid (yyyy-mm-dd hh24: mi: ss).
+ * @param ProductBid
  */
 case class BidDistributionFactor
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
-     */
-    val timeIntervalEnd: String,
-
-    /**
-     * Start of the time interval in which bid is valid (yyyy-mm-dd hh24: mi: ss).
-     */
-    val timeIntervalStart: String,
-
-    val ProductBid: String
+(override val sup: BasicElement,
+val timeIntervalEnd: String,
+val timeIntervalStart: String,
+val ProductBid: String
 )
 extends
     Element
@@ -282,41 +256,28 @@ extends
 
 /**
  * This class represent the error information for a bid that is detected during bid validation
+ * @param sup Reference to the superclass object.
+ * @param componentType
+ * @param endTime hour wihthin the bid for which the error applies
+ * @param errMessage error message
+ * @param errPriority Priority number for the error message
+ * @param logTimeStamp
+ * @param msgLevel
+ * @param ruleID
+ * @param startTime hour wihthin the bid for which the error applies
+ * @param MarketProduct
  */
 case class BidError
-(
-
-    override val sup: IdentifiedObject,
-
-    val componentType: String,
-
-    /**
-     * hour wihthin the bid for which the error applies
-     */
-    val endTime: String,
-
-    /**
-     * error message
-     */
-    val errMessage: String,
-
-    /**
-     * Priority number for the error message
-     */
-    val errPriority: Int,
-
-    val logTimeStamp: String,
-
-    val msgLevel: Int,
-
-    val ruleID: Int,
-
-    /**
-     * hour wihthin the bid for which the error applies
-     */
-    val startTime: String,
-
-    val MarketProduct: String
+(override val sup: IdentifiedObject,
+val componentType: String,
+val endTime: String,
+val errMessage: String,
+val errPriority: Int,
+val logTimeStamp: String,
+val msgLevel: Int,
+val ruleID: Int,
+val startTime: String,
+val MarketProduct: String
 )
 extends
     Element
@@ -367,13 +328,12 @@ extends
 
 /**
  * Containment for bid parameters that are dependent on a market product type.
+ * @param sup Reference to the superclass object.
+ * @param ProductBid
  */
 case class BidHourlyProductSchedule
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    val ProductBid: String
+(override val sup: RegularIntervalSchedule,
+val ProductBid: String
 )
 extends
     Element
@@ -408,13 +368,12 @@ extends
 
 /**
  * Containment for bid hourly parameters that are not product dependent.
+ * @param sup Reference to the superclass object.
+ * @param Bid
  */
 case class BidHourlySchedule
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    val Bid: String
+(override val sup: RegularIntervalSchedule,
+val Bid: String
 )
 extends
     Element
@@ -449,11 +408,10 @@ extends
 
 /**
  * Relationship between unit operating price in $/hour (Y-axis) and unit output in MW (X-axis).
+ * @param sup Reference to the superclass object.
  */
 case class BidPriceCurve
-(
-
-    override val sup: Curve
+(override val sup: Curve
 )
 extends
     Element
@@ -486,35 +444,28 @@ extends
 
 /**
  * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
+ * @param sup Reference to the superclass object.
+ * @param bidType BID Type:  
+
+I - Initial Bid;
+ *        F - Final Bid
+ * @param mitigationStatus Mitigation Status:
+
+'S' - Mitigated by SMPM because of "misconduct"
+'L; - Mitigated by LMPM because of "misconduct"
+'R' - Modified by LMPM because of RMR rules
+'M' - Mitigated because of "misconduct" both by SMPM and LMPM
+'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
+ *        'O' - original
+ * @param BidPriceCurve
+ * @param ProductBid
  */
 case class BidPriceSchedule
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * BID Type:  
-    
-    I - Initial Bid;
-     * F - Final Bid
-     */
-    val bidType: String,
-
-    /**
-     * Mitigation Status:
-    
-    'S' - Mitigated by SMPM because of "misconduct"
-    'L; - Mitigated by LMPM because of "misconduct"
-    'R' - Modified by LMPM because of RMR rules
-    'M' - Mitigated because of "misconduct" both by SMPM and LMPM
-    'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
-     * 'O' - original
-     */
-    val mitigationStatus: String,
-
-    val BidPriceCurve: String,
-
-    val ProductBid: String
+(override val sup: RegularIntervalSchedule,
+val bidType: String,
+val mitigationStatus: String,
+val BidPriceCurve: String,
+val ProductBid: String
 )
 extends
     Element
@@ -555,73 +506,45 @@ extends
 
 /**
  * Defines self schedule values to be used for specified time intervals.
+ * @param sup Reference to the superclass object.
+ * @param balancingFlag This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
+ *        It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.
+ * @param bidType bidType has two types as the required output of requirements and qualified pre-dispatch.
+ * @param priorityFlag This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
+ *        It indicates whether a self-schedule using a TR has scheduling priority in DAM/RTM.
+ * @param pumpSelfSchedMw Contains the PriceTaker, ExistingTransmissionContract, TransmissionOwnershipRights pumping self schedule quantity.
+ *        If this value is not null, then the unit is in pumping mode.
+ * @param referenceType Indication of which type of self schedule is being referenced.
+ * @param selfSchedMw Self scheduled value
+ * @param selfSchedSptResource Price Taker Export Self Sched Support Resource
+ * @param selfSchedType This attribute is used to specify if a bid includes a self sched bid.
+ *        If so what self sched type is it. The possible values are shown as follow but not limited to:
+ * @param updateType
+ * @param wheelingTransactionReference A unique identifier of a wheeling transaction.
+ *        A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
+ * @param AdjacentCASet
+ * @param HostControlArea
+ * @param ProductBid
+ * @param SubControlArea
+ * @param TransmissionContractRight
  */
 case class BidSelfSched
-(
-
-    override val sup: RegularIntervalSchedule,
-
-    /**
-     * This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
-     * It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.
-     */
-    val balancingFlag: String,
-
-    /**
-     * bidType has two types as the required output of requirements and qualified pre-dispatch.
-     */
-    val bidType: String,
-
-    /**
-     * This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
-     * It indicates whether a self-schedule using a TR has scheduling priority in DAM/RTM.
-     */
-    val priorityFlag: String,
-
-    /**
-     * Contains the PriceTaker, ExistingTransmissionContract, TransmissionOwnershipRights pumping self schedule quantity.
-     * If this value is not null, then the unit is in pumping mode.
-     */
-    val pumpSelfSchedMw: Double,
-
-    /**
-     * Indication of which type of self schedule is being referenced.
-     */
-    val referenceType: String,
-
-    /**
-     * Self scheduled value
-     */
-    val selfSchedMw: Double,
-
-    /**
-     * Price Taker Export Self Sched Support Resource
-     */
-    val selfSchedSptResource: String,
-
-    /**
-     * This attribute is used to specify if a bid includes a self sched bid.
-     * If so what self sched type is it. The possible values are shown as follow but not limited to:
-     */
-    val selfSchedType: String,
-
-    val updateType: String,
-
-    /**
-     * A unique identifier of a wheeling transaction.
-     * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
-     */
-    val wheelingTransactionReference: String,
-
-    val AdjacentCASet: String,
-
-    val HostControlArea: String,
-
-    val ProductBid: String,
-
-    val SubControlArea: String,
-
-    val TransmissionContractRight: String
+(override val sup: RegularIntervalSchedule,
+val balancingFlag: String,
+val bidType: String,
+val priorityFlag: String,
+val pumpSelfSchedMw: Double,
+val referenceType: String,
+val selfSchedMw: Double,
+val selfSchedSptResource: String,
+val selfSchedType: String,
+val updateType: String,
+val wheelingTransactionReference: String,
+val AdjacentCASet: String,
+val HostControlArea: String,
+val ProductBid: String,
+val SubControlArea: String,
+val TransmissionContractRight: String
 )
 extends
     Element
@@ -685,11 +608,10 @@ extends
 /**
  * As set of mutually exclusive bids for which a maximum of one may be scheduled.
  * Of these generating bids, only one generating bid can be scheduled at a time.
+ * @param sup Reference to the superclass object.
  */
 case class BidSet
-(
-
-    override val sup: IdentifiedObject
+(override val sup: IdentifiedObject
 )
 extends
     Element
@@ -722,32 +644,28 @@ extends
 
 /**
  * A Charge Component is a list of configurable charge quality items to feed into settlement calculation and/or bill determinants.
+ * @param sup Reference to the superclass object.
+ * @param deleteStatus
+ * @param effectiveDate
+ * @param equation
+ * @param message
+ * @param roundOff
+ * @param sum
+ * @param terminationDate
+ * @param typ
+ * @param BillDeterminants A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
  */
 case class ChargeComponent
-(
-
-    override val sup: IdentifiedObject,
-
-    val deleteStatus: String,
-
-    val effectiveDate: String,
-
-    val equation: String,
-
-    val message: String,
-
-    val roundOff: String,
-
-    val sum: String,
-
-    val terminationDate: String,
-
-    val typ: String,
-
-    /**
-     * A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
-     */
-    val BillDeterminants: List[String]
+(override val sup: IdentifiedObject,
+val deleteStatus: String,
+val effectiveDate: String,
+val equation: String,
+val message: String,
+val roundOff: String,
+val sum: String,
+val terminationDate: String,
+val typ: String,
+val BillDeterminants: List[String]
 )
 extends
     Element
@@ -799,24 +717,20 @@ extends
 /**
  * Charge Group is the grouping of Charge Types for settlement invoicing purpose.
  * Examples such as Ancillary Services, Interests, etc.
+ * @param sup Reference to the superclass object.
+ * @param effectiveDate
+ * @param marketCode
+ * @param terminationDate
+ * @param ChargeGroupParent A ChargeGroup instance can have relationships with other ChargeGroup instances.
+ * @param MktUserAttribute
  */
 case class ChargeGroup
-(
-
-    override val sup: IdentifiedObject,
-
-    val effectiveDate: String,
-
-    val marketCode: String,
-
-    val terminationDate: String,
-
-    /**
-     * A ChargeGroup instance can have relationships with other ChargeGroup instances.
-     */
-    val ChargeGroupParent: String,
-
-    val MktUserAttribute: List[String]
+(override val sup: IdentifiedObject,
+val effectiveDate: String,
+val marketCode: String,
+val terminationDate: String,
+val ChargeGroupParent: String,
+val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -860,38 +774,31 @@ extends
 /**
  * Charge Type is the basic level configuration for settlement to process specific charges for invoicing purpose.
  * Examples such as: Day Ahead Spinning Reserve Default Invoice Interest Charge, etc.
+ * @param sup Reference to the superclass object.
+ * @param chargeOrder
+ * @param chargeVersion
+ * @param effectiveDate
+ * @param factor
+ * @param frequencyType
+ * @param terminationDate
+ * @param totalInterval
+ * @param ChargeComponents A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
+ * @param ChargeGroup A ChargeGroup can have 0-n ChargeType.
+ *        A ChargeType can associate to 0-n ChargeGroup.
+ * @param MktUserAttribute
  */
 case class ChargeType
-(
-
-    override val sup: Document,
-
-    val chargeOrder: String,
-
-    val chargeVersion: String,
-
-    val effectiveDate: String,
-
-    val factor: String,
-
-    val frequencyType: String,
-
-    val terminationDate: String,
-
-    val totalInterval: String,
-
-    /**
-     * A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
-     */
-    val ChargeComponents: List[String],
-
-    /**
-     * A ChargeGroup can have 0-n ChargeType.
-     * A ChargeType can associate to 0-n ChargeGroup.
-     */
-    val ChargeGroup: List[String],
-
-    val MktUserAttribute: List[String]
+(override val sup: Document,
+val chargeOrder: String,
+val chargeVersion: String,
+val effectiveDate: String,
+val factor: String,
+val frequencyType: String,
+val terminationDate: String,
+val totalInterval: String,
+val ChargeComponents: List[String],
+val ChargeGroup: List[String],
+val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -944,64 +851,36 @@ extends
 
 /**
  * Response from registered resource acknowleging receipt of dispatch instructions
+ * @param sup Reference to the superclass object.
+ * @param acceptMW The accepted mw amount by the responder. aka response mw.
+ * @param acceptStatus The accept status submitted by the responder. enumeration type needs to be defined
+ * @param certificationName The Subject DN is the X509 Certificate Subject DN.
+ *        This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
+ * @param clearedMW MW amount associated with instruction.
+ *        For 5 minute binding dispatches, this is the Goto MW or DOT
+ * @param instructionTime The target date/time for the received instruction.
+ * @param instructionType instruction type:
+
+commitment
+out of sequence
+ *        dispatch
+ * @param passIndicator The type of run for the market clearing.
+ * @param receivedTime Timestamp indicating the time at which the instruction was received.
+ * @param startTime start time
+ * @param RegisteredResource
  */
 case class DispatchInstReply
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The accepted mw amount by the responder. aka response mw.
-     */
-    val acceptMW: Double,
-
-    /**
-     * The accept status submitted by the responder. enumeration type needs to be defined
-     */
-    val acceptStatus: String,
-
-    /**
-     * The Subject DN is the X509 Certificate Subject DN.
-     * This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
-     */
-    val certificationName: String,
-
-    /**
-     * MW amount associated with instruction.
-     * For 5 minute binding dispatches, this is the Goto MW or DOT
-     */
-    val clearedMW: Double,
-
-    /**
-     * The target date/time for the received instruction.
-     */
-    val instructionTime: String,
-
-    /**
-     * instruction type:
-    
-    commitment
-    out of sequence
-     * dispatch
-     */
-    val instructionType: String,
-
-    /**
-     * The type of run for the market clearing.
-     */
-    val passIndicator: String,
-
-    /**
-     * Timestamp indicating the time at which the instruction was received.
-     */
-    val receivedTime: String,
-
-    /**
-     * start time
-     */
-    val startTime: String,
-
-    val RegisteredResource: String
+(override val sup: IdentifiedObject,
+val acceptMW: Double,
+val acceptStatus: String,
+val certificationName: String,
+val clearedMW: Double,
+val instructionTime: String,
+val instructionType: String,
+val passIndicator: String,
+val receivedTime: String,
+val startTime: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1054,11 +933,10 @@ extends
 
 /**
  * Relationship between a price in $(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
+ * @param sup Reference to the superclass object.
  */
 case class EnergyPriceCurve
-(
-
-    override val sup: BasicElement
+(override val sup: BasicElement
 )
 extends
     Element
@@ -1091,112 +969,60 @@ extends
 
 /**
  * Offer to supply energy/ancillary services from a generating unit or resource
+ * @param sup Reference to the superclass object.
+ * @param combinedCycleUnitOffer Will indicate if the unit is part of a CC offer or not
+ * @param downTimeMax Maximum down time.
+ * @param installedCapacity Installed Capacity value
+ * @param lowerRampRate Maximum Dn ramp rate in MW/min
+ * @param maxEmergencyMW Power rating available for unit under emergency conditions greater than or equal to maximum economic limit.
+ * @param maximumEconomicMW Maximum high economic MW limit, that should not exceed the maximum operating MW limit
+ * @param minEmergencyMW Minimum power rating for unit under emergency conditions, which is less than or equal to the economic minimum.
+ * @param minimumEconomicMW Low economic MW limit that shall be greater than or equal to the minimum operating MW limit
+ * @param noLoadCost Resource fixed no load cost.
+ * @param notificationTime Time required for crew notification prior to start up of the unit.
+ * @param operatingMode Bid operating mode ('C' - cycling, 'F' - fixed, 'M' - must run, 'U' - unavailable)
+ * @param raiseRampRate Maximum Up ramp rate in MW/min
+ * @param rampCurveType Ramp curve type:
+0 - Fixed ramp rate independent of rate function unit MW output
+1 - Static ramp rates as a function of unit MW output only
+ *        2 - Dynamic ramp rates as a function of unit MW output and ramping time
+ * @param startUpRampRate Resource startup ramp rate (MW/minute)
+ * @param startUpType Resource startup type:
+1 - Fixed startup time and fixed startup cost
+2 - Startup time as a function of down time and fixed startup cost
+ *        3 - Startup cost as a function of down time
+ * @param startupCost Startup cost/price
+ * @param upTimeMax Maximum up time.
+ * @param BidSet
+ * @param NotificationTimeCurve
+ * @param RegisteredGenerator
+ * @param StartUpCostCurve
+ * @param StartUpTimeCurve
  */
 case class GeneratingBid
-(
-
-    override val sup: ResourceBid,
-
-    /**
-     * Will indicate if the unit is part of a CC offer or not
-     */
-    val combinedCycleUnitOffer: String,
-
-    /**
-     * Maximum down time.
-     */
-    val downTimeMax: Double,
-
-    /**
-     * Installed Capacity value
-     */
-    val installedCapacity: Double,
-
-    /**
-     * Maximum Dn ramp rate in MW/min
-     */
-    val lowerRampRate: Double,
-
-    /**
-     * Power rating available for unit under emergency conditions greater than or equal to maximum economic limit.
-     */
-    val maxEmergencyMW: Double,
-
-    /**
-     * Maximum high economic MW limit, that should not exceed the maximum operating MW limit
-     */
-    val maximumEconomicMW: Double,
-
-    /**
-     * Minimum power rating for unit under emergency conditions, which is less than or equal to the economic minimum.
-     */
-    val minEmergencyMW: Double,
-
-    /**
-     * Low economic MW limit that shall be greater than or equal to the minimum operating MW limit
-     */
-    val minimumEconomicMW: Double,
-
-    /**
-     * Resource fixed no load cost.
-     */
-    val noLoadCost: Double,
-
-    /**
-     * Time required for crew notification prior to start up of the unit.
-     */
-    val notificationTime: Double,
-
-    /**
-     * Bid operating mode ('C' - cycling, 'F' - fixed, 'M' - must run, 'U' - unavailable)
-     */
-    val operatingMode: String,
-
-    /**
-     * Maximum Up ramp rate in MW/min
-     */
-    val raiseRampRate: Double,
-
-    /**
-     * Ramp curve type:
-    0 - Fixed ramp rate independent of rate function unit MW output
-    1 - Static ramp rates as a function of unit MW output only
-     * 2 - Dynamic ramp rates as a function of unit MW output and ramping time
-     */
-    val rampCurveType: Int,
-
-    /**
-     * Resource startup ramp rate (MW/minute)
-     */
-    val startUpRampRate: Double,
-
-    /**
-     * Resource startup type:
-    1 - Fixed startup time and fixed startup cost
-    2 - Startup time as a function of down time and fixed startup cost
-     * 3 - Startup cost as a function of down time
-     */
-    val startUpType: Int,
-
-    /**
-     * Startup cost/price
-     */
-    val startupCost: Double,
-
-    /**
-     * Maximum up time.
-     */
-    val upTimeMax: Double,
-
-    val BidSet: String,
-
-    val NotificationTimeCurve: String,
-
-    val RegisteredGenerator: String,
-
-    val StartUpCostCurve: String,
-
-    val StartUpTimeCurve: String
+(override val sup: ResourceBid,
+val combinedCycleUnitOffer: String,
+val downTimeMax: Double,
+val installedCapacity: Double,
+val lowerRampRate: Double,
+val maxEmergencyMW: Double,
+val maximumEconomicMW: Double,
+val minEmergencyMW: Double,
+val minimumEconomicMW: Double,
+val noLoadCost: Double,
+val notificationTime: Double,
+val operatingMode: String,
+val raiseRampRate: Double,
+val rampCurveType: Int,
+val startUpRampRate: Double,
+val startUpType: Int,
+val startupCost: Double,
+val upTimeMax: Double,
+val BidSet: String,
+val NotificationTimeCurve: String,
+val RegisteredGenerator: String,
+val StartUpCostCurve: String,
+val StartUpTimeCurve: String
 )
 extends
     Element
@@ -1274,16 +1100,12 @@ extends
 /**
  * An indicator specifying that a resource shall have an Hourly Pre-Dispatch.
  * The resource could be a RegisteredGenerator or a RegisteredInterTie.
+ * @param sup Reference to the superclass object.
+ * @param value Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
  */
 case class HourlyPreDispatchSchedule
-(
-
-    override val sup: BidHourlySchedule,
-
-    /**
-     * Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
-     */
-    val value: Boolean
+(override val sup: BidHourlySchedule,
+val value: Boolean
 )
 extends
     Element
@@ -1318,18 +1140,14 @@ extends
 
 /**
  * This class represents the inter tie bid
+ * @param sup Reference to the superclass object.
+ * @param minHourlyBlock_1 The minimum hourly block for an Inter-Tie Resource supplied within the bid.
+ * @param RegisteredInterTie
  */
 case class InterTieBid
-(
-
-    override val sup: ResourceBid,
-
-    /**
-     * The minimum hourly block for an Inter-Tie Resource supplied within the bid.
-     */
-    val minHourlyBlock_1: Int,
-
-    val RegisteredInterTie: String
+(override val sup: ResourceBid,
+val minHourlyBlock_1: Int,
+val RegisteredInterTie: String
 )
 extends
     Element
@@ -1366,40 +1184,24 @@ extends
 
 /**
  * Response from an intertie resource acknowleging receipt of dispatch instructions
+ * @param sup Reference to the superclass object.
+ * @param acceptMW The accepted mw amount by the responder. aka response mw.
+ * @param acceptStatus The accept status submitted by the responder.
+ *        Valid values are NON-RESPONSE, ACCEPT, DECLINE, PARTIAL.
+ * @param clearedMW MW amount associated with instruction.
+ *        For 5 minute binding dispatches, this is the Goto MW or DOT
+ * @param passIndicator Part of the Composite key that downstream app uses to match the instruction
+ * @param startTime Part of the Composite key that downstream app uses to match the instruction
+ * @param RegisteredInterTie
  */
 case class InterTieDispatchResponse
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * The accepted mw amount by the responder. aka response mw.
-     */
-    val acceptMW: Double,
-
-    /**
-     * The accept status submitted by the responder.
-     * Valid values are NON-RESPONSE, ACCEPT, DECLINE, PARTIAL.
-     */
-    val acceptStatus: String,
-
-    /**
-     * MW amount associated with instruction.
-     * For 5 minute binding dispatches, this is the Goto MW or DOT
-     */
-    val clearedMW: Double,
-
-    /**
-     * Part of the Composite key that downstream app uses to match the instruction
-     */
-    val passIndicator: String,
-
-    /**
-     * Part of the Composite key that downstream app uses to match the instruction
-     */
-    val startTime: String,
-
-    val RegisteredInterTie: String
+(override val sup: BasicElement,
+val acceptMW: Double,
+val acceptStatus: String,
+val clearedMW: Double,
+val passIndicator: String,
+val startTime: String,
+val RegisteredInterTie: String
 )
 extends
     Element
@@ -1444,88 +1246,45 @@ extends
 
 /**
  * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption)
+ * @param sup Reference to the superclass object.
+ * @param dropRampRate Maximum rate that load can be reduced (MW/minute)
+ * @param loadRedInitiationCost load reduction initiation cost
+ * @param loadRedInitiationTime load reduction initiation time
+ * @param marketDate The date represents the NextMarketDate for which the load response bids apply to.
+ * @param meteredValue Flag indicated that the load reduction is metered. (See above)
+ *        If priceSetting and meteredValue both equal 1, then the facility is eligible to set LMP in the real time market.
+ * @param minLoad Minimum MW load below which it may not be reduced.
+ * @param minLoadReduction Minimum MW for a load reduction (e.g.
+ *        MW rating of a discrete pump.
+ * @param minLoadReductionCost Cost in $ at the minimum reduced load
+ * @param minLoadReductionInterval Shortest period load reduction shall be maintained before load can be restored to normal levels.
+ * @param minTimeBetLoadRed Shortest time that load shall be left at normal levels before a new load reduction.
+ * @param pickUpRampRate Maximum rate load may be restored (MW/minute)
+ * @param priceSetting Flag to indicate that the facility can set LMP Works in tandem with Metered Value.
+ *        Greater chance of this being dynamic than the Metered Value, however, it is requested that Price Setting and Metered Value stay at the same source.  Currently no customers have implemented the metering capability, but if this option is implemented, then Price Setting could become dynamic.  However, Metered Value will remain static.
+ * @param reqNoticeTime Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
+ * @param shutdownCost The fixed cost associated with committing a load reduction.
+ * @param AreaLoadBid
+ * @param RegisteredLoad
  */
 case class LoadBid
-(
-
-    override val sup: ResourceBid,
-
-    /**
-     * Maximum rate that load can be reduced (MW/minute)
-     */
-    val dropRampRate: Double,
-
-    /**
-     * load reduction initiation cost
-     */
-    val loadRedInitiationCost: Double,
-
-    /**
-     * load reduction initiation time
-     */
-    val loadRedInitiationTime: Double,
-
-    /**
-     * The date represents the NextMarketDate for which the load response bids apply to.
-     */
-    val marketDate: String,
-
-    /**
-     * Flag indicated that the load reduction is metered. (See above)
-     * If priceSetting and meteredValue both equal 1, then the facility is eligible to set LMP in the real time market.
-     */
-    val meteredValue: Boolean,
-
-    /**
-     * Minimum MW load below which it may not be reduced.
-     */
-    val minLoad: Double,
-
-    /**
-     * Minimum MW for a load reduction (e.g.
-     * MW rating of a discrete pump.
-     */
-    val minLoadReduction: Double,
-
-    /**
-     * Cost in $ at the minimum reduced load
-     */
-    val minLoadReductionCost: Double,
-
-    /**
-     * Shortest period load reduction shall be maintained before load can be restored to normal levels.
-     */
-    val minLoadReductionInterval: Double,
-
-    /**
-     * Shortest time that load shall be left at normal levels before a new load reduction.
-     */
-    val minTimeBetLoadRed: Double,
-
-    /**
-     * Maximum rate load may be restored (MW/minute)
-     */
-    val pickUpRampRate: Double,
-
-    /**
-     * Flag to indicate that the facility can set LMP Works in tandem with Metered Value.
-     * Greater chance of this being dynamic than the Metered Value, however, it is requested that Price Setting and Metered Value stay at the same source.  Currently no customers have implemented the metering capability, but if this option is implemented, then Price Setting could become dynamic.  However, Metered Value will remain static.
-     */
-    val priceSetting: Boolean,
-
-    /**
-     * Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
-     */
-    val reqNoticeTime: Double,
-
-    /**
-     * The fixed cost associated with committing a load reduction.
-     */
-    val shutdownCost: Double,
-
-    val AreaLoadBid: String,
-
-    val RegisteredLoad: String
+(override val sup: ResourceBid,
+val dropRampRate: Double,
+val loadRedInitiationCost: Double,
+val loadRedInitiationTime: Double,
+val marketDate: String,
+val meteredValue: Boolean,
+val minLoad: Double,
+val minLoadReduction: Double,
+val minLoadReductionCost: Double,
+val minLoadReductionInterval: Double,
+val minTimeBetLoadRed: Double,
+val pickUpRampRate: Double,
+val priceSetting: Boolean,
+val reqNoticeTime: Double,
+val shutdownCost: Double,
+val AreaLoadBid: String,
+val RegisteredLoad: String
 )
 extends
     Element
@@ -1590,34 +1349,21 @@ extends
 
 /**
  * Metered SubSystem Load Following Instruction
+ * @param sup Reference to the superclass object.
+ * @param endTime Instruction End Time
+ * @param loadFollowingMW Load Following MW Positive for follow-up and negative for follow-down
+ * @param mssInstructionID Unique instruction id per instruction, assigned by the SC and provided to ADS.
+ *        ADS passes through.
+ * @param startTime Instruction Start Time
+ * @param RegisteredResource
  */
 case class LoadFollowingInst
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * Instruction End Time
-     */
-    val endTime: String,
-
-    /**
-     * Load Following MW Positive for follow-up and negative for follow-down
-     */
-    val loadFollowingMW: Double,
-
-    /**
-     * Unique instruction id per instruction, assigned by the SC and provided to ADS.
-     * ADS passes through.
-     */
-    val mssInstructionID: String,
-
-    /**
-     * Instruction Start Time
-     */
-    val startTime: String,
-
-    val RegisteredResource: String
+(override val sup: BasicElement,
+val endTime: String,
+val loadFollowingMW: Double,
+val mssInstructionID: String,
+val startTime: String,
+val RegisteredResource: String
 )
 extends
     Element
@@ -1661,13 +1407,12 @@ extends
 /**
  * This is the price sensitivity that bidder expresses for allowing market load interruption.
  * Relationship between price (Y1-axis) vs. MW (X-axis).
+ * @param sup Reference to the superclass object.
+ * @param LoadBid
  */
 case class LoadReductionPriceCurve
-(
-
-    override val sup: Curve,
-
-    val LoadBid: String
+(override val sup: Curve,
+val LoadBid: String
 )
 extends
     Element
@@ -1703,36 +1448,29 @@ extends
 /**
  * A Major Charge Group is the same as Invocie Type which provides the highest level of grouping for charge types configration.
  * Examples as Market, FERC, RMR,
+ * @param sup Reference to the superclass object.
+ * @param effectiveDate
+ * @param frequencyType
+ * @param invoiceType
+ * @param requireAutorun
+ * @param revisionNumber Revision number for the major charge group
+ * @param runType
+ * @param runVersion
+ * @param terminationDate
+ * @param ChargeType A MajorChargeGroup can have 0-n ChargeType.
+ *        A ChargeType can associate to 0-n MajorChargeGroup.
  */
 case class MajorChargeGroup
-(
-
-    override val sup: IdentifiedObject,
-
-    val effectiveDate: String,
-
-    val frequencyType: String,
-
-    val invoiceType: String,
-
-    val requireAutorun: String,
-
-    /**
-     * Revision number for the major charge group
-     */
-    val revisionNumber: String,
-
-    val runType: String,
-
-    val runVersion: String,
-
-    val terminationDate: String,
-
-    /**
-     * A MajorChargeGroup can have 0-n ChargeType.
-     * A ChargeType can associate to 0-n MajorChargeGroup.
-     */
-    val ChargeType: List[String]
+(override val sup: IdentifiedObject,
+val effectiveDate: String,
+val frequencyType: String,
+val invoiceType: String,
+val requireAutorun: String,
+val revisionNumber: String,
+val runType: String,
+val runVersion: String,
+val terminationDate: String,
+val ChargeType: List[String]
 )
 extends
     Element
@@ -1783,25 +1521,18 @@ extends
 
 /**
  * Signifies an event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units shall be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
+ * @param sup Reference to the superclass object.
+ * @param category Category of scheduled event.
+ * @param duration Duration of the scheduled event, for example, the time to ramp between values.
+ * @param status
+ * @param MajorChargeGroup
  */
 case class MarketScheduledEvent
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * Category of scheduled event.
-     */
-    val category: String,
-
-    /**
-     * Duration of the scheduled event, for example, the time to ramp between values.
-     */
-    val duration: Double,
-
-    val status: String,
-
-    val MajorChargeGroup: String
+(override val sup: IdentifiedObject,
+val category: String,
+val duration: Double,
+val status: String,
+val MajorChargeGroup: String
 )
 extends
     Element
@@ -1843,11 +1574,10 @@ extends
 /**
  * Notification time curve as a function of down time.
  * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
+ * @param sup Reference to the superclass object.
  */
 case class NotificationTimeCurve
-(
-
-    override val sup: Curve
+(override val sup: Curve
 )
 extends
     Element
@@ -1881,13 +1611,12 @@ extends
 /**
  * Result of bid validation against conditions that may exist on an interchange that becomes disconnected or is heavily discounted with respect the MW flow.
  * This schedule is assocated with the hourly parameters in a resource bid.
+ * @param sup Reference to the superclass object.
+ * @param value
  */
 case class OpenTieSchedule
-(
-
-    override val sup: BidHourlySchedule,
-
-    val value: Boolean
+(override val sup: BidHourlySchedule,
+val value: Boolean
 )
 extends
     Element
@@ -1922,18 +1651,14 @@ extends
 
 /**
  * Component of a bid that pertains to one market product.
+ * @param sup Reference to the superclass object.
+ * @param Bid A bid comprises one or more product bids of market products
+ * @param MarketProduct
  */
 case class ProductBid
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * A bid comprises one or more product bids of market products
-     */
-    val Bid: String,
-
-    val MarketProduct: String
+(override val sup: IdentifiedObject,
+val Bid: String,
+val MarketProduct: String
 )
 extends
     Element
@@ -1971,13 +1696,12 @@ extends
 /**
  * The operating cost of a Pump Storage Hydro Unit operating as a hydro pump.
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
+ * @param sup Reference to the superclass object.
+ * @param value
  */
 case class PumpingCostSchedule
-(
-
-    override val sup: BidHourlyProductSchedule,
-
-    val value: Double
+(override val sup: BidHourlyProductSchedule,
+val value: Double
 )
 extends
     Element
@@ -2013,13 +1737,12 @@ extends
 /**
  * The fixed operating level of a Pump Storage Hydro Unit operating as a hydro pump.
  * Associated with the energy market product type.
+ * @param sup Reference to the superclass object.
+ * @param value
  */
 case class PumpingLevelSchedule
-(
-
-    override val sup: BidHourlyProductSchedule,
-
-    val value: Double
+(override val sup: BidHourlyProductSchedule,
+val value: Double
 )
 extends
     Element
@@ -2055,13 +1778,12 @@ extends
 /**
  * The cost to shutdown a Pump Storage Hydro Unit (in pump mode) or a pump.
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
+ * @param sup Reference to the superclass object.
+ * @param value
  */
 case class PumpingShutDownCostSchedule
-(
-
-    override val sup: BidHourlyProductSchedule,
-
-    val value: Double
+(override val sup: BidHourlyProductSchedule,
+val value: Double
 )
 extends
     Element
@@ -2096,33 +1818,23 @@ extends
 
 /**
  * Ramp rate as a function of resource MW output
+ * @param sup Reference to the superclass object.
+ * @param condition condition for the ramp rate
+ * @param constraintRampType The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval.
+ *        Valid values are Fast/Slow
+ * @param rampRateType How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)
+ * @param GeneratingBid
+ * @param InterTieBid
+ * @param LoadBid
  */
 case class RampRateCurve
-(
-
-    override val sup: Curve,
-
-    /**
-     * condition for the ramp rate
-     */
-    val condition: String,
-
-    /**
-     * The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval.
-     * Valid values are Fast/Slow
-     */
-    val constraintRampType: String,
-
-    /**
-     * How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)
-     */
-    val rampRateType: String,
-
-    val GeneratingBid: String,
-
-    val InterTieBid: String,
-
-    val LoadBid: String
+(override val sup: Curve,
+val condition: String,
+val constraintRampType: String,
+val rampRateType: String,
+val GeneratingBid: String,
+val InterTieBid: String,
+val LoadBid: String
 )
 extends
     Element
@@ -2167,102 +1879,59 @@ extends
 
 /**
  * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market)
+ * @param sup Reference to the superclass object.
+ * @param aggregationFlag Aggregation flag 
+0: individual resource level
+1: Aggregated node location
+ *        2: Aggregated price location)
+ * @param bidStatus
+ * @param commodityType Energy product (commodity) type:
+'En' - Energy
+'Ru' - Regulation Up
+'Rd' - Regulation Dn
+'Sr' - Spinning Reserve
+'Nr' - Non-Spinning Reserve
+ *        'Or' - Operating Reserve
+ * @param contingencyAvailFlag contingent operating reserve availiability (Yes/No).
+ *        Resource is availiable to participate with capacity only in contingency dispatch.
+ * @param createdISO A Yes indicates that this bid was created by the ISO.
+ * @param energyMaxDay Maximum amount of energy per day which can be produced during the trading period in MWh
+ * @param energyMinDay Minimum amount of energy per day which has to be produced during the trading period in MWh
+ * @param marketSepFlag Market Separation Flag
+
+'Y' - Enforce market separation constraints for this bid
+ *        'N' - Don't enforce market separation constraints for this bid.
+ * @param minDispatchTime minimum number of consecutive hours a resource shall be dispatched if bid is accepted
+ * @param resourceLoadingType Resource loading curve type
+1 - step-wise continuous loading
+2 - piece-wise linear continuous loading
+ *        3 - block loading
+ * @param shutDownsMaxDay Maximum number of shutdowns per day.
+ * @param shutDownsMaxWeek Maximum number of shutdowns per week.
+ * @param startUpsMaxDay Maximum number of startups per day.
+ * @param startUpsMaxWeek Maximum number of startups per week.
+ * @param virtual True if bid is virtual.
+ *        Bid is assumed to be non-virtual if attribute is absent
+ * @param BidError
  */
 case class ResourceBid
-(
-
-    override val sup: Bid,
-
-    /**
-     * Aggregation flag 
-    0: individual resource level
-    1: Aggregated node location
-     * 2: Aggregated price location)
-     */
-    val aggregationFlag: Int,
-
-    val bidStatus: String,
-
-    /**
-     * Energy product (commodity) type:
-    'En' - Energy
-    'Ru' - Regulation Up
-    'Rd' - Regulation Dn
-    'Sr' - Spinning Reserve
-    'Nr' - Non-Spinning Reserve
-     * 'Or' - Operating Reserve
-     */
-    val commodityType: String,
-
-    /**
-     * contingent operating reserve availiability (Yes/No).
-     * Resource is availiable to participate with capacity only in contingency dispatch.
-     */
-    val contingencyAvailFlag: String,
-
-    /**
-     * A Yes indicates that this bid was created by the ISO.
-     */
-    val createdISO: String,
-
-    /**
-     * Maximum amount of energy per day which can be produced during the trading period in MWh
-     */
-    val energyMaxDay: Double,
-
-    /**
-     * Minimum amount of energy per day which has to be produced during the trading period in MWh
-     */
-    val energyMinDay: Double,
-
-    /**
-     * Market Separation Flag
-    
-    'Y' - Enforce market separation constraints for this bid
-     * 'N' - Don't enforce market separation constraints for this bid.
-     */
-    val marketSepFlag: String,
-
-    /**
-     * minimum number of consecutive hours a resource shall be dispatched if bid is accepted
-     */
-    val minDispatchTime: Int,
-
-    /**
-     * Resource loading curve type
-    1 - step-wise continuous loading
-    2 - piece-wise linear continuous loading
-     * 3 - block loading
-     */
-    val resourceLoadingType: Int,
-
-    /**
-     * Maximum number of shutdowns per day.
-     */
-    val shutDownsMaxDay: Int,
-
-    /**
-     * Maximum number of shutdowns per week.
-     */
-    val shutDownsMaxWeek: Int,
-
-    /**
-     * Maximum number of startups per day.
-     */
-    val startUpsMaxDay: Int,
-
-    /**
-     * Maximum number of startups per week.
-     */
-    val startUpsMaxWeek: Int,
-
-    /**
-     * True if bid is virtual.
-     * Bid is assumed to be non-virtual if attribute is absent
-     */
-    val virtual: Boolean,
-
-    val BidError: List[String]
+(override val sup: Bid,
+val aggregationFlag: Int,
+val bidStatus: String,
+val commodityType: String,
+val contingencyAvailFlag: String,
+val createdISO: String,
+val energyMaxDay: Double,
+val energyMinDay: Double,
+val marketSepFlag: String,
+val minDispatchTime: Int,
+val resourceLoadingType: Int,
+val shutDownsMaxDay: Int,
+val shutDownsMaxWeek: Int,
+val startUpsMaxDay: Int,
+val startUpsMaxWeek: Int,
+val virtual: Boolean,
+val BidError: List[String]
 )
 extends
     Element
@@ -2328,13 +1997,12 @@ extends
 /**
  * Startup costs and time as a function of down time.
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerators
  */
 case class StartUpCostCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerators: List[String]
+(override val sup: Curve,
+val RegisteredGenerators: List[String]
 )
 extends
     Element
@@ -2370,13 +2038,12 @@ extends
 /**
  * Startup time curve as a function of down time, where time is specified in minutes.
  * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator
  */
 case class StartUpTimeCurve
-(
-
-    override val sup: Curve,
-
-    val RegisteredGenerator: String
+(override val sup: Curve,
+val RegisteredGenerator: String
 )
 extends
     Element
@@ -2411,95 +2078,58 @@ extends
 
 /**
  * Inter Scheduling Coordinator Trades to model financial trades which may impact settlement
+ * @param sup Reference to the superclass object.
+ * @param adjustedTradeQuantity The validated and current market accepted trade amount of a physical energy trade.
+ * @param counterTradeQuantity MW quantity submitted by counter SC for the same trade
+ * @param dependOnTradeName The Depend On IST Name points to the unique IST Name in the chain of physical energy trades.
+ * @param lastModified Time and date the trade was last modified.
+ * @param marketType
+ * @param startTime Start time and date for which trade applies.
+ * @param stopTime Stop time and date for which trade is applicable.
+ * @param submitFromSchedulingCoordinator
+ * @param submitFromTimeStamp Timestamp of submittal of submit From Scheduling Coordinator Trade to Market Participant Bid Submittal
+ * @param submitFromUser Userid of the submit From Scheduling Coordinator trade
+ * @param submitToSchedulingCoordinator
+ * @param submitToTimeStamp Timestamp of submittal of submit To Scheduling Coordinator Trade to Market Participant Bid Submittal
+ * @param submitToUser_1 Userid of the submit To Scheduling Coordinator trade
+ * @param tradeQuantity tradeQuantity: 
+If tradeType = IST, The amount of an Energy Trade.
+ *        If tradeType = AST, The amount of an Ancillary Service Obligation Trade.
+ * @param tradeStatus Resulting status of the trade following the rule engine processing.
+ * @param updateTimeStamp
+ * @param updateUser
+ * @param ActionRequest
+ * @param From_SC
+ * @param Pnode
+ * @param RegisteredGenerator
+ * @param To_SC
+ * @param TradeProduct
  */
 case class Trade
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * The validated and current market accepted trade amount of a physical energy trade.
-     */
-    val adjustedTradeQuantity: Double,
-
-    /**
-     * MW quantity submitted by counter SC for the same trade
-     */
-    val counterTradeQuantity: Double,
-
-    /**
-     * The Depend On IST Name points to the unique IST Name in the chain of physical energy trades.
-     */
-    val dependOnTradeName: String,
-
-    /**
-     * Time and date the trade was last modified.
-     */
-    val lastModified: String,
-
-    val marketType: String,
-
-    /**
-     * Start time and date for which trade applies.
-     */
-    val startTime: String,
-
-    /**
-     * Stop time and date for which trade is applicable.
-     */
-    val stopTime: String,
-
-    val submitFromSchedulingCoordinator: String,
-
-    /**
-     * Timestamp of submittal of submit From Scheduling Coordinator Trade to Market Participant Bid Submittal
-     */
-    val submitFromTimeStamp: String,
-
-    /**
-     * Userid of the submit From Scheduling Coordinator trade
-     */
-    val submitFromUser: String,
-
-    val submitToSchedulingCoordinator: String,
-
-    /**
-     * Timestamp of submittal of submit To Scheduling Coordinator Trade to Market Participant Bid Submittal
-     */
-    val submitToTimeStamp: String,
-
-    /**
-     * Userid of the submit To Scheduling Coordinator trade
-     */
-    val submitToUser_1: String,
-
-    /**
-     * tradeQuantity: 
-    If tradeType = IST, The amount of an Energy Trade.
-     * If tradeType = AST, The amount of an Ancillary Service Obligation Trade.
-     */
-    val tradeQuantity: Double,
-
-    /**
-     * Resulting status of the trade following the rule engine processing.
-     */
-    val tradeStatus: String,
-
-    val updateTimeStamp: String,
-
-    val updateUser: String,
-
-    val ActionRequest: String,
-
-    val From_SC: String,
-
-    val Pnode: String,
-
-    val RegisteredGenerator: String,
-
-    val To_SC: String,
-
-    val TradeProduct: String
+(override val sup: IdentifiedObject,
+val adjustedTradeQuantity: Double,
+val counterTradeQuantity: Double,
+val dependOnTradeName: String,
+val lastModified: String,
+val marketType: String,
+val startTime: String,
+val stopTime: String,
+val submitFromSchedulingCoordinator: String,
+val submitFromTimeStamp: String,
+val submitFromUser: String,
+val submitToSchedulingCoordinator: String,
+val submitToTimeStamp: String,
+val submitToUser_1: String,
+val tradeQuantity: Double,
+val tradeStatus: String,
+val updateTimeStamp: String,
+val updateUser: String,
+val ActionRequest: String,
+val From_SC: String,
+val Pnode: String,
+val RegisteredGenerator: String,
+val To_SC: String,
+val TradeProduct: String
 )
 extends
     Element
@@ -2578,43 +2208,24 @@ extends
 
 /**
  * Trade error and warning messages associated with the rule engine processing of the submitted trade.
+ * @param sup Reference to the superclass object.
+ * @param endTime hour wihthin the trade for which the error applies
+ * @param errMessage error message
+ * @param errPriority Priority number for the error message
+ * @param logTimeStamp Timestamp of logged error/warning message
+ * @param ruleID Rule identifier which triggered the error/warning message
+ * @param startTime hour wihthin the trade for which the error applies
+ * @param Trade
  */
 case class TradeError
-(
-
-    override val sup: IdentifiedObject,
-
-    /**
-     * hour wihthin the trade for which the error applies
-     */
-    val endTime: String,
-
-    /**
-     * error message
-     */
-    val errMessage: String,
-
-    /**
-     * Priority number for the error message
-     */
-    val errPriority: Int,
-
-    /**
-     * Timestamp of logged error/warning message
-     */
-    val logTimeStamp: String,
-
-    /**
-     * Rule identifier which triggered the error/warning message
-     */
-    val ruleID: Int,
-
-    /**
-     * hour wihthin the trade for which the error applies
-     */
-    val startTime: String,
-
-    val Trade: String
+(override val sup: IdentifiedObject,
+val endTime: String,
+val errMessage: String,
+val errPriority: Int,
+val logTimeStamp: String,
+val ruleID: Int,
+val startTime: String,
+val Trade: String
 )
 extends
     Element
@@ -2669,29 +2280,22 @@ AST                                                 RDT (Regulation Down Trade)
 AST                                                 SRT (Spinning Reserve Trade)
 AST                                                 NRT (Non-Spinning Reserve Trade)
  * UCT (Unit Commitment Trade)            null
+ * @param sup Reference to the superclass object.
+ * @param tradeProductType PHY (Physical Energy Trade);  
+APN (Energy Trades at Aggregated Pricing Nodes);  
+CPT (Converted Physical Energy Trade);  
+RUT (Regulation Up Trade);  
+RDT (Regulation Down Trade);  
+SRT (Spinning Reserve Trade);
+ *        NRT (Non-Spinning Reserve Trade)
+ * @param tradeType IST  - InterSC Trade;  
+AST - Ancilliary Services Trade;
+ *        UCT - Unit Commitment Trade
  */
 case class TradeProduct
-(
-
-    override val sup: BasicElement,
-
-    /**
-     * PHY (Physical Energy Trade);  
-    APN (Energy Trades at Aggregated Pricing Nodes);  
-    CPT (Converted Physical Energy Trade);  
-    RUT (Regulation Up Trade);  
-    RDT (Regulation Down Trade);  
-    SRT (Spinning Reserve Trade);
-     * NRT (Non-Spinning Reserve Trade)
-     */
-    val tradeProductType: String,
-
-    /**
-     * IST  - InterSC Trade;  
-    AST - Ancilliary Services Trade;
-     * UCT - Unit Commitment Trade
-     */
-    val tradeType: String
+(override val sup: BasicElement,
+val tradeProductType: String,
+val tradeType: String
 )
 extends
     Element
@@ -2728,33 +2332,23 @@ extends
 
 /**
  * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process
+ * @param sup Reference to the superclass object.
+ * @param demandTransaction Set true if this is a demand transaction.
+ * @param dispatchable Set true if this is a dispatchable transaction.
+ * @param payCongestion Set true if this is a willing to pay transaction.
+ *        This flag is used to determine whether a schedule is willing-to-pay-congestion or not.
+ * @param Delivery_Pnode
+ * @param Receipt_Pnode
+ * @param TransmissionReservation
  */
 case class TransactionBid
-(
-
-    override val sup: Bid,
-
-    /**
-     * Set true if this is a demand transaction.
-     */
-    val demandTransaction: Boolean,
-
-    /**
-     * Set true if this is a dispatchable transaction.
-     */
-    val dispatchable: Boolean,
-
-    /**
-     * Set true if this is a willing to pay transaction.
-     * This flag is used to determine whether a schedule is willing-to-pay-congestion or not.
-     */
-    val payCongestion: Boolean,
-
-    val Delivery_Pnode: String,
-
-    val Receipt_Pnode: String,
-
-    val TransmissionReservation: String
+(override val sup: Bid,
+val demandTransaction: Boolean,
+val dispatchable: Boolean,
+val payCongestion: Boolean,
+val Delivery_Pnode: String,
+val Receipt_Pnode: String,
+val TransmissionReservation: String
 )
 extends
     Element
