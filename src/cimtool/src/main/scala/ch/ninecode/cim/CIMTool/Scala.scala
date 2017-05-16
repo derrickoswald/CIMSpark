@@ -208,20 +208,27 @@ case class Scala (parser: ModelParser, pkg: Package)
             s.append ("case class ")
             s.append (name)
             s.append ("""
-                |(""".stripMargin)
+                |(
+                |""".stripMargin)
             val initializers = new StringBuilder ()
             for (product <- members)
             {
-                if (product.name != "sup") s.append (""",
-                |""".stripMargin)
+                if (initializers.length > 0)
+                {
+                    initializers.append (", ")
+                    s.append (""",
+                    |""".stripMargin)
+                }
+                initializers.append (product.initializer)
+                s.append ("""    """)
                 if (product.overrid) s.append ("""override """)
                 s.append ("""val """)
                 s.append (product.variable)
                 s.append (""": """)
-                s.append (product.datatype)
-                if (initializers.length > 0)
-                    initializers.append (", ")
-                initializers.append (product.initializer)
+                if (product.name == "sup")
+                    s.append ("""Element""")
+                else
+                    s.append (product.datatype)
             }
 
             s.append ("""

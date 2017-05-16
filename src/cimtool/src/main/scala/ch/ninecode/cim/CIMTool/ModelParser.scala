@@ -300,13 +300,18 @@ case class ModelParser (db: Database)
 
 object ModelParser
 {
-  
+    val VERSION = "16"
+
     def main(args : Array[String])
     {
-        val file = if (true)
-            "iec61970cim16v29a_iec61968cim12v08_iec62325cim03v01a.eap"
-        else
-            "iec61970cim17v16_iec61968cim13v10_iec62325cim03v14.eap"
+        val file = VERSION match
+        {
+            case "14" => "iec61970cim14v15_iec61968cim10v31_combined.eap"
+            case "15" => "iec61970cim15v33_iec61968cim11v13_iec62325cim01v07.eap"
+            case "16" => "iec61970cim16v29a_iec61968cim12v08_iec62325cim03v01a.eap"
+            case "17" => "iec61970cim17v16_iec61968cim13v10_iec62325cim03v14.eap" // preview
+        }
+
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))
         parser.run
 //        println ("Packages: " + parser.packages.size)
