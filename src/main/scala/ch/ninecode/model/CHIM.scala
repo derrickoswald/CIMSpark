@@ -264,7 +264,7 @@ object Parser
  * 
  * @tparam A The CIM class type.
  */
-abstract class Parseable[A <: Product : ClassTag : TypeTag]
+abstract class Parseable[+A <: Product : ClassTag : TypeTag]
 extends
     Parser
 {
@@ -349,7 +349,8 @@ case class Unknown(
 }
 
 object Unknown
-    extends Parser
+extends
+    Parseable[Unknown]
 {
     /**
      * The current element name.
@@ -396,7 +397,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     val matcher = Parser.rddex.matcher (xml)
     val bytes = ByteBuffer.wrap (new Array[Byte] (4 * CHIM.OVERREAD))
     val encoder = Charset.forName ("UTF-8").newEncoder ()
-
+    //val lookup = new HashMap[String, Parseable[Product]]
     var value: Element = null
 
     _AssetInfo.register
@@ -523,6 +524,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
                     context.subxml = matcher.group (2)
                     Unknown.name = name
                     value = CHIM.LOOKUP.getOrElse (name, Unknown).parse (context)
+                    //value = lookup.getOrElseUpdate (name, CHIM.LOOKUP.getOrElse (name, Unknown)).parse (context)
 
                     // return success unless there was unrecognized text before the match
                     // that wasn't at the start of the xml
@@ -582,7 +584,7 @@ object CHIM
 
     def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit) =
     {
-        val chim = new CHIM ("") // ensure registration has occured
+        val chim = new CHIM ("") // ensure registration has occurred
         for ((name, subsetter) <- SUBSETTERS.iterator)
             fn (subsetter)
     }

@@ -539,8 +539,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             val new_ti = islands.values
 
             // swap the old TopologicalIsland RDD for the new one
-            old_ti.unpersist (false)
-            old_ti.name = null
+            if (null != old_ti)
+            {
+                old_ti.unpersist (false)
+                old_ti.name = null
+            }
             new_ti.name = "TopologicalIsland"
             new_ti.persist (storage)
             session.sparkContext.getCheckpointDir match
@@ -558,8 +561,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
 
         // swap the old TopologicalNode RDD for the new one
         val old_tn = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]]
-        old_tn.unpersist (false)
-        old_tn.name = null
+        if (null != old_tn)
+        {
+            old_tn.unpersist (false)
+            old_tn.name = null
+        }
         new_tn.name = "TopologicalNode"
         new_tn.persist (storage)
         session.sparkContext.getCheckpointDir match
