@@ -17,10 +17,11 @@ import ch.ninecode.cim.Context
  * @param CombustionTurbine A CAES air compressor is driven by combustion turbine.
  */
 case class AirCompressor
-(override val sup: PowerSystemResource,
-val airCompressorRating: Double,
-val CAESPlant: String,
-val CombustionTurbine: String
+(
+    override val sup: Element,
+    val airCompressorRating: Double,
+    val CAESPlant: String,
+    val CombustionTurbine: String
 )
 extends
     Element
@@ -66,11 +67,12 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may be a member of a compressed air energy storage plant.
  */
 case class CAESPlant
-(override val sup: PowerSystemResource,
-val energyStorageCapacity: Double,
-val ratedCapacityP: Double,
-val AirCompressor: String,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val energyStorageCapacity: Double,
+    val ratedCapacityP: Double,
+    val AirCompressor: String,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -118,10 +120,11 @@ extends
  * @param value
  */
 case class Classification
-(override val sup: BasicElement,
-val multiplier: String,
-val unit: String,
-val value: Int
+(
+    override val sup: Element,
+    val multiplier: String,
+    val unit: String,
+    val value: Int
 )
 extends
     Element
@@ -170,13 +173,14 @@ extends
  * @param SteamSendoutSchedule A cogeneration plant has a steam sendout schedule.
  */
 case class CogenerationPlant
-(override val sup: PowerSystemResource,
-val cogenHPSendoutRating: Double,
-val cogenHPSteamRating: Double,
-val cogenLPSendoutRating: Double,
-val cogenLPSteamRating: Double,
-val ratedP: Double,
-val SteamSendoutSchedule: String
+(
+    override val sup: Element,
+    val cogenHPSendoutRating: Double,
+    val cogenHPSteamRating: Double,
+    val cogenLPSendoutRating: Double,
+    val cogenLPSteamRating: Double,
+    val ratedP: Double,
+    val SteamSendoutSchedule: String
 )
 extends
     Element
@@ -225,8 +229,9 @@ extends
  * @param combCyclePlantRating The combined cycle plant's active power output rating.
  */
 case class CombinedCyclePlant
-(override val sup: PowerSystemResource,
-val combCyclePlantRating: Double
+(
+    override val sup: Element,
+    val combCyclePlantRating: Double
 )
 extends
     Element
@@ -269,12 +274,13 @@ extends
  * @param value
  */
 case class CostPerHeatUnit
-(override val sup: BasicElement,
-val denominatorMultiplier: String,
-val denominatorUnit: String,
-val multiplier: String,
-val unit: String,
-val value: Double
+(
+    override val sup: Element,
+    val denominatorMultiplier: String,
+    val denominatorUnit: String,
+    val multiplier: String,
+    val unit: String,
+    val value: Double
 )
 extends
     Element
@@ -325,12 +331,13 @@ extends
  * @param value
  */
 case class Emission
-(override val sup: BasicElement,
-val denominatorMultiplier: String,
-val denominatorUnit: String,
-val multiplier: String,
-val unit: String,
-val value: Double
+(
+    override val sup: Element,
+    val denominatorMultiplier: String,
+    val denominatorUnit: String,
+    val multiplier: String,
+    val unit: String,
+    val value: Double
 )
 extends
     Element
@@ -381,10 +388,11 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have one or more emission allowance accounts.
  */
 case class EmissionAccount
-(override val sup: Curve,
-val emissionType: String,
-val emissionValueSource: String,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val emissionType: String,
+    val emissionValueSource: String,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -432,11 +440,12 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have  one or more emission curves.
  */
 case class EmissionCurve
-(override val sup: Curve,
-val emissionContent: String,
-val emissionType: String,
-val isNetGrossP: Boolean,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val emissionContent: String,
+    val emissionType: String,
+    val isNetGrossP: Boolean,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -486,13 +495,14 @@ extends
  * @param sulfurDioxide Sulfer dioxide.
  */
 case class EmissionType
-(override val sup: BasicElement,
-val carbonDioxide: String,
-val carbonDisulfide: String,
-val chlorine: String,
-val hydrogenSulfide: String,
-val nitrogenOxide: String,
-val sulfurDioxide: String
+(
+    override val sup: Element,
+    val carbonDioxide: String,
+    val carbonDisulfide: String,
+    val chlorine: String,
+    val hydrogenSulfide: String,
+    val nitrogenOxide: String,
+    val sulfurDioxide: String
 )
 extends
     Element
@@ -542,9 +552,10 @@ extends
  * @param measured Measured.
  */
 case class EmissionValueSource
-(override val sup: BasicElement,
-val calculated: String,
-val measured: String
+(
+    override val sup: Element,
+    val calculated: String,
+    val measured: String
 )
 extends
     Element
@@ -598,18 +609,19 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have one or more fossil fuels.
  */
 case class FossilFuel
-(override val sup: IdentifiedObject,
-val fossilFuelType: String,
-val fuelCost: String,
-val fuelDispatchCost: String,
-val fuelEffFactor: Double,
-val fuelHandlingCost: String,
-val fuelHeatContent: Double,
-val fuelMixture: Double,
-val fuelSulfur: Double,
-val highBreakpointP: Double,
-val lowBreakpointP: Double,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val fossilFuelType: String,
+    val fuelCost: String,
+    val fuelDispatchCost: String,
+    val fuelEffFactor: Double,
+    val fuelHandlingCost: String,
+    val fuelHeatContent: Double,
+    val fuelMixture: Double,
+    val fuelSulfur: Double,
+    val highBreakpointP: Double,
+    val lowBreakpointP: Double,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -674,14 +686,15 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have one or more fuel allocation schedules.
  */
 case class FuelAllocationSchedule
-(override val sup: Curve,
-val fuelAllocationEndDate: String,
-val fuelAllocationStartDate: String,
-val fuelType: String,
-val maxFuelAllocation: Double,
-val minFuelAllocation: Double,
-val FossilFuel: String,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val fuelAllocationEndDate: String,
+    val fuelAllocationStartDate: String,
+    val fuelType: String,
+    val maxFuelAllocation: Double,
+    val minFuelAllocation: Double,
+    val FossilFuel: String,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -738,13 +751,14 @@ extends
  * @param oilShale Oil Shale
  */
 case class FuelType
-(override val sup: BasicElement,
-val coal: String,
-val gas: String,
-val hardCoal: String,
-val lignite: String,
-val oil: String,
-val oilShale: String
+(
+    override val sup: Element,
+    val coal: String,
+    val gas: String,
+    val hardCoal: String,
+    val lignite: String,
+    val oil: String,
+    val oilShale: String
 )
 extends
     Element
@@ -795,9 +809,10 @@ extends
  * @param GeneratingUnit A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
  */
 case class GenUnitOpCostCurve
-(override val sup: Curve,
-val isNetGrossP: Boolean,
-val GeneratingUnit: String
+(
+    override val sup: Element,
+    val isNetGrossP: Boolean,
+    val GeneratingUnit: String
 )
 extends
     Element
@@ -839,8 +854,9 @@ extends
  * @param GeneratingUnit A generating unit may have an operating schedule, indicating the planned operation of the unit.
  */
 case class GenUnitOpSchedule
-(override val sup: RegularIntervalSchedule,
-val GeneratingUnit: String
+(
+    override val sup: Element,
+    val GeneratingUnit: String
 )
 extends
     Element
@@ -923,45 +939,46 @@ extends
  * @param GenUnitOpSchedule A generating unit may have an operating schedule, indicating the planned operation of the unit.
  */
 case class GeneratingUnit
-(override val sup: Equipment,
-val allocSpinResP: Double,
-val autoCntrlMarginP: Double,
-val baseP: Double,
-val controlDeadband: Double,
-val controlPulseHigh: Double,
-val controlPulseLow: Double,
-val controlResponseRate: Double,
-val efficiency: Double,
-val genControlMode: String,
-val genControlSource: String,
-val governorMPL: Double,
-val governorSCD: Double,
-val highControlLimit: Double,
-val initialP: Double,
-val longPF: Double,
-val lowControlLimit: Double,
-val lowerRampRate: Double,
-val maxEconomicP: Double,
-val maxOperatingP: Double,
-val maximumAllowableSpinningReserve: Double,
-val minEconomicP: Double,
-val minOperatingP: Double,
-val minimumOffTime: Double,
-val modelDetail: String,
-val nominalP: Double,
-val normalPF: Double,
-val penaltyFactor: Double,
-val raiseRampRate: Double,
-val ratedGrossMaxP: Double,
-val ratedGrossMinP: Double,
-val ratedNetMaxP: Double,
-val shortPF: Double,
-val startupCost: Double,
-val startupTime: Double,
-val tieLinePF: Double,
-val totalEfficiency: Double,
-val variableCost: Double,
-val GenUnitOpSchedule: String
+(
+    override val sup: Element,
+    val allocSpinResP: Double,
+    val autoCntrlMarginP: Double,
+    val baseP: Double,
+    val controlDeadband: Double,
+    val controlPulseHigh: Double,
+    val controlPulseLow: Double,
+    val controlResponseRate: Double,
+    val efficiency: Double,
+    val genControlMode: String,
+    val genControlSource: String,
+    val governorMPL: Double,
+    val governorSCD: Double,
+    val highControlLimit: Double,
+    val initialP: Double,
+    val longPF: Double,
+    val lowControlLimit: Double,
+    val lowerRampRate: Double,
+    val maxEconomicP: Double,
+    val maxOperatingP: Double,
+    val maximumAllowableSpinningReserve: Double,
+    val minEconomicP: Double,
+    val minOperatingP: Double,
+    val minimumOffTime: Double,
+    val modelDetail: String,
+    val nominalP: Double,
+    val normalPF: Double,
+    val penaltyFactor: Double,
+    val raiseRampRate: Double,
+    val ratedGrossMaxP: Double,
+    val ratedGrossMinP: Double,
+    val ratedNetMaxP: Double,
+    val shortPF: Double,
+    val startupCost: Double,
+    val startupTime: Double,
+    val tieLinePF: Double,
+    val totalEfficiency: Double,
+    val variableCost: Double,
+    val GenUnitOpSchedule: String
 )
 extends
     Element
@@ -1075,9 +1092,10 @@ extends
  * @param setpoint Setpoint control mode.
  */
 case class GeneratorControlMode
-(override val sup: BasicElement,
-val pulse: String,
-val setpoint: String
+(
+    override val sup: Element,
+    val pulse: String,
+    val setpoint: String
 )
 extends
     Element
@@ -1121,11 +1139,12 @@ extends
  * @param unavailable Not available.
  */
 case class GeneratorControlSource
-(override val sup: BasicElement,
-val offAGC: String,
-val onAGC: String,
-val plantControl: String,
-val unavailable: String
+(
+    override val sup: Element,
+    val offAGC: String,
+    val onAGC: String,
+    val plantControl: String,
+    val unavailable: String
 )
 extends
     Element
@@ -1171,8 +1190,9 @@ extends
  * @param GeneratingUnit A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
  */
 case class GrossToNetActivePowerCurve
-(override val sup: Curve,
-val GeneratingUnit: String
+(
+    override val sup: Element,
+    val GeneratingUnit: String
 )
 extends
     Element
@@ -1217,13 +1237,14 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have a heat input curve.
  */
 case class HeatInputCurve
-(override val sup: Curve,
-val auxPowerMult: Double,
-val auxPowerOffset: Double,
-val heatInputEff: Double,
-val heatInputOffset: String,
-val isNetGrossP: Boolean,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val auxPowerMult: Double,
+    val auxPowerOffset: Double,
+    val heatInputEff: Double,
+    val heatInputOffset: String,
+    val isNetGrossP: Boolean,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -1276,12 +1297,13 @@ extends
  * @param value
  */
 case class HeatRate
-(override val sup: BasicElement,
-val denominatorMultiplier: String,
-val denominatorUnit: String,
-val multiplier: String,
-val unit: String,
-val value: Double
+(
+    override val sup: Element,
+    val denominatorMultiplier: String,
+    val denominatorUnit: String,
+    val multiplier: String,
+    val unit: String,
+    val value: Double
 )
 extends
     Element
@@ -1330,9 +1352,10 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have a heat rate curve.
  */
 case class HeatRateCurve
-(override val sup: Curve,
-val isNetGrossP: Boolean,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val isNetGrossP: Boolean,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -1374,9 +1397,10 @@ extends
  * @param pumpAndGenerator Able to both generate power and pump water for energy storage.
  */
 case class HydroEnergyConversionKind
-(override val sup: BasicElement,
-val generator: String,
-val pumpAndGenerator: String
+(
+    override val sup: Element,
+    val generator: String,
+    val pumpAndGenerator: String
 )
 extends
     Element
@@ -1418,8 +1442,9 @@ extends
  * @param HydroGeneratingUnit A hydro generating unit has an efficiency curve.
  */
 case class HydroGeneratingEfficiencyCurve
-(override val sup: Curve,
-val HydroGeneratingUnit: String
+(
+    override val sup: Element,
+    val HydroGeneratingUnit: String
 )
 extends
     Element
@@ -1461,11 +1486,12 @@ extends
  * @param PenstockLossCurve A hydro generating unit has a penstock loss curve.
  */
 case class HydroGeneratingUnit
-(override val sup: GeneratingUnit,
-val energyConversionCapability: String,
-val hydroUnitWaterCost: Double,
-val HydroPowerPlant: String,
-val PenstockLossCurve: String
+(
+    override val sup: Element,
+    val energyConversionCapability: String,
+    val hydroUnitWaterCost: Double,
+    val HydroPowerPlant: String,
+    val PenstockLossCurve: String
 )
 extends
     Element
@@ -1512,10 +1538,11 @@ extends
  * @param storage Storage.
  */
 case class HydroPlantStorageKind
-(override val sup: BasicElement,
-val pumpedStorage: String,
-val runOfRiver: String,
-val storage: String
+(
+    override val sup: Element,
+    val pumpedStorage: String,
+    val runOfRiver: String,
+    val storage: String
 )
 extends
     Element
@@ -1569,18 +1596,19 @@ extends
  * @param Reservoir Generators discharge water to or pumps are supplied water from a downstream reservoir.
  */
 case class HydroPowerPlant
-(override val sup: PowerSystemResource,
-val dischargeTravelDelay: Double,
-val genRatedP: Double,
-val hydroPlantStorageType: String,
-val penstockType: String,
-val plantDischargeCapacity: Double,
-val plantRatedHead: Double,
-val pumpRatedP: Double,
-val surgeTankCode: String,
-val surgeTankCrestLevel: Double,
-val GenSourcePumpDischargeReservoir: String,
-val Reservoir: String
+(
+    override val sup: Element,
+    val dischargeTravelDelay: Double,
+    val genRatedP: Double,
+    val hydroPlantStorageType: String,
+    val penstockType: String,
+    val plantDischargeCapacity: Double,
+    val plantRatedHead: Double,
+    val pumpRatedP: Double,
+    val surgeTankCode: String,
+    val surgeTankCrestLevel: Double,
+    val GenSourcePumpDischargeReservoir: String,
+    val Reservoir: String
 )
 extends
     Element
@@ -1646,14 +1674,15 @@ extends
  *        The direction of machine rotation for pumping may or may not be the same as for generating.
  */
 case class HydroPump
-(override val sup: Equipment,
-val pumpDischAtMaxHead: Double,
-val pumpDischAtMinHead: Double,
-val pumpPowerAtMaxHead: Double,
-val pumpPowerAtMinHead: Double,
-val HydroPowerPlant: String,
-val HydroPumpOpSchedule: String,
-val RotatingMachine: String
+(
+    override val sup: Element,
+    val pumpDischAtMaxHead: Double,
+    val pumpDischAtMinHead: Double,
+    val pumpPowerAtMaxHead: Double,
+    val pumpPowerAtMinHead: Double,
+    val HydroPowerPlant: String,
+    val HydroPumpOpSchedule: String,
+    val RotatingMachine: String
 )
 extends
     Element
@@ -1705,8 +1734,9 @@ extends
  * @param HydroPump The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
  */
 case class HydroPumpOpSchedule
-(override val sup: RegularIntervalSchedule,
-val HydroPump: String
+(
+    override val sup: Element,
+    val HydroPump: String
 )
 extends
     Element
@@ -1747,9 +1777,10 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have an incremental heat rate curve.
  */
 case class IncrementalHeatRateCurve
-(override val sup: Curve,
-val isNetGrossP: Boolean,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val isNetGrossP: Boolean,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -1791,8 +1822,9 @@ extends
  * @param Reservoir A reservoir may have a "natural" inflow forecast.
  */
 case class InflowForecast
-(override val sup: RegularIntervalSchedule,
-val Reservoir: String
+(
+    override val sup: Element,
+    val Reservoir: String
 )
 extends
     Element
@@ -1832,8 +1864,9 @@ extends
  * @param Reservoir A reservoir may have a level versus volume relationship.
  */
 case class LevelVsVolumeCurve
-(override val sup: Curve,
-val Reservoir: String
+(
+    override val sup: Element,
+    val Reservoir: String
 )
 extends
     Element
@@ -1871,7 +1904,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class NuclearGeneratingUnit
-(override val sup: GeneratingUnit
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1909,8 +1943,9 @@ extends
  * @param HydroGeneratingUnit A hydro generating unit has a penstock loss curve.
  */
 case class PenstockLossCurve
-(override val sup: Curve,
-val HydroGeneratingUnit: String
+(
+    override val sup: Element,
+    val HydroGeneratingUnit: String
 )
 extends
     Element
@@ -1963,20 +1998,21 @@ extends
  * @param TargetLevelSchedule A reservoir may have a water level target schedule.
  */
 case class Reservoir
-(override val sup: PowerSystemResource,
-val activeStorageCapacity: Double,
-val energyStorageRating: Double,
-val fullSupplyLevel: Double,
-val grossCapacity: Double,
-val normalMinOperateLevel: Double,
-val riverOutletWorks: String,
-val spillTravelDelay: Double,
-val spillWayGateType: String,
-val spillwayCapacity: Double,
-val spillwayCrestLength: Double,
-val spillwayCrestLevel: Double,
-val SpillsFromReservoir: String,
-val TargetLevelSchedule: String
+(
+    override val sup: Element,
+    val activeStorageCapacity: Double,
+    val energyStorageRating: Double,
+    val fullSupplyLevel: Double,
+    val grossCapacity: Double,
+    val normalMinOperateLevel: Double,
+    val riverOutletWorks: String,
+    val spillTravelDelay: Double,
+    val spillWayGateType: String,
+    val spillwayCapacity: Double,
+    val spillwayCrestLength: Double,
+    val spillwayCrestLevel: Double,
+    val SpillsFromReservoir: String,
+    val TargetLevelSchedule: String
 )
 extends
     Element
@@ -2041,10 +2077,11 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have a shutdown curve.
  */
 case class ShutdownCurve
-(override val sup: Curve,
-val shutdownCost: Double,
-val shutdownDate: String,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val shutdownCost: Double,
+    val shutdownDate: String,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -2086,7 +2123,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class SolarGeneratingUnit
-(override val sup: GeneratingUnit
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2124,9 +2162,10 @@ extends
  * @param StartupModel The unit's startup model may have a startup ignition fuel curve.
  */
 case class StartIgnFuelCurve
-(override val sup: Curve,
-val ignitionFuelType: String,
-val StartupModel: String
+(
+    override val sup: Element,
+    val ignitionFuelType: String,
+    val StartupModel: String
 )
 extends
     Element
@@ -2168,9 +2207,10 @@ extends
  * @param StartupModel The unit's startup model may have a startup main fuel curve.
  */
 case class StartMainFuelCurve
-(override val sup: Curve,
-val mainFuelType: String,
-val StartupModel: String
+(
+    override val sup: Element,
+    val mainFuelType: String,
+    val StartupModel: String
 )
 extends
     Element
@@ -2212,9 +2252,10 @@ extends
  * @param StartupModel The unit's startup model may have a startup ramp curve.
  */
 case class StartRampCurve
-(override val sup: Curve,
-val hotStandbyRamp: Double,
-val StartupModel: String
+(
+    override val sup: Element,
+    val hotStandbyRamp: Double,
+    val StartupModel: String
 )
 extends
     Element
@@ -2270,21 +2311,22 @@ extends
  * @param ThermalGeneratingUnit A thermal generating unit may have a startup model.
  */
 case class StartupModel
-(override val sup: IdentifiedObject,
-val fixedMaintCost: Double,
-val hotStandbyHeat: String,
-val incrementalMaintCost: Double,
-val minimumDownTime: Double,
-val minimumRunTime: Double,
-val riskFactorCost: Double,
-val startupCost: Double,
-val startupDate: String,
-val startupPriority: Int,
-val stbyAuxP: Double,
-val StartIgnFuelCurve: String,
-val StartMainFuelCurve: String,
-val StartRampCurve: String,
-val ThermalGeneratingUnit: String
+(
+    override val sup: Element,
+    val fixedMaintCost: Double,
+    val hotStandbyHeat: String,
+    val incrementalMaintCost: Double,
+    val minimumDownTime: Double,
+    val minimumRunTime: Double,
+    val riskFactorCost: Double,
+    val startupCost: Double,
+    val startupDate: String,
+    val startupPriority: Int,
+    val stbyAuxP: Double,
+    val StartIgnFuelCurve: String,
+    val StartMainFuelCurve: String,
+    val StartRampCurve: String,
+    val ThermalGeneratingUnit: String
 )
 extends
     Element
@@ -2349,8 +2391,9 @@ extends
  * @param CogenerationPlant A cogeneration plant has a steam sendout schedule.
  */
 case class SteamSendoutSchedule
-(override val sup: RegularIntervalSchedule,
-val CogenerationPlant: String
+(
+    override val sup: Element,
+    val CogenerationPlant: String
 )
 extends
     Element
@@ -2390,8 +2433,9 @@ extends
  * @param HydroGeneratingUnit A hydro generating unit has a tailbay loss curve.
  */
 case class TailbayLossCurve
-(override val sup: Curve,
-val HydroGeneratingUnit: String
+(
+    override val sup: Element,
+    val HydroGeneratingUnit: String
 )
 extends
     Element
@@ -2433,10 +2477,11 @@ extends
  * @param Reservoir A reservoir may have a water level target schedule.
  */
 case class TargetLevelSchedule
-(override val sup: Curve,
-val highLevelLimit: Double,
-val lowLevelLimit: Double,
-val Reservoir: String
+(
+    override val sup: Element,
+    val highLevelLimit: Double,
+    val lowLevelLimit: Double,
+    val Reservoir: String
 )
 extends
     Element
@@ -2487,16 +2532,17 @@ extends
  * @param StartupModel A thermal generating unit may have a startup model.
  */
 case class ThermalGeneratingUnit
-(override val sup: GeneratingUnit,
-val oMCost: String,
-val CAESPlant: String,
-val CogenerationPlant: String,
-val CombinedCyclePlant: String,
-val HeatInputCurve: String,
-val HeatRateCurve: String,
-val IncrementalHeatRateCurve: String,
-val ShutdownCurve: String,
-val StartupModel: String
+(
+    override val sup: Element,
+    val oMCost: String,
+    val CAESPlant: String,
+    val CogenerationPlant: String,
+    val CombinedCyclePlant: String,
+    val HeatInputCurve: String,
+    val HeatRateCurve: String,
+    val IncrementalHeatRateCurve: String,
+    val ShutdownCurve: String,
+    val StartupModel: String
 )
 extends
     Element
@@ -2552,9 +2598,10 @@ extends
  * @param onshore The wind generating unit is located onshore.
  */
 case class WindGenUnitKind
-(override val sup: BasicElement,
-val offshore: String,
-val onshore: String
+(
+    override val sup: Element,
+    val offshore: String,
+    val onshore: String
 )
 extends
     Element
@@ -2596,8 +2643,9 @@ extends
  * @param windGenUnitType The kind of wind generating unit
  */
 case class WindGeneratingUnit
-(override val sup: GeneratingUnit,
-val windGenUnitType: String
+(
+    override val sup: Element,
+    val windGenUnitType: String
 )
 extends
     Element

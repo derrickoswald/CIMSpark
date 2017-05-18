@@ -16,10 +16,11 @@ import ch.ninecode.cim.Context
  * @param Unit
  */
 case class AceTariffType
-(override val sup: BasicElement,
-val typ: String,
-val MarketDocument: List[String],
-val Unit: List[String]
+(
+    override val sup: Element,
+    val typ: String,
+    val MarketDocument: List[String],
+    val Unit: List[String]
 )
 extends
     Element
@@ -65,11 +66,12 @@ extends
  * @param TimeSeries
  */
 case class AttributeInstanceComponent
-(override val sup: BasicElement,
-val attribute: String,
-val attributeValue: String,
-val position: Int,
-val TimeSeries: List[String]
+(
+    override val sup: Element,
+    val attribute: String,
+    val attributeValue: String,
+    val position: Int,
+    val TimeSeries: List[String]
 )
 extends
     Element
@@ -120,14 +122,15 @@ extends
  * @param TimeSeries
  */
 case class Auction
-(override val sup: IdentifiedObject,
-val allocationMode: String,
-val cancelled: String,
-val category: String,
-val paymentTerms: String,
-val rights: String,
-val typ: String,
-val TimeSeries: List[String]
+(
+    override val sup: Element,
+    val allocationMode: String,
+    val cancelled: String,
+    val category: String,
+    val paymentTerms: String,
+    val rights: String,
+    val typ: String,
+    val TimeSeries: List[String]
 )
 extends
     Element
@@ -184,13 +187,14 @@ extends
  * @param stepIncrementQuantity The minimum increment that can be applied for an increase in an activation request.
  */
 case class BidTimeSeries
-(override val sup: TimeSeries,
-val blockBid: String,
-val direction: String,
-val divisible: String,
-val linkedBidsIdentification: String,
-val minimumActivationQuantity: Double,
-val stepIncrementQuantity: Double
+(
+    override val sup: Element,
+    val blockBid: String,
+    val direction: String,
+    val divisible: String,
+    val linkedBidsIdentification: String,
+    val minimumActivationQuantity: Double,
+    val stepIncrementQuantity: Double
 )
 extends
     Element
@@ -240,9 +244,10 @@ extends
  * @param time Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
  */
 case class DateAndOrTime
-(override val sup: BasicElement,
-val date: String,
-val time: String
+(
+    override val sup: Element,
+    val date: String,
+    val time: String
 )
 extends
     Element
@@ -282,7 +287,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Domain
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -319,8 +325,9 @@ extends
  * @param direction The coded identification of the direction of energy flow.
  */
 case class FlowDirection
-(override val sup: BasicElement,
-val direction: String
+(
+    override val sup: Element,
+    val direction: String
 )
 extends
     Element
@@ -358,7 +365,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MarketAgreement
-(override val sup: MarketDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -398,11 +406,12 @@ extends
  * @param Period
  */
 case class MarketDocument
-(override val sup: Document,
-val selfMarketDocument: List[String],
-val AttributeInstanceComponent: List[String],
-val Domain: List[String],
-val Period: List[String]
+(
+    override val sup: Element,
+    val selfMarketDocument: List[String],
+    val AttributeInstanceComponent: List[String],
+    val Domain: List[String],
+    val Period: List[String]
 )
 extends
     Element
@@ -446,7 +455,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MarketEvaluationPoint
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -484,9 +494,10 @@ extends
  * @param TimeSeries
  */
 case class MarketObjectStatus
-(override val sup: BasicElement,
-val status: String,
-val TimeSeries: List[String]
+(
+    override val sup: Element,
+    val status: String,
+    val TimeSeries: List[String]
 )
 extends
     Element
@@ -528,9 +539,10 @@ extends
  * @param TimeSeries
  */
 case class MktPSRType
-(override val sup: PSRType,
-val psrType: String,
-val TimeSeries: List[String]
+(
+    override val sup: Element,
+    val psrType: String,
+    val TimeSeries: List[String]
 )
 extends
     Element
@@ -573,10 +585,11 @@ extends
  * @param Reason
  */
 case class Period
-(override val sup: BasicElement,
-val resolution: String,
-val timeInterval: String,
-val Reason: List[String]
+(
+    override val sup: Element,
+    val resolution: String,
+    val timeInterval: String,
+    val Reason: List[String]
 )
 extends
     Element
@@ -626,14 +639,15 @@ extends
  * @param TimeSeries
  */
 case class Point
-(override val sup: BasicElement,
-val position: Int,
-val quality: String,
-val quantity: Double,
-val secondaryQuantity: Double,
-val AceTariffType: List[String],
-val Period: String,
-val TimeSeries: List[String]
+(
+    override val sup: Element,
+    val position: Int,
+    val quality: String,
+    val quantity: Double,
+    val secondaryQuantity: Double,
+    val AceTariffType: List[String],
+    val Period: String,
+    val TimeSeries: List[String]
 )
 extends
     Element
@@ -688,11 +702,12 @@ extends
  * @param Point
  */
 case class Price
-(override val sup: BasicElement,
-val amount: Double,
-val category: String,
-val direction: String,
-val Point: String
+(
+    override val sup: Element,
+    val amount: Double,
+    val category: String,
+    val direction: String,
+    val Point: String
 )
 extends
     Element
@@ -740,10 +755,11 @@ extends
  * @param MarketDocument
  */
 case class Process
-(override val sup: IdentifiedObject,
-val classificationType: String,
-val processType: String,
-val MarketDocument: List[String]
+(
+    override val sup: Element,
+    val classificationType: String,
+    val processType: String,
+    val MarketDocument: List[String]
 )
 extends
     Element
@@ -789,11 +805,12 @@ extends
  * @param Point
  */
 case class Reason
-(override val sup: BasicElement,
-val code: String,
-val text: String,
-val MarketDocument: List[String],
-val Point: List[String]
+(
+    override val sup: Element,
+    val code: String,
+    val text: String,
+    val MarketDocument: List[String],
+    val Point: List[String]
 )
 extends
     Element
@@ -851,21 +868,22 @@ extends
  * @param Reason
  */
 case class TimeSeries
-(override val sup: IdentifiedObject,
-val businessType: String,
-val cancelledTS: String,
-val curveType: String,
-val objectAggregation: String,
-val product: String,
-val version: String,
-val DateAndOrTime: List[String],
-val Domain: List[String],
-val FlowDirection: List[String],
-val MarketDocument: List[String],
-val MarketEvaluationPoint: List[String],
-val MarketParticipant: List[String],
-val Period: List[String],
-val Reason: List[String]
+(
+    override val sup: Element,
+    val businessType: String,
+    val cancelledTS: String,
+    val curveType: String,
+    val objectAggregation: String,
+    val product: String,
+    val version: String,
+    val DateAndOrTime: List[String],
+    val Domain: List[String],
+    val FlowDirection: List[String],
+    val MarketDocument: List[String],
+    val MarketEvaluationPoint: List[String],
+    val MarketParticipant: List[String],
+    val Period: List[String],
+    val Reason: List[String]
 )
 extends
     Element
@@ -931,9 +949,10 @@ extends
  * @param TimeSeries
  */
 case class Unit_
-(override val sup: BasicElement,
-val name: String,
-val TimeSeries: List[String]
+(
+    override val sup: Element,
+    val name: String,
+    val TimeSeries: List[String]
 )
 extends
     Element

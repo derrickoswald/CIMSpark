@@ -18,8 +18,9 @@ import ch.ninecode.cim.Context
  * @param ExcitationSystemDynamics Excitation system model with which this Power Factor or VAr controller Type II is associated.
  */
 case class PFVArControllerType2Dynamics
-(override val sup: DynamicsFunctionBlock,
-val ExcitationSystemDynamics: String
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String
 )
 extends
     Element
@@ -66,12 +67,13 @@ true = control mode for reactive power
  *        The reference value is initialised by this model. This initialisation may override the value exchanged by this attribute to represent a plant operator's change of the reference setting.
  */
 case class PFVArType2Common1
-(override val sup: PFVArControllerType2Dynamics,
-val j: Boolean,
-val ki: Double,
-val kp: Double,
-val max: Double,
-val ref: Double
+(
+    override val sup: Element,
+    val j: Boolean,
+    val ki: Double,
+    val kp: Double,
+    val max: Double,
+    val ref: Double
 )
 extends
     Element
@@ -130,14 +132,15 @@ true = 1 (not in the overexcitation or underexcitation state, integral action is
  * @param vs Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
  */
 case class PFVArType2IEEEPFController
-(override val sup: PFVArControllerType2Dynamics,
-val exlon: Boolean,
-val ki: Double,
-val kp: Double,
-val pfref: Double,
-val vclmt: Double,
-val vref: Double,
-val vs: Double
+(
+    override val sup: Element,
+    val exlon: Boolean,
+    val ki: Double,
+    val kp: Double,
+    val pfref: Double,
+    val vclmt: Double,
+    val vref: Double,
+    val vs: Double
 )
 extends
     Element
@@ -197,14 +200,15 @@ true = 1 (not in the overexcitation or underexcitation state, integral action is
  * @param vs Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
  */
 case class PFVArType2IEEEVArController
-(override val sup: PFVArControllerType2Dynamics,
-val exlon: Boolean,
-val ki: Double,
-val kp: Double,
-val qref: Double,
-val vclmt: Double,
-val vref: Double,
-val vs: Double
+(
+    override val sup: Element,
+    val exlon: Boolean,
+    val ki: Double,
+    val kp: Double,
+    val qref: Double,
+    val vclmt: Double,
+    val vref: Double,
+    val vs: Double
 )
 extends
     Element

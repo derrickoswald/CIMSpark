@@ -19,8 +19,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class AsynchronousMachineUserDefined
-(override val sup: AsynchronousMachineDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -61,8 +62,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class DiscontinuousExcitationControlUserDefined
-(override val sup: DiscontinuousExcitationControlDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -103,8 +105,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class ExcitationSystemUserDefined
-(override val sup: ExcitationSystemDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -145,8 +148,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class LoadUserDefined
-(override val sup: LoadDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -187,8 +191,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class MechanicalLoadUserDefined
-(override val sup: MechanicalLoadDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -229,8 +234,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class OverexcitationLimiterUserDefined
-(override val sup: OverexcitationLimiterDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -271,8 +277,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PFVArControllerType1UserDefined
-(override val sup: PFVArControllerType1Dynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -313,8 +320,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PFVArControllerType2UserDefined
-(override val sup: PFVArControllerType2Dynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -355,8 +363,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PowerSystemStabilizerUserDefined
-(override val sup: PowerSystemStabilizerDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -420,29 +429,30 @@ extends
  * @param WindType3or4UserDefined Proprietary user-defined model with which this parameter is associated.
  */
 case class ProprietaryParameterDynamics
-(override val sup: BasicElement,
-val booleanParameterValue: Boolean,
-val floatParameterValue: Double,
-val integerParameterValue: Int,
-val parameterNumber: Int,
-val AsynchronousMachineUserDefined: String,
-val DiscontinuousExcitationControlUserDefined: String,
-val ExcitationSystemUserDefined: String,
-val LoadUserDefined: String,
-val MechanicalLoadUserDefined: String,
-val OverexcitationLimiterUserDefined: String,
-val PFVArControllerType1UserDefined: String,
-val PFVArControllerType2UserDefined: String,
-val PowerSystemStabilizerUserDefined: String,
-val SynchronousMachineUserDefined: String,
-val TurbineGovernorUserDefined: String,
-val TurbineLoadControllerUserDefined: String,
-val UnderexcitationLimiterUserDefined: String,
-val VoltageAdjusterUserDefined: String,
-val VoltageCompensatorUserDefined: String,
-val WindPlantUserDefined: String,
-val WindType1or2UserDefined: String,
-val WindType3or4UserDefined: String
+(
+    override val sup: Element,
+    val booleanParameterValue: Boolean,
+    val floatParameterValue: Double,
+    val integerParameterValue: Int,
+    val parameterNumber: Int,
+    val AsynchronousMachineUserDefined: String,
+    val DiscontinuousExcitationControlUserDefined: String,
+    val ExcitationSystemUserDefined: String,
+    val LoadUserDefined: String,
+    val MechanicalLoadUserDefined: String,
+    val OverexcitationLimiterUserDefined: String,
+    val PFVArControllerType1UserDefined: String,
+    val PFVArControllerType2UserDefined: String,
+    val PowerSystemStabilizerUserDefined: String,
+    val SynchronousMachineUserDefined: String,
+    val TurbineGovernorUserDefined: String,
+    val TurbineLoadControllerUserDefined: String,
+    val UnderexcitationLimiterUserDefined: String,
+    val VoltageAdjusterUserDefined: String,
+    val VoltageCompensatorUserDefined: String,
+    val WindPlantUserDefined: String,
+    val WindType1or2UserDefined: String,
+    val WindType3or4UserDefined: String
 )
 extends
     Element
@@ -525,8 +535,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class SynchronousMachineUserDefined
-(override val sup: SynchronousMachineDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -567,8 +578,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class TurbineGovernorUserDefined
-(override val sup: TurbineGovernorDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -609,8 +621,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class TurbineLoadControllerUserDefined
-(override val sup: TurbineLoadControllerDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -651,8 +664,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class UnderexcitationLimiterUserDefined
-(override val sup: UnderexcitationLimiterDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -693,8 +707,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class VoltageAdjusterUserDefined
-(override val sup: VoltageAdjusterDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -735,8 +750,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class VoltageCompensatorUserDefined
-(override val sup: VoltageCompensatorDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -777,8 +793,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindPlantUserDefined
-(override val sup: WindPlantDynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -819,8 +836,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindType1or2UserDefined
-(override val sup: WindTurbineType1or2Dynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element
@@ -861,8 +879,9 @@ true = user-defined model is proprietary with behaviour mutually understood by s
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindType3or4UserDefined
-(override val sup: WindTurbineType3or4Dynamics,
-val proprietary: Boolean
+(
+    override val sup: Element,
+    val proprietary: Boolean
 )
 extends
     Element

@@ -17,9 +17,10 @@ import ch.ninecode.cim.Context
  * @param AnalogValue The specific analog value used as a source.
  */
 case class AltGeneratingUnitMeas
-(override val sup: BasicElement,
-val priority: Int,
-val AnalogValue: String
+(
+    override val sup: Element,
+    val priority: Int,
+    val AnalogValue: String
 )
 extends
     Element
@@ -62,9 +63,10 @@ extends
  * @param AnalogValue The specific analog value used as a source.
  */
 case class AltTieMeas
-(override val sup: BasicElement,
-val priority: Int,
-val AnalogValue: String
+(
+    override val sup: Element,
+    val priority: Int,
+    val AnalogValue: String
 )
 extends
     Element
@@ -110,11 +112,12 @@ extends
  * @param EnergyArea The energy area that is forecast from this control area specification.
  */
 case class ControlArea
-(override val sup: PowerSystemResource,
-val netInterchange: Double,
-val pTolerance: Double,
-val typ: String,
-val EnergyArea: String
+(
+    override val sup: Element,
+    val netInterchange: Double,
+    val pTolerance: Double,
+    val typ: String,
+    val EnergyArea: String
 )
 extends
     Element
@@ -161,8 +164,9 @@ extends
  *        Note that a control area should include a GeneratingUnit only once.
  */
 case class ControlAreaGeneratingUnit
-(override val sup: IdentifiedObject,
-val GeneratingUnit: String
+(
+    override val sup: Element,
+    val GeneratingUnit: String
 )
 extends
     Element
@@ -203,10 +207,11 @@ extends
  * @param Interchange Used for interchange specification or control.
  */
 case class ControlAreaTypeKind
-(override val sup: BasicElement,
-val AGC: String,
-val Forecast: String,
-val Interchange: String
+(
+    override val sup: Element,
+    val AGC: String,
+    val Forecast: String,
+    val Interchange: String
 )
 extends
     Element
@@ -251,9 +256,10 @@ extends
  * @param Terminal The terminal to which this tie flow belongs.
  */
 case class TieFlow
-(override val sup: BasicElement,
-val positiveFlowIn: Boolean,
-val Terminal: String
+(
+    override val sup: Element,
+    val positiveFlowIn: Boolean,
+    val Terminal: String
 )
 extends
     Element

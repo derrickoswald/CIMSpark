@@ -23,11 +23,12 @@ import ch.ninecode.cim.Context
  * @param WindTurbineType1or2Dynamics Wind generator type 1 or 2 model associated with this asynchronous machine model.
  */
 case class AsynchronousMachineDynamics
-(override val sup: RotatingMachineDynamics,
-val AsynchronousMachine: String,
-val MechanicalLoadDynamics: String,
-val TurbineGovernorDynamics: String,
-val WindTurbineType1or2Dynamics: String
+(
+    override val sup: Element,
+    val AsynchronousMachine: String,
+    val MechanicalLoadDynamics: String,
+    val TurbineGovernorDynamics: String,
+    val WindTurbineType1or2Dynamics: String
 )
 extends
     Element
@@ -90,12 +91,13 @@ tpo = (xm + xlr1) / (2*pi*nominal frequency * rr1)
  * @param xm Magnetizing reactance.
  */
 case class AsynchronousMachineEquivalentCircuit
-(override val sup: AsynchronousMachineDynamics,
-val rr1: Double,
-val rr2: Double,
-val xlr1: Double,
-val xlr2: Double,
-val xm: Double
+(
+    override val sup: Element,
+    val rr1: Double,
+    val rr2: Double,
+    val xlr1: Double,
+    val xlr2: Double,
+    val xm: Double
 )
 extends
     Element
@@ -171,12 +173,13 @@ The parameters used for models expressed in time constant reactance form include
  *        Typical Value = 1.8.
  */
 case class AsynchronousMachineTimeConstantReactance
-(override val sup: AsynchronousMachineDynamics,
-val tpo: Double,
-val tppo: Double,
-val xp: Double,
-val xpp: Double,
-val xs: Double
+(
+    override val sup: Element,
+    val tpo: Double,
+    val tppo: Double,
+    val xp: Double,
+    val xpp: Double,
+    val xs: Double
 )
 extends
     Element

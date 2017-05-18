@@ -12,8 +12,9 @@ import ch.ninecode.cim.Context
  * @param tiePointMWRating The MW rating of the tie point.
  */
 case class TiePoint
-(override val sup: IdentifiedObject,
-val tiePointMWRating: Double
+(
+    override val sup: Element,
+    val tiePointMWRating: Double
 )
 extends
     Element

@@ -16,9 +16,10 @@ import ch.ninecode.cim.Context
  * @param ratedVoltage Rated voltage.
  */
 case class BusbarSectionInfo
-(override val sup: AssetInfo,
-val ratedCurrent: Double,
-val ratedVoltage: Double
+(
+    override val sup: Element,
+    val ratedCurrent: Double,
+    val ratedVoltage: Double
 )
 extends
     Element
@@ -65,14 +66,15 @@ extends
  * @param stranded Stranded cable.
  */
 case class CableConstructionKind
-(override val sup: BasicElement,
-val compacted: String,
-val compressed: String,
-val other: String,
-val sector: String,
-val segmental: String,
-val solid: String,
-val stranded: String
+(
+    override val sup: Element,
+    val compacted: String,
+    val compressed: String,
+    val other: String,
+    val sector: String,
+    val segmental: String,
+    val solid: String,
+    val stranded: String
 )
 extends
     Element
@@ -132,17 +134,18 @@ extends
  * @param shieldMaterial Material of the shield.
  */
 case class CableInfo
-(override val sup: WireInfo,
-val constructionKind: String,
-val diameterOverCore: Double,
-val diameterOverInsulation: Double,
-val diameterOverJacket: Double,
-val diameterOverScreen: Double,
-val isStrandFill: Boolean,
-val nominalTemperature: Double,
-val outerJacketKind: String,
-val sheathAsNeutral: Boolean,
-val shieldMaterial: String
+(
+    override val sup: Element,
+    val constructionKind: String,
+    val diameterOverCore: Double,
+    val diameterOverInsulation: Double,
+    val diameterOverJacket: Double,
+    val diameterOverScreen: Double,
+    val isStrandFill: Boolean,
+    val nominalTemperature: Double,
+    val outerJacketKind: String,
+    val sheathAsNeutral: Boolean,
+    val shieldMaterial: String
 )
 extends
     Element
@@ -205,14 +208,15 @@ extends
  * @param semiconducting Semiconducting cable outer jacket.
  */
 case class CableOuterJacketKind
-(override val sup: BasicElement,
-val insulating: String,
-val linearLowDensityPolyethylene: String,
-val none: String,
-val other: String,
-val polyethylene: String,
-val pvc: String,
-val semiconducting: String
+(
+    override val sup: Element,
+    val insulating: String,
+    val linearLowDensityPolyethylene: String,
+    val none: String,
+    val other: String,
+    val polyethylene: String,
+    val pvc: String,
+    val semiconducting: String
 )
 extends
     Element
@@ -267,12 +271,13 @@ extends
  * @param steel Steel cable shield.
  */
 case class CableShieldMaterialKind
-(override val sup: BasicElement,
-val aluminum: String,
-val copper: String,
-val lead: String,
-val other: String,
-val steel: String
+(
+    override val sup: Element,
+    val aluminum: String,
+    val copper: String,
+    val lead: String,
+    val other: String,
+    val steel: String
 )
 extends
     Element
@@ -323,12 +328,13 @@ extends
  * @param neutralStrandRadius Outside radius of the neutral strand.
  */
 case class ConcentricNeutralCableInfo
-(override val sup: CableInfo,
-val diameterOverNeutral: Double,
-val neutralStrandCount: Int,
-val neutralStrandGmr: Double,
-val neutralStrandRDC20: Double,
-val neutralStrandRadius: Double
+(
+    override val sup: Element,
+    val diameterOverNeutral: Double,
+    val neutralStrandCount: Int,
+    val neutralStrandGmr: Double,
+    val neutralStrandRDC20: Double,
+    val neutralStrandRadius: Double
 )
 extends
     Element
@@ -381,13 +387,14 @@ extends
  * @param EnergisedEnd Transformer end that current is applied to in this no-load test.
  */
 case class NoLoadTest
-(override val sup: TransformerTest,
-val energisedEndVoltage: Double,
-val excitingCurrent: Double,
-val excitingCurrentZero: Double,
-val loss: Double,
-val lossZero: Double,
-val EnergisedEnd: String
+(
+    override val sup: Element,
+    val energisedEndVoltage: Double,
+    val excitingCurrent: Double,
+    val excitingCurrentZero: Double,
+    val loss: Double,
+    val lossZero: Double,
+    val EnergisedEnd: String
 )
 extends
     Element
@@ -443,14 +450,15 @@ extends
  * @param OpenEnd Transformer end measured for induced voltage and angle in this open-circuit test.
  */
 case class OpenCircuitTest
-(override val sup: TransformerTest,
-val energisedEndStep: Int,
-val energisedEndVoltage: Double,
-val openEndStep: Int,
-val openEndVoltage: Double,
-val phaseShift: Double,
-val EnergisedEnd: String,
-val OpenEnd: String
+(
+    override val sup: Element,
+    val energisedEndStep: Int,
+    val energisedEndVoltage: Double,
+    val openEndStep: Int,
+    val openEndVoltage: Double,
+    val phaseShift: Double,
+    val EnergisedEnd: String,
+    val OpenEnd: String
 )
 extends
     Element
@@ -500,7 +508,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class OverheadWireInfo
-(override val sup: WireInfo
+(
+    override val sup: Element
 )
 extends
     Element
@@ -536,7 +545,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class PowerTransformerInfo
-(override val sup: AssetInfo
+(
+    override val sup: Element
 )
 extends
     Element
@@ -581,14 +591,15 @@ extends
  *        The test voltage is chosen to induce rated current in the energised end.
  */
 case class ShortCircuitTest
-(override val sup: TransformerTest,
-val energisedEndStep: Int,
-val groundedEndStep: Int,
-val leakageImpedance: Double,
-val leakageImpedanceZero: Double,
-val loss: Double,
-val lossZero: Double,
-val EnergisedEnd: String
+(
+    override val sup: Element,
+    val energisedEndStep: Int,
+    val groundedEndStep: Int,
+    val leakageImpedance: Double,
+    val leakageImpedanceZero: Double,
+    val loss: Double,
+    val lossZero: Double,
+    val EnergisedEnd: String
 )
 extends
     Element
@@ -643,12 +654,13 @@ extends
  * @param ShuntCompensatorControl
  */
 case class ShuntCompensatorInfo
-(override val sup: AssetInfo,
-val maxPowerLoss: Double,
-val ratedCurrent: Double,
-val ratedReactivePower: Double,
-val ratedVoltage: Double,
-val ShuntCompensatorControl: String
+(
+    override val sup: Element,
+    val maxPowerLoss: Double,
+    val ratedCurrent: Double,
+    val ratedReactivePower: Double,
+    val ratedVoltage: Double,
+    val ShuntCompensatorControl: String
 )
 extends
     Element
@@ -699,12 +711,13 @@ extends
  * @param ratedVoltage Rated voltage.
  */
 case class SwitchInfo
-(override val sup: AssetInfo,
-val breakingCapacity: Double,
-val isSinglePhase: Boolean,
-val isUnganged: Boolean,
-val ratedCurrent: Double,
-val ratedVoltage: Double
+(
+    override val sup: Element,
+    val breakingCapacity: Double,
+    val isSinglePhase: Boolean,
+    val isUnganged: Boolean,
+    val ratedCurrent: Double,
+    val ratedVoltage: Double
 )
 extends
     Element
@@ -766,22 +779,23 @@ extends
  * @param stepVoltageIncrement Tap step increment, in per cent of rated voltage, per step position.
  */
 case class TapChangerInfo
-(override val sup: AssetInfo,
-val bil: Double,
-val ctRating: Double,
-val ctRatio: Double,
-val frequency: Double,
-val highStep: Int,
-val isTcul: Boolean,
-val lowStep: Int,
-val neutralStep: Int,
-val neutralU: Double,
-val ptRatio: Double,
-val ratedApparentPower: Double,
-val ratedCurrent: Double,
-val ratedVoltage: Double,
-val stepPhaseIncrement: Double,
-val stepVoltageIncrement: Double
+(
+    override val sup: Element,
+    val bil: Double,
+    val ctRating: Double,
+    val ctRatio: Double,
+    val frequency: Double,
+    val highStep: Int,
+    val isTcul: Boolean,
+    val lowStep: Int,
+    val neutralStep: Int,
+    val neutralU: Double,
+    val ptRatio: Double,
+    val ratedApparentPower: Double,
+    val ratedCurrent: Double,
+    val ratedVoltage: Double,
+    val stepPhaseIncrement: Double,
+    val stepVoltageIncrement: Double
 )
 extends
     Element
@@ -849,9 +863,10 @@ extends
  * @param tapeThickness Thickness of the tape shield, before wrapping.
  */
 case class TapeShieldCableInfo
-(override val sup: CableInfo,
-val tapeLap: Double,
-val tapeThickness: Double
+(
+    override val sup: Element,
+    val tapeLap: Double,
+    val tapeThickness: Double
 )
 extends
     Element
@@ -907,20 +922,21 @@ extends
  * @param TransformerTankInfo Transformer tank data that this end description is part of.
  */
 case class TransformerEndInfo
-(override val sup: AssetInfo,
-val connectionKind: String,
-val emergencyS: Double,
-val endNumber: Int,
-val insulationU: Double,
-val phaseAngleClock: Int,
-val r: Double,
-val ratedS: Double,
-val ratedU: Double,
-val shortTermS: Double,
-val CoreAdmittance: String,
-val ToMeshImpedances: List[String],
-val TransformerStarImpedance: String,
-val TransformerTankInfo: String
+(
+    override val sup: Element,
+    val connectionKind: String,
+    val emergencyS: Double,
+    val endNumber: Int,
+    val insulationU: Double,
+    val phaseAngleClock: Int,
+    val r: Double,
+    val ratedS: Double,
+    val ratedU: Double,
+    val shortTermS: Double,
+    val CoreAdmittance: String,
+    val ToMeshImpedances: List[String],
+    val TransformerStarImpedance: String,
+    val TransformerTankInfo: String
 )
 extends
     Element
@@ -983,8 +999,9 @@ extends
  * @param PowerTransformerInfo Power transformer data that this tank description is part of.
  */
 case class TransformerTankInfo
-(override val sup: AssetInfo,
-val PowerTransformerInfo: String
+(
+    override val sup: Element,
+    val PowerTransformerInfo: String
 )
 extends
     Element
@@ -1024,9 +1041,10 @@ extends
  * @param temperature Temperature at which the test is conducted.
  */
 case class TransformerTest
-(override val sup: IdentifiedObject,
-val basePower: Double,
-val temperature: Double
+(
+    override val sup: Element,
+    val basePower: Double,
+    val temperature: Double
 )
 extends
     Element
@@ -1083,23 +1101,24 @@ extends
  * @param PerLengthParameters All per-length parameters calculated from this wire datasheet.
  */
 case class WireInfo
-(override val sup: AssetInfo,
-val coreRadius: Double,
-val coreStrandCount: Int,
-val gmr: Double,
-val insulated: Boolean,
-val insulationMaterial: String,
-val insulationThickness: Double,
-val material: String,
-val rAC25: Double,
-val rAC50: Double,
-val rAC75: Double,
-val rDC20: Double,
-val radius: Double,
-val ratedCurrent: Double,
-val sizeDescription: String,
-val strandCount: Int,
-val PerLengthParameters: List[String]
+(
+    override val sup: Element,
+    val coreRadius: Double,
+    val coreStrandCount: Int,
+    val gmr: Double,
+    val insulated: Boolean,
+    val insulationMaterial: String,
+    val insulationThickness: Double,
+    val material: String,
+    val rAC25: Double,
+    val rAC50: Double,
+    val rAC75: Double,
+    val rDC20: Double,
+    val radius: Double,
+    val ratedCurrent: Double,
+    val sizeDescription: String,
+    val strandCount: Int,
+    val PerLengthParameters: List[String]
 )
 extends
     Element
@@ -1185,25 +1204,26 @@ extends
  * @param varnishedDacronGlass Varnished dacron glass wire insulation.
  */
 case class WireInsulationKind
-(override val sup: BasicElement,
-val asbestosAndVarnishedCambric: String,
-val beltedPilc: String,
-val butyl: String,
-val crosslinkedPolyethylene: String,
-val ethylenePropyleneRubber: String,
-val highMolecularWeightPolyethylene: String,
-val highPressureFluidFilled: String,
-val lowCapacitanceRubber: String,
-val oilPaper: String,
-val other: String,
-val ozoneResistantRubber: String,
-val rubber: String,
-val siliconRubber: String,
-val treeResistantHighMolecularWeightPolyethylene: String,
-val treeRetardantCrosslinkedPolyethylene: String,
-val unbeltedPilc: String,
-val varnishedCambricCloth: String,
-val varnishedDacronGlass: String
+(
+    override val sup: Element,
+    val asbestosAndVarnishedCambric: String,
+    val beltedPilc: String,
+    val butyl: String,
+    val crosslinkedPolyethylene: String,
+    val ethylenePropyleneRubber: String,
+    val highMolecularWeightPolyethylene: String,
+    val highPressureFluidFilled: String,
+    val lowCapacitanceRubber: String,
+    val oilPaper: String,
+    val other: String,
+    val ozoneResistantRubber: String,
+    val rubber: String,
+    val siliconRubber: String,
+    val treeResistantHighMolecularWeightPolyethylene: String,
+    val treeRetardantCrosslinkedPolyethylene: String,
+    val unbeltedPilc: String,
+    val varnishedCambricCloth: String,
+    val varnishedDacronGlass: String
 )
 extends
     Element
@@ -1284,16 +1304,17 @@ extends
  * @param steel Steel wire.
  */
 case class WireMaterialKind
-(override val sup: BasicElement,
-val aaac: String,
-val acsr: String,
-val aluminum: String,
-val aluminumAlloy: String,
-val aluminumAlloySteel: String,
-val aluminumSteel: String,
-val copper: String,
-val other: String,
-val steel: String
+(
+    override val sup: Element,
+    val aaac: String,
+    val acsr: String,
+    val aluminum: String,
+    val aluminumAlloy: String,
+    val aluminumAlloySteel: String,
+    val aluminumSteel: String,
+    val copper: String,
+    val other: String,
+    val steel: String
 )
 extends
     Element
@@ -1351,11 +1372,12 @@ extends
  * @param WireSpacingInfo Wire spacing data this wire position belongs to.
  */
 case class WirePosition
-(override val sup: IdentifiedObject,
-val phase: String,
-val xCoord: Double,
-val yCoord: Double,
-val WireSpacingInfo: String
+(
+    override val sup: Element,
+    val phase: String,
+    val xCoord: Double,
+    val yCoord: Double,
+    val WireSpacingInfo: String
 )
 extends
     Element
@@ -1406,13 +1428,14 @@ extends
  * @param Structures
  */
 case class WireSpacingInfo
-(override val sup: AssetInfo,
-val isCable: Boolean,
-val phaseWireCount: Int,
-val phaseWireSpacing: Double,
-val usage: String,
-val DuctBank: String,
-val Structures: List[String]
+(
+    override val sup: Element,
+    val isCable: Boolean,
+    val phaseWireCount: Int,
+    val phaseWireSpacing: Double,
+    val usage: String,
+    val DuctBank: String,
+    val Structures: List[String]
 )
 extends
     Element
@@ -1464,11 +1487,12 @@ extends
  * @param transmission Wire is used in extra-high voltage or high voltage network.
  */
 case class WireUsageKind
-(override val sup: BasicElement,
-val distribution: String,
-val other: String,
-val secondary: String,
-val transmission: String
+(
+    override val sup: Element,
+    val distribution: String,
+    val other: String,
+    val secondary: String,
+    val transmission: String
 )
 extends
     Element

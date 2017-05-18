@@ -22,15 +22,16 @@ import ch.ninecode.cim.Context
  * @param Works All the works performed for this customer.
  */
 case class Customer
-(override val sup: OrganisationRole,
-val kind: String,
-val locale: String,
-val priority: String,
-val pucNumber: String,
-val specialNeed: String,
-val status: String,
-val vip: Boolean,
-val Works: List[String]
+(
+    override val sup: Element,
+    val kind: String,
+    val locale: String,
+    val priority: String,
+    val pucNumber: String,
+    val specialNeed: String,
+    val status: String,
+    val vip: Boolean,
+    val Works: List[String]
 )
 extends
     Element
@@ -86,10 +87,11 @@ extends
  * @param Customer Customer owning this account.
  */
 case class CustomerAccount
-(override val sup: Document,
-val billingCycle: String,
-val budgetBill: String,
-val Customer: String
+(
+    override val sup: Element,
+    val billingCycle: String,
+    val budgetBill: String,
+    val Customer: String
 )
 extends
     Element
@@ -140,15 +142,16 @@ extends
  * @param StandardIndustryCode
  */
 case class CustomerAgreement
-(override val sup: Agreement,
-val loadMgmt: String,
-val Customer: String,
-val CustomerAccount: String,
-val PricingStructures: List[String],
-val ServiceCategory: String,
-val ServiceLocations: List[String],
-val ServiceSupplier: String,
-val StandardIndustryCode: String
+(
+    override val sup: Element,
+    val loadMgmt: String,
+    val Customer: String,
+    val CustomerAccount: String,
+    val PricingStructures: List[String],
+    val ServiceCategory: String,
+    val ServiceLocations: List[String],
+    val ServiceSupplier: String,
+    val StandardIndustryCode: String
 )
 extends
     Element
@@ -212,19 +215,20 @@ extends
  * @param windMachine Wind machine customer.
  */
 case class CustomerKind
-(override val sup: BasicElement,
-val commercialIndustrial: String,
-val energyServiceScheduler: String,
-val energyServiceSupplier: String,
-val internalUse: String,
-val other: String,
-val pumpingLoad: String,
-val residential: String,
-val residentialAndCommercial: String,
-val residentialAndStreetlight: String,
-val residentialFarmService: String,
-val residentialStreetlightOthers: String,
-val windMachine: String
+(
+    override val sup: Element,
+    val commercialIndustrial: String,
+    val energyServiceScheduler: String,
+    val energyServiceSupplier: String,
+    val internalUse: String,
+    val other: String,
+    val pumpingLoad: String,
+    val residential: String,
+    val residentialAndCommercial: String,
+    val residentialAndStreetlight: String,
+    val residentialFarmService: String,
+    val residentialStreetlightOthers: String,
+    val windMachine: String
 )
 extends
     Element
@@ -291,14 +295,15 @@ extends
  * @param Incident Incident as a subject of this customer notification.
  */
 case class CustomerNotification
-(override val sup: BasicElement,
-val contactType: String,
-val contactValue: String,
-val earliestDateTimeToCall: String,
-val latestDateTimeToCall: String,
-val trigger: String,
-val Customer: String,
-val Incident: String
+(
+    override val sup: Element,
+    val contactType: String,
+    val contactValue: String,
+    val earliestDateTimeToCall: String,
+    val latestDateTimeToCall: String,
+    val trigger: String,
+    val Customer: String,
+    val Incident: String
 )
 extends
     Element
@@ -351,9 +356,10 @@ extends
  * @param TroubleTicket Trouble ticket associated with this hazard.
  */
 case class IncidentHazard
-(override val sup: Hazard,
-val Incident: String,
-val TroubleTicket: String
+(
+    override val sup: Element,
+    val Incident: String,
+    val TroubleTicket: String
 )
 extends
     Element
@@ -398,12 +404,13 @@ extends
  * @param powerRestored Notify customer when power has been restored.
  */
 case class NotificationTriggerKind
-(override val sup: BasicElement,
-val etrChange: String,
-val informDispatched: String,
-val initialEtr: String,
-val powerOut: String,
-val powerRestored: String
+(
+    override val sup: Element,
+    val etrChange: String,
+    val informDispatched: String,
+    val initialEtr: String,
+    val powerOut: String,
+    val powerRestored: String
 )
 extends
     Element
@@ -460,16 +467,17 @@ extends
  * @param UsagePoints All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
  */
 case class PricingStructure
-(override val sup: Document,
-val code: String,
-val dailyCeilingUsage: Int,
-val dailyEstimatedUsage: Int,
-val dailyFloorUsage: Int,
-val revenueKind: String,
-val taxExemption: Boolean,
-val ServiceCategory: String,
-val Tariffs: List[String],
-val UsagePoints: List[String]
+(
+    override val sup: Element,
+    val code: String,
+    val dailyCeilingUsage: Int,
+    val dailyEstimatedUsage: Int,
+    val dailyFloorUsage: Int,
+    val revenueKind: String,
+    val taxExemption: Boolean,
+    val ServiceCategory: String,
+    val Tariffs: List[String],
+    val UsagePoints: List[String]
 )
 extends
     Element
@@ -530,14 +538,15 @@ extends
  * @param streetLight Streetlight revenue.
  */
 case class RevenueKind
-(override val sup: BasicElement,
-val commercial: String,
-val industrial: String,
-val irrigation: String,
-val nonResidential: String,
-val other: String,
-val residential: String,
-val streetLight: String
+(
+    override val sup: Element,
+    val commercial: String,
+    val industrial: String,
+    val irrigation: String,
+    val nonResidential: String,
+    val other: String,
+    val residential: String,
+    val streetLight: String
 )
 extends
     Element
@@ -588,8 +597,9 @@ extends
  * @param kind Kind of service.
  */
 case class ServiceCategory
-(override val sup: IdentifiedObject,
-val kind: String
+(
+    override val sup: Element,
+    val kind: String
 )
 extends
     Element
@@ -638,18 +648,19 @@ extends
  * @param water Water service.
  */
 case class ServiceKind
-(override val sup: BasicElement,
-val electricity: String,
-val gas: String,
-val heat: String,
-val internet: String,
-val other: String,
-val rates: String,
-val refuse: String,
-val sewerage: String,
-val time: String,
-val tvLicence: String,
-val water: String
+(
+    override val sup: Element,
+    val electricity: String,
+    val gas: String,
+    val heat: String,
+    val internet: String,
+    val other: String,
+    val rates: String,
+    val refuse: String,
+    val sewerage: String,
+    val time: String,
+    val tvLicence: String,
+    val water: String
 )
 extends
     Element
@@ -713,10 +724,11 @@ extends
  *        Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
  */
 case class ServiceLocation
-(override val sup: WorkLocation,
-val accessMethod: String,
-val needsInspection: Boolean,
-val siteAccessProblem: String
+(
+    override val sup: Element,
+    val accessMethod: String,
+    val needsInspection: Boolean,
+    val siteAccessProblem: String
 )
 extends
     Element
@@ -762,10 +774,11 @@ extends
  * @param TariffProfiles All tariff profiles using this tariff.
  */
 case class Tariff
-(override val sup: Document,
-val endDate: String,
-val startDate: String,
-val TariffProfiles: List[String]
+(
+    override val sup: Element,
+    val endDate: String,
+    val startDate: String,
+    val TariffProfiles: List[String]
 )
 extends
     Element
@@ -812,12 +825,13 @@ extends
  * @param other Trouble reported by other means.
  */
 case class TroubleReportingKind
-(override val sup: BasicElement,
-val call: String,
-val email: String,
-val ivr: String,
-val letter: String,
-val other: String
+(
+    override val sup: Element,
+    val call: String,
+    val email: String,
+    val ivr: String,
+    val letter: String,
+    val other: String
 )
 extends
     Element
@@ -859,15 +873,16 @@ extends
 }
 
 case class TroubleTicket
-(override val sup: Document,
-val dateTimeOfReport: String,
-val firstResponder: String,
-val reportingKind: String,
-val resolvedDateTime: String,
-val troubleCode: String,
-val Customer: String,
-val Incident: String,
-val Notification: String
+(
+    override val sup: Element,
+    val dateTimeOfReport: String,
+    val firstResponder: String,
+    val reportingKind: String,
+    val resolvedDateTime: String,
+    val troubleCode: String,
+    val Customer: String,
+    val Incident: String,
+    val Notification: String
 )
 extends
     Element

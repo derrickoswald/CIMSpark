@@ -24,16 +24,17 @@ import ch.ninecode.cim.Context
  * @param transferType Type of invoice transfer.
  */
 case class MarketInvoice
-(override val sup: BasicElement,
-val amount: Double,
-val billMediaKind: String,
-val dueDate: String,
-val kind: String,
-val mailedDate: String,
-val proForma: Boolean,
-val referenceNumber: String,
-val transactionDateTime: String,
-val transferType: String
+(
+    override val sup: Element,
+    val amount: Double,
+    val billMediaKind: String,
+    val dueDate: String,
+    val kind: String,
+    val mailedDate: String,
+    val proForma: Boolean,
+    val referenceNumber: String,
+    val transactionDateTime: String,
+    val transferType: String
 )
 extends
     Element
@@ -99,19 +100,20 @@ extends
  * @param Settlement
  */
 case class MarketInvoiceLineItem
-(override val sup: BasicElement,
-val billPeriod: String,
-val glAccount: String,
-val glDateTime: String,
-val kind: String,
-val lineAmount: Double,
-val lineNumber: String,
-val lineVersion: String,
-val netAmount: Double,
-val previousAmount: Double,
-val ContainerMarketInvoiceLineItem: String,
-val MarketInvoice: String,
-val Settlement: List[String]
+(
+    override val sup: Element,
+    val billPeriod: String,
+    val glAccount: String,
+    val glDateTime: String,
+    val kind: String,
+    val lineAmount: Double,
+    val lineNumber: String,
+    val lineVersion: String,
+    val netAmount: Double,
+    val previousAmount: Double,
+    val ContainerMarketInvoiceLineItem: String,
+    val MarketInvoice: String,
+    val Settlement: List[String]
 )
 extends
     Element
@@ -172,7 +174,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MarketLedger
-(override val sup: BasicElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -216,15 +219,16 @@ extends
  * @param Settlement
  */
 case class MarketLedgerEntry
-(override val sup: BasicElement,
-val accountID: String,
-val accountKind: String,
-val amount: Double,
-val postedDateTime: String,
-val status: String,
-val transactionDateTime: String,
-val MarketLedger: String,
-val Settlement: List[String]
+(
+    override val sup: Element,
+    val accountID: String,
+    val accountKind: String,
+    val amount: Double,
+    val postedDateTime: String,
+    val status: String,
+    val transactionDateTime: String,
+    val MarketLedger: String,
+    val Settlement: List[String]
 )
 extends
     Element
@@ -276,7 +280,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktActivityRecord
-(override val sup: ActivityRecord
+(
+    override val sup: Element
 )
 extends
     Element
@@ -317,12 +322,13 @@ extends
  * @param SysLoadDistribuFactor
  */
 case class MktConnectivityNode
-(override val sup: ConnectivityNode,
-val endEffectiveDate: String,
-val startEffectiveDate: String,
-val IndividualPnode: String,
-val RTO: String,
-val SysLoadDistribuFactor: String
+(
+    override val sup: Element,
+    val endEffectiveDate: String,
+    val startEffectiveDate: String,
+    val IndividualPnode: String,
+    val RTO: String,
+    val SysLoadDistribuFactor: String
 )
 extends
     Element
@@ -369,8 +375,9 @@ extends
  * @param RegisteredLoad
  */
 case class MktEnergyConsumer
-(override val sup: EnergyConsumer,
-val RegisteredLoad: String
+(
+    override val sup: Element,
+    val RegisteredLoad: String
 )
 extends
     Element
@@ -409,8 +416,9 @@ extends
  * @param RegisteredGenerator
  */
 case class MktGeneratingUnit
-(override val sup: GeneratingUnit,
-val RegisteredGenerator: String
+(
+    override val sup: Element,
+    val RegisteredGenerator: String
 )
 extends
     Element
@@ -449,8 +457,9 @@ extends
  * @param TransmissionRightOfWay
  */
 case class MktLine
-(override val sup: Line,
-val TransmissionRightOfWay: String
+(
+    override val sup: Element,
+    val TransmissionRightOfWay: String
 )
 extends
     Element
@@ -488,7 +497,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktLoadArea
-(override val sup: LoadArea
+(
+    override val sup: Element
 )
 extends
     Element
@@ -527,10 +537,11 @@ extends
  * @param Pnode
  */
 case class MktMeasurement
-(override val sup: Measurement,
-val ByTiePoint: String,
-val ForTiePoint: String,
-val Pnode: String
+(
+    override val sup: Element,
+    val ByTiePoint: String,
+    val ForTiePoint: String,
+    val Pnode: String
 )
 extends
     Element
@@ -580,15 +591,16 @@ extends
  * @param MarketPerson
  */
 case class MktOrganisation
-(override val sup: Organisation,
-val creditFlag: String,
-val creditStartEffectiveDate: String,
-val endEffectiveDate: String,
-val lastModified: String,
-val organisationID: Int,
-val qualificationStatus: String,
-val startEffectiveDate: String,
-val MarketPerson: List[String]
+(
+    override val sup: Element,
+    val creditFlag: String,
+    val creditStartEffectiveDate: String,
+    val endEffectiveDate: String,
+    val lastModified: String,
+    val organisationID: Int,
+    val qualificationStatus: String,
+    val startEffectiveDate: String,
+    val MarketPerson: List[String]
 )
 extends
     Element
@@ -642,9 +654,10 @@ extends
  * @param EndBFlow
  */
 case class MktPowerTransformer
-(override val sup: PowerTransformer,
-val EndAFlow: String,
-val EndBFlow: String
+(
+    override val sup: Element,
+    val EndAFlow: String,
+    val EndBFlow: String
 )
 extends
     Element
@@ -687,10 +700,11 @@ extends
  * @param Flowgate
  */
 case class MktTerminal
-(override val sup: Terminal,
-val endEffectiveDate: String,
-val startEffectiveDate: String,
-val Flowgate: String
+(
+    override val sup: Element,
+    val endEffectiveDate: String,
+    val startEffectiveDate: String,
+    val Flowgate: String
 )
 extends
     Element
@@ -732,7 +746,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktUserAttribute
-(override val sup: UserAttribute
+(
+    override val sup: Element
 )
 extends
     Element

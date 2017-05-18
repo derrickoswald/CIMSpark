@@ -15,8 +15,9 @@ import ch.ninecode.cim.Context
  * @param LoadGroup Group of this ConformLoad.
  */
 case class ConformLoad
-(override val sup: EnergyConsumer,
-val LoadGroup: String
+(
+    override val sup: Element,
+    val LoadGroup: String
 )
 extends
     Element
@@ -54,7 +55,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ConformLoadGroup
-(override val sup: LoadGroup
+(
+    override val sup: Element
 )
 extends
     Element
@@ -92,8 +94,9 @@ extends
  * @param ConformLoadGroup The ConformLoadGroup where the ConformLoadSchedule belongs.
  */
 case class ConformLoadSchedule
-(override val sup: SeasonDayTypeSchedule,
-val ConformLoadGroup: String
+(
+    override val sup: Element,
+    val ConformLoadGroup: String
 )
 extends
     Element
@@ -132,7 +135,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DayType
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -170,8 +174,9 @@ extends
  * @param ControlArea The control area specification that is used for the load forecast.
  */
 case class EnergyArea
-(override val sup: IdentifiedObject,
-val ControlArea: String
+(
+    override val sup: Element,
+    val ControlArea: String
 )
 extends
     Element
@@ -209,7 +214,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class LoadArea
-(override val sup: EnergyArea
+(
+    override val sup: Element
 )
 extends
     Element
@@ -246,8 +252,9 @@ extends
  * @param SubLoadArea The SubLoadArea where the Loadgroup belongs.
  */
 case class LoadGroup
-(override val sup: IdentifiedObject,
-val SubLoadArea: String
+(
+    override val sup: Element,
+    val SubLoadArea: String
 )
 extends
     Element
@@ -298,18 +305,19 @@ extends
  * @param qVoltageExponent Exponent of per unit voltage effecting reactive power.
  */
 case class LoadResponseCharacteristic
-(override val sup: IdentifiedObject,
-val exponentModel: Boolean,
-val pConstantCurrent: Double,
-val pConstantImpedance: Double,
-val pConstantPower: Double,
-val pFrequencyExponent: Double,
-val pVoltageExponent: Double,
-val qConstantCurrent: Double,
-val qConstantImpedance: Double,
-val qConstantPower: Double,
-val qFrequencyExponent: Double,
-val qVoltageExponent: Double
+(
+    override val sup: Element,
+    val exponentModel: Boolean,
+    val pConstantCurrent: Double,
+    val pConstantImpedance: Double,
+    val pConstantPower: Double,
+    val pFrequencyExponent: Double,
+    val pVoltageExponent: Double,
+    val qConstantCurrent: Double,
+    val qConstantImpedance: Double,
+    val qConstantPower: Double,
+    val qFrequencyExponent: Double,
+    val qVoltageExponent: Double
 )
 extends
     Element
@@ -368,8 +376,9 @@ extends
  * @param LoadGroup Group of this ConformLoad.
  */
 case class NonConformLoad
-(override val sup: EnergyConsumer,
-val LoadGroup: String
+(
+    override val sup: Element,
+    val LoadGroup: String
 )
 extends
     Element
@@ -407,7 +416,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class NonConformLoadGroup
-(override val sup: LoadGroup
+(
+    override val sup: Element
 )
 extends
     Element
@@ -444,8 +454,9 @@ extends
  * @param NonConformLoadGroup The NonConformLoadGroup where the NonConformLoadSchedule belongs.
  */
 case class NonConformLoadSchedule
-(override val sup: SeasonDayTypeSchedule,
-val NonConformLoadGroup: String
+(
+    override val sup: Element,
+    val NonConformLoadGroup: String
 )
 extends
     Element
@@ -485,9 +496,10 @@ extends
  * @param cutLevel2 Second level (amount) of load to cut as a percentage of total zone load.
  */
 case class PowerCutZone
-(override val sup: PowerSystemResource,
-val cutLevel1: Double,
-val cutLevel2: Double
+(
+    override val sup: Element,
+    val cutLevel1: Double,
+    val cutLevel2: Double
 )
 extends
     Element
@@ -529,9 +541,10 @@ extends
  * @param startDate Date season starts.
  */
 case class Season
-(override val sup: IdentifiedObject,
-val endDate: String,
-val startDate: String
+(
+    override val sup: Element,
+    val endDate: String,
+    val startDate: String
 )
 extends
     Element
@@ -573,9 +586,10 @@ extends
  * @param Season Season for the Schedule.
  */
 case class SeasonDayTypeSchedule
-(override val sup: RegularIntervalSchedule,
-val DayType: String,
-val Season: String
+(
+    override val sup: Element,
+    val DayType: String,
+    val Season: String
 )
 extends
     Element
@@ -615,7 +629,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class StationSupply
-(override val sup: EnergyConsumer
+(
+    override val sup: Element
 )
 extends
     Element
@@ -652,8 +667,9 @@ extends
  * @param LoadArea The LoadArea where the SubLoadArea belongs.
  */
 case class SubLoadArea
-(override val sup: EnergyArea,
-val LoadArea: String
+(
+    override val sup: Element,
+    val LoadArea: String
 )
 extends
     Element

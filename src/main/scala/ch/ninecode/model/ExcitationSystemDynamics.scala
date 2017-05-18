@@ -60,29 +60,30 @@ false = gates are not used.
  *        Typical Value = -5.43.
  */
 case class ExcAC1A
-(override val sup: ExcitationSystemDynamics,
-val hvlvgates: Boolean,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val kf1: Double,
-val kf2: Double,
-val ks: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val hvlvgates: Boolean,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val kf1: Double,
+    val kf2: Double,
+    val ks: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -222,35 +223,36 @@ false = gate is not used.
  *        Typical Value = -95.
  */
 case class ExcAC2A
-(override val sup: ExcitationSystemDynamics,
-val hvgate: Boolean,
-val ka: Double,
-val kb: Double,
-val kb1: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val kh: Double,
-val kl: Double,
-val kl1: Double,
-val ks: Double,
-val lvgate: Boolean,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vfemax: Double,
-val vlr: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val hvgate: Boolean,
+    val ka: Double,
+    val kb: Double,
+    val kb1: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val kh: Double,
+    val kl: Double,
+    val kl1: Double,
+    val ks: Double,
+    val lvgate: Boolean,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vfemax: Double,
+    val vlr: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -394,33 +396,34 @@ extends
  *        Typical Value = 0.79.
  */
 case class ExcAC3A
-(override val sup: ExcitationSystemDynamics,
-val efdn: Double,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val kf1: Double,
-val kf2: Double,
-val klv: Double,
-val kn: Double,
-val kr: Double,
-val ks: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vemin: Double,
-val vfemax: Double,
-val vlv: Double
+(
+    override val sup: Element,
+    val efdn: Double,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val kf1: Double,
+    val kf2: Double,
+    val klv: Double,
+    val kn: Double,
+    val kr: Double,
+    val ks: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vemin: Double,
+    val vfemax: Double,
+    val vlv: Double
 )
 extends
     Element
@@ -526,16 +529,17 @@ extends
  *        Typical Value = -4.53.
  */
 case class ExcAC4A
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kc: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val vimax: Double,
-val vimin: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kc: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -625,25 +629,26 @@ extends
  *        Typical Value =-7.3.
  */
 case class ExcAC5A
-(override val sup: ExcitationSystemDynamics,
-val a: Double,
-val efd1: Double,
-val efd2: Double,
-val ka: Double,
-val ke: Double,
-val kf: Double,
-val ks: Double,
-val seefd1: Double,
-val seefd2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf1: Double,
-val tf2: Double,
-val tf3: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val a: Double,
+    val efd1: Double,
+    val efd2: Double,
+    val ka: Double,
+    val ke: Double,
+    val kf: Double,
+    val ks: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf1: Double,
+    val tf2: Double,
+    val tf3: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -761,30 +766,31 @@ extends
  *        Typical Value = -36.
  */
 case class ExcAC6A
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kh: Double,
-val ks: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val th: Double,
-val tj: Double,
-val tk: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vfelim: Double,
-val vhmax: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kh: Double,
+    val ks: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val th: Double,
+    val tj: Double,
+    val tk: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vfelim: Double,
+    val vhmax: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -926,34 +932,35 @@ false = limits are not multiplied by generator's terminal voltage.
  *        Typical Value = false.
  */
 case class ExcAC8B
-(override val sup: ExcitationSystemDynamics,
-val inlim: Boolean,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val kdr: Double,
-val ke: Double,
-val kir: Double,
-val kpr: Double,
-val ks: Double,
-val pidlim: Boolean,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tdr: Double,
-val te: Double,
-val telim: Boolean,
-val ve1: Double,
-val ve2: Double,
-val vemin: Double,
-val vfemax: Double,
-val vimax: Double,
-val vimin: Double,
-val vpidmax: Double,
-val vpidmin: Double,
-val vrmax: Double,
-val vrmin: Double,
-val vtmult: Boolean
+(
+    override val sup: Element,
+    val inlim: Boolean,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val kdr: Double,
+    val ke: Double,
+    val kir: Double,
+    val kpr: Double,
+    val ks: Double,
+    val pidlim: Boolean,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tdr: Double,
+    val te: Double,
+    val telim: Boolean,
+    val ve1: Double,
+    val ve2: Double,
+    val vemin: Double,
+    val vfemax: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vpidmax: Double,
+    val vpidmin: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val vtmult: Boolean
 )
 extends
     Element
@@ -1078,21 +1085,22 @@ extends
  *        Typical Value = 6.5.
  */
 case class ExcANS
-(override val sup: ExcitationSystemDynamics,
-val blint: Int,
-val ifmn: Double,
-val ifmx: Double,
-val k2: Double,
-val k3: Double,
-val kce: Double,
-val krvecc: Int,
-val kvfif: Int,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val tb: Double,
-val vrmn: Double,
-val vrmx: Double
+(
+    override val sup: Element,
+    val blint: Int,
+    val ifmn: Double,
+    val ifmx: Double,
+    val k2: Double,
+    val k3: Double,
+    val kce: Double,
+    val krvecc: Int,
+    val kvfif: Int,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val tb: Double,
+    val vrmn: Double,
+    val vrmx: Double
 )
 extends
     Element
@@ -1181,19 +1189,20 @@ extends
  *        Typical Value = 7.
  */
 case class ExcAVR1
-(override val sup: ExcitationSystemDynamics,
-val e1: Double,
-val e2: Double,
-val ka: Double,
-val kf: Double,
-val se1: Double,
-val se2: Double,
-val ta: Double,
-val tb: Double,
-val te: Double,
-val tf: Double,
-val vrmn: Double,
-val vrmx: Double
+(
+    override val sup: Element,
+    val e1: Double,
+    val e2: Double,
+    val ka: Double,
+    val kf: Double,
+    val se1: Double,
+    val se2: Double,
+    val ta: Double,
+    val tb: Double,
+    val te: Double,
+    val tf: Double,
+    val vrmn: Double,
+    val vrmx: Double
 )
 extends
     Element
@@ -1280,20 +1289,21 @@ extends
  *        Typical Value = 7.
  */
 case class ExcAVR2
-(override val sup: ExcitationSystemDynamics,
-val e1: Double,
-val e2: Double,
-val ka: Double,
-val kf: Double,
-val se1: Double,
-val se2: Double,
-val ta: Double,
-val tb: Double,
-val te: Double,
-val tf1: Double,
-val tf2: Double,
-val vrmn: Double,
-val vrmx: Double
+(
+    override val sup: Element,
+    val e1: Double,
+    val e2: Double,
+    val ka: Double,
+    val kf: Double,
+    val se1: Double,
+    val se2: Double,
+    val ta: Double,
+    val tb: Double,
+    val te: Double,
+    val tf1: Double,
+    val tf2: Double,
+    val vrmn: Double,
+    val vrmx: Double
 )
 extends
     Element
@@ -1380,19 +1390,20 @@ extends
  *        Typical Value = 7.5.
  */
 case class ExcAVR3
-(override val sup: ExcitationSystemDynamics,
-val e1: Double,
-val e2: Double,
-val ka: Double,
-val se1: Double,
-val se2: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val te: Double,
-val vrmn: Double,
-val vrmx: Double
+(
+    override val sup: Element,
+    val e1: Double,
+    val e2: Double,
+    val ka: Double,
+    val se1: Double,
+    val se2: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val te: Double,
+    val vrmn: Double,
+    val vrmx: Double
 )
 extends
     Element
@@ -1483,21 +1494,22 @@ false = selector is not connected.
  *        Typical Value = 5.
  */
 case class ExcAVR4
-(override val sup: ExcitationSystemDynamics,
-val imul: Boolean,
-val ka: Double,
-val ke: Double,
-val kif: Double,
-val t1: Double,
-val t1if: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val tif: Double,
-val vfmn: Double,
-val vfmx: Double,
-val vrmn: Double,
-val vrmx: Double
+(
+    override val sup: Element,
+    val imul: Boolean,
+    val ka: Double,
+    val ke: Double,
+    val kif: Double,
+    val t1: Double,
+    val t1if: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val tif: Double,
+    val vfmn: Double,
+    val vfmx: Double,
+    val vrmn: Double,
+    val vrmx: Double
 )
 extends
     Element
@@ -1566,10 +1578,11 @@ extends
  * @param ta Time constant (Ta).
  */
 case class ExcAVR5
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val rex: Double,
-val ta: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val rex: Double,
+    val ta: Double
 )
 extends
     Element
@@ -1653,28 +1666,29 @@ extends
  *        Typical Value = -2.
  */
 case class ExcAVR7
-(override val sup: ExcitationSystemDynamics,
-val a1: Double,
-val a2: Double,
-val a3: Double,
-val a4: Double,
-val a5: Double,
-val a6: Double,
-val k1: Double,
-val k3: Double,
-val k5: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val vmax1: Double,
-val vmax3: Double,
-val vmax5: Double,
-val vmin1: Double,
-val vmin3: Double,
-val vmin5: Double
+(
+    override val sup: Element,
+    val a1: Double,
+    val a2: Double,
+    val a3: Double,
+    val a4: Double,
+    val a5: Double,
+    val a6: Double,
+    val k1: Double,
+    val k3: Double,
+    val k5: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val vmax1: Double,
+    val vmax3: Double,
+    val vmax5: Double,
+    val vmin1: Double,
+    val vmin3: Double,
+    val vmin5: Double
 )
 extends
     Element
@@ -1777,18 +1791,19 @@ false =  Vs connected to 1st summing point (see diagram).
  *        Typical Value = 0.05.
  */
 case class ExcBBC
-(override val sup: ExcitationSystemDynamics,
-val efdmax: Double,
-val efdmin: Double,
-val k: Double,
-val switch: Boolean,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val vrmax: Double,
-val vrmin: Double,
-val xe: Double
+(
+    override val sup: Element,
+    val efdmax: Double,
+    val efdmin: Double,
+    val k: Double,
+    val switch: Boolean,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xe: Double
 )
 extends
     Element
@@ -1856,17 +1871,18 @@ extends
  * @param vrmin Voltage regulator minimum limit (Vrmin).
  */
 case class ExcCZ
-(override val sup: ExcitationSystemDynamics,
-val efdmax: Double,
-val efdmin: Double,
-val ka: Double,
-val ke: Double,
-val kp: Double,
-val ta: Double,
-val tc: Double,
-val te: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efdmax: Double,
+    val efdmin: Double,
+    val ka: Double,
+    val ke: Double,
+    val kp: Double,
+    val ta: Double,
+    val tc: Double,
+    val te: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -1958,25 +1974,26 @@ extends
  *        Typical Value = -0.9.
  */
 case class ExcDC1A
-(override val sup: ExcitationSystemDynamics,
-val edfmax: Double,
-val efd1: Double,
-val efd2: Double,
-val efdmin: Double,
-val exclim: Boolean,
-val ka: Double,
-val ke: Double,
-val kf: Double,
-val ks: Double,
-val seefd1: Double,
-val seefd2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val edfmax: Double,
+    val efd1: Double,
+    val efd2: Double,
+    val efdmin: Double,
+    val exclim: Boolean,
+    val ka: Double,
+    val ke: Double,
+    val kf: Double,
+    val ks: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -2087,25 +2104,26 @@ false = limiter at the block is not dependent on Vt.
  *        Typical Value = true.
  */
 case class ExcDC2A
-(override val sup: ExcitationSystemDynamics,
-val efd1: Double,
-val efd2: Double,
-val exclim: Boolean,
-val ka: Double,
-val ke: Double,
-val kf: Double,
-val ks: Double,
-val seefd1: Double,
-val seefd2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val tf1: Double,
-val vrmax: Double,
-val vrmin: Double,
-val vtlim: Boolean
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val exclim: Boolean,
+    val ka: Double,
+    val ke: Double,
+    val kf: Double,
+    val ks: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val tf1: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val vtlim: Boolean
 )
 extends
     Element
@@ -2212,23 +2230,24 @@ false = exciter output limiter not active.
  *        Typical Value = 0.
  */
 case class ExcDC3A
-(override val sup: ExcitationSystemDynamics,
-val edfmax: Double,
-val efd1: Double,
-val efd2: Double,
-val efdlim: Boolean,
-val efdmin: Double,
-val exclim: Boolean,
-val ke: Double,
-val kr: Double,
-val ks: Double,
-val kv: Double,
-val seefd1: Double,
-val seefd2: Double,
-val te: Double,
-val trh: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val edfmax: Double,
+    val efd1: Double,
+    val efd2: Double,
+    val efdlim: Boolean,
+    val efdmin: Double,
+    val exclim: Boolean,
+    val ke: Double,
+    val kr: Double,
+    val ks: Double,
+    val kv: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val te: Double,
+    val trh: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -2328,21 +2347,22 @@ false = Vb1max is active.
  *        Typical Value = 0.
  */
 case class ExcDC3A1
-(override val sup: ExcitationSystemDynamics,
-val exclim: Boolean,
-val ka: Double,
-val ke: Double,
-val kf: Double,
-val ki: Double,
-val kp: Double,
-val ta: Double,
-val te: Double,
-val tf: Double,
-val vb1max: Double,
-val vblim: Boolean,
-val vbmax: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val exclim: Boolean,
+    val ka: Double,
+    val ke: Double,
+    val kf: Double,
+    val ki: Double,
+    val kp: Double,
+    val ta: Double,
+    val te: Double,
+    val tf: Double,
+    val vb1max: Double,
+    val vblim: Boolean,
+    val vbmax: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -2437,22 +2457,23 @@ extends
  *        Xe represents the regulation of the transformer/rectifier unit.  Typical Value = 0.06.
  */
 case class ExcELIN1
-(override val sup: ExcitationSystemDynamics,
-val dpnf: Double,
-val efmax: Double,
-val efmin: Double,
-val ks1: Double,
-val ks2: Double,
-val smax: Double,
-val tfi: Double,
-val tnu: Double,
-val ts1: Double,
-val ts2: Double,
-val tsw: Double,
-val vpi: Double,
-val vpnf: Double,
-val vpu: Double,
-val xe: Double
+(
+    override val sup: Element,
+    val dpnf: Double,
+    val efmax: Double,
+    val efmin: Double,
+    val ks1: Double,
+    val ks2: Double,
+    val smax: Double,
+    val tfi: Double,
+    val tnu: Double,
+    val ts1: Double,
+    val ts2: Double,
+    val tsw: Double,
+    val vpi: Double,
+    val vpnf: Double,
+    val vpu: Double,
+    val xe: Double
 )
 extends
     Element
@@ -2573,34 +2594,35 @@ extends
  *        Typical Value = 1.
  */
 case class ExcELIN2
-(override val sup: ExcitationSystemDynamics,
-val efdbas: Double,
-val iefmax: Double,
-val iefmax2: Double,
-val iefmin: Double,
-val k1: Double,
-val k1ec: Double,
-val k2: Double,
-val k3: Double,
-val k4: Double,
-val kd1: Double,
-val ke2: Double,
-val ketb: Double,
-val pid1max: Double,
-val seve1: Double,
-val seve2: Double,
-val tb1: Double,
-val te: Double,
-val te2: Double,
-val ti1: Double,
-val ti3: Double,
-val ti4: Double,
-val tr4: Double,
-val upmax: Double,
-val upmin: Double,
-val ve1: Double,
-val ve2: Double,
-val xp: Double
+(
+    override val sup: Element,
+    val efdbas: Double,
+    val iefmax: Double,
+    val iefmax2: Double,
+    val iefmin: Double,
+    val k1: Double,
+    val k1ec: Double,
+    val k2: Double,
+    val k3: Double,
+    val k4: Double,
+    val kd1: Double,
+    val ke2: Double,
+    val ketb: Double,
+    val pid1max: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val tb1: Double,
+    val te: Double,
+    val te2: Double,
+    val ti1: Double,
+    val ti3: Double,
+    val ti4: Double,
+    val tr4: Double,
+    val upmax: Double,
+    val upmin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val xp: Double
 )
 extends
     Element
@@ -2714,19 +2736,20 @@ extends
  *        If a voltage compensator is used in conjunction with this excitation system model, Tr should be set to 0.  Typical Value = 0.01.
  */
 case class ExcHU
-(override val sup: ExcitationSystemDynamics,
-val ae: Double,
-val ai: Double,
-val atr: Double,
-val emax: Double,
-val emin: Double,
-val imax: Double,
-val imin: Double,
-val ke: Double,
-val ki: Double,
-val te: Double,
-val ti: Double,
-val tr: Double
+(
+    override val sup: Element,
+    val ae: Double,
+    val ai: Double,
+    val atr: Double,
+    val emax: Double,
+    val emin: Double,
+    val imax: Double,
+    val imin: Double,
+    val ke: Double,
+    val ki: Double,
+    val te: Double,
+    val ti: Double,
+    val tr: Double
 )
 extends
     Element
@@ -2823,25 +2846,26 @@ extends
  *        Typical Value = -5.43.
  */
 case class ExcIEEEAC1A
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -2956,28 +2980,29 @@ extends
  *        Typical Value = -95.
  */
 case class ExcIEEEAC2A
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kb: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val kh: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vfemax: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kb: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val kh: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vfemax: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -3098,28 +3123,29 @@ extends
  *        Typical Value = 16.
  */
 case class ExcIEEEAC3A
-(override val sup: ExcitationSystemDynamics,
-val efdn: Double,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val kn: Double,
-val kr: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vemin: Double,
-val vfemax: Double
+(
+    override val sup: Element,
+    val efdn: Double,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val kn: Double,
+    val kr: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vemin: Double,
+    val vfemax: Double
 )
 extends
     Element
@@ -3216,16 +3242,17 @@ extends
  *        Typical Value = -4.53.
  */
 case class ExcIEEEAC4A
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kc: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val vimax: Double,
-val vimin: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kc: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -3308,21 +3335,22 @@ extends
  *        Typical Value = -7.3.
  */
 case class ExcIEEEAC5A
-(override val sup: ExcitationSystemDynamics,
-val efd1: Double,
-val efd2: Double,
-val ka: Double,
-val ke: Double,
-val kf: Double,
-val seefd1: Double,
-val seefd2: Double,
-val ta: Double,
-val te: Double,
-val tf1: Double,
-val tf2: Double,
-val tf3: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val ka: Double,
+    val ke: Double,
+    val kf: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val ta: Double,
+    val te: Double,
+    val tf1: Double,
+    val tf2: Double,
+    val tf3: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -3431,29 +3459,30 @@ extends
  *        Typical Value = -36.
  */
 case class ExcIEEEAC6A
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kh: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val th: Double,
-val tj: Double,
-val tk: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vfelim: Double,
-val vhmax: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kh: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val th: Double,
+    val tj: Double,
+    val tk: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vfelim: Double,
+    val vhmax: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -3586,33 +3615,34 @@ extends
  *        Typical Value = -5.79.
  */
 case class ExcIEEEAC7B
-(override val sup: ExcitationSystemDynamics,
-val kc: Double,
-val kd: Double,
-val kdr: Double,
-val ke: Double,
-val kf1: Double,
-val kf2: Double,
-val kf3: Double,
-val kia: Double,
-val kir: Double,
-val kl: Double,
-val kp: Double,
-val kpa: Double,
-val kpr: Double,
-val seve1: Double,
-val seve2: Double,
-val tdr: Double,
-val te: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val ve1: Double,
-val ve2: Double,
-val vemin: Double,
-val vfemax: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val kc: Double,
+    val kd: Double,
+    val kdr: Double,
+    val ke: Double,
+    val kf1: Double,
+    val kf2: Double,
+    val kf3: Double,
+    val kia: Double,
+    val kir: Double,
+    val kl: Double,
+    val kp: Double,
+    val kpa: Double,
+    val kpr: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val tdr: Double,
+    val te: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vemin: Double,
+    val vfemax: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -3737,25 +3767,26 @@ extends
  *        Typical Value = 0.
  */
 case class ExcIEEEAC8B
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val kdr: Double,
-val ke: Double,
-val kir: Double,
-val kpr: Double,
-val seve1: Double,
-val seve2: Double,
-val ta: Double,
-val tdr: Double,
-val te: Double,
-val ve1: Double,
-val ve2: Double,
-val vemin: Double,
-val vfemax: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val kdr: Double,
+    val ke: Double,
+    val kir: Double,
+    val kpr: Double,
+    val seve1: Double,
+    val seve2: Double,
+    val ta: Double,
+    val tdr: Double,
+    val te: Double,
+    val ve1: Double,
+    val ve2: Double,
+    val vemin: Double,
+    val vfemax: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -3862,23 +3893,24 @@ false = input connects to the error signal.
  *        Typical Value = -0.9.
  */
 case class ExcIEEEDC1A
-(override val sup: ExcitationSystemDynamics,
-val efd1: Double,
-val efd2: Double,
-val exclim: Boolean,
-val ka: Double,
-val ke: Double,
-val kf: Double,
-val seefd1: Double,
-val seefd2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val uelin: Boolean,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val exclim: Boolean,
+    val ka: Double,
+    val ke: Double,
+    val kf: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val uelin: Boolean,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -3981,23 +4013,24 @@ false = input connects to the error signal.
  *        Typical Value = -4.9.
  */
 case class ExcIEEEDC2A
-(override val sup: ExcitationSystemDynamics,
-val efd1: Double,
-val efd2: Double,
-val exclim: Double,
-val ka: Double,
-val ke: Double,
-val kf: Double,
-val seefd1: Double,
-val seefd2: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val uelin: Boolean,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val exclim: Double,
+    val ka: Double,
+    val ke: Double,
+    val kf: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val uelin: Boolean,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -4088,18 +4121,19 @@ extends
  *        Typical Value = 0.
  */
 case class ExcIEEEDC3A
-(override val sup: ExcitationSystemDynamics,
-val efd1: Double,
-val efd2: Double,
-val exclim: Boolean,
-val ke: Double,
-val kv: Double,
-val seefd1: Double,
-val seefd2: Double,
-val te: Double,
-val trh: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val exclim: Boolean,
+    val ke: Double,
+    val kv: Double,
+    val seefd1: Double,
+    val seefd2: Double,
+    val te: Double,
+    val trh: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -4200,26 +4234,27 @@ false = add to error signal.
  *        Typical Value = -0.9.
  */
 case class ExcIEEEDC4B
-(override val sup: ExcitationSystemDynamics,
-val efd1: Double,
-val efd2: Double,
-val ka: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val ki: Double,
-val kp: Double,
-val oelin: Boolean,
-val seefd1: Double,
-val seefd2: Double,
-val ta: Double,
-val td: Double,
-val te: Double,
-val tf: Double,
-val uelin: Boolean,
-val vemin: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val ka: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val ki: Double,
+    val kp: Double,
+    val oelin: Boolean,
+    val seefd1: Double,
+    val seefd2: Double,
+    val ta: Double,
+    val td: Double,
+    val te: Double,
+    val tf: Double,
+    val uelin: Boolean,
+    val vemin: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -4334,26 +4369,27 @@ false = PSS input (Vs) added to voltage regulator output.
  *        Typical Value = -6.7.
  */
 case class ExcIEEEST1A
-(override val sup: ExcitationSystemDynamics,
-val ilr: Double,
-val ka: Double,
-val kc: Double,
-val kf: Double,
-val klr: Double,
-val pssin: Boolean,
-val ta: Double,
-val tb: Double,
-val tb1: Double,
-val tc: Double,
-val tc1: Double,
-val tf: Double,
-val uelin: String,
-val vamax: Double,
-val vamin: Double,
-val vimax: Double,
-val vimin: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ilr: Double,
+    val ka: Double,
+    val kc: Double,
+    val kf: Double,
+    val klr: Double,
+    val pssin: Boolean,
+    val ta: Double,
+    val tb: Double,
+    val tb1: Double,
+    val tc: Double,
+    val tc1: Double,
+    val tf: Double,
+    val uelin: String,
+    val vamax: Double,
+    val vamin: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -4431,11 +4467,12 @@ extends
  * @param inputHVgateVoltageOutput UEL input HV gate with voltage regulator output.
  */
 case class ExcIEEEST1AUELselectorKind
-(override val sup: BasicElement,
-val ignoreUELsignal: String,
-val inputAddedToErrorSignal: String,
-val inputHVgateErrorSignal: String,
-val inputHVgateVoltageOutput: String
+(
+    override val sup: Element,
+    val ignoreUELsignal: String,
+    val inputAddedToErrorSignal: String,
+    val inputHVgateErrorSignal: String,
+    val inputHVgateVoltageOutput: String
 )
 extends
     Element
@@ -4508,20 +4545,21 @@ false = add to error signal.
  *        Typical Value = 0.
  */
 case class ExcIEEEST2A
-(override val sup: ExcitationSystemDynamics,
-val efdmax: Double,
-val ka: Double,
-val kc: Double,
-val ke: Double,
-val kf: Double,
-val ki: Double,
-val kp: Double,
-val ta: Double,
-val te: Double,
-val tf: Double,
-val uelin: Boolean,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efdmax: Double,
+    val ka: Double,
+    val kc: Double,
+    val ke: Double,
+    val kf: Double,
+    val ki: Double,
+    val kp: Double,
+    val ta: Double,
+    val te: Double,
+    val tf: Double,
+    val uelin: Boolean,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -4624,27 +4662,28 @@ extends
  *        Typical Value = 0.081.
  */
 case class ExcIEEEST3A
-(override val sup: ExcitationSystemDynamics,
-val ka: Double,
-val kc: Double,
-val kg: Double,
-val ki: Double,
-val km: Double,
-val kp: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val thetap: Double,
-val tm: Double,
-val vbmax: Double,
-val vgmax: Double,
-val vimax: Double,
-val vimin: Double,
-val vmmax: Double,
-val vmmin: Double,
-val vrmax: Double,
-val vrmin: Double,
-val xl: Double
+(
+    override val sup: Element,
+    val ka: Double,
+    val kc: Double,
+    val kg: Double,
+    val ki: Double,
+    val km: Double,
+    val kp: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val thetap: Double,
+    val tm: Double,
+    val vbmax: Double,
+    val vgmax: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vmmax: Double,
+    val vmmin: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xl: Double
 )
 extends
     Element
@@ -4753,23 +4792,24 @@ extends
  *        Typical Value = 0.124.
  */
 case class ExcIEEEST4B
-(override val sup: ExcitationSystemDynamics,
-val kc: Double,
-val kg: Double,
-val ki: Double,
-val kim: Double,
-val kir: Double,
-val kp: Double,
-val kpm: Double,
-val kpr: Double,
-val ta: Double,
-val thetap: Double,
-val vbmax: Double,
-val vmmax: Double,
-val vmmin: Double,
-val vrmax: Double,
-val vrmin: Double,
-val xl: Double
+(
+    override val sup: Element,
+    val kc: Double,
+    val kg: Double,
+    val ki: Double,
+    val kim: Double,
+    val kir: Double,
+    val kp: Double,
+    val kpm: Double,
+    val kpr: Double,
+    val ta: Double,
+    val thetap: Double,
+    val vbmax: Double,
+    val vmmax: Double,
+    val vmmin: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xl: Double
 )
 extends
     Element
@@ -4872,24 +4912,25 @@ extends
  *        Typical Value = -4.
  */
 case class ExcIEEEST5B
-(override val sup: ExcitationSystemDynamics,
-val kc: Double,
-val kr: Double,
-val t1: Double,
-val tb1: Double,
-val tb2: Double,
-val tc1: Double,
-val tc2: Double,
-val tob1: Double,
-val tob2: Double,
-val toc1: Double,
-val toc2: Double,
-val tub1: Double,
-val tub2: Double,
-val tuc1: Double,
-val tuc2: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val kc: Double,
+    val kr: Double,
+    val t1: Double,
+    val tb1: Double,
+    val tb2: Double,
+    val tc1: Double,
+    val tc2: Double,
+    val tob1: Double,
+    val tob2: Double,
+    val toc1: Double,
+    val toc2: Double,
+    val tub1: Double,
+    val tub2: Double,
+    val tuc1: Double,
+    val tuc2: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -4988,21 +5029,22 @@ extends
  *        Typical Value = -3.85.
  */
 case class ExcIEEEST6B
-(override val sup: ExcitationSystemDynamics,
-val ilr: Double,
-val kci: Double,
-val kff: Double,
-val kg: Double,
-val kia: Double,
-val klr: Double,
-val km: Double,
-val kpa: Double,
-val oelin: String,
-val tg: Double,
-val vamax: Double,
-val vamin: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val ilr: Double,
+    val kci: Double,
+    val kff: Double,
+    val kg: Double,
+    val kia: Double,
+    val klr: Double,
+    val km: Double,
+    val kpa: Double,
+    val oelin: String,
+    val tg: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -5097,22 +5139,23 @@ extends
  *        Typical Value = -4.5.
  */
 case class ExcIEEEST7B
-(override val sup: ExcitationSystemDynamics,
-val kh: Double,
-val kia: Double,
-val kl: Double,
-val kpa: Double,
-val oelin: String,
-val tb: Double,
-val tc: Double,
-val tf: Double,
-val tg: Double,
-val tia: Double,
-val uelin: String,
-val vmax: Double,
-val vmin: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val kh: Double,
+    val kia: Double,
+    val kl: Double,
+    val kpa: Double,
+    val oelin: String,
+    val tb: Double,
+    val tc: Double,
+    val tf: Double,
+    val tg: Double,
+    val tia: Double,
+    val uelin: String,
+    val vmax: Double,
+    val vmin: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -5197,26 +5240,27 @@ extends
  * @param vrmin Limiter (V<sub>RMIN</sub>).
  */
 case class ExcOEX3T
-(override val sup: ExcitationSystemDynamics,
-val e1: Double,
-val e2: Double,
-val ka: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kf: Double,
-val see1: Double,
-val see2: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val te: Double,
-val tf: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val e1: Double,
+    val e2: Double,
+    val ka: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kf: Double,
+    val see1: Double,
+    val see2: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val te: Double,
+    val tf: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -5337,30 +5381,31 @@ extends
  *        Typical Value = -0.87.
  */
 case class ExcPIC
-(override val sup: ExcitationSystemDynamics,
-val e1: Double,
-val e2: Double,
-val efdmax: Double,
-val efdmin: Double,
-val ka: Double,
-val kc: Double,
-val ke: Double,
-val kf: Double,
-val ki: Double,
-val kp: Double,
-val se1: Double,
-val se2: Double,
-val ta1: Double,
-val ta2: Double,
-val ta3: Double,
-val ta4: Double,
-val te: Double,
-val tf1: Double,
-val tf2: Double,
-val vr1: Double,
-val vr2: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val e1: Double,
+    val e2: Double,
+    val efdmax: Double,
+    val efdmin: Double,
+    val ka: Double,
+    val kc: Double,
+    val ke: Double,
+    val kf: Double,
+    val ki: Double,
+    val kp: Double,
+    val se1: Double,
+    val se2: Double,
+    val ta1: Double,
+    val ta2: Double,
+    val ta3: Double,
+    val ta4: Double,
+    val te: Double,
+    val tf1: Double,
+    val tf2: Double,
+    val vr1: Double,
+    val vr2: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -5515,43 +5560,44 @@ extends
  *        Typical Value = 0.
  */
 case class ExcREXS
-(override val sup: ExcitationSystemDynamics,
-val e1: Double,
-val e2: Double,
-val fbf: String,
-val flimf: Double,
-val kc: Double,
-val kd: Double,
-val ke: Double,
-val kefd: Double,
-val kf: Double,
-val kh: Double,
-val kii: Double,
-val kip: Double,
-val ks: Double,
-val kvi: Double,
-val kvp: Double,
-val kvphz: Double,
-val nvphz: Double,
-val se1: Double,
-val se2: Double,
-val ta: Double,
-val tb1: Double,
-val tb2: Double,
-val tc1: Double,
-val tc2: Double,
-val te: Double,
-val tf: Double,
-val tf1: Double,
-val tf2: Double,
-val tp: Double,
-val vcmax: Double,
-val vfmax: Double,
-val vfmin: Double,
-val vimax: Double,
-val vrmax: Double,
-val vrmin: Double,
-val xc: Double
+(
+    override val sup: Element,
+    val e1: Double,
+    val e2: Double,
+    val fbf: String,
+    val flimf: Double,
+    val kc: Double,
+    val kd: Double,
+    val ke: Double,
+    val kefd: Double,
+    val kf: Double,
+    val kh: Double,
+    val kii: Double,
+    val kip: Double,
+    val ks: Double,
+    val kvi: Double,
+    val kvp: Double,
+    val kvphz: Double,
+    val nvphz: Double,
+    val se1: Double,
+    val se2: Double,
+    val ta: Double,
+    val tb1: Double,
+    val tb2: Double,
+    val tc1: Double,
+    val tc2: Double,
+    val te: Double,
+    val tf: Double,
+    val tf1: Double,
+    val tf2: Double,
+    val tp: Double,
+    val vcmax: Double,
+    val vfmax: Double,
+    val vfmin: Double,
+    val vimax: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xc: Double
 )
 extends
     Element
@@ -5663,10 +5709,11 @@ extends
  * @param outputVoltage The output voltage of the exciter is used.
  */
 case class ExcREXSFeedbackSignalKind
-(override val sup: BasicElement,
-val fieldCurrent: String,
-val fieldVoltage: String,
-val outputVoltage: String
+(
+    override val sup: Element,
+    val fieldCurrent: String,
+    val fieldVoltage: String,
+    val outputVoltage: String
 )
 extends
     Element
@@ -5725,15 +5772,16 @@ true = fixed voltage of 1.0 PU
  *        Typical Value = 0.02.
  */
 case class ExcSCRX
-(override val sup: ExcitationSystemDynamics,
-val cswitch: Boolean,
-val emax: Double,
-val emin: Double,
-val k: Double,
-val rcrfd: Double,
-val tatb: Double,
-val tb: Double,
-val te: Double
+(
+    override val sup: Element,
+    val cswitch: Boolean,
+    val emax: Double,
+    val emin: Double,
+    val k: Double,
+    val rcrfd: Double,
+    val tatb: Double,
+    val tb: Double,
+    val te: Double
 )
 extends
     Element
@@ -5805,17 +5853,18 @@ extends
  *        Typical Value = 0.05.
  */
 case class ExcSEXS
-(override val sup: ExcitationSystemDynamics,
-val efdmax: Double,
-val efdmin: Double,
-val emax: Double,
-val emin: Double,
-val k: Double,
-val kc: Double,
-val tatb: Double,
-val tb: Double,
-val tc: Double,
-val te: Double
+(
+    override val sup: Element,
+    val efdmax: Double,
+    val efdmin: Double,
+    val emax: Double,
+    val emin: Double,
+    val k: Double,
+    val kc: Double,
+    val tatb: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double
 )
 extends
     Element
@@ -5936,39 +5985,40 @@ false = manual set is active; the use of desired value of reactive power (Qz) is
  *        Minimum output = 0.  Typical Value = 1.
  */
 case class ExcSK
-(override val sup: ExcitationSystemDynamics,
-val efdmax: Double,
-val efdmin: Double,
-val emax: Double,
-val emin: Double,
-val k: Double,
-val k1: Double,
-val k2: Double,
-val kc: Double,
-val kce: Double,
-val kd: Double,
-val kgob: Double,
-val kp: Double,
-val kqi: Double,
-val kqob: Double,
-val kqp: Double,
-val nq: Double,
-val qconoff: Boolean,
-val qz: Double,
-val remote: Boolean,
-val sbase: Double,
-val tc: Double,
-val te: Double,
-val ti: Double,
-val tp: Double,
-val tr: Double,
-val uimax: Double,
-val uimin: Double,
-val urmax: Double,
-val urmin: Double,
-val vtmax: Double,
-val vtmin: Double,
-val yp: Double
+(
+    override val sup: Element,
+    val efdmax: Double,
+    val efdmin: Double,
+    val emax: Double,
+    val emin: Double,
+    val k: Double,
+    val k1: Double,
+    val k2: Double,
+    val kc: Double,
+    val kce: Double,
+    val kd: Double,
+    val kgob: Double,
+    val kp: Double,
+    val kqi: Double,
+    val kqob: Double,
+    val kqp: Double,
+    val nq: Double,
+    val qconoff: Boolean,
+    val qz: Double,
+    val remote: Boolean,
+    val sbase: Double,
+    val tc: Double,
+    val te: Double,
+    val ti: Double,
+    val tp: Double,
+    val tr: Double,
+    val uimax: Double,
+    val uimin: Double,
+    val urmax: Double,
+    val urmin: Double,
+    val vtmax: Double,
+    val vtmin: Double,
+    val yp: Double
 )
 extends
     Element
@@ -6104,25 +6154,26 @@ extends
  *        Typical Value = 0.04.
  */
 case class ExcST1A
-(override val sup: ExcitationSystemDynamics,
-val ilr: Double,
-val ka: Double,
-val kc: Double,
-val kf: Double,
-val klr: Double,
-val ta: Double,
-val tb: Double,
-val tb1: Double,
-val tc: Double,
-val tc1: Double,
-val tf: Double,
-val vamax: Double,
-val vamin: Double,
-val vimax: Double,
-val vimin: Double,
-val vrmax: Double,
-val vrmin: Double,
-val xe: Double
+(
+    override val sup: Element,
+    val ilr: Double,
+    val ka: Double,
+    val kc: Double,
+    val kf: Double,
+    val klr: Double,
+    val ta: Double,
+    val tb: Double,
+    val tb1: Double,
+    val tc: Double,
+    val tc1: Double,
+    val tf: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xe: Double
 )
 extends
     Element
@@ -6226,22 +6277,23 @@ false = add to error signal.
  *        Typical Value = -1.
  */
 case class ExcST2A
-(override val sup: ExcitationSystemDynamics,
-val efdmax: Double,
-val ka: Double,
-val kc: Double,
-val ke: Double,
-val kf: Double,
-val ki: Double,
-val kp: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val te: Double,
-val tf: Double,
-val uelin: Boolean,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val efdmax: Double,
+    val ka: Double,
+    val kc: Double,
+    val ke: Double,
+    val kf: Double,
+    val ki: Double,
+    val kp: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val te: Double,
+    val tf: Double,
+    val uelin: Boolean,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -6347,27 +6399,28 @@ extends
  *        Typical Value = 0.09.
  */
 case class ExcST3A
-(override val sup: ExcitationSystemDynamics,
-val efdmax: Double,
-val kc: Double,
-val kg: Double,
-val ki: Double,
-val kj: Double,
-val km: Double,
-val kp: Double,
-val ks: Double,
-val ks1: Double,
-val tb: Double,
-val tc: Double,
-val thetap: Double,
-val tm: Double,
-val vbmax: Double,
-val vgmax: Double,
-val vimax: Double,
-val vimin: Double,
-val vrmax: Double,
-val vrmin: Double,
-val xl: Double
+(
+    override val sup: Element,
+    val efdmax: Double,
+    val kc: Double,
+    val kg: Double,
+    val ki: Double,
+    val kj: Double,
+    val km: Double,
+    val kp: Double,
+    val ks: Double,
+    val ks1: Double,
+    val tb: Double,
+    val tc: Double,
+    val thetap: Double,
+    val tm: Double,
+    val vbmax: Double,
+    val vgmax: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xl: Double
 )
 extends
     Element
@@ -6485,26 +6538,27 @@ false = UEL is not part of block diagram.
  *        Typical Value = 0.124.
  */
 case class ExcST4B
-(override val sup: ExcitationSystemDynamics,
-val kc: Double,
-val kg: Double,
-val ki: Double,
-val kim: Double,
-val kir: Double,
-val kp: Double,
-val kpm: Double,
-val kpr: Double,
-val lvgate: Boolean,
-val ta: Double,
-val thetap: Double,
-val uel: Boolean,
-val vbmax: Double,
-val vgmax: Double,
-val vmmax: Double,
-val vmmin: Double,
-val vrmax: Double,
-val vrmin: Double,
-val xl: Double
+(
+    override val sup: Element,
+    val kc: Double,
+    val kg: Double,
+    val ki: Double,
+    val kim: Double,
+    val kir: Double,
+    val kp: Double,
+    val kpm: Double,
+    val kpr: Double,
+    val lvgate: Boolean,
+    val ta: Double,
+    val thetap: Double,
+    val uel: Boolean,
+    val vbmax: Double,
+    val vgmax: Double,
+    val vmmax: Double,
+    val vmmin: Double,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xl: Double
 )
 extends
     Element
@@ -6630,30 +6684,31 @@ false = do not multiply regulator output by terminal voltage.
  *        Typical Value = 0.05.
  */
 case class ExcST6B
-(override val sup: ExcitationSystemDynamics,
-val ilr: Double,
-val k1: Boolean,
-val kcl: Double,
-val kff: Double,
-val kg: Double,
-val kia: Double,
-val klr: Double,
-val km: Double,
-val kpa: Double,
-val kvd: Double,
-val oelin: String,
-val tg: Double,
-val ts: Double,
-val tvd: Double,
-val vamax: Double,
-val vamin: Double,
-val vilim: Boolean,
-val vimax: Double,
-val vimin: Double,
-val vmult: Boolean,
-val vrmax: Double,
-val vrmin: Double,
-val xc: Double
+(
+    override val sup: Element,
+    val ilr: Double,
+    val k1: Boolean,
+    val kcl: Double,
+    val kff: Double,
+    val kg: Double,
+    val kia: Double,
+    val klr: Double,
+    val km: Double,
+    val kpa: Double,
+    val kvd: Double,
+    val oelin: String,
+    val tg: Double,
+    val ts: Double,
+    val tvd: Double,
+    val vamax: Double,
+    val vamin: Double,
+    val vilim: Boolean,
+    val vimax: Double,
+    val vimin: Double,
+    val vmult: Boolean,
+    val vrmax: Double,
+    val vrmin: Double,
+    val xc: Double
 )
 extends
     Element
@@ -6738,10 +6793,11 @@ extends
  * @param noOELinput No OEL input is used.
  */
 case class ExcST6BOELselectorKind
-(override val sup: BasicElement,
-val afterUEL: String,
-val beforeUEL: String,
-val noOELinput: String
+(
+    override val sup: Element,
+    val afterUEL: String,
+    val beforeUEL: String,
+    val noOELinput: String
 )
 extends
     Element
@@ -6815,23 +6871,24 @@ extends
  *        Typical Value = -4.5.
  */
 case class ExcST7B
-(override val sup: ExcitationSystemDynamics,
-val kh: Double,
-val kia: Double,
-val kl: Double,
-val kpa: Double,
-val oelin: String,
-val tb: Double,
-val tc: Double,
-val tf: Double,
-val tg: Double,
-val tia: Double,
-val ts: Double,
-val uelin: String,
-val vmax: Double,
-val vmin: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val kh: Double,
+    val kia: Double,
+    val kl: Double,
+    val kpa: Double,
+    val oelin: String,
+    val tb: Double,
+    val tc: Double,
+    val tf: Double,
+    val tg: Double,
+    val tia: Double,
+    val ts: Double,
+    val uelin: String,
+    val vmax: Double,
+    val vmin: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -6903,11 +6960,12 @@ extends
  * @param outputLVgate The signal is connected in the output of the LV gate.
  */
 case class ExcST7BOELselectorKind
-(override val sup: BasicElement,
-val addVref: String,
-val inputLVgate: String,
-val noOELinput: String,
-val outputLVgate: String
+(
+    override val sup: Element,
+    val addVref: String,
+    val inputLVgate: String,
+    val noOELinput: String,
+    val outputLVgate: String
 )
 extends
     Element
@@ -6955,11 +7013,12 @@ extends
  * @param outputHVgate The signal is connected in the output of the HV gate.
  */
 case class ExcST7BUELselectorKind
-(override val sup: BasicElement,
-val addVref: String,
-val inputHVgate: String,
-val noUELinput: String,
-val outputHVgate: String
+(
+    override val sup: Element,
+    val addVref: String,
+    val inputHVgate: String,
+    val noUELinput: String,
+    val outputHVgate: String
 )
 extends
     Element
@@ -7011,15 +7070,16 @@ extends
  * @param VoltageCompensatorDynamics Voltage compensator model associated with this excitation system model.
  */
 case class ExcitationSystemDynamics
-(override val sup: DynamicsFunctionBlock,
-val DiscontinuousExcitationControlDynamics: String,
-val OverexcitationLimiterDynamics: String,
-val PFVArControllerType1Dynamics: String,
-val PFVArControllerType2Dynamics: String,
-val PowerSystemStabilizerDynamics: String,
-val SynchronousMachineDynamics: String,
-val UnderexcitationLimiterDynamics: String,
-val VoltageCompensatorDynamics: String
+(
+    override val sup: Element,
+    val DiscontinuousExcitationControlDynamics: String,
+    val OverexcitationLimiterDynamics: String,
+    val PFVArControllerType1Dynamics: String,
+    val PFVArControllerType2Dynamics: String,
+    val PowerSystemStabilizerDynamics: String,
+    val SynchronousMachineDynamics: String,
+    val UnderexcitationLimiterDynamics: String,
+    val VoltageCompensatorDynamics: String
 )
 extends
     Element

@@ -16,9 +16,10 @@ import ch.ninecode.cim.Context
  * @param LimitSets A measurement may have zero or more limit ranges defined for it.
  */
 case class Accumulator
-(override val sup: Measurement,
-val maxValue: Int,
-val LimitSets: List[String]
+(
+    override val sup: Element,
+    val maxValue: Int,
+    val LimitSets: List[String]
 )
 extends
     Element
@@ -61,9 +62,10 @@ extends
  * @param LimitSet The set of limits.
  */
 case class AccumulatorLimit
-(override val sup: Limit,
-val value: Int,
-val LimitSet: String
+(
+    override val sup: Element,
+    val value: Int,
+    val LimitSet: String
 )
 extends
     Element
@@ -103,7 +105,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class AccumulatorLimitSet
-(override val sup: LimitSet
+(
+    override val sup: Element
 )
 extends
     Element
@@ -140,8 +143,9 @@ extends
  * @param AccumulatorValue The accumulator value that is reset by the command.
  */
 case class AccumulatorReset
-(override val sup: Control,
-val AccumulatorValue: String
+(
+    override val sup: Element,
+    val AccumulatorValue: String
 )
 extends
     Element
@@ -183,10 +187,11 @@ extends
  * @param AccumulatorReset The command that reset the accumulator value.
  */
 case class AccumulatorValue
-(override val sup: MeasurementValue,
-val value: Int,
-val Accumulator: String,
-val AccumulatorReset: String
+(
+    override val sup: Element,
+    val value: Int,
+    val Accumulator: String,
+    val AccumulatorReset: String
 )
 extends
     Element
@@ -235,12 +240,13 @@ extends
  * @param LimitSets A measurement may have zero or more limit ranges defined for it.
  */
 case class Analog
-(override val sup: Measurement,
-val maxValue: Double,
-val minValue: Double,
-val normalValue: Double,
-val positiveFlowIn: Boolean,
-val LimitSets: List[String]
+(
+    override val sup: Element,
+    val maxValue: Double,
+    val minValue: Double,
+    val normalValue: Double,
+    val positiveFlowIn: Boolean,
+    val LimitSets: List[String]
 )
 extends
     Element
@@ -291,10 +297,11 @@ extends
  * @param AnalogValue The MeasurementValue that is controlled.
  */
 case class AnalogControl
-(override val sup: Control,
-val maxValue: Double,
-val minValue: Double,
-val AnalogValue: String
+(
+    override val sup: Element,
+    val maxValue: Double,
+    val minValue: Double,
+    val AnalogValue: String
 )
 extends
     Element
@@ -338,9 +345,10 @@ extends
  * @param LimitSet The set of limits.
  */
 case class AnalogLimit
-(override val sup: Limit,
-val value: Double,
-val LimitSet: String
+(
+    override val sup: Element,
+    val value: Double,
+    val LimitSet: String
 )
 extends
     Element
@@ -380,7 +388,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class AnalogLimitSet
-(override val sup: LimitSet
+(
+    override val sup: Element
 )
 extends
     Element
@@ -419,10 +428,11 @@ extends
  * @param AnalogControl The Control variable associated with the MeasurementValue.
  */
 case class AnalogValue
-(override val sup: MeasurementValue,
-val value: Double,
-val Analog: String,
-val AnalogControl: String
+(
+    override val sup: Element,
+    val value: Double,
+    val Analog: String,
+    val AnalogControl: String
 )
 extends
     Element
@@ -468,11 +478,12 @@ extends
  * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
  */
 case class Command
-(override val sup: Control,
-val normalValue: Int,
-val value: Int,
-val DiscreteValue: String,
-val ValueAliasSet: String
+(
+    override val sup: Element,
+    val normalValue: Int,
+    val value: Int,
+    val DiscreteValue: String,
+    val ValueAliasSet: String
 )
 extends
     Element
@@ -525,14 +536,15 @@ extends
  * @param RemoteControl The remote point controlling the physical actuator.
  */
 case class Control
-(override val sup: IdentifiedObject,
-val controlType: String,
-val operationInProgress: Boolean,
-val timeStamp: String,
-val unitMultiplier: String,
-val unitSymbol: String,
-val PowerSystemResource: String,
-val RemoteControl: String
+(
+    override val sup: Element,
+    val controlType: String,
+    val operationInProgress: Boolean,
+    val timeStamp: String,
+    val unitMultiplier: String,
+    val unitSymbol: String,
+    val PowerSystemResource: String,
+    val RemoteControl: String
 )
 extends
     Element
@@ -588,11 +600,12 @@ extends
  * @param ValueAliasSet The ValueAliasSet used for translation of a MeasurementValue.value to a name.
  */
 case class Discrete
-(override val sup: Measurement,
-val maxValue: Int,
-val minValue: Int,
-val normalValue: Int,
-val ValueAliasSet: String
+(
+    override val sup: Element,
+    val maxValue: Int,
+    val minValue: Int,
+    val normalValue: Int,
+    val ValueAliasSet: String
 )
 extends
     Element
@@ -632,7 +645,8 @@ extends
 }
 
 case class DiscreteCommand
-(override val sup: Command
+(
+    override val sup: Element
 )
 extends
     Element
@@ -671,10 +685,11 @@ extends
  * @param Discrete Measurement to which this value is connected.
  */
 case class DiscreteValue
-(override val sup: MeasurementValue,
-val value: Int,
-val Command: String,
-val Discrete: String
+(
+    override val sup: Element,
+    val value: Int,
+    val Command: String,
+    val Discrete: String
 )
 extends
     Element
@@ -717,7 +732,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Limit
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -755,8 +771,9 @@ extends
  * @param isPercentageLimits Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
  */
 case class LimitSet
-(override val sup: IdentifiedObject,
-val isPercentageLimits: Boolean
+(
+    override val sup: Element,
+    val isPercentageLimits: Boolean
 )
 extends
     Element
@@ -804,14 +821,15 @@ extends
  * @param Terminal One or more measurements may be associated with a terminal in the network.
  */
 case class Measurement
-(override val sup: IdentifiedObject,
-val measurementType: String,
-val phases: String,
-val unitMultiplier: String,
-val unitSymbol: String,
-val Asset: String,
-val PowerSystemResource: String,
-val Terminal: String
+(
+    override val sup: Element,
+    val measurementType: String,
+    val phases: String,
+    val unitMultiplier: String,
+    val unitSymbol: String,
+    val Asset: String,
+    val PowerSystemResource: String,
+    val Terminal: String
 )
 extends
     Element
@@ -870,14 +888,15 @@ extends
  * @param RemoteSource Link to the physical telemetered point associated with this measurement.
  */
 case class MeasurementValue
-(override val sup: IdentifiedObject,
-val attr: String,
-val sensorAccuracy: Double,
-val timeStamp: String,
-val ErpPerson: String,
-val MeasurementValueQuality: String,
-val MeasurementValueSource: String,
-val RemoteSource: String
+(
+    override val sup: Element,
+    val attr: String,
+    val sensorAccuracy: Double,
+    val timeStamp: String,
+    val ErpPerson: String,
+    val MeasurementValueQuality: String,
+    val MeasurementValueSource: String,
+    val RemoteSource: String
 )
 extends
     Element
@@ -929,8 +948,9 @@ extends
  * @param MeasurementValue A MeasurementValue has a MeasurementValueQuality associated with it.
  */
 case class MeasurementValueQuality
-(override val sup: Quality61850,
-val MeasurementValue: String
+(
+    override val sup: Element,
+    val MeasurementValue: String
 )
 extends
     Element
@@ -969,7 +989,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MeasurementValueSource
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1021,19 +1042,20 @@ extends
  * @param validity Validity of the measurement value.
  */
 case class Quality61850
-(override val sup: BasicElement,
-val badReference: Boolean,
-val estimatorReplaced: Boolean,
-val failure: Boolean,
-val oldData: Boolean,
-val operatorBlocked: Boolean,
-val oscillatory: Boolean,
-val outOfRange: Boolean,
-val overFlow: Boolean,
-val source: String,
-val suspect: Boolean,
-val test: Boolean,
-val validity: String
+(
+    override val sup: Element,
+    val badReference: Boolean,
+    val estimatorReplaced: Boolean,
+    val failure: Boolean,
+    val oldData: Boolean,
+    val operatorBlocked: Boolean,
+    val oscillatory: Boolean,
+    val outOfRange: Boolean,
+    val overFlow: Boolean,
+    val source: String,
+    val suspect: Boolean,
+    val test: Boolean,
+    val validity: String
 )
 extends
     Element
@@ -1094,8 +1116,9 @@ extends
  * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
  */
 case class RaiseLowerCommand
-(override val sup: AnalogControl,
-val ValueAliasSet: String
+(
+    override val sup: Element,
+    val ValueAliasSet: String
 )
 extends
     Element
@@ -1135,9 +1158,10 @@ extends
  * @param value The value representing the actuator output.
  */
 case class SetPoint
-(override val sup: AnalogControl,
-val normalValue: Double,
-val value: Double
+(
+    override val sup: Element,
+    val normalValue: Double,
+    val value: Double
 )
 extends
     Element
@@ -1177,7 +1201,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class StringMeasurement
-(override val sup: Measurement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1215,9 +1240,10 @@ extends
  * @param StringMeasurement Measurement to which this value is connected.
  */
 case class StringMeasurementValue
-(override val sup: MeasurementValue,
-val value: String,
-val StringMeasurement: String
+(
+    override val sup: Element,
+    val value: String,
+    val StringMeasurement: String
 )
 extends
     Element
@@ -1262,10 +1288,11 @@ extends
  *        The client is responsible for determining whether or not values marked "questionable" should be used.
  */
 case class Validity
-(override val sup: BasicElement,
-val GOOD: String,
-val INVALID: String,
-val QUESTIONABLE: String
+(
+    override val sup: Element,
+    val GOOD: String,
+    val INVALID: String,
+    val QUESTIONABLE: String
 )
 extends
     Element
@@ -1308,7 +1335,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ValueAliasSet
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1346,9 +1374,10 @@ extends
  * @param ValueAliasSet The ValueAliasSet having the ValueToAlias mappings.
  */
 case class ValueToAlias
-(override val sup: IdentifiedObject,
-val value: Int,
-val ValueAliasSet: String
+(
+    override val sup: Element,
+    val value: Int,
+    val ValueAliasSet: String
 )
 extends
     Element

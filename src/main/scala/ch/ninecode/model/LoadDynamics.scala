@@ -16,9 +16,10 @@ import ch.ninecode.cim.Context
  * @param loadAdaptive Load adaptive model.
  */
 case class GenericNonLinearLoadModelKind
-(override val sup: BasicElement,
-val exponentialRecovery: String,
-val loadAdaptive: String
+(
+    override val sup: Element,
+    val exponentialRecovery: String,
+    val loadAdaptive: String
 )
 extends
     Element
@@ -61,9 +62,10 @@ extends
  * @param LoadStatic Aggregate static load associated with this aggregate load.
  */
 case class LoadAggregate
-(override val sup: LoadDynamics,
-val LoadMotor: String,
-val LoadStatic: String
+(
+    override val sup: Element,
+    val LoadMotor: String,
+    val LoadStatic: String
 )
 extends
     Element
@@ -126,18 +128,19 @@ extends
  *        Typical Value = 0.5.
  */
 case class LoadComposite
-(override val sup: LoadDynamics,
-val epfd: Double,
-val epfs: Double,
-val epvd: Double,
-val epvs: Double,
-val eqfd: Double,
-val eqfs: Double,
-val eqvd: Double,
-val eqvs: Double,
-val h: Double,
-val lfrac: Double,
-val pfrac: Double
+(
+    override val sup: Element,
+    val epfd: Double,
+    val epfs: Double,
+    val epvd: Double,
+    val epvs: Double,
+    val eqfd: Double,
+    val eqfs: Double,
+    val eqvd: Double,
+    val eqvs: Double,
+    val h: Double,
+    val lfrac: Double,
+    val pfrac: Double
 )
 extends
     Element
@@ -198,7 +201,8 @@ A standard feature of dynamic load behaviour modelling is the ability to associa
  * @param sup Reference to the superclass object.
  */
 case class LoadDynamics
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -243,16 +247,17 @@ extends
  * @param tq Time constant of lag function of reactive power (T<sub>Q</sub>).
  */
 case class LoadGenericNonLinear
-(override val sup: LoadDynamics,
-val bs: Double,
-val bt: Double,
-val genericNonLinearLoadModelType: String,
-val ls: Double,
-val lt: Double,
-val pt: Double,
-val qt: Double,
-val tp: Double,
-val tq: Double
+(
+    override val sup: Element,
+    val bs: Double,
+    val bt: Double,
+    val genericNonLinearLoadModelType: String,
+    val ls: Double,
+    val lt: Double,
+    val pt: Double,
+    val qt: Double,
+    val tp: Double,
+    val tq: Double
 )
 extends
     Element
@@ -334,21 +339,22 @@ extends
  * @param LoadAggregate Aggregate load to which this aggregate motor (dynamic) load belongs.
  */
 case class LoadMotor
-(override val sup: IdentifiedObject,
-val d: Double,
-val h: Double,
-val lfac: Double,
-val lp: Double,
-val lpp: Double,
-val ls: Double,
-val pfrac: Double,
-val ra: Double,
-val tbkr: Double,
-val tpo: Double,
-val tppo: Double,
-val tv: Double,
-val vt: Double,
-val LoadAggregate: String
+(
+    override val sup: Element,
+    val d: Double,
+    val h: Double,
+    val lfac: Double,
+    val lp: Double,
+    val lpp: Double,
+    val ls: Double,
+    val pfrac: Double,
+    val ra: Double,
+    val tbkr: Double,
+    val tpo: Double,
+    val tppo: Double,
+    val tv: Double,
+    val vt: Double,
+    val LoadAggregate: String
 )
 extends
     Element
@@ -447,25 +453,26 @@ extends
  * @param LoadAggregate Aggregate load to which this aggregate static load belongs.
  */
 case class LoadStatic
-(override val sup: IdentifiedObject,
-val ep1: Double,
-val ep2: Double,
-val ep3: Double,
-val eq1: Double,
-val eq2: Double,
-val eq3: Double,
-val kp1: Double,
-val kp2: Double,
-val kp3: Double,
-val kp4: Double,
-val kpf: Double,
-val kq1: Double,
-val kq2: Double,
-val kq3: Double,
-val kq4: Double,
-val kqf: Double,
-val staticLoadModelType: String,
-val LoadAggregate: String
+(
+    override val sup: Element,
+    val ep1: Double,
+    val ep2: Double,
+    val ep3: Double,
+    val eq1: Double,
+    val eq2: Double,
+    val eq3: Double,
+    val kp1: Double,
+    val kp2: Double,
+    val kp3: Double,
+    val kp4: Double,
+    val kpf: Double,
+    val kq1: Double,
+    val kq2: Double,
+    val kq3: Double,
+    val kq4: Double,
+    val kqf: Double,
+    val staticLoadModelType: String,
+    val LoadAggregate: String
 )
 extends
     Element
@@ -547,11 +554,12 @@ kp1, kp2, kp3, kpf
  *        ZIP2 P and Q equations are used and the following attributes are required:
  */
 case class StaticLoadModelKind
-(override val sup: BasicElement,
-val constantZ: String,
-val exponential: String,
-val zIP1: String,
-val zIP2: String
+(
+    override val sup: Element,
+    val constantZ: String,
+    val exponential: String,
+    val zIP1: String,
+    val zIP2: String
 )
 extends
     Element

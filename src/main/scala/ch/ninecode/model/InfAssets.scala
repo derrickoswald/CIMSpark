@@ -21,14 +21,15 @@ import ch.ninecode.cim.Context
  * @param unknown
  */
 case class AnchorKind
-(override val sup: BasicElement,
-val concrete: String,
-val helix: String,
-val multiHelix: String,
-val other: String,
-val rod: String,
-val screw: String,
-val unknown: String
+(
+    override val sup: Element,
+    val concrete: String,
+    val helix: String,
+    val multiHelix: String,
+    val other: String,
+    val rod: String,
+    val screw: String,
+    val unknown: String
 )
 extends
     Element
@@ -80,8 +81,9 @@ extends
  * @param Specification
  */
 case class AssetPropertyCurve
-(override val sup: Curve,
-val Specification: String
+(
+    override val sup: Element,
+    val Specification: String
 )
 extends
     Element
@@ -125,13 +127,14 @@ extends
  * @param Terminal
  */
 case class Bushing
-(override val sup: Asset,
-val c1Capacitance: Double,
-val c1PowerFactor: Double,
-val c2Capacitance: Double,
-val c2PowerFactor: Double,
-val insulationKind: String,
-val Terminal: String
+(
+    override val sup: Element,
+    val c1Capacitance: Double,
+    val c1PowerFactor: Double,
+    val c2Capacitance: Double,
+    val c2PowerFactor: Double,
+    val insulationKind: String,
+    val Terminal: String
 )
 extends
     Element
@@ -183,11 +186,12 @@ extends
  * @param solidPorcelain
  */
 case class BushingInsulationKind
-(override val sup: BasicElement,
-val compound: String,
-val other: String,
-val paperoil: String,
-val solidPorcelain: String
+(
+    override val sup: Element,
+    val compound: String,
+    val other: String,
+    val paperoil: String,
+    val solidPorcelain: String
 )
 extends
     Element
@@ -236,11 +240,12 @@ extends
  * @param TransformerObservation
  */
 case class BushingInsulationPF
-(override val sup: IdentifiedObject,
-val status: String,
-val testKind: String,
-val Bushing: String,
-val TransformerObservation: String
+(
+    override val sup: Element,
+    val status: String,
+    val testKind: String,
+    val Bushing: String,
+    val TransformerObservation: String
 )
 extends
     Element
@@ -286,9 +291,10 @@ extends
  * @param c2 Power factor tap-to-conductor.
  */
 case class BushingInsulationPfTestKind
-(override val sup: BasicElement,
-val c1: String,
-val c2: String
+(
+    override val sup: Element,
+    val c1: String,
+    val c2: String
 )
 extends
     Element
@@ -328,7 +334,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Cabinet
-(override val sup: AssetContainer
+(
+    override val sup: Element
 )
 extends
     Element
@@ -368,11 +375,12 @@ extends
  * @param selfCooling
  */
 case class CoolingKind
-(override val sup: BasicElement,
-val forcedAir: String,
-val forcedOilAndAir: String,
-val other: String,
-val selfCooling: String
+(
+    override val sup: Element,
+    val forcedAir: String,
+    val forcedOilAndAir: String,
+    val other: String,
+    val selfCooling: String
 )
 extends
     Element
@@ -421,11 +429,12 @@ extends
  * @param Reconditionings
  */
 case class CoolingPowerRating
-(override val sup: IdentifiedObject,
-val coolingKind: String,
-val powerRating: Double,
-val stage: Int,
-val Reconditionings: List[String]
+(
+    override val sup: Element,
+    val coolingKind: String,
+    val powerRating: Double,
+    val stage: Int,
+    val Reconditionings: List[String]
 )
 extends
     Element
@@ -477,13 +486,14 @@ extends
  * @param Specifications
  */
 case class DimensionsInfo
-(override val sup: IdentifiedObject,
-val orientation: String,
-val sizeDepth: Double,
-val sizeDiameter: Double,
-val sizeLength: Double,
-val sizeWidth: Double,
-val Specifications: List[String]
+(
+    override val sup: Element,
+    val orientation: String,
+    val sizeDepth: Double,
+    val sizeDiameter: Double,
+    val sizeLength: Double,
+    val sizeWidth: Double,
+    val Specifications: List[String]
 )
 extends
     Element
@@ -533,8 +543,9 @@ extends
  *        Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
  */
 case class DuctBank
-(override val sup: AssetContainer,
-val circuitCount: Int
+(
+    override val sup: Element,
+    val circuitCount: Int
 )
 extends
     Element
@@ -573,8 +584,9 @@ extends
  * @param kind Kind of FACTS device.
  */
 case class FACTSDevice
-(override val sup: Asset,
-val kind: String
+(
+    override val sup: Element,
+    val kind: String
 )
 extends
     Element
@@ -620,15 +632,16 @@ extends
  * @param upfc Unified power flow controller.
  */
 case class FACTSDeviceKind
-(override val sup: BasicElement,
-val statcom: String,
-val svc: String,
-val tcpar: String,
-val tcsc: String,
-val tcvl: String,
-val tsbr: String,
-val tssc: String,
-val upfc: String
+(
+    override val sup: Element,
+    val statcom: String,
+    val svc: String,
+    val tcpar: String,
+    val tcsc: String,
+    val tcvl: String,
+    val tsbr: String,
+    val tssc: String,
+    val upfc: String
 )
 extends
     Element
@@ -681,8 +694,9 @@ extends
  * @param kind Kind of this facility.
  */
 case class Facility
-(override val sup: AssetContainer,
-val kind: String
+(
+    override val sup: Element,
+    val kind: String
 )
 extends
     Element
@@ -725,11 +739,12 @@ extends
  * @param location Failure location on an object.
  */
 case class FailureEvent
-(override val sup: ActivityRecord,
-val corporateCode: String,
-val failureIsolationMethod: String,
-val faultLocatingMethod: String,
-val location: String
+(
+    override val sup: Element,
+    val corporateCode: String,
+    val failureIsolationMethod: String,
+    val faultLocatingMethod: String,
+    val location: String
 )
 extends
     Element
@@ -778,12 +793,13 @@ extends
  * @param other
  */
 case class FailureIsolationMethodKind
-(override val sup: BasicElement,
-val breakerOperation: String,
-val burnedInTheClear: String,
-val fuse: String,
-val manuallyIsolated: String,
-val other: String
+(
+    override val sup: Element,
+    val breakerOperation: String,
+    val burnedInTheClear: String,
+    val fuse: String,
+    val manuallyIsolated: String,
+    val other: String
 )
 extends
     Element
@@ -843,19 +859,20 @@ extends
  * @param Asset
  */
 case class FinancialInfo
-(override val sup: IdentifiedObject,
-val account: String,
-val actualPurchaseCost: Double,
-val costDescription: String,
-val costType: String,
-val financialValue: Double,
-val plantTransferDateTime: String,
-val purchaseDateTime: String,
-val purchaseOrderNumber: String,
-val quantity: String,
-val valueDateTime: String,
-val warrantyEndDateTime: String,
-val Asset: String
+(
+    override val sup: Element,
+    val account: String,
+    val actualPurchaseCost: Double,
+    val costDescription: String,
+    val costType: String,
+    val financialValue: Double,
+    val plantTransferDateTime: String,
+    val purchaseDateTime: String,
+    val purchaseOrderNumber: String,
+    val quantity: String,
+    val valueDateTime: String,
+    val warrantyEndDateTime: String,
+    val Asset: String
 )
 extends
     Element
@@ -922,13 +939,14 @@ extends
  * @param TypeAssetCatalogue
  */
 case class GenericAssetModelOrMaterial
-(override val sup: AssetModel,
-val estimatedUnitCost: Double,
-val quantity: String,
-val stockItem: Boolean,
-val CUAsset: String,
-val CUWorkEquipmentAsset: String,
-val TypeAssetCatalogue: String
+(
+    override val sup: Element,
+    val estimatedUnitCost: Double,
+    val quantity: String,
+    val stockItem: Boolean,
+    val CUAsset: String,
+    val CUWorkEquipmentAsset: String,
+    val TypeAssetCatalogue: String
 )
 extends
     Element
@@ -980,10 +998,11 @@ extends
  * @param insulation The type of insulation around the joint, classified according to the utility's asset management standards and practices.
  */
 case class Joint
-(override val sup: Asset,
-val configurationKind: String,
-val fillKind: String,
-val insulation: String
+(
+    override val sup: Element,
+    val configurationKind: String,
+    val fillKind: String,
+    val insulation: String
 )
 extends
     Element
@@ -1029,11 +1048,12 @@ extends
  * @param wires3to1
  */
 case class JointConfigurationKind
-(override val sup: BasicElement,
-val other: String,
-val wires1to1: String,
-val wires2to1: String,
-val wires3to1: String
+(
+    override val sup: Element,
+    val other: String,
+    val wires1to1: String,
+    val wires2to1: String,
+    val wires3to1: String
 )
 extends
     Element
@@ -1087,17 +1107,18 @@ extends
  * @param petrolatum
  */
 case class JointFillKind
-(override val sup: BasicElement,
-val airNoFilling: String,
-val asphaltic: String,
-val bluefill254: String,
-val epoxy: String,
-val insoluseal: String,
-val noFillPrefab: String,
-val noVoid: String,
-val oil: String,
-val other: String,
-val petrolatum: String
+(
+    override val sup: Element,
+    val airNoFilling: String,
+    val asphaltic: String,
+    val bluefill254: String,
+    val epoxy: String,
+    val insoluseal: String,
+    val noFillPrefab: String,
+    val noVoid: String,
+    val oil: String,
+    val other: String,
+    val petrolatum: String
 )
 extends
     Element
@@ -1158,11 +1179,12 @@ extends
  * @param Specification
  */
 case class Medium
-(override val sup: IdentifiedObject,
-val kind: String,
-val volumeSpec: Double,
-val Assets: List[String],
-val Specification: String
+(
+    override val sup: Element,
+    val kind: String,
+    val volumeSpec: Double,
+    val Assets: List[String],
+    val Specification: String
 )
 extends
     Element
@@ -1209,10 +1231,11 @@ extends
  * @param solid
  */
 case class MediumKind
-(override val sup: BasicElement,
-val gas: String,
-val liquid: String,
-val solid: String
+(
+    override val sup: Element,
+    val gas: String,
+    val liquid: String,
+    val solid: String
 )
 extends
     Element
@@ -1267,18 +1290,19 @@ extends
  * @param treatmentKind Kind of treatment for this pole.
  */
 case class Pole
-(override val sup: Structure,
-val baseKind: String,
-val breastBlock: Boolean,
-val classification: String,
-val construction: String,
-val diameter: Double,
-val jpaReference: String,
-val len: Double,
-val preservativeKind: String,
-val speciesType: String,
-val treatedDateTime: String,
-val treatmentKind: String
+(
+    override val sup: Element,
+    val baseKind: String,
+    val breastBlock: Boolean,
+    val classification: String,
+    val construction: String,
+    val diameter: Double,
+    val jpaReference: String,
+    val len: Double,
+    val preservativeKind: String,
+    val speciesType: String,
+    val treatedDateTime: String,
+    val treatmentKind: String
 )
 extends
     Element
@@ -1341,12 +1365,13 @@ extends
  * @param unknown
  */
 case class PoleBaseKind
-(override val sup: BasicElement,
-val asphalt: String,
-val cement: String,
-val dirt: String,
-val other: String,
-val unknown: String
+(
+    override val sup: Element,
+    val asphalt: String,
+    val cement: String,
+    val dirt: String,
+    val other: String,
+    val unknown: String
 )
 extends
     Element
@@ -1399,14 +1424,15 @@ extends
  * @param unknown
  */
 case class PolePreservativeKind
-(override val sup: BasicElement,
-val cellon: String,
-val chemonite: String,
-val creosote: String,
-val naphthena: String,
-val other: String,
-val penta: String,
-val unknown: String
+(
+    override val sup: Element,
+    val cellon: String,
+    val chemonite: String,
+    val creosote: String,
+    val naphthena: String,
+    val other: String,
+    val penta: String,
+    val unknown: String
 )
 extends
     Element
@@ -1464,15 +1490,16 @@ extends
  * @param unknown
  */
 case class PoleTreatmentKind
-(override val sup: BasicElement,
-val butt: String,
-val full: String,
-val grayStain: String,
-val greenStain: String,
-val natural: String,
-val other: String,
-val penta: String,
-val unknown: String
+(
+    override val sup: Element,
+    val butt: String,
+    val full: String,
+    val grayStain: String,
+    val greenStain: String,
+    val natural: String,
+    val other: String,
+    val penta: String,
+    val unknown: String
 )
 extends
     Element
@@ -1526,9 +1553,10 @@ extends
  * @param Asset
  */
 case class Reconditioning
-(override val sup: IdentifiedObject,
-val dateTime: String,
-val Asset: String
+(
+    override val sup: Element,
+    val dateTime: String,
+    val Asset: String
 )
 extends
     Element
@@ -1572,11 +1600,12 @@ extends
  * @param Specification
  */
 case class ReliabilityInfo
-(override val sup: IdentifiedObject,
-val mTTR: Double,
-val momFailureRate: Double,
-val Assets: List[String],
-val Specification: String
+(
+    override val sup: Element,
+    val mTTR: Double,
+    val momFailureRate: Double,
+    val Assets: List[String],
+    val Specification: String
 )
 extends
     Element
@@ -1621,7 +1650,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Specification
-(override val sup: Document
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1662,11 +1692,12 @@ extends
  * @param Pole Pole to which thiss streetlight is attached.
  */
 case class Streetlight
-(override val sup: Asset,
-val armLength: Double,
-val lampKind: String,
-val lightRating: Double,
-val Pole: String
+(
+    override val sup: Element,
+    val armLength: Double,
+    val lampKind: String,
+    val lightRating: Double,
+    val Pole: String
 )
 extends
     Element
@@ -1714,11 +1745,12 @@ extends
  * @param other
  */
 case class StreetlightLampKind
-(override val sup: BasicElement,
-val highPressureSodium: String,
-val mercuryVapor: String,
-val metalHalide: String,
-val other: String
+(
+    override val sup: Element,
+    val highPressureSodium: String,
+    val mercuryVapor: String,
+    val metalHalide: String,
+    val other: String
 )
 extends
     Element
@@ -1771,14 +1803,15 @@ extends
  * @param weedRemovedDate Date weed were last removed.
  */
 case class Structure
-(override val sup: AssetContainer,
-val fumigantAppliedDate: String,
-val fumigantName: String,
-val height: Double,
-val materialKind: String,
-val ratedVoltage: Double,
-val removeWeed: Boolean,
-val weedRemovedDate: String
+(
+    override val sup: Element,
+    val fumigantAppliedDate: String,
+    val fumigantName: String,
+    val height: Double,
+    val materialKind: String,
+    val ratedVoltage: Double,
+    val removeWeed: Boolean,
+    val weedRemovedDate: String
 )
 extends
     Element
@@ -1832,11 +1865,12 @@ extends
  * @param wood
  */
 case class StructureMaterialKind
-(override val sup: BasicElement,
-val concrete: String,
-val other: String,
-val steel: String,
-val wood: String
+(
+    override val sup: Element,
+    val concrete: String,
+    val other: String,
+    val steel: String,
+    val wood: String
 )
 extends
     Element
@@ -1888,15 +1922,16 @@ extends
  * @param SecuredStructure
  */
 case class StructureSupport
-(override val sup: Asset,
-val anchorKind: String,
-val anchorRodCount: Int,
-val anchorRodLength: Double,
-val direction: Double,
-val kind: String,
-val len: Double,
-val size1: String,
-val SecuredStructure: String
+(
+    override val sup: Element,
+    val anchorKind: String,
+    val anchorRodCount: Int,
+    val anchorRodLength: Double,
+    val direction: Double,
+    val kind: String,
+    val len: Double,
+    val size1: String,
+    val SecuredStructure: String
 )
 extends
     Element
@@ -1950,9 +1985,10 @@ extends
  * @param guy
  */
 case class StructureSupportKind
-(override val sup: BasicElement,
-val anchor: String,
-val guy: String
+(
+    override val sup: Element,
+    val anchor: String,
+    val guy: String
 )
 extends
     Element
@@ -1994,8 +2030,9 @@ extends
  * @param constructionKind Construction structure on the tower.
  */
 case class Tower
-(override val sup: Structure,
-val constructionKind: String
+(
+    override val sup: Element,
+    val constructionKind: String
 )
 extends
     Element
@@ -2035,9 +2072,10 @@ extends
  * @param tension
  */
 case class TowerConstructionKind
-(override val sup: BasicElement,
-val suspension: String,
-val tension: String
+(
+    override val sup: Element,
+    val suspension: String,
+    val tension: String
 )
 extends
     Element
@@ -2097,23 +2135,24 @@ extends
  * @param Transformer
  */
 case class TransformerObservation
-(override val sup: IdentifiedObject,
-val bushingTemp: Double,
-val dga: String,
-val freqResp: String,
-val furfuralDP: String,
-val hotSpotTemp: Double,
-val oilColor: String,
-val oilDielectricStrength: Double,
-val oilIFT: String,
-val oilLevel: String,
-val oilNeutralizationNumber: String,
-val pumpVibration: String,
-val status: String,
-val topOilTemp: Double,
-val waterContent: String,
-val Reconditioning: String,
-val Transformer: String
+(
+    override val sup: Element,
+    val bushingTemp: Double,
+    val dga: String,
+    val freqResp: String,
+    val furfuralDP: String,
+    val hotSpotTemp: Double,
+    val oilColor: String,
+    val oilDielectricStrength: Double,
+    val oilIFT: String,
+    val oilLevel: String,
+    val oilNeutralizationNumber: String,
+    val pumpVibration: String,
+    val status: String,
+    val topOilTemp: Double,
+    val waterContent: String,
+    val Reconditioning: String,
+    val Transformer: String
 )
 extends
     Element
@@ -2185,11 +2224,12 @@ extends
  * @param sealingWarrantyExpiresDate Date sealing warranty expires.
  */
 case class UndergroundStructure
-(override val sup: Structure,
-val hasVentilation: Boolean,
-val kind: String,
-val material: String,
-val sealingWarrantyExpiresDate: String
+(
+    override val sup: Element,
+    val hasVentilation: Boolean,
+    val kind: String,
+    val material: String,
+    val sealingWarrantyExpiresDate: String
 )
 extends
     Element
@@ -2243,17 +2283,18 @@ extends
  * @param vault
  */
 case class UndergroundStructureKind
-(override val sup: BasicElement,
-val burd: String,
-val enclosure: String,
-val handhole: String,
-val manhole: String,
-val pad: String,
-val pullbox: String,
-val subsurfaceEnclosure: String,
-val trench: String,
-val tunnel: String,
-val vault: String
+(
+    override val sup: Element,
+    val burd: String,
+    val enclosure: String,
+    val handhole: String,
+    val manhole: String,
+    val pad: String,
+    val pullbox: String,
+    val subsurfaceEnclosure: String,
+    val trench: String,
+    val tunnel: String,
+    val vault: String
 )
 extends
     Element
@@ -2317,14 +2358,15 @@ extends
  * @param TransformerObservation
  */
 case class WindingInsulation
-(override val sup: IdentifiedObject,
-val insulationPFStatus: String,
-val insulationResistance: String,
-val leakageReactance: Double,
-val status: String,
-val FromWinding: String,
-val ToWinding: String,
-val TransformerObservation: String
+(
+    override val sup: Element,
+    val insulationPFStatus: String,
+    val insulationResistance: String,
+    val leakageReactance: Double,
+    val status: String,
+    val FromWinding: String,
+    val ToWinding: String,
+    val TransformerObservation: String
 )
 extends
     Element

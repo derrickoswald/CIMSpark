@@ -21,14 +21,15 @@ import ch.ninecode.cim.Context
  * @param operable Usage point is equipped with an AMI capable meter that is functioning and communicating with the AMI network.
  */
 case class AmiBillingReadyKind
-(override val sup: BasicElement,
-val amiCapable: String,
-val amiDisabled: String,
-val billingApproved: String,
-val enabled: String,
-val nonAmi: String,
-val nonMetered: String,
-val operable: String
+(
+    override val sup: Element,
+    val amiCapable: String,
+    val amiDisabled: String,
+    val billingApproved: String,
+    val enabled: String,
+    val nonAmi: String,
+    val nonMetered: String,
+    val operable: String
 )
 extends
     Element
@@ -83,11 +84,12 @@ extends
  * @param value Value of this reading.
  */
 case class BaseReading
-(override val sup: MeasurementValue,
-val reportedDateTime: String,
-val source: String,
-val timePeriod: String,
-val value: String
+(
+    override val sup: Element,
+    val reportedDateTime: String,
+    val source: String,
+    val timePeriod: String,
+    val value: String
 )
 extends
     Element
@@ -135,10 +137,11 @@ extends
  * @param Register Register whose values are collected/reported by this channel.
  */
 case class Channel
-(override val sup: IdentifiedObject,
-val isVirtual: Boolean,
-val ReadingType: String,
-val Register: String
+(
+    override val sup: Element,
+    val isVirtual: Boolean,
+    val ReadingType: String,
+    val Register: String
 )
 extends
     Element
@@ -183,10 +186,11 @@ extends
  * @param toDevice Communication is to device.
  */
 case class ComDirectionKind
-(override val sup: BasicElement,
-val biDirectional: String,
-val fromDevice: String,
-val toDevice: String
+(
+    override val sup: Element,
+    val biDirectional: String,
+    val fromDevice: String,
+    val toDevice: String
 )
 extends
     Element
@@ -233,12 +237,13 @@ extends
  * @param ComModule Module performing this communication function.
  */
 case class ComFunction
-(override val sup: EndDeviceFunction,
-val amrAddress: String,
-val amrRouter: String,
-val direction: String,
-val technology: String,
-val ComModule: String
+(
+    override val sup: Element,
+    val amrAddress: String,
+    val amrRouter: String,
+    val direction: String,
+    val technology: String,
+    val ComModule: String
 )
 extends
     Element
@@ -288,10 +293,11 @@ extends
  * @param timeZoneOffset Time zone offset relative to GMT for the location of this com module.
  */
 case class ComModule
-(override val sup: Asset,
-val amrSystem: String,
-val supportsAutonomousDst: Boolean,
-val timeZoneOffset: Double
+(
+    override val sup: Element,
+    val amrSystem: String,
+    val supportsAutonomousDst: Boolean,
+    val timeZoneOffset: Double
 )
 extends
     Element
@@ -347,16 +353,17 @@ extends
  *        A specific variant of 'rf'.
  */
 case class ComTechnologyKind
-(override val sup: BasicElement,
-val cellular: String,
-val ethernet: String,
-val homePlug: String,
-val pager: String,
-val phone: String,
-val plc: String,
-val rf: String,
-val rfMesh: String,
-val zigbee: String
+(
+    override val sup: Element,
+    val cellular: String,
+    val ethernet: String,
+    val homePlug: String,
+    val pager: String,
+    val phone: String,
+    val plc: String,
+    val rf: String,
+    val rfMesh: String,
+    val zigbee: String
 )
 extends
     Element
@@ -422,19 +429,20 @@ extends
  * @param isWaterHeater True if the appliance is a water heater.
  */
 case class ControlledAppliance
-(override val sup: BasicElement,
-val isElectricVehicle: Boolean,
-val isExteriorLighting: Boolean,
-val isGenerationSystem: Boolean,
-val isHvacCompressorOrFurnace: Boolean,
-val isInteriorLighting: Boolean,
-val isIrrigationPump: Boolean,
-val isManagedCommercialIndustrialLoad: Boolean,
-val isPoolPumpSpaJacuzzi: Boolean,
-val isSimpleMiscLoad: Boolean,
-val isSmartAppliance: Boolean,
-val isStripAndBaseboardHeater: Boolean,
-val isWaterHeater: Boolean
+(
+    override val sup: Element,
+    val isElectricVehicle: Boolean,
+    val isExteriorLighting: Boolean,
+    val isGenerationSystem: Boolean,
+    val isHvacCompressorOrFurnace: Boolean,
+    val isInteriorLighting: Boolean,
+    val isIrrigationPump: Boolean,
+    val isManagedCommercialIndustrialLoad: Boolean,
+    val isPoolPumpSpaJacuzzi: Boolean,
+    val isSimpleMiscLoad: Boolean,
+    val isSmartAppliance: Boolean,
+    val isStripAndBaseboardHeater: Boolean,
+    val isWaterHeater: Boolean
 )
 extends
     Element
@@ -500,12 +508,13 @@ extends
  * @param UsagePointGroups All usage point groups enrolled in this demand response program.
  */
 case class DemandResponseProgram
-(override val sup: IdentifiedObject,
-val typ: String,
-val validityInterval: String,
-val CustomerAgreements: List[String],
-val EndDeviceGroups: List[String],
-val UsagePointGroups: List[String]
+(
+    override val sup: Element,
+    val typ: String,
+    val validityInterval: String,
+    val CustomerAgreements: List[String],
+    val EndDeviceGroups: List[String],
+    val UsagePointGroups: List[String]
 )
 extends
     Element
@@ -562,16 +571,17 @@ extends
  * @param UsagePoint Usage point to which this end device belongs.
  */
 case class EndDevice
-(override val sup: AssetContainer,
-val amrSystem: String,
-val installCode: String,
-val isPan: Boolean,
-val isVirtual: Boolean,
-val timeZoneOffset: Double,
-val Customer: String,
-val EndDeviceInfo: String,
-val ServiceLocation: String,
-val UsagePoint: String
+(
+    override val sup: Element,
+    val amrSystem: String,
+    val installCode: String,
+    val isPan: Boolean,
+    val isVirtual: Boolean,
+    val timeZoneOffset: Double,
+    val Customer: String,
+    val EndDeviceInfo: String,
+    val ServiceLocation: String,
+    val UsagePoint: String
 )
 extends
     Element
@@ -630,12 +640,13 @@ extends
  * @param EndDeviceControl End device control issuing this end device action.
  */
 case class EndDeviceAction
-(override val sup: BasicElement,
-val command: String,
-val duration: Double,
-val durationIndefinite: Boolean,
-val startDateTime: String,
-val EndDeviceControl: String
+(
+    override val sup: Element,
+    val command: String,
+    val duration: Double,
+    val durationIndefinite: Boolean,
+    val startDateTime: String,
+    val EndDeviceControl: String
 )
 extends
     Element
@@ -699,25 +710,26 @@ extends
  * @param waterMetering True if water metering function is supported.
  */
 case class EndDeviceCapability
-(override val sup: BasicElement,
-val autonomousDst: Boolean,
-val communication: Boolean,
-val connectDisconnect: Boolean,
-val demandResponse: Boolean,
-val electricMetering: Boolean,
-val gasMetering: Boolean,
-val metrology: Boolean,
-val onRequestRead: Boolean,
-val outageHistory: Boolean,
-val pressureCompensation: Boolean,
-val pricingInfo: Boolean,
-val pulseOutput: Boolean,
-val relaysProgramming: Boolean,
-val reverseFlow: Boolean,
-val superCompressibilityCompensation: Boolean,
-val temperatureCompensation: Boolean,
-val textMessage: Boolean,
-val waterMetering: Boolean
+(
+    override val sup: Element,
+    val autonomousDst: Boolean,
+    val communication: Boolean,
+    val connectDisconnect: Boolean,
+    val demandResponse: Boolean,
+    val electricMetering: Boolean,
+    val gasMetering: Boolean,
+    val metrology: Boolean,
+    val onRequestRead: Boolean,
+    val outageHistory: Boolean,
+    val pressureCompensation: Boolean,
+    val pricingInfo: Boolean,
+    val pulseOutput: Boolean,
+    val relaysProgramming: Boolean,
+    val reverseFlow: Boolean,
+    val superCompressibilityCompensation: Boolean,
+    val temperatureCompensation: Boolean,
+    val textMessage: Boolean,
+    val waterMetering: Boolean
 )
 extends
     Element
@@ -808,21 +820,22 @@ extends
  * @param UsagePoints All usage points receiving commands from this end device control.
  */
 case class EndDeviceControl
-(override val sup: IdentifiedObject,
-val drProgramLevel: Int,
-val drProgramMandatory: Boolean,
-val issuerID: String,
-val issuerTrackingID: String,
-val priceSignal: String,
-val primaryDeviceTiming: String,
-val reason: String,
-val scheduledInterval: String,
-val secondaryDeviceTiming: String,
-val EndDeviceAction: String,
-val EndDeviceControlType: String,
-val EndDevices: List[String],
-val UsagePointGroups: List[String],
-val UsagePoints: List[String]
+(
+    override val sup: Element,
+    val drProgramLevel: Int,
+    val drProgramMandatory: Boolean,
+    val issuerID: String,
+    val issuerTrackingID: String,
+    val priceSignal: String,
+    val primaryDeviceTiming: String,
+    val reason: String,
+    val scheduledInterval: String,
+    val secondaryDeviceTiming: String,
+    val EndDeviceAction: String,
+    val EndDeviceControlType: String,
+    val EndDevices: List[String],
+    val UsagePointGroups: List[String],
+    val UsagePoints: List[String]
 )
 extends
     Element
@@ -893,11 +906,12 @@ extends
  *        A value of zero (0) can be used when the source is unknown.
  */
 case class EndDeviceControlType
-(override val sup: IdentifiedObject,
-val domain: String,
-val eventOrAction: String,
-val subDomain: String,
-val typ: String
+(
+    override val sup: Element,
+    val domain: String,
+    val eventOrAction: String,
+    val subDomain: String,
+    val typ: String
 )
 extends
     Element
@@ -949,14 +963,15 @@ extends
  * @param UsagePoint Usage point for which this end device event is reported.
  */
 case class EndDeviceEvent
-(override val sup: ActivityRecord,
-val issuerID: String,
-val issuerTrackingID: String,
-val userID: String,
-val EndDevice: String,
-val EndDeviceEventType: String,
-val MeterReading: String,
-val UsagePoint: String
+(
+    override val sup: Element,
+    val issuerID: String,
+    val issuerTrackingID: String,
+    val userID: String,
+    val EndDevice: String,
+    val EndDeviceEventType: String,
+    val MeterReading: String,
+    val UsagePoint: String
 )
 extends
     Element
@@ -1009,10 +1024,11 @@ extends
  * @param EndDeviceEvent End device owning this detail.
  */
 case class EndDeviceEventDetail
-(override val sup: BasicElement,
-val name: String,
-val value: String,
-val EndDeviceEvent: String
+(
+    override val sup: Element,
+    val name: String,
+    val value: String,
+    val EndDeviceEvent: String
 )
 extends
     Element
@@ -1062,11 +1078,12 @@ extends
  *        A value of zero (0) can be used when the source is unknown.
  */
 case class EndDeviceEventType
-(override val sup: IdentifiedObject,
-val domain: String,
-val eventOrAction: String,
-val subDomain: String,
-val typ: String
+(
+    override val sup: Element,
+    val domain: String,
+    val eventOrAction: String,
+    val subDomain: String,
+    val typ: String
 )
 extends
     Element
@@ -1112,9 +1129,10 @@ extends
  * @param EndDevice End device that performs this function.
  */
 case class EndDeviceFunction
-(override val sup: AssetFunction,
-val enabled: Boolean,
-val EndDevice: String
+(
+    override val sup: Element,
+    val enabled: Boolean,
+    val EndDevice: String
 )
 extends
     Element
@@ -1164,17 +1182,18 @@ extends
  * @param waterMetering Water metering.
  */
 case class EndDeviceFunctionKind
-(override val sup: BasicElement,
-val autonomousDst: String,
-val demandResponse: String,
-val electricMetering: String,
-val gasMetering: String,
-val metrology: String,
-val onRequestRead: String,
-val outageHistory: String,
-val relaysProgramming: String,
-val reverseFlow: String,
-val waterMetering: String
+(
+    override val sup: Element,
+    val autonomousDst: String,
+    val demandResponse: String,
+    val electricMetering: String,
+    val gasMetering: String,
+    val metrology: String,
+    val onRequestRead: String,
+    val outageHistory: String,
+    val relaysProgramming: String,
+    val reverseFlow: String,
+    val waterMetering: String
 )
 extends
     Element
@@ -1234,10 +1253,11 @@ extends
  * @param EndDevices All end devices this end device group refers to.
  */
 case class EndDeviceGroup
-(override val sup: IdentifiedObject,
-val typ: String,
-val EndDeviceControls: List[String],
-val EndDevices: List[String]
+(
+    override val sup: Element,
+    val typ: String,
+    val EndDeviceControls: List[String],
+    val EndDevices: List[String]
 )
 extends
     Element
@@ -1284,12 +1304,13 @@ extends
  * @param ratedVoltage Rated voltage.
  */
 case class EndDeviceInfo
-(override val sup: AssetInfo,
-val capability: String,
-val isSolidState: Boolean,
-val phaseCount: Int,
-val ratedCurrent: Double,
-val ratedVoltage: Double
+(
+    override val sup: Element,
+    val capability: String,
+    val isSolidState: Boolean,
+    val phaseCount: Int,
+    val ratedCurrent: Double,
+    val ratedVoltage: Double
 )
 extends
     Element
@@ -1339,11 +1360,12 @@ extends
  * @param randomisation Kind of randomisation to be applied to the end device control actions to be executed.
  */
 case class EndDeviceTiming
-(override val sup: BasicElement,
-val duration: Double,
-val durationIndefinite: Boolean,
-val interval: String,
-val randomisation: String
+(
+    override val sup: Element,
+    val duration: Double,
+    val durationIndefinite: Boolean,
+    val interval: String,
+    val randomisation: String
 )
 extends
     Element
@@ -1392,11 +1414,12 @@ extends
  * @param ReadingType Type information for interval reading values contained in this block.
  */
 case class IntervalBlock
-(override val sup: BasicElement,
-val IntervalReadings: List[String],
-val MeterReading: String,
-val PendingCalculation: String,
-val ReadingType: String
+(
+    override val sup: Element,
+    val IntervalReadings: List[String],
+    val MeterReading: String,
+    val PendingCalculation: String,
+    val ReadingType: String
 )
 extends
     Element
@@ -1441,7 +1464,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class IntervalReading
-(override val sup: BaseReading
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1480,8 +1504,9 @@ extends
  *        An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement.
  */
 case class Meter
-(override val sup: EndDevice,
-val formNumber: String
+(
+    override val sup: Element,
+    val formNumber: String
 )
 extends
     Element
@@ -1522,10 +1547,11 @@ extends
  * @param Meter Meter applying this multiplier.
  */
 case class MeterMultiplier
-(override val sup: IdentifiedObject,
-val kind: String,
-val value: Double,
-val Meter: String
+(
+    override val sup: Element,
+    val kind: String,
+    val value: Double,
+    val Meter: String
 )
 extends
     Element
@@ -1575,13 +1601,14 @@ extends
  * @param transformerRatio Product of the CT ratio and PT ratio.
  */
 case class MeterMultiplierKind
-(override val sup: BasicElement,
-val ctRatio: String,
-val kE: String,
-val kH: String,
-val kR: String,
-val ptRatio: String,
-val transformerRatio: String
+(
+    override val sup: Element,
+    val ctRatio: String,
+    val kE: String,
+    val kH: String,
+    val kR: String,
+    val ptRatio: String,
+    val transformerRatio: String
 )
 extends
     Element
@@ -1634,12 +1661,13 @@ extends
  * @param UsagePoint Usage point from which this meter reading (set of values) has been obtained.
  */
 case class MeterReading
-(override val sup: IdentifiedObject,
-val isCoincidentTrigger: Boolean,
-val valuesInterval: String,
-val CustomerAgreement: String,
-val Meter: String,
-val UsagePoint: String
+(
+    override val sup: Element,
+    val isCoincidentTrigger: Boolean,
+    val valuesInterval: String,
+    val CustomerAgreement: String,
+    val Meter: String,
+    val UsagePoint: String
 )
 extends
     Element
@@ -1688,10 +1716,11 @@ extends
  * @param UsagePoint Usage point to which this meter service work applies.
  */
 case class MeterServiceWork
-(override val sup: Work,
-val Meter: String,
-val OldMeter: String,
-val UsagePoint: String
+(
+    override val sup: Element,
+    val Meter: String,
+    val OldMeter: String,
+    val UsagePoint: String
 )
 extends
     Element
@@ -1735,9 +1764,10 @@ extends
  * @param UsagePoints All usage points having this metrology requirement.
  */
 case class MetrologyRequirement
-(override val sup: IdentifiedObject,
-val reason: String,
-val UsagePoints: List[String]
+(
+    override val sup: Element,
+    val reason: String,
+    val UsagePoints: List[String]
 )
 extends
     Element
@@ -1797,19 +1827,20 @@ extends
  *        Temperature set point is typically defined and calculated based on local temperature.
  */
 case class PanDemandResponse
-(override val sup: EndDeviceAction,
-val appliance: String,
-val avgLoadAdjustment: Double,
-val cancelControlMode: String,
-val cancelDateTime: String,
-val cancelNow: Boolean,
-val coolingOffset: Double,
-val coolingSetpoint: Double,
-val criticalityLevel: String,
-val dutyCycle: Double,
-val enrollmentGroup: String,
-val heatingOffset: Double,
-val heatingSetpoint: Double
+(
+    override val sup: Element,
+    val appliance: String,
+    val avgLoadAdjustment: Double,
+    val cancelControlMode: String,
+    val cancelDateTime: String,
+    val cancelNow: Boolean,
+    val coolingOffset: Double,
+    val coolingSetpoint: Double,
+    val criticalityLevel: String,
+    val dutyCycle: Double,
+    val enrollmentGroup: String,
+    val heatingOffset: Double,
+    val heatingSetpoint: Double
 )
 extends
     Element
@@ -1873,11 +1904,12 @@ extends
  * @param transmissionMode Transmission mode to be used for this PAN display control.
  */
 case class PanDisplay
-(override val sup: EndDeviceAction,
-val confirmationRequired: Boolean,
-val priority: String,
-val textMessage: String,
-val transmissionMode: String
+(
+    override val sup: Element,
+    val confirmationRequired: Boolean,
+    val priority: String,
+    val textMessage: String,
+    val transmissionMode: String
 )
 extends
     Element
@@ -1922,8 +1954,9 @@ extends
  * @param providerID Unique identifier for the commodity provider.
  */
 case class PanPricing
-(override val sup: EndDeviceAction,
-val providerID: Int
+(
+    override val sup: Element,
+    val providerID: Int
 )
 extends
     Element
@@ -1977,21 +2010,22 @@ extends
  * @param PanPricing PAN pricing command/action issuing this price detail.
  */
 case class PanPricingDetail
-(override val sup: BasicElement,
-val alternateCostDelivered: Double,
-val alternateCostUnit: String,
-val currentTimeDate: String,
-val generationPrice: Double,
-val generationPriceRatio: Double,
-val price: Double,
-val priceRatio: Double,
-val priceTier: Int,
-val priceTierCount: Int,
-val priceTierLabel: String,
-val rateLabel: String,
-val registerTier: String,
-val unitOfMeasure: String,
-val PanPricing: String
+(
+    override val sup: Element,
+    val alternateCostDelivered: Double,
+    val alternateCostUnit: String,
+    val currentTimeDate: String,
+    val generationPrice: Double,
+    val generationPriceRatio: Double,
+    val price: Double,
+    val priceRatio: Double,
+    val priceTier: Int,
+    val priceTierCount: Int,
+    val priceTierLabel: String,
+    val rateLabel: String,
+    val registerTier: String,
+    val unitOfMeasure: String,
+    val PanPricing: String
 )
 extends
     Element
@@ -2063,13 +2097,14 @@ extends
  * @param ReadingType Reading type resulting from this pending conversion.
  */
 case class PendingCalculation
-(override val sup: BasicElement,
-val multiplyBeforeAdd: Boolean,
-val offset: Int,
-val scalarDenominator: Int,
-val scalarFloat: Double,
-val scalarNumerator: Int,
-val ReadingType: String
+(
+    override val sup: Element,
+    val multiplyBeforeAdd: Boolean,
+    val offset: Int,
+    val scalarDenominator: Int,
+    val scalarFloat: Double,
+    val scalarNumerator: Int,
+    val ReadingType: String
 )
 extends
     Element
@@ -2123,12 +2158,13 @@ extends
  * @param startAndEnd Both the start time and the end time of an event or control action affecting one or more devices are randomised to prevent simultaneous operation.
  */
 case class RandomisationKind
-(override val sup: BasicElement,
-val default: String,
-val end: String,
-val none: String,
-val start: String,
-val startAndEnd: String
+(
+    override val sup: Element,
+    val default: String,
+    val end: String,
+    val none: String,
+    val start: String,
+    val startAndEnd: String
 )
 extends
     Element
@@ -2177,9 +2213,10 @@ extends
  * @param numerator Numerator.
  */
 case class RationalNumber
-(override val sup: BasicElement,
-val denominator: Int,
-val numerator: Int
+(
+    override val sup: Element,
+    val denominator: Int,
+    val numerator: Int
 )
 extends
     Element
@@ -2223,10 +2260,11 @@ extends
  * @param ReadingType Type information for this reading value.
  */
 case class Reading
-(override val sup: BaseReading,
-val reason: String,
-val MeterReadings: List[String],
-val ReadingType: String
+(
+    override val sup: Element,
+    val reason: String,
+    val MeterReadings: List[String],
+    val ReadingType: String
 )
 extends
     Element
@@ -2272,9 +2310,10 @@ extends
  *        Value 0 means not applicable. Value 1 is used in combination with 'denominator'=2 to represent interharmonic 1/2, and with 'denominator'=1 it represents fundamental frequency. Finally, values greater than 1 indicate the harmonic of that order (e.g., 'numerator'=5 is the fifth harmonic).
  */
 case class ReadingInterharmonic
-(override val sup: BasicElement,
-val denominator: Int,
-val numerator: Int
+(
+    override val sup: Element,
+    val denominator: Int,
+    val numerator: Int
 )
 extends
     Element
@@ -2320,12 +2359,13 @@ extends
  * @param ReadingQualityType Type of this reading quality.
  */
 case class ReadingQuality
-(override val sup: BasicElement,
-val comment: String,
-val source: String,
-val timeStamp: String,
-val Reading: String,
-val ReadingQualityType: String
+(
+    override val sup: Element,
+    val comment: String,
+    val source: String,
+    val timeStamp: String,
+    val Reading: String,
+    val ReadingQualityType: String
 )
 extends
     Element
@@ -2375,10 +2415,11 @@ extends
  * @param systemId Identification of the system which has declared the issue with the data or provided commentary on the data.
  */
 case class ReadingQualityType
-(override val sup: IdentifiedObject,
-val category: String,
-val subCategory: String,
-val systemId: String
+(
+    override val sup: Element,
+    val category: String,
+    val subCategory: String,
+    val systemId: String
 )
 extends
     Element
@@ -2433,19 +2474,20 @@ extends
  * @param serviceDisconnect Reading(s) taken or to be taken in conjunction with a disconnection of service.
  */
 case class ReadingReasonKind
-(override val sup: BasicElement,
-val billing: String,
-val demandReset: String,
-val inquiry: String,
-val installation: String,
-val loadManagement: String,
-val loadResearch: String,
-val moveIn: String,
-val moveOut: String,
-val other: String,
-val removal: String,
-val serviceConnect: String,
-val serviceDisconnect: String
+(
+    override val sup: Element,
+    val billing: String,
+    val demandReset: String,
+    val inquiry: String,
+    val installation: String,
+    val loadManagement: String,
+    val loadResearch: String,
+    val moveIn: String,
+    val moveOut: String,
+    val other: String,
+    val removal: String,
+    val serviceConnect: String,
+    val serviceDisconnect: String
 )
 extends
     Element
@@ -2532,25 +2574,26 @@ extends
  * @param PendingCalculation Pending calculation that produced this reading type.
  */
 case class ReadingType
-(override val sup: IdentifiedObject,
-val accumulation: String,
-val aggregate: String,
-val argument: String,
-val commodity: String,
-val consumptionTier: Int,
-val cpp: Int,
-val currency: String,
-val flowDirection: String,
-val interharmonic: String,
-val macroPeriod: String,
-val measurementKind: String,
-val measuringPeriod: String,
-val multiplier: String,
-val phases: String,
-val tou: Int,
-val unit: String,
-val Channel: String,
-val PendingCalculation: String
+(
+    override val sup: Element,
+    val accumulation: String,
+    val aggregate: String,
+    val argument: String,
+    val commodity: String,
+    val consumptionTier: Int,
+    val cpp: Int,
+    val currency: String,
+    val flowDirection: String,
+    val interharmonic: String,
+    val macroPeriod: String,
+    val measurementKind: String,
+    val measuringPeriod: String,
+    val multiplier: String,
+    val phases: String,
+    val tou: Int,
+    val unit: String,
+    val Channel: String,
+    val PendingCalculation: String
 )
 extends
     Element
@@ -2630,13 +2673,14 @@ extends
  * @param EndDeviceFunction End device function metering quantities displayed by this register.
  */
 case class Register
-(override val sup: IdentifiedObject,
-val isVirtual: Boolean,
-val leftDigitCount: Int,
-val rightDigitCount: Int,
-val touTier: String,
-val touTierName: String,
-val EndDeviceFunction: String
+(
+    override val sup: Element,
+    val isVirtual: Boolean,
+    val leftDigitCount: Int,
+    val rightDigitCount: Int,
+    val touTier: String,
+    val touTierName: String,
+    val EndDeviceFunction: String
 )
 extends
     Element
@@ -2687,10 +2731,11 @@ extends
  * @param UsagePoint Usage point applying this multiplier.
  */
 case class ServiceMultiplier
-(override val sup: IdentifiedObject,
-val kind: String,
-val value: Double,
-val UsagePoint: String
+(
+    override val sup: Element,
+    val kind: String,
+    val value: Double,
+    val UsagePoint: String
 )
 extends
     Element
@@ -2735,10 +2780,11 @@ extends
  * @param transformerRatio Product of the CT ratio and PT ratio.
  */
 case class ServiceMultiplierKind
-(override val sup: BasicElement,
-val ctRatio: String,
-val ptRatio: String,
-val transformerRatio: String
+(
+    override val sup: Element,
+    val ctRatio: String,
+    val ptRatio: String,
+    val transformerRatio: String
 )
 extends
     Element
@@ -2782,8 +2828,9 @@ extends
  * @param kind Kind of this function.
  */
 case class SimpleEndDeviceFunction
-(override val sup: EndDeviceFunction,
-val kind: String
+(
+    override val sup: Element,
+    val kind: String
 )
 extends
     Element
@@ -2824,10 +2871,11 @@ extends
  * @param normal Message transmission mode whereby messages or commands are sent to specific devices.
  */
 case class TransmissionModeKind
-(override val sup: BasicElement,
-val anonymous: String,
-val both: String,
-val normal: String
+(
+    override val sup: Element,
+    val anonymous: String,
+    val both: String,
+    val normal: String
 )
 extends
     Element
@@ -2900,30 +2948,31 @@ extends
  * @param UsagePointLocation Location of this usage point.
  */
 case class UsagePoint
-(override val sup: IdentifiedObject,
-val amiBillingReady: String,
-val checkBilling: Boolean,
-val connectionState: String,
-val estimatedLoad: Double,
-val grounded: Boolean,
-val isSdp: Boolean,
-val isVirtual: Boolean,
-val minimalUsageExpected: Boolean,
-val nominalServiceVoltage: Double,
-val outageRegion: String,
-val phaseCode: String,
-val ratedCurrent: Double,
-val ratedPower: Double,
-val readCycle: String,
-val readRoute: String,
-val serviceDeliveryRemark: String,
-val servicePriority: String,
-val CustomerAgreement: String,
-val Equipments: List[String],
-val ServiceCategory: String,
-val ServiceLocation: String,
-val ServiceSupplier: String,
-val UsagePointLocation: String
+(
+    override val sup: Element,
+    val amiBillingReady: String,
+    val checkBilling: Boolean,
+    val connectionState: String,
+    val estimatedLoad: Double,
+    val grounded: Boolean,
+    val isSdp: Boolean,
+    val isVirtual: Boolean,
+    val minimalUsageExpected: Boolean,
+    val nominalServiceVoltage: Double,
+    val outageRegion: String,
+    val phaseCode: String,
+    val ratedCurrent: Double,
+    val ratedPower: Double,
+    val readCycle: String,
+    val readRoute: String,
+    val serviceDeliveryRemark: String,
+    val servicePriority: String,
+    val CustomerAgreement: String,
+    val Equipments: List[String],
+    val ServiceCategory: String,
+    val ServiceLocation: String,
+    val ServiceSupplier: String,
+    val UsagePointLocation: String
 )
 extends
     Element
@@ -3010,10 +3059,11 @@ extends
  *        The usage point is unable to receive or send the applicable commodity (electricity, gas, water, etc.). A physical disconnect is often achieved by utilising a field crew.
  */
 case class UsagePointConnectedKind
-(override val sup: BasicElement,
-val connected: String,
-val logicallyDisconnected: String,
-val physicallyDisconnected: String
+(
+    override val sup: Element,
+    val connected: String,
+    val logicallyDisconnected: String,
+    val physicallyDisconnected: String
 )
 extends
     Element
@@ -3058,9 +3108,10 @@ extends
  * @param UsagePoints All usage points in this group.
  */
 case class UsagePointGroup
-(override val sup: IdentifiedObject,
-val typ: String,
-val UsagePoints: List[String]
+(
+    override val sup: Element,
+    val typ: String,
+    val UsagePoints: List[String]
 )
 extends
     Element
@@ -3105,10 +3156,11 @@ extends
  *        Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
  */
 case class UsagePointLocation
-(override val sup: Location,
-val accessMethod: String,
-val remark: String,
-val siteAccessProblem: String
+(
+    override val sup: Element,
+    val accessMethod: String,
+    val remark: String,
+    val siteAccessProblem: String
 )
 extends
     Element

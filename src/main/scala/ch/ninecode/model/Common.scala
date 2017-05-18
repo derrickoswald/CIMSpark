@@ -18,12 +18,13 @@ import ch.ninecode.cim.Context
  * @param typ Type of event resulting in this activity record.
  */
 case class ActivityRecord
-(override val sup: IdentifiedObject,
-val createdDateTime: String,
-val reason: String,
-val severity: String,
-val status: String,
-val typ: String
+(
+    override val sup: Element,
+    val createdDateTime: String,
+    val reason: String,
+    val severity: String,
+    val status: String,
+    val typ: String
 )
 extends
     Element
@@ -72,9 +73,10 @@ extends
  * @param validityInterval Date and time interval this agreement is valid (from going into effect to termination).
  */
 case class Agreement
-(override val sup: Document,
-val signDate: String,
-val validityInterval: String
+(
+    override val sup: Element,
+    val signDate: String,
+    val validityInterval: String
 )
 extends
     Element
@@ -117,10 +119,11 @@ extends
  * @param Works All works for this appointment.
  */
 case class Appointment
-(override val sup: IdentifiedObject,
-val callAhead: Boolean,
-val meetingInterval: String,
-val Works: List[String]
+(
+    override val sup: Element,
+    val callAhead: Boolean,
+    val meetingInterval: String,
+    val Works: List[String]
 )
 extends
     Element
@@ -172,17 +175,18 @@ extends
  * @param ChangedUsagePoint Usage point whose change resulted in this configuration event.
  */
 case class ConfigurationEvent
-(override val sup: ActivityRecord,
-val effectiveDateTime: String,
-val modifiedBy: String,
-val remark: String,
-val ChangedAsset: String,
-val ChangedDocument: String,
-val ChangedLocation: String,
-val ChangedOrganisationRole: String,
-val ChangedPersonRole: String,
-val ChangedServiceCategory: String,
-val ChangedUsagePoint: String
+(
+    override val sup: Element,
+    val effectiveDateTime: String,
+    val modifiedBy: String,
+    val remark: String,
+    val ChangedAsset: String,
+    val ChangedDocument: String,
+    val ChangedLocation: String,
+    val ChangedOrganisationRole: String,
+    val ChangedPersonRole: String,
+    val ChangedServiceCategory: String,
+    val ChangedUsagePoint: String
 )
 extends
     Element
@@ -240,8 +244,9 @@ extends
  *        PositionPoints'.
  */
 case class CoordinateSystem
-(override val sup: IdentifiedObject,
-val crsUrn: String
+(
+    override val sup: Element,
+    val crsUrn: String
 )
 extends
     Element
@@ -281,9 +286,10 @@ extends
  * @param CrewType Type of this crew.
  */
 case class Crew
-(override val sup: IdentifiedObject,
-val status: String,
-val CrewType: String
+(
+    override val sup: Element,
+    val status: String,
+    val CrewType: String
 )
 extends
     Element
@@ -324,8 +330,9 @@ extends
  * @param Crew Crew to which this crew member belongs.
  */
 case class CrewMember
-(override val sup: OperationPersonRole,
-val Crew: String
+(
+    override val sup: Element,
+    val Crew: String
 )
 extends
     Element
@@ -364,7 +371,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class CrewType
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -415,18 +423,19 @@ extends
  * @param typ Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  */
 case class Document
-(override val sup: IdentifiedObject,
-val authorName: String,
-val comment: String,
-val createdDateTime: String,
-val docStatus: String,
-val electronicAddress: String,
-val lastModifiedDateTime: String,
-val revisionNumber: String,
-val status: String,
-val subject: String,
-val title: String,
-val typ: String
+(
+    override val sup: Element,
+    val authorName: String,
+    val comment: String,
+    val createdDateTime: String,
+    val docStatus: String,
+    val electronicAddress: String,
+    val lastModifiedDateTime: String,
+    val revisionNumber: String,
+    val status: String,
+    val subject: String,
+    val title: String,
+    val typ: String
 )
 extends
     Element
@@ -492,15 +501,16 @@ extends
  * @param web World wide web address.
  */
 case class ElectronicAddress
-(override val sup: BasicElement,
-val email1: String,
-val email2: String,
-val lan: String,
-val mac: String,
-val password: String,
-val radio: String,
-val userID: String,
-val web: String
+(
+    override val sup: Element,
+    val email1: String,
+    val email2: String,
+    val lan: String,
+    val mac: String,
+    val password: String,
+    val radio: String,
+    val userID: String,
+    val web: String
 )
 extends
     Element
@@ -554,9 +564,10 @@ extends
  * @param typ Type of this hazard.
  */
 case class Hazard
-(override val sup: IdentifiedObject,
-val status: String,
-val typ: String
+(
+    override val sup: Element,
+    val status: String,
+    val typ: String
 )
 extends
     Element
@@ -610,18 +621,19 @@ extends
  * @param Measurements
  */
 case class Location
-(override val sup: IdentifiedObject,
-val direction: String,
-val electronicAddress: String,
-val geoInfoReference: String,
-val mainAddress: String,
-val phone1: String,
-val phone2: String,
-val secondaryAddress: String,
-val status: String,
-val typ: String,
-val CoordinateSystem: String,
-val Measurements: List[String]
+(
+    override val sup: Element,
+    val direction: String,
+    val electronicAddress: String,
+    val geoInfoReference: String,
+    val mainAddress: String,
+    val phone1: String,
+    val phone2: String,
+    val secondaryAddress: String,
+    val status: String,
+    val typ: String,
+    val CoordinateSystem: String,
+    val Measurements: List[String]
 )
 extends
     Element
@@ -679,7 +691,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class OperationPersonRole
-(override val sup: PersonRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -715,7 +728,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Operator
-(override val sup: OperationPersonRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -757,13 +771,14 @@ extends
  * @param ActivityRecords
  */
 case class Organisation
-(override val sup: IdentifiedObject,
-val electronicAddress: String,
-val phone1: String,
-val phone2: String,
-val postalAddress: String,
-val streetAddress: String,
-val ActivityRecords: List[String]
+(
+    override val sup: Element,
+    val electronicAddress: String,
+    val phone1: String,
+    val phone2: String,
+    val postalAddress: String,
+    val streetAddress: String,
+    val ActivityRecords: List[String]
 )
 extends
     Element
@@ -812,8 +827,9 @@ extends
  * @param Organisation Organisation having this role.
  */
 case class OrganisationRole
-(override val sup: IdentifiedObject,
-val Organisation: String
+(
+    override val sup: Element,
+    val Organisation: String
 )
 extends
     Element
@@ -854,10 +870,11 @@ extends
  * @param AssetOwner Asset owner that is subject in this ownership.
  */
 case class Ownership
-(override val sup: IdentifiedObject,
-val share: Double,
-val Asset: String,
-val AssetOwner: String
+(
+    override val sup: Element,
+    val share: Double,
+    val Asset: String,
+    val AssetOwner: String
 )
 extends
     Element
@@ -908,16 +925,17 @@ extends
  * @param suffix A suffix for the person's name, such as II, III, etc.
  */
 case class Person
-(override val sup: IdentifiedObject,
-val electronicAddress: String,
-val firstName: String,
-val landlinePhone: String,
-val lastName: String,
-val mName: String,
-val mobilePhone: String,
-val prefix: String,
-val specialNeed: String,
-val suffix: String
+(
+    override val sup: Element,
+    val electronicAddress: String,
+    val firstName: String,
+    val landlinePhone: String,
+    val lastName: String,
+    val mName: String,
+    val mobilePhone: String,
+    val prefix: String,
+    val specialNeed: String,
+    val suffix: String
 )
 extends
     Element
@@ -967,9 +985,10 @@ extends
 }
 
 case class PersonRole
-(override val sup: IdentifiedObject,
-val Appointments: List[String],
-val Person: String
+(
+    override val sup: Element,
+    val Appointments: List[String],
+    val Person: String
 )
 extends
     Element
@@ -1015,12 +1034,13 @@ extends
  * @param Location Location described by this position point.
  */
 case class PositionPoint
-(override val sup: BasicElement,
-val sequenceNumber: Int,
-val xPosition: String,
-val yPosition: String,
-val zPosition: String,
-val Location: String
+(
+    override val sup: Element,
+    val sequenceNumber: Int,
+    val xPosition: String,
+    val yPosition: String,
+    val zPosition: String,
+    val Location: String
 )
 extends
     Element
@@ -1070,11 +1090,12 @@ extends
  * @param townDetail Town detail.
  */
 case class PostalAddress
-(override val sup: BasicElement,
-val poBox: String,
-val postalCode: String,
-val streetDetail: String,
-val townDetail: String
+(
+    override val sup: Element,
+    val poBox: String,
+    val postalCode: String,
+    val streetDetail: String,
+    val townDetail: String
 )
 extends
     Element
@@ -1121,10 +1142,11 @@ extends
  * @param typ Type describing 'rank'; e.g., high, emergency, etc.
  */
 case class Priority
-(override val sup: BasicElement,
-val justification: String,
-val rank: Int,
-val typ: String
+(
+    override val sup: Element,
+    val justification: String,
+    val rank: Int,
+    val typ: String
 )
 extends
     Element
@@ -1171,12 +1193,13 @@ extends
  * @param ScheduledEventData Specification for this scheduled event.
  */
 case class ScheduledEvent
-(override val sup: IdentifiedObject,
-val duration: Double,
-val status: String,
-val typ: String,
-val Assets: List[String],
-val ScheduledEventData: String
+(
+    override val sup: Element,
+    val duration: Double,
+    val status: String,
+    val typ: String,
+    val Assets: List[String],
+    val ScheduledEventData: String
 )
 extends
     Element
@@ -1226,11 +1249,12 @@ extends
  * @param InspectionDataSet
  */
 case class ScheduledEventData
-(override val sup: BasicElement,
-val estimatedWindow: String,
-val requestedWindow: String,
-val status: String,
-val InspectionDataSet: String
+(
+    override val sup: Element,
+    val estimatedWindow: String,
+    val requestedWindow: String,
+    val status: String,
+    val InspectionDataSet: String
 )
 extends
     Element
@@ -1278,11 +1302,12 @@ extends
  * @param value Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.
  */
 case class Status
-(override val sup: BasicElement,
-val dateTime: String,
-val reason: String,
-val remark: String,
-val value: String
+(
+    override val sup: Element,
+    val dateTime: String,
+    val reason: String,
+    val remark: String,
+    val value: String
 )
 extends
     Element
@@ -1329,10 +1354,11 @@ extends
  * @param townDetail Town detail.
  */
 case class StreetAddress
-(override val sup: BasicElement,
-val status: String,
-val streetDetail: String,
-val townDetail: String
+(
+    override val sup: Element,
+    val status: String,
+    val streetDetail: String,
+    val townDetail: String
 )
 extends
     Element
@@ -1387,17 +1413,18 @@ extends
  * @param withinTownLimits True if this street is within the legal geographical boundaries of the specified town (default).
  */
 case class StreetDetail
-(override val sup: BasicElement,
-val addressGeneral: String,
-val buildingName: String,
-val code: String,
-val name: String,
-val number: String,
-val prefix: String,
-val suffix: String,
-val suiteNumber: String,
-val typ: String,
-val withinTownLimits: Boolean
+(
+    override val sup: Element,
+    val addressGeneral: String,
+    val buildingName: String,
+    val code: String,
+    val name: String,
+    val number: String,
+    val prefix: String,
+    val suffix: String,
+    val suiteNumber: String,
+    val typ: String,
+    val withinTownLimits: Boolean
 )
 extends
     Element
@@ -1458,12 +1485,13 @@ extends
  * @param localNumber Main (local) part of this telephone number.
  */
 case class TelephoneNumber
-(override val sup: BasicElement,
-val areaCode: String,
-val cityCode: String,
-val countryCode: String,
-val extension: String,
-val localNumber: String
+(
+    override val sup: Element,
+    val areaCode: String,
+    val cityCode: String,
+    val countryCode: String,
+    val extension: String,
+    val localNumber: String
 )
 extends
     Element
@@ -1516,13 +1544,14 @@ extends
  * @param TimeSchedule Time schedule owning this time point.
  */
 case class TimePoint
-(override val sup: IdentifiedObject,
-val dateTime: String,
-val relativeTimeInterval: Double,
-val sequenceNumber: Int,
-val status: String,
-val window: String,
-val TimeSchedule: String
+(
+    override val sup: Element,
+    val dateTime: String,
+    val relativeTimeInterval: Double,
+    val sequenceNumber: Int,
+    val status: String,
+    val window: String,
+    val TimeSchedule: String
 )
 extends
     Element
@@ -1578,12 +1607,13 @@ extends
  * @param scheduleInterval Schedule date and time interval.
  */
 case class TimeSchedule
-(override val sup: Document,
-val disabled: Boolean,
-val offset: Double,
-val recurrencePattern: String,
-val recurrencePeriod: Double,
-val scheduleInterval: String
+(
+    override val sup: Element,
+    val disabled: Boolean,
+    val offset: Double,
+    val recurrencePattern: String,
+    val recurrencePeriod: Double,
+    val scheduleInterval: String
 )
 extends
     Element
@@ -1635,12 +1665,13 @@ extends
  * @param stateOrProvince Name of the state or province.
  */
 case class TownDetail
-(override val sup: BasicElement,
-val code: String,
-val country: String,
-val name: String,
-val section: String,
-val stateOrProvince: String
+(
+    override val sup: Element,
+    val code: String,
+    val country: String,
+    val name: String,
+    val section: String,
+    val stateOrProvince: String
 )
 extends
     Element
@@ -1693,14 +1724,15 @@ extends
  * @param Transaction Transaction for which this snapshot has been recorded.
  */
 case class UserAttribute
-(override val sup: BasicElement,
-val name: String,
-val sequenceNumber: Int,
-val value: String,
-val ProcedureDataSets: List[String],
-val PropertySpecification: String,
-val RatingSpecification: String,
-val Transaction: String
+(
+    override val sup: Element,
+    val name: String,
+    val sequenceNumber: Int,
+    val value: String,
+    val ProcedureDataSets: List[String],
+    val PropertySpecification: String,
+    val RatingSpecification: String,
+    val Transaction: String
 )
 extends
     Element

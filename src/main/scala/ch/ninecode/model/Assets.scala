@@ -17,10 +17,11 @@ import ch.ninecode.cim.Context
  * @param typ Type of test or group of tests that was conducted on 'dateTime'.
  */
 case class AcceptanceTest
-(override val sup: BasicElement,
-val dateTime: String,
-val success: Boolean,
-val typ: String
+(
+    override val sup: Element,
+    val dateTime: String,
+    val success: Boolean,
+    val typ: String
 )
 extends
     Element
@@ -89,30 +90,31 @@ extends
  *        For example, transformer asset is electrically modelled with a transformer and its windings and tap changer.
  */
 case class Asset
-(override val sup: IdentifiedObject,
-val acceptanceTest: String,
-val critical: Boolean,
-val electronicAddress: String,
-val initialCondition: String,
-val initialLossOfLife: Double,
-val lifecycle: String,
-val lotNumber: String,
-val purchasePrice: Double,
-val serialNumber: String,
-val status: String,
-val typ: String,
-val utcNumber: String,
-val ActivityRecords: List[String],
-val AssetContainer: String,
-val AssetInfo: String,
-val AssetPropertyCurves: List[String],
-val ErpInventory: String,
-val ErpItemMaster: String,
-val ErpRecDeliveryItems: List[String],
-val FinancialInfo: String,
-val Location: String,
-val OrganisationRoles: List[String],
-val PowerSystemResources: List[String]
+(
+    override val sup: Element,
+    val acceptanceTest: String,
+    val critical: Boolean,
+    val electronicAddress: String,
+    val initialCondition: String,
+    val initialLossOfLife: Double,
+    val lifecycle: String,
+    val lotNumber: String,
+    val purchasePrice: Double,
+    val serialNumber: String,
+    val status: String,
+    val typ: String,
+    val utcNumber: String,
+    val ActivityRecords: List[String],
+    val AssetContainer: String,
+    val AssetInfo: String,
+    val AssetPropertyCurves: List[String],
+    val ErpInventory: String,
+    val ErpItemMaster: String,
+    val ErpRecDeliveryItems: List[String],
+    val FinancialInfo: String,
+    val Location: String,
+    val OrganisationRoles: List[String],
+    val PowerSystemResources: List[String]
 )
 extends
     Element
@@ -194,7 +196,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class AssetContainer
-(override val sup: Asset
+(
+    override val sup: Element
 )
 extends
     Element
@@ -235,12 +238,13 @@ extends
  * @param programID Name of program.
  */
 case class AssetFunction
-(override val sup: IdentifiedObject,
-val configID: String,
-val firmwareID: String,
-val hardwareID: String,
-val password: String,
-val programID: String
+(
+    override val sup: Element,
+    val configID: String,
+    val firmwareID: String,
+    val hardwareID: String,
+    val password: String,
+    val programID: String
 )
 extends
     Element
@@ -290,8 +294,9 @@ extends
  * @param AssetModel Asset model described by this data.
  */
 case class AssetInfo
-(override val sup: IdentifiedObject,
-val AssetModel: String
+(
+    override val sup: Element,
+    val AssetModel: String
 )
 extends
     Element
@@ -331,8 +336,9 @@ extends
  * @param Locations The location of this hazard.
  */
 case class AssetLocationHazard
-(override val sup: Hazard,
-val Locations: List[String]
+(
+    override val sup: Element,
+    val Locations: List[String]
 )
 extends
     Element
@@ -372,8 +378,9 @@ extends
  * @param AssetInfo Data applicable to this asset model.
  */
 case class AssetModel
-(override val sup: IdentifiedObject,
-val AssetInfo: String
+(
+    override val sup: Element,
+    val AssetInfo: String
 )
 extends
     Element
@@ -419,15 +426,16 @@ extends
  * @param unknown Usage of the asset model is unknown.
  */
 case class AssetModelUsageKind
-(override val sup: BasicElement,
-val customerSubstation: String,
-val distributionOverhead: String,
-val distributionUnderground: String,
-val other: String,
-val streetlight: String,
-val substation: String,
-val transmission: String,
-val unknown: String
+(
+    override val sup: Element,
+    val customerSubstation: String,
+    val distributionOverhead: String,
+    val distributionUnderground: String,
+    val other: String,
+    val streetlight: String,
+    val substation: String,
+    val transmission: String,
+    val unknown: String
 )
 extends
     Element
@@ -479,7 +487,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class AssetOrganisationRole
-(override val sup: OrganisationRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -515,7 +524,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class AssetOwner
-(override val sup: AssetOrganisationRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -551,7 +561,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class AssetUser
-(override val sup: AssetOrganisationRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -587,7 +598,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ComMedia
-(override val sup: Asset
+(
+    override val sup: Element
 )
 extends
     Element
@@ -627,11 +639,12 @@ extends
  * @param underEvaluation Asset model usage is under evaluation.
  */
 case class CorporateStandardKind
-(override val sup: BasicElement,
-val experimental: String,
-val other: String,
-val standard: String,
-val underEvaluation: String
+(
+    override val sup: Element,
+    val experimental: String,
+    val other: String,
+    val standard: String,
+    val underEvaluation: String
 )
 extends
     Element
@@ -685,13 +698,14 @@ extends
  *        Ignored if asset is (1) currently in service, or (2) permanently removed from service.
  */
 case class LifecycleDate
-(override val sup: BasicElement,
-val installationDate: String,
-val manufacturedDate: String,
-val purchaseDate: String,
-val receivedDate: String,
-val removalDate: String,
-val retiredDate: String
+(
+    override val sup: Element,
+    val installationDate: String,
+    val manufacturedDate: String,
+    val purchaseDate: String,
+    val receivedDate: String,
+    val removalDate: String,
+    val retiredDate: String
 )
 extends
     Element
@@ -739,7 +753,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Maintainer
-(override val sup: AssetOrganisationRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -775,7 +790,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Manufacturer
-(override val sup: OrganisationRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -817,13 +833,14 @@ extends
  * @param Measurements Document containing this measurement.
  */
 case class Procedure
-(override val sup: Document,
-val instruction: String,
-val kind: String,
-val sequenceNumber: String,
-val Assets: List[String],
-val Limits: List[String],
-val Measurements: List[String]
+(
+    override val sup: Element,
+    val instruction: String,
+    val kind: String,
+    val sequenceNumber: String,
+    val Assets: List[String],
+    val Limits: List[String],
+    val Measurements: List[String]
 )
 extends
     Element
@@ -876,11 +893,12 @@ extends
  * @param TransformerObservations
  */
 case class ProcedureDataSet
-(override val sup: Document,
-val completedDateTime: String,
-val MeasurementValues: List[String],
-val Procedure: String,
-val TransformerObservations: List[String]
+(
+    override val sup: Element,
+    val completedDateTime: String,
+    val MeasurementValues: List[String],
+    val Procedure: String,
+    val TransformerObservations: List[String]
 )
 extends
     Element
@@ -929,12 +947,13 @@ extends
  * @param test
  */
 case class ProcedureKind
-(override val sup: BasicElement,
-val diagnosis: String,
-val inspection: String,
-val maintenance: String,
-val other: String,
-val test: String
+(
+    override val sup: Element,
+    val diagnosis: String,
+    val inspection: String,
+    val maintenance: String,
+    val other: String,
+    val test: String
 )
 extends
     Element
@@ -987,14 +1006,15 @@ extends
  * @param Manufacturer Manufacturer of this asset model.
  */
 case class ProductAssetModel
-(override val sup: AssetModel,
-val corporateStandardKind: String,
-val modelNumber: String,
-val modelVersion: String,
-val usageKind: String,
-val weightTotal: Double,
-val GenericAssetModelOrMaterial: String,
-val Manufacturer: String
+(
+    override val sup: Element,
+    val corporateStandardKind: String,
+    val modelNumber: String,
+    val modelVersion: String,
+    val usageKind: String,
+    val weightTotal: Double,
+    val GenericAssetModelOrMaterial: String,
+    val Manufacturer: String
 )
 extends
     Element
@@ -1049,12 +1069,13 @@ extends
  * @param AssetContainer Asset container to which this seal is applied.
  */
 case class Seal
-(override val sup: IdentifiedObject,
-val appliedDateTime: String,
-val condition: String,
-val kind: String,
-val sealNumber: String,
-val AssetContainer: String
+(
+    override val sup: Element,
+    val appliedDateTime: String,
+    val condition: String,
+    val kind: String,
+    val sealNumber: String,
+    val AssetContainer: String
 )
 extends
     Element
@@ -1105,12 +1126,13 @@ extends
  * @param other Other kind of seal condition.
  */
 case class SealConditionKind
-(override val sup: BasicElement,
-val broken: String,
-val locked: String,
-val missing: String,
-val open: String,
-val other: String
+(
+    override val sup: Element,
+    val broken: String,
+    val locked: String,
+    val missing: String,
+    val open: String,
+    val other: String
 )
 extends
     Element
@@ -1160,11 +1182,12 @@ extends
  * @param steel Steel seal.
  */
 case class SealKind
-(override val sup: BasicElement,
-val lead: String,
-val lock1: String,
-val other: String,
-val steel: String
+(
+    override val sup: Element,
+    val lead: String,
+    val lock1: String,
+    val other: String,
+    val steel: String
 )
 extends
     Element

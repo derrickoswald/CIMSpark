@@ -21,13 +21,14 @@ import ch.ninecode.cim.Context
  * @param DiagramStyle A Diagram may have a DiagramStyle.
  */
 case class Diagram
-(override val sup: IdentifiedObject,
-val orientation: String,
-val x1InitialView: Double,
-val x2InitialView: Double,
-val y1InitialView: Double,
-val y2InitialView: Double,
-val DiagramStyle: String
+(
+    override val sup: Element,
+    val orientation: String,
+    val x1InitialView: Double,
+    val x2InitialView: Double,
+    val y1InitialView: Double,
+    val y2InitialView: Double,
+    val DiagramStyle: String
 )
 extends
     Element
@@ -90,16 +91,17 @@ extends
  * @param VisibilityLayers A diagram object can be part of multiple visibility layers.
  */
 case class DiagramObject
-(override val sup: IdentifiedObject,
-val drawingOrder: Int,
-val isPolygon: Boolean,
-val offsetX: Double,
-val offsetY: Double,
-val rotation: Double,
-val Diagram: String,
-val DiagramObjectStyle: String,
-val IdentifiedObject_attr: String,
-val VisibilityLayers: List[String]
+(
+    override val sup: Element,
+    val drawingOrder: Int,
+    val isPolygon: Boolean,
+    val offsetX: Double,
+    val offsetY: Double,
+    val rotation: Double,
+    val Diagram: String,
+    val DiagramObjectStyle: String,
+    val IdentifiedObject_attr: String,
+    val VisibilityLayers: List[String]
 )
 extends
     Element
@@ -153,7 +155,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DiagramObjectGluePoint
-(override val sup: BasicElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -196,13 +199,14 @@ extends
  * @param DiagramObjectGluePoint The 'glue' point to which this point is associated.
  */
 case class DiagramObjectPoint
-(override val sup: BasicElement,
-val sequenceNumber: Int,
-val xPosition: Double,
-val yPosition: Double,
-val zPosition: Double,
-val DiagramObject: String,
-val DiagramObjectGluePoint: String
+(
+    override val sup: Element,
+    val sequenceNumber: Int,
+    val xPosition: Double,
+    val yPosition: Double,
+    val zPosition: Double,
+    val DiagramObject: String,
+    val DiagramObjectGluePoint: String
 )
 extends
     Element
@@ -251,7 +255,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DiagramObjectStyle
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -288,7 +293,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DiagramStyle
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -328,9 +334,10 @@ extends
  *        This is also known as a right hand orientation.
  */
 case class OrientationKind
-(override val sup: BasicElement,
-val negative: String,
-val positive: String
+(
+    override val sup: Element,
+    val negative: String,
+    val positive: String
 )
 extends
     Element
@@ -371,8 +378,9 @@ extends
  * @param text The text that is displayed by this text diagram object.
  */
 case class TextDiagramObject
-(override val sup: DiagramObject,
-val text: String
+(
+    override val sup: Element,
+    val text: String
 )
 extends
     Element
@@ -413,8 +421,9 @@ extends
  *        The higher the number, the later the layer and the objects within it are rendered.
  */
 case class VisibilityLayer
-(override val sup: IdentifiedObject,
-val drawingOrder: Int
+(
+    override val sup: Element,
+    val drawingOrder: Int
 )
 extends
     Element

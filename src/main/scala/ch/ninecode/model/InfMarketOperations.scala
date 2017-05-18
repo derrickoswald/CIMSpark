@@ -26,15 +26,16 @@ RT - Real Time
  *        3 - Dispatchable block-loading
  */
 case class BilateralTransaction
-(override val sup: BasicElement,
-val curtailTimeMax: Int,
-val curtailTimeMin: Int,
-val marketType: String,
-val purchaseTimeMax: Int,
-val purchaseTimeMin: Int,
-val scope: String,
-val totalTranChargeMax: Double,
-val transactionType: String
+(
+    override val sup: Element,
+    val curtailTimeMax: Int,
+    val curtailTimeMin: Int,
+    val marketType: String,
+    val purchaseTimeMax: Int,
+    val purchaseTimeMin: Int,
+    val scope: String,
+    val totalTranChargeMax: Double,
+    val transactionType: String
 )
 extends
     Element
@@ -88,8 +89,9 @@ extends
  *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
  */
 case class Participation
-(override val sup: IdentifiedObject,
-val factor: Double
+(
+    override val sup: Element,
+    val factor: Double
 )
 extends
     Element
@@ -141,20 +143,21 @@ extends
  * @param certifiedSpinMw
  */
 case class ResourceCertification
-(override val sup: BasicElement,
-val certifiedDAM: String,
-val certifiedNonspinDAM: String,
-val certifiedNonspinDAMMw: Double,
-val certifiedNonspinRTM: String,
-val certifiedNonspinRTMMw: Double,
-val certifiedPIRP: String,
-val certifiedRTM: String,
-val certifiedRUC: String,
-val certifiedRegulation: String,
-val certifiedRegulationMw: Double,
-val certifiedReplaceAS: String,
-val certifiedSpin: String,
-val certifiedSpinMw: Double
+(
+    override val sup: Element,
+    val certifiedDAM: String,
+    val certifiedNonspinDAM: String,
+    val certifiedNonspinDAMMw: Double,
+    val certifiedNonspinRTM: String,
+    val certifiedNonspinRTMMw: Double,
+    val certifiedPIRP: String,
+    val certifiedRTM: String,
+    val certifiedRUC: String,
+    val certifiedRegulation: String,
+    val certifiedRegulationMw: Double,
+    val certifiedReplaceAS: String,
+    val certifiedSpin: String,
+    val certifiedSpinMw: Double
 )
 extends
     Element

@@ -14,8 +14,9 @@ import ch.ninecode.cim.Context
  * @param MarketCaseClearing
  */
 case class AncillaryServiceClearing
-(override val sup: MarketFactors,
-val MarketCaseClearing: String
+(
+    override val sup: Element,
+    val MarketCaseClearing: String
 )
 extends
     Element
@@ -72,26 +73,27 @@ extends
  * @param MktUserAttribute
  */
 case class BillDeterminant
-(override val sup: Document,
-val calculationLevel: String,
-val configVersion: String,
-val deleteStatus: String,
-val effectiveDate: String,
-val exception: String,
-val factor: String,
-val frequency: String,
-val numberInterval: Int,
-val offset: String,
-val precisionLevel: String,
-val primaryYN: String,
-val referenceFlag: String,
-val reportable: String,
-val roundOff: String,
-val source: String,
-val terminationDate: String,
-val unitOfMeasure: String,
-val ChargeProfile: String,
-val MktUserAttribute: List[String]
+(
+    override val sup: Element,
+    val calculationLevel: String,
+    val configVersion: String,
+    val deleteStatus: String,
+    val effectiveDate: String,
+    val exception: String,
+    val factor: String,
+    val frequency: String,
+    val numberInterval: Int,
+    val offset: String,
+    val precisionLevel: String,
+    val primaryYN: String,
+    val referenceFlag: String,
+    val reportable: String,
+    val roundOff: String,
+    val source: String,
+    val terminationDate: String,
+    val unitOfMeasure: String,
+    val ChargeProfile: String,
+    val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -173,14 +175,15 @@ extends
  * @param PassTroughBill
  */
 case class ChargeProfile
-(override val sup: Profile,
-val frequency: String,
-val numberInterval: Int,
-val typ: String,
-val unitOfMeasure: String,
-val Bid: String,
-val BillDeterminant: String,
-val PassTroughBill: String
+(
+    override val sup: Element,
+    val frequency: String,
+    val numberInterval: Int,
+    val typ: String,
+    val unitOfMeasure: String,
+    val Bid: String,
+    val BillDeterminant: String,
+    val PassTroughBill: String
 )
 extends
     Element
@@ -235,12 +238,13 @@ extends
  * @param ChargeProfile
  */
 case class ChargeProfileData
-(override val sup: BasicElement,
-val sequence: Int,
-val timeStamp: String,
-val value: Double,
-val BillDeterminant: String,
-val ChargeProfile: String
+(
+    override val sup: Element,
+    val sequence: Int,
+    val timeStamp: String,
+    val value: Double,
+    val BillDeterminant: String,
+    val ChargeProfile: String
 )
 extends
     Element
@@ -286,7 +290,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class CommitmentClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -337,18 +342,19 @@ extends
  * @param RegisteredResource
  */
 case class Commitments
-(override val sup: BasicElement,
-val commitmentType: String,
-val instructionCost: Double,
-val instructionType: String,
-val intervalEndTime: String,
-val intervalStartTime: String,
-val minStatusChangeTime: Int,
-val noLoadCost: Double,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val commitmentType: String,
+    val instructionCost: Double,
+    val instructionType: String,
+    val intervalEndTime: String,
+    val intervalStartTime: String,
+    val minStatusChangeTime: Int,
+    val noLoadCost: Double,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -406,7 +412,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ConstraintClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -464,25 +471,26 @@ extends
  * @param MktContingency
  */
 case class ConstraintResults
-(override val sup: IdentifiedObject,
-val baseFlow: Double,
-val bindingLimit: Double,
-val clearedValue: Double,
-val competitivePathConstraint: String,
-val constraintType: String,
-val limitFlag: String,
-val optimizationFlag: String,
-val overloadMW: Double,
-val percentMW: Double,
-val shadowPrice: Double,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val BGLimit: Double,
-val BGTRResCap: Double,
-val ConstraintClearing: String,
-val Flowgate: String,
-val MktContingency: String
+(
+    override val sup: Element,
+    val baseFlow: Double,
+    val bindingLimit: Double,
+    val clearedValue: Double,
+    val competitivePathConstraint: String,
+    val constraintType: String,
+    val limitFlag: String,
+    val optimizationFlag: String,
+    val overloadMW: Double,
+    val percentMW: Double,
+    val shadowPrice: Double,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val BGLimit: Double,
+    val BGTRResCap: Double,
+    val ConstraintClearing: String,
+    val Flowgate: String,
+    val MktContingency: String
 )
 extends
     Element
@@ -565,15 +573,16 @@ extends
  * @param RegisteredResouce
  */
 case class DopInstruction
-(override val sup: BasicElement,
-val mwDOP: Double,
-val plotPriority: Int,
-val runIndicatorDOP: String,
-val timestampDOP: String,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val RegisteredResouce: String
+(
+    override val sup: Element,
+    val mwDOP: Double,
+    val plotPriority: Int,
+    val runIndicatorDOP: String,
+    val timestampDOP: String,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val RegisteredResouce: String
 )
 extends
     Element
@@ -653,28 +662,29 @@ extends
  * @param RegisteredResource
  */
 case class DotInstruction
-(override val sup: BasicElement,
-val actualRampRate: Double,
-val compliantIndicator: String,
-val economicMaxOverride: Double,
-val expectedEnergy: Double,
-val generatorPerformanceDegree: Double,
-val hourAheadSchedEnergy: Double,
-val hourlySchedule: Double,
-val instructionTime: String,
-val maximumEmergencyInd: Boolean,
-val meterLoadFollowing: Double,
-val nonRampRestrictedMW: Double,
-val nonSpinReserve: Double,
-val previousDOTTimeStamp: String,
-val rampRateLimit: Double,
-val regulationStatus: String,
-val spinReserve: Double,
-val standardRampEnergy: Double,
-val supplementalEnergy: Double,
-val unitStatus: Int,
-val DOT: Double,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val actualRampRate: Double,
+    val compliantIndicator: String,
+    val economicMaxOverride: Double,
+    val expectedEnergy: Double,
+    val generatorPerformanceDegree: Double,
+    val hourAheadSchedEnergy: Double,
+    val hourlySchedule: Double,
+    val instructionTime: String,
+    val maximumEmergencyInd: Boolean,
+    val meterLoadFollowing: Double,
+    val nonRampRestrictedMW: Double,
+    val nonSpinReserve: Double,
+    val previousDOTTimeStamp: String,
+    val rampRateLimit: Double,
+    val regulationStatus: String,
+    val spinReserve: Double,
+    val standardRampEnergy: Double,
+    val supplementalEnergy: Double,
+    val unitStatus: Int,
+    val DOT: Double,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -752,7 +762,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ExPostLoss
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -795,11 +806,12 @@ extends
  * @param SubControlArea
  */
 case class ExPostLossResults
-(override val sup: BasicElement,
-val ehvLossMW: Double,
-val totalLossMW: Double,
-val ExPostLoss: String,
-val SubControlArea: String
+(
+    override val sup: Element,
+    val ehvLossMW: Double,
+    val totalLossMW: Double,
+    val ExPostLoss: String,
+    val SubControlArea: String
 )
 extends
     Element
@@ -844,8 +856,9 @@ extends
  * @param ExPostMarketRegionResults
  */
 case class ExPostMarketRegion
-(override val sup: MarketFactors,
-val ExPostMarketRegionResults: String
+(
+    override val sup: Element,
+    val ExPostMarketRegionResults: String
 )
 extends
     Element
@@ -887,10 +900,11 @@ extends
  * @param MarketRegion
  */
 case class ExPostMarketRegionResults
-(override val sup: BasicElement,
-val exPostClearedPrice: Double,
-val ExPostMarketRegion: String,
-val MarketRegion: String
+(
+    override val sup: Element,
+    val exPostClearedPrice: Double,
+    val ExPostMarketRegion: String,
+    val MarketRegion: String
 )
 extends
     Element
@@ -933,8 +947,9 @@ extends
  * @param energyPrice market energy price
  */
 case class ExPostPricing
-(override val sup: MarketFactors,
-val energyPrice: Double
+(
+    override val sup: Element,
+    val energyPrice: Double
 )
 extends
     Element
@@ -981,12 +996,13 @@ extends
  * @param Pnode
  */
 case class ExPostPricingResults
-(override val sup: BasicElement,
-val congestLMP: Double,
-val lmp: Double,
-val lossLMP: Double,
-val ExPostPricing: String,
-val Pnode: String
+(
+    override val sup: Element,
+    val congestLMP: Double,
+    val lmp: Double,
+    val lossLMP: Double,
+    val ExPostPricing: String,
+    val Pnode: String
 )
 extends
     Element
@@ -1032,7 +1048,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ExPostResource
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1081,18 +1098,19 @@ extends
  * @param RegisteredResource
  */
 case class ExPostResourceResults
-(override val sup: BasicElement,
-val congestionLMP: Double,
-val desiredMW: Double,
-val dispatchRate: Double,
-val lmp: Double,
-val lossLMP: Double,
-val maxEconomicMW: Double,
-val minEconomicMW: Double,
-val resourceMW: Double,
-val status: String,
-val ExPostResource: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val congestionLMP: Double,
+    val desiredMW: Double,
+    val dispatchRate: Double,
+    val lmp: Double,
+    val lossLMP: Double,
+    val maxEconomicMW: Double,
+    val minEconomicMW: Double,
+    val resourceMW: Double,
+    val status: String,
+    val ExPostResource: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -1151,7 +1169,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class GeneralClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1194,12 +1213,13 @@ extends
  * @param SubControlArea
  */
 case class GeneralClearingResults
-(override val sup: BasicElement,
-val loadForecast: Double,
-val totalLoad: Double,
-val totalNetInterchange: Double,
-val GeneralClearing: String,
-val SubControlArea: String
+(
+    override val sup: Element,
+    val loadForecast: Double,
+    val totalLoad: Double,
+    val totalNetInterchange: Double,
+    val GeneralClearing: String,
+    val SubControlArea: String
 )
 extends
     Element
@@ -1246,7 +1266,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class InstructionClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1283,7 +1304,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class InstructionClearingDOP
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1322,9 +1344,10 @@ extends
  * @param dispatchMode
  */
 case class InstructionClearingDOT
-(override val sup: MarketFactors,
-val contingencyActive: String,
-val dispatchMode: String
+(
+    override val sup: Element,
+    val contingencyActive: String,
+    val dispatchMode: String
 )
 extends
     Element
@@ -1380,19 +1403,20 @@ extends
  * @param RegisteredResource
  */
 case class Instructions
-(override val sup: BasicElement,
-val bindingDOT: Double,
-val bindingInstruction: String,
-val instructionCost: Double,
-val instructionSource: String,
-val instructionStartTime: String,
-val instructionType: String,
-val manuallyBlocked: String,
-val minStatusChangeTime: Int,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val bindingDOT: Double,
+    val bindingInstruction: String,
+    val instructionCost: Double,
+    val instructionSource: String,
+    val instructionStartTime: String,
+    val instructionType: String,
+    val manuallyBlocked: String,
+    val minStatusChangeTime: Int,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -1460,14 +1484,15 @@ extends
  * @param RegisteredResource
  */
 case class LoadFollowingOperatorInput
-(override val sup: BasicElement,
-val dataEntryTimeStamp: String,
-val tempLoadFollowingDownManualCap: Double,
-val tempLoadFollowingUpManualCap: Double,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val dataEntryTimeStamp: String,
+    val tempLoadFollowingDownManualCap: Double,
+    val tempLoadFollowingUpManualCap: Double,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -1517,7 +1542,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class LossClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1558,12 +1584,13 @@ extends
  * @param SubControlArea
  */
 case class LossClearingResults
-(override val sup: BasicElement,
-val lossMW: Double,
-val HostControlArea: String,
-val LossClearing: String,
-val RUCZone: String,
-val SubControlArea: String
+(
+    override val sup: Element,
+    val lossMW: Double,
+    val HostControlArea: String,
+    val LossClearing: String,
+    val RUCZone: String,
+    val SubControlArea: String
 )
 extends
     Element
@@ -1613,10 +1640,11 @@ extends
  * @param SMPMFinalFlag
  */
 case class MPMClearing
-(override val sup: MarketFactors,
-val mitigationOccuredFlag: String,
-val LMPMFinalFlag: String,
-val SMPMFinalFlag: String
+(
+    override val sup: Element,
+    val mitigationOccuredFlag: String,
+    val LMPMFinalFlag: String,
+    val SMPMFinalFlag: String
 )
 extends
     Element
@@ -1662,10 +1690,11 @@ extends
  * @param RegisteredResource
  */
 case class MPMResourceStatus
-(override val sup: BasicElement,
-val resourceStatus: String,
-val MPMTestCategory: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val resourceStatus: String,
+    val MPMTestCategory: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -1714,12 +1743,13 @@ extends
  * @param MPMTestCategory
  */
 case class MPMTestResults
-(override val sup: BasicElement,
-val marginPercent: Double,
-val outcome: String,
-val AggregatedPnode: String,
-val MPMClearing: String,
-val MPMTestCategory: String
+(
+    override val sup: Element,
+    val marginPercent: Double,
+    val outcome: String,
+    val AggregatedPnode: String,
+    val MPMClearing: String,
+    val MPMTestCategory: String
 )
 extends
     Element
@@ -1785,24 +1815,25 @@ extends
  * @param MarketRegion
  */
 case class MarketRegionResults
-(override val sup: BasicElement,
-val clearedMW: Double,
-val clearedPrice: Double,
-val dispatchCtMW: Double,
-val dispatchHydroMW: Double,
-val dispatchRate: Double,
-val dispatchSteamMW: Double,
-val imbalanceEnergyBias: Double,
-val limitFlag: String,
-val lumpyIndicator: String,
-val maxSufficiencyIndex: Double,
-val minSufficiencyIndex: Double,
-val reqMaxMW: Double,
-val reqMinMW: Double,
-val selfScheduleMW: Double,
-val AncillaryServiceClearing: String,
-val MarketProduct: String,
-val MarketRegion: String
+(
+    override val sup: Element,
+    val clearedMW: Double,
+    val clearedPrice: Double,
+    val dispatchCtMW: Double,
+    val dispatchHydroMW: Double,
+    val dispatchRate: Double,
+    val dispatchSteamMW: Double,
+    val imbalanceEnergyBias: Double,
+    val limitFlag: String,
+    val lumpyIndicator: String,
+    val maxSufficiencyIndex: Double,
+    val minSufficiencyIndex: Double,
+    val reqMaxMW: Double,
+    val reqMinMW: Double,
+    val selfScheduleMW: Double,
+    val AncillaryServiceClearing: String,
+    val MarketProduct: String,
+    val MarketRegion: String
 )
 extends
     Element
@@ -1881,15 +1912,16 @@ extends
  * @param EnergyMarket
  */
 case class MarketResults
-(override val sup: BasicElement,
-val ancillarySvcCost: Double,
-val contingentOperatingResAvail: String,
-val energyCost: Double,
-val minimumLoadCost: Double,
-val startUpCost: Double,
-val totalCost: Double,
-val totalRucCost: Double,
-val EnergyMarket: String
+(
+    override val sup: Element,
+    val ancillarySvcCost: Double,
+    val contingentOperatingResAvail: String,
+    val energyCost: Double,
+    val minimumLoadCost: Double,
+    val startUpCost: Double,
+    val totalCost: Double,
+    val totalRucCost: Double,
+    val EnergyMarket: String
 )
 extends
     Element
@@ -1947,12 +1979,13 @@ extends
  * @param transactionDate The date of which this statement is issued.
  */
 case class MarketStatement
-(override val sup: Document,
-val end: String,
-val referenceNumber: String,
-val start: String,
-val tradeDate: String,
-val transactionDate: String
+(
+    override val sup: Element,
+    val end: String,
+    val referenceNumber: String,
+    val start: String,
+    val tradeDate: String,
+    val transactionDate: String
 )
 extends
     Element
@@ -2020,29 +2053,30 @@ extends
  * @param PassThroughBill
  */
 case class MarketStatementLineItem
-(override val sup: IdentifiedObject,
-val currentAmount: Double,
-val currentISOAmount: Double,
-val currentISOQuantity: Double,
-val currentPrice: Double,
-val currentQuantity: Double,
-val intervalDate: String,
-val intervalNumber: String,
-val netAmount: Double,
-val netISOAmount: Double,
-val netISOQuantity: Double,
-val netPrice: Double,
-val netQuantity: Double,
-val previousAmount: Double,
-val previousISOAmount: Double,
-val previousISOQuantity: Double,
-val previousQuantity: Double,
-val previsouPrice: Double,
-val quantityUOM: String,
-val ContainerMarketStatementLineItem: String,
-val MarketStatement: String,
-val MktUserAttribute: List[String],
-val PassThroughBill: String
+(
+    override val sup: Element,
+    val currentAmount: Double,
+    val currentISOAmount: Double,
+    val currentISOQuantity: Double,
+    val currentPrice: Double,
+    val currentQuantity: Double,
+    val intervalDate: String,
+    val intervalNumber: String,
+    val netAmount: Double,
+    val netISOAmount: Double,
+    val netISOQuantity: Double,
+    val netPrice: Double,
+    val netQuantity: Double,
+    val previousAmount: Double,
+    val previousISOAmount: Double,
+    val previousISOQuantity: Double,
+    val previousQuantity: Double,
+    val previsouPrice: Double,
+    val quantityUOM: String,
+    val ContainerMarketStatementLineItem: String,
+    val MarketStatement: String,
+    val MktUserAttribute: List[String],
+    val PassThroughBill: String
 )
 extends
     Element
@@ -2123,8 +2157,9 @@ extends
  * @param Bid
  */
 case class MitigatedBid
-(override val sup: IdentifiedObject,
-val Bid: String
+(
+    override val sup: Element,
+    val Bid: String
 )
 extends
     Element
@@ -2163,7 +2198,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MitigatedBidClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2205,12 +2241,13 @@ extends
  * @param Bid
  */
 case class MitigatedBidSegment
-(override val sup: BasicElement,
-val intervalStartTime: String,
-val segmentMW: Double,
-val segmentNumber: Int,
-val thresholdType: String,
-val Bid: String
+(
+    override val sup: Element,
+    val intervalStartTime: String,
+    val segmentMW: Double,
+    val segmentNumber: Int,
+    val thresholdType: String,
+    val Bid: String
 )
 extends
     Element
@@ -2286,33 +2323,34 @@ extends
  * @param MktUserAttribute
  */
 case class PassThroughBill
-(override val sup: Document,
-val adjustedAmount: Double,
-val amount: Double,
-val billEnd: String,
-val billRunType: String,
-val billStart: String,
-val billedTo: String,
-val effectiveDate: String,
-val isDisputed: Boolean,
-val isProfiled: Boolean,
-val paidTo: String,
-val previousEnd: String,
-val previousStart: String,
-val price: Double,
-val productCode: String,
-val providedBy: String,
-val quantity: String,
-val serviceEnd: String,
-val serviceStart: String,
-val soldTo: String,
-val taxAmount: Double,
-val timeZone: String,
-val tradeDate: String,
-val transactionDate: String,
-val transactionType: String,
-val MarketStatementLineItem: String,
-val MktUserAttribute: List[String]
+(
+    override val sup: Element,
+    val adjustedAmount: Double,
+    val amount: Double,
+    val billEnd: String,
+    val billRunType: String,
+    val billStart: String,
+    val billedTo: String,
+    val effectiveDate: String,
+    val isDisputed: Boolean,
+    val isProfiled: Boolean,
+    val paidTo: String,
+    val previousEnd: String,
+    val previousStart: String,
+    val price: Double,
+    val productCode: String,
+    val providedBy: String,
+    val quantity: String,
+    val serviceEnd: String,
+    val serviceStart: String,
+    val soldTo: String,
+    val taxAmount: Double,
+    val timeZone: String,
+    val tradeDate: String,
+    val transactionDate: String,
+    val transactionType: String,
+    val MarketStatementLineItem: String,
+    val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -2400,7 +2438,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class PnodeClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2447,17 +2486,18 @@ extends
  * @param PnodeClearing
  */
 case class PnodeResults
-(override val sup: BasicElement,
-val congestLMP: Double,
-val costLMP: Double,
-val lossLMP: Double,
-val marginalClearingPrice: Double,
-val scheduledMW: Double,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val Pnode: String,
-val PnodeClearing: String
+(
+    override val sup: Element,
+    val congestLMP: Double,
+    val costLMP: Double,
+    val lossLMP: Double,
+    val marginalClearingPrice: Double,
+    val scheduledMW: Double,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val Pnode: String,
+    val PnodeClearing: String
 )
 extends
     Element
@@ -2514,8 +2554,9 @@ extends
  * @param Bid
  */
 case class RMRDetermination
-(override val sup: BasicElement,
-val Bid: String
+(
+    override val sup: Element,
+    val Bid: String
 )
 extends
     Element
@@ -2558,12 +2599,13 @@ extends
  * @param RegisteredResource
  */
 case class RMROperatorInput
-(override val sup: MarketFactors,
-val manuallySchedRMRMw: Double,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val manuallySchedRMRMw: Double,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -2627,16 +2669,17 @@ Non-Spinning Reserve
  * @param RegisteredResource
  */
 case class RUCAwardInstruction
-(override val sup: BasicElement,
-val clearedPrice: Double,
-val marketProductType: String,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val RUCAward: Double,
-val RUCCapacity: Double,
-val RUCSchedule: Double,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val clearedPrice: Double,
+    val marketProductType: String,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val RUCAward: Double,
+    val RUCCapacity: Double,
+    val RUCSchedule: Double,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -2693,9 +2736,10 @@ extends
  * @param dispatchMode
  */
 case class ResourceAwardClearing
-(override val sup: MarketFactors,
-val contingencyActive: String,
-val dispatchMode: String
+(
+    override val sup: Element,
+    val contingencyActive: String,
+    val dispatchMode: String
 )
 extends
     Element
@@ -2782,37 +2826,38 @@ For RT Energy: RT total self-schedule award;
  * @param RegisteredResource
  */
 case class ResourceAwardInstruction
-(override val sup: BasicElement,
-val awardMW: Double,
-val clearedMW: Double,
-val clearedPrice: Double,
-val congestLMP: Double,
-val costLMP: Double,
-val dispatcherAddedMW: Double,
-val economicMax: Double,
-val economicMin: Double,
-val effRegulationDownLimit: Double,
-val effRegulationUpLimit: Double,
-val lmp: Double,
-val lossLMP: Double,
-val manuallyBlocked: String,
-val marginalResourceIndicator: String,
-val mustRunInd: Boolean,
-val noLoadCost: Double,
-val optimalBidCost: Double,
-val optimalBidPay: Double,
-val optimalMargin: Double,
-val overrideTimeStamp: String,
-val overrideValue: Double,
-val selfSchedMW: Double,
-val startUpCost: Double,
-val status: String,
-val totalRevenue: Double,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val MarketProduct: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val awardMW: Double,
+    val clearedMW: Double,
+    val clearedPrice: Double,
+    val congestLMP: Double,
+    val costLMP: Double,
+    val dispatcherAddedMW: Double,
+    val economicMax: Double,
+    val economicMin: Double,
+    val effRegulationDownLimit: Double,
+    val effRegulationUpLimit: Double,
+    val lmp: Double,
+    val lossLMP: Double,
+    val manuallyBlocked: String,
+    val marginalResourceIndicator: String,
+    val mustRunInd: Boolean,
+    val noLoadCost: Double,
+    val optimalBidCost: Double,
+    val optimalBidPay: Double,
+    val optimalMargin: Double,
+    val overrideTimeStamp: String,
+    val overrideValue: Double,
+    val selfSchedMW: Double,
+    val startUpCost: Double,
+    val status: String,
+    val totalRevenue: Double,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val MarketProduct: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -2909,7 +2954,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ResourceClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2966,26 +3012,27 @@ extends
  * @param ResourceClearing
  */
 case class ResourceDispatchResults
-(override val sup: BasicElement,
-val blockedDispatch: String,
-val blockedPublishDOP: String,
-val contingencyFlag: String,
-val limitIndicator: String,
-val lowerLimit: Double,
-val maxRampRate: Double,
-val operatingLimitHigh: Double,
-val operatingLimitLow: Double,
-val penaltyDispatchIndicator: String,
-val regulatingLimitHigh: Double,
-val regulatingLimitLow: Double,
-val resourceStatus: String,
-val totalSchedule: Double,
-val updateTimeStamp: String,
-val updateType: String,
-val updateUser: String,
-val upperLimit: Double,
-val RegisteredResource: String,
-val ResourceClearing: String
+(
+    override val sup: Element,
+    val blockedDispatch: String,
+    val blockedPublishDOP: String,
+    val contingencyFlag: String,
+    val limitIndicator: String,
+    val lowerLimit: Double,
+    val maxRampRate: Double,
+    val operatingLimitHigh: Double,
+    val operatingLimitLow: Double,
+    val penaltyDispatchIndicator: String,
+    val regulatingLimitHigh: Double,
+    val regulatingLimitLow: Double,
+    val resourceStatus: String,
+    val totalSchedule: Double,
+    val updateTimeStamp: String,
+    val updateType: String,
+    val updateUser: String,
+    val upperLimit: Double,
+    val RegisteredResource: String,
+    val ResourceClearing: String
 )
 extends
     Element
@@ -3067,14 +3114,15 @@ extends
  * @param ResourceClearing
  */
 case class ResourceLoadFollowingInst
-(override val sup: BasicElement,
-val calcLoadFollowingMW: Double,
-val dispWindowHighLimt: Double,
-val dispWindowLowLimt: Double,
-val instructionID: String,
-val intervalStartTime: String,
-val RegisteredResource: String,
-val ResourceClearing: String
+(
+    override val sup: Element,
+    val calcLoadFollowingMW: Double,
+    val dispWindowHighLimt: Double,
+    val dispWindowLowLimt: Double,
+    val instructionID: String,
+    val intervalStartTime: String,
+    val RegisteredResource: String,
+    val ResourceClearing: String
 )
 extends
     Element
@@ -3128,10 +3176,11 @@ extends
  * @param ResourceAwardInstruction
  */
 case class SelfScheduleBreakdown
-(override val sup: BasicElement,
-val selfSchedMW: Double,
-val selfSchedType: String,
-val ResourceAwardInstruction: String
+(
+    override val sup: Element,
+    val selfSchedMW: Double,
+    val selfSchedType: String,
+    val ResourceAwardInstruction: String
 )
 extends
     Element
@@ -3175,9 +3224,10 @@ extends
  * @param EnergyMarket
  */
 case class Settlement
-(override val sup: Document,
-val tradeDate: String,
-val EnergyMarket: String
+(
+    override val sup: Element,
+    val tradeDate: String,
+    val EnergyMarket: String
 )
 extends
     Element
@@ -3218,7 +3268,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class TransactionBidClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -3258,11 +3309,12 @@ extends
  * @param TransactionBidClearing
  */
 case class TransactionBidResults
-(override val sup: IdentifiedObject,
-val clearedMW: Double,
-val clearedPrice: Double,
-val TransactionBid: String,
-val TransactionBidClearing: String
+(
+    override val sup: Element,
+    val clearedMW: Double,
+    val clearedPrice: Double,
+    val TransactionBid: String,
+    val TransactionBidClearing: String
 )
 extends
     Element

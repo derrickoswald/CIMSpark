@@ -14,8 +14,9 @@ import ch.ninecode.cim.Context
  * @param labelID labelID - an ID for a set of apnodes/pnodes used in a CRR market
  */
 case class CRRMarket
-(override val sup: Market,
-val labelID: String
+(
+    override val sup: Element,
+    val labelID: String
 )
 extends
     Element
@@ -57,10 +58,11 @@ extends
  * @param RegisteredResources
  */
 case class EnergyMarket
-(override val sup: Market,
-val MarketResults: String,
-val RTO: String,
-val RegisteredResources: List[String]
+(
+    override val sup: Element,
+    val MarketResults: String,
+    val RTO: String,
+    val RegisteredResources: List[String]
 )
 extends
     Element
@@ -121,17 +123,18 @@ Month
  *        Season
  */
 case class Market
-(override val sup: IdentifiedObject,
-val actualEnd: String,
-val actualStart: String,
-val dst: Boolean,
-val end: String,
-val localTimeZone: String,
-val start: String,
-val status: String,
-val timeIntervalLength: Double,
-val tradingDay: String,
-val tradingPeriod: String
+(
+    override val sup: Element,
+    val actualEnd: String,
+    val actualStart: String,
+    val dst: Boolean,
+    val end: String,
+    val localTimeZone: String,
+    val start: String,
+    val status: String,
+    val timeIntervalLength: Double,
+    val tradingDay: String,
+    val tradingPeriod: String
 )
 extends
     Element
@@ -193,12 +196,13 @@ extends
  * @param PlannedMarketEvent Planned event executed by this actual event.
  */
 case class MarketActualEvent
-(override val sup: BasicElement,
-val description: String,
-val eventID: String,
-val eventTime: String,
-val MarketRun: String,
-val PlannedMarketEvent: String
+(
+    override val sup: Element,
+    val description: String,
+    val eventID: String,
+    val eventTime: String,
+    val MarketRun: String,
+    val PlannedMarketEvent: String
 )
 extends
     Element
@@ -248,11 +252,12 @@ extends
  * @param MktActivityRecord
  */
 case class MarketFactors
-(override val sup: Document,
-val intervalEndTime: String,
-val intervalStartTime: String,
-val Market: String,
-val MktActivityRecord: List[String]
+(
+    override val sup: Element,
+    val intervalEndTime: String,
+    val intervalStartTime: String,
+    val Market: String,
+    val MktActivityRecord: List[String]
 )
 extends
     Element
@@ -301,11 +306,12 @@ extends
  * @param tradingDay Planned market trading day.
  */
 case class MarketPlan
-(override val sup: BasicElement,
-val description: String,
-val marketPlanID: String,
-val name: String,
-val tradingDay: String
+(
+    override val sup: Element,
+    val description: String,
+    val marketPlanID: String,
+    val name: String,
+    val tradingDay: String
 )
 extends
     Element
@@ -362,11 +368,12 @@ NR (Non-Spinning Reserve)
  * @param MarketRegionResults
  */
 case class MarketProduct
-(override val sup: IdentifiedObject,
-val marketProductType: String,
-val rampInterval: Double,
-val Market: String,
-val MarketRegionResults: String
+(
+    override val sup: Element,
+    val marketProductType: String,
+    val rampInterval: Double,
+    val Market: String,
+    val MarketRegionResults: String
 )
 extends
     Element
@@ -428,19 +435,20 @@ extends
  * @param PlannedMarket A planned market could have multiple market runs for the reason that a planned market could have a rerun.
  */
 case class MarketRun
-(override val sup: BasicElement,
-val executionType: String,
-val marketApprovalTime: String,
-val marketApprovedStatus: Boolean,
-val marketEndTime: String,
-val marketID: String,
-val marketRunID: String,
-val marketStartTime: String,
-val marketType: String,
-val reportedState: String,
-val runState: String,
-val Market: String,
-val PlannedMarket: String
+(
+    override val sup: Element,
+    val executionType: String,
+    val marketApprovalTime: String,
+    val marketApprovedStatus: Boolean,
+    val marketEndTime: String,
+    val marketID: String,
+    val marketRunID: String,
+    val marketStartTime: String,
+    val marketType: String,
+    val reportedState: String,
+    val runState: String,
+    val Market: String,
+    val PlannedMarket: String
 )
 extends
     Element
@@ -507,12 +515,13 @@ extends
  * @param MarketPlan a market plan has a number of markets (DA, HA, RT)
  */
 case class PlannedMarket
-(override val sup: BasicElement,
-val marketEndTime: String,
-val marketID: String,
-val marketStartTime: String,
-val marketType: String,
-val MarketPlan: String
+(
+    override val sup: Element,
+    val marketEndTime: String,
+    val marketID: String,
+    val marketStartTime: String,
+    val marketType: String,
+    val MarketPlan: String
 )
 extends
     Element
@@ -564,11 +573,12 @@ extends
  *        For example the bid submission is 10am everyday.
  */
 case class PlannedMarketEvent
-(override val sup: BasicElement,
-val description: String,
-val eventType: String,
-val plannedEventID: String,
-val plannedTime: Int
+(
+    override val sup: Element,
+    val description: String,
+    val eventType: String,
+    val plannedEventID: String,
+    val plannedTime: Int
 )
 extends
     Element

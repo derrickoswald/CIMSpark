@@ -17,11 +17,12 @@ import ch.ninecode.cim.Context
  * @param WorkLocation Location for this work/task.
  */
 case class BaseWork
-(override val sup: Document,
-val kind: String,
-val priority: String,
-val statusKind: String,
-val WorkLocation: String
+(
+    override val sup: Element,
+    val kind: String,
+    val priority: String,
+    val statusKind: String,
+    val WorkLocation: String
 )
 extends
     Element
@@ -69,11 +70,12 @@ extends
  * @param subdivision (if applicable) Name, identifier, or description of the subdivision in which work is to occur.
  */
 case class MaintenanceLocation
-(override val sup: WorkLocation,
-val block: String,
-val lot: String,
-val nearestIntersection: String,
-val subdivision: String
+(
+    override val sup: Element,
+    val block: String,
+    val lot: String,
+    val nearestIntersection: String,
+    val subdivision: String
 )
 extends
     Element
@@ -121,10 +123,11 @@ extends
  * @param WorkTask
  */
 case class MaterialItem
-(override val sup: IdentifiedObject,
-val quantity: String,
-val TypeMaterial: String,
-val WorkTask: String
+(
+    override val sup: Element,
+    val quantity: String,
+    val TypeMaterial: String,
+    val WorkTask: String
 )
 extends
     Element
@@ -167,8 +170,9 @@ extends
  * @param lastCalibrationDate (if applicable) Date the tool was last calibrated.
  */
 case class Tool
-(override val sup: WorkAsset,
-val lastCalibrationDate: String
+(
+    override val sup: Element,
+    val lastCalibrationDate: String
 )
 extends
     Element
@@ -210,10 +214,11 @@ extends
  * @param usageKind Kind of usage of the vehicle.
  */
 case class Vehicle
-(override val sup: WorkAsset,
-val odometerReadDateTime: String,
-val odometerReading: Double,
-val usageKind: String
+(
+    override val sup: Element,
+    val odometerReadDateTime: String,
+    val odometerReading: Double,
+    val usageKind: String
 )
 extends
     Element
@@ -259,11 +264,12 @@ extends
  * @param user
  */
 case class VehicleUsageKind
-(override val sup: BasicElement,
-val contractor: String,
-val crew: String,
-val other: String,
-val user: String
+(
+    override val sup: Element,
+    val contractor: String,
+    val crew: String,
+    val other: String,
+    val user: String
 )
 extends
     Element
@@ -312,12 +318,13 @@ extends
  * @param WorkBillingInfo
  */
 case class Work
-(override val sup: BaseWork,
-val requestDateTime: String,
-val BusinessCase: String,
-val ErpProjectAccounting: String,
-val Project: String,
-val WorkBillingInfo: String
+(
+    override val sup: Element,
+    val requestDateTime: String,
+    val BusinessCase: String,
+    val ErpProjectAccounting: String,
+    val Project: String,
+    val WorkBillingInfo: String
 )
 extends
     Element
@@ -364,8 +371,9 @@ extends
  * @param Crew Crew using this work asset.
  */
 case class WorkAsset
-(override val sup: Asset,
-val Crew: String
+(
+    override val sup: Element,
+    val Crew: String
 )
 extends
     Element
@@ -413,17 +421,18 @@ extends
  * @param test Test work.
  */
 case class WorkKind
-(override val sup: BasicElement,
-val connect: String,
-val construction: String,
-val disconnect: String,
-val inspection: String,
-val maintenance: String,
-val other: String,
-val reconnect: String,
-val repair: String,
-val service: String,
-val test: String
+(
+    override val sup: Element,
+    val connect: String,
+    val construction: String,
+    val disconnect: String,
+    val inspection: String,
+    val maintenance: String,
+    val other: String,
+    val reconnect: String,
+    val repair: String,
+    val service: String,
+    val test: String
 )
 extends
     Element
@@ -480,8 +489,9 @@ extends
  * @param OneCallRequest
  */
 case class WorkLocation
-(override val sup: Location,
-val OneCallRequest: String
+(
+    override val sup: Element,
+    val OneCallRequest: String
 )
 extends
     Element
@@ -531,19 +541,20 @@ extends
  * @param waitingToBeScheduled Work needs to be scheduled.
  */
 case class WorkStatusKind
-(override val sup: BasicElement,
-val approved: String,
-val cancelled: String,
-val closed: String,
-val completed: String,
-val dispatched: String,
-val enroute: String,
-val inProgress: String,
-val onSite: String,
-val scheduled: String,
-val waitingOnApproval: String,
-val waitingOnMaterial: String,
-val waitingToBeScheduled: String
+(
+    override val sup: Element,
+    val approved: String,
+    val cancelled: String,
+    val closed: String,
+    val completed: String,
+    val dispatched: String,
+    val enroute: String,
+    val inProgress: String,
+    val onSite: String,
+    val scheduled: String,
+    val waitingOnApproval: String,
+    val waitingOnMaterial: String,
+    val waitingToBeScheduled: String
 )
 extends
     Element
@@ -599,16 +610,17 @@ extends
 }
 
 case class WorkTask
-(override val sup: BaseWork,
-val crewETA: String,
-val instruction: String,
-val schedOverride: String,
-val taskKind: String,
-val Assets: List[String],
-val Crews: List[String],
-val OldAsset: String,
-val SwitchingPlan: String,
-val Work: String
+(
+    override val sup: Element,
+    val crewETA: String,
+    val instruction: String,
+    val schedOverride: String,
+    val taskKind: String,
+    val Assets: List[String],
+    val Crews: List[String],
+    val OldAsset: String,
+    val SwitchingPlan: String,
+    val Work: String
 )
 extends
     Element
@@ -658,11 +670,12 @@ extends
 }
 
 case class WorkTaskKind
-(override val sup: BasicElement,
-val exchange: String,
-val install: String,
-val investigate: String,
-val remove: String
+(
+    override val sup: Element,
+    val exchange: String,
+    val install: String,
+    val investigate: String,
+    val remove: String
 )
 extends
     Element
@@ -708,9 +721,10 @@ extends
  * @param BaseWork Time schedule for this work or work task.
  */
 case class WorkTimeSchedule
-(override val sup: TimeSchedule,
-val kind: String,
-val BaseWork: String
+(
+    override val sup: Element,
+    val kind: String,
+    val BaseWork: String
 )
 extends
     Element
@@ -755,12 +769,13 @@ extends
  * @param request
  */
 case class WorkTimeScheduleKind
-(override val sup: BasicElement,
-val actual: String,
-val earliest: String,
-val estimate: String,
-val latest: String,
-val request: String
+(
+    override val sup: Element,
+    val actual: String,
+    val earliest: String,
+    val estimate: String,
+    val latest: String,
+    val request: String
 )
 extends
     Element

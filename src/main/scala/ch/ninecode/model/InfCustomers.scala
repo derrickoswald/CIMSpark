@@ -15,8 +15,9 @@ import ch.ninecode.cim.Context
  * @param deadline The deadline for compliance.
  */
 case class ComplianceEvent
-(override val sup: ActivityRecord,
-val deadline: String
+(
+    override val sup: Element,
+    val deadline: String
 )
 extends
     Element
@@ -68,17 +69,18 @@ extends
  * @param ErpInvoiceLineItems
  */
 case class CustomerBillingInfo
-(override val sup: Document,
-val billingDate: String,
-val dueDate: String,
-val kind: String,
-val lastPaymentAmt: Double,
-val lastPaymentDate: String,
-val outBalance: Double,
-val pymtPlanAmt: Double,
-val pymtPlanType: String,
-val CustomerAccount: String,
-val ErpInvoiceLineItems: List[String]
+(
+    override val sup: Element,
+    val billingDate: String,
+    val dueDate: String,
+    val kind: String,
+    val lastPaymentAmt: Double,
+    val lastPaymentDate: String,
+    val outBalance: Double,
+    val pymtPlanAmt: Double,
+    val pymtPlanType: String,
+    val CustomerAccount: String,
+    val ErpInvoiceLineItems: List[String]
 )
 extends
     Element
@@ -138,11 +140,12 @@ extends
  * @param separateEssUdc Separate bills from ESS and UDC.
  */
 case class CustomerBillingKind
-(override val sup: BasicElement,
-val consolidatedEss: String,
-val consolidatedUdc: String,
-val other: String,
-val separateEssUdc: String
+(
+    override val sup: Element,
+    val consolidatedEss: String,
+    val consolidatedUdc: String,
+    val other: String,
+    val separateEssUdc: String
 )
 extends
     Element
@@ -187,7 +190,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ExternalCustomerAgreement
-(override val sup: Agreement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -232,16 +236,17 @@ extends
  * @param voltLimitViolCost Voltage limit violation cost (Cost per unit Voltage).
  */
 case class PowerQualityPricing
-(override val sup: Document,
-val emergencyHighVoltLimit: Double,
-val emergencyLowVoltLimit: Double,
-val normalHighVoltLimit: Double,
-val normalLowVoltLimit: Double,
-val powerFactorMin: Double,
-val valueUninterruptedServiceEnergy: Double,
-val valueUninterruptedServiceP: Double,
-val voltImbalanceViolCost: Double,
-val voltLimitViolCost: Double
+(
+    override val sup: Element,
+    val emergencyHighVoltLimit: Double,
+    val emergencyLowVoltLimit: Double,
+    val normalHighVoltLimit: Double,
+    val normalLowVoltLimit: Double,
+    val powerFactorMin: Double,
+    val valueUninterruptedServiceEnergy: Double,
+    val valueUninterruptedServiceP: Double,
+    val voltImbalanceViolCost: Double,
+    val voltLimitViolCost: Double
 )
 extends
     Element
@@ -300,11 +305,12 @@ extends
  * @param serviceRequirement Explanation of the requirement and conditions for satisfying it.
  */
 case class ServiceGuarantee
-(override val sup: Document,
-val applicationPeriod: String,
-val automaticPay: Boolean,
-val payAmount: Double,
-val serviceRequirement: String
+(
+    override val sup: Element,
+    val applicationPeriod: String,
+    val automaticPay: Boolean,
+    val payAmount: Double,
+    val serviceRequirement: String
 )
 extends
     Element
@@ -350,8 +356,9 @@ extends
  * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
  */
 case class StandardIndustryCode
-(override val sup: Document,
-val code: String
+(
+    override val sup: Element,
+    val code: String
 )
 extends
     Element
@@ -389,7 +396,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class SubscribePowerCurve
-(override val sup: Curve
+(
+    override val sup: Element
 )
 extends
     Element
@@ -435,16 +443,17 @@ extends
  * @param ErpLineItems
  */
 case class WorkBillingInfo
-(override val sup: Document,
-val costEstimate: Double,
-val deposit: Double,
-val discount: Double,
-val dueDateTime: String,
-val issueDateTime: String,
-val receivedDateTime: String,
-val workPrice: Double,
-val CustomerAccount: String,
-val ErpLineItems: List[String]
+(
+    override val sup: Element,
+    val costEstimate: Double,
+    val deposit: Double,
+    val discount: Double,
+    val dueDateTime: String,
+    val issueDateTime: String,
+    val receivedDateTime: String,
+    val workPrice: Double,
+    val CustomerAccount: String,
+    val ErpLineItems: List[String]
 )
 extends
     Element

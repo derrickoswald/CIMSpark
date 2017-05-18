@@ -16,9 +16,10 @@ import ch.ninecode.cim.Context
  *        For example IEC61970CIM13v18.
  */
 case class IEC61970CIMVersion
-(override val sup: BasicElement,
-val date: String,
-val version: String
+(
+    override val sup: Element,
+    val date: String,
+    val version: String
 )
 extends
     Element

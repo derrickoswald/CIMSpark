@@ -44,19 +44,20 @@ false = load reference governor.
  *        Typical Value = 0.
  */
 case class TurbLCFB1
-(override val sup: TurbineLoadControllerDynamics,
-val db: Double,
-val emax: Double,
-val fb: Double,
-val fbf: Boolean,
-val irmax: Double,
-val ki: Double,
-val kp: Double,
-val mwbase: Double,
-val pbf: Boolean,
-val pmwset: Double,
-val speedReferenceGovernor: Boolean,
-val tpelec: Double
+(
+    override val sup: Element,
+    val db: Double,
+    val emax: Double,
+    val fb: Double,
+    val fbf: Boolean,
+    val irmax: Double,
+    val ki: Double,
+    val kp: Double,
+    val mwbase: Double,
+    val pbf: Boolean,
+    val pmwset: Double,
+    val speedReferenceGovernor: Boolean,
+    val tpelec: Double
 )
 extends
     Element
@@ -117,8 +118,9 @@ extends
  * @param TurbineGovernorDynamics Turbine-governor controlled by this turbine load controller.
  */
 case class TurbineLoadControllerDynamics
-(override val sup: DynamicsFunctionBlock,
-val TurbineGovernorDynamics: String
+(
+    override val sup: Element,
+    val TurbineGovernorDynamics: String
 )
 extends
     Element

@@ -15,7 +15,8 @@ import ch.ninecode.cim.Context
  * @param sup Reference to the superclass object.
  */
 case class CommunicationLink
-(override val sup: PowerSystemResource
+(
+    override val sup: Element
 )
 extends
     Element
@@ -55,11 +56,12 @@ extends
  * @param Control The Control for the RemoteControl point.
  */
 case class RemoteControl
-(override val sup: RemotePoint,
-val actuatorMaximum: Double,
-val actuatorMinimum: Double,
-val remoteControlled: Boolean,
-val Control: String
+(
+    override val sup: Element,
+    val actuatorMaximum: Double,
+    val actuatorMinimum: Double,
+    val remoteControlled: Boolean,
+    val Control: String
 )
 extends
     Element
@@ -105,8 +107,9 @@ extends
  * @param RemoteUnit Remote unit this point belongs to.
  */
 case class RemotePoint
-(override val sup: IdentifiedObject,
-val RemoteUnit: String
+(
+    override val sup: Element,
+    val RemoteUnit: String
 )
 extends
     Element
@@ -149,12 +152,13 @@ extends
  * @param MeasurementValue Link to the physical telemetered point associated with this measurement.
  */
 case class RemoteSource
-(override val sup: RemotePoint,
-val deadband: Double,
-val scanInterval: Double,
-val sensorMaximum: Double,
-val sensorMinimum: Double,
-val MeasurementValue: String
+(
+    override val sup: Element,
+    val deadband: Double,
+    val scanInterval: Double,
+    val sensorMaximum: Double,
+    val sensorMinimum: Double,
+    val MeasurementValue: String
 )
 extends
     Element
@@ -202,8 +206,9 @@ extends
  * @param remoteUnitType Type of remote unit.
  */
 case class RemoteUnit
-(override val sup: PowerSystemResource,
-val remoteUnitType: String
+(
+    override val sup: Element,
+    val remoteUnitType: String
 )
 extends
     Element
@@ -245,11 +250,12 @@ extends
  * @param SubstationControlSystem Substation control system.
  */
 case class RemoteUnitType
-(override val sup: BasicElement,
-val ControlCenter: String,
-val IED: String,
-val RTU: String,
-val SubstationControlSystem: String
+(
+    override val sup: Element,
+    val ControlCenter: String,
+    val IED: String,
+    val RTU: String,
+    val SubstationControlSystem: String
 )
 extends
     Element
@@ -296,10 +302,11 @@ extends
  * @param SUBSTITUTED The value is provided by input of an operator or by an automatic source.
  */
 case class Source
-(override val sup: BasicElement,
-val DEFAULTED: String,
-val PROCESS: String,
-val SUBSTITUTED: String
+(
+    override val sup: Element,
+    val DEFAULTED: String,
+    val PROCESS: String,
+    val SUBSTITUTED: String
 )
 extends
     Element

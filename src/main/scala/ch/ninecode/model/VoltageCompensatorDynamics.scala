@@ -18,11 +18,12 @@ import ch.ninecode.cim.Context
  * @param VcompIEEEType2 The standard IEEE Type 2 voltage compensator of this compensation.
  */
 case class GenICompensationForGenJ
-(override val sup: IdentifiedObject,
-val rcij: Double,
-val xcij: Double,
-val SynchronousMachineDynamics: String,
-val VcompIEEEType2: String
+(
+    override val sup: Element,
+    val rcij: Double,
+    val xcij: Double,
+    val SynchronousMachineDynamics: String,
+    val VcompIEEEType2: String
 )
 extends
     Element
@@ -70,10 +71,11 @@ extends
  * @param xc <font color="#0f0f0f">Reactive component of compensation of a generator (Xc).</font>
  */
 case class VCompIEEEType1
-(override val sup: VoltageCompensatorDynamics,
-val rc: Double,
-val tr: Double,
-val xc: Double
+(
+    override val sup: Element,
+    val rc: Double,
+    val tr: Double,
+    val xc: Double
 )
 extends
     Element
@@ -117,8 +119,9 @@ extends
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
  */
 case class VCompIEEEType2
-(override val sup: VoltageCompensatorDynamics,
-val tr: Double
+(
+    override val sup: Element,
+    val tr: Double
 )
 extends
     Element
@@ -158,9 +161,10 @@ extends
  * @param RemoteInputSignal Remote input signal used by this voltage compensator model.
  */
 case class VoltageCompensatorDynamics
-(override val sup: DynamicsFunctionBlock,
-val ExcitationSystemDynamics: String,
-val RemoteInputSignal: String
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String,
+    val RemoteInputSignal: String
 )
 extends
     Element

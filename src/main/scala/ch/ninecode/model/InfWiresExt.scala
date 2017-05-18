@@ -12,9 +12,10 @@ import ch.ninecode.cim.Context
  * @param inductiveRating Maximum inductive reactive power.
  */
 case class SVC
-(override val sup: ShuntCompensator,
-val capacitiveRating: Double,
-val inductiveRating: Double
+(
+    override val sup: Element,
+    val capacitiveRating: Double,
+    val inductiveRating: Double
 )
 extends
     Element
@@ -75,25 +76,26 @@ extends
  * @param ShuntCompensatorInfo
  */
 case class ShuntCompensatorControl
-(override val sup: RegulatingControl,
-val branchDirect: Int,
-val cellSize: Double,
-val controlKind: String,
-val highVoltageOverride: Double,
-val localControlKind: String,
-val localOffLevel: String,
-val localOnLevel: String,
-val localOverride: Boolean,
-val lowVoltageOverride: Double,
-val maxSwitchOperationCount: Int,
-val normalOpen: Boolean,
-val regBranch: String,
-val regBranchEnd: Int,
-val regBranchKind: String,
-val sensingPhaseCode: String,
-val switchOperationCycle: Double,
-val vRegLineLine: Boolean,
-val ShuntCompensatorInfo: String
+(
+    override val sup: Element,
+    val branchDirect: Int,
+    val cellSize: Double,
+    val controlKind: String,
+    val highVoltageOverride: Double,
+    val localControlKind: String,
+    val localOffLevel: String,
+    val localOnLevel: String,
+    val localOverride: Boolean,
+    val lowVoltageOverride: Double,
+    val maxSwitchOperationCount: Int,
+    val normalOpen: Boolean,
+    val regBranch: String,
+    val regBranchEnd: Int,
+    val regBranchKind: String,
+    val sensingPhaseCode: String,
+    val switchOperationCycle: Double,
+    val vRegLineLine: Boolean,
+    val ShuntCompensatorInfo: String
 )
 extends
     Element

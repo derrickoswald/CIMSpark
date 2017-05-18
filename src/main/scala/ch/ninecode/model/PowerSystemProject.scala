@@ -23,15 +23,16 @@ import ch.ninecode.cim.Context
  * @param Project
  */
 case class PowerSystemProject
-(override val sup: BasicElement,
-val attr: String,
-val description: String,
-val name: String,
-val priority: Int,
-val state: String,
-val typ: String,
-val version: Int,
-val Project: String
+(
+    override val sup: Element,
+    val attr: String,
+    val description: String,
+    val name: String,
+    val priority: Int,
+    val state: String,
+    val typ: String,
+    val version: Int,
+    val Project: String
 )
 extends
     Element
@@ -79,14 +80,15 @@ extends
 }
 
 case class PowerSystemProjectSchedule
-(override val sup: BasicElement,
-val actualEnd: String,
-val actualStart: String,
-val attr: String,
-val scheduledEnd: String,
-val scheduledStart: String,
-val status: String,
-val stepType: String
+(
+    override val sup: Element,
+    val actualEnd: String,
+    val actualStart: String,
+    val attr: String,
+    val scheduledEnd: String,
+    val scheduledStart: String,
+    val status: String,
+    val stepType: String
 )
 extends
     Element
@@ -137,8 +139,9 @@ extends
  * @param Project
  */
 case class PowerSystemSubProject
-(override val sup: PowerSystemProject,
-val Project: String
+(
+    override val sup: Element,
+    val Project: String
 )
 extends
     Element
@@ -182,13 +185,14 @@ extends
  * @param stepType
  */
 case class ProjectStep
-(override val sup: BasicElement,
-val actualEnd: String,
-val actualStart: String,
-val scheduledEnd: String,
-val scheduledStart: String,
-val status: String,
-val stepType: String
+(
+    override val sup: Element,
+    val actualEnd: String,
+    val actualStart: String,
+    val scheduledEnd: String,
+    val scheduledStart: String,
+    val status: String,
+    val stepType: String
 )
 extends
     Element
@@ -232,11 +236,12 @@ extends
 }
 
 case class ProjectStepStatusKind
-(override val sup: BasicElement,
-val approved: String,
-val cancelled: String,
-val inProgress: String,
-val inactive: String
+(
+    override val sup: Element,
+    val approved: String,
+    val cancelled: String,
+    val inProgress: String,
+    val inactive: String
 )
 extends
     Element
@@ -285,12 +290,13 @@ extends
  * @param ____list_incomplete__more_to_come
  */
 case class StepKind
-(override val sup: BasicElement,
-val commissioning: String,
-val design_and_construction: String,
-val planning: String,
-val revision: String,
-val ____list_incomplete__more_to_come: String
+(
+    override val sup: Element,
+    val commissioning: String,
+    val design_and_construction: String,
+    val planning: String,
+    val revision: String,
+    val ____list_incomplete__more_to_come: String
 )
 extends
     Element

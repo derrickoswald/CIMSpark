@@ -15,9 +15,10 @@ import ch.ninecode.cim.Context
  * @param iban International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
  */
 case class Bank
-(override val sup: OrganisationRole,
-val bic: String,
-val iban: String
+(
+    override val sup: Element,
+    val bic: String,
+    val iban: String
 )
 extends
     Element
@@ -60,10 +61,11 @@ extends
  * @param ServiceSupplier ServiceSupplier that is owner of this BankAccount.
  */
 case class BankAccount
-(override val sup: Document,
-val accountNumber: String,
-val Bank: String,
-val ServiceSupplier: String
+(
+    override val sup: Element,
+    val accountNumber: String,
+    val Bank: String,
+    val ServiceSupplier: String
 )
 extends
     Element
@@ -106,7 +108,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class BusinessPlan
-(override val sup: Document
+(
+    override val sup: Element
 )
 extends
     Element
@@ -145,9 +148,10 @@ extends
  * @param typ Classification by utility's corporate standards and practices.
  */
 case class BusinessRole
-(override val sup: OrganisationRole,
-val status: String,
-val typ: String
+(
+    override val sup: Element,
+    val status: String,
+    val typ: String
 )
 extends
     Element
@@ -191,10 +195,11 @@ extends
  * @param ErpPersons
  */
 case class Craft
-(override val sup: IdentifiedObject,
-val status: String,
-val typ: String,
-val ErpPersons: List[String]
+(
+    override val sup: Element,
+    val status: String,
+    val typ: String,
+    val ErpPersons: List[String]
 )
 extends
     Element
@@ -236,7 +241,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DocumentOrganisationRole
-(override val sup: OrganisationRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -277,12 +283,13 @@ extends
  * @param ShiftPatterns
  */
 case class OldCrew
-(override val sup: Crew,
-val typ: String,
-val Assignments: List[String],
-val Locations: List[String],
-val Route: String,
-val ShiftPatterns: List[String]
+(
+    override val sup: Element,
+    val typ: String,
+    val Assignments: List[String],
+    val Locations: List[String],
+    val Route: String,
+    val ShiftPatterns: List[String]
 )
 extends
     Element
@@ -335,13 +342,14 @@ extends
  * @param LaborItems
  */
 case class OldPerson
-(override val sup: Person,
-val status: String,
-val typ: String,
-val CustomerData: String,
-val ErpCompetency: String,
-val ErpPersonnel: String,
-val LaborItems: List[String]
+(
+    override val sup: Element,
+    val status: String,
+    val typ: String,
+    val CustomerData: String,
+    val ErpCompetency: String,
+    val ErpPersonnel: String,
+    val LaborItems: List[String]
 )
 extends
     Element
@@ -391,8 +399,9 @@ extends
  * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
  */
 case class OrgOrgRole
-(override val sup: OrganisationRole,
-val clientID: String
+(
+    override val sup: Element,
+    val clientID: String
 )
 extends
     Element
@@ -431,8 +440,9 @@ extends
  * @param Person
  */
 case class PersonDocumentRole
-(override val sup: Role,
-val Person: String
+(
+    override val sup: Element,
+    val Person: String
 )
 extends
     Element
@@ -472,9 +482,10 @@ extends
  * @param ErpPerson
  */
 case class PersonOrganisationRole
-(override val sup: OrganisationRole,
-val clientID: String,
-val ErpPerson: String
+(
+    override val sup: Element,
+    val clientID: String,
+    val ErpPerson: String
 )
 extends
     Element
@@ -517,9 +528,10 @@ extends
  * @param Person
  */
 case class PersonPropertyRole
-(override val sup: Role,
-val LandProperty: String,
-val Person: String
+(
+    override val sup: Element,
+    val LandProperty: String,
+    val Person: String
 )
 extends
     Element
@@ -559,7 +571,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class PropertyOrganisationRole
-(override val sup: OrganisationRole
+(
+    override val sup: Element
 )
 extends
     Element
@@ -597,9 +610,10 @@ extends
  * @param numerator The part of a fraction that is above the line and signifies the number to be divided by the denominator.
  */
 case class Ratio
-(override val sup: BasicElement,
-val denominator: Double,
-val numerator: Double
+(
+    override val sup: Element,
+    val denominator: Double,
+    val numerator: Double
 )
 extends
     Element
@@ -641,9 +655,10 @@ extends
  * @param typ Type of role.
  */
 case class Role
-(override val sup: IdentifiedObject,
-val status: String,
-val typ: String
+(
+    override val sup: Element,
+    val status: String,
+    val typ: String
 )
 extends
     Element
@@ -689,13 +704,14 @@ extends
  * @param QualificationRequirements
  */
 case class Skill
-(override val sup: Document,
-val certificationPeriod: String,
-val effectiveDateTime: String,
-val level: String,
-val Crafts: List[String],
-val ErpPerson: String,
-val QualificationRequirements: List[String]
+(
+    override val sup: Element,
+    val certificationPeriod: String,
+    val effectiveDateTime: String,
+    val level: String,
+    val Crafts: List[String],
+    val ErpPerson: String,
+    val QualificationRequirements: List[String]
 )
 extends
     Element
@@ -747,11 +763,12 @@ extends
  * @param standard
  */
 case class SkillLevelKind
-(override val sup: BasicElement,
-val apprentice: String,
-val master: String,
-val other: String,
-val standard: String
+(
+    override val sup: Element,
+    val apprentice: String,
+    val master: String,
+    val other: String,
+    val standard: String
 )
 extends
     Element

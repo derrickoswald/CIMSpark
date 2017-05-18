@@ -14,8 +14,9 @@ import ch.ninecode.cim.Context
  * @param value Value of active power limit.
  */
 case class ActivePowerLimit
-(override val sup: OperationalLimit,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -54,8 +55,9 @@ extends
  * @param value The apparent power limit.
  */
 case class ApparentPowerLimit
-(override val sup: OperationalLimit,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -100,13 +102,14 @@ extends
  * @param monitorReactivePower Monitor the reactive power flow.
  */
 case class BranchGroup
-(override val sup: IdentifiedObject,
-val maximumActivePower: Double,
-val maximumReactivePower: Double,
-val minimumActivePower: Double,
-val minimumReactivePower: Double,
-val monitorActivePower: Boolean,
-val monitorReactivePower: Boolean
+(
+    override val sup: Element,
+    val maximumActivePower: Double,
+    val maximumReactivePower: Double,
+    val minimumActivePower: Double,
+    val minimumReactivePower: Double,
+    val monitorActivePower: Boolean,
+    val monitorReactivePower: Boolean
 )
 extends
     Element
@@ -157,9 +160,10 @@ extends
  * @param Terminal The terminal to be summed.
  */
 case class BranchGroupTerminal
-(override val sup: BasicElement,
-val positiveFlowIn: Boolean,
-val Terminal: String
+(
+    override val sup: Element,
+    val positiveFlowIn: Boolean,
+    val Terminal: String
 )
 extends
     Element
@@ -200,8 +204,9 @@ extends
  * @param value Limit on current flow.
  */
 case class CurrentLimit
-(override val sup: OperationalLimit,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -243,9 +248,10 @@ extends
  * @param OperationalLimitType The limit type associated with this limit.
  */
 case class OperationalLimit
-(override val sup: IdentifiedObject,
-val LimitDependencyModel: List[String],
-val OperationalLimitType: String
+(
+    override val sup: Element,
+    val LimitDependencyModel: List[String],
+    val OperationalLimitType: String
 )
 extends
     Element
@@ -290,10 +296,11 @@ extends
  *        If applied to a terminal flow, the positive direction is into the terminal.
  */
 case class OperationalLimitDirectionKind
-(override val sup: BasicElement,
-val absoluteValue: String,
-val high: String,
-val low: String
+(
+    override val sup: Element,
+    val absoluteValue: String,
+    val high: String,
+    val low: String
 )
 extends
     Element
@@ -338,9 +345,10 @@ extends
  * @param Terminal
  */
 case class OperationalLimitSet
-(override val sup: IdentifiedObject,
-val Equipment: String,
-val Terminal: String
+(
+    override val sup: Element,
+    val Equipment: String,
+    val Terminal: String
 )
 extends
     Element
@@ -384,10 +392,11 @@ extends
  * @param TargetOperationalLimitmTypeScaling
  */
 case class OperationalLimitType
-(override val sup: IdentifiedObject,
-val acceptableDuration: Double,
-val direction: String,
-val TargetOperationalLimitmTypeScaling: String
+(
+    override val sup: Element,
+    val acceptableDuration: Double,
+    val direction: String,
+    val TargetOperationalLimitmTypeScaling: String
 )
 extends
     Element
@@ -431,8 +440,9 @@ extends
  *        High or low limit nature of the limit depends upon the properties of the operational limit type.
  */
 case class VoltageLimit
-(override val sup: OperationalLimit,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element

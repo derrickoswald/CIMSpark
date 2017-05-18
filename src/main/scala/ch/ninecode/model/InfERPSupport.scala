@@ -17,10 +17,11 @@ import ch.ninecode.cim.Context
  * @param paper
  */
 case class BillMediaKind
-(override val sup: BasicElement,
-val electronic: String,
-val other: String,
-val paper: String
+(
+    override val sup: Element,
+    val electronic: String,
+    val other: String,
+    val paper: String
 )
 extends
     Element
@@ -66,11 +67,12 @@ extends
  * @param statistical
  */
 case class ErpAccountKind
-(override val sup: BasicElement,
-val estimate: String,
-val normal: String,
-val reversal: String,
-val statistical: String
+(
+    override val sup: Element,
+    val estimate: String,
+    val normal: String,
+    val reversal: String,
+    val statistical: String
 )
 extends
     Element
@@ -116,8 +118,9 @@ extends
  * @param Design
  */
 case class ErpBOM
-(override val sup: ErpDocument,
-val Design: String
+(
+    override val sup: Element,
+    val Design: String
 )
 extends
     Element
@@ -157,8 +160,9 @@ extends
  * @param bankABA Bank ABA.
  */
 case class ErpBankAccount
-(override val sup: BankAccount,
-val bankABA: String
+(
+    override val sup: Element,
+    val bankABA: String
 )
 extends
     Element
@@ -199,10 +203,11 @@ extends
  * @param TypeAsset
  */
 case class ErpBomItemData
-(override val sup: ErpIdentifiedObject,
-val DesignLocation: String,
-val ErpBOM: String,
-val TypeAsset: String
+(
+    override val sup: Element,
+    val DesignLocation: String,
+    val ErpBOM: String,
+    val TypeAsset: String
 )
 extends
     Element
@@ -245,7 +250,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpChartOfAccounts
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -282,7 +288,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpCompetency
-(override val sup: ErpIdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -319,7 +326,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpDocument
-(override val sup: Document
+(
+    override val sup: Element
 )
 extends
     Element
@@ -355,7 +363,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpEngChangeOrder
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -392,7 +401,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpIdentifiedObject
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -431,9 +441,10 @@ extends
  * @param Asset
  */
 case class ErpInventory
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val Asset: String
+(
+    override val sup: Element,
+    val status: String,
+    val Asset: String
 )
 extends
     Element
@@ -476,9 +487,10 @@ extends
  * @param AssetModel
  */
 case class ErpInventoryCount
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val AssetModel: String
+(
+    override val sup: Element,
+    val status: String,
+    val AssetModel: String
 )
 extends
     Element
@@ -530,17 +542,18 @@ extends
  * @param CustomerAccount
  */
 case class ErpInvoice
-(override val sup: ErpDocument,
-val amount: Double,
-val billMediaKind: String,
-val dueDate: String,
-val kind: String,
-val mailedDate: String,
-val proForma: Boolean,
-val referenceNumber: String,
-val transactionDateTime: String,
-val transferType: String,
-val CustomerAccount: String
+(
+    override val sup: Element,
+    val amount: Double,
+    val billMediaKind: String,
+    val dueDate: String,
+    val kind: String,
+    val mailedDate: String,
+    val proForma: Boolean,
+    val referenceNumber: String,
+    val transactionDateTime: String,
+    val transferType: String,
+    val CustomerAccount: String
 )
 extends
     Element
@@ -598,9 +611,10 @@ extends
  * @param sale
  */
 case class ErpInvoiceKind
-(override val sup: BasicElement,
-val purchase: String,
-val sale: String
+(
+    override val sup: Element,
+    val purchase: String,
+    val sale: String
 )
 extends
     Element
@@ -657,24 +671,25 @@ extends
  * @param UserAttributes
  */
 case class ErpInvoiceLineItem
-(override val sup: ErpDocument,
-val billPeriod: String,
-val glAccount: String,
-val glDateTime: String,
-val kind: String,
-val lineAmount: Double,
-val lineNumber: String,
-val lineVersion: String,
-val netAmount: Double,
-val previousAmount: Double,
-val ContainerErpInvoiceLineItem: String,
-val ErpInvoice: String,
-val ErpPayableLineItem: String,
-val ErpPayments: List[String],
-val ErpQuoteLineItem: String,
-val ErpRecDelvLineItem: String,
-val ErpRecLineItem: String,
-val UserAttributes: List[String]
+(
+    override val sup: Element,
+    val billPeriod: String,
+    val glAccount: String,
+    val glDateTime: String,
+    val kind: String,
+    val lineAmount: Double,
+    val lineNumber: String,
+    val lineVersion: String,
+    val netAmount: Double,
+    val previousAmount: Double,
+    val ContainerErpInvoiceLineItem: String,
+    val ErpInvoice: String,
+    val ErpPayableLineItem: String,
+    val ErpPayments: List[String],
+    val ErpQuoteLineItem: String,
+    val ErpRecDelvLineItem: String,
+    val ErpRecLineItem: String,
+    val UserAttributes: List[String]
 )
 extends
     Element
@@ -747,10 +762,11 @@ extends
  * @param recalculation
  */
 case class ErpInvoiceLineItemKind
-(override val sup: BasicElement,
-val initial: String,
-val other: String,
-val recalculation: String
+(
+    override val sup: Element,
+    val initial: String,
+    val other: String,
+    val recalculation: String
 )
 extends
     Element
@@ -795,10 +811,11 @@ extends
  * @param TypeMaterial
  */
 case class ErpIssueInventory
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val TypeAsset: String,
-val TypeMaterial: String
+(
+    override val sup: Element,
+    val status: String,
+    val TypeAsset: String,
+    val TypeMaterial: String
 )
 extends
     Element
@@ -843,9 +860,10 @@ extends
  * @param Asset
  */
 case class ErpItemMaster
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val Asset: String
+(
+    override val sup: Element,
+    val status: String,
+    val Asset: String
 )
 extends
     Element
@@ -886,7 +904,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpJournal
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -931,16 +950,17 @@ extends
  * @param ErpLedgerEntry
  */
 case class ErpJournalEntry
-(override val sup: ErpIdentifiedObject,
-val accountID: String,
-val amount: Double,
-val postingDateTime: String,
-val sourceID: String,
-val status: String,
-val transactionDateTime: String,
-val ErpInvoiceLineItem: String,
-val ErpJournal: String,
-val ErpLedgerEntry: String
+(
+    override val sup: Element,
+    val accountID: String,
+    val amount: Double,
+    val postingDateTime: String,
+    val sourceID: String,
+    val status: String,
+    val transactionDateTime: String,
+    val ErpInvoiceLineItem: String,
+    val ErpJournal: String,
+    val ErpLedgerEntry: String
 )
 extends
     Element
@@ -997,10 +1017,11 @@ extends
  * @param ErpLedgerBudget
  */
 case class ErpLedBudLineItem
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val ErpLedBudLineItem_attr: String,
-val ErpLedgerBudget: String
+(
+    override val sup: Element,
+    val status: String,
+    val ErpLedBudLineItem_attr: String,
+    val ErpLedgerBudget: String
 )
 extends
     Element
@@ -1043,7 +1064,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpLedger
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1080,7 +1102,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpLedgerBudget
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1126,17 +1149,18 @@ extends
  * @param UserAttributes
  */
 case class ErpLedgerEntry
-(override val sup: ErpIdentifiedObject,
-val accountID: String,
-val accountKind: String,
-val amount: Double,
-val postedDateTime: String,
-val status: String,
-val transactionDateTime: String,
-val ErpJounalEntry: String,
-val ErpLedger: String,
-val ErpLedgerEntry_attr: String,
-val UserAttributes: List[String]
+(
+    override val sup: Element,
+    val accountID: String,
+    val accountKind: String,
+    val amount: Double,
+    val postedDateTime: String,
+    val status: String,
+    val transactionDateTime: String,
+    val ErpJounalEntry: String,
+    val ErpLedger: String,
+    val ErpLedgerEntry_attr: String,
+    val UserAttributes: List[String]
 )
 extends
     Element
@@ -1196,11 +1220,12 @@ extends
  * @param ErpReqLineItem
  */
 case class ErpPOLineItem
-(override val sup: ErpDocument,
-val AssetModelCatalogueItem: String,
-val ErpPurchaseOrder: String,
-val ErpRecDelLineItem: String,
-val ErpReqLineItem: String
+(
+    override val sup: Element,
+    val AssetModelCatalogueItem: String,
+    val ErpPurchaseOrder: String,
+    val ErpRecDelLineItem: String,
+    val ErpReqLineItem: String
 )
 extends
     Element
@@ -1245,7 +1270,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpPayable
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1286,12 +1312,13 @@ extends
  * @param ErpPayments
  */
 case class ErpPayableLineItem
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val ErpInvoiceLineItem: String,
-val ErpJournalEntries: List[String],
-val ErpPayable: String,
-val ErpPayments: List[String]
+(
+    override val sup: Element,
+    val status: String,
+    val ErpInvoiceLineItem: String,
+    val ErpJournalEntries: List[String],
+    val ErpPayable: String,
+    val ErpPayments: List[String]
 )
 extends
     Element
@@ -1339,8 +1366,9 @@ extends
  * @param termsPayment Payment terms (e.g., net 30).
  */
 case class ErpPayment
-(override val sup: ErpDocument,
-val termsPayment: String
+(
+    override val sup: Element,
+    val termsPayment: String
 )
 extends
     Element
@@ -1379,8 +1407,9 @@ extends
  * @param status
  */
 case class ErpPersonnel
-(override val sup: ErpIdentifiedObject,
-val status: String
+(
+    override val sup: Element,
+    val status: String
 )
 extends
     Element
@@ -1419,7 +1448,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpProjectAccounting
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1456,7 +1486,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpPurchaseOrder
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1493,7 +1524,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpQuote
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1536,13 +1568,14 @@ extends
  * @param ErpReqLineItem
  */
 case class ErpQuoteLineItem
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val AssetModelCatalogueItem: String,
-val Design: String,
-val ErpInvoiceLineItem: String,
-val ErpQuote: String,
-val ErpReqLineItem: String
+(
+    override val sup: Element,
+    val status: String,
+    val AssetModelCatalogueItem: String,
+    val Design: String,
+    val ErpInvoiceLineItem: String,
+    val ErpQuote: String,
+    val ErpReqLineItem: String
 )
 extends
     Element
@@ -1595,11 +1628,12 @@ extends
  * @param ErpReceiveDelivery
  */
 case class ErpRecDelvLineItem
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val ErpInvoiceLineItem: String,
-val ErpPOLineItem: String,
-val ErpReceiveDelivery: String
+(
+    override val sup: Element,
+    val status: String,
+    val ErpInvoiceLineItem: String,
+    val ErpPOLineItem: String,
+    val ErpReceiveDelivery: String
 )
 extends
     Element
@@ -1648,12 +1682,13 @@ extends
  * @param ErpReceivable
  */
 case class ErpRecLineItem
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val ErpInvoiceLineItem: String,
-val ErpJournalEntries: List[String],
-val ErpPayments: List[String],
-val ErpReceivable: String
+(
+    override val sup: Element,
+    val status: String,
+    val ErpInvoiceLineItem: String,
+    val ErpJournalEntries: List[String],
+    val ErpPayments: List[String],
+    val ErpReceivable: String
 )
 extends
     Element
@@ -1700,7 +1735,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpReceivable
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1737,7 +1773,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpReceiveDelivery
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1783,17 +1820,18 @@ extends
  * @param TypeMaterial
  */
 case class ErpReqLineItem
-(override val sup: ErpIdentifiedObject,
-val code: String,
-val cost: Double,
-val deliveryDate: String,
-val quantity: Int,
-val status: String,
-val ErpPOLineItem: String,
-val ErpQuoteLineItem: String,
-val ErpRequisition: String,
-val TypeAsset: String,
-val TypeMaterial: String
+(
+    override val sup: Element,
+    val code: String,
+    val cost: Double,
+    val deliveryDate: String,
+    val quantity: Int,
+    val status: String,
+    val ErpPOLineItem: String,
+    val ErpQuoteLineItem: String,
+    val ErpRequisition: String,
+    val TypeAsset: String,
+    val TypeMaterial: String
 )
 extends
     Element
@@ -1850,7 +1888,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpRequisition
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1887,7 +1926,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpSalesOrder
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1926,9 +1966,10 @@ extends
  * @param LandProperty
  */
 case class ErpSiteLevelData
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val LandProperty: String
+(
+    override val sup: Element,
+    val status: String,
+    val LandProperty: String
 )
 extends
     Element
@@ -1971,10 +2012,11 @@ extends
  * @param ErpTimeSheet
  */
 case class ErpTimeEntry
-(override val sup: ErpIdentifiedObject,
-val status: String,
-val ErpProjectAccounting: String,
-val ErpTimeSheet: String
+(
+    override val sup: Element,
+    val status: String,
+    val ErpProjectAccounting: String,
+    val ErpTimeSheet: String
 )
 extends
     Element
@@ -2017,7 +2059,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ErpTimeSheet
-(override val sup: ErpDocument
+(
+    override val sup: Element
 )
 extends
     Element

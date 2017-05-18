@@ -21,14 +21,15 @@ import ch.ninecode.cim.Context
  * @param timeDelay3 Inverse time delay number 3 for current limit number 3.
  */
 case class CurrentRelay
-(override val sup: ProtectionEquipment,
-val currentLimit1: Double,
-val currentLimit2: Double,
-val currentLimit3: Double,
-val inverseTimeFlag: Boolean,
-val timeDelay1: Double,
-val timeDelay2: Double,
-val timeDelay3: Double
+(
+    override val sup: Element,
+    val currentLimit1: Double,
+    val currentLimit2: Double,
+    val currentLimit3: Double,
+    val inverseTimeFlag: Boolean,
+    val timeDelay1: Double,
+    val timeDelay2: Double,
+    val timeDelay3: Double
 )
 extends
     Element
@@ -87,15 +88,16 @@ extends
  * @param ProtectedSwitches Protected switches operated by this ProtectionEquipment.
  */
 case class ProtectionEquipment
-(override val sup: Equipment,
-val highLimit: Double,
-val lowLimit: Double,
-val powerDirectionFlag: Boolean,
-val relayDelayTime: Double,
-val unitMultiplier: String,
-val unitSymbol: String,
-val ConductingEquipments: List[String],
-val ProtectedSwitches: List[String]
+(
+    override val sup: Element,
+    val highLimit: Double,
+    val lowLimit: Double,
+    val powerDirectionFlag: Boolean,
+    val relayDelayTime: Double,
+    val unitMultiplier: String,
+    val unitSymbol: String,
+    val ConductingEquipments: List[String],
+    val ProtectedSwitches: List[String]
 )
 extends
     Element
@@ -150,10 +152,11 @@ extends
  * @param ProtectedSwitch A breaker may have zero or more automatic reclosures after a trip occurs.
  */
 case class RecloseSequence
-(override val sup: IdentifiedObject,
-val recloseDelay: Double,
-val recloseStep: Int,
-val ProtectedSwitch: String
+(
+    override val sup: Element,
+    val recloseDelay: Double,
+    val recloseStep: Int,
+    val ProtectedSwitch: String
 )
 extends
     Element
@@ -199,10 +202,11 @@ extends
  * @param maxVoltDiff The maximum allowable difference voltage across the open device.
  */
 case class SynchrocheckRelay
-(override val sup: ProtectionEquipment,
-val maxAngleDiff: Double,
-val maxFreqDiff: Double,
-val maxVoltDiff: Double
+(
+    override val sup: Element,
+    val maxAngleDiff: Double,
+    val maxFreqDiff: Double,
+    val maxVoltDiff: Double
 )
 extends
     Element

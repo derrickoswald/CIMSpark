@@ -24,17 +24,18 @@ import ch.ninecode.cim.Context
  * @param WindTurbineType3or4Dynamics Wind turbine Type 3 or 4 models using this remote input signal.
  */
 case class RemoteInputSignal
-(override val sup: IdentifiedObject,
-val remoteSignalType: String,
-val DiscontinuousExcitationControlDynamics: String,
-val PFVArControllerType1Dynamics: String,
-val PowerSystemStabilizerDynamics: String,
-val Terminal: String,
-val UnderexcitationLimiterDynamics: String,
-val VoltageCompensatorDynamics: String,
-val WindPlantDynamics: String,
-val WindTurbineType1or2Dynamics: String,
-val WindTurbineType3or4Dynamics: String
+(
+    override val sup: Element,
+    val remoteSignalType: String,
+    val DiscontinuousExcitationControlDynamics: String,
+    val PFVArControllerType1Dynamics: String,
+    val PowerSystemStabilizerDynamics: String,
+    val Terminal: String,
+    val UnderexcitationLimiterDynamics: String,
+    val VoltageCompensatorDynamics: String,
+    val WindPlantDynamics: String,
+    val WindTurbineType1or2Dynamics: String,
+    val WindTurbineType3or4Dynamics: String
 )
 extends
     Element
@@ -99,16 +100,17 @@ extends
  * @param remotePuBusVoltageDerivative Input is PU voltage derivative from remote terminal bus.
  */
 case class RemoteSignalKind
-(override val sup: BasicElement,
-val remoteBranchCurrentAmplitude: String,
-val remoteBusFrequency: String,
-val remoteBusFrequencyDeviation: String,
-val remoteBusVoltage: String,
-val remoteBusVoltageAmplitude: String,
-val remoteBusVoltageAmplitudeDerivative: String,
-val remoteBusVoltageFrequency: String,
-val remoteBusVoltageFrequencyDeviation: String,
-val remotePuBusVoltageDerivative: String
+(
+    override val sup: Element,
+    val remoteBranchCurrentAmplitude: String,
+    val remoteBusFrequency: String,
+    val remoteBusFrequencyDeviation: String,
+    val remoteBusVoltage: String,
+    val remoteBusVoltageAmplitude: String,
+    val remoteBusVoltageAmplitudeDerivative: String,
+    val remoteBusVoltageFrequency: String,
+    val remoteBusVoltageFrequencyDeviation: String,
+    val remotePuBusVoltageDerivative: String
 )
 extends
     Element

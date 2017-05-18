@@ -17,10 +17,11 @@ import ch.ninecode.cim.Context
  * @param ifnl No load system with saturation mode.  ifdBaseValue is computed, not defined by the user, in this mode.
  */
 case class IfdBaseKind
-(override val sup: BasicElement,
-val ifag: String,
-val iffl: String,
-val ifnl: String
+(
+    override val sup: Element,
+    val ifag: String,
+    val iffl: String,
+    val ifnl: String
 )
 extends
     Element
@@ -64,9 +65,10 @@ extends
  * @param salientPole Salient pole type of synchronous machine.
  */
 case class RotorKind
-(override val sup: BasicElement,
-val roundRotor: String,
-val salientPole: String
+(
+    override val sup: Element,
+    val roundRotor: String,
+    val salientPole: String
 )
 extends
     Element
@@ -115,11 +117,12 @@ extends
  *        Typical Value = 0.02.
  */
 case class SynchronousMachineDetailed
-(override val sup: SynchronousMachineDynamics,
-val efdBaseRatio: Double,
-val ifdBaseType: String,
-val saturationFactor120QAxis: Double,
-val saturationFactorQAxis: Double
+(
+    override val sup: Element,
+    val efdBaseRatio: Double,
+    val ifdBaseType: String,
+    val saturationFactor120QAxis: Double,
+    val saturationFactorQAxis: Double
 )
 extends
     Element
@@ -178,11 +181,12 @@ extends
  * @param TurbineGovernorDynamics Turbine-governor model associated with this synchronous machine model.
  */
 case class SynchronousMachineDynamics
-(override val sup: RotatingMachineDynamics,
-val ExcitationSystemDynamics: String,
-val MechanicalLoadDynamics: String,
-val SynchronousMachine: String,
-val TurbineGovernorDynamics: List[String]
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String,
+    val MechanicalLoadDynamics: String,
+    val SynchronousMachine: String,
+    val TurbineGovernorDynamics: List[String]
 )
 extends
     Element
@@ -262,18 +266,19 @@ tppqo = (xaq * x1q + xaq * x2q + x1q * x2q)/ (2*pi*nominal frequency * r2q * (xa
  * @param xfd Field winding leakage reactance.
  */
 case class SynchronousMachineEquivalentCircuit
-(override val sup: SynchronousMachineDetailed,
-val r1d: Double,
-val r1q: Double,
-val r2q: Double,
-val rfd: Double,
-val x1d: Double,
-val x1q: Double,
-val x2q: Double,
-val xad: Double,
-val xaq: Double,
-val xf1d: Double,
-val xfd: Double
+(
+    override val sup: Element,
+    val r1d: Double,
+    val r1q: Double,
+    val r2q: Double,
+    val rfd: Double,
+    val x1d: Double,
+    val x1q: Double,
+    val x2q: Double,
+    val xad: Double,
+    val xaq: Double,
+    val xf1d: Double,
+    val xfd: Double
 )
 extends
     Element
@@ -336,12 +341,13 @@ extends
  * @param subtransientTypeJ WECC Type J variant of subtransient synchronous machine model.
  */
 case class SynchronousMachineModelKind
-(override val sup: BasicElement,
-val subtransient: String,
-val subtransientSimplified: String,
-val subtransientSimplifiedDirectAxis: String,
-val subtransientTypeF: String,
-val subtransientTypeJ: String
+(
+    override val sup: Element,
+    val subtransient: String,
+    val subtransientSimplified: String,
+    val subtransientSimplifiedDirectAxis: String,
+    val subtransientTypeF: String,
+    val subtransientTypeJ: String
 )
 extends
     Element
@@ -388,7 +394,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class SynchronousMachineSimplified
-(override val sup: SynchronousMachineDynamics
+(
+    override val sup: Element
 )
 extends
     Element
@@ -483,21 +490,22 @@ extends
  *        Typical Value = 0.3.
  */
 case class SynchronousMachineTimeConstantReactance
-(override val sup: SynchronousMachineDetailed,
-val ks: Double,
-val modelType: String,
-val rotorType: String,
-val tc: Double,
-val tpdo: Double,
-val tppdo: Double,
-val tppqo: Double,
-val tpqo: Double,
-val xDirectSubtrans: Double,
-val xDirectSync: Double,
-val xDirectTrans: Double,
-val xQuadSubtrans: Double,
-val xQuadSync: Double,
-val xQuadTrans: Double
+(
+    override val sup: Element,
+    val ks: Double,
+    val modelType: String,
+    val rotorType: String,
+    val tc: Double,
+    val tpdo: Double,
+    val tppdo: Double,
+    val tppqo: Double,
+    val tpqo: Double,
+    val xDirectSubtrans: Double,
+    val xDirectSync: Double,
+    val xDirectTrans: Double,
+    val xQuadSubtrans: Double,
+    val xQuadSync: Double,
+    val xQuadTrans: Double
 )
 extends
     Element

@@ -23,11 +23,12 @@ import ch.ninecode.cim.Context
  *        Typical Value = -9999.
  */
 case class OverexcLim2
-(override val sup: OverexcitationLimiterDynamics,
-val ifdlim: Double,
-val koi: Double,
-val voimax: Double,
-val voimin: Double
+(
+    override val sup: Element,
+    val ifdlim: Double,
+    val koi: Double,
+    val voimax: Double,
+    val voimin: Double
 )
 extends
     Element
@@ -84,13 +85,14 @@ extends
  *        Unit = PU/sec.  Typical Value = 10.
  */
 case class OverexcLimIEEE
-(override val sup: OverexcitationLimiterDynamics,
-val hyst: Double,
-val ifdlim: Double,
-val ifdmax: Double,
-val itfpu: Double,
-val kcd: Double,
-val kramp: Double
+(
+    override val sup: Element,
+    val hyst: Double,
+    val ifdlim: Double,
+    val ifdmax: Double,
+    val itfpu: Double,
+    val kcd: Double,
+    val kramp: Double
 )
 extends
     Element
@@ -157,17 +159,18 @@ extends
  * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
  */
 case class OverexcLimX1
-(override val sup: OverexcitationLimiterDynamics,
-val efd1: Double,
-val efd2: Double,
-val efd3: Double,
-val efddes: Double,
-val efdrated: Double,
-val kmx: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val vlow: Double
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val efd3: Double,
+    val efddes: Double,
+    val efdrated: Double,
+    val kmx: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val vlow: Double
 )
 extends
     Element
@@ -245,18 +248,19 @@ true = IFD limiting
  * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
  */
 case class OverexcLimX2
-(override val sup: OverexcitationLimiterDynamics,
-val efd1: Double,
-val efd2: Double,
-val efd3: Double,
-val efddes: Double,
-val efdrated: Double,
-val kmx: Double,
-val m: Boolean,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val vlow: Double
+(
+    override val sup: Element,
+    val efd1: Double,
+    val efd2: Double,
+    val efd3: Double,
+    val efddes: Double,
+    val efdrated: Double,
+    val kmx: Double,
+    val m: Boolean,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val vlow: Double
 )
 extends
     Element
@@ -315,8 +319,9 @@ extends
  * @param ExcitationSystemDynamics Excitation system model with which this overexcitation limiter model is associated.
  */
 case class OverexcitationLimiterDynamics
-(override val sup: DynamicsFunctionBlock,
-val ExcitationSystemDynamics: String
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String
 )
 extends
     Element

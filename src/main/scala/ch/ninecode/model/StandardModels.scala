@@ -17,8 +17,9 @@ true = use of function block is enabled
  *        false = use of function block is disabled.
  */
 case class DynamicsFunctionBlock
-(override val sup: IdentifiedObject,
-val enabled: Boolean
+(
+    override val sup: Element,
+    val enabled: Boolean
 )
 extends
     Element
@@ -68,13 +69,14 @@ extends
  *        Typical Value = 0.005.
  */
 case class RotatingMachineDynamics
-(override val sup: DynamicsFunctionBlock,
-val damping: Double,
-val inertia: Double,
-val saturationFactor: Double,
-val saturationFactor120: Double,
-val statorLeakageReactance: Double,
-val statorResistance: Double
+(
+    override val sup: Element,
+    val damping: Double,
+    val inertia: Double,
+    val saturationFactor: Double,
+    val saturationFactor120: Double,
+    val statorLeakageReactance: Double,
+    val statorResistance: Double
 )
 extends
     Element

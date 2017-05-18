@@ -13,7 +13,8 @@ import ch.ninecode.cim.Context
  * @param sup Reference to the superclass object.
  */
 case class StateVariable
-(override val sup: BasicElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -55,10 +56,11 @@ extends
  * @param TopologicalNode The topological node associated with the flow injection state variable.
  */
 case class SvInjection
-(override val sup: StateVariable,
-val pInjection: Double,
-val qInjection: Double,
-val TopologicalNode: String
+(
+    override val sup: Element,
+    val pInjection: Double,
+    val qInjection: Double,
+    val TopologicalNode: String
 )
 extends
     Element
@@ -106,10 +108,11 @@ extends
  * @param Terminal The terminal associated with the power flow state variable.
  */
 case class SvPowerFlow
-(override val sup: StateVariable,
-val p: Double,
-val q: Double,
-val Terminal: String
+(
+    override val sup: Element,
+    val p: Double,
+    val q: Double,
+    val Terminal: String
 )
 extends
     Element
@@ -154,9 +157,10 @@ extends
  * @param ShuntCompensator The shunt compensator for which the state applies.
  */
 case class SvShuntCompensatorSections
-(override val sup: StateVariable,
-val sections: Double,
-val ShuntCompensator: String
+(
+    override val sup: Element,
+    val sections: Double,
+    val ShuntCompensator: String
 )
 extends
     Element
@@ -198,9 +202,10 @@ extends
  * @param ConductingEquipment The conducting equipment associated with the status state variable.
  */
 case class SvStatus
-(override val sup: StateVariable,
-val inService: Boolean,
-val ConductingEquipment: String
+(
+    override val sup: Element,
+    val inService: Boolean,
+    val ConductingEquipment: String
 )
 extends
     Element
@@ -244,9 +249,10 @@ extends
  * @param TapChanger The tap changer associated with the tap step state.
  */
 case class SvTapStep
-(override val sup: StateVariable,
-val position: Double,
-val TapChanger: String
+(
+    override val sup: Element,
+    val position: Double,
+    val TapChanger: String
 )
 extends
     Element
@@ -289,10 +295,11 @@ extends
  * @param TopologicalNode The topological node associated with the voltage state.
  */
 case class SvVoltage
-(override val sup: StateVariable,
-val angle: Double,
-val v: Double,
-val TopologicalNode: String
+(
+    override val sup: Element,
+    val angle: Double,
+    val v: Double,
+    val TopologicalNode: String
 )
 extends
     Element

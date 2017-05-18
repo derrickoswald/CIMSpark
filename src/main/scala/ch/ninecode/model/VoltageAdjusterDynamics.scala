@@ -26,13 +26,14 @@ import ch.ninecode.cim.Context
  *        Typical Value = 0.9.
  */
 case class VAdjIEEE
-(override val sup: VoltageAdjusterDynamics,
-val adjslew: Double,
-val taoff: Double,
-val taon: Double,
-val vadjf: Double,
-val vadjmax: Double,
-val vadjmin: Double
+(
+    override val sup: Element,
+    val adjslew: Double,
+    val taoff: Double,
+    val taon: Double,
+    val vadjf: Double,
+    val vadjmax: Double,
+    val vadjmin: Double
 )
 extends
     Element
@@ -81,8 +82,9 @@ extends
  * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
  */
 case class VoltageAdjusterDynamics
-(override val sup: DynamicsFunctionBlock,
-val PFVArControllerType1Dynamics: String
+(
+    override val sup: Element,
+    val PFVArControllerType1Dynamics: String
 )
 extends
     Element

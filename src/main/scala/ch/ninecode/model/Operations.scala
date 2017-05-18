@@ -16,10 +16,11 @@ import ch.ninecode.cim.Context
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class ClearanceAction
-(override val sup: SwitchingStep,
-val kind: String,
-val Clearance: String,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val Clearance: String,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -64,10 +65,11 @@ extends
  * @param update Update clearance.
  */
 case class ClearanceActionKind
-(override val sup: BasicElement,
-val issue: String,
-val release: String,
-val update: String
+(
+    override val sup: Element,
+    val issue: String,
+    val release: String,
+    val update: String
 )
 extends
     Element
@@ -114,11 +116,12 @@ extends
  * @param TaggedPSRs All power system resources tagged through this clearance.
  */
 case class ClearanceDocument
-(override val sup: SafetyDocument,
-val mustBeDeenergised: Boolean,
-val mustBeGrounded: Boolean,
-val ClearanceAction: String,
-val TaggedPSRs: List[String]
+(
+    override val sup: Element,
+    val mustBeDeenergised: Boolean,
+    val mustBeGrounded: Boolean,
+    val ClearanceAction: String,
+    val TaggedPSRs: List[String]
 )
 extends
     Element
@@ -165,10 +168,11 @@ extends
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class CutAction
-(override val sup: SwitchingStep,
-val kind: String,
-val Cut: String,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val Cut: String,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -213,10 +217,11 @@ extends
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class EnergySourceAction
-(override val sup: SwitchingStep,
-val kind: String,
-val EnergySource: String,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val EnergySource: String,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -259,8 +264,9 @@ extends
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class GenericAction
-(override val sup: SwitchingStep,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -305,12 +311,13 @@ extends
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class GroundAction
-(override val sup: SwitchingStep,
-val kind: String,
-val AlongACLineSegment: String,
-val Ground: String,
-val GroundedEquipment: String,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val AlongACLineSegment: String,
+    val Ground: String,
+    val GroundedEquipment: String,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -361,11 +368,12 @@ extends
  * @param Works All works addressing this incident.
  */
 case class Incident
-(override val sup: Document,
-val cause: String,
-val Outage: String,
-val Owner: String,
-val Works: List[String]
+(
+    override val sup: Element,
+    val cause: String,
+    val Outage: String,
+    val Owner: String,
+    val Works: List[String]
 )
 extends
     Element
@@ -412,10 +420,11 @@ extends
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class JumperAction
-(override val sup: SwitchingStep,
-val kind: String,
-val Jumper: String,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val Jumper: String,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -453,10 +462,11 @@ extends
 }
 
 case class OperationTag
-(override val sup: Document,
-val Asset: String,
-val PowerSystemResource: String,
-val TagAction: String
+(
+    override val sup: Element,
+    val Asset: String,
+    val PowerSystemResource: String,
+    val TagAction: String
 )
 extends
     Element
@@ -503,11 +513,12 @@ extends
  * @param ProductAssetModel Asset model to which this restriction applies.
  */
 case class OperationalRestriction
-(override val sup: Document,
-val activePeriod: String,
-val restrictedValue: String,
-val Equipments: List[String],
-val ProductAssetModel: String
+(
+    override val sup: Element,
+    val activePeriod: String,
+    val restrictedValue: String,
+    val Equipments: List[String],
+    val ProductAssetModel: String
 )
 extends
     Element
@@ -553,9 +564,10 @@ extends
  * @param PlannedOutage Planned equipment outage with this updated rating.
  */
 case class OperationalUpdatedRating
-(override val sup: OperationalRestriction,
-val changeType: String,
-val PlannedOutage: String
+(
+    override val sup: Element,
+    val changeType: String,
+    val PlannedOutage: String
 )
 extends
     Element
@@ -608,17 +620,18 @@ extends
  * @param UsagePoints All usage points associated with this outage.
  */
 case class Outage
-(override val sup: Document,
-val actualPeriod: String,
-val cancelledDateTime: String,
-val cause: String,
-val estimatedPeriod: String,
-val isPlanned: Boolean,
-val summary: String,
-val Equipments: List[String],
-val Incident: String,
-val OutageSchedule: String,
-val UsagePoints: List[String]
+(
+    override val sup: Element,
+    val actualPeriod: String,
+    val cancelledDateTime: String,
+    val cause: String,
+    val estimatedPeriod: String,
+    val isPlanned: Boolean,
+    val summary: String,
+    val Equipments: List[String],
+    val Incident: String,
+    val OutageSchedule: String,
+    val UsagePoints: List[String]
 )
 extends
     Element
@@ -675,7 +688,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class OutageSchedule
-(override val sup: Document
+(
+    override val sup: Element
 )
 extends
     Element
@@ -713,9 +727,10 @@ extends
  * @param PowerSystemResource Power system resource that generated this event.
  */
 case class PSREvent
-(override val sup: ActivityRecord,
-val kind: String,
-val PowerSystemResource: String
+(
+    override val sup: Element,
+    val kind: String,
+    val PowerSystemResource: String
 )
 extends
     Element
@@ -762,14 +777,15 @@ extends
  * @param unknown Unknown power system resource state change.
  */
 case class PSREventKind
-(override val sup: BasicElement,
-val inService: String,
-val other: String,
-val outOfService: String,
-val pendingAdd: String,
-val pendingRemove: String,
-val pendingReplace: String,
-val unknown: String
+(
+    override val sup: Element,
+    val inService: String,
+    val other: String,
+    val outOfService: String,
+    val pendingAdd: String,
+    val pendingRemove: String,
+    val pendingReplace: String,
+    val unknown: String
 )
 extends
     Element
@@ -820,8 +836,9 @@ extends
  * @param SwitchingPlan Switching plan to which this safety document applies.
  */
 case class SafetyDocument
-(override val sup: Document,
-val SwitchingPlan: String
+(
+    override val sup: Element,
+    val SwitchingPlan: String
 )
 extends
     Element
@@ -862,9 +879,10 @@ extends
  * @param totalCount Number of all service (delivery) points affected by an outage.
  */
 case class ServicePointOutageSummary
-(override val sup: BasicElement,
-val criticalCount: Int,
-val totalCount: Int
+(
+    override val sup: Element,
+    val criticalCount: Int,
+    val totalCount: Int
 )
 extends
     Element
@@ -908,11 +926,12 @@ extends
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class SwitchAction
-(override val sup: SwitchingStep,
-val kind: String,
-val OperatedSwitch: String,
-val PlannedOutage: String,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val OperatedSwitch: String,
+    val PlannedOutage: String,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -960,11 +979,12 @@ extends
  * @param open Open the switch.
  */
 case class SwitchActionKind
-(override val sup: BasicElement,
-val close: String,
-val disableReclosing: String,
-val enableReclosing: String,
-val open: String
+(
+    override val sup: Element,
+    val close: String,
+    val disableReclosing: String,
+    val enableReclosing: String,
+    val open: String
 )
 extends
     Element
@@ -1013,10 +1033,11 @@ extends
  * @param Outage Outage that will be eliminated when this switching plan gets executed.
  */
 case class SwitchingPlan
-(override val sup: SwitchingStepGroup,
-val purpose: String,
-val rank: Int,
-val Outage: String
+(
+    override val sup: Element,
+    val purpose: String,
+    val rank: Int,
+    val Outage: String
 )
 extends
     Element
@@ -1065,14 +1086,15 @@ extends
  * @param Operator Operator responsible for this switching step.
  */
 case class SwitchingStep
-(override val sup: BasicElement,
-val description: String,
-val executedDateTime: String,
-val isFreeSequence: Boolean,
-val plannedDateTime: String,
-val sequenceNumber: Int,
-val CrewMember: String,
-val Operator: String
+(
+    override val sup: Element,
+    val description: String,
+    val executedDateTime: String,
+    val isFreeSequence: Boolean,
+    val plannedDateTime: String,
+    val sequenceNumber: Int,
+    val CrewMember: String,
+    val Operator: String
 )
 extends
     Element
@@ -1125,10 +1147,11 @@ extends
  * @param SwitchingPlan Switching plan to which this group belongs.
  */
 case class SwitchingStepGroup
-(override val sup: Document,
-val isFreeSequence: Boolean,
-val sequenceNumber: Int,
-val SwitchingPlan: String
+(
+    override val sup: Element,
+    val isFreeSequence: Boolean,
+    val sequenceNumber: Int,
+    val SwitchingPlan: String
 )
 extends
     Element
@@ -1173,10 +1196,11 @@ extends
  * @param SwitchingStepGroup Group to which this step belongs.
  */
 case class TagAction
-(override val sup: SwitchingStep,
-val kind: String,
-val OperationTag: String,
-val SwitchingStepGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val OperationTag: String,
+    val SwitchingStepGroup: String
 )
 extends
     Element
@@ -1221,10 +1245,11 @@ extends
  * @param verify Verify the tag.
  */
 case class TagActionKind
-(override val sup: BasicElement,
-val place: String,
-val remove: String,
-val verify: String
+(
+    override val sup: Element,
+    val place: String,
+    val remove: String,
+    val verify: String
 )
 extends
     Element
@@ -1268,9 +1293,10 @@ extends
  * @param remove Remove the jumper (open) or the cut (close).
  */
 case class TempEquipActionKind
-(override val sup: BasicElement,
-val place: String,
-val remove: String
+(
+    override val sup: Element,
+    val place: String,
+    val remove: String
 )
 extends
     Element

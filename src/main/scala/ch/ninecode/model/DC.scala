@@ -50,25 +50,26 @@ For inverter operation with losses Pdc=Pac+lossP
  *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
  */
 case class ACDCConverter
-(override val sup: ConductingEquipment,
-val baseS: Double,
-val idc: Double,
-val idleLoss: Double,
-val maxUdc: Double,
-val minUdc: Double,
-val numberOfValves: Int,
-val p: Double,
-val poleLossP: Double,
-val q: Double,
-val ratedUdc: Double,
-val resistiveLoss: Double,
-val switchingLoss: Double,
-val targetPpcc: Double,
-val targetUdc: Double,
-val uc: Double,
-val udc: Double,
-val valveU0: Double,
-val PccTerminal: String
+(
+    override val sup: Element,
+    val baseS: Double,
+    val idc: Double,
+    val idleLoss: Double,
+    val maxUdc: Double,
+    val minUdc: Double,
+    val numberOfValves: Int,
+    val p: Double,
+    val poleLossP: Double,
+    val q: Double,
+    val ratedUdc: Double,
+    val resistiveLoss: Double,
+    val switchingLoss: Double,
+    val targetPpcc: Double,
+    val targetUdc: Double,
+    val uc: Double,
+    val udc: Double,
+    val valveU0: Double,
+    val PccTerminal: String
 )
 extends
     Element
@@ -143,9 +144,10 @@ extends
  * @param DCConductingEquipment
  */
 case class ACDCConverterDCTerminal
-(override val sup: DCBaseTerminal,
-val polarity: String,
-val DCConductingEquipment: String
+(
+    override val sup: Element,
+    val polarity: String,
+    val DCConductingEquipment: String
 )
 extends
     Element
@@ -212,21 +214,22 @@ extends
  *        CSC control variable used in power flow.
  */
 case class CsConverter
-(override val sup: ACDCConverter,
-val alpha: Double,
-val gamma: Double,
-val maxAlpha: Double,
-val maxGamma: Double,
-val maxIdc: Double,
-val minAlpha: Double,
-val minGamma: Double,
-val minIdc: Double,
-val operatingMode: String,
-val pPccControl: String,
-val ratedIdc: Double,
-val targetAlpha: Double,
-val targetGamma: Double,
-val targetIdc: Double
+(
+    override val sup: Element,
+    val alpha: Double,
+    val gamma: Double,
+    val maxAlpha: Double,
+    val maxGamma: Double,
+    val maxIdc: Double,
+    val minAlpha: Double,
+    val minGamma: Double,
+    val minIdc: Double,
+    val operatingMode: String,
+    val pPccControl: String,
+    val ratedIdc: Double,
+    val targetAlpha: Double,
+    val targetGamma: Double,
+    val targetIdc: Double
 )
 extends
     Element
@@ -292,9 +295,10 @@ extends
  * @param rectifier Operating as rectifier.
  */
 case class CsOperatingModeKind
-(override val sup: BasicElement,
-val inverter: String,
-val rectifier: String
+(
+    override val sup: Element,
+    val inverter: String,
+    val rectifier: String
 )
 extends
     Element
@@ -337,10 +341,11 @@ extends
  * @param dcVoltage DC voltage control.
  */
 case class CsPpccControlKind
-(override val sup: BasicElement,
-val activePower: String,
-val dcCurrent: String,
-val dcVoltage: String
+(
+    override val sup: Element,
+    val activePower: String,
+    val dcCurrent: String,
+    val dcVoltage: String
 )
 extends
     Element
@@ -386,9 +391,10 @@ extends
  *        TopologicalNode.
  */
 case class DCBaseTerminal
-(override val sup: ACDCTerminal,
-val DCNode: String,
-val DCTopologicalNode: String
+(
+    override val sup: Element,
+    val DCNode: String,
+    val DCTopologicalNode: String
 )
 extends
     Element
@@ -428,7 +434,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCBreaker
-(override val sup: DCSwitch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -464,7 +471,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCBusbar
-(override val sup: DCConductingEquipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -501,7 +509,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCChopper
-(override val sup: DCConductingEquipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -537,7 +546,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCConductingEquipment
-(override val sup: Equipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -576,10 +586,11 @@ extends
  * @param monopolarMetallicReturn Monopolar operation with metallic return
  */
 case class DCConverterOperatingModeKind
-(override val sup: BasicElement,
-val bipolar: String,
-val monopolarGroundReturn: String,
-val monopolarMetallicReturn: String
+(
+    override val sup: Element,
+    val bipolar: String,
+    val monopolarGroundReturn: String,
+    val monopolarMetallicReturn: String
 )
 extends
     Element
@@ -622,8 +633,9 @@ extends
  * @param operationMode
  */
 case class DCConverterUnit
-(override val sup: DCEquipmentContainer,
-val operationMode: String
+(
+    override val sup: Element,
+    val operationMode: String
 )
 extends
     Element
@@ -661,7 +673,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCDisconnector
-(override val sup: DCSwitch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -698,7 +711,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCEquipmentContainer
-(override val sup: EquipmentContainer
+(
+    override val sup: Element
 )
 extends
     Element
@@ -736,9 +750,10 @@ extends
  * @param r Resistance to ground.
  */
 case class DCGround
-(override val sup: DCConductingEquipment,
-val inductance: Double,
-val r: Double
+(
+    override val sup: Element,
+    val inductance: Double,
+    val r: Double
 )
 extends
     Element
@@ -779,8 +794,9 @@ extends
  * @param Region
  */
 case class DCLine
-(override val sup: DCEquipmentContainer,
-val Region: String
+(
+    override val sup: Element,
+    val Region: String
 )
 extends
     Element
@@ -825,12 +841,13 @@ extends
  * @param PerLengthParameter Set of per-length parameters for this line segment.
  */
 case class DCLineSegment
-(override val sup: DCConductingEquipment,
-val capacitance: Double,
-val inductance: Double,
-val len: Double,
-val resistance: Double,
-val PerLengthParameter: String
+(
+    override val sup: Element,
+    val capacitance: Double,
+    val inductance: Double,
+    val len: Double,
+    val resistance: Double,
+    val PerLengthParameter: String
 )
 extends
     Element
@@ -879,9 +896,10 @@ extends
  *        TopologicalNode.
  */
 case class DCNode
-(override val sup: IdentifiedObject,
-val DCEquipmentContainer: String,
-val DCTopologicalNode: String
+(
+    override val sup: Element,
+    val DCEquipmentContainer: String,
+    val DCTopologicalNode: String
 )
 extends
     Element
@@ -924,10 +942,11 @@ extends
  * @param positive Positive pole.
  */
 case class DCPolarityKind
-(override val sup: BasicElement,
-val middle: String,
-val negative: String,
-val positive: String
+(
+    override val sup: Element,
+    val middle: String,
+    val negative: String,
+    val positive: String
 )
 extends
     Element
@@ -974,10 +993,11 @@ extends
  * @param resistance Resistance of the DC device.
  */
 case class DCSeriesDevice
-(override val sup: DCConductingEquipment,
-val inductance: Double,
-val ratedUdc: Double,
-val resistance: Double
+(
+    override val sup: Element,
+    val inductance: Double,
+    val ratedUdc: Double,
+    val resistance: Double
 )
 extends
     Element
@@ -1024,10 +1044,11 @@ extends
  * @param resistance Resistance of the DC device.
  */
 case class DCShunt
-(override val sup: DCConductingEquipment,
-val capacitance: Double,
-val ratedUdc: Double,
-val resistance: Double
+(
+    override val sup: Element,
+    val capacitance: Double,
+    val ratedUdc: Double,
+    val resistance: Double
 )
 extends
     Element
@@ -1069,7 +1090,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCSwitch
-(override val sup: DCConductingEquipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1106,8 +1128,9 @@ extends
  * @param DCConductingEquipment
  */
 case class DCTerminal
-(override val sup: DCBaseTerminal,
-val DCConductingEquipment: String
+(
+    override val sup: Element,
+    val DCConductingEquipment: String
 )
 extends
     Element
@@ -1146,7 +1169,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class DCTopologicalIsland
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1178,10 +1202,11 @@ extends
 }
 
 case class PerLengthDCLineParameter
-(override val sup: PerLengthLineParameter,
-val capacitance: Double,
-val inductance: Double,
-val resistance: Double
+(
+    override val sup: Element,
+    val capacitance: Double,
+    val inductance: Double,
+    val resistance: Double
 )
 extends
     Element
@@ -1223,7 +1248,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class VsCapabilityCurve
-(override val sup: Curve
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1276,19 +1302,20 @@ extends
  * @param CapabilityCurve Capability curve of this converter.
  */
 case class VsConverter
-(override val sup: ACDCConverter,
-val delta: Double,
-val droop: Double,
-val droopCompensation: Double,
-val maxModulationIndex: Double,
-val maxValveCurrent: Double,
-val pPccControl: String,
-val qPccControl: String,
-val qShare: Double,
-val targetQpcc: Double,
-val targetUpcc: Double,
-val uf: Double,
-val CapabilityCurve: String
+(
+    override val sup: Element,
+    val delta: Double,
+    val droop: Double,
+    val droopCompensation: Double,
+    val maxModulationIndex: Double,
+    val maxValveCurrent: Double,
+    val pPccControl: String,
+    val qPccControl: String,
+    val qShare: Double,
+    val targetQpcc: Double,
+    val targetUpcc: Double,
+    val uf: Double,
+    val CapabilityCurve: String
 )
 extends
     Element
@@ -1353,12 +1380,13 @@ extends
  * @param udc Control variable (target) is DC voltage and real power at PCC bus is derived.
  */
 case class VsPpccControlKind
-(override val sup: BasicElement,
-val pPcc: String,
-val pPccAndUdcDroop: String,
-val pPccAndUdcDroopPilot: String,
-val pPccAndUdcDroopWithCompensation: String,
-val udc: String
+(
+    override val sup: Element,
+    val pPcc: String,
+    val pPccAndUdcDroop: String,
+    val pPccAndUdcDroopPilot: String,
+    val pPccAndUdcDroopWithCompensation: String,
+    val udc: String
 )
 extends
     Element
@@ -1400,10 +1428,11 @@ extends
 }
 
 case class VsQpccControlKind
-(override val sup: BasicElement,
-val powerFactorPcc: String,
-val reactivePcc: String,
-val voltagePcc: String
+(
+    override val sup: Element,
+    val powerFactorPcc: String,
+    val reactivePcc: String,
+    val voltagePcc: String
 )
 extends
     Element

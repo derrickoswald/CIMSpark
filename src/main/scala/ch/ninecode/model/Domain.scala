@@ -16,9 +16,10 @@ import ch.ninecode.cim.Context
  * @param start Start date of this interval.
  */
 case class DateInterval
-(override val sup: BasicElement,
-val end: String,
-val start: String
+(
+    override val sup: Element,
+    val end: String,
+    val start: String
 )
 extends
     Element
@@ -60,9 +61,10 @@ extends
  * @param start Start date and time of this interval.
  */
 case class DateTimeInterval
-(override val sup: BasicElement,
-val end: String,
-val start: String
+(
+    override val sup: Element,
+    val end: String,
+    val start: String
 )
 extends
     Element
@@ -98,11 +100,12 @@ extends
 }
 
 case class DecimalQuantity
-(override val sup: BasicElement,
-val currency: String,
-val multiplier: String,
-val unit: String,
-val value: Double
+(
+    override val sup: Element,
+    val currency: String,
+    val multiplier: String,
+    val unit: String,
+    val value: Double
 )
 extends
     Element
@@ -149,10 +152,11 @@ extends
  * @param value
  */
 case class FloatQuantity
-(override val sup: BasicElement,
-val multiplier: String,
-val unit: String,
-val value: Double
+(
+    override val sup: Element,
+    val multiplier: String,
+    val unit: String,
+    val value: Double
 )
 extends
     Element
@@ -197,10 +201,11 @@ extends
  * @param value
  */
 case class IntegerQuantity
-(override val sup: BasicElement,
-val multiplier: String,
-val unit: String,
-val value: Int
+(
+    override val sup: Element,
+    val multiplier: String,
+    val unit: String,
+    val value: Int
 )
 extends
     Element
@@ -244,9 +249,10 @@ extends
  * @param start Start time of this interval.
  */
 case class MonthDayInterval
-(override val sup: BasicElement,
-val end: String,
-val start: String
+(
+    override val sup: Element,
+    val end: String,
+    val start: String
 )
 extends
     Element
@@ -289,10 +295,11 @@ extends
  * @param value
  */
 case class StringQuantity
-(override val sup: BasicElement,
-val multiplier: String,
-val unit: String,
-val value: String
+(
+    override val sup: Element,
+    val multiplier: String,
+    val unit: String,
+    val value: String
 )
 extends
     Element
@@ -336,9 +343,10 @@ extends
  * @param start Start time of this interval.
  */
 case class TimeInterval
-(override val sup: BasicElement,
-val end: String,
-val start: String
+(
+    override val sup: Element,
+    val end: String,
+    val start: String
 )
 extends
     Element

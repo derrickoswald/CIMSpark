@@ -17,9 +17,10 @@ import ch.ninecode.cim.Context
  * @param ControlledBy A ControlAreaCompany controls a ControlArea.
  */
 case class ControlAreaOperator
-(override val sup: Organisation,
-val CAChildOf: List[String],
-val ControlledBy: String
+(
+    override val sup: Element,
+    val CAChildOf: List[String],
+    val ControlledBy: String
 )
 extends
     Element
@@ -59,7 +60,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class CustomerConsumer
-(override val sup: Organisation
+(
+    override val sup: Element
 )
 extends
     Element
@@ -95,7 +97,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class GenerationProvider
-(override val sup: Organisation
+(
+    override val sup: Element
 )
 extends
     Element
@@ -134,9 +137,10 @@ extends
  * @param MktOrganisation
  */
 case class IntSchedAgreement
-(override val sup: Agreement,
-val defaultIntegrationMethod: String,
-val MktOrganisation: List[String]
+(
+    override val sup: Element,
+    val defaultIntegrationMethod: String,
+    val MktOrganisation: List[String]
 )
 extends
     Element
@@ -176,7 +180,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Marketer
-(override val sup: Organisation
+(
+    override val sup: Element
 )
 extends
     Element
@@ -212,7 +217,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class OpenAccessProduct
-(override val sup: Agreement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -244,10 +250,11 @@ extends
 }
 
 case class TransmissionProduct
-(override val sup: IdentifiedObject,
-val transmissionProductType: String,
-val LocationFor: List[String],
-val TransmissionProvider: String
+(
+    override val sup: Element,
+    val transmissionProductType: String,
+    val LocationFor: List[String],
+    val TransmissionProvider: String
 )
 extends
     Element
@@ -290,7 +297,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class TransmissionProvider
-(override val sup: Organisation
+(
+    override val sup: Element
 )
 extends
     Element

@@ -16,10 +16,11 @@ import ch.ninecode.cim.Context
  * @param version
  */
 case class Description
-(override val sup: BasicElement,
-val description: String,
-val name: String,
-val version: Int
+(
+    override val sup: Element,
+    val description: String,
+    val name: String,
+    val version: Int
 )
 extends
     Element
@@ -57,8 +58,9 @@ extends
 }
 
 case class DescriptionID
-(override val sup: Description,
-val uri: String
+(
+    override val sup: Element,
+    val uri: String
 )
 extends
     Element
@@ -92,9 +94,10 @@ extends
 }
 
 case class DifferenceModel
-(override val sup: Model,
-val forwardDifferences: String,
-val reverseDifferences: String
+(
+    override val sup: Element,
+    val forwardDifferences: String,
+    val reverseDifferences: String
 )
 extends
     Element
@@ -130,7 +133,8 @@ extends
 }
 
 case class FullModel
-(override val sup: FullModelDocumentElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -162,7 +166,8 @@ extends
 }
 
 case class FullModelDocumentElement
-(override val sup: BasicElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -194,15 +199,16 @@ extends
 }
 
 case class Model
-(override val sup: BasicElement,
-val created: String,
-val description: String,
-val modelingAuthoritySet: String,
-val profile: String,
-val scenarioTime: String,
-val version: String,
-val DependentOn: List[String],
-val Supersedes: List[String]
+(
+    override val sup: Element,
+    val created: String,
+    val description: String,
+    val modelingAuthoritySet: String,
+    val profile: String,
+    val scenarioTime: String,
+    val version: String,
+    val DependentOn: List[String],
+    val Supersedes: List[String]
 )
 extends
     Element
@@ -250,9 +256,10 @@ extends
 }
 
 case class ModelDescriptionCIMVersion
-(override val sup: BasicElement,
-val date: String,
-val version: String
+(
+    override val sup: Element,
+    val date: String,
+    val version: String
 )
 extends
     Element
@@ -288,7 +295,8 @@ extends
 }
 
 case class Statements
-(override val sup: FullModelDocumentElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -324,7 +332,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class URI
-(override val sup: BasicElement
+(
+    override val sup: Element
 )
 extends
     Element

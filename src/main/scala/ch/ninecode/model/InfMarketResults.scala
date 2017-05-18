@@ -11,7 +11,8 @@ import ch.ninecode.cim.Context
  * @param sup Reference to the superclass object.
  */
 case class InterTieClearing
-(override val sup: MarketFactors
+(
+    override val sup: Element
 )
 extends
     Element
@@ -52,11 +53,12 @@ extends
  * @param InterTieClearing
  */
 case class InterTieResults
-(override val sup: BasicElement,
-val baseMW: Double,
-val clearedValue: Double,
-val Flowgate: String,
-val InterTieClearing: String
+(
+    override val sup: Element,
+    val baseMW: Double,
+    val clearedValue: Double,
+    val Flowgate: String,
+    val InterTieClearing: String
 )
 extends
     Element
@@ -111,10 +113,11 @@ extends
  * @param postedDate Bid clearing results posted time and date.
  */
 case class MarketCaseClearing
-(override val sup: MarketFactors,
-val caseType: String,
-val modifiedDate: String,
-val postedDate: String
+(
+    override val sup: Element,
+    val caseType: String,
+    val modifiedDate: String,
+    val postedDate: String
 )
 extends
     Element
@@ -159,10 +162,11 @@ extends
  * @param shadowPrice Security constraint shadow price.
  */
 case class SecurityConstraintsClearing
-(override val sup: MarketFactors,
-val mwFlow: Double,
-val mwLimit: Double,
-val shadowPrice: Double
+(
+    override val sup: Element,
+    val mwFlow: Double,
+    val mwLimit: Double,
+    val shadowPrice: Double
 )
 extends
     Element

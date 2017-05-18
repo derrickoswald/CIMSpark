@@ -18,15 +18,16 @@ import ch.ninecode.cim.Context
  * @param _class Peak, Off-peak, 24-hour
  */
 case class FTR
-(override val sup: Agreement,
-val action: String,
-val baseEnergy: Double,
-val ftrType: String,
-val optimized: String,
-val EnergyPriceCurve: String,
-val Flowgate: String,
-val Pnodes: List[String],
-val _class: String
+(
+    override val sup: Element,
+    val action: String,
+    val baseEnergy: Double,
+    val ftrType: String,
+    val optimized: String,
+    val EnergyPriceCurve: String,
+    val Flowgate: String,
+    val Pnodes: List[String],
+    val _class: String
 )
 extends
     Element
@@ -82,11 +83,12 @@ extends
  * @param MktOrganisation
  */
 case class ViolationLimit
-(override val sup: Limit,
-val enforced: Boolean,
-val Flowgate: String,
-val MktMeasurement: String,
-val MktOrganisation: List[String]
+(
+    override val sup: Element,
+    val enforced: Boolean,
+    val Flowgate: String,
+    val MktMeasurement: String,
+    val MktOrganisation: List[String]
 )
 extends
     Element

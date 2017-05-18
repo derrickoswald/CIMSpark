@@ -12,8 +12,9 @@ import ch.ninecode.cim.Context
  * @param value
  */
 case class WheelingReferenceSchedule
-(override val sup: BidHourlySchedule,
-val value: String
+(
+    override val sup: Element,
+    val value: String
 )
 extends
     Element

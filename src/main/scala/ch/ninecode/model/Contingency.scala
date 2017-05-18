@@ -14,8 +14,9 @@ import ch.ninecode.cim.Context
  * @param mustStudy Set true if must study this contingency.
  */
 case class Contingency
-(override val sup: IdentifiedObject,
-val mustStudy: Boolean
+(
+    override val sup: Element,
+    val mustStudy: Boolean
 )
 extends
     Element
@@ -53,7 +54,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ContingencyElement
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -92,9 +94,10 @@ extends
  * @param Equipment The single piece of equipment to which to apply the contingency.
  */
 case class ContingencyEquipment
-(override val sup: ContingencyElement,
-val contingentStatus: String,
-val Equipment: String
+(
+    override val sup: Element,
+    val contingentStatus: String,
+    val Equipment: String
 )
 extends
     Element
@@ -136,9 +139,10 @@ extends
  * @param outOfService The equipment is to be taken out of service.
  */
 case class ContingencyEquipmentStatusKind
-(override val sup: BasicElement,
-val inService: String,
-val outOfService: String
+(
+    override val sup: Element,
+    val inService: String,
+    val outOfService: String
 )
 extends
     Element

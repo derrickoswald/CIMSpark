@@ -29,17 +29,18 @@ import ch.ninecode.cim.Context
  * @param rotorSpeed Input signal is rotor or shaft speed (angular frequency).
  */
 case class InputSignalKind
-(override val sup: BasicElement,
-val branchCurrent: String,
-val busFrequency: String,
-val busFrequencyDeviation: String,
-val busVoltage: String,
-val busVoltageDerivative: String,
-val fieldCurrent: String,
-val generatorAcceleratingPower: String,
-val generatorElectricalPower: String,
-val rotorAngularFrequencyDeviation: String,
-val rotorSpeed: String
+(
+    override val sup: Element,
+    val branchCurrent: String,
+    val busFrequency: String,
+    val busFrequencyDeviation: String,
+    val busVoltage: String,
+    val busVoltageDerivative: String,
+    val fieldCurrent: String,
+    val generatorAcceleratingPower: String,
+    val generatorElectricalPower: String,
+    val rotorAngularFrequencyDeviation: String,
+    val rotorSpeed: String
 )
 extends
     Element
@@ -96,8 +97,9 @@ extends
  * @param ExcitationSystemDynamics Excitation system model with which this power system stabilizer model is associated.
  */
 case class PowerSystemStabilizerDynamics
-(override val sup: DynamicsFunctionBlock,
-val ExcitationSystemDynamics: String
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String
 )
 extends
     Element
@@ -167,22 +169,23 @@ extends
  *        Typical Value = 0.06.
  */
 case class Pss1
-(override val sup: PowerSystemStabilizerDynamics,
-val kf: Double,
-val kpe: Double,
-val ks: Double,
-val kw: Double,
-val pmin: Double,
-val t10: Double,
-val t5: Double,
-val t6: Double,
-val t7: Double,
-val t8: Double,
-val t9: Double,
-val tpe: Double,
-val vadat: Boolean,
-val vsmn: Double,
-val vsmx: Double
+(
+    override val sup: Element,
+    val kf: Double,
+    val kpe: Double,
+    val ks: Double,
+    val kw: Double,
+    val pmin: Double,
+    val t10: Double,
+    val t5: Double,
+    val t6: Double,
+    val t7: Double,
+    val t8: Double,
+    val t9: Double,
+    val tpe: Double,
+    val vadat: Boolean,
+    val vsmn: Double,
+    val vsmx: Double
 )
 extends
     Element
@@ -273,29 +276,30 @@ true = e<sup>-sTdelay</sup> used
  * @param vrmin Minimum stabilizer output (Vrmin).
  */
 case class Pss1A
-(override val sup: PowerSystemStabilizerDynamics,
-val a1: Double,
-val a2: Double,
-val a3: Double,
-val a4: Double,
-val a5: Double,
-val a6: Double,
-val a7: Double,
-val a8: Double,
-val inputSignalType: String,
-val kd: Boolean,
-val ks: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val tdelay: Double,
-val vcl: Double,
-val vcu: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val a1: Double,
+    val a2: Double,
+    val a3: Double,
+    val a4: Double,
+    val a5: Double,
+    val a6: Double,
+    val a7: Double,
+    val a8: Double,
+    val inputSignalType: String,
+    val kd: Boolean,
+    val ks: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val tdelay: Double,
+    val vcl: Double,
+    val vcu: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -438,38 +442,39 @@ extends
  *        Typical Value = -0.1.
  */
 case class Pss2B
-(override val sup: PowerSystemStabilizerDynamics,
-val a: Double,
-val inputSignal1Type: String,
-val inputSignal2Type: String,
-val ks1: Double,
-val ks2: Double,
-val ks3: Double,
-val ks4: Double,
-val m: Int,
-val n: Int,
-val t1: Double,
-val t10: Double,
-val t11: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t6: Double,
-val t7: Double,
-val t8: Double,
-val t9: Double,
-val ta: Double,
-val tb: Double,
-val tw1: Double,
-val tw2: Double,
-val tw3: Double,
-val tw4: Double,
-val vsi1max: Double,
-val vsi1min: Double,
-val vsi2max: Double,
-val vsi2min: Double,
-val vstmax: Double,
-val vstmin: Double
+(
+    override val sup: Element,
+    val a: Double,
+    val inputSignal1Type: String,
+    val inputSignal2Type: String,
+    val ks1: Double,
+    val ks2: Double,
+    val ks3: Double,
+    val ks4: Double,
+    val m: Int,
+    val n: Int,
+    val t1: Double,
+    val t10: Double,
+    val t11: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t6: Double,
+    val t7: Double,
+    val t8: Double,
+    val t9: Double,
+    val ta: Double,
+    val tb: Double,
+    val tw1: Double,
+    val tw2: Double,
+    val tw3: Double,
+    val tw4: Double,
+    val vsi1max: Double,
+    val vsi1min: Double,
+    val vsi2max: Double,
+    val vsi2min: Double,
+    val vstmax: Double,
+    val vstmin: Double
 )
 extends
     Element
@@ -587,25 +592,26 @@ extends
  * @param vcu Cutoff limiter (Vcu).
  */
 case class Pss2ST
-(override val sup: PowerSystemStabilizerDynamics,
-val inputSignal1Type: String,
-val inputSignal2Type: String,
-val k1: Double,
-val k2: Double,
-val lsmax: Double,
-val lsmin: Double,
-val t1: Double,
-val t10: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val t7: Double,
-val t8: Double,
-val t9: Double,
-val vcl: Double,
-val vcu: Double
+(
+    override val sup: Element,
+    val inputSignal1Type: String,
+    val inputSignal2Type: String,
+    val k1: Double,
+    val k2: Double,
+    val lsmax: Double,
+    val lsmin: Double,
+    val t1: Double,
+    val t10: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val t7: Double,
+    val t8: Double,
+    val t9: Double,
+    val vcl: Double,
+    val vcu: Double
 )
 extends
     Element
@@ -717,24 +723,25 @@ false = frequency.
  *        Typical Value = 0.1.
  */
 case class Pss5
-(override val sup: PowerSystemStabilizerDynamics,
-val ctw2: Boolean,
-val deadband: Double,
-val isfreq: Boolean,
-val kf: Double,
-val kpe: Double,
-val kpss: Double,
-val pmm: Double,
-val tl1: Double,
-val tl2: Double,
-val tl3: Double,
-val tl4: Double,
-val tpe: Double,
-val tw1: Double,
-val tw2: Double,
-val vadat: Boolean,
-val vsmn: Double,
-val vsmx: Double
+(
+    override val sup: Element,
+    val ctw2: Boolean,
+    val deadband: Double,
+    val isfreq: Boolean,
+    val kf: Double,
+    val kpe: Double,
+    val kpss: Double,
+    val pmm: Double,
+    val tl1: Double,
+    val tl2: Double,
+    val tl3: Double,
+    val tl4: Double,
+    val tpe: Double,
+    val tw1: Double,
+    val tw2: Double,
+    val vadat: Boolean,
+    val vsmn: Double,
+    val vsmx: Double
 )
 extends
     Element
@@ -826,18 +833,19 @@ extends
  *        Typical Value = 1.
  */
 case class PssELIN2
-(override val sup: PowerSystemStabilizerDynamics,
-val apss: Double,
-val ks1: Double,
-val ks2: Double,
-val ppss: Double,
-val psslim: Double,
-val ts1: Double,
-val ts2: Double,
-val ts3: Double,
-val ts4: Double,
-val ts5: Double,
-val ts6: Double
+(
+    override val sup: Element,
+    val apss: Double,
+    val ks1: Double,
+    val ks2: Double,
+    val ppss: Double,
+    val psslim: Double,
+    val ts1: Double,
+    val ts2: Double,
+    val ts3: Double,
+    val ts4: Double,
+    val ts5: Double,
+    val ts6: Double
 )
 extends
     Element
@@ -920,19 +928,20 @@ extends
  *        Typical Value = -0.05.
  */
 case class PssIEEE1A
-(override val sup: PowerSystemStabilizerDynamics,
-val a1: Double,
-val a2: Double,
-val inputSignalType: String,
-val ks: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val vrmax: Double,
-val vrmin: Double
+(
+    override val sup: Element,
+    val a1: Double,
+    val a2: Double,
+    val inputSignalType: String,
+    val ks: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val vrmax: Double,
+    val vrmin: Double
 )
 extends
     Element
@@ -1047,34 +1056,35 @@ extends
  *        Typical Value = -0.1.
  */
 case class PssIEEE2B
-(override val sup: PowerSystemStabilizerDynamics,
-val inputSignal1Type: String,
-val inputSignal2Type: String,
-val ks1: Double,
-val ks2: Double,
-val ks3: Double,
-val m: Int,
-val n: Int,
-val t1: Double,
-val t10: Double,
-val t11: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t6: Double,
-val t7: Double,
-val t8: Double,
-val t9: Double,
-val tw1: Double,
-val tw2: Double,
-val tw3: Double,
-val tw4: Double,
-val vsi1max: Double,
-val vsi1min: Double,
-val vsi2max: Double,
-val vsi2min: Double,
-val vstmax: Double,
-val vstmin: Double
+(
+    override val sup: Element,
+    val inputSignal1Type: String,
+    val inputSignal2Type: String,
+    val ks1: Double,
+    val ks2: Double,
+    val ks3: Double,
+    val m: Int,
+    val n: Int,
+    val t1: Double,
+    val t10: Double,
+    val t11: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t6: Double,
+    val t7: Double,
+    val t8: Double,
+    val t9: Double,
+    val tw1: Double,
+    val tw2: Double,
+    val tw3: Double,
+    val tw4: Double,
+    val vsi1max: Double,
+    val vsi1min: Double,
+    val vsi2max: Double,
+    val vsi2min: Double,
+    val vstmax: Double,
+    val vstmin: Double
 )
 extends
     Element
@@ -1203,26 +1213,27 @@ extends
  *        Typical Value = -0.1.
  */
 case class PssIEEE3B
-(override val sup: PowerSystemStabilizerDynamics,
-val a1: Double,
-val a2: Double,
-val a3: Double,
-val a4: Double,
-val a5: Double,
-val a6: Double,
-val a7: Double,
-val a8: Double,
-val inputSignal1Type: String,
-val inputSignal2Type: String,
-val ks1: Double,
-val ks2: Double,
-val t1: Double,
-val t2: Double,
-val tw1: Double,
-val tw2: Double,
-val tw3: Double,
-val vstmax: Double,
-val vstmin: Double
+(
+    override val sup: Element,
+    val a1: Double,
+    val a2: Double,
+    val a3: Double,
+    val a4: Double,
+    val a5: Double,
+    val a6: Double,
+    val a7: Double,
+    val a8: Double,
+    val inputSignal1Type: String,
+    val inputSignal2Type: String,
+    val ks1: Double,
+    val ks2: Double,
+    val t1: Double,
+    val t2: Double,
+    val tw1: Double,
+    val tw2: Double,
+    val tw3: Double,
+    val vstmax: Double,
+    val vstmin: Double
 )
 extends
     Element
@@ -1423,74 +1434,75 @@ extends
  *        Typical Value = -0.15.
  */
 case class PssIEEE4B
-(override val sup: PowerSystemStabilizerDynamics,
-val bwh1: Double,
-val bwh2: Double,
-val bwl1: Double,
-val bwl2: Double,
-val kh: Double,
-val kh1: Double,
-val kh11: Double,
-val kh17: Double,
-val kh2: Double,
-val ki: Double,
-val ki1: Double,
-val ki11: Double,
-val ki17: Double,
-val ki2: Double,
-val kl: Double,
-val kl1: Double,
-val kl11: Double,
-val kl17: Double,
-val kl2: Double,
-val omeganh1: Double,
-val omeganh2: Double,
-val omeganl1: Double,
-val omeganl2: Double,
-val th1: Double,
-val th10: Double,
-val th11: Double,
-val th12: Double,
-val th2: Double,
-val th3: Double,
-val th4: Double,
-val th5: Double,
-val th6: Double,
-val th7: Double,
-val th8: Double,
-val th9: Double,
-val ti1: Double,
-val ti10: Double,
-val ti11: Double,
-val ti12: Double,
-val ti2: Double,
-val ti3: Double,
-val ti4: Double,
-val ti5: Double,
-val ti6: Double,
-val ti7: Double,
-val ti8: Double,
-val ti9: Double,
-val tl1: Double,
-val tl10: Double,
-val tl11: Double,
-val tl12: Double,
-val tl2: Double,
-val tl3: Double,
-val tl4: Double,
-val tl5: Double,
-val tl6: Double,
-val tl7: Double,
-val tl8: Double,
-val tl9: Double,
-val vhmax: Double,
-val vhmin: Double,
-val vimax: Double,
-val vimin: Double,
-val vlmax: Double,
-val vlmin: Double,
-val vstmax: Double,
-val vstmin: Double
+(
+    override val sup: Element,
+    val bwh1: Double,
+    val bwh2: Double,
+    val bwl1: Double,
+    val bwl2: Double,
+    val kh: Double,
+    val kh1: Double,
+    val kh11: Double,
+    val kh17: Double,
+    val kh2: Double,
+    val ki: Double,
+    val ki1: Double,
+    val ki11: Double,
+    val ki17: Double,
+    val ki2: Double,
+    val kl: Double,
+    val kl1: Double,
+    val kl11: Double,
+    val kl17: Double,
+    val kl2: Double,
+    val omeganh1: Double,
+    val omeganh2: Double,
+    val omeganl1: Double,
+    val omeganl2: Double,
+    val th1: Double,
+    val th10: Double,
+    val th11: Double,
+    val th12: Double,
+    val th2: Double,
+    val th3: Double,
+    val th4: Double,
+    val th5: Double,
+    val th6: Double,
+    val th7: Double,
+    val th8: Double,
+    val th9: Double,
+    val ti1: Double,
+    val ti10: Double,
+    val ti11: Double,
+    val ti12: Double,
+    val ti2: Double,
+    val ti3: Double,
+    val ti4: Double,
+    val ti5: Double,
+    val ti6: Double,
+    val ti7: Double,
+    val ti8: Double,
+    val ti9: Double,
+    val tl1: Double,
+    val tl10: Double,
+    val tl11: Double,
+    val tl12: Double,
+    val tl2: Double,
+    val tl3: Double,
+    val tl4: Double,
+    val tl5: Double,
+    val tl6: Double,
+    val tl7: Double,
+    val tl8: Double,
+    val tl9: Double,
+    val vhmax: Double,
+    val vhmin: Double,
+    val vimax: Double,
+    val vimin: Double,
+    val vlmax: Double,
+    val vlmin: Double,
+    val vstmax: Double,
+    val vstmin: Double
 )
 extends
     Element
@@ -1682,18 +1694,19 @@ extends
  *        Typical Value = 0.2.
  */
 case class PssPTIST1
-(override val sup: PowerSystemStabilizerDynamics,
-val dtc: Double,
-val dtf: Double,
-val dtp: Double,
-val k: Double,
-val m: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val tf: Double,
-val tp: Double
+(
+    override val sup: Element,
+    val dtc: Double,
+    val dtf: Double,
+    val dtp: Double,
+    val k: Double,
+    val m: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val tf: Double,
+    val tp: Double
 )
 extends
     Element
@@ -1800,41 +1813,42 @@ true = produce analog output
  *        Typical Value = 0.2.
  */
 case class PssPTIST3
-(override val sup: PowerSystemStabilizerDynamics,
-val a0: Double,
-val a1: Double,
-val a2: Double,
-val a3: Double,
-val a4: Double,
-val a5: Double,
-val al: Double,
-val athres: Double,
-val b0: Double,
-val b1: Double,
-val b2: Double,
-val b3: Double,
-val b4: Double,
-val b5: Double,
-val dl: Double,
-val dtc: Double,
-val dtf: Double,
-val dtp: Double,
-val isw: Boolean,
-val k: Double,
-val lthres: Double,
-val m: Double,
-val nav: Double,
-val ncl: Double,
-val ncr: Double,
-val pmin: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val tf: Double,
-val tp: Double
+(
+    override val sup: Element,
+    val a0: Double,
+    val a1: Double,
+    val a2: Double,
+    val a3: Double,
+    val a4: Double,
+    val a5: Double,
+    val al: Double,
+    val athres: Double,
+    val b0: Double,
+    val b1: Double,
+    val b2: Double,
+    val b3: Double,
+    val b4: Double,
+    val b5: Double,
+    val dl: Double,
+    val dtc: Double,
+    val dtf: Double,
+    val dtp: Double,
+    val isw: Boolean,
+    val k: Double,
+    val lthres: Double,
+    val m: Double,
+    val nav: Double,
+    val ncl: Double,
+    val ncr: Double,
+    val pmin: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val tf: Double,
+    val tp: Double
 )
 extends
     Element
@@ -1949,18 +1963,19 @@ extends
  * @param vsmin Limiter (Vsmin).
  */
 case class PssSB4
-(override val sup: PowerSystemStabilizerDynamics,
-val kx: Double,
-val ta: Double,
-val tb: Double,
-val tc: Double,
-val td: Double,
-val te: Double,
-val tt: Double,
-val tx1: Double,
-val tx2: Double,
-val vsmax: Double,
-val vsmin: Double
+(
+    override val sup: Element,
+    val kx: Double,
+    val ta: Double,
+    val tb: Double,
+    val tc: Double,
+    val td: Double,
+    val te: Double,
+    val tt: Double,
+    val tx1: Double,
+    val tx2: Double,
+    val vsmax: Double,
+    val vsmin: Double
 )
 extends
     Element
@@ -2044,20 +2059,21 @@ extends
  *        Typical Value = -0.1.
  */
 case class PssSH
-(override val sup: PowerSystemStabilizerDynamics,
-val k: Double,
-val k0: Double,
-val k1: Double,
-val k2: Double,
-val k3: Double,
-val k4: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val td: Double,
-val vsmax: Double,
-val vsmin: Double
+(
+    override val sup: Element,
+    val k: Double,
+    val k0: Double,
+    val k1: Double,
+    val k2: Double,
+    val k3: Double,
+    val k4: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val td: Double,
+    val vsmax: Double,
+    val vsmin: Double
 )
 extends
     Element
@@ -2141,18 +2157,19 @@ extends
  *        Typical Value = -0.4.
  */
 case class PssSK
-(override val sup: PowerSystemStabilizerDynamics,
-val k1: Double,
-val k2: Double,
-val k3: Double,
-val t1: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val vsmax: Double,
-val vsmin: Double
+(
+    override val sup: Element,
+    val k1: Double,
+    val k2: Double,
+    val k3: Double,
+    val t1: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val vsmax: Double,
+    val vsmin: Double
 )
 extends
     Element
@@ -2228,25 +2245,26 @@ extends
  * @param vsmin Minimum output signal (Vsmin).
  */
 case class PssWECC
-(override val sup: PowerSystemStabilizerDynamics,
-val inputSignal1Type: String,
-val inputSignal2Type: String,
-val k1: Double,
-val k2: Double,
-val t1: Double,
-val t10: Double,
-val t2: Double,
-val t3: Double,
-val t4: Double,
-val t5: Double,
-val t6: Double,
-val t7: Double,
-val t8: Double,
-val t9: Double,
-val vcl: Double,
-val vcu: Double,
-val vsmax: Double,
-val vsmin: Double
+(
+    override val sup: Element,
+    val inputSignal1Type: String,
+    val inputSignal2Type: String,
+    val k1: Double,
+    val k2: Double,
+    val t1: Double,
+    val t10: Double,
+    val t2: Double,
+    val t3: Double,
+    val t4: Double,
+    val t5: Double,
+    val t6: Double,
+    val t7: Double,
+    val t8: Double,
+    val t9: Double,
+    val vcl: Double,
+    val vcu: Double,
+    val vsmax: Double,
+    val vsmin: Double
 )
 extends
     Element

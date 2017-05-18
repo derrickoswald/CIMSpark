@@ -18,9 +18,10 @@ import ch.ninecode.cim.Context
  * @param ReportingGroup The reporting group to which this bus name marker belongs.
  */
 case class BusNameMarker
-(override val sup: IdentifiedObject,
-val priority: Int,
-val ReportingGroup: String
+(
+    override val sup: Element,
+    val priority: Int,
+    val ReportingGroup: String
 )
 extends
     Element
@@ -61,8 +62,9 @@ extends
  * @param DCEquipmentContainer
  */
 case class DCTopologicalNode
-(override val sup: IdentifiedObject,
-val DCEquipmentContainer: String
+(
+    override val sup: Element,
+    val DCEquipmentContainer: String
 )
 extends
     Element
@@ -103,8 +105,9 @@ extends
  *        Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.
  */
 case class TopologicalIsland
-(override val sup: IdentifiedObject,
-val AngleRefTopologicalNode: String
+(
+    override val sup: Element,
+    val AngleRefTopologicalNode: String
 )
 extends
     Element
@@ -155,16 +158,17 @@ extends
  * @param TopologicalIsland A topological node belongs to a topological island.
  */
 case class TopologicalNode
-(override val sup: IdentifiedObject,
-val pInjection: Double,
-val qInjection: Double,
-val AngleRefTopologicalIsland: String,
-val BaseVoltage: String,
-val ConnectivityNodeContainer: String,
-val ReportingGroup: String,
-val SvInjection: String,
-val SvVoltage: String,
-val TopologicalIsland: String
+(
+    override val sup: Element,
+    val pInjection: Double,
+    val qInjection: Double,
+    val AngleRefTopologicalIsland: String,
+    val BaseVoltage: String,
+    val ConnectivityNodeContainer: String,
+    val ReportingGroup: String,
+    val SvInjection: String,
+    val SvVoltage: String,
+    val TopologicalIsland: String
 )
 extends
     Element

@@ -17,10 +17,11 @@ import ch.ninecode.cim.Context
  * @param VoltageAdjusterDynamics Voltage adjuster model associated with this Power Factor or VA controller Type I model.
  */
 case class PFVArControllerType1Dynamics
-(override val sup: DynamicsFunctionBlock,
-val ExcitationSystemDynamics: String,
-val RemoteInputSignal: String,
-val VoltageAdjusterDynamics: String
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String,
+    val RemoteInputSignal: String,
+    val VoltageAdjusterDynamics: String
 )
 extends
     Element
@@ -75,15 +76,16 @@ true = overexcited
  * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
  */
 case class PFVArType1IEEEPFController
-(override val sup: PFVArControllerType1Dynamics,
-val ovex: Boolean,
-val tpfc: Double,
-val vitmin: Double,
-val vpf: Double,
-val vpfcbw: Double,
-val vpfref: Double,
-val vvtmax: Double,
-val vvtmin: Double
+(
+    override val sup: Element,
+    val ovex: Boolean,
+    val tpfc: Double,
+    val vitmin: Double,
+    val vpf: Double,
+    val vpfcbw: Double,
+    val vpfref: Double,
+    val vvtmax: Double,
+    val vvtmin: Double
 )
 extends
     Element
@@ -144,13 +146,14 @@ extends
  * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
  */
 case class PFVArType1IEEEVArController
-(override val sup: PFVArControllerType1Dynamics,
-val tvarc: Double,
-val vvar: Double,
-val vvarcbw: Double,
-val vvarref: Double,
-val vvtmax: Double,
-val vvtmin: Double
+(
+    override val sup: Element,
+    val tvarc: Double,
+    val vvar: Double,
+    val vvarcbw: Double,
+    val vvarref: Double,
+    val vvtmax: Double,
+    val vvtmin: Double
 )
 extends
     Element

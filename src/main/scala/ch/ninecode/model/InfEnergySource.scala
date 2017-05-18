@@ -10,7 +10,8 @@ import ch.ninecode.cim.Context
  * @param sup Reference to the superclass object.
  */
 case class EnergySchedulingType
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element

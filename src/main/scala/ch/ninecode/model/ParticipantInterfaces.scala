@@ -14,8 +14,9 @@ import ch.ninecode.cim.Context
  * @param actionName Action name type for the action request.
  */
 case class ActionRequest
-(override val sup: BasicElement,
-val actionName: String
+(
+    override val sup: Element,
+    val actionName: String
 )
 extends
     Element
@@ -56,8 +57,9 @@ extends
  *        Attribute Usage: This is Scheduled demand MW in Day Ahead
  */
 case class AreaLoadBid
-(override val sup: Bid,
-val demandBidMW: Double
+(
+    override val sup: Element,
+    val demandBidMW: Double
 )
 extends
     Element
@@ -99,11 +101,12 @@ extends
  * @param MktUserAttribute
  */
 case class AttributeProperty
-(override val sup: BasicElement,
-val propertyName: String,
-val propertyValue: String,
-val sequence: String,
-val MktUserAttribute: String
+(
+    override val sup: Element,
+    val propertyName: String,
+    val propertyValue: String,
+    val sequence: String,
+    val MktUserAttribute: String
 )
 extends
     Element
@@ -154,14 +157,15 @@ extends
  * @param SchedulingCoordinator
  */
 case class Bid
-(override val sup: Document,
-val marketType: String,
-val startTime: String,
-val stopTime: String,
-val ActionRequest: String,
-val EnergyMarket: String,
-val MarketParticipant: String,
-val SchedulingCoordinator: String
+(
+    override val sup: Element,
+    val marketType: String,
+    val startTime: String,
+    val stopTime: String,
+    val ActionRequest: String,
+    val EnergyMarket: String,
+    val MarketParticipant: String,
+    val SchedulingCoordinator: String
 )
 extends
     Element
@@ -214,10 +218,11 @@ extends
  * @param ProductBid
  */
 case class BidDistributionFactor
-(override val sup: BasicElement,
-val timeIntervalEnd: String,
-val timeIntervalStart: String,
-val ProductBid: String
+(
+    override val sup: Element,
+    val timeIntervalEnd: String,
+    val timeIntervalStart: String,
+    val ProductBid: String
 )
 extends
     Element
@@ -268,16 +273,17 @@ extends
  * @param MarketProduct
  */
 case class BidError
-(override val sup: IdentifiedObject,
-val componentType: String,
-val endTime: String,
-val errMessage: String,
-val errPriority: Int,
-val logTimeStamp: String,
-val msgLevel: Int,
-val ruleID: Int,
-val startTime: String,
-val MarketProduct: String
+(
+    override val sup: Element,
+    val componentType: String,
+    val endTime: String,
+    val errMessage: String,
+    val errPriority: Int,
+    val logTimeStamp: String,
+    val msgLevel: Int,
+    val ruleID: Int,
+    val startTime: String,
+    val MarketProduct: String
 )
 extends
     Element
@@ -332,8 +338,9 @@ extends
  * @param ProductBid
  */
 case class BidHourlyProductSchedule
-(override val sup: RegularIntervalSchedule,
-val ProductBid: String
+(
+    override val sup: Element,
+    val ProductBid: String
 )
 extends
     Element
@@ -372,8 +379,9 @@ extends
  * @param Bid
  */
 case class BidHourlySchedule
-(override val sup: RegularIntervalSchedule,
-val Bid: String
+(
+    override val sup: Element,
+    val Bid: String
 )
 extends
     Element
@@ -411,7 +419,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class BidPriceCurve
-(override val sup: Curve
+(
+    override val sup: Element
 )
 extends
     Element
@@ -461,11 +470,12 @@ I - Initial Bid;
  * @param ProductBid
  */
 case class BidPriceSchedule
-(override val sup: RegularIntervalSchedule,
-val bidType: String,
-val mitigationStatus: String,
-val BidPriceCurve: String,
-val ProductBid: String
+(
+    override val sup: Element,
+    val bidType: String,
+    val mitigationStatus: String,
+    val BidPriceCurve: String,
+    val ProductBid: String
 )
 extends
     Element
@@ -529,22 +539,23 @@ extends
  * @param TransmissionContractRight
  */
 case class BidSelfSched
-(override val sup: RegularIntervalSchedule,
-val balancingFlag: String,
-val bidType: String,
-val priorityFlag: String,
-val pumpSelfSchedMw: Double,
-val referenceType: String,
-val selfSchedMw: Double,
-val selfSchedSptResource: String,
-val selfSchedType: String,
-val updateType: String,
-val wheelingTransactionReference: String,
-val AdjacentCASet: String,
-val HostControlArea: String,
-val ProductBid: String,
-val SubControlArea: String,
-val TransmissionContractRight: String
+(
+    override val sup: Element,
+    val balancingFlag: String,
+    val bidType: String,
+    val priorityFlag: String,
+    val pumpSelfSchedMw: Double,
+    val referenceType: String,
+    val selfSchedMw: Double,
+    val selfSchedSptResource: String,
+    val selfSchedType: String,
+    val updateType: String,
+    val wheelingTransactionReference: String,
+    val AdjacentCASet: String,
+    val HostControlArea: String,
+    val ProductBid: String,
+    val SubControlArea: String,
+    val TransmissionContractRight: String
 )
 extends
     Element
@@ -611,7 +622,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class BidSet
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -656,16 +668,17 @@ extends
  * @param BillDeterminants A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
  */
 case class ChargeComponent
-(override val sup: IdentifiedObject,
-val deleteStatus: String,
-val effectiveDate: String,
-val equation: String,
-val message: String,
-val roundOff: String,
-val sum: String,
-val terminationDate: String,
-val typ: String,
-val BillDeterminants: List[String]
+(
+    override val sup: Element,
+    val deleteStatus: String,
+    val effectiveDate: String,
+    val equation: String,
+    val message: String,
+    val roundOff: String,
+    val sum: String,
+    val terminationDate: String,
+    val typ: String,
+    val BillDeterminants: List[String]
 )
 extends
     Element
@@ -725,12 +738,13 @@ extends
  * @param MktUserAttribute
  */
 case class ChargeGroup
-(override val sup: IdentifiedObject,
-val effectiveDate: String,
-val marketCode: String,
-val terminationDate: String,
-val ChargeGroupParent: String,
-val MktUserAttribute: List[String]
+(
+    override val sup: Element,
+    val effectiveDate: String,
+    val marketCode: String,
+    val terminationDate: String,
+    val ChargeGroupParent: String,
+    val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -788,17 +802,18 @@ extends
  * @param MktUserAttribute
  */
 case class ChargeType
-(override val sup: Document,
-val chargeOrder: String,
-val chargeVersion: String,
-val effectiveDate: String,
-val factor: String,
-val frequencyType: String,
-val terminationDate: String,
-val totalInterval: String,
-val ChargeComponents: List[String],
-val ChargeGroup: List[String],
-val MktUserAttribute: List[String]
+(
+    override val sup: Element,
+    val chargeOrder: String,
+    val chargeVersion: String,
+    val effectiveDate: String,
+    val factor: String,
+    val frequencyType: String,
+    val terminationDate: String,
+    val totalInterval: String,
+    val ChargeComponents: List[String],
+    val ChargeGroup: List[String],
+    val MktUserAttribute: List[String]
 )
 extends
     Element
@@ -870,17 +885,18 @@ out of sequence
  * @param RegisteredResource
  */
 case class DispatchInstReply
-(override val sup: IdentifiedObject,
-val acceptMW: Double,
-val acceptStatus: String,
-val certificationName: String,
-val clearedMW: Double,
-val instructionTime: String,
-val instructionType: String,
-val passIndicator: String,
-val receivedTime: String,
-val startTime: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val acceptMW: Double,
+    val acceptStatus: String,
+    val certificationName: String,
+    val clearedMW: Double,
+    val instructionTime: String,
+    val instructionType: String,
+    val passIndicator: String,
+    val receivedTime: String,
+    val startTime: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -936,7 +952,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class EnergyPriceCurve
-(override val sup: BasicElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1000,29 +1017,30 @@ extends
  * @param StartUpTimeCurve
  */
 case class GeneratingBid
-(override val sup: ResourceBid,
-val combinedCycleUnitOffer: String,
-val downTimeMax: Double,
-val installedCapacity: Double,
-val lowerRampRate: Double,
-val maxEmergencyMW: Double,
-val maximumEconomicMW: Double,
-val minEmergencyMW: Double,
-val minimumEconomicMW: Double,
-val noLoadCost: Double,
-val notificationTime: Double,
-val operatingMode: String,
-val raiseRampRate: Double,
-val rampCurveType: Int,
-val startUpRampRate: Double,
-val startUpType: Int,
-val startupCost: Double,
-val upTimeMax: Double,
-val BidSet: String,
-val NotificationTimeCurve: String,
-val RegisteredGenerator: String,
-val StartUpCostCurve: String,
-val StartUpTimeCurve: String
+(
+    override val sup: Element,
+    val combinedCycleUnitOffer: String,
+    val downTimeMax: Double,
+    val installedCapacity: Double,
+    val lowerRampRate: Double,
+    val maxEmergencyMW: Double,
+    val maximumEconomicMW: Double,
+    val minEmergencyMW: Double,
+    val minimumEconomicMW: Double,
+    val noLoadCost: Double,
+    val notificationTime: Double,
+    val operatingMode: String,
+    val raiseRampRate: Double,
+    val rampCurveType: Int,
+    val startUpRampRate: Double,
+    val startUpType: Int,
+    val startupCost: Double,
+    val upTimeMax: Double,
+    val BidSet: String,
+    val NotificationTimeCurve: String,
+    val RegisteredGenerator: String,
+    val StartUpCostCurve: String,
+    val StartUpTimeCurve: String
 )
 extends
     Element
@@ -1104,8 +1122,9 @@ extends
  * @param value Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
  */
 case class HourlyPreDispatchSchedule
-(override val sup: BidHourlySchedule,
-val value: Boolean
+(
+    override val sup: Element,
+    val value: Boolean
 )
 extends
     Element
@@ -1145,9 +1164,10 @@ extends
  * @param RegisteredInterTie
  */
 case class InterTieBid
-(override val sup: ResourceBid,
-val minHourlyBlock_1: Int,
-val RegisteredInterTie: String
+(
+    override val sup: Element,
+    val minHourlyBlock_1: Int,
+    val RegisteredInterTie: String
 )
 extends
     Element
@@ -1195,13 +1215,14 @@ extends
  * @param RegisteredInterTie
  */
 case class InterTieDispatchResponse
-(override val sup: BasicElement,
-val acceptMW: Double,
-val acceptStatus: String,
-val clearedMW: Double,
-val passIndicator: String,
-val startTime: String,
-val RegisteredInterTie: String
+(
+    override val sup: Element,
+    val acceptMW: Double,
+    val acceptStatus: String,
+    val clearedMW: Double,
+    val passIndicator: String,
+    val startTime: String,
+    val RegisteredInterTie: String
 )
 extends
     Element
@@ -1268,23 +1289,24 @@ extends
  * @param RegisteredLoad
  */
 case class LoadBid
-(override val sup: ResourceBid,
-val dropRampRate: Double,
-val loadRedInitiationCost: Double,
-val loadRedInitiationTime: Double,
-val marketDate: String,
-val meteredValue: Boolean,
-val minLoad: Double,
-val minLoadReduction: Double,
-val minLoadReductionCost: Double,
-val minLoadReductionInterval: Double,
-val minTimeBetLoadRed: Double,
-val pickUpRampRate: Double,
-val priceSetting: Boolean,
-val reqNoticeTime: Double,
-val shutdownCost: Double,
-val AreaLoadBid: String,
-val RegisteredLoad: String
+(
+    override val sup: Element,
+    val dropRampRate: Double,
+    val loadRedInitiationCost: Double,
+    val loadRedInitiationTime: Double,
+    val marketDate: String,
+    val meteredValue: Boolean,
+    val minLoad: Double,
+    val minLoadReduction: Double,
+    val minLoadReductionCost: Double,
+    val minLoadReductionInterval: Double,
+    val minTimeBetLoadRed: Double,
+    val pickUpRampRate: Double,
+    val priceSetting: Boolean,
+    val reqNoticeTime: Double,
+    val shutdownCost: Double,
+    val AreaLoadBid: String,
+    val RegisteredLoad: String
 )
 extends
     Element
@@ -1358,12 +1380,13 @@ extends
  * @param RegisteredResource
  */
 case class LoadFollowingInst
-(override val sup: BasicElement,
-val endTime: String,
-val loadFollowingMW: Double,
-val mssInstructionID: String,
-val startTime: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val endTime: String,
+    val loadFollowingMW: Double,
+    val mssInstructionID: String,
+    val startTime: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -1411,8 +1434,9 @@ extends
  * @param LoadBid
  */
 case class LoadReductionPriceCurve
-(override val sup: Curve,
-val LoadBid: String
+(
+    override val sup: Element,
+    val LoadBid: String
 )
 extends
     Element
@@ -1461,16 +1485,17 @@ extends
  *        A ChargeType can associate to 0-n MajorChargeGroup.
  */
 case class MajorChargeGroup
-(override val sup: IdentifiedObject,
-val effectiveDate: String,
-val frequencyType: String,
-val invoiceType: String,
-val requireAutorun: String,
-val revisionNumber: String,
-val runType: String,
-val runVersion: String,
-val terminationDate: String,
-val ChargeType: List[String]
+(
+    override val sup: Element,
+    val effectiveDate: String,
+    val frequencyType: String,
+    val invoiceType: String,
+    val requireAutorun: String,
+    val revisionNumber: String,
+    val runType: String,
+    val runVersion: String,
+    val terminationDate: String,
+    val ChargeType: List[String]
 )
 extends
     Element
@@ -1528,11 +1553,12 @@ extends
  * @param MajorChargeGroup
  */
 case class MarketScheduledEvent
-(override val sup: IdentifiedObject,
-val category: String,
-val duration: Double,
-val status: String,
-val MajorChargeGroup: String
+(
+    override val sup: Element,
+    val category: String,
+    val duration: Double,
+    val status: String,
+    val MajorChargeGroup: String
 )
 extends
     Element
@@ -1577,7 +1603,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class NotificationTimeCurve
-(override val sup: Curve
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1615,8 +1642,9 @@ extends
  * @param value
  */
 case class OpenTieSchedule
-(override val sup: BidHourlySchedule,
-val value: Boolean
+(
+    override val sup: Element,
+    val value: Boolean
 )
 extends
     Element
@@ -1656,9 +1684,10 @@ extends
  * @param MarketProduct
  */
 case class ProductBid
-(override val sup: IdentifiedObject,
-val Bid: String,
-val MarketProduct: String
+(
+    override val sup: Element,
+    val Bid: String,
+    val MarketProduct: String
 )
 extends
     Element
@@ -1700,8 +1729,9 @@ extends
  * @param value
  */
 case class PumpingCostSchedule
-(override val sup: BidHourlyProductSchedule,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -1741,8 +1771,9 @@ extends
  * @param value
  */
 case class PumpingLevelSchedule
-(override val sup: BidHourlyProductSchedule,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -1782,8 +1813,9 @@ extends
  * @param value
  */
 case class PumpingShutDownCostSchedule
-(override val sup: BidHourlyProductSchedule,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -1828,13 +1860,14 @@ extends
  * @param LoadBid
  */
 case class RampRateCurve
-(override val sup: Curve,
-val condition: String,
-val constraintRampType: String,
-val rampRateType: String,
-val GeneratingBid: String,
-val InterTieBid: String,
-val LoadBid: String
+(
+    override val sup: Element,
+    val condition: String,
+    val constraintRampType: String,
+    val rampRateType: String,
+    val GeneratingBid: String,
+    val InterTieBid: String,
+    val LoadBid: String
 )
 extends
     Element
@@ -1915,23 +1948,24 @@ extends
  * @param BidError
  */
 case class ResourceBid
-(override val sup: Bid,
-val aggregationFlag: Int,
-val bidStatus: String,
-val commodityType: String,
-val contingencyAvailFlag: String,
-val createdISO: String,
-val energyMaxDay: Double,
-val energyMinDay: Double,
-val marketSepFlag: String,
-val minDispatchTime: Int,
-val resourceLoadingType: Int,
-val shutDownsMaxDay: Int,
-val shutDownsMaxWeek: Int,
-val startUpsMaxDay: Int,
-val startUpsMaxWeek: Int,
-val virtual: Boolean,
-val BidError: List[String]
+(
+    override val sup: Element,
+    val aggregationFlag: Int,
+    val bidStatus: String,
+    val commodityType: String,
+    val contingencyAvailFlag: String,
+    val createdISO: String,
+    val energyMaxDay: Double,
+    val energyMinDay: Double,
+    val marketSepFlag: String,
+    val minDispatchTime: Int,
+    val resourceLoadingType: Int,
+    val shutDownsMaxDay: Int,
+    val shutDownsMaxWeek: Int,
+    val startUpsMaxDay: Int,
+    val startUpsMaxWeek: Int,
+    val virtual: Boolean,
+    val BidError: List[String]
 )
 extends
     Element
@@ -2001,8 +2035,9 @@ extends
  * @param RegisteredGenerators
  */
 case class StartUpCostCurve
-(override val sup: Curve,
-val RegisteredGenerators: List[String]
+(
+    override val sup: Element,
+    val RegisteredGenerators: List[String]
 )
 extends
     Element
@@ -2042,8 +2077,9 @@ extends
  * @param RegisteredGenerator
  */
 case class StartUpTimeCurve
-(override val sup: Curve,
-val RegisteredGenerator: String
+(
+    override val sup: Element,
+    val RegisteredGenerator: String
 )
 extends
     Element
@@ -2106,30 +2142,31 @@ If tradeType = IST, The amount of an Energy Trade.
  * @param TradeProduct
  */
 case class Trade
-(override val sup: IdentifiedObject,
-val adjustedTradeQuantity: Double,
-val counterTradeQuantity: Double,
-val dependOnTradeName: String,
-val lastModified: String,
-val marketType: String,
-val startTime: String,
-val stopTime: String,
-val submitFromSchedulingCoordinator: String,
-val submitFromTimeStamp: String,
-val submitFromUser: String,
-val submitToSchedulingCoordinator: String,
-val submitToTimeStamp: String,
-val submitToUser_1: String,
-val tradeQuantity: Double,
-val tradeStatus: String,
-val updateTimeStamp: String,
-val updateUser: String,
-val ActionRequest: String,
-val From_SC: String,
-val Pnode: String,
-val RegisteredGenerator: String,
-val To_SC: String,
-val TradeProduct: String
+(
+    override val sup: Element,
+    val adjustedTradeQuantity: Double,
+    val counterTradeQuantity: Double,
+    val dependOnTradeName: String,
+    val lastModified: String,
+    val marketType: String,
+    val startTime: String,
+    val stopTime: String,
+    val submitFromSchedulingCoordinator: String,
+    val submitFromTimeStamp: String,
+    val submitFromUser: String,
+    val submitToSchedulingCoordinator: String,
+    val submitToTimeStamp: String,
+    val submitToUser_1: String,
+    val tradeQuantity: Double,
+    val tradeStatus: String,
+    val updateTimeStamp: String,
+    val updateUser: String,
+    val ActionRequest: String,
+    val From_SC: String,
+    val Pnode: String,
+    val RegisteredGenerator: String,
+    val To_SC: String,
+    val TradeProduct: String
 )
 extends
     Element
@@ -2218,14 +2255,15 @@ extends
  * @param Trade
  */
 case class TradeError
-(override val sup: IdentifiedObject,
-val endTime: String,
-val errMessage: String,
-val errPriority: Int,
-val logTimeStamp: String,
-val ruleID: Int,
-val startTime: String,
-val Trade: String
+(
+    override val sup: Element,
+    val endTime: String,
+    val errMessage: String,
+    val errPriority: Int,
+    val logTimeStamp: String,
+    val ruleID: Int,
+    val startTime: String,
+    val Trade: String
 )
 extends
     Element
@@ -2293,9 +2331,10 @@ AST - Ancilliary Services Trade;
  *        UCT - Unit Commitment Trade
  */
 case class TradeProduct
-(override val sup: BasicElement,
-val tradeProductType: String,
-val tradeType: String
+(
+    override val sup: Element,
+    val tradeProductType: String,
+    val tradeType: String
 )
 extends
     Element
@@ -2342,13 +2381,14 @@ extends
  * @param TransmissionReservation
  */
 case class TransactionBid
-(override val sup: Bid,
-val demandTransaction: Boolean,
-val dispatchable: Boolean,
-val payCongestion: Boolean,
-val Delivery_Pnode: String,
-val Receipt_Pnode: String,
-val TransmissionReservation: String
+(
+    override val sup: Element,
+    val demandTransaction: Boolean,
+    val dispatchable: Boolean,
+    val payCongestion: Boolean,
+    val Delivery_Pnode: String,
+    val Receipt_Pnode: String,
+    val TransmissionReservation: String
 )
 extends
     Element

@@ -23,14 +23,15 @@ import ch.ninecode.cim.Context
  * @param Flowgate
  */
 case class CRR
-(override val sup: Document,
-val cRRcategory: String,
-val cRRtype: String,
-val hedgeType: String,
-val timeOfUse: String,
-val tradeSliceID: String,
-val CRRMarket: String,
-val Flowgate: String
+(
+    override val sup: Element,
+    val cRRcategory: String,
+    val cRRtype: String,
+    val hedgeType: String,
+    val timeOfUse: String,
+    val tradeSliceID: String,
+    val CRRMarket: String,
+    val Flowgate: String
 )
 extends
     Element
@@ -84,11 +85,12 @@ extends
  * @param MktOrganisation
  */
 case class CRROrgRole
-(override val sup: OrganisationRole,
-val kind: String,
-val status: String,
-val CRR: String,
-val MktOrganisation: String
+(
+    override val sup: Element,
+    val kind: String,
+    val status: String,
+    val CRR: String,
+    val MktOrganisation: String
 )
 extends
     Element
@@ -139,13 +141,14 @@ extends
  * @param CRR
  */
 case class CRRSegment
-(override val sup: IdentifiedObject,
-val amount: Double,
-val clearingPrice: Double,
-val endDateTime: String,
-val quantity: Double,
-val startDateTime: String,
-val CRR: String
+(
+    override val sup: Element,
+    val amount: Double,
+    val clearingPrice: Double,
+    val endDateTime: String,
+    val quantity: Double,
+    val startDateTime: String,
+    val CRR: String
 )
 extends
     Element

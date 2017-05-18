@@ -15,8 +15,9 @@ import ch.ninecode.cim.Context
  * @param intervalStartTime The start of the time interval for which requirement is defined.
  */
 case class ASRequirements
-(override val sup: BasicElement,
-val intervalStartTime: String
+(
+    override val sup: Element,
+    val intervalStartTime: String
 )
 extends
     Element
@@ -56,9 +57,10 @@ extends
  * @param MktAnalogValue
  */
 case class AnalogMeasurementValueQuality
-(override val sup: MeasurementValueQuality,
-val scadaQualityCode: String,
-val MktAnalogValue: String
+(
+    override val sup: Element,
+    val scadaQualityCode: String,
+    val MktAnalogValue: String
 )
 extends
     Element
@@ -102,11 +104,12 @@ extends
  * @param TACArea
  */
 case class AreaLoadCurve
-(override val sup: RegularIntervalSchedule,
-val forecastType: String,
-val AggregateNode: String,
-val MktLoadArea: String,
-val TACArea: String
+(
+    override val sup: Element,
+    val forecastType: String,
+    val AggregateNode: String,
+    val MktLoadArea: String,
+    val TACArea: String
 )
 extends
     Element
@@ -152,8 +155,9 @@ extends
  * @param SecurityConstraintSum
  */
 case class BaseCaseConstraintLimit
-(override val sup: Curve,
-val SecurityConstraintSum: String
+(
+    override val sup: Element,
+    val SecurityConstraintSum: String
 )
 extends
     Element
@@ -199,13 +203,14 @@ extends
  * @param shortTermRating The Short Term Rating for the branch
  */
 case class BranchEndFlow
-(override val sup: BasicElement,
-val loadDumpRating: Double,
-val longTermRating: Double,
-val mVARFlow: Double,
-val mwFlow: Double,
-val normalRating: Double,
-val shortTermRating: Double
+(
+    override val sup: Element,
+    val loadDumpRating: Double,
+    val longTermRating: Double,
+    val mVARFlow: Double,
+    val mwFlow: Double,
+    val normalRating: Double,
+    val shortTermRating: Double
 )
 extends
     Element
@@ -256,10 +261,11 @@ extends
  * @param SecurityConstraintSum
  */
 case class ConstraintTerm
-(override val sup: IdentifiedObject,
-val factor: String,
-val function: String,
-val SecurityConstraintSum: String
+(
+    override val sup: Element,
+    val factor: String,
+    val function: String,
+    val SecurityConstraintSum: String
 )
 extends
     Element
@@ -305,10 +311,11 @@ extends
  * @param SecurityConstraintSum
  */
 case class ContingencyConstraintLimit
-(override val sup: Curve,
-val MWLimitSchedules: String,
-val MktContingency: String,
-val SecurityConstraintSum: String
+(
+    override val sup: Element,
+    val MWLimitSchedules: String,
+    val MktContingency: String,
+    val SecurityConstraintSum: String
 )
 extends
     Element
@@ -355,10 +362,11 @@ extends
  * @param MktControlArea
  */
 case class ControlAreaSolutionData
-(override val sup: BasicElement,
-val solvedInterchange: Double,
-val solvedLosses: Double,
-val MktControlArea: String
+(
+    override val sup: Element,
+    val solvedInterchange: Double,
+    val solvedLosses: Double,
+    val MktControlArea: String
 )
 extends
     Element
@@ -409,12 +417,13 @@ A Default Energy Bid is a monotonically increasing staircase function consisting
  * @param RegisteredResource
  */
 case class DefaultBid
-(override val sup: Bid,
-val bidType: String,
-val minLoadCost: Double,
-val peakFlag: String,
-val DefaultBidCurve: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val bidType: String,
+    val minLoadCost: Double,
+    val peakFlag: String,
+    val DefaultBidCurve: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -463,10 +472,11 @@ extends
  * @param DefaultBid
  */
 case class DefaultBidCurve
-(override val sup: Curve,
-val curveType: String,
-val debAdderFlag: String,
-val DefaultBid: String
+(
+    override val sup: Element,
+    val curveType: String,
+    val debAdderFlag: String,
+    val DefaultBid: String
 )
 extends
     Element
@@ -509,8 +519,9 @@ extends
  * @param bidSegmentCalcType Type of calculation basis used to define the default bid segment curve.
  */
 case class DefaultBidCurveData
-(override val sup: CurveData,
-val bidSegmentCalcType: String
+(
+    override val sup: Element,
+    val bidSegmentCalcType: String
 )
 extends
     Element
@@ -550,8 +561,9 @@ extends
  * @param SecurityConstraintSum
  */
 case class DefaultConstraintLimit
-(override val sup: Curve,
-val SecurityConstraintSum: String
+(
+    override val sup: Element,
+    val SecurityConstraintSum: String
 )
 extends
     Element
@@ -594,10 +606,11 @@ extends
  * @param MktDiscreteValue
  */
 case class DiscreteMeasurementValueQuality
-(override val sup: MeasurementValueQuality,
-val manualReplaceIndicator: Boolean,
-val removeFromOperationIndicator: Boolean,
-val MktDiscreteValue: String
+(
+    override val sup: Element,
+    val manualReplaceIndicator: Boolean,
+    val removeFromOperationIndicator: Boolean,
+    val MktDiscreteValue: String
 )
 extends
     Element
@@ -646,13 +659,14 @@ extends
  * @param SysLoadDistribuFactor
  */
 case class DistributionFactorSet
-(override val sup: BasicElement,
-val intervalEndTime: String,
-val intervalStartTime: String,
-val marketType: String,
-val GenDistributionFactor: List[String],
-val LoadDistributionFactor: List[String],
-val SysLoadDistribuFactor: List[String]
+(
+    override val sup: Element,
+    val intervalEndTime: String,
+    val intervalStartTime: String,
+    val marketType: String,
+    val GenDistributionFactor: List[String],
+    val LoadDistributionFactor: List[String],
+    val SysLoadDistribuFactor: List[String]
 )
 extends
     Element
@@ -705,10 +719,11 @@ extends
  * @param MktEnergyConsumer
  */
 case class EnergyConsumerData
-(override val sup: BasicElement,
-val loadMVAR: Double,
-val loadMW: Double,
-val MktEnergyConsumer: String
+(
+    override val sup: Element,
+    val loadMVAR: Double,
+    val loadMW: Double,
+    val MktEnergyConsumer: String
 )
 extends
     Element
@@ -757,13 +772,14 @@ extends
  * @param RegisteredGenerator
  */
 case class EnergyPriceIndex
-(override val sup: IdentifiedObject,
-val endEffectiveDate: String,
-val energyPriceIndex: Double,
-val energyPriceIndexType: String,
-val lastModified: String,
-val startEffectiveDate: String,
-val RegisteredGenerator: String
+(
+    override val sup: Element,
+    val endEffectiveDate: String,
+    val energyPriceIndex: Double,
+    val energyPriceIndexType: String,
+    val lastModified: String,
+    val startEffectiveDate: String,
+    val RegisteredGenerator: String
 )
 extends
     Element
@@ -813,9 +829,10 @@ extends
  * @param TransactionBid
  */
 case class EnergyProfile
-(override val sup: Profile,
-val EnergyTransaction: String,
-val TransactionBid: String
+(
+    override val sup: Element,
+    val EnergyTransaction: String,
+    val TransactionBid: String
 )
 extends
     Element
@@ -871,21 +888,22 @@ extends
  * @param TransmissionReservation
  */
 case class EnergyTransaction
-(override val sup: Document,
-val capacityBacked: Boolean,
-val congestChargeMax: Double,
-val deliveryPointP: Double,
-val energyMin: Double,
-val firmInterchangeFlag: Boolean,
-val payCongestion: Boolean,
-val reason: String,
-val receiptPointP: Double,
-val state: String,
-val EnergyPriceCurves: List[String],
-val EnergyProduct: String,
-val Export_SubControlArea: String,
-val Import_SubControlArea: String,
-val TransmissionReservation: String
+(
+    override val sup: Element,
+    val capacityBacked: Boolean,
+    val congestChargeMax: Double,
+    val deliveryPointP: Double,
+    val energyMin: Double,
+    val firmInterchangeFlag: Boolean,
+    val payCongestion: Boolean,
+    val reason: String,
+    val receiptPointP: Double,
+    val state: String,
+    val EnergyPriceCurves: List[String],
+    val EnergyProduct: String,
+    val Export_SubControlArea: String,
+    val Import_SubControlArea: String,
+    val TransmissionReservation: String
 )
 extends
     Element
@@ -953,10 +971,11 @@ extends
  * @param IndividualPnode
  */
 case class GenDistributionFactor
-(override val sup: BasicElement,
-val factor: Double,
-val AggregatedPnode: String,
-val IndividualPnode: String
+(
+    override val sup: Element,
+    val factor: Double,
+    val AggregatedPnode: String,
+    val IndividualPnode: String
 )
 extends
     Element
@@ -1008,15 +1027,16 @@ extends
  * @param MktGeneratingUnit
  */
 case class GeneratingUnitDynamicValues
-(override val sup: BasicElement,
-val lossFactor: Double,
-val mVAR: Double,
-val maximumMW: Double,
-val minimumMW: Double,
-val mw: Double,
-val sensitivity: Double,
-val Flowgate: String,
-val MktGeneratingUnit: String
+(
+    override val sup: Element,
+    val lossFactor: Double,
+    val mVAR: Double,
+    val maximumMW: Double,
+    val minimumMW: Double,
+    val mw: Double,
+    val sensitivity: Double,
+    val Flowgate: String,
+    val MktGeneratingUnit: String
 )
 extends
     Element
@@ -1073,11 +1093,12 @@ extends
  * @param minLimit Minimum Limit (MW)
  */
 case class GenericConstraints
-(override val sup: IdentifiedObject,
-val intervalEndTime: String,
-val intervalStartTime: String,
-val maxLimit: Double,
-val minLimit: Double
+(
+    override val sup: Element,
+    val intervalEndTime: String,
+    val intervalStartTime: String,
+    val maxLimit: Double,
+    val minLimit: Double
 )
 extends
     Element
@@ -1124,10 +1145,11 @@ extends
  * @param InterchangeSchedule
  */
 case class InterchangeETCData
-(override val sup: BasicElement,
-val contractNumber: String,
-val usageMW: Double,
-val InterchangeSchedule: String
+(
+    override val sup: Element,
+    val contractNumber: String,
+    val usageMW: Double,
+    val InterchangeSchedule: String
 )
 extends
     Element
@@ -1180,18 +1202,19 @@ extends
  * @param RegisteredInterTie
  */
 case class InterchangeSchedule
-(override val sup: Curve,
-val checkOutType: String,
-val directionType: String,
-val energyType: String,
-val intervalLength: Int,
-val marketType: String,
-val operatingDate: String,
-val outOfMarketType: Boolean,
-val scheduleType: String,
-val wcrID: String,
-val InterTie: String,
-val RegisteredInterTie: String
+(
+    override val sup: Element,
+    val checkOutType: String,
+    val directionType: String,
+    val energyType: String,
+    val intervalLength: Int,
+    val marketType: String,
+    val operatingDate: String,
+    val outOfMarketType: Boolean,
+    val scheduleType: String,
+    val wcrID: String,
+    val InterTie: String,
+    val RegisteredInterTie: String
 )
 extends
     Element
@@ -1251,9 +1274,10 @@ extends
  * @param RegisteredResource
  */
 case class IntermittentResourceEligibility
-(override val sup: MarketFactors,
-val eligibilityStatus: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val eligibilityStatus: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -1298,11 +1322,12 @@ extends
  * @param IndividualPnode
  */
 case class LoadDistributionFactor
-(override val sup: BasicElement,
-val pDistFactor: Double,
-val qDistFactor: Double,
-val AggregatedPnode: String,
-val IndividualPnode: String
+(
+    override val sup: Element,
+    val pDistFactor: Double,
+    val qDistFactor: Double,
+    val AggregatedPnode: String,
+    val IndividualPnode: String
 )
 extends
     Element
@@ -1349,9 +1374,10 @@ extends
  * @param MktConnectivityNode
  */
 case class LossSensitivity
-(override val sup: MarketFactors,
-val lossFactor: Double,
-val MktConnectivityNode: String
+(
+    override val sup: Element,
+    val lossFactor: Double,
+    val MktConnectivityNode: String
 )
 extends
     Element
@@ -1392,8 +1418,9 @@ extends
  * @param SecurityConstraintLimit
  */
 case class MWLimitSchedule
-(override val sup: BasicElement,
-val SecurityConstraintLimit: String
+(
+    override val sup: Element,
+    val SecurityConstraintLimit: String
 )
 extends
     Element
@@ -1433,9 +1460,10 @@ extends
  * @param EndBFlow
  */
 case class MktACLineSegment
-(override val sup: ACLineSegment,
-val EndAFlow: String,
-val EndBFlow: String
+(
+    override val sup: Element,
+    val EndAFlow: String,
+    val EndBFlow: String
 )
 extends
     Element
@@ -1484,9 +1512,10 @@ High
  *        Low
  */
 case class MktAnalogLimit
-(override val sup: AnalogLimit,
-val exceededLimit: Boolean,
-val limitType: String
+(
+    override val sup: Element,
+    val exceededLimit: Boolean,
+    val limitType: String
 )
 extends
     Element
@@ -1527,8 +1556,9 @@ extends
  * @param ratingSet Rating set numbers
  */
 case class MktAnalogLimitSet
-(override val sup: AnalogLimitSet,
-val ratingSet: Int
+(
+    override val sup: Element,
+    val ratingSet: Int
 )
 extends
     Element
@@ -1566,7 +1596,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktAnalogValue
-(override val sup: AnalogValue
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1602,7 +1633,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktControlArea
-(override val sup: ControlArea
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1638,7 +1670,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktDiscreteValue
-(override val sup: DiscreteValue
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1676,9 +1709,10 @@ extends
  * @param EndBFlow
  */
 case class MktSeriesCompensator
-(override val sup: SeriesCompensator,
-val EndAFlow: String,
-val EndBFlow: String
+(
+    override val sup: Element,
+    val EndAFlow: String,
+    val EndBFlow: String
 )
 extends
     Element
@@ -1718,7 +1752,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktShuntCompensator
-(override val sup: ShuntCompensator
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1754,7 +1789,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktSwitch
-(override val sup: Switch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1790,7 +1826,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class MktTapChanger
-(override val sup: TapChanger
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1828,8 +1865,9 @@ extends
  * @param MktConnectivityNode
  */
 case class NodeConstraintTerm
-(override val sup: ConstraintTerm,
-val MktConnectivityNode: String
+(
+    override val sup: Element,
+    val MktConnectivityNode: String
 )
 extends
     Element
@@ -1867,7 +1905,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Profile
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1911,15 +1950,16 @@ extends
  * @param Profile A profile has profile data associated with it.
  */
 case class ProfileData
-(override val sup: BasicElement,
-val bidPrice: Double,
-val capacityLevel: Double,
-val energyLevel: Double,
-val minimumLevel: Double,
-val sequenceNumber: Int,
-val startDateTime: String,
-val stopDateTime: String,
-val Profile: List[String]
+(
+    override val sup: Element,
+    val bidPrice: Double,
+    val capacityLevel: Double,
+    val energyLevel: Double,
+    val minimumLevel: Double,
+    val sequenceNumber: Int,
+    val startDateTime: String,
+    val stopDateTime: String,
+    val Profile: List[String]
 )
 extends
     Element
@@ -1977,11 +2017,12 @@ extends
  * @param MarketRegion
  */
 case class ReserveDemandCurve
-(override val sup: Curve,
-val reqMaxMW: Double,
-val reserveRequirementType: String,
-val ASRequirements: String,
-val MarketRegion: String
+(
+    override val sup: Element,
+    val reqMaxMW: Double,
+    val reserveRequirementType: String,
+    val ASRequirements: String,
+    val MarketRegion: String
 )
 extends
     Element
@@ -2026,8 +2067,9 @@ extends
  * @param timeStamp time of the update from SCADA
  */
 case class SCADAInformation
-(override val sup: BasicElement,
-val timeStamp: String
+(
+    override val sup: Element,
+    val timeStamp: String
 )
 extends
     Element
@@ -2069,10 +2111,11 @@ extends
  * @param RTO
  */
 case class SecurityConstraintSum
-(override val sup: MarketFactors,
-val BaseCaseConstraintLimit: String,
-val DefaultConstraintLimit: String,
-val RTO: String
+(
+    override val sup: Element,
+    val BaseCaseConstraintLimit: String,
+    val DefaultConstraintLimit: String,
+    val RTO: String
 )
 extends
     Element
@@ -2120,13 +2163,14 @@ extends
  * @param RTO
  */
 case class SecurityConstraints
-(override val sup: IdentifiedObject,
-val actualMW: Double,
-val maxMW: Double,
-val minMW: Double,
-val Flowgate: String,
-val GeneratingBid: String,
-val RTO: String
+(
+    override val sup: Element,
+    val actualMW: Double,
+    val maxMW: Double,
+    val minMW: Double,
+    val Flowgate: String,
+    val GeneratingBid: String,
+    val RTO: String
 )
 extends
     Element
@@ -2175,7 +2219,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ServicePoint
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2218,13 +2263,14 @@ extends
  * @param MktShuntCompensator
  */
 case class ShuntCompensatorDynamicData
-(override val sup: BasicElement,
-val connectionStatus: Int,
-val desiredVoltage: Double,
-val mVARInjection: Double,
-val stepPosition: Int,
-val voltageRegulationStatus: Boolean,
-val MktShuntCompensator: String
+(
+    override val sup: Element,
+    val connectionStatus: Int,
+    val desiredVoltage: Double,
+    val mVARInjection: Double,
+    val stepPosition: Int,
+    val voltageRegulationStatus: Boolean,
+    val MktShuntCompensator: String
 )
 extends
     Element
@@ -2274,9 +2320,10 @@ extends
  * @param MktSwitch
  */
 case class SwitchStatus
-(override val sup: BasicElement,
-val switchStatus: String,
-val MktSwitch: String
+(
+    override val sup: Element,
+    val switchStatus: String,
+    val MktSwitch: String
 )
 extends
     Element
@@ -2320,10 +2367,11 @@ extends
  * @param MktConnectivityNode
  */
 case class SysLoadDistributionFactor
-(override val sup: BasicElement,
-val factor: Double,
-val HostControlArea: String,
-val MktConnectivityNode: String
+(
+    override val sup: Element,
+    val factor: Double,
+    val HostControlArea: String,
+    val MktConnectivityNode: String
 )
 extends
     Element
@@ -2369,10 +2417,11 @@ extends
  * @param TransmissionContractRight
  */
 case class TREntitlement
-(override val sup: BasicElement,
-val entitlement: Double,
-val startOperatingDate: String,
-val TransmissionContractRight: String
+(
+    override val sup: Element,
+    val entitlement: Double,
+    val startOperatingDate: String,
+    val TransmissionContractRight: String
 )
 extends
     Element
@@ -2426,16 +2475,17 @@ extends
  * @param MktTapChanger
  */
 case class TapChangerDynamicData
-(override val sup: BasicElement,
-val angleRegulationStatus: Boolean,
-val desiredMW: Double,
-val desiredVoltage: Double,
-val maximumAngle: Double,
-val minimumAngle: Double,
-val solvedAngle: Double,
-val tapPosition: Double,
-val voltageRegulationStatus: Boolean,
-val MktTapChanger: String
+(
+    override val sup: Element,
+    val angleRegulationStatus: Boolean,
+    val desiredMW: Double,
+    val desiredVoltage: Double,
+    val maximumAngle: Double,
+    val minimumAngle: Double,
+    val solvedAngle: Double,
+    val tapPosition: Double,
+    val voltageRegulationStatus: Boolean,
+    val MktTapChanger: String
 )
 extends
     Element
@@ -2490,8 +2540,9 @@ extends
  * @param MktTerminal
  */
 case class TerminalConstraintTerm
-(override val sup: ConstraintTerm,
-val MktTerminal: String
+(
+    override val sup: Element,
+    val MktTerminal: String
 )
 extends
     Element
@@ -2531,9 +2582,10 @@ extends
  * @param TransferInterfaceSolution
  */
 case class TransferInterface
-(override val sup: IdentifiedObject,
-val HostControlArea: String,
-val TransferInterfaceSolution: String
+(
+    override val sup: Element,
+    val HostControlArea: String,
+    val TransferInterfaceSolution: String
 )
 extends
     Element
@@ -2581,13 +2633,14 @@ Attribute Usage: The absoloute of the maximum flow on the transfer interface.
  * @param _MktContingencyA
  */
 case class TransferInterfaceSolution
-(override val sup: BasicElement,
-val interfaceMargin: Double,
-val postTransferMW: Double,
-val transferLimit: Double,
-val MktContingencyB: String,
-val TransferInterface: String,
-val _MktContingencyA: String
+(
+    override val sup: Element,
+    val interfaceMargin: Double,
+    val postTransferMW: Double,
+    val transferLimit: Double,
+    val MktContingencyB: String,
+    val TransferInterface: String,
+    val _MktContingencyA: String
 )
 extends
     Element
@@ -2647,17 +2700,18 @@ extends
  * @param POR point of receipt
  */
 case class TransmissionCapacity
-(override val sup: BasicElement,
-val capacityBenefitMargin: Double,
-val operationalTransmissionCapacity: Double,
-val startOperatingDate: String,
-val totalTransmissionCapacity: Double,
-val Flowgate: String,
-val GenericConstraints: String,
-val OTC15min_emergency: Double,
-val OTCemergency: Double,
-val POD: String,
-val POR: String
+(
+    override val sup: Element,
+    val capacityBenefitMargin: Double,
+    val operationalTransmissionCapacity: Double,
+    val startOperatingDate: String,
+    val totalTransmissionCapacity: Double,
+    val Flowgate: String,
+    val GenericConstraints: String,
+    val OTC15min_emergency: Double,
+    val OTCemergency: Double,
+    val POD: String,
+    val POR: String
 )
 extends
     Element
@@ -2720,13 +2774,14 @@ extends
  * @param POR point of receipt
  */
 case class TransmissionInterfaceRightEntitlement
-(override val sup: BasicElement,
-val entitlement: Double,
-val startOperatingDate: String,
-val ContractRight: String,
-val Flowgate: String,
-val POD: String,
-val POR: String
+(
+    override val sup: Element,
+    val entitlement: Double,
+    val startOperatingDate: String,
+    val ContractRight: String,
+    val Flowgate: String,
+    val POD: String,
+    val POR: String
 )
 extends
     Element
@@ -2781,13 +2836,14 @@ extends
  * @param PointOfReceipt A transmission path has a "point-of-receipt" service point
  */
 case class TransmissionPath
-(override val sup: IdentifiedObject,
-val availTransferCapability: Double,
-val parallelPathFlag: Boolean,
-val totalTransferCapability: Double,
-val DeliveryPoint: String,
-val For: String,
-val PointOfReceipt: String
+(
+    override val sup: Element,
+    val availTransferCapability: Double,
+    val parallelPathFlag: Boolean,
+    val totalTransferCapability: Double,
+    val DeliveryPoint: String,
+    val For: String,
+    val PointOfReceipt: String
 )
 extends
     Element
@@ -2840,12 +2896,13 @@ extends
  * @param TransmissionPath
  */
 case class TransmissionReservation
-(override val sup: BasicElement,
-val EnergyTransaction: String,
-val Sink: String,
-val Source: String,
-val TransactionBid: String,
-val TransmissionPath: String
+(
+    override val sup: Element,
+    val EnergyTransaction: String,
+    val Sink: String,
+    val Source: String,
+    val TransactionBid: String,
+    val TransmissionPath: String
 )
 extends
     Element
@@ -2905,17 +2962,18 @@ extends
  * @param GeneratingUnit
  */
 case class UnitInitialConditions
-(override val sup: IdentifiedObject,
-val cumEnergy: Double,
-val cumStatusChanges: Int,
-val numberOfStartups: Int,
-val onlineStatus: Boolean,
-val resourceMW: Double,
-val resourceStatus: Int,
-val statusDate: String,
-val timeInStatus: Double,
-val timeInterval: String,
-val GeneratingUnit: String
+(
+    override val sup: Element,
+    val cumEnergy: Double,
+    val cumStatusChanges: Int,
+    val numberOfStartups: Int,
+    val onlineStatus: Boolean,
+    val resourceMW: Double,
+    val resourceStatus: Int,
+    val statusDate: String,
+    val timeInStatus: Double,
+    val timeInterval: String,
+    val GeneratingUnit: String
 )
 extends
     Element

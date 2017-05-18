@@ -6,8 +6,9 @@ import ch.ninecode.cim.Context
 
 
 case class ICCPCommandPoint
-(override val sup: ICCPControlPoint,
-val attr: String
+(
+    override val sup: Element,
+    val attr: String
 )
 extends
     Element
@@ -41,9 +42,10 @@ extends
 }
 
 case class ICCPControlPoint
-(override val sup: ICCPPoint,
-val attr: String,
-val deviceClass: String
+(
+    override val sup: Element,
+    val attr: String,
+    val deviceClass: String
 )
 extends
     Element
@@ -79,9 +81,10 @@ extends
 }
 
 case class ICCPControlPointDeviceClass
-(override val sup: BasicElement,
-val NONSBO: String,
-val SBO: String
+(
+    override val sup: Element,
+    val NONSBO: String,
+    val SBO: String
 )
 extends
     Element
@@ -117,9 +120,10 @@ extends
 }
 
 case class ICCPIndicationPoint
-(override val sup: ICCPPoint,
-val attr: String,
-val typ: String
+(
+    override val sup: Element,
+    val attr: String,
+    val typ: String
 )
 extends
     Element
@@ -155,10 +159,11 @@ extends
 }
 
 case class ICCPIndicationPointType
-(override val sup: BasicElement,
-val DISCRETE: String,
-val REAL: String,
-val STATE: String
+(
+    override val sup: Element,
+    val DISCRETE: String,
+    val REAL: String,
+    val STATE: String
 )
 extends
     Element
@@ -205,10 +210,11 @@ extends
  * @param scope
  */
 case class ICCPInformationMessage
-(override val sup: IdentifiedObject,
-val attr: List[String],
-val localReference: String,
-val scope: String
+(
+    override val sup: Element,
+    val attr: List[String],
+    val localReference: String,
+    val scope: String
 )
 extends
     Element
@@ -246,9 +252,10 @@ extends
 }
 
 case class ICCPPScope
-(override val sup: BasicElement,
-val ICC: String,
-val VCC: String
+(
+    override val sup: Element,
+    val ICC: String,
+    val VCC: String
 )
 extends
     Element
@@ -291,9 +298,10 @@ extends
  * @param scope
  */
 case class ICCPPoint
-(override val sup: IdentifiedObject,
-val attr: String,
-val scope: String
+(
+    override val sup: Element,
+    val attr: String,
+    val scope: String
 )
 extends
     Element
@@ -329,9 +337,10 @@ extends
 }
 
 case class ICCPSetPoint
-(override val sup: ICCPControlPoint,
-val attr: String,
-val typ: String
+(
+    override val sup: Element,
+    val attr: String,
+    val typ: String
 )
 extends
     Element
@@ -367,9 +376,10 @@ extends
 }
 
 case class ICCPSetPointType
-(override val sup: BasicElement,
-val DISCRETE: String,
-val REAL: String
+(
+    override val sup: Element,
+    val DISCRETE: String,
+    val REAL: String
 )
 extends
     Element
@@ -405,12 +415,13 @@ extends
 }
 
 case class IPAccessPoint
-(override val sup: BasicElement,
-val address: String,
-val addressType: String,
-val attr: String,
-val gateway: String,
-val subnet: String
+(
+    override val sup: Element,
+    val address: String,
+    val addressType: String,
+    val attr: String,
+    val gateway: String,
+    val subnet: String
 )
 extends
     Element
@@ -452,10 +463,11 @@ extends
 }
 
 case class IPAddressType
-(override val sup: BasicElement,
-val multiplier: String,
-val unit: String,
-val value: String
+(
+    override val sup: Element,
+    val multiplier: String,
+    val unit: String,
+    val value: String
 )
 extends
     Element
@@ -493,10 +505,11 @@ extends
 }
 
 case class ISOAPAddressing
-(override val sup: BasicElement,
-val multiplier: String,
-val unit: String,
-val value: String
+(
+    override val sup: Element,
+    val multiplier: String,
+    val unit: String,
+    val value: String
 )
 extends
     Element
@@ -534,11 +547,12 @@ extends
 }
 
 case class ISOUpperLayer
-(override val sup: TCPAcessPoint,
-val ap: String,
-val osiPsel: String,
-val osiSsel: String,
-val osiTsel: String
+(
+    override val sup: Element,
+    val ap: String,
+    val osiPsel: String,
+    val osiSsel: String,
+    val osiTsel: String
 )
 extends
     Element
@@ -589,11 +603,12 @@ extends
  * @param tase2version Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2
  */
 case class TASE2BilateralTable
-(override val sup: IdentifiedObject,
-val bilateralTableID: String,
-val calling: Boolean,
-val nameOfICC: String,
-val tase2version: String
+(
+    override val sup: Element,
+    val bilateralTableID: String,
+    val calling: Boolean,
+    val nameOfICC: String,
+    val tase2version: String
 )
 extends
     Element
@@ -633,9 +648,10 @@ extends
 }
 
 case class TCPAcessPoint
-(override val sup: IPAccessPoint,
-val keepAliveTime: Int,
-val port: Int
+(
+    override val sup: Element,
+    val keepAliveTime: Int,
+    val port: Int
 )
 extends
     Element

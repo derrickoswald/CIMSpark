@@ -22,13 +22,14 @@ import ch.ninecode.cim.Context
  * @param Description Description of the object or instance.
  */
 case class AreaReserveSpec
-(override val sup: BasicElement,
-val lowerRegMarginReqt: Double,
-val opReserveReqt: Double,
-val primaryReserveReqt: Double,
-val raiseRegMarginReqt: Double,
-val spinningReserveReqt: Double,
-val Description: String
+(
+    override val sup: Element,
+    val lowerRegMarginReqt: Double,
+    val opReserveReqt: Double,
+    val primaryReserveReqt: Double,
+    val raiseRegMarginReqt: Double,
+    val spinningReserveReqt: Double,
+    val Description: String
 )
 extends
     Element
@@ -83,11 +84,12 @@ extends
  * @param InternalControlArea
  */
 case class CurrentEmergencyScheduledInterchange
-(override val sup: IdentifiedObject,
-val emergencyScheduleMW: Double,
-val emergencyScheduleRampTime: Int,
-val emergencyScheduleStartTime: String,
-val InternalControlArea: String
+(
+    override val sup: Element,
+    val emergencyScheduleMW: Double,
+    val emergencyScheduleRampTime: Int,
+    val emergencyScheduleStartTime: String,
+    val InternalControlArea: String
 )
 extends
     Element
@@ -135,10 +137,11 @@ extends
  * @param InternalControlArea
  */
 case class CurrentScheduledInterchange
-(override val sup: BasicElement,
-val currentNetTieMW: Double,
-val useEmergencySchedule: Boolean,
-val InternalControlArea: String
+(
+    override val sup: Element,
+    val currentNetTieMW: Double,
+    val useEmergencySchedule: Boolean,
+    val InternalControlArea: String
 )
 extends
     Element
@@ -182,8 +185,9 @@ extends
  * @param EnergyTransaction An EnergyTransaction may be curtailed by any of the participating entities.
  */
 case class CurtailmentProfile
-(override val sup: Profile,
-val EnergyTransaction: String
+(
+    override val sup: Element,
+    val EnergyTransaction: String
 )
 extends
     Element
@@ -227,12 +231,13 @@ extends
  * @param Send_SubControlArea A control area can send dynamic schedules to other control areas
  */
 case class DynamicSchedule
-(override val sup: BasicIntervalSchedule,
-val dynSchedSignRev: Boolean,
-val dynSchedStatus: String,
-val MktMeasurement: String,
-val Receive_SubControlArea: String,
-val Send_SubControlArea: String
+(
+    override val sup: Element,
+    val dynSchedSignRev: Boolean,
+    val dynSchedStatus: String,
+    val MktMeasurement: String,
+    val Receive_SubControlArea: String,
+    val Send_SubControlArea: String
 )
 extends
     Element
@@ -281,10 +286,11 @@ extends
  * @param TitleHeldBy_Marketer A Marketer holds title to an EnergyProduct.
  */
 case class EnergyProduct
-(override val sup: Agreement,
-val GenerationProvider: String,
-val ResoldBy_Marketer: List[String],
-val TitleHeldBy_Marketer: String
+(
+    override val sup: Element,
+    val GenerationProvider: String,
+    val ResoldBy_Marketer: List[String],
+    val TitleHeldBy_Marketer: String
 )
 extends
     Element
@@ -328,8 +334,9 @@ extends
  * @param SubControlArea A control area can have one or more net inadvertent interchange accounts
  */
 case class InadvertentAccount
-(override val sup: BasicElement,
-val SubControlArea: String
+(
+    override val sup: Element,
+    val SubControlArea: String
 )
 extends
     Element
@@ -369,8 +376,9 @@ extends
  * @param CurrentScheduledInterchange
  */
 case class InternalControlArea
-(override val sup: IdentifiedObject,
-val CurrentScheduledInterchange: String
+(
+    override val sup: Element,
+    val CurrentScheduledInterchange: String
 )
 extends
     Element
@@ -411,9 +419,10 @@ extends
  *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
  */
 case class LossProfile
-(override val sup: Profile,
-val EnergyTransaction: String,
-val HasLoss_1: String
+(
+    override val sup: Element,
+    val EnergyTransaction: String,
+    val HasLoss_1: String
 )
 extends
     Element
@@ -449,11 +458,12 @@ extends
 }
 
 case class TieLine
-(override val sup: IdentifiedObject,
-val EnergyTransaction: String,
-val ParentOfB: String,
-val SideA_SubControlArea: String,
-val SideB_SubControlArea: String
+(
+    override val sup: Element,
+    val EnergyTransaction: String,
+    val ParentOfB: String,
+    val SideA_SubControlArea: String,
+    val SideB_SubControlArea: String
 )
 extends
     Element
@@ -497,7 +507,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class TransmissionCorridor
-(override val sup: PowerSystemResource
+(
+    override val sup: Element
 )
 extends
     Element
@@ -534,8 +545,9 @@ extends
  * @param TransmissionCorridor A transmission right-of-way is a member of a transmission corridor
  */
 case class TransmissionRightOfWay
-(override val sup: PowerSystemResource,
-val TransmissionCorridor: String
+(
+    override val sup: Element,
+    val TransmissionCorridor: String
 )
 extends
     Element

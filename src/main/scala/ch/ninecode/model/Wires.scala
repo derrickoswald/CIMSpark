@@ -29,19 +29,20 @@ import ch.ninecode.cim.Context
  * @param PerLengthImpedance Per-length impedance of this line segment.
  */
 case class ACLineSegment
-(override val sup: Conductor,
-val b0ch: Double,
-val bch: Double,
-val g0ch: Double,
-val gch: Double,
-val r: Double,
-val r0: Double,
-val shortCircuitEndTemperature: Double,
-val x: Double,
-val x0: Double,
-val LineGroundingAction: String,
-val LineJumpingAction: String,
-val PerLengthImpedance: String
+(
+    override val sup: Element,
+    val b0ch: Double,
+    val bch: Double,
+    val g0ch: Double,
+    val gch: Double,
+    val r: Double,
+    val r0: Double,
+    val shortCircuitEndTemperature: Double,
+    val x: Double,
+    val x0: Double,
+    val LineGroundingAction: String,
+    val LineJumpingAction: String,
+    val PerLengthImpedance: String
 )
 extends
     Element
@@ -103,9 +104,10 @@ extends
  * @param ACLineSegment The line segment to which the phase belongs.
  */
 case class ACLineSegmentPhase
-(override val sup: PowerSystemResource,
-val phase: String,
-val ACLineSegment: String
+(
+    override val sup: Element,
+    val phase: String,
+    val ACLineSegment: String
 )
 extends
     Element
@@ -175,28 +177,29 @@ extends
  * @param AsynchronousMachineDynamics Asynchronous machine dynamics model used to describe dynamic behavior of this asynchronous machine.
  */
 case class AsynchronousMachine
-(override val sup: RotatingMachine,
-val asynchronousMachineType: String,
-val converterFedDrive: Boolean,
-val efficiency: Double,
-val iaIrRatio: Double,
-val nominalFrequency: Double,
-val nominalSpeed: Double,
-val polePairNumber: Int,
-val ratedMechanicalPower: Double,
-val reversible: Boolean,
-val rr1: Double,
-val rr2: Double,
-val rxLockedRotorRatio: Double,
-val tpo: Double,
-val tppo: Double,
-val xlr1: Double,
-val xlr2: Double,
-val xm: Double,
-val xp: Double,
-val xpp: Double,
-val xs: Double,
-val AsynchronousMachineDynamics: String
+(
+    override val sup: Element,
+    val asynchronousMachineType: String,
+    val converterFedDrive: Boolean,
+    val efficiency: Double,
+    val iaIrRatio: Double,
+    val nominalFrequency: Double,
+    val nominalSpeed: Double,
+    val polePairNumber: Int,
+    val ratedMechanicalPower: Double,
+    val reversible: Boolean,
+    val rr1: Double,
+    val rr2: Double,
+    val rxLockedRotorRatio: Double,
+    val tpo: Double,
+    val tppo: Double,
+    val xlr1: Double,
+    val xlr2: Double,
+    val xm: Double,
+    val xp: Double,
+    val xpp: Double,
+    val xs: Double,
+    val AsynchronousMachineDynamics: String
 )
 extends
     Element
@@ -276,9 +279,10 @@ extends
  * @param motor The Asynchronous Machine is a motor.
  */
 case class AsynchronousMachineKind
-(override val sup: BasicElement,
-val generator: String,
-val motor: String
+(
+    override val sup: Element,
+    val generator: String,
+    val motor: String
 )
 extends
     Element
@@ -319,8 +323,9 @@ extends
  * @param inTransitTime The transition time from open to close.
  */
 case class Breaker
-(override val sup: ProtectedSwitch,
-val inTransitTime: Double
+(
+    override val sup: Element,
+    val inTransitTime: Double
 )
 extends
     Element
@@ -362,9 +367,10 @@ extends
  * @param VoltageControlZone A VoltageControlZone is controlled by a designated BusbarSection.
  */
 case class BusbarSection
-(override val sup: Connector,
-val ipMax: Double,
-val VoltageControlZone: String
+(
+    override val sup: Element,
+    val ipMax: Double,
+    val VoltageControlZone: String
 )
 extends
     Element
@@ -407,9 +413,10 @@ extends
  * @param ACLineSegment The line segment to which the clamp is connected.
  */
 case class Clamp
-(override val sup: ConductingEquipment,
-val lengthFromTerminal1: Double,
-val ACLineSegment: String
+(
+    override val sup: Element,
+    val lengthFromTerminal1: Double,
+    val ACLineSegment: String
 )
 extends
     Element
@@ -451,8 +458,9 @@ extends
  * @param compositeSwitchType An alphanumeric code that can be used as a reference to extra information such as the description of the interlocking scheme if any.
  */
 case class CompositeSwitch
-(override val sup: Equipment,
-val compositeSwitchType: String
+(
+    override val sup: Element,
+    val compositeSwitchType: String
 )
 extends
     Element
@@ -491,8 +499,9 @@ extends
  * @param len Segment length for calculating line section capabilities
  */
 case class Conductor
-(override val sup: ConductingEquipment,
-val len: Double
+(
+    override val sup: Element,
+    val len: Double
 )
 extends
     Element
@@ -530,7 +539,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Connector
-(override val sup: ConductingEquipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -569,10 +579,11 @@ extends
  * @param water Water.
  */
 case class CoolantType
-(override val sup: BasicElement,
-val air: String,
-val hydrogenGas: String,
-val water: String
+(
+    override val sup: Element,
+    val air: String,
+    val hydrogenGas: String,
+    val water: String
 )
 extends
     Element
@@ -618,10 +629,11 @@ extends
  * @param CutAction Action taken with this cut.
  */
 case class Cut
-(override val sup: Switch,
-val lengthFromTerminal1: Double,
-val ACLineSegment: String,
-val CutAction: String
+(
+    override val sup: Element,
+    val lengthFromTerminal1: Double,
+    val ACLineSegment: String,
+    val CutAction: String
 )
 extends
     Element
@@ -664,7 +676,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Disconnector
-(override val sup: Switch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -702,8 +715,9 @@ extends
  * @param r Nominal resistance of device.
  */
 case class EarthFaultCompensator
-(override val sup: ConductingEquipment,
-val r: Double
+(
+    override val sup: Element,
+    val r: Double
 )
 extends
     Element
@@ -761,19 +775,20 @@ extends
  * @param PowerCutZone The  energy consumer is assigned to this power cut zone.
  */
 case class EnergyConsumer
-(override val sup: ConductingEquipment,
-val customerCount: Int,
-val grounded: Boolean,
-val p: Double,
-val pfixed: Double,
-val pfixedPct: Double,
-val phaseConnection: String,
-val q: Double,
-val qfixed: Double,
-val qfixedPct: Double,
-val LoadDynamics: String,
-val LoadResponse: String,
-val PowerCutZone: String
+(
+    override val sup: Element,
+    val customerCount: Int,
+    val grounded: Boolean,
+    val p: Double,
+    val pfixed: Double,
+    val pfixedPct: Double,
+    val phaseConnection: String,
+    val q: Double,
+    val qfixed: Double,
+    val qfixedPct: Double,
+    val LoadDynamics: String,
+    val LoadResponse: String,
+    val PowerCutZone: String
 )
 extends
     Element
@@ -844,13 +859,14 @@ extends
  * @param EnergyConsumer The energy consumer to which this phase belongs.
  */
 case class EnergyConsumerPhase
-(override val sup: PowerSystemResource,
-val pfixed: Double,
-val pfixedPct: Double,
-val phase: String,
-val qfixed: Double,
-val qfixedPct: Double,
-val EnergyConsumer: String
+(
+    override val sup: Element,
+    val pfixed: Double,
+    val pfixedPct: Double,
+    val phase: String,
+    val qfixed: Double,
+    val qfixedPct: Double,
+    val EnergyConsumer: String
 )
 extends
     Element
@@ -914,21 +930,22 @@ extends
  * @param WindTurbineType3or4Dynamics Wind generator Type 3 or 4 dynamics model associated with this energy source.
  */
 case class EnergySource
-(override val sup: ConductingEquipment,
-val activePower: Double,
-val nominalVoltage: Double,
-val r: Double,
-val r0: Double,
-val reactivePower: Double,
-val rn: Double,
-val voltageAngle: Double,
-val voltageMagnitude: Double,
-val x: Double,
-val x0: Double,
-val xn: Double,
-val EnergySchedulingType: String,
-val EnergySourceAction: String,
-val WindTurbineType3or4Dynamics: String
+(
+    override val sup: Element,
+    val activePower: Double,
+    val nominalVoltage: Double,
+    val r: Double,
+    val r0: Double,
+    val reactivePower: Double,
+    val rn: Double,
+    val voltageAngle: Double,
+    val voltageMagnitude: Double,
+    val x: Double,
+    val x0: Double,
+    val xn: Double,
+    val EnergySchedulingType: String,
+    val EnergySourceAction: String,
+    val WindTurbineType3or4Dynamics: String
 )
 extends
     Element
@@ -1023,25 +1040,26 @@ extends
  * @param voltageFactor Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
  */
 case class ExternalNetworkInjection
-(override val sup: RegulatingCondEq,
-val governorSCD: Double,
-val ikSecond: Boolean,
-val maxInitialSymShCCurrent: Double,
-val maxP: Double,
-val maxQ: Double,
-val maxR0ToX0Ratio: Double,
-val maxR1ToX1Ratio: Double,
-val maxZ0ToZ1Ratio: Double,
-val minInitialSymShCCurrent: Double,
-val minP: Double,
-val minQ: Double,
-val minR0ToX0Ratio: Double,
-val minR1ToX1Ratio: Double,
-val minZ0ToZ1Ratio: Double,
-val p: Double,
-val q: Double,
-val referencePriority: Int,
-val voltageFactor: Double
+(
+    override val sup: Element,
+    val governorSCD: Double,
+    val ikSecond: Boolean,
+    val maxInitialSymShCCurrent: Double,
+    val maxP: Double,
+    val maxQ: Double,
+    val maxR0ToX0Ratio: Double,
+    val maxR1ToX1Ratio: Double,
+    val maxZ0ToZ1Ratio: Double,
+    val minInitialSymShCCurrent: Double,
+    val minP: Double,
+    val minQ: Double,
+    val minR0ToX0Ratio: Double,
+    val minR1ToX1Ratio: Double,
+    val minZ0ToZ1Ratio: Double,
+    val p: Double,
+    val q: Double,
+    val referencePriority: Int,
+    val voltageFactor: Double
 )
 extends
     Element
@@ -1119,12 +1137,13 @@ extends
  * @param minU The minimum voltage on the DC side at which the frequency converter should operate.
  */
 case class FrequencyConverter
-(override val sup: RegulatingCondEq,
-val frequency: Double,
-val maxP: Double,
-val maxU: Double,
-val minP: Double,
-val minU: Double
+(
+    override val sup: Element,
+    val frequency: Double,
+    val maxP: Double,
+    val maxU: Double,
+    val minP: Double,
+    val minU: Double
 )
 extends
     Element
@@ -1171,7 +1190,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Fuse
-(override val sup: Switch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1209,8 +1229,9 @@ extends
  * @param GroundAction Action taken with this ground.
  */
 case class Ground
-(override val sup: ConductingEquipment,
-val GroundAction: String
+(
+    override val sup: Element,
+    val GroundAction: String
 )
 extends
     Element
@@ -1248,7 +1269,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class GroundDisconnector
-(override val sup: Switch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1285,8 +1307,9 @@ extends
  * @param x Reactance of device.
  */
 case class GroundingImpedance
-(override val sup: EarthFaultCompensator,
-val x: Double
+(
+    override val sup: Element,
+    val x: Double
 )
 extends
     Element
@@ -1326,8 +1349,9 @@ extends
  * @param JumperAction Action taken with this jumper.
  */
 case class Jumper
-(override val sup: Switch,
-val JumperAction: String
+(
+    override val sup: Element,
+    val JumperAction: String
 )
 extends
     Element
@@ -1365,7 +1389,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Junction
-(override val sup: Connector
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1402,8 +1427,9 @@ extends
  * @param Region The sub-geographical region of the line.
  */
 case class Line
-(override val sup: EquipmentContainer,
-val Region: String
+(
+    override val sup: Element,
+    val Region: String
 )
 extends
     Element
@@ -1445,11 +1471,12 @@ extends
  * @param gPerSection Positive sequence shunt (charging) conductance per section
  */
 case class LinearShuntCompensator
-(override val sup: ShuntCompensator,
-val b0PerSection: Double,
-val bPerSection: Double,
-val g0PerSection: Double,
-val gPerSection: Double
+(
+    override val sup: Element,
+    val b0PerSection: Double,
+    val bPerSection: Double,
+    val g0PerSection: Double,
+    val gPerSection: Double
 )
 extends
     Element
@@ -1497,9 +1524,10 @@ extends
  *        Conductance per section phase to phase if shunt compensator is delta connected.
  */
 case class LinearShuntCompensatorPhase
-(override val sup: ShuntCompensatorPhase,
-val bPerSection: Double,
-val gPerSection: Double
+(
+    override val sup: Element,
+    val bPerSection: Double,
+    val gPerSection: Double
 )
 extends
     Element
@@ -1539,7 +1567,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class LoadBreakSwitch
-(override val sup: ProtectedSwitch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1586,17 +1615,18 @@ extends
  * @param Second_Terminal The starting terminal for the calculation of distances along the second branch of the mutual coupling.
  */
 case class MutualCoupling
-(override val sup: IdentifiedObject,
-val b0ch: Double,
-val distance11: Double,
-val distance12: Double,
-val distance21: Double,
-val distance22: Double,
-val g0ch: Double,
-val r0: Double,
-val x0: Double,
-val First_Terminal: String,
-val Second_Terminal: String
+(
+    override val sup: Element,
+    val b0ch: Double,
+    val distance11: Double,
+    val distance12: Double,
+    val distance21: Double,
+    val distance22: Double,
+    val g0ch: Double,
+    val r0: Double,
+    val x0: Double,
+    val First_Terminal: String,
+    val Second_Terminal: String
 )
 extends
     Element
@@ -1652,7 +1682,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class NonlinearShuntCompensator
-(override val sup: ShuntCompensator
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1688,7 +1719,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class NonlinearShuntCompensatorPhase
-(override val sup: ShuntCompensatorPhase
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1727,10 +1759,11 @@ extends
  * @param sectionNumber The number of the section.
  */
 case class NonlinearShuntCompensatorPhasePoint
-(override val sup: BasicElement,
-val b: Double,
-val g: Double,
-val sectionNumber: Int
+(
+    override val sup: Element,
+    val b: Double,
+    val g: Double,
+    val sectionNumber: Int
 )
 extends
     Element
@@ -1777,12 +1810,13 @@ extends
  * @param sectionNumber The number of the section.
  */
 case class NonlinearShuntCompensatorPoint
-(override val sup: BasicElement,
-val b: Double,
-val b0: Double,
-val g: Double,
-val g0: Double,
-val sectionNumber: Int
+(
+    override val sup: Element,
+    val b: Double,
+    val b0: Double,
+    val g: Double,
+    val g0: Double,
+    val sectionNumber: Int
 )
 extends
     Element
@@ -1828,7 +1862,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class PerLengthImpedance
-(override val sup: PerLengthLineParameter
+(
+    override val sup: Element
 )
 extends
     Element
@@ -1865,8 +1900,9 @@ extends
  * @param WireSpacingInfo Wire spacing datasheet used to calculate this per-length parameter.
  */
 case class PerLengthLineParameter
-(override val sup: IdentifiedObject,
-val WireSpacingInfo: String
+(
+    override val sup: Element,
+    val WireSpacingInfo: String
 )
 extends
     Element
@@ -1906,8 +1942,9 @@ extends
  *        Constrains the number of matrix elements and the phase codes that can be used with this matrix.
  */
 case class PerLengthPhaseImpedance
-(override val sup: PerLengthImpedance,
-val conductorCount: Int
+(
+    override val sup: Element,
+    val conductorCount: Int
 )
 extends
     Element
@@ -1954,15 +1991,16 @@ extends
  * @param x0 Zero sequence series reactance, per unit of length.
  */
 case class PerLengthSequenceImpedance
-(override val sup: PerLengthImpedance,
-val b0ch: Double,
-val bch: Double,
-val g0ch: Double,
-val gch: Double,
-val r: Double,
-val r0: Double,
-val x: Double,
-val x0: Double
+(
+    override val sup: Element,
+    val b0ch: Double,
+    val bch: Double,
+    val g0ch: Double,
+    val gch: Double,
+    val r: Double,
+    val r0: Double,
+    val x: Double,
+    val x0: Double
 )
 extends
     Element
@@ -2024,14 +2062,15 @@ extends
  *        This is the operating point (normally over compensation) that is defined based on the resonance point in the healthy network condition.  The impedance is calculated based on nominal voltage divided by position current.
  */
 case class PetersenCoil
-(override val sup: EarthFaultCompensator,
-val mode: String,
-val nominalU: Double,
-val offsetCurrent: Double,
-val positionCurrent: Double,
-val xGroundMax: Double,
-val xGroundMin: Double,
-val xGroundNominal: Double
+(
+    override val sup: Element,
+    val mode: String,
+    val nominalU: Double,
+    val offsetCurrent: Double,
+    val positionCurrent: Double,
+    val xGroundMax: Double,
+    val xGroundMin: Double,
+    val xGroundNominal: Double
 )
 extends
     Element
@@ -2084,10 +2123,11 @@ extends
  * @param manual Manual positioning.
  */
 case class PetersenCoilModeKind
-(override val sup: BasicElement,
-val automaticPositioning: String,
-val fixed: String,
-val manual: String
+(
+    override val sup: Element,
+    val automaticPositioning: String,
+    val fixed: String,
+    val manual: String
 )
 extends
     Element
@@ -2135,12 +2175,13 @@ extends
  * @param PhaseImpedance Conductor phase impedance to which this data belongs.
  */
 case class PhaseImpedanceData
-(override val sup: BasicElement,
-val b: Double,
-val r: Double,
-val sequenceNumber: Int,
-val x: Double,
-val PhaseImpedance: String
+(
+    override val sup: Element,
+    val b: Double,
+    val r: Double,
+    val sequenceNumber: Int,
+    val x: Double,
+    val PhaseImpedance: String
 )
 extends
     Element
@@ -2190,11 +2231,12 @@ extends
  * @param Yn Wye, with neutral brought out for grounding.
  */
 case class PhaseShuntConnectionKind
-(override val sup: BasicElement,
-val D: String,
-val I: String,
-val Y: String,
-val Yn: String
+(
+    override val sup: Element,
+    val D: String,
+    val I: String,
+    val Y: String,
+    val Yn: String
 )
 extends
     Element
@@ -2240,8 +2282,9 @@ extends
  * @param TransformerEnd Transformer end to which this phase tap changer belongs.
  */
 case class PhaseTapChanger
-(override val sup: TapChanger,
-val TransformerEnd: String
+(
+    override val sup: Element,
+    val TransformerEnd: String
 )
 extends
     Element
@@ -2282,8 +2325,9 @@ extends
  *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmemtrical transformer.
  */
 case class PhaseTapChangerAsymmetrical
-(override val sup: PhaseTapChangerNonLinear,
-val windingConnectionAngle: Double
+(
+    override val sup: Element,
+    val windingConnectionAngle: Double
 )
 extends
     Element
@@ -2328,10 +2372,11 @@ extends
  *        The minimum reactance (xMin) appear at the mid tap position.
  */
 case class PhaseTapChangerLinear
-(override val sup: PhaseTapChanger,
-val stepPhaseShiftIncrement: Double,
-val xMax: Double,
-val xMin: Double
+(
+    override val sup: Element,
+    val stepPhaseShiftIncrement: Double,
+    val xMax: Double,
+    val xMin: Double
 )
 extends
     Element
@@ -2379,10 +2424,11 @@ extends
  *        The minimum reactance (xMin) appear at the mid tap position.
  */
 case class PhaseTapChangerNonLinear
-(override val sup: PhaseTapChanger,
-val voltageStepIncrement: Double,
-val xMax: Double,
-val xMin: Double
+(
+    override val sup: Element,
+    val voltageStepIncrement: Double,
+    val xMax: Double,
+    val xMin: Double
 )
 extends
     Element
@@ -2425,7 +2471,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class PhaseTapChangerSymmetrical
-(override val sup: PhaseTapChangerNonLinear
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2461,7 +2508,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class PhaseTapChangerTable
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2499,9 +2547,10 @@ extends
  * @param PhaseTapChangerTable The table of this point.
  */
 case class PhaseTapChangerTablePoint
-(override val sup: TapChangerTablePoint,
-val angle: Double,
-val PhaseTapChangerTable: String
+(
+    override val sup: Element,
+    val angle: Double,
+    val PhaseTapChangerTable: String
 )
 extends
     Element
@@ -2537,8 +2586,9 @@ extends
 }
 
 case class PhaseTapChangerTabular
-(override val sup: PhaseTapChanger,
-val PhaseTapChangerTable: String
+(
+    override val sup: Element,
+    val PhaseTapChangerTable: String
 )
 extends
     Element
@@ -2576,7 +2626,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Plant
-(override val sup: EquipmentContainer
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2627,14 +2678,15 @@ extends
  *        For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.
  */
 case class PowerTransformer
-(override val sup: ConductingEquipment,
-val beforeShCircuitHighestOperatingCurrent: Double,
-val beforeShCircuitHighestOperatingVoltage: Double,
-val beforeShortCircuitAnglePf: Double,
-val highSideMinOperatingU: Double,
-val isPartOfGeneratorUnit: Boolean,
-val operationalValuesConsidered: Boolean,
-val vectorGroup: String
+(
+    override val sup: Element,
+    val beforeShCircuitHighestOperatingCurrent: Double,
+    val beforeShCircuitHighestOperatingVoltage: Double,
+    val beforeShortCircuitAnglePf: Double,
+    val highSideMinOperatingU: Double,
+    val isPartOfGeneratorUnit: Boolean,
+    val operationalValuesConsidered: Boolean,
+    val vectorGroup: String
 )
 extends
     Element
@@ -2703,20 +2755,21 @@ extends
  * @param PowerTransformer The power transformer of this power transformer end.
  */
 case class PowerTransformerEnd
-(override val sup: TransformerEnd,
-val b: Double,
-val b0: Double,
-val connectionKind: String,
-val g: Double,
-val g0: Double,
-val phaseAngleClock: Int,
-val r: Double,
-val r0: Double,
-val ratedS: Double,
-val ratedU: Double,
-val x: Double,
-val x0: Double,
-val PowerTransformer: String
+(
+    override val sup: Element,
+    val b: Double,
+    val b0: Double,
+    val connectionKind: String,
+    val g: Double,
+    val g0: Double,
+    val phaseAngleClock: Int,
+    val r: Double,
+    val r0: Double,
+    val ratedS: Double,
+    val ratedU: Double,
+    val x: Double,
+    val x0: Double,
+    val PowerTransformer: String
 )
 extends
     Element
@@ -2779,8 +2832,9 @@ extends
  * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
  */
 case class ProtectedSwitch
-(override val sup: Switch,
-val breakingCapacity: Double
+(
+    override val sup: Element,
+    val breakingCapacity: Double
 )
 extends
     Element
@@ -2822,11 +2876,12 @@ extends
  * @param TransformerEnd Transformer end to which this ratio tap changer belongs.
  */
 case class RatioTapChanger
-(override val sup: TapChanger,
-val stepVoltageIncrement: Double,
-val tculControlMode: String,
-val RatioTapChangerTable: String,
-val TransformerEnd: String
+(
+    override val sup: Element,
+    val stepVoltageIncrement: Double,
+    val tculControlMode: String,
+    val RatioTapChangerTable: String,
+    val TransformerEnd: String
 )
 extends
     Element
@@ -2870,7 +2925,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class RatioTapChangerTable
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2907,8 +2963,9 @@ extends
  * @param RatioTapChangerTable Table of this point.
  */
 case class RatioTapChangerTablePoint
-(override val sup: TapChangerTablePoint,
-val RatioTapChangerTable: String
+(
+    override val sup: Element,
+    val RatioTapChangerTable: String
 )
 extends
     Element
@@ -2949,9 +3006,10 @@ extends
  * @param hydrogenPressure The hydrogen coolant pressure
  */
 case class ReactiveCapabilityCurve
-(override val sup: Curve,
-val coolantTemperature: Double,
-val hydrogenPressure: Double
+(
+    override val sup: Element,
+    val coolantTemperature: Double,
+    val hydrogenPressure: Double
 )
 extends
     Element
@@ -2991,7 +3049,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Recloser
-(override val sup: ProtectedSwitch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -3030,9 +3089,10 @@ extends
  * @param RegulatingControl The regulating control scheme in which this equipment participates.
  */
 case class RegulatingCondEq
-(override val sup: ConductingEquipment,
-val controlEnabled: Boolean,
-val RegulatingControl: String
+(
+    override val sup: Element,
+    val controlEnabled: Boolean,
+    val RegulatingControl: String
 )
 extends
     Element
@@ -3086,15 +3146,16 @@ extends
  *        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.
  */
 case class RegulatingControl
-(override val sup: PowerSystemResource,
-val discrete: Boolean,
-val enabled: Boolean,
-val mode: String,
-val monitoredPhase: String,
-val targetDeadband: Double,
-val targetValue: Double,
-val targetValueUnitMultiplier: String,
-val Terminal: String
+(
+    override val sup: Element,
+    val discrete: Boolean,
+    val enabled: Boolean,
+    val mode: String,
+    val monitoredPhase: String,
+    val targetDeadband: Double,
+    val targetValue: Double,
+    val targetValueUnitMultiplier: String,
+    val Terminal: String
 )
 extends
     Element
@@ -3156,15 +3217,16 @@ extends
  * @param voltage Voltage is specified.
  */
 case class RegulatingControlModeKind
-(override val sup: BasicElement,
-val activePower: String,
-val admittance: String,
-val currentFlow: String,
-val powerFactor: String,
-val reactivePower: String,
-val temperature: String,
-val timeScheduled: String,
-val voltage: String
+(
+    override val sup: Element,
+    val activePower: String,
+    val admittance: String,
+    val currentFlow: String,
+    val powerFactor: String,
+    val reactivePower: String,
+    val temperature: String,
+    val timeScheduled: String,
+    val voltage: String
 )
 extends
     Element
@@ -3217,8 +3279,9 @@ extends
  * @param RegulatingControl Regulating controls that have this Schedule.
  */
 case class RegulationSchedule
-(override val sup: SeasonDayTypeSchedule,
-val RegulatingControl: String
+(
+    override val sup: Element,
+    val RegulatingControl: String
 )
 extends
     Element
@@ -3269,14 +3332,15 @@ extends
  *        The direction of machine rotation for pumping may or may not be the same as for generating.
  */
 case class RotatingMachine
-(override val sup: RegulatingCondEq,
-val p: Double,
-val q: Double,
-val ratedPowerFactor: Double,
-val ratedS: Double,
-val ratedU: Double,
-val GeneratingUnit: String,
-val HydroPump: String
+(
+    override val sup: Element,
+    val p: Double,
+    val q: Double,
+    val ratedPowerFactor: Double,
+    val ratedS: Double,
+    val ratedU: Double,
+    val GeneratingUnit: String,
+    val HydroPump: String
 )
 extends
     Element
@@ -3328,9 +3392,10 @@ extends
  * @param voltage
  */
 case class SVCControlMode
-(override val sup: BasicElement,
-val reactivePower: String,
-val voltage: String
+(
+    override val sup: Element,
+    val reactivePower: String,
+    val voltage: String
 )
 extends
     Element
@@ -3371,7 +3436,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Sectionaliser
-(override val sup: Switch
+(
+    override val sup: Element
 )
 extends
     Element
@@ -3415,14 +3481,15 @@ extends
  * @param x0 Zero sequence reactance.
  */
 case class SeriesCompensator
-(override val sup: ConductingEquipment,
-val r: Double,
-val r0: Double,
-val varistorPresent: Boolean,
-val varistorRatedCurrent: Double,
-val varistorVoltageThreshold: Double,
-val x: Double,
-val x0: Double
+(
+    override val sup: Element,
+    val r: Double,
+    val r0: Double,
+    val varistorPresent: Boolean,
+    val varistorRatedCurrent: Double,
+    val varistorVoltageThreshold: Double,
+    val x: Double,
+    val x0: Double
 )
 extends
     Element
@@ -3476,11 +3543,12 @@ extends
  * @param turboSeries2 Turbo series 2 in IEC 60909
  */
 case class ShortCircuitRotorKind
-(override val sup: BasicElement,
-val salientPole1: String,
-val salientPole2: String,
-val turboSeries1: String,
-val turboSeries2: String
+(
+    override val sup: Element,
+    val salientPole1: String,
+    val salientPole2: String,
+    val turboSeries1: String,
+    val turboSeries2: String
 )
 extends
     Element
@@ -3539,18 +3607,19 @@ extends
  * @param SvShuntCompensatorSections The state for the number of shunt compensator sections in service.
  */
 case class ShuntCompensator
-(override val sup: RegulatingCondEq,
-val aVRDelay: Double,
-val grounded: Boolean,
-val maximumSections: Int,
-val nomU: Double,
-val normalSections: Int,
-val phaseConnection: String,
-val sections: Double,
-val switchOnCount: Int,
-val switchOnDate: String,
-val voltageSensitivity: Double,
-val SvShuntCompensatorSections: String
+(
+    override val sup: Element,
+    val aVRDelay: Double,
+    val grounded: Boolean,
+    val maximumSections: Int,
+    val nomU: Double,
+    val normalSections: Int,
+    val phaseConnection: String,
+    val sections: Double,
+    val switchOnCount: Int,
+    val switchOnDate: String,
+    val voltageSensitivity: Double,
+    val SvShuntCompensatorSections: String
 )
 extends
     Element
@@ -3613,11 +3682,12 @@ extends
  * @param ShuntCompensator Shunt compensator of this shunt compensator phase.
  */
 case class ShuntCompensatorPhase
-(override val sup: PowerSystemResource,
-val maximumSections: Int,
-val normalSections: Int,
-val phase: String,
-val ShuntCompensator: String
+(
+    override val sup: Element,
+    val maximumSections: Int,
+    val normalSections: Int,
+    val phase: String,
+    val ShuntCompensator: String
 )
 extends
     Element
@@ -3668,13 +3738,14 @@ extends
  * @param N Neutral.
  */
 case class SinglePhaseKind
-(override val sup: BasicElement,
-val s1: String,
-val s2: String,
-val A: String,
-val B: String,
-val C: String,
-val N: String
+(
+    override val sup: Element,
+    val s1: String,
+    val s2: String,
+    val A: String,
+    val B: String,
+    val C: String,
+    val N: String
 )
 extends
     Element
@@ -3731,13 +3802,14 @@ extends
  *        When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
  */
 case class StaticVarCompensator
-(override val sup: RegulatingCondEq,
-val capacitiveRating: Double,
-val inductiveRating: Double,
-val q: Double,
-val sVCControlMode: String,
-val slope: Double,
-val voltageSetPoint: Double
+(
+    override val sup: Element,
+    val capacitiveRating: Double,
+    val inductiveRating: Double,
+    val q: Double,
+    val sVCControlMode: String,
+    val slope: Double,
+    val voltageSetPoint: Double
 )
 extends
     Element
@@ -3797,16 +3869,17 @@ extends
  * @param SwitchAction Action changing status of this switch.
  */
 case class Switch
-(override val sup: ConductingEquipment,
-val normalOpen: Boolean,
-val open: Boolean,
-val ratedCurrent: Double,
-val retained: Boolean,
-val switchOnCount: Int,
-val switchOnDate: String,
-val CompositeSwitch: String,
-val Outage: String,
-val SwitchAction: String
+(
+    override val sup: Element,
+    val normalOpen: Boolean,
+    val open: Boolean,
+    val ratedCurrent: Double,
+    val retained: Boolean,
+    val switchOnCount: Int,
+    val switchOnDate: String,
+    val CompositeSwitch: String,
+    val Outage: String,
+    val SwitchAction: String
 )
 extends
     Element
@@ -3868,12 +3941,13 @@ extends
  * @param Switch The switch of the switch phase.
  */
 case class SwitchPhase
-(override val sup: PowerSystemResource,
-val closed: Boolean,
-val normalOpen: Boolean,
-val phaseSide1: String,
-val phaseSide2: String,
-val Switch: String
+(
+    override val sup: Element,
+    val closed: Boolean,
+    val normalOpen: Boolean,
+    val phaseSide1: String,
+    val phaseSide2: String,
+    val Switch: String
 )
 extends
     Element
@@ -3921,8 +3995,9 @@ extends
  * @param Switch A SwitchSchedule is associated with a Switch.
  */
 case class SwitchSchedule
-(override val sup: SeasonDayTypeSchedule,
-val Switch: String
+(
+    override val sup: Element,
+    val Switch: String
 )
 extends
     Element
@@ -4007,39 +4082,40 @@ extends
  * @param SynchronousMachineDynamics Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
  */
 case class SynchronousMachine
-(override val sup: RotatingMachine,
-val aVRToManualLag: Double,
-val aVRToManualLead: Double,
-val baseQ: Double,
-val condenserP: Double,
-val coolantCondition: Double,
-val coolantType: String,
-val earthing: Boolean,
-val earthingStarPointR: Double,
-val earthingStarPointX: Double,
-val ikk: Double,
-val manualToAVR: Double,
-val maxQ: Double,
-val maxU: Double,
-val minQ: Double,
-val minU: Double,
-val mu: Double,
-val operatingMode: String,
-val qPercent: Double,
-val r: Double,
-val r0: Double,
-val r2: Double,
-val referencePriority: Int,
-val satDirectSubtransX: Double,
-val satDirectSyncX: Double,
-val satDirectTransX: Double,
-val shortCircuitRotorType: String,
-val typ: String,
-val voltageRegulationRange: Double,
-val x0: Double,
-val x2: Double,
-val InitialReactiveCapabilityCurve: String,
-val SynchronousMachineDynamics: String
+(
+    override val sup: Element,
+    val aVRToManualLag: Double,
+    val aVRToManualLead: Double,
+    val baseQ: Double,
+    val condenserP: Double,
+    val coolantCondition: Double,
+    val coolantType: String,
+    val earthing: Boolean,
+    val earthingStarPointR: Double,
+    val earthingStarPointX: Double,
+    val ikk: Double,
+    val manualToAVR: Double,
+    val maxQ: Double,
+    val maxU: Double,
+    val minQ: Double,
+    val minU: Double,
+    val mu: Double,
+    val operatingMode: String,
+    val qPercent: Double,
+    val r: Double,
+    val r0: Double,
+    val r2: Double,
+    val referencePriority: Int,
+    val satDirectSubtransX: Double,
+    val satDirectSyncX: Double,
+    val satDirectTransX: Double,
+    val shortCircuitRotorType: String,
+    val typ: String,
+    val voltageRegulationRange: Double,
+    val x0: Double,
+    val x2: Double,
+    val InitialReactiveCapabilityCurve: String,
+    val SynchronousMachineDynamics: String
 )
 extends
     Element
@@ -4146,14 +4222,15 @@ extends
  * @param motorOrCondenser
  */
 case class SynchronousMachineKind
-(override val sup: BasicElement,
-val condenser: String,
-val generator: String,
-val generatorOrCondenser: String,
-val generatorOrCondenserOrMotor: String,
-val generatorOrMotor: String,
-val motor: String,
-val motorOrCondenser: String
+(
+    override val sup: Element,
+    val condenser: String,
+    val generator: String,
+    val generatorOrCondenser: String,
+    val generatorOrCondenserOrMotor: String,
+    val generatorOrMotor: String,
+    val motor: String,
+    val motorOrCondenser: String
 )
 extends
     Element
@@ -4206,10 +4283,11 @@ extends
  * @param motor
  */
 case class SynchronousMachineOperatingMode
-(override val sup: BasicElement,
-val condenser: String,
-val generator: String,
-val motor: String
+(
+    override val sup: Element,
+    val condenser: String,
+    val generator: String,
+    val motor: String
 )
 extends
     Element
@@ -4268,19 +4346,20 @@ extends
  * @param TapChangerControl The regulating control scheme in which this tap changer participates.
  */
 case class TapChanger
-(override val sup: PowerSystemResource,
-val controlEnabled: Boolean,
-val highStep: Int,
-val initialDelay: Double,
-val lowStep: Int,
-val ltcFlag: Boolean,
-val neutralStep: Int,
-val neutralU: Double,
-val normalStep: Int,
-val step: Double,
-val subsequentDelay: Double,
-val SvTapStep: String,
-val TapChangerControl: String
+(
+    override val sup: Element,
+    val controlEnabled: Boolean,
+    val highStep: Int,
+    val initialDelay: Double,
+    val lowStep: Int,
+    val ltcFlag: Boolean,
+    val neutralStep: Int,
+    val neutralU: Double,
+    val normalStep: Int,
+    val step: Double,
+    val subsequentDelay: Double,
+    val SvTapStep: String,
+    val TapChangerControl: String
 )
 extends
     Element
@@ -4347,13 +4426,14 @@ extends
  * @param reverseLineDropX Line drop compensator reactance setting for reverse power flow.
  */
 case class TapChangerControl
-(override val sup: RegulatingControl,
-val limitVoltage: Double,
-val lineDropCompensation: Boolean,
-val lineDropR: Double,
-val lineDropX: Double,
-val reverseLineDropR: Double,
-val reverseLineDropX: Double
+(
+    override val sup: Element,
+    val limitVoltage: Double,
+    val lineDropCompensation: Boolean,
+    val lineDropR: Double,
+    val lineDropX: Double,
+    val reverseLineDropR: Double,
+    val reverseLineDropX: Double
 )
 extends
     Element
@@ -4397,13 +4477,14 @@ extends
 }
 
 case class TapChangerTablePoint
-(override val sup: BasicElement,
-val b: Double,
-val g: Double,
-val r: Double,
-val ratio: Double,
-val step: Int,
-val x: Double
+(
+    override val sup: Element,
+    val b: Double,
+    val g: Double,
+    val r: Double,
+    val ratio: Double,
+    val step: Int,
+    val x: Double
 )
 extends
     Element
@@ -4452,8 +4533,9 @@ extends
  * @param TapChanger A TapSchedule is associated with a TapChanger.
  */
 case class TapSchedule
-(override val sup: SeasonDayTypeSchedule,
-val TapChanger: String
+(
+    override val sup: Element,
+    val TapChanger: String
 )
 extends
     Element
@@ -4493,9 +4575,10 @@ extends
  * @param volt Voltage control
  */
 case class TransformerControlMode
-(override val sup: BasicElement,
-val reactive: String,
-val volt: String
+(
+    override val sup: Element,
+    val reactive: String,
+    val volt: String
 )
 extends
     Element
@@ -4542,12 +4625,13 @@ extends
  * @param TransformerEndInfo Transformer end datasheet used to calculate this core admittance.
  */
 case class TransformerCoreAdmittance
-(override val sup: IdentifiedObject,
-val b: Double,
-val b0: Double,
-val g: Double,
-val g0: Double,
-val TransformerEndInfo: String
+(
+    override val sup: Element,
+    val b: Double,
+    val b0: Double,
+    val g: Double,
+    val g0: Double,
+    val TransformerEndInfo: String
 )
 extends
     Element
@@ -4611,20 +4695,21 @@ extends
  * @param Terminal Terminal of the power transformer to which this transformer end belongs.
  */
 case class TransformerEnd
-(override val sup: IdentifiedObject,
-val bmagSat: Double,
-val endNumber: Int,
-val grounded: Boolean,
-val magBaseU: Double,
-val magSatFlux: Double,
-val rground: Double,
-val xground: Double,
-val BaseVoltage: String,
-val CoreAdmittance: String,
-val PhaseTapChanger: String,
-val RatioTapChanger: String,
-val StarImpedance: String,
-val Terminal: String
+(
+    override val sup: Element,
+    val bmagSat: Double,
+    val endNumber: Int,
+    val grounded: Boolean,
+    val magBaseU: Double,
+    val magSatFlux: Double,
+    val rground: Double,
+    val xground: Double,
+    val BaseVoltage: String,
+    val CoreAdmittance: String,
+    val PhaseTapChanger: String,
+    val RatioTapChanger: String,
+    val StarImpedance: String,
+    val Terminal: String
 )
 extends
     Element
@@ -4695,13 +4780,14 @@ extends
  *        It determines the voltage reference.
  */
 case class TransformerMeshImpedance
-(override val sup: IdentifiedObject,
-val r: Double,
-val r0: Double,
-val x: Double,
-val x0: Double,
-val FromTransformerEnd: String,
-val FromTransformerEndInfo: String
+(
+    override val sup: Element,
+    val r: Double,
+    val r0: Double,
+    val x: Double,
+    val x0: Double,
+    val FromTransformerEnd: String,
+    val FromTransformerEndInfo: String
 )
 extends
     Element
@@ -4755,12 +4841,13 @@ extends
  * @param TransformerEndInfo Transformer end datasheet used to calculate this transformer star impedance.
  */
 case class TransformerStarImpedance
-(override val sup: IdentifiedObject,
-val r: Double,
-val r0: Double,
-val x: Double,
-val x0: Double,
-val TransformerEndInfo: String
+(
+    override val sup: Element,
+    val r: Double,
+    val r0: Double,
+    val x: Double,
+    val x0: Double,
+    val TransformerEndInfo: String
 )
 extends
     Element
@@ -4808,8 +4895,9 @@ extends
  * @param PowerTransformer Bank this transformer belongs to.
  */
 case class TransformerTank
-(override val sup: Equipment,
-val PowerTransformer: String
+(
+    override val sup: Element,
+    val PowerTransformer: String
 )
 extends
     Element
@@ -4849,9 +4937,10 @@ extends
  * @param TransformerTank Transformer this winding belongs to.
  */
 case class TransformerTankEnd
-(override val sup: TransformerEnd,
-val phases: String,
-val TransformerTank: String
+(
+    override val sup: Element,
+    val phases: String,
+    val TransformerTank: String
 )
 extends
     Element
@@ -4894,9 +4983,10 @@ extends
  * @param RegulationSchedule A VoltageControlZone may have a  voltage regulation schedule.
  */
 case class VoltageControlZone
-(override val sup: PowerSystemResource,
-val BusbarSection: String,
-val RegulationSchedule: String
+(
+    override val sup: Element,
+    val BusbarSection: String,
+    val RegulationSchedule: String
 )
 extends
     Element
@@ -4943,14 +5033,15 @@ extends
  * @param Zn ZigZag, with neutral brought out for grounding.
  */
 case class WindingConnection
-(override val sup: BasicElement,
-val A: String,
-val D: String,
-val I: String,
-val Y: String,
-val Yn: String,
-val Z: String,
-val Zn: String
+(
+    override val sup: Element,
+    val A: String,
+    val D: String,
+    val I: String,
+    val Y: String,
+    val Yn: String,
+    val Z: String,
+    val Zn: String
 )
 extends
     Element

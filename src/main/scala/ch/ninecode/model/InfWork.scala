@@ -20,12 +20,13 @@ import ch.ninecode.cim.Context
  * @param permitID Permit identifier.
  */
 case class AccessPermit
-(override val sup: WorkDocument,
-val applicationNumber: String,
-val effectiveDate: String,
-val expirationDate: String,
-val payment: Double,
-val permitID: String
+(
+    override val sup: Element,
+    val applicationNumber: String,
+    val effectiveDate: String,
+    val expirationDate: String,
+    val payment: Double,
+    val permitID: String
 )
 extends
     Element
@@ -73,8 +74,9 @@ extends
  * @param effectivePeriod Period between the assignment becoming effective and its expiration.
  */
 case class Assignment
-(override val sup: WorkDocument,
-val effectivePeriod: String
+(
+    override val sup: Element,
+    val effectivePeriod: String
 )
 extends
     Element
@@ -113,8 +115,9 @@ extends
  * @param corporateCode A codified representation of the business case (i.e., codes for highway relocation, replace substation transformers, etc.).
  */
 case class BusinessCase
-(override val sup: WorkDocument,
-val corporateCode: String
+(
+    override val sup: Element,
+    val corporateCode: String
 )
 extends
     Element
@@ -153,8 +156,9 @@ extends
  * @param status
  */
 case class CUAllowableAction
-(override val sup: WorkIdentifiedObject,
-val status: String
+(
+    override val sup: Element,
+    val status: String
 )
 extends
     Element
@@ -196,11 +200,12 @@ extends
  * @param TypeAsset
  */
 case class CUAsset
-(override val sup: WorkIdentifiedObject,
-val quantity: String,
-val status: String,
-val typeAssetCode: String,
-val TypeAsset: String
+(
+    override val sup: Element,
+    val quantity: String,
+    val status: String,
+    val typeAssetCode: String,
+    val TypeAsset: String
 )
 extends
     Element
@@ -248,11 +253,12 @@ extends
  * @param CompatibleUnits
  */
 case class CUContractorItem
-(override val sup: WorkIdentifiedObject,
-val activityCode: String,
-val bidAmount: Double,
-val status: String,
-val CompatibleUnits: List[String]
+(
+    override val sup: Element,
+    val activityCode: String,
+    val bidAmount: Double,
+    val status: String,
+    val CompatibleUnits: List[String]
 )
 extends
     Element
@@ -298,9 +304,10 @@ extends
  * @param ChildCUGroups
  */
 case class CUGroup
-(override val sup: WorkIdentifiedObject,
-val status: String,
-val ChildCUGroups: List[String]
+(
+    override val sup: Element,
+    val status: String,
+    val ChildCUGroups: List[String]
 )
 extends
     Element
@@ -342,9 +349,10 @@ extends
  * @param status
  */
 case class CULaborCode
-(override val sup: WorkIdentifiedObject,
-val code: String,
-val status: String
+(
+    override val sup: Element,
+    val code: String,
+    val status: String
 )
 extends
     Element
@@ -391,14 +399,15 @@ extends
  * @param QualificationRequirements
  */
 case class CULaborItem
-(override val sup: WorkIdentifiedObject,
-val activityCode: String,
-val laborDuration: Double,
-val laborRate: Double,
-val status: String,
-val CULaborCode: String,
-val CompatibleUnits: List[String],
-val QualificationRequirements: List[String]
+(
+    override val sup: Element,
+    val activityCode: String,
+    val laborDuration: Double,
+    val laborRate: Double,
+    val status: String,
+    val CULaborCode: String,
+    val CompatibleUnits: List[String],
+    val QualificationRequirements: List[String]
 )
 extends
     Element
@@ -454,12 +463,13 @@ extends
  * @param TypeMaterial
  */
 case class CUMaterialItem
-(override val sup: WorkIdentifiedObject,
-val corporateCode: String,
-val quantity: String,
-val status: String,
-val CompatibleUnits: List[String],
-val TypeMaterial: String
+(
+    override val sup: Element,
+    val corporateCode: String,
+    val quantity: String,
+    val status: String,
+    val CompatibleUnits: List[String],
+    val TypeMaterial: String
 )
 extends
     Element
@@ -510,12 +520,13 @@ extends
  * @param TypeAsset
  */
 case class CUWorkEquipmentItem
-(override val sup: WorkIdentifiedObject,
-val equipCode: String,
-val rate: Double,
-val status: String,
-val CompatibleUnits: List[String],
-val TypeAsset: String
+(
+    override val sup: Element,
+    val equipCode: String,
+    val rate: Double,
+    val status: String,
+    val CompatibleUnits: List[String],
+    val TypeAsset: String
 )
 extends
     Element
@@ -568,14 +579,15 @@ extends
  * @param WorkTasks
  */
 case class Capability
-(override val sup: WorkIdentifiedObject,
-val performanceFactor: String,
-val status: String,
-val typ: String,
-val validityInterval: String,
-val Crafts: List[String],
-val Crew: String,
-val WorkTasks: List[String]
+(
+    override val sup: Element,
+    val performanceFactor: String,
+    val status: String,
+    val typ: String,
+    val validityInterval: String,
+    val Crafts: List[String],
+    val Crew: String,
+    val WorkTasks: List[String]
 )
 extends
     Element
@@ -634,16 +646,17 @@ extends
  * @param PropertyUnit
  */
 case class CompatibleUnit
-(override val sup: WorkDocument,
-val estCost: Double,
-val quantity: String,
-val CUAllowableAction: String,
-val CUAssets: List[String],
-val CUGroup: String,
-val CostType: String,
-val DesignLocationCUs: List[String],
-val Procedures: List[String],
-val PropertyUnit: String
+(
+    override val sup: Element,
+    val estCost: Double,
+    val quantity: String,
+    val CUAllowableAction: String,
+    val CUAssets: List[String],
+    val CUGroup: String,
+    val CostType: String,
+    val DesignLocationCUs: List[String],
+    val Procedures: List[String],
+    val PropertyUnit: String
 )
 extends
     Element
@@ -700,10 +713,11 @@ extends
  * @param status
  */
 case class ConditionFactor
-(override val sup: WorkIdentifiedObject,
-val cfValue: String,
-val kind: String,
-val status: String
+(
+    override val sup: Element,
+    val cfValue: String,
+    val kind: String,
+    val status: String
 )
 extends
     Element
@@ -750,12 +764,13 @@ extends
  * @param travel
  */
 case class ConditionFactorKind
-(override val sup: BasicElement,
-val accountAllocation: String,
-val labor: String,
-val material: String,
-val other: String,
-val travel: String
+(
+    override val sup: Element,
+    val accountAllocation: String,
+    val labor: String,
+    val material: String,
+    val other: String,
+    val travel: String
 )
 extends
     Element
@@ -808,14 +823,15 @@ extends
  * @param WorkTask
  */
 case class ContractorItem
-(override val sup: WorkIdentifiedObject,
-val activityCode: String,
-val bidAmount: Double,
-val cost: Double,
-val status: String,
-val ErpPayables: List[String],
-val WorkCostDetail: String,
-val WorkTask: String
+(
+    override val sup: Element,
+    val activityCode: String,
+    val bidAmount: Double,
+    val cost: Double,
+    val status: String,
+    val ErpPayables: List[String],
+    val WorkCostDetail: String,
+    val WorkTask: String
 )
 extends
     Element
@@ -873,14 +889,15 @@ extends
  * @param ParentCostType
  */
 case class CostType
-(override val sup: WorkIdentifiedObject,
-val amountAssignable: Boolean,
-val code: String,
-val level: String,
-val stage: String,
-val status: String,
-val ErpJournalEntries: List[String],
-val ParentCostType: String
+(
+    override val sup: Element,
+    val amountAssignable: Boolean,
+    val code: String,
+    val level: String,
+    val stage: String,
+    val status: String,
+    val ErpJournalEntries: List[String],
+    val ParentCostType: String
 )
 extends
     Element
@@ -937,13 +954,14 @@ extends
  * @param Work
  */
 case class Design
-(override val sup: WorkDocument,
-val costEstimate: Double,
-val kind: String,
-val price: Double,
-val ConditionFactors: List[String],
-val ErpQuoteLineItem: String,
-val Work: String
+(
+    override val sup: Element,
+    val costEstimate: Double,
+    val kind: String,
+    val price: Double,
+    val ConditionFactors: List[String],
+    val ErpQuoteLineItem: String,
+    val Work: String
 )
 extends
     Element
@@ -994,10 +1012,11 @@ extends
  * @param other
  */
 case class DesignKind
-(override val sup: BasicElement,
-val asBuilt: String,
-val estimated: String,
-val other: String
+(
+    override val sup: Element,
+    val asBuilt: String,
+    val estimated: String,
+    val other: String
 )
 extends
     Element
@@ -1043,10 +1062,11 @@ extends
  * @param ConditionFactors
  */
 case class DesignLocation
-(override val sup: WorkIdentifiedObject,
-val spanLength: Double,
-val status: String,
-val ConditionFactors: List[String]
+(
+    override val sup: Element,
+    val spanLength: Double,
+    val status: String,
+    val ConditionFactors: List[String]
 )
 extends
     Element
@@ -1101,19 +1121,20 @@ extends
  * @param WorkTasks
  */
 case class DesignLocationCU
-(override val sup: WorkIdentifiedObject,
-val cuAccount: String,
-val cuAction: String,
-val cuQuantity: String,
-val cuUsage: String,
-val removalDate: String,
-val status: String,
-val toBeEnergised: Boolean,
-val CUGroups: List[String],
-val ConditionFactors: List[String],
-val DesignLocation: String,
-val Designs: List[String],
-val WorkTasks: List[String]
+(
+    override val sup: Element,
+    val cuAccount: String,
+    val cuAction: String,
+    val cuQuantity: String,
+    val cuUsage: String,
+    val removalDate: String,
+    val status: String,
+    val toBeEnergised: Boolean,
+    val CUGroups: List[String],
+    val ConditionFactors: List[String],
+    val DesignLocation: String,
+    val Designs: List[String],
+    val WorkTasks: List[String]
 )
 extends
     Element
@@ -1182,14 +1203,15 @@ extends
  * @param questionType The type of the question.
  */
 case class InfoQuestion
-(override val sup: WorkDocument,
-val answer: String,
-val answerDateTime: String,
-val answerRemark: String,
-val questionCode: String,
-val questionRemark: String,
-val questionText: String,
-val questionType: String
+(
+    override val sup: Element,
+    val answer: String,
+    val answerDateTime: String,
+    val answerRemark: String,
+    val questionCode: String,
+    val questionRemark: String,
+    val questionText: String,
+    val questionType: String
 )
 extends
     Element
@@ -1247,14 +1269,15 @@ extends
  * @param WorkTask
  */
 case class LaborItem
-(override val sup: WorkIdentifiedObject,
-val activityCode: String,
-val cost: Double,
-val laborDuration: Double,
-val laborRate: Double,
-val status: String,
-val WorkCostDetail: String,
-val WorkTask: String
+(
+    override val sup: Element,
+    val activityCode: String,
+    val cost: Double,
+    val laborDuration: Double,
+    val laborRate: Double,
+    val status: String,
+    val WorkCostDetail: String,
+    val WorkTask: String
 )
 extends
     Element
@@ -1314,16 +1337,17 @@ extends
  * @param WorkTask
  */
 case class MiscCostItem
-(override val sup: WorkIdentifiedObject,
-val account: String,
-val costPerUnit: Double,
-val costType: String,
-val externalRefID: String,
-val quantity: String,
-val status: String,
-val DesignLocation: String,
-val WorkCostDetail: String,
-val WorkTask: String
+(
+    override val sup: Element,
+    val account: String,
+    val costPerUnit: Double,
+    val costType: String,
+    val externalRefID: String,
+    val quantity: String,
+    val status: String,
+    val DesignLocation: String,
+    val WorkCostDetail: String,
+    val WorkTask: String
 )
 extends
     Element
@@ -1378,8 +1402,9 @@ extends
  * @param amount The projected cost for this item.
  */
 case class NonStandardItem
-(override val sup: WorkDocument,
-val amount: Double
+(
+    override val sup: Element,
+    val amount: Double
 )
 extends
     Element
@@ -1421,11 +1446,12 @@ extends
  * @param WorkFlowStep
  */
 case class OldWorkTask
-(override val sup: WorkTask,
-val Design: String,
-val OverheadCost: String,
-val QualificationRequirements: List[String],
-val WorkFlowStep: String
+(
+    override val sup: Element,
+    val Design: String,
+    val OverheadCost: String,
+    val QualificationRequirements: List[String],
+    val WorkFlowStep: String
 )
 extends
     Element
@@ -1472,10 +1498,11 @@ extends
  * @param markingInstruction Instructions for marking a dig area, if applicable.
  */
 case class OneCallRequest
-(override val sup: WorkDocument,
-val explosivesUsed: Boolean,
-val markedIndicator: Boolean,
-val markingInstruction: String
+(
+    override val sup: Element,
+    val explosivesUsed: Boolean,
+    val markedIndicator: Boolean,
+    val markingInstruction: String
 )
 extends
     Element
@@ -1520,10 +1547,11 @@ extends
  * @param status
  */
 case class OverheadCost
-(override val sup: WorkIdentifiedObject,
-val code: String,
-val cost: Double,
-val status: String
+(
+    override val sup: Element,
+    val code: String,
+    val cost: Double,
+    val status: String
 )
 extends
     Element
@@ -1570,11 +1598,12 @@ extends
  * @param ParentProject
  */
 case class Project
-(override val sup: WorkDocument,
-val budget: Double,
-val BusinessCase: String,
-val ErpProjectAccounting: String,
-val ParentProject: String
+(
+    override val sup: Element,
+    val budget: Double,
+    val BusinessCase: String,
+    val ErpProjectAccounting: String,
+    val ParentProject: String
 )
 extends
     Element
@@ -1624,12 +1653,13 @@ extends
  * @param CUMaterialItems
  */
 case class PropertyUnit
-(override val sup: WorkIdentifiedObject,
-val accountingUsage: String,
-val activityCode: String,
-val propertyAccount: String,
-val status: String,
-val CUMaterialItems: List[String]
+(
+    override val sup: Element,
+    val accountingUsage: String,
+    val activityCode: String,
+    val propertyAccount: String,
+    val status: String,
+    val CUMaterialItems: List[String]
 )
 extends
     Element
@@ -1677,9 +1707,10 @@ extends
  * @param Specifications
  */
 case class QualificationRequirement
-(override val sup: WorkIdentifiedObject,
-val qualificationID: String,
-val Specifications: List[String]
+(
+    override val sup: Element,
+    val qualificationID: String,
+    val Specifications: List[String]
 )
 extends
     Element
@@ -1721,8 +1752,9 @@ extends
  * @param referenceNumber External reference to regulation, if applicable.
  */
 case class Regulation
-(override val sup: WorkDocument,
-val referenceNumber: String
+(
+    override val sup: Element,
+    val referenceNumber: String
 )
 extends
     Element
@@ -1764,11 +1796,12 @@ extends
  * @param validityInterval Date and time interval for which this shift pattern is valid (when it became effective and when it expires).
  */
 case class ShiftPattern
-(override val sup: WorkIdentifiedObject,
-val assignmentType: String,
-val cycleCount: Int,
-val status: String,
-val validityInterval: String
+(
+    override val sup: Element,
+    val assignmentType: String,
+    val cycleCount: Int,
+    val status: String,
+    val validityInterval: String
 )
 extends
     Element
@@ -1818,11 +1851,12 @@ extends
  * @param stockItem True if item is a stock item (default).
  */
 case class TypeMaterial
-(override val sup: WorkDocument,
-val costType: String,
-val estUnitCost: Double,
-val quantity: String,
-val stockItem: Boolean
+(
+    override val sup: Element,
+    val costType: String,
+    val estUnitCost: Double,
+    val quantity: String,
+    val stockItem: Boolean
 )
 extends
     Element
@@ -1869,9 +1903,10 @@ extends
  * @param WorkTask
  */
 case class Usage
-(override val sup: WorkIdentifiedObject,
-val status: String,
-val WorkTask: String
+(
+    override val sup: Element,
+    val status: String,
+    val WorkTask: String
 )
 extends
     Element
@@ -1915,11 +1950,12 @@ extends
  * @param transfer Remove from one and install at another loctation.
  */
 case class WorkActionKind
-(override val sup: BasicElement,
-val abandon: String,
-val install: String,
-val remove: String,
-val transfer: String
+(
+    override val sup: Element,
+    val abandon: String,
+    val install: String,
+    val remove: String,
+    val transfer: String
 )
 extends
     Element
@@ -1975,18 +2011,19 @@ extends
  * @param Works
  */
 case class WorkCostDetail
-(override val sup: WorkDocument,
-val amount: Double,
-val isDebit: Boolean,
-val transactionDateTime: String,
-val CostType: String,
-val Design: String,
-val ErpProjectAccounting: String,
-val OverheadCost: String,
-val PropertyUnits: List[String],
-val WorkCostSummary: String,
-val WorkTask: String,
-val Works: List[String]
+(
+    override val sup: Element,
+    val amount: Double,
+    val isDebit: Boolean,
+    val transactionDateTime: String,
+    val CostType: String,
+    val Design: String,
+    val ErpProjectAccounting: String,
+    val OverheadCost: String,
+    val PropertyUnits: List[String],
+    val WorkCostSummary: String,
+    val WorkTask: String,
+    val Works: List[String]
 )
 extends
     Element
@@ -2046,8 +2083,9 @@ extends
  * @param WorkCostDetail
  */
 case class WorkCostSummary
-(override val sup: WorkDocument,
-val WorkCostDetail: String
+(
+    override val sup: Element,
+    val WorkCostDetail: String
 )
 extends
     Element
@@ -2086,7 +2124,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class WorkDocument
-(override val sup: Document
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2125,10 +2164,11 @@ extends
  * @param Work
  */
 case class WorkFlowStep
-(override val sup: WorkIdentifiedObject,
-val sequenceNumber: Int,
-val status: String,
-val Work: String
+(
+    override val sup: Element,
+    val sequenceNumber: Int,
+    val status: String,
+    val Work: String
 )
 extends
     Element
@@ -2171,7 +2211,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class WorkIdentifiedObject
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -2208,8 +2249,9 @@ extends
  * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
  */
 case class WorkStatusEntry
-(override val sup: ActivityRecord,
-val percentComplete: Double
+(
+    override val sup: Element,
+    val percentComplete: Double
 )
 extends
     Element

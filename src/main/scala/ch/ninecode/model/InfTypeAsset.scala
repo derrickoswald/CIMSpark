@@ -27,23 +27,24 @@ import ch.ninecode.cim.Context
  * @param xQuadTrans Quadrature-axis transient reactance.
  */
 case class GeneratorTypeAsset
-(override val sup: GenericAssetModelOrMaterial,
-val maxP: Double,
-val maxQ: Double,
-val minP: Double,
-val minQ: Double,
-val rDirectSubtrans: Double,
-val rDirectSync: Double,
-val rDirectTrans: Double,
-val rQuadSubtrans: Double,
-val rQuadSync: Double,
-val rQuadTrans: Double,
-val xDirectSubtrans: Double,
-val xDirectSync: Double,
-val xDirectTrans: Double,
-val xQuadSubtrans: Double,
-val xQuadSync: Double,
-val xQuadTrans: Double
+(
+    override val sup: Element,
+    val maxP: Double,
+    val maxQ: Double,
+    val minP: Double,
+    val minQ: Double,
+    val rDirectSubtrans: Double,
+    val rDirectSync: Double,
+    val rDirectTrans: Double,
+    val rQuadSubtrans: Double,
+    val rQuadSync: Double,
+    val rQuadTrans: Double,
+    val xDirectSubtrans: Double,
+    val xDirectSync: Double,
+    val xDirectTrans: Double,
+    val xQuadSubtrans: Double,
+    val xQuadSync: Double,
+    val xQuadTrans: Double
 )
 extends
     Element
@@ -113,8 +114,9 @@ extends
  * @param status
  */
 case class TypeAssetCatalogue
-(override val sup: IdentifiedObject,
-val status: String
+(
+    override val sup: Element,
+    val status: String
 )
 extends
     Element

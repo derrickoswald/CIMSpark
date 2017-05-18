@@ -18,9 +18,10 @@ import ch.ninecode.cim.Context
  *        The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
  */
 case class PackageDependenciesCIMVersion
-(override val sup: BasicElement,
-val date: String,
-val version: String
+(
+    override val sup: Element,
+    val date: String,
+    val version: String
 )
 extends
     Element

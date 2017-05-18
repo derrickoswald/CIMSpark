@@ -14,7 +14,8 @@ import ch.ninecode.cim.Context
  * @param sup Reference to the superclass object.
  */
 case class EnvironmentalDependentLimit
-(override val sup: LimitDependency
+(
+    override val sup: Element
 )
 extends
     Element
@@ -52,8 +53,9 @@ extends
  *        The reference here is to Equipment rather than a specific limit on the equipment so the grouiping can be reused for multiple limits of different types on the same instance of equipment.
  */
 case class EquipmentLimitSeriesComponent
-(override val sup: IdentifiedObject,
-val Equipment: String
+(
+    override val sup: Element,
+    val Equipment: String
 )
 extends
     Element
@@ -93,8 +95,9 @@ extends
  * @param Equipment The equipment for which this limit dependency model is organized under.
  */
 case class LimitDependency
-(override val sup: IdentifiedObject,
-val Equipment: String
+(
+    override val sup: Element,
+    val Equipment: String
 )
 extends
     Element
@@ -134,9 +137,10 @@ extends
  * @param SourceOperationalLimit
  */
 case class LimitScalingLimit
-(override val sup: LimitDependency,
-val limitScalingPercent: Double,
-val SourceOperationalLimit: String
+(
+    override val sup: Element,
+    val limitScalingPercent: Double,
+    val SourceOperationalLimit: String
 )
 extends
     Element
@@ -181,10 +185,11 @@ extends
  * @param TargetOperationalLimit
  */
 case class OperatonalLimitTypeScaling
-(override val sup: BasicElement,
-val scalingPercent: Double,
-val SourceOperationalLimitType: String,
-val TargetOperationalLimit: String
+(
+    override val sup: Element,
+    val scalingPercent: Double,
+    val SourceOperationalLimitType: String,
+    val TargetOperationalLimit: String
 )
 extends
     Element
@@ -222,8 +227,9 @@ extends
 }
 
 case class ScheduledActivePowerLimitValue
-(override val sup: ScheduledLimitValue,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -262,8 +268,9 @@ extends
  * @param value The apparent power limit value for the scheduled time.
  */
 case class ScheduledApparentPowerLimitValue
-(override val sup: ScheduledLimitValue,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -302,8 +309,9 @@ extends
  * @param value The current flow limit value applicable at the scheduled time.
  */
 case class ScheduledCurrentLimitValue
-(override val sup: ScheduledLimitValue,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -337,7 +345,8 @@ extends
 }
 
 case class ScheduledLimitDependency
-(override val sup: LimitDependency
+(
+    override val sup: Element
 )
 extends
     Element
@@ -375,8 +384,9 @@ extends
  *        If not specified, then applicable ot any season.
  */
 case class ScheduledLimitValue
-(override val sup: IdentifiedObject,
-val Season: String
+(
+    override val sup: Element,
+    val Season: String
 )
 extends
     Element
@@ -415,8 +425,9 @@ extends
  * @param value The voltage limit value for the scheduled time.
  */
 case class ScheduledVoltageLimitValue
-(override val sup: ScheduledLimitValue,
-val value: Double
+(
+    override val sup: Element,
+    val value: Double
 )
 extends
     Element
@@ -455,7 +466,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class SeriesEquipmentDependentLimit
-(override val sup: LimitDependency
+(
+    override val sup: Element
 )
 extends
     Element
@@ -493,9 +505,10 @@ extends
  * @param temperature The temperature of the table point.
  */
 case class TemperatureDependentLimitPoint
-(override val sup: BasicElement,
-val limitPercent: Double,
-val temperature: Double
+(
+    override val sup: Element,
+    val limitPercent: Double,
+    val temperature: Double
 )
 extends
     Element
@@ -535,7 +548,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class TemperatureDependentLimitTable
-(override val sup: EnvironmentalDependentLimit
+(
+    override val sup: Element
 )
 extends
     Element
@@ -576,12 +590,13 @@ extends
  * @param coefficient4 The polinomial coefficent of power 4.
  */
 case class TemperaturePolynomialLimit
-(override val sup: EnvironmentalDependentLimit,
-val coefficient0: Double,
-val coefficient1: Double,
-val coefficient2: Double,
-val coefficient3: Double,
-val coefficient4: Double
+(
+    override val sup: Element,
+    val coefficient0: Double,
+    val coefficient1: Double,
+    val coefficient2: Double,
+    val coefficient3: Double,
+    val coefficient4: Double
 )
 extends
     Element
@@ -627,7 +642,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class WeatherStation
-(override val sup: PowerSystemResource
+(
+    override val sup: Element
 )
 extends
     Element

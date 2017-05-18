@@ -16,8 +16,9 @@ import ch.ninecode.cim.Context
  * @param Terminal The Terminal at the equipment where the AuxiliaryEquipment is attached.
  */
 case class AuxiliaryEquipment
-(override val sup: Equipment,
-val Terminal: String
+(
+    override val sup: Element,
+    val Terminal: String
 )
 extends
     Element
@@ -61,12 +62,13 @@ extends
  * @param usage Intended usage of the CT; i.e. metering, protection.
  */
 case class CurrentTransformer
-(override val sup: Sensor,
-val accuracyClass: String,
-val accuracyLimit: Double,
-val coreBurden: Double,
-val ctClass: String,
-val usage: String
+(
+    override val sup: Element,
+    val accuracyClass: String,
+    val accuracyLimit: Double,
+    val coreBurden: Double,
+    val ctClass: String,
+    val usage: String
 )
 extends
     Element
@@ -113,7 +115,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class FaultIndicator
-(override val sup: AuxiliaryEquipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -149,7 +152,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class PostLineSensor
-(override val sup: Sensor
+(
+    override val sup: Element
 )
 extends
     Element
@@ -190,11 +194,12 @@ extends
  * @param typ Potential transformer construction type.
  */
 case class PotentialTransformer
-(override val sup: Sensor,
-val accuracyClass: String,
-val nominalRatio: Double,
-val ptClass: String,
-val typ: String
+(
+    override val sup: Element,
+    val accuracyClass: String,
+    val nominalRatio: Double,
+    val ptClass: String,
+    val typ: String
 )
 extends
     Element
@@ -240,9 +245,10 @@ extends
  * @param inductive The potential transformer is using induction coils to create secondary voltage.
  */
 case class PotentialTransformerKind
-(override val sup: BasicElement,
-val capacitiveCoupling: String,
-val inductive: String
+(
+    override val sup: Element,
+    val capacitiveCoupling: String,
+    val inductive: String
 )
 extends
     Element
@@ -282,7 +288,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Sensor
-(override val sup: AuxiliaryEquipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -318,7 +325,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class SurgeArrester
-(override val sup: AuxiliaryEquipment
+(
+    override val sup: Element
 )
 extends
     Element
@@ -354,7 +362,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class WaveTrap
-(override val sup: AuxiliaryEquipment
+(
+    override val sup: Element
 )
 extends
     Element

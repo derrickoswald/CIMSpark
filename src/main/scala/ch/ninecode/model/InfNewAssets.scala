@@ -23,20 +23,21 @@ import ch.ninecode.cim.Context
  * @param rootRemark Remarks pertaining to root cause findings during problem diagnosis.
  */
 case class DiagnosisDataSet
-(override val sup: ProcedureDataSet,
-val effect: String,
-val failureMode: String,
-val finalCause: String,
-val finalCode: String,
-val finalOrigin: String,
-val finalRemark: String,
-val phaseCode: String,
-val preliminaryCode: String,
-val preliminaryDateTime: String,
-val preliminaryRemark: String,
-val rootCause: String,
-val rootOrigin: String,
-val rootRemark: String
+(
+    override val sup: Element,
+    val effect: String,
+    val failureMode: String,
+    val finalCause: String,
+    val finalCode: String,
+    val finalOrigin: String,
+    val finalRemark: String,
+    val phaseCode: String,
+    val preliminaryCode: String,
+    val preliminaryDateTime: String,
+    val preliminaryRemark: String,
+    val rootCause: String,
+    val rootOrigin: String,
+    val rootRemark: String
 )
 extends
     Element
@@ -99,8 +100,9 @@ extends
  * @param locationCondition Description of the conditions of the location where the asset resides.
  */
 case class InspectionDataSet
-(override val sup: ProcedureDataSet,
-val locationCondition: String
+(
+    override val sup: Element,
+    val locationCondition: String
 )
 extends
     Element
@@ -141,10 +143,11 @@ extends
  * @param maintCode Code for the type of maintenance performed.
  */
 case class MaintenanceDataSet
-(override val sup: ProcedureDataSet,
-val conditionAfter: String,
-val conditionBefore: String,
-val maintCode: String
+(
+    override val sup: Element,
+    val conditionAfter: String,
+    val conditionBefore: String,
+    val maintCode: String
 )
 extends
     Element
@@ -189,10 +192,11 @@ extends
  * @param specimenToLabDateTime Date and time the specimen was received by the lab.
  */
 case class TestDataSet
-(override val sup: ProcedureDataSet,
-val conclusion: String,
-val specimenID: String,
-val specimenToLabDateTime: String
+(
+    override val sup: Element,
+    val conclusion: String,
+    val specimenID: String,
+    val specimenToLabDateTime: String
 )
 extends
     Element

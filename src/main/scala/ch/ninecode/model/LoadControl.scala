@@ -28,16 +28,17 @@ import ch.ninecode.cim.Context
  * @param Switches
  */
 case class ConnectDisconnectFunction
-(override val sup: EndDeviceFunction,
-val eventCount: Int,
-val isConnected: Boolean,
-val isDelayedDiscon: Boolean,
-val isLocalAutoDisconOp: Boolean,
-val isLocalAutoReconOp: Boolean,
-val isRemoteAutoDisconOp: Boolean,
-val isRemoteAutoReconOp: Boolean,
-val rcdInfo: String,
-val Switches: List[String]
+(
+    override val sup: Element,
+    val eventCount: Int,
+    val isConnected: Boolean,
+    val isDelayedDiscon: Boolean,
+    val isLocalAutoDisconOp: Boolean,
+    val isLocalAutoReconOp: Boolean,
+    val isRemoteAutoDisconOp: Boolean,
+    val isRemoteAutoReconOp: Boolean,
+    val rcdInfo: String,
+    val Switches: List[String]
 )
 extends
     Element
@@ -103,19 +104,20 @@ extends
  * @param usePushbutton True if pushbutton has to be used for connect.
  */
 case class RemoteConnectDisconnectInfo
-(override val sup: BasicElement,
-val armedTimeout: Double,
-val customerVoltageLimit: Double,
-val energyLimit: Double,
-val energyUsageStartDateTime: String,
-val energyUsageWarning: Double,
-val isArmConnect: Boolean,
-val isArmDisconnect: Boolean,
-val isEnergyLimiting: Boolean,
-val needsPowerLimitCheck: Boolean,
-val needsVoltageLimitCheck: Boolean,
-val powerLimit: Double,
-val usePushbutton: Boolean
+(
+    override val sup: Element,
+    val armedTimeout: Double,
+    val customerVoltageLimit: Double,
+    val energyLimit: Double,
+    val energyUsageStartDateTime: String,
+    val energyUsageWarning: Double,
+    val isArmConnect: Boolean,
+    val isArmDisconnect: Boolean,
+    val isEnergyLimiting: Boolean,
+    val needsPowerLimitCheck: Boolean,
+    val needsVoltageLimitCheck: Boolean,
+    val powerLimit: Double,
+    val usePushbutton: Boolean
 )
 extends
     Element

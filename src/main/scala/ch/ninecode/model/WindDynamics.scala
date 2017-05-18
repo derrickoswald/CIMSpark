@@ -16,8 +16,9 @@ import ch.ninecode.cim.Context
  * @param WindGenTurbineType1aIEC Wind turbine type 1A model with which this wind aerodynamic model is associated.
  */
 case class WindAeroConstIEC
-(override val sup: IdentifiedObject,
-val WindGenTurbineType1aIEC: String
+(
+    override val sup: Element,
+    val WindGenTurbineType1aIEC: String
 )
 extends
     Element
@@ -61,10 +62,11 @@ extends
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
  */
 case class WindAeroOneDimIEC
-(override val sup: IdentifiedObject,
-val ka: Double,
-val thetaomega: Double,
-val WindTurbineType3IEC: String
+(
+    override val sup: Element,
+    val ka: Double,
+    val thetaomega: Double,
+    val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -122,15 +124,16 @@ extends
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
  */
 case class WindAeroTwoDimIEC
-(override val sup: IdentifiedObject,
-val dpomega: Double,
-val dptheta: Double,
-val dpv1: Double,
-val omegazero: Double,
-val pavail: Double,
-val thetav2: Double,
-val thetazero: Double,
-val WindTurbineType3IEC: String
+(
+    override val sup: Element,
+    val dpomega: Double,
+    val dptheta: Double,
+    val dpv1: Double,
+    val omegazero: Double,
+    val pavail: Double,
+    val thetav2: Double,
+    val thetazero: Double,
+    val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -202,15 +205,16 @@ extends
  * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
  */
 case class WindContCurrLimIEC
-(override val sup: IdentifiedObject,
-val imax: Double,
-val imaxdip: Double,
-val kpqu: Double,
-val mdfslim: Boolean,
-val mqpri: Boolean,
-val tufiltcl: Double,
-val upqumax: Double,
-val WindTurbineType3or4IEC: String
+(
+    override val sup: Element,
+    val imax: Double,
+    val imaxdip: Double,
+    val kpqu: Double,
+    val mdfslim: Boolean,
+    val mqpri: Boolean,
+    val tufiltcl: Double,
+    val upqumax: Double,
+    val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -312,31 +316,32 @@ false = 0: reactive power control.
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this Wind control P type 3 model is associated.
  */
 case class WindContPType3IEC
-(override val sup: IdentifiedObject,
-val dpmax: Double,
-val dprefmax: Double,
-val dprefmin: Double,
-val dthetamax: Double,
-val dthetamaxuvrt: Double,
-val kdtd: Double,
-val kip: Double,
-val kpp: Double,
-val mpuvrt: Boolean,
-val omegaoffset: Double,
-val pdtdmax: Double,
-val tdvs: Double,
-val thetaemin: Double,
-val thetauscale: Double,
-val tomegafiltp3: Double,
-val tpfiltp3: Double,
-val tpord: Double,
-val tufiltp3: Double,
-val twref: Double,
-val udvs: Double,
-val updip: Double,
-val wdtd: Double,
-val zeta: Double,
-val WindTurbineType3IEC: String
+(
+    override val sup: Element,
+    val dpmax: Double,
+    val dprefmax: Double,
+    val dprefmin: Double,
+    val dthetamax: Double,
+    val dthetamaxuvrt: Double,
+    val kdtd: Double,
+    val kip: Double,
+    val kpp: Double,
+    val mpuvrt: Boolean,
+    val omegaoffset: Double,
+    val pdtdmax: Double,
+    val tdvs: Double,
+    val thetaemin: Double,
+    val thetauscale: Double,
+    val tomegafiltp3: Double,
+    val tpfiltp3: Double,
+    val tpord: Double,
+    val tufiltp3: Double,
+    val twref: Double,
+    val udvs: Double,
+    val updip: Double,
+    val wdtd: Double,
+    val zeta: Double,
+    val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -428,11 +433,12 @@ extends
  * @param WindTurbineType4aIEC Wind turbine type 4A model with which this wind control P type 4A model is associated.
  */
 case class WindContPType4aIEC
-(override val sup: IdentifiedObject,
-val dpmaxp4a: Double,
-val tpordp4a: Double,
-val tufiltp4a: Double,
-val WindTurbineType4aIEC: String
+(
+    override val sup: Element,
+    val dpmaxp4a: Double,
+    val tpordp4a: Double,
+    val tufiltp4a: Double,
+    val WindTurbineType4aIEC: String
 )
 extends
     Element
@@ -486,12 +492,13 @@ extends
  * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind control P type 4B model is associated.
  */
 case class WindContPType4bIEC
-(override val sup: IdentifiedObject,
-val dpmaxp4b: Double,
-val tpaero: Double,
-val tpordp4b: Double,
-val tufiltp4b: Double,
-val WindTurbineType4bIEC: String
+(
+    override val sup: Element,
+    val dpmaxp4b: Double,
+    val tpaero: Double,
+    val tpordp4b: Double,
+    val tufiltp4b: Double,
+    val WindTurbineType4bIEC: String
 )
 extends
     Element
@@ -559,18 +566,19 @@ extends
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this pitch control model is associated.
  */
 case class WindContPitchAngleIEC
-(override val sup: IdentifiedObject,
-val dthetamax: Double,
-val dthetamin: Double,
-val kic: Double,
-val kiomega: Double,
-val kpc: Double,
-val kpomega: Double,
-val kpx: Double,
-val thetamax: Double,
-val thetamin: Double,
-val ttheta: Double,
-val WindTurbineType3IEC: String
+(
+    override val sup: Element,
+    val dthetamax: Double,
+    val dthetamin: Double,
+    val kic: Double,
+    val kiomega: Double,
+    val kpc: Double,
+    val kpomega: Double,
+    val kpx: Double,
+    val thetamax: Double,
+    val thetamin: Double,
+    val ttheta: Double,
+    val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -676,31 +684,32 @@ extends
  * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reactive control model is associated.
  */
 case class WindContQIEC
-(override val sup: IdentifiedObject,
-val iqh1: Double,
-val iqmax: Double,
-val iqmin: Double,
-val iqpost: Double,
-val kiq: Double,
-val kiu: Double,
-val kpq: Double,
-val kpu: Double,
-val kqv: Double,
-val rdroop: Double,
-val tpfiltq: Double,
-val tpost: Double,
-val tqord: Double,
-val tufiltq: Double,
-val udb1: Double,
-val udb2: Double,
-val umax: Double,
-val umin: Double,
-val uqdip: Double,
-val uref0: Double,
-val windQcontrolModesType: String,
-val windUVRTQcontrolModesType: String,
-val xdroop: Double,
-val WindTurbineType3or4IEC: String
+(
+    override val sup: Element,
+    val iqh1: Double,
+    val iqmax: Double,
+    val iqmin: Double,
+    val iqpost: Double,
+    val kiq: Double,
+    val kiu: Double,
+    val kpq: Double,
+    val kpu: Double,
+    val kqv: Double,
+    val rdroop: Double,
+    val tpfiltq: Double,
+    val tpost: Double,
+    val tqord: Double,
+    val tufiltq: Double,
+    val udb1: Double,
+    val udb2: Double,
+    val umax: Double,
+    val umin: Double,
+    val uqdip: Double,
+    val uref0: Double,
+    val windQcontrolModesType: String,
+    val windUVRTQcontrolModesType: String,
+    val xdroop: Double,
+    val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -790,10 +799,11 @@ extends
  * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this constant Q limitation model is associated.
  */
 case class WindContQLimIEC
-(override val sup: IdentifiedObject,
-val qmax: Double,
-val qmin: Double,
-val WindTurbineType3or4IEC: String
+(
+    override val sup: Element,
+    val qmax: Double,
+    val qmin: Double,
+    val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -841,10 +851,11 @@ extends
  * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
  */
 case class WindContQPQULimIEC
-(override val sup: IdentifiedObject,
-val tpfiltql: Double,
-val tufiltql: Double,
-val WindTurbineType3or4IEC: String
+(
+    override val sup: Element,
+    val tpfiltql: Double,
+    val tufiltql: Double,
+    val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -904,16 +915,17 @@ extends
  * @param WindGenTurbineType2IEC Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
  */
 case class WindContRotorRIEC
-(override val sup: IdentifiedObject,
-val kirr: Double,
-val komegafilt: Double,
-val kpfilt: Double,
-val kprr: Double,
-val rmax: Double,
-val rmin: Double,
-val tomegafiltrr: Double,
-val tpfiltrr: Double,
-val WindGenTurbineType2IEC: String
+(
+    override val sup: Element,
+    val kirr: Double,
+    val komegafilt: Double,
+    val kpfilt: Double,
+    val kprr: Double,
+    val rmax: Double,
+    val rmin: Double,
+    val tomegafiltrr: Double,
+    val tpfiltrr: Double,
+    val WindGenTurbineType2IEC: String
 )
 extends
     Element
@@ -980,20 +992,21 @@ extends
  * @param WindProtectionIEC The grid protection model with which this wind dynamics lookup table is associated.
  */
 case class WindDynamicsLookupTable
-(override val sup: IdentifiedObject,
-val input: Double,
-val lookupTableFunctionType: String,
-val output: Double,
-val sequence: Int,
-val WindContCurrLimIEC: String,
-val WindContPType3IEC: String,
-val WindContQPQULimIEC: String,
-val WindContRotorRIEC: String,
-val WindGenType3bIEC: String,
-val WindPitchContPowerIEC: String,
-val WindPlantFreqPcontrolIEC: String,
-val WindPlantReactiveControlIEC: String,
-val WindProtectionIEC: String
+(
+    override val sup: Element,
+    val input: Double,
+    val lookupTableFunctionType: String,
+    val output: Double,
+    val sequence: Int,
+    val WindContCurrLimIEC: String,
+    val WindContPType3IEC: String,
+    val WindContQPQULimIEC: String,
+    val WindContRotorRIEC: String,
+    val WindGenType3bIEC: String,
+    val WindPitchContPowerIEC: String,
+    val WindPlantFreqPcontrolIEC: String,
+    val WindPlantReactiveControlIEC: String,
+    val WindProtectionIEC: String
 )
 extends
     Element
@@ -1057,8 +1070,9 @@ extends
  * @param WindAeroConstIEC Wind aerodynamic model associated with this wind turbine type 1A model.
  */
 case class WindGenTurbineType1aIEC
-(override val sup: WindTurbineType1or2IEC,
-val WindAeroConstIEC: String
+(
+    override val sup: Element,
+    val WindAeroConstIEC: String
 )
 extends
     Element
@@ -1098,8 +1112,9 @@ extends
  * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 1B model.
  */
 case class WindGenTurbineType1bIEC
-(override val sup: WindTurbineType1or2IEC,
-val WindPitchContPowerIEC: String
+(
+    override val sup: Element,
+    val WindPitchContPowerIEC: String
 )
 extends
     Element
@@ -1140,9 +1155,10 @@ extends
  * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 2 model.
  */
 case class WindGenTurbineType2IEC
-(override val sup: WindTurbineType1or2IEC,
-val WindContRotorRIEC: String,
-val WindPitchContPowerIEC: String
+(
+    override val sup: Element,
+    val WindContRotorRIEC: String,
+    val WindPitchContPowerIEC: String
 )
 extends
     Element
@@ -1189,11 +1205,12 @@ extends
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind generator type 3 is associated.
  */
 case class WindGenType3IEC
-(override val sup: IdentifiedObject,
-val dipmax: Double,
-val diqmax: Double,
-val xs: Double,
-val WindTurbineType3IEC: String
+(
+    override val sup: Element,
+    val dipmax: Double,
+    val diqmax: Double,
+    val xs: Double,
+    val WindTurbineType3IEC: String
 )
 extends
     Element
@@ -1243,10 +1260,11 @@ extends
  * @param WindTurbineType4IEC Wind turbine type 4 model with which this wind generator type 3A model is associated.
  */
 case class WindGenType3aIEC
-(override val sup: WindGenType3IEC,
-val kpc: Double,
-val tic: Double,
-val WindTurbineType4IEC: String
+(
+    override val sup: Element,
+    val kpc: Double,
+    val tic: Double,
+    val WindTurbineType4IEC: String
 )
 extends
     Element
@@ -1299,10 +1317,11 @@ extends
  *        It is case dependent parameter.
  */
 case class WindGenType3bIEC
-(override val sup: WindGenType3IEC,
-val mwtcwp: Boolean,
-val tg: Double,
-val two: Double
+(
+    override val sup: Element,
+    val mwtcwp: Boolean,
+    val tg: Double,
+    val two: Double
 )
 extends
     Element
@@ -1355,13 +1374,14 @@ extends
  * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind generator type 4 model is associated.
  */
 case class WindGenType4IEC
-(override val sup: IdentifiedObject,
-val dipmax: Double,
-val diqmax: Double,
-val diqmin: Double,
-val tg: Double,
-val WindTurbineType4aIEC: String,
-val WindTurbineType4bIEC: String
+(
+    override val sup: Element,
+    val dipmax: Double,
+    val diqmax: Double,
+    val diqmin: Double,
+    val tg: Double,
+    val WindTurbineType4aIEC: String,
+    val WindTurbineType4bIEC: String
 )
 extends
     Element
@@ -1441,23 +1461,24 @@ extends
  *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
  */
 case class WindLookupTableFunctionKind
-(override val sup: BasicElement,
-val ipmax: String,
-val iqmax: String,
-val omegap: String,
-val prr: String,
-val pwp: String,
-val qmaxp: String,
-val qmaxu: String,
-val qminp: String,
-val qminu: String,
-val qwp: String,
-val tcwdu: String,
-val tduwt: String,
-val tfover: String,
-val tfunder: String,
-val tuover: String,
-val tuunder: String
+(
+    override val sup: Element,
+    val ipmax: String,
+    val iqmax: String,
+    val omegap: String,
+    val prr: String,
+    val pwp: String,
+    val qmaxp: String,
+    val qmaxu: String,
+    val qminp: String,
+    val qminu: String,
+    val qwp: String,
+    val tcwdu: String,
+    val tduwt: String,
+    val tfover: String,
+    val tfunder: String,
+    val tuover: String,
+    val tuunder: String
 )
 extends
     Element
@@ -1537,14 +1558,15 @@ extends
  * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind mechanical model is associated.
  */
 case class WindMechIEC
-(override val sup: IdentifiedObject,
-val cdrt: Double,
-val hgen: Double,
-val hwtr: Double,
-val kdrt: Double,
-val WindTurbineType1or2IEC: String,
-val WindTurbineType3IEC: String,
-val WindTurbineType4bIEC: String
+(
+    override val sup: Element,
+    val cdrt: Double,
+    val hgen: Double,
+    val hwtr: Double,
+    val kdrt: Double,
+    val WindTurbineType1or2IEC: String,
+    val WindTurbineType3IEC: String,
+    val WindTurbineType4bIEC: String
 )
 extends
     Element
@@ -1611,16 +1633,17 @@ extends
  * @param WindGenTurbineType2IEC Wind turbine type 2 model with which this Pitch control power model is associated.
  */
 case class WindPitchContPowerIEC
-(override val sup: IdentifiedObject,
-val dpmax: Double,
-val dpmin: Double,
-val pmin: Double,
-val pset: Double,
-val t1: Double,
-val tr: Double,
-val uuvrt: Double,
-val WindGenTurbineType1bIEC: String,
-val WindGenTurbineType2IEC: String
+(
+    override val sup: Element,
+    val dpmax: Double,
+    val dpmin: Double,
+    val pmin: Double,
+    val pset: Double,
+    val t1: Double,
+    val tr: Double,
+    val uuvrt: Double,
+    val WindGenTurbineType1bIEC: String,
+    val WindGenTurbineType2IEC: String
 )
 extends
     Element
@@ -1675,8 +1698,9 @@ extends
  * @param RemoteInputSignal The remote signal with which this power plant is associated.
  */
 case class WindPlantDynamics
-(override val sup: DynamicsFunctionBlock,
-val RemoteInputSignal: String
+(
+    override val sup: Element,
+    val RemoteInputSignal: String
 )
 extends
     Element
@@ -1746,23 +1770,24 @@ extends
  * @param WindPlantIEC Wind plant model with which this wind plant frequency and active power control is associated.
  */
 case class WindPlantFreqPcontrolIEC
-(override val sup: IdentifiedObject,
-val dprefmax: Double,
-val dprefmin: Double,
-val dpwprefmax: Double,
-val dpwprefmin: Double,
-val kiwpp: Double,
-val kiwppmax: Double,
-val kiwppmin: Double,
-val kpwpp: Double,
-val kwppref: Double,
-val prefmax: Double,
-val prefmin: Double,
-val tpft: Double,
-val tpfv: Double,
-val twpffiltp: Double,
-val twppfiltp: Double,
-val WindPlantIEC: String
+(
+    override val sup: Element,
+    val dprefmax: Double,
+    val dprefmin: Double,
+    val dpwprefmax: Double,
+    val dpwprefmin: Double,
+    val kiwpp: Double,
+    val kiwppmax: Double,
+    val kiwppmin: Double,
+    val kpwpp: Double,
+    val kwppref: Double,
+    val prefmax: Double,
+    val prefmin: Double,
+    val tpft: Double,
+    val tpfv: Double,
+    val twpffiltp: Double,
+    val twppfiltp: Double,
+    val WindPlantIEC: String
 )
 extends
     Element
@@ -1833,9 +1858,10 @@ extends
  * @param WindPlantReactiveControlIEC Wind plant model with which this wind reactive control is associated.
  */
 case class WindPlantIEC
-(override val sup: WindPlantDynamics,
-val WindPlantFreqPcontrolIEC: String,
-val WindPlantReactiveControlIEC: String
+(
+    override val sup: Element,
+    val WindPlantFreqPcontrolIEC: String,
+    val WindPlantReactiveControlIEC: String
 )
 extends
     Element
@@ -1879,11 +1905,12 @@ extends
  * @param voltageControl Voltage control.
  */
 case class WindPlantQcontrolModeKind
-(override val sup: BasicElement,
-val powerFactor: String,
-val reactivePower: String,
-val uqStatic: String,
-val voltageControl: String
+(
+    override val sup: Element,
+    val powerFactor: String,
+    val reactivePower: String,
+    val uqStatic: String,
+    val voltageControl: String
 )
 extends
     Element
@@ -1965,26 +1992,27 @@ extends
  * @param WindPlantIEC Wind plant reactive control model associated with this wind plant.
  */
 case class WindPlantReactiveControlIEC
-(override val sup: IdentifiedObject,
-val dxrefmax: Double,
-val dxrefmin: Double,
-val kiwpx: Double,
-val kiwpxmax: Double,
-val kiwpxmin: Double,
-val kpwpx: Double,
-val kwpqref: Double,
-val kwpqu: Double,
-val tuqfilt: Double,
-val twppfiltq: Double,
-val twpqfiltq: Double,
-val twpufiltq: Double,
-val txft: Double,
-val txfv: Double,
-val uwpqdip: Double,
-val windPlantQcontrolModesType: String,
-val xrefmax: Double,
-val xrefmin: Double,
-val WindPlantIEC: String
+(
+    override val sup: Element,
+    val dxrefmax: Double,
+    val dxrefmin: Double,
+    val kiwpx: Double,
+    val kiwpxmax: Double,
+    val kiwpxmin: Double,
+    val kpwpx: Double,
+    val kwpqref: Double,
+    val kwpqu: Double,
+    val tuqfilt: Double,
+    val twppfiltq: Double,
+    val twpqfiltq: Double,
+    val twpufiltq: Double,
+    val txft: Double,
+    val txfv: Double,
+    val uwpqdip: Double,
+    val windPlantQcontrolModesType: String,
+    val xrefmax: Double,
+    val xrefmin: Double,
+    val WindPlantIEC: String
 )
 extends
     Element
@@ -2075,16 +2103,17 @@ extends
  * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
  */
 case class WindProtectionIEC
-(override val sup: IdentifiedObject,
-val dfimax: Double,
-val fover: Double,
-val funder: Double,
-val mzc: Boolean,
-val tfma: Double,
-val uover: Double,
-val uunder: Double,
-val WindTurbineType1or2IEC: String,
-val WindTurbineType3or4IEC: String
+(
+    override val sup: Element,
+    val dfimax: Double,
+    val fover: Double,
+    val funder: Double,
+    val mzc: Boolean,
+    val tfma: Double,
+    val uover: Double,
+    val uunder: Double,
+    val WindTurbineType1or2IEC: String,
+    val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -2143,12 +2172,13 @@ extends
  * @param voltage Voltage control (<i>M</i><i><sub>q</sub></i><sub>G</sub> equals 0).
  */
 case class WindQcontrolModeKind
-(override val sup: BasicElement,
-val openLoopReactivePower: String,
-val openLooppowerFactor: String,
-val powerFactor: String,
-val reactivePower: String,
-val voltage: String
+(
+    override val sup: Element,
+    val openLoopReactivePower: String,
+    val openLooppowerFactor: String,
+    val powerFactor: String,
+    val reactivePower: String,
+    val voltage: String
 )
 extends
     Element
@@ -2202,11 +2232,12 @@ extends
  * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reference frame rotation model is associated.
  */
 case class WindRefFrameRotIEC
-(override val sup: IdentifiedObject,
-val tpll: Double,
-val upll1: Double,
-val upll2: Double,
-val WindTurbineType3or4IEC: String
+(
+    override val sup: Element,
+    val tpll: Double,
+    val upll1: Double,
+    val upll2: Double,
+    val WindTurbineType3or4IEC: String
 )
 extends
     Element
@@ -2252,9 +2283,10 @@ extends
  * @param RemoteInputSignal Remote input signal used by this wind generator Type 1 or Type 2 model.
  */
 case class WindTurbineType1or2Dynamics
-(override val sup: DynamicsFunctionBlock,
-val AsynchronousMachineDynamics: String,
-val RemoteInputSignal: String
+(
+    override val sup: Element,
+    val AsynchronousMachineDynamics: String,
+    val RemoteInputSignal: String
 )
 extends
     Element
@@ -2297,9 +2329,10 @@ extends
  * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 1 or 2 model.
  */
 case class WindTurbineType1or2IEC
-(override val sup: WindTurbineType1or2Dynamics,
-val WindMechIEC: String,
-val WindProtectionIEC: String
+(
+    override val sup: Element,
+    val WindMechIEC: String,
+    val WindProtectionIEC: String
 )
 extends
     Element
@@ -2345,13 +2378,14 @@ extends
  * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 3 model.
  */
 case class WindTurbineType3IEC
-(override val sup: WindTurbineType3or4IEC,
-val WindAeroOneDimIEC: String,
-val WindAeroTwoDimIEC: String,
-val WindContPType3IEC: String,
-val WindContPitchAngleIEC: String,
-val WindGenType3IEC: String,
-val WindMechIEC: String
+(
+    override val sup: Element,
+    val WindAeroOneDimIEC: String,
+    val WindAeroTwoDimIEC: String,
+    val WindContPType3IEC: String,
+    val WindContPitchAngleIEC: String,
+    val WindGenType3IEC: String,
+    val WindMechIEC: String
 )
 extends
     Element
@@ -2402,10 +2436,11 @@ extends
  * @param WindPlantDynamics The wind plant with which the wind turbines type 3 or 4 are associated.
  */
 case class WindTurbineType3or4Dynamics
-(override val sup: DynamicsFunctionBlock,
-val EnergySource: String,
-val RemoteInputSignal: String,
-val WindPlantDynamics: String
+(
+    override val sup: Element,
+    val EnergySource: String,
+    val RemoteInputSignal: String,
+    val WindPlantDynamics: String
 )
 extends
     Element
@@ -2453,13 +2488,14 @@ extends
  * @param WindRefFrameRotIEC Reference frame rotation model associated with this wind turbine type 3 or 4 model.
  */
 case class WindTurbineType3or4IEC
-(override val sup: WindTurbineType3or4Dynamics,
-val WIndContQIEC: String,
-val WindContCurrLimIEC: String,
-val WindContQLimIEC: String,
-val WindContQPQULimIEC: String,
-val WindProtectionIEC: String,
-val WindRefFrameRotIEC: String
+(
+    override val sup: Element,
+    val WIndContQIEC: String,
+    val WindContCurrLimIEC: String,
+    val WindContQLimIEC: String,
+    val WindContQPQULimIEC: String,
+    val WindProtectionIEC: String,
+    val WindRefFrameRotIEC: String
 )
 extends
     Element
@@ -2508,8 +2544,9 @@ extends
  * @param WindGenType3aIEC Wind generator type 3A model associated with this wind turbine type 4 model.
  */
 case class WindTurbineType4IEC
-(override val sup: WindTurbineType3or4IEC,
-val WindGenType3aIEC: String
+(
+    override val sup: Element,
+    val WindGenType3aIEC: String
 )
 extends
     Element
@@ -2550,9 +2587,10 @@ extends
  * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4A model.
  */
 case class WindTurbineType4aIEC
-(override val sup: WindTurbineType4IEC,
-val WindContPType4aIEC: String,
-val WindGenType4IEC: String
+(
+    override val sup: Element,
+    val WindContPType4aIEC: String,
+    val WindGenType4IEC: String
 )
 extends
     Element
@@ -2596,10 +2634,11 @@ extends
  * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 4B model.
  */
 case class WindTurbineType4bIEC
-(override val sup: WindTurbineType4IEC,
-val WindContPType4bIEC: String,
-val WindGenType4IEC: String,
-val WindMechIEC: String
+(
+    override val sup: Element,
+    val WindContPType4bIEC: String,
+    val WindGenType4IEC: String,
+    val WindMechIEC: String
 )
 extends
     Element
@@ -2644,10 +2683,11 @@ extends
  * @param mode2 Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection during fault, and as the pre-fault value plus an additional constant reactive current injection post fault (<i>M</i><i><sub>q</sub></i><sub>UVRT </sub>equals 2).
  */
 case class WindUVRTQcontrolModeKind
-(override val sup: BasicElement,
-val mode0: String,
-val mode1: String,
-val mode2: String
+(
+    override val sup: Element,
+    val mode0: String,
+    val mode1: String,
+    val mode2: String
 )
 extends
     Element

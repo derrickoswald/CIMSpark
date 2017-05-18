@@ -34,28 +34,29 @@ import ch.ninecode.cim.Context
  * @param upperLimit Initial upper limit.
  */
 case class BWRSteamSupply
-(override val sup: SteamSupply,
-val highPowerLimit: Double,
-val inCoreThermalTC: Double,
-val integralGain: Double,
-val lowPowerLimit: Double,
-val lowerLimit: Double,
-val pressureLimit: Double,
-val pressureSetpointGA: Double,
-val pressureSetpointTC1: Double,
-val pressureSetpointTC2: Double,
-val proportionalGain: Double,
-val rfAux1: Double,
-val rfAux2: Double,
-val rfAux3: Double,
-val rfAux4: Double,
-val rfAux5: Double,
-val rfAux6: Double,
-val rfAux7: Double,
-val rfAux8: Double,
-val rodPattern: Double,
-val rodPatternConstant: Double,
-val upperLimit: Double
+(
+    override val sup: Element,
+    val highPowerLimit: Double,
+    val inCoreThermalTC: Double,
+    val integralGain: Double,
+    val lowPowerLimit: Double,
+    val lowerLimit: Double,
+    val pressureLimit: Double,
+    val pressureSetpointGA: Double,
+    val pressureSetpointTC1: Double,
+    val pressureSetpointTC2: Double,
+    val proportionalGain: Double,
+    val rfAux1: Double,
+    val rfAux2: Double,
+    val rfAux3: Double,
+    val rfAux4: Double,
+    val rfAux5: Double,
+    val rfAux6: Double,
+    val rfAux7: Double,
+    val rfAux8: Double,
+    val rodPattern: Double,
+    val rodPatternConstant: Double,
+    val upperLimit: Double
 )
 extends
     Element
@@ -135,9 +136,10 @@ extends
  * @param following Following.
  */
 case class BoilerControlMode
-(override val sup: BasicElement,
-val coordinated: String,
-val following: String
+(
+    override val sup: Element,
+    val coordinated: String,
+    val following: String
 )
 extends
     Element
@@ -178,8 +180,9 @@ extends
  * @param CombustionTurbine A combustion turbine may have an active power versus ambient temperature relationship.
  */
 case class CTTempActivePowerCurve
-(override val sup: Curve,
-val CombustionTurbine: String
+(
+    override val sup: Element,
+    val CombustionTurbine: String
 )
 extends
     Element
@@ -231,18 +234,19 @@ extends
  * @param HeatRecoveryBoiler A combustion turbine may have a heat recovery boiler for making steam.
  */
 case class CombustionTurbine
-(override val sup: PrimeMover,
-val ambientTemp: Double,
-val auxPowerVersusFrequency: Double,
-val auxPowerVersusVoltage: Double,
-val capabilityVersusFrequency: Double,
-val heatRecoveryFlag: Boolean,
-val powerVariationByTemp: Double,
-val referenceTemp: Double,
-val timeConstant: Double,
-val AirCompressor: String,
-val CTTempActivePowerCurve: String,
-val HeatRecoveryBoiler: String
+(
+    override val sup: Element,
+    val ambientTemp: Double,
+    val auxPowerVersusFrequency: Double,
+    val auxPowerVersusVoltage: Double,
+    val capabilityVersusFrequency: Double,
+    val heatRecoveryFlag: Boolean,
+    val powerVariationByTemp: Double,
+    val referenceTemp: Double,
+    val timeConstant: Double,
+    val AirCompressor: String,
+    val CTTempActivePowerCurve: String,
+    val HeatRecoveryBoiler: String
 )
 extends
     Element
@@ -301,8 +305,9 @@ extends
  * @param drumBoilerRating Rating of drum boiler in steam units.
  */
 case class DrumBoiler
-(override val sup: FossilSteamSupply,
-val drumBoilerRating: Double
+(
+    override val sup: Element,
+    val drumBoilerRating: Double
 )
 extends
     Element
@@ -368,33 +373,34 @@ extends
  * @param throttlePressureSP Throttle pressure setpoint.
  */
 case class FossilSteamSupply
-(override val sup: SteamSupply,
-val auxPowerVersusFrequency: Double,
-val auxPowerVersusVoltage: Double,
-val boilerControlMode: String,
-val controlErrorBiasP: Double,
-val controlIC: Double,
-val controlPC: Double,
-val controlPEB: Double,
-val controlPED: Double,
-val controlTC: Double,
-val feedWaterIG: Double,
-val feedWaterPG: Double,
-val feedWaterTC: Double,
-val fuelDemandLimit: Double,
-val fuelSupplyDelay: Double,
-val fuelSupplyTC: Double,
-val maxErrorRateP: Double,
-val mechPowerSensorLag: Double,
-val minErrorRateP: Double,
-val pressureCtrlDG: Double,
-val pressureCtrlIG: Double,
-val pressureCtrlPG: Double,
-val pressureFeedback: Int,
-val superHeater1Capacity: Double,
-val superHeater2Capacity: Double,
-val superHeaterPipePD: Double,
-val throttlePressureSP: Double
+(
+    override val sup: Element,
+    val auxPowerVersusFrequency: Double,
+    val auxPowerVersusVoltage: Double,
+    val boilerControlMode: String,
+    val controlErrorBiasP: Double,
+    val controlIC: Double,
+    val controlPC: Double,
+    val controlPEB: Double,
+    val controlPED: Double,
+    val controlTC: Double,
+    val feedWaterIG: Double,
+    val feedWaterPG: Double,
+    val feedWaterTC: Double,
+    val fuelDemandLimit: Double,
+    val fuelSupplyDelay: Double,
+    val fuelSupplyTC: Double,
+    val maxErrorRateP: Double,
+    val mechPowerSensorLag: Double,
+    val minErrorRateP: Double,
+    val pressureCtrlDG: Double,
+    val pressureCtrlIG: Double,
+    val pressureCtrlPG: Double,
+    val pressureFeedback: Int,
+    val superHeater1Capacity: Double,
+    val superHeater2Capacity: Double,
+    val superHeaterPipePD: Double,
+    val throttlePressureSP: Double
 )
 extends
     Element
@@ -483,8 +489,9 @@ extends
  * @param steamSupplyRating2 The steam supply rating in kilopounds per hour, if dual pressure boiler.
  */
 case class HeatRecoveryBoiler
-(override val sup: FossilSteamSupply,
-val steamSupplyRating2: Double
+(
+    override val sup: Element,
+    val steamSupplyRating2: Double
 )
 extends
     Element
@@ -534,18 +541,19 @@ extends
  * @param waterStartingTime Water starting time.
  */
 case class HydroTurbine
-(override val sup: PrimeMover,
-val gateRateLimit: Double,
-val gateUpperLimit: Double,
-val maxHeadMaxP: Double,
-val minHeadMaxP: Double,
-val speedRating: Double,
-val speedRegulation: Double,
-val transientDroopTime: Double,
-val transientRegulation: Double,
-val turbineRating: Double,
-val turbineType: String,
-val waterStartingTime: Double
+(
+    override val sup: Element,
+    val gateRateLimit: Double,
+    val gateUpperLimit: Double,
+    val maxHeadMaxP: Double,
+    val minHeadMaxP: Double,
+    val speedRating: Double,
+    val speedRegulation: Double,
+    val transientDroopTime: Double,
+    val transientRegulation: Double,
+    val turbineRating: Double,
+    val turbineType: String,
+    val waterStartingTime: Double
 )
 extends
     Element
@@ -623,27 +631,28 @@ extends
  * @param throttlePressureSP Throttle pressure setpoint.
  */
 case class PWRSteamSupply
-(override val sup: SteamSupply,
-val coldLegFBLagTC: Double,
-val coldLegFBLeadTC1: Double,
-val coldLegFBLeadTC2: Double,
-val coldLegFG1: Double,
-val coldLegFG2: Double,
-val coldLegLagTC: Double,
-val coreHTLagTC1: Double,
-val coreHTLagTC2: Double,
-val coreNeutronicsEffTC: Double,
-val coreNeutronicsHT: Double,
-val feedbackFactor: Double,
-val hotLegLagTC: Double,
-val hotLegSteamGain: Double,
-val hotLegToColdLegGain: Double,
-val pressureCG: Double,
-val steamFlowFG: Double,
-val steamPressureDropLagTC: Double,
-val steamPressureFG: Double,
-val throttlePressureFactor: Double,
-val throttlePressureSP: Double
+(
+    override val sup: Element,
+    val coldLegFBLagTC: Double,
+    val coldLegFBLeadTC1: Double,
+    val coldLegFBLeadTC2: Double,
+    val coldLegFG1: Double,
+    val coldLegFG2: Double,
+    val coldLegLagTC: Double,
+    val coreHTLagTC1: Double,
+    val coreHTLagTC2: Double,
+    val coreNeutronicsEffTC: Double,
+    val coreNeutronicsHT: Double,
+    val feedbackFactor: Double,
+    val hotLegLagTC: Double,
+    val hotLegSteamGain: Double,
+    val hotLegToColdLegGain: Double,
+    val pressureCG: Double,
+    val steamFlowFG: Double,
+    val steamPressureDropLagTC: Double,
+    val steamPressureFG: Double,
+    val throttlePressureFactor: Double,
+    val throttlePressureSP: Double
 )
 extends
     Element
@@ -721,9 +730,10 @@ extends
  * @param SynchronousMachines Synchronous machines this Prime mover drives.
  */
 case class PrimeMover
-(override val sup: PowerSystemResource,
-val primeMoverRating: Double,
-val SynchronousMachines: List[String]
+(
+    override val sup: Element,
+    val primeMoverRating: Double,
+    val SynchronousMachines: List[String]
 )
 extends
     Element
@@ -765,9 +775,10 @@ extends
  * @param SteamTurbines Steam turbines may have steam supplied by a steam supply.
  */
 case class SteamSupply
-(override val sup: PowerSystemResource,
-val steamSupplyRating: Double,
-val SteamTurbines: List[String]
+(
+    override val sup: Element,
+    val steamSupplyRating: Double,
+    val SteamTurbines: List[String]
 )
 extends
     Element
@@ -819,19 +830,20 @@ extends
  * @param steamChestTC Steam chest time constant.
  */
 case class SteamTurbine
-(override val sup: PrimeMover,
-val crossoverTC: Double,
-val reheater1TC: Double,
-val reheater2TC: Double,
-val shaft1PowerHP: Double,
-val shaft1PowerIP: Double,
-val shaft1PowerLP1: Double,
-val shaft1PowerLP2: Double,
-val shaft2PowerHP: Double,
-val shaft2PowerIP: Double,
-val shaft2PowerLP1: Double,
-val shaft2PowerLP2: Double,
-val steamChestTC: Double
+(
+    override val sup: Element,
+    val crossoverTC: Double,
+    val reheater1TC: Double,
+    val reheater2TC: Double,
+    val shaft1PowerHP: Double,
+    val shaft1PowerIP: Double,
+    val shaft1PowerLP1: Double,
+    val shaft1PowerLP2: Double,
+    val shaft2PowerHP: Double,
+    val shaft2PowerIP: Double,
+    val shaft2PowerLP1: Double,
+    val shaft2PowerLP2: Double,
+    val steamChestTC: Double
 )
 extends
     Element
@@ -891,7 +903,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Subcritical
-(override val sup: FossilSteamSupply
+(
+    override val sup: Element
 )
 extends
     Element
@@ -927,7 +940,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class Supercritical
-(override val sup: FossilSteamSupply
+(
+    override val sup: Element
 )
 extends
     Element
@@ -966,10 +980,11 @@ extends
  * @param pelton Pelton.
  */
 case class TurbineType
-(override val sup: BasicElement,
-val francis: String,
-val kaplan: String,
-val pelton: String
+(
+    override val sup: Element,
+    val francis: String,
+    val kaplan: String,
+    val pelton: String
 )
 extends
     Element

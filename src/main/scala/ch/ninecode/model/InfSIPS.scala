@@ -20,13 +20,14 @@ import ch.ninecode.cim.Context
  * @param ne Not equal (unlike) comparison operation.
  */
 case class AnalogToDigitalLogicKind
-(override val sup: BasicElement,
-val eq: String,
-val ge: String,
-val gt: String,
-val le: String,
-val lt: String,
-val ne: String
+(
+    override val sup: Element,
+    val eq: String,
+    val ge: String,
+    val gt: String,
+    val le: String,
+    val lt: String,
+    val ne: String
 )
 extends
     Element
@@ -78,11 +79,12 @@ extends
  * @param sum Summation operation over the input values (operands).
  */
 case class CalculationKind
-(override val sup: BasicElement,
-val div: String,
-val mul: String,
-val sqrt: String,
-val sum: String
+(
+    override val sup: Element,
+    val div: String,
+    val mul: String,
+    val sqrt: String,
+    val sum: String
 )
 extends
     Element
@@ -127,8 +129,9 @@ extends
  * @param kind The logical operation of the gate.
  */
 case class Gate
-(override val sup: IdentifiedObject,
-val kind: String
+(
+    override val sup: Element,
+    val kind: String
 )
 extends
     Element
@@ -175,14 +178,15 @@ extends
  * @param Gate
  */
 case class GateInputPin
-(override val sup: IdentifiedObject,
-val aDLogicKind: String,
-val absoluteValue: Boolean,
-val duration: Double,
-val negate: Boolean,
-val thresholdPercentage: Double,
-val thresholdValue: Double,
-val Gate: String
+(
+    override val sup: Element,
+    val aDLogicKind: String,
+    val absoluteValue: Boolean,
+    val duration: Double,
+    val negate: Boolean,
+    val thresholdPercentage: Double,
+    val thresholdValue: Double,
+    val Gate: String
 )
 extends
     Element
@@ -246,14 +250,15 @@ extends
  *        All input false or true will give false. Otherwise true.
  */
 case class GateLogicKind
-(override val sup: BasicElement,
-val and: String,
-val nand: String,
-val nor: String,
-val not: String,
-val or: String,
-val xnor: String,
-val xor: String
+(
+    override val sup: Element,
+    val and: String,
+    val nand: String,
+    val nor: String,
+    val not: String,
+    val or: String,
+    val xnor: String,
+    val xor: String
 )
 extends
     Element
@@ -304,8 +309,9 @@ extends
  * @param kind Calculation operation executed on the operants.
  */
 case class MeasurementCalculator
-(override val sup: IdentifiedObject,
-val kind: String
+(
+    override val sup: Element,
+    val kind: String
 )
 extends
     Element
@@ -349,11 +355,12 @@ extends
  * @param MeasurementCalculator
  */
 case class MeasurementCalculatorInput
-(override val sup: IdentifiedObject,
-val absoluteValue: Boolean,
-val order: Int,
-val Measurement: String,
-val MeasurementCalculator: String
+(
+    override val sup: Element,
+    val absoluteValue: Boolean,
+    val order: Int,
+    val Measurement: String,
+    val MeasurementCalculator: String
 )
 extends
     Element
@@ -399,9 +406,10 @@ extends
  * @param BranchGroup
  */
 case class PinBranchGroup
-(override val sup: GateInputPin,
-val kind: String,
-val BranchGroup: String
+(
+    override val sup: Element,
+    val kind: String,
+    val BranchGroup: String
 )
 extends
     Element
@@ -443,9 +451,10 @@ extends
  * @param reactivePower reactive power in the branch group.
  */
 case class PinBranchGroupKind
-(override val sup: BasicElement,
-val activePower: String,
-val reactivePower: String
+(
+    override val sup: Element,
+    val activePower: String,
+    val reactivePower: String
 )
 extends
     Element
@@ -487,9 +496,10 @@ extends
  * @param Equipment
  */
 case class PinEquipment
-(override val sup: GateInputPin,
-val kind: String,
-val Equipment: String
+(
+    override val sup: Element,
+    val kind: String,
+    val Equipment: String
 )
 extends
     Element
@@ -536,14 +546,15 @@ extends
  * @param voltageLimit Compare load flow result against the active voltage limit for the equipment.
  */
 case class PinEquipmentKind
-(override val sup: BasicElement,
-val activePowerLimit: String,
-val apparentPowerLimit: String,
-val connected: String,
-val currentLimit: String,
-val inService: String,
-val ratedCurrent: String,
-val voltageLimit: String
+(
+    override val sup: Element,
+    val activePowerLimit: String,
+    val apparentPowerLimit: String,
+    val connected: String,
+    val currentLimit: String,
+    val inService: String,
+    val ratedCurrent: String,
+    val voltageLimit: String
 )
 extends
     Element
@@ -594,8 +605,9 @@ extends
  * @param GateOutput
  */
 case class PinGate
-(override val sup: GateInputPin,
-val GateOutput: String
+(
+    override val sup: Element,
+    val GateOutput: String
 )
 extends
     Element
@@ -635,9 +647,10 @@ extends
  * @param MeasurementCalculator
  */
 case class PinMeasurement
-(override val sup: GateInputPin,
-val Measurement: String,
-val MeasurementCalculator: String
+(
+    override val sup: Element,
+    val Measurement: String,
+    val MeasurementCalculator: String
 )
 extends
     Element
@@ -679,9 +692,10 @@ extends
  * @param Terminal
  */
 case class PinTerminal
-(override val sup: GateInputPin,
-val kind: String,
-val Terminal: String
+(
+    override val sup: Element,
+    val kind: String,
+    val Terminal: String
 )
 extends
     Element
@@ -725,11 +739,12 @@ extends
  * @param voltage Voltage on the Terminal.
  */
 case class PinTerminalKind
-(override val sup: BasicElement,
-val activePower: String,
-val apparentPower: String,
-val reactivePower: String,
-val voltage: String
+(
+    override val sup: Element,
+    val activePower: String,
+    val apparentPower: String,
+    val reactivePower: String,
+    val voltage: String
 )
 extends
     Element
@@ -780,13 +795,14 @@ extends
  * @param ProtectiveActionCollection
  */
 case class ProtectiveAction
-(override val sup: IdentifiedObject,
-val enabled: Boolean,
-val normalEnabled: Boolean,
-val GateComCondition: String,
-val GateEnabledCondition: String,
-val ProtectionEquipment: String,
-val ProtectiveActionCollection: String
+(
+    override val sup: Element,
+    val enabled: Boolean,
+    val normalEnabled: Boolean,
+    val GateComCondition: String,
+    val GateEnabledCondition: String,
+    val ProtectionEquipment: String,
+    val ProtectiveActionCollection: String
 )
 extends
     Element
@@ -845,15 +861,16 @@ extends
  * @param Measurement
  */
 case class ProtectiveActionAdjustment
-(override val sup: ProtectiveAction,
-val byPercentage: Double,
-val byValue: Double,
-val kind: String,
-val reduce: Boolean,
-val setValue: Double,
-val ConductingEquipment: String,
-val DCConductingEquipment: String,
-val Measurement: String
+(
+    override val sup: Element,
+    val byPercentage: Double,
+    val byValue: Double,
+    val kind: String,
+    val reduce: Boolean,
+    val setValue: Double,
+    val ConductingEquipment: String,
+    val DCConductingEquipment: String,
+    val Measurement: String
 )
 extends
     Element
@@ -909,11 +926,12 @@ extends
  * @param setValue The equipment will operate on the new value.
  */
 case class ProtectiveActionAdjustmentKind
-(override val sup: BasicElement,
-val byPercentage: String,
-val byValue: String,
-val measurement: String,
-val setValue: String
+(
+    override val sup: Element,
+    val byPercentage: String,
+    val byValue: String,
+    val measurement: String,
+    val setValue: String
 )
 extends
     Element
@@ -957,7 +975,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class ProtectiveActionCollection
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -995,9 +1014,10 @@ extends
  * @param Equipment
  */
 case class ProtectiveActionEquipment
-(override val sup: ProtectiveAction,
-val inService: Boolean,
-val Equipment: String
+(
+    override val sup: Element,
+    val inService: Boolean,
+    val Equipment: String
 )
 extends
     Element
@@ -1041,10 +1061,11 @@ extends
  * @param RegulatingControl
  */
 case class ProtectiveActionRegulation
-(override val sup: ProtectiveAction,
-val isRegulating: Boolean,
-val targetValue: Double,
-val RegulatingControl: String
+(
+    override val sup: Element,
+    val isRegulating: Boolean,
+    val targetValue: Double,
+    val RegulatingControl: String
 )
 extends
     Element
@@ -1091,11 +1112,12 @@ extends
  * @param GateArmed
  */
 case class RemedialActionScheme
-(override val sup: PowerSystemResource,
-val armed: Boolean,
-val kind: String,
-val normalArmed: Boolean,
-val GateArmed: String
+(
+    override val sup: Element,
+    val armed: Boolean,
+    val kind: String,
+    val normalArmed: Boolean,
+    val GateArmed: String
 )
 extends
     Element
@@ -1141,9 +1163,10 @@ extends
  * @param rAS Remedial Action Scheme (RAS).
  */
 case class RemedialActionSchemeKind
-(override val sup: BasicElement,
-val rAP: String,
-val rAS: String
+(
+    override val sup: Element,
+    val rAP: String,
+    val rAS: String
 )
 extends
     Element
@@ -1186,9 +1209,10 @@ extends
  * @param RemedialActionScheme
  */
 case class Stage
-(override val sup: IdentifiedObject,
-val priority: Int,
-val RemedialActionScheme: String
+(
+    override val sup: Element,
+    val priority: Int,
+    val RemedialActionScheme: String
 )
 extends
     Element
@@ -1238,15 +1262,16 @@ extends
  * @param Stage
  */
 case class StageTrigger
-(override val sup: IdentifiedObject,
-val armed: Boolean,
-val normalArmed: Boolean,
-val priority: Int,
-val GateArmed: String,
-val GateComCondition: String,
-val GateTrigger: String,
-val ProtectiveActionCollection: String,
-val Stage: String
+(
+    override val sup: Element,
+    val armed: Boolean,
+    val normalArmed: Boolean,
+    val priority: Int,
+    val GateArmed: String,
+    val GateComCondition: String,
+    val GateTrigger: String,
+    val ProtectiveActionCollection: String,
+    val Stage: String
 )
 extends
     Element
@@ -1300,9 +1325,10 @@ extends
  * @param RemedialActionScheme
  */
 case class TriggerCondition
-(override val sup: IdentifiedObject,
-val GateTrigger: String,
-val RemedialActionScheme: String
+(
+    override val sup: Element,
+    val GateTrigger: String,
+    val RemedialActionScheme: String
 )
 extends
     Element

@@ -43,23 +43,24 @@ import ch.ninecode.cim.Context
  *        Used for short circuit data exchange according to IEC 60909
  */
 case class EquivalentBranch
-(override val sup: EquivalentEquipment,
-val negativeR12: Double,
-val negativeR21: Double,
-val negativeX12: Double,
-val negativeX21: Double,
-val positiveR12: Double,
-val positiveR21: Double,
-val positiveX12: Double,
-val positiveX21: Double,
-val r: Double,
-val r21: Double,
-val x: Double,
-val x21: Double,
-val zeroR12: Double,
-val zeroR21: Double,
-val zeroX12: Double,
-val zeroX21: Double
+(
+    override val sup: Element,
+    val negativeR12: Double,
+    val negativeR21: Double,
+    val negativeX12: Double,
+    val negativeX21: Double,
+    val positiveR12: Double,
+    val positiveR21: Double,
+    val positiveX12: Double,
+    val positiveX21: Double,
+    val r: Double,
+    val r21: Double,
+    val x: Double,
+    val x21: Double,
+    val zeroR12: Double,
+    val zeroR21: Double,
+    val zeroX12: Double,
+    val zeroX21: Double
 )
 extends
     Element
@@ -129,8 +130,9 @@ extends
  * @param EquivalentNetwork The equivalent where the reduced model belongs.
  */
 case class EquivalentEquipment
-(override val sup: ConductingEquipment,
-val EquivalentNetwork: String
+(
+    override val sup: Element,
+    val EquivalentNetwork: String
 )
 extends
     Element
@@ -196,23 +198,24 @@ extends
  * @param ReactiveCapabilityCurve The reactive capability curve used by this equivalent injection.
  */
 case class EquivalentInjection
-(override val sup: EquivalentEquipment,
-val maxP: Double,
-val maxQ: Double,
-val minP: Double,
-val minQ: Double,
-val p: Double,
-val q: Double,
-val r: Double,
-val r0: Double,
-val r2: Double,
-val regulationCapability: Boolean,
-val regulationStatus: Boolean,
-val regulationTarget: Double,
-val x: Double,
-val x0: Double,
-val x2: Double,
-val ReactiveCapabilityCurve: String
+(
+    override val sup: Element,
+    val maxP: Double,
+    val maxQ: Double,
+    val minP: Double,
+    val minQ: Double,
+    val p: Double,
+    val q: Double,
+    val r: Double,
+    val r0: Double,
+    val r2: Double,
+    val regulationCapability: Boolean,
+    val regulationStatus: Boolean,
+    val regulationTarget: Double,
+    val x: Double,
+    val x0: Double,
+    val x2: Double,
+    val ReactiveCapabilityCurve: String
 )
 extends
     Element
@@ -281,7 +284,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class EquivalentNetwork
-(override val sup: ConnectivityNodeContainer
+(
+    override val sup: Element
 )
 extends
     Element
@@ -319,9 +323,10 @@ extends
  * @param g Positive sequence shunt conductance.
  */
 case class EquivalentShunt
-(override val sup: EquivalentEquipment,
-val b: Double,
-val g: Double
+(
+    override val sup: Element,
+    val b: Double,
+    val g: Double
 )
 extends
     Element

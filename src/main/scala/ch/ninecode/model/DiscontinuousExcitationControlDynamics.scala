@@ -50,25 +50,26 @@ import ch.ninecode.cim.Context
  *        Typical Value = 5.5.
  */
 case class DiscExcContIEEEDEC1A
-(override val sup: DiscontinuousExcitationControlDynamics,
-val esc: Double,
-val kan: Double,
-val ketl: Double,
-val tan: Double,
-val td: Double,
-val tl1: Double,
-val tl2: Double,
-val tw5: Double,
-val vanmax: Double,
-val vomax: Double,
-val vomin: Double,
-val vsmax: Double,
-val vsmin: Double,
-val vtc: Double,
-val vtlmt: Double,
-val vtm: Double,
-val vtn: Double,
-val _val: Double
+(
+    override val sup: Element,
+    val esc: Double,
+    val kan: Double,
+    val ketl: Double,
+    val tan: Double,
+    val td: Double,
+    val tl1: Double,
+    val tl2: Double,
+    val tw5: Double,
+    val vanmax: Double,
+    val vomax: Double,
+    val vomin: Double,
+    val vsmax: Double,
+    val vsmin: Double,
+    val vtc: Double,
+    val vtlmt: Double,
+    val vtm: Double,
+    val vtn: Double,
+    val _val: Double
 )
 extends
     Element
@@ -146,12 +147,13 @@ extends
  * @param vk Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
  */
 case class DiscExcContIEEEDEC2A
-(override val sup: DiscontinuousExcitationControlDynamics,
-val td1: Double,
-val td2: Double,
-val vdmax: Double,
-val vdmin: Double,
-val vk: Double
+(
+    override val sup: Element,
+    val td1: Double,
+    val td2: Double,
+    val vdmax: Double,
+    val vdmin: Double,
+    val vk: Double
 )
 extends
     Element
@@ -200,9 +202,10 @@ extends
  * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
  */
 case class DiscExcContIEEEDEC3A
-(override val sup: DiscontinuousExcitationControlDynamics,
-val tdr: Double,
-val vtmin: Double
+(
+    override val sup: Element,
+    val tdr: Double,
+    val vtmin: Double
 )
 extends
     Element
@@ -244,9 +247,10 @@ extends
  * @param RemoteInputSignal Remote input signal used by this discontinuous excitation control system model.
  */
 case class DiscontinuousExcitationControlDynamics
-(override val sup: DynamicsFunctionBlock,
-val ExcitationSystemDynamics: String,
-val RemoteInputSignal: String
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String,
+    val RemoteInputSignal: String
 )
 extends
     Element

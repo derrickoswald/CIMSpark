@@ -13,7 +13,8 @@ import ch.ninecode.cim.Context
  * @param sup Reference to the superclass object.
  */
 case class ModelingAuthority
-(override val sup: BasicElement
+(
+    override val sup: Element
 )
 extends
     Element
@@ -51,8 +52,9 @@ extends
  * @param ModelingAuthority A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
  */
 case class ModelingAuthoritySet
-(override val sup: BasicElement,
-val ModelingAuthority: String
+(
+    override val sup: Element,
+    val ModelingAuthority: String
 )
 extends
     Element

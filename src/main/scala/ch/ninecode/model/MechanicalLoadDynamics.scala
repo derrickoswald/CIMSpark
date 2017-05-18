@@ -17,11 +17,12 @@ import ch.ninecode.cim.Context
  * @param e Exponent (e).
  */
 case class MechLoad1
-(override val sup: MechanicalLoadDynamics,
-val a: Double,
-val b: Double,
-val d: Double,
-val e: Double
+(
+    override val sup: Element,
+    val a: Double,
+    val b: Double,
+    val d: Double,
+    val e: Double
 )
 extends
     Element
@@ -67,9 +68,10 @@ extends
  * @param SynchronousMachineDynamics Synchronous machine model with which this mechanical load model is associated.
  */
 case class MechanicalLoadDynamics
-(override val sup: DynamicsFunctionBlock,
-val AsynchronousMachineDynamics: String,
-val SynchronousMachineDynamics: String
+(
+    override val sup: Element,
+    val AsynchronousMachineDynamics: String,
+    val SynchronousMachineDynamics: String
 )
 extends
     Element

@@ -29,14 +29,15 @@ import ch.ninecode.cim.Context
  *        Typical Value = 0.
  */
 case class UnderexcLim2Simplified
-(override val sup: UnderexcitationLimiterDynamics,
-val kui: Double,
-val p0: Double,
-val p1: Double,
-val q0: Double,
-val q1: Double,
-val vuimax: Double,
-val vuimin: Double
+(
+    override val sup: Element,
+    val kui: Double,
+    val p0: Double,
+    val p1: Double,
+    val q0: Double,
+    val q1: Double,
+    val vuimax: Double,
+    val vuimin: Double
 )
 extends
     Element
@@ -115,22 +116,23 @@ extends
  *        Typical Value = 5.8.
  */
 case class UnderexcLimIEEE1
-(override val sup: UnderexcitationLimiterDynamics,
-val kuc: Double,
-val kuf: Double,
-val kui: Double,
-val kul: Double,
-val kur: Double,
-val tu1: Double,
-val tu2: Double,
-val tu3: Double,
-val tu4: Double,
-val vucmax: Double,
-val vuimax: Double,
-val vuimin: Double,
-val vulmax: Double,
-val vulmin: Double,
-val vurmax: Double
+(
+    override val sup: Element,
+    val kuc: Double,
+    val kuf: Double,
+    val kui: Double,
+    val kul: Double,
+    val kur: Double,
+    val tu1: Double,
+    val tu2: Double,
+    val tu3: Double,
+    val tu4: Double,
+    val vucmax: Double,
+    val vuimax: Double,
+    val vuimin: Double,
+    val vulmax: Double,
+    val vulmin: Double,
+    val vurmax: Double
 )
 extends
     Element
@@ -265,47 +267,48 @@ extends
  *        Typical Value = 0.
  */
 case class UnderexcLimIEEE2
-(override val sup: UnderexcitationLimiterDynamics,
-val k1: Double,
-val k2: Double,
-val kfb: Double,
-val kuf: Double,
-val kui: Double,
-val kul: Double,
-val p0: Double,
-val p1: Double,
-val p10: Double,
-val p2: Double,
-val p3: Double,
-val p4: Double,
-val p5: Double,
-val p6: Double,
-val p7: Double,
-val p8: Double,
-val p9: Double,
-val q0: Double,
-val q1: Double,
-val q10: Double,
-val q2: Double,
-val q3: Double,
-val q4: Double,
-val q5: Double,
-val q6: Double,
-val q7: Double,
-val q8: Double,
-val q9: Double,
-val tu1: Double,
-val tu2: Double,
-val tu3: Double,
-val tu4: Double,
-val tul: Double,
-val tup: Double,
-val tuq: Double,
-val tuv: Double,
-val vuimax: Double,
-val vuimin: Double,
-val vulmax: Double,
-val vulmin: Double
+(
+    override val sup: Element,
+    val k1: Double,
+    val k2: Double,
+    val kfb: Double,
+    val kuf: Double,
+    val kui: Double,
+    val kul: Double,
+    val p0: Double,
+    val p1: Double,
+    val p10: Double,
+    val p2: Double,
+    val p3: Double,
+    val p4: Double,
+    val p5: Double,
+    val p6: Double,
+    val p7: Double,
+    val p8: Double,
+    val p9: Double,
+    val q0: Double,
+    val q1: Double,
+    val q10: Double,
+    val q2: Double,
+    val q3: Double,
+    val q4: Double,
+    val q5: Double,
+    val q6: Double,
+    val q7: Double,
+    val q8: Double,
+    val q9: Double,
+    val tu1: Double,
+    val tu2: Double,
+    val tu3: Double,
+    val tu4: Double,
+    val tul: Double,
+    val tup: Double,
+    val tuq: Double,
+    val tuv: Double,
+    val vuimax: Double,
+    val vuimin: Double,
+    val vulmax: Double,
+    val vulmin: Double
 )
 extends
     Element
@@ -427,13 +430,14 @@ extends
  * @param tm Minimum excitation limit time constant (Tm).
  */
 case class UnderexcLimX1
-(override val sup: UnderexcitationLimiterDynamics,
-val k: Double,
-val kf2: Double,
-val km: Double,
-val melmax: Double,
-val tf2: Double,
-val tm: Double
+(
+    override val sup: Element,
+    val k: Double,
+    val kf2: Double,
+    val km: Double,
+    val melmax: Double,
+    val tf2: Double,
+    val tm: Double
 )
 extends
     Element
@@ -488,14 +492,15 @@ extends
  * @param tm Minimum excitation limit time constant (Tm).
  */
 case class UnderexcLimX2
-(override val sup: UnderexcitationLimiterDynamics,
-val kf2: Double,
-val km: Double,
-val melmax: Double,
-val qo: Double,
-val r: Double,
-val tf2: Double,
-val tm: Double
+(
+    override val sup: Element,
+    val kf2: Double,
+    val km: Double,
+    val melmax: Double,
+    val qo: Double,
+    val r: Double,
+    val tf2: Double,
+    val tm: Double
 )
 extends
     Element
@@ -547,9 +552,10 @@ extends
  * @param RemoteInputSignal Remote input signal used by this underexcitation limiter model.
  */
 case class UnderexcitationLimiterDynamics
-(override val sup: DynamicsFunctionBlock,
-val ExcitationSystemDynamics: String,
-val RemoteInputSignal: String
+(
+    override val sup: Element,
+    val ExcitationSystemDynamics: String,
+    val RemoteInputSignal: String
 )
 extends
     Element

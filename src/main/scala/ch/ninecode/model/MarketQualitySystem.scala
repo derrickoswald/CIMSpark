@@ -18,10 +18,11 @@ import ch.ninecode.cim.Context
  * @param updateUser
  */
 case class AllocationResult
-(override val sup: BasicElement,
-val intervalStartTime: String,
-val updateTimeStamp: String,
-val updateUser: String
+(
+    override val sup: Element,
+    val intervalStartTime: String,
+    val updateTimeStamp: String,
+    val updateUser: String
 )
 extends
     Element
@@ -77,14 +78,15 @@ DAC - Day Ahead Capacity;
  * @param RegisteredResource
  */
 case class AllocationResultValues
-(override val sup: BasicElement,
-val aggregateType: String,
-val allocationMwHour: Double,
-val allocationPrice: Double,
-val energyTypeCode: String,
-val marketServiceType: String,
-val AllocationResult: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val aggregateType: String,
+    val allocationMwHour: Double,
+    val allocationPrice: Double,
+    val energyTypeCode: String,
+    val marketServiceType: String,
+    val AllocationResult: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -138,11 +140,12 @@ extends
  * @param updateUser
  */
 case class AuxiliaryCost
-(override val sup: BasicElement,
-val intervalStartTime: String,
-val marketType: String,
-val updateTimeStamp: String,
-val updateUser: String
+(
+    override val sup: Element,
+    val intervalStartTime: String,
+    val marketType: String,
+    val updateTimeStamp: String,
+    val updateUser: String
 )
 extends
     Element
@@ -188,9 +191,10 @@ extends
  * @param RegisteredLoad
  */
 case class AuxiliaryObject
-(override val sup: BasicElement,
-val RegisteredGenerator: String,
-val RegisteredLoad: String
+(
+    override val sup: Element,
+    val RegisteredGenerator: String,
+    val RegisteredLoad: String
 )
 extends
     Element
@@ -241,18 +245,19 @@ extends
  * @param TenMinAuxillaryData
  */
 case class AuxiliaryValues
-(override val sup: AuxiliaryObject,
-val availUndispatchedQ: Double,
-val incrementalORAvail: Double,
-val maxExpostCapacity: Double,
-val minExpostCapacity: Double,
-val noLoadCost: Double,
-val noLoadCostEligibilityFlag: String,
-val startUpCost: Double,
-val startUpCostEligibilityFlag: String,
-val AuxillaryCost: String,
-val FiveMinAuxillaryData: String,
-val TenMinAuxillaryData: String
+(
+    override val sup: Element,
+    val availUndispatchedQ: Double,
+    val incrementalORAvail: Double,
+    val maxExpostCapacity: Double,
+    val minExpostCapacity: Double,
+    val noLoadCost: Double,
+    val noLoadCostEligibilityFlag: String,
+    val startUpCost: Double,
+    val startUpCostEligibilityFlag: String,
+    val AuxillaryCost: String,
+    val FiveMinAuxillaryData: String,
+    val TenMinAuxillaryData: String
 )
 extends
     Element
@@ -313,10 +318,11 @@ extends
  * @param updateUser
  */
 case class ExpectedEnergy
-(override val sup: BasicElement,
-val intervalStartTime: String,
-val updateTimeStamp: String,
-val updateUser: String
+(
+    override val sup: Element,
+    val intervalStartTime: String,
+    val updateTimeStamp: String,
+    val updateUser: String
 )
 extends
     Element
@@ -362,11 +368,12 @@ extends
  * @param RegisteredResource
  */
 case class ExpectedEnergyValues
-(override val sup: BasicElement,
-val energyTypeCode: String,
-val expectedMwh: Double,
-val ExpectedEnergy: String,
-val RegisteredResource: String
+(
+    override val sup: Element,
+    val energyTypeCode: String,
+    val expectedMwh: Double,
+    val ExpectedEnergy: String,
+    val RegisteredResource: String
 )
 extends
     Element
@@ -413,10 +420,11 @@ extends
  * @param updateUser
  */
 case class FiveMinAuxiliaryData
-(override val sup: BasicElement,
-val intervalStartTime: String,
-val updateTimeStamp: String,
-val updateUser: String
+(
+    override val sup: Element,
+    val intervalStartTime: String,
+    val updateTimeStamp: String,
+    val updateUser: String
 )
 extends
     Element
@@ -461,10 +469,11 @@ extends
  * @param updateUser
  */
 case class TenMinAuxiliaryData
-(override val sup: BasicElement,
-val intervalStartTime: String,
-val updateTimeStamp: String,
-val updateUser: String
+(
+    override val sup: Element,
+    val intervalStartTime: String,
+    val updateTimeStamp: String,
+    val updateUser: String
 )
 extends
     Element
@@ -510,11 +519,12 @@ extends
  * @param updateUser
  */
 case class TradingHubPrice
-(override val sup: BasicElement,
-val intervalStartTime: String,
-val marketType: String,
-val updateTimeStamp: String,
-val updateUser: String
+(
+    override val sup: Element,
+    val intervalStartTime: String,
+    val marketType: String,
+    val updateTimeStamp: String,
+    val updateUser: String
 )
 extends
     Element
@@ -562,10 +572,11 @@ extends
  * @param TradingHubPrice
  */
 case class TradingHubValues
-(override val sup: BasicElement,
-val price: Double,
-val AggregatedPnode: String,
-val TradingHubPrice: String
+(
+    override val sup: Element,
+    val price: Double,
+    val AggregatedPnode: String,
+    val TradingHubPrice: String
 )
 extends
     Element

@@ -15,8 +15,9 @@ import ch.ninecode.cim.Context
  * @param Terminal The terminal connecting to the bus to which the fault is applied.
  */
 case class EquipmentFault
-(override val sup: Fault,
-val Terminal: String
+(
+    override val sup: Element,
+    val Terminal: String
 )
 extends
     Element
@@ -62,13 +63,14 @@ extends
  * @param Outage Outage associated with this fault.
  */
 case class Fault
-(override val sup: IdentifiedObject,
-val impedance: String,
-val kind: String,
-val phases: String,
-val FaultCauseTypes: List[String],
-val FaultyEquipment: String,
-val Outage: String
+(
+    override val sup: Element,
+    val impedance: String,
+    val kind: String,
+    val phases: String,
+    val FaultCauseTypes: List[String],
+    val FaultyEquipment: String,
+    val Outage: String
 )
 extends
     Element
@@ -116,7 +118,8 @@ extends
  * @param sup Reference to the superclass object.
  */
 case class FaultCauseType
-(override val sup: IdentifiedObject
+(
+    override val sup: Element
 )
 extends
     Element
@@ -156,11 +159,12 @@ extends
  * @param xLineToLine The reactance of the fault between phases.
  */
 case class FaultImpedance
-(override val sup: BasicElement,
-val rGround: Double,
-val rLineToLine: Double,
-val xGround: Double,
-val xLineToLine: Double
+(
+    override val sup: Element,
+    val rGround: Double,
+    val rLineToLine: Double,
+    val xGround: Double,
+    val xLineToLine: Double
 )
 extends
     Element
@@ -206,9 +210,10 @@ extends
  * @param ACLineSegment The line segment of this line fault.
  */
 case class LineFault
-(override val sup: Fault,
-val lengthFromTerminal1: Double,
-val ACLineSegment: String
+(
+    override val sup: Element,
+    val lengthFromTerminal1: Double,
+    val ACLineSegment: String
 )
 extends
     Element
@@ -254,10 +259,11 @@ extends
  *        The line to line impedance is connected between each of the phases specified in the fault in a full mesh. For example three times for a three phase fault, one time for a two phase fault. A single phase fault should not be specified. The full ground impedance is connected between each phase specified in the fault and ground.
  */
 case class PhaseConnectedFaultKind
-(override val sup: BasicElement,
-val lineToGround: String,
-val lineToLine: String,
-val lineToLineToGround: String
+(
+    override val sup: Element,
+    val lineToGround: String,
+    val lineToLine: String,
+    val lineToLineToGround: String
 )
 extends
     Element

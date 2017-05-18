@@ -13,10 +13,11 @@ import ch.ninecode.cim.Context
  * @param urban
  */
 case class DemographicKind
-(override val sup: BasicElement,
-val other: String,
-val rural: String,
-val urban: String
+(
+    override val sup: Element,
+    val other: String,
+    val rural: String,
+    val urban: String
 )
 extends
     Element
@@ -66,13 +67,14 @@ extends
  * @param Locations The spatail description of a piece of property.
  */
 case class LandProperty
-(override val sup: IdentifiedObject,
-val demographicKind: String,
-val externalRecordReference: String,
-val kind: String,
-val status: String,
-val AssetContainers: List[String],
-val Locations: List[String]
+(
+    override val sup: Element,
+    val demographicKind: String,
+    val externalRecordReference: String,
+    val kind: String,
+    val status: String,
+    val AssetContainers: List[String],
+    val Locations: List[String]
 )
 extends
     Element
@@ -127,14 +129,15 @@ extends
  * @param substation Transmission network switchyard.
  */
 case class LandPropertyKind
-(override val sup: BasicElement,
-val building: String,
-val customerPremise: String,
-val depot: String,
-val external: String,
-val gridSupplyPoint: String,
-val store: String,
-val substation: String
+(
+    override val sup: Element,
+    val building: String,
+    val customerPremise: String,
+    val depot: String,
+    val external: String,
+    val gridSupplyPoint: String,
+    val store: String,
+    val substation: String
 )
 extends
     Element
@@ -188,9 +191,10 @@ extends
  * @param LandProperty Land property this location grant applies to.
  */
 case class LocationGrant
-(override val sup: Agreement,
-val propertyData: String,
-val LandProperty: String
+(
+    override val sup: Element,
+    val propertyData: String,
+    val LandProperty: String
 )
 extends
     Element
@@ -232,8 +236,9 @@ extends
  * @param status
  */
 case class RedLine
-(override val sup: IdentifiedObject,
-val status: String
+(
+    override val sup: Element,
+    val status: String
 )
 extends
     Element
@@ -275,9 +280,10 @@ extends
  * @param LandProperties All land properties this right of way applies to.
  */
 case class RightOfWay
-(override val sup: Agreement,
-val propertyData: String,
-val LandProperties: List[String]
+(
+    override val sup: Element,
+    val propertyData: String,
+    val LandProperties: List[String]
 )
 extends
     Element
@@ -320,10 +326,11 @@ extends
  * @param Locations
  */
 case class Route
-(override val sup: IdentifiedObject,
-val status: String,
-val typ: String,
-val Locations: List[String]
+(
+    override val sup: Element,
+    val status: String,
+    val typ: String,
+    val Locations: List[String]
 )
 extends
     Element
@@ -367,8 +374,9 @@ extends
  * @param kind Kind of this zone.
  */
 case class Zone
-(override val sup: Location,
-val kind: String
+(
+    override val sup: Element,
+    val kind: String
 )
 extends
     Element
@@ -410,11 +418,12 @@ extends
  * @param weatherZone
  */
 case class ZoneKind
-(override val sup: BasicElement,
-val electricalNetwork: String,
-val other: String,
-val specialRestrictionLand: String,
-val weatherZone: String
+(
+    override val sup: Element,
+    val electricalNetwork: String,
+    val other: String,
+    val specialRestrictionLand: String,
+    val weatherZone: String
 )
 extends
     Element
