@@ -150,13 +150,14 @@ trait Parser
             val matcher = pattern._1.matcher (context.subxml)
             while (matcher.find ())
             {
-                var string = matcher.group (pattern._2)
-                if (Context.DEBUG)
-                    context.coverage += Tuple2 (matcher.start, matcher.end)
-                if (null != string)
+                val start = matcher.start (pattern._2)
+                val end = matcher.end (pattern._2)
+                if ((-1 != start) && (-1 != end))
                 {
-                    if (string.startsWith ("#")) // remove '#'
-                        string = string.substring (1)
+                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
+                    val string = context.subxml.subSequence (begin, end).toString
+                    if (Context.DEBUG)
+                        context.coverage += Tuple2 (matcher.start, matcher.end)
                     ret = if (null == ret) List (string) else ret :+ string
                 }
             }
@@ -181,15 +182,18 @@ trait Parser
             val matcher = pattern._1.matcher (context.subxml)
             if (matcher.find ())
             {
-                var string = matcher.group (pattern._2)
-                if (Context.DEBUG)
-                    context.coverage += Tuple2 (matcher.start, matcher.end)
-                if (null != string)
+                val start = matcher.start (pattern._2)
+                val end = matcher.end (pattern._2)
+                if ((-1 != start) && (-1 != end))
                 {
-                    if (string.startsWith ("#")) // remove '#'
-                        string = string.substring (1)
+                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
+                    val string = context.subxml.subSequence (begin, end).toString
+                    if (Context.DEBUG)
+                        context.coverage += Tuple2 (matcher.start, matcher.end)
+                    string
                 }
-                string
+                else
+                    null
             }
             else
                 null

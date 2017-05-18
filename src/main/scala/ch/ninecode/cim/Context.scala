@@ -102,21 +102,21 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
         var index: Int = 0
         for (pair <- coverage.sorted)
         {
-            val sub = subxml.substring (index, pair._1).trim ()
-            if ("" != sub)
+            while (ret && index < pair._1)
             {
-                ret = false
-                if (errors.size < MAXERRORS)
-                    errors += "Unknown content \"" + sub + "\" at line " + line_number ()
+                ret &&= subxml.charAt (index).isWhitespace
+                if (!ret && errors.size < MAXERRORS)
+                    errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, pair._1).trim (), line_number ())
+                index += 1
             }
             index = pair._2
         }
-        val remainder = subxml.substring (index, subxml.length ()).trim ()
-        if ("" != remainder)
+        while (ret && index < subxml.length ())
         {
-            ret = false
-            if (errors.size < MAXERRORS)
-                errors += "Unknown content \"" + remainder + "\" at line " + line_number ()
+            ret &&= subxml.charAt (index).isWhitespace
+            if (!ret && errors.size < MAXERRORS)
+                errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, subxml.length ()).trim (), line_number ())
+            index += 1
         }
 
         return (ret)
