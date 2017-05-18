@@ -40,9 +40,9 @@ extends
     Parseable[ReserveReq]
 {
     val sup = ResourceGroupReq.parse _
-    val MarketProduct = parse_attribute (attribute ("""ReserveReq.MarketProduct"""))_
-    val ReserveReqCurve = parse_attribute (attribute ("""ReserveReq.ReserveReqCurve"""))_
-    val SensitivityPriceCurve = parse_attribute (attribute ("""ReserveReq.SensitivityPriceCurve"""))_
+    val MarketProduct = parse_attribute (attribute ("""ReserveReq.MarketProduct"""))
+    val ReserveReqCurve = parse_attribute (attribute ("""ReserveReq.ReserveReqCurve"""))
+    val SensitivityPriceCurve = parse_attribute (attribute ("""ReserveReq.SensitivityPriceCurve"""))
     def parse (context: Context): ReserveReq =
     {
         ReserveReq(
@@ -86,7 +86,7 @@ extends
     Parseable[ReserveReqCurve]
 {
     val sup = Curve.parse _
-    val ReserveReq = parse_attribute (attribute ("""ReserveReqCurve.ReserveReq"""))_
+    val ReserveReq = parse_attribute (attribute ("""ReserveReqCurve.ReserveReq"""))
     def parse (context: Context): ReserveReqCurve =
     {
         ReserveReqCurve(
@@ -129,8 +129,8 @@ extends
     Parseable[ResourceGroup]
 {
     val sup = IdentifiedObject.parse _
-    val status = parse_attribute (attribute ("""ResourceGroup.status"""))_
-    val typ = parse_element (element ("""ResourceGroup.type"""))_
+    val status = parse_attribute (attribute ("""ResourceGroup.status"""))
+    val typ = parse_element (element ("""ResourceGroup.type"""))
     def parse (context: Context): ResourceGroup =
     {
         ResourceGroup(
@@ -174,8 +174,8 @@ extends
     Parseable[ResourceGroupReq]
 {
     val sup = IdentifiedObject.parse _
-    val RTOs = parse_attributes (attribute ("""ResourceGroupReq.RTOs"""))_
-    val ResourceGroup = parse_attribute (attribute ("""ResourceGroupReq.ResourceGroup"""))_
+    val RTOs = parse_attributes (attribute ("""ResourceGroupReq.RTOs"""))
+    val ResourceGroup = parse_attribute (attribute ("""ResourceGroupReq.ResourceGroup"""))
     def parse (context: Context): ResourceGroupReq =
     {
         ResourceGroupReq(
@@ -218,7 +218,7 @@ extends
     Parseable[SensitivityPriceCurve]
 {
     val sup = Curve.parse _
-    val ReserveReq = parse_attribute (attribute ("""SensitivityPriceCurve.ReserveReq"""))_
+    val ReserveReq = parse_attribute (attribute ("""SensitivityPriceCurve.ReserveReq"""))
     def parse (context: Context): SensitivityPriceCurve =
     {
         SensitivityPriceCurve(

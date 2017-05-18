@@ -45,10 +45,10 @@ extends
     Parseable[MechLoad1]
 {
     val sup = MechanicalLoadDynamics.parse _
-    val a = parse_element (element ("""MechLoad1.a"""))_
-    val b = parse_element (element ("""MechLoad1.b"""))_
-    val d = parse_element (element ("""MechLoad1.d"""))_
-    val e = parse_element (element ("""MechLoad1.e"""))_
+    val a = parse_element (element ("""MechLoad1.a"""))
+    val b = parse_element (element ("""MechLoad1.b"""))
+    val d = parse_element (element ("""MechLoad1.d"""))
+    val e = parse_element (element ("""MechLoad1.e"""))
     def parse (context: Context): MechLoad1 =
     {
         MechLoad1(
@@ -94,8 +94,8 @@ extends
     Parseable[MechanicalLoadDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val AsynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.AsynchronousMachineDynamics"""))_
-    val SynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.SynchronousMachineDynamics"""))_
+    val AsynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.AsynchronousMachineDynamics"""))
+    val SynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.SynchronousMachineDynamics"""))
     def parse (context: Context): MechanicalLoadDynamics =
     {
         MechanicalLoadDynamics(

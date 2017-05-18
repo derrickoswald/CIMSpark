@@ -37,7 +37,7 @@ extends
     Parseable[AssetModelCatalogue]
 {
     val sup = IdentifiedObject.parse _
-    val status = parse_attribute (attribute ("""AssetModelCatalogue.status"""))_
+    val status = parse_attribute (attribute ("""AssetModelCatalogue.status"""))
     def parse (context: Context): AssetModelCatalogue =
     {
         AssetModelCatalogue(
@@ -84,9 +84,9 @@ extends
     Parseable[AssetModelCatalogueItem]
 {
     val sup = Document.parse _
-    val unitCost = parse_element (element ("""AssetModelCatalogueItem.unitCost"""))_
-    val AssetModel = parse_attribute (attribute ("""AssetModelCatalogueItem.AssetModel"""))_
-    val AssetModelCatalogue = parse_attribute (attribute ("""AssetModelCatalogueItem.AssetModelCatalogue"""))_
+    val unitCost = parse_element (element ("""AssetModelCatalogueItem.unitCost"""))
+    val AssetModel = parse_attribute (attribute ("""AssetModelCatalogueItem.AssetModel"""))
+    val AssetModelCatalogue = parse_attribute (attribute ("""AssetModelCatalogueItem.AssetModelCatalogue"""))
     def parse (context: Context): AssetModelCatalogueItem =
     {
         AssetModelCatalogueItem(
@@ -129,7 +129,7 @@ extends
     Parseable[BreakerInfo]
 {
     val sup = OldSwitchInfo.parse _
-    val phaseTrip = parse_element (element ("""BreakerInfo.phaseTrip"""))_
+    val phaseTrip = parse_element (element ("""BreakerInfo.phaseTrip"""))
     def parse (context: Context): BreakerInfo =
     {
         BreakerInfo(
@@ -186,15 +186,15 @@ extends
     Parseable[CompositeSwitchInfo]
 {
     val sup = AssetInfo.parse _
-    val ganged = parse_element (element ("""CompositeSwitchInfo.ganged"""))_
-    val initOpMode = parse_element (element ("""CompositeSwitchInfo.initOpMode"""))_
-    val interruptingRating = parse_element (element ("""CompositeSwitchInfo.interruptingRating"""))_
-    val kind = parse_attribute (attribute ("""CompositeSwitchInfo.kind"""))_
-    val phaseCode = parse_attribute (attribute ("""CompositeSwitchInfo.phaseCode"""))_
-    val phaseCount = parse_element (element ("""CompositeSwitchInfo.phaseCount"""))_
-    val ratedVoltage = parse_element (element ("""CompositeSwitchInfo.ratedVoltage"""))_
-    val remote = parse_element (element ("""CompositeSwitchInfo.remote"""))_
-    val switchStateCount = parse_element (element ("""CompositeSwitchInfo.switchStateCount"""))_
+    val ganged = parse_element (element ("""CompositeSwitchInfo.ganged"""))
+    val initOpMode = parse_element (element ("""CompositeSwitchInfo.initOpMode"""))
+    val interruptingRating = parse_element (element ("""CompositeSwitchInfo.interruptingRating"""))
+    val kind = parse_attribute (attribute ("""CompositeSwitchInfo.kind"""))
+    val phaseCode = parse_attribute (attribute ("""CompositeSwitchInfo.phaseCode"""))
+    val phaseCount = parse_element (element ("""CompositeSwitchInfo.phaseCount"""))
+    val ratedVoltage = parse_element (element ("""CompositeSwitchInfo.ratedVoltage"""))
+    val remote = parse_element (element ("""CompositeSwitchInfo.remote"""))
+    val switchStateCount = parse_element (element ("""CompositeSwitchInfo.switchStateCount"""))
     def parse (context: Context): CompositeSwitchInfo =
     {
         CompositeSwitchInfo(
@@ -255,13 +255,13 @@ extends
     Parseable[CompositeSwitchKind]
 {
     val sup = BasicElement.parse _
-    val escoThrowOver = parse_attribute (attribute ("""CompositeSwitchKind.escoThrowOver"""))_
-    val gral = parse_attribute (attribute ("""CompositeSwitchKind.gral"""))_
-    val other = parse_attribute (attribute ("""CompositeSwitchKind.other"""))_
-    val ral = parse_attribute (attribute ("""CompositeSwitchKind.ral"""))_
-    val regulatorBypass = parse_attribute (attribute ("""CompositeSwitchKind.regulatorBypass"""))_
-    val throwOver = parse_attribute (attribute ("""CompositeSwitchKind.throwOver"""))_
-    val ugMultiSwitch = parse_attribute (attribute ("""CompositeSwitchKind.ugMultiSwitch"""))_
+    val escoThrowOver = parse_attribute (attribute ("""CompositeSwitchKind.escoThrowOver"""))
+    val gral = parse_attribute (attribute ("""CompositeSwitchKind.gral"""))
+    val other = parse_attribute (attribute ("""CompositeSwitchKind.other"""))
+    val ral = parse_attribute (attribute ("""CompositeSwitchKind.ral"""))
+    val regulatorBypass = parse_attribute (attribute ("""CompositeSwitchKind.regulatorBypass"""))
+    val throwOver = parse_attribute (attribute ("""CompositeSwitchKind.throwOver"""))
+    val ugMultiSwitch = parse_attribute (attribute ("""CompositeSwitchKind.ugMultiSwitch"""))
     def parse (context: Context): CompositeSwitchKind =
     {
         CompositeSwitchKind(
@@ -338,22 +338,22 @@ extends
     Parseable[CurrentTransformerInfo]
 {
     val sup = AssetInfo.parse _
-    val accuracyClass = parse_element (element ("""CurrentTransformerInfo.accuracyClass"""))_
-    val accuracyLimit = parse_element (element ("""CurrentTransformerInfo.accuracyLimit"""))_
-    val coreCount = parse_element (element ("""CurrentTransformerInfo.coreCount"""))_
-    val ctClass = parse_element (element ("""CurrentTransformerInfo.ctClass"""))_
-    val kneePointCurrent = parse_element (element ("""CurrentTransformerInfo.kneePointCurrent"""))_
-    val kneePointVoltage = parse_element (element ("""CurrentTransformerInfo.kneePointVoltage"""))_
-    val maxRatio = parse_attribute (attribute ("""CurrentTransformerInfo.maxRatio"""))_
-    val nominalRatio = parse_attribute (attribute ("""CurrentTransformerInfo.nominalRatio"""))_
-    val primaryFlsRating = parse_element (element ("""CurrentTransformerInfo.primaryFlsRating"""))_
-    val primaryRatio = parse_attribute (attribute ("""CurrentTransformerInfo.primaryRatio"""))_
-    val ratedCurrent = parse_element (element ("""CurrentTransformerInfo.ratedCurrent"""))_
-    val secondaryFlsRating = parse_element (element ("""CurrentTransformerInfo.secondaryFlsRating"""))_
-    val secondaryRatio = parse_attribute (attribute ("""CurrentTransformerInfo.secondaryRatio"""))_
-    val tertiaryFlsRating = parse_element (element ("""CurrentTransformerInfo.tertiaryFlsRating"""))_
-    val tertiaryRatio = parse_attribute (attribute ("""CurrentTransformerInfo.tertiaryRatio"""))_
-    val usage = parse_element (element ("""CurrentTransformerInfo.usage"""))_
+    val accuracyClass = parse_element (element ("""CurrentTransformerInfo.accuracyClass"""))
+    val accuracyLimit = parse_element (element ("""CurrentTransformerInfo.accuracyLimit"""))
+    val coreCount = parse_element (element ("""CurrentTransformerInfo.coreCount"""))
+    val ctClass = parse_element (element ("""CurrentTransformerInfo.ctClass"""))
+    val kneePointCurrent = parse_element (element ("""CurrentTransformerInfo.kneePointCurrent"""))
+    val kneePointVoltage = parse_element (element ("""CurrentTransformerInfo.kneePointVoltage"""))
+    val maxRatio = parse_attribute (attribute ("""CurrentTransformerInfo.maxRatio"""))
+    val nominalRatio = parse_attribute (attribute ("""CurrentTransformerInfo.nominalRatio"""))
+    val primaryFlsRating = parse_element (element ("""CurrentTransformerInfo.primaryFlsRating"""))
+    val primaryRatio = parse_attribute (attribute ("""CurrentTransformerInfo.primaryRatio"""))
+    val ratedCurrent = parse_element (element ("""CurrentTransformerInfo.ratedCurrent"""))
+    val secondaryFlsRating = parse_element (element ("""CurrentTransformerInfo.secondaryFlsRating"""))
+    val secondaryRatio = parse_attribute (attribute ("""CurrentTransformerInfo.secondaryRatio"""))
+    val tertiaryFlsRating = parse_element (element ("""CurrentTransformerInfo.tertiaryFlsRating"""))
+    val tertiaryRatio = parse_attribute (attribute ("""CurrentTransformerInfo.tertiaryRatio"""))
+    val usage = parse_element (element ("""CurrentTransformerInfo.usage"""))
     def parse (context: Context): CurrentTransformerInfo =
     {
         CurrentTransformerInfo(
@@ -409,7 +409,7 @@ extends
     Parseable[FaultIndicatorInfo]
 {
     val sup = AssetInfo.parse _
-    val resetKind = parse_attribute (attribute ("""FaultIndicatorInfo.resetKind"""))_
+    val resetKind = parse_attribute (attribute ("""FaultIndicatorInfo.resetKind"""))
     def parse (context: Context): FaultIndicatorInfo =
     {
         FaultIndicatorInfo(
@@ -456,10 +456,10 @@ extends
     Parseable[FaultIndicatorResetKind]
 {
     val sup = BasicElement.parse _
-    val automatic = parse_attribute (attribute ("""FaultIndicatorResetKind.automatic"""))_
-    val manual = parse_attribute (attribute ("""FaultIndicatorResetKind.manual"""))_
-    val other = parse_attribute (attribute ("""FaultIndicatorResetKind.other"""))_
-    val remote = parse_attribute (attribute ("""FaultIndicatorResetKind.remote"""))_
+    val automatic = parse_attribute (attribute ("""FaultIndicatorResetKind.automatic"""))
+    val manual = parse_attribute (attribute ("""FaultIndicatorResetKind.manual"""))
+    val other = parse_attribute (attribute ("""FaultIndicatorResetKind.other"""))
+    val remote = parse_attribute (attribute ("""FaultIndicatorResetKind.remote"""))
     def parse (context: Context): FaultIndicatorResetKind =
     {
         FaultIndicatorResetKind(
@@ -509,10 +509,10 @@ extends
     Parseable[OilPreservationKind]
 {
     val sup = BasicElement.parse _
-    val conservator = parse_attribute (attribute ("""OilPreservationKind.conservator"""))_
-    val freeBreathing = parse_attribute (attribute ("""OilPreservationKind.freeBreathing"""))_
-    val nitrogenBlanket = parse_attribute (attribute ("""OilPreservationKind.nitrogenBlanket"""))_
-    val other = parse_attribute (attribute ("""OilPreservationKind.other"""))_
+    val conservator = parse_attribute (attribute ("""OilPreservationKind.conservator"""))
+    val freeBreathing = parse_attribute (attribute ("""OilPreservationKind.freeBreathing"""))
+    val nitrogenBlanket = parse_attribute (attribute ("""OilPreservationKind.nitrogenBlanket"""))
+    val other = parse_attribute (attribute ("""OilPreservationKind.other"""))
     def parse (context: Context): OilPreservationKind =
     {
         OilPreservationKind(
@@ -569,13 +569,13 @@ extends
     Parseable[OldSwitchInfo]
 {
     val sup = SwitchInfo.parse _
-    val dielectricStrength = parse_element (element ("""OldSwitchInfo.dielectricStrength"""))_
-    val loadBreak = parse_element (element ("""OldSwitchInfo.loadBreak"""))_
-    val makingCapacity = parse_element (element ("""OldSwitchInfo.makingCapacity"""))_
-    val minimumCurrent = parse_element (element ("""OldSwitchInfo.minimumCurrent"""))_
-    val poleCount = parse_element (element ("""OldSwitchInfo.poleCount"""))_
-    val remote = parse_element (element ("""OldSwitchInfo.remote"""))_
-    val withstandCurrent = parse_element (element ("""OldSwitchInfo.withstandCurrent"""))_
+    val dielectricStrength = parse_element (element ("""OldSwitchInfo.dielectricStrength"""))
+    val loadBreak = parse_element (element ("""OldSwitchInfo.loadBreak"""))
+    val makingCapacity = parse_element (element ("""OldSwitchInfo.makingCapacity"""))
+    val minimumCurrent = parse_element (element ("""OldSwitchInfo.minimumCurrent"""))
+    val poleCount = parse_element (element ("""OldSwitchInfo.poleCount"""))
+    val remote = parse_element (element ("""OldSwitchInfo.remote"""))
+    val withstandCurrent = parse_element (element ("""OldSwitchInfo.withstandCurrent"""))
     def parse (context: Context): OldSwitchInfo =
     {
         OldSwitchInfo(
@@ -620,10 +620,10 @@ extends
     Parseable[OldTransformerEndInfo]
 {
     val sup = TransformerEndInfo.parse _
-    val dayOverLoadRating = parse_element (element ("""OldTransformerEndInfo.dayOverLoadRating"""))_
-    val hourOverLoadRating = parse_element (element ("""OldTransformerEndInfo.hourOverLoadRating"""))_
-    val solidInsulationWeight = parse_element (element ("""OldTransformerEndInfo.solidInsulationWeight"""))_
-    val windingInsulationKind = parse_attribute (attribute ("""OldTransformerEndInfo.windingInsulationKind"""))_
+    val dayOverLoadRating = parse_element (element ("""OldTransformerEndInfo.dayOverLoadRating"""))
+    val hourOverLoadRating = parse_element (element ("""OldTransformerEndInfo.hourOverLoadRating"""))
+    val solidInsulationWeight = parse_element (element ("""OldTransformerEndInfo.solidInsulationWeight"""))
+    val windingInsulationKind = parse_attribute (attribute ("""OldTransformerEndInfo.windingInsulationKind"""))
     def parse (context: Context): OldTransformerEndInfo =
     {
         OldTransformerEndInfo(
@@ -667,12 +667,12 @@ extends
     Parseable[OldTransformerTankInfo]
 {
     val sup = TransformerTankInfo.parse _
-    val constructionKind = parse_attribute (attribute ("""OldTransformerTankInfo.constructionKind"""))_
-    val coreCoilsWeight = parse_element (element ("""OldTransformerTankInfo.coreCoilsWeight"""))_
-    val coreKind = parse_attribute (attribute ("""OldTransformerTankInfo.coreKind"""))_
-    val function = parse_attribute (attribute ("""OldTransformerTankInfo.function"""))_
-    val neutralBIL = parse_element (element ("""OldTransformerTankInfo.neutralBIL"""))_
-    val oilPreservationKind = parse_attribute (attribute ("""OldTransformerTankInfo.oilPreservationKind"""))_
+    val constructionKind = parse_attribute (attribute ("""OldTransformerTankInfo.constructionKind"""))
+    val coreCoilsWeight = parse_element (element ("""OldTransformerTankInfo.coreCoilsWeight"""))
+    val coreKind = parse_attribute (attribute ("""OldTransformerTankInfo.coreKind"""))
+    val function = parse_attribute (attribute ("""OldTransformerTankInfo.function"""))
+    val neutralBIL = parse_element (element ("""OldTransformerTankInfo.neutralBIL"""))
+    val oilPreservationKind = parse_attribute (attribute ("""OldTransformerTankInfo.oilPreservationKind"""))
     def parse (context: Context): OldTransformerTankInfo =
     {
         OldTransformerTankInfo(
@@ -730,13 +730,13 @@ extends
     Parseable[PotentialTransformerInfo]
 {
     val sup = AssetInfo.parse _
-    val accuracyClass = parse_element (element ("""PotentialTransformerInfo.accuracyClass"""))_
-    val nominalRatio = parse_attribute (attribute ("""PotentialTransformerInfo.nominalRatio"""))_
-    val primaryRatio = parse_attribute (attribute ("""PotentialTransformerInfo.primaryRatio"""))_
-    val ptClass = parse_element (element ("""PotentialTransformerInfo.ptClass"""))_
-    val ratedVoltage = parse_element (element ("""PotentialTransformerInfo.ratedVoltage"""))_
-    val secondaryRatio = parse_attribute (attribute ("""PotentialTransformerInfo.secondaryRatio"""))_
-    val tertiaryRatio = parse_attribute (attribute ("""PotentialTransformerInfo.tertiaryRatio"""))_
+    val accuracyClass = parse_element (element ("""PotentialTransformerInfo.accuracyClass"""))
+    val nominalRatio = parse_attribute (attribute ("""PotentialTransformerInfo.nominalRatio"""))
+    val primaryRatio = parse_attribute (attribute ("""PotentialTransformerInfo.primaryRatio"""))
+    val ptClass = parse_element (element ("""PotentialTransformerInfo.ptClass"""))
+    val ratedVoltage = parse_element (element ("""PotentialTransformerInfo.ratedVoltage"""))
+    val secondaryRatio = parse_attribute (attribute ("""PotentialTransformerInfo.secondaryRatio"""))
+    val tertiaryRatio = parse_attribute (attribute ("""PotentialTransformerInfo.tertiaryRatio"""))
     def parse (context: Context): PotentialTransformerInfo =
     {
         PotentialTransformerInfo(
@@ -785,8 +785,8 @@ extends
     Parseable[ProtectionEquipmentInfo]
 {
     val sup = AssetInfo.parse _
-    val groundTrip = parse_element (element ("""ProtectionEquipmentInfo.groundTrip"""))_
-    val phaseTrip = parse_element (element ("""ProtectionEquipmentInfo.phaseTrip"""))_
+    val groundTrip = parse_element (element ("""ProtectionEquipmentInfo.groundTrip"""))
+    val phaseTrip = parse_element (element ("""ProtectionEquipmentInfo.phaseTrip"""))
     def parse (context: Context): ProtectionEquipmentInfo =
     {
         ProtectionEquipmentInfo(
@@ -836,11 +836,11 @@ extends
     Parseable[RecloserInfo]
 {
     val sup = OldSwitchInfo.parse _
-    val groundTripCapable = parse_element (element ("""RecloserInfo.groundTripCapable"""))_
-    val groundTripNormalEnabled = parse_element (element ("""RecloserInfo.groundTripNormalEnabled"""))_
-    val groundTripRating = parse_element (element ("""RecloserInfo.groundTripRating"""))_
-    val phaseTripRating = parse_element (element ("""RecloserInfo.phaseTripRating"""))_
-    val recloseLockoutCount = parse_element (element ("""RecloserInfo.recloseLockoutCount"""))_
+    val groundTripCapable = parse_element (element ("""RecloserInfo.groundTripCapable"""))
+    val groundTripNormalEnabled = parse_element (element ("""RecloserInfo.groundTripNormalEnabled"""))
+    val groundTripRating = parse_element (element ("""RecloserInfo.groundTripRating"""))
+    val phaseTripRating = parse_element (element ("""RecloserInfo.phaseTripRating"""))
+    val recloseLockoutCount = parse_element (element ("""RecloserInfo.recloseLockoutCount"""))
     def parse (context: Context): RecloserInfo =
     {
         RecloserInfo(
@@ -899,14 +899,14 @@ extends
     Parseable[RegulationBranchKind]
 {
     val sup = BasicElement.parse _
-    val breaker = parse_attribute (attribute ("""RegulationBranchKind.breaker"""))_
-    val fuse = parse_attribute (attribute ("""RegulationBranchKind.fuse"""))_
-    val line = parse_attribute (attribute ("""RegulationBranchKind.line"""))_
-    val other = parse_attribute (attribute ("""RegulationBranchKind.other"""))_
-    val recloser = parse_attribute (attribute ("""RegulationBranchKind.recloser"""))_
-    val sectionner = parse_attribute (attribute ("""RegulationBranchKind.sectionner"""))_
-    val switch = parse_attribute (attribute ("""RegulationBranchKind.switch"""))_
-    val transformer = parse_attribute (attribute ("""RegulationBranchKind.transformer"""))_
+    val breaker = parse_attribute (attribute ("""RegulationBranchKind.breaker"""))
+    val fuse = parse_attribute (attribute ("""RegulationBranchKind.fuse"""))
+    val line = parse_attribute (attribute ("""RegulationBranchKind.line"""))
+    val other = parse_attribute (attribute ("""RegulationBranchKind.other"""))
+    val recloser = parse_attribute (attribute ("""RegulationBranchKind.recloser"""))
+    val sectionner = parse_attribute (attribute ("""RegulationBranchKind.sectionner"""))
+    val switch = parse_attribute (attribute ("""RegulationBranchKind.switch"""))
+    val transformer = parse_attribute (attribute ("""RegulationBranchKind.transformer"""))
     def parse (context: Context): RegulationBranchKind =
     {
         RegulationBranchKind(
@@ -960,10 +960,10 @@ extends
     Parseable[ShuntImpedanceControlKind]
 {
     val sup = BasicElement.parse _
-    val fixed = parse_attribute (attribute ("""ShuntImpedanceControlKind.fixed"""))_
-    val localOnly = parse_attribute (attribute ("""ShuntImpedanceControlKind.localOnly"""))_
-    val remoteOnly = parse_attribute (attribute ("""ShuntImpedanceControlKind.remoteOnly"""))_
-    val remoteWithLocalOverride = parse_attribute (attribute ("""ShuntImpedanceControlKind.remoteWithLocalOverride"""))_
+    val fixed = parse_attribute (attribute ("""ShuntImpedanceControlKind.fixed"""))
+    val localOnly = parse_attribute (attribute ("""ShuntImpedanceControlKind.localOnly"""))
+    val remoteOnly = parse_attribute (attribute ("""ShuntImpedanceControlKind.remoteOnly"""))
+    val remoteWithLocalOverride = parse_attribute (attribute ("""ShuntImpedanceControlKind.remoteWithLocalOverride"""))
     def parse (context: Context): ShuntImpedanceControlKind =
     {
         ShuntImpedanceControlKind(
@@ -1019,13 +1019,13 @@ extends
     Parseable[ShuntImpedanceLocalControlKind]
 {
     val sup = BasicElement.parse _
-    val current = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.current"""))_
-    val none = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.none"""))_
-    val powerFactor = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.powerFactor"""))_
-    val reactivePower = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.reactivePower"""))_
-    val temperature = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.temperature"""))_
-    val time = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.time"""))_
-    val voltage = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.voltage"""))_
+    val current = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.current"""))
+    val none = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.none"""))
+    val powerFactor = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.powerFactor"""))
+    val reactivePower = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.reactivePower"""))
+    val temperature = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.temperature"""))
+    val time = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.time"""))
+    val voltage = parse_attribute (attribute ("""ShuntImpedanceLocalControlKind.voltage"""))
     def parse (context: Context): ShuntImpedanceLocalControlKind =
     {
         ShuntImpedanceLocalControlKind(
@@ -1091,15 +1091,15 @@ extends
     Parseable[SurgeArresterInfo]
 {
     val sup = AssetInfo.parse _
-    val continuousOperatingVoltage = parse_element (element ("""SurgeArresterInfo.continuousOperatingVoltage"""))_
-    val isPolymer = parse_element (element ("""SurgeArresterInfo.isPolymer"""))_
-    val lightningImpulseDischargeVoltage = parse_element (element ("""SurgeArresterInfo.lightningImpulseDischargeVoltage"""))_
-    val lineDischargeClass = parse_element (element ("""SurgeArresterInfo.lineDischargeClass"""))_
-    val nominalDischargeCurrent = parse_element (element ("""SurgeArresterInfo.nominalDischargeCurrent"""))_
-    val pressureReliefClass = parse_element (element ("""SurgeArresterInfo.pressureReliefClass"""))_
-    val ratedVoltage = parse_element (element ("""SurgeArresterInfo.ratedVoltage"""))_
-    val steepFrontDischargeVoltage = parse_element (element ("""SurgeArresterInfo.steepFrontDischargeVoltage"""))_
-    val switchingImpulseDischargeVoltage = parse_element (element ("""SurgeArresterInfo.switchingImpulseDischargeVoltage"""))_
+    val continuousOperatingVoltage = parse_element (element ("""SurgeArresterInfo.continuousOperatingVoltage"""))
+    val isPolymer = parse_element (element ("""SurgeArresterInfo.isPolymer"""))
+    val lightningImpulseDischargeVoltage = parse_element (element ("""SurgeArresterInfo.lightningImpulseDischargeVoltage"""))
+    val lineDischargeClass = parse_element (element ("""SurgeArresterInfo.lineDischargeClass"""))
+    val nominalDischargeCurrent = parse_element (element ("""SurgeArresterInfo.nominalDischargeCurrent"""))
+    val pressureReliefClass = parse_element (element ("""SurgeArresterInfo.pressureReliefClass"""))
+    val ratedVoltage = parse_element (element ("""SurgeArresterInfo.ratedVoltage"""))
+    val steepFrontDischargeVoltage = parse_element (element ("""SurgeArresterInfo.steepFrontDischargeVoltage"""))
+    val switchingImpulseDischargeVoltage = parse_element (element ("""SurgeArresterInfo.switchingImpulseDischargeVoltage"""))
     def parse (context: Context): SurgeArresterInfo =
     {
         SurgeArresterInfo(
@@ -1178,22 +1178,22 @@ extends
     Parseable[TransformerConstructionKind]
 {
     val sup = BasicElement.parse _
-    val aerial = parse_attribute (attribute ("""TransformerConstructionKind.aerial"""))_
-    val dryType = parse_attribute (attribute ("""TransformerConstructionKind.dryType"""))_
-    val network = parse_attribute (attribute ("""TransformerConstructionKind.network"""))_
-    val onePhase = parse_attribute (attribute ("""TransformerConstructionKind.onePhase"""))_
-    val overhead = parse_attribute (attribute ("""TransformerConstructionKind.overhead"""))_
-    val padmountDeadFront = parse_attribute (attribute ("""TransformerConstructionKind.padmountDeadFront"""))_
-    val padmountFeedThrough = parse_attribute (attribute ("""TransformerConstructionKind.padmountFeedThrough"""))_
-    val padmountLiveFront = parse_attribute (attribute ("""TransformerConstructionKind.padmountLiveFront"""))_
-    val padmountLoopThrough = parse_attribute (attribute ("""TransformerConstructionKind.padmountLoopThrough"""))_
-    val padmounted = parse_attribute (attribute ("""TransformerConstructionKind.padmounted"""))_
-    val subway = parse_attribute (attribute ("""TransformerConstructionKind.subway"""))_
-    val threePhase = parse_attribute (attribute ("""TransformerConstructionKind.threePhase"""))_
-    val underground = parse_attribute (attribute ("""TransformerConstructionKind.underground"""))_
-    val unknown = parse_attribute (attribute ("""TransformerConstructionKind.unknown"""))_
-    val vault = parse_attribute (attribute ("""TransformerConstructionKind.vault"""))_
-    val vaultThreePhase = parse_attribute (attribute ("""TransformerConstructionKind.vaultThreePhase"""))_
+    val aerial = parse_attribute (attribute ("""TransformerConstructionKind.aerial"""))
+    val dryType = parse_attribute (attribute ("""TransformerConstructionKind.dryType"""))
+    val network = parse_attribute (attribute ("""TransformerConstructionKind.network"""))
+    val onePhase = parse_attribute (attribute ("""TransformerConstructionKind.onePhase"""))
+    val overhead = parse_attribute (attribute ("""TransformerConstructionKind.overhead"""))
+    val padmountDeadFront = parse_attribute (attribute ("""TransformerConstructionKind.padmountDeadFront"""))
+    val padmountFeedThrough = parse_attribute (attribute ("""TransformerConstructionKind.padmountFeedThrough"""))
+    val padmountLiveFront = parse_attribute (attribute ("""TransformerConstructionKind.padmountLiveFront"""))
+    val padmountLoopThrough = parse_attribute (attribute ("""TransformerConstructionKind.padmountLoopThrough"""))
+    val padmounted = parse_attribute (attribute ("""TransformerConstructionKind.padmounted"""))
+    val subway = parse_attribute (attribute ("""TransformerConstructionKind.subway"""))
+    val threePhase = parse_attribute (attribute ("""TransformerConstructionKind.threePhase"""))
+    val underground = parse_attribute (attribute ("""TransformerConstructionKind.underground"""))
+    val unknown = parse_attribute (attribute ("""TransformerConstructionKind.unknown"""))
+    val vault = parse_attribute (attribute ("""TransformerConstructionKind.vault"""))
+    val vaultThreePhase = parse_attribute (attribute ("""TransformerConstructionKind.vaultThreePhase"""))
     def parse (context: Context): TransformerConstructionKind =
     {
         TransformerConstructionKind(
@@ -1251,8 +1251,8 @@ extends
     Parseable[TransformerCoreKind]
 {
     val sup = BasicElement.parse _
-    val core = parse_attribute (attribute ("""TransformerCoreKind.core"""))_
-    val shell = parse_attribute (attribute ("""TransformerCoreKind.shell"""))_
+    val core = parse_attribute (attribute ("""TransformerCoreKind.core"""))
+    val shell = parse_attribute (attribute ("""TransformerCoreKind.shell"""))
     def parse (context: Context): TransformerCoreKind =
     {
         TransformerCoreKind(
@@ -1302,11 +1302,11 @@ extends
     Parseable[TransformerFunctionKind]
 {
     val sup = BasicElement.parse _
-    val autotransformer = parse_attribute (attribute ("""TransformerFunctionKind.autotransformer"""))_
-    val other = parse_attribute (attribute ("""TransformerFunctionKind.other"""))_
-    val powerTransformer = parse_attribute (attribute ("""TransformerFunctionKind.powerTransformer"""))_
-    val secondaryTransformer = parse_attribute (attribute ("""TransformerFunctionKind.secondaryTransformer"""))_
-    val voltageRegulator = parse_attribute (attribute ("""TransformerFunctionKind.voltageRegulator"""))_
+    val autotransformer = parse_attribute (attribute ("""TransformerFunctionKind.autotransformer"""))
+    val other = parse_attribute (attribute ("""TransformerFunctionKind.other"""))
+    val powerTransformer = parse_attribute (attribute ("""TransformerFunctionKind.powerTransformer"""))
+    val secondaryTransformer = parse_attribute (attribute ("""TransformerFunctionKind.secondaryTransformer"""))
+    val voltageRegulator = parse_attribute (attribute ("""TransformerFunctionKind.voltageRegulator"""))
     def parse (context: Context): TransformerFunctionKind =
     {
         TransformerFunctionKind(
@@ -1357,10 +1357,10 @@ extends
     Parseable[WindingInsulationKind]
 {
     val sup = BasicElement.parse _
-    val nomex = parse_attribute (attribute ("""WindingInsulationKind.nomex"""))_
-    val other = parse_attribute (attribute ("""WindingInsulationKind.other"""))_
-    val paper = parse_attribute (attribute ("""WindingInsulationKind.paper"""))_
-    val thermallyUpgradedPaper = parse_attribute (attribute ("""WindingInsulationKind.thermallyUpgradedPaper"""))_
+    val nomex = parse_attribute (attribute ("""WindingInsulationKind.nomex"""))
+    val other = parse_attribute (attribute ("""WindingInsulationKind.other"""))
+    val paper = parse_attribute (attribute ("""WindingInsulationKind.paper"""))
+    val thermallyUpgradedPaper = parse_attribute (attribute ("""WindingInsulationKind.thermallyUpgradedPaper"""))
     def parse (context: Context): WindingInsulationKind =
     {
         WindingInsulationKind(

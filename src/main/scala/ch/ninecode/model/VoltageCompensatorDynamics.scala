@@ -46,10 +46,10 @@ extends
     Parseable[GenICompensationForGenJ]
 {
     val sup = IdentifiedObject.parse _
-    val rcij = parse_element (element ("""GenICompensationForGenJ.rcij"""))_
-    val xcij = parse_element (element ("""GenICompensationForGenJ.xcij"""))_
-    val SynchronousMachineDynamics = parse_attribute (attribute ("""GenICompensationForGenJ.SynchronousMachineDynamics"""))_
-    val VcompIEEEType2 = parse_attribute (attribute ("""GenICompensationForGenJ.VcompIEEEType2"""))_
+    val rcij = parse_element (element ("""GenICompensationForGenJ.rcij"""))
+    val xcij = parse_element (element ("""GenICompensationForGenJ.xcij"""))
+    val SynchronousMachineDynamics = parse_attribute (attribute ("""GenICompensationForGenJ.SynchronousMachineDynamics"""))
+    val VcompIEEEType2 = parse_attribute (attribute ("""GenICompensationForGenJ.VcompIEEEType2"""))
     def parse (context: Context): GenICompensationForGenJ =
     {
         GenICompensationForGenJ(
@@ -98,9 +98,9 @@ extends
     Parseable[VCompIEEEType1]
 {
     val sup = VoltageCompensatorDynamics.parse _
-    val rc = parse_element (element ("""VCompIEEEType1.rc"""))_
-    val tr = parse_element (element ("""VCompIEEEType1.tr"""))_
-    val xc = parse_element (element ("""VCompIEEEType1.xc"""))_
+    val rc = parse_element (element ("""VCompIEEEType1.rc"""))
+    val tr = parse_element (element ("""VCompIEEEType1.tr"""))
+    val xc = parse_element (element ("""VCompIEEEType1.xc"""))
     def parse (context: Context): VCompIEEEType1 =
     {
         VCompIEEEType1(
@@ -144,7 +144,7 @@ extends
     Parseable[VCompIEEEType2]
 {
     val sup = VoltageCompensatorDynamics.parse _
-    val tr = parse_element (element ("""VCompIEEEType2.tr"""))_
+    val tr = parse_element (element ("""VCompIEEEType2.tr"""))
     def parse (context: Context): VCompIEEEType2 =
     {
         VCompIEEEType2(
@@ -187,8 +187,8 @@ extends
     Parseable[VoltageCompensatorDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""VoltageCompensatorDynamics.ExcitationSystemDynamics"""))_
-    val RemoteInputSignal = parse_attribute (attribute ("""VoltageCompensatorDynamics.RemoteInputSignal"""))_
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""VoltageCompensatorDynamics.ExcitationSystemDynamics"""))
+    val RemoteInputSignal = parse_attribute (attribute ("""VoltageCompensatorDynamics.RemoteInputSignal"""))
     def parse (context: Context): VoltageCompensatorDynamics =
     {
         VoltageCompensatorDynamics(

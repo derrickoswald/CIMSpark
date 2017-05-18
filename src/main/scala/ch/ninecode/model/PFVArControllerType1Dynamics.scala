@@ -44,9 +44,9 @@ extends
     Parseable[PFVArControllerType1Dynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""PFVArControllerType1Dynamics.ExcitationSystemDynamics"""))_
-    val RemoteInputSignal = parse_attribute (attribute ("""PFVArControllerType1Dynamics.RemoteInputSignal"""))_
-    val VoltageAdjusterDynamics = parse_attribute (attribute ("""PFVArControllerType1Dynamics.VoltageAdjusterDynamics"""))_
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""PFVArControllerType1Dynamics.ExcitationSystemDynamics"""))
+    val RemoteInputSignal = parse_attribute (attribute ("""PFVArControllerType1Dynamics.RemoteInputSignal"""))
+    val VoltageAdjusterDynamics = parse_attribute (attribute ("""PFVArControllerType1Dynamics.VoltageAdjusterDynamics"""))
     def parse (context: Context): PFVArControllerType1Dynamics =
     {
         PFVArControllerType1Dynamics(
@@ -108,14 +108,14 @@ extends
     Parseable[PFVArType1IEEEPFController]
 {
     val sup = PFVArControllerType1Dynamics.parse _
-    val ovex = parse_element (element ("""PFVArType1IEEEPFController.ovex"""))_
-    val tpfc = parse_element (element ("""PFVArType1IEEEPFController.tpfc"""))_
-    val vitmin = parse_element (element ("""PFVArType1IEEEPFController.vitmin"""))_
-    val vpf = parse_element (element ("""PFVArType1IEEEPFController.vpf"""))_
-    val vpfcbw = parse_element (element ("""PFVArType1IEEEPFController.vpfcbw"""))_
-    val vpfref = parse_element (element ("""PFVArType1IEEEPFController.vpfref"""))_
-    val vvtmax = parse_element (element ("""PFVArType1IEEEPFController.vvtmax"""))_
-    val vvtmin = parse_element (element ("""PFVArType1IEEEPFController.vvtmin"""))_
+    val ovex = parse_element (element ("""PFVArType1IEEEPFController.ovex"""))
+    val tpfc = parse_element (element ("""PFVArType1IEEEPFController.tpfc"""))
+    val vitmin = parse_element (element ("""PFVArType1IEEEPFController.vitmin"""))
+    val vpf = parse_element (element ("""PFVArType1IEEEPFController.vpf"""))
+    val vpfcbw = parse_element (element ("""PFVArType1IEEEPFController.vpfcbw"""))
+    val vpfref = parse_element (element ("""PFVArType1IEEEPFController.vpfref"""))
+    val vvtmax = parse_element (element ("""PFVArType1IEEEPFController.vvtmax"""))
+    val vvtmin = parse_element (element ("""PFVArType1IEEEPFController.vvtmin"""))
     def parse (context: Context): PFVArType1IEEEPFController =
     {
         PFVArType1IEEEPFController(
@@ -176,12 +176,12 @@ extends
     Parseable[PFVArType1IEEEVArController]
 {
     val sup = PFVArControllerType1Dynamics.parse _
-    val tvarc = parse_element (element ("""PFVArType1IEEEVArController.tvarc"""))_
-    val vvar = parse_element (element ("""PFVArType1IEEEVArController.vvar"""))_
-    val vvarcbw = parse_element (element ("""PFVArType1IEEEVArController.vvarcbw"""))_
-    val vvarref = parse_element (element ("""PFVArType1IEEEVArController.vvarref"""))_
-    val vvtmax = parse_element (element ("""PFVArType1IEEEVArController.vvtmax"""))_
-    val vvtmin = parse_element (element ("""PFVArType1IEEEVArController.vvtmin"""))_
+    val tvarc = parse_element (element ("""PFVArType1IEEEVArController.tvarc"""))
+    val vvar = parse_element (element ("""PFVArType1IEEEVArController.vvar"""))
+    val vvarcbw = parse_element (element ("""PFVArType1IEEEVArController.vvarcbw"""))
+    val vvarref = parse_element (element ("""PFVArType1IEEEVArController.vvarref"""))
+    val vvtmax = parse_element (element ("""PFVArType1IEEEVArController.vvtmax"""))
+    val vvtmin = parse_element (element ("""PFVArType1IEEEVArController.vvtmin"""))
     def parse (context: Context): PFVArType1IEEEVArController =
     {
         PFVArType1IEEEVArController(

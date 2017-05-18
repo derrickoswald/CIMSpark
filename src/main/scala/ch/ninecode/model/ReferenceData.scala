@@ -47,11 +47,11 @@ extends
     Parseable[AdjacentCASet]
 {
     val sup = IdentifiedObject.parse _
-    val endEffectiveDate = parse_element (element ("""AdjacentCASet.endEffectiveDate"""))_
-    val lossPercentage_1 = parse_element (element ("""AdjacentCASet.lossPercentage """))_
-    val startEffectiveDate = parse_element (element ("""AdjacentCASet.startEffectiveDate"""))_
-    val HostControlArea = parse_attribute (attribute ("""AdjacentCASet.HostControlArea"""))_
-    val RTO = parse_attribute (attribute ("""AdjacentCASet.RTO"""))_
+    val endEffectiveDate = parse_element (element ("""AdjacentCASet.endEffectiveDate"""))
+    val lossPercentage_1 = parse_element (element ("""AdjacentCASet.lossPercentage """))
+    val startEffectiveDate = parse_element (element ("""AdjacentCASet.startEffectiveDate"""))
+    val HostControlArea = parse_attribute (attribute ("""AdjacentCASet.HostControlArea"""))
+    val RTO = parse_attribute (attribute ("""AdjacentCASet.RTO"""))
     def parse (context: Context): AdjacentCASet =
     {
         AdjacentCASet(
@@ -110,13 +110,13 @@ extends
     Parseable[AggregateNode]
 {
     val sup = IdentifiedObject.parse _
-    val anodeType = parse_attribute (attribute ("""AggregateNode.anodeType"""))_
-    val endEffectiveDate = parse_element (element ("""AggregateNode.endEffectiveDate"""))_
-    val qualifASOrder = parse_element (element ("""AggregateNode.qualifASOrder"""))_
-    val startEffectiveDate = parse_element (element ("""AggregateNode.startEffectiveDate"""))_
-    val Pnode = parse_attributes (attribute ("""AggregateNode.Pnode"""))_
-    val RTO = parse_attribute (attribute ("""AggregateNode.RTO"""))_
-    val SubControlArea = parse_attributes (attribute ("""AggregateNode.SubControlArea"""))_
+    val anodeType = parse_attribute (attribute ("""AggregateNode.anodeType"""))
+    val endEffectiveDate = parse_element (element ("""AggregateNode.endEffectiveDate"""))
+    val qualifASOrder = parse_element (element ("""AggregateNode.qualifASOrder"""))
+    val startEffectiveDate = parse_element (element ("""AggregateNode.startEffectiveDate"""))
+    val Pnode = parse_attributes (attribute ("""AggregateNode.Pnode"""))
+    val RTO = parse_attribute (attribute ("""AggregateNode.RTO"""))
+    val SubControlArea = parse_attributes (attribute ("""AggregateNode.SubControlArea"""))
     def parse (context: Context): AggregateNode =
     {
         AggregateNode(
@@ -174,10 +174,10 @@ extends
     Parseable[AggregatedPnode]
 {
     val sup = Pnode.parse _
-    val apnodeType = parse_attribute (attribute ("""AggregatedPnode.apnodeType"""))_
-    val participationCategory = parse_attribute (attribute ("""AggregatedPnode.participationCategory"""))_
-    val PnodeDistributionFactor = parse_attribute (attribute ("""AggregatedPnode.PnodeDistributionFactor"""))_
-    val TACArea = parse_attributes (attribute ("""AggregatedPnode.TACArea"""))_
+    val apnodeType = parse_attribute (attribute ("""AggregatedPnode.apnodeType"""))
+    val participationCategory = parse_attribute (attribute ("""AggregatedPnode.participationCategory"""))
+    val PnodeDistributionFactor = parse_attribute (attribute ("""AggregatedPnode.PnodeDistributionFactor"""))
+    val TACArea = parse_attributes (attribute ("""AggregatedPnode.TACArea"""))
     def parse (context: Context): AggregatedPnode =
     {
         AggregatedPnode(
@@ -233,13 +233,13 @@ extends
     Parseable[BidPriceCap]
 {
     val sup = BasicElement.parse _
-    val bidCeiling = parse_element (element ("""BidPriceCap.bidCeiling"""))_
-    val bidCeilingAS = parse_element (element ("""BidPriceCap.bidCeilingAS"""))_
-    val bidFloor = parse_element (element ("""BidPriceCap.bidFloor"""))_
-    val bidFloorAS = parse_element (element ("""BidPriceCap.bidFloorAS"""))_
-    val defaultPrice = parse_element (element ("""BidPriceCap.defaultPrice"""))_
-    val marketType = parse_attribute (attribute ("""BidPriceCap.marketType"""))_
-    val MarketProduct = parse_attribute (attribute ("""BidPriceCap.MarketProduct"""))_
+    val bidCeiling = parse_element (element ("""BidPriceCap.bidCeiling"""))
+    val bidCeilingAS = parse_element (element ("""BidPriceCap.bidCeilingAS"""))
+    val bidFloor = parse_element (element ("""BidPriceCap.bidFloor"""))
+    val bidFloorAS = parse_element (element ("""BidPriceCap.bidFloorAS"""))
+    val defaultPrice = parse_element (element ("""BidPriceCap.defaultPrice"""))
+    val marketType = parse_attribute (attribute ("""BidPriceCap.marketType"""))
+    val MarketProduct = parse_attribute (attribute ("""BidPriceCap.MarketProduct"""))
     def parse (context: Context): BidPriceCap =
     {
         BidPriceCap(
@@ -297,12 +297,12 @@ extends
     Parseable[CnodeDistributionFactor]
 {
     val sup = IdentifiedObject.parse _
-    val factor = parse_element (element ("""CnodeDistributionFactor.factor"""))_
-    val podLossFactor = parse_element (element ("""CnodeDistributionFactor.podLossFactor"""))_
-    val AggregateNode = parse_attribute (attribute ("""CnodeDistributionFactor.AggregateNode"""))_
-    val HostControlArea = parse_attribute (attribute ("""CnodeDistributionFactor.HostControlArea"""))_
-    val MktConnectivityNode = parse_attribute (attribute ("""CnodeDistributionFactor.MktConnectivityNode"""))_
-    val SubControlArea = parse_attribute (attribute ("""CnodeDistributionFactor.SubControlArea"""))_
+    val factor = parse_element (element ("""CnodeDistributionFactor.factor"""))
+    val podLossFactor = parse_element (element ("""CnodeDistributionFactor.podLossFactor"""))
+    val AggregateNode = parse_attribute (attribute ("""CnodeDistributionFactor.AggregateNode"""))
+    val HostControlArea = parse_attribute (attribute ("""CnodeDistributionFactor.HostControlArea"""))
+    val MktConnectivityNode = parse_attribute (attribute ("""CnodeDistributionFactor.MktConnectivityNode"""))
+    val SubControlArea = parse_attribute (attribute ("""CnodeDistributionFactor.SubControlArea"""))
     def parse (context: Context): CnodeDistributionFactor =
     {
         CnodeDistributionFactor(
@@ -355,10 +355,10 @@ extends
     Parseable[CombinedCycleConfiguration]
 {
     val sup = RegisteredGenerator.parse _
-    val primaryConfiguration = parse_element (element ("""CombinedCycleConfiguration.primaryConfiguration"""))_
-    val CombinedCycleLogicalConfiguration = parse_attribute (attribute ("""CombinedCycleConfiguration.CombinedCycleLogicalConfiguration"""))_
-    val ShutdownFlag = parse_element (element ("""CombinedCycleConfiguration.ShutdownFlag"""))_
-    val StartupFlag = parse_element (element ("""CombinedCycleConfiguration.StartupFlag"""))_
+    val primaryConfiguration = parse_element (element ("""CombinedCycleConfiguration.primaryConfiguration"""))
+    val CombinedCycleLogicalConfiguration = parse_attribute (attribute ("""CombinedCycleConfiguration.CombinedCycleLogicalConfiguration"""))
+    val ShutdownFlag = parse_element (element ("""CombinedCycleConfiguration.ShutdownFlag"""))
+    val StartupFlag = parse_element (element ("""CombinedCycleConfiguration.StartupFlag"""))
     def parse (context: Context): CombinedCycleConfiguration =
     {
         CombinedCycleConfiguration(
@@ -408,10 +408,10 @@ extends
     Parseable[CombinedCycleConfigurationMember]
 {
     val sup = IdentifiedObject.parse _
-    val primary = parse_element (element ("""CombinedCycleConfigurationMember.primary"""))_
-    val steam = parse_element (element ("""CombinedCycleConfigurationMember.steam"""))_
-    val CombinedCycleConfiguration = parse_attribute (attribute ("""CombinedCycleConfigurationMember.CombinedCycleConfiguration"""))_
-    val MktThermalGeneratingUnit = parse_attribute (attribute ("""CombinedCycleConfigurationMember.MktThermalGeneratingUnit"""))_
+    val primary = parse_element (element ("""CombinedCycleConfigurationMember.primary"""))
+    val steam = parse_element (element ("""CombinedCycleConfigurationMember.steam"""))
+    val CombinedCycleConfiguration = parse_attribute (attribute ("""CombinedCycleConfigurationMember.CombinedCycleConfiguration"""))
+    val MktThermalGeneratingUnit = parse_attribute (attribute ("""CombinedCycleConfigurationMember.MktThermalGeneratingUnit"""))
     def parse (context: Context): CombinedCycleConfigurationMember =
     {
         CombinedCycleConfigurationMember(
@@ -456,7 +456,7 @@ extends
     Parseable[CombinedCycleLogicalConfiguration]
 {
     val sup = IdentifiedObject.parse _
-    val MktCombinedCyclePlant = parse_attribute (attribute ("""CombinedCycleLogicalConfiguration.MktCombinedCyclePlant"""))_
+    val MktCombinedCyclePlant = parse_attribute (attribute ("""CombinedCycleLogicalConfiguration.MktCombinedCyclePlant"""))
     def parse (context: Context): CombinedCycleLogicalConfiguration =
     {
         CombinedCycleLogicalConfiguration(
@@ -502,9 +502,9 @@ extends
     Parseable[CombinedCycleTransitionState]
 {
     val sup = BasicElement.parse _
-    val upTransition = parse_element (element ("""CombinedCycleTransitionState.upTransition"""))_
-    val FromConfiguration = parse_attribute (attribute ("""CombinedCycleTransitionState.FromConfiguration"""))_
-    val ToConfiguration = parse_attribute (attribute ("""CombinedCycleTransitionState.ToConfiguration"""))_
+    val upTransition = parse_element (element ("""CombinedCycleTransitionState.upTransition"""))
+    val FromConfiguration = parse_attribute (attribute ("""CombinedCycleTransitionState.FromConfiguration"""))
+    val ToConfiguration = parse_attribute (attribute ("""CombinedCycleTransitionState.ToConfiguration"""))
     def parse (context: Context): CombinedCycleTransitionState =
     {
         CombinedCycleTransitionState(
@@ -547,7 +547,7 @@ extends
     Parseable[CongestionArea]
 {
     val sup = AggregatedPnode.parse _
-    val IndividualPnode = parse_attributes (attribute ("""CongestionArea.IndividualPnode"""))_
+    val IndividualPnode = parse_attributes (attribute ("""CongestionArea.IndividualPnode"""))
     def parse (context: Context): CongestionArea =
     {
         CongestionArea(
@@ -598,12 +598,12 @@ extends
     Parseable[ContractDistributionFactor]
 {
     val sup = BasicElement.parse _
-    val factor = parse_element (element ("""ContractDistributionFactor.factor"""))_
-    val sinkFlag = parse_attribute (attribute ("""ContractDistributionFactor.sinkFlag"""))_
-    val sourceFlag = parse_attribute (attribute ("""ContractDistributionFactor.sourceFlag"""))_
-    val Flowgate = parse_attribute (attribute ("""ContractDistributionFactor.Flowgate"""))_
-    val RegisteredResource = parse_attribute (attribute ("""ContractDistributionFactor.RegisteredResource"""))_
-    val TransmissionContractRight = parse_attribute (attribute ("""ContractDistributionFactor.TransmissionContractRight"""))_
+    val factor = parse_element (element ("""ContractDistributionFactor.factor"""))
+    val sinkFlag = parse_attribute (attribute ("""ContractDistributionFactor.sinkFlag"""))
+    val sourceFlag = parse_attribute (attribute ("""ContractDistributionFactor.sourceFlag"""))
+    val Flowgate = parse_attribute (attribute ("""ContractDistributionFactor.Flowgate"""))
+    val RegisteredResource = parse_attribute (attribute ("""ContractDistributionFactor.RegisteredResource"""))
+    val TransmissionContractRight = parse_attribute (attribute ("""ContractDistributionFactor.TransmissionContractRight"""))
     def parse (context: Context): ContractDistributionFactor =
     {
         ContractDistributionFactor(
@@ -709,34 +709,34 @@ extends
     Parseable[ContractRight]
 {
     val sup = IdentifiedObject.parse _
-    val chainOrder = parse_element (element ("""ContractRight.chainOrder"""))_
-    val contractMW = parse_element (element ("""ContractRight.contractMW"""))_
-    val contractPrice = parse_element (element ("""ContractRight.contractPrice"""))_
-    val contractPriority = parse_element (element ("""ContractRight.contractPriority"""))_
-    val contractStatus = parse_element (element ("""ContractRight.contractStatus"""))_
-    val contractType = parse_attribute (attribute ("""ContractRight.contractType"""))_
-    val endEffectiveDate = parse_element (element ("""ContractRight.endEffectiveDate"""))_
-    val financialLocation = parse_attribute (attribute ("""ContractRight.financialLocation"""))_
-    val financialRightsDAM = parse_attribute (attribute ("""ContractRight.financialRightsDAM"""))_
-    val financialRightsRTM = parse_attribute (attribute ("""ContractRight.financialRightsRTM"""))_
-    val fuelAdder = parse_element (element ("""ContractRight.fuelAdder"""))_
-    val latestSchedMinutes = parse_element (element ("""ContractRight.latestSchedMinutes"""))_
-    val latestSchedMktType = parse_attribute (attribute ("""ContractRight.latestSchedMktType"""))_
-    val maxNetDependableCapacity = parse_element (element ("""ContractRight.maxNetDependableCapacity"""))_
-    val maximumScheduleQuantity = parse_element (element ("""ContractRight.maximumScheduleQuantity"""))_
-    val maximumServiceHours = parse_element (element ("""ContractRight.maximumServiceHours"""))_
-    val maximumStartups = parse_element (element ("""ContractRight.maximumStartups"""))_
-    val minimumLoad = parse_element (element ("""ContractRight.minimumLoad"""))_
-    val minimumScheduleQuantity = parse_element (element ("""ContractRight.minimumScheduleQuantity"""))_
-    val physicalRightsDAM = parse_attribute (attribute ("""ContractRight.physicalRightsDAM"""))_
-    val physicalRightsRTM = parse_attribute (attribute ("""ContractRight.physicalRightsRTM"""))_
-    val startEffectiveDate = parse_element (element ("""ContractRight.startEffectiveDate"""))_
-    val startupLeadTime = parse_element (element ("""ContractRight.startupLeadTime"""))_
-    val Chain_TransmissionRightChain = parse_attribute (attribute ("""ContractRight.Chain_TransmissionRightChain"""))_
-    val Ind_TransmissionRightChain = parse_attribute (attribute ("""ContractRight.Ind_TransmissionRightChain"""))_
-    val RTO = parse_attribute (attribute ("""ContractRight.RTO"""))_
-    val SchedulingCoordinator = parse_attribute (attribute ("""ContractRight.SchedulingCoordinator"""))_
-    val TRType = parse_attribute (attribute ("""ContractRight.TRType"""))_
+    val chainOrder = parse_element (element ("""ContractRight.chainOrder"""))
+    val contractMW = parse_element (element ("""ContractRight.contractMW"""))
+    val contractPrice = parse_element (element ("""ContractRight.contractPrice"""))
+    val contractPriority = parse_element (element ("""ContractRight.contractPriority"""))
+    val contractStatus = parse_element (element ("""ContractRight.contractStatus"""))
+    val contractType = parse_attribute (attribute ("""ContractRight.contractType"""))
+    val endEffectiveDate = parse_element (element ("""ContractRight.endEffectiveDate"""))
+    val financialLocation = parse_attribute (attribute ("""ContractRight.financialLocation"""))
+    val financialRightsDAM = parse_attribute (attribute ("""ContractRight.financialRightsDAM"""))
+    val financialRightsRTM = parse_attribute (attribute ("""ContractRight.financialRightsRTM"""))
+    val fuelAdder = parse_element (element ("""ContractRight.fuelAdder"""))
+    val latestSchedMinutes = parse_element (element ("""ContractRight.latestSchedMinutes"""))
+    val latestSchedMktType = parse_attribute (attribute ("""ContractRight.latestSchedMktType"""))
+    val maxNetDependableCapacity = parse_element (element ("""ContractRight.maxNetDependableCapacity"""))
+    val maximumScheduleQuantity = parse_element (element ("""ContractRight.maximumScheduleQuantity"""))
+    val maximumServiceHours = parse_element (element ("""ContractRight.maximumServiceHours"""))
+    val maximumStartups = parse_element (element ("""ContractRight.maximumStartups"""))
+    val minimumLoad = parse_element (element ("""ContractRight.minimumLoad"""))
+    val minimumScheduleQuantity = parse_element (element ("""ContractRight.minimumScheduleQuantity"""))
+    val physicalRightsDAM = parse_attribute (attribute ("""ContractRight.physicalRightsDAM"""))
+    val physicalRightsRTM = parse_attribute (attribute ("""ContractRight.physicalRightsRTM"""))
+    val startEffectiveDate = parse_element (element ("""ContractRight.startEffectiveDate"""))
+    val startupLeadTime = parse_element (element ("""ContractRight.startupLeadTime"""))
+    val Chain_TransmissionRightChain = parse_attribute (attribute ("""ContractRight.Chain_TransmissionRightChain"""))
+    val Ind_TransmissionRightChain = parse_attribute (attribute ("""ContractRight.Ind_TransmissionRightChain"""))
+    val RTO = parse_attribute (attribute ("""ContractRight.RTO"""))
+    val SchedulingCoordinator = parse_attribute (attribute ("""ContractRight.SchedulingCoordinator"""))
+    val TRType = parse_attribute (attribute ("""ContractRight.TRType"""))
     def parse (context: Context): ContractRight =
     {
         ContractRight(
@@ -810,10 +810,10 @@ extends
     Parseable[ControlAreaDesignation]
 {
     val sup = BasicElement.parse _
-    val attained = parse_attribute (attribute ("""ControlAreaDesignation.attained"""))_
-    val native = parse_attribute (attribute ("""ControlAreaDesignation.native"""))_
-    val RegisteredResource = parse_attributes (attribute ("""ControlAreaDesignation.RegisteredResource"""))_
-    val SubControlArea = parse_attributes (attribute ("""ControlAreaDesignation.SubControlArea"""))_
+    val attained = parse_attribute (attribute ("""ControlAreaDesignation.attained"""))
+    val native = parse_attribute (attribute ("""ControlAreaDesignation.native"""))
+    val RegisteredResource = parse_attributes (attribute ("""ControlAreaDesignation.RegisteredResource"""))
+    val SubControlArea = parse_attributes (attribute ("""ControlAreaDesignation.SubControlArea"""))
     def parse (context: Context): ControlAreaDesignation =
     {
         ControlAreaDesignation(
@@ -881,19 +881,19 @@ extends
     Parseable[Flowgate]
 {
     val sup = PowerSystemResource.parse _
-    val direction = parse_attribute (attribute ("""Flowgate.direction"""))_
-    val endEffectiveDate = parse_element (element ("""Flowgate.endEffectiveDate"""))_
-    val exportMWRating = parse_element (element ("""Flowgate.exportMWRating"""))_
-    val importMWRating = parse_element (element ("""Flowgate.importMWRating"""))_
-    val startEffectiveDate = parse_element (element ("""Flowgate.startEffectiveDate"""))_
-    val CRR = parse_attribute (attribute ("""Flowgate.CRR"""))_
-    val From_SubControlArea = parse_attribute (attribute ("""Flowgate.From_SubControlArea"""))_
-    val GenericConstraints = parse_attribute (attribute ("""Flowgate.GenericConstraints"""))_
-    val HostControlArea = parse_attribute (attribute ("""Flowgate.HostControlArea"""))_
-    val MktLine = parse_attributes (attribute ("""Flowgate.MktLine"""))_
-    val MktPowerTransformer = parse_attributes (attribute ("""Flowgate.MktPowerTransformer"""))_
-    val SecurityConstraints = parse_attribute (attribute ("""Flowgate.SecurityConstraints"""))_
-    val To_SubControlArea = parse_attribute (attribute ("""Flowgate.To_SubControlArea"""))_
+    val direction = parse_attribute (attribute ("""Flowgate.direction"""))
+    val endEffectiveDate = parse_element (element ("""Flowgate.endEffectiveDate"""))
+    val exportMWRating = parse_element (element ("""Flowgate.exportMWRating"""))
+    val importMWRating = parse_element (element ("""Flowgate.importMWRating"""))
+    val startEffectiveDate = parse_element (element ("""Flowgate.startEffectiveDate"""))
+    val CRR = parse_attribute (attribute ("""Flowgate.CRR"""))
+    val From_SubControlArea = parse_attribute (attribute ("""Flowgate.From_SubControlArea"""))
+    val GenericConstraints = parse_attribute (attribute ("""Flowgate.GenericConstraints"""))
+    val HostControlArea = parse_attribute (attribute ("""Flowgate.HostControlArea"""))
+    val MktLine = parse_attributes (attribute ("""Flowgate.MktLine"""))
+    val MktPowerTransformer = parse_attributes (attribute ("""Flowgate.MktPowerTransformer"""))
+    val SecurityConstraints = parse_attribute (attribute ("""Flowgate.SecurityConstraints"""))
+    val To_SubControlArea = parse_attribute (attribute ("""Flowgate.To_SubControlArea"""))
     def parse (context: Context): Flowgate =
     {
         Flowgate(
@@ -946,7 +946,7 @@ extends
     Parseable[FlowgatePartner]
 {
     val sup = IdentifiedObject.parse _
-    val FlowgateValue = parse_attribute (attribute ("""FlowgatePartner.FlowgateValue"""))_
+    val FlowgateValue = parse_attribute (attribute ("""FlowgatePartner.FlowgateValue"""))
     def parse (context: Context): FlowgatePartner =
     {
         FlowgatePartner(
@@ -996,10 +996,10 @@ extends
     Parseable[FlowgateRelief]
 {
     val sup = BasicElement.parse _
-    val effectiveDate = parse_element (element ("""FlowgateRelief.effectiveDate"""))_
-    val idcTargetMktFlow = parse_element (element ("""FlowgateRelief.idcTargetMktFlow"""))_
-    val terminateDate = parse_element (element ("""FlowgateRelief.terminateDate"""))_
-    val Flowgate = parse_attribute (attribute ("""FlowgateRelief.Flowgate"""))_
+    val effectiveDate = parse_element (element ("""FlowgateRelief.effectiveDate"""))
+    val idcTargetMktFlow = parse_element (element ("""FlowgateRelief.idcTargetMktFlow"""))
+    val terminateDate = parse_element (element ("""FlowgateRelief.terminateDate"""))
+    val Flowgate = parse_attribute (attribute ("""FlowgateRelief.Flowgate"""))
     def parse (context: Context): FlowgateRelief =
     {
         FlowgateRelief(
@@ -1059,14 +1059,14 @@ extends
     Parseable[FlowgateValue]
 {
     val sup = BasicElement.parse _
-    val economicDispatchLimit = parse_element (element ("""FlowgateValue.economicDispatchLimit"""))_
-    val effectiveDate = parse_element (element ("""FlowgateValue.effectiveDate"""))_
-    val firmNetworkLimit = parse_element (element ("""FlowgateValue.firmNetworkLimit"""))_
-    val flowDirectionFlag = parse_attribute (attribute ("""FlowgateValue.flowDirectionFlag"""))_
-    val mktFlow = parse_element (element ("""FlowgateValue.mktFlow"""))_
-    val netFirmNetworkLimit = parse_element (element ("""FlowgateValue.netFirmNetworkLimit"""))_
-    val Flowgate = parse_attribute (attribute ("""FlowgateValue.Flowgate"""))_
-    val FlowgatePartner = parse_attribute (attribute ("""FlowgateValue.FlowgatePartner"""))_
+    val economicDispatchLimit = parse_element (element ("""FlowgateValue.economicDispatchLimit"""))
+    val effectiveDate = parse_element (element ("""FlowgateValue.effectiveDate"""))
+    val firmNetworkLimit = parse_element (element ("""FlowgateValue.firmNetworkLimit"""))
+    val flowDirectionFlag = parse_attribute (attribute ("""FlowgateValue.flowDirectionFlag"""))
+    val mktFlow = parse_element (element ("""FlowgateValue.mktFlow"""))
+    val netFirmNetworkLimit = parse_element (element ("""FlowgateValue.netFirmNetworkLimit"""))
+    val Flowgate = parse_attribute (attribute ("""FlowgateValue.Flowgate"""))
+    val FlowgatePartner = parse_attribute (attribute ("""FlowgateValue.FlowgatePartner"""))
     def parse (context: Context): FlowgateValue =
     {
         FlowgateValue(
@@ -1121,10 +1121,10 @@ extends
     Parseable[ForbiddenRegion]
 {
     val sup = IdentifiedObject.parse _
-    val crossTime = parse_element (element ("""ForbiddenRegion.crossTime"""))_
-    val crossingCost = parse_element (element ("""ForbiddenRegion.crossingCost"""))_
-    val highMW = parse_element (element ("""ForbiddenRegion.highMW"""))_
-    val lowMW = parse_element (element ("""ForbiddenRegion.lowMW"""))_
+    val crossTime = parse_element (element ("""ForbiddenRegion.crossTime"""))
+    val crossingCost = parse_element (element ("""ForbiddenRegion.crossingCost"""))
+    val highMW = parse_element (element ("""ForbiddenRegion.highMW"""))
+    val lowMW = parse_element (element ("""ForbiddenRegion.lowMW"""))
     def parse (context: Context): ForbiddenRegion =
     {
         ForbiddenRegion(
@@ -1169,7 +1169,7 @@ extends
     Parseable[FormerReference]
 {
     val sup = IdentifiedObject.parse _
-    val RegisteredResource = parse_attribute (attribute ("""FormerReference.RegisteredResource"""))_
+    val RegisteredResource = parse_attribute (attribute ("""FormerReference.RegisteredResource"""))
     def parse (context: Context): FormerReference =
     {
         FormerReference(
@@ -1210,7 +1210,7 @@ extends
     Parseable[FuelCostCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""FuelCostCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""FuelCostCurve.RegisteredGenerator"""))
     def parse (context: Context): FuelCostCurve =
     {
         FuelCostCurve(
@@ -1263,13 +1263,13 @@ extends
     Parseable[FuelRegion]
 {
     val sup = IdentifiedObject.parse _
-    val endEffectiveDate = parse_element (element ("""FuelRegion.endEffectiveDate"""))_
-    val fuelRegionType = parse_element (element ("""FuelRegion.fuelRegionType"""))_
-    val lastModified = parse_element (element ("""FuelRegion.lastModified"""))_
-    val startEffectiveDate = parse_element (element ("""FuelRegion.startEffectiveDate"""))_
-    val GasPrice = parse_attribute (attribute ("""FuelRegion.GasPrice"""))_
-    val OilPrice = parse_attribute (attribute ("""FuelRegion.OilPrice"""))_
-    val RTO = parse_attribute (attribute ("""FuelRegion.RTO"""))_
+    val endEffectiveDate = parse_element (element ("""FuelRegion.endEffectiveDate"""))
+    val fuelRegionType = parse_element (element ("""FuelRegion.fuelRegionType"""))
+    val lastModified = parse_element (element ("""FuelRegion.lastModified"""))
+    val startEffectiveDate = parse_element (element ("""FuelRegion.startEffectiveDate"""))
+    val GasPrice = parse_attribute (attribute ("""FuelRegion.GasPrice"""))
+    val OilPrice = parse_attribute (attribute ("""FuelRegion.OilPrice"""))
+    val RTO = parse_attribute (attribute ("""FuelRegion.RTO"""))
     def parse (context: Context): FuelRegion =
     {
         FuelRegion(
@@ -1318,8 +1318,8 @@ extends
     Parseable[GasPrice]
 {
     val sup = BasicElement.parse _
-    val gasPriceIndex = parse_element (element ("""GasPrice.gasPriceIndex"""))_
-    val FuelRegion = parse_attribute (attribute ("""GasPrice.FuelRegion"""))_
+    val gasPriceIndex = parse_element (element ("""GasPrice.gasPriceIndex"""))
+    val FuelRegion = parse_attribute (attribute ("""GasPrice.FuelRegion"""))
     def parse (context: Context): GasPrice =
     {
         GasPrice(
@@ -1376,14 +1376,14 @@ extends
     Parseable[HostControlArea]
 {
     val sup = PowerSystemResource.parse _
-    val areaControlMode = parse_attribute (attribute ("""HostControlArea.areaControlMode"""))_
-    val endEffectiveDate = parse_element (element ("""HostControlArea.endEffectiveDate"""))_
-    val freqSetPoint = parse_element (element ("""HostControlArea.freqSetPoint"""))_
-    val frequencyBiasFactor = parse_element (element ("""HostControlArea.frequencyBiasFactor"""))_
-    val startEffectiveDate = parse_element (element ("""HostControlArea.startEffectiveDate"""))_
-    val AdjacentCASet = parse_attribute (attribute ("""HostControlArea.AdjacentCASet"""))_
-    val Controls = parse_attribute (attribute ("""HostControlArea.Controls"""))_
-    val RTO = parse_attribute (attribute ("""HostControlArea.RTO"""))_
+    val areaControlMode = parse_attribute (attribute ("""HostControlArea.areaControlMode"""))
+    val endEffectiveDate = parse_element (element ("""HostControlArea.endEffectiveDate"""))
+    val freqSetPoint = parse_element (element ("""HostControlArea.freqSetPoint"""))
+    val frequencyBiasFactor = parse_element (element ("""HostControlArea.frequencyBiasFactor"""))
+    val startEffectiveDate = parse_element (element ("""HostControlArea.startEffectiveDate"""))
+    val AdjacentCASet = parse_attribute (attribute ("""HostControlArea.AdjacentCASet"""))
+    val Controls = parse_attribute (attribute ("""HostControlArea.Controls"""))
+    val RTO = parse_attribute (attribute ("""HostControlArea.RTO"""))
     def parse (context: Context): HostControlArea =
     {
         HostControlArea(
@@ -1435,9 +1435,9 @@ extends
     Parseable[IndividualPnode]
 {
     val sup = Pnode.parse _
-    val GenDistributionFactor = parse_attribute (attribute ("""IndividualPnode.GenDistributionFactor"""))_
-    val LoadDistributionFactor = parse_attribute (attribute ("""IndividualPnode.LoadDistributionFactor"""))_
-    val MktConnectivityNode = parse_attribute (attribute ("""IndividualPnode.MktConnectivityNode"""))_
+    val GenDistributionFactor = parse_attribute (attribute ("""IndividualPnode.GenDistributionFactor"""))
+    val LoadDistributionFactor = parse_attribute (attribute ("""IndividualPnode.LoadDistributionFactor"""))
+    val MktConnectivityNode = parse_attribute (attribute ("""IndividualPnode.MktConnectivityNode"""))
     def parse (context: Context): IndividualPnode =
     {
         IndividualPnode(
@@ -1524,10 +1524,10 @@ extends
     Parseable[LoadRatio]
 {
     val sup = BasicElement.parse _
-    val intervalEndTime = parse_element (element ("""LoadRatio.intervalEndTime"""))_
-    val intervalStartTime = parse_element (element ("""LoadRatio.intervalStartTime"""))_
-    val share = parse_element (element ("""LoadRatio.share"""))_
-    val SchedulingCoordinator = parse_attribute (attribute ("""LoadRatio.SchedulingCoordinator"""))_
+    val intervalEndTime = parse_element (element ("""LoadRatio.intervalEndTime"""))
+    val intervalStartTime = parse_element (element ("""LoadRatio.intervalStartTime"""))
+    val share = parse_element (element ("""LoadRatio.share"""))
+    val SchedulingCoordinator = parse_attribute (attribute ("""LoadRatio.SchedulingCoordinator"""))
     def parse (context: Context): LoadRatio =
     {
         LoadRatio(
@@ -1573,7 +1573,7 @@ extends
     Parseable[LoadReductionTimeCurve]
 {
     val sup = Curve.parse _
-    val loadReductionTimeCurveType = parse_element (element ("""LoadReductionTimeCurve.loadReductionTimeCurveType"""))_
+    val loadReductionTimeCurveType = parse_element (element ("""LoadReductionTimeCurve.loadReductionTimeCurveType"""))
     def parse (context: Context): LoadReductionTimeCurve =
     {
         LoadReductionTimeCurve(
@@ -1614,7 +1614,7 @@ extends
     Parseable[LocalReliabilityArea]
 {
     val sup = IdentifiedObject.parse _
-    val RTO = parse_attribute (attribute ("""LocalReliabilityArea.RTO"""))_
+    val RTO = parse_attribute (attribute ("""LocalReliabilityArea.RTO"""))
     def parse (context: Context): LocalReliabilityArea =
     {
         LocalReliabilityArea(
@@ -1668,9 +1668,9 @@ extends
     Parseable[MPMTestCategory]
 {
     val sup = IdentifiedObject.parse _
-    val purposeFlag = parse_attribute (attribute ("""MPMTestCategory.purposeFlag"""))_
-    val testIdentifier = parse_attribute (attribute ("""MPMTestCategory.testIdentifier"""))_
-    val testMethod = parse_attribute (attribute ("""MPMTestCategory.testMethod"""))_
+    val purposeFlag = parse_attribute (attribute ("""MPMTestCategory.purposeFlag"""))
+    val testIdentifier = parse_attribute (attribute ("""MPMTestCategory.testIdentifier"""))
+    val testMethod = parse_attribute (attribute ("""MPMTestCategory.testMethod"""))
     def parse (context: Context): MPMTestCategory =
     {
         MPMTestCategory(
@@ -1721,11 +1721,11 @@ extends
     Parseable[MPMTestThreshold]
 {
     val sup = BasicElement.parse _
-    val marketType = parse_attribute (attribute ("""MPMTestThreshold.marketType"""))_
-    val percent = parse_element (element ("""MPMTestThreshold.percent"""))_
-    val price = parse_element (element ("""MPMTestThreshold.price"""))_
-    val MPMTestCategory = parse_attribute (attribute ("""MPMTestThreshold.MPMTestCategory"""))_
-    val RegisteredResource = parse_attributes (attribute ("""MPMTestThreshold.RegisteredResource"""))_
+    val marketType = parse_attribute (attribute ("""MPMTestThreshold.marketType"""))
+    val percent = parse_element (element ("""MPMTestThreshold.percent"""))
+    val price = parse_element (element ("""MPMTestThreshold.price"""))
+    val MPMTestCategory = parse_attribute (attribute ("""MPMTestThreshold.MPMTestCategory"""))
+    val RegisteredResource = parse_attributes (attribute ("""MPMTestThreshold.RegisteredResource"""))
     def parse (context: Context): MPMTestThreshold =
     {
         MPMTestThreshold(
@@ -1788,15 +1788,15 @@ extends
     Parseable[MSSAggregation]
 {
     val sup = IdentifiedObject.parse _
-    val costRecovery = parse_attribute (attribute ("""MSSAggregation.costRecovery"""))_
-    val endEffectiveDate = parse_element (element ("""MSSAggregation.endEffectiveDate"""))_
-    val grossSettlement = parse_attribute (attribute ("""MSSAggregation.grossSettlement"""))_
-    val ignoreLosses = parse_attribute (attribute ("""MSSAggregation.ignoreLosses"""))_
-    val ignoreMarginalLosses = parse_attribute (attribute ("""MSSAggregation.ignoreMarginalLosses"""))_
-    val loadFollowing = parse_attribute (attribute ("""MSSAggregation.loadFollowing"""))_
-    val rucProcurement = parse_attribute (attribute ("""MSSAggregation.rucProcurement"""))_
-    val startEffectiveDate = parse_element (element ("""MSSAggregation.startEffectiveDate"""))_
-    val RTO = parse_attribute (attribute ("""MSSAggregation.RTO"""))_
+    val costRecovery = parse_attribute (attribute ("""MSSAggregation.costRecovery"""))
+    val endEffectiveDate = parse_element (element ("""MSSAggregation.endEffectiveDate"""))
+    val grossSettlement = parse_attribute (attribute ("""MSSAggregation.grossSettlement"""))
+    val ignoreLosses = parse_attribute (attribute ("""MSSAggregation.ignoreLosses"""))
+    val ignoreMarginalLosses = parse_attribute (attribute ("""MSSAggregation.ignoreMarginalLosses"""))
+    val loadFollowing = parse_attribute (attribute ("""MSSAggregation.loadFollowing"""))
+    val rucProcurement = parse_attribute (attribute ("""MSSAggregation.rucProcurement"""))
+    val startEffectiveDate = parse_element (element ("""MSSAggregation.startEffectiveDate"""))
+    val RTO = parse_attribute (attribute ("""MSSAggregation.RTO"""))
     def parse (context: Context): MSSAggregation =
     {
         MSSAggregation(
@@ -1853,10 +1853,10 @@ extends
     Parseable[MSSZone]
 {
     val sup = AggregateNode.parse _
-    val ignoreLosses = parse_attribute (attribute ("""MSSZone.ignoreLosses"""))_
-    val lossFactor = parse_element (element ("""MSSZone.lossFactor"""))_
-    val rucGrossSettlement = parse_attribute (attribute ("""MSSZone.rucGrossSettlement"""))_
-    val MeteredSubSystem = parse_attribute (attribute ("""MSSZone.MeteredSubSystem"""))_
+    val ignoreLosses = parse_attribute (attribute ("""MSSZone.ignoreLosses"""))
+    val lossFactor = parse_element (element ("""MSSZone.lossFactor"""))
+    val rucGrossSettlement = parse_attribute (attribute ("""MSSZone.rucGrossSettlement"""))
+    val MeteredSubSystem = parse_attribute (attribute ("""MSSZone.MeteredSubSystem"""))
     def parse (context: Context): MSSZone =
     {
         MSSZone(
@@ -1927,20 +1927,20 @@ extends
     Parseable[MarketPerson]
 {
     val sup = IdentifiedObject.parse _
-    val category = parse_element (element ("""MarketPerson.category"""))_
-    val electronicAddressAlternate = parse_attribute (attribute ("""MarketPerson.electronicAddressAlternate"""))_
-    val electronicAddressPrimary = parse_attribute (attribute ("""MarketPerson.electronicAddressPrimary"""))_
-    val firstName = parse_element (element ("""MarketPerson.firstName"""))_
-    val governmentID = parse_element (element ("""MarketPerson.governmentID"""))_
-    val landlinePhone = parse_attribute (attribute ("""MarketPerson.landlinePhone"""))_
-    val lastName = parse_element (element ("""MarketPerson.lastName"""))_
-    val mName = parse_element (element ("""MarketPerson.mName"""))_
-    val mobilePhone = parse_attribute (attribute ("""MarketPerson.mobilePhone"""))_
-    val prefix = parse_element (element ("""MarketPerson.prefix"""))_
-    val specialNeed = parse_element (element ("""MarketPerson.specialNeed"""))_
-    val status = parse_attribute (attribute ("""MarketPerson.status"""))_
-    val suffix = parse_element (element ("""MarketPerson.suffix"""))_
-    val userID = parse_element (element ("""MarketPerson.userID"""))_
+    val category = parse_element (element ("""MarketPerson.category"""))
+    val electronicAddressAlternate = parse_attribute (attribute ("""MarketPerson.electronicAddressAlternate"""))
+    val electronicAddressPrimary = parse_attribute (attribute ("""MarketPerson.electronicAddressPrimary"""))
+    val firstName = parse_element (element ("""MarketPerson.firstName"""))
+    val governmentID = parse_element (element ("""MarketPerson.governmentID"""))
+    val landlinePhone = parse_attribute (attribute ("""MarketPerson.landlinePhone"""))
+    val lastName = parse_element (element ("""MarketPerson.lastName"""))
+    val mName = parse_element (element ("""MarketPerson.mName"""))
+    val mobilePhone = parse_attribute (attribute ("""MarketPerson.mobilePhone"""))
+    val prefix = parse_element (element ("""MarketPerson.prefix"""))
+    val specialNeed = parse_element (element ("""MarketPerson.specialNeed"""))
+    val status = parse_attribute (attribute ("""MarketPerson.status"""))
+    val suffix = parse_element (element ("""MarketPerson.suffix"""))
+    val userID = parse_element (element ("""MarketPerson.userID"""))
     def parse (context: Context): MarketPerson =
     {
         MarketPerson(
@@ -2004,11 +2004,11 @@ extends
     Parseable[MarketQualificationRequirement]
 {
     val sup = IdentifiedObject.parse _
-    val effectiveDate = parse_element (element ("""MarketQualificationRequirement.effectiveDate"""))_
-    val expirationDate = parse_element (element ("""MarketQualificationRequirement.expirationDate"""))_
-    val qualificationID = parse_element (element ("""MarketQualificationRequirement.qualificationID"""))_
-    val status = parse_element (element ("""MarketQualificationRequirement.status"""))_
-    val statusType = parse_element (element ("""MarketQualificationRequirement.statusType"""))_
+    val effectiveDate = parse_element (element ("""MarketQualificationRequirement.effectiveDate"""))
+    val expirationDate = parse_element (element ("""MarketQualificationRequirement.expirationDate"""))
+    val qualificationID = parse_element (element ("""MarketQualificationRequirement.qualificationID"""))
+    val status = parse_element (element ("""MarketQualificationRequirement.status"""))
+    val statusType = parse_element (element ("""MarketQualificationRequirement.statusType"""))
     def parse (context: Context): MarketQualificationRequirement =
     {
         MarketQualificationRequirement(
@@ -2099,11 +2099,11 @@ extends
     Parseable[MarketSkill]
 {
     val sup = Document.parse _
-    val certificationPeriod = parse_attribute (attribute ("""MarketSkill.certificationPeriod"""))_
-    val effectiveDateTime = parse_element (element ("""MarketSkill.effectiveDateTime"""))_
-    val level = parse_element (element ("""MarketSkill.level"""))_
-    val MarketPerson = parse_attribute (attribute ("""MarketSkill.MarketPerson"""))_
-    val MarketQualificationRequirements = parse_attributes (attribute ("""MarketSkill.MarketQualificationRequirements"""))_
+    val certificationPeriod = parse_attribute (attribute ("""MarketSkill.certificationPeriod"""))
+    val effectiveDateTime = parse_element (element ("""MarketSkill.effectiveDateTime"""))
+    val level = parse_element (element ("""MarketSkill.level"""))
+    val MarketPerson = parse_attribute (attribute ("""MarketSkill.MarketPerson"""))
+    val MarketQualificationRequirements = parse_attributes (attribute ("""MarketSkill.MarketQualificationRequirements"""))
     def parse (context: Context): MarketSkill =
     {
         MarketSkill(
@@ -2186,7 +2186,7 @@ extends
     Parseable[MeteredSubSystem]
 {
     val sup = IdentifiedObject.parse _
-    val MSSAggregation = parse_attribute (attribute ("""MeteredSubSystem.MSSAggregation"""))_
+    val MSSAggregation = parse_attribute (attribute ("""MeteredSubSystem.MSSAggregation"""))
     def parse (context: Context): MeteredSubSystem =
     {
         MeteredSubSystem(
@@ -2228,7 +2228,7 @@ extends
     Parseable[MktCombinedCyclePlant]
 {
     val sup = CombinedCyclePlant.parse _
-    val AggregatedPnode = parse_attribute (attribute ("""MktCombinedCyclePlant.AggregatedPnode"""))_
+    val AggregatedPnode = parse_attribute (attribute ("""MktCombinedCyclePlant.AggregatedPnode"""))
     def parse (context: Context): MktCombinedCyclePlant =
     {
         MktCombinedCyclePlant(
@@ -2320,12 +2320,12 @@ extends
     Parseable[MktContingency]
 {
     val sup = Contingency.parse _
-    val loadRolloverFlag = parse_element (element ("""MktContingency.loadRolloverFlag"""))_
-    val ltcControlFlag = parse_element (element ("""MktContingency.ltcControlFlag"""))_
-    val participationFactorSet = parse_element (element ("""MktContingency.participationFactorSet"""))_
-    val screeningFlag = parse_element (element ("""MktContingency.screeningFlag"""))_
-    val TransferInterfaceSolutionA = parse_attribute (attribute ("""MktContingency.TransferInterfaceSolutionA"""))_
-    val TransferInterfaceSolutionB = parse_attribute (attribute ("""MktContingency.TransferInterfaceSolutionB"""))_
+    val loadRolloverFlag = parse_element (element ("""MktContingency.loadRolloverFlag"""))
+    val ltcControlFlag = parse_element (element ("""MktContingency.ltcControlFlag"""))
+    val participationFactorSet = parse_element (element ("""MktContingency.participationFactorSet"""))
+    val screeningFlag = parse_element (element ("""MktContingency.screeningFlag"""))
+    val TransferInterfaceSolutionA = parse_attribute (attribute ("""MktContingency.TransferInterfaceSolutionA"""))
+    val TransferInterfaceSolutionB = parse_attribute (attribute ("""MktContingency.TransferInterfaceSolutionB"""))
     def parse (context: Context): MktContingency =
     {
         MktContingency(
@@ -2373,8 +2373,8 @@ extends
     Parseable[MktHeatRateCurve]
 {
     val sup = HeatRateCurve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""MktHeatRateCurve.RegisteredGenerator"""))_
-    val ResourceVerifiableCosts = parse_attribute (attribute ("""MktHeatRateCurve.ResourceVerifiableCosts"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""MktHeatRateCurve.RegisteredGenerator"""))
+    val ResourceVerifiableCosts = parse_attribute (attribute ("""MktHeatRateCurve.ResourceVerifiableCosts"""))
     def parse (context: Context): MktHeatRateCurve =
     {
         MktHeatRateCurve(
@@ -2455,8 +2455,8 @@ extends
     Parseable[OilPrice]
 {
     val sup = BasicElement.parse _
-    val oilPriceIndex = parse_element (element ("""OilPrice.oilPriceIndex"""))_
-    val FuelRegion = parse_attribute (attribute ("""OilPrice.FuelRegion"""))_
+    val oilPriceIndex = parse_element (element ("""OilPrice.oilPriceIndex"""))
+    val FuelRegion = parse_attribute (attribute ("""OilPrice.FuelRegion"""))
     def parse (context: Context): OilPrice =
     {
         OilPrice(
@@ -2506,11 +2506,11 @@ extends
     Parseable[OrgPnodeAllocation]
 {
     val sup = IdentifiedObject.parse _
-    val endEffectiveDate = parse_element (element ("""OrgPnodeAllocation.endEffectiveDate"""))_
-    val maxMWAllocation = parse_element (element ("""OrgPnodeAllocation.maxMWAllocation"""))_
-    val startEffectiveDate = parse_element (element ("""OrgPnodeAllocation.startEffectiveDate"""))_
-    val MktOrganisation = parse_attribute (attribute ("""OrgPnodeAllocation.MktOrganisation"""))_
-    val Pnode = parse_attribute (attribute ("""OrgPnodeAllocation.Pnode"""))_
+    val endEffectiveDate = parse_element (element ("""OrgPnodeAllocation.endEffectiveDate"""))
+    val maxMWAllocation = parse_element (element ("""OrgPnodeAllocation.maxMWAllocation"""))
+    val startEffectiveDate = parse_element (element ("""OrgPnodeAllocation.startEffectiveDate"""))
+    val MktOrganisation = parse_attribute (attribute ("""OrgPnodeAllocation.MktOrganisation"""))
+    val Pnode = parse_attribute (attribute ("""OrgPnodeAllocation.Pnode"""))
     def parse (context: Context): OrgPnodeAllocation =
     {
         OrgPnodeAllocation(
@@ -2567,13 +2567,13 @@ extends
     Parseable[OrgResOwnership]
 {
     val sup = IdentifiedObject.parse _
-    val asscType = parse_attribute (attribute ("""OrgResOwnership.asscType"""))_
-    val endEffectiveDate = parse_element (element ("""OrgResOwnership.endEffectiveDate"""))_
-    val masterSchedulingCoordinatorFlag = parse_attribute (attribute ("""OrgResOwnership.masterSchedulingCoordinatorFlag"""))_
-    val ownershipPercent = parse_element (element ("""OrgResOwnership.ownershipPercent"""))_
-    val startEffectiveDate = parse_element (element ("""OrgResOwnership.startEffectiveDate"""))_
-    val MktOrganisation = parse_attribute (attribute ("""OrgResOwnership.MktOrganisation"""))_
-    val RegisteredResource = parse_attribute (attribute ("""OrgResOwnership.RegisteredResource"""))_
+    val asscType = parse_attribute (attribute ("""OrgResOwnership.asscType"""))
+    val endEffectiveDate = parse_element (element ("""OrgResOwnership.endEffectiveDate"""))
+    val masterSchedulingCoordinatorFlag = parse_attribute (attribute ("""OrgResOwnership.masterSchedulingCoordinatorFlag"""))
+    val ownershipPercent = parse_element (element ("""OrgResOwnership.ownershipPercent"""))
+    val startEffectiveDate = parse_element (element ("""OrgResOwnership.startEffectiveDate"""))
+    val MktOrganisation = parse_attribute (attribute ("""OrgResOwnership.MktOrganisation"""))
+    val RegisteredResource = parse_attribute (attribute ("""OrgResOwnership.RegisteredResource"""))
     def parse (context: Context): OrgResOwnership =
     {
         OrgResOwnership(
@@ -2643,15 +2643,15 @@ extends
     Parseable[Pnode]
 {
     val sup = IdentifiedObject.parse _
-    val endEffectiveDate = parse_element (element ("""Pnode.endEffectiveDate"""))_
-    val isPublic = parse_element (element ("""Pnode.isPublic"""))_
-    val startEffectiveDate = parse_element (element ("""Pnode.startEffectiveDate"""))_
-    val typ = parse_element (element ("""Pnode.type"""))_
-    val usage = parse_element (element ("""Pnode.usage"""))_
-    val RTO = parse_attribute (attribute ("""Pnode.RTO"""))_
-    val SinkCRRSegment = parse_attributes (attribute ("""Pnode.SinkCRRSegment"""))_
-    val SourceCRRSegment = parse_attributes (attribute ("""Pnode.SourceCRRSegment"""))_
-    val SubControlArea = parse_attribute (attribute ("""Pnode.SubControlArea"""))_
+    val endEffectiveDate = parse_element (element ("""Pnode.endEffectiveDate"""))
+    val isPublic = parse_element (element ("""Pnode.isPublic"""))
+    val startEffectiveDate = parse_element (element ("""Pnode.startEffectiveDate"""))
+    val typ = parse_element (element ("""Pnode.type"""))
+    val usage = parse_element (element ("""Pnode.usage"""))
+    val RTO = parse_attribute (attribute ("""Pnode.RTO"""))
+    val SinkCRRSegment = parse_attributes (attribute ("""Pnode.SinkCRRSegment"""))
+    val SourceCRRSegment = parse_attributes (attribute ("""Pnode.SourceCRRSegment"""))
+    val SubControlArea = parse_attribute (attribute ("""Pnode.SubControlArea"""))
     def parse (context: Context): Pnode =
     {
         Pnode(
@@ -2711,12 +2711,12 @@ extends
     Parseable[PnodeDistributionFactor]
 {
     val sup = BasicElement.parse _
-    val factor = parse_element (element ("""PnodeDistributionFactor.factor"""))_
-    val offPeak = parse_attribute (attribute ("""PnodeDistributionFactor.offPeak"""))_
-    val onPeak = parse_attribute (attribute ("""PnodeDistributionFactor.onPeak"""))_
-    val podLossFactor = parse_element (element ("""PnodeDistributionFactor.podLossFactor"""))_
-    val BidDistributionFactor = parse_attribute (attribute ("""PnodeDistributionFactor.BidDistributionFactor"""))_
-    val IndividualPnode = parse_attribute (attribute ("""PnodeDistributionFactor.IndividualPnode"""))_
+    val factor = parse_element (element ("""PnodeDistributionFactor.factor"""))
+    val offPeak = parse_attribute (attribute ("""PnodeDistributionFactor.offPeak"""))
+    val onPeak = parse_attribute (attribute ("""PnodeDistributionFactor.onPeak"""))
+    val podLossFactor = parse_element (element ("""PnodeDistributionFactor.podLossFactor"""))
+    val BidDistributionFactor = parse_attribute (attribute ("""PnodeDistributionFactor.BidDistributionFactor"""))
+    val IndividualPnode = parse_attribute (attribute ("""PnodeDistributionFactor.IndividualPnode"""))
     def parse (context: Context): PnodeDistributionFactor =
     {
         PnodeDistributionFactor(
@@ -2762,7 +2762,7 @@ extends
     Parseable[RMRHeatRateCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""RMRHeatRateCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""RMRHeatRateCurve.RegisteredGenerator"""))
     def parse (context: Context): RMRHeatRateCurve =
     {
         RMRHeatRateCurve(
@@ -2803,7 +2803,7 @@ extends
     Parseable[RMRStartUpCostCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpCostCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpCostCurve.RegisteredGenerator"""))
     def parse (context: Context): RMRStartUpCostCurve =
     {
         RMRStartUpCostCurve(
@@ -2844,7 +2844,7 @@ extends
     Parseable[RMRStartUpEnergyCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpEnergyCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpEnergyCurve.RegisteredGenerator"""))
     def parse (context: Context): RMRStartUpEnergyCurve =
     {
         RMRStartUpEnergyCurve(
@@ -2885,7 +2885,7 @@ extends
     Parseable[RMRStartUpFuelCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpFuelCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpFuelCurve.RegisteredGenerator"""))
     def parse (context: Context): RMRStartUpFuelCurve =
     {
         RMRStartUpFuelCurve(
@@ -2926,7 +2926,7 @@ extends
     Parseable[RMRStartUpTimeCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpTimeCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""RMRStartUpTimeCurve.RegisteredGenerator"""))
     def parse (context: Context): RMRStartUpTimeCurve =
     {
         RMRStartUpTimeCurve(
@@ -3220,81 +3220,81 @@ extends
     Parseable[RegisteredGenerator]
 {
     val sup = RegisteredResource.parse _
-    val capacityFactor = parse_element (element ("""RegisteredGenerator.capacityFactor"""))_
-    val coldStartTime = parse_element (element ("""RegisteredGenerator.coldStartTime"""))_
-    val combinedCyclePlantName = parse_element (element ("""RegisteredGenerator.combinedCyclePlantName"""))_
-    val commericialOperationDate = parse_element (element ("""RegisteredGenerator.commericialOperationDate"""))_
-    val constrainedOutputFlag = parse_attribute (attribute ("""RegisteredGenerator.constrainedOutputFlag"""))_
-    val costBasis = parse_attribute (attribute ("""RegisteredGenerator.costBasis"""))_
-    val extremeLongStart = parse_attribute (attribute ("""RegisteredGenerator.extremeLongStart"""))_
-    val fuelSource = parse_attribute (attribute ("""RegisteredGenerator.fuelSource"""))_
-    val highControlLimit = parse_element (element ("""RegisteredGenerator.highControlLimit"""))_
-    val hotIntTime = parse_element (element ("""RegisteredGenerator.hotIntTime"""))_
-    val hotStartTime = parse_element (element ("""RegisteredGenerator.hotStartTime"""))_
-    val intColdTime = parse_element (element ("""RegisteredGenerator.intColdTime"""))_
-    val intStartTime = parse_element (element ("""RegisteredGenerator.intStartTime"""))_
-    val intendedPIRP = parse_attribute (attribute ("""RegisteredGenerator.intendedPIRP"""))_
-    val loadFollowingDownMSS = parse_attribute (attribute ("""RegisteredGenerator.loadFollowingDownMSS"""))_
-    val loadFollowingUpMSS = parse_attribute (attribute ("""RegisteredGenerator.loadFollowingUpMSS"""))_
-    val lowControlLImit = parse_element (element ("""RegisteredGenerator.lowControlLImit"""))_
-    val lowerControlRate = parse_element (element ("""RegisteredGenerator.lowerControlRate"""))_
-    val lowerRampRate = parse_element (element ("""RegisteredGenerator.lowerRampRate"""))_
-    val maxDependableCap = parse_element (element ("""RegisteredGenerator.maxDependableCap"""))_
-    val maxLayOffSelfSchedQty = parse_element (element ("""RegisteredGenerator.maxLayOffSelfSchedQty"""))_
-    val maxMinLoadCost = parse_element (element ("""RegisteredGenerator.maxMinLoadCost"""))_
-    val maxPumpingLevel = parse_element (element ("""RegisteredGenerator.maxPumpingLevel"""))_
-    val maxShutdownTime = parse_element (element ("""RegisteredGenerator.maxShutdownTime"""))_
-    val maxStartUpsPerDay = parse_element (element ("""RegisteredGenerator.maxStartUpsPerDay"""))_
-    val maxWeeklyEnergy = parse_element (element ("""RegisteredGenerator.maxWeeklyEnergy"""))_
-    val maxWeeklyStarts = parse_element (element ("""RegisteredGenerator.maxWeeklyStarts"""))_
-    val maximumAllowableSpinningReserve = parse_element (element ("""RegisteredGenerator.maximumAllowableSpinningReserve"""))_
-    val maximumOperatingMW = parse_element (element ("""RegisteredGenerator.maximumOperatingMW"""))_
-    val minLoadCost = parse_element (element ("""RegisteredGenerator.minLoadCost"""))_
-    val minimumLoadFuelCost = parse_attribute (attribute ("""RegisteredGenerator.minimumLoadFuelCost"""))_
-    val minimumOperatingMW = parse_element (element ("""RegisteredGenerator.minimumOperatingMW"""))_
-    val mustOfferRA = parse_attribute (attribute ("""RegisteredGenerator.mustOfferRA"""))_
-    val nameplateCapacity = parse_element (element ("""RegisteredGenerator.nameplateCapacity"""))_
-    val operatingMaintenanceCost = parse_element (element ("""RegisteredGenerator.operatingMaintenanceCost"""))_
-    val operatingMode = parse_element (element ("""RegisteredGenerator.operatingMode"""))_
-    val proxyFlag = parse_attribute (attribute ("""RegisteredGenerator.proxyFlag"""))_
-    val pumpMinDownTime = parse_element (element ("""RegisteredGenerator.pumpMinDownTime"""))_
-    val pumpMinUpTime = parse_element (element ("""RegisteredGenerator.pumpMinUpTime"""))_
-    val pumpShutdownCost = parse_element (element ("""RegisteredGenerator.pumpShutdownCost"""))_
-    val pumpShutdownTime = parse_element (element ("""RegisteredGenerator.pumpShutdownTime"""))_
-    val pumpingCost = parse_element (element ("""RegisteredGenerator.pumpingCost"""))_
-    val pumpingFactor = parse_element (element ("""RegisteredGenerator.pumpingFactor"""))_
-    val qualifyingFacilityOwner = parse_element (element ("""RegisteredGenerator.qualifyingFacilityOwner"""))_
-    val quickStartFlag = parse_attribute (attribute ("""RegisteredGenerator.quickStartFlag"""))_
-    val raiseControlRate = parse_element (element ("""RegisteredGenerator.raiseControlRate"""))_
-    val raiseRampRate = parse_element (element ("""RegisteredGenerator.raiseRampRate"""))_
-    val rampCurveType = parse_attribute (attribute ("""RegisteredGenerator.rampCurveType"""))_
-    val rampMode = parse_attribute (attribute ("""RegisteredGenerator.rampMode"""))_
-    val regulationFlag = parse_element (element ("""RegisteredGenerator.regulationFlag"""))_
-    val regulationRampRate = parse_element (element ("""RegisteredGenerator.regulationRampRate"""))_
-    val resourceSubType = parse_element (element ("""RegisteredGenerator.resourceSubType"""))_
-    val riverSystem = parse_element (element ("""RegisteredGenerator.riverSystem"""))_
-    val spinReserveRamp = parse_element (element ("""RegisteredGenerator.spinReserveRamp"""))_
-    val syncCondCapable = parse_attribute (attribute ("""RegisteredGenerator.syncCondCapable"""))_
-    val unitType = parse_attribute (attribute ("""RegisteredGenerator.unitType"""))_
-    val useLimitFlag = parse_attribute (attribute ("""RegisteredGenerator.useLimitFlag"""))_
-    val EnergyPriceIndex = parse_attribute (attribute ("""RegisteredGenerator.EnergyPriceIndex"""))_
-    val FuelCostCurve = parse_attribute (attribute ("""RegisteredGenerator.FuelCostCurve"""))_
-    val FuelRegion = parse_attribute (attribute ("""RegisteredGenerator.FuelRegion"""))_
-    val LocalReliabilityArea = parse_attribute (attribute ("""RegisteredGenerator.LocalReliabilityArea"""))_
-    val MktHeatRateCurve = parse_attribute (attribute ("""RegisteredGenerator.MktHeatRateCurve"""))_
-    val RMNRFlag = parse_attribute (attribute ("""RegisteredGenerator.RMNRFlag"""))_
-    val RMRFlag = parse_attribute (attribute ("""RegisteredGenerator.RMRFlag"""))_
-    val RMRHeatRateCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRHeatRateCurve"""))_
-    val RMRManualIndicator = parse_attribute (attribute ("""RegisteredGenerator.RMRManualIndicator"""))_
-    val RMRStartUpCostCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpCostCurve"""))_
-    val RMRStartUpEnergyCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpEnergyCurve"""))_
-    val RMRStartUpFuelCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpFuelCurve"""))_
-    val RMRStartUpTimeCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpTimeCurve"""))_
-    val RMTFlag = parse_attribute (attribute ("""RegisteredGenerator.RMTFlag"""))_
-    val RegulatingLimit = parse_attribute (attribute ("""RegisteredGenerator.RegulatingLimit"""))_
-    val StartUpEnergyCurve = parse_attribute (attribute ("""RegisteredGenerator.StartUpEnergyCurve"""))_
-    val StartUpFuelCurve = parse_attribute (attribute ("""RegisteredGenerator.StartUpFuelCurve"""))_
-    val StartUpTimeCurve = parse_attribute (attribute ("""RegisteredGenerator.StartUpTimeCurve"""))_
+    val capacityFactor = parse_element (element ("""RegisteredGenerator.capacityFactor"""))
+    val coldStartTime = parse_element (element ("""RegisteredGenerator.coldStartTime"""))
+    val combinedCyclePlantName = parse_element (element ("""RegisteredGenerator.combinedCyclePlantName"""))
+    val commericialOperationDate = parse_element (element ("""RegisteredGenerator.commericialOperationDate"""))
+    val constrainedOutputFlag = parse_attribute (attribute ("""RegisteredGenerator.constrainedOutputFlag"""))
+    val costBasis = parse_attribute (attribute ("""RegisteredGenerator.costBasis"""))
+    val extremeLongStart = parse_attribute (attribute ("""RegisteredGenerator.extremeLongStart"""))
+    val fuelSource = parse_attribute (attribute ("""RegisteredGenerator.fuelSource"""))
+    val highControlLimit = parse_element (element ("""RegisteredGenerator.highControlLimit"""))
+    val hotIntTime = parse_element (element ("""RegisteredGenerator.hotIntTime"""))
+    val hotStartTime = parse_element (element ("""RegisteredGenerator.hotStartTime"""))
+    val intColdTime = parse_element (element ("""RegisteredGenerator.intColdTime"""))
+    val intStartTime = parse_element (element ("""RegisteredGenerator.intStartTime"""))
+    val intendedPIRP = parse_attribute (attribute ("""RegisteredGenerator.intendedPIRP"""))
+    val loadFollowingDownMSS = parse_attribute (attribute ("""RegisteredGenerator.loadFollowingDownMSS"""))
+    val loadFollowingUpMSS = parse_attribute (attribute ("""RegisteredGenerator.loadFollowingUpMSS"""))
+    val lowControlLImit = parse_element (element ("""RegisteredGenerator.lowControlLImit"""))
+    val lowerControlRate = parse_element (element ("""RegisteredGenerator.lowerControlRate"""))
+    val lowerRampRate = parse_element (element ("""RegisteredGenerator.lowerRampRate"""))
+    val maxDependableCap = parse_element (element ("""RegisteredGenerator.maxDependableCap"""))
+    val maxLayOffSelfSchedQty = parse_element (element ("""RegisteredGenerator.maxLayOffSelfSchedQty"""))
+    val maxMinLoadCost = parse_element (element ("""RegisteredGenerator.maxMinLoadCost"""))
+    val maxPumpingLevel = parse_element (element ("""RegisteredGenerator.maxPumpingLevel"""))
+    val maxShutdownTime = parse_element (element ("""RegisteredGenerator.maxShutdownTime"""))
+    val maxStartUpsPerDay = parse_element (element ("""RegisteredGenerator.maxStartUpsPerDay"""))
+    val maxWeeklyEnergy = parse_element (element ("""RegisteredGenerator.maxWeeklyEnergy"""))
+    val maxWeeklyStarts = parse_element (element ("""RegisteredGenerator.maxWeeklyStarts"""))
+    val maximumAllowableSpinningReserve = parse_element (element ("""RegisteredGenerator.maximumAllowableSpinningReserve"""))
+    val maximumOperatingMW = parse_element (element ("""RegisteredGenerator.maximumOperatingMW"""))
+    val minLoadCost = parse_element (element ("""RegisteredGenerator.minLoadCost"""))
+    val minimumLoadFuelCost = parse_attribute (attribute ("""RegisteredGenerator.minimumLoadFuelCost"""))
+    val minimumOperatingMW = parse_element (element ("""RegisteredGenerator.minimumOperatingMW"""))
+    val mustOfferRA = parse_attribute (attribute ("""RegisteredGenerator.mustOfferRA"""))
+    val nameplateCapacity = parse_element (element ("""RegisteredGenerator.nameplateCapacity"""))
+    val operatingMaintenanceCost = parse_element (element ("""RegisteredGenerator.operatingMaintenanceCost"""))
+    val operatingMode = parse_element (element ("""RegisteredGenerator.operatingMode"""))
+    val proxyFlag = parse_attribute (attribute ("""RegisteredGenerator.proxyFlag"""))
+    val pumpMinDownTime = parse_element (element ("""RegisteredGenerator.pumpMinDownTime"""))
+    val pumpMinUpTime = parse_element (element ("""RegisteredGenerator.pumpMinUpTime"""))
+    val pumpShutdownCost = parse_element (element ("""RegisteredGenerator.pumpShutdownCost"""))
+    val pumpShutdownTime = parse_element (element ("""RegisteredGenerator.pumpShutdownTime"""))
+    val pumpingCost = parse_element (element ("""RegisteredGenerator.pumpingCost"""))
+    val pumpingFactor = parse_element (element ("""RegisteredGenerator.pumpingFactor"""))
+    val qualifyingFacilityOwner = parse_element (element ("""RegisteredGenerator.qualifyingFacilityOwner"""))
+    val quickStartFlag = parse_attribute (attribute ("""RegisteredGenerator.quickStartFlag"""))
+    val raiseControlRate = parse_element (element ("""RegisteredGenerator.raiseControlRate"""))
+    val raiseRampRate = parse_element (element ("""RegisteredGenerator.raiseRampRate"""))
+    val rampCurveType = parse_attribute (attribute ("""RegisteredGenerator.rampCurveType"""))
+    val rampMode = parse_attribute (attribute ("""RegisteredGenerator.rampMode"""))
+    val regulationFlag = parse_element (element ("""RegisteredGenerator.regulationFlag"""))
+    val regulationRampRate = parse_element (element ("""RegisteredGenerator.regulationRampRate"""))
+    val resourceSubType = parse_element (element ("""RegisteredGenerator.resourceSubType"""))
+    val riverSystem = parse_element (element ("""RegisteredGenerator.riverSystem"""))
+    val spinReserveRamp = parse_element (element ("""RegisteredGenerator.spinReserveRamp"""))
+    val syncCondCapable = parse_attribute (attribute ("""RegisteredGenerator.syncCondCapable"""))
+    val unitType = parse_attribute (attribute ("""RegisteredGenerator.unitType"""))
+    val useLimitFlag = parse_attribute (attribute ("""RegisteredGenerator.useLimitFlag"""))
+    val EnergyPriceIndex = parse_attribute (attribute ("""RegisteredGenerator.EnergyPriceIndex"""))
+    val FuelCostCurve = parse_attribute (attribute ("""RegisteredGenerator.FuelCostCurve"""))
+    val FuelRegion = parse_attribute (attribute ("""RegisteredGenerator.FuelRegion"""))
+    val LocalReliabilityArea = parse_attribute (attribute ("""RegisteredGenerator.LocalReliabilityArea"""))
+    val MktHeatRateCurve = parse_attribute (attribute ("""RegisteredGenerator.MktHeatRateCurve"""))
+    val RMNRFlag = parse_attribute (attribute ("""RegisteredGenerator.RMNRFlag"""))
+    val RMRFlag = parse_attribute (attribute ("""RegisteredGenerator.RMRFlag"""))
+    val RMRHeatRateCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRHeatRateCurve"""))
+    val RMRManualIndicator = parse_attribute (attribute ("""RegisteredGenerator.RMRManualIndicator"""))
+    val RMRStartUpCostCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpCostCurve"""))
+    val RMRStartUpEnergyCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpEnergyCurve"""))
+    val RMRStartUpFuelCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpFuelCurve"""))
+    val RMRStartUpTimeCurve = parse_attribute (attribute ("""RegisteredGenerator.RMRStartUpTimeCurve"""))
+    val RMTFlag = parse_attribute (attribute ("""RegisteredGenerator.RMTFlag"""))
+    val RegulatingLimit = parse_attribute (attribute ("""RegisteredGenerator.RegulatingLimit"""))
+    val StartUpEnergyCurve = parse_attribute (attribute ("""RegisteredGenerator.StartUpEnergyCurve"""))
+    val StartUpFuelCurve = parse_attribute (attribute ("""RegisteredGenerator.StartUpFuelCurve"""))
+    val StartUpTimeCurve = parse_attribute (attribute ("""RegisteredGenerator.StartUpTimeCurve"""))
     def parse (context: Context): RegisteredGenerator =
     {
         RegisteredGenerator(
@@ -3421,13 +3421,13 @@ extends
     Parseable[RegisteredInterTie]
 {
     val sup = RegisteredResource.parse _
-    val direction = parse_attribute (attribute ("""RegisteredInterTie.direction"""))_
-    val energyProductType = parse_attribute (attribute ("""RegisteredInterTie.energyProductType"""))_
-    val isDCTie = parse_attribute (attribute ("""RegisteredInterTie.isDCTie"""))_
-    val isDynamicInterchange = parse_attribute (attribute ("""RegisteredInterTie.isDynamicInterchange"""))_
-    val minHourlyBlockLimit = parse_element (element ("""RegisteredInterTie.minHourlyBlockLimit"""))_
-    val Flowgate = parse_attribute (attribute ("""RegisteredInterTie.Flowgate"""))_
-    val InterTieBid = parse_attribute (attribute ("""RegisteredInterTie.InterTieBid"""))_
+    val direction = parse_attribute (attribute ("""RegisteredInterTie.direction"""))
+    val energyProductType = parse_attribute (attribute ("""RegisteredInterTie.energyProductType"""))
+    val isDCTie = parse_attribute (attribute ("""RegisteredInterTie.isDCTie"""))
+    val isDynamicInterchange = parse_attribute (attribute ("""RegisteredInterTie.isDynamicInterchange"""))
+    val minHourlyBlockLimit = parse_element (element ("""RegisteredInterTie.minHourlyBlockLimit"""))
+    val Flowgate = parse_attribute (attribute ("""RegisteredInterTie.Flowgate"""))
+    val InterTieBid = parse_attribute (attribute ("""RegisteredInterTie.InterTieBid"""))
     def parse (context: Context): RegisteredInterTie =
     {
         RegisteredInterTie(
@@ -3522,28 +3522,28 @@ extends
     Parseable[RegisteredLoad]
 {
     val sup = RegisteredResource.parse _
-    val blockLoadTransferFlag = parse_attribute (attribute ("""RegisteredLoad.blockLoadTransferFlag"""))_
-    val dynamicallyScheduledLoadResourceFlag = parse_attribute (attribute ("""RegisteredLoad.dynamicallyScheduledLoadResourceFlag"""))_
-    val dynamicallyScheduledQualificationFlag = parse_attribute (attribute ("""RegisteredLoad.dynamicallyScheduledQualificationFlag"""))_
-    val loadRegistryMSS = parse_attribute (attribute ("""RegisteredLoad.loadRegistryMSS"""))_
-    val maxBaseLoad = parse_element (element ("""RegisteredLoad.maxBaseLoad"""))_
-    val maxDeploymentTime = parse_element (element ("""RegisteredLoad.maxDeploymentTime"""))_
-    val maxLoadRedTimesPerDay = parse_element (element ("""RegisteredLoad.maxLoadRedTimesPerDay"""))_
-    val maxLoadReduction = parse_element (element ("""RegisteredLoad.maxLoadReduction"""))_
-    val maxReductionTime = parse_element (element ("""RegisteredLoad.maxReductionTime"""))_
-    val maxWeeklyDeployment = parse_element (element ("""RegisteredLoad.maxWeeklyDeployment"""))_
-    val minLoadReduction = parse_element (element ("""RegisteredLoad.minLoadReduction"""))_
-    val minLoadReductionCost = parse_element (element ("""RegisteredLoad.minLoadReductionCost"""))_
-    val minLoadReductionInterval = parse_element (element ("""RegisteredLoad.minLoadReductionInterval"""))_
-    val minReductionTime = parse_element (element ("""RegisteredLoad.minReductionTime"""))_
-    val minTimeBetLoadRed = parse_element (element ("""RegisteredLoad.minTimeBetLoadRed"""))_
-    val participatingLoad = parse_attribute (attribute ("""RegisteredLoad.participatingLoad"""))_
-    val reqNoticeTime = parse_element (element ("""RegisteredLoad.reqNoticeTime"""))_
-    val resourceSubType = parse_element (element ("""RegisteredLoad.resourceSubType"""))_
-    val LoadReductionPriceCurve = parse_attributes (attribute ("""RegisteredLoad.LoadReductionPriceCurve"""))_
-    val LoadReductionTimeCurve = parse_attributes (attribute ("""RegisteredLoad.LoadReductionTimeCurve"""))_
-    val MktLoadArea = parse_attribute (attribute ("""RegisteredLoad.MktLoadArea"""))_
-    val NPLCustomLoadAggregation = parse_attribute (attribute ("""RegisteredLoad.NPLCustomLoadAggregation"""))_
+    val blockLoadTransferFlag = parse_attribute (attribute ("""RegisteredLoad.blockLoadTransferFlag"""))
+    val dynamicallyScheduledLoadResourceFlag = parse_attribute (attribute ("""RegisteredLoad.dynamicallyScheduledLoadResourceFlag"""))
+    val dynamicallyScheduledQualificationFlag = parse_attribute (attribute ("""RegisteredLoad.dynamicallyScheduledQualificationFlag"""))
+    val loadRegistryMSS = parse_attribute (attribute ("""RegisteredLoad.loadRegistryMSS"""))
+    val maxBaseLoad = parse_element (element ("""RegisteredLoad.maxBaseLoad"""))
+    val maxDeploymentTime = parse_element (element ("""RegisteredLoad.maxDeploymentTime"""))
+    val maxLoadRedTimesPerDay = parse_element (element ("""RegisteredLoad.maxLoadRedTimesPerDay"""))
+    val maxLoadReduction = parse_element (element ("""RegisteredLoad.maxLoadReduction"""))
+    val maxReductionTime = parse_element (element ("""RegisteredLoad.maxReductionTime"""))
+    val maxWeeklyDeployment = parse_element (element ("""RegisteredLoad.maxWeeklyDeployment"""))
+    val minLoadReduction = parse_element (element ("""RegisteredLoad.minLoadReduction"""))
+    val minLoadReductionCost = parse_element (element ("""RegisteredLoad.minLoadReductionCost"""))
+    val minLoadReductionInterval = parse_element (element ("""RegisteredLoad.minLoadReductionInterval"""))
+    val minReductionTime = parse_element (element ("""RegisteredLoad.minReductionTime"""))
+    val minTimeBetLoadRed = parse_element (element ("""RegisteredLoad.minTimeBetLoadRed"""))
+    val participatingLoad = parse_attribute (attribute ("""RegisteredLoad.participatingLoad"""))
+    val reqNoticeTime = parse_element (element ("""RegisteredLoad.reqNoticeTime"""))
+    val resourceSubType = parse_element (element ("""RegisteredLoad.resourceSubType"""))
+    val LoadReductionPriceCurve = parse_attributes (attribute ("""RegisteredLoad.LoadReductionPriceCurve"""))
+    val LoadReductionTimeCurve = parse_attributes (attribute ("""RegisteredLoad.LoadReductionTimeCurve"""))
+    val MktLoadArea = parse_attribute (attribute ("""RegisteredLoad.MktLoadArea"""))
+    val NPLCustomLoadAggregation = parse_attribute (attribute ("""RegisteredLoad.NPLCustomLoadAggregation"""))
     def parse (context: Context): RegisteredLoad =
     {
         RegisteredLoad(
@@ -3609,9 +3609,9 @@ extends
     Parseable[RegulatingLimit]
 {
     val sup = IdentifiedObject.parse _
-    val highLimit = parse_element (element ("""RegulatingLimit.highLimit"""))_
-    val lowLimit = parse_element (element ("""RegulatingLimit.lowLimit"""))_
-    val RegisteredGenerator = parse_attribute (attribute ("""RegulatingLimit.RegisteredGenerator"""))_
+    val highLimit = parse_element (element ("""RegulatingLimit.highLimit"""))
+    val lowLimit = parse_element (element ("""RegulatingLimit.lowLimit"""))
+    val RegisteredGenerator = parse_attribute (attribute ("""RegulatingLimit.RegisteredGenerator"""))
     def parse (context: Context): RegulatingLimit =
     {
         RegulatingLimit(
@@ -3666,13 +3666,13 @@ extends
     Parseable[ResourceAncillaryServiceQualification]
 {
     val sup = BasicElement.parse _
-    val certifiedCapacity = parse_element (element ("""ResourceAncillaryServiceQualification.certifiedCapacity"""))_
-    val endEffectiveDate = parse_element (element ("""ResourceAncillaryServiceQualification.endEffectiveDate"""))_
-    val market = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.market"""))_
-    val qualificationFlag = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.qualificationFlag"""))_
-    val startEffectiveDate = parse_element (element ("""ResourceAncillaryServiceQualification.startEffectiveDate"""))_
-    val typ = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.type"""))_
-    val RegisteredResource = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.RegisteredResource"""))_
+    val certifiedCapacity = parse_element (element ("""ResourceAncillaryServiceQualification.certifiedCapacity"""))
+    val endEffectiveDate = parse_element (element ("""ResourceAncillaryServiceQualification.endEffectiveDate"""))
+    val market = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.market"""))
+    val qualificationFlag = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.qualificationFlag"""))
+    val startEffectiveDate = parse_element (element ("""ResourceAncillaryServiceQualification.startEffectiveDate"""))
+    val typ = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.type"""))
+    val RegisteredResource = parse_attribute (attribute ("""ResourceAncillaryServiceQualification.RegisteredResource"""))
     def parse (context: Context): ResourceAncillaryServiceQualification =
     {
         ResourceAncillaryServiceQualification(
@@ -3735,10 +3735,10 @@ extends
     Parseable[ResourceCapacity]
 {
     val sup = BasicElement.parse _
-    val capacityType = parse_attribute (attribute ("""ResourceCapacity.capacityType"""))_
-    val defaultCapacity = parse_element (element ("""ResourceCapacity.defaultCapacity"""))_
-    val maximumCapacity = parse_element (element ("""ResourceCapacity.maximumCapacity"""))_
-    val minimumCapacity = parse_element (element ("""ResourceCapacity.minimumCapacity"""))_
+    val capacityType = parse_attribute (attribute ("""ResourceCapacity.capacityType"""))
+    val defaultCapacity = parse_element (element ("""ResourceCapacity.defaultCapacity"""))
+    val maximumCapacity = parse_element (element ("""ResourceCapacity.maximumCapacity"""))
+    val minimumCapacity = parse_element (element ("""ResourceCapacity.minimumCapacity"""))
     def parse (context: Context): ResourceCapacity =
     {
         ResourceCapacity(
@@ -3796,14 +3796,14 @@ extends
     Parseable[ResourceOperationMaintenanceCost]
 {
     val sup = Curve.parse _
-    val gasPercentAboveLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.gasPercentAboveLowSustainedLimit"""))_
-    val oilPercentAboveLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.oilPercentAboveLowSustainedLimit"""))_
-    val omCostColdStartup = parse_element (element ("""ResourceOperationMaintenanceCost.omCostColdStartup"""))_
-    val omCostHotStartup = parse_element (element ("""ResourceOperationMaintenanceCost.omCostHotStartup"""))_
-    val omCostIntermediateStartup = parse_element (element ("""ResourceOperationMaintenanceCost.omCostIntermediateStartup"""))_
-    val omCostLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.omCostLowSustainedLimit"""))_
-    val solidfuelPercentAboveLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.solidfuelPercentAboveLowSustainedLimit"""))_
-    val ResourceVerifiableCosts = parse_attribute (attribute ("""ResourceOperationMaintenanceCost.ResourceVerifiableCosts"""))_
+    val gasPercentAboveLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.gasPercentAboveLowSustainedLimit"""))
+    val oilPercentAboveLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.oilPercentAboveLowSustainedLimit"""))
+    val omCostColdStartup = parse_element (element ("""ResourceOperationMaintenanceCost.omCostColdStartup"""))
+    val omCostHotStartup = parse_element (element ("""ResourceOperationMaintenanceCost.omCostHotStartup"""))
+    val omCostIntermediateStartup = parse_element (element ("""ResourceOperationMaintenanceCost.omCostIntermediateStartup"""))
+    val omCostLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.omCostLowSustainedLimit"""))
+    val solidfuelPercentAboveLowSustainedLimit = parse_element (element ("""ResourceOperationMaintenanceCost.solidfuelPercentAboveLowSustainedLimit"""))
+    val ResourceVerifiableCosts = parse_attribute (attribute ("""ResourceOperationMaintenanceCost.ResourceVerifiableCosts"""))
     def parse (context: Context): ResourceOperationMaintenanceCost =
     {
         ResourceOperationMaintenanceCost(
@@ -3881,22 +3881,22 @@ extends
     Parseable[ResourceStartupCost]
 {
     val sup = BasicElement.parse _
-    val fuelColdStartup = parse_element (element ("""ResourceStartupCost.fuelColdStartup"""))_
-    val fuelHotStartup = parse_element (element ("""ResourceStartupCost.fuelHotStartup"""))_
-    val fuelIntermediateStartup = parse_element (element ("""ResourceStartupCost.fuelIntermediateStartup"""))_
-    val fuelLowSustainedLimit = parse_element (element ("""ResourceStartupCost.fuelLowSustainedLimit"""))_
-    val gasPercentColdStartup = parse_element (element ("""ResourceStartupCost.gasPercentColdStartup"""))_
-    val gasPercentHotStartup = parse_element (element ("""ResourceStartupCost.gasPercentHotStartup"""))_
-    val gasPercentIntermediateStartup = parse_element (element ("""ResourceStartupCost.gasPercentIntermediateStartup"""))_
-    val gasPercentLowSustainedLimit = parse_element (element ("""ResourceStartupCost.gasPercentLowSustainedLimit"""))_
-    val oilPercentColdStartup = parse_element (element ("""ResourceStartupCost.oilPercentColdStartup"""))_
-    val oilPercentHotStartup = parse_element (element ("""ResourceStartupCost.oilPercentHotStartup"""))_
-    val oilPercentIntermediateStartup = parse_element (element ("""ResourceStartupCost.oilPercentIntermediateStartup"""))_
-    val oilPercentLowSustainedLimit = parse_element (element ("""ResourceStartupCost.oilPercentLowSustainedLimit"""))_
-    val solidfuelPercentColdStartup = parse_element (element ("""ResourceStartupCost.solidfuelPercentColdStartup"""))_
-    val solidfuelPercentHotStartup = parse_element (element ("""ResourceStartupCost.solidfuelPercentHotStartup"""))_
-    val solidfuelPercentIntermediateStartup = parse_element (element ("""ResourceStartupCost.solidfuelPercentIntermediateStartup"""))_
-    val solidfuelPercentLowSustainedLimit = parse_element (element ("""ResourceStartupCost.solidfuelPercentLowSustainedLimit"""))_
+    val fuelColdStartup = parse_element (element ("""ResourceStartupCost.fuelColdStartup"""))
+    val fuelHotStartup = parse_element (element ("""ResourceStartupCost.fuelHotStartup"""))
+    val fuelIntermediateStartup = parse_element (element ("""ResourceStartupCost.fuelIntermediateStartup"""))
+    val fuelLowSustainedLimit = parse_element (element ("""ResourceStartupCost.fuelLowSustainedLimit"""))
+    val gasPercentColdStartup = parse_element (element ("""ResourceStartupCost.gasPercentColdStartup"""))
+    val gasPercentHotStartup = parse_element (element ("""ResourceStartupCost.gasPercentHotStartup"""))
+    val gasPercentIntermediateStartup = parse_element (element ("""ResourceStartupCost.gasPercentIntermediateStartup"""))
+    val gasPercentLowSustainedLimit = parse_element (element ("""ResourceStartupCost.gasPercentLowSustainedLimit"""))
+    val oilPercentColdStartup = parse_element (element ("""ResourceStartupCost.oilPercentColdStartup"""))
+    val oilPercentHotStartup = parse_element (element ("""ResourceStartupCost.oilPercentHotStartup"""))
+    val oilPercentIntermediateStartup = parse_element (element ("""ResourceStartupCost.oilPercentIntermediateStartup"""))
+    val oilPercentLowSustainedLimit = parse_element (element ("""ResourceStartupCost.oilPercentLowSustainedLimit"""))
+    val solidfuelPercentColdStartup = parse_element (element ("""ResourceStartupCost.solidfuelPercentColdStartup"""))
+    val solidfuelPercentHotStartup = parse_element (element ("""ResourceStartupCost.solidfuelPercentHotStartup"""))
+    val solidfuelPercentIntermediateStartup = parse_element (element ("""ResourceStartupCost.solidfuelPercentIntermediateStartup"""))
+    val solidfuelPercentLowSustainedLimit = parse_element (element ("""ResourceStartupCost.solidfuelPercentLowSustainedLimit"""))
     def parse (context: Context): ResourceStartupCost =
     {
         ResourceStartupCost(
@@ -3956,9 +3956,9 @@ extends
     Parseable[ResourceVerifiableCosts]
 {
     val sup = BasicElement.parse _
-    val MktHeatRateCurve = parse_attribute (attribute ("""ResourceVerifiableCosts.MktHeatRateCurve"""))_
-    val RegisteredResource = parse_attribute (attribute ("""ResourceVerifiableCosts.RegisteredResource"""))_
-    val ResourceOperationMaintenanceCost = parse_attribute (attribute ("""ResourceVerifiableCosts.ResourceOperationMaintenanceCost"""))_
+    val MktHeatRateCurve = parse_attribute (attribute ("""ResourceVerifiableCosts.MktHeatRateCurve"""))
+    val RegisteredResource = parse_attribute (attribute ("""ResourceVerifiableCosts.RegisteredResource"""))
+    val ResourceOperationMaintenanceCost = parse_attribute (attribute ("""ResourceVerifiableCosts.ResourceOperationMaintenanceCost"""))
     def parse (context: Context): ResourceVerifiableCosts =
     {
         ResourceVerifiableCosts(
@@ -4006,9 +4006,9 @@ extends
     Parseable[SchedulingCoordinator]
 {
     val sup = MktOrganisation.parse _
-    val scid = parse_element (element ("""SchedulingCoordinator.scid"""))_
-    val LoadRatio = parse_attribute (attribute ("""SchedulingCoordinator.LoadRatio"""))_
-    val MktOrgansation = parse_attribute (attribute ("""SchedulingCoordinator.MktOrgansation"""))_
+    val scid = parse_element (element ("""SchedulingCoordinator.scid"""))
+    val LoadRatio = parse_attribute (attribute ("""SchedulingCoordinator.LoadRatio"""))
+    val MktOrgansation = parse_attribute (attribute ("""SchedulingCoordinator.MktOrgansation"""))
     def parse (context: Context): SchedulingCoordinator =
     {
         SchedulingCoordinator(
@@ -4057,10 +4057,10 @@ extends
     Parseable[SchedulingCoordinatorUser]
 {
     val sup = BasicElement.parse _
-    val endEffectiveDate = parse_element (element ("""SchedulingCoordinatorUser.endEffectiveDate"""))_
-    val loginID = parse_element (element ("""SchedulingCoordinatorUser.loginID"""))_
-    val loginRole = parse_element (element ("""SchedulingCoordinatorUser.loginRole"""))_
-    val startEffectiveDate = parse_element (element ("""SchedulingCoordinatorUser.startEffectiveDate"""))_
+    val endEffectiveDate = parse_element (element ("""SchedulingCoordinatorUser.endEffectiveDate"""))
+    val loginID = parse_element (element ("""SchedulingCoordinatorUser.loginID"""))
+    val loginRole = parse_element (element ("""SchedulingCoordinatorUser.loginRole"""))
+    val startEffectiveDate = parse_element (element ("""SchedulingCoordinatorUser.startEffectiveDate"""))
     def parse (context: Context): SchedulingCoordinatorUser =
     {
         SchedulingCoordinatorUser(
@@ -4108,9 +4108,9 @@ extends
     Parseable[SchedulingPoint]
 {
     val sup = IdentifiedObject.parse _
-    val endEffectiveDate = parse_element (element ("""SchedulingPoint.endEffectiveDate"""))_
-    val startEffectiveDate = parse_element (element ("""SchedulingPoint.startEffectiveDate"""))_
-    val Flowgate = parse_attribute (attribute ("""SchedulingPoint.Flowgate"""))_
+    val endEffectiveDate = parse_element (element ("""SchedulingPoint.endEffectiveDate"""))
+    val startEffectiveDate = parse_element (element ("""SchedulingPoint.startEffectiveDate"""))
+    val Flowgate = parse_attribute (attribute ("""SchedulingPoint.Flowgate"""))
     def parse (context: Context): SchedulingPoint =
     {
         SchedulingPoint(
@@ -4154,7 +4154,7 @@ extends
     Parseable[StartUpEnergyCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""StartUpEnergyCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""StartUpEnergyCurve.RegisteredGenerator"""))
     def parse (context: Context): StartUpEnergyCurve =
     {
         StartUpEnergyCurve(
@@ -4195,7 +4195,7 @@ extends
     Parseable[StartUpFuelCurve]
 {
     val sup = Curve.parse _
-    val RegisteredGenerator = parse_attribute (attribute ("""StartUpFuelCurve.RegisteredGenerator"""))_
+    val RegisteredGenerator = parse_attribute (attribute ("""StartUpFuelCurve.RegisteredGenerator"""))
     def parse (context: Context): StartUpFuelCurve =
     {
         StartUpFuelCurve(
@@ -4266,21 +4266,21 @@ extends
     Parseable[SubControlArea]
 {
     val sup = PowerSystemResource.parse _
-    val areaShortName = parse_element (element ("""SubControlArea.areaShortName"""))_
-    val constantCoefficient = parse_element (element ("""SubControlArea.constantCoefficient"""))_
-    val embeddedControlArea = parse_attribute (attribute ("""SubControlArea.embeddedControlArea"""))_
-    val endEffectiveDate = parse_element (element ("""SubControlArea.endEffectiveDate"""))_
-    val internalCA = parse_attribute (attribute ("""SubControlArea.internalCA"""))_
-    val linearCoefficient = parse_element (element ("""SubControlArea.linearCoefficient"""))_
-    val localCA = parse_attribute (attribute ("""SubControlArea.localCA"""))_
-    val maxSelfSchedMW = parse_element (element ("""SubControlArea.maxSelfSchedMW"""))_
-    val minSelfSchedMW = parse_element (element ("""SubControlArea.minSelfSchedMW"""))_
-    val quadraticCoefficient = parse_element (element ("""SubControlArea.quadraticCoefficient"""))_
-    val startEffectiveDate = parse_element (element ("""SubControlArea.startEffectiveDate"""))_
-    val AdjacentCASet = parse_attribute (attribute ("""SubControlArea.AdjacentCASet"""))_
-    val AreaReserveSpecification = parse_attribute (attribute ("""SubControlArea.AreaReserveSpecification"""))_
-    val HostControlArea = parse_attribute (attribute ("""SubControlArea.HostControlArea"""))_
-    val RTO = parse_attribute (attribute ("""SubControlArea.RTO"""))_
+    val areaShortName = parse_element (element ("""SubControlArea.areaShortName"""))
+    val constantCoefficient = parse_element (element ("""SubControlArea.constantCoefficient"""))
+    val embeddedControlArea = parse_attribute (attribute ("""SubControlArea.embeddedControlArea"""))
+    val endEffectiveDate = parse_element (element ("""SubControlArea.endEffectiveDate"""))
+    val internalCA = parse_attribute (attribute ("""SubControlArea.internalCA"""))
+    val linearCoefficient = parse_element (element ("""SubControlArea.linearCoefficient"""))
+    val localCA = parse_attribute (attribute ("""SubControlArea.localCA"""))
+    val maxSelfSchedMW = parse_element (element ("""SubControlArea.maxSelfSchedMW"""))
+    val minSelfSchedMW = parse_element (element ("""SubControlArea.minSelfSchedMW"""))
+    val quadraticCoefficient = parse_element (element ("""SubControlArea.quadraticCoefficient"""))
+    val startEffectiveDate = parse_element (element ("""SubControlArea.startEffectiveDate"""))
+    val AdjacentCASet = parse_attribute (attribute ("""SubControlArea.AdjacentCASet"""))
+    val AreaReserveSpecification = parse_attribute (attribute ("""SubControlArea.AreaReserveSpecification"""))
+    val HostControlArea = parse_attribute (attribute ("""SubControlArea.HostControlArea"""))
+    val RTO = parse_attribute (attribute ("""SubControlArea.RTO"""))
     def parse (context: Context): SubControlArea =
     {
         SubControlArea(
@@ -4341,9 +4341,9 @@ extends
     Parseable[SubstitutionResourceList]
 {
     val sup = BasicElement.parse _
-    val precedence = parse_element (element ("""SubstitutionResourceList.precedence"""))_
-    val RegisteredResource = parse_attribute (attribute ("""SubstitutionResourceList.RegisteredResource"""))_
-    val TransmissionContractRight = parse_attribute (attribute ("""SubstitutionResourceList.TransmissionContractRight"""))_
+    val precedence = parse_element (element ("""SubstitutionResourceList.precedence"""))
+    val RegisteredResource = parse_attribute (attribute ("""SubstitutionResourceList.RegisteredResource"""))
+    val TransmissionContractRight = parse_attribute (attribute ("""SubstitutionResourceList.TransmissionContractRight"""))
     def parse (context: Context): SubstitutionResourceList =
     {
         SubstitutionResourceList(
@@ -4389,8 +4389,8 @@ extends
     Parseable[TACArea]
 {
     val sup = IdentifiedObject.parse _
-    val endEffectiveDate = parse_element (element ("""TACArea.endEffectiveDate"""))_
-    val startEffectiveDate = parse_element (element ("""TACArea.startEffectiveDate"""))_
+    val endEffectiveDate = parse_element (element ("""TACArea.endEffectiveDate"""))
+    val startEffectiveDate = parse_element (element ("""TACArea.startEffectiveDate"""))
     def parse (context: Context): TACArea =
     {
         TACArea(
@@ -4439,10 +4439,10 @@ extends
     Parseable[TransmissionRightChain]
 {
     val sup = IdentifiedObject.parse _
-    val endEffectiveDate = parse_element (element ("""TransmissionRightChain.endEffectiveDate"""))_
-    val startEffectiveDate = parse_element (element ("""TransmissionRightChain.startEffectiveDate"""))_
-    val Chain_ContractRight = parse_attribute (attribute ("""TransmissionRightChain.Chain_ContractRight"""))_
-    val RTO = parse_attribute (attribute ("""TransmissionRightChain.RTO"""))_
+    val endEffectiveDate = parse_element (element ("""TransmissionRightChain.endEffectiveDate"""))
+    val startEffectiveDate = parse_element (element ("""TransmissionRightChain.startEffectiveDate"""))
+    val Chain_ContractRight = parse_attribute (attribute ("""TransmissionRightChain.Chain_ContractRight"""))
+    val RTO = parse_attribute (attribute ("""TransmissionRightChain.RTO"""))
     def parse (context: Context): TransmissionRightChain =
     {
         TransmissionRightChain(
@@ -4486,7 +4486,7 @@ extends
     Parseable[WheelingCounterParty]
 {
     val sup = IdentifiedObject.parse _
-    val RegisteredInterTie = parse_attributes (attribute ("""WheelingCounterParty.RegisteredInterTie"""))_
+    val RegisteredInterTie = parse_attributes (attribute ("""WheelingCounterParty.RegisteredInterTie"""))
     def parse (context: Context): WheelingCounterParty =
     {
         WheelingCounterParty(

@@ -44,9 +44,9 @@ extends
     Parseable[AcceptanceTest]
 {
     val sup = BasicElement.parse _
-    val dateTime = parse_element (element ("""AcceptanceTest.dateTime"""))_
-    val success = parse_element (element ("""AcceptanceTest.success"""))_
-    val typ = parse_element (element ("""AcceptanceTest.type"""))_
+    val dateTime = parse_element (element ("""AcceptanceTest.dateTime"""))
+    val success = parse_element (element ("""AcceptanceTest.success"""))
+    val typ = parse_element (element ("""AcceptanceTest.type"""))
     def parse (context: Context): AcceptanceTest =
     {
         AcceptanceTest(
@@ -137,29 +137,29 @@ extends
     Parseable[Asset]
 {
     val sup = IdentifiedObject.parse _
-    val acceptanceTest = parse_attribute (attribute ("""Asset.acceptanceTest"""))_
-    val critical = parse_element (element ("""Asset.critical"""))_
-    val electronicAddress = parse_attribute (attribute ("""Asset.electronicAddress"""))_
-    val initialCondition = parse_element (element ("""Asset.initialCondition"""))_
-    val initialLossOfLife = parse_element (element ("""Asset.initialLossOfLife"""))_
-    val lifecycle = parse_attribute (attribute ("""Asset.lifecycle"""))_
-    val lotNumber = parse_element (element ("""Asset.lotNumber"""))_
-    val purchasePrice = parse_element (element ("""Asset.purchasePrice"""))_
-    val serialNumber = parse_element (element ("""Asset.serialNumber"""))_
-    val status = parse_attribute (attribute ("""Asset.status"""))_
-    val typ = parse_element (element ("""Asset.type"""))_
-    val utcNumber = parse_element (element ("""Asset.utcNumber"""))_
-    val ActivityRecords = parse_attributes (attribute ("""Asset.ActivityRecords"""))_
-    val AssetContainer = parse_attribute (attribute ("""Asset.AssetContainer"""))_
-    val AssetInfo = parse_attribute (attribute ("""Asset.AssetInfo"""))_
-    val AssetPropertyCurves = parse_attributes (attribute ("""Asset.AssetPropertyCurves"""))_
-    val ErpInventory = parse_attribute (attribute ("""Asset.ErpInventory"""))_
-    val ErpItemMaster = parse_attribute (attribute ("""Asset.ErpItemMaster"""))_
-    val ErpRecDeliveryItems = parse_attributes (attribute ("""Asset.ErpRecDeliveryItems"""))_
-    val FinancialInfo = parse_attribute (attribute ("""Asset.FinancialInfo"""))_
-    val Location = parse_attribute (attribute ("""Asset.Location"""))_
-    val OrganisationRoles = parse_attributes (attribute ("""Asset.OrganisationRoles"""))_
-    val PowerSystemResources = parse_attributes (attribute ("""Asset.PowerSystemResources"""))_
+    val acceptanceTest = parse_attribute (attribute ("""Asset.acceptanceTest"""))
+    val critical = parse_element (element ("""Asset.critical"""))
+    val electronicAddress = parse_attribute (attribute ("""Asset.electronicAddress"""))
+    val initialCondition = parse_element (element ("""Asset.initialCondition"""))
+    val initialLossOfLife = parse_element (element ("""Asset.initialLossOfLife"""))
+    val lifecycle = parse_attribute (attribute ("""Asset.lifecycle"""))
+    val lotNumber = parse_element (element ("""Asset.lotNumber"""))
+    val purchasePrice = parse_element (element ("""Asset.purchasePrice"""))
+    val serialNumber = parse_element (element ("""Asset.serialNumber"""))
+    val status = parse_attribute (attribute ("""Asset.status"""))
+    val typ = parse_element (element ("""Asset.type"""))
+    val utcNumber = parse_element (element ("""Asset.utcNumber"""))
+    val ActivityRecords = parse_attributes (attribute ("""Asset.ActivityRecords"""))
+    val AssetContainer = parse_attribute (attribute ("""Asset.AssetContainer"""))
+    val AssetInfo = parse_attribute (attribute ("""Asset.AssetInfo"""))
+    val AssetPropertyCurves = parse_attributes (attribute ("""Asset.AssetPropertyCurves"""))
+    val ErpInventory = parse_attribute (attribute ("""Asset.ErpInventory"""))
+    val ErpItemMaster = parse_attribute (attribute ("""Asset.ErpItemMaster"""))
+    val ErpRecDeliveryItems = parse_attributes (attribute ("""Asset.ErpRecDeliveryItems"""))
+    val FinancialInfo = parse_attribute (attribute ("""Asset.FinancialInfo"""))
+    val Location = parse_attribute (attribute ("""Asset.Location"""))
+    val OrganisationRoles = parse_attributes (attribute ("""Asset.OrganisationRoles"""))
+    val PowerSystemResources = parse_attributes (attribute ("""Asset.PowerSystemResources"""))
     def parse (context: Context): Asset =
     {
         Asset(
@@ -267,11 +267,11 @@ extends
     Parseable[AssetFunction]
 {
     val sup = IdentifiedObject.parse _
-    val configID = parse_element (element ("""AssetFunction.configID"""))_
-    val firmwareID = parse_element (element ("""AssetFunction.firmwareID"""))_
-    val hardwareID = parse_element (element ("""AssetFunction.hardwareID"""))_
-    val password = parse_element (element ("""AssetFunction.password"""))_
-    val programID = parse_element (element ("""AssetFunction.programID"""))_
+    val configID = parse_element (element ("""AssetFunction.configID"""))
+    val firmwareID = parse_element (element ("""AssetFunction.firmwareID"""))
+    val hardwareID = parse_element (element ("""AssetFunction.hardwareID"""))
+    val password = parse_element (element ("""AssetFunction.password"""))
+    val programID = parse_element (element ("""AssetFunction.programID"""))
     def parse (context: Context): AssetFunction =
     {
         AssetFunction(
@@ -319,7 +319,7 @@ extends
     Parseable[AssetInfo]
 {
     val sup = IdentifiedObject.parse _
-    val AssetModel = parse_attribute (attribute ("""AssetInfo.AssetModel"""))_
+    val AssetModel = parse_attribute (attribute ("""AssetInfo.AssetModel"""))
     def parse (context: Context): AssetInfo =
     {
         AssetInfo(
@@ -361,7 +361,7 @@ extends
     Parseable[AssetLocationHazard]
 {
     val sup = Hazard.parse _
-    val Locations = parse_attributes (attribute ("""AssetLocationHazard.Locations"""))_
+    val Locations = parse_attributes (attribute ("""AssetLocationHazard.Locations"""))
     def parse (context: Context): AssetLocationHazard =
     {
         AssetLocationHazard(
@@ -403,7 +403,7 @@ extends
     Parseable[AssetModel]
 {
     val sup = IdentifiedObject.parse _
-    val AssetInfo = parse_attribute (attribute ("""AssetModel.AssetInfo"""))_
+    val AssetInfo = parse_attribute (attribute ("""AssetModel.AssetInfo"""))
     def parse (context: Context): AssetModel =
     {
         AssetModel(
@@ -458,14 +458,14 @@ extends
     Parseable[AssetModelUsageKind]
 {
     val sup = BasicElement.parse _
-    val customerSubstation = parse_attribute (attribute ("""AssetModelUsageKind.customerSubstation"""))_
-    val distributionOverhead = parse_attribute (attribute ("""AssetModelUsageKind.distributionOverhead"""))_
-    val distributionUnderground = parse_attribute (attribute ("""AssetModelUsageKind.distributionUnderground"""))_
-    val other = parse_attribute (attribute ("""AssetModelUsageKind.other"""))_
-    val streetlight = parse_attribute (attribute ("""AssetModelUsageKind.streetlight"""))_
-    val substation = parse_attribute (attribute ("""AssetModelUsageKind.substation"""))_
-    val transmission = parse_attribute (attribute ("""AssetModelUsageKind.transmission"""))_
-    val unknown = parse_attribute (attribute ("""AssetModelUsageKind.unknown"""))_
+    val customerSubstation = parse_attribute (attribute ("""AssetModelUsageKind.customerSubstation"""))
+    val distributionOverhead = parse_attribute (attribute ("""AssetModelUsageKind.distributionOverhead"""))
+    val distributionUnderground = parse_attribute (attribute ("""AssetModelUsageKind.distributionUnderground"""))
+    val other = parse_attribute (attribute ("""AssetModelUsageKind.other"""))
+    val streetlight = parse_attribute (attribute ("""AssetModelUsageKind.streetlight"""))
+    val substation = parse_attribute (attribute ("""AssetModelUsageKind.substation"""))
+    val transmission = parse_attribute (attribute ("""AssetModelUsageKind.transmission"""))
+    val unknown = parse_attribute (attribute ("""AssetModelUsageKind.unknown"""))
     def parse (context: Context): AssetModelUsageKind =
     {
         AssetModelUsageKind(
@@ -667,10 +667,10 @@ extends
     Parseable[CorporateStandardKind]
 {
     val sup = BasicElement.parse _
-    val experimental = parse_attribute (attribute ("""CorporateStandardKind.experimental"""))_
-    val other = parse_attribute (attribute ("""CorporateStandardKind.other"""))_
-    val standard = parse_attribute (attribute ("""CorporateStandardKind.standard"""))_
-    val underEvaluation = parse_attribute (attribute ("""CorporateStandardKind.underEvaluation"""))_
+    val experimental = parse_attribute (attribute ("""CorporateStandardKind.experimental"""))
+    val other = parse_attribute (attribute ("""CorporateStandardKind.other"""))
+    val standard = parse_attribute (attribute ("""CorporateStandardKind.standard"""))
+    val underEvaluation = parse_attribute (attribute ("""CorporateStandardKind.underEvaluation"""))
     def parse (context: Context): CorporateStandardKind =
     {
         CorporateStandardKind(
@@ -728,12 +728,12 @@ extends
     Parseable[LifecycleDate]
 {
     val sup = BasicElement.parse _
-    val installationDate = parse_element (element ("""LifecycleDate.installationDate"""))_
-    val manufacturedDate = parse_element (element ("""LifecycleDate.manufacturedDate"""))_
-    val purchaseDate = parse_element (element ("""LifecycleDate.purchaseDate"""))_
-    val receivedDate = parse_element (element ("""LifecycleDate.receivedDate"""))_
-    val removalDate = parse_element (element ("""LifecycleDate.removalDate"""))_
-    val retiredDate = parse_element (element ("""LifecycleDate.retiredDate"""))_
+    val installationDate = parse_element (element ("""LifecycleDate.installationDate"""))
+    val manufacturedDate = parse_element (element ("""LifecycleDate.manufacturedDate"""))
+    val purchaseDate = parse_element (element ("""LifecycleDate.purchaseDate"""))
+    val receivedDate = parse_element (element ("""LifecycleDate.receivedDate"""))
+    val removalDate = parse_element (element ("""LifecycleDate.removalDate"""))
+    val retiredDate = parse_element (element ("""LifecycleDate.retiredDate"""))
     def parse (context: Context): LifecycleDate =
     {
         LifecycleDate(
@@ -863,12 +863,12 @@ extends
     Parseable[Procedure]
 {
     val sup = Document.parse _
-    val instruction = parse_element (element ("""Procedure.instruction"""))_
-    val kind = parse_attribute (attribute ("""Procedure.kind"""))_
-    val sequenceNumber = parse_element (element ("""Procedure.sequenceNumber"""))_
-    val Assets = parse_attributes (attribute ("""Procedure.Assets"""))_
-    val Limits = parse_attributes (attribute ("""Procedure.Limits"""))_
-    val Measurements = parse_attributes (attribute ("""Procedure.Measurements"""))_
+    val instruction = parse_element (element ("""Procedure.instruction"""))
+    val kind = parse_attribute (attribute ("""Procedure.kind"""))
+    val sequenceNumber = parse_element (element ("""Procedure.sequenceNumber"""))
+    val Assets = parse_attributes (attribute ("""Procedure.Assets"""))
+    val Limits = parse_attributes (attribute ("""Procedure.Limits"""))
+    val Measurements = parse_attributes (attribute ("""Procedure.Measurements"""))
     def parse (context: Context): Procedure =
     {
         Procedure(
@@ -921,10 +921,10 @@ extends
     Parseable[ProcedureDataSet]
 {
     val sup = Document.parse _
-    val completedDateTime = parse_element (element ("""ProcedureDataSet.completedDateTime"""))_
-    val MeasurementValues = parse_attributes (attribute ("""ProcedureDataSet.MeasurementValues"""))_
-    val Procedure = parse_attribute (attribute ("""ProcedureDataSet.Procedure"""))_
-    val TransformerObservations = parse_attributes (attribute ("""ProcedureDataSet.TransformerObservations"""))_
+    val completedDateTime = parse_element (element ("""ProcedureDataSet.completedDateTime"""))
+    val MeasurementValues = parse_attributes (attribute ("""ProcedureDataSet.MeasurementValues"""))
+    val Procedure = parse_attribute (attribute ("""ProcedureDataSet.Procedure"""))
+    val TransformerObservations = parse_attributes (attribute ("""ProcedureDataSet.TransformerObservations"""))
     def parse (context: Context): ProcedureDataSet =
     {
         ProcedureDataSet(
@@ -976,11 +976,11 @@ extends
     Parseable[ProcedureKind]
 {
     val sup = BasicElement.parse _
-    val diagnosis = parse_attribute (attribute ("""ProcedureKind.diagnosis"""))_
-    val inspection = parse_attribute (attribute ("""ProcedureKind.inspection"""))_
-    val maintenance = parse_attribute (attribute ("""ProcedureKind.maintenance"""))_
-    val other = parse_attribute (attribute ("""ProcedureKind.other"""))_
-    val test = parse_attribute (attribute ("""ProcedureKind.test"""))_
+    val diagnosis = parse_attribute (attribute ("""ProcedureKind.diagnosis"""))
+    val inspection = parse_attribute (attribute ("""ProcedureKind.inspection"""))
+    val maintenance = parse_attribute (attribute ("""ProcedureKind.maintenance"""))
+    val other = parse_attribute (attribute ("""ProcedureKind.other"""))
+    val test = parse_attribute (attribute ("""ProcedureKind.test"""))
     def parse (context: Context): ProcedureKind =
     {
         ProcedureKind(
@@ -1037,13 +1037,13 @@ extends
     Parseable[ProductAssetModel]
 {
     val sup = AssetModel.parse _
-    val corporateStandardKind = parse_attribute (attribute ("""ProductAssetModel.corporateStandardKind"""))_
-    val modelNumber = parse_element (element ("""ProductAssetModel.modelNumber"""))_
-    val modelVersion = parse_element (element ("""ProductAssetModel.modelVersion"""))_
-    val usageKind = parse_attribute (attribute ("""ProductAssetModel.usageKind"""))_
-    val weightTotal = parse_element (element ("""ProductAssetModel.weightTotal"""))_
-    val GenericAssetModelOrMaterial = parse_attribute (attribute ("""ProductAssetModel.GenericAssetModelOrMaterial"""))_
-    val Manufacturer = parse_attribute (attribute ("""ProductAssetModel.Manufacturer"""))_
+    val corporateStandardKind = parse_attribute (attribute ("""ProductAssetModel.corporateStandardKind"""))
+    val modelNumber = parse_element (element ("""ProductAssetModel.modelNumber"""))
+    val modelVersion = parse_element (element ("""ProductAssetModel.modelVersion"""))
+    val usageKind = parse_attribute (attribute ("""ProductAssetModel.usageKind"""))
+    val weightTotal = parse_element (element ("""ProductAssetModel.weightTotal"""))
+    val GenericAssetModelOrMaterial = parse_attribute (attribute ("""ProductAssetModel.GenericAssetModelOrMaterial"""))
+    val Manufacturer = parse_attribute (attribute ("""ProductAssetModel.Manufacturer"""))
     def parse (context: Context): ProductAssetModel =
     {
         ProductAssetModel(
@@ -1098,11 +1098,11 @@ extends
     Parseable[Seal]
 {
     val sup = IdentifiedObject.parse _
-    val appliedDateTime = parse_element (element ("""Seal.appliedDateTime"""))_
-    val condition = parse_attribute (attribute ("""Seal.condition"""))_
-    val kind = parse_attribute (attribute ("""Seal.kind"""))_
-    val sealNumber = parse_element (element ("""Seal.sealNumber"""))_
-    val AssetContainer = parse_attribute (attribute ("""Seal.AssetContainer"""))_
+    val appliedDateTime = parse_element (element ("""Seal.appliedDateTime"""))
+    val condition = parse_attribute (attribute ("""Seal.condition"""))
+    val kind = parse_attribute (attribute ("""Seal.kind"""))
+    val sealNumber = parse_element (element ("""Seal.sealNumber"""))
+    val AssetContainer = parse_attribute (attribute ("""Seal.AssetContainer"""))
     def parse (context: Context): Seal =
     {
         Seal(
@@ -1155,11 +1155,11 @@ extends
     Parseable[SealConditionKind]
 {
     val sup = BasicElement.parse _
-    val broken = parse_attribute (attribute ("""SealConditionKind.broken"""))_
-    val locked = parse_attribute (attribute ("""SealConditionKind.locked"""))_
-    val missing = parse_attribute (attribute ("""SealConditionKind.missing"""))_
-    val open = parse_attribute (attribute ("""SealConditionKind.open"""))_
-    val other = parse_attribute (attribute ("""SealConditionKind.other"""))_
+    val broken = parse_attribute (attribute ("""SealConditionKind.broken"""))
+    val locked = parse_attribute (attribute ("""SealConditionKind.locked"""))
+    val missing = parse_attribute (attribute ("""SealConditionKind.missing"""))
+    val open = parse_attribute (attribute ("""SealConditionKind.open"""))
+    val other = parse_attribute (attribute ("""SealConditionKind.other"""))
     def parse (context: Context): SealConditionKind =
     {
         SealConditionKind(
@@ -1210,10 +1210,10 @@ extends
     Parseable[SealKind]
 {
     val sup = BasicElement.parse _
-    val lead = parse_attribute (attribute ("""SealKind.lead"""))_
-    val lock1 = parse_attribute (attribute ("""SealKind.lock"""))_
-    val other = parse_attribute (attribute ("""SealKind.other"""))_
-    val steel = parse_attribute (attribute ("""SealKind.steel"""))_
+    val lead = parse_attribute (attribute ("""SealKind.lead"""))
+    val lock1 = parse_attribute (attribute ("""SealKind.lock"""))
+    val other = parse_attribute (attribute ("""SealKind.other"""))
+    val steel = parse_attribute (attribute ("""SealKind.steel"""))
     def parse (context: Context): SealKind =
     {
         SealKind(

@@ -37,7 +37,7 @@ extends
     Parseable[WheelingReferenceSchedule]
 {
     val sup = BidHourlySchedule.parse _
-    val value = parse_element (element ("""WheelingReferenceSchedule.value"""))_
+    val value = parse_element (element ("""WheelingReferenceSchedule.value"""))
     def parse (context: Context): WheelingReferenceSchedule =
     {
         WheelingReferenceSchedule(

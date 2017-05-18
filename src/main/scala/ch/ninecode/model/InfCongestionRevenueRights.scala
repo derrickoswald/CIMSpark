@@ -50,14 +50,14 @@ extends
     Parseable[FTR]
 {
     val sup = Agreement.parse _
-    val action = parse_element (element ("""FTR.action"""))_
-    val baseEnergy = parse_element (element ("""FTR.baseEnergy"""))_
-    val ftrType = parse_element (element ("""FTR.ftrType"""))_
-    val optimized = parse_element (element ("""FTR.optimized"""))_
-    val EnergyPriceCurve = parse_attribute (attribute ("""FTR.EnergyPriceCurve"""))_
-    val Flowgate = parse_attribute (attribute ("""FTR.Flowgate"""))_
-    val Pnodes = parse_attributes (attribute ("""FTR.Pnodes"""))_
-    val _class = parse_element (element ("""FTR.class"""))_
+    val action = parse_element (element ("""FTR.action"""))
+    val baseEnergy = parse_element (element ("""FTR.baseEnergy"""))
+    val ftrType = parse_element (element ("""FTR.ftrType"""))
+    val optimized = parse_element (element ("""FTR.optimized"""))
+    val EnergyPriceCurve = parse_attribute (attribute ("""FTR.EnergyPriceCurve"""))
+    val Flowgate = parse_attribute (attribute ("""FTR.Flowgate"""))
+    val Pnodes = parse_attributes (attribute ("""FTR.Pnodes"""))
+    val _class = parse_element (element ("""FTR.class"""))
     def parse (context: Context): FTR =
     {
         FTR(
@@ -111,10 +111,10 @@ extends
     Parseable[ViolationLimit]
 {
     val sup = Limit.parse _
-    val enforced = parse_element (element ("""ViolationLimit.enforced"""))_
-    val Flowgate = parse_attribute (attribute ("""ViolationLimit.Flowgate"""))_
-    val MktMeasurement = parse_attribute (attribute ("""ViolationLimit.MktMeasurement"""))_
-    val MktOrganisation = parse_attributes (attribute ("""ViolationLimit.MktOrganisation"""))_
+    val enforced = parse_element (element ("""ViolationLimit.enforced"""))
+    val Flowgate = parse_attribute (attribute ("""ViolationLimit.Flowgate"""))
+    val MktMeasurement = parse_attribute (attribute ("""ViolationLimit.MktMeasurement"""))
+    val MktOrganisation = parse_attributes (attribute ("""ViolationLimit.MktOrganisation"""))
     def parse (context: Context): ViolationLimit =
     {
         ViolationLimit(

@@ -55,14 +55,14 @@ extends
     Parseable[PowerSystemProject]
 {
     val sup = BasicElement.parse _
-    val attr = parse_attribute (attribute ("""PowerSystemProject."""))_
-    val description = parse_element (element ("""PowerSystemProject.description"""))_
-    val name = parse_element (element ("""PowerSystemProject.name"""))_
-    val priority = parse_element (element ("""PowerSystemProject.priority"""))_
-    val state = parse_attribute (attribute ("""PowerSystemProject.state"""))_
-    val typ = parse_element (element ("""PowerSystemProject.type"""))_
-    val version = parse_element (element ("""PowerSystemProject.version"""))_
-    val Project = parse_attribute (attribute ("""PowerSystemProject.Project"""))_
+    val attr = parse_attribute (attribute ("""PowerSystemProject."""))
+    val description = parse_element (element ("""PowerSystemProject.description"""))
+    val name = parse_element (element ("""PowerSystemProject.name"""))
+    val priority = parse_element (element ("""PowerSystemProject.priority"""))
+    val state = parse_attribute (attribute ("""PowerSystemProject.state"""))
+    val typ = parse_element (element ("""PowerSystemProject.type"""))
+    val version = parse_element (element ("""PowerSystemProject.version"""))
+    val Project = parse_attribute (attribute ("""PowerSystemProject.Project"""))
     def parse (context: Context): PowerSystemProject =
     {
         PowerSystemProject(
@@ -111,13 +111,13 @@ extends
     Parseable[PowerSystemProjectSchedule]
 {
     val sup = BasicElement.parse _
-    val actualEnd = parse_element (element ("""PowerSystemProjectSchedule.actualEnd"""))_
-    val actualStart = parse_element (element ("""PowerSystemProjectSchedule.actualStart"""))_
-    val attr = parse_attribute (attribute ("""PowerSystemProjectSchedule."""))_
-    val scheduledEnd = parse_element (element ("""PowerSystemProjectSchedule.scheduledEnd"""))_
-    val scheduledStart = parse_element (element ("""PowerSystemProjectSchedule.scheduledStart"""))_
-    val status = parse_attribute (attribute ("""PowerSystemProjectSchedule.status"""))_
-    val stepType = parse_attribute (attribute ("""PowerSystemProjectSchedule.stepType"""))_
+    val actualEnd = parse_element (element ("""PowerSystemProjectSchedule.actualEnd"""))
+    val actualStart = parse_element (element ("""PowerSystemProjectSchedule.actualStart"""))
+    val attr = parse_attribute (attribute ("""PowerSystemProjectSchedule."""))
+    val scheduledEnd = parse_element (element ("""PowerSystemProjectSchedule.scheduledEnd"""))
+    val scheduledStart = parse_element (element ("""PowerSystemProjectSchedule.scheduledStart"""))
+    val status = parse_attribute (attribute ("""PowerSystemProjectSchedule.status"""))
+    val stepType = parse_attribute (attribute ("""PowerSystemProjectSchedule.stepType"""))
     def parse (context: Context): PowerSystemProjectSchedule =
     {
         PowerSystemProjectSchedule(
@@ -164,7 +164,7 @@ extends
     Parseable[PowerSystemSubProject]
 {
     val sup = PowerSystemProject.parse _
-    val Project = parse_attribute (attribute ("""PowerSystemSubProject.Project"""))_
+    val Project = parse_attribute (attribute ("""PowerSystemSubProject.Project"""))
     def parse (context: Context): PowerSystemSubProject =
     {
         PowerSystemSubProject(
@@ -215,12 +215,12 @@ extends
     Parseable[ProjectStep]
 {
     val sup = BasicElement.parse _
-    val actualEnd = parse_element (element ("""ProjectStep.actualEnd"""))_
-    val actualStart = parse_element (element ("""ProjectStep.actualStart"""))_
-    val scheduledEnd = parse_element (element ("""ProjectStep.scheduledEnd"""))_
-    val scheduledStart = parse_element (element ("""ProjectStep.scheduledStart"""))_
-    val status = parse_attribute (attribute ("""ProjectStep.status"""))_
-    val stepType = parse_attribute (attribute ("""ProjectStep.stepType"""))_
+    val actualEnd = parse_element (element ("""ProjectStep.actualEnd"""))
+    val actualStart = parse_element (element ("""ProjectStep.actualStart"""))
+    val scheduledEnd = parse_element (element ("""ProjectStep.scheduledEnd"""))
+    val scheduledStart = parse_element (element ("""ProjectStep.scheduledStart"""))
+    val status = parse_attribute (attribute ("""ProjectStep.status"""))
+    val stepType = parse_attribute (attribute ("""ProjectStep.stepType"""))
     def parse (context: Context): ProjectStep =
     {
         ProjectStep(
@@ -264,10 +264,10 @@ extends
     Parseable[ProjectStepStatusKind]
 {
     val sup = BasicElement.parse _
-    val approved = parse_attribute (attribute ("""ProjectStepStatusKind.approved"""))_
-    val cancelled = parse_attribute (attribute ("""ProjectStepStatusKind.cancelled"""))_
-    val inProgress = parse_attribute (attribute ("""ProjectStepStatusKind.inProgress"""))_
-    val inactive = parse_attribute (attribute ("""ProjectStepStatusKind.inactive"""))_
+    val approved = parse_attribute (attribute ("""ProjectStepStatusKind.approved"""))
+    val cancelled = parse_attribute (attribute ("""ProjectStepStatusKind.cancelled"""))
+    val inProgress = parse_attribute (attribute ("""ProjectStepStatusKind.inProgress"""))
+    val inactive = parse_attribute (attribute ("""ProjectStepStatusKind.inactive"""))
     def parse (context: Context): ProjectStepStatusKind =
     {
         ProjectStepStatusKind(
@@ -319,11 +319,11 @@ extends
     Parseable[StepKind]
 {
     val sup = BasicElement.parse _
-    val commissioning = parse_attribute (attribute ("""StepKind.commissioning"""))_
-    val design_and_construction = parse_attribute (attribute ("""StepKind.design and construction"""))_
-    val planning = parse_attribute (attribute ("""StepKind.planning"""))_
-    val revision = parse_attribute (attribute ("""StepKind.revision"""))_
-    val ____list_incomplete__more_to_come = parse_attribute (attribute ("""StepKind.... list incomplete, more to come"""))_
+    val commissioning = parse_attribute (attribute ("""StepKind.commissioning"""))
+    val design_and_construction = parse_attribute (attribute ("""StepKind.design and construction"""))
+    val planning = parse_attribute (attribute ("""StepKind.planning"""))
+    val revision = parse_attribute (attribute ("""StepKind.revision"""))
+    val ____list_incomplete__more_to_come = parse_attribute (attribute ("""StepKind.... list incomplete, more to come"""))
     def parse (context: Context): StepKind =
     {
         StepKind(

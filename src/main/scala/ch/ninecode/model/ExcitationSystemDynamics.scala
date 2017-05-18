@@ -106,28 +106,28 @@ extends
     Parseable[ExcAC1A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val hvlvgates = parse_element (element ("""ExcAC1A.hvlvgates"""))_
-    val ka = parse_element (element ("""ExcAC1A.ka"""))_
-    val kc = parse_element (element ("""ExcAC1A.kc"""))_
-    val kd = parse_element (element ("""ExcAC1A.kd"""))_
-    val ke = parse_element (element ("""ExcAC1A.ke"""))_
-    val kf = parse_element (element ("""ExcAC1A.kf"""))_
-    val kf1 = parse_element (element ("""ExcAC1A.kf1"""))_
-    val kf2 = parse_element (element ("""ExcAC1A.kf2"""))_
-    val ks = parse_element (element ("""ExcAC1A.ks"""))_
-    val seve1 = parse_element (element ("""ExcAC1A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcAC1A.seve2"""))_
-    val ta = parse_element (element ("""ExcAC1A.ta"""))_
-    val tb = parse_element (element ("""ExcAC1A.tb"""))_
-    val tc = parse_element (element ("""ExcAC1A.tc"""))_
-    val te = parse_element (element ("""ExcAC1A.te"""))_
-    val tf = parse_element (element ("""ExcAC1A.tf"""))_
-    val vamax = parse_element (element ("""ExcAC1A.vamax"""))_
-    val vamin = parse_element (element ("""ExcAC1A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcAC1A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcAC1A.ve2"""))_
-    val vrmax = parse_element (element ("""ExcAC1A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcAC1A.vrmin"""))_
+    val hvlvgates = parse_element (element ("""ExcAC1A.hvlvgates"""))
+    val ka = parse_element (element ("""ExcAC1A.ka"""))
+    val kc = parse_element (element ("""ExcAC1A.kc"""))
+    val kd = parse_element (element ("""ExcAC1A.kd"""))
+    val ke = parse_element (element ("""ExcAC1A.ke"""))
+    val kf = parse_element (element ("""ExcAC1A.kf"""))
+    val kf1 = parse_element (element ("""ExcAC1A.kf1"""))
+    val kf2 = parse_element (element ("""ExcAC1A.kf2"""))
+    val ks = parse_element (element ("""ExcAC1A.ks"""))
+    val seve1 = parse_element (element ("""ExcAC1A.seve1"""))
+    val seve2 = parse_element (element ("""ExcAC1A.seve2"""))
+    val ta = parse_element (element ("""ExcAC1A.ta"""))
+    val tb = parse_element (element ("""ExcAC1A.tb"""))
+    val tc = parse_element (element ("""ExcAC1A.tc"""))
+    val te = parse_element (element ("""ExcAC1A.te"""))
+    val tf = parse_element (element ("""ExcAC1A.tf"""))
+    val vamax = parse_element (element ("""ExcAC1A.vamax"""))
+    val vamin = parse_element (element ("""ExcAC1A.vamin"""))
+    val ve1 = parse_element (element ("""ExcAC1A.ve1"""))
+    val ve2 = parse_element (element ("""ExcAC1A.ve2"""))
+    val vrmax = parse_element (element ("""ExcAC1A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcAC1A.vrmin"""))
     def parse (context: Context): ExcAC1A =
     {
         ExcAC1A(
@@ -275,34 +275,34 @@ extends
     Parseable[ExcAC2A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val hvgate = parse_element (element ("""ExcAC2A.hvgate"""))_
-    val ka = parse_element (element ("""ExcAC2A.ka"""))_
-    val kb = parse_element (element ("""ExcAC2A.kb"""))_
-    val kb1 = parse_element (element ("""ExcAC2A.kb1"""))_
-    val kc = parse_element (element ("""ExcAC2A.kc"""))_
-    val kd = parse_element (element ("""ExcAC2A.kd"""))_
-    val ke = parse_element (element ("""ExcAC2A.ke"""))_
-    val kf = parse_element (element ("""ExcAC2A.kf"""))_
-    val kh = parse_element (element ("""ExcAC2A.kh"""))_
-    val kl = parse_element (element ("""ExcAC2A.kl"""))_
-    val kl1 = parse_element (element ("""ExcAC2A.kl1"""))_
-    val ks = parse_element (element ("""ExcAC2A.ks"""))_
-    val lvgate = parse_element (element ("""ExcAC2A.lvgate"""))_
-    val seve1 = parse_element (element ("""ExcAC2A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcAC2A.seve2"""))_
-    val ta = parse_element (element ("""ExcAC2A.ta"""))_
-    val tb = parse_element (element ("""ExcAC2A.tb"""))_
-    val tc = parse_element (element ("""ExcAC2A.tc"""))_
-    val te = parse_element (element ("""ExcAC2A.te"""))_
-    val tf = parse_element (element ("""ExcAC2A.tf"""))_
-    val vamax = parse_element (element ("""ExcAC2A.vamax"""))_
-    val vamin = parse_element (element ("""ExcAC2A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcAC2A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcAC2A.ve2"""))_
-    val vfemax = parse_element (element ("""ExcAC2A.vfemax"""))_
-    val vlr = parse_element (element ("""ExcAC2A.vlr"""))_
-    val vrmax = parse_element (element ("""ExcAC2A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcAC2A.vrmin"""))_
+    val hvgate = parse_element (element ("""ExcAC2A.hvgate"""))
+    val ka = parse_element (element ("""ExcAC2A.ka"""))
+    val kb = parse_element (element ("""ExcAC2A.kb"""))
+    val kb1 = parse_element (element ("""ExcAC2A.kb1"""))
+    val kc = parse_element (element ("""ExcAC2A.kc"""))
+    val kd = parse_element (element ("""ExcAC2A.kd"""))
+    val ke = parse_element (element ("""ExcAC2A.ke"""))
+    val kf = parse_element (element ("""ExcAC2A.kf"""))
+    val kh = parse_element (element ("""ExcAC2A.kh"""))
+    val kl = parse_element (element ("""ExcAC2A.kl"""))
+    val kl1 = parse_element (element ("""ExcAC2A.kl1"""))
+    val ks = parse_element (element ("""ExcAC2A.ks"""))
+    val lvgate = parse_element (element ("""ExcAC2A.lvgate"""))
+    val seve1 = parse_element (element ("""ExcAC2A.seve1"""))
+    val seve2 = parse_element (element ("""ExcAC2A.seve2"""))
+    val ta = parse_element (element ("""ExcAC2A.ta"""))
+    val tb = parse_element (element ("""ExcAC2A.tb"""))
+    val tc = parse_element (element ("""ExcAC2A.tc"""))
+    val te = parse_element (element ("""ExcAC2A.te"""))
+    val tf = parse_element (element ("""ExcAC2A.tf"""))
+    val vamax = parse_element (element ("""ExcAC2A.vamax"""))
+    val vamin = parse_element (element ("""ExcAC2A.vamin"""))
+    val ve1 = parse_element (element ("""ExcAC2A.ve1"""))
+    val ve2 = parse_element (element ("""ExcAC2A.ve2"""))
+    val vfemax = parse_element (element ("""ExcAC2A.vfemax"""))
+    val vlr = parse_element (element ("""ExcAC2A.vlr"""))
+    val vrmax = parse_element (element ("""ExcAC2A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcAC2A.vrmin"""))
     def parse (context: Context): ExcAC2A =
     {
         ExcAC2A(
@@ -446,32 +446,32 @@ extends
     Parseable[ExcAC3A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdn = parse_element (element ("""ExcAC3A.efdn"""))_
-    val ka = parse_element (element ("""ExcAC3A.ka"""))_
-    val kc = parse_element (element ("""ExcAC3A.kc"""))_
-    val kd = parse_element (element ("""ExcAC3A.kd"""))_
-    val ke = parse_element (element ("""ExcAC3A.ke"""))_
-    val kf = parse_element (element ("""ExcAC3A.kf"""))_
-    val kf1 = parse_element (element ("""ExcAC3A.kf1"""))_
-    val kf2 = parse_element (element ("""ExcAC3A.kf2"""))_
-    val klv = parse_element (element ("""ExcAC3A.klv"""))_
-    val kn = parse_element (element ("""ExcAC3A.kn"""))_
-    val kr = parse_element (element ("""ExcAC3A.kr"""))_
-    val ks = parse_element (element ("""ExcAC3A.ks"""))_
-    val seve1 = parse_element (element ("""ExcAC3A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcAC3A.seve2"""))_
-    val ta = parse_element (element ("""ExcAC3A.ta"""))_
-    val tb = parse_element (element ("""ExcAC3A.tb"""))_
-    val tc = parse_element (element ("""ExcAC3A.tc"""))_
-    val te = parse_element (element ("""ExcAC3A.te"""))_
-    val tf = parse_element (element ("""ExcAC3A.tf"""))_
-    val vamax = parse_element (element ("""ExcAC3A.vamax"""))_
-    val vamin = parse_element (element ("""ExcAC3A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcAC3A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcAC3A.ve2"""))_
-    val vemin = parse_element (element ("""ExcAC3A.vemin"""))_
-    val vfemax = parse_element (element ("""ExcAC3A.vfemax"""))_
-    val vlv = parse_element (element ("""ExcAC3A.vlv"""))_
+    val efdn = parse_element (element ("""ExcAC3A.efdn"""))
+    val ka = parse_element (element ("""ExcAC3A.ka"""))
+    val kc = parse_element (element ("""ExcAC3A.kc"""))
+    val kd = parse_element (element ("""ExcAC3A.kd"""))
+    val ke = parse_element (element ("""ExcAC3A.ke"""))
+    val kf = parse_element (element ("""ExcAC3A.kf"""))
+    val kf1 = parse_element (element ("""ExcAC3A.kf1"""))
+    val kf2 = parse_element (element ("""ExcAC3A.kf2"""))
+    val klv = parse_element (element ("""ExcAC3A.klv"""))
+    val kn = parse_element (element ("""ExcAC3A.kn"""))
+    val kr = parse_element (element ("""ExcAC3A.kr"""))
+    val ks = parse_element (element ("""ExcAC3A.ks"""))
+    val seve1 = parse_element (element ("""ExcAC3A.seve1"""))
+    val seve2 = parse_element (element ("""ExcAC3A.seve2"""))
+    val ta = parse_element (element ("""ExcAC3A.ta"""))
+    val tb = parse_element (element ("""ExcAC3A.tb"""))
+    val tc = parse_element (element ("""ExcAC3A.tc"""))
+    val te = parse_element (element ("""ExcAC3A.te"""))
+    val tf = parse_element (element ("""ExcAC3A.tf"""))
+    val vamax = parse_element (element ("""ExcAC3A.vamax"""))
+    val vamin = parse_element (element ("""ExcAC3A.vamin"""))
+    val ve1 = parse_element (element ("""ExcAC3A.ve1"""))
+    val ve2 = parse_element (element ("""ExcAC3A.ve2"""))
+    val vemin = parse_element (element ("""ExcAC3A.vemin"""))
+    val vfemax = parse_element (element ("""ExcAC3A.vfemax"""))
+    val vlv = parse_element (element ("""ExcAC3A.vlv"""))
     def parse (context: Context): ExcAC3A =
     {
         ExcAC3A(
@@ -562,15 +562,15 @@ extends
     Parseable[ExcAC4A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcAC4A.ka"""))_
-    val kc = parse_element (element ("""ExcAC4A.kc"""))_
-    val ta = parse_element (element ("""ExcAC4A.ta"""))_
-    val tb = parse_element (element ("""ExcAC4A.tb"""))_
-    val tc = parse_element (element ("""ExcAC4A.tc"""))_
-    val vimax = parse_element (element ("""ExcAC4A.vimax"""))_
-    val vimin = parse_element (element ("""ExcAC4A.vimin"""))_
-    val vrmax = parse_element (element ("""ExcAC4A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcAC4A.vrmin"""))_
+    val ka = parse_element (element ("""ExcAC4A.ka"""))
+    val kc = parse_element (element ("""ExcAC4A.kc"""))
+    val ta = parse_element (element ("""ExcAC4A.ta"""))
+    val tb = parse_element (element ("""ExcAC4A.tb"""))
+    val tc = parse_element (element ("""ExcAC4A.tc"""))
+    val vimax = parse_element (element ("""ExcAC4A.vimax"""))
+    val vimin = parse_element (element ("""ExcAC4A.vimin"""))
+    val vrmax = parse_element (element ("""ExcAC4A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcAC4A.vrmin"""))
     def parse (context: Context): ExcAC4A =
     {
         ExcAC4A(
@@ -671,24 +671,24 @@ extends
     Parseable[ExcAC5A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val a = parse_element (element ("""ExcAC5A.a"""))_
-    val efd1 = parse_element (element ("""ExcAC5A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcAC5A.efd2"""))_
-    val ka = parse_element (element ("""ExcAC5A.ka"""))_
-    val ke = parse_element (element ("""ExcAC5A.ke"""))_
-    val kf = parse_element (element ("""ExcAC5A.kf"""))_
-    val ks = parse_element (element ("""ExcAC5A.ks"""))_
-    val seefd1 = parse_element (element ("""ExcAC5A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcAC5A.seefd2"""))_
-    val ta = parse_element (element ("""ExcAC5A.ta"""))_
-    val tb = parse_element (element ("""ExcAC5A.tb"""))_
-    val tc = parse_element (element ("""ExcAC5A.tc"""))_
-    val te = parse_element (element ("""ExcAC5A.te"""))_
-    val tf1 = parse_element (element ("""ExcAC5A.tf1"""))_
-    val tf2 = parse_element (element ("""ExcAC5A.tf2"""))_
-    val tf3 = parse_element (element ("""ExcAC5A.tf3"""))_
-    val vrmax = parse_element (element ("""ExcAC5A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcAC5A.vrmin"""))_
+    val a = parse_element (element ("""ExcAC5A.a"""))
+    val efd1 = parse_element (element ("""ExcAC5A.efd1"""))
+    val efd2 = parse_element (element ("""ExcAC5A.efd2"""))
+    val ka = parse_element (element ("""ExcAC5A.ka"""))
+    val ke = parse_element (element ("""ExcAC5A.ke"""))
+    val kf = parse_element (element ("""ExcAC5A.kf"""))
+    val ks = parse_element (element ("""ExcAC5A.ks"""))
+    val seefd1 = parse_element (element ("""ExcAC5A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcAC5A.seefd2"""))
+    val ta = parse_element (element ("""ExcAC5A.ta"""))
+    val tb = parse_element (element ("""ExcAC5A.tb"""))
+    val tc = parse_element (element ("""ExcAC5A.tc"""))
+    val te = parse_element (element ("""ExcAC5A.te"""))
+    val tf1 = parse_element (element ("""ExcAC5A.tf1"""))
+    val tf2 = parse_element (element ("""ExcAC5A.tf2"""))
+    val tf3 = parse_element (element ("""ExcAC5A.tf3"""))
+    val vrmax = parse_element (element ("""ExcAC5A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcAC5A.vrmin"""))
     def parse (context: Context): ExcAC5A =
     {
         ExcAC5A(
@@ -813,29 +813,29 @@ extends
     Parseable[ExcAC6A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcAC6A.ka"""))_
-    val kc = parse_element (element ("""ExcAC6A.kc"""))_
-    val kd = parse_element (element ("""ExcAC6A.kd"""))_
-    val ke = parse_element (element ("""ExcAC6A.ke"""))_
-    val kh = parse_element (element ("""ExcAC6A.kh"""))_
-    val ks = parse_element (element ("""ExcAC6A.ks"""))_
-    val seve1 = parse_element (element ("""ExcAC6A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcAC6A.seve2"""))_
-    val ta = parse_element (element ("""ExcAC6A.ta"""))_
-    val tb = parse_element (element ("""ExcAC6A.tb"""))_
-    val tc = parse_element (element ("""ExcAC6A.tc"""))_
-    val te = parse_element (element ("""ExcAC6A.te"""))_
-    val th = parse_element (element ("""ExcAC6A.th"""))_
-    val tj = parse_element (element ("""ExcAC6A.tj"""))_
-    val tk = parse_element (element ("""ExcAC6A.tk"""))_
-    val vamax = parse_element (element ("""ExcAC6A.vamax"""))_
-    val vamin = parse_element (element ("""ExcAC6A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcAC6A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcAC6A.ve2"""))_
-    val vfelim = parse_element (element ("""ExcAC6A.vfelim"""))_
-    val vhmax = parse_element (element ("""ExcAC6A.vhmax"""))_
-    val vrmax = parse_element (element ("""ExcAC6A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcAC6A.vrmin"""))_
+    val ka = parse_element (element ("""ExcAC6A.ka"""))
+    val kc = parse_element (element ("""ExcAC6A.kc"""))
+    val kd = parse_element (element ("""ExcAC6A.kd"""))
+    val ke = parse_element (element ("""ExcAC6A.ke"""))
+    val kh = parse_element (element ("""ExcAC6A.kh"""))
+    val ks = parse_element (element ("""ExcAC6A.ks"""))
+    val seve1 = parse_element (element ("""ExcAC6A.seve1"""))
+    val seve2 = parse_element (element ("""ExcAC6A.seve2"""))
+    val ta = parse_element (element ("""ExcAC6A.ta"""))
+    val tb = parse_element (element ("""ExcAC6A.tb"""))
+    val tc = parse_element (element ("""ExcAC6A.tc"""))
+    val te = parse_element (element ("""ExcAC6A.te"""))
+    val th = parse_element (element ("""ExcAC6A.th"""))
+    val tj = parse_element (element ("""ExcAC6A.tj"""))
+    val tk = parse_element (element ("""ExcAC6A.tk"""))
+    val vamax = parse_element (element ("""ExcAC6A.vamax"""))
+    val vamin = parse_element (element ("""ExcAC6A.vamin"""))
+    val ve1 = parse_element (element ("""ExcAC6A.ve1"""))
+    val ve2 = parse_element (element ("""ExcAC6A.ve2"""))
+    val vfelim = parse_element (element ("""ExcAC6A.vfelim"""))
+    val vhmax = parse_element (element ("""ExcAC6A.vhmax"""))
+    val vrmax = parse_element (element ("""ExcAC6A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcAC6A.vrmin"""))
     def parse (context: Context): ExcAC6A =
     {
         ExcAC6A(
@@ -983,33 +983,33 @@ extends
     Parseable[ExcAC8B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val inlim = parse_element (element ("""ExcAC8B.inlim"""))_
-    val ka = parse_element (element ("""ExcAC8B.ka"""))_
-    val kc = parse_element (element ("""ExcAC8B.kc"""))_
-    val kd = parse_element (element ("""ExcAC8B.kd"""))_
-    val kdr = parse_element (element ("""ExcAC8B.kdr"""))_
-    val ke = parse_element (element ("""ExcAC8B.ke"""))_
-    val kir = parse_element (element ("""ExcAC8B.kir"""))_
-    val kpr = parse_element (element ("""ExcAC8B.kpr"""))_
-    val ks = parse_element (element ("""ExcAC8B.ks"""))_
-    val pidlim = parse_element (element ("""ExcAC8B.pidlim"""))_
-    val seve1 = parse_element (element ("""ExcAC8B.seve1"""))_
-    val seve2 = parse_element (element ("""ExcAC8B.seve2"""))_
-    val ta = parse_element (element ("""ExcAC8B.ta"""))_
-    val tdr = parse_element (element ("""ExcAC8B.tdr"""))_
-    val te = parse_element (element ("""ExcAC8B.te"""))_
-    val telim = parse_element (element ("""ExcAC8B.telim"""))_
-    val ve1 = parse_element (element ("""ExcAC8B.ve1"""))_
-    val ve2 = parse_element (element ("""ExcAC8B.ve2"""))_
-    val vemin = parse_element (element ("""ExcAC8B.vemin"""))_
-    val vfemax = parse_element (element ("""ExcAC8B.vfemax"""))_
-    val vimax = parse_element (element ("""ExcAC8B.vimax"""))_
-    val vimin = parse_element (element ("""ExcAC8B.vimin"""))_
-    val vpidmax = parse_element (element ("""ExcAC8B.vpidmax"""))_
-    val vpidmin = parse_element (element ("""ExcAC8B.vpidmin"""))_
-    val vrmax = parse_element (element ("""ExcAC8B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcAC8B.vrmin"""))_
-    val vtmult = parse_element (element ("""ExcAC8B.vtmult"""))_
+    val inlim = parse_element (element ("""ExcAC8B.inlim"""))
+    val ka = parse_element (element ("""ExcAC8B.ka"""))
+    val kc = parse_element (element ("""ExcAC8B.kc"""))
+    val kd = parse_element (element ("""ExcAC8B.kd"""))
+    val kdr = parse_element (element ("""ExcAC8B.kdr"""))
+    val ke = parse_element (element ("""ExcAC8B.ke"""))
+    val kir = parse_element (element ("""ExcAC8B.kir"""))
+    val kpr = parse_element (element ("""ExcAC8B.kpr"""))
+    val ks = parse_element (element ("""ExcAC8B.ks"""))
+    val pidlim = parse_element (element ("""ExcAC8B.pidlim"""))
+    val seve1 = parse_element (element ("""ExcAC8B.seve1"""))
+    val seve2 = parse_element (element ("""ExcAC8B.seve2"""))
+    val ta = parse_element (element ("""ExcAC8B.ta"""))
+    val tdr = parse_element (element ("""ExcAC8B.tdr"""))
+    val te = parse_element (element ("""ExcAC8B.te"""))
+    val telim = parse_element (element ("""ExcAC8B.telim"""))
+    val ve1 = parse_element (element ("""ExcAC8B.ve1"""))
+    val ve2 = parse_element (element ("""ExcAC8B.ve2"""))
+    val vemin = parse_element (element ("""ExcAC8B.vemin"""))
+    val vfemax = parse_element (element ("""ExcAC8B.vfemax"""))
+    val vimax = parse_element (element ("""ExcAC8B.vimax"""))
+    val vimin = parse_element (element ("""ExcAC8B.vimin"""))
+    val vpidmax = parse_element (element ("""ExcAC8B.vpidmax"""))
+    val vpidmin = parse_element (element ("""ExcAC8B.vpidmin"""))
+    val vrmax = parse_element (element ("""ExcAC8B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcAC8B.vrmin"""))
+    val vtmult = parse_element (element ("""ExcAC8B.vtmult"""))
     def parse (context: Context): ExcAC8B =
     {
         ExcAC8B(
@@ -1123,20 +1123,20 @@ extends
     Parseable[ExcANS]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val blint = parse_element (element ("""ExcANS.blint"""))_
-    val ifmn = parse_element (element ("""ExcANS.ifmn"""))_
-    val ifmx = parse_element (element ("""ExcANS.ifmx"""))_
-    val k2 = parse_element (element ("""ExcANS.k2"""))_
-    val k3 = parse_element (element ("""ExcANS.k3"""))_
-    val kce = parse_element (element ("""ExcANS.kce"""))_
-    val krvecc = parse_element (element ("""ExcANS.krvecc"""))_
-    val kvfif = parse_element (element ("""ExcANS.kvfif"""))_
-    val t1 = parse_element (element ("""ExcANS.t1"""))_
-    val t2 = parse_element (element ("""ExcANS.t2"""))_
-    val t3 = parse_element (element ("""ExcANS.t3"""))_
-    val tb = parse_element (element ("""ExcANS.tb"""))_
-    val vrmn = parse_element (element ("""ExcANS.vrmn"""))_
-    val vrmx = parse_element (element ("""ExcANS.vrmx"""))_
+    val blint = parse_element (element ("""ExcANS.blint"""))
+    val ifmn = parse_element (element ("""ExcANS.ifmn"""))
+    val ifmx = parse_element (element ("""ExcANS.ifmx"""))
+    val k2 = parse_element (element ("""ExcANS.k2"""))
+    val k3 = parse_element (element ("""ExcANS.k3"""))
+    val kce = parse_element (element ("""ExcANS.kce"""))
+    val krvecc = parse_element (element ("""ExcANS.krvecc"""))
+    val kvfif = parse_element (element ("""ExcANS.kvfif"""))
+    val t1 = parse_element (element ("""ExcANS.t1"""))
+    val t2 = parse_element (element ("""ExcANS.t2"""))
+    val t3 = parse_element (element ("""ExcANS.t3"""))
+    val tb = parse_element (element ("""ExcANS.tb"""))
+    val vrmn = parse_element (element ("""ExcANS.vrmn"""))
+    val vrmx = parse_element (element ("""ExcANS.vrmx"""))
     def parse (context: Context): ExcANS =
     {
         ExcANS(
@@ -1225,18 +1225,18 @@ extends
     Parseable[ExcAVR1]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val e1 = parse_element (element ("""ExcAVR1.e1"""))_
-    val e2 = parse_element (element ("""ExcAVR1.e2"""))_
-    val ka = parse_element (element ("""ExcAVR1.ka"""))_
-    val kf = parse_element (element ("""ExcAVR1.kf"""))_
-    val se1 = parse_element (element ("""ExcAVR1.se1"""))_
-    val se2 = parse_element (element ("""ExcAVR1.se2"""))_
-    val ta = parse_element (element ("""ExcAVR1.ta"""))_
-    val tb = parse_element (element ("""ExcAVR1.tb"""))_
-    val te = parse_element (element ("""ExcAVR1.te"""))_
-    val tf = parse_element (element ("""ExcAVR1.tf"""))_
-    val vrmn = parse_element (element ("""ExcAVR1.vrmn"""))_
-    val vrmx = parse_element (element ("""ExcAVR1.vrmx"""))_
+    val e1 = parse_element (element ("""ExcAVR1.e1"""))
+    val e2 = parse_element (element ("""ExcAVR1.e2"""))
+    val ka = parse_element (element ("""ExcAVR1.ka"""))
+    val kf = parse_element (element ("""ExcAVR1.kf"""))
+    val se1 = parse_element (element ("""ExcAVR1.se1"""))
+    val se2 = parse_element (element ("""ExcAVR1.se2"""))
+    val ta = parse_element (element ("""ExcAVR1.ta"""))
+    val tb = parse_element (element ("""ExcAVR1.tb"""))
+    val te = parse_element (element ("""ExcAVR1.te"""))
+    val tf = parse_element (element ("""ExcAVR1.tf"""))
+    val vrmn = parse_element (element ("""ExcAVR1.vrmn"""))
+    val vrmx = parse_element (element ("""ExcAVR1.vrmx"""))
     def parse (context: Context): ExcAVR1 =
     {
         ExcAVR1(
@@ -1326,19 +1326,19 @@ extends
     Parseable[ExcAVR2]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val e1 = parse_element (element ("""ExcAVR2.e1"""))_
-    val e2 = parse_element (element ("""ExcAVR2.e2"""))_
-    val ka = parse_element (element ("""ExcAVR2.ka"""))_
-    val kf = parse_element (element ("""ExcAVR2.kf"""))_
-    val se1 = parse_element (element ("""ExcAVR2.se1"""))_
-    val se2 = parse_element (element ("""ExcAVR2.se2"""))_
-    val ta = parse_element (element ("""ExcAVR2.ta"""))_
-    val tb = parse_element (element ("""ExcAVR2.tb"""))_
-    val te = parse_element (element ("""ExcAVR2.te"""))_
-    val tf1 = parse_element (element ("""ExcAVR2.tf1"""))_
-    val tf2 = parse_element (element ("""ExcAVR2.tf2"""))_
-    val vrmn = parse_element (element ("""ExcAVR2.vrmn"""))_
-    val vrmx = parse_element (element ("""ExcAVR2.vrmx"""))_
+    val e1 = parse_element (element ("""ExcAVR2.e1"""))
+    val e2 = parse_element (element ("""ExcAVR2.e2"""))
+    val ka = parse_element (element ("""ExcAVR2.ka"""))
+    val kf = parse_element (element ("""ExcAVR2.kf"""))
+    val se1 = parse_element (element ("""ExcAVR2.se1"""))
+    val se2 = parse_element (element ("""ExcAVR2.se2"""))
+    val ta = parse_element (element ("""ExcAVR2.ta"""))
+    val tb = parse_element (element ("""ExcAVR2.tb"""))
+    val te = parse_element (element ("""ExcAVR2.te"""))
+    val tf1 = parse_element (element ("""ExcAVR2.tf1"""))
+    val tf2 = parse_element (element ("""ExcAVR2.tf2"""))
+    val vrmn = parse_element (element ("""ExcAVR2.vrmn"""))
+    val vrmx = parse_element (element ("""ExcAVR2.vrmx"""))
     def parse (context: Context): ExcAVR2 =
     {
         ExcAVR2(
@@ -1426,18 +1426,18 @@ extends
     Parseable[ExcAVR3]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val e1 = parse_element (element ("""ExcAVR3.e1"""))_
-    val e2 = parse_element (element ("""ExcAVR3.e2"""))_
-    val ka = parse_element (element ("""ExcAVR3.ka"""))_
-    val se1 = parse_element (element ("""ExcAVR3.se1"""))_
-    val se2 = parse_element (element ("""ExcAVR3.se2"""))_
-    val t1 = parse_element (element ("""ExcAVR3.t1"""))_
-    val t2 = parse_element (element ("""ExcAVR3.t2"""))_
-    val t3 = parse_element (element ("""ExcAVR3.t3"""))_
-    val t4 = parse_element (element ("""ExcAVR3.t4"""))_
-    val te = parse_element (element ("""ExcAVR3.te"""))_
-    val vrmn = parse_element (element ("""ExcAVR3.vrmn"""))_
-    val vrmx = parse_element (element ("""ExcAVR3.vrmx"""))_
+    val e1 = parse_element (element ("""ExcAVR3.e1"""))
+    val e2 = parse_element (element ("""ExcAVR3.e2"""))
+    val ka = parse_element (element ("""ExcAVR3.ka"""))
+    val se1 = parse_element (element ("""ExcAVR3.se1"""))
+    val se2 = parse_element (element ("""ExcAVR3.se2"""))
+    val t1 = parse_element (element ("""ExcAVR3.t1"""))
+    val t2 = parse_element (element ("""ExcAVR3.t2"""))
+    val t3 = parse_element (element ("""ExcAVR3.t3"""))
+    val t4 = parse_element (element ("""ExcAVR3.t4"""))
+    val te = parse_element (element ("""ExcAVR3.te"""))
+    val vrmn = parse_element (element ("""ExcAVR3.vrmn"""))
+    val vrmx = parse_element (element ("""ExcAVR3.vrmx"""))
     def parse (context: Context): ExcAVR3 =
     {
         ExcAVR3(
@@ -1532,20 +1532,20 @@ extends
     Parseable[ExcAVR4]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val imul = parse_element (element ("""ExcAVR4.imul"""))_
-    val ka = parse_element (element ("""ExcAVR4.ka"""))_
-    val ke = parse_element (element ("""ExcAVR4.ke"""))_
-    val kif = parse_element (element ("""ExcAVR4.kif"""))_
-    val t1 = parse_element (element ("""ExcAVR4.t1"""))_
-    val t1if = parse_element (element ("""ExcAVR4.t1if"""))_
-    val t2 = parse_element (element ("""ExcAVR4.t2"""))_
-    val t3 = parse_element (element ("""ExcAVR4.t3"""))_
-    val t4 = parse_element (element ("""ExcAVR4.t4"""))_
-    val tif = parse_element (element ("""ExcAVR4.tif"""))_
-    val vfmn = parse_element (element ("""ExcAVR4.vfmn"""))_
-    val vfmx = parse_element (element ("""ExcAVR4.vfmx"""))_
-    val vrmn = parse_element (element ("""ExcAVR4.vrmn"""))_
-    val vrmx = parse_element (element ("""ExcAVR4.vrmx"""))_
+    val imul = parse_element (element ("""ExcAVR4.imul"""))
+    val ka = parse_element (element ("""ExcAVR4.ka"""))
+    val ke = parse_element (element ("""ExcAVR4.ke"""))
+    val kif = parse_element (element ("""ExcAVR4.kif"""))
+    val t1 = parse_element (element ("""ExcAVR4.t1"""))
+    val t1if = parse_element (element ("""ExcAVR4.t1if"""))
+    val t2 = parse_element (element ("""ExcAVR4.t2"""))
+    val t3 = parse_element (element ("""ExcAVR4.t3"""))
+    val t4 = parse_element (element ("""ExcAVR4.t4"""))
+    val tif = parse_element (element ("""ExcAVR4.tif"""))
+    val vfmn = parse_element (element ("""ExcAVR4.vfmn"""))
+    val vfmx = parse_element (element ("""ExcAVR4.vfmx"""))
+    val vrmn = parse_element (element ("""ExcAVR4.vrmn"""))
+    val vrmx = parse_element (element ("""ExcAVR4.vrmx"""))
     def parse (context: Context): ExcAVR4 =
     {
         ExcAVR4(
@@ -1605,9 +1605,9 @@ extends
     Parseable[ExcAVR5]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcAVR5.ka"""))_
-    val rex = parse_element (element ("""ExcAVR5.rex"""))_
-    val ta = parse_element (element ("""ExcAVR5.ta"""))_
+    val ka = parse_element (element ("""ExcAVR5.ka"""))
+    val rex = parse_element (element ("""ExcAVR5.rex"""))
+    val ta = parse_element (element ("""ExcAVR5.ta"""))
     def parse (context: Context): ExcAVR5 =
     {
         ExcAVR5(
@@ -1711,27 +1711,27 @@ extends
     Parseable[ExcAVR7]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val a1 = parse_element (element ("""ExcAVR7.a1"""))_
-    val a2 = parse_element (element ("""ExcAVR7.a2"""))_
-    val a3 = parse_element (element ("""ExcAVR7.a3"""))_
-    val a4 = parse_element (element ("""ExcAVR7.a4"""))_
-    val a5 = parse_element (element ("""ExcAVR7.a5"""))_
-    val a6 = parse_element (element ("""ExcAVR7.a6"""))_
-    val k1 = parse_element (element ("""ExcAVR7.k1"""))_
-    val k3 = parse_element (element ("""ExcAVR7.k3"""))_
-    val k5 = parse_element (element ("""ExcAVR7.k5"""))_
-    val t1 = parse_element (element ("""ExcAVR7.t1"""))_
-    val t2 = parse_element (element ("""ExcAVR7.t2"""))_
-    val t3 = parse_element (element ("""ExcAVR7.t3"""))_
-    val t4 = parse_element (element ("""ExcAVR7.t4"""))_
-    val t5 = parse_element (element ("""ExcAVR7.t5"""))_
-    val t6 = parse_element (element ("""ExcAVR7.t6"""))_
-    val vmax1 = parse_element (element ("""ExcAVR7.vmax1"""))_
-    val vmax3 = parse_element (element ("""ExcAVR7.vmax3"""))_
-    val vmax5 = parse_element (element ("""ExcAVR7.vmax5"""))_
-    val vmin1 = parse_element (element ("""ExcAVR7.vmin1"""))_
-    val vmin3 = parse_element (element ("""ExcAVR7.vmin3"""))_
-    val vmin5 = parse_element (element ("""ExcAVR7.vmin5"""))_
+    val a1 = parse_element (element ("""ExcAVR7.a1"""))
+    val a2 = parse_element (element ("""ExcAVR7.a2"""))
+    val a3 = parse_element (element ("""ExcAVR7.a3"""))
+    val a4 = parse_element (element ("""ExcAVR7.a4"""))
+    val a5 = parse_element (element ("""ExcAVR7.a5"""))
+    val a6 = parse_element (element ("""ExcAVR7.a6"""))
+    val k1 = parse_element (element ("""ExcAVR7.k1"""))
+    val k3 = parse_element (element ("""ExcAVR7.k3"""))
+    val k5 = parse_element (element ("""ExcAVR7.k5"""))
+    val t1 = parse_element (element ("""ExcAVR7.t1"""))
+    val t2 = parse_element (element ("""ExcAVR7.t2"""))
+    val t3 = parse_element (element ("""ExcAVR7.t3"""))
+    val t4 = parse_element (element ("""ExcAVR7.t4"""))
+    val t5 = parse_element (element ("""ExcAVR7.t5"""))
+    val t6 = parse_element (element ("""ExcAVR7.t6"""))
+    val vmax1 = parse_element (element ("""ExcAVR7.vmax1"""))
+    val vmax3 = parse_element (element ("""ExcAVR7.vmax3"""))
+    val vmax5 = parse_element (element ("""ExcAVR7.vmax5"""))
+    val vmin1 = parse_element (element ("""ExcAVR7.vmin1"""))
+    val vmin3 = parse_element (element ("""ExcAVR7.vmin3"""))
+    val vmin5 = parse_element (element ("""ExcAVR7.vmin5"""))
     def parse (context: Context): ExcAVR7 =
     {
         ExcAVR7(
@@ -1826,17 +1826,17 @@ extends
     Parseable[ExcBBC]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdmax = parse_element (element ("""ExcBBC.efdmax"""))_
-    val efdmin = parse_element (element ("""ExcBBC.efdmin"""))_
-    val k = parse_element (element ("""ExcBBC.k"""))_
-    val switch = parse_element (element ("""ExcBBC.switch"""))_
-    val t1 = parse_element (element ("""ExcBBC.t1"""))_
-    val t2 = parse_element (element ("""ExcBBC.t2"""))_
-    val t3 = parse_element (element ("""ExcBBC.t3"""))_
-    val t4 = parse_element (element ("""ExcBBC.t4"""))_
-    val vrmax = parse_element (element ("""ExcBBC.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcBBC.vrmin"""))_
-    val xe = parse_element (element ("""ExcBBC.xe"""))_
+    val efdmax = parse_element (element ("""ExcBBC.efdmax"""))
+    val efdmin = parse_element (element ("""ExcBBC.efdmin"""))
+    val k = parse_element (element ("""ExcBBC.k"""))
+    val switch = parse_element (element ("""ExcBBC.switch"""))
+    val t1 = parse_element (element ("""ExcBBC.t1"""))
+    val t2 = parse_element (element ("""ExcBBC.t2"""))
+    val t3 = parse_element (element ("""ExcBBC.t3"""))
+    val t4 = parse_element (element ("""ExcBBC.t4"""))
+    val vrmax = parse_element (element ("""ExcBBC.vrmax"""))
+    val vrmin = parse_element (element ("""ExcBBC.vrmin"""))
+    val xe = parse_element (element ("""ExcBBC.xe"""))
     def parse (context: Context): ExcBBC =
     {
         ExcBBC(
@@ -1905,16 +1905,16 @@ extends
     Parseable[ExcCZ]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdmax = parse_element (element ("""ExcCZ.efdmax"""))_
-    val efdmin = parse_element (element ("""ExcCZ.efdmin"""))_
-    val ka = parse_element (element ("""ExcCZ.ka"""))_
-    val ke = parse_element (element ("""ExcCZ.ke"""))_
-    val kp = parse_element (element ("""ExcCZ.kp"""))_
-    val ta = parse_element (element ("""ExcCZ.ta"""))_
-    val tc = parse_element (element ("""ExcCZ.tc"""))_
-    val te = parse_element (element ("""ExcCZ.te"""))_
-    val vrmax = parse_element (element ("""ExcCZ.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcCZ.vrmin"""))_
+    val efdmax = parse_element (element ("""ExcCZ.efdmax"""))
+    val efdmin = parse_element (element ("""ExcCZ.efdmin"""))
+    val ka = parse_element (element ("""ExcCZ.ka"""))
+    val ke = parse_element (element ("""ExcCZ.ke"""))
+    val kp = parse_element (element ("""ExcCZ.kp"""))
+    val ta = parse_element (element ("""ExcCZ.ta"""))
+    val tc = parse_element (element ("""ExcCZ.tc"""))
+    val te = parse_element (element ("""ExcCZ.te"""))
+    val vrmax = parse_element (element ("""ExcCZ.vrmax"""))
+    val vrmin = parse_element (element ("""ExcCZ.vrmin"""))
     def parse (context: Context): ExcCZ =
     {
         ExcCZ(
@@ -2016,24 +2016,24 @@ extends
     Parseable[ExcDC1A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val edfmax = parse_element (element ("""ExcDC1A.edfmax"""))_
-    val efd1 = parse_element (element ("""ExcDC1A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcDC1A.efd2"""))_
-    val efdmin = parse_element (element ("""ExcDC1A.efdmin"""))_
-    val exclim = parse_element (element ("""ExcDC1A.exclim"""))_
-    val ka = parse_element (element ("""ExcDC1A.ka"""))_
-    val ke = parse_element (element ("""ExcDC1A.ke"""))_
-    val kf = parse_element (element ("""ExcDC1A.kf"""))_
-    val ks = parse_element (element ("""ExcDC1A.ks"""))_
-    val seefd1 = parse_element (element ("""ExcDC1A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcDC1A.seefd2"""))_
-    val ta = parse_element (element ("""ExcDC1A.ta"""))_
-    val tb = parse_element (element ("""ExcDC1A.tb"""))_
-    val tc = parse_element (element ("""ExcDC1A.tc"""))_
-    val te = parse_element (element ("""ExcDC1A.te"""))_
-    val tf = parse_element (element ("""ExcDC1A.tf"""))_
-    val vrmax = parse_element (element ("""ExcDC1A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcDC1A.vrmin"""))_
+    val edfmax = parse_element (element ("""ExcDC1A.edfmax"""))
+    val efd1 = parse_element (element ("""ExcDC1A.efd1"""))
+    val efd2 = parse_element (element ("""ExcDC1A.efd2"""))
+    val efdmin = parse_element (element ("""ExcDC1A.efdmin"""))
+    val exclim = parse_element (element ("""ExcDC1A.exclim"""))
+    val ka = parse_element (element ("""ExcDC1A.ka"""))
+    val ke = parse_element (element ("""ExcDC1A.ke"""))
+    val kf = parse_element (element ("""ExcDC1A.kf"""))
+    val ks = parse_element (element ("""ExcDC1A.ks"""))
+    val seefd1 = parse_element (element ("""ExcDC1A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcDC1A.seefd2"""))
+    val ta = parse_element (element ("""ExcDC1A.ta"""))
+    val tb = parse_element (element ("""ExcDC1A.tb"""))
+    val tc = parse_element (element ("""ExcDC1A.tc"""))
+    val te = parse_element (element ("""ExcDC1A.te"""))
+    val tf = parse_element (element ("""ExcDC1A.tf"""))
+    val vrmax = parse_element (element ("""ExcDC1A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcDC1A.vrmin"""))
     def parse (context: Context): ExcDC1A =
     {
         ExcDC1A(
@@ -2146,24 +2146,24 @@ extends
     Parseable[ExcDC2A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efd1 = parse_element (element ("""ExcDC2A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcDC2A.efd2"""))_
-    val exclim = parse_element (element ("""ExcDC2A.exclim"""))_
-    val ka = parse_element (element ("""ExcDC2A.ka"""))_
-    val ke = parse_element (element ("""ExcDC2A.ke"""))_
-    val kf = parse_element (element ("""ExcDC2A.kf"""))_
-    val ks = parse_element (element ("""ExcDC2A.ks"""))_
-    val seefd1 = parse_element (element ("""ExcDC2A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcDC2A.seefd2"""))_
-    val ta = parse_element (element ("""ExcDC2A.ta"""))_
-    val tb = parse_element (element ("""ExcDC2A.tb"""))_
-    val tc = parse_element (element ("""ExcDC2A.tc"""))_
-    val te = parse_element (element ("""ExcDC2A.te"""))_
-    val tf = parse_element (element ("""ExcDC2A.tf"""))_
-    val tf1 = parse_element (element ("""ExcDC2A.tf1"""))_
-    val vrmax = parse_element (element ("""ExcDC2A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcDC2A.vrmin"""))_
-    val vtlim = parse_element (element ("""ExcDC2A.vtlim"""))_
+    val efd1 = parse_element (element ("""ExcDC2A.efd1"""))
+    val efd2 = parse_element (element ("""ExcDC2A.efd2"""))
+    val exclim = parse_element (element ("""ExcDC2A.exclim"""))
+    val ka = parse_element (element ("""ExcDC2A.ka"""))
+    val ke = parse_element (element ("""ExcDC2A.ke"""))
+    val kf = parse_element (element ("""ExcDC2A.kf"""))
+    val ks = parse_element (element ("""ExcDC2A.ks"""))
+    val seefd1 = parse_element (element ("""ExcDC2A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcDC2A.seefd2"""))
+    val ta = parse_element (element ("""ExcDC2A.ta"""))
+    val tb = parse_element (element ("""ExcDC2A.tb"""))
+    val tc = parse_element (element ("""ExcDC2A.tc"""))
+    val te = parse_element (element ("""ExcDC2A.te"""))
+    val tf = parse_element (element ("""ExcDC2A.tf"""))
+    val tf1 = parse_element (element ("""ExcDC2A.tf1"""))
+    val vrmax = parse_element (element ("""ExcDC2A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcDC2A.vrmin"""))
+    val vtlim = parse_element (element ("""ExcDC2A.vtlim"""))
     def parse (context: Context): ExcDC2A =
     {
         ExcDC2A(
@@ -2270,22 +2270,22 @@ extends
     Parseable[ExcDC3A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val edfmax = parse_element (element ("""ExcDC3A.edfmax"""))_
-    val efd1 = parse_element (element ("""ExcDC3A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcDC3A.efd2"""))_
-    val efdlim = parse_element (element ("""ExcDC3A.efdlim"""))_
-    val efdmin = parse_element (element ("""ExcDC3A.efdmin"""))_
-    val exclim = parse_element (element ("""ExcDC3A.exclim"""))_
-    val ke = parse_element (element ("""ExcDC3A.ke"""))_
-    val kr = parse_element (element ("""ExcDC3A.kr"""))_
-    val ks = parse_element (element ("""ExcDC3A.ks"""))_
-    val kv = parse_element (element ("""ExcDC3A.kv"""))_
-    val seefd1 = parse_element (element ("""ExcDC3A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcDC3A.seefd2"""))_
-    val te = parse_element (element ("""ExcDC3A.te"""))_
-    val trh = parse_element (element ("""ExcDC3A.trh"""))_
-    val vrmax = parse_element (element ("""ExcDC3A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcDC3A.vrmin"""))_
+    val edfmax = parse_element (element ("""ExcDC3A.edfmax"""))
+    val efd1 = parse_element (element ("""ExcDC3A.efd1"""))
+    val efd2 = parse_element (element ("""ExcDC3A.efd2"""))
+    val efdlim = parse_element (element ("""ExcDC3A.efdlim"""))
+    val efdmin = parse_element (element ("""ExcDC3A.efdmin"""))
+    val exclim = parse_element (element ("""ExcDC3A.exclim"""))
+    val ke = parse_element (element ("""ExcDC3A.ke"""))
+    val kr = parse_element (element ("""ExcDC3A.kr"""))
+    val ks = parse_element (element ("""ExcDC3A.ks"""))
+    val kv = parse_element (element ("""ExcDC3A.kv"""))
+    val seefd1 = parse_element (element ("""ExcDC3A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcDC3A.seefd2"""))
+    val te = parse_element (element ("""ExcDC3A.te"""))
+    val trh = parse_element (element ("""ExcDC3A.trh"""))
+    val vrmax = parse_element (element ("""ExcDC3A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcDC3A.vrmin"""))
     def parse (context: Context): ExcDC3A =
     {
         ExcDC3A(
@@ -2385,20 +2385,20 @@ extends
     Parseable[ExcDC3A1]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val exclim = parse_element (element ("""ExcDC3A1.exclim"""))_
-    val ka = parse_element (element ("""ExcDC3A1.ka"""))_
-    val ke = parse_element (element ("""ExcDC3A1.ke"""))_
-    val kf = parse_element (element ("""ExcDC3A1.kf"""))_
-    val ki = parse_element (element ("""ExcDC3A1.ki"""))_
-    val kp = parse_element (element ("""ExcDC3A1.kp"""))_
-    val ta = parse_element (element ("""ExcDC3A1.ta"""))_
-    val te = parse_element (element ("""ExcDC3A1.te"""))_
-    val tf = parse_element (element ("""ExcDC3A1.tf"""))_
-    val vb1max = parse_element (element ("""ExcDC3A1.vb1max"""))_
-    val vblim = parse_element (element ("""ExcDC3A1.vblim"""))_
-    val vbmax = parse_element (element ("""ExcDC3A1.vbmax"""))_
-    val vrmax = parse_element (element ("""ExcDC3A1.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcDC3A1.vrmin"""))_
+    val exclim = parse_element (element ("""ExcDC3A1.exclim"""))
+    val ka = parse_element (element ("""ExcDC3A1.ka"""))
+    val ke = parse_element (element ("""ExcDC3A1.ke"""))
+    val kf = parse_element (element ("""ExcDC3A1.kf"""))
+    val ki = parse_element (element ("""ExcDC3A1.ki"""))
+    val kp = parse_element (element ("""ExcDC3A1.kp"""))
+    val ta = parse_element (element ("""ExcDC3A1.ta"""))
+    val te = parse_element (element ("""ExcDC3A1.te"""))
+    val tf = parse_element (element ("""ExcDC3A1.tf"""))
+    val vb1max = parse_element (element ("""ExcDC3A1.vb1max"""))
+    val vblim = parse_element (element ("""ExcDC3A1.vblim"""))
+    val vbmax = parse_element (element ("""ExcDC3A1.vbmax"""))
+    val vrmax = parse_element (element ("""ExcDC3A1.vrmax"""))
+    val vrmin = parse_element (element ("""ExcDC3A1.vrmin"""))
     def parse (context: Context): ExcDC3A1 =
     {
         ExcDC3A1(
@@ -2496,21 +2496,21 @@ extends
     Parseable[ExcELIN1]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val dpnf = parse_element (element ("""ExcELIN1.dpnf"""))_
-    val efmax = parse_element (element ("""ExcELIN1.efmax"""))_
-    val efmin = parse_element (element ("""ExcELIN1.efmin"""))_
-    val ks1 = parse_element (element ("""ExcELIN1.ks1"""))_
-    val ks2 = parse_element (element ("""ExcELIN1.ks2"""))_
-    val smax = parse_element (element ("""ExcELIN1.smax"""))_
-    val tfi = parse_element (element ("""ExcELIN1.tfi"""))_
-    val tnu = parse_element (element ("""ExcELIN1.tnu"""))_
-    val ts1 = parse_element (element ("""ExcELIN1.ts1"""))_
-    val ts2 = parse_element (element ("""ExcELIN1.ts2"""))_
-    val tsw = parse_element (element ("""ExcELIN1.tsw"""))_
-    val vpi = parse_element (element ("""ExcELIN1.vpi"""))_
-    val vpnf = parse_element (element ("""ExcELIN1.vpnf"""))_
-    val vpu = parse_element (element ("""ExcELIN1.vpu"""))_
-    val xe = parse_element (element ("""ExcELIN1.xe"""))_
+    val dpnf = parse_element (element ("""ExcELIN1.dpnf"""))
+    val efmax = parse_element (element ("""ExcELIN1.efmax"""))
+    val efmin = parse_element (element ("""ExcELIN1.efmin"""))
+    val ks1 = parse_element (element ("""ExcELIN1.ks1"""))
+    val ks2 = parse_element (element ("""ExcELIN1.ks2"""))
+    val smax = parse_element (element ("""ExcELIN1.smax"""))
+    val tfi = parse_element (element ("""ExcELIN1.tfi"""))
+    val tnu = parse_element (element ("""ExcELIN1.tnu"""))
+    val ts1 = parse_element (element ("""ExcELIN1.ts1"""))
+    val ts2 = parse_element (element ("""ExcELIN1.ts2"""))
+    val tsw = parse_element (element ("""ExcELIN1.tsw"""))
+    val vpi = parse_element (element ("""ExcELIN1.vpi"""))
+    val vpnf = parse_element (element ("""ExcELIN1.vpnf"""))
+    val vpu = parse_element (element ("""ExcELIN1.vpu"""))
+    val xe = parse_element (element ("""ExcELIN1.xe"""))
     def parse (context: Context): ExcELIN1 =
     {
         ExcELIN1(
@@ -2645,33 +2645,33 @@ extends
     Parseable[ExcELIN2]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdbas = parse_element (element ("""ExcELIN2.efdbas"""))_
-    val iefmax = parse_element (element ("""ExcELIN2.iefmax"""))_
-    val iefmax2 = parse_element (element ("""ExcELIN2.iefmax2"""))_
-    val iefmin = parse_element (element ("""ExcELIN2.iefmin"""))_
-    val k1 = parse_element (element ("""ExcELIN2.k1"""))_
-    val k1ec = parse_element (element ("""ExcELIN2.k1ec"""))_
-    val k2 = parse_element (element ("""ExcELIN2.k2"""))_
-    val k3 = parse_element (element ("""ExcELIN2.k3"""))_
-    val k4 = parse_element (element ("""ExcELIN2.k4"""))_
-    val kd1 = parse_element (element ("""ExcELIN2.kd1"""))_
-    val ke2 = parse_element (element ("""ExcELIN2.ke2"""))_
-    val ketb = parse_element (element ("""ExcELIN2.ketb"""))_
-    val pid1max = parse_element (element ("""ExcELIN2.pid1max"""))_
-    val seve1 = parse_element (element ("""ExcELIN2.seve1"""))_
-    val seve2 = parse_element (element ("""ExcELIN2.seve2"""))_
-    val tb1 = parse_element (element ("""ExcELIN2.tb1"""))_
-    val te = parse_element (element ("""ExcELIN2.te"""))_
-    val te2 = parse_element (element ("""ExcELIN2.te2"""))_
-    val ti1 = parse_element (element ("""ExcELIN2.ti1"""))_
-    val ti3 = parse_element (element ("""ExcELIN2.ti3"""))_
-    val ti4 = parse_element (element ("""ExcELIN2.ti4"""))_
-    val tr4 = parse_element (element ("""ExcELIN2.tr4"""))_
-    val upmax = parse_element (element ("""ExcELIN2.upmax"""))_
-    val upmin = parse_element (element ("""ExcELIN2.upmin"""))_
-    val ve1 = parse_element (element ("""ExcELIN2.ve1"""))_
-    val ve2 = parse_element (element ("""ExcELIN2.ve2"""))_
-    val xp = parse_element (element ("""ExcELIN2.xp"""))_
+    val efdbas = parse_element (element ("""ExcELIN2.efdbas"""))
+    val iefmax = parse_element (element ("""ExcELIN2.iefmax"""))
+    val iefmax2 = parse_element (element ("""ExcELIN2.iefmax2"""))
+    val iefmin = parse_element (element ("""ExcELIN2.iefmin"""))
+    val k1 = parse_element (element ("""ExcELIN2.k1"""))
+    val k1ec = parse_element (element ("""ExcELIN2.k1ec"""))
+    val k2 = parse_element (element ("""ExcELIN2.k2"""))
+    val k3 = parse_element (element ("""ExcELIN2.k3"""))
+    val k4 = parse_element (element ("""ExcELIN2.k4"""))
+    val kd1 = parse_element (element ("""ExcELIN2.kd1"""))
+    val ke2 = parse_element (element ("""ExcELIN2.ke2"""))
+    val ketb = parse_element (element ("""ExcELIN2.ketb"""))
+    val pid1max = parse_element (element ("""ExcELIN2.pid1max"""))
+    val seve1 = parse_element (element ("""ExcELIN2.seve1"""))
+    val seve2 = parse_element (element ("""ExcELIN2.seve2"""))
+    val tb1 = parse_element (element ("""ExcELIN2.tb1"""))
+    val te = parse_element (element ("""ExcELIN2.te"""))
+    val te2 = parse_element (element ("""ExcELIN2.te2"""))
+    val ti1 = parse_element (element ("""ExcELIN2.ti1"""))
+    val ti3 = parse_element (element ("""ExcELIN2.ti3"""))
+    val ti4 = parse_element (element ("""ExcELIN2.ti4"""))
+    val tr4 = parse_element (element ("""ExcELIN2.tr4"""))
+    val upmax = parse_element (element ("""ExcELIN2.upmax"""))
+    val upmin = parse_element (element ("""ExcELIN2.upmin"""))
+    val ve1 = parse_element (element ("""ExcELIN2.ve1"""))
+    val ve2 = parse_element (element ("""ExcELIN2.ve2"""))
+    val xp = parse_element (element ("""ExcELIN2.xp"""))
     def parse (context: Context): ExcELIN2 =
     {
         ExcELIN2(
@@ -2772,18 +2772,18 @@ extends
     Parseable[ExcHU]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ae = parse_element (element ("""ExcHU.ae"""))_
-    val ai = parse_element (element ("""ExcHU.ai"""))_
-    val atr = parse_element (element ("""ExcHU.atr"""))_
-    val emax = parse_element (element ("""ExcHU.emax"""))_
-    val emin = parse_element (element ("""ExcHU.emin"""))_
-    val imax = parse_element (element ("""ExcHU.imax"""))_
-    val imin = parse_element (element ("""ExcHU.imin"""))_
-    val ke = parse_element (element ("""ExcHU.ke"""))_
-    val ki = parse_element (element ("""ExcHU.ki"""))_
-    val te = parse_element (element ("""ExcHU.te"""))_
-    val ti = parse_element (element ("""ExcHU.ti"""))_
-    val tr = parse_element (element ("""ExcHU.tr"""))_
+    val ae = parse_element (element ("""ExcHU.ae"""))
+    val ai = parse_element (element ("""ExcHU.ai"""))
+    val atr = parse_element (element ("""ExcHU.atr"""))
+    val emax = parse_element (element ("""ExcHU.emax"""))
+    val emin = parse_element (element ("""ExcHU.emin"""))
+    val imax = parse_element (element ("""ExcHU.imax"""))
+    val imin = parse_element (element ("""ExcHU.imin"""))
+    val ke = parse_element (element ("""ExcHU.ke"""))
+    val ki = parse_element (element ("""ExcHU.ki"""))
+    val te = parse_element (element ("""ExcHU.te"""))
+    val ti = parse_element (element ("""ExcHU.ti"""))
+    val tr = parse_element (element ("""ExcHU.tr"""))
     def parse (context: Context): ExcHU =
     {
         ExcHU(
@@ -2888,24 +2888,24 @@ extends
     Parseable[ExcIEEEAC1A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcIEEEAC1A.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEAC1A.kc"""))_
-    val kd = parse_element (element ("""ExcIEEEAC1A.kd"""))_
-    val ke = parse_element (element ("""ExcIEEEAC1A.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEAC1A.kf"""))_
-    val seve1 = parse_element (element ("""ExcIEEEAC1A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcIEEEAC1A.seve2"""))_
-    val ta = parse_element (element ("""ExcIEEEAC1A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEAC1A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEAC1A.tc"""))_
-    val te = parse_element (element ("""ExcIEEEAC1A.te"""))_
-    val tf = parse_element (element ("""ExcIEEEAC1A.tf"""))_
-    val vamax = parse_element (element ("""ExcIEEEAC1A.vamax"""))_
-    val vamin = parse_element (element ("""ExcIEEEAC1A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcIEEEAC1A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcIEEEAC1A.ve2"""))_
-    val vrmax = parse_element (element ("""ExcIEEEAC1A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEAC1A.vrmin"""))_
+    val ka = parse_element (element ("""ExcIEEEAC1A.ka"""))
+    val kc = parse_element (element ("""ExcIEEEAC1A.kc"""))
+    val kd = parse_element (element ("""ExcIEEEAC1A.kd"""))
+    val ke = parse_element (element ("""ExcIEEEAC1A.ke"""))
+    val kf = parse_element (element ("""ExcIEEEAC1A.kf"""))
+    val seve1 = parse_element (element ("""ExcIEEEAC1A.seve1"""))
+    val seve2 = parse_element (element ("""ExcIEEEAC1A.seve2"""))
+    val ta = parse_element (element ("""ExcIEEEAC1A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEAC1A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEAC1A.tc"""))
+    val te = parse_element (element ("""ExcIEEEAC1A.te"""))
+    val tf = parse_element (element ("""ExcIEEEAC1A.tf"""))
+    val vamax = parse_element (element ("""ExcIEEEAC1A.vamax"""))
+    val vamin = parse_element (element ("""ExcIEEEAC1A.vamin"""))
+    val ve1 = parse_element (element ("""ExcIEEEAC1A.ve1"""))
+    val ve2 = parse_element (element ("""ExcIEEEAC1A.ve2"""))
+    val vrmax = parse_element (element ("""ExcIEEEAC1A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEAC1A.vrmin"""))
     def parse (context: Context): ExcIEEEAC1A =
     {
         ExcIEEEAC1A(
@@ -3025,27 +3025,27 @@ extends
     Parseable[ExcIEEEAC2A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcIEEEAC2A.ka"""))_
-    val kb = parse_element (element ("""ExcIEEEAC2A.kb"""))_
-    val kc = parse_element (element ("""ExcIEEEAC2A.kc"""))_
-    val kd = parse_element (element ("""ExcIEEEAC2A.kd"""))_
-    val ke = parse_element (element ("""ExcIEEEAC2A.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEAC2A.kf"""))_
-    val kh = parse_element (element ("""ExcIEEEAC2A.kh"""))_
-    val seve1 = parse_element (element ("""ExcIEEEAC2A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcIEEEAC2A.seve2"""))_
-    val ta = parse_element (element ("""ExcIEEEAC2A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEAC2A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEAC2A.tc"""))_
-    val te = parse_element (element ("""ExcIEEEAC2A.te"""))_
-    val tf = parse_element (element ("""ExcIEEEAC2A.tf"""))_
-    val vamax = parse_element (element ("""ExcIEEEAC2A.vamax"""))_
-    val vamin = parse_element (element ("""ExcIEEEAC2A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcIEEEAC2A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcIEEEAC2A.ve2"""))_
-    val vfemax = parse_element (element ("""ExcIEEEAC2A.vfemax"""))_
-    val vrmax = parse_element (element ("""ExcIEEEAC2A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEAC2A.vrmin"""))_
+    val ka = parse_element (element ("""ExcIEEEAC2A.ka"""))
+    val kb = parse_element (element ("""ExcIEEEAC2A.kb"""))
+    val kc = parse_element (element ("""ExcIEEEAC2A.kc"""))
+    val kd = parse_element (element ("""ExcIEEEAC2A.kd"""))
+    val ke = parse_element (element ("""ExcIEEEAC2A.ke"""))
+    val kf = parse_element (element ("""ExcIEEEAC2A.kf"""))
+    val kh = parse_element (element ("""ExcIEEEAC2A.kh"""))
+    val seve1 = parse_element (element ("""ExcIEEEAC2A.seve1"""))
+    val seve2 = parse_element (element ("""ExcIEEEAC2A.seve2"""))
+    val ta = parse_element (element ("""ExcIEEEAC2A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEAC2A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEAC2A.tc"""))
+    val te = parse_element (element ("""ExcIEEEAC2A.te"""))
+    val tf = parse_element (element ("""ExcIEEEAC2A.tf"""))
+    val vamax = parse_element (element ("""ExcIEEEAC2A.vamax"""))
+    val vamin = parse_element (element ("""ExcIEEEAC2A.vamin"""))
+    val ve1 = parse_element (element ("""ExcIEEEAC2A.ve1"""))
+    val ve2 = parse_element (element ("""ExcIEEEAC2A.ve2"""))
+    val vfemax = parse_element (element ("""ExcIEEEAC2A.vfemax"""))
+    val vrmax = parse_element (element ("""ExcIEEEAC2A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEAC2A.vrmin"""))
     def parse (context: Context): ExcIEEEAC2A =
     {
         ExcIEEEAC2A(
@@ -3168,27 +3168,27 @@ extends
     Parseable[ExcIEEEAC3A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdn = parse_element (element ("""ExcIEEEAC3A.efdn"""))_
-    val ka = parse_element (element ("""ExcIEEEAC3A.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEAC3A.kc"""))_
-    val kd = parse_element (element ("""ExcIEEEAC3A.kd"""))_
-    val ke = parse_element (element ("""ExcIEEEAC3A.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEAC3A.kf"""))_
-    val kn = parse_element (element ("""ExcIEEEAC3A.kn"""))_
-    val kr = parse_element (element ("""ExcIEEEAC3A.kr"""))_
-    val seve1 = parse_element (element ("""ExcIEEEAC3A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcIEEEAC3A.seve2"""))_
-    val ta = parse_element (element ("""ExcIEEEAC3A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEAC3A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEAC3A.tc"""))_
-    val te = parse_element (element ("""ExcIEEEAC3A.te"""))_
-    val tf = parse_element (element ("""ExcIEEEAC3A.tf"""))_
-    val vamax = parse_element (element ("""ExcIEEEAC3A.vamax"""))_
-    val vamin = parse_element (element ("""ExcIEEEAC3A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcIEEEAC3A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcIEEEAC3A.ve2"""))_
-    val vemin = parse_element (element ("""ExcIEEEAC3A.vemin"""))_
-    val vfemax = parse_element (element ("""ExcIEEEAC3A.vfemax"""))_
+    val efdn = parse_element (element ("""ExcIEEEAC3A.efdn"""))
+    val ka = parse_element (element ("""ExcIEEEAC3A.ka"""))
+    val kc = parse_element (element ("""ExcIEEEAC3A.kc"""))
+    val kd = parse_element (element ("""ExcIEEEAC3A.kd"""))
+    val ke = parse_element (element ("""ExcIEEEAC3A.ke"""))
+    val kf = parse_element (element ("""ExcIEEEAC3A.kf"""))
+    val kn = parse_element (element ("""ExcIEEEAC3A.kn"""))
+    val kr = parse_element (element ("""ExcIEEEAC3A.kr"""))
+    val seve1 = parse_element (element ("""ExcIEEEAC3A.seve1"""))
+    val seve2 = parse_element (element ("""ExcIEEEAC3A.seve2"""))
+    val ta = parse_element (element ("""ExcIEEEAC3A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEAC3A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEAC3A.tc"""))
+    val te = parse_element (element ("""ExcIEEEAC3A.te"""))
+    val tf = parse_element (element ("""ExcIEEEAC3A.tf"""))
+    val vamax = parse_element (element ("""ExcIEEEAC3A.vamax"""))
+    val vamin = parse_element (element ("""ExcIEEEAC3A.vamin"""))
+    val ve1 = parse_element (element ("""ExcIEEEAC3A.ve1"""))
+    val ve2 = parse_element (element ("""ExcIEEEAC3A.ve2"""))
+    val vemin = parse_element (element ("""ExcIEEEAC3A.vemin"""))
+    val vfemax = parse_element (element ("""ExcIEEEAC3A.vfemax"""))
     def parse (context: Context): ExcIEEEAC3A =
     {
         ExcIEEEAC3A(
@@ -3275,15 +3275,15 @@ extends
     Parseable[ExcIEEEAC4A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcIEEEAC4A.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEAC4A.kc"""))_
-    val ta = parse_element (element ("""ExcIEEEAC4A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEAC4A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEAC4A.tc"""))_
-    val vimax = parse_element (element ("""ExcIEEEAC4A.vimax"""))_
-    val vimin = parse_element (element ("""ExcIEEEAC4A.vimin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEAC4A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEAC4A.vrmin"""))_
+    val ka = parse_element (element ("""ExcIEEEAC4A.ka"""))
+    val kc = parse_element (element ("""ExcIEEEAC4A.kc"""))
+    val ta = parse_element (element ("""ExcIEEEAC4A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEAC4A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEAC4A.tc"""))
+    val vimax = parse_element (element ("""ExcIEEEAC4A.vimax"""))
+    val vimin = parse_element (element ("""ExcIEEEAC4A.vimin"""))
+    val vrmax = parse_element (element ("""ExcIEEEAC4A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEAC4A.vrmin"""))
     def parse (context: Context): ExcIEEEAC4A =
     {
         ExcIEEEAC4A(
@@ -3373,20 +3373,20 @@ extends
     Parseable[ExcIEEEAC5A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efd1 = parse_element (element ("""ExcIEEEAC5A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcIEEEAC5A.efd2"""))_
-    val ka = parse_element (element ("""ExcIEEEAC5A.ka"""))_
-    val ke = parse_element (element ("""ExcIEEEAC5A.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEAC5A.kf"""))_
-    val seefd1 = parse_element (element ("""ExcIEEEAC5A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcIEEEAC5A.seefd2"""))_
-    val ta = parse_element (element ("""ExcIEEEAC5A.ta"""))_
-    val te = parse_element (element ("""ExcIEEEAC5A.te"""))_
-    val tf1 = parse_element (element ("""ExcIEEEAC5A.tf1"""))_
-    val tf2 = parse_element (element ("""ExcIEEEAC5A.tf2"""))_
-    val tf3 = parse_element (element ("""ExcIEEEAC5A.tf3"""))_
-    val vrmax = parse_element (element ("""ExcIEEEAC5A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEAC5A.vrmin"""))_
+    val efd1 = parse_element (element ("""ExcIEEEAC5A.efd1"""))
+    val efd2 = parse_element (element ("""ExcIEEEAC5A.efd2"""))
+    val ka = parse_element (element ("""ExcIEEEAC5A.ka"""))
+    val ke = parse_element (element ("""ExcIEEEAC5A.ke"""))
+    val kf = parse_element (element ("""ExcIEEEAC5A.kf"""))
+    val seefd1 = parse_element (element ("""ExcIEEEAC5A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcIEEEAC5A.seefd2"""))
+    val ta = parse_element (element ("""ExcIEEEAC5A.ta"""))
+    val te = parse_element (element ("""ExcIEEEAC5A.te"""))
+    val tf1 = parse_element (element ("""ExcIEEEAC5A.tf1"""))
+    val tf2 = parse_element (element ("""ExcIEEEAC5A.tf2"""))
+    val tf3 = parse_element (element ("""ExcIEEEAC5A.tf3"""))
+    val vrmax = parse_element (element ("""ExcIEEEAC5A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEAC5A.vrmin"""))
     def parse (context: Context): ExcIEEEAC5A =
     {
         ExcIEEEAC5A(
@@ -3505,28 +3505,28 @@ extends
     Parseable[ExcIEEEAC6A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcIEEEAC6A.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEAC6A.kc"""))_
-    val kd = parse_element (element ("""ExcIEEEAC6A.kd"""))_
-    val ke = parse_element (element ("""ExcIEEEAC6A.ke"""))_
-    val kh = parse_element (element ("""ExcIEEEAC6A.kh"""))_
-    val seve1 = parse_element (element ("""ExcIEEEAC6A.seve1"""))_
-    val seve2 = parse_element (element ("""ExcIEEEAC6A.seve2"""))_
-    val ta = parse_element (element ("""ExcIEEEAC6A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEAC6A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEAC6A.tc"""))_
-    val te = parse_element (element ("""ExcIEEEAC6A.te"""))_
-    val th = parse_element (element ("""ExcIEEEAC6A.th"""))_
-    val tj = parse_element (element ("""ExcIEEEAC6A.tj"""))_
-    val tk = parse_element (element ("""ExcIEEEAC6A.tk"""))_
-    val vamax = parse_element (element ("""ExcIEEEAC6A.vamax"""))_
-    val vamin = parse_element (element ("""ExcIEEEAC6A.vamin"""))_
-    val ve1 = parse_element (element ("""ExcIEEEAC6A.ve1"""))_
-    val ve2 = parse_element (element ("""ExcIEEEAC6A.ve2"""))_
-    val vfelim = parse_element (element ("""ExcIEEEAC6A.vfelim"""))_
-    val vhmax = parse_element (element ("""ExcIEEEAC6A.vhmax"""))_
-    val vrmax = parse_element (element ("""ExcIEEEAC6A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEAC6A.vrmin"""))_
+    val ka = parse_element (element ("""ExcIEEEAC6A.ka"""))
+    val kc = parse_element (element ("""ExcIEEEAC6A.kc"""))
+    val kd = parse_element (element ("""ExcIEEEAC6A.kd"""))
+    val ke = parse_element (element ("""ExcIEEEAC6A.ke"""))
+    val kh = parse_element (element ("""ExcIEEEAC6A.kh"""))
+    val seve1 = parse_element (element ("""ExcIEEEAC6A.seve1"""))
+    val seve2 = parse_element (element ("""ExcIEEEAC6A.seve2"""))
+    val ta = parse_element (element ("""ExcIEEEAC6A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEAC6A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEAC6A.tc"""))
+    val te = parse_element (element ("""ExcIEEEAC6A.te"""))
+    val th = parse_element (element ("""ExcIEEEAC6A.th"""))
+    val tj = parse_element (element ("""ExcIEEEAC6A.tj"""))
+    val tk = parse_element (element ("""ExcIEEEAC6A.tk"""))
+    val vamax = parse_element (element ("""ExcIEEEAC6A.vamax"""))
+    val vamin = parse_element (element ("""ExcIEEEAC6A.vamin"""))
+    val ve1 = parse_element (element ("""ExcIEEEAC6A.ve1"""))
+    val ve2 = parse_element (element ("""ExcIEEEAC6A.ve2"""))
+    val vfelim = parse_element (element ("""ExcIEEEAC6A.vfelim"""))
+    val vhmax = parse_element (element ("""ExcIEEEAC6A.vhmax"""))
+    val vrmax = parse_element (element ("""ExcIEEEAC6A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEAC6A.vrmin"""))
     def parse (context: Context): ExcIEEEAC6A =
     {
         ExcIEEEAC6A(
@@ -3665,32 +3665,32 @@ extends
     Parseable[ExcIEEEAC7B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val kc = parse_element (element ("""ExcIEEEAC7B.kc"""))_
-    val kd = parse_element (element ("""ExcIEEEAC7B.kd"""))_
-    val kdr = parse_element (element ("""ExcIEEEAC7B.kdr"""))_
-    val ke = parse_element (element ("""ExcIEEEAC7B.ke"""))_
-    val kf1 = parse_element (element ("""ExcIEEEAC7B.kf1"""))_
-    val kf2 = parse_element (element ("""ExcIEEEAC7B.kf2"""))_
-    val kf3 = parse_element (element ("""ExcIEEEAC7B.kf3"""))_
-    val kia = parse_element (element ("""ExcIEEEAC7B.kia"""))_
-    val kir = parse_element (element ("""ExcIEEEAC7B.kir"""))_
-    val kl = parse_element (element ("""ExcIEEEAC7B.kl"""))_
-    val kp = parse_element (element ("""ExcIEEEAC7B.kp"""))_
-    val kpa = parse_element (element ("""ExcIEEEAC7B.kpa"""))_
-    val kpr = parse_element (element ("""ExcIEEEAC7B.kpr"""))_
-    val seve1 = parse_element (element ("""ExcIEEEAC7B.seve1"""))_
-    val seve2 = parse_element (element ("""ExcIEEEAC7B.seve2"""))_
-    val tdr = parse_element (element ("""ExcIEEEAC7B.tdr"""))_
-    val te = parse_element (element ("""ExcIEEEAC7B.te"""))_
-    val tf = parse_element (element ("""ExcIEEEAC7B.tf"""))_
-    val vamax = parse_element (element ("""ExcIEEEAC7B.vamax"""))_
-    val vamin = parse_element (element ("""ExcIEEEAC7B.vamin"""))_
-    val ve1 = parse_element (element ("""ExcIEEEAC7B.ve1"""))_
-    val ve2 = parse_element (element ("""ExcIEEEAC7B.ve2"""))_
-    val vemin = parse_element (element ("""ExcIEEEAC7B.vemin"""))_
-    val vfemax = parse_element (element ("""ExcIEEEAC7B.vfemax"""))_
-    val vrmax = parse_element (element ("""ExcIEEEAC7B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEAC7B.vrmin"""))_
+    val kc = parse_element (element ("""ExcIEEEAC7B.kc"""))
+    val kd = parse_element (element ("""ExcIEEEAC7B.kd"""))
+    val kdr = parse_element (element ("""ExcIEEEAC7B.kdr"""))
+    val ke = parse_element (element ("""ExcIEEEAC7B.ke"""))
+    val kf1 = parse_element (element ("""ExcIEEEAC7B.kf1"""))
+    val kf2 = parse_element (element ("""ExcIEEEAC7B.kf2"""))
+    val kf3 = parse_element (element ("""ExcIEEEAC7B.kf3"""))
+    val kia = parse_element (element ("""ExcIEEEAC7B.kia"""))
+    val kir = parse_element (element ("""ExcIEEEAC7B.kir"""))
+    val kl = parse_element (element ("""ExcIEEEAC7B.kl"""))
+    val kp = parse_element (element ("""ExcIEEEAC7B.kp"""))
+    val kpa = parse_element (element ("""ExcIEEEAC7B.kpa"""))
+    val kpr = parse_element (element ("""ExcIEEEAC7B.kpr"""))
+    val seve1 = parse_element (element ("""ExcIEEEAC7B.seve1"""))
+    val seve2 = parse_element (element ("""ExcIEEEAC7B.seve2"""))
+    val tdr = parse_element (element ("""ExcIEEEAC7B.tdr"""))
+    val te = parse_element (element ("""ExcIEEEAC7B.te"""))
+    val tf = parse_element (element ("""ExcIEEEAC7B.tf"""))
+    val vamax = parse_element (element ("""ExcIEEEAC7B.vamax"""))
+    val vamin = parse_element (element ("""ExcIEEEAC7B.vamin"""))
+    val ve1 = parse_element (element ("""ExcIEEEAC7B.ve1"""))
+    val ve2 = parse_element (element ("""ExcIEEEAC7B.ve2"""))
+    val vemin = parse_element (element ("""ExcIEEEAC7B.vemin"""))
+    val vfemax = parse_element (element ("""ExcIEEEAC7B.vfemax"""))
+    val vrmax = parse_element (element ("""ExcIEEEAC7B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEAC7B.vrmin"""))
     def parse (context: Context): ExcIEEEAC7B =
     {
         ExcIEEEAC7B(
@@ -3809,24 +3809,24 @@ extends
     Parseable[ExcIEEEAC8B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcIEEEAC8B.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEAC8B.kc"""))_
-    val kd = parse_element (element ("""ExcIEEEAC8B.kd"""))_
-    val kdr = parse_element (element ("""ExcIEEEAC8B.kdr"""))_
-    val ke = parse_element (element ("""ExcIEEEAC8B.ke"""))_
-    val kir = parse_element (element ("""ExcIEEEAC8B.kir"""))_
-    val kpr = parse_element (element ("""ExcIEEEAC8B.kpr"""))_
-    val seve1 = parse_element (element ("""ExcIEEEAC8B.seve1"""))_
-    val seve2 = parse_element (element ("""ExcIEEEAC8B.seve2"""))_
-    val ta = parse_element (element ("""ExcIEEEAC8B.ta"""))_
-    val tdr = parse_element (element ("""ExcIEEEAC8B.tdr"""))_
-    val te = parse_element (element ("""ExcIEEEAC8B.te"""))_
-    val ve1 = parse_element (element ("""ExcIEEEAC8B.ve1"""))_
-    val ve2 = parse_element (element ("""ExcIEEEAC8B.ve2"""))_
-    val vemin = parse_element (element ("""ExcIEEEAC8B.vemin"""))_
-    val vfemax = parse_element (element ("""ExcIEEEAC8B.vfemax"""))_
-    val vrmax = parse_element (element ("""ExcIEEEAC8B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEAC8B.vrmin"""))_
+    val ka = parse_element (element ("""ExcIEEEAC8B.ka"""))
+    val kc = parse_element (element ("""ExcIEEEAC8B.kc"""))
+    val kd = parse_element (element ("""ExcIEEEAC8B.kd"""))
+    val kdr = parse_element (element ("""ExcIEEEAC8B.kdr"""))
+    val ke = parse_element (element ("""ExcIEEEAC8B.ke"""))
+    val kir = parse_element (element ("""ExcIEEEAC8B.kir"""))
+    val kpr = parse_element (element ("""ExcIEEEAC8B.kpr"""))
+    val seve1 = parse_element (element ("""ExcIEEEAC8B.seve1"""))
+    val seve2 = parse_element (element ("""ExcIEEEAC8B.seve2"""))
+    val ta = parse_element (element ("""ExcIEEEAC8B.ta"""))
+    val tdr = parse_element (element ("""ExcIEEEAC8B.tdr"""))
+    val te = parse_element (element ("""ExcIEEEAC8B.te"""))
+    val ve1 = parse_element (element ("""ExcIEEEAC8B.ve1"""))
+    val ve2 = parse_element (element ("""ExcIEEEAC8B.ve2"""))
+    val vemin = parse_element (element ("""ExcIEEEAC8B.vemin"""))
+    val vfemax = parse_element (element ("""ExcIEEEAC8B.vfemax"""))
+    val vrmax = parse_element (element ("""ExcIEEEAC8B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEAC8B.vrmin"""))
     def parse (context: Context): ExcIEEEAC8B =
     {
         ExcIEEEAC8B(
@@ -3933,22 +3933,22 @@ extends
     Parseable[ExcIEEEDC1A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efd1 = parse_element (element ("""ExcIEEEDC1A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcIEEEDC1A.efd2"""))_
-    val exclim = parse_element (element ("""ExcIEEEDC1A.exclim"""))_
-    val ka = parse_element (element ("""ExcIEEEDC1A.ka"""))_
-    val ke = parse_element (element ("""ExcIEEEDC1A.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEDC1A.kf"""))_
-    val seefd1 = parse_element (element ("""ExcIEEEDC1A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcIEEEDC1A.seefd2"""))_
-    val ta = parse_element (element ("""ExcIEEEDC1A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEDC1A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEDC1A.tc"""))_
-    val te = parse_element (element ("""ExcIEEEDC1A.te"""))_
-    val tf = parse_element (element ("""ExcIEEEDC1A.tf"""))_
-    val uelin = parse_element (element ("""ExcIEEEDC1A.uelin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEDC1A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEDC1A.vrmin"""))_
+    val efd1 = parse_element (element ("""ExcIEEEDC1A.efd1"""))
+    val efd2 = parse_element (element ("""ExcIEEEDC1A.efd2"""))
+    val exclim = parse_element (element ("""ExcIEEEDC1A.exclim"""))
+    val ka = parse_element (element ("""ExcIEEEDC1A.ka"""))
+    val ke = parse_element (element ("""ExcIEEEDC1A.ke"""))
+    val kf = parse_element (element ("""ExcIEEEDC1A.kf"""))
+    val seefd1 = parse_element (element ("""ExcIEEEDC1A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcIEEEDC1A.seefd2"""))
+    val ta = parse_element (element ("""ExcIEEEDC1A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEDC1A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEDC1A.tc"""))
+    val te = parse_element (element ("""ExcIEEEDC1A.te"""))
+    val tf = parse_element (element ("""ExcIEEEDC1A.tf"""))
+    val uelin = parse_element (element ("""ExcIEEEDC1A.uelin"""))
+    val vrmax = parse_element (element ("""ExcIEEEDC1A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEDC1A.vrmin"""))
     def parse (context: Context): ExcIEEEDC1A =
     {
         ExcIEEEDC1A(
@@ -4053,22 +4053,22 @@ extends
     Parseable[ExcIEEEDC2A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efd1 = parse_element (element ("""ExcIEEEDC2A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcIEEEDC2A.efd2"""))_
-    val exclim = parse_element (element ("""ExcIEEEDC2A.exclim"""))_
-    val ka = parse_element (element ("""ExcIEEEDC2A.ka"""))_
-    val ke = parse_element (element ("""ExcIEEEDC2A.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEDC2A.kf"""))_
-    val seefd1 = parse_element (element ("""ExcIEEEDC2A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcIEEEDC2A.seefd2"""))_
-    val ta = parse_element (element ("""ExcIEEEDC2A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEDC2A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEDC2A.tc"""))_
-    val te = parse_element (element ("""ExcIEEEDC2A.te"""))_
-    val tf = parse_element (element ("""ExcIEEEDC2A.tf"""))_
-    val uelin = parse_element (element ("""ExcIEEEDC2A.uelin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEDC2A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEDC2A.vrmin"""))_
+    val efd1 = parse_element (element ("""ExcIEEEDC2A.efd1"""))
+    val efd2 = parse_element (element ("""ExcIEEEDC2A.efd2"""))
+    val exclim = parse_element (element ("""ExcIEEEDC2A.exclim"""))
+    val ka = parse_element (element ("""ExcIEEEDC2A.ka"""))
+    val ke = parse_element (element ("""ExcIEEEDC2A.ke"""))
+    val kf = parse_element (element ("""ExcIEEEDC2A.kf"""))
+    val seefd1 = parse_element (element ("""ExcIEEEDC2A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcIEEEDC2A.seefd2"""))
+    val ta = parse_element (element ("""ExcIEEEDC2A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEDC2A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEDC2A.tc"""))
+    val te = parse_element (element ("""ExcIEEEDC2A.te"""))
+    val tf = parse_element (element ("""ExcIEEEDC2A.tf"""))
+    val uelin = parse_element (element ("""ExcIEEEDC2A.uelin"""))
+    val vrmax = parse_element (element ("""ExcIEEEDC2A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEDC2A.vrmin"""))
     def parse (context: Context): ExcIEEEDC2A =
     {
         ExcIEEEDC2A(
@@ -4156,17 +4156,17 @@ extends
     Parseable[ExcIEEEDC3A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efd1 = parse_element (element ("""ExcIEEEDC3A.efd1"""))_
-    val efd2 = parse_element (element ("""ExcIEEEDC3A.efd2"""))_
-    val exclim = parse_element (element ("""ExcIEEEDC3A.exclim"""))_
-    val ke = parse_element (element ("""ExcIEEEDC3A.ke"""))_
-    val kv = parse_element (element ("""ExcIEEEDC3A.kv"""))_
-    val seefd1 = parse_element (element ("""ExcIEEEDC3A.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcIEEEDC3A.seefd2"""))_
-    val te = parse_element (element ("""ExcIEEEDC3A.te"""))_
-    val trh = parse_element (element ("""ExcIEEEDC3A.trh"""))_
-    val vrmax = parse_element (element ("""ExcIEEEDC3A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEDC3A.vrmin"""))_
+    val efd1 = parse_element (element ("""ExcIEEEDC3A.efd1"""))
+    val efd2 = parse_element (element ("""ExcIEEEDC3A.efd2"""))
+    val exclim = parse_element (element ("""ExcIEEEDC3A.exclim"""))
+    val ke = parse_element (element ("""ExcIEEEDC3A.ke"""))
+    val kv = parse_element (element ("""ExcIEEEDC3A.kv"""))
+    val seefd1 = parse_element (element ("""ExcIEEEDC3A.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcIEEEDC3A.seefd2"""))
+    val te = parse_element (element ("""ExcIEEEDC3A.te"""))
+    val trh = parse_element (element ("""ExcIEEEDC3A.trh"""))
+    val vrmax = parse_element (element ("""ExcIEEEDC3A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEDC3A.vrmin"""))
     def parse (context: Context): ExcIEEEDC3A =
     {
         ExcIEEEDC3A(
@@ -4277,25 +4277,25 @@ extends
     Parseable[ExcIEEEDC4B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efd1 = parse_element (element ("""ExcIEEEDC4B.efd1"""))_
-    val efd2 = parse_element (element ("""ExcIEEEDC4B.efd2"""))_
-    val ka = parse_element (element ("""ExcIEEEDC4B.ka"""))_
-    val kd = parse_element (element ("""ExcIEEEDC4B.kd"""))_
-    val ke = parse_element (element ("""ExcIEEEDC4B.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEDC4B.kf"""))_
-    val ki = parse_element (element ("""ExcIEEEDC4B.ki"""))_
-    val kp = parse_element (element ("""ExcIEEEDC4B.kp"""))_
-    val oelin = parse_element (element ("""ExcIEEEDC4B.oelin"""))_
-    val seefd1 = parse_element (element ("""ExcIEEEDC4B.seefd1"""))_
-    val seefd2 = parse_element (element ("""ExcIEEEDC4B.seefd2"""))_
-    val ta = parse_element (element ("""ExcIEEEDC4B.ta"""))_
-    val td = parse_element (element ("""ExcIEEEDC4B.td"""))_
-    val te = parse_element (element ("""ExcIEEEDC4B.te"""))_
-    val tf = parse_element (element ("""ExcIEEEDC4B.tf"""))_
-    val uelin = parse_element (element ("""ExcIEEEDC4B.uelin"""))_
-    val vemin = parse_element (element ("""ExcIEEEDC4B.vemin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEDC4B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEDC4B.vrmin"""))_
+    val efd1 = parse_element (element ("""ExcIEEEDC4B.efd1"""))
+    val efd2 = parse_element (element ("""ExcIEEEDC4B.efd2"""))
+    val ka = parse_element (element ("""ExcIEEEDC4B.ka"""))
+    val kd = parse_element (element ("""ExcIEEEDC4B.kd"""))
+    val ke = parse_element (element ("""ExcIEEEDC4B.ke"""))
+    val kf = parse_element (element ("""ExcIEEEDC4B.kf"""))
+    val ki = parse_element (element ("""ExcIEEEDC4B.ki"""))
+    val kp = parse_element (element ("""ExcIEEEDC4B.kp"""))
+    val oelin = parse_element (element ("""ExcIEEEDC4B.oelin"""))
+    val seefd1 = parse_element (element ("""ExcIEEEDC4B.seefd1"""))
+    val seefd2 = parse_element (element ("""ExcIEEEDC4B.seefd2"""))
+    val ta = parse_element (element ("""ExcIEEEDC4B.ta"""))
+    val td = parse_element (element ("""ExcIEEEDC4B.td"""))
+    val te = parse_element (element ("""ExcIEEEDC4B.te"""))
+    val tf = parse_element (element ("""ExcIEEEDC4B.tf"""))
+    val uelin = parse_element (element ("""ExcIEEEDC4B.uelin"""))
+    val vemin = parse_element (element ("""ExcIEEEDC4B.vemin"""))
+    val vrmax = parse_element (element ("""ExcIEEEDC4B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEDC4B.vrmin"""))
     def parse (context: Context): ExcIEEEDC4B =
     {
         ExcIEEEDC4B(
@@ -4412,25 +4412,25 @@ extends
     Parseable[ExcIEEEST1A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ilr = parse_element (element ("""ExcIEEEST1A.ilr"""))_
-    val ka = parse_element (element ("""ExcIEEEST1A.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEST1A.kc"""))_
-    val kf = parse_element (element ("""ExcIEEEST1A.kf"""))_
-    val klr = parse_element (element ("""ExcIEEEST1A.klr"""))_
-    val pssin = parse_element (element ("""ExcIEEEST1A.pssin"""))_
-    val ta = parse_element (element ("""ExcIEEEST1A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEST1A.tb"""))_
-    val tb1 = parse_element (element ("""ExcIEEEST1A.tb1"""))_
-    val tc = parse_element (element ("""ExcIEEEST1A.tc"""))_
-    val tc1 = parse_element (element ("""ExcIEEEST1A.tc1"""))_
-    val tf = parse_element (element ("""ExcIEEEST1A.tf"""))_
-    val uelin = parse_attribute (attribute ("""ExcIEEEST1A.uelin"""))_
-    val vamax = parse_element (element ("""ExcIEEEST1A.vamax"""))_
-    val vamin = parse_element (element ("""ExcIEEEST1A.vamin"""))_
-    val vimax = parse_element (element ("""ExcIEEEST1A.vimax"""))_
-    val vimin = parse_element (element ("""ExcIEEEST1A.vimin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEST1A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEST1A.vrmin"""))_
+    val ilr = parse_element (element ("""ExcIEEEST1A.ilr"""))
+    val ka = parse_element (element ("""ExcIEEEST1A.ka"""))
+    val kc = parse_element (element ("""ExcIEEEST1A.kc"""))
+    val kf = parse_element (element ("""ExcIEEEST1A.kf"""))
+    val klr = parse_element (element ("""ExcIEEEST1A.klr"""))
+    val pssin = parse_element (element ("""ExcIEEEST1A.pssin"""))
+    val ta = parse_element (element ("""ExcIEEEST1A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEST1A.tb"""))
+    val tb1 = parse_element (element ("""ExcIEEEST1A.tb1"""))
+    val tc = parse_element (element ("""ExcIEEEST1A.tc"""))
+    val tc1 = parse_element (element ("""ExcIEEEST1A.tc1"""))
+    val tf = parse_element (element ("""ExcIEEEST1A.tf"""))
+    val uelin = parse_attribute (attribute ("""ExcIEEEST1A.uelin"""))
+    val vamax = parse_element (element ("""ExcIEEEST1A.vamax"""))
+    val vamin = parse_element (element ("""ExcIEEEST1A.vamin"""))
+    val vimax = parse_element (element ("""ExcIEEEST1A.vimax"""))
+    val vimin = parse_element (element ("""ExcIEEEST1A.vimin"""))
+    val vrmax = parse_element (element ("""ExcIEEEST1A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEST1A.vrmin"""))
     def parse (context: Context): ExcIEEEST1A =
     {
         ExcIEEEST1A(
@@ -4495,10 +4495,10 @@ extends
     Parseable[ExcIEEEST1AUELselectorKind]
 {
     val sup = BasicElement.parse _
-    val ignoreUELsignal = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.ignoreUELsignal"""))_
-    val inputAddedToErrorSignal = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal"""))_
-    val inputHVgateErrorSignal = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal"""))_
-    val inputHVgateVoltageOutput = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput"""))_
+    val ignoreUELsignal = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.ignoreUELsignal"""))
+    val inputAddedToErrorSignal = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal"""))
+    val inputHVgateErrorSignal = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal"""))
+    val inputHVgateVoltageOutput = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput"""))
     def parse (context: Context): ExcIEEEST1AUELselectorKind =
     {
         ExcIEEEST1AUELselectorKind(
@@ -4582,19 +4582,19 @@ extends
     Parseable[ExcIEEEST2A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdmax = parse_element (element ("""ExcIEEEST2A.efdmax"""))_
-    val ka = parse_element (element ("""ExcIEEEST2A.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEST2A.kc"""))_
-    val ke = parse_element (element ("""ExcIEEEST2A.ke"""))_
-    val kf = parse_element (element ("""ExcIEEEST2A.kf"""))_
-    val ki = parse_element (element ("""ExcIEEEST2A.ki"""))_
-    val kp = parse_element (element ("""ExcIEEEST2A.kp"""))_
-    val ta = parse_element (element ("""ExcIEEEST2A.ta"""))_
-    val te = parse_element (element ("""ExcIEEEST2A.te"""))_
-    val tf = parse_element (element ("""ExcIEEEST2A.tf"""))_
-    val uelin = parse_element (element ("""ExcIEEEST2A.uelin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEST2A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEST2A.vrmin"""))_
+    val efdmax = parse_element (element ("""ExcIEEEST2A.efdmax"""))
+    val ka = parse_element (element ("""ExcIEEEST2A.ka"""))
+    val kc = parse_element (element ("""ExcIEEEST2A.kc"""))
+    val ke = parse_element (element ("""ExcIEEEST2A.ke"""))
+    val kf = parse_element (element ("""ExcIEEEST2A.kf"""))
+    val ki = parse_element (element ("""ExcIEEEST2A.ki"""))
+    val kp = parse_element (element ("""ExcIEEEST2A.kp"""))
+    val ta = parse_element (element ("""ExcIEEEST2A.ta"""))
+    val te = parse_element (element ("""ExcIEEEST2A.te"""))
+    val tf = parse_element (element ("""ExcIEEEST2A.tf"""))
+    val uelin = parse_element (element ("""ExcIEEEST2A.uelin"""))
+    val vrmax = parse_element (element ("""ExcIEEEST2A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEST2A.vrmin"""))
     def parse (context: Context): ExcIEEEST2A =
     {
         ExcIEEEST2A(
@@ -4706,26 +4706,26 @@ extends
     Parseable[ExcIEEEST3A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ka = parse_element (element ("""ExcIEEEST3A.ka"""))_
-    val kc = parse_element (element ("""ExcIEEEST3A.kc"""))_
-    val kg = parse_element (element ("""ExcIEEEST3A.kg"""))_
-    val ki = parse_element (element ("""ExcIEEEST3A.ki"""))_
-    val km = parse_element (element ("""ExcIEEEST3A.km"""))_
-    val kp = parse_element (element ("""ExcIEEEST3A.kp"""))_
-    val ta = parse_element (element ("""ExcIEEEST3A.ta"""))_
-    val tb = parse_element (element ("""ExcIEEEST3A.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEST3A.tc"""))_
-    val thetap = parse_element (element ("""ExcIEEEST3A.thetap"""))_
-    val tm = parse_element (element ("""ExcIEEEST3A.tm"""))_
-    val vbmax = parse_element (element ("""ExcIEEEST3A.vbmax"""))_
-    val vgmax = parse_element (element ("""ExcIEEEST3A.vgmax"""))_
-    val vimax = parse_element (element ("""ExcIEEEST3A.vimax"""))_
-    val vimin = parse_element (element ("""ExcIEEEST3A.vimin"""))_
-    val vmmax = parse_element (element ("""ExcIEEEST3A.vmmax"""))_
-    val vmmin = parse_element (element ("""ExcIEEEST3A.vmmin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEST3A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEST3A.vrmin"""))_
-    val xl = parse_element (element ("""ExcIEEEST3A.xl"""))_
+    val ka = parse_element (element ("""ExcIEEEST3A.ka"""))
+    val kc = parse_element (element ("""ExcIEEEST3A.kc"""))
+    val kg = parse_element (element ("""ExcIEEEST3A.kg"""))
+    val ki = parse_element (element ("""ExcIEEEST3A.ki"""))
+    val km = parse_element (element ("""ExcIEEEST3A.km"""))
+    val kp = parse_element (element ("""ExcIEEEST3A.kp"""))
+    val ta = parse_element (element ("""ExcIEEEST3A.ta"""))
+    val tb = parse_element (element ("""ExcIEEEST3A.tb"""))
+    val tc = parse_element (element ("""ExcIEEEST3A.tc"""))
+    val thetap = parse_element (element ("""ExcIEEEST3A.thetap"""))
+    val tm = parse_element (element ("""ExcIEEEST3A.tm"""))
+    val vbmax = parse_element (element ("""ExcIEEEST3A.vbmax"""))
+    val vgmax = parse_element (element ("""ExcIEEEST3A.vgmax"""))
+    val vimax = parse_element (element ("""ExcIEEEST3A.vimax"""))
+    val vimin = parse_element (element ("""ExcIEEEST3A.vimin"""))
+    val vmmax = parse_element (element ("""ExcIEEEST3A.vmmax"""))
+    val vmmin = parse_element (element ("""ExcIEEEST3A.vmmin"""))
+    val vrmax = parse_element (element ("""ExcIEEEST3A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEST3A.vrmin"""))
+    val xl = parse_element (element ("""ExcIEEEST3A.xl"""))
     def parse (context: Context): ExcIEEEST3A =
     {
         ExcIEEEST3A(
@@ -4832,22 +4832,22 @@ extends
     Parseable[ExcIEEEST4B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val kc = parse_element (element ("""ExcIEEEST4B.kc"""))_
-    val kg = parse_element (element ("""ExcIEEEST4B.kg"""))_
-    val ki = parse_element (element ("""ExcIEEEST4B.ki"""))_
-    val kim = parse_element (element ("""ExcIEEEST4B.kim"""))_
-    val kir = parse_element (element ("""ExcIEEEST4B.kir"""))_
-    val kp = parse_element (element ("""ExcIEEEST4B.kp"""))_
-    val kpm = parse_element (element ("""ExcIEEEST4B.kpm"""))_
-    val kpr = parse_element (element ("""ExcIEEEST4B.kpr"""))_
-    val ta = parse_element (element ("""ExcIEEEST4B.ta"""))_
-    val thetap = parse_element (element ("""ExcIEEEST4B.thetap"""))_
-    val vbmax = parse_element (element ("""ExcIEEEST4B.vbmax"""))_
-    val vmmax = parse_element (element ("""ExcIEEEST4B.vmmax"""))_
-    val vmmin = parse_element (element ("""ExcIEEEST4B.vmmin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEST4B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEST4B.vrmin"""))_
-    val xl = parse_element (element ("""ExcIEEEST4B.xl"""))_
+    val kc = parse_element (element ("""ExcIEEEST4B.kc"""))
+    val kg = parse_element (element ("""ExcIEEEST4B.kg"""))
+    val ki = parse_element (element ("""ExcIEEEST4B.ki"""))
+    val kim = parse_element (element ("""ExcIEEEST4B.kim"""))
+    val kir = parse_element (element ("""ExcIEEEST4B.kir"""))
+    val kp = parse_element (element ("""ExcIEEEST4B.kp"""))
+    val kpm = parse_element (element ("""ExcIEEEST4B.kpm"""))
+    val kpr = parse_element (element ("""ExcIEEEST4B.kpr"""))
+    val ta = parse_element (element ("""ExcIEEEST4B.ta"""))
+    val thetap = parse_element (element ("""ExcIEEEST4B.thetap"""))
+    val vbmax = parse_element (element ("""ExcIEEEST4B.vbmax"""))
+    val vmmax = parse_element (element ("""ExcIEEEST4B.vmmax"""))
+    val vmmin = parse_element (element ("""ExcIEEEST4B.vmmin"""))
+    val vrmax = parse_element (element ("""ExcIEEEST4B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEST4B.vrmin"""))
+    val xl = parse_element (element ("""ExcIEEEST4B.xl"""))
     def parse (context: Context): ExcIEEEST4B =
     {
         ExcIEEEST4B(
@@ -4953,23 +4953,23 @@ extends
     Parseable[ExcIEEEST5B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val kc = parse_element (element ("""ExcIEEEST5B.kc"""))_
-    val kr = parse_element (element ("""ExcIEEEST5B.kr"""))_
-    val t1 = parse_element (element ("""ExcIEEEST5B.t1"""))_
-    val tb1 = parse_element (element ("""ExcIEEEST5B.tb1"""))_
-    val tb2 = parse_element (element ("""ExcIEEEST5B.tb2"""))_
-    val tc1 = parse_element (element ("""ExcIEEEST5B.tc1"""))_
-    val tc2 = parse_element (element ("""ExcIEEEST5B.tc2"""))_
-    val tob1 = parse_element (element ("""ExcIEEEST5B.tob1"""))_
-    val tob2 = parse_element (element ("""ExcIEEEST5B.tob2"""))_
-    val toc1 = parse_element (element ("""ExcIEEEST5B.toc1"""))_
-    val toc2 = parse_element (element ("""ExcIEEEST5B.toc2"""))_
-    val tub1 = parse_element (element ("""ExcIEEEST5B.tub1"""))_
-    val tub2 = parse_element (element ("""ExcIEEEST5B.tub2"""))_
-    val tuc1 = parse_element (element ("""ExcIEEEST5B.tuc1"""))_
-    val tuc2 = parse_element (element ("""ExcIEEEST5B.tuc2"""))_
-    val vrmax = parse_element (element ("""ExcIEEEST5B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEST5B.vrmin"""))_
+    val kc = parse_element (element ("""ExcIEEEST5B.kc"""))
+    val kr = parse_element (element ("""ExcIEEEST5B.kr"""))
+    val t1 = parse_element (element ("""ExcIEEEST5B.t1"""))
+    val tb1 = parse_element (element ("""ExcIEEEST5B.tb1"""))
+    val tb2 = parse_element (element ("""ExcIEEEST5B.tb2"""))
+    val tc1 = parse_element (element ("""ExcIEEEST5B.tc1"""))
+    val tc2 = parse_element (element ("""ExcIEEEST5B.tc2"""))
+    val tob1 = parse_element (element ("""ExcIEEEST5B.tob1"""))
+    val tob2 = parse_element (element ("""ExcIEEEST5B.tob2"""))
+    val toc1 = parse_element (element ("""ExcIEEEST5B.toc1"""))
+    val toc2 = parse_element (element ("""ExcIEEEST5B.toc2"""))
+    val tub1 = parse_element (element ("""ExcIEEEST5B.tub1"""))
+    val tub2 = parse_element (element ("""ExcIEEEST5B.tub2"""))
+    val tuc1 = parse_element (element ("""ExcIEEEST5B.tuc1"""))
+    val tuc2 = parse_element (element ("""ExcIEEEST5B.tuc2"""))
+    val vrmax = parse_element (element ("""ExcIEEEST5B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEST5B.vrmin"""))
     def parse (context: Context): ExcIEEEST5B =
     {
         ExcIEEEST5B(
@@ -5067,20 +5067,20 @@ extends
     Parseable[ExcIEEEST6B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ilr = parse_element (element ("""ExcIEEEST6B.ilr"""))_
-    val kci = parse_element (element ("""ExcIEEEST6B.kci"""))_
-    val kff = parse_element (element ("""ExcIEEEST6B.kff"""))_
-    val kg = parse_element (element ("""ExcIEEEST6B.kg"""))_
-    val kia = parse_element (element ("""ExcIEEEST6B.kia"""))_
-    val klr = parse_element (element ("""ExcIEEEST6B.klr"""))_
-    val km = parse_element (element ("""ExcIEEEST6B.km"""))_
-    val kpa = parse_element (element ("""ExcIEEEST6B.kpa"""))_
-    val oelin = parse_attribute (attribute ("""ExcIEEEST6B.oelin"""))_
-    val tg = parse_element (element ("""ExcIEEEST6B.tg"""))_
-    val vamax = parse_element (element ("""ExcIEEEST6B.vamax"""))_
-    val vamin = parse_element (element ("""ExcIEEEST6B.vamin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEST6B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEST6B.vrmin"""))_
+    val ilr = parse_element (element ("""ExcIEEEST6B.ilr"""))
+    val kci = parse_element (element ("""ExcIEEEST6B.kci"""))
+    val kff = parse_element (element ("""ExcIEEEST6B.kff"""))
+    val kg = parse_element (element ("""ExcIEEEST6B.kg"""))
+    val kia = parse_element (element ("""ExcIEEEST6B.kia"""))
+    val klr = parse_element (element ("""ExcIEEEST6B.klr"""))
+    val km = parse_element (element ("""ExcIEEEST6B.km"""))
+    val kpa = parse_element (element ("""ExcIEEEST6B.kpa"""))
+    val oelin = parse_attribute (attribute ("""ExcIEEEST6B.oelin"""))
+    val tg = parse_element (element ("""ExcIEEEST6B.tg"""))
+    val vamax = parse_element (element ("""ExcIEEEST6B.vamax"""))
+    val vamin = parse_element (element ("""ExcIEEEST6B.vamin"""))
+    val vrmax = parse_element (element ("""ExcIEEEST6B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEST6B.vrmin"""))
     def parse (context: Context): ExcIEEEST6B =
     {
         ExcIEEEST6B(
@@ -5178,21 +5178,21 @@ extends
     Parseable[ExcIEEEST7B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val kh = parse_element (element ("""ExcIEEEST7B.kh"""))_
-    val kia = parse_element (element ("""ExcIEEEST7B.kia"""))_
-    val kl = parse_element (element ("""ExcIEEEST7B.kl"""))_
-    val kpa = parse_element (element ("""ExcIEEEST7B.kpa"""))_
-    val oelin = parse_attribute (attribute ("""ExcIEEEST7B.oelin"""))_
-    val tb = parse_element (element ("""ExcIEEEST7B.tb"""))_
-    val tc = parse_element (element ("""ExcIEEEST7B.tc"""))_
-    val tf = parse_element (element ("""ExcIEEEST7B.tf"""))_
-    val tg = parse_element (element ("""ExcIEEEST7B.tg"""))_
-    val tia = parse_element (element ("""ExcIEEEST7B.tia"""))_
-    val uelin = parse_attribute (attribute ("""ExcIEEEST7B.uelin"""))_
-    val vmax = parse_element (element ("""ExcIEEEST7B.vmax"""))_
-    val vmin = parse_element (element ("""ExcIEEEST7B.vmin"""))_
-    val vrmax = parse_element (element ("""ExcIEEEST7B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcIEEEST7B.vrmin"""))_
+    val kh = parse_element (element ("""ExcIEEEST7B.kh"""))
+    val kia = parse_element (element ("""ExcIEEEST7B.kia"""))
+    val kl = parse_element (element ("""ExcIEEEST7B.kl"""))
+    val kpa = parse_element (element ("""ExcIEEEST7B.kpa"""))
+    val oelin = parse_attribute (attribute ("""ExcIEEEST7B.oelin"""))
+    val tb = parse_element (element ("""ExcIEEEST7B.tb"""))
+    val tc = parse_element (element ("""ExcIEEEST7B.tc"""))
+    val tf = parse_element (element ("""ExcIEEEST7B.tf"""))
+    val tg = parse_element (element ("""ExcIEEEST7B.tg"""))
+    val tia = parse_element (element ("""ExcIEEEST7B.tia"""))
+    val uelin = parse_attribute (attribute ("""ExcIEEEST7B.uelin"""))
+    val vmax = parse_element (element ("""ExcIEEEST7B.vmax"""))
+    val vmin = parse_element (element ("""ExcIEEEST7B.vmin"""))
+    val vrmax = parse_element (element ("""ExcIEEEST7B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcIEEEST7B.vrmin"""))
     def parse (context: Context): ExcIEEEST7B =
     {
         ExcIEEEST7B(
@@ -5283,25 +5283,25 @@ extends
     Parseable[ExcOEX3T]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val e1 = parse_element (element ("""ExcOEX3T.e1"""))_
-    val e2 = parse_element (element ("""ExcOEX3T.e2"""))_
-    val ka = parse_element (element ("""ExcOEX3T.ka"""))_
-    val kc = parse_element (element ("""ExcOEX3T.kc"""))_
-    val kd = parse_element (element ("""ExcOEX3T.kd"""))_
-    val ke = parse_element (element ("""ExcOEX3T.ke"""))_
-    val kf = parse_element (element ("""ExcOEX3T.kf"""))_
-    val see1 = parse_element (element ("""ExcOEX3T.see1"""))_
-    val see2 = parse_element (element ("""ExcOEX3T.see2"""))_
-    val t1 = parse_element (element ("""ExcOEX3T.t1"""))_
-    val t2 = parse_element (element ("""ExcOEX3T.t2"""))_
-    val t3 = parse_element (element ("""ExcOEX3T.t3"""))_
-    val t4 = parse_element (element ("""ExcOEX3T.t4"""))_
-    val t5 = parse_element (element ("""ExcOEX3T.t5"""))_
-    val t6 = parse_element (element ("""ExcOEX3T.t6"""))_
-    val te = parse_element (element ("""ExcOEX3T.te"""))_
-    val tf = parse_element (element ("""ExcOEX3T.tf"""))_
-    val vrmax = parse_element (element ("""ExcOEX3T.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcOEX3T.vrmin"""))_
+    val e1 = parse_element (element ("""ExcOEX3T.e1"""))
+    val e2 = parse_element (element ("""ExcOEX3T.e2"""))
+    val ka = parse_element (element ("""ExcOEX3T.ka"""))
+    val kc = parse_element (element ("""ExcOEX3T.kc"""))
+    val kd = parse_element (element ("""ExcOEX3T.kd"""))
+    val ke = parse_element (element ("""ExcOEX3T.ke"""))
+    val kf = parse_element (element ("""ExcOEX3T.kf"""))
+    val see1 = parse_element (element ("""ExcOEX3T.see1"""))
+    val see2 = parse_element (element ("""ExcOEX3T.see2"""))
+    val t1 = parse_element (element ("""ExcOEX3T.t1"""))
+    val t2 = parse_element (element ("""ExcOEX3T.t2"""))
+    val t3 = parse_element (element ("""ExcOEX3T.t3"""))
+    val t4 = parse_element (element ("""ExcOEX3T.t4"""))
+    val t5 = parse_element (element ("""ExcOEX3T.t5"""))
+    val t6 = parse_element (element ("""ExcOEX3T.t6"""))
+    val te = parse_element (element ("""ExcOEX3T.te"""))
+    val tf = parse_element (element ("""ExcOEX3T.tf"""))
+    val vrmax = parse_element (element ("""ExcOEX3T.vrmax"""))
+    val vrmin = parse_element (element ("""ExcOEX3T.vrmin"""))
     def parse (context: Context): ExcOEX3T =
     {
         ExcOEX3T(
@@ -5428,29 +5428,29 @@ extends
     Parseable[ExcPIC]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val e1 = parse_element (element ("""ExcPIC.e1"""))_
-    val e2 = parse_element (element ("""ExcPIC.e2"""))_
-    val efdmax = parse_element (element ("""ExcPIC.efdmax"""))_
-    val efdmin = parse_element (element ("""ExcPIC.efdmin"""))_
-    val ka = parse_element (element ("""ExcPIC.ka"""))_
-    val kc = parse_element (element ("""ExcPIC.kc"""))_
-    val ke = parse_element (element ("""ExcPIC.ke"""))_
-    val kf = parse_element (element ("""ExcPIC.kf"""))_
-    val ki = parse_element (element ("""ExcPIC.ki"""))_
-    val kp = parse_element (element ("""ExcPIC.kp"""))_
-    val se1 = parse_element (element ("""ExcPIC.se1"""))_
-    val se2 = parse_element (element ("""ExcPIC.se2"""))_
-    val ta1 = parse_element (element ("""ExcPIC.ta1"""))_
-    val ta2 = parse_element (element ("""ExcPIC.ta2"""))_
-    val ta3 = parse_element (element ("""ExcPIC.ta3"""))_
-    val ta4 = parse_element (element ("""ExcPIC.ta4"""))_
-    val te = parse_element (element ("""ExcPIC.te"""))_
-    val tf1 = parse_element (element ("""ExcPIC.tf1"""))_
-    val tf2 = parse_element (element ("""ExcPIC.tf2"""))_
-    val vr1 = parse_element (element ("""ExcPIC.vr1"""))_
-    val vr2 = parse_element (element ("""ExcPIC.vr2"""))_
-    val vrmax = parse_element (element ("""ExcPIC.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcPIC.vrmin"""))_
+    val e1 = parse_element (element ("""ExcPIC.e1"""))
+    val e2 = parse_element (element ("""ExcPIC.e2"""))
+    val efdmax = parse_element (element ("""ExcPIC.efdmax"""))
+    val efdmin = parse_element (element ("""ExcPIC.efdmin"""))
+    val ka = parse_element (element ("""ExcPIC.ka"""))
+    val kc = parse_element (element ("""ExcPIC.kc"""))
+    val ke = parse_element (element ("""ExcPIC.ke"""))
+    val kf = parse_element (element ("""ExcPIC.kf"""))
+    val ki = parse_element (element ("""ExcPIC.ki"""))
+    val kp = parse_element (element ("""ExcPIC.kp"""))
+    val se1 = parse_element (element ("""ExcPIC.se1"""))
+    val se2 = parse_element (element ("""ExcPIC.se2"""))
+    val ta1 = parse_element (element ("""ExcPIC.ta1"""))
+    val ta2 = parse_element (element ("""ExcPIC.ta2"""))
+    val ta3 = parse_element (element ("""ExcPIC.ta3"""))
+    val ta4 = parse_element (element ("""ExcPIC.ta4"""))
+    val te = parse_element (element ("""ExcPIC.te"""))
+    val tf1 = parse_element (element ("""ExcPIC.tf1"""))
+    val tf2 = parse_element (element ("""ExcPIC.tf2"""))
+    val vr1 = parse_element (element ("""ExcPIC.vr1"""))
+    val vr2 = parse_element (element ("""ExcPIC.vr2"""))
+    val vrmax = parse_element (element ("""ExcPIC.vrmax"""))
+    val vrmin = parse_element (element ("""ExcPIC.vrmin"""))
     def parse (context: Context): ExcPIC =
     {
         ExcPIC(
@@ -5620,42 +5620,42 @@ extends
     Parseable[ExcREXS]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val e1 = parse_element (element ("""ExcREXS.e1"""))_
-    val e2 = parse_element (element ("""ExcREXS.e2"""))_
-    val fbf = parse_attribute (attribute ("""ExcREXS.fbf"""))_
-    val flimf = parse_element (element ("""ExcREXS.flimf"""))_
-    val kc = parse_element (element ("""ExcREXS.kc"""))_
-    val kd = parse_element (element ("""ExcREXS.kd"""))_
-    val ke = parse_element (element ("""ExcREXS.ke"""))_
-    val kefd = parse_element (element ("""ExcREXS.kefd"""))_
-    val kf = parse_element (element ("""ExcREXS.kf"""))_
-    val kh = parse_element (element ("""ExcREXS.kh"""))_
-    val kii = parse_element (element ("""ExcREXS.kii"""))_
-    val kip = parse_element (element ("""ExcREXS.kip"""))_
-    val ks = parse_element (element ("""ExcREXS.ks"""))_
-    val kvi = parse_element (element ("""ExcREXS.kvi"""))_
-    val kvp = parse_element (element ("""ExcREXS.kvp"""))_
-    val kvphz = parse_element (element ("""ExcREXS.kvphz"""))_
-    val nvphz = parse_element (element ("""ExcREXS.nvphz"""))_
-    val se1 = parse_element (element ("""ExcREXS.se1"""))_
-    val se2 = parse_element (element ("""ExcREXS.se2"""))_
-    val ta = parse_element (element ("""ExcREXS.ta"""))_
-    val tb1 = parse_element (element ("""ExcREXS.tb1"""))_
-    val tb2 = parse_element (element ("""ExcREXS.tb2"""))_
-    val tc1 = parse_element (element ("""ExcREXS.tc1"""))_
-    val tc2 = parse_element (element ("""ExcREXS.tc2"""))_
-    val te = parse_element (element ("""ExcREXS.te"""))_
-    val tf = parse_element (element ("""ExcREXS.tf"""))_
-    val tf1 = parse_element (element ("""ExcREXS.tf1"""))_
-    val tf2 = parse_element (element ("""ExcREXS.tf2"""))_
-    val tp = parse_element (element ("""ExcREXS.tp"""))_
-    val vcmax = parse_element (element ("""ExcREXS.vcmax"""))_
-    val vfmax = parse_element (element ("""ExcREXS.vfmax"""))_
-    val vfmin = parse_element (element ("""ExcREXS.vfmin"""))_
-    val vimax = parse_element (element ("""ExcREXS.vimax"""))_
-    val vrmax = parse_element (element ("""ExcREXS.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcREXS.vrmin"""))_
-    val xc = parse_element (element ("""ExcREXS.xc"""))_
+    val e1 = parse_element (element ("""ExcREXS.e1"""))
+    val e2 = parse_element (element ("""ExcREXS.e2"""))
+    val fbf = parse_attribute (attribute ("""ExcREXS.fbf"""))
+    val flimf = parse_element (element ("""ExcREXS.flimf"""))
+    val kc = parse_element (element ("""ExcREXS.kc"""))
+    val kd = parse_element (element ("""ExcREXS.kd"""))
+    val ke = parse_element (element ("""ExcREXS.ke"""))
+    val kefd = parse_element (element ("""ExcREXS.kefd"""))
+    val kf = parse_element (element ("""ExcREXS.kf"""))
+    val kh = parse_element (element ("""ExcREXS.kh"""))
+    val kii = parse_element (element ("""ExcREXS.kii"""))
+    val kip = parse_element (element ("""ExcREXS.kip"""))
+    val ks = parse_element (element ("""ExcREXS.ks"""))
+    val kvi = parse_element (element ("""ExcREXS.kvi"""))
+    val kvp = parse_element (element ("""ExcREXS.kvp"""))
+    val kvphz = parse_element (element ("""ExcREXS.kvphz"""))
+    val nvphz = parse_element (element ("""ExcREXS.nvphz"""))
+    val se1 = parse_element (element ("""ExcREXS.se1"""))
+    val se2 = parse_element (element ("""ExcREXS.se2"""))
+    val ta = parse_element (element ("""ExcREXS.ta"""))
+    val tb1 = parse_element (element ("""ExcREXS.tb1"""))
+    val tb2 = parse_element (element ("""ExcREXS.tb2"""))
+    val tc1 = parse_element (element ("""ExcREXS.tc1"""))
+    val tc2 = parse_element (element ("""ExcREXS.tc2"""))
+    val te = parse_element (element ("""ExcREXS.te"""))
+    val tf = parse_element (element ("""ExcREXS.tf"""))
+    val tf1 = parse_element (element ("""ExcREXS.tf1"""))
+    val tf2 = parse_element (element ("""ExcREXS.tf2"""))
+    val tp = parse_element (element ("""ExcREXS.tp"""))
+    val vcmax = parse_element (element ("""ExcREXS.vcmax"""))
+    val vfmax = parse_element (element ("""ExcREXS.vfmax"""))
+    val vfmin = parse_element (element ("""ExcREXS.vfmin"""))
+    val vimax = parse_element (element ("""ExcREXS.vimax"""))
+    val vrmax = parse_element (element ("""ExcREXS.vrmax"""))
+    val vrmin = parse_element (element ("""ExcREXS.vrmin"""))
+    val xc = parse_element (element ("""ExcREXS.xc"""))
     def parse (context: Context): ExcREXS =
     {
         ExcREXS(
@@ -5736,9 +5736,9 @@ extends
     Parseable[ExcREXSFeedbackSignalKind]
 {
     val sup = BasicElement.parse _
-    val fieldCurrent = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.fieldCurrent"""))_
-    val fieldVoltage = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.fieldVoltage"""))_
-    val outputVoltage = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.outputVoltage"""))_
+    val fieldCurrent = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.fieldCurrent"""))
+    val fieldVoltage = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.fieldVoltage"""))
+    val outputVoltage = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.outputVoltage"""))
     def parse (context: Context): ExcREXSFeedbackSignalKind =
     {
         ExcREXSFeedbackSignalKind(
@@ -5804,14 +5804,14 @@ extends
     Parseable[ExcSCRX]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val cswitch = parse_element (element ("""ExcSCRX.cswitch"""))_
-    val emax = parse_element (element ("""ExcSCRX.emax"""))_
-    val emin = parse_element (element ("""ExcSCRX.emin"""))_
-    val k = parse_element (element ("""ExcSCRX.k"""))_
-    val rcrfd = parse_element (element ("""ExcSCRX.rcrfd"""))_
-    val tatb = parse_element (element ("""ExcSCRX.tatb"""))_
-    val tb = parse_element (element ("""ExcSCRX.tb"""))_
-    val te = parse_element (element ("""ExcSCRX.te"""))_
+    val cswitch = parse_element (element ("""ExcSCRX.cswitch"""))
+    val emax = parse_element (element ("""ExcSCRX.emax"""))
+    val emin = parse_element (element ("""ExcSCRX.emin"""))
+    val k = parse_element (element ("""ExcSCRX.k"""))
+    val rcrfd = parse_element (element ("""ExcSCRX.rcrfd"""))
+    val tatb = parse_element (element ("""ExcSCRX.tatb"""))
+    val tb = parse_element (element ("""ExcSCRX.tb"""))
+    val te = parse_element (element ("""ExcSCRX.te"""))
     def parse (context: Context): ExcSCRX =
     {
         ExcSCRX(
@@ -5887,16 +5887,16 @@ extends
     Parseable[ExcSEXS]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdmax = parse_element (element ("""ExcSEXS.efdmax"""))_
-    val efdmin = parse_element (element ("""ExcSEXS.efdmin"""))_
-    val emax = parse_element (element ("""ExcSEXS.emax"""))_
-    val emin = parse_element (element ("""ExcSEXS.emin"""))_
-    val k = parse_element (element ("""ExcSEXS.k"""))_
-    val kc = parse_element (element ("""ExcSEXS.kc"""))_
-    val tatb = parse_element (element ("""ExcSEXS.tatb"""))_
-    val tb = parse_element (element ("""ExcSEXS.tb"""))_
-    val tc = parse_element (element ("""ExcSEXS.tc"""))_
-    val te = parse_element (element ("""ExcSEXS.te"""))_
+    val efdmax = parse_element (element ("""ExcSEXS.efdmax"""))
+    val efdmin = parse_element (element ("""ExcSEXS.efdmin"""))
+    val emax = parse_element (element ("""ExcSEXS.emax"""))
+    val emin = parse_element (element ("""ExcSEXS.emin"""))
+    val k = parse_element (element ("""ExcSEXS.k"""))
+    val kc = parse_element (element ("""ExcSEXS.kc"""))
+    val tatb = parse_element (element ("""ExcSEXS.tatb"""))
+    val tb = parse_element (element ("""ExcSEXS.tb"""))
+    val tc = parse_element (element ("""ExcSEXS.tc"""))
+    val te = parse_element (element ("""ExcSEXS.te"""))
     def parse (context: Context): ExcSEXS =
     {
         ExcSEXS(
@@ -6041,38 +6041,38 @@ extends
     Parseable[ExcSK]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdmax = parse_element (element ("""ExcSK.efdmax"""))_
-    val efdmin = parse_element (element ("""ExcSK.efdmin"""))_
-    val emax = parse_element (element ("""ExcSK.emax"""))_
-    val emin = parse_element (element ("""ExcSK.emin"""))_
-    val k = parse_element (element ("""ExcSK.k"""))_
-    val k1 = parse_element (element ("""ExcSK.k1"""))_
-    val k2 = parse_element (element ("""ExcSK.k2"""))_
-    val kc = parse_element (element ("""ExcSK.kc"""))_
-    val kce = parse_element (element ("""ExcSK.kce"""))_
-    val kd = parse_element (element ("""ExcSK.kd"""))_
-    val kgob = parse_element (element ("""ExcSK.kgob"""))_
-    val kp = parse_element (element ("""ExcSK.kp"""))_
-    val kqi = parse_element (element ("""ExcSK.kqi"""))_
-    val kqob = parse_element (element ("""ExcSK.kqob"""))_
-    val kqp = parse_element (element ("""ExcSK.kqp"""))_
-    val nq = parse_element (element ("""ExcSK.nq"""))_
-    val qconoff = parse_element (element ("""ExcSK.qconoff"""))_
-    val qz = parse_element (element ("""ExcSK.qz"""))_
-    val remote = parse_element (element ("""ExcSK.remote"""))_
-    val sbase = parse_element (element ("""ExcSK.sbase"""))_
-    val tc = parse_element (element ("""ExcSK.tc"""))_
-    val te = parse_element (element ("""ExcSK.te"""))_
-    val ti = parse_element (element ("""ExcSK.ti"""))_
-    val tp = parse_element (element ("""ExcSK.tp"""))_
-    val tr = parse_element (element ("""ExcSK.tr"""))_
-    val uimax = parse_element (element ("""ExcSK.uimax"""))_
-    val uimin = parse_element (element ("""ExcSK.uimin"""))_
-    val urmax = parse_element (element ("""ExcSK.urmax"""))_
-    val urmin = parse_element (element ("""ExcSK.urmin"""))_
-    val vtmax = parse_element (element ("""ExcSK.vtmax"""))_
-    val vtmin = parse_element (element ("""ExcSK.vtmin"""))_
-    val yp = parse_element (element ("""ExcSK.yp"""))_
+    val efdmax = parse_element (element ("""ExcSK.efdmax"""))
+    val efdmin = parse_element (element ("""ExcSK.efdmin"""))
+    val emax = parse_element (element ("""ExcSK.emax"""))
+    val emin = parse_element (element ("""ExcSK.emin"""))
+    val k = parse_element (element ("""ExcSK.k"""))
+    val k1 = parse_element (element ("""ExcSK.k1"""))
+    val k2 = parse_element (element ("""ExcSK.k2"""))
+    val kc = parse_element (element ("""ExcSK.kc"""))
+    val kce = parse_element (element ("""ExcSK.kce"""))
+    val kd = parse_element (element ("""ExcSK.kd"""))
+    val kgob = parse_element (element ("""ExcSK.kgob"""))
+    val kp = parse_element (element ("""ExcSK.kp"""))
+    val kqi = parse_element (element ("""ExcSK.kqi"""))
+    val kqob = parse_element (element ("""ExcSK.kqob"""))
+    val kqp = parse_element (element ("""ExcSK.kqp"""))
+    val nq = parse_element (element ("""ExcSK.nq"""))
+    val qconoff = parse_element (element ("""ExcSK.qconoff"""))
+    val qz = parse_element (element ("""ExcSK.qz"""))
+    val remote = parse_element (element ("""ExcSK.remote"""))
+    val sbase = parse_element (element ("""ExcSK.sbase"""))
+    val tc = parse_element (element ("""ExcSK.tc"""))
+    val te = parse_element (element ("""ExcSK.te"""))
+    val ti = parse_element (element ("""ExcSK.ti"""))
+    val tp = parse_element (element ("""ExcSK.tp"""))
+    val tr = parse_element (element ("""ExcSK.tr"""))
+    val uimax = parse_element (element ("""ExcSK.uimax"""))
+    val uimin = parse_element (element ("""ExcSK.uimin"""))
+    val urmax = parse_element (element ("""ExcSK.urmax"""))
+    val urmin = parse_element (element ("""ExcSK.urmin"""))
+    val vtmax = parse_element (element ("""ExcSK.vtmax"""))
+    val vtmin = parse_element (element ("""ExcSK.vtmin"""))
+    val yp = parse_element (element ("""ExcSK.yp"""))
     def parse (context: Context): ExcSK =
     {
         ExcSK(
@@ -6196,24 +6196,24 @@ extends
     Parseable[ExcST1A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ilr = parse_element (element ("""ExcST1A.ilr"""))_
-    val ka = parse_element (element ("""ExcST1A.ka"""))_
-    val kc = parse_element (element ("""ExcST1A.kc"""))_
-    val kf = parse_element (element ("""ExcST1A.kf"""))_
-    val klr = parse_element (element ("""ExcST1A.klr"""))_
-    val ta = parse_element (element ("""ExcST1A.ta"""))_
-    val tb = parse_element (element ("""ExcST1A.tb"""))_
-    val tb1 = parse_element (element ("""ExcST1A.tb1"""))_
-    val tc = parse_element (element ("""ExcST1A.tc"""))_
-    val tc1 = parse_element (element ("""ExcST1A.tc1"""))_
-    val tf = parse_element (element ("""ExcST1A.tf"""))_
-    val vamax = parse_element (element ("""ExcST1A.vamax"""))_
-    val vamin = parse_element (element ("""ExcST1A.vamin"""))_
-    val vimax = parse_element (element ("""ExcST1A.vimax"""))_
-    val vimin = parse_element (element ("""ExcST1A.vimin"""))_
-    val vrmax = parse_element (element ("""ExcST1A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcST1A.vrmin"""))_
-    val xe = parse_element (element ("""ExcST1A.xe"""))_
+    val ilr = parse_element (element ("""ExcST1A.ilr"""))
+    val ka = parse_element (element ("""ExcST1A.ka"""))
+    val kc = parse_element (element ("""ExcST1A.kc"""))
+    val kf = parse_element (element ("""ExcST1A.kf"""))
+    val klr = parse_element (element ("""ExcST1A.klr"""))
+    val ta = parse_element (element ("""ExcST1A.ta"""))
+    val tb = parse_element (element ("""ExcST1A.tb"""))
+    val tb1 = parse_element (element ("""ExcST1A.tb1"""))
+    val tc = parse_element (element ("""ExcST1A.tc"""))
+    val tc1 = parse_element (element ("""ExcST1A.tc1"""))
+    val tf = parse_element (element ("""ExcST1A.tf"""))
+    val vamax = parse_element (element ("""ExcST1A.vamax"""))
+    val vamin = parse_element (element ("""ExcST1A.vamin"""))
+    val vimax = parse_element (element ("""ExcST1A.vimax"""))
+    val vimin = parse_element (element ("""ExcST1A.vimin"""))
+    val vrmax = parse_element (element ("""ExcST1A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcST1A.vrmin"""))
+    val xe = parse_element (element ("""ExcST1A.xe"""))
     def parse (context: Context): ExcST1A =
     {
         ExcST1A(
@@ -6316,21 +6316,21 @@ extends
     Parseable[ExcST2A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdmax = parse_element (element ("""ExcST2A.efdmax"""))_
-    val ka = parse_element (element ("""ExcST2A.ka"""))_
-    val kc = parse_element (element ("""ExcST2A.kc"""))_
-    val ke = parse_element (element ("""ExcST2A.ke"""))_
-    val kf = parse_element (element ("""ExcST2A.kf"""))_
-    val ki = parse_element (element ("""ExcST2A.ki"""))_
-    val kp = parse_element (element ("""ExcST2A.kp"""))_
-    val ta = parse_element (element ("""ExcST2A.ta"""))_
-    val tb = parse_element (element ("""ExcST2A.tb"""))_
-    val tc = parse_element (element ("""ExcST2A.tc"""))_
-    val te = parse_element (element ("""ExcST2A.te"""))_
-    val tf = parse_element (element ("""ExcST2A.tf"""))_
-    val uelin = parse_element (element ("""ExcST2A.uelin"""))_
-    val vrmax = parse_element (element ("""ExcST2A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcST2A.vrmin"""))_
+    val efdmax = parse_element (element ("""ExcST2A.efdmax"""))
+    val ka = parse_element (element ("""ExcST2A.ka"""))
+    val kc = parse_element (element ("""ExcST2A.kc"""))
+    val ke = parse_element (element ("""ExcST2A.ke"""))
+    val kf = parse_element (element ("""ExcST2A.kf"""))
+    val ki = parse_element (element ("""ExcST2A.ki"""))
+    val kp = parse_element (element ("""ExcST2A.kp"""))
+    val ta = parse_element (element ("""ExcST2A.ta"""))
+    val tb = parse_element (element ("""ExcST2A.tb"""))
+    val tc = parse_element (element ("""ExcST2A.tc"""))
+    val te = parse_element (element ("""ExcST2A.te"""))
+    val tf = parse_element (element ("""ExcST2A.tf"""))
+    val uelin = parse_element (element ("""ExcST2A.uelin"""))
+    val vrmax = parse_element (element ("""ExcST2A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcST2A.vrmin"""))
     def parse (context: Context): ExcST2A =
     {
         ExcST2A(
@@ -6443,26 +6443,26 @@ extends
     Parseable[ExcST3A]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val efdmax = parse_element (element ("""ExcST3A.efdmax"""))_
-    val kc = parse_element (element ("""ExcST3A.kc"""))_
-    val kg = parse_element (element ("""ExcST3A.kg"""))_
-    val ki = parse_element (element ("""ExcST3A.ki"""))_
-    val kj = parse_element (element ("""ExcST3A.kj"""))_
-    val km = parse_element (element ("""ExcST3A.km"""))_
-    val kp = parse_element (element ("""ExcST3A.kp"""))_
-    val ks = parse_element (element ("""ExcST3A.ks"""))_
-    val ks1 = parse_element (element ("""ExcST3A.ks1"""))_
-    val tb = parse_element (element ("""ExcST3A.tb"""))_
-    val tc = parse_element (element ("""ExcST3A.tc"""))_
-    val thetap = parse_element (element ("""ExcST3A.thetap"""))_
-    val tm = parse_element (element ("""ExcST3A.tm"""))_
-    val vbmax = parse_element (element ("""ExcST3A.vbmax"""))_
-    val vgmax = parse_element (element ("""ExcST3A.vgmax"""))_
-    val vimax = parse_element (element ("""ExcST3A.vimax"""))_
-    val vimin = parse_element (element ("""ExcST3A.vimin"""))_
-    val vrmax = parse_element (element ("""ExcST3A.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcST3A.vrmin"""))_
-    val xl = parse_element (element ("""ExcST3A.xl"""))_
+    val efdmax = parse_element (element ("""ExcST3A.efdmax"""))
+    val kc = parse_element (element ("""ExcST3A.kc"""))
+    val kg = parse_element (element ("""ExcST3A.kg"""))
+    val ki = parse_element (element ("""ExcST3A.ki"""))
+    val kj = parse_element (element ("""ExcST3A.kj"""))
+    val km = parse_element (element ("""ExcST3A.km"""))
+    val kp = parse_element (element ("""ExcST3A.kp"""))
+    val ks = parse_element (element ("""ExcST3A.ks"""))
+    val ks1 = parse_element (element ("""ExcST3A.ks1"""))
+    val tb = parse_element (element ("""ExcST3A.tb"""))
+    val tc = parse_element (element ("""ExcST3A.tc"""))
+    val thetap = parse_element (element ("""ExcST3A.thetap"""))
+    val tm = parse_element (element ("""ExcST3A.tm"""))
+    val vbmax = parse_element (element ("""ExcST3A.vbmax"""))
+    val vgmax = parse_element (element ("""ExcST3A.vgmax"""))
+    val vimax = parse_element (element ("""ExcST3A.vimax"""))
+    val vimin = parse_element (element ("""ExcST3A.vimin"""))
+    val vrmax = parse_element (element ("""ExcST3A.vrmax"""))
+    val vrmin = parse_element (element ("""ExcST3A.vrmin"""))
+    val xl = parse_element (element ("""ExcST3A.xl"""))
     def parse (context: Context): ExcST3A =
     {
         ExcST3A(
@@ -6581,25 +6581,25 @@ extends
     Parseable[ExcST4B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val kc = parse_element (element ("""ExcST4B.kc"""))_
-    val kg = parse_element (element ("""ExcST4B.kg"""))_
-    val ki = parse_element (element ("""ExcST4B.ki"""))_
-    val kim = parse_element (element ("""ExcST4B.kim"""))_
-    val kir = parse_element (element ("""ExcST4B.kir"""))_
-    val kp = parse_element (element ("""ExcST4B.kp"""))_
-    val kpm = parse_element (element ("""ExcST4B.kpm"""))_
-    val kpr = parse_element (element ("""ExcST4B.kpr"""))_
-    val lvgate = parse_element (element ("""ExcST4B.lvgate"""))_
-    val ta = parse_element (element ("""ExcST4B.ta"""))_
-    val thetap = parse_element (element ("""ExcST4B.thetap"""))_
-    val uel = parse_element (element ("""ExcST4B.uel"""))_
-    val vbmax = parse_element (element ("""ExcST4B.vbmax"""))_
-    val vgmax = parse_element (element ("""ExcST4B.vgmax"""))_
-    val vmmax = parse_element (element ("""ExcST4B.vmmax"""))_
-    val vmmin = parse_element (element ("""ExcST4B.vmmin"""))_
-    val vrmax = parse_element (element ("""ExcST4B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcST4B.vrmin"""))_
-    val xl = parse_element (element ("""ExcST4B.xl"""))_
+    val kc = parse_element (element ("""ExcST4B.kc"""))
+    val kg = parse_element (element ("""ExcST4B.kg"""))
+    val ki = parse_element (element ("""ExcST4B.ki"""))
+    val kim = parse_element (element ("""ExcST4B.kim"""))
+    val kir = parse_element (element ("""ExcST4B.kir"""))
+    val kp = parse_element (element ("""ExcST4B.kp"""))
+    val kpm = parse_element (element ("""ExcST4B.kpm"""))
+    val kpr = parse_element (element ("""ExcST4B.kpr"""))
+    val lvgate = parse_element (element ("""ExcST4B.lvgate"""))
+    val ta = parse_element (element ("""ExcST4B.ta"""))
+    val thetap = parse_element (element ("""ExcST4B.thetap"""))
+    val uel = parse_element (element ("""ExcST4B.uel"""))
+    val vbmax = parse_element (element ("""ExcST4B.vbmax"""))
+    val vgmax = parse_element (element ("""ExcST4B.vgmax"""))
+    val vmmax = parse_element (element ("""ExcST4B.vmmax"""))
+    val vmmin = parse_element (element ("""ExcST4B.vmmin"""))
+    val vrmax = parse_element (element ("""ExcST4B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcST4B.vrmin"""))
+    val xl = parse_element (element ("""ExcST4B.xl"""))
     def parse (context: Context): ExcST4B =
     {
         ExcST4B(
@@ -6731,29 +6731,29 @@ extends
     Parseable[ExcST6B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val ilr = parse_element (element ("""ExcST6B.ilr"""))_
-    val k1 = parse_element (element ("""ExcST6B.k1"""))_
-    val kcl = parse_element (element ("""ExcST6B.kcl"""))_
-    val kff = parse_element (element ("""ExcST6B.kff"""))_
-    val kg = parse_element (element ("""ExcST6B.kg"""))_
-    val kia = parse_element (element ("""ExcST6B.kia"""))_
-    val klr = parse_element (element ("""ExcST6B.klr"""))_
-    val km = parse_element (element ("""ExcST6B.km"""))_
-    val kpa = parse_element (element ("""ExcST6B.kpa"""))_
-    val kvd = parse_element (element ("""ExcST6B.kvd"""))_
-    val oelin = parse_attribute (attribute ("""ExcST6B.oelin"""))_
-    val tg = parse_element (element ("""ExcST6B.tg"""))_
-    val ts = parse_element (element ("""ExcST6B.ts"""))_
-    val tvd = parse_element (element ("""ExcST6B.tvd"""))_
-    val vamax = parse_element (element ("""ExcST6B.vamax"""))_
-    val vamin = parse_element (element ("""ExcST6B.vamin"""))_
-    val vilim = parse_element (element ("""ExcST6B.vilim"""))_
-    val vimax = parse_element (element ("""ExcST6B.vimax"""))_
-    val vimin = parse_element (element ("""ExcST6B.vimin"""))_
-    val vmult = parse_element (element ("""ExcST6B.vmult"""))_
-    val vrmax = parse_element (element ("""ExcST6B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcST6B.vrmin"""))_
-    val xc = parse_element (element ("""ExcST6B.xc"""))_
+    val ilr = parse_element (element ("""ExcST6B.ilr"""))
+    val k1 = parse_element (element ("""ExcST6B.k1"""))
+    val kcl = parse_element (element ("""ExcST6B.kcl"""))
+    val kff = parse_element (element ("""ExcST6B.kff"""))
+    val kg = parse_element (element ("""ExcST6B.kg"""))
+    val kia = parse_element (element ("""ExcST6B.kia"""))
+    val klr = parse_element (element ("""ExcST6B.klr"""))
+    val km = parse_element (element ("""ExcST6B.km"""))
+    val kpa = parse_element (element ("""ExcST6B.kpa"""))
+    val kvd = parse_element (element ("""ExcST6B.kvd"""))
+    val oelin = parse_attribute (attribute ("""ExcST6B.oelin"""))
+    val tg = parse_element (element ("""ExcST6B.tg"""))
+    val ts = parse_element (element ("""ExcST6B.ts"""))
+    val tvd = parse_element (element ("""ExcST6B.tvd"""))
+    val vamax = parse_element (element ("""ExcST6B.vamax"""))
+    val vamin = parse_element (element ("""ExcST6B.vamin"""))
+    val vilim = parse_element (element ("""ExcST6B.vilim"""))
+    val vimax = parse_element (element ("""ExcST6B.vimax"""))
+    val vimin = parse_element (element ("""ExcST6B.vimin"""))
+    val vmult = parse_element (element ("""ExcST6B.vmult"""))
+    val vrmax = parse_element (element ("""ExcST6B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcST6B.vrmin"""))
+    val xc = parse_element (element ("""ExcST6B.xc"""))
     def parse (context: Context): ExcST6B =
     {
         ExcST6B(
@@ -6820,9 +6820,9 @@ extends
     Parseable[ExcST6BOELselectorKind]
 {
     val sup = BasicElement.parse _
-    val afterUEL = parse_attribute (attribute ("""ExcST6BOELselectorKind.afterUEL"""))_
-    val beforeUEL = parse_attribute (attribute ("""ExcST6BOELselectorKind.beforeUEL"""))_
-    val noOELinput = parse_attribute (attribute ("""ExcST6BOELselectorKind.noOELinput"""))_
+    val afterUEL = parse_attribute (attribute ("""ExcST6BOELselectorKind.afterUEL"""))
+    val beforeUEL = parse_attribute (attribute ("""ExcST6BOELselectorKind.beforeUEL"""))
+    val noOELinput = parse_attribute (attribute ("""ExcST6BOELselectorKind.noOELinput"""))
     def parse (context: Context): ExcST6BOELselectorKind =
     {
         ExcST6BOELselectorKind(
@@ -6911,22 +6911,22 @@ extends
     Parseable[ExcST7B]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val kh = parse_element (element ("""ExcST7B.kh"""))_
-    val kia = parse_element (element ("""ExcST7B.kia"""))_
-    val kl = parse_element (element ("""ExcST7B.kl"""))_
-    val kpa = parse_element (element ("""ExcST7B.kpa"""))_
-    val oelin = parse_attribute (attribute ("""ExcST7B.oelin"""))_
-    val tb = parse_element (element ("""ExcST7B.tb"""))_
-    val tc = parse_element (element ("""ExcST7B.tc"""))_
-    val tf = parse_element (element ("""ExcST7B.tf"""))_
-    val tg = parse_element (element ("""ExcST7B.tg"""))_
-    val tia = parse_element (element ("""ExcST7B.tia"""))_
-    val ts = parse_element (element ("""ExcST7B.ts"""))_
-    val uelin = parse_attribute (attribute ("""ExcST7B.uelin"""))_
-    val vmax = parse_element (element ("""ExcST7B.vmax"""))_
-    val vmin = parse_element (element ("""ExcST7B.vmin"""))_
-    val vrmax = parse_element (element ("""ExcST7B.vrmax"""))_
-    val vrmin = parse_element (element ("""ExcST7B.vrmin"""))_
+    val kh = parse_element (element ("""ExcST7B.kh"""))
+    val kia = parse_element (element ("""ExcST7B.kia"""))
+    val kl = parse_element (element ("""ExcST7B.kl"""))
+    val kpa = parse_element (element ("""ExcST7B.kpa"""))
+    val oelin = parse_attribute (attribute ("""ExcST7B.oelin"""))
+    val tb = parse_element (element ("""ExcST7B.tb"""))
+    val tc = parse_element (element ("""ExcST7B.tc"""))
+    val tf = parse_element (element ("""ExcST7B.tf"""))
+    val tg = parse_element (element ("""ExcST7B.tg"""))
+    val tia = parse_element (element ("""ExcST7B.tia"""))
+    val ts = parse_element (element ("""ExcST7B.ts"""))
+    val uelin = parse_attribute (attribute ("""ExcST7B.uelin"""))
+    val vmax = parse_element (element ("""ExcST7B.vmax"""))
+    val vmin = parse_element (element ("""ExcST7B.vmin"""))
+    val vrmax = parse_element (element ("""ExcST7B.vrmax"""))
+    val vrmin = parse_element (element ("""ExcST7B.vrmin"""))
     def parse (context: Context): ExcST7B =
     {
         ExcST7B(
@@ -6988,10 +6988,10 @@ extends
     Parseable[ExcST7BOELselectorKind]
 {
     val sup = BasicElement.parse _
-    val addVref = parse_attribute (attribute ("""ExcST7BOELselectorKind.addVref"""))_
-    val inputLVgate = parse_attribute (attribute ("""ExcST7BOELselectorKind.inputLVgate"""))_
-    val noOELinput = parse_attribute (attribute ("""ExcST7BOELselectorKind.noOELinput"""))_
-    val outputLVgate = parse_attribute (attribute ("""ExcST7BOELselectorKind.outputLVgate"""))_
+    val addVref = parse_attribute (attribute ("""ExcST7BOELselectorKind.addVref"""))
+    val inputLVgate = parse_attribute (attribute ("""ExcST7BOELselectorKind.inputLVgate"""))
+    val noOELinput = parse_attribute (attribute ("""ExcST7BOELselectorKind.noOELinput"""))
+    val outputLVgate = parse_attribute (attribute ("""ExcST7BOELselectorKind.outputLVgate"""))
     def parse (context: Context): ExcST7BOELselectorKind =
     {
         ExcST7BOELselectorKind(
@@ -7041,10 +7041,10 @@ extends
     Parseable[ExcST7BUELselectorKind]
 {
     val sup = BasicElement.parse _
-    val addVref = parse_attribute (attribute ("""ExcST7BUELselectorKind.addVref"""))_
-    val inputHVgate = parse_attribute (attribute ("""ExcST7BUELselectorKind.inputHVgate"""))_
-    val noUELinput = parse_attribute (attribute ("""ExcST7BUELselectorKind.noUELinput"""))_
-    val outputHVgate = parse_attribute (attribute ("""ExcST7BUELselectorKind.outputHVgate"""))_
+    val addVref = parse_attribute (attribute ("""ExcST7BUELselectorKind.addVref"""))
+    val inputHVgate = parse_attribute (attribute ("""ExcST7BUELselectorKind.inputHVgate"""))
+    val noUELinput = parse_attribute (attribute ("""ExcST7BUELselectorKind.noUELinput"""))
+    val outputHVgate = parse_attribute (attribute ("""ExcST7BUELselectorKind.outputHVgate"""))
     def parse (context: Context): ExcST7BUELselectorKind =
     {
         ExcST7BUELselectorKind(
@@ -7102,14 +7102,14 @@ extends
     Parseable[ExcitationSystemDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val DiscontinuousExcitationControlDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.DiscontinuousExcitationControlDynamics"""))_
-    val OverexcitationLimiterDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.OverexcitationLimiterDynamics"""))_
-    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PFVArControllerType1Dynamics"""))_
-    val PFVArControllerType2Dynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PFVArControllerType2Dynamics"""))_
-    val PowerSystemStabilizerDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PowerSystemStabilizerDynamics"""))_
-    val SynchronousMachineDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.SynchronousMachineDynamics"""))_
-    val UnderexcitationLimiterDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.UnderexcitationLimiterDynamics"""))_
-    val VoltageCompensatorDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.VoltageCompensatorDynamics"""))_
+    val DiscontinuousExcitationControlDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.DiscontinuousExcitationControlDynamics"""))
+    val OverexcitationLimiterDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.OverexcitationLimiterDynamics"""))
+    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PFVArControllerType1Dynamics"""))
+    val PFVArControllerType2Dynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PFVArControllerType2Dynamics"""))
+    val PowerSystemStabilizerDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PowerSystemStabilizerDynamics"""))
+    val SynchronousMachineDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.SynchronousMachineDynamics"""))
+    val UnderexcitationLimiterDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.UnderexcitationLimiterDynamics"""))
+    val VoltageCompensatorDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.VoltageCompensatorDynamics"""))
     def parse (context: Context): ExcitationSystemDynamics =
     {
         ExcitationSystemDynamics(

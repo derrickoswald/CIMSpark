@@ -83,9 +83,9 @@ extends
     Parseable[SvInjection]
 {
     val sup = StateVariable.parse _
-    val pInjection = parse_element (element ("""SvInjection.pInjection"""))_
-    val qInjection = parse_element (element ("""SvInjection.qInjection"""))_
-    val TopologicalNode = parse_attribute (attribute ("""SvInjection.TopologicalNode"""))_
+    val pInjection = parse_element (element ("""SvInjection.pInjection"""))
+    val qInjection = parse_element (element ("""SvInjection.qInjection"""))
+    val TopologicalNode = parse_attribute (attribute ("""SvInjection.TopologicalNode"""))
     def parse (context: Context): SvInjection =
     {
         SvInjection(
@@ -135,9 +135,9 @@ extends
     Parseable[SvPowerFlow]
 {
     val sup = StateVariable.parse _
-    val p = parse_element (element ("""SvPowerFlow.p"""))_
-    val q = parse_element (element ("""SvPowerFlow.q"""))_
-    val Terminal = parse_attribute (attribute ("""SvPowerFlow.Terminal"""))_
+    val p = parse_element (element ("""SvPowerFlow.p"""))
+    val q = parse_element (element ("""SvPowerFlow.q"""))
+    val Terminal = parse_attribute (attribute ("""SvPowerFlow.Terminal"""))
     def parse (context: Context): SvPowerFlow =
     {
         SvPowerFlow(
@@ -183,8 +183,8 @@ extends
     Parseable[SvShuntCompensatorSections]
 {
     val sup = StateVariable.parse _
-    val sections = parse_element (element ("""SvShuntCompensatorSections.sections"""))_
-    val ShuntCompensator = parse_attribute (attribute ("""SvShuntCompensatorSections.ShuntCompensator"""))_
+    val sections = parse_element (element ("""SvShuntCompensatorSections.sections"""))
+    val ShuntCompensator = parse_attribute (attribute ("""SvShuntCompensatorSections.ShuntCompensator"""))
     def parse (context: Context): SvShuntCompensatorSections =
     {
         SvShuntCompensatorSections(
@@ -228,8 +228,8 @@ extends
     Parseable[SvStatus]
 {
     val sup = StateVariable.parse _
-    val inService = parse_element (element ("""SvStatus.inService"""))_
-    val ConductingEquipment = parse_attribute (attribute ("""SvStatus.ConductingEquipment"""))_
+    val inService = parse_element (element ("""SvStatus.inService"""))
+    val ConductingEquipment = parse_attribute (attribute ("""SvStatus.ConductingEquipment"""))
     def parse (context: Context): SvStatus =
     {
         SvStatus(
@@ -275,8 +275,8 @@ extends
     Parseable[SvTapStep]
 {
     val sup = StateVariable.parse _
-    val position = parse_element (element ("""SvTapStep.position"""))_
-    val TapChanger = parse_attribute (attribute ("""SvTapStep.TapChanger"""))_
+    val position = parse_element (element ("""SvTapStep.position"""))
+    val TapChanger = parse_attribute (attribute ("""SvTapStep.TapChanger"""))
     def parse (context: Context): SvTapStep =
     {
         SvTapStep(
@@ -322,9 +322,9 @@ extends
     Parseable[SvVoltage]
 {
     val sup = StateVariable.parse _
-    val angle = parse_element (element ("""SvVoltage.angle"""))_
-    val v = parse_element (element ("""SvVoltage.v"""))_
-    val TopologicalNode = parse_attribute (attribute ("""SvVoltage.TopologicalNode"""))_
+    val angle = parse_element (element ("""SvVoltage.angle"""))
+    val v = parse_element (element ("""SvVoltage.v"""))
+    val TopologicalNode = parse_attribute (attribute ("""SvVoltage.TopologicalNode"""))
     def parse (context: Context): SvVoltage =
     {
         SvVoltage(

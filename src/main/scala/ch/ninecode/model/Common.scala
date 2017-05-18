@@ -47,11 +47,11 @@ extends
     Parseable[ActivityRecord]
 {
     val sup = IdentifiedObject.parse _
-    val createdDateTime = parse_element (element ("""ActivityRecord.createdDateTime"""))_
-    val reason = parse_element (element ("""ActivityRecord.reason"""))_
-    val severity = parse_element (element ("""ActivityRecord.severity"""))_
-    val status = parse_attribute (attribute ("""ActivityRecord.status"""))_
-    val typ = parse_element (element ("""ActivityRecord.type"""))_
+    val createdDateTime = parse_element (element ("""ActivityRecord.createdDateTime"""))
+    val reason = parse_element (element ("""ActivityRecord.reason"""))
+    val severity = parse_element (element ("""ActivityRecord.severity"""))
+    val status = parse_attribute (attribute ("""ActivityRecord.status"""))
+    val typ = parse_element (element ("""ActivityRecord.type"""))
     def parse (context: Context): ActivityRecord =
     {
         ActivityRecord(
@@ -99,8 +99,8 @@ extends
     Parseable[Agreement]
 {
     val sup = Document.parse _
-    val signDate = parse_element (element ("""Agreement.signDate"""))_
-    val validityInterval = parse_attribute (attribute ("""Agreement.validityInterval"""))_
+    val signDate = parse_element (element ("""Agreement.signDate"""))
+    val validityInterval = parse_attribute (attribute ("""Agreement.validityInterval"""))
     def parse (context: Context): Agreement =
     {
         Agreement(
@@ -146,9 +146,9 @@ extends
     Parseable[Appointment]
 {
     val sup = IdentifiedObject.parse _
-    val callAhead = parse_element (element ("""Appointment.callAhead"""))_
-    val meetingInterval = parse_attribute (attribute ("""Appointment.meetingInterval"""))_
-    val Works = parse_attributes (attribute ("""Appointment.Works"""))_
+    val callAhead = parse_element (element ("""Appointment.callAhead"""))
+    val meetingInterval = parse_attribute (attribute ("""Appointment.meetingInterval"""))
+    val Works = parse_attributes (attribute ("""Appointment.Works"""))
     def parse (context: Context): Appointment =
     {
         Appointment(
@@ -209,16 +209,16 @@ extends
     Parseable[ConfigurationEvent]
 {
     val sup = ActivityRecord.parse _
-    val effectiveDateTime = parse_element (element ("""ConfigurationEvent.effectiveDateTime"""))_
-    val modifiedBy = parse_element (element ("""ConfigurationEvent.modifiedBy"""))_
-    val remark = parse_element (element ("""ConfigurationEvent.remark"""))_
-    val ChangedAsset = parse_attribute (attribute ("""ConfigurationEvent.ChangedAsset"""))_
-    val ChangedDocument = parse_attribute (attribute ("""ConfigurationEvent.ChangedDocument"""))_
-    val ChangedLocation = parse_attribute (attribute ("""ConfigurationEvent.ChangedLocation"""))_
-    val ChangedOrganisationRole = parse_attribute (attribute ("""ConfigurationEvent.ChangedOrganisationRole"""))_
-    val ChangedPersonRole = parse_attribute (attribute ("""ConfigurationEvent.ChangedPersonRole"""))_
-    val ChangedServiceCategory = parse_attribute (attribute ("""ConfigurationEvent.ChangedServiceCategory"""))_
-    val ChangedUsagePoint = parse_attribute (attribute ("""ConfigurationEvent.ChangedUsagePoint"""))_
+    val effectiveDateTime = parse_element (element ("""ConfigurationEvent.effectiveDateTime"""))
+    val modifiedBy = parse_element (element ("""ConfigurationEvent.modifiedBy"""))
+    val remark = parse_element (element ("""ConfigurationEvent.remark"""))
+    val ChangedAsset = parse_attribute (attribute ("""ConfigurationEvent.ChangedAsset"""))
+    val ChangedDocument = parse_attribute (attribute ("""ConfigurationEvent.ChangedDocument"""))
+    val ChangedLocation = parse_attribute (attribute ("""ConfigurationEvent.ChangedLocation"""))
+    val ChangedOrganisationRole = parse_attribute (attribute ("""ConfigurationEvent.ChangedOrganisationRole"""))
+    val ChangedPersonRole = parse_attribute (attribute ("""ConfigurationEvent.ChangedPersonRole"""))
+    val ChangedServiceCategory = parse_attribute (attribute ("""ConfigurationEvent.ChangedServiceCategory"""))
+    val ChangedUsagePoint = parse_attribute (attribute ("""ConfigurationEvent.ChangedUsagePoint"""))
     def parse (context: Context): ConfigurationEvent =
     {
         ConfigurationEvent(
@@ -269,7 +269,7 @@ extends
     Parseable[CoordinateSystem]
 {
     val sup = IdentifiedObject.parse _
-    val crsUrn = parse_element (element ("""CoordinateSystem.crsUrn"""))_
+    val crsUrn = parse_element (element ("""CoordinateSystem.crsUrn"""))
     def parse (context: Context): CoordinateSystem =
     {
         CoordinateSystem(
@@ -312,8 +312,8 @@ extends
     Parseable[Crew]
 {
     val sup = IdentifiedObject.parse _
-    val status = parse_attribute (attribute ("""Crew.status"""))_
-    val CrewType = parse_attribute (attribute ("""Crew.CrewType"""))_
+    val status = parse_attribute (attribute ("""Crew.status"""))
+    val CrewType = parse_attribute (attribute ("""Crew.CrewType"""))
     def parse (context: Context): Crew =
     {
         Crew(
@@ -355,7 +355,7 @@ extends
     Parseable[CrewMember]
 {
     val sup = OperationPersonRole.parse _
-    val Crew = parse_attribute (attribute ("""CrewMember.Crew"""))_
+    val Crew = parse_attribute (attribute ("""CrewMember.Crew"""))
     def parse (context: Context): CrewMember =
     {
         CrewMember(
@@ -458,17 +458,17 @@ extends
     Parseable[Document]
 {
     val sup = IdentifiedObject.parse _
-    val authorName = parse_element (element ("""Document.authorName"""))_
-    val comment = parse_element (element ("""Document.comment"""))_
-    val createdDateTime = parse_element (element ("""Document.createdDateTime"""))_
-    val docStatus = parse_attribute (attribute ("""Document.docStatus"""))_
-    val electronicAddress = parse_attribute (attribute ("""Document.electronicAddress"""))_
-    val lastModifiedDateTime = parse_element (element ("""Document.lastModifiedDateTime"""))_
-    val revisionNumber = parse_element (element ("""Document.revisionNumber"""))_
-    val status = parse_attribute (attribute ("""Document.status"""))_
-    val subject = parse_element (element ("""Document.subject"""))_
-    val title = parse_element (element ("""Document.title"""))_
-    val typ = parse_element (element ("""Document.type"""))_
+    val authorName = parse_element (element ("""Document.authorName"""))
+    val comment = parse_element (element ("""Document.comment"""))
+    val createdDateTime = parse_element (element ("""Document.createdDateTime"""))
+    val docStatus = parse_attribute (attribute ("""Document.docStatus"""))
+    val electronicAddress = parse_attribute (attribute ("""Document.electronicAddress"""))
+    val lastModifiedDateTime = parse_element (element ("""Document.lastModifiedDateTime"""))
+    val revisionNumber = parse_element (element ("""Document.revisionNumber"""))
+    val status = parse_attribute (attribute ("""Document.status"""))
+    val subject = parse_element (element ("""Document.subject"""))
+    val title = parse_element (element ("""Document.title"""))
+    val typ = parse_element (element ("""Document.type"""))
     def parse (context: Context): Document =
     {
         Document(
@@ -533,14 +533,14 @@ extends
     Parseable[ElectronicAddress]
 {
     val sup = BasicElement.parse _
-    val email1 = parse_element (element ("""ElectronicAddress.email1"""))_
-    val email2 = parse_element (element ("""ElectronicAddress.email2"""))_
-    val lan = parse_element (element ("""ElectronicAddress.lan"""))_
-    val mac = parse_element (element ("""ElectronicAddress.mac"""))_
-    val password = parse_element (element ("""ElectronicAddress.password"""))_
-    val radio = parse_element (element ("""ElectronicAddress.radio"""))_
-    val userID = parse_element (element ("""ElectronicAddress.userID"""))_
-    val web = parse_element (element ("""ElectronicAddress.web"""))_
+    val email1 = parse_element (element ("""ElectronicAddress.email1"""))
+    val email2 = parse_element (element ("""ElectronicAddress.email2"""))
+    val lan = parse_element (element ("""ElectronicAddress.lan"""))
+    val mac = parse_element (element ("""ElectronicAddress.mac"""))
+    val password = parse_element (element ("""ElectronicAddress.password"""))
+    val radio = parse_element (element ("""ElectronicAddress.radio"""))
+    val userID = parse_element (element ("""ElectronicAddress.userID"""))
+    val web = parse_element (element ("""ElectronicAddress.web"""))
     def parse (context: Context): ElectronicAddress =
     {
         ElectronicAddress(
@@ -590,8 +590,8 @@ extends
     Parseable[Hazard]
 {
     val sup = IdentifiedObject.parse _
-    val status = parse_attribute (attribute ("""Hazard.status"""))_
-    val typ = parse_element (element ("""Hazard.type"""))_
+    val status = parse_attribute (attribute ("""Hazard.status"""))
+    val typ = parse_element (element ("""Hazard.type"""))
     def parse (context: Context): Hazard =
     {
         Hazard(
@@ -656,17 +656,17 @@ extends
     Parseable[Location]
 {
     val sup = IdentifiedObject.parse _
-    val direction = parse_element (element ("""Location.direction"""))_
-    val electronicAddress = parse_attribute (attribute ("""Location.electronicAddress"""))_
-    val geoInfoReference = parse_element (element ("""Location.geoInfoReference"""))_
-    val mainAddress = parse_attribute (attribute ("""Location.mainAddress"""))_
-    val phone1 = parse_attribute (attribute ("""Location.phone1"""))_
-    val phone2 = parse_attribute (attribute ("""Location.phone2"""))_
-    val secondaryAddress = parse_attribute (attribute ("""Location.secondaryAddress"""))_
-    val status = parse_attribute (attribute ("""Location.status"""))_
-    val typ = parse_element (element ("""Location.type"""))_
-    val CoordinateSystem = parse_attribute (attribute ("""Location.CoordinateSystem"""))_
-    val Measurements = parse_attributes (attribute ("""Location.Measurements"""))_
+    val direction = parse_element (element ("""Location.direction"""))
+    val electronicAddress = parse_attribute (attribute ("""Location.electronicAddress"""))
+    val geoInfoReference = parse_element (element ("""Location.geoInfoReference"""))
+    val mainAddress = parse_attribute (attribute ("""Location.mainAddress"""))
+    val phone1 = parse_attribute (attribute ("""Location.phone1"""))
+    val phone2 = parse_attribute (attribute ("""Location.phone2"""))
+    val secondaryAddress = parse_attribute (attribute ("""Location.secondaryAddress"""))
+    val status = parse_attribute (attribute ("""Location.status"""))
+    val typ = parse_element (element ("""Location.type"""))
+    val CoordinateSystem = parse_attribute (attribute ("""Location.CoordinateSystem"""))
+    val Measurements = parse_attributes (attribute ("""Location.Measurements"""))
     def parse (context: Context): Location =
     {
         Location(
@@ -801,12 +801,12 @@ extends
     Parseable[Organisation]
 {
     val sup = IdentifiedObject.parse _
-    val electronicAddress = parse_attribute (attribute ("""Organisation.electronicAddress"""))_
-    val phone1 = parse_attribute (attribute ("""Organisation.phone1"""))_
-    val phone2 = parse_attribute (attribute ("""Organisation.phone2"""))_
-    val postalAddress = parse_attribute (attribute ("""Organisation.postalAddress"""))_
-    val streetAddress = parse_attribute (attribute ("""Organisation.streetAddress"""))_
-    val ActivityRecords = parse_attributes (attribute ("""Organisation.ActivityRecords"""))_
+    val electronicAddress = parse_attribute (attribute ("""Organisation.electronicAddress"""))
+    val phone1 = parse_attribute (attribute ("""Organisation.phone1"""))
+    val phone2 = parse_attribute (attribute ("""Organisation.phone2"""))
+    val postalAddress = parse_attribute (attribute ("""Organisation.postalAddress"""))
+    val streetAddress = parse_attribute (attribute ("""Organisation.streetAddress"""))
+    val ActivityRecords = parse_attributes (attribute ("""Organisation.ActivityRecords"""))
     def parse (context: Context): Organisation =
     {
         Organisation(
@@ -852,7 +852,7 @@ extends
     Parseable[OrganisationRole]
 {
     val sup = IdentifiedObject.parse _
-    val Organisation = parse_attribute (attribute ("""OrganisationRole.Organisation"""))_
+    val Organisation = parse_attribute (attribute ("""OrganisationRole.Organisation"""))
     def parse (context: Context): OrganisationRole =
     {
         OrganisationRole(
@@ -897,9 +897,9 @@ extends
     Parseable[Ownership]
 {
     val sup = IdentifiedObject.parse _
-    val share = parse_element (element ("""Ownership.share"""))_
-    val Asset = parse_attribute (attribute ("""Ownership.Asset"""))_
-    val AssetOwner = parse_attribute (attribute ("""Ownership.AssetOwner"""))_
+    val share = parse_element (element ("""Ownership.share"""))
+    val Asset = parse_attribute (attribute ("""Ownership.Asset"""))
+    val AssetOwner = parse_attribute (attribute ("""Ownership.AssetOwner"""))
     def parse (context: Context): Ownership =
     {
         Ownership(
@@ -958,15 +958,15 @@ extends
     Parseable[Person]
 {
     val sup = IdentifiedObject.parse _
-    val electronicAddress = parse_attribute (attribute ("""Person.electronicAddress"""))_
-    val firstName = parse_element (element ("""Person.firstName"""))_
-    val landlinePhone = parse_attribute (attribute ("""Person.landlinePhone"""))_
-    val lastName = parse_element (element ("""Person.lastName"""))_
-    val mName = parse_element (element ("""Person.mName"""))_
-    val mobilePhone = parse_attribute (attribute ("""Person.mobilePhone"""))_
-    val prefix = parse_element (element ("""Person.prefix"""))_
-    val specialNeed = parse_element (element ("""Person.specialNeed"""))_
-    val suffix = parse_element (element ("""Person.suffix"""))_
+    val electronicAddress = parse_attribute (attribute ("""Person.electronicAddress"""))
+    val firstName = parse_element (element ("""Person.firstName"""))
+    val landlinePhone = parse_attribute (attribute ("""Person.landlinePhone"""))
+    val lastName = parse_element (element ("""Person.lastName"""))
+    val mName = parse_element (element ("""Person.mName"""))
+    val mobilePhone = parse_attribute (attribute ("""Person.mobilePhone"""))
+    val prefix = parse_element (element ("""Person.prefix"""))
+    val specialNeed = parse_element (element ("""Person.specialNeed"""))
+    val suffix = parse_element (element ("""Person.suffix"""))
     def parse (context: Context): Person =
     {
         Person(
@@ -1011,8 +1011,8 @@ extends
     Parseable[PersonRole]
 {
     val sup = IdentifiedObject.parse _
-    val Appointments = parse_attributes (attribute ("""PersonRole.Appointments"""))_
-    val Person = parse_attribute (attribute ("""PersonRole.Person"""))_
+    val Appointments = parse_attributes (attribute ("""PersonRole.Appointments"""))
+    val Person = parse_attribute (attribute ("""PersonRole.Person"""))
     def parse (context: Context): PersonRole =
     {
         PersonRole(
@@ -1063,11 +1063,11 @@ extends
     Parseable[PositionPoint]
 {
     val sup = BasicElement.parse _
-    val sequenceNumber = parse_element (element ("""PositionPoint.sequenceNumber"""))_
-    val xPosition = parse_element (element ("""PositionPoint.xPosition"""))_
-    val yPosition = parse_element (element ("""PositionPoint.yPosition"""))_
-    val zPosition = parse_element (element ("""PositionPoint.zPosition"""))_
-    val Location = parse_attribute (attribute ("""PositionPoint.Location"""))_
+    val sequenceNumber = parse_element (element ("""PositionPoint.sequenceNumber"""))
+    val xPosition = parse_element (element ("""PositionPoint.xPosition"""))
+    val yPosition = parse_element (element ("""PositionPoint.yPosition"""))
+    val zPosition = parse_element (element ("""PositionPoint.zPosition"""))
+    val Location = parse_attribute (attribute ("""PositionPoint.Location"""))
     def parse (context: Context): PositionPoint =
     {
         PositionPoint(
@@ -1118,10 +1118,10 @@ extends
     Parseable[PostalAddress]
 {
     val sup = BasicElement.parse _
-    val poBox = parse_element (element ("""PostalAddress.poBox"""))_
-    val postalCode = parse_element (element ("""PostalAddress.postalCode"""))_
-    val streetDetail = parse_attribute (attribute ("""PostalAddress.streetDetail"""))_
-    val townDetail = parse_attribute (attribute ("""PostalAddress.townDetail"""))_
+    val poBox = parse_element (element ("""PostalAddress.poBox"""))
+    val postalCode = parse_element (element ("""PostalAddress.postalCode"""))
+    val streetDetail = parse_attribute (attribute ("""PostalAddress.streetDetail"""))
+    val townDetail = parse_attribute (attribute ("""PostalAddress.townDetail"""))
     def parse (context: Context): PostalAddress =
     {
         PostalAddress(
@@ -1169,9 +1169,9 @@ extends
     Parseable[Priority]
 {
     val sup = BasicElement.parse _
-    val justification = parse_element (element ("""Priority.justification"""))_
-    val rank = parse_element (element ("""Priority.rank"""))_
-    val typ = parse_element (element ("""Priority.type"""))_
+    val justification = parse_element (element ("""Priority.justification"""))
+    val rank = parse_element (element ("""Priority.rank"""))
+    val typ = parse_element (element ("""Priority.type"""))
     def parse (context: Context): Priority =
     {
         Priority(
@@ -1222,11 +1222,11 @@ extends
     Parseable[ScheduledEvent]
 {
     val sup = IdentifiedObject.parse _
-    val duration = parse_element (element ("""ScheduledEvent.duration"""))_
-    val status = parse_attribute (attribute ("""ScheduledEvent.status"""))_
-    val typ = parse_element (element ("""ScheduledEvent.type"""))_
-    val Assets = parse_attributes (attribute ("""ScheduledEvent.Assets"""))_
-    val ScheduledEventData = parse_attribute (attribute ("""ScheduledEvent.ScheduledEventData"""))_
+    val duration = parse_element (element ("""ScheduledEvent.duration"""))
+    val status = parse_attribute (attribute ("""ScheduledEvent.status"""))
+    val typ = parse_element (element ("""ScheduledEvent.type"""))
+    val Assets = parse_attributes (attribute ("""ScheduledEvent.Assets"""))
+    val ScheduledEventData = parse_attribute (attribute ("""ScheduledEvent.ScheduledEventData"""))
     def parse (context: Context): ScheduledEvent =
     {
         ScheduledEvent(
@@ -1277,10 +1277,10 @@ extends
     Parseable[ScheduledEventData]
 {
     val sup = BasicElement.parse _
-    val estimatedWindow = parse_attribute (attribute ("""ScheduledEventData.estimatedWindow"""))_
-    val requestedWindow = parse_attribute (attribute ("""ScheduledEventData.requestedWindow"""))_
-    val status = parse_attribute (attribute ("""ScheduledEventData.status"""))_
-    val InspectionDataSet = parse_attribute (attribute ("""ScheduledEventData.InspectionDataSet"""))_
+    val estimatedWindow = parse_attribute (attribute ("""ScheduledEventData.estimatedWindow"""))
+    val requestedWindow = parse_attribute (attribute ("""ScheduledEventData.requestedWindow"""))
+    val status = parse_attribute (attribute ("""ScheduledEventData.status"""))
+    val InspectionDataSet = parse_attribute (attribute ("""ScheduledEventData.InspectionDataSet"""))
     def parse (context: Context): ScheduledEventData =
     {
         ScheduledEventData(
@@ -1330,10 +1330,10 @@ extends
     Parseable[Status]
 {
     val sup = BasicElement.parse _
-    val dateTime = parse_element (element ("""Status.dateTime"""))_
-    val reason = parse_element (element ("""Status.reason"""))_
-    val remark = parse_element (element ("""Status.remark"""))_
-    val value = parse_element (element ("""Status.value"""))_
+    val dateTime = parse_element (element ("""Status.dateTime"""))
+    val reason = parse_element (element ("""Status.reason"""))
+    val remark = parse_element (element ("""Status.remark"""))
+    val value = parse_element (element ("""Status.value"""))
     def parse (context: Context): Status =
     {
         Status(
@@ -1381,9 +1381,9 @@ extends
     Parseable[StreetAddress]
 {
     val sup = BasicElement.parse _
-    val status = parse_attribute (attribute ("""StreetAddress.status"""))_
-    val streetDetail = parse_attribute (attribute ("""StreetAddress.streetDetail"""))_
-    val townDetail = parse_attribute (attribute ("""StreetAddress.townDetail"""))_
+    val status = parse_attribute (attribute ("""StreetAddress.status"""))
+    val streetDetail = parse_attribute (attribute ("""StreetAddress.streetDetail"""))
+    val townDetail = parse_attribute (attribute ("""StreetAddress.townDetail"""))
     def parse (context: Context): StreetAddress =
     {
         StreetAddress(
@@ -1447,16 +1447,16 @@ extends
     Parseable[StreetDetail]
 {
     val sup = BasicElement.parse _
-    val addressGeneral = parse_element (element ("""StreetDetail.addressGeneral"""))_
-    val buildingName = parse_element (element ("""StreetDetail.buildingName"""))_
-    val code = parse_element (element ("""StreetDetail.code"""))_
-    val name = parse_element (element ("""StreetDetail.name"""))_
-    val number = parse_element (element ("""StreetDetail.number"""))_
-    val prefix = parse_element (element ("""StreetDetail.prefix"""))_
-    val suffix = parse_element (element ("""StreetDetail.suffix"""))_
-    val suiteNumber = parse_element (element ("""StreetDetail.suiteNumber"""))_
-    val typ = parse_element (element ("""StreetDetail.type"""))_
-    val withinTownLimits = parse_element (element ("""StreetDetail.withinTownLimits"""))_
+    val addressGeneral = parse_element (element ("""StreetDetail.addressGeneral"""))
+    val buildingName = parse_element (element ("""StreetDetail.buildingName"""))
+    val code = parse_element (element ("""StreetDetail.code"""))
+    val name = parse_element (element ("""StreetDetail.name"""))
+    val number = parse_element (element ("""StreetDetail.number"""))
+    val prefix = parse_element (element ("""StreetDetail.prefix"""))
+    val suffix = parse_element (element ("""StreetDetail.suffix"""))
+    val suiteNumber = parse_element (element ("""StreetDetail.suiteNumber"""))
+    val typ = parse_element (element ("""StreetDetail.type"""))
+    val withinTownLimits = parse_element (element ("""StreetDetail.withinTownLimits"""))
     def parse (context: Context): StreetDetail =
     {
         StreetDetail(
@@ -1514,11 +1514,11 @@ extends
     Parseable[TelephoneNumber]
 {
     val sup = BasicElement.parse _
-    val areaCode = parse_element (element ("""TelephoneNumber.areaCode"""))_
-    val cityCode = parse_element (element ("""TelephoneNumber.cityCode"""))_
-    val countryCode = parse_element (element ("""TelephoneNumber.countryCode"""))_
-    val extension = parse_element (element ("""TelephoneNumber.extension"""))_
-    val localNumber = parse_element (element ("""TelephoneNumber.localNumber"""))_
+    val areaCode = parse_element (element ("""TelephoneNumber.areaCode"""))
+    val cityCode = parse_element (element ("""TelephoneNumber.cityCode"""))
+    val countryCode = parse_element (element ("""TelephoneNumber.countryCode"""))
+    val extension = parse_element (element ("""TelephoneNumber.extension"""))
+    val localNumber = parse_element (element ("""TelephoneNumber.localNumber"""))
     def parse (context: Context): TelephoneNumber =
     {
         TelephoneNumber(
@@ -1574,12 +1574,12 @@ extends
     Parseable[TimePoint]
 {
     val sup = IdentifiedObject.parse _
-    val dateTime = parse_element (element ("""TimePoint.dateTime"""))_
-    val relativeTimeInterval = parse_element (element ("""TimePoint.relativeTimeInterval"""))_
-    val sequenceNumber = parse_element (element ("""TimePoint.sequenceNumber"""))_
-    val status = parse_attribute (attribute ("""TimePoint.status"""))_
-    val window = parse_attribute (attribute ("""TimePoint.window"""))_
-    val TimeSchedule = parse_attribute (attribute ("""TimePoint.TimeSchedule"""))_
+    val dateTime = parse_element (element ("""TimePoint.dateTime"""))
+    val relativeTimeInterval = parse_element (element ("""TimePoint.relativeTimeInterval"""))
+    val sequenceNumber = parse_element (element ("""TimePoint.sequenceNumber"""))
+    val status = parse_attribute (attribute ("""TimePoint.status"""))
+    val window = parse_attribute (attribute ("""TimePoint.window"""))
+    val TimeSchedule = parse_attribute (attribute ("""TimePoint.TimeSchedule"""))
     def parse (context: Context): TimePoint =
     {
         TimePoint(
@@ -1636,11 +1636,11 @@ extends
     Parseable[TimeSchedule]
 {
     val sup = Document.parse _
-    val disabled = parse_element (element ("""TimeSchedule.disabled"""))_
-    val offset = parse_element (element ("""TimeSchedule.offset"""))_
-    val recurrencePattern = parse_element (element ("""TimeSchedule.recurrencePattern"""))_
-    val recurrencePeriod = parse_element (element ("""TimeSchedule.recurrencePeriod"""))_
-    val scheduleInterval = parse_attribute (attribute ("""TimeSchedule.scheduleInterval"""))_
+    val disabled = parse_element (element ("""TimeSchedule.disabled"""))
+    val offset = parse_element (element ("""TimeSchedule.offset"""))
+    val recurrencePattern = parse_element (element ("""TimeSchedule.recurrencePattern"""))
+    val recurrencePeriod = parse_element (element ("""TimeSchedule.recurrencePeriod"""))
+    val scheduleInterval = parse_attribute (attribute ("""TimeSchedule.scheduleInterval"""))
     def parse (context: Context): TimeSchedule =
     {
         TimeSchedule(
@@ -1694,11 +1694,11 @@ extends
     Parseable[TownDetail]
 {
     val sup = BasicElement.parse _
-    val code = parse_element (element ("""TownDetail.code"""))_
-    val country = parse_element (element ("""TownDetail.country"""))_
-    val name = parse_element (element ("""TownDetail.name"""))_
-    val section = parse_element (element ("""TownDetail.section"""))_
-    val stateOrProvince = parse_element (element ("""TownDetail.stateOrProvince"""))_
+    val code = parse_element (element ("""TownDetail.code"""))
+    val country = parse_element (element ("""TownDetail.country"""))
+    val name = parse_element (element ("""TownDetail.name"""))
+    val section = parse_element (element ("""TownDetail.section"""))
+    val stateOrProvince = parse_element (element ("""TownDetail.stateOrProvince"""))
     def parse (context: Context): TownDetail =
     {
         TownDetail(
@@ -1755,13 +1755,13 @@ extends
     Parseable[UserAttribute]
 {
     val sup = BasicElement.parse _
-    val name = parse_element (element ("""UserAttribute.name"""))_
-    val sequenceNumber = parse_element (element ("""UserAttribute.sequenceNumber"""))_
-    val value = parse_attribute (attribute ("""UserAttribute.value"""))_
-    val ProcedureDataSets = parse_attributes (attribute ("""UserAttribute.ProcedureDataSets"""))_
-    val PropertySpecification = parse_attribute (attribute ("""UserAttribute.PropertySpecification"""))_
-    val RatingSpecification = parse_attribute (attribute ("""UserAttribute.RatingSpecification"""))_
-    val Transaction = parse_attribute (attribute ("""UserAttribute.Transaction"""))_
+    val name = parse_element (element ("""UserAttribute.name"""))
+    val sequenceNumber = parse_element (element ("""UserAttribute.sequenceNumber"""))
+    val value = parse_attribute (attribute ("""UserAttribute.value"""))
+    val ProcedureDataSets = parse_attributes (attribute ("""UserAttribute.ProcedureDataSets"""))
+    val PropertySpecification = parse_attribute (attribute ("""UserAttribute.PropertySpecification"""))
+    val RatingSpecification = parse_attribute (attribute ("""UserAttribute.RatingSpecification"""))
+    val Transaction = parse_attribute (attribute ("""UserAttribute.Transaction"""))
     def parse (context: Context): UserAttribute =
     {
         UserAttribute(

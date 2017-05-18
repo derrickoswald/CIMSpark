@@ -67,22 +67,22 @@ extends
     Parseable[GeneratorTypeAsset]
 {
     val sup = GenericAssetModelOrMaterial.parse _
-    val maxP = parse_element (element ("""GeneratorTypeAsset.maxP"""))_
-    val maxQ = parse_element (element ("""GeneratorTypeAsset.maxQ"""))_
-    val minP = parse_element (element ("""GeneratorTypeAsset.minP"""))_
-    val minQ = parse_element (element ("""GeneratorTypeAsset.minQ"""))_
-    val rDirectSubtrans = parse_element (element ("""GeneratorTypeAsset.rDirectSubtrans"""))_
-    val rDirectSync = parse_element (element ("""GeneratorTypeAsset.rDirectSync"""))_
-    val rDirectTrans = parse_element (element ("""GeneratorTypeAsset.rDirectTrans"""))_
-    val rQuadSubtrans = parse_element (element ("""GeneratorTypeAsset.rQuadSubtrans"""))_
-    val rQuadSync = parse_element (element ("""GeneratorTypeAsset.rQuadSync"""))_
-    val rQuadTrans = parse_element (element ("""GeneratorTypeAsset.rQuadTrans"""))_
-    val xDirectSubtrans = parse_element (element ("""GeneratorTypeAsset.xDirectSubtrans"""))_
-    val xDirectSync = parse_element (element ("""GeneratorTypeAsset.xDirectSync"""))_
-    val xDirectTrans = parse_element (element ("""GeneratorTypeAsset.xDirectTrans"""))_
-    val xQuadSubtrans = parse_element (element ("""GeneratorTypeAsset.xQuadSubtrans"""))_
-    val xQuadSync = parse_element (element ("""GeneratorTypeAsset.xQuadSync"""))_
-    val xQuadTrans = parse_element (element ("""GeneratorTypeAsset.xQuadTrans"""))_
+    val maxP = parse_element (element ("""GeneratorTypeAsset.maxP"""))
+    val maxQ = parse_element (element ("""GeneratorTypeAsset.maxQ"""))
+    val minP = parse_element (element ("""GeneratorTypeAsset.minP"""))
+    val minQ = parse_element (element ("""GeneratorTypeAsset.minQ"""))
+    val rDirectSubtrans = parse_element (element ("""GeneratorTypeAsset.rDirectSubtrans"""))
+    val rDirectSync = parse_element (element ("""GeneratorTypeAsset.rDirectSync"""))
+    val rDirectTrans = parse_element (element ("""GeneratorTypeAsset.rDirectTrans"""))
+    val rQuadSubtrans = parse_element (element ("""GeneratorTypeAsset.rQuadSubtrans"""))
+    val rQuadSync = parse_element (element ("""GeneratorTypeAsset.rQuadSync"""))
+    val rQuadTrans = parse_element (element ("""GeneratorTypeAsset.rQuadTrans"""))
+    val xDirectSubtrans = parse_element (element ("""GeneratorTypeAsset.xDirectSubtrans"""))
+    val xDirectSync = parse_element (element ("""GeneratorTypeAsset.xDirectSync"""))
+    val xDirectTrans = parse_element (element ("""GeneratorTypeAsset.xDirectTrans"""))
+    val xQuadSubtrans = parse_element (element ("""GeneratorTypeAsset.xQuadSubtrans"""))
+    val xQuadSync = parse_element (element ("""GeneratorTypeAsset.xQuadSync"""))
+    val xQuadTrans = parse_element (element ("""GeneratorTypeAsset.xQuadTrans"""))
     def parse (context: Context): GeneratorTypeAsset =
     {
         GeneratorTypeAsset(
@@ -139,7 +139,7 @@ extends
     Parseable[TypeAssetCatalogue]
 {
     val sup = IdentifiedObject.parse _
-    val status = parse_attribute (attribute ("""TypeAssetCatalogue.status"""))_
+    val status = parse_attribute (attribute ("""TypeAssetCatalogue.status"""))
     def parse (context: Context): TypeAssetCatalogue =
     {
         TypeAssetCatalogue(

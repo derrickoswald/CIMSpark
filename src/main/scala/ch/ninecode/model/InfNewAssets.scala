@@ -60,19 +60,19 @@ extends
     Parseable[DiagnosisDataSet]
 {
     val sup = ProcedureDataSet.parse _
-    val effect = parse_element (element ("""DiagnosisDataSet.effect"""))_
-    val failureMode = parse_element (element ("""DiagnosisDataSet.failureMode"""))_
-    val finalCause = parse_element (element ("""DiagnosisDataSet.finalCause"""))_
-    val finalCode = parse_element (element ("""DiagnosisDataSet.finalCode"""))_
-    val finalOrigin = parse_element (element ("""DiagnosisDataSet.finalOrigin"""))_
-    val finalRemark = parse_element (element ("""DiagnosisDataSet.finalRemark"""))_
-    val phaseCode = parse_attribute (attribute ("""DiagnosisDataSet.phaseCode"""))_
-    val preliminaryCode = parse_element (element ("""DiagnosisDataSet.preliminaryCode"""))_
-    val preliminaryDateTime = parse_element (element ("""DiagnosisDataSet.preliminaryDateTime"""))_
-    val preliminaryRemark = parse_element (element ("""DiagnosisDataSet.preliminaryRemark"""))_
-    val rootCause = parse_element (element ("""DiagnosisDataSet.rootCause"""))_
-    val rootOrigin = parse_element (element ("""DiagnosisDataSet.rootOrigin"""))_
-    val rootRemark = parse_element (element ("""DiagnosisDataSet.rootRemark"""))_
+    val effect = parse_element (element ("""DiagnosisDataSet.effect"""))
+    val failureMode = parse_element (element ("""DiagnosisDataSet.failureMode"""))
+    val finalCause = parse_element (element ("""DiagnosisDataSet.finalCause"""))
+    val finalCode = parse_element (element ("""DiagnosisDataSet.finalCode"""))
+    val finalOrigin = parse_element (element ("""DiagnosisDataSet.finalOrigin"""))
+    val finalRemark = parse_element (element ("""DiagnosisDataSet.finalRemark"""))
+    val phaseCode = parse_attribute (attribute ("""DiagnosisDataSet.phaseCode"""))
+    val preliminaryCode = parse_element (element ("""DiagnosisDataSet.preliminaryCode"""))
+    val preliminaryDateTime = parse_element (element ("""DiagnosisDataSet.preliminaryDateTime"""))
+    val preliminaryRemark = parse_element (element ("""DiagnosisDataSet.preliminaryRemark"""))
+    val rootCause = parse_element (element ("""DiagnosisDataSet.rootCause"""))
+    val rootOrigin = parse_element (element ("""DiagnosisDataSet.rootOrigin"""))
+    val rootRemark = parse_element (element ("""DiagnosisDataSet.rootRemark"""))
     def parse (context: Context): DiagnosisDataSet =
     {
         DiagnosisDataSet(
@@ -125,7 +125,7 @@ extends
     Parseable[InspectionDataSet]
 {
     val sup = ProcedureDataSet.parse _
-    val locationCondition = parse_element (element ("""InspectionDataSet.locationCondition"""))_
+    val locationCondition = parse_element (element ("""InspectionDataSet.locationCondition"""))
     def parse (context: Context): InspectionDataSet =
     {
         InspectionDataSet(
@@ -170,9 +170,9 @@ extends
     Parseable[MaintenanceDataSet]
 {
     val sup = ProcedureDataSet.parse _
-    val conditionAfter = parse_element (element ("""MaintenanceDataSet.conditionAfter"""))_
-    val conditionBefore = parse_element (element ("""MaintenanceDataSet.conditionBefore"""))_
-    val maintCode = parse_element (element ("""MaintenanceDataSet.maintCode"""))_
+    val conditionAfter = parse_element (element ("""MaintenanceDataSet.conditionAfter"""))
+    val conditionBefore = parse_element (element ("""MaintenanceDataSet.conditionBefore"""))
+    val maintCode = parse_element (element ("""MaintenanceDataSet.maintCode"""))
     def parse (context: Context): MaintenanceDataSet =
     {
         MaintenanceDataSet(
@@ -219,9 +219,9 @@ extends
     Parseable[TestDataSet]
 {
     val sup = ProcedureDataSet.parse _
-    val conclusion = parse_element (element ("""TestDataSet.conclusion"""))_
-    val specimenID = parse_element (element ("""TestDataSet.specimenID"""))_
-    val specimenToLabDateTime = parse_element (element ("""TestDataSet.specimenToLabDateTime"""))_
+    val conclusion = parse_element (element ("""TestDataSet.conclusion"""))
+    val specimenID = parse_element (element ("""TestDataSet.specimenID"""))
+    val specimenToLabDateTime = parse_element (element ("""TestDataSet.specimenToLabDateTime"""))
     def parse (context: Context): TestDataSet =
     {
         TestDataSet(

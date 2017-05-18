@@ -40,9 +40,9 @@ extends
     Parseable[DemographicKind]
 {
     val sup = BasicElement.parse _
-    val other = parse_attribute (attribute ("""DemographicKind.other"""))_
-    val rural = parse_attribute (attribute ("""DemographicKind.rural"""))_
-    val urban = parse_attribute (attribute ("""DemographicKind.urban"""))_
+    val other = parse_attribute (attribute ("""DemographicKind.other"""))
+    val rural = parse_attribute (attribute ("""DemographicKind.rural"""))
+    val urban = parse_attribute (attribute ("""DemographicKind.urban"""))
     def parse (context: Context): DemographicKind =
     {
         DemographicKind(
@@ -97,12 +97,12 @@ extends
     Parseable[LandProperty]
 {
     val sup = IdentifiedObject.parse _
-    val demographicKind = parse_attribute (attribute ("""LandProperty.demographicKind"""))_
-    val externalRecordReference = parse_element (element ("""LandProperty.externalRecordReference"""))_
-    val kind = parse_attribute (attribute ("""LandProperty.kind"""))_
-    val status = parse_attribute (attribute ("""LandProperty.status"""))_
-    val AssetContainers = parse_attributes (attribute ("""LandProperty.AssetContainers"""))_
-    val Locations = parse_attributes (attribute ("""LandProperty.Locations"""))_
+    val demographicKind = parse_attribute (attribute ("""LandProperty.demographicKind"""))
+    val externalRecordReference = parse_element (element ("""LandProperty.externalRecordReference"""))
+    val kind = parse_attribute (attribute ("""LandProperty.kind"""))
+    val status = parse_attribute (attribute ("""LandProperty.status"""))
+    val AssetContainers = parse_attributes (attribute ("""LandProperty.AssetContainers"""))
+    val Locations = parse_attributes (attribute ("""LandProperty.Locations"""))
     def parse (context: Context): LandProperty =
     {
         LandProperty(
@@ -160,13 +160,13 @@ extends
     Parseable[LandPropertyKind]
 {
     val sup = BasicElement.parse _
-    val building = parse_attribute (attribute ("""LandPropertyKind.building"""))_
-    val customerPremise = parse_attribute (attribute ("""LandPropertyKind.customerPremise"""))_
-    val depot = parse_attribute (attribute ("""LandPropertyKind.depot"""))_
-    val external = parse_attribute (attribute ("""LandPropertyKind.external"""))_
-    val gridSupplyPoint = parse_attribute (attribute ("""LandPropertyKind.gridSupplyPoint"""))_
-    val store = parse_attribute (attribute ("""LandPropertyKind.store"""))_
-    val substation = parse_attribute (attribute ("""LandPropertyKind.substation"""))_
+    val building = parse_attribute (attribute ("""LandPropertyKind.building"""))
+    val customerPremise = parse_attribute (attribute ("""LandPropertyKind.customerPremise"""))
+    val depot = parse_attribute (attribute ("""LandPropertyKind.depot"""))
+    val external = parse_attribute (attribute ("""LandPropertyKind.external"""))
+    val gridSupplyPoint = parse_attribute (attribute ("""LandPropertyKind.gridSupplyPoint"""))
+    val store = parse_attribute (attribute ("""LandPropertyKind.store"""))
+    val substation = parse_attribute (attribute ("""LandPropertyKind.substation"""))
     def parse (context: Context): LandPropertyKind =
     {
         LandPropertyKind(
@@ -217,8 +217,8 @@ extends
     Parseable[LocationGrant]
 {
     val sup = Agreement.parse _
-    val propertyData = parse_element (element ("""LocationGrant.propertyData"""))_
-    val LandProperty = parse_attribute (attribute ("""LocationGrant.LandProperty"""))_
+    val propertyData = parse_element (element ("""LocationGrant.propertyData"""))
+    val LandProperty = parse_attribute (attribute ("""LocationGrant.LandProperty"""))
     def parse (context: Context): LocationGrant =
     {
         LocationGrant(
@@ -261,7 +261,7 @@ extends
     Parseable[RedLine]
 {
     val sup = IdentifiedObject.parse _
-    val status = parse_attribute (attribute ("""RedLine.status"""))_
+    val status = parse_attribute (attribute ("""RedLine.status"""))
     def parse (context: Context): RedLine =
     {
         RedLine(
@@ -306,8 +306,8 @@ extends
     Parseable[RightOfWay]
 {
     val sup = Agreement.parse _
-    val propertyData = parse_element (element ("""RightOfWay.propertyData"""))_
-    val LandProperties = parse_attributes (attribute ("""RightOfWay.LandProperties"""))_
+    val propertyData = parse_element (element ("""RightOfWay.propertyData"""))
+    val LandProperties = parse_attributes (attribute ("""RightOfWay.LandProperties"""))
     def parse (context: Context): RightOfWay =
     {
         RightOfWay(
@@ -353,9 +353,9 @@ extends
     Parseable[Route]
 {
     val sup = IdentifiedObject.parse _
-    val status = parse_attribute (attribute ("""Route.status"""))_
-    val typ = parse_element (element ("""Route.type"""))_
-    val Locations = parse_attributes (attribute ("""Route.Locations"""))_
+    val status = parse_attribute (attribute ("""Route.status"""))
+    val typ = parse_element (element ("""Route.type"""))
+    val Locations = parse_attributes (attribute ("""Route.Locations"""))
     def parse (context: Context): Route =
     {
         Route(
@@ -399,7 +399,7 @@ extends
     Parseable[Zone]
 {
     val sup = Location.parse _
-    val kind = parse_attribute (attribute ("""Zone.kind"""))_
+    val kind = parse_attribute (attribute ("""Zone.kind"""))
     def parse (context: Context): Zone =
     {
         Zone(
@@ -446,10 +446,10 @@ extends
     Parseable[ZoneKind]
 {
     val sup = BasicElement.parse _
-    val electricalNetwork = parse_attribute (attribute ("""ZoneKind.electricalNetwork"""))_
-    val other = parse_attribute (attribute ("""ZoneKind.other"""))_
-    val specialRestrictionLand = parse_attribute (attribute ("""ZoneKind.specialRestrictionLand"""))_
-    val weatherZone = parse_attribute (attribute ("""ZoneKind.weatherZone"""))_
+    val electricalNetwork = parse_attribute (attribute ("""ZoneKind.electricalNetwork"""))
+    val other = parse_attribute (attribute ("""ZoneKind.other"""))
+    val specialRestrictionLand = parse_attribute (attribute ("""ZoneKind.specialRestrictionLand"""))
+    val weatherZone = parse_attribute (attribute ("""ZoneKind.weatherZone"""))
     def parse (context: Context): ZoneKind =
     {
         ZoneKind(

@@ -39,7 +39,7 @@ extends
     Parseable[ActionType]
 {
     val sup = BasicElement.parse _
-    val CANCEL = parse_attribute (attribute ("""ActionType.CANCEL"""))_
+    val CANCEL = parse_attribute (attribute ("""ActionType.CANCEL"""))
     def parse (context: Context): ActionType =
     {
         ActionType(
@@ -88,11 +88,11 @@ extends
     Parseable[AnalogLimitType]
 {
     val sup = BasicElement.parse _
-    val BranchLongTerm = parse_attribute (attribute ("""AnalogLimitType.BranchLongTerm"""))_
-    val BranchMediumTerm = parse_attribute (attribute ("""AnalogLimitType.BranchMediumTerm"""))_
-    val BranchShortTerm = parse_attribute (attribute ("""AnalogLimitType.BranchShortTerm"""))_
-    val VoltageHigh = parse_attribute (attribute ("""AnalogLimitType.VoltageHigh"""))_
-    val VoltageLow = parse_attribute (attribute ("""AnalogLimitType.VoltageLow"""))_
+    val BranchLongTerm = parse_attribute (attribute ("""AnalogLimitType.BranchLongTerm"""))
+    val BranchMediumTerm = parse_attribute (attribute ("""AnalogLimitType.BranchMediumTerm"""))
+    val BranchShortTerm = parse_attribute (attribute ("""AnalogLimitType.BranchShortTerm"""))
+    val VoltageHigh = parse_attribute (attribute ("""AnalogLimitType.VoltageHigh"""))
+    val VoltageLow = parse_attribute (attribute ("""AnalogLimitType.VoltageLow"""))
     def parse (context: Context): AnalogLimitType =
     {
         AnalogLimitType(
@@ -190,17 +190,17 @@ extends
     Parseable[AnodeType]
 {
     val sup = BasicElement.parse _
-    val ACA = parse_attribute (attribute ("""AnodeType.ACA"""))_
-    val AGR = parse_attribute (attribute ("""AnodeType.AGR"""))_
-    val ALR = parse_attribute (attribute ("""AnodeType.ALR"""))_
-    val ASR = parse_attribute (attribute ("""AnodeType.ASR"""))_
-    val ECA = parse_attribute (attribute ("""AnodeType.ECA"""))_
-    val LFZ = parse_attribute (attribute ("""AnodeType.LFZ"""))_
-    val LTAC = parse_attribute (attribute ("""AnodeType.LTAC"""))_
-    val POD = parse_attribute (attribute ("""AnodeType.POD"""))_
-    val REG = parse_attribute (attribute ("""AnodeType.REG"""))_
-    val RUC = parse_attribute (attribute ("""AnodeType.RUC"""))_
-    val SYS = parse_attribute (attribute ("""AnodeType.SYS"""))_
+    val ACA = parse_attribute (attribute ("""AnodeType.ACA"""))
+    val AGR = parse_attribute (attribute ("""AnodeType.AGR"""))
+    val ALR = parse_attribute (attribute ("""AnodeType.ALR"""))
+    val ASR = parse_attribute (attribute ("""AnodeType.ASR"""))
+    val ECA = parse_attribute (attribute ("""AnodeType.ECA"""))
+    val LFZ = parse_attribute (attribute ("""AnodeType.LFZ"""))
+    val LTAC = parse_attribute (attribute ("""AnodeType.LTAC"""))
+    val POD = parse_attribute (attribute ("""AnodeType.POD"""))
+    val REG = parse_attribute (attribute ("""AnodeType.REG"""))
+    val RUC = parse_attribute (attribute ("""AnodeType.RUC"""))
+    val SYS = parse_attribute (attribute ("""AnodeType.SYS"""))
     def parse (context: Context): AnodeType =
     {
         AnodeType(
@@ -289,19 +289,19 @@ extends
     Parseable[ApnodeType]
 {
     val sup = BasicElement.parse _
-    val AG = parse_attribute (attribute ("""ApnodeType.AG"""))_
-    val BUS = parse_attribute (attribute ("""ApnodeType.BUS"""))_
-    val CA = parse_attribute (attribute ("""ApnodeType.CA"""))_
-    val CPZ = parse_attribute (attribute ("""ApnodeType.CPZ"""))_
-    val DCA = parse_attribute (attribute ("""ApnodeType.DCA"""))_
-    val DPZ = parse_attribute (attribute ("""ApnodeType.DPZ"""))_
-    val EHV = parse_attribute (attribute ("""ApnodeType.EHV"""))_
-    val GA = parse_attribute (attribute ("""ApnodeType.GA"""))_
-    val GH = parse_attribute (attribute ("""ApnodeType.GH"""))_
-    val INT = parse_attribute (attribute ("""ApnodeType.INT"""))_
-    val SYS = parse_attribute (attribute ("""ApnodeType.SYS"""))_
-    val TH = parse_attribute (attribute ("""ApnodeType.TH"""))_
-    val ZN = parse_attribute (attribute ("""ApnodeType.ZN"""))_
+    val AG = parse_attribute (attribute ("""ApnodeType.AG"""))
+    val BUS = parse_attribute (attribute ("""ApnodeType.BUS"""))
+    val CA = parse_attribute (attribute ("""ApnodeType.CA"""))
+    val CPZ = parse_attribute (attribute ("""ApnodeType.CPZ"""))
+    val DCA = parse_attribute (attribute ("""ApnodeType.DCA"""))
+    val DPZ = parse_attribute (attribute ("""ApnodeType.DPZ"""))
+    val EHV = parse_attribute (attribute ("""ApnodeType.EHV"""))
+    val GA = parse_attribute (attribute ("""ApnodeType.GA"""))
+    val GH = parse_attribute (attribute ("""ApnodeType.GH"""))
+    val INT = parse_attribute (attribute ("""ApnodeType.INT"""))
+    val SYS = parse_attribute (attribute ("""ApnodeType.SYS"""))
+    val TH = parse_attribute (attribute ("""ApnodeType.TH"""))
+    val ZN = parse_attribute (attribute ("""ApnodeType.ZN"""))
     def parse (context: Context): ApnodeType =
     {
         ApnodeType(
@@ -360,10 +360,10 @@ extends
     Parseable[AreaControlMode]
 {
     val sup = BasicElement.parse _
-    val CF = parse_attribute (attribute ("""AreaControlMode.CF"""))_
-    val CTL = parse_attribute (attribute ("""AreaControlMode.CTL"""))_
-    val OFF = parse_attribute (attribute ("""AreaControlMode.OFF"""))_
-    val TLB = parse_attribute (attribute ("""AreaControlMode.TLB"""))_
+    val CF = parse_attribute (attribute ("""AreaControlMode.CF"""))
+    val CTL = parse_attribute (attribute ("""AreaControlMode.CTL"""))
+    val OFF = parse_attribute (attribute ("""AreaControlMode.OFF"""))
+    val TLB = parse_attribute (attribute ("""AreaControlMode.TLB"""))
     def parse (context: Context): AreaControlMode =
     {
         AreaControlMode(
@@ -409,8 +409,8 @@ extends
     Parseable[AutomaticDispInstTypeCommitment]
 {
     val sup = BasicElement.parse _
-    val SHUT_DOWN = parse_attribute (attribute ("""AutomaticDispInstTypeCommitment.SHUT_DOWN"""))_
-    val START_UP = parse_attribute (attribute ("""AutomaticDispInstTypeCommitment.START_UP"""))_
+    val SHUT_DOWN = parse_attribute (attribute ("""AutomaticDispInstTypeCommitment.SHUT_DOWN"""))
+    val START_UP = parse_attribute (attribute ("""AutomaticDispInstTypeCommitment.START_UP"""))
     def parse (context: Context): AutomaticDispInstTypeCommitment =
     {
         AutomaticDispInstTypeCommitment(
@@ -456,9 +456,9 @@ extends
     Parseable[AutomaticDispatchMode]
 {
     val sup = BasicElement.parse _
-    val CONTINGENCY = parse_attribute (attribute ("""AutomaticDispatchMode.CONTINGENCY"""))_
-    val INTERVAL = parse_attribute (attribute ("""AutomaticDispatchMode.INTERVAL"""))_
-    val MANUAL = parse_attribute (attribute ("""AutomaticDispatchMode.MANUAL"""))_
+    val CONTINGENCY = parse_attribute (attribute ("""AutomaticDispatchMode.CONTINGENCY"""))
+    val INTERVAL = parse_attribute (attribute ("""AutomaticDispatchMode.INTERVAL"""))
+    val MANUAL = parse_attribute (attribute ("""AutomaticDispatchMode.MANUAL"""))
     def parse (context: Context): AutomaticDispatchMode =
     {
         AutomaticDispatchMode(
@@ -505,9 +505,9 @@ extends
     Parseable[BidCalculationBasis]
 {
     val sup = BasicElement.parse _
-    val COST_BASED = parse_attribute (attribute ("""BidCalculationBasis.COST_BASED"""))_
-    val LMP_BASED = parse_attribute (attribute ("""BidCalculationBasis.LMP_BASED"""))_
-    val NEGOTIATED = parse_attribute (attribute ("""BidCalculationBasis.NEGOTIATED"""))_
+    val COST_BASED = parse_attribute (attribute ("""BidCalculationBasis.COST_BASED"""))
+    val LMP_BASED = parse_attribute (attribute ("""BidCalculationBasis.LMP_BASED"""))
+    val NEGOTIATED = parse_attribute (attribute ("""BidCalculationBasis.NEGOTIATED"""))
     def parse (context: Context): BidCalculationBasis =
     {
         BidCalculationBasis(
@@ -566,12 +566,12 @@ extends
     Parseable[BidMitigationStatus]
 {
     val sup = BasicElement.parse _
-    val B = parse_attribute (attribute ("""BidMitigationStatus.B"""))_
-    val L = parse_attribute (attribute ("""BidMitigationStatus.L"""))_
-    val M = parse_attribute (attribute ("""BidMitigationStatus.M"""))_
-    val O = parse_attribute (attribute ("""BidMitigationStatus.O"""))_
-    val R = parse_attribute (attribute ("""BidMitigationStatus.R"""))_
-    val S = parse_attribute (attribute ("""BidMitigationStatus.S"""))_
+    val B = parse_attribute (attribute ("""BidMitigationStatus.B"""))
+    val L = parse_attribute (attribute ("""BidMitigationStatus.L"""))
+    val M = parse_attribute (attribute ("""BidMitigationStatus.M"""))
+    val O = parse_attribute (attribute ("""BidMitigationStatus.O"""))
+    val R = parse_attribute (attribute ("""BidMitigationStatus.R"""))
+    val S = parse_attribute (attribute ("""BidMitigationStatus.S"""))
     def parse (context: Context): BidMitigationStatus =
     {
         BidMitigationStatus(
@@ -621,8 +621,8 @@ extends
     Parseable[BidMitigationType]
 {
     val sup = BasicElement.parse _
-    val F = parse_attribute (attribute ("""BidMitigationType.F"""))_
-    val I = parse_attribute (attribute ("""BidMitigationType.I"""))_
+    val F = parse_attribute (attribute ("""BidMitigationType.F"""))
+    val I = parse_attribute (attribute ("""BidMitigationType.I"""))
     def parse (context: Context): BidMitigationType =
     {
         BidMitigationType(
@@ -671,9 +671,9 @@ extends
     Parseable[BidType]
 {
     val sup = BasicElement.parse _
-    val DEFAULT_ENERGY_BID = parse_attribute (attribute ("""BidType.DEFAULT_ENERGY_BID"""))_
-    val DEFAULT_MINIMUM_LOAD_BID = parse_attribute (attribute ("""BidType.DEFAULT_MINIMUM_LOAD_BID"""))_
-    val DEFAULT_STARTUP_BID = parse_attribute (attribute ("""BidType.DEFAULT_STARTUP_BID"""))_
+    val DEFAULT_ENERGY_BID = parse_attribute (attribute ("""BidType.DEFAULT_ENERGY_BID"""))
+    val DEFAULT_MINIMUM_LOAD_BID = parse_attribute (attribute ("""BidType.DEFAULT_MINIMUM_LOAD_BID"""))
+    val DEFAULT_STARTUP_BID = parse_attribute (attribute ("""BidType.DEFAULT_STARTUP_BID"""))
     def parse (context: Context): BidType =
     {
         BidType(
@@ -718,8 +718,8 @@ extends
     Parseable[BidTypeRMR]
 {
     val sup = BasicElement.parse _
-    val QUALIFIED_PREDISPATCH = parse_attribute (attribute ("""BidTypeRMR.QUALIFIED_PREDISPATCH"""))_
-    val REQUIREMENTS = parse_attribute (attribute ("""BidTypeRMR.REQUIREMENTS"""))_
+    val QUALIFIED_PREDISPATCH = parse_attribute (attribute ("""BidTypeRMR.QUALIFIED_PREDISPATCH"""))
+    val REQUIREMENTS = parse_attribute (attribute ("""BidTypeRMR.REQUIREMENTS"""))
     def parse (context: Context): BidTypeRMR =
     {
         BidTypeRMR(
@@ -763,8 +763,8 @@ extends
     Parseable[CRRCategoryType]
 {
     val sup = BasicElement.parse _
-    val NSR = parse_attribute (attribute ("""CRRCategoryType.NSR"""))_
-    val PTP = parse_attribute (attribute ("""CRRCategoryType.PTP"""))_
+    val NSR = parse_attribute (attribute ("""CRRCategoryType.NSR"""))
+    val PTP = parse_attribute (attribute ("""CRRCategoryType.PTP"""))
     def parse (context: Context): CRRCategoryType =
     {
         CRRCategoryType(
@@ -808,8 +808,8 @@ extends
     Parseable[CRRHedgeType]
 {
     val sup = BasicElement.parse _
-    val OBLIGATION = parse_attribute (attribute ("""CRRHedgeType.OBLIGATION"""))_
-    val OPTION = parse_attribute (attribute ("""CRRHedgeType.OPTION"""))_
+    val OBLIGATION = parse_attribute (attribute ("""CRRHedgeType.OBLIGATION"""))
+    val OPTION = parse_attribute (attribute ("""CRRHedgeType.OPTION"""))
     def parse (context: Context): CRRHedgeType =
     {
         CRRHedgeType(
@@ -855,9 +855,9 @@ extends
     Parseable[CRRRoleType]
 {
     val sup = BasicElement.parse _
-    val BUYER = parse_attribute (attribute ("""CRRRoleType.BUYER"""))_
-    val OWNER = parse_attribute (attribute ("""CRRRoleType.OWNER"""))_
-    val SELLER = parse_attribute (attribute ("""CRRRoleType.SELLER"""))_
+    val BUYER = parse_attribute (attribute ("""CRRRoleType.BUYER"""))
+    val OWNER = parse_attribute (attribute ("""CRRRoleType.OWNER"""))
+    val SELLER = parse_attribute (attribute ("""CRRRoleType.SELLER"""))
     def parse (context: Context): CRRRoleType =
     {
         CRRRoleType(
@@ -914,14 +914,14 @@ extends
     Parseable[CRRSegmentType]
 {
     val sup = BasicElement.parse _
-    val AUC = parse_attribute (attribute ("""CRRSegmentType.AUC"""))_
-    val CAP = parse_attribute (attribute ("""CRRSegmentType.CAP"""))_
-    val CF = parse_attribute (attribute ("""CRRSegmentType.CF"""))_
-    val CVR = parse_attribute (attribute ("""CRRSegmentType.CVR"""))_
-    val ETC = parse_attribute (attribute ("""CRRSegmentType.ETC"""))_
-    val LSE = parse_attribute (attribute ("""CRRSegmentType.LSE"""))_
-    val MT = parse_attribute (attribute ("""CRRSegmentType.MT"""))_
-    val TOR = parse_attribute (attribute ("""CRRSegmentType.TOR"""))_
+    val AUC = parse_attribute (attribute ("""CRRSegmentType.AUC"""))
+    val CAP = parse_attribute (attribute ("""CRRSegmentType.CAP"""))
+    val CF = parse_attribute (attribute ("""CRRSegmentType.CF"""))
+    val CVR = parse_attribute (attribute ("""CRRSegmentType.CVR"""))
+    val ETC = parse_attribute (attribute ("""CRRSegmentType.ETC"""))
+    val LSE = parse_attribute (attribute ("""CRRSegmentType.LSE"""))
+    val MT = parse_attribute (attribute ("""CRRSegmentType.MT"""))
+    val TOR = parse_attribute (attribute ("""CRRSegmentType.TOR"""))
     def parse (context: Context): CRRSegmentType =
     {
         CRRSegmentType(
@@ -973,9 +973,9 @@ extends
     Parseable[CheckOutType]
 {
     val sup = BasicElement.parse _
-    val AFTER_THE_FACT = parse_attribute (attribute ("""CheckOutType.AFTER_THE_FACT"""))_
-    val PRE_HOUR = parse_attribute (attribute ("""CheckOutType.PRE_HOUR"""))_
-    val PRE_SCHEDULE = parse_attribute (attribute ("""CheckOutType.PRE_SCHEDULE"""))_
+    val AFTER_THE_FACT = parse_attribute (attribute ("""CheckOutType.AFTER_THE_FACT"""))
+    val PRE_HOUR = parse_attribute (attribute ("""CheckOutType.PRE_HOUR"""))
+    val PRE_SCHEDULE = parse_attribute (attribute ("""CheckOutType.PRE_SCHEDULE"""))
     def parse (context: Context): CheckOutType =
     {
         CheckOutType(
@@ -1025,9 +1025,9 @@ extends
     Parseable[CommitmentType]
 {
     val sup = BasicElement.parse _
-    val ISO = parse_attribute (attribute ("""CommitmentType.ISO"""))_
-    val SELF = parse_attribute (attribute ("""CommitmentType.SELF"""))_
-    val UC = parse_attribute (attribute ("""CommitmentType.UC"""))_
+    val ISO = parse_attribute (attribute ("""CommitmentType.ISO"""))
+    val SELF = parse_attribute (attribute ("""CommitmentType.SELF"""))
+    val UC = parse_attribute (attribute ("""CommitmentType.UC"""))
     def parse (context: Context): CommitmentType =
     {
         CommitmentType(
@@ -1074,8 +1074,8 @@ extends
     Parseable[ConstraintLimitType]
 {
     val sup = BasicElement.parse _
-    val MAXIMUM = parse_attribute (attribute ("""ConstraintLimitType.MAXIMUM"""))_
-    val MINIMUM = parse_attribute (attribute ("""ConstraintLimitType.MINIMUM"""))_
+    val MAXIMUM = parse_attribute (attribute ("""ConstraintLimitType.MAXIMUM"""))
+    val MINIMUM = parse_attribute (attribute ("""ConstraintLimitType.MINIMUM"""))
     def parse (context: Context): ConstraintLimitType =
     {
         ConstraintLimitType(
@@ -1119,8 +1119,8 @@ extends
     Parseable[ConstraintRampType]
 {
     val sup = BasicElement.parse _
-    val FAST = parse_attribute (attribute ("""ConstraintRampType.FAST"""))_
-    val SLOW = parse_attribute (attribute ("""ConstraintRampType.SLOW"""))_
+    val FAST = parse_attribute (attribute ("""ConstraintRampType.FAST"""))
+    val SLOW = parse_attribute (attribute ("""ConstraintRampType.SLOW"""))
     def parse (context: Context): ConstraintRampType =
     {
         ConstraintRampType(
@@ -1184,14 +1184,14 @@ extends
     Parseable[ContractType]
 {
     val sup = BasicElement.parse _
-    val CVR = parse_attribute (attribute ("""ContractType.CVR"""))_
-    val ETC = parse_attribute (attribute ("""ContractType.ETC"""))_
-    val O = parse_attribute (attribute ("""ContractType.O"""))_
-    val RMR = parse_attribute (attribute ("""ContractType.RMR"""))_
-    val RMT = parse_attribute (attribute ("""ContractType.RMT"""))_
-    val TE = parse_attribute (attribute ("""ContractType.TE"""))_
-    val TI = parse_attribute (attribute ("""ContractType.TI"""))_
-    val TOR = parse_attribute (attribute ("""ContractType.TOR"""))_
+    val CVR = parse_attribute (attribute ("""ContractType.CVR"""))
+    val ETC = parse_attribute (attribute ("""ContractType.ETC"""))
+    val O = parse_attribute (attribute ("""ContractType.O"""))
+    val RMR = parse_attribute (attribute ("""ContractType.RMR"""))
+    val RMT = parse_attribute (attribute ("""ContractType.RMT"""))
+    val TE = parse_attribute (attribute ("""ContractType.TE"""))
+    val TI = parse_attribute (attribute ("""ContractType.TI"""))
+    val TOR = parse_attribute (attribute ("""ContractType.TOR"""))
     def parse (context: Context): ContractType =
     {
         ContractType(
@@ -1246,9 +1246,9 @@ extends
     Parseable[CostBasis]
 {
     val sup = BasicElement.parse _
-    val BIDC = parse_attribute (attribute ("""CostBasis.BIDC"""))_
-    val PRXC = parse_attribute (attribute ("""CostBasis.PRXC"""))_
-    val REGC = parse_attribute (attribute ("""CostBasis.REGC"""))_
+    val BIDC = parse_attribute (attribute ("""CostBasis.BIDC"""))
+    val PRXC = parse_attribute (attribute ("""CostBasis.PRXC"""))
+    val REGC = parse_attribute (attribute ("""CostBasis.REGC"""))
     def parse (context: Context): CostBasis =
     {
         CostBasis(
@@ -1301,10 +1301,10 @@ extends
     Parseable[DispatchResponseType]
 {
     val sup = BasicElement.parse _
-    val ACCEPT = parse_attribute (attribute ("""DispatchResponseType.ACCEPT"""))_
-    val DECLINE = parse_attribute (attribute ("""DispatchResponseType.DECLINE"""))_
-    val NON_RESPONSE = parse_attribute (attribute ("""DispatchResponseType.NON_RESPONSE"""))_
-    val PARTIAL = parse_attribute (attribute ("""DispatchResponseType.PARTIAL"""))_
+    val ACCEPT = parse_attribute (attribute ("""DispatchResponseType.ACCEPT"""))
+    val DECLINE = parse_attribute (attribute ("""DispatchResponseType.DECLINE"""))
+    val NON_RESPONSE = parse_attribute (attribute ("""DispatchResponseType.NON_RESPONSE"""))
+    val PARTIAL = parse_attribute (attribute ("""DispatchResponseType.PARTIAL"""))
     def parse (context: Context): DispatchResponseType =
     {
         DispatchResponseType(
@@ -1355,9 +1355,9 @@ extends
     Parseable[EnergyPriceIndexType]
 {
     val sup = BasicElement.parse _
-    val BOTH = parse_attribute (attribute ("""EnergyPriceIndexType.BOTH"""))_
-    val RETAIL = parse_attribute (attribute ("""EnergyPriceIndexType.RETAIL"""))_
-    val WHOLESALE = parse_attribute (attribute ("""EnergyPriceIndexType.WHOLESALE"""))_
+    val BOTH = parse_attribute (attribute ("""EnergyPriceIndexType.BOTH"""))
+    val RETAIL = parse_attribute (attribute ("""EnergyPriceIndexType.RETAIL"""))
+    val WHOLESALE = parse_attribute (attribute ("""EnergyPriceIndexType.WHOLESALE"""))
     def parse (context: Context): EnergyPriceIndexType =
     {
         EnergyPriceIndexType(
@@ -1406,10 +1406,10 @@ extends
     Parseable[EnergyProductType]
 {
     val sup = BasicElement.parse _
-    val DYN = parse_attribute (attribute ("""EnergyProductType.DYN"""))_
-    val FIRM = parse_attribute (attribute ("""EnergyProductType.FIRM"""))_
-    val NFRM = parse_attribute (attribute ("""EnergyProductType.NFRM"""))_
-    val WHL = parse_attribute (attribute ("""EnergyProductType.WHL"""))_
+    val DYN = parse_attribute (attribute ("""EnergyProductType.DYN"""))
+    val FIRM = parse_attribute (attribute ("""EnergyProductType.FIRM"""))
+    val NFRM = parse_attribute (attribute ("""EnergyProductType.NFRM"""))
+    val WHL = parse_attribute (attribute ("""EnergyProductType.WHL"""))
     def parse (context: Context): EnergyProductType =
     {
         EnergyProductType(
@@ -1457,9 +1457,9 @@ extends
     Parseable[EnergyTransactionType]
 {
     val sup = BasicElement.parse _
-    val approve = parse_attribute (attribute ("""EnergyTransactionType.approve"""))_
-    val deny = parse_attribute (attribute ("""EnergyTransactionType.deny"""))_
-    val study = parse_attribute (attribute ("""EnergyTransactionType.study"""))_
+    val approve = parse_attribute (attribute ("""EnergyTransactionType.approve"""))
+    val deny = parse_attribute (attribute ("""EnergyTransactionType.deny"""))
+    val study = parse_attribute (attribute ("""EnergyTransactionType.study"""))
     def parse (context: Context): EnergyTransactionType =
     {
         EnergyTransactionType(
@@ -1504,8 +1504,8 @@ extends
     Parseable[EquipmentStatusType]
 {
     val sup = BasicElement.parse _
-    val In = parse_attribute (attribute ("""EquipmentStatusType.In"""))_
-    val Out = parse_attribute (attribute ("""EquipmentStatusType.Out"""))_
+    val In = parse_attribute (attribute ("""EquipmentStatusType.In"""))
+    val Out = parse_attribute (attribute ("""EquipmentStatusType.Out"""))
     def parse (context: Context): EquipmentStatusType =
     {
         EquipmentStatusType(
@@ -1553,10 +1553,10 @@ extends
     Parseable[ExecutionType]
 {
     val sup = BasicElement.parse _
-    val DA = parse_attribute (attribute ("""ExecutionType.DA"""))_
-    val HASP = parse_attribute (attribute ("""ExecutionType.HASP"""))_
-    val RTD = parse_attribute (attribute ("""ExecutionType.RTD"""))_
-    val RTPD = parse_attribute (attribute ("""ExecutionType.RTPD"""))_
+    val DA = parse_attribute (attribute ("""ExecutionType.DA"""))
+    val HASP = parse_attribute (attribute ("""ExecutionType.HASP"""))
+    val RTD = parse_attribute (attribute ("""ExecutionType.RTD"""))
+    val RTPD = parse_attribute (attribute ("""ExecutionType.RTPD"""))
     def parse (context: Context): ExecutionType =
     {
         ExecutionType(
@@ -1607,9 +1607,9 @@ extends
     Parseable[FlagTypeRMR]
 {
     val sup = BasicElement.parse _
-    val N = parse_attribute (attribute ("""FlagTypeRMR.N"""))_
-    val _1 = parse_attribute (attribute ("""FlagTypeRMR.1"""))_
-    val _2 = parse_attribute (attribute ("""FlagTypeRMR.2"""))_
+    val N = parse_attribute (attribute ("""FlagTypeRMR.N"""))
+    val _1 = parse_attribute (attribute ("""FlagTypeRMR.1"""))
+    val _2 = parse_attribute (attribute ("""FlagTypeRMR.2"""))
     def parse (context: Context): FlagTypeRMR =
     {
         FlagTypeRMR(
@@ -1654,8 +1654,8 @@ extends
     Parseable[FlowDirectionType]
 {
     val sup = BasicElement.parse _
-    val Forward = parse_attribute (attribute ("""FlowDirectionType.Forward"""))_
-    val Reverse = parse_attribute (attribute ("""FlowDirectionType.Reverse"""))_
+    val Forward = parse_attribute (attribute ("""FlowDirectionType.Forward"""))
+    val Reverse = parse_attribute (attribute ("""FlowDirectionType.Reverse"""))
     def parse (context: Context): FlowDirectionType =
     {
         FlowDirectionType(
@@ -1744,23 +1744,23 @@ extends
     Parseable[FuelSource]
 {
     val sup = BasicElement.parse _
-    val BGAS = parse_attribute (attribute ("""FuelSource.BGAS"""))_
-    val BIOM = parse_attribute (attribute ("""FuelSource.BIOM"""))_
-    val COAL = parse_attribute (attribute ("""FuelSource.COAL"""))_
-    val DIST = parse_attribute (attribute ("""FuelSource.DIST"""))_
-    val GAS = parse_attribute (attribute ("""FuelSource.GAS"""))_
-    val GEOT = parse_attribute (attribute ("""FuelSource.GEOT"""))_
-    val HRCV = parse_attribute (attribute ("""FuelSource.HRCV"""))_
-    val NG = parse_attribute (attribute ("""FuelSource.NG"""))_
-    val NNG = parse_attribute (attribute ("""FuelSource.NNG"""))_
-    val NONE = parse_attribute (attribute ("""FuelSource.NONE"""))_
-    val NUCL = parse_attribute (attribute ("""FuelSource.NUCL"""))_
-    val OIL = parse_attribute (attribute ("""FuelSource.OIL"""))_
-    val OTHR = parse_attribute (attribute ("""FuelSource.OTHR"""))_
-    val SOLR = parse_attribute (attribute ("""FuelSource.SOLR"""))_
-    val WAST = parse_attribute (attribute ("""FuelSource.WAST"""))_
-    val WATR = parse_attribute (attribute ("""FuelSource.WATR"""))_
-    val WIND = parse_attribute (attribute ("""FuelSource.WIND"""))_
+    val BGAS = parse_attribute (attribute ("""FuelSource.BGAS"""))
+    val BIOM = parse_attribute (attribute ("""FuelSource.BIOM"""))
+    val COAL = parse_attribute (attribute ("""FuelSource.COAL"""))
+    val DIST = parse_attribute (attribute ("""FuelSource.DIST"""))
+    val GAS = parse_attribute (attribute ("""FuelSource.GAS"""))
+    val GEOT = parse_attribute (attribute ("""FuelSource.GEOT"""))
+    val HRCV = parse_attribute (attribute ("""FuelSource.HRCV"""))
+    val NG = parse_attribute (attribute ("""FuelSource.NG"""))
+    val NNG = parse_attribute (attribute ("""FuelSource.NNG"""))
+    val NONE = parse_attribute (attribute ("""FuelSource.NONE"""))
+    val NUCL = parse_attribute (attribute ("""FuelSource.NUCL"""))
+    val OIL = parse_attribute (attribute ("""FuelSource.OIL"""))
+    val OTHR = parse_attribute (attribute ("""FuelSource.OTHR"""))
+    val SOLR = parse_attribute (attribute ("""FuelSource.SOLR"""))
+    val WAST = parse_attribute (attribute ("""FuelSource.WAST"""))
+    val WATR = parse_attribute (attribute ("""FuelSource.WATR"""))
+    val WIND = parse_attribute (attribute ("""FuelSource.WIND"""))
     def parse (context: Context): FuelSource =
     {
         FuelSource(
@@ -1819,8 +1819,8 @@ extends
     Parseable[InterTieDirection]
 {
     val sup = BasicElement.parse _
-    val E = parse_attribute (attribute ("""InterTieDirection.E"""))_
-    val I = parse_attribute (attribute ("""InterTieDirection.I"""))_
+    val E = parse_attribute (attribute ("""InterTieDirection.E"""))
+    val I = parse_attribute (attribute ("""InterTieDirection.I"""))
     def parse (context: Context): InterTieDirection =
     {
         InterTieDirection(
@@ -1864,8 +1864,8 @@ extends
     Parseable[LoadForecastType]
 {
     val sup = BasicElement.parse _
-    val LFZ = parse_attribute (attribute ("""LoadForecastType.LFZ"""))_
-    val LZMS = parse_attribute (attribute ("""LoadForecastType.LZMS"""))_
+    val LFZ = parse_attribute (attribute ("""LoadForecastType.LFZ"""))
+    val LZMS = parse_attribute (attribute ("""LoadForecastType.LZMS"""))
     def parse (context: Context): LoadForecastType =
     {
         LoadForecastType(
@@ -1924,12 +1924,12 @@ extends
     Parseable[MPMTestIdentifierType]
 {
     val sup = BasicElement.parse _
-    val _1 = parse_attribute (attribute ("""MPMTestIdentifierType.1"""))_
-    val _2 = parse_attribute (attribute ("""MPMTestIdentifierType.2"""))_
-    val _3 = parse_attribute (attribute ("""MPMTestIdentifierType.3"""))_
-    val _4 = parse_attribute (attribute ("""MPMTestIdentifierType.4"""))_
-    val _5 = parse_attribute (attribute ("""MPMTestIdentifierType.5"""))_
-    val _6 = parse_attribute (attribute ("""MPMTestIdentifierType.6"""))_
+    val _1 = parse_attribute (attribute ("""MPMTestIdentifierType.1"""))
+    val _2 = parse_attribute (attribute ("""MPMTestIdentifierType.2"""))
+    val _3 = parse_attribute (attribute ("""MPMTestIdentifierType.3"""))
+    val _4 = parse_attribute (attribute ("""MPMTestIdentifierType.4"""))
+    val _5 = parse_attribute (attribute ("""MPMTestIdentifierType.5"""))
+    val _6 = parse_attribute (attribute ("""MPMTestIdentifierType.6"""))
     def parse (context: Context): MPMTestIdentifierType =
     {
         MPMTestIdentifierType(
@@ -1978,8 +1978,8 @@ extends
     Parseable[MPMTestMethodType]
 {
     val sup = BasicElement.parse _
-    val ALTERNATE = parse_attribute (attribute ("""MPMTestMethodType.ALTERNATE"""))_
-    val NORMAL = parse_attribute (attribute ("""MPMTestMethodType.NORMAL"""))_
+    val ALTERNATE = parse_attribute (attribute ("""MPMTestMethodType.ALTERNATE"""))
+    val NORMAL = parse_attribute (attribute ("""MPMTestMethodType.NORMAL"""))
     def parse (context: Context): MPMTestMethodType =
     {
         MPMTestMethodType(
@@ -2031,10 +2031,10 @@ extends
     Parseable[MPMTestOutcome]
 {
     val sup = BasicElement.parse _
-    val D = parse_attribute (attribute ("""MPMTestOutcome.D"""))_
-    val F = parse_attribute (attribute ("""MPMTestOutcome.F"""))_
-    val P = parse_attribute (attribute ("""MPMTestOutcome.P"""))_
-    val S = parse_attribute (attribute ("""MPMTestOutcome.S"""))_
+    val D = parse_attribute (attribute ("""MPMTestOutcome.D"""))
+    val F = parse_attribute (attribute ("""MPMTestOutcome.F"""))
+    val P = parse_attribute (attribute ("""MPMTestOutcome.P"""))
+    val S = parse_attribute (attribute ("""MPMTestOutcome.S"""))
     def parse (context: Context): MPMTestOutcome =
     {
         MPMTestOutcome(
@@ -2082,8 +2082,8 @@ extends
     Parseable[MQSCHGType]
 {
     val sup = BasicElement.parse _
-    val ADD = parse_attribute (attribute ("""MQSCHGType.ADD"""))_
-    val CHG = parse_attribute (attribute ("""MQSCHGType.CHG"""))_
+    val ADD = parse_attribute (attribute ("""MQSCHGType.ADD"""))
+    val CHG = parse_attribute (attribute ("""MQSCHGType.CHG"""))
     def parse (context: Context): MQSCHGType =
     {
         MQSCHGType(
@@ -2129,8 +2129,8 @@ extends
     Parseable[MQSInstructionSource]
 {
     val sup = BasicElement.parse _
-    val ACT = parse_attribute (attribute ("""MQSInstructionSource.ACT"""))_
-    val INS = parse_attribute (attribute ("""MQSInstructionSource.INS"""))_
+    val ACT = parse_attribute (attribute ("""MQSInstructionSource.ACT"""))
+    val INS = parse_attribute (attribute ("""MQSInstructionSource.INS"""))
     def parse (context: Context): MQSInstructionSource =
     {
         MQSInstructionSource(
@@ -2188,15 +2188,15 @@ extends
     Parseable[MarketProductSelfSchedType]
 {
     val sup = BasicElement.parse _
-    val ETC = parse_attribute (attribute ("""MarketProductSelfSchedType.ETC"""))_
-    val LPT = parse_attribute (attribute ("""MarketProductSelfSchedType.LPT"""))_
-    val PT = parse_attribute (attribute ("""MarketProductSelfSchedType.PT"""))_
-    val RA = parse_attribute (attribute ("""MarketProductSelfSchedType.RA"""))_
-    val RGMR = parse_attribute (attribute ("""MarketProductSelfSchedType.RGMR"""))_
-    val RMR = parse_attribute (attribute ("""MarketProductSelfSchedType.RMR"""))_
-    val RMT = parse_attribute (attribute ("""MarketProductSelfSchedType.RMT"""))_
-    val SP = parse_attribute (attribute ("""MarketProductSelfSchedType.SP"""))_
-    val TOR = parse_attribute (attribute ("""MarketProductSelfSchedType.TOR"""))_
+    val ETC = parse_attribute (attribute ("""MarketProductSelfSchedType.ETC"""))
+    val LPT = parse_attribute (attribute ("""MarketProductSelfSchedType.LPT"""))
+    val PT = parse_attribute (attribute ("""MarketProductSelfSchedType.PT"""))
+    val RA = parse_attribute (attribute ("""MarketProductSelfSchedType.RA"""))
+    val RGMR = parse_attribute (attribute ("""MarketProductSelfSchedType.RGMR"""))
+    val RMR = parse_attribute (attribute ("""MarketProductSelfSchedType.RMR"""))
+    val RMT = parse_attribute (attribute ("""MarketProductSelfSchedType.RMT"""))
+    val SP = parse_attribute (attribute ("""MarketProductSelfSchedType.SP"""))
+    val TOR = parse_attribute (attribute ("""MarketProductSelfSchedType.TOR"""))
     def parse (context: Context): MarketProductSelfSchedType =
     {
         MarketProductSelfSchedType(
@@ -2262,15 +2262,15 @@ extends
     Parseable[MarketProductType]
 {
     val sup = BasicElement.parse _
-    val EN = parse_attribute (attribute ("""MarketProductType.EN"""))_
-    val LFD = parse_attribute (attribute ("""MarketProductType.LFD"""))_
-    val LFU = parse_attribute (attribute ("""MarketProductType.LFU"""))_
-    val NR = parse_attribute (attribute ("""MarketProductType.NR"""))_
-    val RC = parse_attribute (attribute ("""MarketProductType.RC"""))_
-    val RD = parse_attribute (attribute ("""MarketProductType.RD"""))_
-    val REG = parse_attribute (attribute ("""MarketProductType.REG"""))_
-    val RU = parse_attribute (attribute ("""MarketProductType.RU"""))_
-    val SR = parse_attribute (attribute ("""MarketProductType.SR"""))_
+    val EN = parse_attribute (attribute ("""MarketProductType.EN"""))
+    val LFD = parse_attribute (attribute ("""MarketProductType.LFD"""))
+    val LFU = parse_attribute (attribute ("""MarketProductType.LFU"""))
+    val NR = parse_attribute (attribute ("""MarketProductType.NR"""))
+    val RC = parse_attribute (attribute ("""MarketProductType.RC"""))
+    val RD = parse_attribute (attribute ("""MarketProductType.RD"""))
+    val REG = parse_attribute (attribute ("""MarketProductType.REG"""))
+    val RU = parse_attribute (attribute ("""MarketProductType.RU"""))
+    val SR = parse_attribute (attribute ("""MarketProductType.SR"""))
     def parse (context: Context): MarketProductType =
     {
         MarketProductType(
@@ -2325,10 +2325,10 @@ extends
     Parseable[MarketType]
 {
     val sup = BasicElement.parse _
-    val DAM = parse_attribute (attribute ("""MarketType.DAM"""))_
-    val HAM = parse_attribute (attribute ("""MarketType.HAM"""))_
-    val RTM = parse_attribute (attribute ("""MarketType.RTM"""))_
-    val RUC = parse_attribute (attribute ("""MarketType.RUC"""))_
+    val DAM = parse_attribute (attribute ("""MarketType.DAM"""))
+    val HAM = parse_attribute (attribute ("""MarketType.HAM"""))
+    val RTM = parse_attribute (attribute ("""MarketType.RTM"""))
+    val RUC = parse_attribute (attribute ("""MarketType.RUC"""))
     def parse (context: Context): MarketType =
     {
         MarketType(
@@ -2378,10 +2378,10 @@ extends
     Parseable[MktAccountKind]
 {
     val sup = BasicElement.parse _
-    val estimate = parse_attribute (attribute ("""MktAccountKind.estimate"""))_
-    val normal = parse_attribute (attribute ("""MktAccountKind.normal"""))_
-    val reversal = parse_attribute (attribute ("""MktAccountKind.reversal"""))_
-    val statistical = parse_attribute (attribute ("""MktAccountKind.statistical"""))_
+    val estimate = parse_attribute (attribute ("""MktAccountKind.estimate"""))
+    val normal = parse_attribute (attribute ("""MktAccountKind.normal"""))
+    val reversal = parse_attribute (attribute ("""MktAccountKind.reversal"""))
+    val statistical = parse_attribute (attribute ("""MktAccountKind.statistical"""))
     def parse (context: Context): MktAccountKind =
     {
         MktAccountKind(
@@ -2429,9 +2429,9 @@ extends
     Parseable[MktBillMediaKind]
 {
     val sup = BasicElement.parse _
-    val electronic = parse_attribute (attribute ("""MktBillMediaKind.electronic"""))_
-    val other = parse_attribute (attribute ("""MktBillMediaKind.other"""))_
-    val paper = parse_attribute (attribute ("""MktBillMediaKind.paper"""))_
+    val electronic = parse_attribute (attribute ("""MktBillMediaKind.electronic"""))
+    val other = parse_attribute (attribute ("""MktBillMediaKind.other"""))
+    val paper = parse_attribute (attribute ("""MktBillMediaKind.paper"""))
     def parse (context: Context): MktBillMediaKind =
     {
         MktBillMediaKind(
@@ -2478,9 +2478,9 @@ extends
     Parseable[MktInvoiceLineItemKind]
 {
     val sup = BasicElement.parse _
-    val initial = parse_attribute (attribute ("""MktInvoiceLineItemKind.initial"""))_
-    val other = parse_attribute (attribute ("""MktInvoiceLineItemKind.other"""))_
-    val recalculation = parse_attribute (attribute ("""MktInvoiceLineItemKind.recalculation"""))_
+    val initial = parse_attribute (attribute ("""MktInvoiceLineItemKind.initial"""))
+    val other = parse_attribute (attribute ("""MktInvoiceLineItemKind.other"""))
+    val recalculation = parse_attribute (attribute ("""MktInvoiceLineItemKind.recalculation"""))
     def parse (context: Context): MktInvoiceLineItemKind =
     {
         MktInvoiceLineItemKind(
@@ -2526,8 +2526,8 @@ extends
     Parseable[OnOff]
 {
     val sup = BasicElement.parse _
-    val OFF = parse_attribute (attribute ("""OnOff.OFF"""))_
-    val ON = parse_attribute (attribute ("""OnOff.ON"""))_
+    val OFF = parse_attribute (attribute ("""OnOff.OFF"""))
+    val ON = parse_attribute (attribute ("""OnOff.ON"""))
     def parse (context: Context): OnOff =
     {
         OnOff(
@@ -2579,10 +2579,10 @@ extends
     Parseable[ParticipationCategoryMPM]
 {
     val sup = BasicElement.parse _
-    val L = parse_attribute (attribute ("""ParticipationCategoryMPM.L"""))_
-    val N = parse_attribute (attribute ("""ParticipationCategoryMPM.N"""))_
-    val S = parse_attribute (attribute ("""ParticipationCategoryMPM.S"""))_
-    val Y = parse_attribute (attribute ("""ParticipationCategoryMPM.Y"""))_
+    val L = parse_attribute (attribute ("""ParticipationCategoryMPM.L"""))
+    val N = parse_attribute (attribute ("""ParticipationCategoryMPM.N"""))
+    val S = parse_attribute (attribute ("""ParticipationCategoryMPM.S"""))
+    val Y = parse_attribute (attribute ("""ParticipationCategoryMPM.Y"""))
     def parse (context: Context): ParticipationCategoryMPM =
     {
         ParticipationCategoryMPM(
@@ -2642,15 +2642,15 @@ extends
     Parseable[PassIndicatorType]
 {
     val sup = BasicElement.parse _
-    val DA = parse_attribute (attribute ("""PassIndicatorType.DA"""))_
-    val HA_SCUC = parse_attribute (attribute ("""PassIndicatorType.HA-SCUC"""))_
-    val MPM_1 = parse_attribute (attribute ("""PassIndicatorType.MPM-1"""))_
-    val MPM_2 = parse_attribute (attribute ("""PassIndicatorType.MPM-2"""))_
-    val MPM_3 = parse_attribute (attribute ("""PassIndicatorType.MPM-3"""))_
-    val MPM_4 = parse_attribute (attribute ("""PassIndicatorType.MPM-4"""))_
-    val RTED = parse_attribute (attribute ("""PassIndicatorType.RTED"""))_
-    val RTPD = parse_attribute (attribute ("""PassIndicatorType.RTPD"""))_
-    val RUC = parse_attribute (attribute ("""PassIndicatorType.RUC"""))_
+    val DA = parse_attribute (attribute ("""PassIndicatorType.DA"""))
+    val HA_SCUC = parse_attribute (attribute ("""PassIndicatorType.HA-SCUC"""))
+    val MPM_1 = parse_attribute (attribute ("""PassIndicatorType.MPM-1"""))
+    val MPM_2 = parse_attribute (attribute ("""PassIndicatorType.MPM-2"""))
+    val MPM_3 = parse_attribute (attribute ("""PassIndicatorType.MPM-3"""))
+    val MPM_4 = parse_attribute (attribute ("""PassIndicatorType.MPM-4"""))
+    val RTED = parse_attribute (attribute ("""PassIndicatorType.RTED"""))
+    val RTPD = parse_attribute (attribute ("""PassIndicatorType.RTPD"""))
+    val RUC = parse_attribute (attribute ("""PassIndicatorType.RUC"""))
     def parse (context: Context): PassIndicatorType =
     {
         PassIndicatorType(
@@ -2705,8 +2705,8 @@ extends
     Parseable[PurposeFlagType]
 {
     val sup = BasicElement.parse _
-    val M = parse_attribute (attribute ("""PurposeFlagType.M"""))_
-    val R = parse_attribute (attribute ("""PurposeFlagType.R"""))_
+    val M = parse_attribute (attribute ("""PurposeFlagType.M"""))
+    val R = parse_attribute (attribute ("""PurposeFlagType.R"""))
     def parse (context: Context): PurposeFlagType =
     {
         PurposeFlagType(
@@ -2755,9 +2755,9 @@ extends
     Parseable[RampCurveType]
 {
     val sup = BasicElement.parse _
-    val _0 = parse_attribute (attribute ("""RampCurveType.0"""))_
-    val _1 = parse_attribute (attribute ("""RampCurveType.1"""))_
-    val _2 = parse_attribute (attribute ("""RampCurveType.2"""))_
+    val _0 = parse_attribute (attribute ("""RampCurveType.0"""))
+    val _1 = parse_attribute (attribute ("""RampCurveType.1"""))
+    val _2 = parse_attribute (attribute ("""RampCurveType.2"""))
     def parse (context: Context): RampCurveType =
     {
         RampCurveType(
@@ -2807,9 +2807,9 @@ extends
     Parseable[RampModeType]
 {
     val sup = BasicElement.parse _
-    val _0 = parse_attribute (attribute ("""RampModeType.0"""))_
-    val _1 = parse_attribute (attribute ("""RampModeType.1"""))_
-    val _2 = parse_attribute (attribute ("""RampModeType.2"""))_
+    val _0 = parse_attribute (attribute ("""RampModeType.0"""))
+    val _1 = parse_attribute (attribute ("""RampModeType.1"""))
+    val _2 = parse_attribute (attribute ("""RampModeType.2"""))
     def parse (context: Context): RampModeType =
     {
         RampModeType(
@@ -2858,10 +2858,10 @@ extends
     Parseable[RampRateCondition]
 {
     val sup = BasicElement.parse _
-    val BEST = parse_attribute (attribute ("""RampRateCondition.BEST"""))_
-    val NA = parse_attribute (attribute ("""RampRateCondition.NA"""))_
-    val NORMAL = parse_attribute (attribute ("""RampRateCondition.NORMAL"""))_
-    val WORST = parse_attribute (attribute ("""RampRateCondition.WORST"""))_
+    val BEST = parse_attribute (attribute ("""RampRateCondition.BEST"""))
+    val NA = parse_attribute (attribute ("""RampRateCondition.NA"""))
+    val NORMAL = parse_attribute (attribute ("""RampRateCondition.NORMAL"""))
+    val WORST = parse_attribute (attribute ("""RampRateCondition.WORST"""))
     def parse (context: Context): RampRateCondition =
     {
         RampRateCondition(
@@ -2915,12 +2915,12 @@ extends
     Parseable[RampRateType]
 {
     val sup = BasicElement.parse _
-    val INTERTIE = parse_attribute (attribute ("""RampRateType.INTERTIE"""))_
-    val LD_DROP = parse_attribute (attribute ("""RampRateType.LD_DROP"""))_
-    val LD_PICKUP = parse_attribute (attribute ("""RampRateType.LD_PICKUP"""))_
-    val OP = parse_attribute (attribute ("""RampRateType.OP"""))_
-    val OP_RES = parse_attribute (attribute ("""RampRateType.OP_RES"""))_
-    val REG = parse_attribute (attribute ("""RampRateType.REG"""))_
+    val INTERTIE = parse_attribute (attribute ("""RampRateType.INTERTIE"""))
+    val LD_DROP = parse_attribute (attribute ("""RampRateType.LD_DROP"""))
+    val LD_PICKUP = parse_attribute (attribute ("""RampRateType.LD_PICKUP"""))
+    val OP = parse_attribute (attribute ("""RampRateType.OP"""))
+    val OP_RES = parse_attribute (attribute ("""RampRateType.OP_RES"""))
+    val REG = parse_attribute (attribute ("""RampRateType.REG"""))
     def parse (context: Context): RampRateType =
     {
         RampRateType(
@@ -2971,9 +2971,9 @@ extends
     Parseable[ReserveRequirementType]
 {
     val sup = BasicElement.parse _
-    val CONT = parse_attribute (attribute ("""ReserveRequirementType.CONT"""))_
-    val OPRSV = parse_attribute (attribute ("""ReserveRequirementType.OPRSV"""))_
-    val REG = parse_attribute (attribute ("""ReserveRequirementType.REG"""))_
+    val CONT = parse_attribute (attribute ("""ReserveRequirementType.CONT"""))
+    val OPRSV = parse_attribute (attribute ("""ReserveRequirementType.OPRSV"""))
+    val REG = parse_attribute (attribute ("""ReserveRequirementType.REG"""))
     def parse (context: Context): ReserveRequirementType =
     {
         ReserveRequirementType(
@@ -3034,16 +3034,16 @@ extends
     Parseable[ResourceAncillaryServiceType]
 {
     val sup = BasicElement.parse _
-    val BLACKSTART = parse_attribute (attribute ("""ResourceAncillaryServiceType.BLACKSTART"""))_
-    val DSR = parse_attribute (attribute ("""ResourceAncillaryServiceType.DSR"""))_
-    val NONSPIN = parse_attribute (attribute ("""ResourceAncillaryServiceType.NONSPIN"""))_
-    val PIRP = parse_attribute (attribute ("""ResourceAncillaryServiceType.PIRP"""))_
-    val REGDN = parse_attribute (attribute ("""ResourceAncillaryServiceType.REGDN"""))_
-    val REGUP = parse_attribute (attribute ("""ResourceAncillaryServiceType.REGUP"""))_
-    val RMR = parse_attribute (attribute ("""ResourceAncillaryServiceType.RMR"""))_
-    val RRSPIN = parse_attribute (attribute ("""ResourceAncillaryServiceType.RRSPIN"""))_
-    val RUC = parse_attribute (attribute ("""ResourceAncillaryServiceType.RUC"""))_
-    val SYNCCOND = parse_attribute (attribute ("""ResourceAncillaryServiceType.SYNCCOND"""))_
+    val BLACKSTART = parse_attribute (attribute ("""ResourceAncillaryServiceType.BLACKSTART"""))
+    val DSR = parse_attribute (attribute ("""ResourceAncillaryServiceType.DSR"""))
+    val NONSPIN = parse_attribute (attribute ("""ResourceAncillaryServiceType.NONSPIN"""))
+    val PIRP = parse_attribute (attribute ("""ResourceAncillaryServiceType.PIRP"""))
+    val REGDN = parse_attribute (attribute ("""ResourceAncillaryServiceType.REGDN"""))
+    val REGUP = parse_attribute (attribute ("""ResourceAncillaryServiceType.REGUP"""))
+    val RMR = parse_attribute (attribute ("""ResourceAncillaryServiceType.RMR"""))
+    val RRSPIN = parse_attribute (attribute ("""ResourceAncillaryServiceType.RRSPIN"""))
+    val RUC = parse_attribute (attribute ("""ResourceAncillaryServiceType.RUC"""))
+    val SYNCCOND = parse_attribute (attribute ("""ResourceAncillaryServiceType.SYNCCOND"""))
     def parse (context: Context): ResourceAncillaryServiceType =
     {
         ResourceAncillaryServiceType(
@@ -3106,11 +3106,11 @@ extends
     Parseable[ResourceAssnType]
 {
     val sup = BasicElement.parse _
-    val CSNK = parse_attribute (attribute ("""ResourceAssnType.CSNK"""))_
-    val CSRC = parse_attribute (attribute ("""ResourceAssnType.CSRC"""))_
-    val LSE = parse_attribute (attribute ("""ResourceAssnType.LSE"""))_
-    val RMR = parse_attribute (attribute ("""ResourceAssnType.RMR"""))_
-    val SC = parse_attribute (attribute ("""ResourceAssnType.SC"""))_
+    val CSNK = parse_attribute (attribute ("""ResourceAssnType.CSNK"""))
+    val CSRC = parse_attribute (attribute ("""ResourceAssnType.CSRC"""))
+    val LSE = parse_attribute (attribute ("""ResourceAssnType.LSE"""))
+    val RMR = parse_attribute (attribute ("""ResourceAssnType.RMR"""))
+    val SC = parse_attribute (attribute ("""ResourceAssnType.SC"""))
     def parse (context: Context): ResourceAssnType =
     {
         ResourceAssnType(
@@ -3169,14 +3169,14 @@ extends
     Parseable[ResourceCapacityType]
 {
     val sup = BasicElement.parse _
-    val FO = parse_attribute (attribute ("""ResourceCapacityType.FO"""))_
-    val MO = parse_attribute (attribute ("""ResourceCapacityType.MO"""))_
-    val NR = parse_attribute (attribute ("""ResourceCapacityType.NR"""))_
-    val RA = parse_attribute (attribute ("""ResourceCapacityType.RA"""))_
-    val RD = parse_attribute (attribute ("""ResourceCapacityType.RD"""))_
-    val RMR = parse_attribute (attribute ("""ResourceCapacityType.RMR"""))_
-    val RU = parse_attribute (attribute ("""ResourceCapacityType.RU"""))_
-    val SR = parse_attribute (attribute ("""ResourceCapacityType.SR"""))_
+    val FO = parse_attribute (attribute ("""ResourceCapacityType.FO"""))
+    val MO = parse_attribute (attribute ("""ResourceCapacityType.MO"""))
+    val NR = parse_attribute (attribute ("""ResourceCapacityType.NR"""))
+    val RA = parse_attribute (attribute ("""ResourceCapacityType.RA"""))
+    val RD = parse_attribute (attribute ("""ResourceCapacityType.RD"""))
+    val RMR = parse_attribute (attribute ("""ResourceCapacityType.RMR"""))
+    val RU = parse_attribute (attribute ("""ResourceCapacityType.RU"""))
+    val SR = parse_attribute (attribute ("""ResourceCapacityType.SR"""))
     def parse (context: Context): ResourceCapacityType =
     {
         ResourceCapacityType(
@@ -3226,8 +3226,8 @@ extends
     Parseable[ResourceLimitIndicator]
 {
     val sup = BasicElement.parse _
-    val LOWER = parse_attribute (attribute ("""ResourceLimitIndicator.LOWER"""))_
-    val UPPER = parse_attribute (attribute ("""ResourceLimitIndicator.UPPER"""))_
+    val LOWER = parse_attribute (attribute ("""ResourceLimitIndicator.LOWER"""))
+    val UPPER = parse_attribute (attribute ("""ResourceLimitIndicator.UPPER"""))
     def parse (context: Context): ResourceLimitIndicator =
     {
         ResourceLimitIndicator(
@@ -3280,10 +3280,10 @@ extends
     Parseable[ResourceRegistrationStatus]
 {
     val sup = BasicElement.parse _
-    val Active = parse_attribute (attribute ("""ResourceRegistrationStatus.Active"""))_
-    val Decommissioned = parse_attribute (attribute ("""ResourceRegistrationStatus.Decommissioned"""))_
-    val Mothballed = parse_attribute (attribute ("""ResourceRegistrationStatus.Mothballed"""))_
-    val Planned = parse_attribute (attribute ("""ResourceRegistrationStatus.Planned"""))_
+    val Active = parse_attribute (attribute ("""ResourceRegistrationStatus.Active"""))
+    val Decommissioned = parse_attribute (attribute ("""ResourceRegistrationStatus.Decommissioned"""))
+    val Mothballed = parse_attribute (attribute ("""ResourceRegistrationStatus.Mothballed"""))
+    val Planned = parse_attribute (attribute ("""ResourceRegistrationStatus.Planned"""))
     def parse (context: Context): ResourceRegistrationStatus =
     {
         ResourceRegistrationStatus(
@@ -3333,10 +3333,10 @@ extends
     Parseable[ResultsConstraintType]
 {
     val sup = BasicElement.parse _
-    val Actual = parse_attribute (attribute ("""ResultsConstraintType.Actual"""))_
-    val Contingency = parse_attribute (attribute ("""ResultsConstraintType.Contingency"""))_
-    val FG_act = parse_attribute (attribute ("""ResultsConstraintType.FG_act"""))_
-    val Interface = parse_attribute (attribute ("""ResultsConstraintType.Interface"""))_
+    val Actual = parse_attribute (attribute ("""ResultsConstraintType.Actual"""))
+    val Contingency = parse_attribute (attribute ("""ResultsConstraintType.Contingency"""))
+    val FG_act = parse_attribute (attribute ("""ResultsConstraintType.FG_act"""))
+    val Interface = parse_attribute (attribute ("""ResultsConstraintType.Interface"""))
     def parse (context: Context): ResultsConstraintType =
     {
         ResultsConstraintType(
@@ -3382,8 +3382,8 @@ extends
     Parseable[SelfSchedReferenceType]
 {
     val sup = BasicElement.parse _
-    val ETC = parse_attribute (attribute ("""SelfSchedReferenceType.ETC"""))_
-    val TOR = parse_attribute (attribute ("""SelfSchedReferenceType.TOR"""))_
+    val ETC = parse_attribute (attribute ("""SelfSchedReferenceType.ETC"""))
+    val TOR = parse_attribute (attribute ("""SelfSchedReferenceType.TOR"""))
     def parse (context: Context): SelfSchedReferenceType =
     {
         SelfSchedReferenceType(
@@ -3429,9 +3429,9 @@ extends
     Parseable[SelfScheduleBreakdownType]
 {
     val sup = BasicElement.parse _
-    val ETC = parse_attribute (attribute ("""SelfScheduleBreakdownType.ETC"""))_
-    val LPT = parse_attribute (attribute ("""SelfScheduleBreakdownType.LPT"""))_
-    val TOR = parse_attribute (attribute ("""SelfScheduleBreakdownType.TOR"""))_
+    val ETC = parse_attribute (attribute ("""SelfScheduleBreakdownType.ETC"""))
+    val LPT = parse_attribute (attribute ("""SelfScheduleBreakdownType.LPT"""))
+    val TOR = parse_attribute (attribute ("""SelfScheduleBreakdownType.TOR"""))
     def parse (context: Context): SelfScheduleBreakdownType =
     {
         SelfScheduleBreakdownType(
@@ -3476,8 +3476,8 @@ extends
     Parseable[SwitchStatusType]
 {
     val sup = BasicElement.parse _
-    val Closed = parse_attribute (attribute ("""SwitchStatusType.Closed"""))_
-    val Open = parse_attribute (attribute ("""SwitchStatusType.Open"""))_
+    val Closed = parse_attribute (attribute ("""SwitchStatusType.Closed"""))
+    val Open = parse_attribute (attribute ("""SwitchStatusType.Open"""))
     def parse (context: Context): SwitchStatusType =
     {
         SwitchStatusType(
@@ -3522,8 +3522,8 @@ extends
     Parseable[TRType]
 {
     val sup = BasicElement.parse _
-    val CHAIN = parse_attribute (attribute ("""TRType.CHAIN"""))_
-    val INDIVIDUAL = parse_attribute (attribute ("""TRType.INDIVIDUAL"""))_
+    val CHAIN = parse_attribute (attribute ("""TRType.CHAIN"""))
+    val INDIVIDUAL = parse_attribute (attribute ("""TRType.INDIVIDUAL"""))
     def parse (context: Context): TRType =
     {
         TRType(
@@ -3570,9 +3570,9 @@ extends
     Parseable[TimeOfUse]
 {
     val sup = BasicElement.parse _
-    val OFF = parse_attribute (attribute ("""TimeOfUse.OFF"""))_
-    val ON = parse_attribute (attribute ("""TimeOfUse.ON"""))_
-    val _24HR = parse_attribute (attribute ("""TimeOfUse.24HR"""))_
+    val OFF = parse_attribute (attribute ("""TimeOfUse.OFF"""))
+    val ON = parse_attribute (attribute ("""TimeOfUse.ON"""))
+    val _24HR = parse_attribute (attribute ("""TimeOfUse.24HR"""))
     def parse (context: Context): TimeOfUse =
     {
         TimeOfUse(
@@ -3619,9 +3619,9 @@ extends
     Parseable[TradeType]
 {
     val sup = BasicElement.parse _
-    val AST = parse_attribute (attribute ("""TradeType.AST"""))_
-    val IST = parse_attribute (attribute ("""TradeType.IST"""))_
-    val UCT = parse_attribute (attribute ("""TradeType.UCT"""))_
+    val AST = parse_attribute (attribute ("""TradeType.AST"""))
+    val IST = parse_attribute (attribute ("""TradeType.IST"""))
+    val UCT = parse_attribute (attribute ("""TradeType.UCT"""))
     def parse (context: Context): TradeType =
     {
         TradeType(
@@ -3691,16 +3691,16 @@ extends
     Parseable[UnitType]
 {
     val sup = BasicElement.parse _
-    val CCYC = parse_attribute (attribute ("""UnitType.CCYC"""))_
-    val GTUR = parse_attribute (attribute ("""UnitType.GTUR"""))_
-    val HYDR = parse_attribute (attribute ("""UnitType.HYDR"""))_
-    val OTHR = parse_attribute (attribute ("""UnitType.OTHR"""))_
-    val PHOT = parse_attribute (attribute ("""UnitType.PHOT"""))_
-    val PTUR = parse_attribute (attribute ("""UnitType.PTUR"""))_
-    val RECP = parse_attribute (attribute ("""UnitType.RECP"""))_
-    val STUR = parse_attribute (attribute ("""UnitType.STUR"""))_
-    val SYNC = parse_attribute (attribute ("""UnitType.SYNC"""))_
-    val WIND = parse_attribute (attribute ("""UnitType.WIND"""))_
+    val CCYC = parse_attribute (attribute ("""UnitType.CCYC"""))
+    val GTUR = parse_attribute (attribute ("""UnitType.GTUR"""))
+    val HYDR = parse_attribute (attribute ("""UnitType.HYDR"""))
+    val OTHR = parse_attribute (attribute ("""UnitType.OTHR"""))
+    val PHOT = parse_attribute (attribute ("""UnitType.PHOT"""))
+    val PTUR = parse_attribute (attribute ("""UnitType.PTUR"""))
+    val RECP = parse_attribute (attribute ("""UnitType.RECP"""))
+    val STUR = parse_attribute (attribute ("""UnitType.STUR"""))
+    val SYNC = parse_attribute (attribute ("""UnitType.SYNC"""))
+    val WIND = parse_attribute (attribute ("""UnitType.WIND"""))
     def parse (context: Context): UnitType =
     {
         UnitType(
@@ -3752,8 +3752,8 @@ extends
     Parseable[YesNo]
 {
     val sup = BasicElement.parse _
-    val NO = parse_attribute (attribute ("""YesNo.NO"""))_
-    val YES = parse_attribute (attribute ("""YesNo.YES"""))_
+    val NO = parse_attribute (attribute ("""YesNo.NO"""))
+    val YES = parse_attribute (attribute ("""YesNo.YES"""))
     def parse (context: Context): YesNo =
     {
         YesNo(

@@ -39,7 +39,7 @@ extends
     Parseable[Contingency]
 {
     val sup = IdentifiedObject.parse _
-    val mustStudy = parse_element (element ("""Contingency.mustStudy"""))_
+    val mustStudy = parse_element (element ("""Contingency.mustStudy"""))
     def parse (context: Context): Contingency =
     {
         Contingency(
@@ -120,8 +120,8 @@ extends
     Parseable[ContingencyEquipment]
 {
     val sup = ContingencyElement.parse _
-    val contingentStatus = parse_attribute (attribute ("""ContingencyEquipment.contingentStatus"""))_
-    val Equipment = parse_attribute (attribute ("""ContingencyEquipment.Equipment"""))_
+    val contingentStatus = parse_attribute (attribute ("""ContingencyEquipment.contingentStatus"""))
+    val Equipment = parse_attribute (attribute ("""ContingencyEquipment.Equipment"""))
     def parse (context: Context): ContingencyEquipment =
     {
         ContingencyEquipment(
@@ -165,8 +165,8 @@ extends
     Parseable[ContingencyEquipmentStatusKind]
 {
     val sup = BasicElement.parse _
-    val inService = parse_attribute (attribute ("""ContingencyEquipmentStatusKind.inService"""))_
-    val outOfService = parse_attribute (attribute ("""ContingencyEquipmentStatusKind.outOfService"""))_
+    val inService = parse_attribute (attribute ("""ContingencyEquipmentStatusKind.inService"""))
+    val outOfService = parse_attribute (attribute ("""ContingencyEquipmentStatusKind.outOfService"""))
     def parse (context: Context): ContingencyEquipmentStatusKind =
     {
         ContingencyEquipmentStatusKind(

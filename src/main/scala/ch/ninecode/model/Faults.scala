@@ -40,7 +40,7 @@ extends
     Parseable[EquipmentFault]
 {
     val sup = Fault.parse _
-    val Terminal = parse_attribute (attribute ("""EquipmentFault.Terminal"""))_
+    val Terminal = parse_attribute (attribute ("""EquipmentFault.Terminal"""))
     def parse (context: Context): EquipmentFault =
     {
         EquipmentFault(
@@ -93,12 +93,12 @@ extends
     Parseable[Fault]
 {
     val sup = IdentifiedObject.parse _
-    val impedance = parse_attribute (attribute ("""Fault.impedance"""))_
-    val kind = parse_attribute (attribute ("""Fault.kind"""))_
-    val phases = parse_attribute (attribute ("""Fault.phases"""))_
-    val FaultCauseTypes = parse_attributes (attribute ("""Fault.FaultCauseTypes"""))_
-    val FaultyEquipment = parse_attribute (attribute ("""Fault.FaultyEquipment"""))_
-    val Outage = parse_attribute (attribute ("""Fault.Outage"""))_
+    val impedance = parse_attribute (attribute ("""Fault.impedance"""))
+    val kind = parse_attribute (attribute ("""Fault.kind"""))
+    val phases = parse_attribute (attribute ("""Fault.phases"""))
+    val FaultCauseTypes = parse_attributes (attribute ("""Fault.FaultCauseTypes"""))
+    val FaultyEquipment = parse_attribute (attribute ("""Fault.FaultyEquipment"""))
+    val Outage = parse_attribute (attribute ("""Fault.Outage"""))
     def parse (context: Context): Fault =
     {
         Fault(
@@ -187,10 +187,10 @@ extends
     Parseable[FaultImpedance]
 {
     val sup = BasicElement.parse _
-    val rGround = parse_element (element ("""FaultImpedance.rGround"""))_
-    val rLineToLine = parse_element (element ("""FaultImpedance.rLineToLine"""))_
-    val xGround = parse_element (element ("""FaultImpedance.xGround"""))_
-    val xLineToLine = parse_element (element ("""FaultImpedance.xLineToLine"""))_
+    val rGround = parse_element (element ("""FaultImpedance.rGround"""))
+    val rLineToLine = parse_element (element ("""FaultImpedance.rLineToLine"""))
+    val xGround = parse_element (element ("""FaultImpedance.xGround"""))
+    val xLineToLine = parse_element (element ("""FaultImpedance.xLineToLine"""))
     def parse (context: Context): FaultImpedance =
     {
         FaultImpedance(
@@ -236,8 +236,8 @@ extends
     Parseable[LineFault]
 {
     val sup = Fault.parse _
-    val lengthFromTerminal1 = parse_element (element ("""LineFault.lengthFromTerminal1"""))_
-    val ACLineSegment = parse_attribute (attribute ("""LineFault.ACLineSegment"""))_
+    val lengthFromTerminal1 = parse_element (element ("""LineFault.lengthFromTerminal1"""))
+    val ACLineSegment = parse_attribute (attribute ("""LineFault.ACLineSegment"""))
     def parse (context: Context): LineFault =
     {
         LineFault(
@@ -286,9 +286,9 @@ extends
     Parseable[PhaseConnectedFaultKind]
 {
     val sup = BasicElement.parse _
-    val lineToGround = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToGround"""))_
-    val lineToLine = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToLine"""))_
-    val lineToLineToGround = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToLineToGround"""))_
+    val lineToGround = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToGround"""))
+    val lineToLine = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToLine"""))
+    val lineToLineToGround = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToLineToGround"""))
     def parse (context: Context): PhaseConnectedFaultKind =
     {
         PhaseConnectedFaultKind(

@@ -61,15 +61,15 @@ extends
     Parseable[ConnectDisconnectFunction]
 {
     val sup = EndDeviceFunction.parse _
-    val eventCount = parse_element (element ("""ConnectDisconnectFunction.eventCount"""))_
-    val isConnected = parse_element (element ("""ConnectDisconnectFunction.isConnected"""))_
-    val isDelayedDiscon = parse_element (element ("""ConnectDisconnectFunction.isDelayedDiscon"""))_
-    val isLocalAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoDisconOp"""))_
-    val isLocalAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoReconOp"""))_
-    val isRemoteAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoDisconOp"""))_
-    val isRemoteAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoReconOp"""))_
-    val rcdInfo = parse_attribute (attribute ("""ConnectDisconnectFunction.rcdInfo"""))_
-    val Switches = parse_attributes (attribute ("""ConnectDisconnectFunction.Switches"""))_
+    val eventCount = parse_element (element ("""ConnectDisconnectFunction.eventCount"""))
+    val isConnected = parse_element (element ("""ConnectDisconnectFunction.isConnected"""))
+    val isDelayedDiscon = parse_element (element ("""ConnectDisconnectFunction.isDelayedDiscon"""))
+    val isLocalAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoDisconOp"""))
+    val isLocalAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoReconOp"""))
+    val isRemoteAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoDisconOp"""))
+    val isRemoteAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoReconOp"""))
+    val rcdInfo = parse_attribute (attribute ("""ConnectDisconnectFunction.rcdInfo"""))
+    val Switches = parse_attributes (attribute ("""ConnectDisconnectFunction.Switches"""))
     def parse (context: Context): ConnectDisconnectFunction =
     {
         ConnectDisconnectFunction(
@@ -140,18 +140,18 @@ extends
     Parseable[RemoteConnectDisconnectInfo]
 {
     val sup = BasicElement.parse _
-    val armedTimeout = parse_element (element ("""RemoteConnectDisconnectInfo.armedTimeout"""))_
-    val customerVoltageLimit = parse_element (element ("""RemoteConnectDisconnectInfo.customerVoltageLimit"""))_
-    val energyLimit = parse_element (element ("""RemoteConnectDisconnectInfo.energyLimit"""))_
-    val energyUsageStartDateTime = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageStartDateTime"""))_
-    val energyUsageWarning = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageWarning"""))_
-    val isArmConnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmConnect"""))_
-    val isArmDisconnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmDisconnect"""))_
-    val isEnergyLimiting = parse_element (element ("""RemoteConnectDisconnectInfo.isEnergyLimiting"""))_
-    val needsPowerLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsPowerLimitCheck"""))_
-    val needsVoltageLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsVoltageLimitCheck"""))_
-    val powerLimit = parse_element (element ("""RemoteConnectDisconnectInfo.powerLimit"""))_
-    val usePushbutton = parse_element (element ("""RemoteConnectDisconnectInfo.usePushbutton"""))_
+    val armedTimeout = parse_element (element ("""RemoteConnectDisconnectInfo.armedTimeout"""))
+    val customerVoltageLimit = parse_element (element ("""RemoteConnectDisconnectInfo.customerVoltageLimit"""))
+    val energyLimit = parse_element (element ("""RemoteConnectDisconnectInfo.energyLimit"""))
+    val energyUsageStartDateTime = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageStartDateTime"""))
+    val energyUsageWarning = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageWarning"""))
+    val isArmConnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmConnect"""))
+    val isArmDisconnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmDisconnect"""))
+    val isEnergyLimiting = parse_element (element ("""RemoteConnectDisconnectInfo.isEnergyLimiting"""))
+    val needsPowerLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsPowerLimitCheck"""))
+    val needsVoltageLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsVoltageLimitCheck"""))
+    val powerLimit = parse_element (element ("""RemoteConnectDisconnectInfo.powerLimit"""))
+    val usePushbutton = parse_element (element ("""RemoteConnectDisconnectInfo.usePushbutton"""))
     def parse (context: Context): RemoteConnectDisconnectInfo =
     {
         RemoteConnectDisconnectInfo(

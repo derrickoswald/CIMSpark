@@ -92,24 +92,24 @@ extends
     Parseable[DiscExcContIEEEDEC1A]
 {
     val sup = DiscontinuousExcitationControlDynamics.parse _
-    val esc = parse_element (element ("""DiscExcContIEEEDEC1A.esc"""))_
-    val kan = parse_element (element ("""DiscExcContIEEEDEC1A.kan"""))_
-    val ketl = parse_element (element ("""DiscExcContIEEEDEC1A.ketl"""))_
-    val tan = parse_element (element ("""DiscExcContIEEEDEC1A.tan"""))_
-    val td = parse_element (element ("""DiscExcContIEEEDEC1A.td"""))_
-    val tl1 = parse_element (element ("""DiscExcContIEEEDEC1A.tl1"""))_
-    val tl2 = parse_element (element ("""DiscExcContIEEEDEC1A.tl2"""))_
-    val tw5 = parse_element (element ("""DiscExcContIEEEDEC1A.tw5"""))_
-    val vanmax = parse_element (element ("""DiscExcContIEEEDEC1A.vanmax"""))_
-    val vomax = parse_element (element ("""DiscExcContIEEEDEC1A.vomax"""))_
-    val vomin = parse_element (element ("""DiscExcContIEEEDEC1A.vomin"""))_
-    val vsmax = parse_element (element ("""DiscExcContIEEEDEC1A.vsmax"""))_
-    val vsmin = parse_element (element ("""DiscExcContIEEEDEC1A.vsmin"""))_
-    val vtc = parse_element (element ("""DiscExcContIEEEDEC1A.vtc"""))_
-    val vtlmt = parse_element (element ("""DiscExcContIEEEDEC1A.vtlmt"""))_
-    val vtm = parse_element (element ("""DiscExcContIEEEDEC1A.vtm"""))_
-    val vtn = parse_element (element ("""DiscExcContIEEEDEC1A.vtn"""))_
-    val _val = parse_element (element ("""DiscExcContIEEEDEC1A.val"""))_
+    val esc = parse_element (element ("""DiscExcContIEEEDEC1A.esc"""))
+    val kan = parse_element (element ("""DiscExcContIEEEDEC1A.kan"""))
+    val ketl = parse_element (element ("""DiscExcContIEEEDEC1A.ketl"""))
+    val tan = parse_element (element ("""DiscExcContIEEEDEC1A.tan"""))
+    val td = parse_element (element ("""DiscExcContIEEEDEC1A.td"""))
+    val tl1 = parse_element (element ("""DiscExcContIEEEDEC1A.tl1"""))
+    val tl2 = parse_element (element ("""DiscExcContIEEEDEC1A.tl2"""))
+    val tw5 = parse_element (element ("""DiscExcContIEEEDEC1A.tw5"""))
+    val vanmax = parse_element (element ("""DiscExcContIEEEDEC1A.vanmax"""))
+    val vomax = parse_element (element ("""DiscExcContIEEEDEC1A.vomax"""))
+    val vomin = parse_element (element ("""DiscExcContIEEEDEC1A.vomin"""))
+    val vsmax = parse_element (element ("""DiscExcContIEEEDEC1A.vsmax"""))
+    val vsmin = parse_element (element ("""DiscExcContIEEEDEC1A.vsmin"""))
+    val vtc = parse_element (element ("""DiscExcContIEEEDEC1A.vtc"""))
+    val vtlmt = parse_element (element ("""DiscExcContIEEEDEC1A.vtlmt"""))
+    val vtm = parse_element (element ("""DiscExcContIEEEDEC1A.vtm"""))
+    val vtn = parse_element (element ("""DiscExcContIEEEDEC1A.vtn"""))
+    val _val = parse_element (element ("""DiscExcContIEEEDEC1A.val"""))
     def parse (context: Context): DiscExcContIEEEDEC1A =
     {
         DiscExcContIEEEDEC1A(
@@ -176,11 +176,11 @@ extends
     Parseable[DiscExcContIEEEDEC2A]
 {
     val sup = DiscontinuousExcitationControlDynamics.parse _
-    val td1 = parse_element (element ("""DiscExcContIEEEDEC2A.td1"""))_
-    val td2 = parse_element (element ("""DiscExcContIEEEDEC2A.td2"""))_
-    val vdmax = parse_element (element ("""DiscExcContIEEEDEC2A.vdmax"""))_
-    val vdmin = parse_element (element ("""DiscExcContIEEEDEC2A.vdmin"""))_
-    val vk = parse_element (element ("""DiscExcContIEEEDEC2A.vk"""))_
+    val td1 = parse_element (element ("""DiscExcContIEEEDEC2A.td1"""))
+    val td2 = parse_element (element ("""DiscExcContIEEEDEC2A.td2"""))
+    val vdmax = parse_element (element ("""DiscExcContIEEEDEC2A.vdmax"""))
+    val vdmin = parse_element (element ("""DiscExcContIEEEDEC2A.vdmin"""))
+    val vk = parse_element (element ("""DiscExcContIEEEDEC2A.vk"""))
     def parse (context: Context): DiscExcContIEEEDEC2A =
     {
         DiscExcContIEEEDEC2A(
@@ -228,8 +228,8 @@ extends
     Parseable[DiscExcContIEEEDEC3A]
 {
     val sup = DiscontinuousExcitationControlDynamics.parse _
-    val tdr = parse_element (element ("""DiscExcContIEEEDEC3A.tdr"""))_
-    val vtmin = parse_element (element ("""DiscExcContIEEEDEC3A.vtmin"""))_
+    val tdr = parse_element (element ("""DiscExcContIEEEDEC3A.tdr"""))
+    val vtmin = parse_element (element ("""DiscExcContIEEEDEC3A.vtmin"""))
     def parse (context: Context): DiscExcContIEEEDEC3A =
     {
         DiscExcContIEEEDEC3A(
@@ -273,8 +273,8 @@ extends
     Parseable[DiscontinuousExcitationControlDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics"""))_
-    val RemoteInputSignal = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.RemoteInputSignal"""))_
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics"""))
+    val RemoteInputSignal = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.RemoteInputSignal"""))
     def parse (context: Context): DiscontinuousExcitationControlDynamics =
     {
         DiscontinuousExcitationControlDynamics(

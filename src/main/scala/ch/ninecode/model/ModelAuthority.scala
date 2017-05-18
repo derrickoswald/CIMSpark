@@ -77,7 +77,7 @@ extends
     Parseable[ModelingAuthoritySet]
 {
     val sup = BasicElement.parse _
-    val ModelingAuthority = parse_attribute (attribute ("""ModelingAuthoritySet.ModelingAuthority"""))_
+    val ModelingAuthority = parse_attribute (attribute ("""ModelingAuthoritySet.ModelingAuthority"""))
     def parse (context: Context): ModelingAuthoritySet =
     {
         ModelingAuthoritySet(

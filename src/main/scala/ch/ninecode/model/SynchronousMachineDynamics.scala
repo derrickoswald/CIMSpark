@@ -44,9 +44,9 @@ extends
     Parseable[IfdBaseKind]
 {
     val sup = BasicElement.parse _
-    val ifag = parse_attribute (attribute ("""IfdBaseKind.ifag"""))_
-    val iffl = parse_attribute (attribute ("""IfdBaseKind.iffl"""))_
-    val ifnl = parse_attribute (attribute ("""IfdBaseKind.ifnl"""))_
+    val ifag = parse_attribute (attribute ("""IfdBaseKind.ifag"""))
+    val iffl = parse_attribute (attribute ("""IfdBaseKind.iffl"""))
+    val ifnl = parse_attribute (attribute ("""IfdBaseKind.ifnl"""))
     def parse (context: Context): IfdBaseKind =
     {
         IfdBaseKind(
@@ -91,8 +91,8 @@ extends
     Parseable[RotorKind]
 {
     val sup = BasicElement.parse _
-    val roundRotor = parse_attribute (attribute ("""RotorKind.roundRotor"""))_
-    val salientPole = parse_attribute (attribute ("""RotorKind.salientPole"""))_
+    val roundRotor = parse_attribute (attribute ("""RotorKind.roundRotor"""))
+    val salientPole = parse_attribute (attribute ("""RotorKind.salientPole"""))
     def parse (context: Context): RotorKind =
     {
         RotorKind(
@@ -145,10 +145,10 @@ extends
     Parseable[SynchronousMachineDetailed]
 {
     val sup = SynchronousMachineDynamics.parse _
-    val efdBaseRatio = parse_element (element ("""SynchronousMachineDetailed.efdBaseRatio"""))_
-    val ifdBaseType = parse_attribute (attribute ("""SynchronousMachineDetailed.ifdBaseType"""))_
-    val saturationFactor120QAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactor120QAxis"""))_
-    val saturationFactorQAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactorQAxis"""))_
+    val efdBaseRatio = parse_element (element ("""SynchronousMachineDetailed.efdBaseRatio"""))
+    val ifdBaseType = parse_attribute (attribute ("""SynchronousMachineDetailed.ifdBaseType"""))
+    val saturationFactor120QAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactor120QAxis"""))
+    val saturationFactorQAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactorQAxis"""))
     def parse (context: Context): SynchronousMachineDetailed =
     {
         SynchronousMachineDetailed(
@@ -209,10 +209,10 @@ extends
     Parseable[SynchronousMachineDynamics]
 {
     val sup = RotatingMachineDynamics.parse _
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.ExcitationSystemDynamics"""))_
-    val MechanicalLoadDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.MechanicalLoadDynamics"""))_
-    val SynchronousMachine = parse_attribute (attribute ("""SynchronousMachineDynamics.SynchronousMachine"""))_
-    val TurbineGovernorDynamics = parse_attributes (attribute ("""SynchronousMachineDynamics.TurbineGovernorDynamics"""))_
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.ExcitationSystemDynamics"""))
+    val MechanicalLoadDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.MechanicalLoadDynamics"""))
+    val SynchronousMachine = parse_attribute (attribute ("""SynchronousMachineDynamics.SynchronousMachine"""))
+    val TurbineGovernorDynamics = parse_attributes (attribute ("""SynchronousMachineDynamics.TurbineGovernorDynamics"""))
     def parse (context: Context): SynchronousMachineDynamics =
     {
         SynchronousMachineDynamics(
@@ -301,17 +301,17 @@ extends
     Parseable[SynchronousMachineEquivalentCircuit]
 {
     val sup = SynchronousMachineDetailed.parse _
-    val r1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1d"""))_
-    val r1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1q"""))_
-    val r2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r2q"""))_
-    val rfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.rfd"""))_
-    val x1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1d"""))_
-    val x1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1q"""))_
-    val x2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x2q"""))_
-    val xad = parse_element (element ("""SynchronousMachineEquivalentCircuit.xad"""))_
-    val xaq = parse_element (element ("""SynchronousMachineEquivalentCircuit.xaq"""))_
-    val xf1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.xf1d"""))_
-    val xfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.xfd"""))_
+    val r1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1d"""))
+    val r1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1q"""))
+    val r2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r2q"""))
+    val rfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.rfd"""))
+    val x1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1d"""))
+    val x1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1q"""))
+    val x2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x2q"""))
+    val xad = parse_element (element ("""SynchronousMachineEquivalentCircuit.xad"""))
+    val xaq = parse_element (element ("""SynchronousMachineEquivalentCircuit.xaq"""))
+    val xf1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.xf1d"""))
+    val xfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.xfd"""))
     def parse (context: Context): SynchronousMachineEquivalentCircuit =
     {
         SynchronousMachineEquivalentCircuit(
@@ -370,11 +370,11 @@ extends
     Parseable[SynchronousMachineModelKind]
 {
     val sup = BasicElement.parse _
-    val subtransient = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransient"""))_
-    val subtransientSimplified = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientSimplified"""))_
-    val subtransientSimplifiedDirectAxis = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientSimplifiedDirectAxis"""))_
-    val subtransientTypeF = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientTypeF"""))_
-    val subtransientTypeJ = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientTypeJ"""))_
+    val subtransient = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransient"""))
+    val subtransientSimplified = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientSimplified"""))
+    val subtransientSimplifiedDirectAxis = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientSimplifiedDirectAxis"""))
+    val subtransientTypeF = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientTypeF"""))
+    val subtransientTypeJ = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientTypeJ"""))
     def parse (context: Context): SynchronousMachineModelKind =
     {
         SynchronousMachineModelKind(
@@ -528,20 +528,20 @@ extends
     Parseable[SynchronousMachineTimeConstantReactance]
 {
     val sup = SynchronousMachineDetailed.parse _
-    val ks = parse_element (element ("""SynchronousMachineTimeConstantReactance.ks"""))_
-    val modelType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.modelType"""))_
-    val rotorType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.rotorType"""))_
-    val tc = parse_element (element ("""SynchronousMachineTimeConstantReactance.tc"""))_
-    val tpdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpdo"""))_
-    val tppdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppdo"""))_
-    val tppqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppqo"""))_
-    val tpqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpqo"""))_
-    val xDirectSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSubtrans"""))_
-    val xDirectSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSync"""))_
-    val xDirectTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectTrans"""))_
-    val xQuadSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSubtrans"""))_
-    val xQuadSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSync"""))_
-    val xQuadTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadTrans"""))_
+    val ks = parse_element (element ("""SynchronousMachineTimeConstantReactance.ks"""))
+    val modelType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.modelType"""))
+    val rotorType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.rotorType"""))
+    val tc = parse_element (element ("""SynchronousMachineTimeConstantReactance.tc"""))
+    val tpdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpdo"""))
+    val tppdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppdo"""))
+    val tppqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppqo"""))
+    val tpqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpqo"""))
+    val xDirectSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSubtrans"""))
+    val xDirectSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSync"""))
+    val xDirectTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectTrans"""))
+    val xQuadSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSubtrans"""))
+    val xQuadSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSync"""))
+    val xQuadTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadTrans"""))
     def parse (context: Context): SynchronousMachineTimeConstantReactance =
     {
         SynchronousMachineTimeConstantReactance(

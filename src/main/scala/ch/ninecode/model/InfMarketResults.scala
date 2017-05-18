@@ -81,10 +81,10 @@ extends
     Parseable[InterTieResults]
 {
     val sup = BasicElement.parse _
-    val baseMW = parse_element (element ("""InterTieResults.baseMW"""))_
-    val clearedValue = parse_element (element ("""InterTieResults.clearedValue"""))_
-    val Flowgate = parse_attribute (attribute ("""InterTieResults.Flowgate"""))_
-    val InterTieClearing = parse_attribute (attribute ("""InterTieResults.InterTieClearing"""))_
+    val baseMW = parse_element (element ("""InterTieResults.baseMW"""))
+    val clearedValue = parse_element (element ("""InterTieResults.clearedValue"""))
+    val Flowgate = parse_attribute (attribute ("""InterTieResults.Flowgate"""))
+    val InterTieClearing = parse_attribute (attribute ("""InterTieResults.InterTieClearing"""))
     def parse (context: Context): InterTieResults =
     {
         InterTieResults(
@@ -140,9 +140,9 @@ extends
     Parseable[MarketCaseClearing]
 {
     val sup = MarketFactors.parse _
-    val caseType = parse_element (element ("""MarketCaseClearing.caseType"""))_
-    val modifiedDate = parse_element (element ("""MarketCaseClearing.modifiedDate"""))_
-    val postedDate = parse_element (element ("""MarketCaseClearing.postedDate"""))_
+    val caseType = parse_element (element ("""MarketCaseClearing.caseType"""))
+    val modifiedDate = parse_element (element ("""MarketCaseClearing.modifiedDate"""))
+    val postedDate = parse_element (element ("""MarketCaseClearing.postedDate"""))
     def parse (context: Context): MarketCaseClearing =
     {
         MarketCaseClearing(
@@ -189,9 +189,9 @@ extends
     Parseable[SecurityConstraintsClearing]
 {
     val sup = MarketFactors.parse _
-    val mwFlow = parse_element (element ("""SecurityConstraintsClearing.mwFlow"""))_
-    val mwLimit = parse_element (element ("""SecurityConstraintsClearing.mwLimit"""))_
-    val shadowPrice = parse_element (element ("""SecurityConstraintsClearing.shadowPrice"""))_
+    val mwFlow = parse_element (element ("""SecurityConstraintsClearing.mwFlow"""))
+    val mwLimit = parse_element (element ("""SecurityConstraintsClearing.mwLimit"""))
+    val shadowPrice = parse_element (element ("""SecurityConstraintsClearing.shadowPrice"""))
     def parse (context: Context): SecurityConstraintsClearing =
     {
         SecurityConstraintsClearing(

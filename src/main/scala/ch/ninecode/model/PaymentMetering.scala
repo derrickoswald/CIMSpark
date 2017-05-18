@@ -46,9 +46,9 @@ extends
     Parseable[AccountMovement]
 {
     val sup = BasicElement.parse _
-    val amount = parse_element (element ("""AccountMovement.amount"""))_
-    val dateTime = parse_element (element ("""AccountMovement.dateTime"""))_
-    val reason = parse_element (element ("""AccountMovement.reason"""))_
+    val amount = parse_element (element ("""AccountMovement.amount"""))
+    val dateTime = parse_element (element ("""AccountMovement.dateTime"""))
+    val reason = parse_element (element ("""AccountMovement.reason"""))
     def parse (context: Context): AccountMovement =
     {
         AccountMovement(
@@ -97,10 +97,10 @@ extends
     Parseable[AccountingUnit]
 {
     val sup = BasicElement.parse _
-    val energyUnit = parse_element (element ("""AccountingUnit.energyUnit"""))_
-    val monetaryUnit = parse_attribute (attribute ("""AccountingUnit.monetaryUnit"""))_
-    val multiplier = parse_attribute (attribute ("""AccountingUnit.multiplier"""))_
-    val value = parse_element (element ("""AccountingUnit.value"""))_
+    val energyUnit = parse_element (element ("""AccountingUnit.energyUnit"""))
+    val monetaryUnit = parse_attribute (attribute ("""AccountingUnit.monetaryUnit"""))
+    val multiplier = parse_attribute (attribute ("""AccountingUnit.multiplier"""))
+    val value = parse_element (element ("""AccountingUnit.value"""))
     def parse (context: Context): AccountingUnit =
     {
         AccountingUnit(
@@ -157,13 +157,13 @@ extends
     Parseable[AuxiliaryAccount]
 {
     val sup = Document.parse _
-    val balance = parse_element (element ("""AuxiliaryAccount.balance"""))_
-    val due = parse_attribute (attribute ("""AuxiliaryAccount.due"""))_
-    val lastCredit = parse_attribute (attribute ("""AuxiliaryAccount.lastCredit"""))_
-    val lastDebit = parse_attribute (attribute ("""AuxiliaryAccount.lastDebit"""))_
-    val principleAmount = parse_element (element ("""AuxiliaryAccount.principleAmount"""))_
-    val AuxiliaryAgreement = parse_attribute (attribute ("""AuxiliaryAccount.AuxiliaryAgreement"""))_
-    val Charges = parse_attributes (attribute ("""AuxiliaryAccount.Charges"""))_
+    val balance = parse_element (element ("""AuxiliaryAccount.balance"""))
+    val due = parse_attribute (attribute ("""AuxiliaryAccount.due"""))
+    val lastCredit = parse_attribute (attribute ("""AuxiliaryAccount.lastCredit"""))
+    val lastDebit = parse_attribute (attribute ("""AuxiliaryAccount.lastDebit"""))
+    val principleAmount = parse_element (element ("""AuxiliaryAccount.principleAmount"""))
+    val AuxiliaryAgreement = parse_attribute (attribute ("""AuxiliaryAccount.AuxiliaryAgreement"""))
+    val Charges = parse_attributes (attribute ("""AuxiliaryAccount.Charges"""))
     def parse (context: Context): AuxiliaryAccount =
     {
         AuxiliaryAccount(
@@ -234,16 +234,16 @@ extends
     Parseable[AuxiliaryAgreement]
 {
     val sup = Agreement.parse _
-    val arrearsInterest = parse_element (element ("""AuxiliaryAgreement.arrearsInterest"""))_
-    val auxCycle = parse_element (element ("""AuxiliaryAgreement.auxCycle"""))_
-    val auxPriorityCode = parse_element (element ("""AuxiliaryAgreement.auxPriorityCode"""))_
-    val fixedAmount = parse_element (element ("""AuxiliaryAgreement.fixedAmount"""))_
-    val minAmount = parse_element (element ("""AuxiliaryAgreement.minAmount"""))_
-    val payCycle = parse_element (element ("""AuxiliaryAgreement.payCycle"""))_
-    val subType = parse_element (element ("""AuxiliaryAgreement.subType"""))_
-    val vendPortion = parse_element (element ("""AuxiliaryAgreement.vendPortion"""))_
-    val vendPortionArrear = parse_element (element ("""AuxiliaryAgreement.vendPortionArrear"""))_
-    val CustomerAgreement = parse_attribute (attribute ("""AuxiliaryAgreement.CustomerAgreement"""))_
+    val arrearsInterest = parse_element (element ("""AuxiliaryAgreement.arrearsInterest"""))
+    val auxCycle = parse_element (element ("""AuxiliaryAgreement.auxCycle"""))
+    val auxPriorityCode = parse_element (element ("""AuxiliaryAgreement.auxPriorityCode"""))
+    val fixedAmount = parse_element (element ("""AuxiliaryAgreement.fixedAmount"""))
+    val minAmount = parse_element (element ("""AuxiliaryAgreement.minAmount"""))
+    val payCycle = parse_element (element ("""AuxiliaryAgreement.payCycle"""))
+    val subType = parse_element (element ("""AuxiliaryAgreement.subType"""))
+    val vendPortion = parse_element (element ("""AuxiliaryAgreement.vendPortion"""))
+    val vendPortionArrear = parse_element (element ("""AuxiliaryAgreement.vendPortionArrear"""))
+    val CustomerAgreement = parse_attribute (attribute ("""AuxiliaryAgreement.CustomerAgreement"""))
     def parse (context: Context): AuxiliaryAgreement =
     {
         AuxiliaryAgreement(
@@ -301,11 +301,11 @@ extends
     Parseable[BankAccountDetail]
 {
     val sup = BasicElement.parse _
-    val accountNumber = parse_element (element ("""BankAccountDetail.accountNumber"""))_
-    val bankName = parse_element (element ("""BankAccountDetail.bankName"""))_
-    val branchCode = parse_element (element ("""BankAccountDetail.branchCode"""))_
-    val holderID = parse_element (element ("""BankAccountDetail.holderID"""))_
-    val holderName = parse_element (element ("""BankAccountDetail.holderName"""))_
+    val accountNumber = parse_element (element ("""BankAccountDetail.accountNumber"""))
+    val bankName = parse_element (element ("""BankAccountDetail.bankName"""))
+    val branchCode = parse_element (element ("""BankAccountDetail.branchCode"""))
+    val holderID = parse_element (element ("""BankAccountDetail.holderID"""))
+    val holderName = parse_element (element ("""BankAccountDetail.holderName"""))
     def parse (context: Context): BankAccountDetail =
     {
         BankAccountDetail(
@@ -358,11 +358,11 @@ extends
     Parseable[Card]
 {
     val sup = BasicElement.parse _
-    val accountHolderName = parse_element (element ("""Card.accountHolderName"""))_
-    val cvNumber = parse_element (element ("""Card.cvNumber"""))_
-    val expiryDate = parse_element (element ("""Card.expiryDate"""))_
-    val pan = parse_element (element ("""Card.pan"""))_
-    val Tender = parse_attribute (attribute ("""Card.Tender"""))_
+    val accountHolderName = parse_element (element ("""Card.accountHolderName"""))
+    val cvNumber = parse_element (element ("""Card.cvNumber"""))
+    val expiryDate = parse_element (element ("""Card.expiryDate"""))
+    val pan = parse_element (element ("""Card.pan"""))
+    val Tender = parse_attribute (attribute ("""Card.Tender"""))
     def parse (context: Context): Card =
     {
         Card(
@@ -408,7 +408,7 @@ extends
     Parseable[Cashier]
 {
     val sup = IdentifiedObject.parse _
-    val electronicAddress = parse_attribute (attribute ("""Cashier.electronicAddress"""))_
+    val electronicAddress = parse_attribute (attribute ("""Cashier.electronicAddress"""))
     def parse (context: Context): Cashier =
     {
         Cashier(
@@ -453,9 +453,9 @@ extends
     Parseable[CashierShift]
 {
     val sup = Shift.parse _
-    val cashFloat = parse_element (element ("""CashierShift.cashFloat"""))_
-    val Cashier = parse_attribute (attribute ("""CashierShift.Cashier"""))_
-    val PointOfSale = parse_attribute (attribute ("""CashierShift.PointOfSale"""))_
+    val cashFloat = parse_element (element ("""CashierShift.cashFloat"""))
+    val Cashier = parse_attribute (attribute ("""CashierShift.Cashier"""))
+    val PointOfSale = parse_attribute (attribute ("""CashierShift.PointOfSale"""))
     def parse (context: Context): CashierShift =
     {
         CashierShift(
@@ -505,10 +505,10 @@ extends
     Parseable[Charge]
 {
     val sup = IdentifiedObject.parse _
-    val fixedPortion = parse_attribute (attribute ("""Charge.fixedPortion"""))_
-    val kind = parse_attribute (attribute ("""Charge.kind"""))_
-    val variablePortion = parse_element (element ("""Charge.variablePortion"""))_
-    val ParentCharge = parse_attribute (attribute ("""Charge.ParentCharge"""))_
+    val fixedPortion = parse_attribute (attribute ("""Charge.fixedPortion"""))
+    val kind = parse_attribute (attribute ("""Charge.kind"""))
+    val variablePortion = parse_element (element ("""Charge.variablePortion"""))
+    val ParentCharge = parse_attribute (attribute ("""Charge.ParentCharge"""))
     def parse (context: Context): Charge =
     {
         Charge(
@@ -564,11 +564,11 @@ extends
     Parseable[ChargeKind]
 {
     val sup = BasicElement.parse _
-    val auxiliaryCharge = parse_attribute (attribute ("""ChargeKind.auxiliaryCharge"""))_
-    val consumptionCharge = parse_attribute (attribute ("""ChargeKind.consumptionCharge"""))_
-    val demandCharge = parse_attribute (attribute ("""ChargeKind.demandCharge"""))_
-    val other = parse_attribute (attribute ("""ChargeKind.other"""))_
-    val taxCharge = parse_attribute (attribute ("""ChargeKind.taxCharge"""))_
+    val auxiliaryCharge = parse_attribute (attribute ("""ChargeKind.auxiliaryCharge"""))
+    val consumptionCharge = parse_attribute (attribute ("""ChargeKind.consumptionCharge"""))
+    val demandCharge = parse_attribute (attribute ("""ChargeKind.demandCharge"""))
+    val other = parse_attribute (attribute ("""ChargeKind.other"""))
+    val taxCharge = parse_attribute (attribute ("""ChargeKind.taxCharge"""))
     def parse (context: Context): ChargeKind =
     {
         ChargeKind(
@@ -623,12 +623,12 @@ extends
     Parseable[Cheque]
 {
     val sup = BasicElement.parse _
-    val bankAccountDetail = parse_attribute (attribute ("""Cheque.bankAccountDetail"""))_
-    val chequeNumber = parse_element (element ("""Cheque.chequeNumber"""))_
-    val date = parse_element (element ("""Cheque.date"""))_
-    val kind = parse_attribute (attribute ("""Cheque.kind"""))_
-    val micrNumber = parse_element (element ("""Cheque.micrNumber"""))_
-    val Tender = parse_attribute (attribute ("""Cheque.Tender"""))_
+    val bankAccountDetail = parse_attribute (attribute ("""Cheque.bankAccountDetail"""))
+    val chequeNumber = parse_element (element ("""Cheque.chequeNumber"""))
+    val date = parse_element (element ("""Cheque.date"""))
+    val kind = parse_attribute (attribute ("""Cheque.kind"""))
+    val micrNumber = parse_element (element ("""Cheque.micrNumber"""))
+    val Tender = parse_attribute (attribute ("""Cheque.Tender"""))
     def parse (context: Context): Cheque =
     {
         Cheque(
@@ -678,9 +678,9 @@ extends
     Parseable[ChequeKind]
 {
     val sup = BasicElement.parse _
-    val bankOrder = parse_attribute (attribute ("""ChequeKind.bankOrder"""))_
-    val other = parse_attribute (attribute ("""ChequeKind.other"""))_
-    val postalOrder = parse_attribute (attribute ("""ChequeKind.postalOrder"""))_
+    val bankOrder = parse_attribute (attribute ("""ChequeKind.bankOrder"""))
+    val other = parse_attribute (attribute ("""ChequeKind.other"""))
+    val postalOrder = parse_attribute (attribute ("""ChequeKind.postalOrder"""))
     def parse (context: Context): ChequeKind =
     {
         ChequeKind(
@@ -731,10 +731,10 @@ extends
     Parseable[ConsumptionTariffInterval]
 {
     val sup = BasicElement.parse _
-    val sequenceNumber = parse_element (element ("""ConsumptionTariffInterval.sequenceNumber"""))_
-    val startValue = parse_element (element ("""ConsumptionTariffInterval.startValue"""))_
-    val Charges = parse_attributes (attribute ("""ConsumptionTariffInterval.Charges"""))_
-    val TouTariffIntervals = parse_attributes (attribute ("""ConsumptionTariffInterval.TouTariffIntervals"""))_
+    val sequenceNumber = parse_element (element ("""ConsumptionTariffInterval.sequenceNumber"""))
+    val startValue = parse_element (element ("""ConsumptionTariffInterval.startValue"""))
+    val Charges = parse_attributes (attribute ("""ConsumptionTariffInterval.Charges"""))
+    val TouTariffIntervals = parse_attributes (attribute ("""ConsumptionTariffInterval.TouTariffIntervals"""))
     def parse (context: Context): ConsumptionTariffInterval =
     {
         ConsumptionTariffInterval(
@@ -787,11 +787,11 @@ extends
     Parseable[Due]
 {
     val sup = BasicElement.parse _
-    val arrears = parse_element (element ("""Due.arrears"""))_
-    val charges = parse_element (element ("""Due.charges"""))_
-    val current = parse_element (element ("""Due.current"""))_
-    val interest = parse_element (element ("""Due.interest"""))_
-    val principle = parse_element (element ("""Due.principle"""))_
+    val arrears = parse_element (element ("""Due.arrears"""))
+    val charges = parse_element (element ("""Due.charges"""))
+    val current = parse_element (element ("""Due.current"""))
+    val interest = parse_element (element ("""Due.interest"""))
+    val principle = parse_element (element ("""Due.principle"""))
     def parse (context: Context): Due =
     {
         Due(
@@ -842,10 +842,10 @@ extends
     Parseable[LineDetail]
 {
     val sup = BasicElement.parse _
-    val amount = parse_element (element ("""LineDetail.amount"""))_
-    val dateTime = parse_element (element ("""LineDetail.dateTime"""))_
-    val note = parse_element (element ("""LineDetail.note"""))_
-    val rounding = parse_element (element ("""LineDetail.rounding"""))_
+    val amount = parse_element (element ("""LineDetail.amount"""))
+    val dateTime = parse_element (element ("""LineDetail.dateTime"""))
+    val note = parse_element (element ("""LineDetail.note"""))
+    val rounding = parse_element (element ("""LineDetail.rounding"""))
     def parse (context: Context): LineDetail =
     {
         LineDetail(
@@ -896,10 +896,10 @@ extends
     Parseable[MerchantAccount]
 {
     val sup = Document.parse _
-    val currentBalance = parse_element (element ("""MerchantAccount.currentBalance"""))_
-    val provisionalBalance = parse_element (element ("""MerchantAccount.provisionalBalance"""))_
-    val MerchantAgreement = parse_attribute (attribute ("""MerchantAccount.MerchantAgreement"""))_
-    val Transactors = parse_attributes (attribute ("""MerchantAccount.Transactors"""))_
+    val currentBalance = parse_element (element ("""MerchantAccount.currentBalance"""))
+    val provisionalBalance = parse_element (element ("""MerchantAccount.provisionalBalance"""))
+    val MerchantAgreement = parse_attribute (attribute ("""MerchantAccount.MerchantAgreement"""))
+    val Transactors = parse_attributes (attribute ("""MerchantAccount.Transactors"""))
     def parse (context: Context): MerchantAccount =
     {
         MerchantAccount(
@@ -981,7 +981,7 @@ extends
     Parseable[PointOfSale]
 {
     val sup = IdentifiedObject.parse _
-    val location = parse_element (element ("""PointOfSale.location"""))_
+    val location = parse_element (element ("""PointOfSale.location"""))
     def parse (context: Context): PointOfSale =
     {
         PointOfSale(
@@ -1028,10 +1028,10 @@ extends
     Parseable[Receipt]
 {
     val sup = IdentifiedObject.parse _
-    val isBankable = parse_element (element ("""Receipt.isBankable"""))_
-    val line = parse_attribute (attribute ("""Receipt.line"""))_
-    val CashierShift = parse_attribute (attribute ("""Receipt.CashierShift"""))_
-    val VendorShift = parse_attribute (attribute ("""Receipt.VendorShift"""))_
+    val isBankable = parse_element (element ("""Receipt.isBankable"""))
+    val line = parse_attribute (attribute ("""Receipt.line"""))
+    val CashierShift = parse_attribute (attribute ("""Receipt.CashierShift"""))
+    val VendorShift = parse_attribute (attribute ("""Receipt.VendorShift"""))
     def parse (context: Context): Receipt =
     {
         Receipt(
@@ -1077,8 +1077,8 @@ extends
     Parseable[ServiceSupplier]
 {
     val sup = OrganisationRole.parse _
-    val issuerIdentificationNumber = parse_element (element ("""ServiceSupplier.issuerIdentificationNumber"""))_
-    val kind = parse_attribute (attribute ("""ServiceSupplier.kind"""))_
+    val issuerIdentificationNumber = parse_element (element ("""ServiceSupplier.issuerIdentificationNumber"""))
+    val kind = parse_attribute (attribute ("""ServiceSupplier.kind"""))
     def parse (context: Context): ServiceSupplier =
     {
         ServiceSupplier(
@@ -1136,12 +1136,12 @@ extends
     Parseable[Shift]
 {
     val sup = IdentifiedObject.parse _
-    val activityInterval = parse_attribute (attribute ("""Shift.activityInterval"""))_
-    val receiptsGrandTotalBankable = parse_element (element ("""Shift.receiptsGrandTotalBankable"""))_
-    val receiptsGrandTotalNonBankable = parse_element (element ("""Shift.receiptsGrandTotalNonBankable"""))_
-    val receiptsGrandTotalRounding = parse_element (element ("""Shift.receiptsGrandTotalRounding"""))_
-    val transactionsGrandTotal = parse_element (element ("""Shift.transactionsGrandTotal"""))_
-    val transactionsGrandTotalRounding = parse_element (element ("""Shift.transactionsGrandTotalRounding"""))_
+    val activityInterval = parse_attribute (attribute ("""Shift.activityInterval"""))
+    val receiptsGrandTotalBankable = parse_element (element ("""Shift.receiptsGrandTotalBankable"""))
+    val receiptsGrandTotalNonBankable = parse_element (element ("""Shift.receiptsGrandTotalNonBankable"""))
+    val receiptsGrandTotalRounding = parse_element (element ("""Shift.receiptsGrandTotalRounding"""))
+    val transactionsGrandTotal = parse_element (element ("""Shift.transactionsGrandTotal"""))
+    val transactionsGrandTotalRounding = parse_element (element ("""Shift.transactionsGrandTotalRounding"""))
     def parse (context: Context): Shift =
     {
         Shift(
@@ -1191,9 +1191,9 @@ extends
     Parseable[SupplierKind]
 {
     val sup = BasicElement.parse _
-    val other = parse_attribute (attribute ("""SupplierKind.other"""))_
-    val retailer = parse_attribute (attribute ("""SupplierKind.retailer"""))_
-    val utility = parse_attribute (attribute ("""SupplierKind.utility"""))_
+    val other = parse_attribute (attribute ("""SupplierKind.other"""))
+    val retailer = parse_attribute (attribute ("""SupplierKind.retailer"""))
+    val utility = parse_attribute (attribute ("""SupplierKind.utility"""))
     def parse (context: Context): SupplierKind =
     {
         SupplierKind(
@@ -1242,9 +1242,9 @@ extends
     Parseable[TariffProfile]
 {
     val sup = Document.parse _
-    val tariffCycle = parse_element (element ("""TariffProfile.tariffCycle"""))_
-    val ConsumptionTariffIntervals = parse_attributes (attribute ("""TariffProfile.ConsumptionTariffIntervals"""))_
-    val TimeTariffIntervals = parse_attributes (attribute ("""TariffProfile.TimeTariffIntervals"""))_
+    val tariffCycle = parse_element (element ("""TariffProfile.tariffCycle"""))
+    val ConsumptionTariffIntervals = parse_attributes (attribute ("""TariffProfile.ConsumptionTariffIntervals"""))
+    val TimeTariffIntervals = parse_attributes (attribute ("""TariffProfile.TimeTariffIntervals"""))
     def parse (context: Context): TariffProfile =
     {
         TariffProfile(
@@ -1298,12 +1298,12 @@ extends
     Parseable[Tender]
 {
     val sup = IdentifiedObject.parse _
-    val amount = parse_element (element ("""Tender.amount"""))_
-    val change = parse_element (element ("""Tender.change"""))_
-    val kind = parse_attribute (attribute ("""Tender.kind"""))_
-    val Card = parse_attribute (attribute ("""Tender.Card"""))_
-    val Cheque = parse_attribute (attribute ("""Tender.Cheque"""))_
-    val Receipt = parse_attribute (attribute ("""Tender.Receipt"""))_
+    val amount = parse_element (element ("""Tender.amount"""))
+    val change = parse_element (element ("""Tender.change"""))
+    val kind = parse_attribute (attribute ("""Tender.kind"""))
+    val Card = parse_attribute (attribute ("""Tender.Card"""))
+    val Cheque = parse_attribute (attribute ("""Tender.Cheque"""))
+    val Receipt = parse_attribute (attribute ("""Tender.Receipt"""))
     def parse (context: Context): Tender =
     {
         Tender(
@@ -1357,11 +1357,11 @@ extends
     Parseable[TenderKind]
 {
     val sup = BasicElement.parse _
-    val card = parse_attribute (attribute ("""TenderKind.card"""))_
-    val cash = parse_attribute (attribute ("""TenderKind.cash"""))_
-    val cheque = parse_attribute (attribute ("""TenderKind.cheque"""))_
-    val other = parse_attribute (attribute ("""TenderKind.other"""))_
-    val unspecified = parse_attribute (attribute ("""TenderKind.unspecified"""))_
+    val card = parse_attribute (attribute ("""TenderKind.card"""))
+    val cash = parse_attribute (attribute ("""TenderKind.cash"""))
+    val cheque = parse_attribute (attribute ("""TenderKind.cheque"""))
+    val other = parse_attribute (attribute ("""TenderKind.other"""))
+    val unspecified = parse_attribute (attribute ("""TenderKind.unspecified"""))
     def parse (context: Context): TenderKind =
     {
         TenderKind(
@@ -1412,9 +1412,9 @@ extends
     Parseable[TimeTariffInterval]
 {
     val sup = BasicElement.parse _
-    val sequenceNumber = parse_element (element ("""TimeTariffInterval.sequenceNumber"""))_
-    val startTime = parse_element (element ("""TimeTariffInterval.startTime"""))_
-    val Charges = parse_attributes (attribute ("""TimeTariffInterval.Charges"""))_
+    val sequenceNumber = parse_element (element ("""TimeTariffInterval.sequenceNumber"""))
+    val startTime = parse_element (element ("""TimeTariffInterval.startTime"""))
+    val Charges = parse_attributes (attribute ("""TimeTariffInterval.Charges"""))
     def parse (context: Context): TimeTariffInterval =
     {
         TimeTariffInterval(
@@ -1485,21 +1485,21 @@ extends
     Parseable[Transaction]
 {
     val sup = IdentifiedObject.parse _
-    val diverseReference = parse_element (element ("""Transaction.diverseReference"""))_
-    val donorReference = parse_element (element ("""Transaction.donorReference"""))_
-    val kind = parse_attribute (attribute ("""Transaction.kind"""))_
-    val line = parse_attribute (attribute ("""Transaction.line"""))_
-    val receiverReference = parse_element (element ("""Transaction.receiverReference"""))_
-    val reversedId = parse_element (element ("""Transaction.reversedId"""))_
-    val serviceUnitsEnergy = parse_element (element ("""Transaction.serviceUnitsEnergy"""))_
-    val serviceUnitsError = parse_element (element ("""Transaction.serviceUnitsError"""))_
-    val AuxiliaryAccount = parse_attribute (attribute ("""Transaction.AuxiliaryAccount"""))_
-    val CashierShift = parse_attribute (attribute ("""Transaction.CashierShift"""))_
-    val CustomerAccount = parse_attribute (attribute ("""Transaction.CustomerAccount"""))_
-    val Meter = parse_attribute (attribute ("""Transaction.Meter"""))_
-    val PricingStructure = parse_attribute (attribute ("""Transaction.PricingStructure"""))_
-    val Receipt = parse_attribute (attribute ("""Transaction.Receipt"""))_
-    val VendorShift = parse_attribute (attribute ("""Transaction.VendorShift"""))_
+    val diverseReference = parse_element (element ("""Transaction.diverseReference"""))
+    val donorReference = parse_element (element ("""Transaction.donorReference"""))
+    val kind = parse_attribute (attribute ("""Transaction.kind"""))
+    val line = parse_attribute (attribute ("""Transaction.line"""))
+    val receiverReference = parse_element (element ("""Transaction.receiverReference"""))
+    val reversedId = parse_element (element ("""Transaction.reversedId"""))
+    val serviceUnitsEnergy = parse_element (element ("""Transaction.serviceUnitsEnergy"""))
+    val serviceUnitsError = parse_element (element ("""Transaction.serviceUnitsError"""))
+    val AuxiliaryAccount = parse_attribute (attribute ("""Transaction.AuxiliaryAccount"""))
+    val CashierShift = parse_attribute (attribute ("""Transaction.CashierShift"""))
+    val CustomerAccount = parse_attribute (attribute ("""Transaction.CustomerAccount"""))
+    val Meter = parse_attribute (attribute ("""Transaction.Meter"""))
+    val PricingStructure = parse_attribute (attribute ("""Transaction.PricingStructure"""))
+    val Receipt = parse_attribute (attribute ("""Transaction.Receipt"""))
+    val VendorShift = parse_attribute (attribute ("""Transaction.VendorShift"""))
     def parse (context: Context): Transaction =
     {
         Transaction(
@@ -1578,19 +1578,19 @@ extends
     Parseable[TransactionKind]
 {
     val sup = BasicElement.parse _
-    val accountPayment = parse_attribute (attribute ("""TransactionKind.accountPayment"""))_
-    val auxiliaryChargePayment = parse_attribute (attribute ("""TransactionKind.auxiliaryChargePayment"""))_
-    val diversePayment = parse_attribute (attribute ("""TransactionKind.diversePayment"""))_
-    val meterConfigurationToken = parse_attribute (attribute ("""TransactionKind.meterConfigurationToken"""))_
-    val other = parse_attribute (attribute ("""TransactionKind.other"""))_
-    val serviceChargePayment = parse_attribute (attribute ("""TransactionKind.serviceChargePayment"""))_
-    val taxChargePayment = parse_attribute (attribute ("""TransactionKind.taxChargePayment"""))_
-    val tokenCancellation = parse_attribute (attribute ("""TransactionKind.tokenCancellation"""))_
-    val tokenExchange = parse_attribute (attribute ("""TransactionKind.tokenExchange"""))_
-    val tokenFreeIssue = parse_attribute (attribute ("""TransactionKind.tokenFreeIssue"""))_
-    val tokenGrant = parse_attribute (attribute ("""TransactionKind.tokenGrant"""))_
-    val tokenSalePayment = parse_attribute (attribute ("""TransactionKind.tokenSalePayment"""))_
-    val transactionReversal = parse_attribute (attribute ("""TransactionKind.transactionReversal"""))_
+    val accountPayment = parse_attribute (attribute ("""TransactionKind.accountPayment"""))
+    val auxiliaryChargePayment = parse_attribute (attribute ("""TransactionKind.auxiliaryChargePayment"""))
+    val diversePayment = parse_attribute (attribute ("""TransactionKind.diversePayment"""))
+    val meterConfigurationToken = parse_attribute (attribute ("""TransactionKind.meterConfigurationToken"""))
+    val other = parse_attribute (attribute ("""TransactionKind.other"""))
+    val serviceChargePayment = parse_attribute (attribute ("""TransactionKind.serviceChargePayment"""))
+    val taxChargePayment = parse_attribute (attribute ("""TransactionKind.taxChargePayment"""))
+    val tokenCancellation = parse_attribute (attribute ("""TransactionKind.tokenCancellation"""))
+    val tokenExchange = parse_attribute (attribute ("""TransactionKind.tokenExchange"""))
+    val tokenFreeIssue = parse_attribute (attribute ("""TransactionKind.tokenFreeIssue"""))
+    val tokenGrant = parse_attribute (attribute ("""TransactionKind.tokenGrant"""))
+    val tokenSalePayment = parse_attribute (attribute ("""TransactionKind.tokenSalePayment"""))
+    val transactionReversal = parse_attribute (attribute ("""TransactionKind.transactionReversal"""))
     def parse (context: Context): TransactionKind =
     {
         TransactionKind(
@@ -1726,10 +1726,10 @@ extends
     Parseable[VendorShift]
 {
     val sup = Shift.parse _
-    val merchantDebitAmount = parse_element (element ("""VendorShift.merchantDebitAmount"""))_
-    val posted = parse_element (element ("""VendorShift.posted"""))_
-    val MerchantAccount = parse_attribute (attribute ("""VendorShift.MerchantAccount"""))_
-    val Vendor = parse_attribute (attribute ("""VendorShift.Vendor"""))_
+    val merchantDebitAmount = parse_element (element ("""VendorShift.merchantDebitAmount"""))
+    val posted = parse_element (element ("""VendorShift.posted"""))
+    val MerchantAccount = parse_attribute (attribute ("""VendorShift.MerchantAccount"""))
+    val Vendor = parse_attribute (attribute ("""VendorShift.Vendor"""))
     def parse (context: Context): VendorShift =
     {
         VendorShift(

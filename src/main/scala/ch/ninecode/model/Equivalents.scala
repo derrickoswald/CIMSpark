@@ -83,22 +83,22 @@ extends
     Parseable[EquivalentBranch]
 {
     val sup = EquivalentEquipment.parse _
-    val negativeR12 = parse_element (element ("""EquivalentBranch.negativeR12"""))_
-    val negativeR21 = parse_element (element ("""EquivalentBranch.negativeR21"""))_
-    val negativeX12 = parse_element (element ("""EquivalentBranch.negativeX12"""))_
-    val negativeX21 = parse_element (element ("""EquivalentBranch.negativeX21"""))_
-    val positiveR12 = parse_element (element ("""EquivalentBranch.positiveR12"""))_
-    val positiveR21 = parse_element (element ("""EquivalentBranch.positiveR21"""))_
-    val positiveX12 = parse_element (element ("""EquivalentBranch.positiveX12"""))_
-    val positiveX21 = parse_element (element ("""EquivalentBranch.positiveX21"""))_
-    val r = parse_element (element ("""EquivalentBranch.r"""))_
-    val r21 = parse_element (element ("""EquivalentBranch.r21"""))_
-    val x = parse_element (element ("""EquivalentBranch.x"""))_
-    val x21 = parse_element (element ("""EquivalentBranch.x21"""))_
-    val zeroR12 = parse_element (element ("""EquivalentBranch.zeroR12"""))_
-    val zeroR21 = parse_element (element ("""EquivalentBranch.zeroR21"""))_
-    val zeroX12 = parse_element (element ("""EquivalentBranch.zeroX12"""))_
-    val zeroX21 = parse_element (element ("""EquivalentBranch.zeroX21"""))_
+    val negativeR12 = parse_element (element ("""EquivalentBranch.negativeR12"""))
+    val negativeR21 = parse_element (element ("""EquivalentBranch.negativeR21"""))
+    val negativeX12 = parse_element (element ("""EquivalentBranch.negativeX12"""))
+    val negativeX21 = parse_element (element ("""EquivalentBranch.negativeX21"""))
+    val positiveR12 = parse_element (element ("""EquivalentBranch.positiveR12"""))
+    val positiveR21 = parse_element (element ("""EquivalentBranch.positiveR21"""))
+    val positiveX12 = parse_element (element ("""EquivalentBranch.positiveX12"""))
+    val positiveX21 = parse_element (element ("""EquivalentBranch.positiveX21"""))
+    val r = parse_element (element ("""EquivalentBranch.r"""))
+    val r21 = parse_element (element ("""EquivalentBranch.r21"""))
+    val x = parse_element (element ("""EquivalentBranch.x"""))
+    val x21 = parse_element (element ("""EquivalentBranch.x21"""))
+    val zeroR12 = parse_element (element ("""EquivalentBranch.zeroR12"""))
+    val zeroR21 = parse_element (element ("""EquivalentBranch.zeroR21"""))
+    val zeroX12 = parse_element (element ("""EquivalentBranch.zeroX12"""))
+    val zeroX21 = parse_element (element ("""EquivalentBranch.zeroX21"""))
     def parse (context: Context): EquivalentBranch =
     {
         EquivalentBranch(
@@ -155,7 +155,7 @@ extends
     Parseable[EquivalentEquipment]
 {
     val sup = ConductingEquipment.parse _
-    val EquivalentNetwork = parse_attribute (attribute ("""EquivalentEquipment.EquivalentNetwork"""))_
+    val EquivalentNetwork = parse_attribute (attribute ("""EquivalentEquipment.EquivalentNetwork"""))
     def parse (context: Context): EquivalentEquipment =
     {
         EquivalentEquipment(
@@ -238,22 +238,22 @@ extends
     Parseable[EquivalentInjection]
 {
     val sup = EquivalentEquipment.parse _
-    val maxP = parse_element (element ("""EquivalentInjection.maxP"""))_
-    val maxQ = parse_element (element ("""EquivalentInjection.maxQ"""))_
-    val minP = parse_element (element ("""EquivalentInjection.minP"""))_
-    val minQ = parse_element (element ("""EquivalentInjection.minQ"""))_
-    val p = parse_element (element ("""EquivalentInjection.p"""))_
-    val q = parse_element (element ("""EquivalentInjection.q"""))_
-    val r = parse_element (element ("""EquivalentInjection.r"""))_
-    val r0 = parse_element (element ("""EquivalentInjection.r0"""))_
-    val r2 = parse_element (element ("""EquivalentInjection.r2"""))_
-    val regulationCapability = parse_element (element ("""EquivalentInjection.regulationCapability"""))_
-    val regulationStatus = parse_element (element ("""EquivalentInjection.regulationStatus"""))_
-    val regulationTarget = parse_element (element ("""EquivalentInjection.regulationTarget"""))_
-    val x = parse_element (element ("""EquivalentInjection.x"""))_
-    val x0 = parse_element (element ("""EquivalentInjection.x0"""))_
-    val x2 = parse_element (element ("""EquivalentInjection.x2"""))_
-    val ReactiveCapabilityCurve = parse_attribute (attribute ("""EquivalentInjection.ReactiveCapabilityCurve"""))_
+    val maxP = parse_element (element ("""EquivalentInjection.maxP"""))
+    val maxQ = parse_element (element ("""EquivalentInjection.maxQ"""))
+    val minP = parse_element (element ("""EquivalentInjection.minP"""))
+    val minQ = parse_element (element ("""EquivalentInjection.minQ"""))
+    val p = parse_element (element ("""EquivalentInjection.p"""))
+    val q = parse_element (element ("""EquivalentInjection.q"""))
+    val r = parse_element (element ("""EquivalentInjection.r"""))
+    val r0 = parse_element (element ("""EquivalentInjection.r0"""))
+    val r2 = parse_element (element ("""EquivalentInjection.r2"""))
+    val regulationCapability = parse_element (element ("""EquivalentInjection.regulationCapability"""))
+    val regulationStatus = parse_element (element ("""EquivalentInjection.regulationStatus"""))
+    val regulationTarget = parse_element (element ("""EquivalentInjection.regulationTarget"""))
+    val x = parse_element (element ("""EquivalentInjection.x"""))
+    val x0 = parse_element (element ("""EquivalentInjection.x0"""))
+    val x2 = parse_element (element ("""EquivalentInjection.x2"""))
+    val ReactiveCapabilityCurve = parse_attribute (attribute ("""EquivalentInjection.ReactiveCapabilityCurve"""))
     def parse (context: Context): EquivalentInjection =
     {
         EquivalentInjection(
@@ -349,8 +349,8 @@ extends
     Parseable[EquivalentShunt]
 {
     val sup = EquivalentEquipment.parse _
-    val b = parse_element (element ("""EquivalentShunt.b"""))_
-    val g = parse_element (element ("""EquivalentShunt.g"""))_
+    val b = parse_element (element ("""EquivalentShunt.b"""))
+    val g = parse_element (element ("""EquivalentShunt.g"""))
     def parse (context: Context): EquivalentShunt =
     {
         EquivalentShunt(

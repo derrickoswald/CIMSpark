@@ -50,12 +50,12 @@ extends
     Parseable[AnalogToDigitalLogicKind]
 {
     val sup = BasicElement.parse _
-    val eq = parse_attribute (attribute ("""AnalogToDigitalLogicKind.eq"""))_
-    val ge = parse_attribute (attribute ("""AnalogToDigitalLogicKind.ge"""))_
-    val gt = parse_attribute (attribute ("""AnalogToDigitalLogicKind.gt"""))_
-    val le = parse_attribute (attribute ("""AnalogToDigitalLogicKind.le"""))_
-    val lt = parse_attribute (attribute ("""AnalogToDigitalLogicKind.lt"""))_
-    val ne = parse_attribute (attribute ("""AnalogToDigitalLogicKind.ne"""))_
+    val eq = parse_attribute (attribute ("""AnalogToDigitalLogicKind.eq"""))
+    val ge = parse_attribute (attribute ("""AnalogToDigitalLogicKind.ge"""))
+    val gt = parse_attribute (attribute ("""AnalogToDigitalLogicKind.gt"""))
+    val le = parse_attribute (attribute ("""AnalogToDigitalLogicKind.le"""))
+    val lt = parse_attribute (attribute ("""AnalogToDigitalLogicKind.lt"""))
+    val ne = parse_attribute (attribute ("""AnalogToDigitalLogicKind.ne"""))
     def parse (context: Context): AnalogToDigitalLogicKind =
     {
         AnalogToDigitalLogicKind(
@@ -107,10 +107,10 @@ extends
     Parseable[CalculationKind]
 {
     val sup = BasicElement.parse _
-    val div = parse_attribute (attribute ("""CalculationKind.div"""))_
-    val mul = parse_attribute (attribute ("""CalculationKind.mul"""))_
-    val sqrt = parse_attribute (attribute ("""CalculationKind.sqrt"""))_
-    val sum = parse_attribute (attribute ("""CalculationKind.sum"""))_
+    val div = parse_attribute (attribute ("""CalculationKind.div"""))
+    val mul = parse_attribute (attribute ("""CalculationKind.mul"""))
+    val sqrt = parse_attribute (attribute ("""CalculationKind.sqrt"""))
+    val sum = parse_attribute (attribute ("""CalculationKind.sum"""))
     def parse (context: Context): CalculationKind =
     {
         CalculationKind(
@@ -154,7 +154,7 @@ extends
     Parseable[Gate]
 {
     val sup = IdentifiedObject.parse _
-    val kind = parse_attribute (attribute ("""Gate.kind"""))_
+    val kind = parse_attribute (attribute ("""Gate.kind"""))
     def parse (context: Context): Gate =
     {
         Gate(
@@ -209,13 +209,13 @@ extends
     Parseable[GateInputPin]
 {
     val sup = IdentifiedObject.parse _
-    val aDLogicKind = parse_attribute (attribute ("""GateInputPin.aDLogicKind"""))_
-    val absoluteValue = parse_element (element ("""GateInputPin.absoluteValue"""))_
-    val duration = parse_element (element ("""GateInputPin.duration"""))_
-    val negate = parse_element (element ("""GateInputPin.negate"""))_
-    val thresholdPercentage = parse_element (element ("""GateInputPin.thresholdPercentage"""))_
-    val thresholdValue = parse_element (element ("""GateInputPin.thresholdValue"""))_
-    val Gate = parse_attribute (attribute ("""GateInputPin.Gate"""))_
+    val aDLogicKind = parse_attribute (attribute ("""GateInputPin.aDLogicKind"""))
+    val absoluteValue = parse_element (element ("""GateInputPin.absoluteValue"""))
+    val duration = parse_element (element ("""GateInputPin.duration"""))
+    val negate = parse_element (element ("""GateInputPin.negate"""))
+    val thresholdPercentage = parse_element (element ("""GateInputPin.thresholdPercentage"""))
+    val thresholdValue = parse_element (element ("""GateInputPin.thresholdValue"""))
+    val Gate = parse_attribute (attribute ("""GateInputPin.Gate"""))
     def parse (context: Context): GateInputPin =
     {
         GateInputPin(
@@ -281,13 +281,13 @@ extends
     Parseable[GateLogicKind]
 {
     val sup = BasicElement.parse _
-    val and = parse_attribute (attribute ("""GateLogicKind.and"""))_
-    val nand = parse_attribute (attribute ("""GateLogicKind.nand"""))_
-    val nor = parse_attribute (attribute ("""GateLogicKind.nor"""))_
-    val not = parse_attribute (attribute ("""GateLogicKind.not"""))_
-    val or = parse_attribute (attribute ("""GateLogicKind.or"""))_
-    val xnor = parse_attribute (attribute ("""GateLogicKind.xnor"""))_
-    val xor = parse_attribute (attribute ("""GateLogicKind.xor"""))_
+    val and = parse_attribute (attribute ("""GateLogicKind.and"""))
+    val nand = parse_attribute (attribute ("""GateLogicKind.nand"""))
+    val nor = parse_attribute (attribute ("""GateLogicKind.nor"""))
+    val not = parse_attribute (attribute ("""GateLogicKind.not"""))
+    val or = parse_attribute (attribute ("""GateLogicKind.or"""))
+    val xnor = parse_attribute (attribute ("""GateLogicKind.xnor"""))
+    val xor = parse_attribute (attribute ("""GateLogicKind.xor"""))
     def parse (context: Context): GateLogicKind =
     {
         GateLogicKind(
@@ -334,7 +334,7 @@ extends
     Parseable[MeasurementCalculator]
 {
     val sup = IdentifiedObject.parse _
-    val kind = parse_attribute (attribute ("""MeasurementCalculator.kind"""))_
+    val kind = parse_attribute (attribute ("""MeasurementCalculator.kind"""))
     def parse (context: Context): MeasurementCalculator =
     {
         MeasurementCalculator(
@@ -383,10 +383,10 @@ extends
     Parseable[MeasurementCalculatorInput]
 {
     val sup = IdentifiedObject.parse _
-    val absoluteValue = parse_element (element ("""MeasurementCalculatorInput.absoluteValue"""))_
-    val order = parse_element (element ("""MeasurementCalculatorInput.order"""))_
-    val Measurement = parse_attribute (attribute ("""MeasurementCalculatorInput.Measurement"""))_
-    val MeasurementCalculator = parse_attribute (attribute ("""MeasurementCalculatorInput.MeasurementCalculator"""))_
+    val absoluteValue = parse_element (element ("""MeasurementCalculatorInput.absoluteValue"""))
+    val order = parse_element (element ("""MeasurementCalculatorInput.order"""))
+    val Measurement = parse_attribute (attribute ("""MeasurementCalculatorInput.Measurement"""))
+    val MeasurementCalculator = parse_attribute (attribute ("""MeasurementCalculatorInput.MeasurementCalculator"""))
     def parse (context: Context): MeasurementCalculatorInput =
     {
         MeasurementCalculatorInput(
@@ -432,8 +432,8 @@ extends
     Parseable[PinBranchGroup]
 {
     val sup = GateInputPin.parse _
-    val kind = parse_attribute (attribute ("""PinBranchGroup.kind"""))_
-    val BranchGroup = parse_attribute (attribute ("""PinBranchGroup.BranchGroup"""))_
+    val kind = parse_attribute (attribute ("""PinBranchGroup.kind"""))
+    val BranchGroup = parse_attribute (attribute ("""PinBranchGroup.BranchGroup"""))
     def parse (context: Context): PinBranchGroup =
     {
         PinBranchGroup(
@@ -477,8 +477,8 @@ extends
     Parseable[PinBranchGroupKind]
 {
     val sup = BasicElement.parse _
-    val activePower = parse_attribute (attribute ("""PinBranchGroupKind.activePower"""))_
-    val reactivePower = parse_attribute (attribute ("""PinBranchGroupKind.reactivePower"""))_
+    val activePower = parse_attribute (attribute ("""PinBranchGroupKind.activePower"""))
+    val reactivePower = parse_attribute (attribute ("""PinBranchGroupKind.reactivePower"""))
     def parse (context: Context): PinBranchGroupKind =
     {
         PinBranchGroupKind(
@@ -522,8 +522,8 @@ extends
     Parseable[PinEquipment]
 {
     val sup = GateInputPin.parse _
-    val kind = parse_attribute (attribute ("""PinEquipment.kind"""))_
-    val Equipment = parse_attribute (attribute ("""PinEquipment.Equipment"""))_
+    val kind = parse_attribute (attribute ("""PinEquipment.kind"""))
+    val Equipment = parse_attribute (attribute ("""PinEquipment.Equipment"""))
     def parse (context: Context): PinEquipment =
     {
         PinEquipment(
@@ -577,13 +577,13 @@ extends
     Parseable[PinEquipmentKind]
 {
     val sup = BasicElement.parse _
-    val activePowerLimit = parse_attribute (attribute ("""PinEquipmentKind.activePowerLimit"""))_
-    val apparentPowerLimit = parse_attribute (attribute ("""PinEquipmentKind.apparentPowerLimit"""))_
-    val connected = parse_attribute (attribute ("""PinEquipmentKind.connected"""))_
-    val currentLimit = parse_attribute (attribute ("""PinEquipmentKind.currentLimit"""))_
-    val inService = parse_attribute (attribute ("""PinEquipmentKind.inService"""))_
-    val ratedCurrent = parse_attribute (attribute ("""PinEquipmentKind.ratedCurrent"""))_
-    val voltageLimit = parse_attribute (attribute ("""PinEquipmentKind.voltageLimit"""))_
+    val activePowerLimit = parse_attribute (attribute ("""PinEquipmentKind.activePowerLimit"""))
+    val apparentPowerLimit = parse_attribute (attribute ("""PinEquipmentKind.apparentPowerLimit"""))
+    val connected = parse_attribute (attribute ("""PinEquipmentKind.connected"""))
+    val currentLimit = parse_attribute (attribute ("""PinEquipmentKind.currentLimit"""))
+    val inService = parse_attribute (attribute ("""PinEquipmentKind.inService"""))
+    val ratedCurrent = parse_attribute (attribute ("""PinEquipmentKind.ratedCurrent"""))
+    val voltageLimit = parse_attribute (attribute ("""PinEquipmentKind.voltageLimit"""))
     def parse (context: Context): PinEquipmentKind =
     {
         PinEquipmentKind(
@@ -630,7 +630,7 @@ extends
     Parseable[PinGate]
 {
     val sup = GateInputPin.parse _
-    val GateOutput = parse_attribute (attribute ("""PinGate.GateOutput"""))_
+    val GateOutput = parse_attribute (attribute ("""PinGate.GateOutput"""))
     def parse (context: Context): PinGate =
     {
         PinGate(
@@ -673,8 +673,8 @@ extends
     Parseable[PinMeasurement]
 {
     val sup = GateInputPin.parse _
-    val Measurement = parse_attribute (attribute ("""PinMeasurement.Measurement"""))_
-    val MeasurementCalculator = parse_attribute (attribute ("""PinMeasurement.MeasurementCalculator"""))_
+    val Measurement = parse_attribute (attribute ("""PinMeasurement.Measurement"""))
+    val MeasurementCalculator = parse_attribute (attribute ("""PinMeasurement.MeasurementCalculator"""))
     def parse (context: Context): PinMeasurement =
     {
         PinMeasurement(
@@ -718,8 +718,8 @@ extends
     Parseable[PinTerminal]
 {
     val sup = GateInputPin.parse _
-    val kind = parse_attribute (attribute ("""PinTerminal.kind"""))_
-    val Terminal = parse_attribute (attribute ("""PinTerminal.Terminal"""))_
+    val kind = parse_attribute (attribute ("""PinTerminal.kind"""))
+    val Terminal = parse_attribute (attribute ("""PinTerminal.Terminal"""))
     def parse (context: Context): PinTerminal =
     {
         PinTerminal(
@@ -767,10 +767,10 @@ extends
     Parseable[PinTerminalKind]
 {
     val sup = BasicElement.parse _
-    val activePower = parse_attribute (attribute ("""PinTerminalKind.activePower"""))_
-    val apparentPower = parse_attribute (attribute ("""PinTerminalKind.apparentPower"""))_
-    val reactivePower = parse_attribute (attribute ("""PinTerminalKind.reactivePower"""))_
-    val voltage = parse_attribute (attribute ("""PinTerminalKind.voltage"""))_
+    val activePower = parse_attribute (attribute ("""PinTerminalKind.activePower"""))
+    val apparentPower = parse_attribute (attribute ("""PinTerminalKind.apparentPower"""))
+    val reactivePower = parse_attribute (attribute ("""PinTerminalKind.reactivePower"""))
+    val voltage = parse_attribute (attribute ("""PinTerminalKind.voltage"""))
     def parse (context: Context): PinTerminalKind =
     {
         PinTerminalKind(
@@ -825,12 +825,12 @@ extends
     Parseable[ProtectiveAction]
 {
     val sup = IdentifiedObject.parse _
-    val enabled = parse_element (element ("""ProtectiveAction.enabled"""))_
-    val normalEnabled = parse_element (element ("""ProtectiveAction.normalEnabled"""))_
-    val GateComCondition = parse_attribute (attribute ("""ProtectiveAction.GateComCondition"""))_
-    val GateEnabledCondition = parse_attribute (attribute ("""ProtectiveAction.GateEnabledCondition"""))_
-    val ProtectionEquipment = parse_attribute (attribute ("""ProtectiveAction.ProtectionEquipment"""))_
-    val ProtectiveActionCollection = parse_attribute (attribute ("""ProtectiveAction.ProtectiveActionCollection"""))_
+    val enabled = parse_element (element ("""ProtectiveAction.enabled"""))
+    val normalEnabled = parse_element (element ("""ProtectiveAction.normalEnabled"""))
+    val GateComCondition = parse_attribute (attribute ("""ProtectiveAction.GateComCondition"""))
+    val GateEnabledCondition = parse_attribute (attribute ("""ProtectiveAction.GateEnabledCondition"""))
+    val ProtectionEquipment = parse_attribute (attribute ("""ProtectiveAction.ProtectionEquipment"""))
+    val ProtectiveActionCollection = parse_attribute (attribute ("""ProtectiveAction.ProtectiveActionCollection"""))
     def parse (context: Context): ProtectiveAction =
     {
         ProtectiveAction(
@@ -893,14 +893,14 @@ extends
     Parseable[ProtectiveActionAdjustment]
 {
     val sup = ProtectiveAction.parse _
-    val byPercentage = parse_element (element ("""ProtectiveActionAdjustment.byPercentage"""))_
-    val byValue = parse_element (element ("""ProtectiveActionAdjustment.byValue"""))_
-    val kind = parse_attribute (attribute ("""ProtectiveActionAdjustment.kind"""))_
-    val reduce = parse_element (element ("""ProtectiveActionAdjustment.reduce"""))_
-    val setValue = parse_element (element ("""ProtectiveActionAdjustment.setValue"""))_
-    val ConductingEquipment = parse_attribute (attribute ("""ProtectiveActionAdjustment.ConductingEquipment"""))_
-    val DCConductingEquipment = parse_attribute (attribute ("""ProtectiveActionAdjustment.DCConductingEquipment"""))_
-    val Measurement = parse_attribute (attribute ("""ProtectiveActionAdjustment.Measurement"""))_
+    val byPercentage = parse_element (element ("""ProtectiveActionAdjustment.byPercentage"""))
+    val byValue = parse_element (element ("""ProtectiveActionAdjustment.byValue"""))
+    val kind = parse_attribute (attribute ("""ProtectiveActionAdjustment.kind"""))
+    val reduce = parse_element (element ("""ProtectiveActionAdjustment.reduce"""))
+    val setValue = parse_element (element ("""ProtectiveActionAdjustment.setValue"""))
+    val ConductingEquipment = parse_attribute (attribute ("""ProtectiveActionAdjustment.ConductingEquipment"""))
+    val DCConductingEquipment = parse_attribute (attribute ("""ProtectiveActionAdjustment.DCConductingEquipment"""))
+    val Measurement = parse_attribute (attribute ("""ProtectiveActionAdjustment.Measurement"""))
     def parse (context: Context): ProtectiveActionAdjustment =
     {
         ProtectiveActionAdjustment(
@@ -954,10 +954,10 @@ extends
     Parseable[ProtectiveActionAdjustmentKind]
 {
     val sup = BasicElement.parse _
-    val byPercentage = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.byPercentage"""))_
-    val byValue = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.byValue"""))_
-    val measurement = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.measurement"""))_
-    val setValue = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.setValue"""))_
+    val byPercentage = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.byPercentage"""))
+    val byValue = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.byValue"""))
+    val measurement = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.measurement"""))
+    val setValue = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.setValue"""))
     def parse (context: Context): ProtectiveActionAdjustmentKind =
     {
         ProtectiveActionAdjustmentKind(
@@ -1040,8 +1040,8 @@ extends
     Parseable[ProtectiveActionEquipment]
 {
     val sup = ProtectiveAction.parse _
-    val inService = parse_element (element ("""ProtectiveActionEquipment.inService"""))_
-    val Equipment = parse_attribute (attribute ("""ProtectiveActionEquipment.Equipment"""))_
+    val inService = parse_element (element ("""ProtectiveActionEquipment.inService"""))
+    val Equipment = parse_attribute (attribute ("""ProtectiveActionEquipment.Equipment"""))
     def parse (context: Context): ProtectiveActionEquipment =
     {
         ProtectiveActionEquipment(
@@ -1088,9 +1088,9 @@ extends
     Parseable[ProtectiveActionRegulation]
 {
     val sup = ProtectiveAction.parse _
-    val isRegulating = parse_element (element ("""ProtectiveActionRegulation.isRegulating"""))_
-    val targetValue = parse_element (element ("""ProtectiveActionRegulation.targetValue"""))_
-    val RegulatingControl = parse_attribute (attribute ("""ProtectiveActionRegulation.RegulatingControl"""))_
+    val isRegulating = parse_element (element ("""ProtectiveActionRegulation.isRegulating"""))
+    val targetValue = parse_element (element ("""ProtectiveActionRegulation.targetValue"""))
+    val RegulatingControl = parse_attribute (attribute ("""ProtectiveActionRegulation.RegulatingControl"""))
     def parse (context: Context): ProtectiveActionRegulation =
     {
         ProtectiveActionRegulation(
@@ -1140,10 +1140,10 @@ extends
     Parseable[RemedialActionScheme]
 {
     val sup = PowerSystemResource.parse _
-    val armed = parse_element (element ("""RemedialActionScheme.armed"""))_
-    val kind = parse_attribute (attribute ("""RemedialActionScheme.kind"""))_
-    val normalArmed = parse_element (element ("""RemedialActionScheme.normalArmed"""))_
-    val GateArmed = parse_attribute (attribute ("""RemedialActionScheme.GateArmed"""))_
+    val armed = parse_element (element ("""RemedialActionScheme.armed"""))
+    val kind = parse_attribute (attribute ("""RemedialActionScheme.kind"""))
+    val normalArmed = parse_element (element ("""RemedialActionScheme.normalArmed"""))
+    val GateArmed = parse_attribute (attribute ("""RemedialActionScheme.GateArmed"""))
     def parse (context: Context): RemedialActionScheme =
     {
         RemedialActionScheme(
@@ -1189,8 +1189,8 @@ extends
     Parseable[RemedialActionSchemeKind]
 {
     val sup = BasicElement.parse _
-    val rAP = parse_attribute (attribute ("""RemedialActionSchemeKind.rAP"""))_
-    val rAS = parse_attribute (attribute ("""RemedialActionSchemeKind.rAS"""))_
+    val rAP = parse_attribute (attribute ("""RemedialActionSchemeKind.rAP"""))
+    val rAS = parse_attribute (attribute ("""RemedialActionSchemeKind.rAS"""))
     def parse (context: Context): RemedialActionSchemeKind =
     {
         RemedialActionSchemeKind(
@@ -1235,8 +1235,8 @@ extends
     Parseable[Stage]
 {
     val sup = IdentifiedObject.parse _
-    val priority = parse_element (element ("""Stage.priority"""))_
-    val RemedialActionScheme = parse_attribute (attribute ("""Stage.RemedialActionScheme"""))_
+    val priority = parse_element (element ("""Stage.priority"""))
+    val RemedialActionScheme = parse_attribute (attribute ("""Stage.RemedialActionScheme"""))
     def parse (context: Context): Stage =
     {
         Stage(
@@ -1294,14 +1294,14 @@ extends
     Parseable[StageTrigger]
 {
     val sup = IdentifiedObject.parse _
-    val armed = parse_element (element ("""StageTrigger.armed"""))_
-    val normalArmed = parse_element (element ("""StageTrigger.normalArmed"""))_
-    val priority = parse_element (element ("""StageTrigger.priority"""))_
-    val GateArmed = parse_attribute (attribute ("""StageTrigger.GateArmed"""))_
-    val GateComCondition = parse_attribute (attribute ("""StageTrigger.GateComCondition"""))_
-    val GateTrigger = parse_attribute (attribute ("""StageTrigger.GateTrigger"""))_
-    val ProtectiveActionCollection = parse_attribute (attribute ("""StageTrigger.ProtectiveActionCollection"""))_
-    val Stage = parse_attribute (attribute ("""StageTrigger.Stage"""))_
+    val armed = parse_element (element ("""StageTrigger.armed"""))
+    val normalArmed = parse_element (element ("""StageTrigger.normalArmed"""))
+    val priority = parse_element (element ("""StageTrigger.priority"""))
+    val GateArmed = parse_attribute (attribute ("""StageTrigger.GateArmed"""))
+    val GateComCondition = parse_attribute (attribute ("""StageTrigger.GateComCondition"""))
+    val GateTrigger = parse_attribute (attribute ("""StageTrigger.GateTrigger"""))
+    val ProtectiveActionCollection = parse_attribute (attribute ("""StageTrigger.ProtectiveActionCollection"""))
+    val Stage = parse_attribute (attribute ("""StageTrigger.Stage"""))
     def parse (context: Context): StageTrigger =
     {
         StageTrigger(
@@ -1351,8 +1351,8 @@ extends
     Parseable[TriggerCondition]
 {
     val sup = IdentifiedObject.parse _
-    val GateTrigger = parse_attribute (attribute ("""TriggerCondition.GateTrigger"""))_
-    val RemedialActionScheme = parse_attribute (attribute ("""TriggerCondition.RemedialActionScheme"""))_
+    val GateTrigger = parse_attribute (attribute ("""TriggerCondition.GateTrigger"""))
+    val RemedialActionScheme = parse_attribute (attribute ("""TriggerCondition.RemedialActionScheme"""))
     def parse (context: Context): TriggerCondition =
     {
         TriggerCondition(

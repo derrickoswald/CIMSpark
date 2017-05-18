@@ -52,13 +52,13 @@ extends
     Parseable[AmiBillingReadyKind]
 {
     val sup = BasicElement.parse _
-    val amiCapable = parse_attribute (attribute ("""AmiBillingReadyKind.amiCapable"""))_
-    val amiDisabled = parse_attribute (attribute ("""AmiBillingReadyKind.amiDisabled"""))_
-    val billingApproved = parse_attribute (attribute ("""AmiBillingReadyKind.billingApproved"""))_
-    val enabled = parse_attribute (attribute ("""AmiBillingReadyKind.enabled"""))_
-    val nonAmi = parse_attribute (attribute ("""AmiBillingReadyKind.nonAmi"""))_
-    val nonMetered = parse_attribute (attribute ("""AmiBillingReadyKind.nonMetered"""))_
-    val operable = parse_attribute (attribute ("""AmiBillingReadyKind.operable"""))_
+    val amiCapable = parse_attribute (attribute ("""AmiBillingReadyKind.amiCapable"""))
+    val amiDisabled = parse_attribute (attribute ("""AmiBillingReadyKind.amiDisabled"""))
+    val billingApproved = parse_attribute (attribute ("""AmiBillingReadyKind.billingApproved"""))
+    val enabled = parse_attribute (attribute ("""AmiBillingReadyKind.enabled"""))
+    val nonAmi = parse_attribute (attribute ("""AmiBillingReadyKind.nonAmi"""))
+    val nonMetered = parse_attribute (attribute ("""AmiBillingReadyKind.nonMetered"""))
+    val operable = parse_attribute (attribute ("""AmiBillingReadyKind.operable"""))
     def parse (context: Context): AmiBillingReadyKind =
     {
         AmiBillingReadyKind(
@@ -112,10 +112,10 @@ extends
     Parseable[BaseReading]
 {
     val sup = MeasurementValue.parse _
-    val reportedDateTime = parse_element (element ("""BaseReading.reportedDateTime"""))_
-    val source = parse_element (element ("""BaseReading.source"""))_
-    val timePeriod = parse_attribute (attribute ("""BaseReading.timePeriod"""))_
-    val value = parse_element (element ("""BaseReading.value"""))_
+    val reportedDateTime = parse_element (element ("""BaseReading.reportedDateTime"""))
+    val source = parse_element (element ("""BaseReading.source"""))
+    val timePeriod = parse_attribute (attribute ("""BaseReading.timePeriod"""))
+    val value = parse_element (element ("""BaseReading.value"""))
     def parse (context: Context): BaseReading =
     {
         BaseReading(
@@ -164,9 +164,9 @@ extends
     Parseable[Channel]
 {
     val sup = IdentifiedObject.parse _
-    val isVirtual = parse_element (element ("""Channel.isVirtual"""))_
-    val ReadingType = parse_attribute (attribute ("""Channel.ReadingType"""))_
-    val Register = parse_attribute (attribute ("""Channel.Register"""))_
+    val isVirtual = parse_element (element ("""Channel.isVirtual"""))
+    val ReadingType = parse_attribute (attribute ("""Channel.ReadingType"""))
+    val Register = parse_attribute (attribute ("""Channel.Register"""))
     def parse (context: Context): Channel =
     {
         Channel(
@@ -213,9 +213,9 @@ extends
     Parseable[ComDirectionKind]
 {
     val sup = BasicElement.parse _
-    val biDirectional = parse_attribute (attribute ("""ComDirectionKind.biDirectional"""))_
-    val fromDevice = parse_attribute (attribute ("""ComDirectionKind.fromDevice"""))_
-    val toDevice = parse_attribute (attribute ("""ComDirectionKind.toDevice"""))_
+    val biDirectional = parse_attribute (attribute ("""ComDirectionKind.biDirectional"""))
+    val fromDevice = parse_attribute (attribute ("""ComDirectionKind.fromDevice"""))
+    val toDevice = parse_attribute (attribute ("""ComDirectionKind.toDevice"""))
     def parse (context: Context): ComDirectionKind =
     {
         ComDirectionKind(
@@ -266,11 +266,11 @@ extends
     Parseable[ComFunction]
 {
     val sup = EndDeviceFunction.parse _
-    val amrAddress = parse_element (element ("""ComFunction.amrAddress"""))_
-    val amrRouter = parse_element (element ("""ComFunction.amrRouter"""))_
-    val direction = parse_attribute (attribute ("""ComFunction.direction"""))_
-    val technology = parse_attribute (attribute ("""ComFunction.technology"""))_
-    val ComModule = parse_attribute (attribute ("""ComFunction.ComModule"""))_
+    val amrAddress = parse_element (element ("""ComFunction.amrAddress"""))
+    val amrRouter = parse_element (element ("""ComFunction.amrRouter"""))
+    val direction = parse_attribute (attribute ("""ComFunction.direction"""))
+    val technology = parse_attribute (attribute ("""ComFunction.technology"""))
+    val ComModule = parse_attribute (attribute ("""ComFunction.ComModule"""))
     def parse (context: Context): ComFunction =
     {
         ComFunction(
@@ -320,9 +320,9 @@ extends
     Parseable[ComModule]
 {
     val sup = Asset.parse _
-    val amrSystem = parse_element (element ("""ComModule.amrSystem"""))_
-    val supportsAutonomousDst = parse_element (element ("""ComModule.supportsAutonomousDst"""))_
-    val timeZoneOffset = parse_element (element ("""ComModule.timeZoneOffset"""))_
+    val amrSystem = parse_element (element ("""ComModule.amrSystem"""))
+    val supportsAutonomousDst = parse_element (element ("""ComModule.supportsAutonomousDst"""))
+    val timeZoneOffset = parse_element (element ("""ComModule.timeZoneOffset"""))
     def parse (context: Context): ComModule =
     {
         ComModule(
@@ -386,15 +386,15 @@ extends
     Parseable[ComTechnologyKind]
 {
     val sup = BasicElement.parse _
-    val cellular = parse_attribute (attribute ("""ComTechnologyKind.cellular"""))_
-    val ethernet = parse_attribute (attribute ("""ComTechnologyKind.ethernet"""))_
-    val homePlug = parse_attribute (attribute ("""ComTechnologyKind.homePlug"""))_
-    val pager = parse_attribute (attribute ("""ComTechnologyKind.pager"""))_
-    val phone = parse_attribute (attribute ("""ComTechnologyKind.phone"""))_
-    val plc = parse_attribute (attribute ("""ComTechnologyKind.plc"""))_
-    val rf = parse_attribute (attribute ("""ComTechnologyKind.rf"""))_
-    val rfMesh = parse_attribute (attribute ("""ComTechnologyKind.rfMesh"""))_
-    val zigbee = parse_attribute (attribute ("""ComTechnologyKind.zigbee"""))_
+    val cellular = parse_attribute (attribute ("""ComTechnologyKind.cellular"""))
+    val ethernet = parse_attribute (attribute ("""ComTechnologyKind.ethernet"""))
+    val homePlug = parse_attribute (attribute ("""ComTechnologyKind.homePlug"""))
+    val pager = parse_attribute (attribute ("""ComTechnologyKind.pager"""))
+    val phone = parse_attribute (attribute ("""ComTechnologyKind.phone"""))
+    val plc = parse_attribute (attribute ("""ComTechnologyKind.plc"""))
+    val rf = parse_attribute (attribute ("""ComTechnologyKind.rf"""))
+    val rfMesh = parse_attribute (attribute ("""ComTechnologyKind.rfMesh"""))
+    val zigbee = parse_attribute (attribute ("""ComTechnologyKind.zigbee"""))
     def parse (context: Context): ComTechnologyKind =
     {
         ComTechnologyKind(
@@ -465,18 +465,18 @@ extends
     Parseable[ControlledAppliance]
 {
     val sup = BasicElement.parse _
-    val isElectricVehicle = parse_element (element ("""ControlledAppliance.isElectricVehicle"""))_
-    val isExteriorLighting = parse_element (element ("""ControlledAppliance.isExteriorLighting"""))_
-    val isGenerationSystem = parse_element (element ("""ControlledAppliance.isGenerationSystem"""))_
-    val isHvacCompressorOrFurnace = parse_element (element ("""ControlledAppliance.isHvacCompressorOrFurnace"""))_
-    val isInteriorLighting = parse_element (element ("""ControlledAppliance.isInteriorLighting"""))_
-    val isIrrigationPump = parse_element (element ("""ControlledAppliance.isIrrigationPump"""))_
-    val isManagedCommercialIndustrialLoad = parse_element (element ("""ControlledAppliance.isManagedCommercialIndustrialLoad"""))_
-    val isPoolPumpSpaJacuzzi = parse_element (element ("""ControlledAppliance.isPoolPumpSpaJacuzzi"""))_
-    val isSimpleMiscLoad = parse_element (element ("""ControlledAppliance.isSimpleMiscLoad"""))_
-    val isSmartAppliance = parse_element (element ("""ControlledAppliance.isSmartAppliance"""))_
-    val isStripAndBaseboardHeater = parse_element (element ("""ControlledAppliance.isStripAndBaseboardHeater"""))_
-    val isWaterHeater = parse_element (element ("""ControlledAppliance.isWaterHeater"""))_
+    val isElectricVehicle = parse_element (element ("""ControlledAppliance.isElectricVehicle"""))
+    val isExteriorLighting = parse_element (element ("""ControlledAppliance.isExteriorLighting"""))
+    val isGenerationSystem = parse_element (element ("""ControlledAppliance.isGenerationSystem"""))
+    val isHvacCompressorOrFurnace = parse_element (element ("""ControlledAppliance.isHvacCompressorOrFurnace"""))
+    val isInteriorLighting = parse_element (element ("""ControlledAppliance.isInteriorLighting"""))
+    val isIrrigationPump = parse_element (element ("""ControlledAppliance.isIrrigationPump"""))
+    val isManagedCommercialIndustrialLoad = parse_element (element ("""ControlledAppliance.isManagedCommercialIndustrialLoad"""))
+    val isPoolPumpSpaJacuzzi = parse_element (element ("""ControlledAppliance.isPoolPumpSpaJacuzzi"""))
+    val isSimpleMiscLoad = parse_element (element ("""ControlledAppliance.isSimpleMiscLoad"""))
+    val isSmartAppliance = parse_element (element ("""ControlledAppliance.isSmartAppliance"""))
+    val isStripAndBaseboardHeater = parse_element (element ("""ControlledAppliance.isStripAndBaseboardHeater"""))
+    val isWaterHeater = parse_element (element ("""ControlledAppliance.isWaterHeater"""))
     def parse (context: Context): ControlledAppliance =
     {
         ControlledAppliance(
@@ -537,11 +537,11 @@ extends
     Parseable[DemandResponseProgram]
 {
     val sup = IdentifiedObject.parse _
-    val typ = parse_element (element ("""DemandResponseProgram.type"""))_
-    val validityInterval = parse_attribute (attribute ("""DemandResponseProgram.validityInterval"""))_
-    val CustomerAgreements = parse_attributes (attribute ("""DemandResponseProgram.CustomerAgreements"""))_
-    val EndDeviceGroups = parse_attributes (attribute ("""DemandResponseProgram.EndDeviceGroups"""))_
-    val UsagePointGroups = parse_attributes (attribute ("""DemandResponseProgram.UsagePointGroups"""))_
+    val typ = parse_element (element ("""DemandResponseProgram.type"""))
+    val validityInterval = parse_attribute (attribute ("""DemandResponseProgram.validityInterval"""))
+    val CustomerAgreements = parse_attributes (attribute ("""DemandResponseProgram.CustomerAgreements"""))
+    val EndDeviceGroups = parse_attributes (attribute ("""DemandResponseProgram.EndDeviceGroups"""))
+    val UsagePointGroups = parse_attributes (attribute ("""DemandResponseProgram.UsagePointGroups"""))
     def parse (context: Context): DemandResponseProgram =
     {
         DemandResponseProgram(
@@ -604,15 +604,15 @@ extends
     Parseable[EndDevice]
 {
     val sup = AssetContainer.parse _
-    val amrSystem = parse_element (element ("""EndDevice.amrSystem"""))_
-    val installCode = parse_element (element ("""EndDevice.installCode"""))_
-    val isPan = parse_element (element ("""EndDevice.isPan"""))_
-    val isVirtual = parse_element (element ("""EndDevice.isVirtual"""))_
-    val timeZoneOffset = parse_element (element ("""EndDevice.timeZoneOffset"""))_
-    val Customer = parse_attribute (attribute ("""EndDevice.Customer"""))_
-    val EndDeviceInfo = parse_attribute (attribute ("""EndDevice.EndDeviceInfo"""))_
-    val ServiceLocation = parse_attribute (attribute ("""EndDevice.ServiceLocation"""))_
-    val UsagePoint = parse_attribute (attribute ("""EndDevice.UsagePoint"""))_
+    val amrSystem = parse_element (element ("""EndDevice.amrSystem"""))
+    val installCode = parse_element (element ("""EndDevice.installCode"""))
+    val isPan = parse_element (element ("""EndDevice.isPan"""))
+    val isVirtual = parse_element (element ("""EndDevice.isVirtual"""))
+    val timeZoneOffset = parse_element (element ("""EndDevice.timeZoneOffset"""))
+    val Customer = parse_attribute (attribute ("""EndDevice.Customer"""))
+    val EndDeviceInfo = parse_attribute (attribute ("""EndDevice.EndDeviceInfo"""))
+    val ServiceLocation = parse_attribute (attribute ("""EndDevice.ServiceLocation"""))
+    val UsagePoint = parse_attribute (attribute ("""EndDevice.UsagePoint"""))
     def parse (context: Context): EndDevice =
     {
         EndDevice(
@@ -669,11 +669,11 @@ extends
     Parseable[EndDeviceAction]
 {
     val sup = BasicElement.parse _
-    val command = parse_element (element ("""EndDeviceAction.command"""))_
-    val duration = parse_element (element ("""EndDeviceAction.duration"""))_
-    val durationIndefinite = parse_element (element ("""EndDeviceAction.durationIndefinite"""))_
-    val startDateTime = parse_element (element ("""EndDeviceAction.startDateTime"""))_
-    val EndDeviceControl = parse_attribute (attribute ("""EndDeviceAction.EndDeviceControl"""))_
+    val command = parse_element (element ("""EndDeviceAction.command"""))
+    val duration = parse_element (element ("""EndDeviceAction.duration"""))
+    val durationIndefinite = parse_element (element ("""EndDeviceAction.durationIndefinite"""))
+    val startDateTime = parse_element (element ("""EndDeviceAction.startDateTime"""))
+    val EndDeviceControl = parse_attribute (attribute ("""EndDeviceAction.EndDeviceControl"""))
     def parse (context: Context): EndDeviceAction =
     {
         EndDeviceAction(
@@ -752,24 +752,24 @@ extends
     Parseable[EndDeviceCapability]
 {
     val sup = BasicElement.parse _
-    val autonomousDst = parse_element (element ("""EndDeviceCapability.autonomousDst"""))_
-    val communication = parse_element (element ("""EndDeviceCapability.communication"""))_
-    val connectDisconnect = parse_element (element ("""EndDeviceCapability.connectDisconnect"""))_
-    val demandResponse = parse_element (element ("""EndDeviceCapability.demandResponse"""))_
-    val electricMetering = parse_element (element ("""EndDeviceCapability.electricMetering"""))_
-    val gasMetering = parse_element (element ("""EndDeviceCapability.gasMetering"""))_
-    val metrology = parse_element (element ("""EndDeviceCapability.metrology"""))_
-    val onRequestRead = parse_element (element ("""EndDeviceCapability.onRequestRead"""))_
-    val outageHistory = parse_element (element ("""EndDeviceCapability.outageHistory"""))_
-    val pressureCompensation = parse_element (element ("""EndDeviceCapability.pressureCompensation"""))_
-    val pricingInfo = parse_element (element ("""EndDeviceCapability.pricingInfo"""))_
-    val pulseOutput = parse_element (element ("""EndDeviceCapability.pulseOutput"""))_
-    val relaysProgramming = parse_element (element ("""EndDeviceCapability.relaysProgramming"""))_
-    val reverseFlow = parse_element (element ("""EndDeviceCapability.reverseFlow"""))_
-    val superCompressibilityCompensation = parse_element (element ("""EndDeviceCapability.superCompressibilityCompensation"""))_
-    val temperatureCompensation = parse_element (element ("""EndDeviceCapability.temperatureCompensation"""))_
-    val textMessage = parse_element (element ("""EndDeviceCapability.textMessage"""))_
-    val waterMetering = parse_element (element ("""EndDeviceCapability.waterMetering"""))_
+    val autonomousDst = parse_element (element ("""EndDeviceCapability.autonomousDst"""))
+    val communication = parse_element (element ("""EndDeviceCapability.communication"""))
+    val connectDisconnect = parse_element (element ("""EndDeviceCapability.connectDisconnect"""))
+    val demandResponse = parse_element (element ("""EndDeviceCapability.demandResponse"""))
+    val electricMetering = parse_element (element ("""EndDeviceCapability.electricMetering"""))
+    val gasMetering = parse_element (element ("""EndDeviceCapability.gasMetering"""))
+    val metrology = parse_element (element ("""EndDeviceCapability.metrology"""))
+    val onRequestRead = parse_element (element ("""EndDeviceCapability.onRequestRead"""))
+    val outageHistory = parse_element (element ("""EndDeviceCapability.outageHistory"""))
+    val pressureCompensation = parse_element (element ("""EndDeviceCapability.pressureCompensation"""))
+    val pricingInfo = parse_element (element ("""EndDeviceCapability.pricingInfo"""))
+    val pulseOutput = parse_element (element ("""EndDeviceCapability.pulseOutput"""))
+    val relaysProgramming = parse_element (element ("""EndDeviceCapability.relaysProgramming"""))
+    val reverseFlow = parse_element (element ("""EndDeviceCapability.reverseFlow"""))
+    val superCompressibilityCompensation = parse_element (element ("""EndDeviceCapability.superCompressibilityCompensation"""))
+    val temperatureCompensation = parse_element (element ("""EndDeviceCapability.temperatureCompensation"""))
+    val textMessage = parse_element (element ("""EndDeviceCapability.textMessage"""))
+    val waterMetering = parse_element (element ("""EndDeviceCapability.waterMetering"""))
     def parse (context: Context): EndDeviceCapability =
     {
         EndDeviceCapability(
@@ -858,20 +858,20 @@ extends
     Parseable[EndDeviceControl]
 {
     val sup = IdentifiedObject.parse _
-    val drProgramLevel = parse_element (element ("""EndDeviceControl.drProgramLevel"""))_
-    val drProgramMandatory = parse_element (element ("""EndDeviceControl.drProgramMandatory"""))_
-    val issuerID = parse_element (element ("""EndDeviceControl.issuerID"""))_
-    val issuerTrackingID = parse_element (element ("""EndDeviceControl.issuerTrackingID"""))_
-    val priceSignal = parse_attribute (attribute ("""EndDeviceControl.priceSignal"""))_
-    val primaryDeviceTiming = parse_attribute (attribute ("""EndDeviceControl.primaryDeviceTiming"""))_
-    val reason = parse_element (element ("""EndDeviceControl.reason"""))_
-    val scheduledInterval = parse_attribute (attribute ("""EndDeviceControl.scheduledInterval"""))_
-    val secondaryDeviceTiming = parse_attribute (attribute ("""EndDeviceControl.secondaryDeviceTiming"""))_
-    val EndDeviceAction = parse_attribute (attribute ("""EndDeviceControl.EndDeviceAction"""))_
-    val EndDeviceControlType = parse_attribute (attribute ("""EndDeviceControl.EndDeviceControlType"""))_
-    val EndDevices = parse_attributes (attribute ("""EndDeviceControl.EndDevices"""))_
-    val UsagePointGroups = parse_attributes (attribute ("""EndDeviceControl.UsagePointGroups"""))_
-    val UsagePoints = parse_attributes (attribute ("""EndDeviceControl.UsagePoints"""))_
+    val drProgramLevel = parse_element (element ("""EndDeviceControl.drProgramLevel"""))
+    val drProgramMandatory = parse_element (element ("""EndDeviceControl.drProgramMandatory"""))
+    val issuerID = parse_element (element ("""EndDeviceControl.issuerID"""))
+    val issuerTrackingID = parse_element (element ("""EndDeviceControl.issuerTrackingID"""))
+    val priceSignal = parse_attribute (attribute ("""EndDeviceControl.priceSignal"""))
+    val primaryDeviceTiming = parse_attribute (attribute ("""EndDeviceControl.primaryDeviceTiming"""))
+    val reason = parse_element (element ("""EndDeviceControl.reason"""))
+    val scheduledInterval = parse_attribute (attribute ("""EndDeviceControl.scheduledInterval"""))
+    val secondaryDeviceTiming = parse_attribute (attribute ("""EndDeviceControl.secondaryDeviceTiming"""))
+    val EndDeviceAction = parse_attribute (attribute ("""EndDeviceControl.EndDeviceAction"""))
+    val EndDeviceControlType = parse_attribute (attribute ("""EndDeviceControl.EndDeviceControlType"""))
+    val EndDevices = parse_attributes (attribute ("""EndDeviceControl.EndDevices"""))
+    val UsagePointGroups = parse_attributes (attribute ("""EndDeviceControl.UsagePointGroups"""))
+    val UsagePoints = parse_attributes (attribute ("""EndDeviceControl.UsagePoints"""))
     def parse (context: Context): EndDeviceControl =
     {
         EndDeviceControl(
@@ -934,10 +934,10 @@ extends
     Parseable[EndDeviceControlType]
 {
     val sup = IdentifiedObject.parse _
-    val domain = parse_element (element ("""EndDeviceControlType.domain"""))_
-    val eventOrAction = parse_element (element ("""EndDeviceControlType.eventOrAction"""))_
-    val subDomain = parse_element (element ("""EndDeviceControlType.subDomain"""))_
-    val typ = parse_element (element ("""EndDeviceControlType.type"""))_
+    val domain = parse_element (element ("""EndDeviceControlType.domain"""))
+    val eventOrAction = parse_element (element ("""EndDeviceControlType.eventOrAction"""))
+    val subDomain = parse_element (element ("""EndDeviceControlType.subDomain"""))
+    val typ = parse_element (element ("""EndDeviceControlType.type"""))
     def parse (context: Context): EndDeviceControlType =
     {
         EndDeviceControlType(
@@ -994,13 +994,13 @@ extends
     Parseable[EndDeviceEvent]
 {
     val sup = ActivityRecord.parse _
-    val issuerID = parse_element (element ("""EndDeviceEvent.issuerID"""))_
-    val issuerTrackingID = parse_element (element ("""EndDeviceEvent.issuerTrackingID"""))_
-    val userID = parse_element (element ("""EndDeviceEvent.userID"""))_
-    val EndDevice = parse_attribute (attribute ("""EndDeviceEvent.EndDevice"""))_
-    val EndDeviceEventType = parse_attribute (attribute ("""EndDeviceEvent.EndDeviceEventType"""))_
-    val MeterReading = parse_attribute (attribute ("""EndDeviceEvent.MeterReading"""))_
-    val UsagePoint = parse_attribute (attribute ("""EndDeviceEvent.UsagePoint"""))_
+    val issuerID = parse_element (element ("""EndDeviceEvent.issuerID"""))
+    val issuerTrackingID = parse_element (element ("""EndDeviceEvent.issuerTrackingID"""))
+    val userID = parse_element (element ("""EndDeviceEvent.userID"""))
+    val EndDevice = parse_attribute (attribute ("""EndDeviceEvent.EndDevice"""))
+    val EndDeviceEventType = parse_attribute (attribute ("""EndDeviceEvent.EndDeviceEventType"""))
+    val MeterReading = parse_attribute (attribute ("""EndDeviceEvent.MeterReading"""))
+    val UsagePoint = parse_attribute (attribute ("""EndDeviceEvent.UsagePoint"""))
     def parse (context: Context): EndDeviceEvent =
     {
         EndDeviceEvent(
@@ -1051,9 +1051,9 @@ extends
     Parseable[EndDeviceEventDetail]
 {
     val sup = BasicElement.parse _
-    val name = parse_element (element ("""EndDeviceEventDetail.name"""))_
-    val value = parse_attribute (attribute ("""EndDeviceEventDetail.value"""))_
-    val EndDeviceEvent = parse_attribute (attribute ("""EndDeviceEventDetail.EndDeviceEvent"""))_
+    val name = parse_element (element ("""EndDeviceEventDetail.name"""))
+    val value = parse_attribute (attribute ("""EndDeviceEventDetail.value"""))
+    val EndDeviceEvent = parse_attribute (attribute ("""EndDeviceEventDetail.EndDeviceEvent"""))
     def parse (context: Context): EndDeviceEventDetail =
     {
         EndDeviceEventDetail(
@@ -1106,10 +1106,10 @@ extends
     Parseable[EndDeviceEventType]
 {
     val sup = IdentifiedObject.parse _
-    val domain = parse_element (element ("""EndDeviceEventType.domain"""))_
-    val eventOrAction = parse_element (element ("""EndDeviceEventType.eventOrAction"""))_
-    val subDomain = parse_element (element ("""EndDeviceEventType.subDomain"""))_
-    val typ = parse_element (element ("""EndDeviceEventType.type"""))_
+    val domain = parse_element (element ("""EndDeviceEventType.domain"""))
+    val eventOrAction = parse_element (element ("""EndDeviceEventType.eventOrAction"""))
+    val subDomain = parse_element (element ("""EndDeviceEventType.subDomain"""))
+    val typ = parse_element (element ("""EndDeviceEventType.type"""))
     def parse (context: Context): EndDeviceEventType =
     {
         EndDeviceEventType(
@@ -1155,8 +1155,8 @@ extends
     Parseable[EndDeviceFunction]
 {
     val sup = AssetFunction.parse _
-    val enabled = parse_element (element ("""EndDeviceFunction.enabled"""))_
-    val EndDevice = parse_attribute (attribute ("""EndDeviceFunction.EndDevice"""))_
+    val enabled = parse_element (element ("""EndDeviceFunction.enabled"""))
+    val EndDevice = parse_attribute (attribute ("""EndDeviceFunction.EndDevice"""))
     def parse (context: Context): EndDeviceFunction =
     {
         EndDeviceFunction(
@@ -1216,16 +1216,16 @@ extends
     Parseable[EndDeviceFunctionKind]
 {
     val sup = BasicElement.parse _
-    val autonomousDst = parse_attribute (attribute ("""EndDeviceFunctionKind.autonomousDst"""))_
-    val demandResponse = parse_attribute (attribute ("""EndDeviceFunctionKind.demandResponse"""))_
-    val electricMetering = parse_attribute (attribute ("""EndDeviceFunctionKind.electricMetering"""))_
-    val gasMetering = parse_attribute (attribute ("""EndDeviceFunctionKind.gasMetering"""))_
-    val metrology = parse_attribute (attribute ("""EndDeviceFunctionKind.metrology"""))_
-    val onRequestRead = parse_attribute (attribute ("""EndDeviceFunctionKind.onRequestRead"""))_
-    val outageHistory = parse_attribute (attribute ("""EndDeviceFunctionKind.outageHistory"""))_
-    val relaysProgramming = parse_attribute (attribute ("""EndDeviceFunctionKind.relaysProgramming"""))_
-    val reverseFlow = parse_attribute (attribute ("""EndDeviceFunctionKind.reverseFlow"""))_
-    val waterMetering = parse_attribute (attribute ("""EndDeviceFunctionKind.waterMetering"""))_
+    val autonomousDst = parse_attribute (attribute ("""EndDeviceFunctionKind.autonomousDst"""))
+    val demandResponse = parse_attribute (attribute ("""EndDeviceFunctionKind.demandResponse"""))
+    val electricMetering = parse_attribute (attribute ("""EndDeviceFunctionKind.electricMetering"""))
+    val gasMetering = parse_attribute (attribute ("""EndDeviceFunctionKind.gasMetering"""))
+    val metrology = parse_attribute (attribute ("""EndDeviceFunctionKind.metrology"""))
+    val onRequestRead = parse_attribute (attribute ("""EndDeviceFunctionKind.onRequestRead"""))
+    val outageHistory = parse_attribute (attribute ("""EndDeviceFunctionKind.outageHistory"""))
+    val relaysProgramming = parse_attribute (attribute ("""EndDeviceFunctionKind.relaysProgramming"""))
+    val reverseFlow = parse_attribute (attribute ("""EndDeviceFunctionKind.reverseFlow"""))
+    val waterMetering = parse_attribute (attribute ("""EndDeviceFunctionKind.waterMetering"""))
     def parse (context: Context): EndDeviceFunctionKind =
     {
         EndDeviceFunctionKind(
@@ -1280,9 +1280,9 @@ extends
     Parseable[EndDeviceGroup]
 {
     val sup = IdentifiedObject.parse _
-    val typ = parse_element (element ("""EndDeviceGroup.type"""))_
-    val EndDeviceControls = parse_attributes (attribute ("""EndDeviceGroup.EndDeviceControls"""))_
-    val EndDevices = parse_attributes (attribute ("""EndDeviceGroup.EndDevices"""))_
+    val typ = parse_element (element ("""EndDeviceGroup.type"""))
+    val EndDeviceControls = parse_attributes (attribute ("""EndDeviceGroup.EndDeviceControls"""))
+    val EndDevices = parse_attributes (attribute ("""EndDeviceGroup.EndDevices"""))
     def parse (context: Context): EndDeviceGroup =
     {
         EndDeviceGroup(
@@ -1333,11 +1333,11 @@ extends
     Parseable[EndDeviceInfo]
 {
     val sup = AssetInfo.parse _
-    val capability = parse_attribute (attribute ("""EndDeviceInfo.capability"""))_
-    val isSolidState = parse_element (element ("""EndDeviceInfo.isSolidState"""))_
-    val phaseCount = parse_element (element ("""EndDeviceInfo.phaseCount"""))_
-    val ratedCurrent = parse_element (element ("""EndDeviceInfo.ratedCurrent"""))_
-    val ratedVoltage = parse_element (element ("""EndDeviceInfo.ratedVoltage"""))_
+    val capability = parse_attribute (attribute ("""EndDeviceInfo.capability"""))
+    val isSolidState = parse_element (element ("""EndDeviceInfo.isSolidState"""))
+    val phaseCount = parse_element (element ("""EndDeviceInfo.phaseCount"""))
+    val ratedCurrent = parse_element (element ("""EndDeviceInfo.ratedCurrent"""))
+    val ratedVoltage = parse_element (element ("""EndDeviceInfo.ratedVoltage"""))
     def parse (context: Context): EndDeviceInfo =
     {
         EndDeviceInfo(
@@ -1388,10 +1388,10 @@ extends
     Parseable[EndDeviceTiming]
 {
     val sup = BasicElement.parse _
-    val duration = parse_element (element ("""EndDeviceTiming.duration"""))_
-    val durationIndefinite = parse_element (element ("""EndDeviceTiming.durationIndefinite"""))_
-    val interval = parse_attribute (attribute ("""EndDeviceTiming.interval"""))_
-    val randomisation = parse_attribute (attribute ("""EndDeviceTiming.randomisation"""))_
+    val duration = parse_element (element ("""EndDeviceTiming.duration"""))
+    val durationIndefinite = parse_element (element ("""EndDeviceTiming.durationIndefinite"""))
+    val interval = parse_attribute (attribute ("""EndDeviceTiming.interval"""))
+    val randomisation = parse_attribute (attribute ("""EndDeviceTiming.randomisation"""))
     def parse (context: Context): EndDeviceTiming =
     {
         EndDeviceTiming(
@@ -1442,10 +1442,10 @@ extends
     Parseable[IntervalBlock]
 {
     val sup = BasicElement.parse _
-    val IntervalReadings = parse_attributes (attribute ("""IntervalBlock.IntervalReadings"""))_
-    val MeterReading = parse_attribute (attribute ("""IntervalBlock.MeterReading"""))_
-    val PendingCalculation = parse_attribute (attribute ("""IntervalBlock.PendingCalculation"""))_
-    val ReadingType = parse_attribute (attribute ("""IntervalBlock.ReadingType"""))_
+    val IntervalReadings = parse_attributes (attribute ("""IntervalBlock.IntervalReadings"""))
+    val MeterReading = parse_attribute (attribute ("""IntervalBlock.MeterReading"""))
+    val PendingCalculation = parse_attribute (attribute ("""IntervalBlock.PendingCalculation"""))
+    val ReadingType = parse_attribute (attribute ("""IntervalBlock.ReadingType"""))
     def parse (context: Context): IntervalBlock =
     {
         IntervalBlock(
@@ -1529,7 +1529,7 @@ extends
     Parseable[Meter]
 {
     val sup = EndDevice.parse _
-    val formNumber = parse_element (element ("""Meter.formNumber"""))_
+    val formNumber = parse_element (element ("""Meter.formNumber"""))
     def parse (context: Context): Meter =
     {
         Meter(
@@ -1574,9 +1574,9 @@ extends
     Parseable[MeterMultiplier]
 {
     val sup = IdentifiedObject.parse _
-    val kind = parse_attribute (attribute ("""MeterMultiplier.kind"""))_
-    val value = parse_element (element ("""MeterMultiplier.value"""))_
-    val Meter = parse_attribute (attribute ("""MeterMultiplier.Meter"""))_
+    val kind = parse_attribute (attribute ("""MeterMultiplier.kind"""))
+    val value = parse_element (element ("""MeterMultiplier.value"""))
+    val Meter = parse_attribute (attribute ("""MeterMultiplier.Meter"""))
     def parse (context: Context): MeterMultiplier =
     {
         MeterMultiplier(
@@ -1631,12 +1631,12 @@ extends
     Parseable[MeterMultiplierKind]
 {
     val sup = BasicElement.parse _
-    val ctRatio = parse_attribute (attribute ("""MeterMultiplierKind.ctRatio"""))_
-    val kE = parse_attribute (attribute ("""MeterMultiplierKind.kE"""))_
-    val kH = parse_attribute (attribute ("""MeterMultiplierKind.kH"""))_
-    val kR = parse_attribute (attribute ("""MeterMultiplierKind.kR"""))_
-    val ptRatio = parse_attribute (attribute ("""MeterMultiplierKind.ptRatio"""))_
-    val transformerRatio = parse_attribute (attribute ("""MeterMultiplierKind.transformerRatio"""))_
+    val ctRatio = parse_attribute (attribute ("""MeterMultiplierKind.ctRatio"""))
+    val kE = parse_attribute (attribute ("""MeterMultiplierKind.kE"""))
+    val kH = parse_attribute (attribute ("""MeterMultiplierKind.kH"""))
+    val kR = parse_attribute (attribute ("""MeterMultiplierKind.kR"""))
+    val ptRatio = parse_attribute (attribute ("""MeterMultiplierKind.ptRatio"""))
+    val transformerRatio = parse_attribute (attribute ("""MeterMultiplierKind.transformerRatio"""))
     def parse (context: Context): MeterMultiplierKind =
     {
         MeterMultiplierKind(
@@ -1690,11 +1690,11 @@ extends
     Parseable[MeterReading]
 {
     val sup = IdentifiedObject.parse _
-    val isCoincidentTrigger = parse_element (element ("""MeterReading.isCoincidentTrigger"""))_
-    val valuesInterval = parse_attribute (attribute ("""MeterReading.valuesInterval"""))_
-    val CustomerAgreement = parse_attribute (attribute ("""MeterReading.CustomerAgreement"""))_
-    val Meter = parse_attribute (attribute ("""MeterReading.Meter"""))_
-    val UsagePoint = parse_attribute (attribute ("""MeterReading.UsagePoint"""))_
+    val isCoincidentTrigger = parse_element (element ("""MeterReading.isCoincidentTrigger"""))
+    val valuesInterval = parse_attribute (attribute ("""MeterReading.valuesInterval"""))
+    val CustomerAgreement = parse_attribute (attribute ("""MeterReading.CustomerAgreement"""))
+    val Meter = parse_attribute (attribute ("""MeterReading.Meter"""))
+    val UsagePoint = parse_attribute (attribute ("""MeterReading.UsagePoint"""))
     def parse (context: Context): MeterReading =
     {
         MeterReading(
@@ -1743,9 +1743,9 @@ extends
     Parseable[MeterServiceWork]
 {
     val sup = Work.parse _
-    val Meter = parse_attribute (attribute ("""MeterServiceWork.Meter"""))_
-    val OldMeter = parse_attribute (attribute ("""MeterServiceWork.OldMeter"""))_
-    val UsagePoint = parse_attribute (attribute ("""MeterServiceWork.UsagePoint"""))_
+    val Meter = parse_attribute (attribute ("""MeterServiceWork.Meter"""))
+    val OldMeter = parse_attribute (attribute ("""MeterServiceWork.OldMeter"""))
+    val UsagePoint = parse_attribute (attribute ("""MeterServiceWork.UsagePoint"""))
     def parse (context: Context): MeterServiceWork =
     {
         MeterServiceWork(
@@ -1790,8 +1790,8 @@ extends
     Parseable[MetrologyRequirement]
 {
     val sup = IdentifiedObject.parse _
-    val reason = parse_attribute (attribute ("""MetrologyRequirement.reason"""))_
-    val UsagePoints = parse_attributes (attribute ("""MetrologyRequirement.UsagePoints"""))_
+    val reason = parse_attribute (attribute ("""MetrologyRequirement.reason"""))
+    val UsagePoints = parse_attributes (attribute ("""MetrologyRequirement.UsagePoints"""))
     def parse (context: Context): MetrologyRequirement =
     {
         MetrologyRequirement(
@@ -1863,18 +1863,18 @@ extends
     Parseable[PanDemandResponse]
 {
     val sup = EndDeviceAction.parse _
-    val appliance = parse_attribute (attribute ("""PanDemandResponse.appliance"""))_
-    val avgLoadAdjustment = parse_element (element ("""PanDemandResponse.avgLoadAdjustment"""))_
-    val cancelControlMode = parse_element (element ("""PanDemandResponse.cancelControlMode"""))_
-    val cancelDateTime = parse_element (element ("""PanDemandResponse.cancelDateTime"""))_
-    val cancelNow = parse_element (element ("""PanDemandResponse.cancelNow"""))_
-    val coolingOffset = parse_element (element ("""PanDemandResponse.coolingOffset"""))_
-    val coolingSetpoint = parse_element (element ("""PanDemandResponse.coolingSetpoint"""))_
-    val criticalityLevel = parse_element (element ("""PanDemandResponse.criticalityLevel"""))_
-    val dutyCycle = parse_element (element ("""PanDemandResponse.dutyCycle"""))_
-    val enrollmentGroup = parse_element (element ("""PanDemandResponse.enrollmentGroup"""))_
-    val heatingOffset = parse_element (element ("""PanDemandResponse.heatingOffset"""))_
-    val heatingSetpoint = parse_element (element ("""PanDemandResponse.heatingSetpoint"""))_
+    val appliance = parse_attribute (attribute ("""PanDemandResponse.appliance"""))
+    val avgLoadAdjustment = parse_element (element ("""PanDemandResponse.avgLoadAdjustment"""))
+    val cancelControlMode = parse_element (element ("""PanDemandResponse.cancelControlMode"""))
+    val cancelDateTime = parse_element (element ("""PanDemandResponse.cancelDateTime"""))
+    val cancelNow = parse_element (element ("""PanDemandResponse.cancelNow"""))
+    val coolingOffset = parse_element (element ("""PanDemandResponse.coolingOffset"""))
+    val coolingSetpoint = parse_element (element ("""PanDemandResponse.coolingSetpoint"""))
+    val criticalityLevel = parse_element (element ("""PanDemandResponse.criticalityLevel"""))
+    val dutyCycle = parse_element (element ("""PanDemandResponse.dutyCycle"""))
+    val enrollmentGroup = parse_element (element ("""PanDemandResponse.enrollmentGroup"""))
+    val heatingOffset = parse_element (element ("""PanDemandResponse.heatingOffset"""))
+    val heatingSetpoint = parse_element (element ("""PanDemandResponse.heatingSetpoint"""))
     def parse (context: Context): PanDemandResponse =
     {
         PanDemandResponse(
@@ -1932,10 +1932,10 @@ extends
     Parseable[PanDisplay]
 {
     val sup = EndDeviceAction.parse _
-    val confirmationRequired = parse_element (element ("""PanDisplay.confirmationRequired"""))_
-    val priority = parse_element (element ("""PanDisplay.priority"""))_
-    val textMessage = parse_element (element ("""PanDisplay.textMessage"""))_
-    val transmissionMode = parse_attribute (attribute ("""PanDisplay.transmissionMode"""))_
+    val confirmationRequired = parse_element (element ("""PanDisplay.confirmationRequired"""))
+    val priority = parse_element (element ("""PanDisplay.priority"""))
+    val textMessage = parse_element (element ("""PanDisplay.textMessage"""))
+    val transmissionMode = parse_attribute (attribute ("""PanDisplay.transmissionMode"""))
     def parse (context: Context): PanDisplay =
     {
         PanDisplay(
@@ -1979,7 +1979,7 @@ extends
     Parseable[PanPricing]
 {
     val sup = EndDeviceAction.parse _
-    val providerID = parse_element (element ("""PanPricing.providerID"""))_
+    val providerID = parse_element (element ("""PanPricing.providerID"""))
     def parse (context: Context): PanPricing =
     {
         PanPricing(
@@ -2048,20 +2048,20 @@ extends
     Parseable[PanPricingDetail]
 {
     val sup = BasicElement.parse _
-    val alternateCostDelivered = parse_element (element ("""PanPricingDetail.alternateCostDelivered"""))_
-    val alternateCostUnit = parse_element (element ("""PanPricingDetail.alternateCostUnit"""))_
-    val currentTimeDate = parse_element (element ("""PanPricingDetail.currentTimeDate"""))_
-    val generationPrice = parse_element (element ("""PanPricingDetail.generationPrice"""))_
-    val generationPriceRatio = parse_element (element ("""PanPricingDetail.generationPriceRatio"""))_
-    val price = parse_element (element ("""PanPricingDetail.price"""))_
-    val priceRatio = parse_element (element ("""PanPricingDetail.priceRatio"""))_
-    val priceTier = parse_element (element ("""PanPricingDetail.priceTier"""))_
-    val priceTierCount = parse_element (element ("""PanPricingDetail.priceTierCount"""))_
-    val priceTierLabel = parse_element (element ("""PanPricingDetail.priceTierLabel"""))_
-    val rateLabel = parse_element (element ("""PanPricingDetail.rateLabel"""))_
-    val registerTier = parse_element (element ("""PanPricingDetail.registerTier"""))_
-    val unitOfMeasure = parse_element (element ("""PanPricingDetail.unitOfMeasure"""))_
-    val PanPricing = parse_attribute (attribute ("""PanPricingDetail.PanPricing"""))_
+    val alternateCostDelivered = parse_element (element ("""PanPricingDetail.alternateCostDelivered"""))
+    val alternateCostUnit = parse_element (element ("""PanPricingDetail.alternateCostUnit"""))
+    val currentTimeDate = parse_element (element ("""PanPricingDetail.currentTimeDate"""))
+    val generationPrice = parse_element (element ("""PanPricingDetail.generationPrice"""))
+    val generationPriceRatio = parse_element (element ("""PanPricingDetail.generationPriceRatio"""))
+    val price = parse_element (element ("""PanPricingDetail.price"""))
+    val priceRatio = parse_element (element ("""PanPricingDetail.priceRatio"""))
+    val priceTier = parse_element (element ("""PanPricingDetail.priceTier"""))
+    val priceTierCount = parse_element (element ("""PanPricingDetail.priceTierCount"""))
+    val priceTierLabel = parse_element (element ("""PanPricingDetail.priceTierLabel"""))
+    val rateLabel = parse_element (element ("""PanPricingDetail.rateLabel"""))
+    val registerTier = parse_element (element ("""PanPricingDetail.registerTier"""))
+    val unitOfMeasure = parse_element (element ("""PanPricingDetail.unitOfMeasure"""))
+    val PanPricing = parse_attribute (attribute ("""PanPricingDetail.PanPricing"""))
     def parse (context: Context): PanPricingDetail =
     {
         PanPricingDetail(
@@ -2127,12 +2127,12 @@ extends
     Parseable[PendingCalculation]
 {
     val sup = BasicElement.parse _
-    val multiplyBeforeAdd = parse_element (element ("""PendingCalculation.multiplyBeforeAdd"""))_
-    val offset = parse_element (element ("""PendingCalculation.offset"""))_
-    val scalarDenominator = parse_element (element ("""PendingCalculation.scalarDenominator"""))_
-    val scalarFloat = parse_element (element ("""PendingCalculation.scalarFloat"""))_
-    val scalarNumerator = parse_element (element ("""PendingCalculation.scalarNumerator"""))_
-    val ReadingType = parse_attribute (attribute ("""PendingCalculation.ReadingType"""))_
+    val multiplyBeforeAdd = parse_element (element ("""PendingCalculation.multiplyBeforeAdd"""))
+    val offset = parse_element (element ("""PendingCalculation.offset"""))
+    val scalarDenominator = parse_element (element ("""PendingCalculation.scalarDenominator"""))
+    val scalarFloat = parse_element (element ("""PendingCalculation.scalarFloat"""))
+    val scalarNumerator = parse_element (element ("""PendingCalculation.scalarNumerator"""))
+    val ReadingType = parse_attribute (attribute ("""PendingCalculation.ReadingType"""))
     def parse (context: Context): PendingCalculation =
     {
         PendingCalculation(
@@ -2187,11 +2187,11 @@ extends
     Parseable[RandomisationKind]
 {
     val sup = BasicElement.parse _
-    val default = parse_attribute (attribute ("""RandomisationKind.default"""))_
-    val end = parse_attribute (attribute ("""RandomisationKind.end"""))_
-    val none = parse_attribute (attribute ("""RandomisationKind.none"""))_
-    val start = parse_attribute (attribute ("""RandomisationKind.start"""))_
-    val startAndEnd = parse_attribute (attribute ("""RandomisationKind.startAndEnd"""))_
+    val default = parse_attribute (attribute ("""RandomisationKind.default"""))
+    val end = parse_attribute (attribute ("""RandomisationKind.end"""))
+    val none = parse_attribute (attribute ("""RandomisationKind.none"""))
+    val start = parse_attribute (attribute ("""RandomisationKind.start"""))
+    val startAndEnd = parse_attribute (attribute ("""RandomisationKind.startAndEnd"""))
     def parse (context: Context): RandomisationKind =
     {
         RandomisationKind(
@@ -2239,8 +2239,8 @@ extends
     Parseable[RationalNumber]
 {
     val sup = BasicElement.parse _
-    val denominator = parse_element (element ("""RationalNumber.denominator"""))_
-    val numerator = parse_element (element ("""RationalNumber.numerator"""))_
+    val denominator = parse_element (element ("""RationalNumber.denominator"""))
+    val numerator = parse_element (element ("""RationalNumber.numerator"""))
     def parse (context: Context): RationalNumber =
     {
         RationalNumber(
@@ -2287,9 +2287,9 @@ extends
     Parseable[Reading]
 {
     val sup = BaseReading.parse _
-    val reason = parse_attribute (attribute ("""Reading.reason"""))_
-    val MeterReadings = parse_attributes (attribute ("""Reading.MeterReadings"""))_
-    val ReadingType = parse_attribute (attribute ("""Reading.ReadingType"""))_
+    val reason = parse_attribute (attribute ("""Reading.reason"""))
+    val MeterReadings = parse_attributes (attribute ("""Reading.MeterReadings"""))
+    val ReadingType = parse_attribute (attribute ("""Reading.ReadingType"""))
     def parse (context: Context): Reading =
     {
         Reading(
@@ -2336,8 +2336,8 @@ extends
     Parseable[ReadingInterharmonic]
 {
     val sup = BasicElement.parse _
-    val denominator = parse_element (element ("""ReadingInterharmonic.denominator"""))_
-    val numerator = parse_element (element ("""ReadingInterharmonic.numerator"""))_
+    val denominator = parse_element (element ("""ReadingInterharmonic.denominator"""))
+    val numerator = parse_element (element ("""ReadingInterharmonic.numerator"""))
     def parse (context: Context): ReadingInterharmonic =
     {
         ReadingInterharmonic(
@@ -2388,11 +2388,11 @@ extends
     Parseable[ReadingQuality]
 {
     val sup = BasicElement.parse _
-    val comment = parse_element (element ("""ReadingQuality.comment"""))_
-    val source = parse_element (element ("""ReadingQuality.source"""))_
-    val timeStamp = parse_element (element ("""ReadingQuality.timeStamp"""))_
-    val Reading = parse_attribute (attribute ("""ReadingQuality.Reading"""))_
-    val ReadingQualityType = parse_attribute (attribute ("""ReadingQuality.ReadingQualityType"""))_
+    val comment = parse_element (element ("""ReadingQuality.comment"""))
+    val source = parse_element (element ("""ReadingQuality.source"""))
+    val timeStamp = parse_element (element ("""ReadingQuality.timeStamp"""))
+    val Reading = parse_attribute (attribute ("""ReadingQuality.Reading"""))
+    val ReadingQualityType = parse_attribute (attribute ("""ReadingQuality.ReadingQualityType"""))
     def parse (context: Context): ReadingQuality =
     {
         ReadingQuality(
@@ -2442,9 +2442,9 @@ extends
     Parseable[ReadingQualityType]
 {
     val sup = IdentifiedObject.parse _
-    val category = parse_element (element ("""ReadingQualityType.category"""))_
-    val subCategory = parse_element (element ("""ReadingQualityType.subCategory"""))_
-    val systemId = parse_element (element ("""ReadingQualityType.systemId"""))_
+    val category = parse_element (element ("""ReadingQualityType.category"""))
+    val subCategory = parse_element (element ("""ReadingQualityType.subCategory"""))
+    val systemId = parse_element (element ("""ReadingQualityType.systemId"""))
     def parse (context: Context): ReadingQualityType =
     {
         ReadingQualityType(
@@ -2510,18 +2510,18 @@ extends
     Parseable[ReadingReasonKind]
 {
     val sup = BasicElement.parse _
-    val billing = parse_attribute (attribute ("""ReadingReasonKind.billing"""))_
-    val demandReset = parse_attribute (attribute ("""ReadingReasonKind.demandReset"""))_
-    val inquiry = parse_attribute (attribute ("""ReadingReasonKind.inquiry"""))_
-    val installation = parse_attribute (attribute ("""ReadingReasonKind.installation"""))_
-    val loadManagement = parse_attribute (attribute ("""ReadingReasonKind.loadManagement"""))_
-    val loadResearch = parse_attribute (attribute ("""ReadingReasonKind.loadResearch"""))_
-    val moveIn = parse_attribute (attribute ("""ReadingReasonKind.moveIn"""))_
-    val moveOut = parse_attribute (attribute ("""ReadingReasonKind.moveOut"""))_
-    val other = parse_attribute (attribute ("""ReadingReasonKind.other"""))_
-    val removal = parse_attribute (attribute ("""ReadingReasonKind.removal"""))_
-    val serviceConnect = parse_attribute (attribute ("""ReadingReasonKind.serviceConnect"""))_
-    val serviceDisconnect = parse_attribute (attribute ("""ReadingReasonKind.serviceDisconnect"""))_
+    val billing = parse_attribute (attribute ("""ReadingReasonKind.billing"""))
+    val demandReset = parse_attribute (attribute ("""ReadingReasonKind.demandReset"""))
+    val inquiry = parse_attribute (attribute ("""ReadingReasonKind.inquiry"""))
+    val installation = parse_attribute (attribute ("""ReadingReasonKind.installation"""))
+    val loadManagement = parse_attribute (attribute ("""ReadingReasonKind.loadManagement"""))
+    val loadResearch = parse_attribute (attribute ("""ReadingReasonKind.loadResearch"""))
+    val moveIn = parse_attribute (attribute ("""ReadingReasonKind.moveIn"""))
+    val moveOut = parse_attribute (attribute ("""ReadingReasonKind.moveOut"""))
+    val other = parse_attribute (attribute ("""ReadingReasonKind.other"""))
+    val removal = parse_attribute (attribute ("""ReadingReasonKind.removal"""))
+    val serviceConnect = parse_attribute (attribute ("""ReadingReasonKind.serviceConnect"""))
+    val serviceDisconnect = parse_attribute (attribute ("""ReadingReasonKind.serviceDisconnect"""))
     def parse (context: Context): ReadingReasonKind =
     {
         ReadingReasonKind(
@@ -2616,24 +2616,24 @@ extends
     Parseable[ReadingType]
 {
     val sup = IdentifiedObject.parse _
-    val accumulation = parse_element (element ("""ReadingType.accumulation"""))_
-    val aggregate = parse_element (element ("""ReadingType.aggregate"""))_
-    val argument = parse_attribute (attribute ("""ReadingType.argument"""))_
-    val commodity = parse_element (element ("""ReadingType.commodity"""))_
-    val consumptionTier = parse_element (element ("""ReadingType.consumptionTier"""))_
-    val cpp = parse_element (element ("""ReadingType.cpp"""))_
-    val currency = parse_element (element ("""ReadingType.currency"""))_
-    val flowDirection = parse_element (element ("""ReadingType.flowDirection"""))_
-    val interharmonic = parse_attribute (attribute ("""ReadingType.interharmonic"""))_
-    val macroPeriod = parse_element (element ("""ReadingType.macroPeriod"""))_
-    val measurementKind = parse_element (element ("""ReadingType.measurementKind"""))_
-    val measuringPeriod = parse_element (element ("""ReadingType.measuringPeriod"""))_
-    val multiplier = parse_element (element ("""ReadingType.multiplier"""))_
-    val phases = parse_element (element ("""ReadingType.phases"""))_
-    val tou = parse_element (element ("""ReadingType.tou"""))_
-    val unit = parse_element (element ("""ReadingType.unit"""))_
-    val Channel = parse_attribute (attribute ("""ReadingType.Channel"""))_
-    val PendingCalculation = parse_attribute (attribute ("""ReadingType.PendingCalculation"""))_
+    val accumulation = parse_element (element ("""ReadingType.accumulation"""))
+    val aggregate = parse_element (element ("""ReadingType.aggregate"""))
+    val argument = parse_attribute (attribute ("""ReadingType.argument"""))
+    val commodity = parse_element (element ("""ReadingType.commodity"""))
+    val consumptionTier = parse_element (element ("""ReadingType.consumptionTier"""))
+    val cpp = parse_element (element ("""ReadingType.cpp"""))
+    val currency = parse_element (element ("""ReadingType.currency"""))
+    val flowDirection = parse_element (element ("""ReadingType.flowDirection"""))
+    val interharmonic = parse_attribute (attribute ("""ReadingType.interharmonic"""))
+    val macroPeriod = parse_element (element ("""ReadingType.macroPeriod"""))
+    val measurementKind = parse_element (element ("""ReadingType.measurementKind"""))
+    val measuringPeriod = parse_element (element ("""ReadingType.measuringPeriod"""))
+    val multiplier = parse_element (element ("""ReadingType.multiplier"""))
+    val phases = parse_element (element ("""ReadingType.phases"""))
+    val tou = parse_element (element ("""ReadingType.tou"""))
+    val unit = parse_element (element ("""ReadingType.unit"""))
+    val Channel = parse_attribute (attribute ("""ReadingType.Channel"""))
+    val PendingCalculation = parse_attribute (attribute ("""ReadingType.PendingCalculation"""))
     def parse (context: Context): ReadingType =
     {
         ReadingType(
@@ -2703,12 +2703,12 @@ extends
     Parseable[Register]
 {
     val sup = IdentifiedObject.parse _
-    val isVirtual = parse_element (element ("""Register.isVirtual"""))_
-    val leftDigitCount = parse_element (element ("""Register.leftDigitCount"""))_
-    val rightDigitCount = parse_element (element ("""Register.rightDigitCount"""))_
-    val touTier = parse_attribute (attribute ("""Register.touTier"""))_
-    val touTierName = parse_element (element ("""Register.touTierName"""))_
-    val EndDeviceFunction = parse_attribute (attribute ("""Register.EndDeviceFunction"""))_
+    val isVirtual = parse_element (element ("""Register.isVirtual"""))
+    val leftDigitCount = parse_element (element ("""Register.leftDigitCount"""))
+    val rightDigitCount = parse_element (element ("""Register.rightDigitCount"""))
+    val touTier = parse_attribute (attribute ("""Register.touTier"""))
+    val touTierName = parse_element (element ("""Register.touTierName"""))
+    val EndDeviceFunction = parse_attribute (attribute ("""Register.EndDeviceFunction"""))
     def parse (context: Context): Register =
     {
         Register(
@@ -2758,9 +2758,9 @@ extends
     Parseable[ServiceMultiplier]
 {
     val sup = IdentifiedObject.parse _
-    val kind = parse_attribute (attribute ("""ServiceMultiplier.kind"""))_
-    val value = parse_element (element ("""ServiceMultiplier.value"""))_
-    val UsagePoint = parse_attribute (attribute ("""ServiceMultiplier.UsagePoint"""))_
+    val kind = parse_attribute (attribute ("""ServiceMultiplier.kind"""))
+    val value = parse_element (element ("""ServiceMultiplier.value"""))
+    val UsagePoint = parse_attribute (attribute ("""ServiceMultiplier.UsagePoint"""))
     def parse (context: Context): ServiceMultiplier =
     {
         ServiceMultiplier(
@@ -2807,9 +2807,9 @@ extends
     Parseable[ServiceMultiplierKind]
 {
     val sup = BasicElement.parse _
-    val ctRatio = parse_attribute (attribute ("""ServiceMultiplierKind.ctRatio"""))_
-    val ptRatio = parse_attribute (attribute ("""ServiceMultiplierKind.ptRatio"""))_
-    val transformerRatio = parse_attribute (attribute ("""ServiceMultiplierKind.transformerRatio"""))_
+    val ctRatio = parse_attribute (attribute ("""ServiceMultiplierKind.ctRatio"""))
+    val ptRatio = parse_attribute (attribute ("""ServiceMultiplierKind.ptRatio"""))
+    val transformerRatio = parse_attribute (attribute ("""ServiceMultiplierKind.transformerRatio"""))
     def parse (context: Context): ServiceMultiplierKind =
     {
         ServiceMultiplierKind(
@@ -2853,7 +2853,7 @@ extends
     Parseable[SimpleEndDeviceFunction]
 {
     val sup = EndDeviceFunction.parse _
-    val kind = parse_attribute (attribute ("""SimpleEndDeviceFunction.kind"""))_
+    val kind = parse_attribute (attribute ("""SimpleEndDeviceFunction.kind"""))
     def parse (context: Context): SimpleEndDeviceFunction =
     {
         SimpleEndDeviceFunction(
@@ -2898,9 +2898,9 @@ extends
     Parseable[TransmissionModeKind]
 {
     val sup = BasicElement.parse _
-    val anonymous = parse_attribute (attribute ("""TransmissionModeKind.anonymous"""))_
-    val both = parse_attribute (attribute ("""TransmissionModeKind.both"""))_
-    val normal = parse_attribute (attribute ("""TransmissionModeKind.normal"""))_
+    val anonymous = parse_attribute (attribute ("""TransmissionModeKind.anonymous"""))
+    val both = parse_attribute (attribute ("""TransmissionModeKind.both"""))
+    val normal = parse_attribute (attribute ("""TransmissionModeKind.normal"""))
     def parse (context: Context): TransmissionModeKind =
     {
         TransmissionModeKind(
@@ -2995,29 +2995,29 @@ extends
     Parseable[UsagePoint]
 {
     val sup = IdentifiedObject.parse _
-    val amiBillingReady = parse_attribute (attribute ("""UsagePoint.amiBillingReady"""))_
-    val checkBilling = parse_element (element ("""UsagePoint.checkBilling"""))_
-    val connectionState = parse_attribute (attribute ("""UsagePoint.connectionState"""))_
-    val estimatedLoad = parse_element (element ("""UsagePoint.estimatedLoad"""))_
-    val grounded = parse_element (element ("""UsagePoint.grounded"""))_
-    val isSdp = parse_element (element ("""UsagePoint.isSdp"""))_
-    val isVirtual = parse_element (element ("""UsagePoint.isVirtual"""))_
-    val minimalUsageExpected = parse_element (element ("""UsagePoint.minimalUsageExpected"""))_
-    val nominalServiceVoltage = parse_element (element ("""UsagePoint.nominalServiceVoltage"""))_
-    val outageRegion = parse_element (element ("""UsagePoint.outageRegion"""))_
-    val phaseCode = parse_attribute (attribute ("""UsagePoint.phaseCode"""))_
-    val ratedCurrent = parse_element (element ("""UsagePoint.ratedCurrent"""))_
-    val ratedPower = parse_element (element ("""UsagePoint.ratedPower"""))_
-    val readCycle = parse_element (element ("""UsagePoint.readCycle"""))_
-    val readRoute = parse_element (element ("""UsagePoint.readRoute"""))_
-    val serviceDeliveryRemark = parse_element (element ("""UsagePoint.serviceDeliveryRemark"""))_
-    val servicePriority = parse_element (element ("""UsagePoint.servicePriority"""))_
-    val CustomerAgreement = parse_attribute (attribute ("""UsagePoint.CustomerAgreement"""))_
-    val Equipments = parse_attributes (attribute ("""UsagePoint.Equipments"""))_
-    val ServiceCategory = parse_attribute (attribute ("""UsagePoint.ServiceCategory"""))_
-    val ServiceLocation = parse_attribute (attribute ("""UsagePoint.ServiceLocation"""))_
-    val ServiceSupplier = parse_attribute (attribute ("""UsagePoint.ServiceSupplier"""))_
-    val UsagePointLocation = parse_attribute (attribute ("""UsagePoint.UsagePointLocation"""))_
+    val amiBillingReady = parse_attribute (attribute ("""UsagePoint.amiBillingReady"""))
+    val checkBilling = parse_element (element ("""UsagePoint.checkBilling"""))
+    val connectionState = parse_attribute (attribute ("""UsagePoint.connectionState"""))
+    val estimatedLoad = parse_element (element ("""UsagePoint.estimatedLoad"""))
+    val grounded = parse_element (element ("""UsagePoint.grounded"""))
+    val isSdp = parse_element (element ("""UsagePoint.isSdp"""))
+    val isVirtual = parse_element (element ("""UsagePoint.isVirtual"""))
+    val minimalUsageExpected = parse_element (element ("""UsagePoint.minimalUsageExpected"""))
+    val nominalServiceVoltage = parse_element (element ("""UsagePoint.nominalServiceVoltage"""))
+    val outageRegion = parse_element (element ("""UsagePoint.outageRegion"""))
+    val phaseCode = parse_attribute (attribute ("""UsagePoint.phaseCode"""))
+    val ratedCurrent = parse_element (element ("""UsagePoint.ratedCurrent"""))
+    val ratedPower = parse_element (element ("""UsagePoint.ratedPower"""))
+    val readCycle = parse_element (element ("""UsagePoint.readCycle"""))
+    val readRoute = parse_element (element ("""UsagePoint.readRoute"""))
+    val serviceDeliveryRemark = parse_element (element ("""UsagePoint.serviceDeliveryRemark"""))
+    val servicePriority = parse_element (element ("""UsagePoint.servicePriority"""))
+    val CustomerAgreement = parse_attribute (attribute ("""UsagePoint.CustomerAgreement"""))
+    val Equipments = parse_attributes (attribute ("""UsagePoint.Equipments"""))
+    val ServiceCategory = parse_attribute (attribute ("""UsagePoint.ServiceCategory"""))
+    val ServiceLocation = parse_attribute (attribute ("""UsagePoint.ServiceLocation"""))
+    val ServiceSupplier = parse_attribute (attribute ("""UsagePoint.ServiceSupplier"""))
+    val UsagePointLocation = parse_attribute (attribute ("""UsagePoint.UsagePointLocation"""))
     def parse (context: Context): UsagePoint =
     {
         UsagePoint(
@@ -3086,9 +3086,9 @@ extends
     Parseable[UsagePointConnectedKind]
 {
     val sup = BasicElement.parse _
-    val connected = parse_attribute (attribute ("""UsagePointConnectedKind.connected"""))_
-    val logicallyDisconnected = parse_attribute (attribute ("""UsagePointConnectedKind.logicallyDisconnected"""))_
-    val physicallyDisconnected = parse_attribute (attribute ("""UsagePointConnectedKind.physicallyDisconnected"""))_
+    val connected = parse_attribute (attribute ("""UsagePointConnectedKind.connected"""))
+    val logicallyDisconnected = parse_attribute (attribute ("""UsagePointConnectedKind.logicallyDisconnected"""))
+    val physicallyDisconnected = parse_attribute (attribute ("""UsagePointConnectedKind.physicallyDisconnected"""))
     def parse (context: Context): UsagePointConnectedKind =
     {
         UsagePointConnectedKind(
@@ -3134,8 +3134,8 @@ extends
     Parseable[UsagePointGroup]
 {
     val sup = IdentifiedObject.parse _
-    val typ = parse_element (element ("""UsagePointGroup.type"""))_
-    val UsagePoints = parse_attributes (attribute ("""UsagePointGroup.UsagePoints"""))_
+    val typ = parse_element (element ("""UsagePointGroup.type"""))
+    val UsagePoints = parse_attributes (attribute ("""UsagePointGroup.UsagePoints"""))
     def parse (context: Context): UsagePointGroup =
     {
         UsagePointGroup(
@@ -3183,9 +3183,9 @@ extends
     Parseable[UsagePointLocation]
 {
     val sup = Location.parse _
-    val accessMethod = parse_element (element ("""UsagePointLocation.accessMethod"""))_
-    val remark = parse_element (element ("""UsagePointLocation.remark"""))_
-    val siteAccessProblem = parse_element (element ("""UsagePointLocation.siteAccessProblem"""))_
+    val accessMethod = parse_element (element ("""UsagePointLocation.accessMethod"""))
+    val remark = parse_element (element ("""UsagePointLocation.remark"""))
+    val siteAccessProblem = parse_element (element ("""UsagePointLocation.siteAccessProblem"""))
     def parse (context: Context): UsagePointLocation =
     {
         UsagePointLocation(

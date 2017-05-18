@@ -80,18 +80,18 @@ extends
     Parseable[TurbLCFB1]
 {
     val sup = TurbineLoadControllerDynamics.parse _
-    val db = parse_element (element ("""TurbLCFB1.db"""))_
-    val emax = parse_element (element ("""TurbLCFB1.emax"""))_
-    val fb = parse_element (element ("""TurbLCFB1.fb"""))_
-    val fbf = parse_element (element ("""TurbLCFB1.fbf"""))_
-    val irmax = parse_element (element ("""TurbLCFB1.irmax"""))_
-    val ki = parse_element (element ("""TurbLCFB1.ki"""))_
-    val kp = parse_element (element ("""TurbLCFB1.kp"""))_
-    val mwbase = parse_element (element ("""TurbLCFB1.mwbase"""))_
-    val pbf = parse_element (element ("""TurbLCFB1.pbf"""))_
-    val pmwset = parse_element (element ("""TurbLCFB1.pmwset"""))_
-    val speedReferenceGovernor = parse_element (element ("""TurbLCFB1.speedReferenceGovernor"""))_
-    val tpelec = parse_element (element ("""TurbLCFB1.tpelec"""))_
+    val db = parse_element (element ("""TurbLCFB1.db"""))
+    val emax = parse_element (element ("""TurbLCFB1.emax"""))
+    val fb = parse_element (element ("""TurbLCFB1.fb"""))
+    val fbf = parse_element (element ("""TurbLCFB1.fbf"""))
+    val irmax = parse_element (element ("""TurbLCFB1.irmax"""))
+    val ki = parse_element (element ("""TurbLCFB1.ki"""))
+    val kp = parse_element (element ("""TurbLCFB1.kp"""))
+    val mwbase = parse_element (element ("""TurbLCFB1.mwbase"""))
+    val pbf = parse_element (element ("""TurbLCFB1.pbf"""))
+    val pmwset = parse_element (element ("""TurbLCFB1.pmwset"""))
+    val speedReferenceGovernor = parse_element (element ("""TurbLCFB1.speedReferenceGovernor"""))
+    val tpelec = parse_element (element ("""TurbLCFB1.tpelec"""))
     def parse (context: Context): TurbLCFB1 =
     {
         TurbLCFB1(
@@ -143,7 +143,7 @@ extends
     Parseable[TurbineLoadControllerDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val TurbineGovernorDynamics = parse_attribute (attribute ("""TurbineLoadControllerDynamics.TurbineGovernorDynamics"""))_
+    val TurbineGovernorDynamics = parse_attribute (attribute ("""TurbineLoadControllerDynamics.TurbineGovernorDynamics"""))
     def parse (context: Context): TurbineLoadControllerDynamics =
     {
         TurbineLoadControllerDynamics(

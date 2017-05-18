@@ -43,8 +43,8 @@ extends
     Parseable[ControlAreaOperator]
 {
     val sup = Organisation.parse _
-    val CAChildOf = parse_attributes (attribute ("""ControlAreaOperator.CAChildOf"""))_
-    val ControlledBy = parse_attribute (attribute ("""ControlAreaOperator.ControlledBy"""))_
+    val CAChildOf = parse_attributes (attribute ("""ControlAreaOperator.CAChildOf"""))
+    val ControlledBy = parse_attribute (attribute ("""ControlAreaOperator.ControlledBy"""))
     def parse (context: Context): ControlAreaOperator =
     {
         ControlAreaOperator(
@@ -163,8 +163,8 @@ extends
     Parseable[IntSchedAgreement]
 {
     val sup = Agreement.parse _
-    val defaultIntegrationMethod = parse_element (element ("""IntSchedAgreement.defaultIntegrationMethod"""))_
-    val MktOrganisation = parse_attributes (attribute ("""IntSchedAgreement.MktOrganisation"""))_
+    val defaultIntegrationMethod = parse_element (element ("""IntSchedAgreement.defaultIntegrationMethod"""))
+    val MktOrganisation = parse_attributes (attribute ("""IntSchedAgreement.MktOrganisation"""))
     def parse (context: Context): IntSchedAgreement =
     {
         IntSchedAgreement(
@@ -277,9 +277,9 @@ extends
     Parseable[TransmissionProduct]
 {
     val sup = IdentifiedObject.parse _
-    val transmissionProductType = parse_element (element ("""TransmissionProduct.transmissionProductType"""))_
-    val LocationFor = parse_attributes (attribute ("""TransmissionProduct.LocationFor"""))_
-    val TransmissionProvider = parse_attribute (attribute ("""TransmissionProduct.TransmissionProvider"""))_
+    val transmissionProductType = parse_element (element ("""TransmissionProduct.transmissionProductType"""))
+    val LocationFor = parse_attributes (attribute ("""TransmissionProduct.LocationFor"""))
+    val TransmissionProvider = parse_attribute (attribute ("""TransmissionProduct.TransmissionProvider"""))
     def parse (context: Context): TransmissionProduct =
     {
         TransmissionProduct(

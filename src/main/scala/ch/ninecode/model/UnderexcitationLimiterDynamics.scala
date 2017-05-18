@@ -60,13 +60,13 @@ extends
     Parseable[UnderexcLim2Simplified]
 {
     val sup = UnderexcitationLimiterDynamics.parse _
-    val kui = parse_element (element ("""UnderexcLim2Simplified.kui"""))_
-    val p0 = parse_element (element ("""UnderexcLim2Simplified.p0"""))_
-    val p1 = parse_element (element ("""UnderexcLim2Simplified.p1"""))_
-    val q0 = parse_element (element ("""UnderexcLim2Simplified.q0"""))_
-    val q1 = parse_element (element ("""UnderexcLim2Simplified.q1"""))_
-    val vuimax = parse_element (element ("""UnderexcLim2Simplified.vuimax"""))_
-    val vuimin = parse_element (element ("""UnderexcLim2Simplified.vuimin"""))_
+    val kui = parse_element (element ("""UnderexcLim2Simplified.kui"""))
+    val p0 = parse_element (element ("""UnderexcLim2Simplified.p0"""))
+    val p1 = parse_element (element ("""UnderexcLim2Simplified.p1"""))
+    val q0 = parse_element (element ("""UnderexcLim2Simplified.q0"""))
+    val q1 = parse_element (element ("""UnderexcLim2Simplified.q1"""))
+    val vuimax = parse_element (element ("""UnderexcLim2Simplified.vuimax"""))
+    val vuimin = parse_element (element ("""UnderexcLim2Simplified.vuimin"""))
     def parse (context: Context): UnderexcLim2Simplified =
     {
         UnderexcLim2Simplified(
@@ -155,21 +155,21 @@ extends
     Parseable[UnderexcLimIEEE1]
 {
     val sup = UnderexcitationLimiterDynamics.parse _
-    val kuc = parse_element (element ("""UnderexcLimIEEE1.kuc"""))_
-    val kuf = parse_element (element ("""UnderexcLimIEEE1.kuf"""))_
-    val kui = parse_element (element ("""UnderexcLimIEEE1.kui"""))_
-    val kul = parse_element (element ("""UnderexcLimIEEE1.kul"""))_
-    val kur = parse_element (element ("""UnderexcLimIEEE1.kur"""))_
-    val tu1 = parse_element (element ("""UnderexcLimIEEE1.tu1"""))_
-    val tu2 = parse_element (element ("""UnderexcLimIEEE1.tu2"""))_
-    val tu3 = parse_element (element ("""UnderexcLimIEEE1.tu3"""))_
-    val tu4 = parse_element (element ("""UnderexcLimIEEE1.tu4"""))_
-    val vucmax = parse_element (element ("""UnderexcLimIEEE1.vucmax"""))_
-    val vuimax = parse_element (element ("""UnderexcLimIEEE1.vuimax"""))_
-    val vuimin = parse_element (element ("""UnderexcLimIEEE1.vuimin"""))_
-    val vulmax = parse_element (element ("""UnderexcLimIEEE1.vulmax"""))_
-    val vulmin = parse_element (element ("""UnderexcLimIEEE1.vulmin"""))_
-    val vurmax = parse_element (element ("""UnderexcLimIEEE1.vurmax"""))_
+    val kuc = parse_element (element ("""UnderexcLimIEEE1.kuc"""))
+    val kuf = parse_element (element ("""UnderexcLimIEEE1.kuf"""))
+    val kui = parse_element (element ("""UnderexcLimIEEE1.kui"""))
+    val kul = parse_element (element ("""UnderexcLimIEEE1.kul"""))
+    val kur = parse_element (element ("""UnderexcLimIEEE1.kur"""))
+    val tu1 = parse_element (element ("""UnderexcLimIEEE1.tu1"""))
+    val tu2 = parse_element (element ("""UnderexcLimIEEE1.tu2"""))
+    val tu3 = parse_element (element ("""UnderexcLimIEEE1.tu3"""))
+    val tu4 = parse_element (element ("""UnderexcLimIEEE1.tu4"""))
+    val vucmax = parse_element (element ("""UnderexcLimIEEE1.vucmax"""))
+    val vuimax = parse_element (element ("""UnderexcLimIEEE1.vuimax"""))
+    val vuimin = parse_element (element ("""UnderexcLimIEEE1.vuimin"""))
+    val vulmax = parse_element (element ("""UnderexcLimIEEE1.vulmax"""))
+    val vulmin = parse_element (element ("""UnderexcLimIEEE1.vulmin"""))
+    val vurmax = parse_element (element ("""UnderexcLimIEEE1.vurmax"""))
     def parse (context: Context): UnderexcLimIEEE1 =
     {
         UnderexcLimIEEE1(
@@ -331,46 +331,46 @@ extends
     Parseable[UnderexcLimIEEE2]
 {
     val sup = UnderexcitationLimiterDynamics.parse _
-    val k1 = parse_element (element ("""UnderexcLimIEEE2.k1"""))_
-    val k2 = parse_element (element ("""UnderexcLimIEEE2.k2"""))_
-    val kfb = parse_element (element ("""UnderexcLimIEEE2.kfb"""))_
-    val kuf = parse_element (element ("""UnderexcLimIEEE2.kuf"""))_
-    val kui = parse_element (element ("""UnderexcLimIEEE2.kui"""))_
-    val kul = parse_element (element ("""UnderexcLimIEEE2.kul"""))_
-    val p0 = parse_element (element ("""UnderexcLimIEEE2.p0"""))_
-    val p1 = parse_element (element ("""UnderexcLimIEEE2.p1"""))_
-    val p10 = parse_element (element ("""UnderexcLimIEEE2.p10"""))_
-    val p2 = parse_element (element ("""UnderexcLimIEEE2.p2"""))_
-    val p3 = parse_element (element ("""UnderexcLimIEEE2.p3"""))_
-    val p4 = parse_element (element ("""UnderexcLimIEEE2.p4"""))_
-    val p5 = parse_element (element ("""UnderexcLimIEEE2.p5"""))_
-    val p6 = parse_element (element ("""UnderexcLimIEEE2.p6"""))_
-    val p7 = parse_element (element ("""UnderexcLimIEEE2.p7"""))_
-    val p8 = parse_element (element ("""UnderexcLimIEEE2.p8"""))_
-    val p9 = parse_element (element ("""UnderexcLimIEEE2.p9"""))_
-    val q0 = parse_element (element ("""UnderexcLimIEEE2.q0"""))_
-    val q1 = parse_element (element ("""UnderexcLimIEEE2.q1"""))_
-    val q10 = parse_element (element ("""UnderexcLimIEEE2.q10"""))_
-    val q2 = parse_element (element ("""UnderexcLimIEEE2.q2"""))_
-    val q3 = parse_element (element ("""UnderexcLimIEEE2.q3"""))_
-    val q4 = parse_element (element ("""UnderexcLimIEEE2.q4"""))_
-    val q5 = parse_element (element ("""UnderexcLimIEEE2.q5"""))_
-    val q6 = parse_element (element ("""UnderexcLimIEEE2.q6"""))_
-    val q7 = parse_element (element ("""UnderexcLimIEEE2.q7"""))_
-    val q8 = parse_element (element ("""UnderexcLimIEEE2.q8"""))_
-    val q9 = parse_element (element ("""UnderexcLimIEEE2.q9"""))_
-    val tu1 = parse_element (element ("""UnderexcLimIEEE2.tu1"""))_
-    val tu2 = parse_element (element ("""UnderexcLimIEEE2.tu2"""))_
-    val tu3 = parse_element (element ("""UnderexcLimIEEE2.tu3"""))_
-    val tu4 = parse_element (element ("""UnderexcLimIEEE2.tu4"""))_
-    val tul = parse_element (element ("""UnderexcLimIEEE2.tul"""))_
-    val tup = parse_element (element ("""UnderexcLimIEEE2.tup"""))_
-    val tuq = parse_element (element ("""UnderexcLimIEEE2.tuq"""))_
-    val tuv = parse_element (element ("""UnderexcLimIEEE2.tuv"""))_
-    val vuimax = parse_element (element ("""UnderexcLimIEEE2.vuimax"""))_
-    val vuimin = parse_element (element ("""UnderexcLimIEEE2.vuimin"""))_
-    val vulmax = parse_element (element ("""UnderexcLimIEEE2.vulmax"""))_
-    val vulmin = parse_element (element ("""UnderexcLimIEEE2.vulmin"""))_
+    val k1 = parse_element (element ("""UnderexcLimIEEE2.k1"""))
+    val k2 = parse_element (element ("""UnderexcLimIEEE2.k2"""))
+    val kfb = parse_element (element ("""UnderexcLimIEEE2.kfb"""))
+    val kuf = parse_element (element ("""UnderexcLimIEEE2.kuf"""))
+    val kui = parse_element (element ("""UnderexcLimIEEE2.kui"""))
+    val kul = parse_element (element ("""UnderexcLimIEEE2.kul"""))
+    val p0 = parse_element (element ("""UnderexcLimIEEE2.p0"""))
+    val p1 = parse_element (element ("""UnderexcLimIEEE2.p1"""))
+    val p10 = parse_element (element ("""UnderexcLimIEEE2.p10"""))
+    val p2 = parse_element (element ("""UnderexcLimIEEE2.p2"""))
+    val p3 = parse_element (element ("""UnderexcLimIEEE2.p3"""))
+    val p4 = parse_element (element ("""UnderexcLimIEEE2.p4"""))
+    val p5 = parse_element (element ("""UnderexcLimIEEE2.p5"""))
+    val p6 = parse_element (element ("""UnderexcLimIEEE2.p6"""))
+    val p7 = parse_element (element ("""UnderexcLimIEEE2.p7"""))
+    val p8 = parse_element (element ("""UnderexcLimIEEE2.p8"""))
+    val p9 = parse_element (element ("""UnderexcLimIEEE2.p9"""))
+    val q0 = parse_element (element ("""UnderexcLimIEEE2.q0"""))
+    val q1 = parse_element (element ("""UnderexcLimIEEE2.q1"""))
+    val q10 = parse_element (element ("""UnderexcLimIEEE2.q10"""))
+    val q2 = parse_element (element ("""UnderexcLimIEEE2.q2"""))
+    val q3 = parse_element (element ("""UnderexcLimIEEE2.q3"""))
+    val q4 = parse_element (element ("""UnderexcLimIEEE2.q4"""))
+    val q5 = parse_element (element ("""UnderexcLimIEEE2.q5"""))
+    val q6 = parse_element (element ("""UnderexcLimIEEE2.q6"""))
+    val q7 = parse_element (element ("""UnderexcLimIEEE2.q7"""))
+    val q8 = parse_element (element ("""UnderexcLimIEEE2.q8"""))
+    val q9 = parse_element (element ("""UnderexcLimIEEE2.q9"""))
+    val tu1 = parse_element (element ("""UnderexcLimIEEE2.tu1"""))
+    val tu2 = parse_element (element ("""UnderexcLimIEEE2.tu2"""))
+    val tu3 = parse_element (element ("""UnderexcLimIEEE2.tu3"""))
+    val tu4 = parse_element (element ("""UnderexcLimIEEE2.tu4"""))
+    val tul = parse_element (element ("""UnderexcLimIEEE2.tul"""))
+    val tup = parse_element (element ("""UnderexcLimIEEE2.tup"""))
+    val tuq = parse_element (element ("""UnderexcLimIEEE2.tuq"""))
+    val tuv = parse_element (element ("""UnderexcLimIEEE2.tuv"""))
+    val vuimax = parse_element (element ("""UnderexcLimIEEE2.vuimax"""))
+    val vuimin = parse_element (element ("""UnderexcLimIEEE2.vuimin"""))
+    val vulmax = parse_element (element ("""UnderexcLimIEEE2.vulmax"""))
+    val vulmin = parse_element (element ("""UnderexcLimIEEE2.vulmin"""))
     def parse (context: Context): UnderexcLimIEEE2 =
     {
         UnderexcLimIEEE2(
@@ -460,12 +460,12 @@ extends
     Parseable[UnderexcLimX1]
 {
     val sup = UnderexcitationLimiterDynamics.parse _
-    val k = parse_element (element ("""UnderexcLimX1.k"""))_
-    val kf2 = parse_element (element ("""UnderexcLimX1.kf2"""))_
-    val km = parse_element (element ("""UnderexcLimX1.km"""))_
-    val melmax = parse_element (element ("""UnderexcLimX1.melmax"""))_
-    val tf2 = parse_element (element ("""UnderexcLimX1.tf2"""))_
-    val tm = parse_element (element ("""UnderexcLimX1.tm"""))_
+    val k = parse_element (element ("""UnderexcLimX1.k"""))
+    val kf2 = parse_element (element ("""UnderexcLimX1.kf2"""))
+    val km = parse_element (element ("""UnderexcLimX1.km"""))
+    val melmax = parse_element (element ("""UnderexcLimX1.melmax"""))
+    val tf2 = parse_element (element ("""UnderexcLimX1.tf2"""))
+    val tm = parse_element (element ("""UnderexcLimX1.tm"""))
     def parse (context: Context): UnderexcLimX1 =
     {
         UnderexcLimX1(
@@ -523,13 +523,13 @@ extends
     Parseable[UnderexcLimX2]
 {
     val sup = UnderexcitationLimiterDynamics.parse _
-    val kf2 = parse_element (element ("""UnderexcLimX2.kf2"""))_
-    val km = parse_element (element ("""UnderexcLimX2.km"""))_
-    val melmax = parse_element (element ("""UnderexcLimX2.melmax"""))_
-    val qo = parse_element (element ("""UnderexcLimX2.qo"""))_
-    val r = parse_element (element ("""UnderexcLimX2.r"""))_
-    val tf2 = parse_element (element ("""UnderexcLimX2.tf2"""))_
-    val tm = parse_element (element ("""UnderexcLimX2.tm"""))_
+    val kf2 = parse_element (element ("""UnderexcLimX2.kf2"""))
+    val km = parse_element (element ("""UnderexcLimX2.km"""))
+    val melmax = parse_element (element ("""UnderexcLimX2.melmax"""))
+    val qo = parse_element (element ("""UnderexcLimX2.qo"""))
+    val r = parse_element (element ("""UnderexcLimX2.r"""))
+    val tf2 = parse_element (element ("""UnderexcLimX2.tf2"""))
+    val tm = parse_element (element ("""UnderexcLimX2.tm"""))
     def parse (context: Context): UnderexcLimX2 =
     {
         UnderexcLimX2(
@@ -578,8 +578,8 @@ extends
     Parseable[UnderexcitationLimiterDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""UnderexcitationLimiterDynamics.ExcitationSystemDynamics"""))_
-    val RemoteInputSignal = parse_attribute (attribute ("""UnderexcitationLimiterDynamics.RemoteInputSignal"""))_
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""UnderexcitationLimiterDynamics.ExcitationSystemDynamics"""))
+    val RemoteInputSignal = parse_attribute (attribute ("""UnderexcitationLimiterDynamics.RemoteInputSignal"""))
     def parse (context: Context): UnderexcitationLimiterDynamics =
     {
         UnderexcitationLimiterDynamics(

@@ -298,7 +298,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                     s.append (""".""")
                     s.append (product.name)
                     s.append ("""""""")
-                    s.append (""""))_
+                    s.append (""""))
                     |""".stripMargin)
                 }
             }

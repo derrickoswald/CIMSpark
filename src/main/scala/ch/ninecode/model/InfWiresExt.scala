@@ -38,8 +38,8 @@ extends
     Parseable[SVC]
 {
     val sup = ShuntCompensator.parse _
-    val capacitiveRating = parse_element (element ("""SVC.capacitiveRating"""))_
-    val inductiveRating = parse_element (element ("""SVC.inductiveRating"""))_
+    val capacitiveRating = parse_element (element ("""SVC.capacitiveRating"""))
+    val inductiveRating = parse_element (element ("""SVC.inductiveRating"""))
     def parse (context: Context): SVC =
     {
         SVC(
@@ -118,24 +118,24 @@ extends
     Parseable[ShuntCompensatorControl]
 {
     val sup = RegulatingControl.parse _
-    val branchDirect = parse_element (element ("""ShuntCompensatorControl.branchDirect"""))_
-    val cellSize = parse_element (element ("""ShuntCompensatorControl.cellSize"""))_
-    val controlKind = parse_attribute (attribute ("""ShuntCompensatorControl.controlKind"""))_
-    val highVoltageOverride = parse_element (element ("""ShuntCompensatorControl.highVoltageOverride"""))_
-    val localControlKind = parse_attribute (attribute ("""ShuntCompensatorControl.localControlKind"""))_
-    val localOffLevel = parse_element (element ("""ShuntCompensatorControl.localOffLevel"""))_
-    val localOnLevel = parse_element (element ("""ShuntCompensatorControl.localOnLevel"""))_
-    val localOverride = parse_element (element ("""ShuntCompensatorControl.localOverride"""))_
-    val lowVoltageOverride = parse_element (element ("""ShuntCompensatorControl.lowVoltageOverride"""))_
-    val maxSwitchOperationCount = parse_element (element ("""ShuntCompensatorControl.maxSwitchOperationCount"""))_
-    val normalOpen = parse_element (element ("""ShuntCompensatorControl.normalOpen"""))_
-    val regBranch = parse_element (element ("""ShuntCompensatorControl.regBranch"""))_
-    val regBranchEnd = parse_element (element ("""ShuntCompensatorControl.regBranchEnd"""))_
-    val regBranchKind = parse_attribute (attribute ("""ShuntCompensatorControl.regBranchKind"""))_
-    val sensingPhaseCode = parse_attribute (attribute ("""ShuntCompensatorControl.sensingPhaseCode"""))_
-    val switchOperationCycle = parse_element (element ("""ShuntCompensatorControl.switchOperationCycle"""))_
-    val vRegLineLine = parse_element (element ("""ShuntCompensatorControl.vRegLineLine"""))_
-    val ShuntCompensatorInfo = parse_attribute (attribute ("""ShuntCompensatorControl.ShuntCompensatorInfo"""))_
+    val branchDirect = parse_element (element ("""ShuntCompensatorControl.branchDirect"""))
+    val cellSize = parse_element (element ("""ShuntCompensatorControl.cellSize"""))
+    val controlKind = parse_attribute (attribute ("""ShuntCompensatorControl.controlKind"""))
+    val highVoltageOverride = parse_element (element ("""ShuntCompensatorControl.highVoltageOverride"""))
+    val localControlKind = parse_attribute (attribute ("""ShuntCompensatorControl.localControlKind"""))
+    val localOffLevel = parse_element (element ("""ShuntCompensatorControl.localOffLevel"""))
+    val localOnLevel = parse_element (element ("""ShuntCompensatorControl.localOnLevel"""))
+    val localOverride = parse_element (element ("""ShuntCompensatorControl.localOverride"""))
+    val lowVoltageOverride = parse_element (element ("""ShuntCompensatorControl.lowVoltageOverride"""))
+    val maxSwitchOperationCount = parse_element (element ("""ShuntCompensatorControl.maxSwitchOperationCount"""))
+    val normalOpen = parse_element (element ("""ShuntCompensatorControl.normalOpen"""))
+    val regBranch = parse_element (element ("""ShuntCompensatorControl.regBranch"""))
+    val regBranchEnd = parse_element (element ("""ShuntCompensatorControl.regBranchEnd"""))
+    val regBranchKind = parse_attribute (attribute ("""ShuntCompensatorControl.regBranchKind"""))
+    val sensingPhaseCode = parse_attribute (attribute ("""ShuntCompensatorControl.sensingPhaseCode"""))
+    val switchOperationCycle = parse_element (element ("""ShuntCompensatorControl.switchOperationCycle"""))
+    val vRegLineLine = parse_element (element ("""ShuntCompensatorControl.vRegLineLine"""))
+    val ShuntCompensatorInfo = parse_attribute (attribute ("""ShuntCompensatorControl.ShuntCompensatorInfo"""))
     def parse (context: Context): ShuntCompensatorControl =
     {
         ShuntCompensatorControl(

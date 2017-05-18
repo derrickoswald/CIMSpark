@@ -44,7 +44,7 @@ extends
     Parseable[AsynchronousMachineUserDefined]
 {
     val sup = AsynchronousMachineDynamics.parse _
-    val proprietary = parse_element (element ("""AsynchronousMachineUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""AsynchronousMachineUserDefined.proprietary"""))
     def parse (context: Context): AsynchronousMachineUserDefined =
     {
         AsynchronousMachineUserDefined(
@@ -87,7 +87,7 @@ extends
     Parseable[DiscontinuousExcitationControlUserDefined]
 {
     val sup = DiscontinuousExcitationControlDynamics.parse _
-    val proprietary = parse_element (element ("""DiscontinuousExcitationControlUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""DiscontinuousExcitationControlUserDefined.proprietary"""))
     def parse (context: Context): DiscontinuousExcitationControlUserDefined =
     {
         DiscontinuousExcitationControlUserDefined(
@@ -130,7 +130,7 @@ extends
     Parseable[ExcitationSystemUserDefined]
 {
     val sup = ExcitationSystemDynamics.parse _
-    val proprietary = parse_element (element ("""ExcitationSystemUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""ExcitationSystemUserDefined.proprietary"""))
     def parse (context: Context): ExcitationSystemUserDefined =
     {
         ExcitationSystemUserDefined(
@@ -173,7 +173,7 @@ extends
     Parseable[LoadUserDefined]
 {
     val sup = LoadDynamics.parse _
-    val proprietary = parse_element (element ("""LoadUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""LoadUserDefined.proprietary"""))
     def parse (context: Context): LoadUserDefined =
     {
         LoadUserDefined(
@@ -216,7 +216,7 @@ extends
     Parseable[MechanicalLoadUserDefined]
 {
     val sup = MechanicalLoadDynamics.parse _
-    val proprietary = parse_element (element ("""MechanicalLoadUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""MechanicalLoadUserDefined.proprietary"""))
     def parse (context: Context): MechanicalLoadUserDefined =
     {
         MechanicalLoadUserDefined(
@@ -259,7 +259,7 @@ extends
     Parseable[OverexcitationLimiterUserDefined]
 {
     val sup = OverexcitationLimiterDynamics.parse _
-    val proprietary = parse_element (element ("""OverexcitationLimiterUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""OverexcitationLimiterUserDefined.proprietary"""))
     def parse (context: Context): OverexcitationLimiterUserDefined =
     {
         OverexcitationLimiterUserDefined(
@@ -302,7 +302,7 @@ extends
     Parseable[PFVArControllerType1UserDefined]
 {
     val sup = PFVArControllerType1Dynamics.parse _
-    val proprietary = parse_element (element ("""PFVArControllerType1UserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""PFVArControllerType1UserDefined.proprietary"""))
     def parse (context: Context): PFVArControllerType1UserDefined =
     {
         PFVArControllerType1UserDefined(
@@ -345,7 +345,7 @@ extends
     Parseable[PFVArControllerType2UserDefined]
 {
     val sup = PFVArControllerType2Dynamics.parse _
-    val proprietary = parse_element (element ("""PFVArControllerType2UserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""PFVArControllerType2UserDefined.proprietary"""))
     def parse (context: Context): PFVArControllerType2UserDefined =
     {
         PFVArControllerType2UserDefined(
@@ -388,7 +388,7 @@ extends
     Parseable[PowerSystemStabilizerUserDefined]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val proprietary = parse_element (element ("""PowerSystemStabilizerUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""PowerSystemStabilizerUserDefined.proprietary"""))
     def parse (context: Context): PowerSystemStabilizerUserDefined =
     {
         PowerSystemStabilizerUserDefined(
@@ -475,28 +475,28 @@ extends
     Parseable[ProprietaryParameterDynamics]
 {
     val sup = BasicElement.parse _
-    val booleanParameterValue = parse_element (element ("""ProprietaryParameterDynamics.booleanParameterValue"""))_
-    val floatParameterValue = parse_element (element ("""ProprietaryParameterDynamics.floatParameterValue"""))_
-    val integerParameterValue = parse_element (element ("""ProprietaryParameterDynamics.integerParameterValue"""))_
-    val parameterNumber = parse_element (element ("""ProprietaryParameterDynamics.parameterNumber"""))_
-    val AsynchronousMachineUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.AsynchronousMachineUserDefined"""))_
-    val DiscontinuousExcitationControlUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.DiscontinuousExcitationControlUserDefined"""))_
-    val ExcitationSystemUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.ExcitationSystemUserDefined"""))_
-    val LoadUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.LoadUserDefined"""))_
-    val MechanicalLoadUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.MechanicalLoadUserDefined"""))_
-    val OverexcitationLimiterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.OverexcitationLimiterUserDefined"""))_
-    val PFVArControllerType1UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PFVArControllerType1UserDefined"""))_
-    val PFVArControllerType2UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PFVArControllerType2UserDefined"""))_
-    val PowerSystemStabilizerUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PowerSystemStabilizerUserDefined"""))_
-    val SynchronousMachineUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.SynchronousMachineUserDefined"""))_
-    val TurbineGovernorUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.TurbineGovernorUserDefined"""))_
-    val TurbineLoadControllerUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.TurbineLoadControllerUserDefined"""))_
-    val UnderexcitationLimiterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.UnderexcitationLimiterUserDefined"""))_
-    val VoltageAdjusterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.VoltageAdjusterUserDefined"""))_
-    val VoltageCompensatorUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.VoltageCompensatorUserDefined"""))_
-    val WindPlantUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindPlantUserDefined"""))_
-    val WindType1or2UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindType1or2UserDefined"""))_
-    val WindType3or4UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindType3or4UserDefined"""))_
+    val booleanParameterValue = parse_element (element ("""ProprietaryParameterDynamics.booleanParameterValue"""))
+    val floatParameterValue = parse_element (element ("""ProprietaryParameterDynamics.floatParameterValue"""))
+    val integerParameterValue = parse_element (element ("""ProprietaryParameterDynamics.integerParameterValue"""))
+    val parameterNumber = parse_element (element ("""ProprietaryParameterDynamics.parameterNumber"""))
+    val AsynchronousMachineUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.AsynchronousMachineUserDefined"""))
+    val DiscontinuousExcitationControlUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.DiscontinuousExcitationControlUserDefined"""))
+    val ExcitationSystemUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.ExcitationSystemUserDefined"""))
+    val LoadUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.LoadUserDefined"""))
+    val MechanicalLoadUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.MechanicalLoadUserDefined"""))
+    val OverexcitationLimiterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.OverexcitationLimiterUserDefined"""))
+    val PFVArControllerType1UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PFVArControllerType1UserDefined"""))
+    val PFVArControllerType2UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PFVArControllerType2UserDefined"""))
+    val PowerSystemStabilizerUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PowerSystemStabilizerUserDefined"""))
+    val SynchronousMachineUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.SynchronousMachineUserDefined"""))
+    val TurbineGovernorUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.TurbineGovernorUserDefined"""))
+    val TurbineLoadControllerUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.TurbineLoadControllerUserDefined"""))
+    val UnderexcitationLimiterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.UnderexcitationLimiterUserDefined"""))
+    val VoltageAdjusterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.VoltageAdjusterUserDefined"""))
+    val VoltageCompensatorUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.VoltageCompensatorUserDefined"""))
+    val WindPlantUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindPlantUserDefined"""))
+    val WindType1or2UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindType1or2UserDefined"""))
+    val WindType3or4UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindType3or4UserDefined"""))
     def parse (context: Context): ProprietaryParameterDynamics =
     {
         ProprietaryParameterDynamics(
@@ -560,7 +560,7 @@ extends
     Parseable[SynchronousMachineUserDefined]
 {
     val sup = SynchronousMachineDynamics.parse _
-    val proprietary = parse_element (element ("""SynchronousMachineUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""SynchronousMachineUserDefined.proprietary"""))
     def parse (context: Context): SynchronousMachineUserDefined =
     {
         SynchronousMachineUserDefined(
@@ -603,7 +603,7 @@ extends
     Parseable[TurbineGovernorUserDefined]
 {
     val sup = TurbineGovernorDynamics.parse _
-    val proprietary = parse_element (element ("""TurbineGovernorUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""TurbineGovernorUserDefined.proprietary"""))
     def parse (context: Context): TurbineGovernorUserDefined =
     {
         TurbineGovernorUserDefined(
@@ -646,7 +646,7 @@ extends
     Parseable[TurbineLoadControllerUserDefined]
 {
     val sup = TurbineLoadControllerDynamics.parse _
-    val proprietary = parse_element (element ("""TurbineLoadControllerUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""TurbineLoadControllerUserDefined.proprietary"""))
     def parse (context: Context): TurbineLoadControllerUserDefined =
     {
         TurbineLoadControllerUserDefined(
@@ -689,7 +689,7 @@ extends
     Parseable[UnderexcitationLimiterUserDefined]
 {
     val sup = UnderexcitationLimiterDynamics.parse _
-    val proprietary = parse_element (element ("""UnderexcitationLimiterUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""UnderexcitationLimiterUserDefined.proprietary"""))
     def parse (context: Context): UnderexcitationLimiterUserDefined =
     {
         UnderexcitationLimiterUserDefined(
@@ -732,7 +732,7 @@ extends
     Parseable[VoltageAdjusterUserDefined]
 {
     val sup = VoltageAdjusterDynamics.parse _
-    val proprietary = parse_element (element ("""VoltageAdjusterUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""VoltageAdjusterUserDefined.proprietary"""))
     def parse (context: Context): VoltageAdjusterUserDefined =
     {
         VoltageAdjusterUserDefined(
@@ -775,7 +775,7 @@ extends
     Parseable[VoltageCompensatorUserDefined]
 {
     val sup = VoltageCompensatorDynamics.parse _
-    val proprietary = parse_element (element ("""VoltageCompensatorUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""VoltageCompensatorUserDefined.proprietary"""))
     def parse (context: Context): VoltageCompensatorUserDefined =
     {
         VoltageCompensatorUserDefined(
@@ -818,7 +818,7 @@ extends
     Parseable[WindPlantUserDefined]
 {
     val sup = WindPlantDynamics.parse _
-    val proprietary = parse_element (element ("""WindPlantUserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""WindPlantUserDefined.proprietary"""))
     def parse (context: Context): WindPlantUserDefined =
     {
         WindPlantUserDefined(
@@ -861,7 +861,7 @@ extends
     Parseable[WindType1or2UserDefined]
 {
     val sup = WindTurbineType1or2Dynamics.parse _
-    val proprietary = parse_element (element ("""WindType1or2UserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""WindType1or2UserDefined.proprietary"""))
     def parse (context: Context): WindType1or2UserDefined =
     {
         WindType1or2UserDefined(
@@ -904,7 +904,7 @@ extends
     Parseable[WindType3or4UserDefined]
 {
     val sup = WindTurbineType3or4Dynamics.parse _
-    val proprietary = parse_element (element ("""WindType3or4UserDefined.proprietary"""))_
+    val proprietary = parse_element (element ("""WindType3or4UserDefined.proprietary"""))
     def parse (context: Context): WindType3or4UserDefined =
     {
         WindType3or4UserDefined(

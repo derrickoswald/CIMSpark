@@ -92,24 +92,24 @@ extends
     Parseable[ACDCConverter]
 {
     val sup = ConductingEquipment.parse _
-    val baseS = parse_element (element ("""ACDCConverter.baseS"""))_
-    val idc = parse_element (element ("""ACDCConverter.idc"""))_
-    val idleLoss = parse_element (element ("""ACDCConverter.idleLoss"""))_
-    val maxUdc = parse_element (element ("""ACDCConverter.maxUdc"""))_
-    val minUdc = parse_element (element ("""ACDCConverter.minUdc"""))_
-    val numberOfValves = parse_element (element ("""ACDCConverter.numberOfValves"""))_
-    val p = parse_element (element ("""ACDCConverter.p"""))_
-    val poleLossP = parse_element (element ("""ACDCConverter.poleLossP"""))_
-    val q = parse_element (element ("""ACDCConverter.q"""))_
-    val ratedUdc = parse_element (element ("""ACDCConverter.ratedUdc"""))_
-    val resistiveLoss = parse_element (element ("""ACDCConverter.resistiveLoss"""))_
-    val switchingLoss = parse_element (element ("""ACDCConverter.switchingLoss"""))_
-    val targetPpcc = parse_element (element ("""ACDCConverter.targetPpcc"""))_
-    val targetUdc = parse_element (element ("""ACDCConverter.targetUdc"""))_
-    val uc = parse_element (element ("""ACDCConverter.uc"""))_
-    val udc = parse_element (element ("""ACDCConverter.udc"""))_
-    val valveU0 = parse_element (element ("""ACDCConverter.valveU0"""))_
-    val PccTerminal = parse_attribute (attribute ("""ACDCConverter.PccTerminal"""))_
+    val baseS = parse_element (element ("""ACDCConverter.baseS"""))
+    val idc = parse_element (element ("""ACDCConverter.idc"""))
+    val idleLoss = parse_element (element ("""ACDCConverter.idleLoss"""))
+    val maxUdc = parse_element (element ("""ACDCConverter.maxUdc"""))
+    val minUdc = parse_element (element ("""ACDCConverter.minUdc"""))
+    val numberOfValves = parse_element (element ("""ACDCConverter.numberOfValves"""))
+    val p = parse_element (element ("""ACDCConverter.p"""))
+    val poleLossP = parse_element (element ("""ACDCConverter.poleLossP"""))
+    val q = parse_element (element ("""ACDCConverter.q"""))
+    val ratedUdc = parse_element (element ("""ACDCConverter.ratedUdc"""))
+    val resistiveLoss = parse_element (element ("""ACDCConverter.resistiveLoss"""))
+    val switchingLoss = parse_element (element ("""ACDCConverter.switchingLoss"""))
+    val targetPpcc = parse_element (element ("""ACDCConverter.targetPpcc"""))
+    val targetUdc = parse_element (element ("""ACDCConverter.targetUdc"""))
+    val uc = parse_element (element ("""ACDCConverter.uc"""))
+    val udc = parse_element (element ("""ACDCConverter.udc"""))
+    val valveU0 = parse_element (element ("""ACDCConverter.valveU0"""))
+    val PccTerminal = parse_attribute (attribute ("""ACDCConverter.PccTerminal"""))
     def parse (context: Context): ACDCConverter =
     {
         ACDCConverter(
@@ -170,8 +170,8 @@ extends
     Parseable[ACDCConverterDCTerminal]
 {
     val sup = DCBaseTerminal.parse _
-    val polarity = parse_attribute (attribute ("""ACDCConverterDCTerminal.polarity"""))_
-    val DCConductingEquipment = parse_attribute (attribute ("""ACDCConverterDCTerminal.DCConductingEquipment"""))_
+    val polarity = parse_attribute (attribute ("""ACDCConverterDCTerminal.polarity"""))
+    val DCConductingEquipment = parse_attribute (attribute ("""ACDCConverterDCTerminal.DCConductingEquipment"""))
     def parse (context: Context): ACDCConverterDCTerminal =
     {
         ACDCConverterDCTerminal(
@@ -252,20 +252,20 @@ extends
     Parseable[CsConverter]
 {
     val sup = ACDCConverter.parse _
-    val alpha = parse_element (element ("""CsConverter.alpha"""))_
-    val gamma = parse_element (element ("""CsConverter.gamma"""))_
-    val maxAlpha = parse_element (element ("""CsConverter.maxAlpha"""))_
-    val maxGamma = parse_element (element ("""CsConverter.maxGamma"""))_
-    val maxIdc = parse_element (element ("""CsConverter.maxIdc"""))_
-    val minAlpha = parse_element (element ("""CsConverter.minAlpha"""))_
-    val minGamma = parse_element (element ("""CsConverter.minGamma"""))_
-    val minIdc = parse_element (element ("""CsConverter.minIdc"""))_
-    val operatingMode = parse_attribute (attribute ("""CsConverter.operatingMode"""))_
-    val pPccControl = parse_attribute (attribute ("""CsConverter.pPccControl"""))_
-    val ratedIdc = parse_element (element ("""CsConverter.ratedIdc"""))_
-    val targetAlpha = parse_element (element ("""CsConverter.targetAlpha"""))_
-    val targetGamma = parse_element (element ("""CsConverter.targetGamma"""))_
-    val targetIdc = parse_element (element ("""CsConverter.targetIdc"""))_
+    val alpha = parse_element (element ("""CsConverter.alpha"""))
+    val gamma = parse_element (element ("""CsConverter.gamma"""))
+    val maxAlpha = parse_element (element ("""CsConverter.maxAlpha"""))
+    val maxGamma = parse_element (element ("""CsConverter.maxGamma"""))
+    val maxIdc = parse_element (element ("""CsConverter.maxIdc"""))
+    val minAlpha = parse_element (element ("""CsConverter.minAlpha"""))
+    val minGamma = parse_element (element ("""CsConverter.minGamma"""))
+    val minIdc = parse_element (element ("""CsConverter.minIdc"""))
+    val operatingMode = parse_attribute (attribute ("""CsConverter.operatingMode"""))
+    val pPccControl = parse_attribute (attribute ("""CsConverter.pPccControl"""))
+    val ratedIdc = parse_element (element ("""CsConverter.ratedIdc"""))
+    val targetAlpha = parse_element (element ("""CsConverter.targetAlpha"""))
+    val targetGamma = parse_element (element ("""CsConverter.targetGamma"""))
+    val targetIdc = parse_element (element ("""CsConverter.targetIdc"""))
     def parse (context: Context): CsConverter =
     {
         CsConverter(
@@ -321,8 +321,8 @@ extends
     Parseable[CsOperatingModeKind]
 {
     val sup = BasicElement.parse _
-    val inverter = parse_attribute (attribute ("""CsOperatingModeKind.inverter"""))_
-    val rectifier = parse_attribute (attribute ("""CsOperatingModeKind.rectifier"""))_
+    val inverter = parse_attribute (attribute ("""CsOperatingModeKind.inverter"""))
+    val rectifier = parse_attribute (attribute ("""CsOperatingModeKind.rectifier"""))
     def parse (context: Context): CsOperatingModeKind =
     {
         CsOperatingModeKind(
@@ -368,9 +368,9 @@ extends
     Parseable[CsPpccControlKind]
 {
     val sup = BasicElement.parse _
-    val activePower = parse_attribute (attribute ("""CsPpccControlKind.activePower"""))_
-    val dcCurrent = parse_attribute (attribute ("""CsPpccControlKind.dcCurrent"""))_
-    val dcVoltage = parse_attribute (attribute ("""CsPpccControlKind.dcVoltage"""))_
+    val activePower = parse_attribute (attribute ("""CsPpccControlKind.activePower"""))
+    val dcCurrent = parse_attribute (attribute ("""CsPpccControlKind.dcCurrent"""))
+    val dcVoltage = parse_attribute (attribute ("""CsPpccControlKind.dcVoltage"""))
     def parse (context: Context): CsPpccControlKind =
     {
         CsPpccControlKind(
@@ -417,8 +417,8 @@ extends
     Parseable[DCBaseTerminal]
 {
     val sup = ACDCTerminal.parse _
-    val DCNode = parse_attribute (attribute ("""DCBaseTerminal.DCNode"""))_
-    val DCTopologicalNode = parse_attribute (attribute ("""DCBaseTerminal.DCTopologicalNode"""))_
+    val DCNode = parse_attribute (attribute ("""DCBaseTerminal.DCNode"""))
+    val DCTopologicalNode = parse_attribute (attribute ("""DCBaseTerminal.DCTopologicalNode"""))
     def parse (context: Context): DCBaseTerminal =
     {
         DCBaseTerminal(
@@ -613,9 +613,9 @@ extends
     Parseable[DCConverterOperatingModeKind]
 {
     val sup = BasicElement.parse _
-    val bipolar = parse_attribute (attribute ("""DCConverterOperatingModeKind.bipolar"""))_
-    val monopolarGroundReturn = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarGroundReturn"""))_
-    val monopolarMetallicReturn = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarMetallicReturn"""))_
+    val bipolar = parse_attribute (attribute ("""DCConverterOperatingModeKind.bipolar"""))
+    val monopolarGroundReturn = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarGroundReturn"""))
+    val monopolarMetallicReturn = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarMetallicReturn"""))
     def parse (context: Context): DCConverterOperatingModeKind =
     {
         DCConverterOperatingModeKind(
@@ -658,7 +658,7 @@ extends
     Parseable[DCConverterUnit]
 {
     val sup = DCEquipmentContainer.parse _
-    val operationMode = parse_attribute (attribute ("""DCConverterUnit.operationMode"""))_
+    val operationMode = parse_attribute (attribute ("""DCConverterUnit.operationMode"""))
     def parse (context: Context): DCConverterUnit =
     {
         DCConverterUnit(
@@ -776,8 +776,8 @@ extends
     Parseable[DCGround]
 {
     val sup = DCConductingEquipment.parse _
-    val inductance = parse_element (element ("""DCGround.inductance"""))_
-    val r = parse_element (element ("""DCGround.r"""))_
+    val inductance = parse_element (element ("""DCGround.inductance"""))
+    val r = parse_element (element ("""DCGround.r"""))
     def parse (context: Context): DCGround =
     {
         DCGround(
@@ -819,7 +819,7 @@ extends
     Parseable[DCLine]
 {
     val sup = DCEquipmentContainer.parse _
-    val Region = parse_attribute (attribute ("""DCLine.Region"""))_
+    val Region = parse_attribute (attribute ("""DCLine.Region"""))
     def parse (context: Context): DCLine =
     {
         DCLine(
@@ -870,11 +870,11 @@ extends
     Parseable[DCLineSegment]
 {
     val sup = DCConductingEquipment.parse _
-    val capacitance = parse_element (element ("""DCLineSegment.capacitance"""))_
-    val inductance = parse_element (element ("""DCLineSegment.inductance"""))_
-    val len = parse_element (element ("""DCLineSegment.length"""))_
-    val resistance = parse_element (element ("""DCLineSegment.resistance"""))_
-    val PerLengthParameter = parse_attribute (attribute ("""DCLineSegment.PerLengthParameter"""))_
+    val capacitance = parse_element (element ("""DCLineSegment.capacitance"""))
+    val inductance = parse_element (element ("""DCLineSegment.inductance"""))
+    val len = parse_element (element ("""DCLineSegment.length"""))
+    val resistance = parse_element (element ("""DCLineSegment.resistance"""))
+    val PerLengthParameter = parse_attribute (attribute ("""DCLineSegment.PerLengthParameter"""))
     def parse (context: Context): DCLineSegment =
     {
         DCLineSegment(
@@ -922,8 +922,8 @@ extends
     Parseable[DCNode]
 {
     val sup = IdentifiedObject.parse _
-    val DCEquipmentContainer = parse_attribute (attribute ("""DCNode.DCEquipmentContainer"""))_
-    val DCTopologicalNode = parse_attribute (attribute ("""DCNode.DCTopologicalNode"""))_
+    val DCEquipmentContainer = parse_attribute (attribute ("""DCNode.DCEquipmentContainer"""))
+    val DCTopologicalNode = parse_attribute (attribute ("""DCNode.DCTopologicalNode"""))
     def parse (context: Context): DCNode =
     {
         DCNode(
@@ -969,9 +969,9 @@ extends
     Parseable[DCPolarityKind]
 {
     val sup = BasicElement.parse _
-    val middle = parse_attribute (attribute ("""DCPolarityKind.middle"""))_
-    val negative = parse_attribute (attribute ("""DCPolarityKind.negative"""))_
-    val positive = parse_attribute (attribute ("""DCPolarityKind.positive"""))_
+    val middle = parse_attribute (attribute ("""DCPolarityKind.middle"""))
+    val negative = parse_attribute (attribute ("""DCPolarityKind.negative"""))
+    val positive = parse_attribute (attribute ("""DCPolarityKind.positive"""))
     def parse (context: Context): DCPolarityKind =
     {
         DCPolarityKind(
@@ -1020,9 +1020,9 @@ extends
     Parseable[DCSeriesDevice]
 {
     val sup = DCConductingEquipment.parse _
-    val inductance = parse_element (element ("""DCSeriesDevice.inductance"""))_
-    val ratedUdc = parse_element (element ("""DCSeriesDevice.ratedUdc"""))_
-    val resistance = parse_element (element ("""DCSeriesDevice.resistance"""))_
+    val inductance = parse_element (element ("""DCSeriesDevice.inductance"""))
+    val ratedUdc = parse_element (element ("""DCSeriesDevice.ratedUdc"""))
+    val resistance = parse_element (element ("""DCSeriesDevice.resistance"""))
     def parse (context: Context): DCSeriesDevice =
     {
         DCSeriesDevice(
@@ -1071,9 +1071,9 @@ extends
     Parseable[DCShunt]
 {
     val sup = DCConductingEquipment.parse _
-    val capacitance = parse_element (element ("""DCShunt.capacitance"""))_
-    val ratedUdc = parse_element (element ("""DCShunt.ratedUdc"""))_
-    val resistance = parse_element (element ("""DCShunt.resistance"""))_
+    val capacitance = parse_element (element ("""DCShunt.capacitance"""))
+    val ratedUdc = parse_element (element ("""DCShunt.ratedUdc"""))
+    val resistance = parse_element (element ("""DCShunt.resistance"""))
     def parse (context: Context): DCShunt =
     {
         DCShunt(
@@ -1153,7 +1153,7 @@ extends
     Parseable[DCTerminal]
 {
     val sup = DCBaseTerminal.parse _
-    val DCConductingEquipment = parse_attribute (attribute ("""DCTerminal.DCConductingEquipment"""))_
+    val DCConductingEquipment = parse_attribute (attribute ("""DCTerminal.DCConductingEquipment"""))
     def parse (context: Context): DCTerminal =
     {
         DCTerminal(
@@ -1229,9 +1229,9 @@ extends
     Parseable[PerLengthDCLineParameter]
 {
     val sup = PerLengthLineParameter.parse _
-    val capacitance = parse_element (element ("""PerLengthDCLineParameter.capacitance"""))_
-    val inductance = parse_element (element ("""PerLengthDCLineParameter.inductance"""))_
-    val resistance = parse_element (element ("""PerLengthDCLineParameter.resistance"""))_
+    val capacitance = parse_element (element ("""PerLengthDCLineParameter.capacitance"""))
+    val inductance = parse_element (element ("""PerLengthDCLineParameter.inductance"""))
+    val resistance = parse_element (element ("""PerLengthDCLineParameter.resistance"""))
     def parse (context: Context): PerLengthDCLineParameter =
     {
         PerLengthDCLineParameter(
@@ -1338,18 +1338,18 @@ extends
     Parseable[VsConverter]
 {
     val sup = ACDCConverter.parse _
-    val delta = parse_element (element ("""VsConverter.delta"""))_
-    val droop = parse_element (element ("""VsConverter.droop"""))_
-    val droopCompensation = parse_element (element ("""VsConverter.droopCompensation"""))_
-    val maxModulationIndex = parse_element (element ("""VsConverter.maxModulationIndex"""))_
-    val maxValveCurrent = parse_element (element ("""VsConverter.maxValveCurrent"""))_
-    val pPccControl = parse_attribute (attribute ("""VsConverter.pPccControl"""))_
-    val qPccControl = parse_attribute (attribute ("""VsConverter.qPccControl"""))_
-    val qShare = parse_element (element ("""VsConverter.qShare"""))_
-    val targetQpcc = parse_element (element ("""VsConverter.targetQpcc"""))_
-    val targetUpcc = parse_element (element ("""VsConverter.targetUpcc"""))_
-    val uf = parse_element (element ("""VsConverter.uf"""))_
-    val CapabilityCurve = parse_attribute (attribute ("""VsConverter.CapabilityCurve"""))_
+    val delta = parse_element (element ("""VsConverter.delta"""))
+    val droop = parse_element (element ("""VsConverter.droop"""))
+    val droopCompensation = parse_element (element ("""VsConverter.droopCompensation"""))
+    val maxModulationIndex = parse_element (element ("""VsConverter.maxModulationIndex"""))
+    val maxValveCurrent = parse_element (element ("""VsConverter.maxValveCurrent"""))
+    val pPccControl = parse_attribute (attribute ("""VsConverter.pPccControl"""))
+    val qPccControl = parse_attribute (attribute ("""VsConverter.qPccControl"""))
+    val qShare = parse_element (element ("""VsConverter.qShare"""))
+    val targetQpcc = parse_element (element ("""VsConverter.targetQpcc"""))
+    val targetUpcc = parse_element (element ("""VsConverter.targetUpcc"""))
+    val uf = parse_element (element ("""VsConverter.uf"""))
+    val CapabilityCurve = parse_attribute (attribute ("""VsConverter.CapabilityCurve"""))
     def parse (context: Context): VsConverter =
     {
         VsConverter(
@@ -1409,11 +1409,11 @@ extends
     Parseable[VsPpccControlKind]
 {
     val sup = BasicElement.parse _
-    val pPcc = parse_attribute (attribute ("""VsPpccControlKind.pPcc"""))_
-    val pPccAndUdcDroop = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroop"""))_
-    val pPccAndUdcDroopPilot = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopPilot"""))_
-    val pPccAndUdcDroopWithCompensation = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopWithCompensation"""))_
-    val udc = parse_attribute (attribute ("""VsPpccControlKind.udc"""))_
+    val pPcc = parse_attribute (attribute ("""VsPpccControlKind.pPcc"""))
+    val pPccAndUdcDroop = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroop"""))
+    val pPccAndUdcDroopPilot = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopPilot"""))
+    val pPccAndUdcDroopWithCompensation = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopWithCompensation"""))
+    val udc = parse_attribute (attribute ("""VsPpccControlKind.udc"""))
     def parse (context: Context): VsPpccControlKind =
     {
         VsPpccControlKind(
@@ -1455,9 +1455,9 @@ extends
     Parseable[VsQpccControlKind]
 {
     val sup = BasicElement.parse _
-    val powerFactorPcc = parse_attribute (attribute ("""VsQpccControlKind.powerFactorPcc"""))_
-    val reactivePcc = parse_attribute (attribute ("""VsQpccControlKind.reactivePcc"""))_
-    val voltagePcc = parse_attribute (attribute ("""VsQpccControlKind.voltagePcc"""))_
+    val powerFactorPcc = parse_attribute (attribute ("""VsQpccControlKind.powerFactorPcc"""))
+    val reactivePcc = parse_attribute (attribute ("""VsQpccControlKind.reactivePcc"""))
+    val voltagePcc = parse_attribute (attribute ("""VsQpccControlKind.voltagePcc"""))
     def parse (context: Context): VsQpccControlKind =
     {
         VsQpccControlKind(

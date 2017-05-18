@@ -32,8 +32,8 @@ extends
     Parseable[ADSInstructionTypeCommitment]
 {
     val sup = BasicElement.parse _
-    val SHUT_DOWN = parse_attribute (attribute ("""ADSInstructionTypeCommitment.SHUT_DOWN"""))_
-    val START_UP = parse_attribute (attribute ("""ADSInstructionTypeCommitment.START_UP"""))_
+    val SHUT_DOWN = parse_attribute (attribute ("""ADSInstructionTypeCommitment.SHUT_DOWN"""))
+    val START_UP = parse_attribute (attribute ("""ADSInstructionTypeCommitment.START_UP"""))
     def parse (context: Context): ADSInstructionTypeCommitment =
     {
         ADSInstructionTypeCommitment(
@@ -81,9 +81,9 @@ extends
     Parseable[ADSInstructionTypeOOS]
 {
     val sup = BasicElement.parse _
-    val FIXED_CONSTRAINT = parse_attribute (attribute ("""ADSInstructionTypeOOS.FIXED_CONSTRAINT"""))_
-    val MAX_CONSTRAINT = parse_attribute (attribute ("""ADSInstructionTypeOOS.MAX_CONSTRAINT"""))_
-    val MIN_CONSTRAINT = parse_attribute (attribute ("""ADSInstructionTypeOOS.MIN_CONSTRAINT"""))_
+    val FIXED_CONSTRAINT = parse_attribute (attribute ("""ADSInstructionTypeOOS.FIXED_CONSTRAINT"""))
+    val MAX_CONSTRAINT = parse_attribute (attribute ("""ADSInstructionTypeOOS.MAX_CONSTRAINT"""))
+    val MIN_CONSTRAINT = parse_attribute (attribute ("""ADSInstructionTypeOOS.MIN_CONSTRAINT"""))
     def parse (context: Context): ADSInstructionTypeOOS =
     {
         ADSInstructionTypeOOS(
@@ -129,8 +129,8 @@ extends
     Parseable[AdderType]
 {
     val sup = BasicElement.parse _
-    val BASELINE = parse_attribute (attribute ("""AdderType.BASELINE"""))_
-    val NEGOTIATED = parse_attribute (attribute ("""AdderType.NEGOTIATED"""))_
+    val BASELINE = parse_attribute (attribute ("""AdderType.BASELINE"""))
+    val NEGOTIATED = parse_attribute (attribute ("""AdderType.NEGOTIATED"""))
     def parse (context: Context): AdderType =
     {
         AdderType(
@@ -169,9 +169,9 @@ extends
     Parseable[AlarmDisplayType]
 {
     val sup = BasicElement.parse _
-    val Appear = parse_attribute (attribute ("""AlarmDisplayType.Appear"""))_
-    val Disappear = parse_attribute (attribute ("""AlarmDisplayType.Disappear"""))_
-    val Fleeting = parse_attribute (attribute ("""AlarmDisplayType.Fleeting"""))_
+    val Appear = parse_attribute (attribute ("""AlarmDisplayType.Appear"""))
+    val Disappear = parse_attribute (attribute ("""AlarmDisplayType.Disappear"""))
+    val Fleeting = parse_attribute (attribute ("""AlarmDisplayType.Fleeting"""))
     def parse (context: Context): AlarmDisplayType =
     {
         AlarmDisplayType(
@@ -244,42 +244,42 @@ extends
     Parseable[AllocationEnergyTypeCode]
 {
     val sup = BasicElement.parse _
-    val ACNG = parse_attribute (attribute ("""AllocationEnergyTypeCode.ACNG"""))_
-    val BS = parse_attribute (attribute ("""AllocationEnergyTypeCode.BS"""))_
-    val DAPE = parse_attribute (attribute ("""AllocationEnergyTypeCode.DAPE"""))_
-    val DASE = parse_attribute (attribute ("""AllocationEnergyTypeCode.DASE"""))_
-    val ESRT = parse_attribute (attribute ("""AllocationEnergyTypeCode.ESRT"""))_
-    val ESYS = parse_attribute (attribute ("""AllocationEnergyTypeCode.ESYS"""))_
-    val ETC = parse_attribute (attribute ("""AllocationEnergyTypeCode.ETC"""))_
-    val HASE = parse_attribute (attribute ("""AllocationEnergyTypeCode.HASE"""))_
-    val LMPM = parse_attribute (attribute ("""AllocationEnergyTypeCode.LMPM"""))_
-    val MINL = parse_attribute (attribute ("""AllocationEnergyTypeCode.MINL"""))_
-    val MLE = parse_attribute (attribute ("""AllocationEnergyTypeCode.MLE"""))_
-    val MSSLFE = parse_attribute (attribute ("""AllocationEnergyTypeCode.MSSLFE"""))_
-    val OE = parse_attribute (attribute ("""AllocationEnergyTypeCode.OE"""))_
-    val OTHER = parse_attribute (attribute ("""AllocationEnergyTypeCode.OTHER"""))_
-    val OVGN = parse_attribute (attribute ("""AllocationEnergyTypeCode.OVGN"""))_
-    val PE = parse_attribute (attribute ("""AllocationEnergyTypeCode.PE"""))_
-    val RCNG = parse_attribute (attribute ("""AllocationEnergyTypeCode.RCNG"""))_
-    val RE = parse_attribute (attribute ("""AllocationEnergyTypeCode.RE"""))_
-    val RED = parse_attribute (attribute ("""AllocationEnergyTypeCode.RED"""))_
-    val RMRD = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRD"""))_
-    val RMRH = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRH"""))_
-    val RMRR = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRR"""))_
-    val RMRS = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRS"""))_
-    val RMRT = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRT"""))_
-    val RSYS = parse_attribute (attribute ("""AllocationEnergyTypeCode.RSYS"""))_
-    val RTSSE = parse_attribute (attribute ("""AllocationEnergyTypeCode.RTSSE"""))_
-    val SDWN = parse_attribute (attribute ("""AllocationEnergyTypeCode.SDWN"""))_
-    val SE = parse_attribute (attribute ("""AllocationEnergyTypeCode.SE"""))_
-    val SLIC = parse_attribute (attribute ("""AllocationEnergyTypeCode.SLIC"""))_
-    val SRE = parse_attribute (attribute ("""AllocationEnergyTypeCode.SRE"""))_
-    val STRT = parse_attribute (attribute ("""AllocationEnergyTypeCode.STRT"""))_
-    val SUMR = parse_attribute (attribute ("""AllocationEnergyTypeCode.SUMR"""))_
-    val TCNG = parse_attribute (attribute ("""AllocationEnergyTypeCode.TCNG"""))_
-    val TEST = parse_attribute (attribute ("""AllocationEnergyTypeCode.TEST"""))_
-    val TOR = parse_attribute (attribute ("""AllocationEnergyTypeCode.TOR"""))_
-    val VS = parse_attribute (attribute ("""AllocationEnergyTypeCode.VS"""))_
+    val ACNG = parse_attribute (attribute ("""AllocationEnergyTypeCode.ACNG"""))
+    val BS = parse_attribute (attribute ("""AllocationEnergyTypeCode.BS"""))
+    val DAPE = parse_attribute (attribute ("""AllocationEnergyTypeCode.DAPE"""))
+    val DASE = parse_attribute (attribute ("""AllocationEnergyTypeCode.DASE"""))
+    val ESRT = parse_attribute (attribute ("""AllocationEnergyTypeCode.ESRT"""))
+    val ESYS = parse_attribute (attribute ("""AllocationEnergyTypeCode.ESYS"""))
+    val ETC = parse_attribute (attribute ("""AllocationEnergyTypeCode.ETC"""))
+    val HASE = parse_attribute (attribute ("""AllocationEnergyTypeCode.HASE"""))
+    val LMPM = parse_attribute (attribute ("""AllocationEnergyTypeCode.LMPM"""))
+    val MINL = parse_attribute (attribute ("""AllocationEnergyTypeCode.MINL"""))
+    val MLE = parse_attribute (attribute ("""AllocationEnergyTypeCode.MLE"""))
+    val MSSLFE = parse_attribute (attribute ("""AllocationEnergyTypeCode.MSSLFE"""))
+    val OE = parse_attribute (attribute ("""AllocationEnergyTypeCode.OE"""))
+    val OTHER = parse_attribute (attribute ("""AllocationEnergyTypeCode.OTHER"""))
+    val OVGN = parse_attribute (attribute ("""AllocationEnergyTypeCode.OVGN"""))
+    val PE = parse_attribute (attribute ("""AllocationEnergyTypeCode.PE"""))
+    val RCNG = parse_attribute (attribute ("""AllocationEnergyTypeCode.RCNG"""))
+    val RE = parse_attribute (attribute ("""AllocationEnergyTypeCode.RE"""))
+    val RED = parse_attribute (attribute ("""AllocationEnergyTypeCode.RED"""))
+    val RMRD = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRD"""))
+    val RMRH = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRH"""))
+    val RMRR = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRR"""))
+    val RMRS = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRS"""))
+    val RMRT = parse_attribute (attribute ("""AllocationEnergyTypeCode.RMRT"""))
+    val RSYS = parse_attribute (attribute ("""AllocationEnergyTypeCode.RSYS"""))
+    val RTSSE = parse_attribute (attribute ("""AllocationEnergyTypeCode.RTSSE"""))
+    val SDWN = parse_attribute (attribute ("""AllocationEnergyTypeCode.SDWN"""))
+    val SE = parse_attribute (attribute ("""AllocationEnergyTypeCode.SE"""))
+    val SLIC = parse_attribute (attribute ("""AllocationEnergyTypeCode.SLIC"""))
+    val SRE = parse_attribute (attribute ("""AllocationEnergyTypeCode.SRE"""))
+    val STRT = parse_attribute (attribute ("""AllocationEnergyTypeCode.STRT"""))
+    val SUMR = parse_attribute (attribute ("""AllocationEnergyTypeCode.SUMR"""))
+    val TCNG = parse_attribute (attribute ("""AllocationEnergyTypeCode.TCNG"""))
+    val TEST = parse_attribute (attribute ("""AllocationEnergyTypeCode.TEST"""))
+    val TOR = parse_attribute (attribute ("""AllocationEnergyTypeCode.TOR"""))
+    val VS = parse_attribute (attribute ("""AllocationEnergyTypeCode.VS"""))
     def parse (context: Context): AllocationEnergyTypeCode =
     {
         AllocationEnergyTypeCode(
@@ -361,10 +361,10 @@ extends
     Parseable[AncillaryCommodityType]
 {
     val sup = BasicElement.parse _
-    val NONSPIN = parse_attribute (attribute ("""AncillaryCommodityType.NONSPIN"""))_
-    val REGDN = parse_attribute (attribute ("""AncillaryCommodityType.REGDN"""))_
-    val REGUP = parse_attribute (attribute ("""AncillaryCommodityType.REGUP"""))_
-    val SPIN = parse_attribute (attribute ("""AncillaryCommodityType.SPIN"""))_
+    val NONSPIN = parse_attribute (attribute ("""AncillaryCommodityType.NONSPIN"""))
+    val REGDN = parse_attribute (attribute ("""AncillaryCommodityType.REGDN"""))
+    val REGUP = parse_attribute (attribute ("""AncillaryCommodityType.REGUP"""))
+    val SPIN = parse_attribute (attribute ("""AncillaryCommodityType.SPIN"""))
     def parse (context: Context): AncillaryCommodityType =
     {
         AncillaryCommodityType(
@@ -405,9 +405,9 @@ extends
     Parseable[BidPriceCapType]
 {
     val sup = BasicElement.parse _
-    val AS = parse_attribute (attribute ("""BidPriceCapType.AS"""))_
-    val ENERGY = parse_attribute (attribute ("""BidPriceCapType.ENERGY"""))_
-    val RUC = parse_attribute (attribute ("""BidPriceCapType.RUC"""))_
+    val AS = parse_attribute (attribute ("""BidPriceCapType.AS"""))
+    val ENERGY = parse_attribute (attribute ("""BidPriceCapType.ENERGY"""))
+    val RUC = parse_attribute (attribute ("""BidPriceCapType.RUC"""))
     def parse (context: Context): BidPriceCapType =
     {
         BidPriceCapType(
@@ -479,16 +479,16 @@ extends
     Parseable[BidStatusType]
 {
     val sup = BasicElement.parse _
-    val CL = parse_attribute (attribute ("""BidStatusType.CL"""))_
-    val CM = parse_attribute (attribute ("""BidStatusType.CM"""))_
-    val CV = parse_attribute (attribute ("""BidStatusType.CV"""))_
-    val CX = parse_attribute (attribute ("""BidStatusType.CX"""))_
-    val I = parse_attribute (attribute ("""BidStatusType.I"""))_
-    val M = parse_attribute (attribute ("""BidStatusType.M"""))_
-    val O = parse_attribute (attribute ("""BidStatusType.O"""))_
-    val RJ = parse_attribute (attribute ("""BidStatusType.RJ"""))_
-    val RP = parse_attribute (attribute ("""BidStatusType.RP"""))_
-    val V = parse_attribute (attribute ("""BidStatusType.V"""))_
+    val CL = parse_attribute (attribute ("""BidStatusType.CL"""))
+    val CM = parse_attribute (attribute ("""BidStatusType.CM"""))
+    val CV = parse_attribute (attribute ("""BidStatusType.CV"""))
+    val CX = parse_attribute (attribute ("""BidStatusType.CX"""))
+    val I = parse_attribute (attribute ("""BidStatusType.I"""))
+    val M = parse_attribute (attribute ("""BidStatusType.M"""))
+    val O = parse_attribute (attribute ("""BidStatusType.O"""))
+    val RJ = parse_attribute (attribute ("""BidStatusType.RJ"""))
+    val RP = parse_attribute (attribute ("""BidStatusType.RP"""))
+    val V = parse_attribute (attribute ("""BidStatusType.V"""))
     def parse (context: Context): BidStatusType =
     {
         BidStatusType(
@@ -539,13 +539,13 @@ extends
     Parseable[CleanTradeProductType]
 {
     val sup = BasicElement.parse _
-    val APN = parse_attribute (attribute ("""CleanTradeProductType.APN"""))_
-    val CPT = parse_attribute (attribute ("""CleanTradeProductType.CPT"""))_
-    val NRT = parse_attribute (attribute ("""CleanTradeProductType.NRT"""))_
-    val PHY = parse_attribute (attribute ("""CleanTradeProductType.PHY"""))_
-    val RDT = parse_attribute (attribute ("""CleanTradeProductType.RDT"""))_
-    val RUT = parse_attribute (attribute ("""CleanTradeProductType.RUT"""))_
-    val SRT = parse_attribute (attribute ("""CleanTradeProductType.SRT"""))_
+    val APN = parse_attribute (attribute ("""CleanTradeProductType.APN"""))
+    val CPT = parse_attribute (attribute ("""CleanTradeProductType.CPT"""))
+    val NRT = parse_attribute (attribute ("""CleanTradeProductType.NRT"""))
+    val PHY = parse_attribute (attribute ("""CleanTradeProductType.PHY"""))
+    val RDT = parse_attribute (attribute ("""CleanTradeProductType.RDT"""))
+    val RUT = parse_attribute (attribute ("""CleanTradeProductType.RUT"""))
+    val SRT = parse_attribute (attribute ("""CleanTradeProductType.SRT"""))
     def parse (context: Context): CleanTradeProductType =
     {
         CleanTradeProductType(
@@ -595,8 +595,8 @@ extends
     Parseable[CurrentStatusSC]
 {
     val sup = BasicElement.parse _
-    val ACTIVE = parse_attribute (attribute ("""CurrentStatusSC.ACTIVE"""))_
-    val INACTIVE = parse_attribute (attribute ("""CurrentStatusSC.INACTIVE"""))_
+    val ACTIVE = parse_attribute (attribute ("""CurrentStatusSC.ACTIVE"""))
+    val INACTIVE = parse_attribute (attribute ("""CurrentStatusSC.INACTIVE"""))
     def parse (context: Context): CurrentStatusSC =
     {
         CurrentStatusSC(
@@ -633,7 +633,7 @@ extends
     Parseable[DAMMarketType]
 {
     val sup = BasicElement.parse _
-    val DAM = parse_attribute (attribute ("""DAMMarketType.DAM"""))_
+    val DAM = parse_attribute (attribute ("""DAMMarketType.DAM"""))
     def parse (context: Context): DAMMarketType =
     {
         DAMMarketType(
@@ -674,12 +674,12 @@ extends
     Parseable[DispatchAcceptStatus]
 {
     val sup = BasicElement.parse _
-    val ACCEPT = parse_attribute (attribute ("""DispatchAcceptStatus.ACCEPT"""))_
-    val CANNOT = parse_attribute (attribute ("""DispatchAcceptStatus.CANNOT"""))_
-    val DECLINE = parse_attribute (attribute ("""DispatchAcceptStatus.DECLINE"""))_
-    val NON_RESPONSE = parse_attribute (attribute ("""DispatchAcceptStatus.NON_RESPONSE"""))_
-    val OK = parse_attribute (attribute ("""DispatchAcceptStatus.OK"""))_
-    val PARTIAL = parse_attribute (attribute ("""DispatchAcceptStatus.PARTIAL"""))_
+    val ACCEPT = parse_attribute (attribute ("""DispatchAcceptStatus.ACCEPT"""))
+    val CANNOT = parse_attribute (attribute ("""DispatchAcceptStatus.CANNOT"""))
+    val DECLINE = parse_attribute (attribute ("""DispatchAcceptStatus.DECLINE"""))
+    val NON_RESPONSE = parse_attribute (attribute ("""DispatchAcceptStatus.NON_RESPONSE"""))
+    val OK = parse_attribute (attribute ("""DispatchAcceptStatus.OK"""))
+    val PARTIAL = parse_attribute (attribute ("""DispatchAcceptStatus.PARTIAL"""))
     def parse (context: Context): DispatchAcceptStatus =
     {
         DispatchAcceptStatus(
@@ -721,8 +721,8 @@ extends
     Parseable[DispatchTransactionType]
 {
     val sup = BasicElement.parse _
-    val Purchase = parse_attribute (attribute ("""DispatchTransactionType.Purchase"""))_
-    val Sale = parse_attribute (attribute ("""DispatchTransactionType.Sale"""))_
+    val Purchase = parse_attribute (attribute ("""DispatchTransactionType.Purchase"""))
+    val Sale = parse_attribute (attribute ("""DispatchTransactionType.Sale"""))
     def parse (context: Context): DispatchTransactionType =
     {
         DispatchTransactionType(
@@ -816,24 +816,24 @@ extends
     Parseable[EnergyTypeCode]
 {
     val sup = BasicElement.parse _
-    val DABE = parse_attribute (attribute ("""EnergyTypeCode.DABE"""))_
-    val DAPE = parse_attribute (attribute ("""EnergyTypeCode.DAPE"""))_
-    val DASE = parse_attribute (attribute ("""EnergyTypeCode.DASE"""))_
-    val DMLE = parse_attribute (attribute ("""EnergyTypeCode.DMLE"""))_
-    val DSSE = parse_attribute (attribute ("""EnergyTypeCode.DSSE"""))_
-    val EDE = parse_attribute (attribute ("""EnergyTypeCode.EDE"""))_
-    val HASE = parse_attribute (attribute ("""EnergyTypeCode.HASE"""))_
-    val MLE = parse_attribute (attribute ("""EnergyTypeCode.MLE"""))_
-    val MSSLFE = parse_attribute (attribute ("""EnergyTypeCode.MSSLFE"""))_
-    val OE = parse_attribute (attribute ("""EnergyTypeCode.OE"""))_
-    val PE = parse_attribute (attribute ("""EnergyTypeCode.PE"""))_
-    val RE = parse_attribute (attribute ("""EnergyTypeCode.RE"""))_
-    val RED = parse_attribute (attribute ("""EnergyTypeCode.RED"""))_
-    val RMRE = parse_attribute (attribute ("""EnergyTypeCode.RMRE"""))_
-    val RTSSE = parse_attribute (attribute ("""EnergyTypeCode.RTSSE"""))_
-    val SE = parse_attribute (attribute ("""EnergyTypeCode.SE"""))_
-    val SRE = parse_attribute (attribute ("""EnergyTypeCode.SRE"""))_
-    val TEE = parse_attribute (attribute ("""EnergyTypeCode.TEE"""))_
+    val DABE = parse_attribute (attribute ("""EnergyTypeCode.DABE"""))
+    val DAPE = parse_attribute (attribute ("""EnergyTypeCode.DAPE"""))
+    val DASE = parse_attribute (attribute ("""EnergyTypeCode.DASE"""))
+    val DMLE = parse_attribute (attribute ("""EnergyTypeCode.DMLE"""))
+    val DSSE = parse_attribute (attribute ("""EnergyTypeCode.DSSE"""))
+    val EDE = parse_attribute (attribute ("""EnergyTypeCode.EDE"""))
+    val HASE = parse_attribute (attribute ("""EnergyTypeCode.HASE"""))
+    val MLE = parse_attribute (attribute ("""EnergyTypeCode.MLE"""))
+    val MSSLFE = parse_attribute (attribute ("""EnergyTypeCode.MSSLFE"""))
+    val OE = parse_attribute (attribute ("""EnergyTypeCode.OE"""))
+    val PE = parse_attribute (attribute ("""EnergyTypeCode.PE"""))
+    val RE = parse_attribute (attribute ("""EnergyTypeCode.RE"""))
+    val RED = parse_attribute (attribute ("""EnergyTypeCode.RED"""))
+    val RMRE = parse_attribute (attribute ("""EnergyTypeCode.RMRE"""))
+    val RTSSE = parse_attribute (attribute ("""EnergyTypeCode.RTSSE"""))
+    val SE = parse_attribute (attribute ("""EnergyTypeCode.SE"""))
+    val SRE = parse_attribute (attribute ("""EnergyTypeCode.SRE"""))
+    val TEE = parse_attribute (attribute ("""EnergyTypeCode.TEE"""))
     def parse (context: Context): EnergyTypeCode =
     {
         EnergyTypeCode(
@@ -888,9 +888,9 @@ extends
     Parseable[JobFlagType]
 {
     val sup = BasicElement.parse _
-    val CREATED = parse_attribute (attribute ("""JobFlagType.CREATED"""))_
-    val DELETED = parse_attribute (attribute ("""JobFlagType.DELETED"""))_
-    val MODIFIED = parse_attribute (attribute ("""JobFlagType.MODIFIED"""))_
+    val CREATED = parse_attribute (attribute ("""JobFlagType.CREATED"""))
+    val DELETED = parse_attribute (attribute ("""JobFlagType.DELETED"""))
+    val MODIFIED = parse_attribute (attribute ("""JobFlagType.MODIFIED"""))
     def parse (context: Context): JobFlagType =
     {
         JobFlagType(
@@ -929,8 +929,8 @@ extends
     Parseable[JobScheduleType]
 {
     val sup = BasicElement.parse _
-    val CRITICAL = parse_attribute (attribute ("""JobScheduleType.CRITICAL"""))_
-    val NONCRITICAL = parse_attribute (attribute ("""JobScheduleType.NONCRITICAL"""))_
+    val CRITICAL = parse_attribute (attribute ("""JobScheduleType.CRITICAL"""))
+    val NONCRITICAL = parse_attribute (attribute ("""JobScheduleType.NONCRITICAL"""))
     def parse (context: Context): JobScheduleType =
     {
         JobScheduleType(
@@ -969,9 +969,9 @@ extends
     Parseable[JobStartEndType]
 {
     val sup = BasicElement.parse _
-    val END = parse_attribute (attribute ("""JobStartEndType.END"""))_
-    val NA = parse_attribute (attribute ("""JobStartEndType.NA"""))_
-    val START = parse_attribute (attribute ("""JobStartEndType.START"""))_
+    val END = parse_attribute (attribute ("""JobStartEndType.END"""))
+    val NA = parse_attribute (attribute ("""JobStartEndType.NA"""))
+    val START = parse_attribute (attribute ("""JobStartEndType.START"""))
     def parse (context: Context): JobStartEndType =
     {
         JobStartEndType(
@@ -1010,8 +1010,8 @@ extends
     Parseable[LFCResourceType]
 {
     val sup = BasicElement.parse _
-    val GEN = parse_attribute (attribute ("""LFCResourceType.GEN"""))_
-    val PUMP = parse_attribute (attribute ("""LFCResourceType.PUMP"""))_
+    val GEN = parse_attribute (attribute ("""LFCResourceType.GEN"""))
+    val PUMP = parse_attribute (attribute ("""LFCResourceType.PUMP"""))
     def parse (context: Context): LFCResourceType =
     {
         LFCResourceType(
@@ -1049,8 +1049,8 @@ extends
     Parseable[LoadFollowingCapacityType]
 {
     val sup = BasicElement.parse _
-    val DOWN = parse_attribute (attribute ("""LoadFollowingCapacityType.DOWN"""))_
-    val UP = parse_attribute (attribute ("""LoadFollowingCapacityType.UP"""))_
+    val DOWN = parse_attribute (attribute ("""LoadFollowingCapacityType.DOWN"""))
+    val UP = parse_attribute (attribute ("""LoadFollowingCapacityType.UP"""))
     def parse (context: Context): LoadFollowingCapacityType =
     {
         LoadFollowingCapacityType(
@@ -1098,9 +1098,9 @@ extends
     Parseable[MQSDELType]
 {
     val sup = BasicElement.parse _
-    val ADD = parse_attribute (attribute ("""MQSDELType.ADD"""))_
-    val CHG = parse_attribute (attribute ("""MQSDELType.CHG"""))_
-    val DEL = parse_attribute (attribute ("""MQSDELType.DEL"""))_
+    val ADD = parse_attribute (attribute ("""MQSDELType.ADD"""))
+    val CHG = parse_attribute (attribute ("""MQSDELType.CHG"""))
+    val DEL = parse_attribute (attribute ("""MQSDELType.DEL"""))
     def parse (context: Context): MQSDELType =
     {
         MQSDELType(
@@ -1155,11 +1155,11 @@ extends
     Parseable[MarketProductTypeAsReq]
 {
     val sup = BasicElement.parse _
-    val AS = parse_attribute (attribute ("""MarketProductTypeAsReq.AS"""))_
-    val NR = parse_attribute (attribute ("""MarketProductTypeAsReq.NR"""))_
-    val RD = parse_attribute (attribute ("""MarketProductTypeAsReq.RD"""))_
-    val RU = parse_attribute (attribute ("""MarketProductTypeAsReq.RU"""))_
-    val SR = parse_attribute (attribute ("""MarketProductTypeAsReq.SR"""))_
+    val AS = parse_attribute (attribute ("""MarketProductTypeAsReq.AS"""))
+    val NR = parse_attribute (attribute ("""MarketProductTypeAsReq.NR"""))
+    val RD = parse_attribute (attribute ("""MarketProductTypeAsReq.RD"""))
+    val RU = parse_attribute (attribute ("""MarketProductTypeAsReq.RU"""))
+    val SR = parse_attribute (attribute ("""MarketProductTypeAsReq.SR"""))
     def parse (context: Context): MarketProductTypeAsReq =
     {
         MarketProductTypeAsReq(
@@ -1203,11 +1203,11 @@ extends
     Parseable[MarketScheduleServices]
 {
     val sup = BasicElement.parse _
-    val retrieveDefaultBidCurves = parse_attribute (attribute ("""MarketScheduleServices.retrieveDefaultBidCurves"""))_
-    val retrieveMPMResults = parse_attribute (attribute ("""MarketScheduleServices.retrieveMPMResults"""))_
-    val retrieveMarketAwards = parse_attribute (attribute ("""MarketScheduleServices.retrieveMarketAwards"""))_
-    val retrieveSchedulePrices = parse_attribute (attribute ("""MarketScheduleServices.retrieveSchedulePrices"""))_
-    val retrieveStartUpShutDownInstructions = parse_attribute (attribute ("""MarketScheduleServices.retrieveStartUpShutDownInstructions"""))_
+    val retrieveDefaultBidCurves = parse_attribute (attribute ("""MarketScheduleServices.retrieveDefaultBidCurves"""))
+    val retrieveMPMResults = parse_attribute (attribute ("""MarketScheduleServices.retrieveMPMResults"""))
+    val retrieveMarketAwards = parse_attribute (attribute ("""MarketScheduleServices.retrieveMarketAwards"""))
+    val retrieveSchedulePrices = parse_attribute (attribute ("""MarketScheduleServices.retrieveSchedulePrices"""))
+    val retrieveStartUpShutDownInstructions = parse_attribute (attribute ("""MarketScheduleServices.retrieveStartUpShutDownInstructions"""))
     def parse (context: Context): MarketScheduleServices =
     {
         MarketScheduleServices(
@@ -1260,11 +1260,11 @@ extends
     Parseable[MarketStatementDescription]
 {
     val sup = BasicElement.parse _
-    val DAILY_INITIAL_CREDIT = parse_attribute (attribute ("""MarketStatementDescription.DAILY_INITIAL_CREDIT"""))_
-    val DAILY_INITIAL_MARKET = parse_attribute (attribute ("""MarketStatementDescription.DAILY_INITIAL_MARKET"""))_
-    val DAILY_RECALC_MARKET = parse_attribute (attribute ("""MarketStatementDescription.DAILY_RECALC_MARKET"""))_
-    val MONTHLY_INITIAL_MARKET = parse_attribute (attribute ("""MarketStatementDescription.MONTHLY_INITIAL_MARKET"""))_
-    val MONTHLY_RECALC_MARKET = parse_attribute (attribute ("""MarketStatementDescription.MONTHLY_RECALC_MARKET"""))_
+    val DAILY_INITIAL_CREDIT = parse_attribute (attribute ("""MarketStatementDescription.DAILY_INITIAL_CREDIT"""))
+    val DAILY_INITIAL_MARKET = parse_attribute (attribute ("""MarketStatementDescription.DAILY_INITIAL_MARKET"""))
+    val DAILY_RECALC_MARKET = parse_attribute (attribute ("""MarketStatementDescription.DAILY_RECALC_MARKET"""))
+    val MONTHLY_INITIAL_MARKET = parse_attribute (attribute ("""MarketStatementDescription.MONTHLY_INITIAL_MARKET"""))
+    val MONTHLY_RECALC_MARKET = parse_attribute (attribute ("""MarketStatementDescription.MONTHLY_RECALC_MARKET"""))
     def parse (context: Context): MarketStatementDescription =
     {
         MarketStatementDescription(
@@ -1311,8 +1311,8 @@ extends
     Parseable[MarketStatementDocStatus]
 {
     val sup = BasicElement.parse _
-    val APPROVED = parse_attribute (attribute ("""MarketStatementDocStatus.APPROVED"""))_
-    val CANCELLED = parse_attribute (attribute ("""MarketStatementDocStatus.CANCELLED"""))_
+    val APPROVED = parse_attribute (attribute ("""MarketStatementDocStatus.APPROVED"""))
+    val CANCELLED = parse_attribute (attribute ("""MarketStatementDocStatus.CANCELLED"""))
     def parse (context: Context): MarketStatementDocStatus =
     {
         MarketStatementDocStatus(
@@ -1358,9 +1358,9 @@ extends
     Parseable[MarketStatementDocType]
 {
     val sup = BasicElement.parse _
-    val CREDIT = parse_attribute (attribute ("""MarketStatementDocType.CREDIT"""))_
-    val MARKET_INITIAL = parse_attribute (attribute ("""MarketStatementDocType.MARKET_INITIAL"""))_
-    val MARKET_RECALC = parse_attribute (attribute ("""MarketStatementDocType.MARKET_RECALC"""))_
+    val CREDIT = parse_attribute (attribute ("""MarketStatementDocType.CREDIT"""))
+    val MARKET_INITIAL = parse_attribute (attribute ("""MarketStatementDocType.MARKET_INITIAL"""))
+    val MARKET_RECALC = parse_attribute (attribute ("""MarketStatementDocType.MARKET_RECALC"""))
     def parse (context: Context): MarketStatementDocType =
     {
         MarketStatementDocType(
@@ -1413,12 +1413,12 @@ extends
     Parseable[MarketStatementLineItemAliasName]
 {
     val sup = BasicElement.parse _
-    val CHARGE_CODE_INTERVAL_DETAIL = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_CODE_INTERVAL_DETAIL"""))_
-    val CHARGE_CODE_INTERVAL_TOTAL = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_CODE_INTERVAL_TOTAL"""))_
-    val CHARGE_CODE_SUMMARY = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_CODE_SUMMARY"""))_
-    val CHARGE_GROUP = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_GROUP"""))_
-    val PARENT_CHARGE_GROUP = parse_attribute (attribute ("""MarketStatementLineItemAliasName.PARENT_CHARGE_GROUP"""))_
-    val TRADE_DATE = parse_attribute (attribute ("""MarketStatementLineItemAliasName.TRADE_DATE"""))_
+    val CHARGE_CODE_INTERVAL_DETAIL = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_CODE_INTERVAL_DETAIL"""))
+    val CHARGE_CODE_INTERVAL_TOTAL = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_CODE_INTERVAL_TOTAL"""))
+    val CHARGE_CODE_SUMMARY = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_CODE_SUMMARY"""))
+    val CHARGE_GROUP = parse_attribute (attribute ("""MarketStatementLineItemAliasName.CHARGE_GROUP"""))
+    val PARENT_CHARGE_GROUP = parse_attribute (attribute ("""MarketStatementLineItemAliasName.PARENT_CHARGE_GROUP"""))
+    val TRADE_DATE = parse_attribute (attribute ("""MarketStatementLineItemAliasName.TRADE_DATE"""))
     def parse (context: Context): MarketStatementLineItemAliasName =
     {
         MarketStatementLineItemAliasName(
@@ -1509,22 +1509,22 @@ extends
     Parseable[MeasurementTypeEMS]
 {
     val sup = BasicElement.parse _
-    val ACE = parse_attribute (attribute ("""MeasurementTypeEMS.ACE"""))_
-    val GMOL = parse_attribute (attribute ("""MeasurementTypeEMS.GMOL"""))_
-    val GNOL = parse_attribute (attribute ("""MeasurementTypeEMS.GNOL"""))_
-    val GO = parse_attribute (attribute ("""MeasurementTypeEMS.GO"""))_
-    val GR = parse_attribute (attribute ("""MeasurementTypeEMS.GR"""))_
-    val GS = parse_attribute (attribute ("""MeasurementTypeEMS.GS"""))_
-    val INADV = parse_attribute (attribute ("""MeasurementTypeEMS.INADV"""))_
-    val OARL = parse_attribute (attribute ("""MeasurementTypeEMS.OARL"""))_
-    val PF = parse_attribute (attribute ("""MeasurementTypeEMS.PF"""))_
-    val PIAL = parse_attribute (attribute ("""MeasurementTypeEMS.PIAL"""))_
-    val PIL = parse_attribute (attribute ("""MeasurementTypeEMS.PIL"""))_
-    val PIML = parse_attribute (attribute ("""MeasurementTypeEMS.PIML"""))_
-    val POAL = parse_attribute (attribute ("""MeasurementTypeEMS.POAL"""))_
-    val POL = parse_attribute (attribute ("""MeasurementTypeEMS.POL"""))_
-    val PP = parse_attribute (attribute ("""MeasurementTypeEMS.PP"""))_
-    val SL = parse_attribute (attribute ("""MeasurementTypeEMS.SL"""))_
+    val ACE = parse_attribute (attribute ("""MeasurementTypeEMS.ACE"""))
+    val GMOL = parse_attribute (attribute ("""MeasurementTypeEMS.GMOL"""))
+    val GNOL = parse_attribute (attribute ("""MeasurementTypeEMS.GNOL"""))
+    val GO = parse_attribute (attribute ("""MeasurementTypeEMS.GO"""))
+    val GR = parse_attribute (attribute ("""MeasurementTypeEMS.GR"""))
+    val GS = parse_attribute (attribute ("""MeasurementTypeEMS.GS"""))
+    val INADV = parse_attribute (attribute ("""MeasurementTypeEMS.INADV"""))
+    val OARL = parse_attribute (attribute ("""MeasurementTypeEMS.OARL"""))
+    val PF = parse_attribute (attribute ("""MeasurementTypeEMS.PF"""))
+    val PIAL = parse_attribute (attribute ("""MeasurementTypeEMS.PIAL"""))
+    val PIL = parse_attribute (attribute ("""MeasurementTypeEMS.PIL"""))
+    val PIML = parse_attribute (attribute ("""MeasurementTypeEMS.PIML"""))
+    val POAL = parse_attribute (attribute ("""MeasurementTypeEMS.POAL"""))
+    val POL = parse_attribute (attribute ("""MeasurementTypeEMS.POL"""))
+    val PP = parse_attribute (attribute ("""MeasurementTypeEMS.PP"""))
+    val SL = parse_attribute (attribute ("""MeasurementTypeEMS.SL"""))
     def parse (context: Context): MeasurementTypeEMS =
     {
         MeasurementTypeEMS(
@@ -1586,18 +1586,18 @@ extends
     Parseable[MktSubClassType]
 {
     val sup = BasicElement.parse _
-    val Branch_Group_Derates = parse_attribute (attribute ("""MktSubClassType.Branch_Group_Derates"""))_
-    val Day_Ahead_Final_Market_Info = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_Final_Market_Info"""))_
-    val Day_Ahead_Forecast_Information = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_Forecast_Information"""))_
-    val Day_Ahead_Interim_Market_Info = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_Interim_Market_Info"""))_
-    val Day_Ahead_RMR = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_RMR"""))_
-    val Forecasted_UDC_Direct_Access_Load = parse_attribute (attribute ("""MktSubClassType.Forecasted_UDC_Direct_Access_Load"""))_
-    val Hour_Ahead_Market_Info = parse_attribute (attribute ("""MktSubClassType.Hour_Ahead_Market_Info"""))_
-    val Hourly_Expost_Market_Info = parse_attribute (attribute ("""MktSubClassType.Hourly_Expost_Market_Info"""))_
-    val Public_Bid_Data = parse_attribute (attribute ("""MktSubClassType.Public_Bid_Data"""))_
-    val TTC_ATC_Forecast_Information = parse_attribute (attribute ("""MktSubClassType.TTC/ATC_Forecast_Information"""))_
-    val TTC_ATC_Hourly_Forecast = parse_attribute (attribute ("""MktSubClassType.TTC/ATC_Hourly_Forecast"""))_
-    val Ten_Min_Expost_Market_Info = parse_attribute (attribute ("""MktSubClassType.Ten_Min_Expost_Market_Info"""))_
+    val Branch_Group_Derates = parse_attribute (attribute ("""MktSubClassType.Branch_Group_Derates"""))
+    val Day_Ahead_Final_Market_Info = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_Final_Market_Info"""))
+    val Day_Ahead_Forecast_Information = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_Forecast_Information"""))
+    val Day_Ahead_Interim_Market_Info = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_Interim_Market_Info"""))
+    val Day_Ahead_RMR = parse_attribute (attribute ("""MktSubClassType.Day_Ahead_RMR"""))
+    val Forecasted_UDC_Direct_Access_Load = parse_attribute (attribute ("""MktSubClassType.Forecasted_UDC_Direct_Access_Load"""))
+    val Hour_Ahead_Market_Info = parse_attribute (attribute ("""MktSubClassType.Hour_Ahead_Market_Info"""))
+    val Hourly_Expost_Market_Info = parse_attribute (attribute ("""MktSubClassType.Hourly_Expost_Market_Info"""))
+    val Public_Bid_Data = parse_attribute (attribute ("""MktSubClassType.Public_Bid_Data"""))
+    val TTC_ATC_Forecast_Information = parse_attribute (attribute ("""MktSubClassType.TTC/ATC_Forecast_Information"""))
+    val TTC_ATC_Hourly_Forecast = parse_attribute (attribute ("""MktSubClassType.TTC/ATC_Hourly_Forecast"""))
+    val Ten_Min_Expost_Market_Info = parse_attribute (attribute ("""MktSubClassType.Ten_Min_Expost_Market_Info"""))
     def parse (context: Context): MktSubClassType =
     {
         MktSubClassType(
@@ -1644,7 +1644,7 @@ extends
     Parseable[OASISBidReportType]
 {
     val sup = BasicElement.parse _
-    val BIDS_PUBLIC = parse_attribute (attribute ("""OASISBidReportType.BIDS_PUBLIC"""))_
+    val BIDS_PUBLIC = parse_attribute (attribute ("""OASISBidReportType.BIDS_PUBLIC"""))
     def parse (context: Context): OASISBidReportType =
     {
         OASISBidReportType(
@@ -1785,112 +1785,112 @@ extends
     Parseable[OASISDataItems]
 {
     val sup = BasicElement.parse _
-    val AS_CLEAR_ASMP_IFM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_ASMP_IFM"""))_
-    val AS_CLEAR_ASMP_RTM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_ASMP_RTM"""))_
-    val AS_CLEAR_COST_IFM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_COST_IFM"""))_
-    val AS_CLEAR_COST_RTM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_COST_RTM"""))_
-    val AS_CLEAR_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_MW_IFM"""))_
-    val AS_CLEAR_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_MW_RTM"""))_
-    val AS_GEN_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_GEN_TOTAL_MW_IFM"""))_
-    val AS_GEN_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_GEN_TOTAL_MW_RTM"""))_
-    val AS_IMP_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_IMP_TOTAL_MW_IFM"""))_
-    val AS_IMP_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_IMP_TOTAL_MW_RTM"""))_
-    val AS_LOAD_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_LOAD_TOTAL_MW_IFM"""))_
-    val AS_LOAD_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_LOAD_TOTAL_MW_RTM"""))_
-    val AS_REGION_REQ_MAX = parse_attribute (attribute ("""OASISDataItems.AS_REGION_REQ_MAX"""))_
-    val AS_REGION_REQ_MIN = parse_attribute (attribute ("""OASISDataItems.AS_REGION_REQ_MIN"""))_
-    val AS_REGION_value = parse_attribute (attribute ("""OASISDataItems.AS_REGION_value"""))_
-    val AS_SELF_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_SELF_MW_IFM"""))_
-    val AS_SELF_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_SELF_MW_RTM"""))_
-    val AS_TOTAL_MW = parse_attribute (attribute ("""OASISDataItems.AS_TOTAL_MW"""))_
-    val AS_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_TOTAL_MW_IFM"""))_
-    val AS_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_TOTAL_MW_RTM"""))_
-    val AS_TYPE = parse_attribute (attribute ("""OASISDataItems.AS_TYPE"""))_
-    val AS_USER_RATE = parse_attribute (attribute ("""OASISDataItems.AS_USER_RATE"""))_
-    val CA_value = parse_attribute (attribute ("""OASISDataItems.CA_value"""))_
-    val CMMT_MINLOAD_MLC = parse_attribute (attribute ("""OASISDataItems.CMMT_MINLOAD_MLC"""))_
-    val CMMT_MINLOAD_MW = parse_attribute (attribute ("""OASISDataItems.CMMT_MINLOAD_MW"""))_
-    val CMMT_RA_MLC = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_MLC"""))_
-    val CMMT_RA_MW = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_MW"""))_
-    val CMMT_RA_START_COST = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_START_COST"""))_
-    val CMMT_RA_UNITS = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_UNITS"""))_
-    val CMMT_TOTAL_MW = parse_attribute (attribute ("""OASISDataItems.CMMT_TOTAL_MW"""))_
-    val CMMT_TOTAL_START_COST = parse_attribute (attribute ("""OASISDataItems.CMMT_TOTAL_START_COST"""))_
-    val CMMT_TOTAL_UNITS = parse_attribute (attribute ("""OASISDataItems.CMMT_TOTAL_UNITS"""))_
-    val CRR_CAT = parse_attribute (attribute ("""OASISDataItems.CRR_CAT"""))_
-    val CRR_MARKET_value = parse_attribute (attribute ("""OASISDataItems.CRR_MARKET_value"""))_
-    val CRR_MW = parse_attribute (attribute ("""OASISDataItems.CRR_MW"""))_
-    val CRR_NSR = parse_attribute (attribute ("""OASISDataItems.CRR_NSR"""))_
-    val CRR_OPTION = parse_attribute (attribute ("""OASISDataItems.CRR_OPTION"""))_
-    val CRR_OWNER = parse_attribute (attribute ("""OASISDataItems.CRR_OWNER"""))_
-    val CRR_SEGMENT = parse_attribute (attribute ("""OASISDataItems.CRR_SEGMENT"""))_
-    val CRR_TERM = parse_attribute (attribute ("""OASISDataItems.CRR_TERM"""))_
-    val CRR_TOU = parse_attribute (attribute ("""OASISDataItems.CRR_TOU"""))_
-    val CRR_TYPE = parse_attribute (attribute ("""OASISDataItems.CRR_TYPE"""))_
-    val ENE_EA_DA = parse_attribute (attribute ("""OASISDataItems.ENE_EA_DA"""))_
-    val ENE_EA_EXCEPT = parse_attribute (attribute ("""OASISDataItems.ENE_EA_EXCEPT"""))_
-    val ENE_EA_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_EA_HASP"""))_
-    val ENE_EA_MLE = parse_attribute (attribute ("""OASISDataItems.ENE_EA_MLE"""))_
-    val ENE_EA_MSSLF = parse_attribute (attribute ("""OASISDataItems.ENE_EA_MSSLF"""))_
-    val ENE_EA_OPTIMAL = parse_attribute (attribute ("""OASISDataItems.ENE_EA_OPTIMAL"""))_
-    val ENE_EA_RAMP_DEV = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RAMP_DEV"""))_
-    val ENE_EA_RAMP_STD = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RAMP_STD"""))_
-    val ENE_EA_RESIDUAL = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RESIDUAL"""))_
-    val ENE_EA_RMR = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RMR"""))_
-    val ENE_EA_SELF = parse_attribute (attribute ("""OASISDataItems.ENE_EA_SELF"""))_
-    val ENE_EA_SLIC = parse_attribute (attribute ("""OASISDataItems.ENE_EA_SLIC"""))_
-    val ENE_EXP_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_EXP_CLEAR_HASP"""))_
-    val ENE_EXP_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_EXP_CLEAR_IFM"""))_
-    val ENE_EXP_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_EXP_CLEAR_RTM"""))_
-    val ENE_GEN_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_GEN_CLEAR_HASP"""))_
-    val ENE_GEN_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_GEN_CLEAR_IFM"""))_
-    val ENE_GEN_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_GEN_CLEAR_RTM"""))_
-    val ENE_IMP_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_IMP_CLEAR_HASP"""))_
-    val ENE_IMP_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_IMP_CLEAR_IFM"""))_
-    val ENE_IMP_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_IMP_CLEAR_RTM"""))_
-    val ENE_LOAD_ACTUAL = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_ACTUAL"""))_
-    val ENE_LOAD_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_CLEAR_HASP"""))_
-    val ENE_LOAD_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_CLEAR_IFM"""))_
-    val ENE_LOAD_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_CLEAR_RTM"""))_
-    val ENE_LOAD_FCST = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_FCST"""))_
-    val ENE_PEAK_HOUR = parse_attribute (attribute ("""OASISDataItems.ENE_PEAK_HOUR"""))_
-    val ENE_PEAK_LOAD = parse_attribute (attribute ("""OASISDataItems.ENE_PEAK_LOAD"""))_
-    val FUEL_REGION_value = parse_attribute (attribute ("""OASISDataItems.FUEL_REGION_value"""))_
-    val INVT_DATETIME = parse_attribute (attribute ("""OASISDataItems.INVT_DATETIME"""))_
-    val LOAD_ACTUAL = parse_attribute (attribute ("""OASISDataItems.LOAD_ACTUAL"""))_
-    val LOAD_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.LOAD_CLEAR_RTM"""))_
-    val LOSS_TOTAL_COST_HASP = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_COST_HASP"""))_
-    val LOSS_TOTAL_COST_RTM = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_COST_RTM"""))_
-    val LOSS_TOTAL_MW_HASP = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_MW_HASP"""))_
-    val LOSS_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_MW_RTM"""))_
-    val MPM_FLAG = parse_attribute (attribute ("""OASISDataItems.MPM_FLAG"""))_
-    val OP_RSRV_TOTAL = parse_attribute (attribute ("""OASISDataItems.OP_RSRV_TOTAL"""))_
-    val PRC_NG = parse_attribute (attribute ("""OASISDataItems.PRC_NG"""))_
-    val PRC_SHADOW = parse_attribute (attribute ("""OASISDataItems.PRC_SHADOW"""))_
-    val RATING_ATC = parse_attribute (attribute ("""OASISDataItems.RATING_ATC"""))_
-    val RMR_DETER_DAM = parse_attribute (attribute ("""OASISDataItems.RMR_DETER_DAM"""))_
-    val RMR_DETER_HASP = parse_attribute (attribute ("""OASISDataItems.RMR_DETER_HASP"""))_
-    val RMR_DISPATCH_DAM = parse_attribute (attribute ("""OASISDataItems.RMR_DISPATCH_DAM"""))_
-    val RMR_DISPATCH_HASP = parse_attribute (attribute ("""OASISDataItems.RMR_DISPATCH_HASP"""))_
-    val RMR_TOTAL = parse_attribute (attribute ("""OASISDataItems.RMR_TOTAL"""))_
-    val RMR_TOTAL_AVAIL = parse_attribute (attribute ("""OASISDataItems.RMR_TOTAL_AVAIL"""))_
-    val RUC_GEN_CLEAR_RUC = parse_attribute (attribute ("""OASISDataItems.RUC_GEN_CLEAR_RUC"""))_
-    val RUC_IMP_CLEAR_RUC = parse_attribute (attribute ("""OASISDataItems.RUC_IMP_CLEAR_RUC"""))_
-    val RUC_LOAD_CLEAR_RUC = parse_attribute (attribute ("""OASISDataItems.RUC_LOAD_CLEAR_RUC"""))_
-    val RUC_ZONE_value = parse_attribute (attribute ("""OASISDataItems.RUC_ZONE_value"""))_
-    val TAC_AREA_value = parse_attribute (attribute ("""OASISDataItems.TAC_AREA_value"""))_
-    val TINTRFCE_value = parse_attribute (attribute ("""OASISDataItems.TINTRFCE_value"""))_
-    val TRNS_AS_IMPORT = parse_attribute (attribute ("""OASISDataItems.TRNS_AS_IMPORT"""))_
-    val TRNS_ENE_IMPORT = parse_attribute (attribute ("""OASISDataItems.TRNS_ENE_IMPORT"""))_
-    val TRNS_EQUIP_value = parse_attribute (attribute ("""OASISDataItems.TRNS_EQUIP_value"""))_
-    val TRNS_RATING_CBM = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_CBM"""))_
-    val TRNS_RATING_DIRECTION = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_DIRECTION"""))_
-    val TRNS_RATING_OTC = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_OTC"""))_
-    val TRNS_RATING_OTC_DERATE = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_OTC_DERATE"""))_
-    val TRNS_RATING_TTC = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_TTC"""))_
-    val TRNS_TI_value = parse_attribute (attribute ("""OASISDataItems.TRNS_TI_value"""))_
-    val TRNS_TR_ENTMTS = parse_attribute (attribute ("""OASISDataItems.TRNS_TR_ENTMTS"""))_
-    val TRNS_TR_USEAGE = parse_attribute (attribute ("""OASISDataItems.TRNS_TR_USEAGE"""))_
+    val AS_CLEAR_ASMP_IFM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_ASMP_IFM"""))
+    val AS_CLEAR_ASMP_RTM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_ASMP_RTM"""))
+    val AS_CLEAR_COST_IFM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_COST_IFM"""))
+    val AS_CLEAR_COST_RTM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_COST_RTM"""))
+    val AS_CLEAR_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_MW_IFM"""))
+    val AS_CLEAR_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_CLEAR_MW_RTM"""))
+    val AS_GEN_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_GEN_TOTAL_MW_IFM"""))
+    val AS_GEN_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_GEN_TOTAL_MW_RTM"""))
+    val AS_IMP_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_IMP_TOTAL_MW_IFM"""))
+    val AS_IMP_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_IMP_TOTAL_MW_RTM"""))
+    val AS_LOAD_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_LOAD_TOTAL_MW_IFM"""))
+    val AS_LOAD_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_LOAD_TOTAL_MW_RTM"""))
+    val AS_REGION_REQ_MAX = parse_attribute (attribute ("""OASISDataItems.AS_REGION_REQ_MAX"""))
+    val AS_REGION_REQ_MIN = parse_attribute (attribute ("""OASISDataItems.AS_REGION_REQ_MIN"""))
+    val AS_REGION_value = parse_attribute (attribute ("""OASISDataItems.AS_REGION_value"""))
+    val AS_SELF_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_SELF_MW_IFM"""))
+    val AS_SELF_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_SELF_MW_RTM"""))
+    val AS_TOTAL_MW = parse_attribute (attribute ("""OASISDataItems.AS_TOTAL_MW"""))
+    val AS_TOTAL_MW_IFM = parse_attribute (attribute ("""OASISDataItems.AS_TOTAL_MW_IFM"""))
+    val AS_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.AS_TOTAL_MW_RTM"""))
+    val AS_TYPE = parse_attribute (attribute ("""OASISDataItems.AS_TYPE"""))
+    val AS_USER_RATE = parse_attribute (attribute ("""OASISDataItems.AS_USER_RATE"""))
+    val CA_value = parse_attribute (attribute ("""OASISDataItems.CA_value"""))
+    val CMMT_MINLOAD_MLC = parse_attribute (attribute ("""OASISDataItems.CMMT_MINLOAD_MLC"""))
+    val CMMT_MINLOAD_MW = parse_attribute (attribute ("""OASISDataItems.CMMT_MINLOAD_MW"""))
+    val CMMT_RA_MLC = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_MLC"""))
+    val CMMT_RA_MW = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_MW"""))
+    val CMMT_RA_START_COST = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_START_COST"""))
+    val CMMT_RA_UNITS = parse_attribute (attribute ("""OASISDataItems.CMMT_RA_UNITS"""))
+    val CMMT_TOTAL_MW = parse_attribute (attribute ("""OASISDataItems.CMMT_TOTAL_MW"""))
+    val CMMT_TOTAL_START_COST = parse_attribute (attribute ("""OASISDataItems.CMMT_TOTAL_START_COST"""))
+    val CMMT_TOTAL_UNITS = parse_attribute (attribute ("""OASISDataItems.CMMT_TOTAL_UNITS"""))
+    val CRR_CAT = parse_attribute (attribute ("""OASISDataItems.CRR_CAT"""))
+    val CRR_MARKET_value = parse_attribute (attribute ("""OASISDataItems.CRR_MARKET_value"""))
+    val CRR_MW = parse_attribute (attribute ("""OASISDataItems.CRR_MW"""))
+    val CRR_NSR = parse_attribute (attribute ("""OASISDataItems.CRR_NSR"""))
+    val CRR_OPTION = parse_attribute (attribute ("""OASISDataItems.CRR_OPTION"""))
+    val CRR_OWNER = parse_attribute (attribute ("""OASISDataItems.CRR_OWNER"""))
+    val CRR_SEGMENT = parse_attribute (attribute ("""OASISDataItems.CRR_SEGMENT"""))
+    val CRR_TERM = parse_attribute (attribute ("""OASISDataItems.CRR_TERM"""))
+    val CRR_TOU = parse_attribute (attribute ("""OASISDataItems.CRR_TOU"""))
+    val CRR_TYPE = parse_attribute (attribute ("""OASISDataItems.CRR_TYPE"""))
+    val ENE_EA_DA = parse_attribute (attribute ("""OASISDataItems.ENE_EA_DA"""))
+    val ENE_EA_EXCEPT = parse_attribute (attribute ("""OASISDataItems.ENE_EA_EXCEPT"""))
+    val ENE_EA_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_EA_HASP"""))
+    val ENE_EA_MLE = parse_attribute (attribute ("""OASISDataItems.ENE_EA_MLE"""))
+    val ENE_EA_MSSLF = parse_attribute (attribute ("""OASISDataItems.ENE_EA_MSSLF"""))
+    val ENE_EA_OPTIMAL = parse_attribute (attribute ("""OASISDataItems.ENE_EA_OPTIMAL"""))
+    val ENE_EA_RAMP_DEV = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RAMP_DEV"""))
+    val ENE_EA_RAMP_STD = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RAMP_STD"""))
+    val ENE_EA_RESIDUAL = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RESIDUAL"""))
+    val ENE_EA_RMR = parse_attribute (attribute ("""OASISDataItems.ENE_EA_RMR"""))
+    val ENE_EA_SELF = parse_attribute (attribute ("""OASISDataItems.ENE_EA_SELF"""))
+    val ENE_EA_SLIC = parse_attribute (attribute ("""OASISDataItems.ENE_EA_SLIC"""))
+    val ENE_EXP_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_EXP_CLEAR_HASP"""))
+    val ENE_EXP_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_EXP_CLEAR_IFM"""))
+    val ENE_EXP_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_EXP_CLEAR_RTM"""))
+    val ENE_GEN_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_GEN_CLEAR_HASP"""))
+    val ENE_GEN_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_GEN_CLEAR_IFM"""))
+    val ENE_GEN_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_GEN_CLEAR_RTM"""))
+    val ENE_IMP_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_IMP_CLEAR_HASP"""))
+    val ENE_IMP_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_IMP_CLEAR_IFM"""))
+    val ENE_IMP_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_IMP_CLEAR_RTM"""))
+    val ENE_LOAD_ACTUAL = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_ACTUAL"""))
+    val ENE_LOAD_CLEAR_HASP = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_CLEAR_HASP"""))
+    val ENE_LOAD_CLEAR_IFM = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_CLEAR_IFM"""))
+    val ENE_LOAD_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_CLEAR_RTM"""))
+    val ENE_LOAD_FCST = parse_attribute (attribute ("""OASISDataItems.ENE_LOAD_FCST"""))
+    val ENE_PEAK_HOUR = parse_attribute (attribute ("""OASISDataItems.ENE_PEAK_HOUR"""))
+    val ENE_PEAK_LOAD = parse_attribute (attribute ("""OASISDataItems.ENE_PEAK_LOAD"""))
+    val FUEL_REGION_value = parse_attribute (attribute ("""OASISDataItems.FUEL_REGION_value"""))
+    val INVT_DATETIME = parse_attribute (attribute ("""OASISDataItems.INVT_DATETIME"""))
+    val LOAD_ACTUAL = parse_attribute (attribute ("""OASISDataItems.LOAD_ACTUAL"""))
+    val LOAD_CLEAR_RTM = parse_attribute (attribute ("""OASISDataItems.LOAD_CLEAR_RTM"""))
+    val LOSS_TOTAL_COST_HASP = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_COST_HASP"""))
+    val LOSS_TOTAL_COST_RTM = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_COST_RTM"""))
+    val LOSS_TOTAL_MW_HASP = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_MW_HASP"""))
+    val LOSS_TOTAL_MW_RTM = parse_attribute (attribute ("""OASISDataItems.LOSS_TOTAL_MW_RTM"""))
+    val MPM_FLAG = parse_attribute (attribute ("""OASISDataItems.MPM_FLAG"""))
+    val OP_RSRV_TOTAL = parse_attribute (attribute ("""OASISDataItems.OP_RSRV_TOTAL"""))
+    val PRC_NG = parse_attribute (attribute ("""OASISDataItems.PRC_NG"""))
+    val PRC_SHADOW = parse_attribute (attribute ("""OASISDataItems.PRC_SHADOW"""))
+    val RATING_ATC = parse_attribute (attribute ("""OASISDataItems.RATING_ATC"""))
+    val RMR_DETER_DAM = parse_attribute (attribute ("""OASISDataItems.RMR_DETER_DAM"""))
+    val RMR_DETER_HASP = parse_attribute (attribute ("""OASISDataItems.RMR_DETER_HASP"""))
+    val RMR_DISPATCH_DAM = parse_attribute (attribute ("""OASISDataItems.RMR_DISPATCH_DAM"""))
+    val RMR_DISPATCH_HASP = parse_attribute (attribute ("""OASISDataItems.RMR_DISPATCH_HASP"""))
+    val RMR_TOTAL = parse_attribute (attribute ("""OASISDataItems.RMR_TOTAL"""))
+    val RMR_TOTAL_AVAIL = parse_attribute (attribute ("""OASISDataItems.RMR_TOTAL_AVAIL"""))
+    val RUC_GEN_CLEAR_RUC = parse_attribute (attribute ("""OASISDataItems.RUC_GEN_CLEAR_RUC"""))
+    val RUC_IMP_CLEAR_RUC = parse_attribute (attribute ("""OASISDataItems.RUC_IMP_CLEAR_RUC"""))
+    val RUC_LOAD_CLEAR_RUC = parse_attribute (attribute ("""OASISDataItems.RUC_LOAD_CLEAR_RUC"""))
+    val RUC_ZONE_value = parse_attribute (attribute ("""OASISDataItems.RUC_ZONE_value"""))
+    val TAC_AREA_value = parse_attribute (attribute ("""OASISDataItems.TAC_AREA_value"""))
+    val TINTRFCE_value = parse_attribute (attribute ("""OASISDataItems.TINTRFCE_value"""))
+    val TRNS_AS_IMPORT = parse_attribute (attribute ("""OASISDataItems.TRNS_AS_IMPORT"""))
+    val TRNS_ENE_IMPORT = parse_attribute (attribute ("""OASISDataItems.TRNS_ENE_IMPORT"""))
+    val TRNS_EQUIP_value = parse_attribute (attribute ("""OASISDataItems.TRNS_EQUIP_value"""))
+    val TRNS_RATING_CBM = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_CBM"""))
+    val TRNS_RATING_DIRECTION = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_DIRECTION"""))
+    val TRNS_RATING_OTC = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_OTC"""))
+    val TRNS_RATING_OTC_DERATE = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_OTC_DERATE"""))
+    val TRNS_RATING_TTC = parse_attribute (attribute ("""OASISDataItems.TRNS_RATING_TTC"""))
+    val TRNS_TI_value = parse_attribute (attribute ("""OASISDataItems.TRNS_TI_value"""))
+    val TRNS_TR_ENTMTS = parse_attribute (attribute ("""OASISDataItems.TRNS_TR_ENTMTS"""))
+    val TRNS_TR_USEAGE = parse_attribute (attribute ("""OASISDataItems.TRNS_TR_USEAGE"""))
     def parse (context: Context): OASISDataItems =
     {
         OASISDataItems(
@@ -2041,17 +2041,17 @@ extends
     Parseable[OASISErrCode]
 {
     val sup = BasicElement.parse _
-    val _1000 = parse_attribute (attribute ("""OASISErrCode.1000"""))_
-    val _1001 = parse_attribute (attribute ("""OASISErrCode.1001"""))_
-    val _1002 = parse_attribute (attribute ("""OASISErrCode.1002"""))_
-    val _1003 = parse_attribute (attribute ("""OASISErrCode.1003"""))_
-    val _1004 = parse_attribute (attribute ("""OASISErrCode.1004"""))_
-    val _1005 = parse_attribute (attribute ("""OASISErrCode.1005"""))_
-    val _1006 = parse_attribute (attribute ("""OASISErrCode.1006"""))_
-    val _1007 = parse_attribute (attribute ("""OASISErrCode.1007"""))_
-    val _1008 = parse_attribute (attribute ("""OASISErrCode.1008"""))_
-    val _1009 = parse_attribute (attribute ("""OASISErrCode.1009"""))_
-    val _1010 = parse_attribute (attribute ("""OASISErrCode.1010"""))_
+    val _1000 = parse_attribute (attribute ("""OASISErrCode.1000"""))
+    val _1001 = parse_attribute (attribute ("""OASISErrCode.1001"""))
+    val _1002 = parse_attribute (attribute ("""OASISErrCode.1002"""))
+    val _1003 = parse_attribute (attribute ("""OASISErrCode.1003"""))
+    val _1004 = parse_attribute (attribute ("""OASISErrCode.1004"""))
+    val _1005 = parse_attribute (attribute ("""OASISErrCode.1005"""))
+    val _1006 = parse_attribute (attribute ("""OASISErrCode.1006"""))
+    val _1007 = parse_attribute (attribute ("""OASISErrCode.1007"""))
+    val _1008 = parse_attribute (attribute ("""OASISErrCode.1008"""))
+    val _1009 = parse_attribute (attribute ("""OASISErrCode.1009"""))
+    val _1010 = parse_attribute (attribute ("""OASISErrCode.1010"""))
     def parse (context: Context): OASISErrCode =
     {
         OASISErrCode(
@@ -2106,16 +2106,16 @@ extends
     Parseable[OASISErrDescription]
 {
     val sup = BasicElement.parse _
-    val Data_can_be_requested_for_period_of_31_days_only = parse_attribute (attribute ("""OASISErrDescription.Data can be requested for period of 31 days only"""))_
-    val Exceptions_in_reading_and_writing_of_XML_files = parse_attribute (attribute ("""OASISErrDescription.Exceptions in reading and writing of XML files"""))_
-    val Invalid_date_format__please_use_valid_date_format = parse_attribute (attribute ("""OASISErrDescription.Invalid date format, please use valid date format"""))_
-    val No_data_returned_for_the_specified_selection = parse_attribute (attribute ("""OASISErrDescription.No data returned for the specified selection"""))_
-    val Out_of_memory_exception = parse_attribute (attribute ("""OASISErrDescription.Out of memory exception"""))_
-    val Report_name_does_not_exit__please_use_valid_report_name = parse_attribute (attribute ("""OASISErrDescription.Report name does not exit, please use valid report name"""))_
-    val Required_file_does_not_exist = parse_attribute (attribute ("""OASISErrDescription.Required file does not exist"""))_
-    val System_Error = parse_attribute (attribute ("""OASISErrDescription.System Error"""))_
-    val Timed_out_waiting_for_query_response = parse_attribute (attribute ("""OASISErrDescription.Timed out waiting for query response"""))_
-    val Validation_exception_during_transformation_of_XML = parse_attribute (attribute ("""OASISErrDescription.Validation exception during transformation of XML"""))_
+    val Data_can_be_requested_for_period_of_31_days_only = parse_attribute (attribute ("""OASISErrDescription.Data can be requested for period of 31 days only"""))
+    val Exceptions_in_reading_and_writing_of_XML_files = parse_attribute (attribute ("""OASISErrDescription.Exceptions in reading and writing of XML files"""))
+    val Invalid_date_format__please_use_valid_date_format = parse_attribute (attribute ("""OASISErrDescription.Invalid date format, please use valid date format"""))
+    val No_data_returned_for_the_specified_selection = parse_attribute (attribute ("""OASISErrDescription.No data returned for the specified selection"""))
+    val Out_of_memory_exception = parse_attribute (attribute ("""OASISErrDescription.Out of memory exception"""))
+    val Report_name_does_not_exit__please_use_valid_report_name = parse_attribute (attribute ("""OASISErrDescription.Report name does not exit, please use valid report name"""))
+    val Required_file_does_not_exist = parse_attribute (attribute ("""OASISErrDescription.Required file does not exist"""))
+    val System_Error = parse_attribute (attribute ("""OASISErrDescription.System Error"""))
+    val Timed_out_waiting_for_query_response = parse_attribute (attribute ("""OASISErrDescription.Timed out waiting for query response"""))
+    val Validation_exception_during_transformation_of_XML = parse_attribute (attribute ("""OASISErrDescription.Validation exception during transformation of XML"""))
     def parse (context: Context): OASISErrDescription =
     {
         OASISErrDescription(
@@ -2161,8 +2161,8 @@ extends
     Parseable[OASISIntervalType]
 {
     val sup = BasicElement.parse _
-    val BEGINNING = parse_attribute (attribute ("""OASISIntervalType.BEGINNING"""))_
-    val ENDING = parse_attribute (attribute ("""OASISIntervalType.ENDING"""))_
+    val BEGINNING = parse_attribute (attribute ("""OASISIntervalType.BEGINNING"""))
+    val ENDING = parse_attribute (attribute ("""OASISIntervalType.ENDING"""))
     def parse (context: Context): OASISIntervalType =
     {
         OASISIntervalType(
@@ -2204,12 +2204,12 @@ extends
     Parseable[OASISMarketType]
 {
     val sup = BasicElement.parse _
-    val All = parse_attribute (attribute ("""OASISMarketType.All"""))_
-    val HASP = parse_attribute (attribute ("""OASISMarketType.HASP"""))_
-    val IFM = parse_attribute (attribute ("""OASISMarketType.IFM"""))_
-    val N_A = parse_attribute (attribute ("""OASISMarketType.N/A"""))_
-    val RTM = parse_attribute (attribute ("""OASISMarketType.RTM"""))_
-    val RUC = parse_attribute (attribute ("""OASISMarketType.RUC"""))_
+    val All = parse_attribute (attribute ("""OASISMarketType.All"""))
+    val HASP = parse_attribute (attribute ("""OASISMarketType.HASP"""))
+    val IFM = parse_attribute (attribute ("""OASISMarketType.IFM"""))
+    val N_A = parse_attribute (attribute ("""OASISMarketType.N/A"""))
+    val RTM = parse_attribute (attribute ("""OASISMarketType.RTM"""))
+    val RUC = parse_attribute (attribute ("""OASISMarketType.RUC"""))
     def parse (context: Context): OASISMarketType =
     {
         OASISMarketType(
@@ -2268,25 +2268,25 @@ extends
     Parseable[OASISMasterType]
 {
     val sup = BasicElement.parse _
-    val ATL_APNODE = parse_attribute (attribute ("""OASISMasterType.ATL_APNODE"""))_
-    val ATL_AS_REGION = parse_attribute (attribute ("""OASISMasterType.ATL_AS_REGION"""))_
-    val ATL_AS_REGION_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_AS_REGION_MAP"""))_
-    val ATL_HUB = parse_attribute (attribute ("""OASISMasterType.ATL_HUB"""))_
-    val ATL_LAP = parse_attribute (attribute ("""OASISMasterType.ATL_LAP"""))_
-    val ATL_LDF = parse_attribute (attribute ("""OASISMasterType.ATL_LDF"""))_
-    val ATL_PNODE = parse_attribute (attribute ("""OASISMasterType.ATL_PNODE"""))_
-    val ATL_PNODE_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_PNODE_MAP"""))_
-    val ATL_PUB = parse_attribute (attribute ("""OASISMasterType.ATL_PUB"""))_
-    val ATL_PUB_SCHED = parse_attribute (attribute ("""OASISMasterType.ATL_PUB_SCHED"""))_
-    val ATL_RESOURCE = parse_attribute (attribute ("""OASISMasterType.ATL_RESOURCE"""))_
-    val ATL_RUC_ZONE = parse_attribute (attribute ("""OASISMasterType.ATL_RUC_ZONE"""))_
-    val ATL_RUC_ZONE_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_RUC_ZONE_MAP"""))_
-    val ATL_STAT = parse_attribute (attribute ("""OASISMasterType.ATL_STAT"""))_
-    val ATL_TAC_AREA = parse_attribute (attribute ("""OASISMasterType.ATL_TAC_AREA"""))_
-    val ATL_TAC_AREA_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_TAC_AREA_MAP"""))_
-    val ATL_TI = parse_attribute (attribute ("""OASISMasterType.ATL_TI"""))_
-    val ATL_TIEPOINT = parse_attribute (attribute ("""OASISMasterType.ATL_TIEPOINT"""))_
-    val ATL_XREF = parse_attribute (attribute ("""OASISMasterType.ATL_XREF"""))_
+    val ATL_APNODE = parse_attribute (attribute ("""OASISMasterType.ATL_APNODE"""))
+    val ATL_AS_REGION = parse_attribute (attribute ("""OASISMasterType.ATL_AS_REGION"""))
+    val ATL_AS_REGION_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_AS_REGION_MAP"""))
+    val ATL_HUB = parse_attribute (attribute ("""OASISMasterType.ATL_HUB"""))
+    val ATL_LAP = parse_attribute (attribute ("""OASISMasterType.ATL_LAP"""))
+    val ATL_LDF = parse_attribute (attribute ("""OASISMasterType.ATL_LDF"""))
+    val ATL_PNODE = parse_attribute (attribute ("""OASISMasterType.ATL_PNODE"""))
+    val ATL_PNODE_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_PNODE_MAP"""))
+    val ATL_PUB = parse_attribute (attribute ("""OASISMasterType.ATL_PUB"""))
+    val ATL_PUB_SCHED = parse_attribute (attribute ("""OASISMasterType.ATL_PUB_SCHED"""))
+    val ATL_RESOURCE = parse_attribute (attribute ("""OASISMasterType.ATL_RESOURCE"""))
+    val ATL_RUC_ZONE = parse_attribute (attribute ("""OASISMasterType.ATL_RUC_ZONE"""))
+    val ATL_RUC_ZONE_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_RUC_ZONE_MAP"""))
+    val ATL_STAT = parse_attribute (attribute ("""OASISMasterType.ATL_STAT"""))
+    val ATL_TAC_AREA = parse_attribute (attribute ("""OASISMasterType.ATL_TAC_AREA"""))
+    val ATL_TAC_AREA_MAP = parse_attribute (attribute ("""OASISMasterType.ATL_TAC_AREA_MAP"""))
+    val ATL_TI = parse_attribute (attribute ("""OASISMasterType.ATL_TI"""))
+    val ATL_TIEPOINT = parse_attribute (attribute ("""OASISMasterType.ATL_TIEPOINT"""))
+    val ATL_XREF = parse_attribute (attribute ("""OASISMasterType.ATL_XREF"""))
     def parse (context: Context): OASISMasterType =
     {
         OASISMasterType(
@@ -2348,15 +2348,15 @@ extends
     Parseable[OASISMeasType]
 {
     val sup = BasicElement.parse _
-    val percent = parse_attribute (attribute ("""OASISMeasType.%"""))_
-    val FACTOR = parse_attribute (attribute ("""OASISMeasType.FACTOR"""))_
-    val FLAG = parse_attribute (attribute ("""OASISMeasType.FLAG"""))_
-    val INTEGER = parse_attribute (attribute ("""OASISMeasType.INTEGER"""))_
-    val MW = parse_attribute (attribute ("""OASISMeasType.MW"""))_
-    val MWh = parse_attribute (attribute ("""OASISMeasType.MWh"""))_
-    val US$ = parse_attribute (attribute ("""OASISMeasType.US$"""))_
-    val US$_MW = parse_attribute (attribute ("""OASISMeasType.US$/MW"""))_
-    val US$_MWh = parse_attribute (attribute ("""OASISMeasType.US$/MWh"""))_
+    val percent = parse_attribute (attribute ("""OASISMeasType.%"""))
+    val FACTOR = parse_attribute (attribute ("""OASISMeasType.FACTOR"""))
+    val FLAG = parse_attribute (attribute ("""OASISMeasType.FLAG"""))
+    val INTEGER = parse_attribute (attribute ("""OASISMeasType.INTEGER"""))
+    val MW = parse_attribute (attribute ("""OASISMeasType.MW"""))
+    val MWh = parse_attribute (attribute ("""OASISMeasType.MWh"""))
+    val US$ = parse_attribute (attribute ("""OASISMeasType.US$"""))
+    val US$_MW = parse_attribute (attribute ("""OASISMeasType.US$/MW"""))
+    val US$_MWh = parse_attribute (attribute ("""OASISMeasType.US$/MWh"""))
     def parse (context: Context): OASISMeasType =
     {
         OASISMeasType(
@@ -2427,34 +2427,34 @@ extends
     Parseable[OASISReportType]
 {
     val sup = BasicElement.parse _
-    val AS_DA_RESULT = parse_attribute (attribute ("""OASISReportType.AS_DA_RESULT"""))_
-    val AS_OP_RSRV = parse_attribute (attribute ("""OASISReportType.AS_OP_RSRV"""))_
-    val AS_REQ = parse_attribute (attribute ("""OASISReportType.AS_REQ"""))_
-    val AS_RTM_RESULT = parse_attribute (attribute ("""OASISReportType.AS_RTM_RESULT"""))_
-    val BIDS_PUBLIC = parse_attribute (attribute ("""OASISReportType.BIDS_PUBLIC"""))_
-    val CMMT_RA_MLC = parse_attribute (attribute ("""OASISReportType.CMMT_RA_MLC"""))_
-    val CMMT_RMR = parse_attribute (attribute ("""OASISReportType.CMMT_RMR"""))_
-    val CRR_CLEARING = parse_attribute (attribute ("""OASISReportType.CRR_CLEARING"""))_
-    val CRR_INVENTORY = parse_attribute (attribute ("""OASISReportType.CRR_INVENTORY"""))_
-    val ENE_EA = parse_attribute (attribute ("""OASISReportType.ENE_EA"""))_
-    val ENE_HASP = parse_attribute (attribute ("""OASISReportType.ENE_HASP"""))_
-    val ENE_IFM = parse_attribute (attribute ("""OASISReportType.ENE_IFM"""))_
-    val ENE_MPM = parse_attribute (attribute ("""OASISReportType.ENE_MPM"""))_
-    val ENE_RTM = parse_attribute (attribute ("""OASISReportType.ENE_RTM"""))_
-    val ENE_RUC = parse_attribute (attribute ("""OASISReportType.ENE_RUC"""))_
-    val LOSS_DA_HASP = parse_attribute (attribute ("""OASISReportType.LOSS_DA_HASP"""))_
-    val LOSS_RTM = parse_attribute (attribute ("""OASISReportType.LOSS_RTM"""))_
-    val PRC_AS = parse_attribute (attribute ("""OASISReportType.PRC_AS"""))_
-    val PRC_CNSTR = parse_attribute (attribute ("""OASISReportType.PRC_CNSTR"""))_
-    val PRC_FUEL = parse_attribute (attribute ("""OASISReportType.PRC_FUEL"""))_
-    val PRC_HRLY_LMP = parse_attribute (attribute ("""OASISReportType.PRC_HRLY_LMP"""))_
-    val PRC_INTVL_LMP = parse_attribute (attribute ("""OASISReportType.PRC_INTVL_LMP"""))_
-    val SLD_FCST = parse_attribute (attribute ("""OASISReportType.SLD_FCST"""))_
-    val SLD_FCST_PEAK = parse_attribute (attribute ("""OASISReportType.SLD_FCST_PEAK"""))_
-    val SLD_MKTS = parse_attribute (attribute ("""OASISReportType.SLD_MKTS"""))_
-    val TRNS_ATC = parse_attribute (attribute ("""OASISReportType.TRNS_ATC"""))_
-    val TRNS_OUTAGE = parse_attribute (attribute ("""OASISReportType.TRNS_OUTAGE"""))_
-    val TRNS_USAGE = parse_attribute (attribute ("""OASISReportType.TRNS_USAGE"""))_
+    val AS_DA_RESULT = parse_attribute (attribute ("""OASISReportType.AS_DA_RESULT"""))
+    val AS_OP_RSRV = parse_attribute (attribute ("""OASISReportType.AS_OP_RSRV"""))
+    val AS_REQ = parse_attribute (attribute ("""OASISReportType.AS_REQ"""))
+    val AS_RTM_RESULT = parse_attribute (attribute ("""OASISReportType.AS_RTM_RESULT"""))
+    val BIDS_PUBLIC = parse_attribute (attribute ("""OASISReportType.BIDS_PUBLIC"""))
+    val CMMT_RA_MLC = parse_attribute (attribute ("""OASISReportType.CMMT_RA_MLC"""))
+    val CMMT_RMR = parse_attribute (attribute ("""OASISReportType.CMMT_RMR"""))
+    val CRR_CLEARING = parse_attribute (attribute ("""OASISReportType.CRR_CLEARING"""))
+    val CRR_INVENTORY = parse_attribute (attribute ("""OASISReportType.CRR_INVENTORY"""))
+    val ENE_EA = parse_attribute (attribute ("""OASISReportType.ENE_EA"""))
+    val ENE_HASP = parse_attribute (attribute ("""OASISReportType.ENE_HASP"""))
+    val ENE_IFM = parse_attribute (attribute ("""OASISReportType.ENE_IFM"""))
+    val ENE_MPM = parse_attribute (attribute ("""OASISReportType.ENE_MPM"""))
+    val ENE_RTM = parse_attribute (attribute ("""OASISReportType.ENE_RTM"""))
+    val ENE_RUC = parse_attribute (attribute ("""OASISReportType.ENE_RUC"""))
+    val LOSS_DA_HASP = parse_attribute (attribute ("""OASISReportType.LOSS_DA_HASP"""))
+    val LOSS_RTM = parse_attribute (attribute ("""OASISReportType.LOSS_RTM"""))
+    val PRC_AS = parse_attribute (attribute ("""OASISReportType.PRC_AS"""))
+    val PRC_CNSTR = parse_attribute (attribute ("""OASISReportType.PRC_CNSTR"""))
+    val PRC_FUEL = parse_attribute (attribute ("""OASISReportType.PRC_FUEL"""))
+    val PRC_HRLY_LMP = parse_attribute (attribute ("""OASISReportType.PRC_HRLY_LMP"""))
+    val PRC_INTVL_LMP = parse_attribute (attribute ("""OASISReportType.PRC_INTVL_LMP"""))
+    val SLD_FCST = parse_attribute (attribute ("""OASISReportType.SLD_FCST"""))
+    val SLD_FCST_PEAK = parse_attribute (attribute ("""OASISReportType.SLD_FCST_PEAK"""))
+    val SLD_MKTS = parse_attribute (attribute ("""OASISReportType.SLD_MKTS"""))
+    val TRNS_ATC = parse_attribute (attribute ("""OASISReportType.TRNS_ATC"""))
+    val TRNS_OUTAGE = parse_attribute (attribute ("""OASISReportType.TRNS_OUTAGE"""))
+    val TRNS_USAGE = parse_attribute (attribute ("""OASISReportType.TRNS_USAGE"""))
     def parse (context: Context): OASISReportType =
     {
         OASISReportType(
@@ -2522,12 +2522,12 @@ extends
     Parseable[OASISStatusType]
 {
     val sup = BasicElement.parse _
-    val Data_Transfer_Procedure_Initiated = parse_attribute (attribute ("""OASISStatusType.Data_Transfer_Procedure_Initiated"""))_
-    val Data_Transfer_Succesful = parse_attribute (attribute ("""OASISStatusType.Data_Transfer_Succesful"""))_
-    val Forced_Termination = parse_attribute (attribute ("""OASISStatusType.Forced_Termination"""))_
-    val Obsolete = parse_attribute (attribute ("""OASISStatusType.Obsolete"""))_
-    val Push_Failed = parse_attribute (attribute ("""OASISStatusType.Push_Failed"""))_
-    val Valid = parse_attribute (attribute ("""OASISStatusType.Valid"""))_
+    val Data_Transfer_Procedure_Initiated = parse_attribute (attribute ("""OASISStatusType.Data_Transfer_Procedure_Initiated"""))
+    val Data_Transfer_Succesful = parse_attribute (attribute ("""OASISStatusType.Data_Transfer_Succesful"""))
+    val Forced_Termination = parse_attribute (attribute ("""OASISStatusType.Forced_Termination"""))
+    val Obsolete = parse_attribute (attribute ("""OASISStatusType.Obsolete"""))
+    val Push_Failed = parse_attribute (attribute ("""OASISStatusType.Push_Failed"""))
+    val Valid = parse_attribute (attribute ("""OASISStatusType.Valid"""))
     def parse (context: Context): OASISStatusType =
     {
         OASISStatusType(
@@ -2579,10 +2579,10 @@ extends
     Parseable[OrganisationCode]
 {
     val sup = BasicElement.parse _
-    val BILL_TO = parse_attribute (attribute ("""OrganisationCode.BILL_TO"""))_
-    val PAY_TO = parse_attribute (attribute ("""OrganisationCode.PAY_TO"""))_
-    val PROVIDED_BY = parse_attribute (attribute ("""OrganisationCode.PROVIDED_BY"""))_
-    val SOLD_TO = parse_attribute (attribute ("""OrganisationCode.SOLD_TO"""))_
+    val BILL_TO = parse_attribute (attribute ("""OrganisationCode.BILL_TO"""))
+    val PAY_TO = parse_attribute (attribute ("""OrganisationCode.PAY_TO"""))
+    val PROVIDED_BY = parse_attribute (attribute ("""OrganisationCode.PROVIDED_BY"""))
+    val SOLD_TO = parse_attribute (attribute ("""OrganisationCode.SOLD_TO"""))
     def parse (context: Context): OrganisationCode =
     {
         OrganisationCode(
@@ -2628,8 +2628,8 @@ extends
     Parseable[OrganisationType]
 {
     val sup = BasicElement.parse _
-    val CUSTOMER = parse_attribute (attribute ("""OrganisationType.CUSTOMER"""))_
-    val RTO = parse_attribute (attribute ("""OrganisationType.RTO"""))_
+    val CUSTOMER = parse_attribute (attribute ("""OrganisationType.CUSTOMER"""))
+    val RTO = parse_attribute (attribute ("""OrganisationType.RTO"""))
     def parse (context: Context): OrganisationType =
     {
         OrganisationType(
@@ -2677,9 +2677,9 @@ extends
     Parseable[PriceSetFlag]
 {
     val sup = BasicElement.parse _
-    val N = parse_attribute (attribute ("""PriceSetFlag.N"""))_
-    val S = parse_attribute (attribute ("""PriceSetFlag.S"""))_
-    val Y = parse_attribute (attribute ("""PriceSetFlag.Y"""))_
+    val N = parse_attribute (attribute ("""PriceSetFlag.N"""))
+    val S = parse_attribute (attribute ("""PriceSetFlag.S"""))
+    val Y = parse_attribute (attribute ("""PriceSetFlag.Y"""))
     def parse (context: Context): PriceSetFlag =
     {
         PriceSetFlag(
@@ -2725,8 +2725,8 @@ extends
     Parseable[RequestorRmrTest]
 {
     val sup = BasicElement.parse _
-    val ISO = parse_attribute (attribute ("""RequestorRmrTest.ISO"""))_
-    val MP = parse_attribute (attribute ("""RequestorRmrTest.MP"""))_
+    val ISO = parse_attribute (attribute ("""RequestorRmrTest.ISO"""))
+    val MP = parse_attribute (attribute ("""RequestorRmrTest.MP"""))
     def parse (context: Context): RequestorRmrTest =
     {
         RequestorRmrTest(
@@ -2766,10 +2766,10 @@ extends
     Parseable[ResourceCertificationCategory]
 {
     val sup = BasicElement.parse _
-    val DAM = parse_attribute (attribute ("""ResourceCertificationCategory.DAM"""))_
-    val GT = parse_attribute (attribute ("""ResourceCertificationCategory.GT"""))_
-    val RC = parse_attribute (attribute ("""ResourceCertificationCategory.RC"""))_
-    val RTM = parse_attribute (attribute ("""ResourceCertificationCategory.RTM"""))_
+    val DAM = parse_attribute (attribute ("""ResourceCertificationCategory.DAM"""))
+    val GT = parse_attribute (attribute ("""ResourceCertificationCategory.GT"""))
+    val RC = parse_attribute (attribute ("""ResourceCertificationCategory.RC"""))
+    val RTM = parse_attribute (attribute ("""ResourceCertificationCategory.RTM"""))
     def parse (context: Context): ResourceCertificationCategory =
     {
         ResourceCertificationCategory(
@@ -2812,11 +2812,11 @@ extends
     Parseable[ResourceCertificationType]
 {
     val sup = BasicElement.parse _
-    val GT = parse_attribute (attribute ("""ResourceCertificationType.GT"""))_
-    val IR = parse_attribute (attribute ("""ResourceCertificationType.IR"""))_
-    val NR = parse_attribute (attribute ("""ResourceCertificationType.NR"""))_
-    val RG = parse_attribute (attribute ("""ResourceCertificationType.RG"""))_
-    val SR = parse_attribute (attribute ("""ResourceCertificationType.SR"""))_
+    val GT = parse_attribute (attribute ("""ResourceCertificationType.GT"""))
+    val IR = parse_attribute (attribute ("""ResourceCertificationType.IR"""))
+    val NR = parse_attribute (attribute ("""ResourceCertificationType.NR"""))
+    val RG = parse_attribute (attribute ("""ResourceCertificationType.RG"""))
+    val SR = parse_attribute (attribute ("""ResourceCertificationType.SR"""))
     def parse (context: Context): ResourceCertificationType =
     {
         ResourceCertificationType(
@@ -2858,9 +2858,9 @@ extends
     Parseable[SchedClassType]
 {
     val sup = BasicElement.parse _
-    val F = parse_attribute (attribute ("""SchedClassType.F"""))_
-    val P = parse_attribute (attribute ("""SchedClassType.P"""))_
-    val R = parse_attribute (attribute ("""SchedClassType.R"""))_
+    val F = parse_attribute (attribute ("""SchedClassType.F"""))
+    val P = parse_attribute (attribute ("""SchedClassType.P"""))
+    val R = parse_attribute (attribute ("""SchedClassType.R"""))
     def parse (context: Context): SchedClassType =
     {
         SchedClassType(
@@ -2899,8 +2899,8 @@ extends
     Parseable[SegmentCurveType]
 {
     val sup = BasicElement.parse _
-    val CONSULTATIVE = parse_attribute (attribute ("""SegmentCurveType.CONSULTATIVE"""))_
-    val COST = parse_attribute (attribute ("""SegmentCurveType.COST"""))_
+    val CONSULTATIVE = parse_attribute (attribute ("""SegmentCurveType.CONSULTATIVE"""))
+    val COST = parse_attribute (attribute ("""SegmentCurveType.COST"""))
     def parse (context: Context): SegmentCurveType =
     {
         SegmentCurveType(
@@ -2947,17 +2947,17 @@ extends
     Parseable[SelfSchedTypeCleanBid]
 {
     val sup = BasicElement.parse _
-    val BAS = parse_attribute (attribute ("""SelfSchedTypeCleanBid.BAS"""))_
-    val ETC = parse_attribute (attribute ("""SelfSchedTypeCleanBid.ETC"""))_
-    val IFM = parse_attribute (attribute ("""SelfSchedTypeCleanBid.IFM"""))_
-    val LOF = parse_attribute (attribute ("""SelfSchedTypeCleanBid.LOF"""))_
-    val LPT = parse_attribute (attribute ("""SelfSchedTypeCleanBid.LPT"""))_
-    val PT = parse_attribute (attribute ("""SelfSchedTypeCleanBid.PT"""))_
-    val RA = parse_attribute (attribute ("""SelfSchedTypeCleanBid.RA"""))_
-    val RMT = parse_attribute (attribute ("""SelfSchedTypeCleanBid.RMT"""))_
-    val SP = parse_attribute (attribute ("""SelfSchedTypeCleanBid.SP"""))_
-    val TOR = parse_attribute (attribute ("""SelfSchedTypeCleanBid.TOR"""))_
-    val WHL = parse_attribute (attribute ("""SelfSchedTypeCleanBid.WHL"""))_
+    val BAS = parse_attribute (attribute ("""SelfSchedTypeCleanBid.BAS"""))
+    val ETC = parse_attribute (attribute ("""SelfSchedTypeCleanBid.ETC"""))
+    val IFM = parse_attribute (attribute ("""SelfSchedTypeCleanBid.IFM"""))
+    val LOF = parse_attribute (attribute ("""SelfSchedTypeCleanBid.LOF"""))
+    val LPT = parse_attribute (attribute ("""SelfSchedTypeCleanBid.LPT"""))
+    val PT = parse_attribute (attribute ("""SelfSchedTypeCleanBid.PT"""))
+    val RA = parse_attribute (attribute ("""SelfSchedTypeCleanBid.RA"""))
+    val RMT = parse_attribute (attribute ("""SelfSchedTypeCleanBid.RMT"""))
+    val SP = parse_attribute (attribute ("""SelfSchedTypeCleanBid.SP"""))
+    val TOR = parse_attribute (attribute ("""SelfSchedTypeCleanBid.TOR"""))
+    val WHL = parse_attribute (attribute ("""SelfSchedTypeCleanBid.WHL"""))
     def parse (context: Context): SelfSchedTypeCleanBid =
     {
         SelfSchedTypeCleanBid(
@@ -3012,16 +3012,16 @@ extends
     Parseable[SelfSchedTypeRawBid]
 {
     val sup = BasicElement.parse _
-    val BAS = parse_attribute (attribute ("""SelfSchedTypeRawBid.BAS"""))_
-    val ETC = parse_attribute (attribute ("""SelfSchedTypeRawBid.ETC"""))_
-    val LOF = parse_attribute (attribute ("""SelfSchedTypeRawBid.LOF"""))_
-    val LPT = parse_attribute (attribute ("""SelfSchedTypeRawBid.LPT"""))_
-    val PT = parse_attribute (attribute ("""SelfSchedTypeRawBid.PT"""))_
-    val RA = parse_attribute (attribute ("""SelfSchedTypeRawBid.RA"""))_
-    val RMT = parse_attribute (attribute ("""SelfSchedTypeRawBid.RMT"""))_
-    val SP = parse_attribute (attribute ("""SelfSchedTypeRawBid.SP"""))_
-    val TOR = parse_attribute (attribute ("""SelfSchedTypeRawBid.TOR"""))_
-    val WHL = parse_attribute (attribute ("""SelfSchedTypeRawBid.WHL"""))_
+    val BAS = parse_attribute (attribute ("""SelfSchedTypeRawBid.BAS"""))
+    val ETC = parse_attribute (attribute ("""SelfSchedTypeRawBid.ETC"""))
+    val LOF = parse_attribute (attribute ("""SelfSchedTypeRawBid.LOF"""))
+    val LPT = parse_attribute (attribute ("""SelfSchedTypeRawBid.LPT"""))
+    val PT = parse_attribute (attribute ("""SelfSchedTypeRawBid.PT"""))
+    val RA = parse_attribute (attribute ("""SelfSchedTypeRawBid.RA"""))
+    val RMT = parse_attribute (attribute ("""SelfSchedTypeRawBid.RMT"""))
+    val SP = parse_attribute (attribute ("""SelfSchedTypeRawBid.SP"""))
+    val TOR = parse_attribute (attribute ("""SelfSchedTypeRawBid.TOR"""))
+    val WHL = parse_attribute (attribute ("""SelfSchedTypeRawBid.WHL"""))
     def parse (context: Context): SelfSchedTypeRawBid =
     {
         SelfSchedTypeRawBid(
@@ -3110,22 +3110,22 @@ extends
     Parseable[SelfScheduleType]
 {
     val sup = BasicElement.parse _
-    val BAS = parse_attribute (attribute ("""SelfScheduleType.BAS"""))_
-    val ETC = parse_attribute (attribute ("""SelfScheduleType.ETC"""))_
-    val IFM = parse_attribute (attribute ("""SelfScheduleType.IFM"""))_
-    val LOF = parse_attribute (attribute ("""SelfScheduleType.LOF"""))_
-    val ORFC = parse_attribute (attribute ("""SelfScheduleType.ORFC"""))_
-    val PT = parse_attribute (attribute ("""SelfScheduleType.PT"""))_
-    val PUMP_ETC = parse_attribute (attribute ("""SelfScheduleType.PUMP_ETC"""))_
-    val PUMP_TOR = parse_attribute (attribute ("""SelfScheduleType.PUMP_TOR"""))_
-    val RA = parse_attribute (attribute ("""SelfScheduleType.RA"""))_
-    val RGMR = parse_attribute (attribute ("""SelfScheduleType.RGMR"""))_
-    val RMR = parse_attribute (attribute ("""SelfScheduleType.RMR"""))_
-    val RMT = parse_attribute (attribute ("""SelfScheduleType.RMT"""))_
-    val RUC = parse_attribute (attribute ("""SelfScheduleType.RUC"""))_
-    val SP = parse_attribute (attribute ("""SelfScheduleType.SP"""))_
-    val TOR = parse_attribute (attribute ("""SelfScheduleType.TOR"""))_
-    val WHL = parse_attribute (attribute ("""SelfScheduleType.WHL"""))_
+    val BAS = parse_attribute (attribute ("""SelfScheduleType.BAS"""))
+    val ETC = parse_attribute (attribute ("""SelfScheduleType.ETC"""))
+    val IFM = parse_attribute (attribute ("""SelfScheduleType.IFM"""))
+    val LOF = parse_attribute (attribute ("""SelfScheduleType.LOF"""))
+    val ORFC = parse_attribute (attribute ("""SelfScheduleType.ORFC"""))
+    val PT = parse_attribute (attribute ("""SelfScheduleType.PT"""))
+    val PUMP_ETC = parse_attribute (attribute ("""SelfScheduleType.PUMP_ETC"""))
+    val PUMP_TOR = parse_attribute (attribute ("""SelfScheduleType.PUMP_TOR"""))
+    val RA = parse_attribute (attribute ("""SelfScheduleType.RA"""))
+    val RGMR = parse_attribute (attribute ("""SelfScheduleType.RGMR"""))
+    val RMR = parse_attribute (attribute ("""SelfScheduleType.RMR"""))
+    val RMT = parse_attribute (attribute ("""SelfScheduleType.RMT"""))
+    val RUC = parse_attribute (attribute ("""SelfScheduleType.RUC"""))
+    val SP = parse_attribute (attribute ("""SelfScheduleType.SP"""))
+    val TOR = parse_attribute (attribute ("""SelfScheduleType.TOR"""))
+    val WHL = parse_attribute (attribute ("""SelfScheduleType.WHL"""))
     def parse (context: Context): SelfScheduleType =
     {
         SelfScheduleType(
@@ -3181,7 +3181,7 @@ extends
     Parseable[SelfScheduleTypeMB]
 {
     val sup = BasicElement.parse _
-    val RMR = parse_attribute (attribute ("""SelfScheduleTypeMB.RMR"""))_
+    val RMR = parse_attribute (attribute ("""SelfScheduleTypeMB.RMR"""))
     def parse (context: Context): SelfScheduleTypeMB =
     {
         SelfScheduleTypeMB(
@@ -3218,8 +3218,8 @@ extends
     Parseable[SourceSinkFlag]
 {
     val sup = BasicElement.parse _
-    val CSNK = parse_attribute (attribute ("""SourceSinkFlag.CSNK"""))_
-    val CSRC = parse_attribute (attribute ("""SourceSinkFlag.CSRC"""))_
+    val CSNK = parse_attribute (attribute ("""SourceSinkFlag.CSNK"""))
+    val CSRC = parse_attribute (attribute ("""SourceSinkFlag.CSRC"""))
     def parse (context: Context): SourceSinkFlag =
     {
         SourceSinkFlag(
@@ -3258,9 +3258,9 @@ extends
     Parseable[SourceSinkType]
 {
     val sup = BasicElement.parse _
-    val Neither = parse_attribute (attribute ("""SourceSinkType.Neither"""))_
-    val Sink = parse_attribute (attribute ("""SourceSinkType.Sink"""))_
-    val Source = parse_attribute (attribute ("""SourceSinkType.Source"""))_
+    val Neither = parse_attribute (attribute ("""SourceSinkType.Neither"""))
+    val Sink = parse_attribute (attribute ("""SourceSinkType.Sink"""))
+    val Source = parse_attribute (attribute ("""SourceSinkType.Source"""))
     def parse (context: Context): SourceSinkType =
     {
         SourceSinkType(
@@ -3301,10 +3301,10 @@ extends
     Parseable[SpinningEventNameType]
 {
     val sup = BasicElement.parse _
-    val EASTERN = parse_attribute (attribute ("""SpinningEventNameType.EASTERN"""))_
-    val PJM = parse_attribute (attribute ("""SpinningEventNameType.PJM"""))_
-    val RFC_SR = parse_attribute (attribute ("""SpinningEventNameType.RFC-SR"""))_
-    val SOUTH_S = parse_attribute (attribute ("""SpinningEventNameType.SOUTH-S"""))_
+    val EASTERN = parse_attribute (attribute ("""SpinningEventNameType.EASTERN"""))
+    val PJM = parse_attribute (attribute ("""SpinningEventNameType.PJM"""))
+    val RFC_SR = parse_attribute (attribute ("""SpinningEventNameType.RFC-SR"""))
+    val SOUTH_S = parse_attribute (attribute ("""SpinningEventNameType.SOUTH-S"""))
     def parse (context: Context): SpinningEventNameType =
     {
         SpinningEventNameType(
@@ -3345,9 +3345,9 @@ extends
     Parseable[SpinningEventType]
 {
     val sup = BasicElement.parse _
-    val AA = parse_attribute (attribute ("""SpinningEventType.AA"""))_
-    val CA = parse_attribute (attribute ("""SpinningEventType.CA"""))_
-    val RZ = parse_attribute (attribute ("""SpinningEventType.RZ"""))_
+    val AA = parse_attribute (attribute ("""SpinningEventType.AA"""))
+    val CA = parse_attribute (attribute ("""SpinningEventType.CA"""))
+    val RZ = parse_attribute (attribute ("""SpinningEventType.RZ"""))
     def parse (context: Context): SpinningEventType =
     {
         SpinningEventType(
@@ -3385,7 +3385,7 @@ extends
     Parseable[SystemType]
 {
     val sup = BasicElement.parse _
-    val OASIS = parse_attribute (attribute ("""SystemType.OASIS"""))_
+    val OASIS = parse_attribute (attribute ("""SystemType.OASIS"""))
     def parse (context: Context): SystemType =
     {
         SystemType(
@@ -3421,7 +3421,7 @@ extends
     Parseable[TimeZoneType]
 {
     val sup = BasicElement.parse _
-    val PPT = parse_attribute (attribute ("""TimeZoneType.PPT"""))_
+    val PPT = parse_attribute (attribute ("""TimeZoneType.PPT"""))
     def parse (context: Context): TimeZoneType =
     {
         TimeZoneType(
@@ -3463,13 +3463,13 @@ extends
     Parseable[TradeProductType]
 {
     val sup = BasicElement.parse _
-    val APN = parse_attribute (attribute ("""TradeProductType.APN"""))_
-    val CAP = parse_attribute (attribute ("""TradeProductType.CAP"""))_
-    val NRT = parse_attribute (attribute ("""TradeProductType.NRT"""))_
-    val PHY = parse_attribute (attribute ("""TradeProductType.PHY"""))_
-    val RDT = parse_attribute (attribute ("""TradeProductType.RDT"""))_
-    val RUT = parse_attribute (attribute ("""TradeProductType.RUT"""))_
-    val SRT = parse_attribute (attribute ("""TradeProductType.SRT"""))_
+    val APN = parse_attribute (attribute ("""TradeProductType.APN"""))
+    val CAP = parse_attribute (attribute ("""TradeProductType.CAP"""))
+    val NRT = parse_attribute (attribute ("""TradeProductType.NRT"""))
+    val PHY = parse_attribute (attribute ("""TradeProductType.PHY"""))
+    val RDT = parse_attribute (attribute ("""TradeProductType.RDT"""))
+    val RUT = parse_attribute (attribute ("""TradeProductType.RUT"""))
+    val SRT = parse_attribute (attribute ("""TradeProductType.SRT"""))
     def parse (context: Context): TradeProductType =
     {
         TradeProductType(
@@ -3546,17 +3546,17 @@ extends
     Parseable[TradeStatusType]
 {
     val sup = BasicElement.parse _
-    val CI = parse_attribute (attribute ("""TradeStatusType.CI"""))_
-    val CM = parse_attribute (attribute ("""TradeStatusType.CM"""))_
-    val CV = parse_attribute (attribute ("""TradeStatusType.CV"""))_
-    val CX = parse_attribute (attribute ("""TradeStatusType.CX"""))_
-    val I = parse_attribute (attribute ("""TradeStatusType.I"""))_
-    val M = parse_attribute (attribute ("""TradeStatusType.M"""))_
-    val MT = parse_attribute (attribute ("""TradeStatusType.MT"""))_
-    val O = parse_attribute (attribute ("""TradeStatusType.O"""))_
-    val RJ = parse_attribute (attribute ("""TradeStatusType.RJ"""))_
-    val U = parse_attribute (attribute ("""TradeStatusType.U"""))_
-    val V = parse_attribute (attribute ("""TradeStatusType.V"""))_
+    val CI = parse_attribute (attribute ("""TradeStatusType.CI"""))
+    val CM = parse_attribute (attribute ("""TradeStatusType.CM"""))
+    val CV = parse_attribute (attribute ("""TradeStatusType.CV"""))
+    val CX = parse_attribute (attribute ("""TradeStatusType.CX"""))
+    val I = parse_attribute (attribute ("""TradeStatusType.I"""))
+    val M = parse_attribute (attribute ("""TradeStatusType.M"""))
+    val MT = parse_attribute (attribute ("""TradeStatusType.MT"""))
+    val O = parse_attribute (attribute ("""TradeStatusType.O"""))
+    val RJ = parse_attribute (attribute ("""TradeStatusType.RJ"""))
+    val U = parse_attribute (attribute ("""TradeStatusType.U"""))
+    val V = parse_attribute (attribute ("""TradeStatusType.V"""))
     def parse (context: Context): TradeStatusType =
     {
         TradeStatusType(
@@ -3612,17 +3612,17 @@ extends
     Parseable[UOMType]
 {
     val sup = BasicElement.parse _
-    val percent = parse_attribute (attribute ("""UOMType.%"""))_
-    val $_lb = parse_attribute (attribute ("""UOMType.$/lb"""))_
-    val $_mmBTU = parse_attribute (attribute ("""UOMType.$/mmBTU"""))_
-    val FACTOR = parse_attribute (attribute ("""UOMType.FACTOR"""))_
-    val FLAG = parse_attribute (attribute ("""UOMType.FLAG"""))_
-    val INTEGER = parse_attribute (attribute ("""UOMType.INTEGER"""))_
-    val MW = parse_attribute (attribute ("""UOMType.MW"""))_
-    val MWh = parse_attribute (attribute ("""UOMType.MWh"""))_
-    val US$ = parse_attribute (attribute ("""UOMType.US$"""))_
-    val US$_MW = parse_attribute (attribute ("""UOMType.US$/MW"""))_
-    val US$_MWh = parse_attribute (attribute ("""UOMType.US$/MWh"""))_
+    val percent = parse_attribute (attribute ("""UOMType.%"""))
+    val $_lb = parse_attribute (attribute ("""UOMType.$/lb"""))
+    val $_mmBTU = parse_attribute (attribute ("""UOMType.$/mmBTU"""))
+    val FACTOR = parse_attribute (attribute ("""UOMType.FACTOR"""))
+    val FLAG = parse_attribute (attribute ("""UOMType.FLAG"""))
+    val INTEGER = parse_attribute (attribute ("""UOMType.INTEGER"""))
+    val MW = parse_attribute (attribute ("""UOMType.MW"""))
+    val MWh = parse_attribute (attribute ("""UOMType.MWh"""))
+    val US$ = parse_attribute (attribute ("""UOMType.US$"""))
+    val US$_MW = parse_attribute (attribute ("""UOMType.US$/MW"""))
+    val US$_MWh = parse_attribute (attribute ("""UOMType.US$/MWh"""))
     def parse (context: Context): UOMType =
     {
         UOMType(
@@ -3676,8 +3676,8 @@ extends
     Parseable[UnitTypeEMS]
 {
     val sup = BasicElement.parse _
-    val FLAG = parse_attribute (attribute ("""UnitTypeEMS.FLAG"""))_
-    val MW = parse_attribute (attribute ("""UnitTypeEMS.MW"""))_
+    val FLAG = parse_attribute (attribute ("""UnitTypeEMS.FLAG"""))
+    val MW = parse_attribute (attribute ("""UnitTypeEMS.MW"""))
     def parse (context: Context): UnitTypeEMS =
     {
         UnitTypeEMS(
@@ -3727,11 +3727,11 @@ extends
     Parseable[ZoneType]
 {
     val sup = BasicElement.parse _
-    val ASREGION = parse_attribute (attribute ("""ZoneType.ASREGION"""))_
-    val DCA = parse_attribute (attribute ("""ZoneType.DCA"""))_
-    val LOADZONE = parse_attribute (attribute ("""ZoneType.LOADZONE"""))_
-    val RUCZONE = parse_attribute (attribute ("""ZoneType.RUCZONE"""))_
-    val TRADINGHUB = parse_attribute (attribute ("""ZoneType.TRADINGHUB"""))_
+    val ASREGION = parse_attribute (attribute ("""ZoneType.ASREGION"""))
+    val DCA = parse_attribute (attribute ("""ZoneType.DCA"""))
+    val LOADZONE = parse_attribute (attribute ("""ZoneType.LOADZONE"""))
+    val RUCZONE = parse_attribute (attribute ("""ZoneType.RUCZONE"""))
+    val TRADINGHUB = parse_attribute (attribute ("""ZoneType.TRADINGHUB"""))
     def parse (context: Context): ZoneType =
     {
         ZoneType(
@@ -3779,8 +3779,8 @@ extends
     Parseable[runTypeCAISO]
 {
     val sup = BasicElement.parse _
-    val P = parse_attribute (attribute ("""runTypeCAISO.P"""))_
-    val S = parse_attribute (attribute ("""runTypeCAISO.S"""))_
+    val P = parse_attribute (attribute ("""runTypeCAISO.P"""))
+    val S = parse_attribute (attribute ("""runTypeCAISO.S"""))
     def parse (context: Context): runTypeCAISO =
     {
         runTypeCAISO(

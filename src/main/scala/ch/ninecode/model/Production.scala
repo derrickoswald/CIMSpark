@@ -44,9 +44,9 @@ extends
     Parseable[AirCompressor]
 {
     val sup = PowerSystemResource.parse _
-    val airCompressorRating = parse_element (element ("""AirCompressor.airCompressorRating"""))_
-    val CAESPlant = parse_attribute (attribute ("""AirCompressor.CAESPlant"""))_
-    val CombustionTurbine = parse_attribute (attribute ("""AirCompressor.CombustionTurbine"""))_
+    val airCompressorRating = parse_element (element ("""AirCompressor.airCompressorRating"""))
+    val CAESPlant = parse_attribute (attribute ("""AirCompressor.CAESPlant"""))
+    val CombustionTurbine = parse_attribute (attribute ("""AirCompressor.CombustionTurbine"""))
     def parse (context: Context): AirCompressor =
     {
         AirCompressor(
@@ -95,10 +95,10 @@ extends
     Parseable[CAESPlant]
 {
     val sup = PowerSystemResource.parse _
-    val energyStorageCapacity = parse_element (element ("""CAESPlant.energyStorageCapacity"""))_
-    val ratedCapacityP = parse_element (element ("""CAESPlant.ratedCapacityP"""))_
-    val AirCompressor = parse_attribute (attribute ("""CAESPlant.AirCompressor"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""CAESPlant.ThermalGeneratingUnit"""))_
+    val energyStorageCapacity = parse_element (element ("""CAESPlant.energyStorageCapacity"""))
+    val ratedCapacityP = parse_element (element ("""CAESPlant.ratedCapacityP"""))
+    val AirCompressor = parse_attribute (attribute ("""CAESPlant.AirCompressor"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""CAESPlant.ThermalGeneratingUnit"""))
     def parse (context: Context): CAESPlant =
     {
         CAESPlant(
@@ -147,9 +147,9 @@ extends
     Parseable[Classification]
 {
     val sup = BasicElement.parse _
-    val multiplier = parse_attribute (attribute ("""Classification.multiplier"""))_
-    val unit = parse_attribute (attribute ("""Classification.unit"""))_
-    val value = parse_element (element ("""Classification.value"""))_
+    val multiplier = parse_attribute (attribute ("""Classification.multiplier"""))
+    val unit = parse_attribute (attribute ("""Classification.unit"""))
+    val value = parse_element (element ("""Classification.value"""))
     def parse (context: Context): Classification =
     {
         Classification(
@@ -203,12 +203,12 @@ extends
     Parseable[CogenerationPlant]
 {
     val sup = PowerSystemResource.parse _
-    val cogenHPSendoutRating = parse_element (element ("""CogenerationPlant.cogenHPSendoutRating"""))_
-    val cogenHPSteamRating = parse_element (element ("""CogenerationPlant.cogenHPSteamRating"""))_
-    val cogenLPSendoutRating = parse_element (element ("""CogenerationPlant.cogenLPSendoutRating"""))_
-    val cogenLPSteamRating = parse_element (element ("""CogenerationPlant.cogenLPSteamRating"""))_
-    val ratedP = parse_element (element ("""CogenerationPlant.ratedP"""))_
-    val SteamSendoutSchedule = parse_attribute (attribute ("""CogenerationPlant.SteamSendoutSchedule"""))_
+    val cogenHPSendoutRating = parse_element (element ("""CogenerationPlant.cogenHPSendoutRating"""))
+    val cogenHPSteamRating = parse_element (element ("""CogenerationPlant.cogenHPSteamRating"""))
+    val cogenLPSendoutRating = parse_element (element ("""CogenerationPlant.cogenLPSendoutRating"""))
+    val cogenLPSteamRating = parse_element (element ("""CogenerationPlant.cogenLPSteamRating"""))
+    val ratedP = parse_element (element ("""CogenerationPlant.ratedP"""))
+    val SteamSendoutSchedule = parse_attribute (attribute ("""CogenerationPlant.SteamSendoutSchedule"""))
     def parse (context: Context): CogenerationPlant =
     {
         CogenerationPlant(
@@ -254,7 +254,7 @@ extends
     Parseable[CombinedCyclePlant]
 {
     val sup = PowerSystemResource.parse _
-    val combCyclePlantRating = parse_element (element ("""CombinedCyclePlant.combCyclePlantRating"""))_
+    val combCyclePlantRating = parse_element (element ("""CombinedCyclePlant.combCyclePlantRating"""))
     def parse (context: Context): CombinedCyclePlant =
     {
         CombinedCyclePlant(
@@ -303,11 +303,11 @@ extends
     Parseable[CostPerHeatUnit]
 {
     val sup = BasicElement.parse _
-    val denominatorMultiplier = parse_attribute (attribute ("""CostPerHeatUnit.denominatorMultiplier"""))_
-    val denominatorUnit = parse_attribute (attribute ("""CostPerHeatUnit.denominatorUnit"""))_
-    val multiplier = parse_attribute (attribute ("""CostPerHeatUnit.multiplier"""))_
-    val unit = parse_attribute (attribute ("""CostPerHeatUnit.unit"""))_
-    val value = parse_element (element ("""CostPerHeatUnit.value"""))_
+    val denominatorMultiplier = parse_attribute (attribute ("""CostPerHeatUnit.denominatorMultiplier"""))
+    val denominatorUnit = parse_attribute (attribute ("""CostPerHeatUnit.denominatorUnit"""))
+    val multiplier = parse_attribute (attribute ("""CostPerHeatUnit.multiplier"""))
+    val unit = parse_attribute (attribute ("""CostPerHeatUnit.unit"""))
+    val value = parse_element (element ("""CostPerHeatUnit.value"""))
     def parse (context: Context): CostPerHeatUnit =
     {
         CostPerHeatUnit(
@@ -360,11 +360,11 @@ extends
     Parseable[Emission]
 {
     val sup = BasicElement.parse _
-    val denominatorMultiplier = parse_attribute (attribute ("""Emission.denominatorMultiplier"""))_
-    val denominatorUnit = parse_attribute (attribute ("""Emission.denominatorUnit"""))_
-    val multiplier = parse_attribute (attribute ("""Emission.multiplier"""))_
-    val unit = parse_attribute (attribute ("""Emission.unit"""))_
-    val value = parse_element (element ("""Emission.value"""))_
+    val denominatorMultiplier = parse_attribute (attribute ("""Emission.denominatorMultiplier"""))
+    val denominatorUnit = parse_attribute (attribute ("""Emission.denominatorUnit"""))
+    val multiplier = parse_attribute (attribute ("""Emission.multiplier"""))
+    val unit = parse_attribute (attribute ("""Emission.unit"""))
+    val value = parse_element (element ("""Emission.value"""))
     def parse (context: Context): Emission =
     {
         Emission(
@@ -415,9 +415,9 @@ extends
     Parseable[EmissionAccount]
 {
     val sup = Curve.parse _
-    val emissionType = parse_attribute (attribute ("""EmissionAccount.emissionType"""))_
-    val emissionValueSource = parse_attribute (attribute ("""EmissionAccount.emissionValueSource"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""EmissionAccount.ThermalGeneratingUnit"""))_
+    val emissionType = parse_attribute (attribute ("""EmissionAccount.emissionType"""))
+    val emissionValueSource = parse_attribute (attribute ("""EmissionAccount.emissionValueSource"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""EmissionAccount.ThermalGeneratingUnit"""))
     def parse (context: Context): EmissionAccount =
     {
         EmissionAccount(
@@ -468,10 +468,10 @@ extends
     Parseable[EmissionCurve]
 {
     val sup = Curve.parse _
-    val emissionContent = parse_attribute (attribute ("""EmissionCurve.emissionContent"""))_
-    val emissionType = parse_attribute (attribute ("""EmissionCurve.emissionType"""))_
-    val isNetGrossP = parse_element (element ("""EmissionCurve.isNetGrossP"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""EmissionCurve.ThermalGeneratingUnit"""))_
+    val emissionContent = parse_attribute (attribute ("""EmissionCurve.emissionContent"""))
+    val emissionType = parse_attribute (attribute ("""EmissionCurve.emissionType"""))
+    val isNetGrossP = parse_element (element ("""EmissionCurve.isNetGrossP"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""EmissionCurve.ThermalGeneratingUnit"""))
     def parse (context: Context): EmissionCurve =
     {
         EmissionCurve(
@@ -525,12 +525,12 @@ extends
     Parseable[EmissionType]
 {
     val sup = BasicElement.parse _
-    val carbonDioxide = parse_attribute (attribute ("""EmissionType.carbonDioxide"""))_
-    val carbonDisulfide = parse_attribute (attribute ("""EmissionType.carbonDisulfide"""))_
-    val chlorine = parse_attribute (attribute ("""EmissionType.chlorine"""))_
-    val hydrogenSulfide = parse_attribute (attribute ("""EmissionType.hydrogenSulfide"""))_
-    val nitrogenOxide = parse_attribute (attribute ("""EmissionType.nitrogenOxide"""))_
-    val sulfurDioxide = parse_attribute (attribute ("""EmissionType.sulfurDioxide"""))_
+    val carbonDioxide = parse_attribute (attribute ("""EmissionType.carbonDioxide"""))
+    val carbonDisulfide = parse_attribute (attribute ("""EmissionType.carbonDisulfide"""))
+    val chlorine = parse_attribute (attribute ("""EmissionType.chlorine"""))
+    val hydrogenSulfide = parse_attribute (attribute ("""EmissionType.hydrogenSulfide"""))
+    val nitrogenOxide = parse_attribute (attribute ("""EmissionType.nitrogenOxide"""))
+    val sulfurDioxide = parse_attribute (attribute ("""EmissionType.sulfurDioxide"""))
     def parse (context: Context): EmissionType =
     {
         EmissionType(
@@ -578,8 +578,8 @@ extends
     Parseable[EmissionValueSource]
 {
     val sup = BasicElement.parse _
-    val calculated = parse_attribute (attribute ("""EmissionValueSource.calculated"""))_
-    val measured = parse_attribute (attribute ("""EmissionValueSource.measured"""))_
+    val calculated = parse_attribute (attribute ("""EmissionValueSource.calculated"""))
+    val measured = parse_attribute (attribute ("""EmissionValueSource.measured"""))
     def parse (context: Context): EmissionValueSource =
     {
         EmissionValueSource(
@@ -644,17 +644,17 @@ extends
     Parseable[FossilFuel]
 {
     val sup = IdentifiedObject.parse _
-    val fossilFuelType = parse_attribute (attribute ("""FossilFuel.fossilFuelType"""))_
-    val fuelCost = parse_attribute (attribute ("""FossilFuel.fuelCost"""))_
-    val fuelDispatchCost = parse_attribute (attribute ("""FossilFuel.fuelDispatchCost"""))_
-    val fuelEffFactor = parse_element (element ("""FossilFuel.fuelEffFactor"""))_
-    val fuelHandlingCost = parse_attribute (attribute ("""FossilFuel.fuelHandlingCost"""))_
-    val fuelHeatContent = parse_element (element ("""FossilFuel.fuelHeatContent"""))_
-    val fuelMixture = parse_element (element ("""FossilFuel.fuelMixture"""))_
-    val fuelSulfur = parse_element (element ("""FossilFuel.fuelSulfur"""))_
-    val highBreakpointP = parse_element (element ("""FossilFuel.highBreakpointP"""))_
-    val lowBreakpointP = parse_element (element ("""FossilFuel.lowBreakpointP"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""FossilFuel.ThermalGeneratingUnit"""))_
+    val fossilFuelType = parse_attribute (attribute ("""FossilFuel.fossilFuelType"""))
+    val fuelCost = parse_attribute (attribute ("""FossilFuel.fuelCost"""))
+    val fuelDispatchCost = parse_attribute (attribute ("""FossilFuel.fuelDispatchCost"""))
+    val fuelEffFactor = parse_element (element ("""FossilFuel.fuelEffFactor"""))
+    val fuelHandlingCost = parse_attribute (attribute ("""FossilFuel.fuelHandlingCost"""))
+    val fuelHeatContent = parse_element (element ("""FossilFuel.fuelHeatContent"""))
+    val fuelMixture = parse_element (element ("""FossilFuel.fuelMixture"""))
+    val fuelSulfur = parse_element (element ("""FossilFuel.fuelSulfur"""))
+    val highBreakpointP = parse_element (element ("""FossilFuel.highBreakpointP"""))
+    val lowBreakpointP = parse_element (element ("""FossilFuel.lowBreakpointP"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""FossilFuel.ThermalGeneratingUnit"""))
     def parse (context: Context): FossilFuel =
     {
         FossilFuel(
@@ -717,13 +717,13 @@ extends
     Parseable[FuelAllocationSchedule]
 {
     val sup = Curve.parse _
-    val fuelAllocationEndDate = parse_element (element ("""FuelAllocationSchedule.fuelAllocationEndDate"""))_
-    val fuelAllocationStartDate = parse_element (element ("""FuelAllocationSchedule.fuelAllocationStartDate"""))_
-    val fuelType = parse_attribute (attribute ("""FuelAllocationSchedule.fuelType"""))_
-    val maxFuelAllocation = parse_element (element ("""FuelAllocationSchedule.maxFuelAllocation"""))_
-    val minFuelAllocation = parse_element (element ("""FuelAllocationSchedule.minFuelAllocation"""))_
-    val FossilFuel = parse_attribute (attribute ("""FuelAllocationSchedule.FossilFuel"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""FuelAllocationSchedule.ThermalGeneratingUnit"""))_
+    val fuelAllocationEndDate = parse_element (element ("""FuelAllocationSchedule.fuelAllocationEndDate"""))
+    val fuelAllocationStartDate = parse_element (element ("""FuelAllocationSchedule.fuelAllocationStartDate"""))
+    val fuelType = parse_attribute (attribute ("""FuelAllocationSchedule.fuelType"""))
+    val maxFuelAllocation = parse_element (element ("""FuelAllocationSchedule.maxFuelAllocation"""))
+    val minFuelAllocation = parse_element (element ("""FuelAllocationSchedule.minFuelAllocation"""))
+    val FossilFuel = parse_attribute (attribute ("""FuelAllocationSchedule.FossilFuel"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""FuelAllocationSchedule.ThermalGeneratingUnit"""))
     def parse (context: Context): FuelAllocationSchedule =
     {
         FuelAllocationSchedule(
@@ -781,12 +781,12 @@ extends
     Parseable[FuelType]
 {
     val sup = BasicElement.parse _
-    val coal = parse_attribute (attribute ("""FuelType.coal"""))_
-    val gas = parse_attribute (attribute ("""FuelType.gas"""))_
-    val hardCoal = parse_attribute (attribute ("""FuelType.hardCoal"""))_
-    val lignite = parse_attribute (attribute ("""FuelType.lignite"""))_
-    val oil = parse_attribute (attribute ("""FuelType.oil"""))_
-    val oilShale = parse_attribute (attribute ("""FuelType.oilShale"""))_
+    val coal = parse_attribute (attribute ("""FuelType.coal"""))
+    val gas = parse_attribute (attribute ("""FuelType.gas"""))
+    val hardCoal = parse_attribute (attribute ("""FuelType.hardCoal"""))
+    val lignite = parse_attribute (attribute ("""FuelType.lignite"""))
+    val oil = parse_attribute (attribute ("""FuelType.oil"""))
+    val oilShale = parse_attribute (attribute ("""FuelType.oilShale"""))
     def parse (context: Context): FuelType =
     {
         FuelType(
@@ -835,8 +835,8 @@ extends
     Parseable[GenUnitOpCostCurve]
 {
     val sup = Curve.parse _
-    val isNetGrossP = parse_element (element ("""GenUnitOpCostCurve.isNetGrossP"""))_
-    val GeneratingUnit = parse_attribute (attribute ("""GenUnitOpCostCurve.GeneratingUnit"""))_
+    val isNetGrossP = parse_element (element ("""GenUnitOpCostCurve.isNetGrossP"""))
+    val GeneratingUnit = parse_attribute (attribute ("""GenUnitOpCostCurve.GeneratingUnit"""))
     def parse (context: Context): GenUnitOpCostCurve =
     {
         GenUnitOpCostCurve(
@@ -879,7 +879,7 @@ extends
     Parseable[GenUnitOpSchedule]
 {
     val sup = RegularIntervalSchedule.parse _
-    val GeneratingUnit = parse_attribute (attribute ("""GenUnitOpSchedule.GeneratingUnit"""))_
+    val GeneratingUnit = parse_attribute (attribute ("""GenUnitOpSchedule.GeneratingUnit"""))
     def parse (context: Context): GenUnitOpSchedule =
     {
         GenUnitOpSchedule(
@@ -1001,44 +1001,44 @@ extends
     Parseable[GeneratingUnit]
 {
     val sup = Equipment.parse _
-    val allocSpinResP = parse_element (element ("""GeneratingUnit.allocSpinResP"""))_
-    val autoCntrlMarginP = parse_element (element ("""GeneratingUnit.autoCntrlMarginP"""))_
-    val baseP = parse_element (element ("""GeneratingUnit.baseP"""))_
-    val controlDeadband = parse_element (element ("""GeneratingUnit.controlDeadband"""))_
-    val controlPulseHigh = parse_element (element ("""GeneratingUnit.controlPulseHigh"""))_
-    val controlPulseLow = parse_element (element ("""GeneratingUnit.controlPulseLow"""))_
-    val controlResponseRate = parse_element (element ("""GeneratingUnit.controlResponseRate"""))_
-    val efficiency = parse_element (element ("""GeneratingUnit.efficiency"""))_
-    val genControlMode = parse_attribute (attribute ("""GeneratingUnit.genControlMode"""))_
-    val genControlSource = parse_attribute (attribute ("""GeneratingUnit.genControlSource"""))_
-    val governorMPL = parse_element (element ("""GeneratingUnit.governorMPL"""))_
-    val governorSCD = parse_element (element ("""GeneratingUnit.governorSCD"""))_
-    val highControlLimit = parse_element (element ("""GeneratingUnit.highControlLimit"""))_
-    val initialP = parse_element (element ("""GeneratingUnit.initialP"""))_
-    val longPF = parse_element (element ("""GeneratingUnit.longPF"""))_
-    val lowControlLimit = parse_element (element ("""GeneratingUnit.lowControlLimit"""))_
-    val lowerRampRate = parse_element (element ("""GeneratingUnit.lowerRampRate"""))_
-    val maxEconomicP = parse_element (element ("""GeneratingUnit.maxEconomicP"""))_
-    val maxOperatingP = parse_element (element ("""GeneratingUnit.maxOperatingP"""))_
-    val maximumAllowableSpinningReserve = parse_element (element ("""GeneratingUnit.maximumAllowableSpinningReserve"""))_
-    val minEconomicP = parse_element (element ("""GeneratingUnit.minEconomicP"""))_
-    val minOperatingP = parse_element (element ("""GeneratingUnit.minOperatingP"""))_
-    val minimumOffTime = parse_element (element ("""GeneratingUnit.minimumOffTime"""))_
-    val modelDetail = parse_attribute (attribute ("""GeneratingUnit.modelDetail"""))_
-    val nominalP = parse_element (element ("""GeneratingUnit.nominalP"""))_
-    val normalPF = parse_element (element ("""GeneratingUnit.normalPF"""))_
-    val penaltyFactor = parse_element (element ("""GeneratingUnit.penaltyFactor"""))_
-    val raiseRampRate = parse_element (element ("""GeneratingUnit.raiseRampRate"""))_
-    val ratedGrossMaxP = parse_element (element ("""GeneratingUnit.ratedGrossMaxP"""))_
-    val ratedGrossMinP = parse_element (element ("""GeneratingUnit.ratedGrossMinP"""))_
-    val ratedNetMaxP = parse_element (element ("""GeneratingUnit.ratedNetMaxP"""))_
-    val shortPF = parse_element (element ("""GeneratingUnit.shortPF"""))_
-    val startupCost = parse_element (element ("""GeneratingUnit.startupCost"""))_
-    val startupTime = parse_element (element ("""GeneratingUnit.startupTime"""))_
-    val tieLinePF = parse_element (element ("""GeneratingUnit.tieLinePF"""))_
-    val totalEfficiency = parse_element (element ("""GeneratingUnit.totalEfficiency"""))_
-    val variableCost = parse_element (element ("""GeneratingUnit.variableCost"""))_
-    val GenUnitOpSchedule = parse_attribute (attribute ("""GeneratingUnit.GenUnitOpSchedule"""))_
+    val allocSpinResP = parse_element (element ("""GeneratingUnit.allocSpinResP"""))
+    val autoCntrlMarginP = parse_element (element ("""GeneratingUnit.autoCntrlMarginP"""))
+    val baseP = parse_element (element ("""GeneratingUnit.baseP"""))
+    val controlDeadband = parse_element (element ("""GeneratingUnit.controlDeadband"""))
+    val controlPulseHigh = parse_element (element ("""GeneratingUnit.controlPulseHigh"""))
+    val controlPulseLow = parse_element (element ("""GeneratingUnit.controlPulseLow"""))
+    val controlResponseRate = parse_element (element ("""GeneratingUnit.controlResponseRate"""))
+    val efficiency = parse_element (element ("""GeneratingUnit.efficiency"""))
+    val genControlMode = parse_attribute (attribute ("""GeneratingUnit.genControlMode"""))
+    val genControlSource = parse_attribute (attribute ("""GeneratingUnit.genControlSource"""))
+    val governorMPL = parse_element (element ("""GeneratingUnit.governorMPL"""))
+    val governorSCD = parse_element (element ("""GeneratingUnit.governorSCD"""))
+    val highControlLimit = parse_element (element ("""GeneratingUnit.highControlLimit"""))
+    val initialP = parse_element (element ("""GeneratingUnit.initialP"""))
+    val longPF = parse_element (element ("""GeneratingUnit.longPF"""))
+    val lowControlLimit = parse_element (element ("""GeneratingUnit.lowControlLimit"""))
+    val lowerRampRate = parse_element (element ("""GeneratingUnit.lowerRampRate"""))
+    val maxEconomicP = parse_element (element ("""GeneratingUnit.maxEconomicP"""))
+    val maxOperatingP = parse_element (element ("""GeneratingUnit.maxOperatingP"""))
+    val maximumAllowableSpinningReserve = parse_element (element ("""GeneratingUnit.maximumAllowableSpinningReserve"""))
+    val minEconomicP = parse_element (element ("""GeneratingUnit.minEconomicP"""))
+    val minOperatingP = parse_element (element ("""GeneratingUnit.minOperatingP"""))
+    val minimumOffTime = parse_element (element ("""GeneratingUnit.minimumOffTime"""))
+    val modelDetail = parse_attribute (attribute ("""GeneratingUnit.modelDetail"""))
+    val nominalP = parse_element (element ("""GeneratingUnit.nominalP"""))
+    val normalPF = parse_element (element ("""GeneratingUnit.normalPF"""))
+    val penaltyFactor = parse_element (element ("""GeneratingUnit.penaltyFactor"""))
+    val raiseRampRate = parse_element (element ("""GeneratingUnit.raiseRampRate"""))
+    val ratedGrossMaxP = parse_element (element ("""GeneratingUnit.ratedGrossMaxP"""))
+    val ratedGrossMinP = parse_element (element ("""GeneratingUnit.ratedGrossMinP"""))
+    val ratedNetMaxP = parse_element (element ("""GeneratingUnit.ratedNetMaxP"""))
+    val shortPF = parse_element (element ("""GeneratingUnit.shortPF"""))
+    val startupCost = parse_element (element ("""GeneratingUnit.startupCost"""))
+    val startupTime = parse_element (element ("""GeneratingUnit.startupTime"""))
+    val tieLinePF = parse_element (element ("""GeneratingUnit.tieLinePF"""))
+    val totalEfficiency = parse_element (element ("""GeneratingUnit.totalEfficiency"""))
+    val variableCost = parse_element (element ("""GeneratingUnit.variableCost"""))
+    val GenUnitOpSchedule = parse_attribute (attribute ("""GeneratingUnit.GenUnitOpSchedule"""))
     def parse (context: Context): GeneratingUnit =
     {
         GeneratingUnit(
@@ -1118,8 +1118,8 @@ extends
     Parseable[GeneratorControlMode]
 {
     val sup = BasicElement.parse _
-    val pulse = parse_attribute (attribute ("""GeneratorControlMode.pulse"""))_
-    val setpoint = parse_attribute (attribute ("""GeneratorControlMode.setpoint"""))_
+    val pulse = parse_attribute (attribute ("""GeneratorControlMode.pulse"""))
+    val setpoint = parse_attribute (attribute ("""GeneratorControlMode.setpoint"""))
     def parse (context: Context): GeneratorControlMode =
     {
         GeneratorControlMode(
@@ -1167,10 +1167,10 @@ extends
     Parseable[GeneratorControlSource]
 {
     val sup = BasicElement.parse _
-    val offAGC = parse_attribute (attribute ("""GeneratorControlSource.offAGC"""))_
-    val onAGC = parse_attribute (attribute ("""GeneratorControlSource.onAGC"""))_
-    val plantControl = parse_attribute (attribute ("""GeneratorControlSource.plantControl"""))_
-    val unavailable = parse_attribute (attribute ("""GeneratorControlSource.unavailable"""))_
+    val offAGC = parse_attribute (attribute ("""GeneratorControlSource.offAGC"""))
+    val onAGC = parse_attribute (attribute ("""GeneratorControlSource.onAGC"""))
+    val plantControl = parse_attribute (attribute ("""GeneratorControlSource.plantControl"""))
+    val unavailable = parse_attribute (attribute ("""GeneratorControlSource.unavailable"""))
     def parse (context: Context): GeneratorControlSource =
     {
         GeneratorControlSource(
@@ -1215,7 +1215,7 @@ extends
     Parseable[GrossToNetActivePowerCurve]
 {
     val sup = Curve.parse _
-    val GeneratingUnit = parse_attribute (attribute ("""GrossToNetActivePowerCurve.GeneratingUnit"""))_
+    val GeneratingUnit = parse_attribute (attribute ("""GrossToNetActivePowerCurve.GeneratingUnit"""))
     def parse (context: Context): GrossToNetActivePowerCurve =
     {
         GrossToNetActivePowerCurve(
@@ -1267,12 +1267,12 @@ extends
     Parseable[HeatInputCurve]
 {
     val sup = Curve.parse _
-    val auxPowerMult = parse_element (element ("""HeatInputCurve.auxPowerMult"""))_
-    val auxPowerOffset = parse_element (element ("""HeatInputCurve.auxPowerOffset"""))_
-    val heatInputEff = parse_element (element ("""HeatInputCurve.heatInputEff"""))_
-    val heatInputOffset = parse_attribute (attribute ("""HeatInputCurve.heatInputOffset"""))_
-    val isNetGrossP = parse_element (element ("""HeatInputCurve.isNetGrossP"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""HeatInputCurve.ThermalGeneratingUnit"""))_
+    val auxPowerMult = parse_element (element ("""HeatInputCurve.auxPowerMult"""))
+    val auxPowerOffset = parse_element (element ("""HeatInputCurve.auxPowerOffset"""))
+    val heatInputEff = parse_element (element ("""HeatInputCurve.heatInputEff"""))
+    val heatInputOffset = parse_attribute (attribute ("""HeatInputCurve.heatInputOffset"""))
+    val isNetGrossP = parse_element (element ("""HeatInputCurve.isNetGrossP"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""HeatInputCurve.ThermalGeneratingUnit"""))
     def parse (context: Context): HeatInputCurve =
     {
         HeatInputCurve(
@@ -1326,11 +1326,11 @@ extends
     Parseable[HeatRate]
 {
     val sup = BasicElement.parse _
-    val denominatorMultiplier = parse_attribute (attribute ("""HeatRate.denominatorMultiplier"""))_
-    val denominatorUnit = parse_attribute (attribute ("""HeatRate.denominatorUnit"""))_
-    val multiplier = parse_attribute (attribute ("""HeatRate.multiplier"""))_
-    val unit = parse_attribute (attribute ("""HeatRate.unit"""))_
-    val value = parse_element (element ("""HeatRate.value"""))_
+    val denominatorMultiplier = parse_attribute (attribute ("""HeatRate.denominatorMultiplier"""))
+    val denominatorUnit = parse_attribute (attribute ("""HeatRate.denominatorUnit"""))
+    val multiplier = parse_attribute (attribute ("""HeatRate.multiplier"""))
+    val unit = parse_attribute (attribute ("""HeatRate.unit"""))
+    val value = parse_element (element ("""HeatRate.value"""))
     def parse (context: Context): HeatRate =
     {
         HeatRate(
@@ -1378,8 +1378,8 @@ extends
     Parseable[HeatRateCurve]
 {
     val sup = Curve.parse _
-    val isNetGrossP = parse_element (element ("""HeatRateCurve.isNetGrossP"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""HeatRateCurve.ThermalGeneratingUnit"""))_
+    val isNetGrossP = parse_element (element ("""HeatRateCurve.isNetGrossP"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""HeatRateCurve.ThermalGeneratingUnit"""))
     def parse (context: Context): HeatRateCurve =
     {
         HeatRateCurve(
@@ -1423,8 +1423,8 @@ extends
     Parseable[HydroEnergyConversionKind]
 {
     val sup = BasicElement.parse _
-    val generator = parse_attribute (attribute ("""HydroEnergyConversionKind.generator"""))_
-    val pumpAndGenerator = parse_attribute (attribute ("""HydroEnergyConversionKind.pumpAndGenerator"""))_
+    val generator = parse_attribute (attribute ("""HydroEnergyConversionKind.generator"""))
+    val pumpAndGenerator = parse_attribute (attribute ("""HydroEnergyConversionKind.pumpAndGenerator"""))
     def parse (context: Context): HydroEnergyConversionKind =
     {
         HydroEnergyConversionKind(
@@ -1467,7 +1467,7 @@ extends
     Parseable[HydroGeneratingEfficiencyCurve]
 {
     val sup = Curve.parse _
-    val HydroGeneratingUnit = parse_attribute (attribute ("""HydroGeneratingEfficiencyCurve.HydroGeneratingUnit"""))_
+    val HydroGeneratingUnit = parse_attribute (attribute ("""HydroGeneratingEfficiencyCurve.HydroGeneratingUnit"""))
     def parse (context: Context): HydroGeneratingEfficiencyCurve =
     {
         HydroGeneratingEfficiencyCurve(
@@ -1514,10 +1514,10 @@ extends
     Parseable[HydroGeneratingUnit]
 {
     val sup = GeneratingUnit.parse _
-    val energyConversionCapability = parse_attribute (attribute ("""HydroGeneratingUnit.energyConversionCapability"""))_
-    val hydroUnitWaterCost = parse_element (element ("""HydroGeneratingUnit.hydroUnitWaterCost"""))_
-    val HydroPowerPlant = parse_attribute (attribute ("""HydroGeneratingUnit.HydroPowerPlant"""))_
-    val PenstockLossCurve = parse_attribute (attribute ("""HydroGeneratingUnit.PenstockLossCurve"""))_
+    val energyConversionCapability = parse_attribute (attribute ("""HydroGeneratingUnit.energyConversionCapability"""))
+    val hydroUnitWaterCost = parse_element (element ("""HydroGeneratingUnit.hydroUnitWaterCost"""))
+    val HydroPowerPlant = parse_attribute (attribute ("""HydroGeneratingUnit.HydroPowerPlant"""))
+    val PenstockLossCurve = parse_attribute (attribute ("""HydroGeneratingUnit.PenstockLossCurve"""))
     def parse (context: Context): HydroGeneratingUnit =
     {
         HydroGeneratingUnit(
@@ -1565,9 +1565,9 @@ extends
     Parseable[HydroPlantStorageKind]
 {
     val sup = BasicElement.parse _
-    val pumpedStorage = parse_attribute (attribute ("""HydroPlantStorageKind.pumpedStorage"""))_
-    val runOfRiver = parse_attribute (attribute ("""HydroPlantStorageKind.runOfRiver"""))_
-    val storage = parse_attribute (attribute ("""HydroPlantStorageKind.storage"""))_
+    val pumpedStorage = parse_attribute (attribute ("""HydroPlantStorageKind.pumpedStorage"""))
+    val runOfRiver = parse_attribute (attribute ("""HydroPlantStorageKind.runOfRiver"""))
+    val storage = parse_attribute (attribute ("""HydroPlantStorageKind.storage"""))
     def parse (context: Context): HydroPlantStorageKind =
     {
         HydroPlantStorageKind(
@@ -1631,17 +1631,17 @@ extends
     Parseable[HydroPowerPlant]
 {
     val sup = PowerSystemResource.parse _
-    val dischargeTravelDelay = parse_element (element ("""HydroPowerPlant.dischargeTravelDelay"""))_
-    val genRatedP = parse_element (element ("""HydroPowerPlant.genRatedP"""))_
-    val hydroPlantStorageType = parse_attribute (attribute ("""HydroPowerPlant.hydroPlantStorageType"""))_
-    val penstockType = parse_element (element ("""HydroPowerPlant.penstockType"""))_
-    val plantDischargeCapacity = parse_element (element ("""HydroPowerPlant.plantDischargeCapacity"""))_
-    val plantRatedHead = parse_element (element ("""HydroPowerPlant.plantRatedHead"""))_
-    val pumpRatedP = parse_element (element ("""HydroPowerPlant.pumpRatedP"""))_
-    val surgeTankCode = parse_element (element ("""HydroPowerPlant.surgeTankCode"""))_
-    val surgeTankCrestLevel = parse_element (element ("""HydroPowerPlant.surgeTankCrestLevel"""))_
-    val GenSourcePumpDischargeReservoir = parse_attribute (attribute ("""HydroPowerPlant.GenSourcePumpDischargeReservoir"""))_
-    val Reservoir = parse_attribute (attribute ("""HydroPowerPlant.Reservoir"""))_
+    val dischargeTravelDelay = parse_element (element ("""HydroPowerPlant.dischargeTravelDelay"""))
+    val genRatedP = parse_element (element ("""HydroPowerPlant.genRatedP"""))
+    val hydroPlantStorageType = parse_attribute (attribute ("""HydroPowerPlant.hydroPlantStorageType"""))
+    val penstockType = parse_element (element ("""HydroPowerPlant.penstockType"""))
+    val plantDischargeCapacity = parse_element (element ("""HydroPowerPlant.plantDischargeCapacity"""))
+    val plantRatedHead = parse_element (element ("""HydroPowerPlant.plantRatedHead"""))
+    val pumpRatedP = parse_element (element ("""HydroPowerPlant.pumpRatedP"""))
+    val surgeTankCode = parse_element (element ("""HydroPowerPlant.surgeTankCode"""))
+    val surgeTankCrestLevel = parse_element (element ("""HydroPowerPlant.surgeTankCrestLevel"""))
+    val GenSourcePumpDischargeReservoir = parse_attribute (attribute ("""HydroPowerPlant.GenSourcePumpDischargeReservoir"""))
+    val Reservoir = parse_attribute (attribute ("""HydroPowerPlant.Reservoir"""))
     def parse (context: Context): HydroPowerPlant =
     {
         HydroPowerPlant(
@@ -1705,13 +1705,13 @@ extends
     Parseable[HydroPump]
 {
     val sup = Equipment.parse _
-    val pumpDischAtMaxHead = parse_element (element ("""HydroPump.pumpDischAtMaxHead"""))_
-    val pumpDischAtMinHead = parse_element (element ("""HydroPump.pumpDischAtMinHead"""))_
-    val pumpPowerAtMaxHead = parse_element (element ("""HydroPump.pumpPowerAtMaxHead"""))_
-    val pumpPowerAtMinHead = parse_element (element ("""HydroPump.pumpPowerAtMinHead"""))_
-    val HydroPowerPlant = parse_attribute (attribute ("""HydroPump.HydroPowerPlant"""))_
-    val HydroPumpOpSchedule = parse_attribute (attribute ("""HydroPump.HydroPumpOpSchedule"""))_
-    val RotatingMachine = parse_attribute (attribute ("""HydroPump.RotatingMachine"""))_
+    val pumpDischAtMaxHead = parse_element (element ("""HydroPump.pumpDischAtMaxHead"""))
+    val pumpDischAtMinHead = parse_element (element ("""HydroPump.pumpDischAtMinHead"""))
+    val pumpPowerAtMaxHead = parse_element (element ("""HydroPump.pumpPowerAtMaxHead"""))
+    val pumpPowerAtMinHead = parse_element (element ("""HydroPump.pumpPowerAtMinHead"""))
+    val HydroPowerPlant = parse_attribute (attribute ("""HydroPump.HydroPowerPlant"""))
+    val HydroPumpOpSchedule = parse_attribute (attribute ("""HydroPump.HydroPumpOpSchedule"""))
+    val RotatingMachine = parse_attribute (attribute ("""HydroPump.RotatingMachine"""))
     def parse (context: Context): HydroPump =
     {
         HydroPump(
@@ -1759,7 +1759,7 @@ extends
     Parseable[HydroPumpOpSchedule]
 {
     val sup = RegularIntervalSchedule.parse _
-    val HydroPump = parse_attribute (attribute ("""HydroPumpOpSchedule.HydroPump"""))_
+    val HydroPump = parse_attribute (attribute ("""HydroPumpOpSchedule.HydroPump"""))
     def parse (context: Context): HydroPumpOpSchedule =
     {
         HydroPumpOpSchedule(
@@ -1803,8 +1803,8 @@ extends
     Parseable[IncrementalHeatRateCurve]
 {
     val sup = Curve.parse _
-    val isNetGrossP = parse_element (element ("""IncrementalHeatRateCurve.isNetGrossP"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""IncrementalHeatRateCurve.ThermalGeneratingUnit"""))_
+    val isNetGrossP = parse_element (element ("""IncrementalHeatRateCurve.isNetGrossP"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""IncrementalHeatRateCurve.ThermalGeneratingUnit"""))
     def parse (context: Context): IncrementalHeatRateCurve =
     {
         IncrementalHeatRateCurve(
@@ -1847,7 +1847,7 @@ extends
     Parseable[InflowForecast]
 {
     val sup = RegularIntervalSchedule.parse _
-    val Reservoir = parse_attribute (attribute ("""InflowForecast.Reservoir"""))_
+    val Reservoir = parse_attribute (attribute ("""InflowForecast.Reservoir"""))
     def parse (context: Context): InflowForecast =
     {
         InflowForecast(
@@ -1889,7 +1889,7 @@ extends
     Parseable[LevelVsVolumeCurve]
 {
     val sup = Curve.parse _
-    val Reservoir = parse_attribute (attribute ("""LevelVsVolumeCurve.Reservoir"""))_
+    val Reservoir = parse_attribute (attribute ("""LevelVsVolumeCurve.Reservoir"""))
     def parse (context: Context): LevelVsVolumeCurve =
     {
         LevelVsVolumeCurve(
@@ -1968,7 +1968,7 @@ extends
     Parseable[PenstockLossCurve]
 {
     val sup = Curve.parse _
-    val HydroGeneratingUnit = parse_attribute (attribute ("""PenstockLossCurve.HydroGeneratingUnit"""))_
+    val HydroGeneratingUnit = parse_attribute (attribute ("""PenstockLossCurve.HydroGeneratingUnit"""))
     def parse (context: Context): PenstockLossCurve =
     {
         PenstockLossCurve(
@@ -2035,19 +2035,19 @@ extends
     Parseable[Reservoir]
 {
     val sup = PowerSystemResource.parse _
-    val activeStorageCapacity = parse_element (element ("""Reservoir.activeStorageCapacity"""))_
-    val energyStorageRating = parse_element (element ("""Reservoir.energyStorageRating"""))_
-    val fullSupplyLevel = parse_element (element ("""Reservoir.fullSupplyLevel"""))_
-    val grossCapacity = parse_element (element ("""Reservoir.grossCapacity"""))_
-    val normalMinOperateLevel = parse_element (element ("""Reservoir.normalMinOperateLevel"""))_
-    val riverOutletWorks = parse_element (element ("""Reservoir.riverOutletWorks"""))_
-    val spillTravelDelay = parse_element (element ("""Reservoir.spillTravelDelay"""))_
-    val spillWayGateType = parse_element (element ("""Reservoir.spillWayGateType"""))_
-    val spillwayCapacity = parse_element (element ("""Reservoir.spillwayCapacity"""))_
-    val spillwayCrestLength = parse_element (element ("""Reservoir.spillwayCrestLength"""))_
-    val spillwayCrestLevel = parse_element (element ("""Reservoir.spillwayCrestLevel"""))_
-    val SpillsFromReservoir = parse_attribute (attribute ("""Reservoir.SpillsFromReservoir"""))_
-    val TargetLevelSchedule = parse_attribute (attribute ("""Reservoir.TargetLevelSchedule"""))_
+    val activeStorageCapacity = parse_element (element ("""Reservoir.activeStorageCapacity"""))
+    val energyStorageRating = parse_element (element ("""Reservoir.energyStorageRating"""))
+    val fullSupplyLevel = parse_element (element ("""Reservoir.fullSupplyLevel"""))
+    val grossCapacity = parse_element (element ("""Reservoir.grossCapacity"""))
+    val normalMinOperateLevel = parse_element (element ("""Reservoir.normalMinOperateLevel"""))
+    val riverOutletWorks = parse_element (element ("""Reservoir.riverOutletWorks"""))
+    val spillTravelDelay = parse_element (element ("""Reservoir.spillTravelDelay"""))
+    val spillWayGateType = parse_element (element ("""Reservoir.spillWayGateType"""))
+    val spillwayCapacity = parse_element (element ("""Reservoir.spillwayCapacity"""))
+    val spillwayCrestLength = parse_element (element ("""Reservoir.spillwayCrestLength"""))
+    val spillwayCrestLevel = parse_element (element ("""Reservoir.spillwayCrestLevel"""))
+    val SpillsFromReservoir = parse_attribute (attribute ("""Reservoir.SpillsFromReservoir"""))
+    val TargetLevelSchedule = parse_attribute (attribute ("""Reservoir.TargetLevelSchedule"""))
     def parse (context: Context): Reservoir =
     {
         Reservoir(
@@ -2104,9 +2104,9 @@ extends
     Parseable[ShutdownCurve]
 {
     val sup = Curve.parse _
-    val shutdownCost = parse_element (element ("""ShutdownCurve.shutdownCost"""))_
-    val shutdownDate = parse_element (element ("""ShutdownCurve.shutdownDate"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""ShutdownCurve.ThermalGeneratingUnit"""))_
+    val shutdownCost = parse_element (element ("""ShutdownCurve.shutdownCost"""))
+    val shutdownDate = parse_element (element ("""ShutdownCurve.shutdownDate"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""ShutdownCurve.ThermalGeneratingUnit"""))
     def parse (context: Context): ShutdownCurve =
     {
         ShutdownCurve(
@@ -2188,8 +2188,8 @@ extends
     Parseable[StartIgnFuelCurve]
 {
     val sup = Curve.parse _
-    val ignitionFuelType = parse_attribute (attribute ("""StartIgnFuelCurve.ignitionFuelType"""))_
-    val StartupModel = parse_attribute (attribute ("""StartIgnFuelCurve.StartupModel"""))_
+    val ignitionFuelType = parse_attribute (attribute ("""StartIgnFuelCurve.ignitionFuelType"""))
+    val StartupModel = parse_attribute (attribute ("""StartIgnFuelCurve.StartupModel"""))
     def parse (context: Context): StartIgnFuelCurve =
     {
         StartIgnFuelCurve(
@@ -2233,8 +2233,8 @@ extends
     Parseable[StartMainFuelCurve]
 {
     val sup = Curve.parse _
-    val mainFuelType = parse_attribute (attribute ("""StartMainFuelCurve.mainFuelType"""))_
-    val StartupModel = parse_attribute (attribute ("""StartMainFuelCurve.StartupModel"""))_
+    val mainFuelType = parse_attribute (attribute ("""StartMainFuelCurve.mainFuelType"""))
+    val StartupModel = parse_attribute (attribute ("""StartMainFuelCurve.StartupModel"""))
     def parse (context: Context): StartMainFuelCurve =
     {
         StartMainFuelCurve(
@@ -2278,8 +2278,8 @@ extends
     Parseable[StartRampCurve]
 {
     val sup = Curve.parse _
-    val hotStandbyRamp = parse_element (element ("""StartRampCurve.hotStandbyRamp"""))_
-    val StartupModel = parse_attribute (attribute ("""StartRampCurve.StartupModel"""))_
+    val hotStandbyRamp = parse_element (element ("""StartRampCurve.hotStandbyRamp"""))
+    val StartupModel = parse_attribute (attribute ("""StartRampCurve.StartupModel"""))
     def parse (context: Context): StartRampCurve =
     {
         StartRampCurve(
@@ -2349,20 +2349,20 @@ extends
     Parseable[StartupModel]
 {
     val sup = IdentifiedObject.parse _
-    val fixedMaintCost = parse_element (element ("""StartupModel.fixedMaintCost"""))_
-    val hotStandbyHeat = parse_attribute (attribute ("""StartupModel.hotStandbyHeat"""))_
-    val incrementalMaintCost = parse_element (element ("""StartupModel.incrementalMaintCost"""))_
-    val minimumDownTime = parse_element (element ("""StartupModel.minimumDownTime"""))_
-    val minimumRunTime = parse_element (element ("""StartupModel.minimumRunTime"""))_
-    val riskFactorCost = parse_element (element ("""StartupModel.riskFactorCost"""))_
-    val startupCost = parse_element (element ("""StartupModel.startupCost"""))_
-    val startupDate = parse_element (element ("""StartupModel.startupDate"""))_
-    val startupPriority = parse_element (element ("""StartupModel.startupPriority"""))_
-    val stbyAuxP = parse_element (element ("""StartupModel.stbyAuxP"""))_
-    val StartIgnFuelCurve = parse_attribute (attribute ("""StartupModel.StartIgnFuelCurve"""))_
-    val StartMainFuelCurve = parse_attribute (attribute ("""StartupModel.StartMainFuelCurve"""))_
-    val StartRampCurve = parse_attribute (attribute ("""StartupModel.StartRampCurve"""))_
-    val ThermalGeneratingUnit = parse_attribute (attribute ("""StartupModel.ThermalGeneratingUnit"""))_
+    val fixedMaintCost = parse_element (element ("""StartupModel.fixedMaintCost"""))
+    val hotStandbyHeat = parse_attribute (attribute ("""StartupModel.hotStandbyHeat"""))
+    val incrementalMaintCost = parse_element (element ("""StartupModel.incrementalMaintCost"""))
+    val minimumDownTime = parse_element (element ("""StartupModel.minimumDownTime"""))
+    val minimumRunTime = parse_element (element ("""StartupModel.minimumRunTime"""))
+    val riskFactorCost = parse_element (element ("""StartupModel.riskFactorCost"""))
+    val startupCost = parse_element (element ("""StartupModel.startupCost"""))
+    val startupDate = parse_element (element ("""StartupModel.startupDate"""))
+    val startupPriority = parse_element (element ("""StartupModel.startupPriority"""))
+    val stbyAuxP = parse_element (element ("""StartupModel.stbyAuxP"""))
+    val StartIgnFuelCurve = parse_attribute (attribute ("""StartupModel.StartIgnFuelCurve"""))
+    val StartMainFuelCurve = parse_attribute (attribute ("""StartupModel.StartMainFuelCurve"""))
+    val StartRampCurve = parse_attribute (attribute ("""StartupModel.StartRampCurve"""))
+    val ThermalGeneratingUnit = parse_attribute (attribute ("""StartupModel.ThermalGeneratingUnit"""))
     def parse (context: Context): StartupModel =
     {
         StartupModel(
@@ -2416,7 +2416,7 @@ extends
     Parseable[SteamSendoutSchedule]
 {
     val sup = RegularIntervalSchedule.parse _
-    val CogenerationPlant = parse_attribute (attribute ("""SteamSendoutSchedule.CogenerationPlant"""))_
+    val CogenerationPlant = parse_attribute (attribute ("""SteamSendoutSchedule.CogenerationPlant"""))
     def parse (context: Context): SteamSendoutSchedule =
     {
         SteamSendoutSchedule(
@@ -2458,7 +2458,7 @@ extends
     Parseable[TailbayLossCurve]
 {
     val sup = Curve.parse _
-    val HydroGeneratingUnit = parse_attribute (attribute ("""TailbayLossCurve.HydroGeneratingUnit"""))_
+    val HydroGeneratingUnit = parse_attribute (attribute ("""TailbayLossCurve.HydroGeneratingUnit"""))
     def parse (context: Context): TailbayLossCurve =
     {
         TailbayLossCurve(
@@ -2504,9 +2504,9 @@ extends
     Parseable[TargetLevelSchedule]
 {
     val sup = Curve.parse _
-    val highLevelLimit = parse_element (element ("""TargetLevelSchedule.highLevelLimit"""))_
-    val lowLevelLimit = parse_element (element ("""TargetLevelSchedule.lowLevelLimit"""))_
-    val Reservoir = parse_attribute (attribute ("""TargetLevelSchedule.Reservoir"""))_
+    val highLevelLimit = parse_element (element ("""TargetLevelSchedule.highLevelLimit"""))
+    val lowLevelLimit = parse_element (element ("""TargetLevelSchedule.lowLevelLimit"""))
+    val Reservoir = parse_attribute (attribute ("""TargetLevelSchedule.Reservoir"""))
     def parse (context: Context): TargetLevelSchedule =
     {
         TargetLevelSchedule(
@@ -2565,15 +2565,15 @@ extends
     Parseable[ThermalGeneratingUnit]
 {
     val sup = GeneratingUnit.parse _
-    val oMCost = parse_attribute (attribute ("""ThermalGeneratingUnit.oMCost"""))_
-    val CAESPlant = parse_attribute (attribute ("""ThermalGeneratingUnit.CAESPlant"""))_
-    val CogenerationPlant = parse_attribute (attribute ("""ThermalGeneratingUnit.CogenerationPlant"""))_
-    val CombinedCyclePlant = parse_attribute (attribute ("""ThermalGeneratingUnit.CombinedCyclePlant"""))_
-    val HeatInputCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.HeatInputCurve"""))_
-    val HeatRateCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.HeatRateCurve"""))_
-    val IncrementalHeatRateCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.IncrementalHeatRateCurve"""))_
-    val ShutdownCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.ShutdownCurve"""))_
-    val StartupModel = parse_attribute (attribute ("""ThermalGeneratingUnit.StartupModel"""))_
+    val oMCost = parse_attribute (attribute ("""ThermalGeneratingUnit.oMCost"""))
+    val CAESPlant = parse_attribute (attribute ("""ThermalGeneratingUnit.CAESPlant"""))
+    val CogenerationPlant = parse_attribute (attribute ("""ThermalGeneratingUnit.CogenerationPlant"""))
+    val CombinedCyclePlant = parse_attribute (attribute ("""ThermalGeneratingUnit.CombinedCyclePlant"""))
+    val HeatInputCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.HeatInputCurve"""))
+    val HeatRateCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.HeatRateCurve"""))
+    val IncrementalHeatRateCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.IncrementalHeatRateCurve"""))
+    val ShutdownCurve = parse_attribute (attribute ("""ThermalGeneratingUnit.ShutdownCurve"""))
+    val StartupModel = parse_attribute (attribute ("""ThermalGeneratingUnit.StartupModel"""))
     def parse (context: Context): ThermalGeneratingUnit =
     {
         ThermalGeneratingUnit(
@@ -2624,8 +2624,8 @@ extends
     Parseable[WindGenUnitKind]
 {
     val sup = BasicElement.parse _
-    val offshore = parse_attribute (attribute ("""WindGenUnitKind.offshore"""))_
-    val onshore = parse_attribute (attribute ("""WindGenUnitKind.onshore"""))_
+    val offshore = parse_attribute (attribute ("""WindGenUnitKind.offshore"""))
+    val onshore = parse_attribute (attribute ("""WindGenUnitKind.onshore"""))
     def parse (context: Context): WindGenUnitKind =
     {
         WindGenUnitKind(
@@ -2668,7 +2668,7 @@ extends
     Parseable[WindGeneratingUnit]
 {
     val sup = GeneratingUnit.parse _
-    val windGenUnitType = parse_attribute (attribute ("""WindGeneratingUnit.windGenUnitType"""))_
+    val windGenUnitType = parse_attribute (attribute ("""WindGeneratingUnit.windGenUnitType"""))
     def parse (context: Context): WindGeneratingUnit =
     {
         WindGeneratingUnit(

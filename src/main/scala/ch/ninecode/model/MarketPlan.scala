@@ -39,7 +39,7 @@ extends
     Parseable[CRRMarket]
 {
     val sup = Market.parse _
-    val labelID = parse_element (element ("""CRRMarket.labelID"""))_
+    val labelID = parse_element (element ("""CRRMarket.labelID"""))
     def parse (context: Context): CRRMarket =
     {
         CRRMarket(
@@ -85,9 +85,9 @@ extends
     Parseable[EnergyMarket]
 {
     val sup = Market.parse _
-    val MarketResults = parse_attribute (attribute ("""EnergyMarket.MarketResults"""))_
-    val RTO = parse_attribute (attribute ("""EnergyMarket.RTO"""))_
-    val RegisteredResources = parse_attributes (attribute ("""EnergyMarket.RegisteredResources"""))_
+    val MarketResults = parse_attribute (attribute ("""EnergyMarket.MarketResults"""))
+    val RTO = parse_attribute (attribute ("""EnergyMarket.RTO"""))
+    val RegisteredResources = parse_attributes (attribute ("""EnergyMarket.RegisteredResources"""))
     def parse (context: Context): EnergyMarket =
     {
         EnergyMarket(
@@ -157,16 +157,16 @@ extends
     Parseable[Market]
 {
     val sup = IdentifiedObject.parse _
-    val actualEnd = parse_element (element ("""Market.actualEnd"""))_
-    val actualStart = parse_element (element ("""Market.actualStart"""))_
-    val dst = parse_element (element ("""Market.dst"""))_
-    val end = parse_element (element ("""Market.end"""))_
-    val localTimeZone = parse_element (element ("""Market.localTimeZone"""))_
-    val start = parse_element (element ("""Market.start"""))_
-    val status = parse_element (element ("""Market.status"""))_
-    val timeIntervalLength = parse_element (element ("""Market.timeIntervalLength"""))_
-    val tradingDay = parse_element (element ("""Market.tradingDay"""))_
-    val tradingPeriod = parse_element (element ("""Market.tradingPeriod"""))_
+    val actualEnd = parse_element (element ("""Market.actualEnd"""))
+    val actualStart = parse_element (element ("""Market.actualStart"""))
+    val dst = parse_element (element ("""Market.dst"""))
+    val end = parse_element (element ("""Market.end"""))
+    val localTimeZone = parse_element (element ("""Market.localTimeZone"""))
+    val start = parse_element (element ("""Market.start"""))
+    val status = parse_element (element ("""Market.status"""))
+    val timeIntervalLength = parse_element (element ("""Market.timeIntervalLength"""))
+    val tradingDay = parse_element (element ("""Market.tradingDay"""))
+    val tradingPeriod = parse_element (element ("""Market.tradingPeriod"""))
     def parse (context: Context): Market =
     {
         Market(
@@ -225,11 +225,11 @@ extends
     Parseable[MarketActualEvent]
 {
     val sup = BasicElement.parse _
-    val description = parse_element (element ("""MarketActualEvent.description"""))_
-    val eventID = parse_element (element ("""MarketActualEvent.eventID"""))_
-    val eventTime = parse_element (element ("""MarketActualEvent.eventTime"""))_
-    val MarketRun = parse_attribute (attribute ("""MarketActualEvent.MarketRun"""))_
-    val PlannedMarketEvent = parse_attribute (attribute ("""MarketActualEvent.PlannedMarketEvent"""))_
+    val description = parse_element (element ("""MarketActualEvent.description"""))
+    val eventID = parse_element (element ("""MarketActualEvent.eventID"""))
+    val eventTime = parse_element (element ("""MarketActualEvent.eventTime"""))
+    val MarketRun = parse_attribute (attribute ("""MarketActualEvent.MarketRun"""))
+    val PlannedMarketEvent = parse_attribute (attribute ("""MarketActualEvent.PlannedMarketEvent"""))
     def parse (context: Context): MarketActualEvent =
     {
         MarketActualEvent(
@@ -280,10 +280,10 @@ extends
     Parseable[MarketFactors]
 {
     val sup = Document.parse _
-    val intervalEndTime = parse_element (element ("""MarketFactors.intervalEndTime"""))_
-    val intervalStartTime = parse_element (element ("""MarketFactors.intervalStartTime"""))_
-    val Market = parse_attribute (attribute ("""MarketFactors.Market"""))_
-    val MktActivityRecord = parse_attributes (attribute ("""MarketFactors.MktActivityRecord"""))_
+    val intervalEndTime = parse_element (element ("""MarketFactors.intervalEndTime"""))
+    val intervalStartTime = parse_element (element ("""MarketFactors.intervalStartTime"""))
+    val Market = parse_attribute (attribute ("""MarketFactors.Market"""))
+    val MktActivityRecord = parse_attributes (attribute ("""MarketFactors.MktActivityRecord"""))
     def parse (context: Context): MarketFactors =
     {
         MarketFactors(
@@ -334,10 +334,10 @@ extends
     Parseable[MarketPlan]
 {
     val sup = BasicElement.parse _
-    val description = parse_element (element ("""MarketPlan.description"""))_
-    val marketPlanID = parse_element (element ("""MarketPlan.marketPlanID"""))_
-    val name = parse_element (element ("""MarketPlan.name"""))_
-    val tradingDay = parse_element (element ("""MarketPlan.tradingDay"""))_
+    val description = parse_element (element ("""MarketPlan.description"""))
+    val marketPlanID = parse_element (element ("""MarketPlan.marketPlanID"""))
+    val name = parse_element (element ("""MarketPlan.name"""))
+    val tradingDay = parse_element (element ("""MarketPlan.tradingDay"""))
     def parse (context: Context): MarketPlan =
     {
         MarketPlan(
@@ -396,10 +396,10 @@ extends
     Parseable[MarketProduct]
 {
     val sup = IdentifiedObject.parse _
-    val marketProductType = parse_attribute (attribute ("""MarketProduct.marketProductType"""))_
-    val rampInterval = parse_element (element ("""MarketProduct.rampInterval"""))_
-    val Market = parse_attribute (attribute ("""MarketProduct.Market"""))_
-    val MarketRegionResults = parse_attribute (attribute ("""MarketProduct.MarketRegionResults"""))_
+    val marketProductType = parse_attribute (attribute ("""MarketProduct.marketProductType"""))
+    val rampInterval = parse_element (element ("""MarketProduct.rampInterval"""))
+    val Market = parse_attribute (attribute ("""MarketProduct.Market"""))
+    val MarketRegionResults = parse_attribute (attribute ("""MarketProduct.MarketRegionResults"""))
     def parse (context: Context): MarketProduct =
     {
         MarketProduct(
@@ -471,18 +471,18 @@ extends
     Parseable[MarketRun]
 {
     val sup = BasicElement.parse _
-    val executionType = parse_attribute (attribute ("""MarketRun.executionType"""))_
-    val marketApprovalTime = parse_element (element ("""MarketRun.marketApprovalTime"""))_
-    val marketApprovedStatus = parse_element (element ("""MarketRun.marketApprovedStatus"""))_
-    val marketEndTime = parse_element (element ("""MarketRun.marketEndTime"""))_
-    val marketID = parse_element (element ("""MarketRun.marketID"""))_
-    val marketRunID = parse_element (element ("""MarketRun.marketRunID"""))_
-    val marketStartTime = parse_element (element ("""MarketRun.marketStartTime"""))_
-    val marketType = parse_attribute (attribute ("""MarketRun.marketType"""))_
-    val reportedState = parse_element (element ("""MarketRun.reportedState"""))_
-    val runState = parse_element (element ("""MarketRun.runState"""))_
-    val Market = parse_attribute (attribute ("""MarketRun.Market"""))_
-    val PlannedMarket = parse_attribute (attribute ("""MarketRun.PlannedMarket"""))_
+    val executionType = parse_attribute (attribute ("""MarketRun.executionType"""))
+    val marketApprovalTime = parse_element (element ("""MarketRun.marketApprovalTime"""))
+    val marketApprovedStatus = parse_element (element ("""MarketRun.marketApprovedStatus"""))
+    val marketEndTime = parse_element (element ("""MarketRun.marketEndTime"""))
+    val marketID = parse_element (element ("""MarketRun.marketID"""))
+    val marketRunID = parse_element (element ("""MarketRun.marketRunID"""))
+    val marketStartTime = parse_element (element ("""MarketRun.marketStartTime"""))
+    val marketType = parse_attribute (attribute ("""MarketRun.marketType"""))
+    val reportedState = parse_element (element ("""MarketRun.reportedState"""))
+    val runState = parse_element (element ("""MarketRun.runState"""))
+    val Market = parse_attribute (attribute ("""MarketRun.Market"""))
+    val PlannedMarket = parse_attribute (attribute ("""MarketRun.PlannedMarket"""))
     def parse (context: Context): MarketRun =
     {
         MarketRun(
@@ -544,11 +544,11 @@ extends
     Parseable[PlannedMarket]
 {
     val sup = BasicElement.parse _
-    val marketEndTime = parse_element (element ("""PlannedMarket.marketEndTime"""))_
-    val marketID = parse_element (element ("""PlannedMarket.marketID"""))_
-    val marketStartTime = parse_element (element ("""PlannedMarket.marketStartTime"""))_
-    val marketType = parse_attribute (attribute ("""PlannedMarket.marketType"""))_
-    val MarketPlan = parse_attribute (attribute ("""PlannedMarket.MarketPlan"""))_
+    val marketEndTime = parse_element (element ("""PlannedMarket.marketEndTime"""))
+    val marketID = parse_element (element ("""PlannedMarket.marketID"""))
+    val marketStartTime = parse_element (element ("""PlannedMarket.marketStartTime"""))
+    val marketType = parse_attribute (attribute ("""PlannedMarket.marketType"""))
+    val MarketPlan = parse_attribute (attribute ("""PlannedMarket.MarketPlan"""))
     def parse (context: Context): PlannedMarket =
     {
         PlannedMarket(
@@ -601,10 +601,10 @@ extends
     Parseable[PlannedMarketEvent]
 {
     val sup = BasicElement.parse _
-    val description = parse_element (element ("""PlannedMarketEvent.description"""))_
-    val eventType = parse_element (element ("""PlannedMarketEvent.eventType"""))_
-    val plannedEventID = parse_element (element ("""PlannedMarketEvent.plannedEventID"""))_
-    val plannedTime = parse_element (element ("""PlannedMarketEvent.plannedTime"""))_
+    val description = parse_element (element ("""PlannedMarketEvent.description"""))
+    val eventType = parse_element (element ("""PlannedMarketEvent.eventType"""))
+    val plannedEventID = parse_element (element ("""PlannedMarketEvent.plannedEventID"""))
+    val plannedTime = parse_element (element ("""PlannedMarketEvent.plannedTime"""))
     def parse (context: Context): PlannedMarketEvent =
     {
         PlannedMarketEvent(

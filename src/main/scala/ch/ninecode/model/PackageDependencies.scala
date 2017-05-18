@@ -44,8 +44,8 @@ extends
     Parseable[PackageDependenciesCIMVersion]
 {
     val sup = BasicElement.parse _
-    val date = parse_element (element ("""PackageDependenciesCIMVersion.date"""))_
-    val version = parse_element (element ("""PackageDependenciesCIMVersion.version"""))_
+    val date = parse_element (element ("""PackageDependenciesCIMVersion.date"""))
+    val version = parse_element (element ("""PackageDependenciesCIMVersion.version"""))
     def parse (context: Context): PackageDependenciesCIMVersion =
     {
         PackageDependenciesCIMVersion(

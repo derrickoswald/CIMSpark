@@ -41,7 +41,7 @@ extends
     Parseable[WindAeroConstIEC]
 {
     val sup = IdentifiedObject.parse _
-    val WindGenTurbineType1aIEC = parse_attribute (attribute ("""WindAeroConstIEC.WindGenTurbineType1aIEC"""))_
+    val WindGenTurbineType1aIEC = parse_attribute (attribute ("""WindAeroConstIEC.WindGenTurbineType1aIEC"""))
     def parse (context: Context): WindAeroConstIEC =
     {
         WindAeroConstIEC(
@@ -89,9 +89,9 @@ extends
     Parseable[WindAeroOneDimIEC]
 {
     val sup = IdentifiedObject.parse _
-    val ka = parse_element (element ("""WindAeroOneDimIEC.ka"""))_
-    val thetaomega = parse_element (element ("""WindAeroOneDimIEC.thetaomega"""))_
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindAeroOneDimIEC.WindTurbineType3IEC"""))_
+    val ka = parse_element (element ("""WindAeroOneDimIEC.ka"""))
+    val thetaomega = parse_element (element ("""WindAeroOneDimIEC.thetaomega"""))
+    val WindTurbineType3IEC = parse_attribute (attribute ("""WindAeroOneDimIEC.WindTurbineType3IEC"""))
     def parse (context: Context): WindAeroOneDimIEC =
     {
         WindAeroOneDimIEC(
@@ -156,14 +156,14 @@ extends
     Parseable[WindAeroTwoDimIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dpomega = parse_element (element ("""WindAeroTwoDimIEC.dpomega"""))_
-    val dptheta = parse_element (element ("""WindAeroTwoDimIEC.dptheta"""))_
-    val dpv1 = parse_element (element ("""WindAeroTwoDimIEC.dpv1"""))_
-    val omegazero = parse_element (element ("""WindAeroTwoDimIEC.omegazero"""))_
-    val pavail = parse_element (element ("""WindAeroTwoDimIEC.pavail"""))_
-    val thetav2 = parse_element (element ("""WindAeroTwoDimIEC.thetav2"""))_
-    val thetazero = parse_element (element ("""WindAeroTwoDimIEC.thetazero"""))_
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindAeroTwoDimIEC.WindTurbineType3IEC"""))_
+    val dpomega = parse_element (element ("""WindAeroTwoDimIEC.dpomega"""))
+    val dptheta = parse_element (element ("""WindAeroTwoDimIEC.dptheta"""))
+    val dpv1 = parse_element (element ("""WindAeroTwoDimIEC.dpv1"""))
+    val omegazero = parse_element (element ("""WindAeroTwoDimIEC.omegazero"""))
+    val pavail = parse_element (element ("""WindAeroTwoDimIEC.pavail"""))
+    val thetav2 = parse_element (element ("""WindAeroTwoDimIEC.thetav2"""))
+    val thetazero = parse_element (element ("""WindAeroTwoDimIEC.thetazero"""))
+    val WindTurbineType3IEC = parse_attribute (attribute ("""WindAeroTwoDimIEC.WindTurbineType3IEC"""))
     def parse (context: Context): WindAeroTwoDimIEC =
     {
         WindAeroTwoDimIEC(
@@ -237,14 +237,14 @@ extends
     Parseable[WindContCurrLimIEC]
 {
     val sup = IdentifiedObject.parse _
-    val imax = parse_element (element ("""WindContCurrLimIEC.imax"""))_
-    val imaxdip = parse_element (element ("""WindContCurrLimIEC.imaxdip"""))_
-    val kpqu = parse_element (element ("""WindContCurrLimIEC.kpqu"""))_
-    val mdfslim = parse_element (element ("""WindContCurrLimIEC.mdfslim"""))_
-    val mqpri = parse_element (element ("""WindContCurrLimIEC.mqpri"""))_
-    val tufiltcl = parse_element (element ("""WindContCurrLimIEC.tufiltcl"""))_
-    val upqumax = parse_element (element ("""WindContCurrLimIEC.upqumax"""))_
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContCurrLimIEC.WindTurbineType3or4IEC"""))_
+    val imax = parse_element (element ("""WindContCurrLimIEC.imax"""))
+    val imaxdip = parse_element (element ("""WindContCurrLimIEC.imaxdip"""))
+    val kpqu = parse_element (element ("""WindContCurrLimIEC.kpqu"""))
+    val mdfslim = parse_element (element ("""WindContCurrLimIEC.mdfslim"""))
+    val mqpri = parse_element (element ("""WindContCurrLimIEC.mqpri"""))
+    val tufiltcl = parse_element (element ("""WindContCurrLimIEC.tufiltcl"""))
+    val upqumax = parse_element (element ("""WindContCurrLimIEC.upqumax"""))
+    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContCurrLimIEC.WindTurbineType3or4IEC"""))
     def parse (context: Context): WindContCurrLimIEC =
     {
         WindContCurrLimIEC(
@@ -364,30 +364,30 @@ extends
     Parseable[WindContPType3IEC]
 {
     val sup = IdentifiedObject.parse _
-    val dpmax = parse_element (element ("""WindContPType3IEC.dpmax"""))_
-    val dprefmax = parse_element (element ("""WindContPType3IEC.dprefmax"""))_
-    val dprefmin = parse_element (element ("""WindContPType3IEC.dprefmin"""))_
-    val dthetamax = parse_element (element ("""WindContPType3IEC.dthetamax"""))_
-    val dthetamaxuvrt = parse_element (element ("""WindContPType3IEC.dthetamaxuvrt"""))_
-    val kdtd = parse_element (element ("""WindContPType3IEC.kdtd"""))_
-    val kip = parse_element (element ("""WindContPType3IEC.kip"""))_
-    val kpp = parse_element (element ("""WindContPType3IEC.kpp"""))_
-    val mpuvrt = parse_element (element ("""WindContPType3IEC.mpuvrt"""))_
-    val omegaoffset = parse_element (element ("""WindContPType3IEC.omegaoffset"""))_
-    val pdtdmax = parse_element (element ("""WindContPType3IEC.pdtdmax"""))_
-    val tdvs = parse_element (element ("""WindContPType3IEC.tdvs"""))_
-    val thetaemin = parse_element (element ("""WindContPType3IEC.thetaemin"""))_
-    val thetauscale = parse_element (element ("""WindContPType3IEC.thetauscale"""))_
-    val tomegafiltp3 = parse_element (element ("""WindContPType3IEC.tomegafiltp3"""))_
-    val tpfiltp3 = parse_element (element ("""WindContPType3IEC.tpfiltp3"""))_
-    val tpord = parse_element (element ("""WindContPType3IEC.tpord"""))_
-    val tufiltp3 = parse_element (element ("""WindContPType3IEC.tufiltp3"""))_
-    val twref = parse_element (element ("""WindContPType3IEC.twref"""))_
-    val udvs = parse_element (element ("""WindContPType3IEC.udvs"""))_
-    val updip = parse_element (element ("""WindContPType3IEC.updip"""))_
-    val wdtd = parse_element (element ("""WindContPType3IEC.wdtd"""))_
-    val zeta = parse_element (element ("""WindContPType3IEC.zeta"""))_
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindContPType3IEC.WindTurbineType3IEC"""))_
+    val dpmax = parse_element (element ("""WindContPType3IEC.dpmax"""))
+    val dprefmax = parse_element (element ("""WindContPType3IEC.dprefmax"""))
+    val dprefmin = parse_element (element ("""WindContPType3IEC.dprefmin"""))
+    val dthetamax = parse_element (element ("""WindContPType3IEC.dthetamax"""))
+    val dthetamaxuvrt = parse_element (element ("""WindContPType3IEC.dthetamaxuvrt"""))
+    val kdtd = parse_element (element ("""WindContPType3IEC.kdtd"""))
+    val kip = parse_element (element ("""WindContPType3IEC.kip"""))
+    val kpp = parse_element (element ("""WindContPType3IEC.kpp"""))
+    val mpuvrt = parse_element (element ("""WindContPType3IEC.mpuvrt"""))
+    val omegaoffset = parse_element (element ("""WindContPType3IEC.omegaoffset"""))
+    val pdtdmax = parse_element (element ("""WindContPType3IEC.pdtdmax"""))
+    val tdvs = parse_element (element ("""WindContPType3IEC.tdvs"""))
+    val thetaemin = parse_element (element ("""WindContPType3IEC.thetaemin"""))
+    val thetauscale = parse_element (element ("""WindContPType3IEC.thetauscale"""))
+    val tomegafiltp3 = parse_element (element ("""WindContPType3IEC.tomegafiltp3"""))
+    val tpfiltp3 = parse_element (element ("""WindContPType3IEC.tpfiltp3"""))
+    val tpord = parse_element (element ("""WindContPType3IEC.tpord"""))
+    val tufiltp3 = parse_element (element ("""WindContPType3IEC.tufiltp3"""))
+    val twref = parse_element (element ("""WindContPType3IEC.twref"""))
+    val udvs = parse_element (element ("""WindContPType3IEC.udvs"""))
+    val updip = parse_element (element ("""WindContPType3IEC.updip"""))
+    val wdtd = parse_element (element ("""WindContPType3IEC.wdtd"""))
+    val zeta = parse_element (element ("""WindContPType3IEC.zeta"""))
+    val WindTurbineType3IEC = parse_attribute (attribute ("""WindContPType3IEC.WindTurbineType3IEC"""))
     def parse (context: Context): WindContPType3IEC =
     {
         WindContPType3IEC(
@@ -461,10 +461,10 @@ extends
     Parseable[WindContPType4aIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dpmaxp4a = parse_element (element ("""WindContPType4aIEC.dpmaxp4a"""))_
-    val tpordp4a = parse_element (element ("""WindContPType4aIEC.tpordp4a"""))_
-    val tufiltp4a = parse_element (element ("""WindContPType4aIEC.tufiltp4a"""))_
-    val WindTurbineType4aIEC = parse_attribute (attribute ("""WindContPType4aIEC.WindTurbineType4aIEC"""))_
+    val dpmaxp4a = parse_element (element ("""WindContPType4aIEC.dpmaxp4a"""))
+    val tpordp4a = parse_element (element ("""WindContPType4aIEC.tpordp4a"""))
+    val tufiltp4a = parse_element (element ("""WindContPType4aIEC.tufiltp4a"""))
+    val WindTurbineType4aIEC = parse_attribute (attribute ("""WindContPType4aIEC.WindTurbineType4aIEC"""))
     def parse (context: Context): WindContPType4aIEC =
     {
         WindContPType4aIEC(
@@ -521,11 +521,11 @@ extends
     Parseable[WindContPType4bIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dpmaxp4b = parse_element (element ("""WindContPType4bIEC.dpmaxp4b"""))_
-    val tpaero = parse_element (element ("""WindContPType4bIEC.tpaero"""))_
-    val tpordp4b = parse_element (element ("""WindContPType4bIEC.tpordp4b"""))_
-    val tufiltp4b = parse_element (element ("""WindContPType4bIEC.tufiltp4b"""))_
-    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindContPType4bIEC.WindTurbineType4bIEC"""))_
+    val dpmaxp4b = parse_element (element ("""WindContPType4bIEC.dpmaxp4b"""))
+    val tpaero = parse_element (element ("""WindContPType4bIEC.tpaero"""))
+    val tpordp4b = parse_element (element ("""WindContPType4bIEC.tpordp4b"""))
+    val tufiltp4b = parse_element (element ("""WindContPType4bIEC.tufiltp4b"""))
+    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindContPType4bIEC.WindTurbineType4bIEC"""))
     def parse (context: Context): WindContPType4bIEC =
     {
         WindContPType4bIEC(
@@ -601,17 +601,17 @@ extends
     Parseable[WindContPitchAngleIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dthetamax = parse_element (element ("""WindContPitchAngleIEC.dthetamax"""))_
-    val dthetamin = parse_element (element ("""WindContPitchAngleIEC.dthetamin"""))_
-    val kic = parse_element (element ("""WindContPitchAngleIEC.kic"""))_
-    val kiomega = parse_element (element ("""WindContPitchAngleIEC.kiomega"""))_
-    val kpc = parse_element (element ("""WindContPitchAngleIEC.kpc"""))_
-    val kpomega = parse_element (element ("""WindContPitchAngleIEC.kpomega"""))_
-    val kpx = parse_element (element ("""WindContPitchAngleIEC.kpx"""))_
-    val thetamax = parse_element (element ("""WindContPitchAngleIEC.thetamax"""))_
-    val thetamin = parse_element (element ("""WindContPitchAngleIEC.thetamin"""))_
-    val ttheta = parse_element (element ("""WindContPitchAngleIEC.ttheta"""))_
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindContPitchAngleIEC.WindTurbineType3IEC"""))_
+    val dthetamax = parse_element (element ("""WindContPitchAngleIEC.dthetamax"""))
+    val dthetamin = parse_element (element ("""WindContPitchAngleIEC.dthetamin"""))
+    val kic = parse_element (element ("""WindContPitchAngleIEC.kic"""))
+    val kiomega = parse_element (element ("""WindContPitchAngleIEC.kiomega"""))
+    val kpc = parse_element (element ("""WindContPitchAngleIEC.kpc"""))
+    val kpomega = parse_element (element ("""WindContPitchAngleIEC.kpomega"""))
+    val kpx = parse_element (element ("""WindContPitchAngleIEC.kpx"""))
+    val thetamax = parse_element (element ("""WindContPitchAngleIEC.thetamax"""))
+    val thetamin = parse_element (element ("""WindContPitchAngleIEC.thetamin"""))
+    val ttheta = parse_element (element ("""WindContPitchAngleIEC.ttheta"""))
+    val WindTurbineType3IEC = parse_attribute (attribute ("""WindContPitchAngleIEC.WindTurbineType3IEC"""))
     def parse (context: Context): WindContPitchAngleIEC =
     {
         WindContPitchAngleIEC(
@@ -732,30 +732,30 @@ extends
     Parseable[WindContQIEC]
 {
     val sup = IdentifiedObject.parse _
-    val iqh1 = parse_element (element ("""WindContQIEC.iqh1"""))_
-    val iqmax = parse_element (element ("""WindContQIEC.iqmax"""))_
-    val iqmin = parse_element (element ("""WindContQIEC.iqmin"""))_
-    val iqpost = parse_element (element ("""WindContQIEC.iqpost"""))_
-    val kiq = parse_element (element ("""WindContQIEC.kiq"""))_
-    val kiu = parse_element (element ("""WindContQIEC.kiu"""))_
-    val kpq = parse_element (element ("""WindContQIEC.kpq"""))_
-    val kpu = parse_element (element ("""WindContQIEC.kpu"""))_
-    val kqv = parse_element (element ("""WindContQIEC.kqv"""))_
-    val rdroop = parse_element (element ("""WindContQIEC.rdroop"""))_
-    val tpfiltq = parse_element (element ("""WindContQIEC.tpfiltq"""))_
-    val tpost = parse_element (element ("""WindContQIEC.tpost"""))_
-    val tqord = parse_element (element ("""WindContQIEC.tqord"""))_
-    val tufiltq = parse_element (element ("""WindContQIEC.tufiltq"""))_
-    val udb1 = parse_element (element ("""WindContQIEC.udb1"""))_
-    val udb2 = parse_element (element ("""WindContQIEC.udb2"""))_
-    val umax = parse_element (element ("""WindContQIEC.umax"""))_
-    val umin = parse_element (element ("""WindContQIEC.umin"""))_
-    val uqdip = parse_element (element ("""WindContQIEC.uqdip"""))_
-    val uref0 = parse_element (element ("""WindContQIEC.uref0"""))_
-    val windQcontrolModesType = parse_attribute (attribute ("""WindContQIEC.windQcontrolModesType"""))_
-    val windUVRTQcontrolModesType = parse_attribute (attribute ("""WindContQIEC.windUVRTQcontrolModesType"""))_
-    val xdroop = parse_element (element ("""WindContQIEC.xdroop"""))_
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQIEC.WindTurbineType3or4IEC"""))_
+    val iqh1 = parse_element (element ("""WindContQIEC.iqh1"""))
+    val iqmax = parse_element (element ("""WindContQIEC.iqmax"""))
+    val iqmin = parse_element (element ("""WindContQIEC.iqmin"""))
+    val iqpost = parse_element (element ("""WindContQIEC.iqpost"""))
+    val kiq = parse_element (element ("""WindContQIEC.kiq"""))
+    val kiu = parse_element (element ("""WindContQIEC.kiu"""))
+    val kpq = parse_element (element ("""WindContQIEC.kpq"""))
+    val kpu = parse_element (element ("""WindContQIEC.kpu"""))
+    val kqv = parse_element (element ("""WindContQIEC.kqv"""))
+    val rdroop = parse_element (element ("""WindContQIEC.rdroop"""))
+    val tpfiltq = parse_element (element ("""WindContQIEC.tpfiltq"""))
+    val tpost = parse_element (element ("""WindContQIEC.tpost"""))
+    val tqord = parse_element (element ("""WindContQIEC.tqord"""))
+    val tufiltq = parse_element (element ("""WindContQIEC.tufiltq"""))
+    val udb1 = parse_element (element ("""WindContQIEC.udb1"""))
+    val udb2 = parse_element (element ("""WindContQIEC.udb2"""))
+    val umax = parse_element (element ("""WindContQIEC.umax"""))
+    val umin = parse_element (element ("""WindContQIEC.umin"""))
+    val uqdip = parse_element (element ("""WindContQIEC.uqdip"""))
+    val uref0 = parse_element (element ("""WindContQIEC.uref0"""))
+    val windQcontrolModesType = parse_attribute (attribute ("""WindContQIEC.windQcontrolModesType"""))
+    val windUVRTQcontrolModesType = parse_attribute (attribute ("""WindContQIEC.windUVRTQcontrolModesType"""))
+    val xdroop = parse_element (element ("""WindContQIEC.xdroop"""))
+    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQIEC.WindTurbineType3or4IEC"""))
     def parse (context: Context): WindContQIEC =
     {
         WindContQIEC(
@@ -826,9 +826,9 @@ extends
     Parseable[WindContQLimIEC]
 {
     val sup = IdentifiedObject.parse _
-    val qmax = parse_element (element ("""WindContQLimIEC.qmax"""))_
-    val qmin = parse_element (element ("""WindContQLimIEC.qmin"""))_
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQLimIEC.WindTurbineType3or4IEC"""))_
+    val qmax = parse_element (element ("""WindContQLimIEC.qmax"""))
+    val qmin = parse_element (element ("""WindContQLimIEC.qmin"""))
+    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQLimIEC.WindTurbineType3or4IEC"""))
     def parse (context: Context): WindContQLimIEC =
     {
         WindContQLimIEC(
@@ -878,9 +878,9 @@ extends
     Parseable[WindContQPQULimIEC]
 {
     val sup = IdentifiedObject.parse _
-    val tpfiltql = parse_element (element ("""WindContQPQULimIEC.tpfiltql"""))_
-    val tufiltql = parse_element (element ("""WindContQPQULimIEC.tufiltql"""))_
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQPQULimIEC.WindTurbineType3or4IEC"""))_
+    val tpfiltql = parse_element (element ("""WindContQPQULimIEC.tpfiltql"""))
+    val tufiltql = parse_element (element ("""WindContQPQULimIEC.tufiltql"""))
+    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQPQULimIEC.WindTurbineType3or4IEC"""))
     def parse (context: Context): WindContQPQULimIEC =
     {
         WindContQPQULimIEC(
@@ -948,15 +948,15 @@ extends
     Parseable[WindContRotorRIEC]
 {
     val sup = IdentifiedObject.parse _
-    val kirr = parse_element (element ("""WindContRotorRIEC.kirr"""))_
-    val komegafilt = parse_element (element ("""WindContRotorRIEC.komegafilt"""))_
-    val kpfilt = parse_element (element ("""WindContRotorRIEC.kpfilt"""))_
-    val kprr = parse_element (element ("""WindContRotorRIEC.kprr"""))_
-    val rmax = parse_element (element ("""WindContRotorRIEC.rmax"""))_
-    val rmin = parse_element (element ("""WindContRotorRIEC.rmin"""))_
-    val tomegafiltrr = parse_element (element ("""WindContRotorRIEC.tomegafiltrr"""))_
-    val tpfiltrr = parse_element (element ("""WindContRotorRIEC.tpfiltrr"""))_
-    val WindGenTurbineType2IEC = parse_attribute (attribute ("""WindContRotorRIEC.WindGenTurbineType2IEC"""))_
+    val kirr = parse_element (element ("""WindContRotorRIEC.kirr"""))
+    val komegafilt = parse_element (element ("""WindContRotorRIEC.komegafilt"""))
+    val kpfilt = parse_element (element ("""WindContRotorRIEC.kpfilt"""))
+    val kprr = parse_element (element ("""WindContRotorRIEC.kprr"""))
+    val rmax = parse_element (element ("""WindContRotorRIEC.rmax"""))
+    val rmin = parse_element (element ("""WindContRotorRIEC.rmin"""))
+    val tomegafiltrr = parse_element (element ("""WindContRotorRIEC.tomegafiltrr"""))
+    val tpfiltrr = parse_element (element ("""WindContRotorRIEC.tpfiltrr"""))
+    val WindGenTurbineType2IEC = parse_attribute (attribute ("""WindContRotorRIEC.WindGenTurbineType2IEC"""))
     def parse (context: Context): WindContRotorRIEC =
     {
         WindContRotorRIEC(
@@ -1029,19 +1029,19 @@ extends
     Parseable[WindDynamicsLookupTable]
 {
     val sup = IdentifiedObject.parse _
-    val input = parse_element (element ("""WindDynamicsLookupTable.input"""))_
-    val lookupTableFunctionType = parse_attribute (attribute ("""WindDynamicsLookupTable.lookupTableFunctionType"""))_
-    val output = parse_element (element ("""WindDynamicsLookupTable.output"""))_
-    val sequence = parse_element (element ("""WindDynamicsLookupTable.sequence"""))_
-    val WindContCurrLimIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContCurrLimIEC"""))_
-    val WindContPType3IEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContPType3IEC"""))_
-    val WindContQPQULimIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContQPQULimIEC"""))_
-    val WindContRotorRIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContRotorRIEC"""))_
-    val WindGenType3bIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindGenType3bIEC"""))_
-    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPitchContPowerIEC"""))_
-    val WindPlantFreqPcontrolIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPlantFreqPcontrolIEC"""))_
-    val WindPlantReactiveControlIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPlantReactiveControlIEC"""))_
-    val WindProtectionIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindProtectionIEC"""))_
+    val input = parse_element (element ("""WindDynamicsLookupTable.input"""))
+    val lookupTableFunctionType = parse_attribute (attribute ("""WindDynamicsLookupTable.lookupTableFunctionType"""))
+    val output = parse_element (element ("""WindDynamicsLookupTable.output"""))
+    val sequence = parse_element (element ("""WindDynamicsLookupTable.sequence"""))
+    val WindContCurrLimIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContCurrLimIEC"""))
+    val WindContPType3IEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContPType3IEC"""))
+    val WindContQPQULimIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContQPQULimIEC"""))
+    val WindContRotorRIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContRotorRIEC"""))
+    val WindGenType3bIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindGenType3bIEC"""))
+    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPitchContPowerIEC"""))
+    val WindPlantFreqPcontrolIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPlantFreqPcontrolIEC"""))
+    val WindPlantReactiveControlIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPlantReactiveControlIEC"""))
+    val WindProtectionIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindProtectionIEC"""))
     def parse (context: Context): WindDynamicsLookupTable =
     {
         WindDynamicsLookupTable(
@@ -1095,7 +1095,7 @@ extends
     Parseable[WindGenTurbineType1aIEC]
 {
     val sup = WindTurbineType1or2IEC.parse _
-    val WindAeroConstIEC = parse_attribute (attribute ("""WindGenTurbineType1aIEC.WindAeroConstIEC"""))_
+    val WindAeroConstIEC = parse_attribute (attribute ("""WindGenTurbineType1aIEC.WindAeroConstIEC"""))
     def parse (context: Context): WindGenTurbineType1aIEC =
     {
         WindGenTurbineType1aIEC(
@@ -1137,7 +1137,7 @@ extends
     Parseable[WindGenTurbineType1bIEC]
 {
     val sup = WindTurbineType1or2IEC.parse _
-    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindGenTurbineType1bIEC.WindPitchContPowerIEC"""))_
+    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindGenTurbineType1bIEC.WindPitchContPowerIEC"""))
     def parse (context: Context): WindGenTurbineType1bIEC =
     {
         WindGenTurbineType1bIEC(
@@ -1181,8 +1181,8 @@ extends
     Parseable[WindGenTurbineType2IEC]
 {
     val sup = WindTurbineType1or2IEC.parse _
-    val WindContRotorRIEC = parse_attribute (attribute ("""WindGenTurbineType2IEC.WindContRotorRIEC"""))_
-    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindGenTurbineType2IEC.WindPitchContPowerIEC"""))_
+    val WindContRotorRIEC = parse_attribute (attribute ("""WindGenTurbineType2IEC.WindContRotorRIEC"""))
+    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindGenTurbineType2IEC.WindPitchContPowerIEC"""))
     def parse (context: Context): WindGenTurbineType2IEC =
     {
         WindGenTurbineType2IEC(
@@ -1233,10 +1233,10 @@ extends
     Parseable[WindGenType3IEC]
 {
     val sup = IdentifiedObject.parse _
-    val dipmax = parse_element (element ("""WindGenType3IEC.dipmax"""))_
-    val diqmax = parse_element (element ("""WindGenType3IEC.diqmax"""))_
-    val xs = parse_element (element ("""WindGenType3IEC.xs"""))_
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindGenType3IEC.WindTurbineType3IEC"""))_
+    val dipmax = parse_element (element ("""WindGenType3IEC.dipmax"""))
+    val diqmax = parse_element (element ("""WindGenType3IEC.diqmax"""))
+    val xs = parse_element (element ("""WindGenType3IEC.xs"""))
+    val WindTurbineType3IEC = parse_attribute (attribute ("""WindGenType3IEC.WindTurbineType3IEC"""))
     def parse (context: Context): WindGenType3IEC =
     {
         WindGenType3IEC(
@@ -1287,9 +1287,9 @@ extends
     Parseable[WindGenType3aIEC]
 {
     val sup = WindGenType3IEC.parse _
-    val kpc = parse_element (element ("""WindGenType3aIEC.kpc"""))_
-    val tic = parse_element (element ("""WindGenType3aIEC.tic"""))_
-    val WindTurbineType4IEC = parse_attribute (attribute ("""WindGenType3aIEC.WindTurbineType4IEC"""))_
+    val kpc = parse_element (element ("""WindGenType3aIEC.kpc"""))
+    val tic = parse_element (element ("""WindGenType3aIEC.tic"""))
+    val WindTurbineType4IEC = parse_attribute (attribute ("""WindGenType3aIEC.WindTurbineType4IEC"""))
     def parse (context: Context): WindGenType3aIEC =
     {
         WindGenType3aIEC(
@@ -1344,9 +1344,9 @@ extends
     Parseable[WindGenType3bIEC]
 {
     val sup = WindGenType3IEC.parse _
-    val mwtcwp = parse_element (element ("""WindGenType3bIEC.mwtcwp"""))_
-    val tg = parse_element (element ("""WindGenType3bIEC.tg"""))_
-    val two = parse_element (element ("""WindGenType3bIEC.two"""))_
+    val mwtcwp = parse_element (element ("""WindGenType3bIEC.mwtcwp"""))
+    val tg = parse_element (element ("""WindGenType3bIEC.tg"""))
+    val two = parse_element (element ("""WindGenType3bIEC.two"""))
     def parse (context: Context): WindGenType3bIEC =
     {
         WindGenType3bIEC(
@@ -1404,12 +1404,12 @@ extends
     Parseable[WindGenType4IEC]
 {
     val sup = IdentifiedObject.parse _
-    val dipmax = parse_element (element ("""WindGenType4IEC.dipmax"""))_
-    val diqmax = parse_element (element ("""WindGenType4IEC.diqmax"""))_
-    val diqmin = parse_element (element ("""WindGenType4IEC.diqmin"""))_
-    val tg = parse_element (element ("""WindGenType4IEC.tg"""))_
-    val WindTurbineType4aIEC = parse_attribute (attribute ("""WindGenType4IEC.WindTurbineType4aIEC"""))_
-    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindGenType4IEC.WindTurbineType4bIEC"""))_
+    val dipmax = parse_element (element ("""WindGenType4IEC.dipmax"""))
+    val diqmax = parse_element (element ("""WindGenType4IEC.diqmax"""))
+    val diqmin = parse_element (element ("""WindGenType4IEC.diqmin"""))
+    val tg = parse_element (element ("""WindGenType4IEC.tg"""))
+    val WindTurbineType4aIEC = parse_attribute (attribute ("""WindGenType4IEC.WindTurbineType4aIEC"""))
+    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindGenType4IEC.WindTurbineType4bIEC"""))
     def parse (context: Context): WindGenType4IEC =
     {
         WindGenType4IEC(
@@ -1501,22 +1501,22 @@ extends
     Parseable[WindLookupTableFunctionKind]
 {
     val sup = BasicElement.parse _
-    val ipmax = parse_attribute (attribute ("""WindLookupTableFunctionKind.ipmax"""))_
-    val iqmax = parse_attribute (attribute ("""WindLookupTableFunctionKind.iqmax"""))_
-    val omegap = parse_attribute (attribute ("""WindLookupTableFunctionKind.omegap"""))_
-    val prr = parse_attribute (attribute ("""WindLookupTableFunctionKind.prr"""))_
-    val pwp = parse_attribute (attribute ("""WindLookupTableFunctionKind.pwp"""))_
-    val qmaxp = parse_attribute (attribute ("""WindLookupTableFunctionKind.qmaxp"""))_
-    val qmaxu = parse_attribute (attribute ("""WindLookupTableFunctionKind.qmaxu"""))_
-    val qminp = parse_attribute (attribute ("""WindLookupTableFunctionKind.qminp"""))_
-    val qminu = parse_attribute (attribute ("""WindLookupTableFunctionKind.qminu"""))_
-    val qwp = parse_attribute (attribute ("""WindLookupTableFunctionKind.qwp"""))_
-    val tcwdu = parse_attribute (attribute ("""WindLookupTableFunctionKind.tcwdu"""))_
-    val tduwt = parse_attribute (attribute ("""WindLookupTableFunctionKind.tduwt"""))_
-    val tfover = parse_attribute (attribute ("""WindLookupTableFunctionKind.tfover"""))_
-    val tfunder = parse_attribute (attribute ("""WindLookupTableFunctionKind.tfunder"""))_
-    val tuover = parse_attribute (attribute ("""WindLookupTableFunctionKind.tuover"""))_
-    val tuunder = parse_attribute (attribute ("""WindLookupTableFunctionKind.tuunder"""))_
+    val ipmax = parse_attribute (attribute ("""WindLookupTableFunctionKind.ipmax"""))
+    val iqmax = parse_attribute (attribute ("""WindLookupTableFunctionKind.iqmax"""))
+    val omegap = parse_attribute (attribute ("""WindLookupTableFunctionKind.omegap"""))
+    val prr = parse_attribute (attribute ("""WindLookupTableFunctionKind.prr"""))
+    val pwp = parse_attribute (attribute ("""WindLookupTableFunctionKind.pwp"""))
+    val qmaxp = parse_attribute (attribute ("""WindLookupTableFunctionKind.qmaxp"""))
+    val qmaxu = parse_attribute (attribute ("""WindLookupTableFunctionKind.qmaxu"""))
+    val qminp = parse_attribute (attribute ("""WindLookupTableFunctionKind.qminp"""))
+    val qminu = parse_attribute (attribute ("""WindLookupTableFunctionKind.qminu"""))
+    val qwp = parse_attribute (attribute ("""WindLookupTableFunctionKind.qwp"""))
+    val tcwdu = parse_attribute (attribute ("""WindLookupTableFunctionKind.tcwdu"""))
+    val tduwt = parse_attribute (attribute ("""WindLookupTableFunctionKind.tduwt"""))
+    val tfover = parse_attribute (attribute ("""WindLookupTableFunctionKind.tfover"""))
+    val tfunder = parse_attribute (attribute ("""WindLookupTableFunctionKind.tfunder"""))
+    val tuover = parse_attribute (attribute ("""WindLookupTableFunctionKind.tuover"""))
+    val tuunder = parse_attribute (attribute ("""WindLookupTableFunctionKind.tuunder"""))
     def parse (context: Context): WindLookupTableFunctionKind =
     {
         WindLookupTableFunctionKind(
@@ -1589,13 +1589,13 @@ extends
     Parseable[WindMechIEC]
 {
     val sup = IdentifiedObject.parse _
-    val cdrt = parse_element (element ("""WindMechIEC.cdrt"""))_
-    val hgen = parse_element (element ("""WindMechIEC.hgen"""))_
-    val hwtr = parse_element (element ("""WindMechIEC.hwtr"""))_
-    val kdrt = parse_element (element ("""WindMechIEC.kdrt"""))_
-    val WindTurbineType1or2IEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType1or2IEC"""))_
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType3IEC"""))_
-    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType4bIEC"""))_
+    val cdrt = parse_element (element ("""WindMechIEC.cdrt"""))
+    val hgen = parse_element (element ("""WindMechIEC.hgen"""))
+    val hwtr = parse_element (element ("""WindMechIEC.hwtr"""))
+    val kdrt = parse_element (element ("""WindMechIEC.kdrt"""))
+    val WindTurbineType1or2IEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType1or2IEC"""))
+    val WindTurbineType3IEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType3IEC"""))
+    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType4bIEC"""))
     def parse (context: Context): WindMechIEC =
     {
         WindMechIEC(
@@ -1666,15 +1666,15 @@ extends
     Parseable[WindPitchContPowerIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dpmax = parse_element (element ("""WindPitchContPowerIEC.dpmax"""))_
-    val dpmin = parse_element (element ("""WindPitchContPowerIEC.dpmin"""))_
-    val pmin = parse_element (element ("""WindPitchContPowerIEC.pmin"""))_
-    val pset = parse_element (element ("""WindPitchContPowerIEC.pset"""))_
-    val t1 = parse_element (element ("""WindPitchContPowerIEC.t1"""))_
-    val tr = parse_element (element ("""WindPitchContPowerIEC.tr"""))_
-    val uuvrt = parse_element (element ("""WindPitchContPowerIEC.uuvrt"""))_
-    val WindGenTurbineType1bIEC = parse_attribute (attribute ("""WindPitchContPowerIEC.WindGenTurbineType1bIEC"""))_
-    val WindGenTurbineType2IEC = parse_attribute (attribute ("""WindPitchContPowerIEC.WindGenTurbineType2IEC"""))_
+    val dpmax = parse_element (element ("""WindPitchContPowerIEC.dpmax"""))
+    val dpmin = parse_element (element ("""WindPitchContPowerIEC.dpmin"""))
+    val pmin = parse_element (element ("""WindPitchContPowerIEC.pmin"""))
+    val pset = parse_element (element ("""WindPitchContPowerIEC.pset"""))
+    val t1 = parse_element (element ("""WindPitchContPowerIEC.t1"""))
+    val tr = parse_element (element ("""WindPitchContPowerIEC.tr"""))
+    val uuvrt = parse_element (element ("""WindPitchContPowerIEC.uuvrt"""))
+    val WindGenTurbineType1bIEC = parse_attribute (attribute ("""WindPitchContPowerIEC.WindGenTurbineType1bIEC"""))
+    val WindGenTurbineType2IEC = parse_attribute (attribute ("""WindPitchContPowerIEC.WindGenTurbineType2IEC"""))
     def parse (context: Context): WindPitchContPowerIEC =
     {
         WindPitchContPowerIEC(
@@ -1723,7 +1723,7 @@ extends
     Parseable[WindPlantDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val RemoteInputSignal = parse_attribute (attribute ("""WindPlantDynamics.RemoteInputSignal"""))_
+    val RemoteInputSignal = parse_attribute (attribute ("""WindPlantDynamics.RemoteInputSignal"""))
     def parse (context: Context): WindPlantDynamics =
     {
         WindPlantDynamics(
@@ -1810,22 +1810,22 @@ extends
     Parseable[WindPlantFreqPcontrolIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dprefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.dprefmax"""))_
-    val dprefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.dprefmin"""))_
-    val dpwprefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.dpwprefmax"""))_
-    val dpwprefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.dpwprefmin"""))_
-    val kiwpp = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwpp"""))_
-    val kiwppmax = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwppmax"""))_
-    val kiwppmin = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwppmin"""))_
-    val kpwpp = parse_element (element ("""WindPlantFreqPcontrolIEC.kpwpp"""))_
-    val kwppref = parse_element (element ("""WindPlantFreqPcontrolIEC.kwppref"""))_
-    val prefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.prefmax"""))_
-    val prefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.prefmin"""))_
-    val tpft = parse_element (element ("""WindPlantFreqPcontrolIEC.tpft"""))_
-    val tpfv = parse_element (element ("""WindPlantFreqPcontrolIEC.tpfv"""))_
-    val twpffiltp = parse_element (element ("""WindPlantFreqPcontrolIEC.twpffiltp"""))_
-    val twppfiltp = parse_element (element ("""WindPlantFreqPcontrolIEC.twppfiltp"""))_
-    val WindPlantIEC = parse_attribute (attribute ("""WindPlantFreqPcontrolIEC.WindPlantIEC"""))_
+    val dprefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.dprefmax"""))
+    val dprefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.dprefmin"""))
+    val dpwprefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.dpwprefmax"""))
+    val dpwprefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.dpwprefmin"""))
+    val kiwpp = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwpp"""))
+    val kiwppmax = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwppmax"""))
+    val kiwppmin = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwppmin"""))
+    val kpwpp = parse_element (element ("""WindPlantFreqPcontrolIEC.kpwpp"""))
+    val kwppref = parse_element (element ("""WindPlantFreqPcontrolIEC.kwppref"""))
+    val prefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.prefmax"""))
+    val prefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.prefmin"""))
+    val tpft = parse_element (element ("""WindPlantFreqPcontrolIEC.tpft"""))
+    val tpfv = parse_element (element ("""WindPlantFreqPcontrolIEC.tpfv"""))
+    val twpffiltp = parse_element (element ("""WindPlantFreqPcontrolIEC.twpffiltp"""))
+    val twppfiltp = parse_element (element ("""WindPlantFreqPcontrolIEC.twppfiltp"""))
+    val WindPlantIEC = parse_attribute (attribute ("""WindPlantFreqPcontrolIEC.WindPlantIEC"""))
     def parse (context: Context): WindPlantFreqPcontrolIEC =
     {
         WindPlantFreqPcontrolIEC(
@@ -1884,8 +1884,8 @@ extends
     Parseable[WindPlantIEC]
 {
     val sup = WindPlantDynamics.parse _
-    val WindPlantFreqPcontrolIEC = parse_attribute (attribute ("""WindPlantIEC.WindPlantFreqPcontrolIEC"""))_
-    val WindPlantReactiveControlIEC = parse_attribute (attribute ("""WindPlantIEC.WindPlantReactiveControlIEC"""))_
+    val WindPlantFreqPcontrolIEC = parse_attribute (attribute ("""WindPlantIEC.WindPlantFreqPcontrolIEC"""))
+    val WindPlantReactiveControlIEC = parse_attribute (attribute ("""WindPlantIEC.WindPlantReactiveControlIEC"""))
     def parse (context: Context): WindPlantIEC =
     {
         WindPlantIEC(
@@ -1933,10 +1933,10 @@ extends
     Parseable[WindPlantQcontrolModeKind]
 {
     val sup = BasicElement.parse _
-    val powerFactor = parse_attribute (attribute ("""WindPlantQcontrolModeKind.powerFactor"""))_
-    val reactivePower = parse_attribute (attribute ("""WindPlantQcontrolModeKind.reactivePower"""))_
-    val uqStatic = parse_attribute (attribute ("""WindPlantQcontrolModeKind.uqStatic"""))_
-    val voltageControl = parse_attribute (attribute ("""WindPlantQcontrolModeKind.voltageControl"""))_
+    val powerFactor = parse_attribute (attribute ("""WindPlantQcontrolModeKind.powerFactor"""))
+    val reactivePower = parse_attribute (attribute ("""WindPlantQcontrolModeKind.reactivePower"""))
+    val uqStatic = parse_attribute (attribute ("""WindPlantQcontrolModeKind.uqStatic"""))
+    val voltageControl = parse_attribute (attribute ("""WindPlantQcontrolModeKind.voltageControl"""))
     def parse (context: Context): WindPlantQcontrolModeKind =
     {
         WindPlantQcontrolModeKind(
@@ -2035,25 +2035,25 @@ extends
     Parseable[WindPlantReactiveControlIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dxrefmax = parse_element (element ("""WindPlantReactiveControlIEC.dxrefmax"""))_
-    val dxrefmin = parse_element (element ("""WindPlantReactiveControlIEC.dxrefmin"""))_
-    val kiwpx = parse_element (element ("""WindPlantReactiveControlIEC.kiwpx"""))_
-    val kiwpxmax = parse_element (element ("""WindPlantReactiveControlIEC.kiwpxmax"""))_
-    val kiwpxmin = parse_element (element ("""WindPlantReactiveControlIEC.kiwpxmin"""))_
-    val kpwpx = parse_element (element ("""WindPlantReactiveControlIEC.kpwpx"""))_
-    val kwpqref = parse_element (element ("""WindPlantReactiveControlIEC.kwpqref"""))_
-    val kwpqu = parse_element (element ("""WindPlantReactiveControlIEC.kwpqu"""))_
-    val tuqfilt = parse_element (element ("""WindPlantReactiveControlIEC.tuqfilt"""))_
-    val twppfiltq = parse_element (element ("""WindPlantReactiveControlIEC.twppfiltq"""))_
-    val twpqfiltq = parse_element (element ("""WindPlantReactiveControlIEC.twpqfiltq"""))_
-    val twpufiltq = parse_element (element ("""WindPlantReactiveControlIEC.twpufiltq"""))_
-    val txft = parse_element (element ("""WindPlantReactiveControlIEC.txft"""))_
-    val txfv = parse_element (element ("""WindPlantReactiveControlIEC.txfv"""))_
-    val uwpqdip = parse_element (element ("""WindPlantReactiveControlIEC.uwpqdip"""))_
-    val windPlantQcontrolModesType = parse_attribute (attribute ("""WindPlantReactiveControlIEC.windPlantQcontrolModesType"""))_
-    val xrefmax = parse_element (element ("""WindPlantReactiveControlIEC.xrefmax"""))_
-    val xrefmin = parse_element (element ("""WindPlantReactiveControlIEC.xrefmin"""))_
-    val WindPlantIEC = parse_attribute (attribute ("""WindPlantReactiveControlIEC.WindPlantIEC"""))_
+    val dxrefmax = parse_element (element ("""WindPlantReactiveControlIEC.dxrefmax"""))
+    val dxrefmin = parse_element (element ("""WindPlantReactiveControlIEC.dxrefmin"""))
+    val kiwpx = parse_element (element ("""WindPlantReactiveControlIEC.kiwpx"""))
+    val kiwpxmax = parse_element (element ("""WindPlantReactiveControlIEC.kiwpxmax"""))
+    val kiwpxmin = parse_element (element ("""WindPlantReactiveControlIEC.kiwpxmin"""))
+    val kpwpx = parse_element (element ("""WindPlantReactiveControlIEC.kpwpx"""))
+    val kwpqref = parse_element (element ("""WindPlantReactiveControlIEC.kwpqref"""))
+    val kwpqu = parse_element (element ("""WindPlantReactiveControlIEC.kwpqu"""))
+    val tuqfilt = parse_element (element ("""WindPlantReactiveControlIEC.tuqfilt"""))
+    val twppfiltq = parse_element (element ("""WindPlantReactiveControlIEC.twppfiltq"""))
+    val twpqfiltq = parse_element (element ("""WindPlantReactiveControlIEC.twpqfiltq"""))
+    val twpufiltq = parse_element (element ("""WindPlantReactiveControlIEC.twpufiltq"""))
+    val txft = parse_element (element ("""WindPlantReactiveControlIEC.txft"""))
+    val txfv = parse_element (element ("""WindPlantReactiveControlIEC.txfv"""))
+    val uwpqdip = parse_element (element ("""WindPlantReactiveControlIEC.uwpqdip"""))
+    val windPlantQcontrolModesType = parse_attribute (attribute ("""WindPlantReactiveControlIEC.windPlantQcontrolModesType"""))
+    val xrefmax = parse_element (element ("""WindPlantReactiveControlIEC.xrefmax"""))
+    val xrefmin = parse_element (element ("""WindPlantReactiveControlIEC.xrefmin"""))
+    val WindPlantIEC = parse_attribute (attribute ("""WindPlantReactiveControlIEC.WindPlantIEC"""))
     def parse (context: Context): WindPlantReactiveControlIEC =
     {
         WindPlantReactiveControlIEC(
@@ -2136,15 +2136,15 @@ extends
     Parseable[WindProtectionIEC]
 {
     val sup = IdentifiedObject.parse _
-    val dfimax = parse_element (element ("""WindProtectionIEC.dfimax"""))_
-    val fover = parse_element (element ("""WindProtectionIEC.fover"""))_
-    val funder = parse_element (element ("""WindProtectionIEC.funder"""))_
-    val mzc = parse_element (element ("""WindProtectionIEC.mzc"""))_
-    val tfma = parse_element (element ("""WindProtectionIEC.tfma"""))_
-    val uover = parse_element (element ("""WindProtectionIEC.uover"""))_
-    val uunder = parse_element (element ("""WindProtectionIEC.uunder"""))_
-    val WindTurbineType1or2IEC = parse_attribute (attribute ("""WindProtectionIEC.WindTurbineType1or2IEC"""))_
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindProtectionIEC.WindTurbineType3or4IEC"""))_
+    val dfimax = parse_element (element ("""WindProtectionIEC.dfimax"""))
+    val fover = parse_element (element ("""WindProtectionIEC.fover"""))
+    val funder = parse_element (element ("""WindProtectionIEC.funder"""))
+    val mzc = parse_element (element ("""WindProtectionIEC.mzc"""))
+    val tfma = parse_element (element ("""WindProtectionIEC.tfma"""))
+    val uover = parse_element (element ("""WindProtectionIEC.uover"""))
+    val uunder = parse_element (element ("""WindProtectionIEC.uunder"""))
+    val WindTurbineType1or2IEC = parse_attribute (attribute ("""WindProtectionIEC.WindTurbineType1or2IEC"""))
+    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindProtectionIEC.WindTurbineType3or4IEC"""))
     def parse (context: Context): WindProtectionIEC =
     {
         WindProtectionIEC(
@@ -2201,11 +2201,11 @@ extends
     Parseable[WindQcontrolModeKind]
 {
     val sup = BasicElement.parse _
-    val openLoopReactivePower = parse_attribute (attribute ("""WindQcontrolModeKind.openLoopReactivePower"""))_
-    val openLooppowerFactor = parse_attribute (attribute ("""WindQcontrolModeKind.openLooppowerFactor"""))_
-    val powerFactor = parse_attribute (attribute ("""WindQcontrolModeKind.powerFactor"""))_
-    val reactivePower = parse_attribute (attribute ("""WindQcontrolModeKind.reactivePower"""))_
-    val voltage = parse_attribute (attribute ("""WindQcontrolModeKind.voltage"""))_
+    val openLoopReactivePower = parse_attribute (attribute ("""WindQcontrolModeKind.openLoopReactivePower"""))
+    val openLooppowerFactor = parse_attribute (attribute ("""WindQcontrolModeKind.openLooppowerFactor"""))
+    val powerFactor = parse_attribute (attribute ("""WindQcontrolModeKind.powerFactor"""))
+    val reactivePower = parse_attribute (attribute ("""WindQcontrolModeKind.reactivePower"""))
+    val voltage = parse_attribute (attribute ("""WindQcontrolModeKind.voltage"""))
     def parse (context: Context): WindQcontrolModeKind =
     {
         WindQcontrolModeKind(
@@ -2260,10 +2260,10 @@ extends
     Parseable[WindRefFrameRotIEC]
 {
     val sup = IdentifiedObject.parse _
-    val tpll = parse_element (element ("""WindRefFrameRotIEC.tpll"""))_
-    val upll1 = parse_element (element ("""WindRefFrameRotIEC.upll1"""))_
-    val upll2 = parse_element (element ("""WindRefFrameRotIEC.upll2"""))_
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindRefFrameRotIEC.WindTurbineType3or4IEC"""))_
+    val tpll = parse_element (element ("""WindRefFrameRotIEC.tpll"""))
+    val upll1 = parse_element (element ("""WindRefFrameRotIEC.upll1"""))
+    val upll2 = parse_element (element ("""WindRefFrameRotIEC.upll2"""))
+    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindRefFrameRotIEC.WindTurbineType3or4IEC"""))
     def parse (context: Context): WindRefFrameRotIEC =
     {
         WindRefFrameRotIEC(
@@ -2309,8 +2309,8 @@ extends
     Parseable[WindTurbineType1or2Dynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val AsynchronousMachineDynamics = parse_attribute (attribute ("""WindTurbineType1or2Dynamics.AsynchronousMachineDynamics"""))_
-    val RemoteInputSignal = parse_attribute (attribute ("""WindTurbineType1or2Dynamics.RemoteInputSignal"""))_
+    val AsynchronousMachineDynamics = parse_attribute (attribute ("""WindTurbineType1or2Dynamics.AsynchronousMachineDynamics"""))
+    val RemoteInputSignal = parse_attribute (attribute ("""WindTurbineType1or2Dynamics.RemoteInputSignal"""))
     def parse (context: Context): WindTurbineType1or2Dynamics =
     {
         WindTurbineType1or2Dynamics(
@@ -2355,8 +2355,8 @@ extends
     Parseable[WindTurbineType1or2IEC]
 {
     val sup = WindTurbineType1or2Dynamics.parse _
-    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType1or2IEC.WindMechIEC"""))_
-    val WindProtectionIEC = parse_attribute (attribute ("""WindTurbineType1or2IEC.WindProtectionIEC"""))_
+    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType1or2IEC.WindMechIEC"""))
+    val WindProtectionIEC = parse_attribute (attribute ("""WindTurbineType1or2IEC.WindProtectionIEC"""))
     def parse (context: Context): WindTurbineType1or2IEC =
     {
         WindTurbineType1or2IEC(
@@ -2408,12 +2408,12 @@ extends
     Parseable[WindTurbineType3IEC]
 {
     val sup = WindTurbineType3or4IEC.parse _
-    val WindAeroOneDimIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindAeroOneDimIEC"""))_
-    val WindAeroTwoDimIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindAeroTwoDimIEC"""))_
-    val WindContPType3IEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindContPType3IEC"""))_
-    val WindContPitchAngleIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindContPitchAngleIEC"""))_
-    val WindGenType3IEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindGenType3IEC"""))_
-    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindMechIEC"""))_
+    val WindAeroOneDimIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindAeroOneDimIEC"""))
+    val WindAeroTwoDimIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindAeroTwoDimIEC"""))
+    val WindContPType3IEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindContPType3IEC"""))
+    val WindContPitchAngleIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindContPitchAngleIEC"""))
+    val WindGenType3IEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindGenType3IEC"""))
+    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindMechIEC"""))
     def parse (context: Context): WindTurbineType3IEC =
     {
         WindTurbineType3IEC(
@@ -2463,9 +2463,9 @@ extends
     Parseable[WindTurbineType3or4Dynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val EnergySource = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.EnergySource"""))_
-    val RemoteInputSignal = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.RemoteInputSignal"""))_
-    val WindPlantDynamics = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.WindPlantDynamics"""))_
+    val EnergySource = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.EnergySource"""))
+    val RemoteInputSignal = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.RemoteInputSignal"""))
+    val WindPlantDynamics = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.WindPlantDynamics"""))
     def parse (context: Context): WindTurbineType3or4Dynamics =
     {
         WindTurbineType3or4Dynamics(
@@ -2518,12 +2518,12 @@ extends
     Parseable[WindTurbineType3or4IEC]
 {
     val sup = WindTurbineType3or4Dynamics.parse _
-    val WIndContQIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WIndContQIEC"""))_
-    val WindContCurrLimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContCurrLimIEC"""))_
-    val WindContQLimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContQLimIEC"""))_
-    val WindContQPQULimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContQPQULimIEC"""))_
-    val WindProtectionIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindProtectionIEC"""))_
-    val WindRefFrameRotIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindRefFrameRotIEC"""))_
+    val WIndContQIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WIndContQIEC"""))
+    val WindContCurrLimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContCurrLimIEC"""))
+    val WindContQLimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContQLimIEC"""))
+    val WindContQPQULimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContQPQULimIEC"""))
+    val WindProtectionIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindProtectionIEC"""))
+    val WindRefFrameRotIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindRefFrameRotIEC"""))
     def parse (context: Context): WindTurbineType3or4IEC =
     {
         WindTurbineType3or4IEC(
@@ -2569,7 +2569,7 @@ extends
     Parseable[WindTurbineType4IEC]
 {
     val sup = WindTurbineType3or4IEC.parse _
-    val WindGenType3aIEC = parse_attribute (attribute ("""WindTurbineType4IEC.WindGenType3aIEC"""))_
+    val WindGenType3aIEC = parse_attribute (attribute ("""WindTurbineType4IEC.WindGenType3aIEC"""))
     def parse (context: Context): WindTurbineType4IEC =
     {
         WindTurbineType4IEC(
@@ -2613,8 +2613,8 @@ extends
     Parseable[WindTurbineType4aIEC]
 {
     val sup = WindTurbineType4IEC.parse _
-    val WindContPType4aIEC = parse_attribute (attribute ("""WindTurbineType4aIEC.WindContPType4aIEC"""))_
-    val WindGenType4IEC = parse_attribute (attribute ("""WindTurbineType4aIEC.WindGenType4IEC"""))_
+    val WindContPType4aIEC = parse_attribute (attribute ("""WindTurbineType4aIEC.WindContPType4aIEC"""))
+    val WindGenType4IEC = parse_attribute (attribute ("""WindTurbineType4aIEC.WindGenType4IEC"""))
     def parse (context: Context): WindTurbineType4aIEC =
     {
         WindTurbineType4aIEC(
@@ -2661,9 +2661,9 @@ extends
     Parseable[WindTurbineType4bIEC]
 {
     val sup = WindTurbineType4IEC.parse _
-    val WindContPType4bIEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindContPType4bIEC"""))_
-    val WindGenType4IEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindGenType4IEC"""))_
-    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindMechIEC"""))_
+    val WindContPType4bIEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindContPType4bIEC"""))
+    val WindGenType4IEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindGenType4IEC"""))
+    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindMechIEC"""))
     def parse (context: Context): WindTurbineType4bIEC =
     {
         WindTurbineType4bIEC(
@@ -2710,9 +2710,9 @@ extends
     Parseable[WindUVRTQcontrolModeKind]
 {
     val sup = BasicElement.parse _
-    val mode0 = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode0"""))_
-    val mode1 = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode1"""))_
-    val mode2 = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode2"""))_
+    val mode0 = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode0"""))
+    val mode1 = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode1"""))
+    val mode2 = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode2"""))
     def parse (context: Context): WindUVRTQcontrolModeKind =
     {
         WindUVRTQcontrolModeKind(

@@ -52,12 +52,12 @@ extends
     Parseable[AreaReserveSpec]
 {
     val sup = BasicElement.parse _
-    val lowerRegMarginReqt = parse_element (element ("""AreaReserveSpec.lowerRegMarginReqt"""))_
-    val opReserveReqt = parse_element (element ("""AreaReserveSpec.opReserveReqt"""))_
-    val primaryReserveReqt = parse_element (element ("""AreaReserveSpec.primaryReserveReqt"""))_
-    val raiseRegMarginReqt = parse_element (element ("""AreaReserveSpec.raiseRegMarginReqt"""))_
-    val spinningReserveReqt = parse_element (element ("""AreaReserveSpec.spinningReserveReqt"""))_
-    val Description = parse_element (element ("""AreaReserveSpec.Description"""))_
+    val lowerRegMarginReqt = parse_element (element ("""AreaReserveSpec.lowerRegMarginReqt"""))
+    val opReserveReqt = parse_element (element ("""AreaReserveSpec.opReserveReqt"""))
+    val primaryReserveReqt = parse_element (element ("""AreaReserveSpec.primaryReserveReqt"""))
+    val raiseRegMarginReqt = parse_element (element ("""AreaReserveSpec.raiseRegMarginReqt"""))
+    val spinningReserveReqt = parse_element (element ("""AreaReserveSpec.spinningReserveReqt"""))
+    val Description = parse_element (element ("""AreaReserveSpec.Description"""))
     def parse (context: Context): AreaReserveSpec =
     {
         AreaReserveSpec(
@@ -112,10 +112,10 @@ extends
     Parseable[CurrentEmergencyScheduledInterchange]
 {
     val sup = IdentifiedObject.parse _
-    val emergencyScheduleMW = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleMW"""))_
-    val emergencyScheduleRampTime = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime"""))_
-    val emergencyScheduleStartTime = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleStartTime"""))_
-    val InternalControlArea = parse_attribute (attribute ("""CurrentEmergencyScheduledInterchange.InternalControlArea"""))_
+    val emergencyScheduleMW = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleMW"""))
+    val emergencyScheduleRampTime = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime"""))
+    val emergencyScheduleStartTime = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleStartTime"""))
+    val InternalControlArea = parse_attribute (attribute ("""CurrentEmergencyScheduledInterchange.InternalControlArea"""))
     def parse (context: Context): CurrentEmergencyScheduledInterchange =
     {
         CurrentEmergencyScheduledInterchange(
@@ -164,9 +164,9 @@ extends
     Parseable[CurrentScheduledInterchange]
 {
     val sup = BasicElement.parse _
-    val currentNetTieMW = parse_element (element ("""CurrentScheduledInterchange.currentNetTieMW"""))_
-    val useEmergencySchedule = parse_element (element ("""CurrentScheduledInterchange.useEmergencySchedule"""))_
-    val InternalControlArea = parse_attribute (attribute ("""CurrentScheduledInterchange.InternalControlArea"""))_
+    val currentNetTieMW = parse_element (element ("""CurrentScheduledInterchange.currentNetTieMW"""))
+    val useEmergencySchedule = parse_element (element ("""CurrentScheduledInterchange.useEmergencySchedule"""))
+    val InternalControlArea = parse_attribute (attribute ("""CurrentScheduledInterchange.InternalControlArea"""))
     def parse (context: Context): CurrentScheduledInterchange =
     {
         CurrentScheduledInterchange(
@@ -210,7 +210,7 @@ extends
     Parseable[CurtailmentProfile]
 {
     val sup = Profile.parse _
-    val EnergyTransaction = parse_attribute (attribute ("""CurtailmentProfile.EnergyTransaction"""))_
+    val EnergyTransaction = parse_attribute (attribute ("""CurtailmentProfile.EnergyTransaction"""))
     def parse (context: Context): CurtailmentProfile =
     {
         CurtailmentProfile(
@@ -260,11 +260,11 @@ extends
     Parseable[DynamicSchedule]
 {
     val sup = BasicIntervalSchedule.parse _
-    val dynSchedSignRev = parse_element (element ("""DynamicSchedule.dynSchedSignRev"""))_
-    val dynSchedStatus = parse_element (element ("""DynamicSchedule.dynSchedStatus"""))_
-    val MktMeasurement = parse_attribute (attribute ("""DynamicSchedule.MktMeasurement"""))_
-    val Receive_SubControlArea = parse_attribute (attribute ("""DynamicSchedule.Receive_SubControlArea"""))_
-    val Send_SubControlArea = parse_attribute (attribute ("""DynamicSchedule.Send_SubControlArea"""))_
+    val dynSchedSignRev = parse_element (element ("""DynamicSchedule.dynSchedSignRev"""))
+    val dynSchedStatus = parse_element (element ("""DynamicSchedule.dynSchedStatus"""))
+    val MktMeasurement = parse_attribute (attribute ("""DynamicSchedule.MktMeasurement"""))
+    val Receive_SubControlArea = parse_attribute (attribute ("""DynamicSchedule.Receive_SubControlArea"""))
+    val Send_SubControlArea = parse_attribute (attribute ("""DynamicSchedule.Send_SubControlArea"""))
     def parse (context: Context): DynamicSchedule =
     {
         DynamicSchedule(
@@ -313,9 +313,9 @@ extends
     Parseable[EnergyProduct]
 {
     val sup = Agreement.parse _
-    val GenerationProvider = parse_attribute (attribute ("""EnergyProduct.GenerationProvider"""))_
-    val ResoldBy_Marketer = parse_attributes (attribute ("""EnergyProduct.ResoldBy_Marketer"""))_
-    val TitleHeldBy_Marketer = parse_attribute (attribute ("""EnergyProduct.TitleHeldBy_Marketer"""))_
+    val GenerationProvider = parse_attribute (attribute ("""EnergyProduct.GenerationProvider"""))
+    val ResoldBy_Marketer = parse_attributes (attribute ("""EnergyProduct.ResoldBy_Marketer"""))
+    val TitleHeldBy_Marketer = parse_attribute (attribute ("""EnergyProduct.TitleHeldBy_Marketer"""))
     def parse (context: Context): EnergyProduct =
     {
         EnergyProduct(
@@ -359,7 +359,7 @@ extends
     Parseable[InadvertentAccount]
 {
     val sup = BasicElement.parse _
-    val SubControlArea = parse_attribute (attribute ("""InadvertentAccount.SubControlArea"""))_
+    val SubControlArea = parse_attribute (attribute ("""InadvertentAccount.SubControlArea"""))
     def parse (context: Context): InadvertentAccount =
     {
         InadvertentAccount(
@@ -401,7 +401,7 @@ extends
     Parseable[InternalControlArea]
 {
     val sup = IdentifiedObject.parse _
-    val CurrentScheduledInterchange = parse_attribute (attribute ("""InternalControlArea.CurrentScheduledInterchange"""))_
+    val CurrentScheduledInterchange = parse_attribute (attribute ("""InternalControlArea.CurrentScheduledInterchange"""))
     def parse (context: Context): InternalControlArea =
     {
         InternalControlArea(
@@ -445,8 +445,8 @@ extends
     Parseable[LossProfile]
 {
     val sup = Profile.parse _
-    val EnergyTransaction = parse_attribute (attribute ("""LossProfile.EnergyTransaction"""))_
-    val HasLoss_1 = parse_attribute (attribute ("""LossProfile.HasLoss_"""))_
+    val EnergyTransaction = parse_attribute (attribute ("""LossProfile.EnergyTransaction"""))
+    val HasLoss_1 = parse_attribute (attribute ("""LossProfile.HasLoss_"""))
     def parse (context: Context): LossProfile =
     {
         LossProfile(
@@ -486,10 +486,10 @@ extends
     Parseable[TieLine]
 {
     val sup = IdentifiedObject.parse _
-    val EnergyTransaction = parse_attribute (attribute ("""TieLine.EnergyTransaction"""))_
-    val ParentOfB = parse_attribute (attribute ("""TieLine.ParentOfB"""))_
-    val SideA_SubControlArea = parse_attribute (attribute ("""TieLine.SideA_SubControlArea"""))_
-    val SideB_SubControlArea = parse_attribute (attribute ("""TieLine.SideB_SubControlArea"""))_
+    val EnergyTransaction = parse_attribute (attribute ("""TieLine.EnergyTransaction"""))
+    val ParentOfB = parse_attribute (attribute ("""TieLine.ParentOfB"""))
+    val SideA_SubControlArea = parse_attribute (attribute ("""TieLine.SideA_SubControlArea"""))
+    val SideB_SubControlArea = parse_attribute (attribute ("""TieLine.SideB_SubControlArea"""))
     def parse (context: Context): TieLine =
     {
         TieLine(
@@ -570,7 +570,7 @@ extends
     Parseable[TransmissionRightOfWay]
 {
     val sup = PowerSystemResource.parse _
-    val TransmissionCorridor = parse_attribute (attribute ("""TransmissionRightOfWay.TransmissionCorridor"""))_
+    val TransmissionCorridor = parse_attribute (attribute ("""TransmissionRightOfWay.TransmissionCorridor"""))
     def parse (context: Context): TransmissionRightOfWay =
     {
         TransmissionRightOfWay(

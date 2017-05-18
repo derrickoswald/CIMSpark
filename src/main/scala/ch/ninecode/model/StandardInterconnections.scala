@@ -58,16 +58,16 @@ extends
     Parseable[RemoteInputSignal]
 {
     val sup = IdentifiedObject.parse _
-    val remoteSignalType = parse_attribute (attribute ("""RemoteInputSignal.remoteSignalType"""))_
-    val DiscontinuousExcitationControlDynamics = parse_attribute (attribute ("""RemoteInputSignal.DiscontinuousExcitationControlDynamics"""))_
-    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""RemoteInputSignal.PFVArControllerType1Dynamics"""))_
-    val PowerSystemStabilizerDynamics = parse_attribute (attribute ("""RemoteInputSignal.PowerSystemStabilizerDynamics"""))_
-    val Terminal = parse_attribute (attribute ("""RemoteInputSignal.Terminal"""))_
-    val UnderexcitationLimiterDynamics = parse_attribute (attribute ("""RemoteInputSignal.UnderexcitationLimiterDynamics"""))_
-    val VoltageCompensatorDynamics = parse_attribute (attribute ("""RemoteInputSignal.VoltageCompensatorDynamics"""))_
-    val WindPlantDynamics = parse_attribute (attribute ("""RemoteInputSignal.WindPlantDynamics"""))_
-    val WindTurbineType1or2Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType1or2Dynamics"""))_
-    val WindTurbineType3or4Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType3or4Dynamics"""))_
+    val remoteSignalType = parse_attribute (attribute ("""RemoteInputSignal.remoteSignalType"""))
+    val DiscontinuousExcitationControlDynamics = parse_attribute (attribute ("""RemoteInputSignal.DiscontinuousExcitationControlDynamics"""))
+    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""RemoteInputSignal.PFVArControllerType1Dynamics"""))
+    val PowerSystemStabilizerDynamics = parse_attribute (attribute ("""RemoteInputSignal.PowerSystemStabilizerDynamics"""))
+    val Terminal = parse_attribute (attribute ("""RemoteInputSignal.Terminal"""))
+    val UnderexcitationLimiterDynamics = parse_attribute (attribute ("""RemoteInputSignal.UnderexcitationLimiterDynamics"""))
+    val VoltageCompensatorDynamics = parse_attribute (attribute ("""RemoteInputSignal.VoltageCompensatorDynamics"""))
+    val WindPlantDynamics = parse_attribute (attribute ("""RemoteInputSignal.WindPlantDynamics"""))
+    val WindTurbineType1or2Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType1or2Dynamics"""))
+    val WindTurbineType3or4Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType3or4Dynamics"""))
     def parse (context: Context): RemoteInputSignal =
     {
         RemoteInputSignal(
@@ -133,15 +133,15 @@ extends
     Parseable[RemoteSignalKind]
 {
     val sup = BasicElement.parse _
-    val remoteBranchCurrentAmplitude = parse_attribute (attribute ("""RemoteSignalKind.remoteBranchCurrentAmplitude"""))_
-    val remoteBusFrequency = parse_attribute (attribute ("""RemoteSignalKind.remoteBusFrequency"""))_
-    val remoteBusFrequencyDeviation = parse_attribute (attribute ("""RemoteSignalKind.remoteBusFrequencyDeviation"""))_
-    val remoteBusVoltage = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltage"""))_
-    val remoteBusVoltageAmplitude = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageAmplitude"""))_
-    val remoteBusVoltageAmplitudeDerivative = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageAmplitudeDerivative"""))_
-    val remoteBusVoltageFrequency = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageFrequency"""))_
-    val remoteBusVoltageFrequencyDeviation = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageFrequencyDeviation"""))_
-    val remotePuBusVoltageDerivative = parse_attribute (attribute ("""RemoteSignalKind.remotePuBusVoltageDerivative"""))_
+    val remoteBranchCurrentAmplitude = parse_attribute (attribute ("""RemoteSignalKind.remoteBranchCurrentAmplitude"""))
+    val remoteBusFrequency = parse_attribute (attribute ("""RemoteSignalKind.remoteBusFrequency"""))
+    val remoteBusFrequencyDeviation = parse_attribute (attribute ("""RemoteSignalKind.remoteBusFrequencyDeviation"""))
+    val remoteBusVoltage = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltage"""))
+    val remoteBusVoltageAmplitude = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageAmplitude"""))
+    val remoteBusVoltageAmplitudeDerivative = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageAmplitudeDerivative"""))
+    val remoteBusVoltageFrequency = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageFrequency"""))
+    val remoteBusVoltageFrequencyDeviation = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageFrequencyDeviation"""))
+    val remotePuBusVoltageDerivative = parse_attribute (attribute ("""RemoteSignalKind.remotePuBusVoltageDerivative"""))
     def parse (context: Context): RemoteSignalKind =
     {
         RemoteSignalKind(

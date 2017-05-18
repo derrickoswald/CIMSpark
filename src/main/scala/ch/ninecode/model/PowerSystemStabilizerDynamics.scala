@@ -63,16 +63,16 @@ extends
     Parseable[InputSignalKind]
 {
     val sup = BasicElement.parse _
-    val branchCurrent = parse_attribute (attribute ("""InputSignalKind.branchCurrent"""))_
-    val busFrequency = parse_attribute (attribute ("""InputSignalKind.busFrequency"""))_
-    val busFrequencyDeviation = parse_attribute (attribute ("""InputSignalKind.busFrequencyDeviation"""))_
-    val busVoltage = parse_attribute (attribute ("""InputSignalKind.busVoltage"""))_
-    val busVoltageDerivative = parse_attribute (attribute ("""InputSignalKind.busVoltageDerivative"""))_
-    val fieldCurrent = parse_attribute (attribute ("""InputSignalKind.fieldCurrent"""))_
-    val generatorAcceleratingPower = parse_attribute (attribute ("""InputSignalKind.generatorAcceleratingPower"""))_
-    val generatorElectricalPower = parse_attribute (attribute ("""InputSignalKind.generatorElectricalPower"""))_
-    val rotorAngularFrequencyDeviation = parse_attribute (attribute ("""InputSignalKind.rotorAngularFrequencyDeviation"""))_
-    val rotorSpeed = parse_attribute (attribute ("""InputSignalKind.rotorSpeed"""))_
+    val branchCurrent = parse_attribute (attribute ("""InputSignalKind.branchCurrent"""))
+    val busFrequency = parse_attribute (attribute ("""InputSignalKind.busFrequency"""))
+    val busFrequencyDeviation = parse_attribute (attribute ("""InputSignalKind.busFrequencyDeviation"""))
+    val busVoltage = parse_attribute (attribute ("""InputSignalKind.busVoltage"""))
+    val busVoltageDerivative = parse_attribute (attribute ("""InputSignalKind.busVoltageDerivative"""))
+    val fieldCurrent = parse_attribute (attribute ("""InputSignalKind.fieldCurrent"""))
+    val generatorAcceleratingPower = parse_attribute (attribute ("""InputSignalKind.generatorAcceleratingPower"""))
+    val generatorElectricalPower = parse_attribute (attribute ("""InputSignalKind.generatorElectricalPower"""))
+    val rotorAngularFrequencyDeviation = parse_attribute (attribute ("""InputSignalKind.rotorAngularFrequencyDeviation"""))
+    val rotorSpeed = parse_attribute (attribute ("""InputSignalKind.rotorSpeed"""))
     def parse (context: Context): InputSignalKind =
     {
         InputSignalKind(
@@ -122,7 +122,7 @@ extends
     Parseable[PowerSystemStabilizerDynamics]
 {
     val sup = DynamicsFunctionBlock.parse _
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""PowerSystemStabilizerDynamics.ExcitationSystemDynamics"""))_
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""PowerSystemStabilizerDynamics.ExcitationSystemDynamics"""))
     def parse (context: Context): PowerSystemStabilizerDynamics =
     {
         PowerSystemStabilizerDynamics(
@@ -208,21 +208,21 @@ extends
     Parseable[Pss1]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val kf = parse_element (element ("""Pss1.kf"""))_
-    val kpe = parse_element (element ("""Pss1.kpe"""))_
-    val ks = parse_element (element ("""Pss1.ks"""))_
-    val kw = parse_element (element ("""Pss1.kw"""))_
-    val pmin = parse_element (element ("""Pss1.pmin"""))_
-    val t10 = parse_element (element ("""Pss1.t10"""))_
-    val t5 = parse_element (element ("""Pss1.t5"""))_
-    val t6 = parse_element (element ("""Pss1.t6"""))_
-    val t7 = parse_element (element ("""Pss1.t7"""))_
-    val t8 = parse_element (element ("""Pss1.t8"""))_
-    val t9 = parse_element (element ("""Pss1.t9"""))_
-    val tpe = parse_element (element ("""Pss1.tpe"""))_
-    val vadat = parse_element (element ("""Pss1.vadat"""))_
-    val vsmn = parse_element (element ("""Pss1.vsmn"""))_
-    val vsmx = parse_element (element ("""Pss1.vsmx"""))_
+    val kf = parse_element (element ("""Pss1.kf"""))
+    val kpe = parse_element (element ("""Pss1.kpe"""))
+    val ks = parse_element (element ("""Pss1.ks"""))
+    val kw = parse_element (element ("""Pss1.kw"""))
+    val pmin = parse_element (element ("""Pss1.pmin"""))
+    val t10 = parse_element (element ("""Pss1.t10"""))
+    val t5 = parse_element (element ("""Pss1.t5"""))
+    val t6 = parse_element (element ("""Pss1.t6"""))
+    val t7 = parse_element (element ("""Pss1.t7"""))
+    val t8 = parse_element (element ("""Pss1.t8"""))
+    val t9 = parse_element (element ("""Pss1.t9"""))
+    val tpe = parse_element (element ("""Pss1.tpe"""))
+    val vadat = parse_element (element ("""Pss1.vadat"""))
+    val vsmn = parse_element (element ("""Pss1.vsmn"""))
+    val vsmx = parse_element (element ("""Pss1.vsmx"""))
     def parse (context: Context): Pss1 =
     {
         Pss1(
@@ -322,28 +322,28 @@ extends
     Parseable[Pss1A]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val a1 = parse_element (element ("""Pss1A.a1"""))_
-    val a2 = parse_element (element ("""Pss1A.a2"""))_
-    val a3 = parse_element (element ("""Pss1A.a3"""))_
-    val a4 = parse_element (element ("""Pss1A.a4"""))_
-    val a5 = parse_element (element ("""Pss1A.a5"""))_
-    val a6 = parse_element (element ("""Pss1A.a6"""))_
-    val a7 = parse_element (element ("""Pss1A.a7"""))_
-    val a8 = parse_element (element ("""Pss1A.a8"""))_
-    val inputSignalType = parse_attribute (attribute ("""Pss1A.inputSignalType"""))_
-    val kd = parse_element (element ("""Pss1A.kd"""))_
-    val ks = parse_element (element ("""Pss1A.ks"""))_
-    val t1 = parse_element (element ("""Pss1A.t1"""))_
-    val t2 = parse_element (element ("""Pss1A.t2"""))_
-    val t3 = parse_element (element ("""Pss1A.t3"""))_
-    val t4 = parse_element (element ("""Pss1A.t4"""))_
-    val t5 = parse_element (element ("""Pss1A.t5"""))_
-    val t6 = parse_element (element ("""Pss1A.t6"""))_
-    val tdelay = parse_element (element ("""Pss1A.tdelay"""))_
-    val vcl = parse_element (element ("""Pss1A.vcl"""))_
-    val vcu = parse_element (element ("""Pss1A.vcu"""))_
-    val vrmax = parse_element (element ("""Pss1A.vrmax"""))_
-    val vrmin = parse_element (element ("""Pss1A.vrmin"""))_
+    val a1 = parse_element (element ("""Pss1A.a1"""))
+    val a2 = parse_element (element ("""Pss1A.a2"""))
+    val a3 = parse_element (element ("""Pss1A.a3"""))
+    val a4 = parse_element (element ("""Pss1A.a4"""))
+    val a5 = parse_element (element ("""Pss1A.a5"""))
+    val a6 = parse_element (element ("""Pss1A.a6"""))
+    val a7 = parse_element (element ("""Pss1A.a7"""))
+    val a8 = parse_element (element ("""Pss1A.a8"""))
+    val inputSignalType = parse_attribute (attribute ("""Pss1A.inputSignalType"""))
+    val kd = parse_element (element ("""Pss1A.kd"""))
+    val ks = parse_element (element ("""Pss1A.ks"""))
+    val t1 = parse_element (element ("""Pss1A.t1"""))
+    val t2 = parse_element (element ("""Pss1A.t2"""))
+    val t3 = parse_element (element ("""Pss1A.t3"""))
+    val t4 = parse_element (element ("""Pss1A.t4"""))
+    val t5 = parse_element (element ("""Pss1A.t5"""))
+    val t6 = parse_element (element ("""Pss1A.t6"""))
+    val tdelay = parse_element (element ("""Pss1A.tdelay"""))
+    val vcl = parse_element (element ("""Pss1A.vcl"""))
+    val vcu = parse_element (element ("""Pss1A.vcu"""))
+    val vrmax = parse_element (element ("""Pss1A.vrmax"""))
+    val vrmin = parse_element (element ("""Pss1A.vrmin"""))
     def parse (context: Context): Pss1A =
     {
         Pss1A(
@@ -497,37 +497,37 @@ extends
     Parseable[Pss2B]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val a = parse_element (element ("""Pss2B.a"""))_
-    val inputSignal1Type = parse_attribute (attribute ("""Pss2B.inputSignal1Type"""))_
-    val inputSignal2Type = parse_attribute (attribute ("""Pss2B.inputSignal2Type"""))_
-    val ks1 = parse_element (element ("""Pss2B.ks1"""))_
-    val ks2 = parse_element (element ("""Pss2B.ks2"""))_
-    val ks3 = parse_element (element ("""Pss2B.ks3"""))_
-    val ks4 = parse_element (element ("""Pss2B.ks4"""))_
-    val m = parse_element (element ("""Pss2B.m"""))_
-    val n = parse_element (element ("""Pss2B.n"""))_
-    val t1 = parse_element (element ("""Pss2B.t1"""))_
-    val t10 = parse_element (element ("""Pss2B.t10"""))_
-    val t11 = parse_element (element ("""Pss2B.t11"""))_
-    val t2 = parse_element (element ("""Pss2B.t2"""))_
-    val t3 = parse_element (element ("""Pss2B.t3"""))_
-    val t4 = parse_element (element ("""Pss2B.t4"""))_
-    val t6 = parse_element (element ("""Pss2B.t6"""))_
-    val t7 = parse_element (element ("""Pss2B.t7"""))_
-    val t8 = parse_element (element ("""Pss2B.t8"""))_
-    val t9 = parse_element (element ("""Pss2B.t9"""))_
-    val ta = parse_element (element ("""Pss2B.ta"""))_
-    val tb = parse_element (element ("""Pss2B.tb"""))_
-    val tw1 = parse_element (element ("""Pss2B.tw1"""))_
-    val tw2 = parse_element (element ("""Pss2B.tw2"""))_
-    val tw3 = parse_element (element ("""Pss2B.tw3"""))_
-    val tw4 = parse_element (element ("""Pss2B.tw4"""))_
-    val vsi1max = parse_element (element ("""Pss2B.vsi1max"""))_
-    val vsi1min = parse_element (element ("""Pss2B.vsi1min"""))_
-    val vsi2max = parse_element (element ("""Pss2B.vsi2max"""))_
-    val vsi2min = parse_element (element ("""Pss2B.vsi2min"""))_
-    val vstmax = parse_element (element ("""Pss2B.vstmax"""))_
-    val vstmin = parse_element (element ("""Pss2B.vstmin"""))_
+    val a = parse_element (element ("""Pss2B.a"""))
+    val inputSignal1Type = parse_attribute (attribute ("""Pss2B.inputSignal1Type"""))
+    val inputSignal2Type = parse_attribute (attribute ("""Pss2B.inputSignal2Type"""))
+    val ks1 = parse_element (element ("""Pss2B.ks1"""))
+    val ks2 = parse_element (element ("""Pss2B.ks2"""))
+    val ks3 = parse_element (element ("""Pss2B.ks3"""))
+    val ks4 = parse_element (element ("""Pss2B.ks4"""))
+    val m = parse_element (element ("""Pss2B.m"""))
+    val n = parse_element (element ("""Pss2B.n"""))
+    val t1 = parse_element (element ("""Pss2B.t1"""))
+    val t10 = parse_element (element ("""Pss2B.t10"""))
+    val t11 = parse_element (element ("""Pss2B.t11"""))
+    val t2 = parse_element (element ("""Pss2B.t2"""))
+    val t3 = parse_element (element ("""Pss2B.t3"""))
+    val t4 = parse_element (element ("""Pss2B.t4"""))
+    val t6 = parse_element (element ("""Pss2B.t6"""))
+    val t7 = parse_element (element ("""Pss2B.t7"""))
+    val t8 = parse_element (element ("""Pss2B.t8"""))
+    val t9 = parse_element (element ("""Pss2B.t9"""))
+    val ta = parse_element (element ("""Pss2B.ta"""))
+    val tb = parse_element (element ("""Pss2B.tb"""))
+    val tw1 = parse_element (element ("""Pss2B.tw1"""))
+    val tw2 = parse_element (element ("""Pss2B.tw2"""))
+    val tw3 = parse_element (element ("""Pss2B.tw3"""))
+    val tw4 = parse_element (element ("""Pss2B.tw4"""))
+    val vsi1max = parse_element (element ("""Pss2B.vsi1max"""))
+    val vsi1min = parse_element (element ("""Pss2B.vsi1min"""))
+    val vsi2max = parse_element (element ("""Pss2B.vsi2max"""))
+    val vsi2min = parse_element (element ("""Pss2B.vsi2min"""))
+    val vstmax = parse_element (element ("""Pss2B.vstmax"""))
+    val vstmin = parse_element (element ("""Pss2B.vstmin"""))
     def parse (context: Context): Pss2B =
     {
         Pss2B(
@@ -634,24 +634,24 @@ extends
     Parseable[Pss2ST]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val inputSignal1Type = parse_attribute (attribute ("""Pss2ST.inputSignal1Type"""))_
-    val inputSignal2Type = parse_attribute (attribute ("""Pss2ST.inputSignal2Type"""))_
-    val k1 = parse_element (element ("""Pss2ST.k1"""))_
-    val k2 = parse_element (element ("""Pss2ST.k2"""))_
-    val lsmax = parse_element (element ("""Pss2ST.lsmax"""))_
-    val lsmin = parse_element (element ("""Pss2ST.lsmin"""))_
-    val t1 = parse_element (element ("""Pss2ST.t1"""))_
-    val t10 = parse_element (element ("""Pss2ST.t10"""))_
-    val t2 = parse_element (element ("""Pss2ST.t2"""))_
-    val t3 = parse_element (element ("""Pss2ST.t3"""))_
-    val t4 = parse_element (element ("""Pss2ST.t4"""))_
-    val t5 = parse_element (element ("""Pss2ST.t5"""))_
-    val t6 = parse_element (element ("""Pss2ST.t6"""))_
-    val t7 = parse_element (element ("""Pss2ST.t7"""))_
-    val t8 = parse_element (element ("""Pss2ST.t8"""))_
-    val t9 = parse_element (element ("""Pss2ST.t9"""))_
-    val vcl = parse_element (element ("""Pss2ST.vcl"""))_
-    val vcu = parse_element (element ("""Pss2ST.vcu"""))_
+    val inputSignal1Type = parse_attribute (attribute ("""Pss2ST.inputSignal1Type"""))
+    val inputSignal2Type = parse_attribute (attribute ("""Pss2ST.inputSignal2Type"""))
+    val k1 = parse_element (element ("""Pss2ST.k1"""))
+    val k2 = parse_element (element ("""Pss2ST.k2"""))
+    val lsmax = parse_element (element ("""Pss2ST.lsmax"""))
+    val lsmin = parse_element (element ("""Pss2ST.lsmin"""))
+    val t1 = parse_element (element ("""Pss2ST.t1"""))
+    val t10 = parse_element (element ("""Pss2ST.t10"""))
+    val t2 = parse_element (element ("""Pss2ST.t2"""))
+    val t3 = parse_element (element ("""Pss2ST.t3"""))
+    val t4 = parse_element (element ("""Pss2ST.t4"""))
+    val t5 = parse_element (element ("""Pss2ST.t5"""))
+    val t6 = parse_element (element ("""Pss2ST.t6"""))
+    val t7 = parse_element (element ("""Pss2ST.t7"""))
+    val t8 = parse_element (element ("""Pss2ST.t8"""))
+    val t9 = parse_element (element ("""Pss2ST.t9"""))
+    val vcl = parse_element (element ("""Pss2ST.vcl"""))
+    val vcu = parse_element (element ("""Pss2ST.vcu"""))
     def parse (context: Context): Pss2ST =
     {
         Pss2ST(
@@ -764,23 +764,23 @@ extends
     Parseable[Pss5]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val ctw2 = parse_element (element ("""Pss5.ctw2"""))_
-    val deadband = parse_element (element ("""Pss5.deadband"""))_
-    val isfreq = parse_element (element ("""Pss5.isfreq"""))_
-    val kf = parse_element (element ("""Pss5.kf"""))_
-    val kpe = parse_element (element ("""Pss5.kpe"""))_
-    val kpss = parse_element (element ("""Pss5.kpss"""))_
-    val pmm = parse_element (element ("""Pss5.pmm"""))_
-    val tl1 = parse_element (element ("""Pss5.tl1"""))_
-    val tl2 = parse_element (element ("""Pss5.tl2"""))_
-    val tl3 = parse_element (element ("""Pss5.tl3"""))_
-    val tl4 = parse_element (element ("""Pss5.tl4"""))_
-    val tpe = parse_element (element ("""Pss5.tpe"""))_
-    val tw1 = parse_element (element ("""Pss5.tw1"""))_
-    val tw2 = parse_element (element ("""Pss5.tw2"""))_
-    val vadat = parse_element (element ("""Pss5.vadat"""))_
-    val vsmn = parse_element (element ("""Pss5.vsmn"""))_
-    val vsmx = parse_element (element ("""Pss5.vsmx"""))_
+    val ctw2 = parse_element (element ("""Pss5.ctw2"""))
+    val deadband = parse_element (element ("""Pss5.deadband"""))
+    val isfreq = parse_element (element ("""Pss5.isfreq"""))
+    val kf = parse_element (element ("""Pss5.kf"""))
+    val kpe = parse_element (element ("""Pss5.kpe"""))
+    val kpss = parse_element (element ("""Pss5.kpss"""))
+    val pmm = parse_element (element ("""Pss5.pmm"""))
+    val tl1 = parse_element (element ("""Pss5.tl1"""))
+    val tl2 = parse_element (element ("""Pss5.tl2"""))
+    val tl3 = parse_element (element ("""Pss5.tl3"""))
+    val tl4 = parse_element (element ("""Pss5.tl4"""))
+    val tpe = parse_element (element ("""Pss5.tpe"""))
+    val tw1 = parse_element (element ("""Pss5.tw1"""))
+    val tw2 = parse_element (element ("""Pss5.tw2"""))
+    val vadat = parse_element (element ("""Pss5.vadat"""))
+    val vsmn = parse_element (element ("""Pss5.vsmn"""))
+    val vsmx = parse_element (element ("""Pss5.vsmx"""))
     def parse (context: Context): Pss5 =
     {
         Pss5(
@@ -868,17 +868,17 @@ extends
     Parseable[PssELIN2]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val apss = parse_element (element ("""PssELIN2.apss"""))_
-    val ks1 = parse_element (element ("""PssELIN2.ks1"""))_
-    val ks2 = parse_element (element ("""PssELIN2.ks2"""))_
-    val ppss = parse_element (element ("""PssELIN2.ppss"""))_
-    val psslim = parse_element (element ("""PssELIN2.psslim"""))_
-    val ts1 = parse_element (element ("""PssELIN2.ts1"""))_
-    val ts2 = parse_element (element ("""PssELIN2.ts2"""))_
-    val ts3 = parse_element (element ("""PssELIN2.ts3"""))_
-    val ts4 = parse_element (element ("""PssELIN2.ts4"""))_
-    val ts5 = parse_element (element ("""PssELIN2.ts5"""))_
-    val ts6 = parse_element (element ("""PssELIN2.ts6"""))_
+    val apss = parse_element (element ("""PssELIN2.apss"""))
+    val ks1 = parse_element (element ("""PssELIN2.ks1"""))
+    val ks2 = parse_element (element ("""PssELIN2.ks2"""))
+    val ppss = parse_element (element ("""PssELIN2.ppss"""))
+    val psslim = parse_element (element ("""PssELIN2.psslim"""))
+    val ts1 = parse_element (element ("""PssELIN2.ts1"""))
+    val ts2 = parse_element (element ("""PssELIN2.ts2"""))
+    val ts3 = parse_element (element ("""PssELIN2.ts3"""))
+    val ts4 = parse_element (element ("""PssELIN2.ts4"""))
+    val ts5 = parse_element (element ("""PssELIN2.ts5"""))
+    val ts6 = parse_element (element ("""PssELIN2.ts6"""))
     def parse (context: Context): PssELIN2 =
     {
         PssELIN2(
@@ -964,18 +964,18 @@ extends
     Parseable[PssIEEE1A]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val a1 = parse_element (element ("""PssIEEE1A.a1"""))_
-    val a2 = parse_element (element ("""PssIEEE1A.a2"""))_
-    val inputSignalType = parse_attribute (attribute ("""PssIEEE1A.inputSignalType"""))_
-    val ks = parse_element (element ("""PssIEEE1A.ks"""))_
-    val t1 = parse_element (element ("""PssIEEE1A.t1"""))_
-    val t2 = parse_element (element ("""PssIEEE1A.t2"""))_
-    val t3 = parse_element (element ("""PssIEEE1A.t3"""))_
-    val t4 = parse_element (element ("""PssIEEE1A.t4"""))_
-    val t5 = parse_element (element ("""PssIEEE1A.t5"""))_
-    val t6 = parse_element (element ("""PssIEEE1A.t6"""))_
-    val vrmax = parse_element (element ("""PssIEEE1A.vrmax"""))_
-    val vrmin = parse_element (element ("""PssIEEE1A.vrmin"""))_
+    val a1 = parse_element (element ("""PssIEEE1A.a1"""))
+    val a2 = parse_element (element ("""PssIEEE1A.a2"""))
+    val inputSignalType = parse_attribute (attribute ("""PssIEEE1A.inputSignalType"""))
+    val ks = parse_element (element ("""PssIEEE1A.ks"""))
+    val t1 = parse_element (element ("""PssIEEE1A.t1"""))
+    val t2 = parse_element (element ("""PssIEEE1A.t2"""))
+    val t3 = parse_element (element ("""PssIEEE1A.t3"""))
+    val t4 = parse_element (element ("""PssIEEE1A.t4"""))
+    val t5 = parse_element (element ("""PssIEEE1A.t5"""))
+    val t6 = parse_element (element ("""PssIEEE1A.t6"""))
+    val vrmax = parse_element (element ("""PssIEEE1A.vrmax"""))
+    val vrmin = parse_element (element ("""PssIEEE1A.vrmin"""))
     def parse (context: Context): PssIEEE1A =
     {
         PssIEEE1A(
@@ -1107,33 +1107,33 @@ extends
     Parseable[PssIEEE2B]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val inputSignal1Type = parse_attribute (attribute ("""PssIEEE2B.inputSignal1Type"""))_
-    val inputSignal2Type = parse_attribute (attribute ("""PssIEEE2B.inputSignal2Type"""))_
-    val ks1 = parse_element (element ("""PssIEEE2B.ks1"""))_
-    val ks2 = parse_element (element ("""PssIEEE2B.ks2"""))_
-    val ks3 = parse_element (element ("""PssIEEE2B.ks3"""))_
-    val m = parse_element (element ("""PssIEEE2B.m"""))_
-    val n = parse_element (element ("""PssIEEE2B.n"""))_
-    val t1 = parse_element (element ("""PssIEEE2B.t1"""))_
-    val t10 = parse_element (element ("""PssIEEE2B.t10"""))_
-    val t11 = parse_element (element ("""PssIEEE2B.t11"""))_
-    val t2 = parse_element (element ("""PssIEEE2B.t2"""))_
-    val t3 = parse_element (element ("""PssIEEE2B.t3"""))_
-    val t4 = parse_element (element ("""PssIEEE2B.t4"""))_
-    val t6 = parse_element (element ("""PssIEEE2B.t6"""))_
-    val t7 = parse_element (element ("""PssIEEE2B.t7"""))_
-    val t8 = parse_element (element ("""PssIEEE2B.t8"""))_
-    val t9 = parse_element (element ("""PssIEEE2B.t9"""))_
-    val tw1 = parse_element (element ("""PssIEEE2B.tw1"""))_
-    val tw2 = parse_element (element ("""PssIEEE2B.tw2"""))_
-    val tw3 = parse_element (element ("""PssIEEE2B.tw3"""))_
-    val tw4 = parse_element (element ("""PssIEEE2B.tw4"""))_
-    val vsi1max = parse_element (element ("""PssIEEE2B.vsi1max"""))_
-    val vsi1min = parse_element (element ("""PssIEEE2B.vsi1min"""))_
-    val vsi2max = parse_element (element ("""PssIEEE2B.vsi2max"""))_
-    val vsi2min = parse_element (element ("""PssIEEE2B.vsi2min"""))_
-    val vstmax = parse_element (element ("""PssIEEE2B.vstmax"""))_
-    val vstmin = parse_element (element ("""PssIEEE2B.vstmin"""))_
+    val inputSignal1Type = parse_attribute (attribute ("""PssIEEE2B.inputSignal1Type"""))
+    val inputSignal2Type = parse_attribute (attribute ("""PssIEEE2B.inputSignal2Type"""))
+    val ks1 = parse_element (element ("""PssIEEE2B.ks1"""))
+    val ks2 = parse_element (element ("""PssIEEE2B.ks2"""))
+    val ks3 = parse_element (element ("""PssIEEE2B.ks3"""))
+    val m = parse_element (element ("""PssIEEE2B.m"""))
+    val n = parse_element (element ("""PssIEEE2B.n"""))
+    val t1 = parse_element (element ("""PssIEEE2B.t1"""))
+    val t10 = parse_element (element ("""PssIEEE2B.t10"""))
+    val t11 = parse_element (element ("""PssIEEE2B.t11"""))
+    val t2 = parse_element (element ("""PssIEEE2B.t2"""))
+    val t3 = parse_element (element ("""PssIEEE2B.t3"""))
+    val t4 = parse_element (element ("""PssIEEE2B.t4"""))
+    val t6 = parse_element (element ("""PssIEEE2B.t6"""))
+    val t7 = parse_element (element ("""PssIEEE2B.t7"""))
+    val t8 = parse_element (element ("""PssIEEE2B.t8"""))
+    val t9 = parse_element (element ("""PssIEEE2B.t9"""))
+    val tw1 = parse_element (element ("""PssIEEE2B.tw1"""))
+    val tw2 = parse_element (element ("""PssIEEE2B.tw2"""))
+    val tw3 = parse_element (element ("""PssIEEE2B.tw3"""))
+    val tw4 = parse_element (element ("""PssIEEE2B.tw4"""))
+    val vsi1max = parse_element (element ("""PssIEEE2B.vsi1max"""))
+    val vsi1min = parse_element (element ("""PssIEEE2B.vsi1min"""))
+    val vsi2max = parse_element (element ("""PssIEEE2B.vsi2max"""))
+    val vsi2min = parse_element (element ("""PssIEEE2B.vsi2min"""))
+    val vstmax = parse_element (element ("""PssIEEE2B.vstmax"""))
+    val vstmin = parse_element (element ("""PssIEEE2B.vstmin"""))
     def parse (context: Context): PssIEEE2B =
     {
         PssIEEE2B(
@@ -1256,25 +1256,25 @@ extends
     Parseable[PssIEEE3B]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val a1 = parse_element (element ("""PssIEEE3B.a1"""))_
-    val a2 = parse_element (element ("""PssIEEE3B.a2"""))_
-    val a3 = parse_element (element ("""PssIEEE3B.a3"""))_
-    val a4 = parse_element (element ("""PssIEEE3B.a4"""))_
-    val a5 = parse_element (element ("""PssIEEE3B.a5"""))_
-    val a6 = parse_element (element ("""PssIEEE3B.a6"""))_
-    val a7 = parse_element (element ("""PssIEEE3B.a7"""))_
-    val a8 = parse_element (element ("""PssIEEE3B.a8"""))_
-    val inputSignal1Type = parse_attribute (attribute ("""PssIEEE3B.inputSignal1Type"""))_
-    val inputSignal2Type = parse_attribute (attribute ("""PssIEEE3B.inputSignal2Type"""))_
-    val ks1 = parse_element (element ("""PssIEEE3B.ks1"""))_
-    val ks2 = parse_element (element ("""PssIEEE3B.ks2"""))_
-    val t1 = parse_element (element ("""PssIEEE3B.t1"""))_
-    val t2 = parse_element (element ("""PssIEEE3B.t2"""))_
-    val tw1 = parse_element (element ("""PssIEEE3B.tw1"""))_
-    val tw2 = parse_element (element ("""PssIEEE3B.tw2"""))_
-    val tw3 = parse_element (element ("""PssIEEE3B.tw3"""))_
-    val vstmax = parse_element (element ("""PssIEEE3B.vstmax"""))_
-    val vstmin = parse_element (element ("""PssIEEE3B.vstmin"""))_
+    val a1 = parse_element (element ("""PssIEEE3B.a1"""))
+    val a2 = parse_element (element ("""PssIEEE3B.a2"""))
+    val a3 = parse_element (element ("""PssIEEE3B.a3"""))
+    val a4 = parse_element (element ("""PssIEEE3B.a4"""))
+    val a5 = parse_element (element ("""PssIEEE3B.a5"""))
+    val a6 = parse_element (element ("""PssIEEE3B.a6"""))
+    val a7 = parse_element (element ("""PssIEEE3B.a7"""))
+    val a8 = parse_element (element ("""PssIEEE3B.a8"""))
+    val inputSignal1Type = parse_attribute (attribute ("""PssIEEE3B.inputSignal1Type"""))
+    val inputSignal2Type = parse_attribute (attribute ("""PssIEEE3B.inputSignal2Type"""))
+    val ks1 = parse_element (element ("""PssIEEE3B.ks1"""))
+    val ks2 = parse_element (element ("""PssIEEE3B.ks2"""))
+    val t1 = parse_element (element ("""PssIEEE3B.t1"""))
+    val t2 = parse_element (element ("""PssIEEE3B.t2"""))
+    val tw1 = parse_element (element ("""PssIEEE3B.tw1"""))
+    val tw2 = parse_element (element ("""PssIEEE3B.tw2"""))
+    val tw3 = parse_element (element ("""PssIEEE3B.tw3"""))
+    val vstmax = parse_element (element ("""PssIEEE3B.vstmax"""))
+    val vstmin = parse_element (element ("""PssIEEE3B.vstmin"""))
     def parse (context: Context): PssIEEE3B =
     {
         PssIEEE3B(
@@ -1525,73 +1525,73 @@ extends
     Parseable[PssIEEE4B]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val bwh1 = parse_element (element ("""PssIEEE4B.bwh1"""))_
-    val bwh2 = parse_element (element ("""PssIEEE4B.bwh2"""))_
-    val bwl1 = parse_element (element ("""PssIEEE4B.bwl1"""))_
-    val bwl2 = parse_element (element ("""PssIEEE4B.bwl2"""))_
-    val kh = parse_element (element ("""PssIEEE4B.kh"""))_
-    val kh1 = parse_element (element ("""PssIEEE4B.kh1"""))_
-    val kh11 = parse_element (element ("""PssIEEE4B.kh11"""))_
-    val kh17 = parse_element (element ("""PssIEEE4B.kh17"""))_
-    val kh2 = parse_element (element ("""PssIEEE4B.kh2"""))_
-    val ki = parse_element (element ("""PssIEEE4B.ki"""))_
-    val ki1 = parse_element (element ("""PssIEEE4B.ki1"""))_
-    val ki11 = parse_element (element ("""PssIEEE4B.ki11"""))_
-    val ki17 = parse_element (element ("""PssIEEE4B.ki17"""))_
-    val ki2 = parse_element (element ("""PssIEEE4B.ki2"""))_
-    val kl = parse_element (element ("""PssIEEE4B.kl"""))_
-    val kl1 = parse_element (element ("""PssIEEE4B.kl1"""))_
-    val kl11 = parse_element (element ("""PssIEEE4B.kl11"""))_
-    val kl17 = parse_element (element ("""PssIEEE4B.kl17"""))_
-    val kl2 = parse_element (element ("""PssIEEE4B.kl2"""))_
-    val omeganh1 = parse_element (element ("""PssIEEE4B.omeganh1"""))_
-    val omeganh2 = parse_element (element ("""PssIEEE4B.omeganh2"""))_
-    val omeganl1 = parse_element (element ("""PssIEEE4B.omeganl1"""))_
-    val omeganl2 = parse_element (element ("""PssIEEE4B.omeganl2"""))_
-    val th1 = parse_element (element ("""PssIEEE4B.th1"""))_
-    val th10 = parse_element (element ("""PssIEEE4B.th10"""))_
-    val th11 = parse_element (element ("""PssIEEE4B.th11"""))_
-    val th12 = parse_element (element ("""PssIEEE4B.th12"""))_
-    val th2 = parse_element (element ("""PssIEEE4B.th2"""))_
-    val th3 = parse_element (element ("""PssIEEE4B.th3"""))_
-    val th4 = parse_element (element ("""PssIEEE4B.th4"""))_
-    val th5 = parse_element (element ("""PssIEEE4B.th5"""))_
-    val th6 = parse_element (element ("""PssIEEE4B.th6"""))_
-    val th7 = parse_element (element ("""PssIEEE4B.th7"""))_
-    val th8 = parse_element (element ("""PssIEEE4B.th8"""))_
-    val th9 = parse_element (element ("""PssIEEE4B.th9"""))_
-    val ti1 = parse_element (element ("""PssIEEE4B.ti1"""))_
-    val ti10 = parse_element (element ("""PssIEEE4B.ti10"""))_
-    val ti11 = parse_element (element ("""PssIEEE4B.ti11"""))_
-    val ti12 = parse_element (element ("""PssIEEE4B.ti12"""))_
-    val ti2 = parse_element (element ("""PssIEEE4B.ti2"""))_
-    val ti3 = parse_element (element ("""PssIEEE4B.ti3"""))_
-    val ti4 = parse_element (element ("""PssIEEE4B.ti4"""))_
-    val ti5 = parse_element (element ("""PssIEEE4B.ti5"""))_
-    val ti6 = parse_element (element ("""PssIEEE4B.ti6"""))_
-    val ti7 = parse_element (element ("""PssIEEE4B.ti7"""))_
-    val ti8 = parse_element (element ("""PssIEEE4B.ti8"""))_
-    val ti9 = parse_element (element ("""PssIEEE4B.ti9"""))_
-    val tl1 = parse_element (element ("""PssIEEE4B.tl1"""))_
-    val tl10 = parse_element (element ("""PssIEEE4B.tl10"""))_
-    val tl11 = parse_element (element ("""PssIEEE4B.tl11"""))_
-    val tl12 = parse_element (element ("""PssIEEE4B.tl12"""))_
-    val tl2 = parse_element (element ("""PssIEEE4B.tl2"""))_
-    val tl3 = parse_element (element ("""PssIEEE4B.tl3"""))_
-    val tl4 = parse_element (element ("""PssIEEE4B.tl4"""))_
-    val tl5 = parse_element (element ("""PssIEEE4B.tl5"""))_
-    val tl6 = parse_element (element ("""PssIEEE4B.tl6"""))_
-    val tl7 = parse_element (element ("""PssIEEE4B.tl7"""))_
-    val tl8 = parse_element (element ("""PssIEEE4B.tl8"""))_
-    val tl9 = parse_element (element ("""PssIEEE4B.tl9"""))_
-    val vhmax = parse_element (element ("""PssIEEE4B.vhmax"""))_
-    val vhmin = parse_element (element ("""PssIEEE4B.vhmin"""))_
-    val vimax = parse_element (element ("""PssIEEE4B.vimax"""))_
-    val vimin = parse_element (element ("""PssIEEE4B.vimin"""))_
-    val vlmax = parse_element (element ("""PssIEEE4B.vlmax"""))_
-    val vlmin = parse_element (element ("""PssIEEE4B.vlmin"""))_
-    val vstmax = parse_element (element ("""PssIEEE4B.vstmax"""))_
-    val vstmin = parse_element (element ("""PssIEEE4B.vstmin"""))_
+    val bwh1 = parse_element (element ("""PssIEEE4B.bwh1"""))
+    val bwh2 = parse_element (element ("""PssIEEE4B.bwh2"""))
+    val bwl1 = parse_element (element ("""PssIEEE4B.bwl1"""))
+    val bwl2 = parse_element (element ("""PssIEEE4B.bwl2"""))
+    val kh = parse_element (element ("""PssIEEE4B.kh"""))
+    val kh1 = parse_element (element ("""PssIEEE4B.kh1"""))
+    val kh11 = parse_element (element ("""PssIEEE4B.kh11"""))
+    val kh17 = parse_element (element ("""PssIEEE4B.kh17"""))
+    val kh2 = parse_element (element ("""PssIEEE4B.kh2"""))
+    val ki = parse_element (element ("""PssIEEE4B.ki"""))
+    val ki1 = parse_element (element ("""PssIEEE4B.ki1"""))
+    val ki11 = parse_element (element ("""PssIEEE4B.ki11"""))
+    val ki17 = parse_element (element ("""PssIEEE4B.ki17"""))
+    val ki2 = parse_element (element ("""PssIEEE4B.ki2"""))
+    val kl = parse_element (element ("""PssIEEE4B.kl"""))
+    val kl1 = parse_element (element ("""PssIEEE4B.kl1"""))
+    val kl11 = parse_element (element ("""PssIEEE4B.kl11"""))
+    val kl17 = parse_element (element ("""PssIEEE4B.kl17"""))
+    val kl2 = parse_element (element ("""PssIEEE4B.kl2"""))
+    val omeganh1 = parse_element (element ("""PssIEEE4B.omeganh1"""))
+    val omeganh2 = parse_element (element ("""PssIEEE4B.omeganh2"""))
+    val omeganl1 = parse_element (element ("""PssIEEE4B.omeganl1"""))
+    val omeganl2 = parse_element (element ("""PssIEEE4B.omeganl2"""))
+    val th1 = parse_element (element ("""PssIEEE4B.th1"""))
+    val th10 = parse_element (element ("""PssIEEE4B.th10"""))
+    val th11 = parse_element (element ("""PssIEEE4B.th11"""))
+    val th12 = parse_element (element ("""PssIEEE4B.th12"""))
+    val th2 = parse_element (element ("""PssIEEE4B.th2"""))
+    val th3 = parse_element (element ("""PssIEEE4B.th3"""))
+    val th4 = parse_element (element ("""PssIEEE4B.th4"""))
+    val th5 = parse_element (element ("""PssIEEE4B.th5"""))
+    val th6 = parse_element (element ("""PssIEEE4B.th6"""))
+    val th7 = parse_element (element ("""PssIEEE4B.th7"""))
+    val th8 = parse_element (element ("""PssIEEE4B.th8"""))
+    val th9 = parse_element (element ("""PssIEEE4B.th9"""))
+    val ti1 = parse_element (element ("""PssIEEE4B.ti1"""))
+    val ti10 = parse_element (element ("""PssIEEE4B.ti10"""))
+    val ti11 = parse_element (element ("""PssIEEE4B.ti11"""))
+    val ti12 = parse_element (element ("""PssIEEE4B.ti12"""))
+    val ti2 = parse_element (element ("""PssIEEE4B.ti2"""))
+    val ti3 = parse_element (element ("""PssIEEE4B.ti3"""))
+    val ti4 = parse_element (element ("""PssIEEE4B.ti4"""))
+    val ti5 = parse_element (element ("""PssIEEE4B.ti5"""))
+    val ti6 = parse_element (element ("""PssIEEE4B.ti6"""))
+    val ti7 = parse_element (element ("""PssIEEE4B.ti7"""))
+    val ti8 = parse_element (element ("""PssIEEE4B.ti8"""))
+    val ti9 = parse_element (element ("""PssIEEE4B.ti9"""))
+    val tl1 = parse_element (element ("""PssIEEE4B.tl1"""))
+    val tl10 = parse_element (element ("""PssIEEE4B.tl10"""))
+    val tl11 = parse_element (element ("""PssIEEE4B.tl11"""))
+    val tl12 = parse_element (element ("""PssIEEE4B.tl12"""))
+    val tl2 = parse_element (element ("""PssIEEE4B.tl2"""))
+    val tl3 = parse_element (element ("""PssIEEE4B.tl3"""))
+    val tl4 = parse_element (element ("""PssIEEE4B.tl4"""))
+    val tl5 = parse_element (element ("""PssIEEE4B.tl5"""))
+    val tl6 = parse_element (element ("""PssIEEE4B.tl6"""))
+    val tl7 = parse_element (element ("""PssIEEE4B.tl7"""))
+    val tl8 = parse_element (element ("""PssIEEE4B.tl8"""))
+    val tl9 = parse_element (element ("""PssIEEE4B.tl9"""))
+    val vhmax = parse_element (element ("""PssIEEE4B.vhmax"""))
+    val vhmin = parse_element (element ("""PssIEEE4B.vhmin"""))
+    val vimax = parse_element (element ("""PssIEEE4B.vimax"""))
+    val vimin = parse_element (element ("""PssIEEE4B.vimin"""))
+    val vlmax = parse_element (element ("""PssIEEE4B.vlmax"""))
+    val vlmin = parse_element (element ("""PssIEEE4B.vlmin"""))
+    val vstmax = parse_element (element ("""PssIEEE4B.vstmax"""))
+    val vstmin = parse_element (element ("""PssIEEE4B.vstmin"""))
     def parse (context: Context): PssIEEE4B =
     {
         PssIEEE4B(
@@ -1729,17 +1729,17 @@ extends
     Parseable[PssPTIST1]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val dtc = parse_element (element ("""PssPTIST1.dtc"""))_
-    val dtf = parse_element (element ("""PssPTIST1.dtf"""))_
-    val dtp = parse_element (element ("""PssPTIST1.dtp"""))_
-    val k = parse_element (element ("""PssPTIST1.k"""))_
-    val m = parse_element (element ("""PssPTIST1.m"""))_
-    val t1 = parse_element (element ("""PssPTIST1.t1"""))_
-    val t2 = parse_element (element ("""PssPTIST1.t2"""))_
-    val t3 = parse_element (element ("""PssPTIST1.t3"""))_
-    val t4 = parse_element (element ("""PssPTIST1.t4"""))_
-    val tf = parse_element (element ("""PssPTIST1.tf"""))_
-    val tp = parse_element (element ("""PssPTIST1.tp"""))_
+    val dtc = parse_element (element ("""PssPTIST1.dtc"""))
+    val dtf = parse_element (element ("""PssPTIST1.dtf"""))
+    val dtp = parse_element (element ("""PssPTIST1.dtp"""))
+    val k = parse_element (element ("""PssPTIST1.k"""))
+    val m = parse_element (element ("""PssPTIST1.m"""))
+    val t1 = parse_element (element ("""PssPTIST1.t1"""))
+    val t2 = parse_element (element ("""PssPTIST1.t2"""))
+    val t3 = parse_element (element ("""PssPTIST1.t3"""))
+    val t4 = parse_element (element ("""PssPTIST1.t4"""))
+    val tf = parse_element (element ("""PssPTIST1.tf"""))
+    val tp = parse_element (element ("""PssPTIST1.tp"""))
     def parse (context: Context): PssPTIST1 =
     {
         PssPTIST1(
@@ -1871,40 +1871,40 @@ extends
     Parseable[PssPTIST3]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val a0 = parse_element (element ("""PssPTIST3.a0"""))_
-    val a1 = parse_element (element ("""PssPTIST3.a1"""))_
-    val a2 = parse_element (element ("""PssPTIST3.a2"""))_
-    val a3 = parse_element (element ("""PssPTIST3.a3"""))_
-    val a4 = parse_element (element ("""PssPTIST3.a4"""))_
-    val a5 = parse_element (element ("""PssPTIST3.a5"""))_
-    val al = parse_element (element ("""PssPTIST3.al"""))_
-    val athres = parse_element (element ("""PssPTIST3.athres"""))_
-    val b0 = parse_element (element ("""PssPTIST3.b0"""))_
-    val b1 = parse_element (element ("""PssPTIST3.b1"""))_
-    val b2 = parse_element (element ("""PssPTIST3.b2"""))_
-    val b3 = parse_element (element ("""PssPTIST3.b3"""))_
-    val b4 = parse_element (element ("""PssPTIST3.b4"""))_
-    val b5 = parse_element (element ("""PssPTIST3.b5"""))_
-    val dl = parse_element (element ("""PssPTIST3.dl"""))_
-    val dtc = parse_element (element ("""PssPTIST3.dtc"""))_
-    val dtf = parse_element (element ("""PssPTIST3.dtf"""))_
-    val dtp = parse_element (element ("""PssPTIST3.dtp"""))_
-    val isw = parse_element (element ("""PssPTIST3.isw"""))_
-    val k = parse_element (element ("""PssPTIST3.k"""))_
-    val lthres = parse_element (element ("""PssPTIST3.lthres"""))_
-    val m = parse_element (element ("""PssPTIST3.m"""))_
-    val nav = parse_element (element ("""PssPTIST3.nav"""))_
-    val ncl = parse_element (element ("""PssPTIST3.ncl"""))_
-    val ncr = parse_element (element ("""PssPTIST3.ncr"""))_
-    val pmin = parse_element (element ("""PssPTIST3.pmin"""))_
-    val t1 = parse_element (element ("""PssPTIST3.t1"""))_
-    val t2 = parse_element (element ("""PssPTIST3.t2"""))_
-    val t3 = parse_element (element ("""PssPTIST3.t3"""))_
-    val t4 = parse_element (element ("""PssPTIST3.t4"""))_
-    val t5 = parse_element (element ("""PssPTIST3.t5"""))_
-    val t6 = parse_element (element ("""PssPTIST3.t6"""))_
-    val tf = parse_element (element ("""PssPTIST3.tf"""))_
-    val tp = parse_element (element ("""PssPTIST3.tp"""))_
+    val a0 = parse_element (element ("""PssPTIST3.a0"""))
+    val a1 = parse_element (element ("""PssPTIST3.a1"""))
+    val a2 = parse_element (element ("""PssPTIST3.a2"""))
+    val a3 = parse_element (element ("""PssPTIST3.a3"""))
+    val a4 = parse_element (element ("""PssPTIST3.a4"""))
+    val a5 = parse_element (element ("""PssPTIST3.a5"""))
+    val al = parse_element (element ("""PssPTIST3.al"""))
+    val athres = parse_element (element ("""PssPTIST3.athres"""))
+    val b0 = parse_element (element ("""PssPTIST3.b0"""))
+    val b1 = parse_element (element ("""PssPTIST3.b1"""))
+    val b2 = parse_element (element ("""PssPTIST3.b2"""))
+    val b3 = parse_element (element ("""PssPTIST3.b3"""))
+    val b4 = parse_element (element ("""PssPTIST3.b4"""))
+    val b5 = parse_element (element ("""PssPTIST3.b5"""))
+    val dl = parse_element (element ("""PssPTIST3.dl"""))
+    val dtc = parse_element (element ("""PssPTIST3.dtc"""))
+    val dtf = parse_element (element ("""PssPTIST3.dtf"""))
+    val dtp = parse_element (element ("""PssPTIST3.dtp"""))
+    val isw = parse_element (element ("""PssPTIST3.isw"""))
+    val k = parse_element (element ("""PssPTIST3.k"""))
+    val lthres = parse_element (element ("""PssPTIST3.lthres"""))
+    val m = parse_element (element ("""PssPTIST3.m"""))
+    val nav = parse_element (element ("""PssPTIST3.nav"""))
+    val ncl = parse_element (element ("""PssPTIST3.ncl"""))
+    val ncr = parse_element (element ("""PssPTIST3.ncr"""))
+    val pmin = parse_element (element ("""PssPTIST3.pmin"""))
+    val t1 = parse_element (element ("""PssPTIST3.t1"""))
+    val t2 = parse_element (element ("""PssPTIST3.t2"""))
+    val t3 = parse_element (element ("""PssPTIST3.t3"""))
+    val t4 = parse_element (element ("""PssPTIST3.t4"""))
+    val t5 = parse_element (element ("""PssPTIST3.t5"""))
+    val t6 = parse_element (element ("""PssPTIST3.t6"""))
+    val tf = parse_element (element ("""PssPTIST3.tf"""))
+    val tp = parse_element (element ("""PssPTIST3.tp"""))
     def parse (context: Context): PssPTIST3 =
     {
         PssPTIST3(
@@ -1998,17 +1998,17 @@ extends
     Parseable[PssSB4]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val kx = parse_element (element ("""PssSB4.kx"""))_
-    val ta = parse_element (element ("""PssSB4.ta"""))_
-    val tb = parse_element (element ("""PssSB4.tb"""))_
-    val tc = parse_element (element ("""PssSB4.tc"""))_
-    val td = parse_element (element ("""PssSB4.td"""))_
-    val te = parse_element (element ("""PssSB4.te"""))_
-    val tt = parse_element (element ("""PssSB4.tt"""))_
-    val tx1 = parse_element (element ("""PssSB4.tx1"""))_
-    val tx2 = parse_element (element ("""PssSB4.tx2"""))_
-    val vsmax = parse_element (element ("""PssSB4.vsmax"""))_
-    val vsmin = parse_element (element ("""PssSB4.vsmin"""))_
+    val kx = parse_element (element ("""PssSB4.kx"""))
+    val ta = parse_element (element ("""PssSB4.ta"""))
+    val tb = parse_element (element ("""PssSB4.tb"""))
+    val tc = parse_element (element ("""PssSB4.tc"""))
+    val td = parse_element (element ("""PssSB4.td"""))
+    val te = parse_element (element ("""PssSB4.te"""))
+    val tt = parse_element (element ("""PssSB4.tt"""))
+    val tx1 = parse_element (element ("""PssSB4.tx1"""))
+    val tx2 = parse_element (element ("""PssSB4.tx2"""))
+    val vsmax = parse_element (element ("""PssSB4.vsmax"""))
+    val vsmin = parse_element (element ("""PssSB4.vsmin"""))
     def parse (context: Context): PssSB4 =
     {
         PssSB4(
@@ -2096,19 +2096,19 @@ extends
     Parseable[PssSH]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val k = parse_element (element ("""PssSH.k"""))_
-    val k0 = parse_element (element ("""PssSH.k0"""))_
-    val k1 = parse_element (element ("""PssSH.k1"""))_
-    val k2 = parse_element (element ("""PssSH.k2"""))_
-    val k3 = parse_element (element ("""PssSH.k3"""))_
-    val k4 = parse_element (element ("""PssSH.k4"""))_
-    val t1 = parse_element (element ("""PssSH.t1"""))_
-    val t2 = parse_element (element ("""PssSH.t2"""))_
-    val t3 = parse_element (element ("""PssSH.t3"""))_
-    val t4 = parse_element (element ("""PssSH.t4"""))_
-    val td = parse_element (element ("""PssSH.td"""))_
-    val vsmax = parse_element (element ("""PssSH.vsmax"""))_
-    val vsmin = parse_element (element ("""PssSH.vsmin"""))_
+    val k = parse_element (element ("""PssSH.k"""))
+    val k0 = parse_element (element ("""PssSH.k0"""))
+    val k1 = parse_element (element ("""PssSH.k1"""))
+    val k2 = parse_element (element ("""PssSH.k2"""))
+    val k3 = parse_element (element ("""PssSH.k3"""))
+    val k4 = parse_element (element ("""PssSH.k4"""))
+    val t1 = parse_element (element ("""PssSH.t1"""))
+    val t2 = parse_element (element ("""PssSH.t2"""))
+    val t3 = parse_element (element ("""PssSH.t3"""))
+    val t4 = parse_element (element ("""PssSH.t4"""))
+    val td = parse_element (element ("""PssSH.td"""))
+    val vsmax = parse_element (element ("""PssSH.vsmax"""))
+    val vsmin = parse_element (element ("""PssSH.vsmin"""))
     def parse (context: Context): PssSH =
     {
         PssSH(
@@ -2192,17 +2192,17 @@ extends
     Parseable[PssSK]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val k1 = parse_element (element ("""PssSK.k1"""))_
-    val k2 = parse_element (element ("""PssSK.k2"""))_
-    val k3 = parse_element (element ("""PssSK.k3"""))_
-    val t1 = parse_element (element ("""PssSK.t1"""))_
-    val t2 = parse_element (element ("""PssSK.t2"""))_
-    val t3 = parse_element (element ("""PssSK.t3"""))_
-    val t4 = parse_element (element ("""PssSK.t4"""))_
-    val t5 = parse_element (element ("""PssSK.t5"""))_
-    val t6 = parse_element (element ("""PssSK.t6"""))_
-    val vsmax = parse_element (element ("""PssSK.vsmax"""))_
-    val vsmin = parse_element (element ("""PssSK.vsmin"""))_
+    val k1 = parse_element (element ("""PssSK.k1"""))
+    val k2 = parse_element (element ("""PssSK.k2"""))
+    val k3 = parse_element (element ("""PssSK.k3"""))
+    val t1 = parse_element (element ("""PssSK.t1"""))
+    val t2 = parse_element (element ("""PssSK.t2"""))
+    val t3 = parse_element (element ("""PssSK.t3"""))
+    val t4 = parse_element (element ("""PssSK.t4"""))
+    val t5 = parse_element (element ("""PssSK.t5"""))
+    val t6 = parse_element (element ("""PssSK.t6"""))
+    val vsmax = parse_element (element ("""PssSK.vsmax"""))
+    val vsmin = parse_element (element ("""PssSK.vsmin"""))
     def parse (context: Context): PssSK =
     {
         PssSK(
@@ -2287,24 +2287,24 @@ extends
     Parseable[PssWECC]
 {
     val sup = PowerSystemStabilizerDynamics.parse _
-    val inputSignal1Type = parse_attribute (attribute ("""PssWECC.inputSignal1Type"""))_
-    val inputSignal2Type = parse_attribute (attribute ("""PssWECC.inputSignal2Type"""))_
-    val k1 = parse_element (element ("""PssWECC.k1"""))_
-    val k2 = parse_element (element ("""PssWECC.k2"""))_
-    val t1 = parse_element (element ("""PssWECC.t1"""))_
-    val t10 = parse_element (element ("""PssWECC.t10"""))_
-    val t2 = parse_element (element ("""PssWECC.t2"""))_
-    val t3 = parse_element (element ("""PssWECC.t3"""))_
-    val t4 = parse_element (element ("""PssWECC.t4"""))_
-    val t5 = parse_element (element ("""PssWECC.t5"""))_
-    val t6 = parse_element (element ("""PssWECC.t6"""))_
-    val t7 = parse_element (element ("""PssWECC.t7"""))_
-    val t8 = parse_element (element ("""PssWECC.t8"""))_
-    val t9 = parse_element (element ("""PssWECC.t9"""))_
-    val vcl = parse_element (element ("""PssWECC.vcl"""))_
-    val vcu = parse_element (element ("""PssWECC.vcu"""))_
-    val vsmax = parse_element (element ("""PssWECC.vsmax"""))_
-    val vsmin = parse_element (element ("""PssWECC.vsmin"""))_
+    val inputSignal1Type = parse_attribute (attribute ("""PssWECC.inputSignal1Type"""))
+    val inputSignal2Type = parse_attribute (attribute ("""PssWECC.inputSignal2Type"""))
+    val k1 = parse_element (element ("""PssWECC.k1"""))
+    val k2 = parse_element (element ("""PssWECC.k2"""))
+    val t1 = parse_element (element ("""PssWECC.t1"""))
+    val t10 = parse_element (element ("""PssWECC.t10"""))
+    val t2 = parse_element (element ("""PssWECC.t2"""))
+    val t3 = parse_element (element ("""PssWECC.t3"""))
+    val t4 = parse_element (element ("""PssWECC.t4"""))
+    val t5 = parse_element (element ("""PssWECC.t5"""))
+    val t6 = parse_element (element ("""PssWECC.t6"""))
+    val t7 = parse_element (element ("""PssWECC.t7"""))
+    val t8 = parse_element (element ("""PssWECC.t8"""))
+    val t9 = parse_element (element ("""PssWECC.t9"""))
+    val vcl = parse_element (element ("""PssWECC.vcl"""))
+    val vcu = parse_element (element ("""PssWECC.vcu"""))
+    val vsmax = parse_element (element ("""PssWECC.vsmax"""))
+    val vsmin = parse_element (element ("""PssWECC.vsmin"""))
     def parse (context: Context): PssWECC =
     {
         PssWECC(

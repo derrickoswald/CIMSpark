@@ -42,8 +42,8 @@ extends
     Parseable[BusbarSectionInfo]
 {
     val sup = AssetInfo.parse _
-    val ratedCurrent = parse_element (element ("""BusbarSectionInfo.ratedCurrent"""))_
-    val ratedVoltage = parse_element (element ("""BusbarSectionInfo.ratedVoltage"""))_
+    val ratedCurrent = parse_element (element ("""BusbarSectionInfo.ratedCurrent"""))
+    val ratedVoltage = parse_element (element ("""BusbarSectionInfo.ratedVoltage"""))
     def parse (context: Context): BusbarSectionInfo =
     {
         BusbarSectionInfo(
@@ -97,13 +97,13 @@ extends
     Parseable[CableConstructionKind]
 {
     val sup = BasicElement.parse _
-    val compacted = parse_attribute (attribute ("""CableConstructionKind.compacted"""))_
-    val compressed = parse_attribute (attribute ("""CableConstructionKind.compressed"""))_
-    val other = parse_attribute (attribute ("""CableConstructionKind.other"""))_
-    val sector = parse_attribute (attribute ("""CableConstructionKind.sector"""))_
-    val segmental = parse_attribute (attribute ("""CableConstructionKind.segmental"""))_
-    val solid = parse_attribute (attribute ("""CableConstructionKind.solid"""))_
-    val stranded = parse_attribute (attribute ("""CableConstructionKind.stranded"""))_
+    val compacted = parse_attribute (attribute ("""CableConstructionKind.compacted"""))
+    val compressed = parse_attribute (attribute ("""CableConstructionKind.compressed"""))
+    val other = parse_attribute (attribute ("""CableConstructionKind.other"""))
+    val sector = parse_attribute (attribute ("""CableConstructionKind.sector"""))
+    val segmental = parse_attribute (attribute ("""CableConstructionKind.segmental"""))
+    val solid = parse_attribute (attribute ("""CableConstructionKind.solid"""))
+    val stranded = parse_attribute (attribute ("""CableConstructionKind.stranded"""))
     def parse (context: Context): CableConstructionKind =
     {
         CableConstructionKind(
@@ -168,16 +168,16 @@ extends
     Parseable[CableInfo]
 {
     val sup = WireInfo.parse _
-    val constructionKind = parse_attribute (attribute ("""CableInfo.constructionKind"""))_
-    val diameterOverCore = parse_element (element ("""CableInfo.diameterOverCore"""))_
-    val diameterOverInsulation = parse_element (element ("""CableInfo.diameterOverInsulation"""))_
-    val diameterOverJacket = parse_element (element ("""CableInfo.diameterOverJacket"""))_
-    val diameterOverScreen = parse_element (element ("""CableInfo.diameterOverScreen"""))_
-    val isStrandFill = parse_element (element ("""CableInfo.isStrandFill"""))_
-    val nominalTemperature = parse_element (element ("""CableInfo.nominalTemperature"""))_
-    val outerJacketKind = parse_attribute (attribute ("""CableInfo.outerJacketKind"""))_
-    val sheathAsNeutral = parse_element (element ("""CableInfo.sheathAsNeutral"""))_
-    val shieldMaterial = parse_attribute (attribute ("""CableInfo.shieldMaterial"""))_
+    val constructionKind = parse_attribute (attribute ("""CableInfo.constructionKind"""))
+    val diameterOverCore = parse_element (element ("""CableInfo.diameterOverCore"""))
+    val diameterOverInsulation = parse_element (element ("""CableInfo.diameterOverInsulation"""))
+    val diameterOverJacket = parse_element (element ("""CableInfo.diameterOverJacket"""))
+    val diameterOverScreen = parse_element (element ("""CableInfo.diameterOverScreen"""))
+    val isStrandFill = parse_element (element ("""CableInfo.isStrandFill"""))
+    val nominalTemperature = parse_element (element ("""CableInfo.nominalTemperature"""))
+    val outerJacketKind = parse_attribute (attribute ("""CableInfo.outerJacketKind"""))
+    val sheathAsNeutral = parse_element (element ("""CableInfo.sheathAsNeutral"""))
+    val shieldMaterial = parse_attribute (attribute ("""CableInfo.shieldMaterial"""))
     def parse (context: Context): CableInfo =
     {
         CableInfo(
@@ -239,13 +239,13 @@ extends
     Parseable[CableOuterJacketKind]
 {
     val sup = BasicElement.parse _
-    val insulating = parse_attribute (attribute ("""CableOuterJacketKind.insulating"""))_
-    val linearLowDensityPolyethylene = parse_attribute (attribute ("""CableOuterJacketKind.linearLowDensityPolyethylene"""))_
-    val none = parse_attribute (attribute ("""CableOuterJacketKind.none"""))_
-    val other = parse_attribute (attribute ("""CableOuterJacketKind.other"""))_
-    val polyethylene = parse_attribute (attribute ("""CableOuterJacketKind.polyethylene"""))_
-    val pvc = parse_attribute (attribute ("""CableOuterJacketKind.pvc"""))_
-    val semiconducting = parse_attribute (attribute ("""CableOuterJacketKind.semiconducting"""))_
+    val insulating = parse_attribute (attribute ("""CableOuterJacketKind.insulating"""))
+    val linearLowDensityPolyethylene = parse_attribute (attribute ("""CableOuterJacketKind.linearLowDensityPolyethylene"""))
+    val none = parse_attribute (attribute ("""CableOuterJacketKind.none"""))
+    val other = parse_attribute (attribute ("""CableOuterJacketKind.other"""))
+    val polyethylene = parse_attribute (attribute ("""CableOuterJacketKind.polyethylene"""))
+    val pvc = parse_attribute (attribute ("""CableOuterJacketKind.pvc"""))
+    val semiconducting = parse_attribute (attribute ("""CableOuterJacketKind.semiconducting"""))
     def parse (context: Context): CableOuterJacketKind =
     {
         CableOuterJacketKind(
@@ -300,11 +300,11 @@ extends
     Parseable[CableShieldMaterialKind]
 {
     val sup = BasicElement.parse _
-    val aluminum = parse_attribute (attribute ("""CableShieldMaterialKind.aluminum"""))_
-    val copper = parse_attribute (attribute ("""CableShieldMaterialKind.copper"""))_
-    val lead = parse_attribute (attribute ("""CableShieldMaterialKind.lead"""))_
-    val other = parse_attribute (attribute ("""CableShieldMaterialKind.other"""))_
-    val steel = parse_attribute (attribute ("""CableShieldMaterialKind.steel"""))_
+    val aluminum = parse_attribute (attribute ("""CableShieldMaterialKind.aluminum"""))
+    val copper = parse_attribute (attribute ("""CableShieldMaterialKind.copper"""))
+    val lead = parse_attribute (attribute ("""CableShieldMaterialKind.lead"""))
+    val other = parse_attribute (attribute ("""CableShieldMaterialKind.other"""))
+    val steel = parse_attribute (attribute ("""CableShieldMaterialKind.steel"""))
     def parse (context: Context): CableShieldMaterialKind =
     {
         CableShieldMaterialKind(
@@ -357,11 +357,11 @@ extends
     Parseable[ConcentricNeutralCableInfo]
 {
     val sup = CableInfo.parse _
-    val diameterOverNeutral = parse_element (element ("""ConcentricNeutralCableInfo.diameterOverNeutral"""))_
-    val neutralStrandCount = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandCount"""))_
-    val neutralStrandGmr = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandGmr"""))_
-    val neutralStrandRDC20 = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandRDC20"""))_
-    val neutralStrandRadius = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandRadius"""))_
+    val diameterOverNeutral = parse_element (element ("""ConcentricNeutralCableInfo.diameterOverNeutral"""))
+    val neutralStrandCount = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandCount"""))
+    val neutralStrandGmr = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandGmr"""))
+    val neutralStrandRDC20 = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandRDC20"""))
+    val neutralStrandRadius = parse_element (element ("""ConcentricNeutralCableInfo.neutralStrandRadius"""))
     def parse (context: Context): ConcentricNeutralCableInfo =
     {
         ConcentricNeutralCableInfo(
@@ -417,12 +417,12 @@ extends
     Parseable[NoLoadTest]
 {
     val sup = TransformerTest.parse _
-    val energisedEndVoltage = parse_element (element ("""NoLoadTest.energisedEndVoltage"""))_
-    val excitingCurrent = parse_element (element ("""NoLoadTest.excitingCurrent"""))_
-    val excitingCurrentZero = parse_element (element ("""NoLoadTest.excitingCurrentZero"""))_
-    val loss = parse_element (element ("""NoLoadTest.loss"""))_
-    val lossZero = parse_element (element ("""NoLoadTest.lossZero"""))_
-    val EnergisedEnd = parse_attribute (attribute ("""NoLoadTest.EnergisedEnd"""))_
+    val energisedEndVoltage = parse_element (element ("""NoLoadTest.energisedEndVoltage"""))
+    val excitingCurrent = parse_element (element ("""NoLoadTest.excitingCurrent"""))
+    val excitingCurrentZero = parse_element (element ("""NoLoadTest.excitingCurrentZero"""))
+    val loss = parse_element (element ("""NoLoadTest.loss"""))
+    val lossZero = parse_element (element ("""NoLoadTest.lossZero"""))
+    val EnergisedEnd = parse_attribute (attribute ("""NoLoadTest.EnergisedEnd"""))
     def parse (context: Context): NoLoadTest =
     {
         NoLoadTest(
@@ -481,13 +481,13 @@ extends
     Parseable[OpenCircuitTest]
 {
     val sup = TransformerTest.parse _
-    val energisedEndStep = parse_element (element ("""OpenCircuitTest.energisedEndStep"""))_
-    val energisedEndVoltage = parse_element (element ("""OpenCircuitTest.energisedEndVoltage"""))_
-    val openEndStep = parse_element (element ("""OpenCircuitTest.openEndStep"""))_
-    val openEndVoltage = parse_element (element ("""OpenCircuitTest.openEndVoltage"""))_
-    val phaseShift = parse_element (element ("""OpenCircuitTest.phaseShift"""))_
-    val EnergisedEnd = parse_attribute (attribute ("""OpenCircuitTest.EnergisedEnd"""))_
-    val OpenEnd = parse_attribute (attribute ("""OpenCircuitTest.OpenEnd"""))_
+    val energisedEndStep = parse_element (element ("""OpenCircuitTest.energisedEndStep"""))
+    val energisedEndVoltage = parse_element (element ("""OpenCircuitTest.energisedEndVoltage"""))
+    val openEndStep = parse_element (element ("""OpenCircuitTest.openEndStep"""))
+    val openEndVoltage = parse_element (element ("""OpenCircuitTest.openEndVoltage"""))
+    val phaseShift = parse_element (element ("""OpenCircuitTest.phaseShift"""))
+    val EnergisedEnd = parse_attribute (attribute ("""OpenCircuitTest.EnergisedEnd"""))
+    val OpenEnd = parse_attribute (attribute ("""OpenCircuitTest.OpenEnd"""))
     def parse (context: Context): OpenCircuitTest =
     {
         OpenCircuitTest(
@@ -622,13 +622,13 @@ extends
     Parseable[ShortCircuitTest]
 {
     val sup = TransformerTest.parse _
-    val energisedEndStep = parse_element (element ("""ShortCircuitTest.energisedEndStep"""))_
-    val groundedEndStep = parse_element (element ("""ShortCircuitTest.groundedEndStep"""))_
-    val leakageImpedance = parse_element (element ("""ShortCircuitTest.leakageImpedance"""))_
-    val leakageImpedanceZero = parse_element (element ("""ShortCircuitTest.leakageImpedanceZero"""))_
-    val loss = parse_element (element ("""ShortCircuitTest.loss"""))_
-    val lossZero = parse_element (element ("""ShortCircuitTest.lossZero"""))_
-    val EnergisedEnd = parse_attribute (attribute ("""ShortCircuitTest.EnergisedEnd"""))_
+    val energisedEndStep = parse_element (element ("""ShortCircuitTest.energisedEndStep"""))
+    val groundedEndStep = parse_element (element ("""ShortCircuitTest.groundedEndStep"""))
+    val leakageImpedance = parse_element (element ("""ShortCircuitTest.leakageImpedance"""))
+    val leakageImpedanceZero = parse_element (element ("""ShortCircuitTest.leakageImpedanceZero"""))
+    val loss = parse_element (element ("""ShortCircuitTest.loss"""))
+    val lossZero = parse_element (element ("""ShortCircuitTest.lossZero"""))
+    val EnergisedEnd = parse_attribute (attribute ("""ShortCircuitTest.EnergisedEnd"""))
     def parse (context: Context): ShortCircuitTest =
     {
         ShortCircuitTest(
@@ -683,11 +683,11 @@ extends
     Parseable[ShuntCompensatorInfo]
 {
     val sup = AssetInfo.parse _
-    val maxPowerLoss = parse_element (element ("""ShuntCompensatorInfo.maxPowerLoss"""))_
-    val ratedCurrent = parse_element (element ("""ShuntCompensatorInfo.ratedCurrent"""))_
-    val ratedReactivePower = parse_element (element ("""ShuntCompensatorInfo.ratedReactivePower"""))_
-    val ratedVoltage = parse_element (element ("""ShuntCompensatorInfo.ratedVoltage"""))_
-    val ShuntCompensatorControl = parse_attribute (attribute ("""ShuntCompensatorInfo.ShuntCompensatorControl"""))_
+    val maxPowerLoss = parse_element (element ("""ShuntCompensatorInfo.maxPowerLoss"""))
+    val ratedCurrent = parse_element (element ("""ShuntCompensatorInfo.ratedCurrent"""))
+    val ratedReactivePower = parse_element (element ("""ShuntCompensatorInfo.ratedReactivePower"""))
+    val ratedVoltage = parse_element (element ("""ShuntCompensatorInfo.ratedVoltage"""))
+    val ShuntCompensatorControl = parse_attribute (attribute ("""ShuntCompensatorInfo.ShuntCompensatorControl"""))
     def parse (context: Context): ShuntCompensatorInfo =
     {
         ShuntCompensatorInfo(
@@ -740,11 +740,11 @@ extends
     Parseable[SwitchInfo]
 {
     val sup = AssetInfo.parse _
-    val breakingCapacity = parse_element (element ("""SwitchInfo.breakingCapacity"""))_
-    val isSinglePhase = parse_element (element ("""SwitchInfo.isSinglePhase"""))_
-    val isUnganged = parse_element (element ("""SwitchInfo.isUnganged"""))_
-    val ratedCurrent = parse_element (element ("""SwitchInfo.ratedCurrent"""))_
-    val ratedVoltage = parse_element (element ("""SwitchInfo.ratedVoltage"""))_
+    val breakingCapacity = parse_element (element ("""SwitchInfo.breakingCapacity"""))
+    val isSinglePhase = parse_element (element ("""SwitchInfo.isSinglePhase"""))
+    val isUnganged = parse_element (element ("""SwitchInfo.isUnganged"""))
+    val ratedCurrent = parse_element (element ("""SwitchInfo.ratedCurrent"""))
+    val ratedVoltage = parse_element (element ("""SwitchInfo.ratedVoltage"""))
     def parse (context: Context): SwitchInfo =
     {
         SwitchInfo(
@@ -818,21 +818,21 @@ extends
     Parseable[TapChangerInfo]
 {
     val sup = AssetInfo.parse _
-    val bil = parse_element (element ("""TapChangerInfo.bil"""))_
-    val ctRating = parse_element (element ("""TapChangerInfo.ctRating"""))_
-    val ctRatio = parse_element (element ("""TapChangerInfo.ctRatio"""))_
-    val frequency = parse_element (element ("""TapChangerInfo.frequency"""))_
-    val highStep = parse_element (element ("""TapChangerInfo.highStep"""))_
-    val isTcul = parse_element (element ("""TapChangerInfo.isTcul"""))_
-    val lowStep = parse_element (element ("""TapChangerInfo.lowStep"""))_
-    val neutralStep = parse_element (element ("""TapChangerInfo.neutralStep"""))_
-    val neutralU = parse_element (element ("""TapChangerInfo.neutralU"""))_
-    val ptRatio = parse_element (element ("""TapChangerInfo.ptRatio"""))_
-    val ratedApparentPower = parse_element (element ("""TapChangerInfo.ratedApparentPower"""))_
-    val ratedCurrent = parse_element (element ("""TapChangerInfo.ratedCurrent"""))_
-    val ratedVoltage = parse_element (element ("""TapChangerInfo.ratedVoltage"""))_
-    val stepPhaseIncrement = parse_element (element ("""TapChangerInfo.stepPhaseIncrement"""))_
-    val stepVoltageIncrement = parse_element (element ("""TapChangerInfo.stepVoltageIncrement"""))_
+    val bil = parse_element (element ("""TapChangerInfo.bil"""))
+    val ctRating = parse_element (element ("""TapChangerInfo.ctRating"""))
+    val ctRatio = parse_element (element ("""TapChangerInfo.ctRatio"""))
+    val frequency = parse_element (element ("""TapChangerInfo.frequency"""))
+    val highStep = parse_element (element ("""TapChangerInfo.highStep"""))
+    val isTcul = parse_element (element ("""TapChangerInfo.isTcul"""))
+    val lowStep = parse_element (element ("""TapChangerInfo.lowStep"""))
+    val neutralStep = parse_element (element ("""TapChangerInfo.neutralStep"""))
+    val neutralU = parse_element (element ("""TapChangerInfo.neutralU"""))
+    val ptRatio = parse_element (element ("""TapChangerInfo.ptRatio"""))
+    val ratedApparentPower = parse_element (element ("""TapChangerInfo.ratedApparentPower"""))
+    val ratedCurrent = parse_element (element ("""TapChangerInfo.ratedCurrent"""))
+    val ratedVoltage = parse_element (element ("""TapChangerInfo.ratedVoltage"""))
+    val stepPhaseIncrement = parse_element (element ("""TapChangerInfo.stepPhaseIncrement"""))
+    val stepVoltageIncrement = parse_element (element ("""TapChangerInfo.stepVoltageIncrement"""))
     def parse (context: Context): TapChangerInfo =
     {
         TapChangerInfo(
@@ -889,8 +889,8 @@ extends
     Parseable[TapeShieldCableInfo]
 {
     val sup = CableInfo.parse _
-    val tapeLap = parse_element (element ("""TapeShieldCableInfo.tapeLap"""))_
-    val tapeThickness = parse_element (element ("""TapeShieldCableInfo.tapeThickness"""))_
+    val tapeLap = parse_element (element ("""TapeShieldCableInfo.tapeLap"""))
+    val tapeThickness = parse_element (element ("""TapeShieldCableInfo.tapeThickness"""))
     def parse (context: Context): TapeShieldCableInfo =
     {
         TapeShieldCableInfo(
@@ -959,19 +959,19 @@ extends
     Parseable[TransformerEndInfo]
 {
     val sup = AssetInfo.parse _
-    val connectionKind = parse_attribute (attribute ("""TransformerEndInfo.connectionKind"""))_
-    val emergencyS = parse_element (element ("""TransformerEndInfo.emergencyS"""))_
-    val endNumber = parse_element (element ("""TransformerEndInfo.endNumber"""))_
-    val insulationU = parse_element (element ("""TransformerEndInfo.insulationU"""))_
-    val phaseAngleClock = parse_element (element ("""TransformerEndInfo.phaseAngleClock"""))_
-    val r = parse_element (element ("""TransformerEndInfo.r"""))_
-    val ratedS = parse_element (element ("""TransformerEndInfo.ratedS"""))_
-    val ratedU = parse_element (element ("""TransformerEndInfo.ratedU"""))_
-    val shortTermS = parse_element (element ("""TransformerEndInfo.shortTermS"""))_
-    val CoreAdmittance = parse_attribute (attribute ("""TransformerEndInfo.CoreAdmittance"""))_
-    val ToMeshImpedances = parse_attributes (attribute ("""TransformerEndInfo.ToMeshImpedances"""))_
-    val TransformerStarImpedance = parse_attribute (attribute ("""TransformerEndInfo.TransformerStarImpedance"""))_
-    val TransformerTankInfo = parse_attribute (attribute ("""TransformerEndInfo.TransformerTankInfo"""))_
+    val connectionKind = parse_attribute (attribute ("""TransformerEndInfo.connectionKind"""))
+    val emergencyS = parse_element (element ("""TransformerEndInfo.emergencyS"""))
+    val endNumber = parse_element (element ("""TransformerEndInfo.endNumber"""))
+    val insulationU = parse_element (element ("""TransformerEndInfo.insulationU"""))
+    val phaseAngleClock = parse_element (element ("""TransformerEndInfo.phaseAngleClock"""))
+    val r = parse_element (element ("""TransformerEndInfo.r"""))
+    val ratedS = parse_element (element ("""TransformerEndInfo.ratedS"""))
+    val ratedU = parse_element (element ("""TransformerEndInfo.ratedU"""))
+    val shortTermS = parse_element (element ("""TransformerEndInfo.shortTermS"""))
+    val CoreAdmittance = parse_attribute (attribute ("""TransformerEndInfo.CoreAdmittance"""))
+    val ToMeshImpedances = parse_attributes (attribute ("""TransformerEndInfo.ToMeshImpedances"""))
+    val TransformerStarImpedance = parse_attribute (attribute ("""TransformerEndInfo.TransformerStarImpedance"""))
+    val TransformerTankInfo = parse_attribute (attribute ("""TransformerEndInfo.TransformerTankInfo"""))
     def parse (context: Context): TransformerEndInfo =
     {
         TransformerEndInfo(
@@ -1024,7 +1024,7 @@ extends
     Parseable[TransformerTankInfo]
 {
     val sup = AssetInfo.parse _
-    val PowerTransformerInfo = parse_attribute (attribute ("""TransformerTankInfo.PowerTransformerInfo"""))_
+    val PowerTransformerInfo = parse_attribute (attribute ("""TransformerTankInfo.PowerTransformerInfo"""))
     def parse (context: Context): TransformerTankInfo =
     {
         TransformerTankInfo(
@@ -1067,8 +1067,8 @@ extends
     Parseable[TransformerTest]
 {
     val sup = IdentifiedObject.parse _
-    val basePower = parse_element (element ("""TransformerTest.basePower"""))_
-    val temperature = parse_element (element ("""TransformerTest.temperature"""))_
+    val basePower = parse_element (element ("""TransformerTest.basePower"""))
+    val temperature = parse_element (element ("""TransformerTest.temperature"""))
     def parse (context: Context): TransformerTest =
     {
         TransformerTest(
@@ -1141,22 +1141,22 @@ extends
     Parseable[WireInfo]
 {
     val sup = AssetInfo.parse _
-    val coreRadius = parse_element (element ("""WireInfo.coreRadius"""))_
-    val coreStrandCount = parse_element (element ("""WireInfo.coreStrandCount"""))_
-    val gmr = parse_element (element ("""WireInfo.gmr"""))_
-    val insulated = parse_element (element ("""WireInfo.insulated"""))_
-    val insulationMaterial = parse_attribute (attribute ("""WireInfo.insulationMaterial"""))_
-    val insulationThickness = parse_element (element ("""WireInfo.insulationThickness"""))_
-    val material = parse_attribute (attribute ("""WireInfo.material"""))_
-    val rAC25 = parse_element (element ("""WireInfo.rAC25"""))_
-    val rAC50 = parse_element (element ("""WireInfo.rAC50"""))_
-    val rAC75 = parse_element (element ("""WireInfo.rAC75"""))_
-    val rDC20 = parse_element (element ("""WireInfo.rDC20"""))_
-    val radius = parse_element (element ("""WireInfo.radius"""))_
-    val ratedCurrent = parse_element (element ("""WireInfo.ratedCurrent"""))_
-    val sizeDescription = parse_element (element ("""WireInfo.sizeDescription"""))_
-    val strandCount = parse_element (element ("""WireInfo.strandCount"""))_
-    val PerLengthParameters = parse_attributes (attribute ("""WireInfo.PerLengthParameters"""))_
+    val coreRadius = parse_element (element ("""WireInfo.coreRadius"""))
+    val coreStrandCount = parse_element (element ("""WireInfo.coreStrandCount"""))
+    val gmr = parse_element (element ("""WireInfo.gmr"""))
+    val insulated = parse_element (element ("""WireInfo.insulated"""))
+    val insulationMaterial = parse_attribute (attribute ("""WireInfo.insulationMaterial"""))
+    val insulationThickness = parse_element (element ("""WireInfo.insulationThickness"""))
+    val material = parse_attribute (attribute ("""WireInfo.material"""))
+    val rAC25 = parse_element (element ("""WireInfo.rAC25"""))
+    val rAC50 = parse_element (element ("""WireInfo.rAC50"""))
+    val rAC75 = parse_element (element ("""WireInfo.rAC75"""))
+    val rDC20 = parse_element (element ("""WireInfo.rDC20"""))
+    val radius = parse_element (element ("""WireInfo.radius"""))
+    val ratedCurrent = parse_element (element ("""WireInfo.ratedCurrent"""))
+    val sizeDescription = parse_element (element ("""WireInfo.sizeDescription"""))
+    val strandCount = parse_element (element ("""WireInfo.strandCount"""))
+    val PerLengthParameters = parse_attributes (attribute ("""WireInfo.PerLengthParameters"""))
     def parse (context: Context): WireInfo =
     {
         WireInfo(
@@ -1246,24 +1246,24 @@ extends
     Parseable[WireInsulationKind]
 {
     val sup = BasicElement.parse _
-    val asbestosAndVarnishedCambric = parse_attribute (attribute ("""WireInsulationKind.asbestosAndVarnishedCambric"""))_
-    val beltedPilc = parse_attribute (attribute ("""WireInsulationKind.beltedPilc"""))_
-    val butyl = parse_attribute (attribute ("""WireInsulationKind.butyl"""))_
-    val crosslinkedPolyethylene = parse_attribute (attribute ("""WireInsulationKind.crosslinkedPolyethylene"""))_
-    val ethylenePropyleneRubber = parse_attribute (attribute ("""WireInsulationKind.ethylenePropyleneRubber"""))_
-    val highMolecularWeightPolyethylene = parse_attribute (attribute ("""WireInsulationKind.highMolecularWeightPolyethylene"""))_
-    val highPressureFluidFilled = parse_attribute (attribute ("""WireInsulationKind.highPressureFluidFilled"""))_
-    val lowCapacitanceRubber = parse_attribute (attribute ("""WireInsulationKind.lowCapacitanceRubber"""))_
-    val oilPaper = parse_attribute (attribute ("""WireInsulationKind.oilPaper"""))_
-    val other = parse_attribute (attribute ("""WireInsulationKind.other"""))_
-    val ozoneResistantRubber = parse_attribute (attribute ("""WireInsulationKind.ozoneResistantRubber"""))_
-    val rubber = parse_attribute (attribute ("""WireInsulationKind.rubber"""))_
-    val siliconRubber = parse_attribute (attribute ("""WireInsulationKind.siliconRubber"""))_
-    val treeResistantHighMolecularWeightPolyethylene = parse_attribute (attribute ("""WireInsulationKind.treeResistantHighMolecularWeightPolyethylene"""))_
-    val treeRetardantCrosslinkedPolyethylene = parse_attribute (attribute ("""WireInsulationKind.treeRetardantCrosslinkedPolyethylene"""))_
-    val unbeltedPilc = parse_attribute (attribute ("""WireInsulationKind.unbeltedPilc"""))_
-    val varnishedCambricCloth = parse_attribute (attribute ("""WireInsulationKind.varnishedCambricCloth"""))_
-    val varnishedDacronGlass = parse_attribute (attribute ("""WireInsulationKind.varnishedDacronGlass"""))_
+    val asbestosAndVarnishedCambric = parse_attribute (attribute ("""WireInsulationKind.asbestosAndVarnishedCambric"""))
+    val beltedPilc = parse_attribute (attribute ("""WireInsulationKind.beltedPilc"""))
+    val butyl = parse_attribute (attribute ("""WireInsulationKind.butyl"""))
+    val crosslinkedPolyethylene = parse_attribute (attribute ("""WireInsulationKind.crosslinkedPolyethylene"""))
+    val ethylenePropyleneRubber = parse_attribute (attribute ("""WireInsulationKind.ethylenePropyleneRubber"""))
+    val highMolecularWeightPolyethylene = parse_attribute (attribute ("""WireInsulationKind.highMolecularWeightPolyethylene"""))
+    val highPressureFluidFilled = parse_attribute (attribute ("""WireInsulationKind.highPressureFluidFilled"""))
+    val lowCapacitanceRubber = parse_attribute (attribute ("""WireInsulationKind.lowCapacitanceRubber"""))
+    val oilPaper = parse_attribute (attribute ("""WireInsulationKind.oilPaper"""))
+    val other = parse_attribute (attribute ("""WireInsulationKind.other"""))
+    val ozoneResistantRubber = parse_attribute (attribute ("""WireInsulationKind.ozoneResistantRubber"""))
+    val rubber = parse_attribute (attribute ("""WireInsulationKind.rubber"""))
+    val siliconRubber = parse_attribute (attribute ("""WireInsulationKind.siliconRubber"""))
+    val treeResistantHighMolecularWeightPolyethylene = parse_attribute (attribute ("""WireInsulationKind.treeResistantHighMolecularWeightPolyethylene"""))
+    val treeRetardantCrosslinkedPolyethylene = parse_attribute (attribute ("""WireInsulationKind.treeRetardantCrosslinkedPolyethylene"""))
+    val unbeltedPilc = parse_attribute (attribute ("""WireInsulationKind.unbeltedPilc"""))
+    val varnishedCambricCloth = parse_attribute (attribute ("""WireInsulationKind.varnishedCambricCloth"""))
+    val varnishedDacronGlass = parse_attribute (attribute ("""WireInsulationKind.varnishedDacronGlass"""))
     def parse (context: Context): WireInsulationKind =
     {
         WireInsulationKind(
@@ -1337,15 +1337,15 @@ extends
     Parseable[WireMaterialKind]
 {
     val sup = BasicElement.parse _
-    val aaac = parse_attribute (attribute ("""WireMaterialKind.aaac"""))_
-    val acsr = parse_attribute (attribute ("""WireMaterialKind.acsr"""))_
-    val aluminum = parse_attribute (attribute ("""WireMaterialKind.aluminum"""))_
-    val aluminumAlloy = parse_attribute (attribute ("""WireMaterialKind.aluminumAlloy"""))_
-    val aluminumAlloySteel = parse_attribute (attribute ("""WireMaterialKind.aluminumAlloySteel"""))_
-    val aluminumSteel = parse_attribute (attribute ("""WireMaterialKind.aluminumSteel"""))_
-    val copper = parse_attribute (attribute ("""WireMaterialKind.copper"""))_
-    val other = parse_attribute (attribute ("""WireMaterialKind.other"""))_
-    val steel = parse_attribute (attribute ("""WireMaterialKind.steel"""))_
+    val aaac = parse_attribute (attribute ("""WireMaterialKind.aaac"""))
+    val acsr = parse_attribute (attribute ("""WireMaterialKind.acsr"""))
+    val aluminum = parse_attribute (attribute ("""WireMaterialKind.aluminum"""))
+    val aluminumAlloy = parse_attribute (attribute ("""WireMaterialKind.aluminumAlloy"""))
+    val aluminumAlloySteel = parse_attribute (attribute ("""WireMaterialKind.aluminumAlloySteel"""))
+    val aluminumSteel = parse_attribute (attribute ("""WireMaterialKind.aluminumSteel"""))
+    val copper = parse_attribute (attribute ("""WireMaterialKind.copper"""))
+    val other = parse_attribute (attribute ("""WireMaterialKind.other"""))
+    val steel = parse_attribute (attribute ("""WireMaterialKind.steel"""))
     def parse (context: Context): WireMaterialKind =
     {
         WireMaterialKind(
@@ -1400,10 +1400,10 @@ extends
     Parseable[WirePosition]
 {
     val sup = IdentifiedObject.parse _
-    val phase = parse_attribute (attribute ("""WirePosition.phase"""))_
-    val xCoord = parse_element (element ("""WirePosition.xCoord"""))_
-    val yCoord = parse_element (element ("""WirePosition.yCoord"""))_
-    val WireSpacingInfo = parse_attribute (attribute ("""WirePosition.WireSpacingInfo"""))_
+    val phase = parse_attribute (attribute ("""WirePosition.phase"""))
+    val xCoord = parse_element (element ("""WirePosition.xCoord"""))
+    val yCoord = parse_element (element ("""WirePosition.yCoord"""))
+    val WireSpacingInfo = parse_attribute (attribute ("""WirePosition.WireSpacingInfo"""))
     def parse (context: Context): WirePosition =
     {
         WirePosition(
@@ -1458,12 +1458,12 @@ extends
     Parseable[WireSpacingInfo]
 {
     val sup = AssetInfo.parse _
-    val isCable = parse_element (element ("""WireSpacingInfo.isCable"""))_
-    val phaseWireCount = parse_element (element ("""WireSpacingInfo.phaseWireCount"""))_
-    val phaseWireSpacing = parse_element (element ("""WireSpacingInfo.phaseWireSpacing"""))_
-    val usage = parse_attribute (attribute ("""WireSpacingInfo.usage"""))_
-    val DuctBank = parse_attribute (attribute ("""WireSpacingInfo.DuctBank"""))_
-    val Structures = parse_attributes (attribute ("""WireSpacingInfo.Structures"""))_
+    val isCable = parse_element (element ("""WireSpacingInfo.isCable"""))
+    val phaseWireCount = parse_element (element ("""WireSpacingInfo.phaseWireCount"""))
+    val phaseWireSpacing = parse_element (element ("""WireSpacingInfo.phaseWireSpacing"""))
+    val usage = parse_attribute (attribute ("""WireSpacingInfo.usage"""))
+    val DuctBank = parse_attribute (attribute ("""WireSpacingInfo.DuctBank"""))
+    val Structures = parse_attributes (attribute ("""WireSpacingInfo.Structures"""))
     def parse (context: Context): WireSpacingInfo =
     {
         WireSpacingInfo(
@@ -1515,10 +1515,10 @@ extends
     Parseable[WireUsageKind]
 {
     val sup = BasicElement.parse _
-    val distribution = parse_attribute (attribute ("""WireUsageKind.distribution"""))_
-    val other = parse_attribute (attribute ("""WireUsageKind.other"""))_
-    val secondary = parse_attribute (attribute ("""WireUsageKind.secondary"""))_
-    val transmission = parse_attribute (attribute ("""WireUsageKind.transmission"""))_
+    val distribution = parse_attribute (attribute ("""WireUsageKind.distribution"""))
+    val other = parse_attribute (attribute ("""WireUsageKind.other"""))
+    val secondary = parse_attribute (attribute ("""WireUsageKind.secondary"""))
+    val transmission = parse_attribute (attribute ("""WireUsageKind.transmission"""))
     def parse (context: Context): WireUsageKind =
     {
         WireUsageKind(

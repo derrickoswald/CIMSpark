@@ -58,14 +58,14 @@ extends
     Parseable[BilateralTransaction]
 {
     val sup = BasicElement.parse _
-    val curtailTimeMax = parse_element (element ("""BilateralTransaction.curtailTimeMax"""))_
-    val curtailTimeMin = parse_element (element ("""BilateralTransaction.curtailTimeMin"""))_
-    val marketType = parse_element (element ("""BilateralTransaction.marketType"""))_
-    val purchaseTimeMax = parse_element (element ("""BilateralTransaction.purchaseTimeMax"""))_
-    val purchaseTimeMin = parse_element (element ("""BilateralTransaction.purchaseTimeMin"""))_
-    val scope = parse_element (element ("""BilateralTransaction.scope"""))_
-    val totalTranChargeMax = parse_element (element ("""BilateralTransaction.totalTranChargeMax"""))_
-    val transactionType = parse_element (element ("""BilateralTransaction.transactionType"""))_
+    val curtailTimeMax = parse_element (element ("""BilateralTransaction.curtailTimeMax"""))
+    val curtailTimeMin = parse_element (element ("""BilateralTransaction.curtailTimeMin"""))
+    val marketType = parse_element (element ("""BilateralTransaction.marketType"""))
+    val purchaseTimeMax = parse_element (element ("""BilateralTransaction.purchaseTimeMax"""))
+    val purchaseTimeMin = parse_element (element ("""BilateralTransaction.purchaseTimeMin"""))
+    val scope = parse_element (element ("""BilateralTransaction.scope"""))
+    val totalTranChargeMax = parse_element (element ("""BilateralTransaction.totalTranChargeMax"""))
+    val transactionType = parse_element (element ("""BilateralTransaction.transactionType"""))
     def parse (context: Context): BilateralTransaction =
     {
         BilateralTransaction(
@@ -114,7 +114,7 @@ extends
     Parseable[Participation]
 {
     val sup = IdentifiedObject.parse _
-    val factor = parse_element (element ("""Participation.factor"""))_
+    val factor = parse_element (element ("""Participation.factor"""))
     def parse (context: Context): Participation =
     {
         Participation(
@@ -180,19 +180,19 @@ extends
     Parseable[ResourceCertification]
 {
     val sup = BasicElement.parse _
-    val certifiedDAM = parse_attribute (attribute ("""ResourceCertification.certifiedDAM"""))_
-    val certifiedNonspinDAM = parse_attribute (attribute ("""ResourceCertification.certifiedNonspinDAM"""))_
-    val certifiedNonspinDAMMw = parse_element (element ("""ResourceCertification.certifiedNonspinDAMMw"""))_
-    val certifiedNonspinRTM = parse_attribute (attribute ("""ResourceCertification.certifiedNonspinRTM"""))_
-    val certifiedNonspinRTMMw = parse_element (element ("""ResourceCertification.certifiedNonspinRTMMw"""))_
-    val certifiedPIRP = parse_attribute (attribute ("""ResourceCertification.certifiedPIRP"""))_
-    val certifiedRTM = parse_attribute (attribute ("""ResourceCertification.certifiedRTM"""))_
-    val certifiedRUC = parse_attribute (attribute ("""ResourceCertification.certifiedRUC"""))_
-    val certifiedRegulation = parse_attribute (attribute ("""ResourceCertification.certifiedRegulation"""))_
-    val certifiedRegulationMw = parse_element (element ("""ResourceCertification.certifiedRegulationMw"""))_
-    val certifiedReplaceAS = parse_attribute (attribute ("""ResourceCertification.certifiedReplaceAS"""))_
-    val certifiedSpin = parse_attribute (attribute ("""ResourceCertification.certifiedSpin"""))_
-    val certifiedSpinMw = parse_element (element ("""ResourceCertification.certifiedSpinMw"""))_
+    val certifiedDAM = parse_attribute (attribute ("""ResourceCertification.certifiedDAM"""))
+    val certifiedNonspinDAM = parse_attribute (attribute ("""ResourceCertification.certifiedNonspinDAM"""))
+    val certifiedNonspinDAMMw = parse_element (element ("""ResourceCertification.certifiedNonspinDAMMw"""))
+    val certifiedNonspinRTM = parse_attribute (attribute ("""ResourceCertification.certifiedNonspinRTM"""))
+    val certifiedNonspinRTMMw = parse_element (element ("""ResourceCertification.certifiedNonspinRTMMw"""))
+    val certifiedPIRP = parse_attribute (attribute ("""ResourceCertification.certifiedPIRP"""))
+    val certifiedRTM = parse_attribute (attribute ("""ResourceCertification.certifiedRTM"""))
+    val certifiedRUC = parse_attribute (attribute ("""ResourceCertification.certifiedRUC"""))
+    val certifiedRegulation = parse_attribute (attribute ("""ResourceCertification.certifiedRegulation"""))
+    val certifiedRegulationMw = parse_element (element ("""ResourceCertification.certifiedRegulationMw"""))
+    val certifiedReplaceAS = parse_attribute (attribute ("""ResourceCertification.certifiedReplaceAS"""))
+    val certifiedSpin = parse_attribute (attribute ("""ResourceCertification.certifiedSpin"""))
+    val certifiedSpinMw = parse_element (element ("""ResourceCertification.certifiedSpinMw"""))
     def parse (context: Context): ResourceCertification =
     {
         ResourceCertification(

@@ -78,7 +78,7 @@ extends
     Parseable[EquipmentLimitSeriesComponent]
 {
     val sup = IdentifiedObject.parse _
-    val Equipment = parse_attribute (attribute ("""EquipmentLimitSeriesComponent.Equipment"""))_
+    val Equipment = parse_attribute (attribute ("""EquipmentLimitSeriesComponent.Equipment"""))
     def parse (context: Context): EquipmentLimitSeriesComponent =
     {
         EquipmentLimitSeriesComponent(
@@ -120,7 +120,7 @@ extends
     Parseable[LimitDependency]
 {
     val sup = IdentifiedObject.parse _
-    val Equipment = parse_attribute (attribute ("""LimitDependency.Equipment"""))_
+    val Equipment = parse_attribute (attribute ("""LimitDependency.Equipment"""))
     def parse (context: Context): LimitDependency =
     {
         LimitDependency(
@@ -163,8 +163,8 @@ extends
     Parseable[LimitScalingLimit]
 {
     val sup = LimitDependency.parse _
-    val limitScalingPercent = parse_element (element ("""LimitScalingLimit.limitScalingPercent"""))_
-    val SourceOperationalLimit = parse_attribute (attribute ("""LimitScalingLimit.SourceOperationalLimit"""))_
+    val limitScalingPercent = parse_element (element ("""LimitScalingLimit.limitScalingPercent"""))
+    val SourceOperationalLimit = parse_attribute (attribute ("""LimitScalingLimit.SourceOperationalLimit"""))
     def parse (context: Context): LimitScalingLimit =
     {
         LimitScalingLimit(
@@ -212,9 +212,9 @@ extends
     Parseable[OperatonalLimitTypeScaling]
 {
     val sup = BasicElement.parse _
-    val scalingPercent = parse_element (element ("""OperatonalLimitTypeScaling.scalingPercent"""))_
-    val SourceOperationalLimitType = parse_attribute (attribute ("""OperatonalLimitTypeScaling.SourceOperationalLimitType"""))_
-    val TargetOperationalLimit = parse_attribute (attribute ("""OperatonalLimitTypeScaling.TargetOperationalLimit"""))_
+    val scalingPercent = parse_element (element ("""OperatonalLimitTypeScaling.scalingPercent"""))
+    val SourceOperationalLimitType = parse_attribute (attribute ("""OperatonalLimitTypeScaling.SourceOperationalLimitType"""))
+    val TargetOperationalLimit = parse_attribute (attribute ("""OperatonalLimitTypeScaling.TargetOperationalLimit"""))
     def parse (context: Context): OperatonalLimitTypeScaling =
     {
         OperatonalLimitTypeScaling(
@@ -252,7 +252,7 @@ extends
     Parseable[ScheduledActivePowerLimitValue]
 {
     val sup = ScheduledLimitValue.parse _
-    val value = parse_element (element ("""ScheduledActivePowerLimitValue.value"""))_
+    val value = parse_element (element ("""ScheduledActivePowerLimitValue.value"""))
     def parse (context: Context): ScheduledActivePowerLimitValue =
     {
         ScheduledActivePowerLimitValue(
@@ -293,7 +293,7 @@ extends
     Parseable[ScheduledApparentPowerLimitValue]
 {
     val sup = ScheduledLimitValue.parse _
-    val value = parse_element (element ("""ScheduledApparentPowerLimitValue.value"""))_
+    val value = parse_element (element ("""ScheduledApparentPowerLimitValue.value"""))
     def parse (context: Context): ScheduledApparentPowerLimitValue =
     {
         ScheduledApparentPowerLimitValue(
@@ -334,7 +334,7 @@ extends
     Parseable[ScheduledCurrentLimitValue]
 {
     val sup = ScheduledLimitValue.parse _
-    val value = parse_element (element ("""ScheduledCurrentLimitValue.value"""))_
+    val value = parse_element (element ("""ScheduledCurrentLimitValue.value"""))
     def parse (context: Context): ScheduledCurrentLimitValue =
     {
         ScheduledCurrentLimitValue(
@@ -409,7 +409,7 @@ extends
     Parseable[ScheduledLimitValue]
 {
     val sup = IdentifiedObject.parse _
-    val Season = parse_attribute (attribute ("""ScheduledLimitValue.Season"""))_
+    val Season = parse_attribute (attribute ("""ScheduledLimitValue.Season"""))
     def parse (context: Context): ScheduledLimitValue =
     {
         ScheduledLimitValue(
@@ -450,7 +450,7 @@ extends
     Parseable[ScheduledVoltageLimitValue]
 {
     val sup = ScheduledLimitValue.parse _
-    val value = parse_element (element ("""ScheduledVoltageLimitValue.value"""))_
+    val value = parse_element (element ("""ScheduledVoltageLimitValue.value"""))
     def parse (context: Context): ScheduledVoltageLimitValue =
     {
         ScheduledVoltageLimitValue(
@@ -531,8 +531,8 @@ extends
     Parseable[TemperatureDependentLimitPoint]
 {
     val sup = BasicElement.parse _
-    val limitPercent = parse_element (element ("""TemperatureDependentLimitPoint.limitPercent"""))_
-    val temperature = parse_element (element ("""TemperatureDependentLimitPoint.temperature"""))_
+    val limitPercent = parse_element (element ("""TemperatureDependentLimitPoint.limitPercent"""))
+    val temperature = parse_element (element ("""TemperatureDependentLimitPoint.temperature"""))
     def parse (context: Context): TemperatureDependentLimitPoint =
     {
         TemperatureDependentLimitPoint(
@@ -619,11 +619,11 @@ extends
     Parseable[TemperaturePolynomialLimit]
 {
     val sup = EnvironmentalDependentLimit.parse _
-    val coefficient0 = parse_element (element ("""TemperaturePolynomialLimit.coefficient0"""))_
-    val coefficient1 = parse_element (element ("""TemperaturePolynomialLimit.coefficient1"""))_
-    val coefficient2 = parse_element (element ("""TemperaturePolynomialLimit.coefficient2"""))_
-    val coefficient3 = parse_element (element ("""TemperaturePolynomialLimit.coefficient3"""))_
-    val coefficient4 = parse_element (element ("""TemperaturePolynomialLimit.coefficient4"""))_
+    val coefficient0 = parse_element (element ("""TemperaturePolynomialLimit.coefficient0"""))
+    val coefficient1 = parse_element (element ("""TemperaturePolynomialLimit.coefficient1"""))
+    val coefficient2 = parse_element (element ("""TemperaturePolynomialLimit.coefficient2"""))
+    val coefficient3 = parse_element (element ("""TemperaturePolynomialLimit.coefficient3"""))
+    val coefficient4 = parse_element (element ("""TemperaturePolynomialLimit.coefficient4"""))
     def parse (context: Context): TemperaturePolynomialLimit =
     {
         TemperaturePolynomialLimit(

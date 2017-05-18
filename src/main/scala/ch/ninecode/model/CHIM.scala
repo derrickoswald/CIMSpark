@@ -81,82 +81,119 @@ trait Parser
      * Parse one or more XML elements from a string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The matched group(s) from the regular expression.
+     * @return A function for parsing the elements.
      */
-    def parse_elements (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
+    def parse_elements (pattern: Tuple2[Pattern, Int]): Context => List[String] =
     {
-        var ret: List[String] = null
-
-        val matcher = pattern._1.matcher (context.subxml)
-        while (matcher.find ())
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The matched group(s) from the regular expression or null if none were found.
+        (context: Context) =>
         {
-            val string = matcher.group (pattern._2)
-            if (Context.DEBUG)
-                context.coverage += Tuple2 (matcher.start, matcher.end)
-            if (null != string)
-                ret = if (null == ret) List (string) else ret :+ string
-        }
+            var ret: List[String] = null
 
-        return (ret)
-    }
-
-    /**
-     * Parse one XML element from a string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The matched group from the regular expression, or null if the pattern wasn't found.
-     */
-    def parse_element (pattern: Tuple2[Pattern, Int])(context: Context): String =
-    {
-        val elements = parse_elements (pattern)(context)
-        return (if (null == elements) null else elements.head)
-    }
-
-    /**
-     * Parse one or more attributes from an XML string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The attribute value(s) (with leading # stripped off).
-     */
-    def parse_attributes (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
-    {
-        var ret: List[String] = null
-
-        val matcher = pattern._1.matcher (context.subxml)
-        while (matcher.find ())
-        {
-            var string = matcher.group (pattern._2)
-            if (Context.DEBUG)
-                context.coverage += Tuple2 (matcher.start, matcher.end)
-            if (null != string)
+            val matcher = pattern._1.matcher (context.subxml)
+            while (matcher.find ())
             {
-                if (string.startsWith ("#")) // remove '#'
-                    string = string.substring (1)
-                ret = if (null == ret) List (string) else ret :+ string
+                val string = matcher.group (pattern._2)
+                if (Context.DEBUG)
+                    context.coverage += Tuple2 (matcher.start, matcher.end)
+                if (null != string)
+                    ret = if (null == ret) List (string) else ret :+ string
             }
-        }
 
-        return (ret)
+            ret
+        }
     }
 
     /**
-     * Parse one attribute from an XML string.
+     * Create a function to parse one XML element from a string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
+     * @return A function for parsing the element.
      */
-    def parse_attribute (pattern: Tuple2[Pattern, Int])(context: Context): String =
+    def parse_element (pattern: Tuple2[Pattern, Int]): Context => String =
     {
-        val attributes = parse_attributes (pattern)(context)
-        return (if (null == attributes) null else attributes.head)
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The matched group from the regular expression, or null if the pattern wasn't found.
+        (context: Context) =>
+        {
+            val matcher = pattern._1.matcher (context.subxml)
+            if (matcher.find ())
+            {
+                val string = matcher.group (pattern._2)
+                if (Context.DEBUG)
+                    context.coverage += Tuple2 (matcher.start, matcher.end)
+                string
+            }
+            else
+                null
+        }
+    }
+
+    /**
+     * Create a function to parse one or more attributes from an XML string.
+     * @param pattern._1 The regular expression pattern to look for.
+     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @return A function for parsing the attributes.
+     */
+    def parse_attributes (pattern: Tuple2[Pattern, Int]): Context => List[String] =
+    {
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The attribute value(s) (with leading # stripped off).
+        context: Context =>
+        {
+            var ret: List[String] = null
+
+            val matcher = pattern._1.matcher (context.subxml)
+            while (matcher.find ())
+            {
+                var string = matcher.group (pattern._2)
+                if (Context.DEBUG)
+                    context.coverage += Tuple2 (matcher.start, matcher.end)
+                if (null != string)
+                {
+                    if (string.startsWith ("#")) // remove '#'
+                        string = string.substring (1)
+                    ret = if (null == ret) List (string) else ret :+ string
+                }
+            }
+
+            ret
+        }
+    }
+
+    /**
+     * Create a function to parse one attribute from an XML string.
+     * @param pattern._1 The regular expression pattern to look for.
+     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @return A function for parsing the attribute.
+     */
+    def parse_attribute (pattern: Tuple2[Pattern, Int]): Context => String =
+    {
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
+        (context: Context) =>
+        {
+            val matcher = pattern._1.matcher (context.subxml)
+            if (matcher.find ())
+            {
+                var string = matcher.group (pattern._2)
+                if (Context.DEBUG)
+                    context.coverage += Tuple2 (matcher.start, matcher.end)
+                if (null != string)
+                {
+                    if (string.startsWith ("#")) // remove '#'
+                        string = string.substring (1)
+                }
+                string
+            }
+            else
+                null
+        }
     }
 
     /**
@@ -312,7 +349,7 @@ object BasicElement
      * Parse an element.
      * Simply extracts the id.
      */
-    val mRID = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))_
+    val mRID = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
     override def parse(context: Context): BasicElement =
     {
         new BasicElement (null, mRID (context))
@@ -677,6 +714,12 @@ object CHIM
     {
         if (args.size > 0)
         {
+            if (args.size > 1)
+            {
+                println ("Press [Return] to continue...")
+                System.console().readLine()
+            }
+
             val filename = args (0)
             val fis = new FileInputStream (filename)
             val size = fis.available ()
