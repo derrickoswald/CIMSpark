@@ -271,11 +271,7 @@ extends
     def runtime_class = classTag[A].runtimeClass
     def classname = runtime_class.getName
     def cls = classname.substring (classname.lastIndexOf (".") + 1)
-    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
-    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
-    val lock: AnyRef = SerializableObject ("scalasucks")
     def register: Unit =
-    lock.synchronized
     {
         CHIM.LOOKUP += ((Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]]))
         CHIM.SUBSETTERS += ((Parser.namespace + ":" + cls, new CIMSubsetter[A]()))
@@ -400,96 +396,122 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     //val lookup = new HashMap[String, Parseable[Product]]
     var value: Element = null
 
-    _AssetInfo.register
-    _Assets.register
-    _AsynchronousMachineDynamics.register
-    _AuxiliaryEquipment.register
-    _Common.register
-    _CongestionRevenueRights.register
-    _Contingency.register
-    _ControlArea.register
-    _Core.register
-    _Customers.register
-    _DC.register
-    _DiagramLayout.register
-    _DiscontinuousExcitationControlDynamics.register
-    _Domain.register
-    _Equivalents.register
-    _ExcitationSystemDynamics.register
-    _ExistingEnumExtensions.register
-    _ExternalInputs.register
-    _Faults.register
-    _GenerationTrainingSimulation.register
-    _ICCP.register
-    _IEC61968.register
-    _IEC61970.register
-    _IEC62325.register
-    _InfAssetInfo.register
-    _InfAssets.register
-    _InfCommon.register
-    _InfCongestionRevenueRights.register
-    _InfCustomers.register
-    _InfDomain.register
-    _InfERPSupport.register
-    _InfEnergyScheduling.register
-    _InfEnergySource.register
-    _InfExternalInputs.register
-    _InfFinancial.register
-    _InfLocations.register
-    _InfMarketOperations.register
-    _InfMarketResults.register
-    _InfNewAssets.register
-    _InfOperationalLimits.register
-    _InfParticipantInterfaces.register
-    _InfReservation.register
-    _InfSIPS.register
-    _InfTypeAsset.register
-    _InfWiresExt.register
-    _InfWork.register
-    _LoadControl.register
-    _LoadDynamics.register
-    _LoadModel.register
-    _MarketCommon.register
-    _MarketManagement.register
-    _MarketOpCommon.register
-    _MarketPlan.register
-    _MarketQualitySystem.register
-    _MarketResults.register
-    _Meas.register
-    _MechanicalLoadDynamics.register
-    _Metering.register
-    _MktDomain.register
-    _ModelAuthority.register
-    _ModelDescription.register
-    _OperationalLimits.register
-    _Operations.register
-    _OverexcitationLimiterDynamics.register
-    _PFVArControllerType1Dynamics.register
-    _PFVArControllerType2Dynamics.register
-    _PackageDependencies.register
-    _ParticipantInterfaces.register
-    _PaymentMetering.register
-    _PowerSystemProject.register
-    _PowerSystemStabilizerDynamics.register
-    _Production.register
-    _Protection.register
-    _ReadingTypeEnumerations.register
-    _ReferenceData.register
-    _SCADA.register
-    _StandardInterconnections.register
-    _StandardModels.register
-    _StateVariables.register
-    _SynchronousMachineDynamics.register
-    _Topology.register
-    _TurbineGovernorDynamics.register
-    _TurbineLoadControllerDynamics.register
-    _UnderexcitationLimiterDynamics.register
-    _UserDefinedModels.register
-    _VoltageAdjusterDynamics.register
-    _VoltageCompensatorDynamics.register
-    _WindDynamics.register
-    _Wires.register
-    _Work.register
+    if (!CHIM.ALL_CLASSES)
+    {
+        _AssetInfo.register
+        _Assets.register
+        _Common.register
+        _Core.register
+        _Customers.register
+        _DiagramLayout.register
+        _Domain.register
+        _ExternalInputs.register
+        _InfAssets.register
+        _LoadControl.register
+        _LoadModel.register
+        _Meas.register
+        _Metering.register
+        _PaymentMetering.register
+        _Production.register
+        _Protection.register
+        _StateVariables.register
+        _Topology.register
+        _Wires.register
+        _Work.register
+    }
+    else
+    {
+        _AssetInfo.register
+        _Assets.register
+        _AsynchronousMachineDynamics.register
+        _AuxiliaryEquipment.register
+        _Common.register
+        _CongestionRevenueRights.register
+        _Contingency.register
+        _ControlArea.register
+        _Core.register
+        _Customers.register
+        _DC.register
+        _DiagramLayout.register
+        _DiscontinuousExcitationControlDynamics.register
+        _Domain.register
+        _Equivalents.register
+        _ExcitationSystemDynamics.register
+        _ExistingEnumExtensions.register
+        _ExternalInputs.register
+        _Faults.register
+        _GenerationTrainingSimulation.register
+        _ICCP.register
+        _IEC61968.register
+        _IEC61970.register
+        _IEC62325.register
+        _InfAssetInfo.register
+        _InfAssets.register
+        _InfCommon.register
+        _InfCongestionRevenueRights.register
+        _InfCustomers.register
+        _InfDomain.register
+        _InfERPSupport.register
+        _InfEnergyScheduling.register
+        _InfEnergySource.register
+        _InfExternalInputs.register
+        _InfFinancial.register
+        _InfLocations.register
+        _InfMarketOperations.register
+        _InfMarketResults.register
+        _InfNewAssets.register
+        _InfOperationalLimits.register
+        _InfParticipantInterfaces.register
+        _InfReservation.register
+        _InfSIPS.register
+        _InfTypeAsset.register
+        _InfWiresExt.register
+        _InfWork.register
+        _LoadControl.register
+        _LoadDynamics.register
+        _LoadModel.register
+        _MarketCommon.register
+        _MarketManagement.register
+        _MarketOpCommon.register
+        _MarketPlan.register
+        _MarketQualitySystem.register
+        _MarketResults.register
+        _Meas.register
+        _MechanicalLoadDynamics.register
+        _Metering.register
+        _MktDomain.register
+        _ModelAuthority.register
+        _ModelDescription.register
+        _OperationalLimits.register
+        _Operations.register
+        _OverexcitationLimiterDynamics.register
+        _PFVArControllerType1Dynamics.register
+        _PFVArControllerType2Dynamics.register
+        _PackageDependencies.register
+        _ParticipantInterfaces.register
+        _PaymentMetering.register
+        _PowerSystemProject.register
+        _PowerSystemStabilizerDynamics.register
+        _Production.register
+        _Protection.register
+        _ReadingTypeEnumerations.register
+        _ReferenceData.register
+        _SCADA.register
+        _StandardInterconnections.register
+        _StandardModels.register
+        _StateVariables.register
+        _SynchronousMachineDynamics.register
+        _Topology.register
+        _TurbineGovernorDynamics.register
+        _TurbineLoadControllerDynamics.register
+        _UnderexcitationLimiterDynamics.register
+        _UserDefinedModels.register
+        _VoltageAdjusterDynamics.register
+        _VoltageCompensatorDynamics.register
+        _WindDynamics.register
+        _Wires.register
+        _Work.register
+    }
 
     def progress (): Float =
     {
@@ -524,7 +546,15 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
                     context.subxml = matcher.group (2)
                     Unknown.name = name
                     value = CHIM.LOOKUP.getOrElse (name, Unknown).parse (context)
-                    //value = lookup.getOrElseUpdate (name, CHIM.LOOKUP.getOrElse (name, Unknown)).parse (context)
+//                    val parser = lookup.getOrElse (name, null);
+//                    value = (if (null == parser)
+//                    {
+//                        val parser = CHIM.LOOKUP.getOrElse (name, Unknown)
+//                        lookup.put (name, parser)
+//                        parser
+//                    }
+//                    else
+//                        parser).parse (context)
 
                     // return success unless there was unrecognized text before the match
                     // that wasn't at the start of the xml
@@ -571,6 +601,7 @@ object CHIM
     val CHUNK = 1024*1024*64
     val OVERREAD = 1024*32 // should be large enough that no RDF element is bigger than this
 
+    var ALL_CLASSES = false
     val LOOKUP = new HashMap[String, Parseable[Product]]
     val SUBSETTERS = new HashMap[String, CIMSubsetter[_]]
 
