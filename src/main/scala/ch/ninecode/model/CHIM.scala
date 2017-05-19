@@ -758,7 +758,7 @@ object CHIM
             println ("reading %g seconds".format (reading / 1e6))
             println ("parsing %g seconds".format (parsing / 1e6))
             println (result.size + " identified elements parsed")
-            val subset = result.filter (_._2.getClass() == classOf[Unknown])
+            val subset = result.values.filter (_.getClass() == classOf[Unknown])
             println (subset.size + " unknown elements")
         }
         else
