@@ -23,10 +23,11 @@ object CIMRDD
 
     def main (args:Array[String])
     {
-        val conf = new SparkConf ()
-        conf.setAppName ("CIMReader JDBC Server")
-        conf.setMaster ("spark://sandbox:7077")
-        val spark = new SparkContext (conf)
+        val configuration = new SparkConf ()
+        configuration.setAppName ("CIMReader JDBC Server")
+        configuration.setMaster ("spark://sandbox:7077")
+        configuration.set ("spark.ui.showConsoleProgress", "false")
+        val spark = new SparkContext (configuration)
 
         try
         {
