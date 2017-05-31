@@ -171,6 +171,7 @@ case class Scala (parser: ModelParser, pkg: Package)
         {
             val cls = classes (c._2)
             val name = valid_class_name (cls.name)
+            val identified_object = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
             def myattribute (attribute: Attribute): Boolean = attribute.name != "" // ToDo: why empty names?
             def myrole (role: Role): Boolean =
             {
@@ -305,6 +306,9 @@ case class Scala (parser: ModelParser, pkg: Package)
             s.append (""" =
             |    {
             |        """.stripMargin)
+            if (identified_object)
+                s.append ("""val base = sup (context)
+            |        """.stripMargin)
             s.append (name)
             s.append ("""(""")
             for (product <- members)
@@ -312,15 +316,41 @@ case class Scala (parser: ModelParser, pkg: Package)
                 if (product.name != "sup") s.append (""",""")
                 s.append ("""
                 |            """.stripMargin)
-                if (product.function != "")
+                if (identified_object)
                 {
-                    s.append (product.function)
-                    s.append (""" (""")
+                    if (product.name == "sup")
+                    {
+                        s.append ("base")
+                    }
+                    else if (product.name == "mRID")
+                    {
+                        s.append ("base.id")
+                    }
+                    else
+                    {
+                        if (product.function != "")
+                        {
+                            s.append (product.function)
+                            s.append (""" (""")
+                        }
+                        s.append (product.variable)
+                        s.append (""" (context)""")
+                        if (product.function != "")
+                            s.append (""", context)""")
+                    }
                 }
-                s.append (product.variable)
-                s.append (""" (context)""")
-                if (product.function != "")
-                    s.append (""", context)""")
+                else
+                {
+                    if (product.function != "")
+                    {
+                        s.append (product.function)
+                        s.append (""" (""")
+                    }
+                    s.append (product.variable)
+                    s.append (""" (context)""")
+                    if (product.function != "")
+                        s.append (""", context)""")
+                }
             }
 
             s.append ("""

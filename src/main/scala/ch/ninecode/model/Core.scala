@@ -898,11 +898,12 @@ extends
     val name = parse_element (element ("""IdentifiedObject.name"""))
     def parse (context: Context): IdentifiedObject =
     {
+        val base = sup (context)
         IdentifiedObject(
-            sup (context),
+            base,
             aliasName (context),
             description (context),
-            mRID (context),
+            base.id,
             name (context)
         )
     }
