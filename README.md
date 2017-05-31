@@ -199,20 +199,20 @@ edges.first
 
 All RDD are also exposed as temporary tables, so one can use SQL syntax to construct specific queries, such as this one that queries details from all switches and performs a join to location coordinates:
 
-    scala> val switches = spark.sql ("select s.sup.sup.sup.sup.mRID mRID, s.sup.sup.sup.sup.aliasName aliasName, s.sup.sup.sup.sup.name name, s.sup.sup.sup.sup.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.sup.sup.sup.Location = l.sup.mRID and s.sup.sup.sup.Location = p.Location and p.sequenceNumber = 0")
+    scala> val switches = spark.sql ("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0")
     ...
-    switches: org.apache.spark.sql.DataFrame = [mRID: string, aliasName: string, name: string, description: string, open: boolean, no: boolean, cs: string, xPosition: string, yPosition: string]
+    switches: org.apache.spark.sql.DataFrame = [mRID: string, aliasName: string ... 7 more fields]
     scala> switches.show (5)
     ...
-    +-----------+--------------------+--------------------+-----------+-----+-----+-------------+-------------+-------------+
-    |       mRID|           aliasName|                name|description| open|   no|           cs|    xPosition|    yPosition|
-    +-----------+--------------------+--------------------+-----------+-----+-----+-------------+-------------+-------------+
-    |    TEI8271|8136705:nis_el_in...|unbekannt ausfahrbar|     Switch|false|false|pseudo_wgs_84|8.78279448906|47.0431707353|
-    |  HAS6_fuse|                null|           unbekannt|  Fuse HAS6|false|false|       wgs_84|8.78362235047|47.0410546451|
-    |    TEI6817|2070980:nis_el_in...|               DIN00|     Switch|false|false|pseudo_wgs_84|8.78023909003|47.0411507663|
-    |HAS200_fuse|                null|           unbekannt|Fuse HAS200|false|false|       wgs_84|8.78427055434|47.0413288289|
-    |    TEI2218|2005426:nis_el_in...|             Trenner|     Switch|false|false|pseudo_wgs_84|8.78806552763|47.0431092357|
-    +-----------+--------------------+--------------------+-----------+-----+-----+-------------+-------------+-------------+
+    +--------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
+    |          mRID|           aliasName|                name|         description| open|normalOpen|CoordinateSystem|    xPosition|    yPosition|
+    +--------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
+    |HAS138129_fuse|                null|           Unbekannt|      Fuse HAS138129|false|     false|           wgs84|7.85439304935|46.9372460270|
+    |      SIG82182|256344575:nis_el_...|Gr00-DIN-WEB (NH-...|Fuse SIG82182 SIC...|false|     false|    pseudo_wgs84|7.86008298361|46.9309032530|
+    |HAS138498_fuse|                null|           Unbekannt|      Fuse HAS138498|false|     false|           wgs84|7.86026218589|46.9398699773|
+    |     SIG138698|287345674:nis_el_...|Gr00-DIN-HAG (NH-...|Fuse SIG138698 SI...|false|     false|    pseudo_wgs84|7.85995167290|46.9309037359|
+    |     TEI114089|243193592:nis_el_...|              H27_EK|              Switch|false|     false|    pseudo_wgs84|7.85584690510|46.9363110892|
+    +--------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
     only showing top 5 rows
 
 To expose the RDD as Hive SQL tables that are available externally, via JDBC for instance, a utility main() function is provided in CIMRDD:
@@ -515,7 +515,7 @@ terminals = sql ("select * from Terminal")
 rterminals = SparkR::collect (terminals, stringsAsFactors=FALSE)
 
 # example to read a three-way join of RDD
-switch = sql ("select s.sup.sup.sup.sup.mRID mRID, s.sup.sup.sup.sup.aliasName aliasName, s.sup.sup.sup.sup.name name, s.sup.sup.sup.sup.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.sup.sup.sup.Location = l.sup.mRID and s.sup.sup.sup.Location = p.Location and p.sequenceNumber = 0")
+switch = sql (("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0")
 rswitch = SparkR::collect (switch, stringsAsFactors=FALSE)
 ```
 
