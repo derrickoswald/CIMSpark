@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class BusNameMarker
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val priority: Int,
     val ReportingGroup: String
 )
@@ -63,7 +63,7 @@ extends
  */
 case class DCTopologicalNode
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val DCEquipmentContainer: String
 )
 extends
@@ -106,7 +106,7 @@ extends
  */
 case class TopologicalIsland
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val AngleRefTopologicalNode: String
 )
 extends
@@ -159,7 +159,7 @@ extends
  */
 case class TopologicalNode
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val pInjection: Double,
     val qInjection: Double,
     val AngleRefTopologicalIsland: String,

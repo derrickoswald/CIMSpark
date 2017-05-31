@@ -39,7 +39,7 @@ import ch.ninecode.cim.Context
  */
 case class ExtPhaseCodeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val none: String,
     val A: String,
     val AB: String,
@@ -170,7 +170,7 @@ extends
  */
 case class ExtUnitMultiplierKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val c: String,
     val d: String,
     val da: String,
@@ -382,7 +382,7 @@ extends
  */
 case class ExtUnitSymbolKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val aPerM: String,
     val b: String,
     val bm: String,

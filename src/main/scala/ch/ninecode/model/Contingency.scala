@@ -15,7 +15,7 @@ import ch.ninecode.cim.Context
  */
 case class Contingency
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val mustStudy: Boolean
 )
 extends
@@ -55,7 +55,7 @@ extends
  */
 case class ContingencyElement
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -95,7 +95,7 @@ extends
  */
 case class ContingencyEquipment
 (
-    override val sup: Element,
+    override val sup: ContingencyElement,
     val contingentStatus: String,
     val Equipment: String
 )
@@ -140,7 +140,7 @@ extends
  */
 case class ContingencyEquipmentStatusKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val inService: String,
     val outOfService: String
 )

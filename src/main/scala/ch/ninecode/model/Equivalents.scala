@@ -44,7 +44,7 @@ import ch.ninecode.cim.Context
  */
 case class EquivalentBranch
 (
-    override val sup: Element,
+    override val sup: EquivalentEquipment,
     val negativeR12: Double,
     val negativeR21: Double,
     val negativeX12: Double,
@@ -131,7 +131,7 @@ extends
  */
 case class EquivalentEquipment
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val EquivalentNetwork: String
 )
 extends
@@ -199,7 +199,7 @@ extends
  */
 case class EquivalentInjection
 (
-    override val sup: Element,
+    override val sup: EquivalentEquipment,
     val maxP: Double,
     val maxQ: Double,
     val minP: Double,
@@ -285,7 +285,7 @@ extends
  */
 case class EquivalentNetwork
 (
-    override val sup: Element
+    override val sup: ConnectivityNodeContainer
 )
 extends
     Element
@@ -324,7 +324,7 @@ extends
  */
 case class EquivalentShunt
 (
-    override val sup: Element,
+    override val sup: EquivalentEquipment,
     val b: Double,
     val g: Double
 )

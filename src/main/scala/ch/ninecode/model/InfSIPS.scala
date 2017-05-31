@@ -21,7 +21,7 @@ import ch.ninecode.cim.Context
  */
 case class AnalogToDigitalLogicKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val eq: String,
     val ge: String,
     val gt: String,
@@ -80,7 +80,7 @@ extends
  */
 case class CalculationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val div: String,
     val mul: String,
     val sqrt: String,
@@ -130,7 +130,7 @@ extends
  */
 case class Gate
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val kind: String
 )
 extends
@@ -179,7 +179,7 @@ extends
  */
 case class GateInputPin
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val aDLogicKind: String,
     val absoluteValue: Boolean,
     val duration: Double,
@@ -251,7 +251,7 @@ extends
  */
 case class GateLogicKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val and: String,
     val nand: String,
     val nor: String,
@@ -310,7 +310,7 @@ extends
  */
 case class MeasurementCalculator
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val kind: String
 )
 extends
@@ -356,7 +356,7 @@ extends
  */
 case class MeasurementCalculatorInput
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val absoluteValue: Boolean,
     val order: Int,
     val Measurement: String,
@@ -407,7 +407,7 @@ extends
  */
 case class PinBranchGroup
 (
-    override val sup: Element,
+    override val sup: GateInputPin,
     val kind: String,
     val BranchGroup: String
 )
@@ -452,7 +452,7 @@ extends
  */
 case class PinBranchGroupKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val activePower: String,
     val reactivePower: String
 )
@@ -497,7 +497,7 @@ extends
  */
 case class PinEquipment
 (
-    override val sup: Element,
+    override val sup: GateInputPin,
     val kind: String,
     val Equipment: String
 )
@@ -547,7 +547,7 @@ extends
  */
 case class PinEquipmentKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val activePowerLimit: String,
     val apparentPowerLimit: String,
     val connected: String,
@@ -606,7 +606,7 @@ extends
  */
 case class PinGate
 (
-    override val sup: Element,
+    override val sup: GateInputPin,
     val GateOutput: String
 )
 extends
@@ -648,7 +648,7 @@ extends
  */
 case class PinMeasurement
 (
-    override val sup: Element,
+    override val sup: GateInputPin,
     val Measurement: String,
     val MeasurementCalculator: String
 )
@@ -693,7 +693,7 @@ extends
  */
 case class PinTerminal
 (
-    override val sup: Element,
+    override val sup: GateInputPin,
     val kind: String,
     val Terminal: String
 )
@@ -740,7 +740,7 @@ extends
  */
 case class PinTerminalKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val activePower: String,
     val apparentPower: String,
     val reactivePower: String,
@@ -796,7 +796,7 @@ extends
  */
 case class ProtectiveAction
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val enabled: Boolean,
     val normalEnabled: Boolean,
     val GateComCondition: String,
@@ -862,7 +862,7 @@ extends
  */
 case class ProtectiveActionAdjustment
 (
-    override val sup: Element,
+    override val sup: ProtectiveAction,
     val byPercentage: Double,
     val byValue: Double,
     val kind: String,
@@ -927,7 +927,7 @@ extends
  */
 case class ProtectiveActionAdjustmentKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val byPercentage: String,
     val byValue: String,
     val measurement: String,
@@ -976,7 +976,7 @@ extends
  */
 case class ProtectiveActionCollection
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1015,7 +1015,7 @@ extends
  */
 case class ProtectiveActionEquipment
 (
-    override val sup: Element,
+    override val sup: ProtectiveAction,
     val inService: Boolean,
     val Equipment: String
 )
@@ -1062,7 +1062,7 @@ extends
  */
 case class ProtectiveActionRegulation
 (
-    override val sup: Element,
+    override val sup: ProtectiveAction,
     val isRegulating: Boolean,
     val targetValue: Double,
     val RegulatingControl: String
@@ -1113,7 +1113,7 @@ extends
  */
 case class RemedialActionScheme
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val armed: Boolean,
     val kind: String,
     val normalArmed: Boolean,
@@ -1164,7 +1164,7 @@ extends
  */
 case class RemedialActionSchemeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val rAP: String,
     val rAS: String
 )
@@ -1210,7 +1210,7 @@ extends
  */
 case class Stage
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val priority: Int,
     val RemedialActionScheme: String
 )
@@ -1263,7 +1263,7 @@ extends
  */
 case class StageTrigger
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val armed: Boolean,
     val normalArmed: Boolean,
     val priority: Int,
@@ -1326,7 +1326,7 @@ extends
  */
 case class TriggerCondition
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val GateTrigger: String,
     val RemedialActionScheme: String
 )

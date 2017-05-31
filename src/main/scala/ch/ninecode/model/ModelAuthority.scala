@@ -14,7 +14,7 @@ import ch.ninecode.cim.Context
  */
 case class ModelingAuthority
 (
-    override val sup: Element
+    override val sup: BasicElement
 )
 extends
     Element
@@ -53,7 +53,7 @@ extends
  */
 case class ModelingAuthoritySet
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ModelingAuthority: String
 )
 extends

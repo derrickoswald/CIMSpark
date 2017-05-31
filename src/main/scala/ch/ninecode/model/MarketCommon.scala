@@ -16,7 +16,7 @@ import ch.ninecode.cim.Context
  */
 case class MarketParticipant
 (
-    override val sup: Element,
+    override val sup: Organisation,
     val MarketDocument: List[String]
 )
 extends
@@ -61,7 +61,7 @@ extends
  */
 case class MarketRole
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val roleType: String,
     val status: String,
     val typ: String,
@@ -200,7 +200,7 @@ The Transmission Capacity Allocator manages, on behalf of the System Operators, 
  */
 case class MarketRoleKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val balancingAuthority: String,
     val competitiveRetailer: String,
     val complianceMonitor: String,
@@ -451,7 +451,7 @@ Initially in the RegisteredGenerator class.
  */
 case class RegisteredResource
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val commercialOpDate: String,
     val contingencyAvailFlag: String,
     val dispatchFlag: String,

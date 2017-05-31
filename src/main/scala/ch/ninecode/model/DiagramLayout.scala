@@ -22,7 +22,7 @@ import ch.ninecode.cim.Context
  */
 case class Diagram
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val orientation: String,
     val x1InitialView: Double,
     val x2InitialView: Double,
@@ -92,7 +92,7 @@ extends
  */
 case class DiagramObject
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val drawingOrder: Int,
     val isPolygon: Boolean,
     val offsetX: Double,
@@ -156,7 +156,7 @@ extends
  */
 case class DiagramObjectGluePoint
 (
-    override val sup: Element
+    override val sup: BasicElement
 )
 extends
     Element
@@ -200,7 +200,7 @@ extends
  */
 case class DiagramObjectPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val xPosition: Double,
     val yPosition: Double,
@@ -256,7 +256,7 @@ extends
  */
 case class DiagramObjectStyle
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -294,7 +294,7 @@ extends
  */
 case class DiagramStyle
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -335,7 +335,7 @@ extends
  */
 case class OrientationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val negative: String,
     val positive: String
 )
@@ -379,7 +379,7 @@ extends
  */
 case class TextDiagramObject
 (
-    override val sup: Element,
+    override val sup: DiagramObject,
     val text: String
 )
 extends
@@ -422,7 +422,7 @@ extends
  */
 case class VisibilityLayer
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val drawingOrder: Int
 )
 extends

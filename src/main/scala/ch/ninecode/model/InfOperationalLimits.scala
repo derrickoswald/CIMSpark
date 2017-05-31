@@ -15,7 +15,7 @@ import ch.ninecode.cim.Context
  */
 case class EnvironmentalDependentLimit
 (
-    override val sup: Element
+    override val sup: LimitDependency
 )
 extends
     Element
@@ -54,7 +54,7 @@ extends
  */
 case class EquipmentLimitSeriesComponent
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Equipment: String
 )
 extends
@@ -96,7 +96,7 @@ extends
  */
 case class LimitDependency
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Equipment: String
 )
 extends
@@ -138,7 +138,7 @@ extends
  */
 case class LimitScalingLimit
 (
-    override val sup: Element,
+    override val sup: LimitDependency,
     val limitScalingPercent: Double,
     val SourceOperationalLimit: String
 )
@@ -186,7 +186,7 @@ extends
  */
 case class OperatonalLimitTypeScaling
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val scalingPercent: Double,
     val SourceOperationalLimitType: String,
     val TargetOperationalLimit: String
@@ -228,7 +228,7 @@ extends
 
 case class ScheduledActivePowerLimitValue
 (
-    override val sup: Element,
+    override val sup: ScheduledLimitValue,
     val value: Double
 )
 extends
@@ -269,7 +269,7 @@ extends
  */
 case class ScheduledApparentPowerLimitValue
 (
-    override val sup: Element,
+    override val sup: ScheduledLimitValue,
     val value: Double
 )
 extends
@@ -310,7 +310,7 @@ extends
  */
 case class ScheduledCurrentLimitValue
 (
-    override val sup: Element,
+    override val sup: ScheduledLimitValue,
     val value: Double
 )
 extends
@@ -346,7 +346,7 @@ extends
 
 case class ScheduledLimitDependency
 (
-    override val sup: Element
+    override val sup: LimitDependency
 )
 extends
     Element
@@ -385,7 +385,7 @@ extends
  */
 case class ScheduledLimitValue
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Season: String
 )
 extends
@@ -426,7 +426,7 @@ extends
  */
 case class ScheduledVoltageLimitValue
 (
-    override val sup: Element,
+    override val sup: ScheduledLimitValue,
     val value: Double
 )
 extends
@@ -467,7 +467,7 @@ extends
  */
 case class SeriesEquipmentDependentLimit
 (
-    override val sup: Element
+    override val sup: LimitDependency
 )
 extends
     Element
@@ -506,7 +506,7 @@ extends
  */
 case class TemperatureDependentLimitPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val limitPercent: Double,
     val temperature: Double
 )
@@ -549,7 +549,7 @@ extends
  */
 case class TemperatureDependentLimitTable
 (
-    override val sup: Element
+    override val sup: EnvironmentalDependentLimit
 )
 extends
     Element
@@ -591,7 +591,7 @@ extends
  */
 case class TemperaturePolynomialLimit
 (
-    override val sup: Element,
+    override val sup: EnvironmentalDependentLimit,
     val coefficient0: Double,
     val coefficient1: Double,
     val coefficient2: Double,
@@ -643,7 +643,7 @@ extends
  */
 case class WeatherStation
 (
-    override val sup: Element
+    override val sup: PowerSystemResource
 )
 extends
     Element

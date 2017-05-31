@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class AceTariffType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val typ: String,
     val MarketDocument: List[String],
     val Unit: List[String]
@@ -67,7 +67,7 @@ extends
  */
 case class AttributeInstanceComponent
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val attribute: String,
     val attributeValue: String,
     val position: Int,
@@ -123,7 +123,7 @@ extends
  */
 case class Auction
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val allocationMode: String,
     val cancelled: String,
     val category: String,
@@ -188,7 +188,7 @@ extends
  */
 case class BidTimeSeries
 (
-    override val sup: Element,
+    override val sup: TimeSeries,
     val blockBid: String,
     val direction: String,
     val divisible: String,
@@ -245,7 +245,7 @@ extends
  */
 case class DateAndOrTime
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val date: String,
     val time: String
 )
@@ -288,7 +288,7 @@ extends
  */
 case class Domain
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -326,7 +326,7 @@ extends
  */
 case class FlowDirection
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val direction: String
 )
 extends
@@ -366,7 +366,7 @@ extends
  */
 case class MarketAgreement
 (
-    override val sup: Element
+    override val sup: MarketDocument
 )
 extends
     Element
@@ -407,7 +407,7 @@ extends
  */
 case class MarketDocument
 (
-    override val sup: Element,
+    override val sup: Document,
     val selfMarketDocument: List[String],
     val AttributeInstanceComponent: List[String],
     val Domain: List[String],
@@ -456,7 +456,7 @@ extends
  */
 case class MarketEvaluationPoint
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -495,7 +495,7 @@ extends
  */
 case class MarketObjectStatus
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val status: String,
     val TimeSeries: List[String]
 )
@@ -540,7 +540,7 @@ extends
  */
 case class MktPSRType
 (
-    override val sup: Element,
+    override val sup: PSRType,
     val psrType: String,
     val TimeSeries: List[String]
 )
@@ -586,7 +586,7 @@ extends
  */
 case class Period
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val resolution: String,
     val timeInterval: String,
     val Reason: List[String]
@@ -640,7 +640,7 @@ extends
  */
 case class Point
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val position: Int,
     val quality: String,
     val quantity: Double,
@@ -703,7 +703,7 @@ extends
  */
 case class Price
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val amount: Double,
     val category: String,
     val direction: String,
@@ -756,7 +756,7 @@ extends
  */
 case class Process
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val classificationType: String,
     val processType: String,
     val MarketDocument: List[String]
@@ -806,7 +806,7 @@ extends
  */
 case class Reason
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val code: String,
     val text: String,
     val MarketDocument: List[String],
@@ -869,7 +869,7 @@ extends
  */
 case class TimeSeries
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val businessType: String,
     val cancelledTS: String,
     val curveType: String,
@@ -950,7 +950,7 @@ extends
  */
 case class Unit_
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val name: String,
     val TimeSeries: List[String]
 )

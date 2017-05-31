@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class Description
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val description: String,
     val name: String,
     val version: Int
@@ -59,7 +59,7 @@ extends
 
 case class DescriptionID
 (
-    override val sup: Element,
+    override val sup: Description,
     val uri: String
 )
 extends
@@ -95,7 +95,7 @@ extends
 
 case class DifferenceModel
 (
-    override val sup: Element,
+    override val sup: Model,
     val forwardDifferences: String,
     val reverseDifferences: String
 )
@@ -134,7 +134,7 @@ extends
 
 case class FullModel
 (
-    override val sup: Element
+    override val sup: FullModelDocumentElement
 )
 extends
     Element
@@ -167,7 +167,7 @@ extends
 
 case class FullModelDocumentElement
 (
-    override val sup: Element
+    override val sup: BasicElement
 )
 extends
     Element
@@ -200,7 +200,7 @@ extends
 
 case class Model
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val created: String,
     val description: String,
     val modelingAuthoritySet: String,
@@ -257,7 +257,7 @@ extends
 
 case class ModelDescriptionCIMVersion
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val date: String,
     val version: String
 )
@@ -296,7 +296,7 @@ extends
 
 case class Statements
 (
-    override val sup: Element
+    override val sup: FullModelDocumentElement
 )
 extends
     Element
@@ -333,7 +333,7 @@ extends
  */
 case class URI
 (
-    override val sup: Element
+    override val sup: BasicElement
 )
 extends
     Element

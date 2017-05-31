@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class PFVArControllerType1Dynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val ExcitationSystemDynamics: String,
     val RemoteInputSignal: String,
     val VoltageAdjusterDynamics: String
@@ -77,7 +77,7 @@ true = overexcited
  */
 case class PFVArType1IEEEPFController
 (
-    override val sup: Element,
+    override val sup: PFVArControllerType1Dynamics,
     val ovex: Boolean,
     val tpfc: Double,
     val vitmin: Double,
@@ -147,7 +147,7 @@ extends
  */
 case class PFVArType1IEEEVArController
 (
-    override val sup: Element,
+    override val sup: PFVArControllerType1Dynamics,
     val tvarc: Double,
     val vvar: Double,
     val vvarcbw: Double,

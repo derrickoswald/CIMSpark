@@ -16,7 +16,7 @@ import ch.ninecode.cim.Context
  */
 case class EquipmentFault
 (
-    override val sup: Element,
+    override val sup: Fault,
     val Terminal: String
 )
 extends
@@ -64,7 +64,7 @@ extends
  */
 case class Fault
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val impedance: String,
     val kind: String,
     val phases: String,
@@ -119,7 +119,7 @@ extends
  */
 case class FaultCauseType
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -160,7 +160,7 @@ extends
  */
 case class FaultImpedance
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val rGround: Double,
     val rLineToLine: Double,
     val xGround: Double,
@@ -211,7 +211,7 @@ extends
  */
 case class LineFault
 (
-    override val sup: Element,
+    override val sup: Fault,
     val lengthFromTerminal1: Double,
     val ACLineSegment: String
 )
@@ -260,7 +260,7 @@ extends
  */
 case class PhaseConnectedFaultKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val lineToGround: String,
     val lineToLine: String,
     val lineToLineToGround: String

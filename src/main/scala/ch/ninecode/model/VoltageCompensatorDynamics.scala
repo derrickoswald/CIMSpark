@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class GenICompensationForGenJ
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val rcij: Double,
     val xcij: Double,
     val SynchronousMachineDynamics: String,
@@ -72,7 +72,7 @@ extends
  */
 case class VCompIEEEType1
 (
-    override val sup: Element,
+    override val sup: VoltageCompensatorDynamics,
     val rc: Double,
     val tr: Double,
     val xc: Double
@@ -120,7 +120,7 @@ extends
  */
 case class VCompIEEEType2
 (
-    override val sup: Element,
+    override val sup: VoltageCompensatorDynamics,
     val tr: Double
 )
 extends
@@ -162,7 +162,7 @@ extends
  */
 case class VoltageCompensatorDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val ExcitationSystemDynamics: String,
     val RemoteInputSignal: String
 )

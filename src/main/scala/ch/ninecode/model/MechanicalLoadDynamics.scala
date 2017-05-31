@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class MechLoad1
 (
-    override val sup: Element,
+    override val sup: MechanicalLoadDynamics,
     val a: Double,
     val b: Double,
     val d: Double,
@@ -69,7 +69,7 @@ extends
  */
 case class MechanicalLoadDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val AsynchronousMachineDynamics: String,
     val SynchronousMachineDynamics: String
 )

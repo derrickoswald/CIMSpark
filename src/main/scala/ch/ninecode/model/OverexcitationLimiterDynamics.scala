@@ -24,7 +24,7 @@ import ch.ninecode.cim.Context
  */
 case class OverexcLim2
 (
-    override val sup: Element,
+    override val sup: OverexcitationLimiterDynamics,
     val ifdlim: Double,
     val koi: Double,
     val voimax: Double,
@@ -86,7 +86,7 @@ extends
  */
 case class OverexcLimIEEE
 (
-    override val sup: Element,
+    override val sup: OverexcitationLimiterDynamics,
     val hyst: Double,
     val ifdlim: Double,
     val ifdmax: Double,
@@ -160,7 +160,7 @@ extends
  */
 case class OverexcLimX1
 (
-    override val sup: Element,
+    override val sup: OverexcitationLimiterDynamics,
     val efd1: Double,
     val efd2: Double,
     val efd3: Double,
@@ -249,7 +249,7 @@ true = IFD limiting
  */
 case class OverexcLimX2
 (
-    override val sup: Element,
+    override val sup: OverexcitationLimiterDynamics,
     val efd1: Double,
     val efd2: Double,
     val efd3: Double,
@@ -320,7 +320,7 @@ extends
  */
 case class OverexcitationLimiterDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val ExcitationSystemDynamics: String
 )
 extends

@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class AltGeneratingUnitMeas
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val priority: Int,
     val AnalogValue: String
 )
@@ -64,7 +64,7 @@ extends
  */
 case class AltTieMeas
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val priority: Int,
     val AnalogValue: String
 )
@@ -113,7 +113,7 @@ extends
  */
 case class ControlArea
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val netInterchange: Double,
     val pTolerance: Double,
     val typ: String,
@@ -165,7 +165,7 @@ extends
  */
 case class ControlAreaGeneratingUnit
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val GeneratingUnit: String
 )
 extends
@@ -208,7 +208,7 @@ extends
  */
 case class ControlAreaTypeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val AGC: String,
     val Forecast: String,
     val Interchange: String
@@ -257,7 +257,7 @@ extends
  */
 case class TieFlow
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val positiveFlowIn: Boolean,
     val Terminal: String
 )

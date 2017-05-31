@@ -14,7 +14,7 @@ import ch.ninecode.cim.Context
  */
 case class ReserveReq
 (
-    override val sup: Element,
+    override val sup: ResourceGroupReq,
     val MarketProduct: String,
     val ReserveReqCurve: String,
     val SensitivityPriceCurve: String
@@ -62,7 +62,7 @@ extends
  */
 case class ReserveReqCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val ReserveReq: String
 )
 extends
@@ -104,7 +104,7 @@ extends
  */
 case class ResourceGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String,
     val typ: String
 )
@@ -149,7 +149,7 @@ extends
  */
 case class ResourceGroupReq
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val RTOs: List[String],
     val ResourceGroup: String
 )
@@ -194,7 +194,7 @@ extends
  */
 case class SensitivityPriceCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val ReserveReq: String
 )
 extends

@@ -15,7 +15,7 @@ import ch.ninecode.cim.Context
  */
 case class ActivePowerLimit
 (
-    override val sup: Element,
+    override val sup: OperationalLimit,
     val value: Double
 )
 extends
@@ -56,7 +56,7 @@ extends
  */
 case class ApparentPowerLimit
 (
-    override val sup: Element,
+    override val sup: OperationalLimit,
     val value: Double
 )
 extends
@@ -103,7 +103,7 @@ extends
  */
 case class BranchGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val maximumActivePower: Double,
     val maximumReactivePower: Double,
     val minimumActivePower: Double,
@@ -161,7 +161,7 @@ extends
  */
 case class BranchGroupTerminal
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val positiveFlowIn: Boolean,
     val Terminal: String
 )
@@ -205,7 +205,7 @@ extends
  */
 case class CurrentLimit
 (
-    override val sup: Element,
+    override val sup: OperationalLimit,
     val value: Double
 )
 extends
@@ -249,7 +249,7 @@ extends
  */
 case class OperationalLimit
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val LimitDependencyModel: List[String],
     val OperationalLimitType: String
 )
@@ -297,7 +297,7 @@ extends
  */
 case class OperationalLimitDirectionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val absoluteValue: String,
     val high: String,
     val low: String
@@ -346,7 +346,7 @@ extends
  */
 case class OperationalLimitSet
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Equipment: String,
     val Terminal: String
 )
@@ -393,7 +393,7 @@ extends
  */
 case class OperationalLimitType
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val acceptableDuration: Double,
     val direction: String,
     val TargetOperationalLimitmTypeScaling: String
@@ -441,7 +441,7 @@ extends
  */
 case class VoltageLimit
 (
-    override val sup: Element,
+    override val sup: OperationalLimit,
     val value: Double
 )
 extends

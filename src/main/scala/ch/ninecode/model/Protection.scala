@@ -22,7 +22,7 @@ import ch.ninecode.cim.Context
  */
 case class CurrentRelay
 (
-    override val sup: Element,
+    override val sup: ProtectionEquipment,
     val currentLimit1: Double,
     val currentLimit2: Double,
     val currentLimit3: Double,
@@ -89,7 +89,7 @@ extends
  */
 case class ProtectionEquipment
 (
-    override val sup: Element,
+    override val sup: Equipment,
     val highLimit: Double,
     val lowLimit: Double,
     val powerDirectionFlag: Boolean,
@@ -153,7 +153,7 @@ extends
  */
 case class RecloseSequence
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val recloseDelay: Double,
     val recloseStep: Int,
     val ProtectedSwitch: String
@@ -203,7 +203,7 @@ extends
  */
 case class SynchrocheckRelay
 (
-    override val sup: Element,
+    override val sup: ProtectionEquipment,
     val maxAngleDiff: Double,
     val maxFreqDiff: Double,
     val maxVoltDiff: Double

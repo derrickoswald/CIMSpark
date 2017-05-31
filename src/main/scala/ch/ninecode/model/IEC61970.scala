@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class IEC61970CIMVersion
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val date: String,
     val version: String
 )

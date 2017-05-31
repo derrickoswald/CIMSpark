@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class AcceptanceTest
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val dateTime: String,
     val success: Boolean,
     val typ: String
@@ -91,7 +91,7 @@ extends
  */
 case class Asset
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val acceptanceTest: String,
     val critical: Boolean,
     val electronicAddress: String,
@@ -197,7 +197,7 @@ extends
  */
 case class AssetContainer
 (
-    override val sup: Element
+    override val sup: Asset
 )
 extends
     Element
@@ -239,7 +239,7 @@ extends
  */
 case class AssetFunction
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val configID: String,
     val firmwareID: String,
     val hardwareID: String,
@@ -295,7 +295,7 @@ extends
  */
 case class AssetInfo
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val AssetModel: String
 )
 extends
@@ -337,7 +337,7 @@ extends
  */
 case class AssetLocationHazard
 (
-    override val sup: Element,
+    override val sup: Hazard,
     val Locations: List[String]
 )
 extends
@@ -379,7 +379,7 @@ extends
  */
 case class AssetModel
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val AssetInfo: String
 )
 extends
@@ -427,7 +427,7 @@ extends
  */
 case class AssetModelUsageKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val customerSubstation: String,
     val distributionOverhead: String,
     val distributionUnderground: String,
@@ -488,7 +488,7 @@ extends
  */
 case class AssetOrganisationRole
 (
-    override val sup: Element
+    override val sup: OrganisationRole
 )
 extends
     Element
@@ -525,7 +525,7 @@ extends
  */
 case class AssetOwner
 (
-    override val sup: Element
+    override val sup: AssetOrganisationRole
 )
 extends
     Element
@@ -562,7 +562,7 @@ extends
  */
 case class AssetUser
 (
-    override val sup: Element
+    override val sup: AssetOrganisationRole
 )
 extends
     Element
@@ -599,7 +599,7 @@ extends
  */
 case class ComMedia
 (
-    override val sup: Element
+    override val sup: Asset
 )
 extends
     Element
@@ -640,7 +640,7 @@ extends
  */
 case class CorporateStandardKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val experimental: String,
     val other: String,
     val standard: String,
@@ -699,7 +699,7 @@ extends
  */
 case class LifecycleDate
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val installationDate: String,
     val manufacturedDate: String,
     val purchaseDate: String,
@@ -754,7 +754,7 @@ extends
  */
 case class Maintainer
 (
-    override val sup: Element
+    override val sup: AssetOrganisationRole
 )
 extends
     Element
@@ -791,7 +791,7 @@ extends
  */
 case class Manufacturer
 (
-    override val sup: Element
+    override val sup: OrganisationRole
 )
 extends
     Element
@@ -834,7 +834,7 @@ extends
  */
 case class Procedure
 (
-    override val sup: Element,
+    override val sup: Document,
     val instruction: String,
     val kind: String,
     val sequenceNumber: String,
@@ -894,7 +894,7 @@ extends
  */
 case class ProcedureDataSet
 (
-    override val sup: Element,
+    override val sup: Document,
     val completedDateTime: String,
     val MeasurementValues: List[String],
     val Procedure: String,
@@ -948,7 +948,7 @@ extends
  */
 case class ProcedureKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val diagnosis: String,
     val inspection: String,
     val maintenance: String,
@@ -1007,7 +1007,7 @@ extends
  */
 case class ProductAssetModel
 (
-    override val sup: Element,
+    override val sup: AssetModel,
     val corporateStandardKind: String,
     val modelNumber: String,
     val modelVersion: String,
@@ -1070,7 +1070,7 @@ extends
  */
 case class Seal
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val appliedDateTime: String,
     val condition: String,
     val kind: String,
@@ -1127,7 +1127,7 @@ extends
  */
 case class SealConditionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val broken: String,
     val locked: String,
     val missing: String,
@@ -1183,7 +1183,7 @@ extends
  */
 case class SealKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val lead: String,
     val lock1: String,
     val other: String,

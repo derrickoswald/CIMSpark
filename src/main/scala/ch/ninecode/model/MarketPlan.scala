@@ -15,7 +15,7 @@ import ch.ninecode.cim.Context
  */
 case class CRRMarket
 (
-    override val sup: Element,
+    override val sup: Market,
     val labelID: String
 )
 extends
@@ -59,7 +59,7 @@ extends
  */
 case class EnergyMarket
 (
-    override val sup: Element,
+    override val sup: Market,
     val MarketResults: String,
     val RTO: String,
     val RegisteredResources: List[String]
@@ -124,7 +124,7 @@ Month
  */
 case class Market
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val actualEnd: String,
     val actualStart: String,
     val dst: Boolean,
@@ -197,7 +197,7 @@ extends
  */
 case class MarketActualEvent
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val description: String,
     val eventID: String,
     val eventTime: String,
@@ -253,7 +253,7 @@ extends
  */
 case class MarketFactors
 (
-    override val sup: Element,
+    override val sup: Document,
     val intervalEndTime: String,
     val intervalStartTime: String,
     val Market: String,
@@ -307,7 +307,7 @@ extends
  */
 case class MarketPlan
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val description: String,
     val marketPlanID: String,
     val name: String,
@@ -369,7 +369,7 @@ NR (Non-Spinning Reserve)
  */
 case class MarketProduct
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val marketProductType: String,
     val rampInterval: Double,
     val Market: String,
@@ -436,7 +436,7 @@ extends
  */
 case class MarketRun
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val executionType: String,
     val marketApprovalTime: String,
     val marketApprovedStatus: Boolean,
@@ -516,7 +516,7 @@ extends
  */
 case class PlannedMarket
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val marketEndTime: String,
     val marketID: String,
     val marketStartTime: String,
@@ -574,7 +574,7 @@ extends
  */
 case class PlannedMarketEvent
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val description: String,
     val eventType: String,
     val plannedEventID: String,

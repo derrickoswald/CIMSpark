@@ -7,7 +7,7 @@ import ch.ninecode.cim.Context
 
 case class AccumulationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val boundedQuantity: String,
     val bulkQuantity: String,
     val continuousCumulative: String,
@@ -73,7 +73,7 @@ extends
 
 case class AggregateKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val average: String,
     val excess: String,
     val fifthMaximum: String,
@@ -151,7 +151,7 @@ extends
 
 case class CommodityKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val air: String,
     val carbon: String,
     val ch4: String,
@@ -262,7 +262,7 @@ extends
 
 case class FlowDirectionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val forward: String,
     val lagging: String,
     val leading: String,
@@ -358,7 +358,7 @@ extends
 
 case class MacroPeriodKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val billingPeriod: String,
     val daily: String,
     val monthly: String,
@@ -412,7 +412,7 @@ extends
 
 case class MeasurementKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val alarm: String,
     val apTitle: String,
     val apparentPowerFactor: String,
@@ -820,7 +820,7 @@ extends
 
 case class MeasuringPeriodKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val fifteenMinute: String,
     val fiveMinute: String,
     val fixedBlock10Min: String,

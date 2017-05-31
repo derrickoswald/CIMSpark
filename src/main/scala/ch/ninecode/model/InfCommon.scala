@@ -16,7 +16,7 @@ import ch.ninecode.cim.Context
  */
 case class Bank
 (
-    override val sup: Element,
+    override val sup: OrganisationRole,
     val bic: String,
     val iban: String
 )
@@ -62,7 +62,7 @@ extends
  */
 case class BankAccount
 (
-    override val sup: Element,
+    override val sup: Document,
     val accountNumber: String,
     val Bank: String,
     val ServiceSupplier: String
@@ -109,7 +109,7 @@ extends
  */
 case class BusinessPlan
 (
-    override val sup: Element
+    override val sup: Document
 )
 extends
     Element
@@ -149,7 +149,7 @@ extends
  */
 case class BusinessRole
 (
-    override val sup: Element,
+    override val sup: OrganisationRole,
     val status: String,
     val typ: String
 )
@@ -196,7 +196,7 @@ extends
  */
 case class Craft
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String,
     val typ: String,
     val ErpPersons: List[String]
@@ -242,7 +242,7 @@ extends
  */
 case class DocumentOrganisationRole
 (
-    override val sup: Element
+    override val sup: OrganisationRole
 )
 extends
     Element
@@ -284,7 +284,7 @@ extends
  */
 case class OldCrew
 (
-    override val sup: Element,
+    override val sup: Crew,
     val typ: String,
     val Assignments: List[String],
     val Locations: List[String],
@@ -343,7 +343,7 @@ extends
  */
 case class OldPerson
 (
-    override val sup: Element,
+    override val sup: Person,
     val status: String,
     val typ: String,
     val CustomerData: String,
@@ -400,7 +400,7 @@ extends
  */
 case class OrgOrgRole
 (
-    override val sup: Element,
+    override val sup: OrganisationRole,
     val clientID: String
 )
 extends
@@ -441,7 +441,7 @@ extends
  */
 case class PersonDocumentRole
 (
-    override val sup: Element,
+    override val sup: Role,
     val Person: String
 )
 extends
@@ -483,7 +483,7 @@ extends
  */
 case class PersonOrganisationRole
 (
-    override val sup: Element,
+    override val sup: OrganisationRole,
     val clientID: String,
     val ErpPerson: String
 )
@@ -529,7 +529,7 @@ extends
  */
 case class PersonPropertyRole
 (
-    override val sup: Element,
+    override val sup: Role,
     val LandProperty: String,
     val Person: String
 )
@@ -572,7 +572,7 @@ extends
  */
 case class PropertyOrganisationRole
 (
-    override val sup: Element
+    override val sup: OrganisationRole
 )
 extends
     Element
@@ -611,7 +611,7 @@ extends
  */
 case class Ratio
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominator: Double,
     val numerator: Double
 )
@@ -656,7 +656,7 @@ extends
  */
 case class Role
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String,
     val typ: String
 )
@@ -705,7 +705,7 @@ extends
  */
 case class Skill
 (
-    override val sup: Element,
+    override val sup: Document,
     val certificationPeriod: String,
     val effectiveDateTime: String,
     val level: String,
@@ -764,7 +764,7 @@ extends
  */
 case class SkillLevelKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val apprentice: String,
     val master: String,
     val other: String,

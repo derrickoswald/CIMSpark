@@ -7,7 +7,7 @@ import ch.ninecode.cim.Context
 
 case class ICCPCommandPoint
 (
-    override val sup: Element,
+    override val sup: ICCPControlPoint,
     val attr: String
 )
 extends
@@ -43,7 +43,7 @@ extends
 
 case class ICCPControlPoint
 (
-    override val sup: Element,
+    override val sup: ICCPPoint,
     val attr: String,
     val deviceClass: String
 )
@@ -82,7 +82,7 @@ extends
 
 case class ICCPControlPointDeviceClass
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val NONSBO: String,
     val SBO: String
 )
@@ -121,7 +121,7 @@ extends
 
 case class ICCPIndicationPoint
 (
-    override val sup: Element,
+    override val sup: ICCPPoint,
     val attr: String,
     val typ: String
 )
@@ -160,7 +160,7 @@ extends
 
 case class ICCPIndicationPointType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val DISCRETE: String,
     val REAL: String,
     val STATE: String
@@ -211,7 +211,7 @@ extends
  */
 case class ICCPInformationMessage
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val attr: List[String],
     val localReference: String,
     val scope: String
@@ -253,7 +253,7 @@ extends
 
 case class ICCPPScope
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ICC: String,
     val VCC: String
 )
@@ -299,7 +299,7 @@ extends
  */
 case class ICCPPoint
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val attr: String,
     val scope: String
 )
@@ -338,7 +338,7 @@ extends
 
 case class ICCPSetPoint
 (
-    override val sup: Element,
+    override val sup: ICCPControlPoint,
     val attr: String,
     val typ: String
 )
@@ -377,7 +377,7 @@ extends
 
 case class ICCPSetPointType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val DISCRETE: String,
     val REAL: String
 )
@@ -416,7 +416,7 @@ extends
 
 case class IPAccessPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val address: String,
     val addressType: String,
     val attr: String,
@@ -464,7 +464,7 @@ extends
 
 case class IPAddressType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplier: String,
     val unit: String,
     val value: String
@@ -506,7 +506,7 @@ extends
 
 case class ISOAPAddressing
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplier: String,
     val unit: String,
     val value: String
@@ -548,7 +548,7 @@ extends
 
 case class ISOUpperLayer
 (
-    override val sup: Element,
+    override val sup: TCPAcessPoint,
     val ap: String,
     val osiPsel: String,
     val osiSsel: String,
@@ -604,7 +604,7 @@ extends
  */
 case class TASE2BilateralTable
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val bilateralTableID: String,
     val calling: Boolean,
     val nameOfICC: String,
@@ -649,7 +649,7 @@ extends
 
 case class TCPAcessPoint
 (
-    override val sup: Element,
+    override val sup: IPAccessPoint,
     val keepAliveTime: Int,
     val port: Int
 )

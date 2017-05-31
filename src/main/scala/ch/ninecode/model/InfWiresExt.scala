@@ -13,7 +13,7 @@ import ch.ninecode.cim.Context
  */
 case class SVC
 (
-    override val sup: Element,
+    override val sup: ShuntCompensator,
     val capacitiveRating: Double,
     val inductiveRating: Double
 )
@@ -77,7 +77,7 @@ extends
  */
 case class ShuntCompensatorControl
 (
-    override val sup: Element,
+    override val sup: RegulatingControl,
     val branchDirect: Int,
     val cellSize: Double,
     val controlKind: String,

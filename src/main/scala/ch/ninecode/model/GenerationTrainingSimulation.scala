@@ -35,7 +35,7 @@ import ch.ninecode.cim.Context
  */
 case class BWRSteamSupply
 (
-    override val sup: Element,
+    override val sup: SteamSupply,
     val highPowerLimit: Double,
     val inCoreThermalTC: Double,
     val integralGain: Double,
@@ -137,7 +137,7 @@ extends
  */
 case class BoilerControlMode
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val coordinated: String,
     val following: String
 )
@@ -181,7 +181,7 @@ extends
  */
 case class CTTempActivePowerCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val CombustionTurbine: String
 )
 extends
@@ -235,7 +235,7 @@ extends
  */
 case class CombustionTurbine
 (
-    override val sup: Element,
+    override val sup: PrimeMover,
     val ambientTemp: Double,
     val auxPowerVersusFrequency: Double,
     val auxPowerVersusVoltage: Double,
@@ -306,7 +306,7 @@ extends
  */
 case class DrumBoiler
 (
-    override val sup: Element,
+    override val sup: FossilSteamSupply,
     val drumBoilerRating: Double
 )
 extends
@@ -374,7 +374,7 @@ extends
  */
 case class FossilSteamSupply
 (
-    override val sup: Element,
+    override val sup: SteamSupply,
     val auxPowerVersusFrequency: Double,
     val auxPowerVersusVoltage: Double,
     val boilerControlMode: String,
@@ -490,7 +490,7 @@ extends
  */
 case class HeatRecoveryBoiler
 (
-    override val sup: Element,
+    override val sup: FossilSteamSupply,
     val steamSupplyRating2: Double
 )
 extends
@@ -542,7 +542,7 @@ extends
  */
 case class HydroTurbine
 (
-    override val sup: Element,
+    override val sup: PrimeMover,
     val gateRateLimit: Double,
     val gateUpperLimit: Double,
     val maxHeadMaxP: Double,
@@ -632,7 +632,7 @@ extends
  */
 case class PWRSteamSupply
 (
-    override val sup: Element,
+    override val sup: SteamSupply,
     val coldLegFBLagTC: Double,
     val coldLegFBLeadTC1: Double,
     val coldLegFBLeadTC2: Double,
@@ -731,7 +731,7 @@ extends
  */
 case class PrimeMover
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val primeMoverRating: Double,
     val SynchronousMachines: List[String]
 )
@@ -776,7 +776,7 @@ extends
  */
 case class SteamSupply
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val steamSupplyRating: Double,
     val SteamTurbines: List[String]
 )
@@ -831,7 +831,7 @@ extends
  */
 case class SteamTurbine
 (
-    override val sup: Element,
+    override val sup: PrimeMover,
     val crossoverTC: Double,
     val reheater1TC: Double,
     val reheater2TC: Double,
@@ -904,7 +904,7 @@ extends
  */
 case class Subcritical
 (
-    override val sup: Element
+    override val sup: FossilSteamSupply
 )
 extends
     Element
@@ -941,7 +941,7 @@ extends
  */
 case class Supercritical
 (
-    override val sup: Element
+    override val sup: FossilSteamSupply
 )
 extends
     Element
@@ -981,7 +981,7 @@ extends
  */
 case class TurbineType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val francis: String,
     val kaplan: String,
     val pelton: String

@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class BaseWork
 (
-    override val sup: Element,
+    override val sup: Document,
     val kind: String,
     val priority: String,
     val statusKind: String,
@@ -71,7 +71,7 @@ extends
  */
 case class MaintenanceLocation
 (
-    override val sup: Element,
+    override val sup: WorkLocation,
     val block: String,
     val lot: String,
     val nearestIntersection: String,
@@ -124,7 +124,7 @@ extends
  */
 case class MaterialItem
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val quantity: String,
     val TypeMaterial: String,
     val WorkTask: String
@@ -171,7 +171,7 @@ extends
  */
 case class Tool
 (
-    override val sup: Element,
+    override val sup: WorkAsset,
     val lastCalibrationDate: String
 )
 extends
@@ -215,7 +215,7 @@ extends
  */
 case class Vehicle
 (
-    override val sup: Element,
+    override val sup: WorkAsset,
     val odometerReadDateTime: String,
     val odometerReading: Double,
     val usageKind: String
@@ -265,7 +265,7 @@ extends
  */
 case class VehicleUsageKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val contractor: String,
     val crew: String,
     val other: String,
@@ -319,7 +319,7 @@ extends
  */
 case class Work
 (
-    override val sup: Element,
+    override val sup: BaseWork,
     val requestDateTime: String,
     val BusinessCase: String,
     val ErpProjectAccounting: String,
@@ -372,7 +372,7 @@ extends
  */
 case class WorkAsset
 (
-    override val sup: Element,
+    override val sup: Asset,
     val Crew: String
 )
 extends
@@ -422,7 +422,7 @@ extends
  */
 case class WorkKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val connect: String,
     val construction: String,
     val disconnect: String,
@@ -490,7 +490,7 @@ extends
  */
 case class WorkLocation
 (
-    override val sup: Element,
+    override val sup: Location,
     val OneCallRequest: String
 )
 extends
@@ -542,7 +542,7 @@ extends
  */
 case class WorkStatusKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val approved: String,
     val cancelled: String,
     val closed: String,
@@ -611,7 +611,7 @@ extends
 
 case class WorkTask
 (
-    override val sup: Element,
+    override val sup: BaseWork,
     val crewETA: String,
     val instruction: String,
     val schedOverride: String,
@@ -671,7 +671,7 @@ extends
 
 case class WorkTaskKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val exchange: String,
     val install: String,
     val investigate: String,
@@ -722,7 +722,7 @@ extends
  */
 case class WorkTimeSchedule
 (
-    override val sup: Element,
+    override val sup: TimeSchedule,
     val kind: String,
     val BaseWork: String
 )
@@ -770,7 +770,7 @@ extends
  */
 case class WorkTimeScheduleKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val actual: String,
     val earliest: String,
     val estimate: String,

@@ -16,7 +16,7 @@ import ch.ninecode.cim.Context
  */
 case class ConformLoad
 (
-    override val sup: Element,
+    override val sup: EnergyConsumer,
     val LoadGroup: String
 )
 extends
@@ -56,7 +56,7 @@ extends
  */
 case class ConformLoadGroup
 (
-    override val sup: Element
+    override val sup: LoadGroup
 )
 extends
     Element
@@ -95,7 +95,7 @@ extends
  */
 case class ConformLoadSchedule
 (
-    override val sup: Element,
+    override val sup: SeasonDayTypeSchedule,
     val ConformLoadGroup: String
 )
 extends
@@ -136,7 +136,7 @@ extends
  */
 case class DayType
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -175,7 +175,7 @@ extends
  */
 case class EnergyArea
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val ControlArea: String
 )
 extends
@@ -215,7 +215,7 @@ extends
  */
 case class LoadArea
 (
-    override val sup: Element
+    override val sup: EnergyArea
 )
 extends
     Element
@@ -253,7 +253,7 @@ extends
  */
 case class LoadGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val SubLoadArea: String
 )
 extends
@@ -306,7 +306,7 @@ extends
  */
 case class LoadResponseCharacteristic
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val exponentModel: Boolean,
     val pConstantCurrent: Double,
     val pConstantImpedance: Double,
@@ -377,7 +377,7 @@ extends
  */
 case class NonConformLoad
 (
-    override val sup: Element,
+    override val sup: EnergyConsumer,
     val LoadGroup: String
 )
 extends
@@ -417,7 +417,7 @@ extends
  */
 case class NonConformLoadGroup
 (
-    override val sup: Element
+    override val sup: LoadGroup
 )
 extends
     Element
@@ -455,7 +455,7 @@ extends
  */
 case class NonConformLoadSchedule
 (
-    override val sup: Element,
+    override val sup: SeasonDayTypeSchedule,
     val NonConformLoadGroup: String
 )
 extends
@@ -497,7 +497,7 @@ extends
  */
 case class PowerCutZone
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val cutLevel1: Double,
     val cutLevel2: Double
 )
@@ -542,7 +542,7 @@ extends
  */
 case class Season
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endDate: String,
     val startDate: String
 )
@@ -587,7 +587,7 @@ extends
  */
 case class SeasonDayTypeSchedule
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val DayType: String,
     val Season: String
 )
@@ -630,7 +630,7 @@ extends
  */
 case class StationSupply
 (
-    override val sup: Element
+    override val sup: EnergyConsumer
 )
 extends
     Element
@@ -668,7 +668,7 @@ extends
  */
 case class SubLoadArea
 (
-    override val sup: Element,
+    override val sup: EnergyArea,
     val LoadArea: String
 )
 extends

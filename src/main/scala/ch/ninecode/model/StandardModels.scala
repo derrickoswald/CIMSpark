@@ -18,7 +18,7 @@ true = use of function block is enabled
  */
 case class DynamicsFunctionBlock
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val enabled: Boolean
 )
 extends
@@ -70,7 +70,7 @@ extends
  */
 case class RotatingMachineDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val damping: Double,
     val inertia: Double,
     val saturationFactor: Double,

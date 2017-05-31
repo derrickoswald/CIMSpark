@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class FTR
 (
-    override val sup: Element,
+    override val sup: Agreement,
     val action: String,
     val baseEnergy: Double,
     val ftrType: String,
@@ -84,7 +84,7 @@ extends
  */
 case class ViolationLimit
 (
-    override val sup: Element,
+    override val sup: Limit,
     val enforced: Boolean,
     val Flowgate: String,
     val MktMeasurement: String,

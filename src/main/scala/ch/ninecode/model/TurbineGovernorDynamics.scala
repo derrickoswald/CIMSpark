@@ -22,7 +22,7 @@ import ch.ninecode.cim.Context
  */
 case class DroopSignalFeedbackKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val electricalPower: String,
     val fuelValveStroke: String,
     val governorOutput: String,
@@ -74,7 +74,7 @@ extends
  */
 case class FrancisGovernorControlKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val electromechanicalElectrohydraulic: String,
     val mechanicHydraulicTransientFeedback: String,
     val mechanicHydrolicTachoAccelerator: String
@@ -193,7 +193,7 @@ false = fuel control system keeps fuel flow independent of engine speed.
  */
 case class GovCT1
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val aset: Double,
     val db: Double,
     val dm: Double,
@@ -450,7 +450,7 @@ false = fuel control system keeps fuel flow independent of engine speed.
  */
 case class GovCT2
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val aset: Double,
     val db: Double,
     val dm: Double,
@@ -674,7 +674,7 @@ extends
  */
 case class GovGAST
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val at: Double,
     val dturb: Double,
     val kt: Double,
@@ -809,7 +809,7 @@ extends
  */
 case class GovGAST1
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val a: Double,
     val b: Double,
     val db1: Double,
@@ -989,7 +989,7 @@ true = Droop
  */
 case class GovGAST2
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val a: Double,
     val af1: Double,
     val af2: Double,
@@ -1164,7 +1164,7 @@ extends
  */
 case class GovGAST3
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val bca: Double,
     val bp: Double,
     val dtc: Double,
@@ -1286,7 +1286,7 @@ extends
  */
 case class GovGAST4
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val bp: Double,
     val ktm: Double,
     val mnef: Double,
@@ -1393,7 +1393,7 @@ extends
  */
 case class GovGASTWD
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val a: Double,
     val af1: Double,
     val af2: Double,
@@ -1557,7 +1557,7 @@ extends
  */
 case class GovHydro1
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val at: Double,
     val dturb: Double,
     val gmax: Double,
@@ -1694,7 +1694,7 @@ extends
  */
 case class GovHydro2
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val aturb: Double,
     val bturb: Double,
     val db1: Double,
@@ -1893,7 +1893,7 @@ false = double derivative control is active.
  */
 case class GovHydro3
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val at: Double,
     val db1: Double,
     val db2: Double,
@@ -2115,7 +2115,7 @@ extends
  */
 case class GovHydro4
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val at: Double,
     val bgv0: Double,
     val bgv1: Double,
@@ -2338,7 +2338,7 @@ false = feedback is received from CV.
  */
 case class GovHydroDD
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val aturb: Double,
     val bturb: Double,
     val db1: Double,
@@ -2537,7 +2537,7 @@ false = inhibit of water tunnel and surge chamber simulation.
  */
 case class GovHydroFrancis
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val am: Double,
     val av0: Double,
     val av1: Double,
@@ -2668,7 +2668,7 @@ extends
  */
 case class GovHydroIEEE0
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val k: Double,
     val mwbase: Double,
     val pmax: Double,
@@ -2782,7 +2782,7 @@ extends
  */
 case class GovHydroIEEE2
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val aturb: Double,
     val bturb: Double,
     val gv1: Double,
@@ -2965,7 +2965,7 @@ false = feedback is received from CV.
  */
 case class GovHydroPID
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val aturb: Double,
     val bturb: Double,
     val db1: Double,
@@ -3147,7 +3147,7 @@ true = use gate position feedback signal
  */
 case class GovHydroPID2
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val atw: Double,
     val d: Double,
     val feedbackSignal: Boolean,
@@ -3313,7 +3313,7 @@ false = inhibit of water tunnel and surge chamber simulation.
  */
 case class GovHydroPelton
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val av0: Double,
     val av1: Double,
     val bp: Double,
@@ -3520,7 +3520,7 @@ false = feedback is received from CV.
  */
 case class GovHydroR
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val at: Double,
     val db1: Double,
     val db2: Double,
@@ -3769,7 +3769,7 @@ false = Electrical Power (if R-Perm-Gate=0 and R-Perm-Pe=droop) or
  */
 case class GovHydroWEH
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val db: Double,
     val dicn: Double,
     val dpv: Double,
@@ -3991,7 +3991,7 @@ extends
  */
 case class GovHydroWPID
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val d: Double,
     val gatmax: Double,
     val gatmin: Double,
@@ -4110,7 +4110,7 @@ extends
  */
 case class GovSteam0
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val dt: Double,
     val mwbase: Double,
     val r: Double,
@@ -4255,7 +4255,7 @@ false = nonlinear valve characteristic is not used.
  */
 case class GovSteam1
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val db1: Double,
     val db2: Double,
     val eps: Double,
@@ -4425,7 +4425,7 @@ extends
  */
 case class GovSteam2
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val dbf: Double,
     val k: Double,
     val mnef: Double,
@@ -4520,7 +4520,7 @@ extends
  */
 case class GovSteamCC
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val dhp: Double,
     val dlp: Double,
     val fhp: Double,
@@ -4678,7 +4678,7 @@ extends
  */
 case class GovSteamEU
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val chc: Double,
     val cho: Double,
     val cic: Double,
@@ -4834,7 +4834,7 @@ extends
  */
 case class GovSteamFV2
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val dt: Double,
     val k: Double,
     val mwbase: Double,
@@ -4948,7 +4948,7 @@ extends
  */
 case class GovSteamFV3
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val k: Double,
     val k1: Double,
     val k2: Double,
@@ -5144,7 +5144,7 @@ extends
  */
 case class GovSteamFV4
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val cpsmn: Double,
     val cpsmx: Double,
     val crmn: Double,
@@ -5376,7 +5376,7 @@ extends
  */
 case class GovSteamIEEE1
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val k: Double,
     val k1: Double,
     val k2: Double,
@@ -5489,7 +5489,7 @@ extends
  */
 case class GovSteamSGO
 (
-    override val sup: Element,
+    override val sup: TurbineGovernorDynamics,
     val k1: Double,
     val k2: Double,
     val k3: Double,
@@ -5564,7 +5564,7 @@ extends
  */
 case class TurbineGovernorDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val AsynchronousMachineDynamics: String,
     val TurbineLoadControllerDynamics: String
 )

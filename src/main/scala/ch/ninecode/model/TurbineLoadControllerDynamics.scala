@@ -45,7 +45,7 @@ false = load reference governor.
  */
 case class TurbLCFB1
 (
-    override val sup: Element,
+    override val sup: TurbineLoadControllerDynamics,
     val db: Double,
     val emax: Double,
     val fb: Double,
@@ -119,7 +119,7 @@ extends
  */
 case class TurbineLoadControllerDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val TurbineGovernorDynamics: String
 )
 extends

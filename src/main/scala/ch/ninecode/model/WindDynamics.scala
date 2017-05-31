@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class WindAeroConstIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val WindGenTurbineType1aIEC: String
 )
 extends
@@ -63,7 +63,7 @@ extends
  */
 case class WindAeroOneDimIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val ka: Double,
     val thetaomega: Double,
     val WindTurbineType3IEC: String
@@ -125,7 +125,7 @@ extends
  */
 case class WindAeroTwoDimIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dpomega: Double,
     val dptheta: Double,
     val dpv1: Double,
@@ -206,7 +206,7 @@ extends
  */
 case class WindContCurrLimIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val imax: Double,
     val imaxdip: Double,
     val kpqu: Double,
@@ -317,7 +317,7 @@ false = 0: reactive power control.
  */
 case class WindContPType3IEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dpmax: Double,
     val dprefmax: Double,
     val dprefmin: Double,
@@ -434,7 +434,7 @@ extends
  */
 case class WindContPType4aIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dpmaxp4a: Double,
     val tpordp4a: Double,
     val tufiltp4a: Double,
@@ -493,7 +493,7 @@ extends
  */
 case class WindContPType4bIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dpmaxp4b: Double,
     val tpaero: Double,
     val tpordp4b: Double,
@@ -567,7 +567,7 @@ extends
  */
 case class WindContPitchAngleIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dthetamax: Double,
     val dthetamin: Double,
     val kic: Double,
@@ -685,7 +685,7 @@ extends
  */
 case class WindContQIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val iqh1: Double,
     val iqmax: Double,
     val iqmin: Double,
@@ -800,7 +800,7 @@ extends
  */
 case class WindContQLimIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val qmax: Double,
     val qmin: Double,
     val WindTurbineType3or4IEC: String
@@ -852,7 +852,7 @@ extends
  */
 case class WindContQPQULimIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val tpfiltql: Double,
     val tufiltql: Double,
     val WindTurbineType3or4IEC: String
@@ -916,7 +916,7 @@ extends
  */
 case class WindContRotorRIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val kirr: Double,
     val komegafilt: Double,
     val kpfilt: Double,
@@ -993,7 +993,7 @@ extends
  */
 case class WindDynamicsLookupTable
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val input: Double,
     val lookupTableFunctionType: String,
     val output: Double,
@@ -1071,7 +1071,7 @@ extends
  */
 case class WindGenTurbineType1aIEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType1or2IEC,
     val WindAeroConstIEC: String
 )
 extends
@@ -1113,7 +1113,7 @@ extends
  */
 case class WindGenTurbineType1bIEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType1or2IEC,
     val WindPitchContPowerIEC: String
 )
 extends
@@ -1156,7 +1156,7 @@ extends
  */
 case class WindGenTurbineType2IEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType1or2IEC,
     val WindContRotorRIEC: String,
     val WindPitchContPowerIEC: String
 )
@@ -1206,7 +1206,7 @@ extends
  */
 case class WindGenType3IEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dipmax: Double,
     val diqmax: Double,
     val xs: Double,
@@ -1261,7 +1261,7 @@ extends
  */
 case class WindGenType3aIEC
 (
-    override val sup: Element,
+    override val sup: WindGenType3IEC,
     val kpc: Double,
     val tic: Double,
     val WindTurbineType4IEC: String
@@ -1318,7 +1318,7 @@ extends
  */
 case class WindGenType3bIEC
 (
-    override val sup: Element,
+    override val sup: WindGenType3IEC,
     val mwtcwp: Boolean,
     val tg: Double,
     val two: Double
@@ -1375,7 +1375,7 @@ extends
  */
 case class WindGenType4IEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dipmax: Double,
     val diqmax: Double,
     val diqmin: Double,
@@ -1462,7 +1462,7 @@ extends
  */
 case class WindLookupTableFunctionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ipmax: String,
     val iqmax: String,
     val omegap: String,
@@ -1559,7 +1559,7 @@ extends
  */
 case class WindMechIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val cdrt: Double,
     val hgen: Double,
     val hwtr: Double,
@@ -1634,7 +1634,7 @@ extends
  */
 case class WindPitchContPowerIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dpmax: Double,
     val dpmin: Double,
     val pmin: Double,
@@ -1699,7 +1699,7 @@ extends
  */
 case class WindPlantDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val RemoteInputSignal: String
 )
 extends
@@ -1771,7 +1771,7 @@ extends
  */
 case class WindPlantFreqPcontrolIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dprefmax: Double,
     val dprefmin: Double,
     val dpwprefmax: Double,
@@ -1859,7 +1859,7 @@ extends
  */
 case class WindPlantIEC
 (
-    override val sup: Element,
+    override val sup: WindPlantDynamics,
     val WindPlantFreqPcontrolIEC: String,
     val WindPlantReactiveControlIEC: String
 )
@@ -1906,7 +1906,7 @@ extends
  */
 case class WindPlantQcontrolModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val powerFactor: String,
     val reactivePower: String,
     val uqStatic: String,
@@ -1993,7 +1993,7 @@ extends
  */
 case class WindPlantReactiveControlIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dxrefmax: Double,
     val dxrefmin: Double,
     val kiwpx: Double,
@@ -2104,7 +2104,7 @@ extends
  */
 case class WindProtectionIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dfimax: Double,
     val fover: Double,
     val funder: Double,
@@ -2173,7 +2173,7 @@ extends
  */
 case class WindQcontrolModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val openLoopReactivePower: String,
     val openLooppowerFactor: String,
     val powerFactor: String,
@@ -2233,7 +2233,7 @@ extends
  */
 case class WindRefFrameRotIEC
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val tpll: Double,
     val upll1: Double,
     val upll2: Double,
@@ -2284,7 +2284,7 @@ extends
  */
 case class WindTurbineType1or2Dynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val AsynchronousMachineDynamics: String,
     val RemoteInputSignal: String
 )
@@ -2330,7 +2330,7 @@ extends
  */
 case class WindTurbineType1or2IEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType1or2Dynamics,
     val WindMechIEC: String,
     val WindProtectionIEC: String
 )
@@ -2379,7 +2379,7 @@ extends
  */
 case class WindTurbineType3IEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType3or4IEC,
     val WindAeroOneDimIEC: String,
     val WindAeroTwoDimIEC: String,
     val WindContPType3IEC: String,
@@ -2437,7 +2437,7 @@ extends
  */
 case class WindTurbineType3or4Dynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val EnergySource: String,
     val RemoteInputSignal: String,
     val WindPlantDynamics: String
@@ -2489,7 +2489,7 @@ extends
  */
 case class WindTurbineType3or4IEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType3or4Dynamics,
     val WIndContQIEC: String,
     val WindContCurrLimIEC: String,
     val WindContQLimIEC: String,
@@ -2545,7 +2545,7 @@ extends
  */
 case class WindTurbineType4IEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType3or4IEC,
     val WindGenType3aIEC: String
 )
 extends
@@ -2588,7 +2588,7 @@ extends
  */
 case class WindTurbineType4aIEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType4IEC,
     val WindContPType4aIEC: String,
     val WindGenType4IEC: String
 )
@@ -2635,7 +2635,7 @@ extends
  */
 case class WindTurbineType4bIEC
 (
-    override val sup: Element,
+    override val sup: WindTurbineType4IEC,
     val WindContPType4bIEC: String,
     val WindGenType4IEC: String,
     val WindMechIEC: String
@@ -2684,7 +2684,7 @@ extends
  */
 case class WindUVRTQcontrolModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val mode0: String,
     val mode1: String,
     val mode2: String

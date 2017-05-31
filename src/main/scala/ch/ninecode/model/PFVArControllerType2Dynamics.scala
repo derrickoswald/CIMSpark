@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class PFVArControllerType2Dynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val ExcitationSystemDynamics: String
 )
 extends
@@ -68,7 +68,7 @@ true = control mode for reactive power
  */
 case class PFVArType2Common1
 (
-    override val sup: Element,
+    override val sup: PFVArControllerType2Dynamics,
     val j: Boolean,
     val ki: Double,
     val kp: Double,
@@ -133,7 +133,7 @@ true = 1 (not in the overexcitation or underexcitation state, integral action is
  */
 case class PFVArType2IEEEPFController
 (
-    override val sup: Element,
+    override val sup: PFVArControllerType2Dynamics,
     val exlon: Boolean,
     val ki: Double,
     val kp: Double,
@@ -201,7 +201,7 @@ true = 1 (not in the overexcitation or underexcitation state, integral action is
  */
 case class PFVArType2IEEEVArController
 (
-    override val sup: Element,
+    override val sup: PFVArControllerType2Dynamics,
     val exlon: Boolean,
     val ki: Double,
     val kp: Double,

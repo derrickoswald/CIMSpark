@@ -16,7 +16,7 @@ import ch.ninecode.cim.Context
  */
 case class ComplianceEvent
 (
-    override val sup: Element,
+    override val sup: ActivityRecord,
     val deadline: String
 )
 extends
@@ -70,7 +70,7 @@ extends
  */
 case class CustomerBillingInfo
 (
-    override val sup: Element,
+    override val sup: Document,
     val billingDate: String,
     val dueDate: String,
     val kind: String,
@@ -141,7 +141,7 @@ extends
  */
 case class CustomerBillingKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val consolidatedEss: String,
     val consolidatedUdc: String,
     val other: String,
@@ -191,7 +191,7 @@ extends
  */
 case class ExternalCustomerAgreement
 (
-    override val sup: Element
+    override val sup: Agreement
 )
 extends
     Element
@@ -237,7 +237,7 @@ extends
  */
 case class PowerQualityPricing
 (
-    override val sup: Element,
+    override val sup: Document,
     val emergencyHighVoltLimit: Double,
     val emergencyLowVoltLimit: Double,
     val normalHighVoltLimit: Double,
@@ -306,7 +306,7 @@ extends
  */
 case class ServiceGuarantee
 (
-    override val sup: Element,
+    override val sup: Document,
     val applicationPeriod: String,
     val automaticPay: Boolean,
     val payAmount: Double,
@@ -357,7 +357,7 @@ extends
  */
 case class StandardIndustryCode
 (
-    override val sup: Element,
+    override val sup: Document,
     val code: String
 )
 extends
@@ -397,7 +397,7 @@ extends
  */
 case class SubscribePowerCurve
 (
-    override val sup: Element
+    override val sup: Curve
 )
 extends
     Element
@@ -444,7 +444,7 @@ extends
  */
 case class WorkBillingInfo
 (
-    override val sup: Element,
+    override val sup: Document,
     val costEstimate: Double,
     val deposit: Double,
     val discount: Double,

@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class AdjacentCASet
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endEffectiveDate: String,
     val lossPercentage_1: Double,
     val startEffectiveDate: String,
@@ -80,7 +80,7 @@ extends
  */
 case class AggregateNode
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val anodeType: String,
     val endEffectiveDate: String,
     val qualifASOrder: Int,
@@ -147,7 +147,7 @@ extends
  */
 case class AggregatedPnode
 (
-    override val sup: Element,
+    override val sup: Pnode,
     val apnodeType: String,
     val participationCategory: String,
     val PnodeDistributionFactor: String,
@@ -203,7 +203,7 @@ extends
  */
 case class BidPriceCap
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val bidCeiling: Double,
     val bidCeilingAS: Double,
     val bidFloor: Double,
@@ -268,7 +268,7 @@ extends
  */
 case class CnodeDistributionFactor
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val factor: Double,
     val podLossFactor: Double,
     val AggregateNode: String,
@@ -328,7 +328,7 @@ extends
  */
 case class CombinedCycleConfiguration
 (
-    override val sup: Element,
+    override val sup: RegisteredGenerator,
     val primaryConfiguration: Boolean,
     val CombinedCycleLogicalConfiguration: String,
     val ShutdownFlag: Boolean,
@@ -381,7 +381,7 @@ extends
  */
 case class CombinedCycleConfigurationMember
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val primary: Boolean,
     val steam: Boolean,
     val CombinedCycleConfiguration: String,
@@ -432,7 +432,7 @@ extends
  */
 case class CombinedCycleLogicalConfiguration
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val MktCombinedCyclePlant: String
 )
 extends
@@ -476,7 +476,7 @@ extends
  */
 case class CombinedCycleTransitionState
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val upTransition: Boolean,
     val FromConfiguration: String,
     val ToConfiguration: String
@@ -523,7 +523,7 @@ extends
  */
 case class CongestionArea
 (
-    override val sup: Element,
+    override val sup: AggregatedPnode,
     val IndividualPnode: List[String]
 )
 extends
@@ -569,7 +569,7 @@ extends
  */
 case class ContractDistributionFactor
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val factor: Double,
     val sinkFlag: String,
     val sourceFlag: String,
@@ -658,7 +658,7 @@ extends
  */
 case class ContractRight
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val chainOrder: Int,
     val contractMW: Double,
     val contractPrice: Double,
@@ -783,7 +783,7 @@ extends
  */
 case class ControlAreaDesignation
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val attained: String,
     val native: String,
     val RegisteredResource: List[String],
@@ -845,7 +845,7 @@ extends
  */
 case class Flowgate
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val direction: String,
     val endEffectiveDate: String,
     val exportMWRating: Double,
@@ -922,7 +922,7 @@ extends
  */
 case class FlowgatePartner
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val FlowgateValue: String
 )
 extends
@@ -969,7 +969,7 @@ extends
  */
 case class FlowgateRelief
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val effectiveDate: String,
     val idcTargetMktFlow: Int,
     val terminateDate: String,
@@ -1028,7 +1028,7 @@ extends
  */
 case class FlowgateValue
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val economicDispatchLimit: Int,
     val effectiveDate: String,
     val firmNetworkLimit: Int,
@@ -1094,7 +1094,7 @@ extends
  */
 case class ForbiddenRegion
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val crossTime: Int,
     val crossingCost: Double,
     val highMW: Double,
@@ -1145,7 +1145,7 @@ extends
  */
 case class FormerReference
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val RegisteredResource: String
 )
 extends
@@ -1186,7 +1186,7 @@ extends
  */
 case class FuelCostCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -1233,7 +1233,7 @@ extends
  */
 case class FuelRegion
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endEffectiveDate: String,
     val fuelRegionType: String,
     val lastModified: String,
@@ -1293,7 +1293,7 @@ extends
  */
 case class GasPrice
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val gasPriceIndex: Double,
     val FuelRegion: String
 )
@@ -1345,7 +1345,7 @@ extends
  */
 case class HostControlArea
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val areaControlMode: String,
     val endEffectiveDate: String,
     val freqSetPoint: Double,
@@ -1409,7 +1409,7 @@ extends
  */
 case class IndividualPnode
 (
-    override val sup: Element,
+    override val sup: Pnode,
     val GenDistributionFactor: String,
     val LoadDistributionFactor: String,
     val MktConnectivityNode: String
@@ -1456,7 +1456,7 @@ extends
  */
 case class LoadAggregationPoint
 (
-    override val sup: Element
+    override val sup: AggregateNode
 )
 extends
     Element
@@ -1497,7 +1497,7 @@ extends
  */
 case class LoadRatio
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalEndTime: String,
     val intervalStartTime: String,
     val share: Double,
@@ -1549,7 +1549,7 @@ extends
  */
 case class LoadReductionTimeCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val loadReductionTimeCurveType: String
 )
 extends
@@ -1590,7 +1590,7 @@ extends
  */
 case class LocalReliabilityArea
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val RTO: String
 )
 extends
@@ -1642,7 +1642,7 @@ extends
  */
 case class MPMTestCategory
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val purposeFlag: String,
     val testIdentifier: String,
     val testMethod: String
@@ -1693,7 +1693,7 @@ extends
  */
 case class MPMTestThreshold
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val marketType: String,
     val percent: Double,
     val price: Double,
@@ -1756,7 +1756,7 @@ extends
  */
 case class MSSAggregation
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val costRecovery: String,
     val endEffectiveDate: String,
     val grossSettlement: String,
@@ -1826,7 +1826,7 @@ extends
  */
 case class MSSZone
 (
-    override val sup: Element,
+    override val sup: AggregateNode,
     val ignoreLosses: String,
     val lossFactor: Double,
     val rucGrossSettlement: String,
@@ -1890,7 +1890,7 @@ extends
  */
 case class MarketPerson
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val category: String,
     val electronicAddressAlternate: String,
     val electronicAddressPrimary: String,
@@ -1976,7 +1976,7 @@ extends
  */
 case class MarketQualificationRequirement
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val effectiveDate: String,
     val expirationDate: String,
     val qualificationID: String,
@@ -2029,7 +2029,7 @@ extends
  */
 case class MarketRegion
 (
-    override val sup: Element
+    override val sup: AggregateNode
 )
 extends
     Element
@@ -2071,7 +2071,7 @@ extends
  */
 case class MarketSkill
 (
-    override val sup: Element,
+    override val sup: Document,
     val certificationPeriod: String,
     val effectiveDateTime: String,
     val level: String,
@@ -2124,7 +2124,7 @@ extends
  */
 case class MaxStartUpCostCurve
 (
-    override val sup: Element
+    override val sup: Curve
 )
 extends
     Element
@@ -2162,7 +2162,7 @@ extends
  */
 case class MeteredSubSystem
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val MSSAggregation: String
 )
 extends
@@ -2204,7 +2204,7 @@ extends
  */
 case class MktCombinedCyclePlant
 (
-    override val sup: Element,
+    override val sup: CombinedCyclePlant,
     val AggregatedPnode: String
 )
 extends
@@ -2244,7 +2244,7 @@ extends
  */
 case class MktConductingEquipment
 (
-    override val sup: Element
+    override val sup: ConductingEquipment
 )
 extends
     Element
@@ -2291,7 +2291,7 @@ extends
  */
 case class MktContingency
 (
-    override val sup: Element,
+    override val sup: Contingency,
     val loadRolloverFlag: Boolean,
     val ltcControlFlag: Boolean,
     val participationFactorSet: String,
@@ -2348,7 +2348,7 @@ extends
  */
 case class MktHeatRateCurve
 (
-    override val sup: Element,
+    override val sup: HeatRateCurve,
     val RegisteredGenerator: String,
     val ResourceVerifiableCosts: String
 )
@@ -2391,7 +2391,7 @@ extends
  */
 case class MktThermalGeneratingUnit
 (
-    override val sup: Element
+    override val sup: ThermalGeneratingUnit
 )
 extends
     Element
@@ -2430,7 +2430,7 @@ extends
  */
 case class OilPrice
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val oilPriceIndex: Double,
     val FuelRegion: String
 )
@@ -2478,7 +2478,7 @@ extends
  */
 case class OrgPnodeAllocation
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endEffectiveDate: String,
     val maxMWAllocation: Double,
     val startEffectiveDate: String,
@@ -2537,7 +2537,7 @@ extends
  */
 case class OrgResOwnership
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val asscType: String,
     val endEffectiveDate: String,
     val masterSchedulingCoordinatorFlag: String,
@@ -2611,7 +2611,7 @@ extends
  */
 case class Pnode
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endEffectiveDate: String,
     val isPublic: Boolean,
     val startEffectiveDate: String,
@@ -2682,7 +2682,7 @@ extends
  */
 case class PnodeDistributionFactor
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val factor: Double,
     val offPeak: String,
     val onPeak: String,
@@ -2738,7 +2738,7 @@ extends
  */
 case class RMRHeatRateCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -2779,7 +2779,7 @@ extends
  */
 case class RMRStartUpCostCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -2820,7 +2820,7 @@ extends
  */
 case class RMRStartUpEnergyCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -2861,7 +2861,7 @@ extends
  */
 case class RMRStartUpFuelCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -2902,7 +2902,7 @@ extends
  */
 case class RMRStartUpTimeCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -2942,7 +2942,7 @@ extends
  */
 case class RTO
 (
-    override val sup: Element
+    override val sup: MktOrganisation
 )
 extends
     Element
@@ -2980,7 +2980,7 @@ extends
  */
 case class RUCZone
 (
-    override val sup: Element
+    override val sup: AggregateNode
 )
 extends
     Element
@@ -3122,7 +3122,7 @@ N' - not an RMR unit
  */
 case class RegisteredGenerator
 (
-    override val sup: Element,
+    override val sup: RegisteredResource,
     val capacityFactor: Double,
     val coldStartTime: Double,
     val combinedCyclePlantName: String,
@@ -3391,7 +3391,7 @@ extends
  */
 case class RegisteredInterTie
 (
-    override val sup: Element,
+    override val sup: RegisteredResource,
     val direction: String,
     val energyProductType: String,
     val isDCTie: String,
@@ -3477,7 +3477,7 @@ extends
  */
 case class RegisteredLoad
 (
-    override val sup: Element,
+    override val sup: RegisteredResource,
     val blockLoadTransferFlag: String,
     val dynamicallyScheduledLoadResourceFlag: String,
     val dynamicallyScheduledQualificationFlag: String,
@@ -3583,7 +3583,7 @@ extends
  */
 case class RegulatingLimit
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val highLimit: Double,
     val lowLimit: Double,
     val RegisteredGenerator: String
@@ -3636,7 +3636,7 @@ extends
  */
 case class ResourceAncillaryServiceQualification
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val certifiedCapacity: Double,
     val endEffectiveDate: String,
     val market: String,
@@ -3708,7 +3708,7 @@ FOO capacity
  */
 case class ResourceCapacity
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val capacityType: String,
     val defaultCapacity: Double,
     val maximumCapacity: Double,
@@ -3765,7 +3765,7 @@ extends
  */
 case class ResourceOperationMaintenanceCost
 (
-    override val sup: Element,
+    override val sup: Curve,
     val gasPercentAboveLowSustainedLimit: Double,
     val oilPercentAboveLowSustainedLimit: Double,
     val omCostColdStartup: Double,
@@ -3842,7 +3842,7 @@ extends
  */
 case class ResourceStartupCost
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val fuelColdStartup: Double,
     val fuelHotStartup: Double,
     val fuelIntermediateStartup: Double,
@@ -3930,7 +3930,7 @@ extends
  */
 case class ResourceVerifiableCosts
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val MktHeatRateCurve: String,
     val RegisteredResource: String,
     val ResourceOperationMaintenanceCost: String
@@ -3980,7 +3980,7 @@ extends
  */
 case class SchedulingCoordinator
 (
-    override val sup: Element,
+    override val sup: MktOrganisation,
     val scid: String,
     val LoadRatio: String,
     val MktOrgansation: String
@@ -4030,7 +4030,7 @@ extends
  */
 case class SchedulingCoordinatorUser
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val endEffectiveDate: String,
     val loginID: String,
     val loginRole: String,
@@ -4082,7 +4082,7 @@ extends
  */
 case class SchedulingPoint
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endEffectiveDate: String,
     val startEffectiveDate: String,
     val Flowgate: String
@@ -4130,7 +4130,7 @@ extends
  */
 case class StartUpEnergyCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -4171,7 +4171,7 @@ extends
  */
 case class StartUpFuelCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -4228,7 +4228,7 @@ extends
  */
 case class SubControlArea
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val areaShortName: String,
     val constantCoefficient: Double,
     val embeddedControlArea: String,
@@ -4315,7 +4315,7 @@ extends
  */
 case class SubstitutionResourceList
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val precedence: Int,
     val RegisteredResource: String,
     val TransmissionContractRight: String
@@ -4364,7 +4364,7 @@ extends
  */
 case class TACArea
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endEffectiveDate: String,
     val startEffectiveDate: String
 )
@@ -4412,7 +4412,7 @@ extends
  */
 case class TransmissionRightChain
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endEffectiveDate: String,
     val startEffectiveDate: String,
     val Chain_ContractRight: String,
@@ -4462,7 +4462,7 @@ extends
  */
 case class WheelingCounterParty
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val RegisteredInterTie: List[String]
 )
 extends

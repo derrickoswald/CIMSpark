@@ -27,7 +27,7 @@ RT - Real Time
  */
 case class BilateralTransaction
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val curtailTimeMax: Int,
     val curtailTimeMin: Int,
     val marketType: String,
@@ -90,7 +90,7 @@ extends
  */
 case class Participation
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val factor: Double
 )
 extends
@@ -144,7 +144,7 @@ extends
  */
 case class ResourceCertification
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val certifiedDAM: String,
     val certifiedNonspinDAM: String,
     val certifiedNonspinDAMMw: Double,

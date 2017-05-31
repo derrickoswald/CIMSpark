@@ -13,7 +13,7 @@ import ch.ninecode.cim.Context
  */
 case class TiePoint
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val tiePointMWRating: Double
 )
 extends

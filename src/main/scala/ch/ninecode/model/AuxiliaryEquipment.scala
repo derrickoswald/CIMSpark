@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class AuxiliaryEquipment
 (
-    override val sup: Element,
+    override val sup: Equipment,
     val Terminal: String
 )
 extends
@@ -63,7 +63,7 @@ extends
  */
 case class CurrentTransformer
 (
-    override val sup: Element,
+    override val sup: Sensor,
     val accuracyClass: String,
     val accuracyLimit: Double,
     val coreBurden: Double,
@@ -116,7 +116,7 @@ extends
  */
 case class FaultIndicator
 (
-    override val sup: Element
+    override val sup: AuxiliaryEquipment
 )
 extends
     Element
@@ -153,7 +153,7 @@ extends
  */
 case class PostLineSensor
 (
-    override val sup: Element
+    override val sup: Sensor
 )
 extends
     Element
@@ -195,7 +195,7 @@ extends
  */
 case class PotentialTransformer
 (
-    override val sup: Element,
+    override val sup: Sensor,
     val accuracyClass: String,
     val nominalRatio: Double,
     val ptClass: String,
@@ -246,7 +246,7 @@ extends
  */
 case class PotentialTransformerKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val capacitiveCoupling: String,
     val inductive: String
 )
@@ -289,7 +289,7 @@ extends
  */
 case class Sensor
 (
-    override val sup: Element
+    override val sup: AuxiliaryEquipment
 )
 extends
     Element
@@ -326,7 +326,7 @@ extends
  */
 case class SurgeArrester
 (
-    override val sup: Element
+    override val sup: AuxiliaryEquipment
 )
 extends
     Element
@@ -363,7 +363,7 @@ extends
  */
 case class WaveTrap
 (
-    override val sup: Element
+    override val sup: AuxiliaryEquipment
 )
 extends
     Element

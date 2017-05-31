@@ -28,7 +28,7 @@ import ch.ninecode.cim.Context
  */
 case class GeneratorTypeAsset
 (
-    override val sup: Element,
+    override val sup: GenericAssetModelOrMaterial,
     val maxP: Double,
     val maxQ: Double,
     val minP: Double,
@@ -115,7 +115,7 @@ extends
  */
 case class TypeAssetCatalogue
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String
 )
 extends

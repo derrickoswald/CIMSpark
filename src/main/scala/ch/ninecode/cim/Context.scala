@@ -5,7 +5,7 @@ import scala.collection.mutable.ArrayBuffer
 
 /**
  * Context for parsing.
- * Contains the raw XML, indexes at which to star and stop parsing,
+ * Contains the raw XML, indexes at which to start and stop parsing,
  * the line number index of newlines within the XML,
  * text coverage set (in debug) and error messages raised while parsing.
  * @param xml The current xml string being parsed.

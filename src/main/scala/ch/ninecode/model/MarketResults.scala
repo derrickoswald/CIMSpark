@@ -15,7 +15,7 @@ import ch.ninecode.cim.Context
  */
 case class AncillaryServiceClearing
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val MarketCaseClearing: String
 )
 extends
@@ -74,7 +74,7 @@ extends
  */
 case class BillDeterminant
 (
-    override val sup: Element,
+    override val sup: Document,
     val calculationLevel: String,
     val configVersion: String,
     val deleteStatus: String,
@@ -176,7 +176,7 @@ extends
  */
 case class ChargeProfile
 (
-    override val sup: Element,
+    override val sup: Profile,
     val frequency: String,
     val numberInterval: Int,
     val typ: String,
@@ -239,7 +239,7 @@ extends
  */
 case class ChargeProfileData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequence: Int,
     val timeStamp: String,
     val value: Double,
@@ -291,7 +291,7 @@ extends
  */
 case class CommitmentClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -343,7 +343,7 @@ extends
  */
 case class Commitments
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val commitmentType: String,
     val instructionCost: Double,
     val instructionType: String,
@@ -413,7 +413,7 @@ extends
  */
 case class ConstraintClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -472,7 +472,7 @@ extends
  */
 case class ConstraintResults
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val baseFlow: Double,
     val bindingLimit: Double,
     val clearedValue: Double,
@@ -574,7 +574,7 @@ extends
  */
 case class DopInstruction
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val mwDOP: Double,
     val plotPriority: Int,
     val runIndicatorDOP: String,
@@ -663,7 +663,7 @@ extends
  */
 case class DotInstruction
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val actualRampRate: Double,
     val compliantIndicator: String,
     val economicMaxOverride: Double,
@@ -763,7 +763,7 @@ extends
  */
 case class ExPostLoss
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -807,7 +807,7 @@ extends
  */
 case class ExPostLossResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ehvLossMW: Double,
     val totalLossMW: Double,
     val ExPostLoss: String,
@@ -857,7 +857,7 @@ extends
  */
 case class ExPostMarketRegion
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val ExPostMarketRegionResults: String
 )
 extends
@@ -901,7 +901,7 @@ extends
  */
 case class ExPostMarketRegionResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val exPostClearedPrice: Double,
     val ExPostMarketRegion: String,
     val MarketRegion: String
@@ -948,7 +948,7 @@ extends
  */
 case class ExPostPricing
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val energyPrice: Double
 )
 extends
@@ -997,7 +997,7 @@ extends
  */
 case class ExPostPricingResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val congestLMP: Double,
     val lmp: Double,
     val lossLMP: Double,
@@ -1049,7 +1049,7 @@ extends
  */
 case class ExPostResource
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -1099,7 +1099,7 @@ extends
  */
 case class ExPostResourceResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val congestionLMP: Double,
     val desiredMW: Double,
     val dispatchRate: Double,
@@ -1170,7 +1170,7 @@ extends
  */
 case class GeneralClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -1214,7 +1214,7 @@ extends
  */
 case class GeneralClearingResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val loadForecast: Double,
     val totalLoad: Double,
     val totalNetInterchange: Double,
@@ -1267,7 +1267,7 @@ extends
  */
 case class InstructionClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -1305,7 +1305,7 @@ extends
  */
 case class InstructionClearingDOP
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -1345,7 +1345,7 @@ extends
  */
 case class InstructionClearingDOT
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val contingencyActive: String,
     val dispatchMode: String
 )
@@ -1404,7 +1404,7 @@ extends
  */
 case class Instructions
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val bindingDOT: Double,
     val bindingInstruction: String,
     val instructionCost: Double,
@@ -1485,7 +1485,7 @@ extends
  */
 case class LoadFollowingOperatorInput
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val dataEntryTimeStamp: String,
     val tempLoadFollowingDownManualCap: Double,
     val tempLoadFollowingUpManualCap: Double,
@@ -1543,7 +1543,7 @@ extends
  */
 case class LossClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -1585,7 +1585,7 @@ extends
  */
 case class LossClearingResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val lossMW: Double,
     val HostControlArea: String,
     val LossClearing: String,
@@ -1641,7 +1641,7 @@ extends
  */
 case class MPMClearing
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val mitigationOccuredFlag: String,
     val LMPMFinalFlag: String,
     val SMPMFinalFlag: String
@@ -1691,7 +1691,7 @@ extends
  */
 case class MPMResourceStatus
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val resourceStatus: String,
     val MPMTestCategory: String,
     val RegisteredResource: String
@@ -1744,7 +1744,7 @@ extends
  */
 case class MPMTestResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val marginPercent: Double,
     val outcome: String,
     val AggregatedPnode: String,
@@ -1816,7 +1816,7 @@ extends
  */
 case class MarketRegionResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val clearedMW: Double,
     val clearedPrice: Double,
     val dispatchCtMW: Double,
@@ -1913,7 +1913,7 @@ extends
  */
 case class MarketResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ancillarySvcCost: Double,
     val contingentOperatingResAvail: String,
     val energyCost: Double,
@@ -1980,7 +1980,7 @@ extends
  */
 case class MarketStatement
 (
-    override val sup: Element,
+    override val sup: Document,
     val end: String,
     val referenceNumber: String,
     val start: String,
@@ -2054,7 +2054,7 @@ extends
  */
 case class MarketStatementLineItem
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val currentAmount: Double,
     val currentISOAmount: Double,
     val currentISOQuantity: Double,
@@ -2158,7 +2158,7 @@ extends
  */
 case class MitigatedBid
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Bid: String
 )
 extends
@@ -2199,7 +2199,7 @@ extends
  */
 case class MitigatedBidClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -2242,7 +2242,7 @@ extends
  */
 case class MitigatedBidSegment
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalStartTime: String,
     val segmentMW: Double,
     val segmentNumber: Int,
@@ -2324,7 +2324,7 @@ extends
  */
 case class PassThroughBill
 (
-    override val sup: Element,
+    override val sup: Document,
     val adjustedAmount: Double,
     val amount: Double,
     val billEnd: String,
@@ -2439,7 +2439,7 @@ extends
  */
 case class PnodeClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -2487,7 +2487,7 @@ extends
  */
 case class PnodeResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val congestLMP: Double,
     val costLMP: Double,
     val lossLMP: Double,
@@ -2555,7 +2555,7 @@ extends
  */
 case class RMRDetermination
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val Bid: String
 )
 extends
@@ -2600,7 +2600,7 @@ extends
  */
 case class RMROperatorInput
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val manuallySchedRMRMw: Double,
     val updateTimeStamp: String,
     val updateType: String,
@@ -2670,7 +2670,7 @@ Non-Spinning Reserve
  */
 case class RUCAwardInstruction
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val clearedPrice: Double,
     val marketProductType: String,
     val updateTimeStamp: String,
@@ -2737,7 +2737,7 @@ extends
  */
 case class ResourceAwardClearing
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val contingencyActive: String,
     val dispatchMode: String
 )
@@ -2827,7 +2827,7 @@ For RT Energy: RT total self-schedule award;
  */
 case class ResourceAwardInstruction
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val awardMW: Double,
     val clearedMW: Double,
     val clearedPrice: Double,
@@ -2955,7 +2955,7 @@ extends
  */
 case class ResourceClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -3013,7 +3013,7 @@ extends
  */
 case class ResourceDispatchResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val blockedDispatch: String,
     val blockedPublishDOP: String,
     val contingencyFlag: String,
@@ -3115,7 +3115,7 @@ extends
  */
 case class ResourceLoadFollowingInst
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val calcLoadFollowingMW: Double,
     val dispWindowHighLimt: Double,
     val dispWindowLowLimt: Double,
@@ -3177,7 +3177,7 @@ extends
  */
 case class SelfScheduleBreakdown
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val selfSchedMW: Double,
     val selfSchedType: String,
     val ResourceAwardInstruction: String
@@ -3225,7 +3225,7 @@ extends
  */
 case class Settlement
 (
-    override val sup: Element,
+    override val sup: Document,
     val tradeDate: String,
     val EnergyMarket: String
 )
@@ -3269,7 +3269,7 @@ extends
  */
 case class TransactionBidClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -3310,7 +3310,7 @@ extends
  */
 case class TransactionBidResults
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val clearedMW: Double,
     val clearedPrice: Double,
     val TransactionBid: String,

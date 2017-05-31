@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class GenericNonLinearLoadModelKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val exponentialRecovery: String,
     val loadAdaptive: String
 )
@@ -63,7 +63,7 @@ extends
  */
 case class LoadAggregate
 (
-    override val sup: Element,
+    override val sup: LoadDynamics,
     val LoadMotor: String,
     val LoadStatic: String
 )
@@ -129,7 +129,7 @@ extends
  */
 case class LoadComposite
 (
-    override val sup: Element,
+    override val sup: LoadDynamics,
     val epfd: Double,
     val epfs: Double,
     val epvd: Double,
@@ -202,7 +202,7 @@ A standard feature of dynamic load behaviour modelling is the ability to associa
  */
 case class LoadDynamics
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -248,7 +248,7 @@ extends
  */
 case class LoadGenericNonLinear
 (
-    override val sup: Element,
+    override val sup: LoadDynamics,
     val bs: Double,
     val bt: Double,
     val genericNonLinearLoadModelType: String,
@@ -340,7 +340,7 @@ extends
  */
 case class LoadMotor
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val d: Double,
     val h: Double,
     val lfac: Double,
@@ -454,7 +454,7 @@ extends
  */
 case class LoadStatic
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val ep1: Double,
     val ep2: Double,
     val ep3: Double,
@@ -555,7 +555,7 @@ kp1, kp2, kp3, kpf
  */
 case class StaticLoadModelKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val constantZ: String,
     val exponential: String,
     val zIP1: String,

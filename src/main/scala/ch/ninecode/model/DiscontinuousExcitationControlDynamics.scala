@@ -51,7 +51,7 @@ import ch.ninecode.cim.Context
  */
 case class DiscExcContIEEEDEC1A
 (
-    override val sup: Element,
+    override val sup: DiscontinuousExcitationControlDynamics,
     val esc: Double,
     val kan: Double,
     val ketl: Double,
@@ -148,7 +148,7 @@ extends
  */
 case class DiscExcContIEEEDEC2A
 (
-    override val sup: Element,
+    override val sup: DiscontinuousExcitationControlDynamics,
     val td1: Double,
     val td2: Double,
     val vdmax: Double,
@@ -203,7 +203,7 @@ extends
  */
 case class DiscExcContIEEEDEC3A
 (
-    override val sup: Element,
+    override val sup: DiscontinuousExcitationControlDynamics,
     val tdr: Double,
     val vtmin: Double
 )
@@ -248,7 +248,7 @@ extends
  */
 case class DiscontinuousExcitationControlDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val ExcitationSystemDynamics: String,
     val RemoteInputSignal: String
 )

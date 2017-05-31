@@ -11,7 +11,7 @@ import ch.ninecode.cim.Context
  */
 case class EnergySchedulingType
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element

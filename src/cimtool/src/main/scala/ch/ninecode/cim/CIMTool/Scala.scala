@@ -225,10 +225,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                 s.append ("""val """)
                 s.append (product.variable)
                 s.append (""": """)
-                if (product.name == "sup")
-                    s.append ("""Element""")
-                else
-                    s.append (product.datatype)
+                s.append (product.datatype)
             }
 
             s.append ("""

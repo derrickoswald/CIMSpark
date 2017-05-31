@@ -14,7 +14,7 @@ import ch.ninecode.cim.Context
  */
 case class DemographicKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val other: String,
     val rural: String,
     val urban: String
@@ -68,7 +68,7 @@ extends
  */
 case class LandProperty
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val demographicKind: String,
     val externalRecordReference: String,
     val kind: String,
@@ -130,7 +130,7 @@ extends
  */
 case class LandPropertyKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val building: String,
     val customerPremise: String,
     val depot: String,
@@ -192,7 +192,7 @@ extends
  */
 case class LocationGrant
 (
-    override val sup: Element,
+    override val sup: Agreement,
     val propertyData: String,
     val LandProperty: String
 )
@@ -237,7 +237,7 @@ extends
  */
 case class RedLine
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String
 )
 extends
@@ -281,7 +281,7 @@ extends
  */
 case class RightOfWay
 (
-    override val sup: Element,
+    override val sup: Agreement,
     val propertyData: String,
     val LandProperties: List[String]
 )
@@ -327,7 +327,7 @@ extends
  */
 case class Route
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String,
     val typ: String,
     val Locations: List[String]
@@ -375,7 +375,7 @@ extends
  */
 case class Zone
 (
-    override val sup: Element,
+    override val sup: Location,
     val kind: String
 )
 extends
@@ -419,7 +419,7 @@ extends
  */
 case class ZoneKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val electricalNetwork: String,
     val other: String,
     val specialRestrictionLand: String,

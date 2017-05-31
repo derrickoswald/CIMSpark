@@ -25,7 +25,7 @@ import ch.ninecode.cim.Context
  */
 case class RemoteInputSignal
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val remoteSignalType: String,
     val DiscontinuousExcitationControlDynamics: String,
     val PFVArControllerType1Dynamics: String,
@@ -101,7 +101,7 @@ extends
  */
 case class RemoteSignalKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val remoteBranchCurrentAmplitude: String,
     val remoteBusFrequency: String,
     val remoteBusFrequencyDeviation: String,

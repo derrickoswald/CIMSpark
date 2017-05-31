@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class BusbarSectionInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val ratedCurrent: Double,
     val ratedVoltage: Double
 )
@@ -67,7 +67,7 @@ extends
  */
 case class CableConstructionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val compacted: String,
     val compressed: String,
     val other: String,
@@ -135,7 +135,7 @@ extends
  */
 case class CableInfo
 (
-    override val sup: Element,
+    override val sup: WireInfo,
     val constructionKind: String,
     val diameterOverCore: Double,
     val diameterOverInsulation: Double,
@@ -209,7 +209,7 @@ extends
  */
 case class CableOuterJacketKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val insulating: String,
     val linearLowDensityPolyethylene: String,
     val none: String,
@@ -272,7 +272,7 @@ extends
  */
 case class CableShieldMaterialKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val aluminum: String,
     val copper: String,
     val lead: String,
@@ -329,7 +329,7 @@ extends
  */
 case class ConcentricNeutralCableInfo
 (
-    override val sup: Element,
+    override val sup: CableInfo,
     val diameterOverNeutral: Double,
     val neutralStrandCount: Int,
     val neutralStrandGmr: Double,
@@ -388,7 +388,7 @@ extends
  */
 case class NoLoadTest
 (
-    override val sup: Element,
+    override val sup: TransformerTest,
     val energisedEndVoltage: Double,
     val excitingCurrent: Double,
     val excitingCurrentZero: Double,
@@ -451,7 +451,7 @@ extends
  */
 case class OpenCircuitTest
 (
-    override val sup: Element,
+    override val sup: TransformerTest,
     val energisedEndStep: Int,
     val energisedEndVoltage: Double,
     val openEndStep: Int,
@@ -509,7 +509,7 @@ extends
  */
 case class OverheadWireInfo
 (
-    override val sup: Element
+    override val sup: WireInfo
 )
 extends
     Element
@@ -546,7 +546,7 @@ extends
  */
 case class PowerTransformerInfo
 (
-    override val sup: Element
+    override val sup: AssetInfo
 )
 extends
     Element
@@ -592,7 +592,7 @@ extends
  */
 case class ShortCircuitTest
 (
-    override val sup: Element,
+    override val sup: TransformerTest,
     val energisedEndStep: Int,
     val groundedEndStep: Int,
     val leakageImpedance: Double,
@@ -655,7 +655,7 @@ extends
  */
 case class ShuntCompensatorInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val maxPowerLoss: Double,
     val ratedCurrent: Double,
     val ratedReactivePower: Double,
@@ -712,7 +712,7 @@ extends
  */
 case class SwitchInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val breakingCapacity: Double,
     val isSinglePhase: Boolean,
     val isUnganged: Boolean,
@@ -780,7 +780,7 @@ extends
  */
 case class TapChangerInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val bil: Double,
     val ctRating: Double,
     val ctRatio: Double,
@@ -864,7 +864,7 @@ extends
  */
 case class TapeShieldCableInfo
 (
-    override val sup: Element,
+    override val sup: CableInfo,
     val tapeLap: Double,
     val tapeThickness: Double
 )
@@ -923,7 +923,7 @@ extends
  */
 case class TransformerEndInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val connectionKind: String,
     val emergencyS: Double,
     val endNumber: Int,
@@ -1000,7 +1000,7 @@ extends
  */
 case class TransformerTankInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val PowerTransformerInfo: String
 )
 extends
@@ -1042,7 +1042,7 @@ extends
  */
 case class TransformerTest
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val basePower: Double,
     val temperature: Double
 )
@@ -1102,7 +1102,7 @@ extends
  */
 case class WireInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val coreRadius: Double,
     val coreStrandCount: Int,
     val gmr: Double,
@@ -1205,7 +1205,7 @@ extends
  */
 case class WireInsulationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val asbestosAndVarnishedCambric: String,
     val beltedPilc: String,
     val butyl: String,
@@ -1305,7 +1305,7 @@ extends
  */
 case class WireMaterialKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val aaac: String,
     val acsr: String,
     val aluminum: String,
@@ -1373,7 +1373,7 @@ extends
  */
 case class WirePosition
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val phase: String,
     val xCoord: Double,
     val yCoord: Double,
@@ -1429,7 +1429,7 @@ extends
  */
 case class WireSpacingInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val isCable: Boolean,
     val phaseWireCount: Int,
     val phaseWireSpacing: Double,
@@ -1488,7 +1488,7 @@ extends
  */
 case class WireUsageKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val distribution: String,
     val other: String,
     val secondary: String,

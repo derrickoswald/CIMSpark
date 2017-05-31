@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class ActivityRecord
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val createdDateTime: String,
     val reason: String,
     val severity: String,
@@ -74,7 +74,7 @@ extends
  */
 case class Agreement
 (
-    override val sup: Element,
+    override val sup: Document,
     val signDate: String,
     val validityInterval: String
 )
@@ -120,7 +120,7 @@ extends
  */
 case class Appointment
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val callAhead: Boolean,
     val meetingInterval: String,
     val Works: List[String]
@@ -176,7 +176,7 @@ extends
  */
 case class ConfigurationEvent
 (
-    override val sup: Element,
+    override val sup: ActivityRecord,
     val effectiveDateTime: String,
     val modifiedBy: String,
     val remark: String,
@@ -245,7 +245,7 @@ extends
  */
 case class CoordinateSystem
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val crsUrn: String
 )
 extends
@@ -287,7 +287,7 @@ extends
  */
 case class Crew
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String,
     val CrewType: String
 )
@@ -331,7 +331,7 @@ extends
  */
 case class CrewMember
 (
-    override val sup: Element,
+    override val sup: OperationPersonRole,
     val Crew: String
 )
 extends
@@ -372,7 +372,7 @@ extends
  */
 case class CrewType
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -424,7 +424,7 @@ extends
  */
 case class Document
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val authorName: String,
     val comment: String,
     val createdDateTime: String,
@@ -502,7 +502,7 @@ extends
  */
 case class ElectronicAddress
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val email1: String,
     val email2: String,
     val lan: String,
@@ -565,7 +565,7 @@ extends
  */
 case class Hazard
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String,
     val typ: String
 )
@@ -622,7 +622,7 @@ extends
  */
 case class Location
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val direction: String,
     val electronicAddress: String,
     val geoInfoReference: String,
@@ -692,7 +692,7 @@ extends
  */
 case class OperationPersonRole
 (
-    override val sup: Element
+    override val sup: PersonRole
 )
 extends
     Element
@@ -729,7 +729,7 @@ extends
  */
 case class Operator
 (
-    override val sup: Element
+    override val sup: OperationPersonRole
 )
 extends
     Element
@@ -772,7 +772,7 @@ extends
  */
 case class Organisation
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val electronicAddress: String,
     val phone1: String,
     val phone2: String,
@@ -828,7 +828,7 @@ extends
  */
 case class OrganisationRole
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Organisation: String
 )
 extends
@@ -871,7 +871,7 @@ extends
  */
 case class Ownership
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val share: Double,
     val Asset: String,
     val AssetOwner: String
@@ -926,7 +926,7 @@ extends
  */
 case class Person
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val electronicAddress: String,
     val firstName: String,
     val landlinePhone: String,
@@ -986,7 +986,7 @@ extends
 
 case class PersonRole
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Appointments: List[String],
     val Person: String
 )
@@ -1035,7 +1035,7 @@ extends
  */
 case class PositionPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val xPosition: String,
     val yPosition: String,
@@ -1091,7 +1091,7 @@ extends
  */
 case class PostalAddress
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val poBox: String,
     val postalCode: String,
     val streetDetail: String,
@@ -1143,7 +1143,7 @@ extends
  */
 case class Priority
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val justification: String,
     val rank: Int,
     val typ: String
@@ -1194,7 +1194,7 @@ extends
  */
 case class ScheduledEvent
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val duration: Double,
     val status: String,
     val typ: String,
@@ -1250,7 +1250,7 @@ extends
  */
 case class ScheduledEventData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val estimatedWindow: String,
     val requestedWindow: String,
     val status: String,
@@ -1303,7 +1303,7 @@ extends
  */
 case class Status
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val dateTime: String,
     val reason: String,
     val remark: String,
@@ -1355,7 +1355,7 @@ extends
  */
 case class StreetAddress
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val status: String,
     val streetDetail: String,
     val townDetail: String
@@ -1414,7 +1414,7 @@ extends
  */
 case class StreetDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val addressGeneral: String,
     val buildingName: String,
     val code: String,
@@ -1486,7 +1486,7 @@ extends
  */
 case class TelephoneNumber
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val areaCode: String,
     val cityCode: String,
     val countryCode: String,
@@ -1545,7 +1545,7 @@ extends
  */
 case class TimePoint
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dateTime: String,
     val relativeTimeInterval: Double,
     val sequenceNumber: Int,
@@ -1608,7 +1608,7 @@ extends
  */
 case class TimeSchedule
 (
-    override val sup: Element,
+    override val sup: Document,
     val disabled: Boolean,
     val offset: Double,
     val recurrencePattern: String,
@@ -1666,7 +1666,7 @@ extends
  */
 case class TownDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val code: String,
     val country: String,
     val name: String,
@@ -1725,7 +1725,7 @@ extends
  */
 case class UserAttribute
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val name: String,
     val sequenceNumber: Int,
     val value: String,

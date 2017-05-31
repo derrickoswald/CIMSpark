@@ -30,7 +30,7 @@ import ch.ninecode.cim.Context
  */
 case class ACLineSegment
 (
-    override val sup: Element,
+    override val sup: Conductor,
     val b0ch: Double,
     val bch: Double,
     val g0ch: Double,
@@ -105,7 +105,7 @@ extends
  */
 case class ACLineSegmentPhase
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val phase: String,
     val ACLineSegment: String
 )
@@ -178,7 +178,7 @@ extends
  */
 case class AsynchronousMachine
 (
-    override val sup: Element,
+    override val sup: RotatingMachine,
     val asynchronousMachineType: String,
     val converterFedDrive: Boolean,
     val efficiency: Double,
@@ -280,7 +280,7 @@ extends
  */
 case class AsynchronousMachineKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val generator: String,
     val motor: String
 )
@@ -324,7 +324,7 @@ extends
  */
 case class Breaker
 (
-    override val sup: Element,
+    override val sup: ProtectedSwitch,
     val inTransitTime: Double
 )
 extends
@@ -368,7 +368,7 @@ extends
  */
 case class BusbarSection
 (
-    override val sup: Element,
+    override val sup: Connector,
     val ipMax: Double,
     val VoltageControlZone: String
 )
@@ -414,7 +414,7 @@ extends
  */
 case class Clamp
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val lengthFromTerminal1: Double,
     val ACLineSegment: String
 )
@@ -459,7 +459,7 @@ extends
  */
 case class CompositeSwitch
 (
-    override val sup: Element,
+    override val sup: Equipment,
     val compositeSwitchType: String
 )
 extends
@@ -500,7 +500,7 @@ extends
  */
 case class Conductor
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val len: Double
 )
 extends
@@ -540,7 +540,7 @@ extends
  */
 case class Connector
 (
-    override val sup: Element
+    override val sup: ConductingEquipment
 )
 extends
     Element
@@ -580,7 +580,7 @@ extends
  */
 case class CoolantType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val air: String,
     val hydrogenGas: String,
     val water: String
@@ -630,7 +630,7 @@ extends
  */
 case class Cut
 (
-    override val sup: Element,
+    override val sup: Switch,
     val lengthFromTerminal1: Double,
     val ACLineSegment: String,
     val CutAction: String
@@ -677,7 +677,7 @@ extends
  */
 case class Disconnector
 (
-    override val sup: Element
+    override val sup: Switch
 )
 extends
     Element
@@ -716,7 +716,7 @@ extends
  */
 case class EarthFaultCompensator
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val r: Double
 )
 extends
@@ -776,7 +776,7 @@ extends
  */
 case class EnergyConsumer
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val customerCount: Int,
     val grounded: Boolean,
     val p: Double,
@@ -860,7 +860,7 @@ extends
  */
 case class EnergyConsumerPhase
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val pfixed: Double,
     val pfixedPct: Double,
     val phase: String,
@@ -931,7 +931,7 @@ extends
  */
 case class EnergySource
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val activePower: Double,
     val nominalVoltage: Double,
     val r: Double,
@@ -1041,7 +1041,7 @@ extends
  */
 case class ExternalNetworkInjection
 (
-    override val sup: Element,
+    override val sup: RegulatingCondEq,
     val governorSCD: Double,
     val ikSecond: Boolean,
     val maxInitialSymShCCurrent: Double,
@@ -1138,7 +1138,7 @@ extends
  */
 case class FrequencyConverter
 (
-    override val sup: Element,
+    override val sup: RegulatingCondEq,
     val frequency: Double,
     val maxP: Double,
     val maxU: Double,
@@ -1191,7 +1191,7 @@ extends
  */
 case class Fuse
 (
-    override val sup: Element
+    override val sup: Switch
 )
 extends
     Element
@@ -1230,7 +1230,7 @@ extends
  */
 case class Ground
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val GroundAction: String
 )
 extends
@@ -1270,7 +1270,7 @@ extends
  */
 case class GroundDisconnector
 (
-    override val sup: Element
+    override val sup: Switch
 )
 extends
     Element
@@ -1308,7 +1308,7 @@ extends
  */
 case class GroundingImpedance
 (
-    override val sup: Element,
+    override val sup: EarthFaultCompensator,
     val x: Double
 )
 extends
@@ -1350,7 +1350,7 @@ extends
  */
 case class Jumper
 (
-    override val sup: Element,
+    override val sup: Switch,
     val JumperAction: String
 )
 extends
@@ -1390,7 +1390,7 @@ extends
  */
 case class Junction
 (
-    override val sup: Element
+    override val sup: Connector
 )
 extends
     Element
@@ -1428,7 +1428,7 @@ extends
  */
 case class Line
 (
-    override val sup: Element,
+    override val sup: EquipmentContainer,
     val Region: String
 )
 extends
@@ -1472,7 +1472,7 @@ extends
  */
 case class LinearShuntCompensator
 (
-    override val sup: Element,
+    override val sup: ShuntCompensator,
     val b0PerSection: Double,
     val bPerSection: Double,
     val g0PerSection: Double,
@@ -1525,7 +1525,7 @@ extends
  */
 case class LinearShuntCompensatorPhase
 (
-    override val sup: Element,
+    override val sup: ShuntCompensatorPhase,
     val bPerSection: Double,
     val gPerSection: Double
 )
@@ -1568,7 +1568,7 @@ extends
  */
 case class LoadBreakSwitch
 (
-    override val sup: Element
+    override val sup: ProtectedSwitch
 )
 extends
     Element
@@ -1616,7 +1616,7 @@ extends
  */
 case class MutualCoupling
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val b0ch: Double,
     val distance11: Double,
     val distance12: Double,
@@ -1683,7 +1683,7 @@ extends
  */
 case class NonlinearShuntCompensator
 (
-    override val sup: Element
+    override val sup: ShuntCompensator
 )
 extends
     Element
@@ -1720,7 +1720,7 @@ extends
  */
 case class NonlinearShuntCompensatorPhase
 (
-    override val sup: Element
+    override val sup: ShuntCompensatorPhase
 )
 extends
     Element
@@ -1760,7 +1760,7 @@ extends
  */
 case class NonlinearShuntCompensatorPhasePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b: Double,
     val g: Double,
     val sectionNumber: Int
@@ -1811,7 +1811,7 @@ extends
  */
 case class NonlinearShuntCompensatorPoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b: Double,
     val b0: Double,
     val g: Double,
@@ -1863,7 +1863,7 @@ extends
  */
 case class PerLengthImpedance
 (
-    override val sup: Element
+    override val sup: PerLengthLineParameter
 )
 extends
     Element
@@ -1901,7 +1901,7 @@ extends
  */
 case class PerLengthLineParameter
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val WireSpacingInfo: String
 )
 extends
@@ -1943,7 +1943,7 @@ extends
  */
 case class PerLengthPhaseImpedance
 (
-    override val sup: Element,
+    override val sup: PerLengthImpedance,
     val conductorCount: Int
 )
 extends
@@ -1992,7 +1992,7 @@ extends
  */
 case class PerLengthSequenceImpedance
 (
-    override val sup: Element,
+    override val sup: PerLengthImpedance,
     val b0ch: Double,
     val bch: Double,
     val g0ch: Double,
@@ -2063,7 +2063,7 @@ extends
  */
 case class PetersenCoil
 (
-    override val sup: Element,
+    override val sup: EarthFaultCompensator,
     val mode: String,
     val nominalU: Double,
     val offsetCurrent: Double,
@@ -2124,7 +2124,7 @@ extends
  */
 case class PetersenCoilModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val automaticPositioning: String,
     val fixed: String,
     val manual: String
@@ -2176,7 +2176,7 @@ extends
  */
 case class PhaseImpedanceData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b: Double,
     val r: Double,
     val sequenceNumber: Int,
@@ -2232,7 +2232,7 @@ extends
  */
 case class PhaseShuntConnectionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val D: String,
     val I: String,
     val Y: String,
@@ -2283,7 +2283,7 @@ extends
  */
 case class PhaseTapChanger
 (
-    override val sup: Element,
+    override val sup: TapChanger,
     val TransformerEnd: String
 )
 extends
@@ -2326,7 +2326,7 @@ extends
  */
 case class PhaseTapChangerAsymmetrical
 (
-    override val sup: Element,
+    override val sup: PhaseTapChangerNonLinear,
     val windingConnectionAngle: Double
 )
 extends
@@ -2373,7 +2373,7 @@ extends
  */
 case class PhaseTapChangerLinear
 (
-    override val sup: Element,
+    override val sup: PhaseTapChanger,
     val stepPhaseShiftIncrement: Double,
     val xMax: Double,
     val xMin: Double
@@ -2425,7 +2425,7 @@ extends
  */
 case class PhaseTapChangerNonLinear
 (
-    override val sup: Element,
+    override val sup: PhaseTapChanger,
     val voltageStepIncrement: Double,
     val xMax: Double,
     val xMin: Double
@@ -2472,7 +2472,7 @@ extends
  */
 case class PhaseTapChangerSymmetrical
 (
-    override val sup: Element
+    override val sup: PhaseTapChangerNonLinear
 )
 extends
     Element
@@ -2509,7 +2509,7 @@ extends
  */
 case class PhaseTapChangerTable
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -2548,7 +2548,7 @@ extends
  */
 case class PhaseTapChangerTablePoint
 (
-    override val sup: Element,
+    override val sup: TapChangerTablePoint,
     val angle: Double,
     val PhaseTapChangerTable: String
 )
@@ -2587,7 +2587,7 @@ extends
 
 case class PhaseTapChangerTabular
 (
-    override val sup: Element,
+    override val sup: PhaseTapChanger,
     val PhaseTapChangerTable: String
 )
 extends
@@ -2627,7 +2627,7 @@ extends
  */
 case class Plant
 (
-    override val sup: Element
+    override val sup: EquipmentContainer
 )
 extends
     Element
@@ -2679,7 +2679,7 @@ extends
  */
 case class PowerTransformer
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val beforeShCircuitHighestOperatingCurrent: Double,
     val beforeShCircuitHighestOperatingVoltage: Double,
     val beforeShortCircuitAnglePf: Double,
@@ -2756,7 +2756,7 @@ extends
  */
 case class PowerTransformerEnd
 (
-    override val sup: Element,
+    override val sup: TransformerEnd,
     val b: Double,
     val b0: Double,
     val connectionKind: String,
@@ -2833,7 +2833,7 @@ extends
  */
 case class ProtectedSwitch
 (
-    override val sup: Element,
+    override val sup: Switch,
     val breakingCapacity: Double
 )
 extends
@@ -2877,7 +2877,7 @@ extends
  */
 case class RatioTapChanger
 (
-    override val sup: Element,
+    override val sup: TapChanger,
     val stepVoltageIncrement: Double,
     val tculControlMode: String,
     val RatioTapChangerTable: String,
@@ -2926,7 +2926,7 @@ extends
  */
 case class RatioTapChangerTable
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -2964,7 +2964,7 @@ extends
  */
 case class RatioTapChangerTablePoint
 (
-    override val sup: Element,
+    override val sup: TapChangerTablePoint,
     val RatioTapChangerTable: String
 )
 extends
@@ -3007,7 +3007,7 @@ extends
  */
 case class ReactiveCapabilityCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val coolantTemperature: Double,
     val hydrogenPressure: Double
 )
@@ -3050,7 +3050,7 @@ extends
  */
 case class Recloser
 (
-    override val sup: Element
+    override val sup: ProtectedSwitch
 )
 extends
     Element
@@ -3090,7 +3090,7 @@ extends
  */
 case class RegulatingCondEq
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val controlEnabled: Boolean,
     val RegulatingControl: String
 )
@@ -3147,7 +3147,7 @@ extends
  */
 case class RegulatingControl
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val discrete: Boolean,
     val enabled: Boolean,
     val mode: String,
@@ -3218,7 +3218,7 @@ extends
  */
 case class RegulatingControlModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val activePower: String,
     val admittance: String,
     val currentFlow: String,
@@ -3280,7 +3280,7 @@ extends
  */
 case class RegulationSchedule
 (
-    override val sup: Element,
+    override val sup: SeasonDayTypeSchedule,
     val RegulatingControl: String
 )
 extends
@@ -3333,7 +3333,7 @@ extends
  */
 case class RotatingMachine
 (
-    override val sup: Element,
+    override val sup: RegulatingCondEq,
     val p: Double,
     val q: Double,
     val ratedPowerFactor: Double,
@@ -3393,7 +3393,7 @@ extends
  */
 case class SVCControlMode
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val reactivePower: String,
     val voltage: String
 )
@@ -3437,7 +3437,7 @@ extends
  */
 case class Sectionaliser
 (
-    override val sup: Element
+    override val sup: Switch
 )
 extends
     Element
@@ -3482,7 +3482,7 @@ extends
  */
 case class SeriesCompensator
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val r: Double,
     val r0: Double,
     val varistorPresent: Boolean,
@@ -3544,7 +3544,7 @@ extends
  */
 case class ShortCircuitRotorKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val salientPole1: String,
     val salientPole2: String,
     val turboSeries1: String,
@@ -3608,7 +3608,7 @@ extends
  */
 case class ShuntCompensator
 (
-    override val sup: Element,
+    override val sup: RegulatingCondEq,
     val aVRDelay: Double,
     val grounded: Boolean,
     val maximumSections: Int,
@@ -3683,7 +3683,7 @@ extends
  */
 case class ShuntCompensatorPhase
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val maximumSections: Int,
     val normalSections: Int,
     val phase: String,
@@ -3739,7 +3739,7 @@ extends
  */
 case class SinglePhaseKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val s1: String,
     val s2: String,
     val A: String,
@@ -3803,7 +3803,7 @@ extends
  */
 case class StaticVarCompensator
 (
-    override val sup: Element,
+    override val sup: RegulatingCondEq,
     val capacitiveRating: Double,
     val inductiveRating: Double,
     val q: Double,
@@ -3870,7 +3870,7 @@ extends
  */
 case class Switch
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val normalOpen: Boolean,
     val open: Boolean,
     val ratedCurrent: Double,
@@ -3942,7 +3942,7 @@ extends
  */
 case class SwitchPhase
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val closed: Boolean,
     val normalOpen: Boolean,
     val phaseSide1: String,
@@ -3996,7 +3996,7 @@ extends
  */
 case class SwitchSchedule
 (
-    override val sup: Element,
+    override val sup: SeasonDayTypeSchedule,
     val Switch: String
 )
 extends
@@ -4083,7 +4083,7 @@ extends
  */
 case class SynchronousMachine
 (
-    override val sup: Element,
+    override val sup: RotatingMachine,
     val aVRToManualLag: Double,
     val aVRToManualLead: Double,
     val baseQ: Double,
@@ -4223,7 +4223,7 @@ extends
  */
 case class SynchronousMachineKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val condenser: String,
     val generator: String,
     val generatorOrCondenser: String,
@@ -4284,7 +4284,7 @@ extends
  */
 case class SynchronousMachineOperatingMode
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val condenser: String,
     val generator: String,
     val motor: String
@@ -4347,7 +4347,7 @@ extends
  */
 case class TapChanger
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val controlEnabled: Boolean,
     val highStep: Int,
     val initialDelay: Double,
@@ -4427,7 +4427,7 @@ extends
  */
 case class TapChangerControl
 (
-    override val sup: Element,
+    override val sup: RegulatingControl,
     val limitVoltage: Double,
     val lineDropCompensation: Boolean,
     val lineDropR: Double,
@@ -4478,7 +4478,7 @@ extends
 
 case class TapChangerTablePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val b: Double,
     val g: Double,
     val r: Double,
@@ -4534,7 +4534,7 @@ extends
  */
 case class TapSchedule
 (
-    override val sup: Element,
+    override val sup: SeasonDayTypeSchedule,
     val TapChanger: String
 )
 extends
@@ -4576,7 +4576,7 @@ extends
  */
 case class TransformerControlMode
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val reactive: String,
     val volt: String
 )
@@ -4626,7 +4626,7 @@ extends
  */
 case class TransformerCoreAdmittance
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val b: Double,
     val b0: Double,
     val g: Double,
@@ -4696,7 +4696,7 @@ extends
  */
 case class TransformerEnd
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val bmagSat: Double,
     val endNumber: Int,
     val grounded: Boolean,
@@ -4781,7 +4781,7 @@ extends
  */
 case class TransformerMeshImpedance
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val r: Double,
     val r0: Double,
     val x: Double,
@@ -4842,7 +4842,7 @@ extends
  */
 case class TransformerStarImpedance
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val r: Double,
     val r0: Double,
     val x: Double,
@@ -4896,7 +4896,7 @@ extends
  */
 case class TransformerTank
 (
-    override val sup: Element,
+    override val sup: Equipment,
     val PowerTransformer: String
 )
 extends
@@ -4938,7 +4938,7 @@ extends
  */
 case class TransformerTankEnd
 (
-    override val sup: Element,
+    override val sup: TransformerEnd,
     val phases: String,
     val TransformerTank: String
 )
@@ -4984,7 +4984,7 @@ extends
  */
 case class VoltageControlZone
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val BusbarSection: String,
     val RegulationSchedule: String
 )
@@ -5034,7 +5034,7 @@ extends
  */
 case class WindingConnection
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val A: String,
     val D: String,
     val I: String,

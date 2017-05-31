@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class DateInterval
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val end: String,
     val start: String
 )
@@ -62,7 +62,7 @@ extends
  */
 case class DateTimeInterval
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val end: String,
     val start: String
 )
@@ -101,7 +101,7 @@ extends
 
 case class DecimalQuantity
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val currency: String,
     val multiplier: String,
     val unit: String,
@@ -153,7 +153,7 @@ extends
  */
 case class FloatQuantity
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplier: String,
     val unit: String,
     val value: Double
@@ -202,7 +202,7 @@ extends
  */
 case class IntegerQuantity
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplier: String,
     val unit: String,
     val value: Int
@@ -250,7 +250,7 @@ extends
  */
 case class MonthDayInterval
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val end: String,
     val start: String
 )
@@ -296,7 +296,7 @@ extends
  */
 case class StringQuantity
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplier: String,
     val unit: String,
     val value: String
@@ -344,7 +344,7 @@ extends
  */
 case class TimeInterval
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val end: String,
     val start: String
 )

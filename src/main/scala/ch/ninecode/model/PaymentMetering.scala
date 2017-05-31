@@ -20,7 +20,7 @@ import ch.ninecode.cim.Context
  */
 case class AccountMovement
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val amount: Double,
     val dateTime: String,
     val reason: String
@@ -70,7 +70,7 @@ extends
  */
 case class AccountingUnit
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val energyUnit: Double,
     val monetaryUnit: String,
     val multiplier: String,
@@ -127,7 +127,7 @@ extends
  */
 case class AuxiliaryAccount
 (
-    override val sup: Element,
+    override val sup: Document,
     val balance: Double,
     val due: String,
     val lastCredit: String,
@@ -201,7 +201,7 @@ extends
  */
 case class AuxiliaryAgreement
 (
-    override val sup: Element,
+    override val sup: Agreement,
     val arrearsInterest: Double,
     val auxCycle: String,
     val auxPriorityCode: String,
@@ -273,7 +273,7 @@ extends
  */
 case class BankAccountDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val accountNumber: String,
     val bankName: String,
     val branchCode: String,
@@ -330,7 +330,7 @@ extends
  */
 case class Card
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val accountHolderName: String,
     val cvNumber: String,
     val expiryDate: String,
@@ -384,7 +384,7 @@ extends
  */
 case class Cashier
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val electronicAddress: String
 )
 extends
@@ -427,7 +427,7 @@ extends
  */
 case class CashierShift
 (
-    override val sup: Element,
+    override val sup: Shift,
     val cashFloat: Double,
     val Cashier: String,
     val PointOfSale: String
@@ -478,7 +478,7 @@ extends
  */
 case class Charge
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val fixedPortion: String,
     val kind: String,
     val variablePortion: Double,
@@ -536,7 +536,7 @@ extends
  */
 case class ChargeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val auxiliaryCharge: String,
     val consumptionCharge: String,
     val demandCharge: String,
@@ -594,7 +594,7 @@ extends
  */
 case class Cheque
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val bankAccountDetail: String,
     val chequeNumber: String,
     val date: String,
@@ -652,7 +652,7 @@ extends
  */
 case class ChequeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val bankOrder: String,
     val other: String,
     val postalOrder: String
@@ -704,7 +704,7 @@ extends
  */
 case class ConsumptionTariffInterval
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val startValue: Double,
     val Charges: List[String],
@@ -759,7 +759,7 @@ extends
  */
 case class Due
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val arrears: Double,
     val charges: Double,
     val current: Double,
@@ -815,7 +815,7 @@ extends
  */
 case class LineDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val amount: Double,
     val dateTime: String,
     val note: String,
@@ -869,7 +869,7 @@ extends
  */
 case class MerchantAccount
 (
-    override val sup: Element,
+    override val sup: Document,
     val currentBalance: Double,
     val provisionalBalance: Double,
     val MerchantAgreement: String,
@@ -919,7 +919,7 @@ extends
  */
 case class MerchantAgreement
 (
-    override val sup: Element
+    override val sup: Agreement
 )
 extends
     Element
@@ -957,7 +957,7 @@ extends
  */
 case class PointOfSale
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val location: String
 )
 extends
@@ -1001,7 +1001,7 @@ extends
  */
 case class Receipt
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val isBankable: Boolean,
     val line: String,
     val CashierShift: String,
@@ -1052,7 +1052,7 @@ extends
  */
 case class ServiceSupplier
 (
-    override val sup: Element,
+    override val sup: OrganisationRole,
     val issuerIdentificationNumber: String,
     val kind: String
 )
@@ -1107,7 +1107,7 @@ extends
  */
 case class Shift
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val activityInterval: String,
     val receiptsGrandTotalBankable: Double,
     val receiptsGrandTotalNonBankable: Double,
@@ -1165,7 +1165,7 @@ extends
  */
 case class SupplierKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val other: String,
     val retailer: String,
     val utility: String
@@ -1216,7 +1216,7 @@ extends
  */
 case class TariffProfile
 (
-    override val sup: Element,
+    override val sup: Document,
     val tariffCycle: String,
     val ConsumptionTariffIntervals: List[String],
     val TimeTariffIntervals: List[String]
@@ -1269,7 +1269,7 @@ extends
  */
 case class Tender
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val amount: Double,
     val change: Double,
     val kind: String,
@@ -1329,7 +1329,7 @@ extends
  */
 case class TenderKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val card: String,
     val cash: String,
     val cheque: String,
@@ -1386,7 +1386,7 @@ extends
  */
 case class TimeTariffInterval
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val startTime: String,
     val Charges: List[String]
@@ -1447,7 +1447,7 @@ extends
  */
 case class Transaction
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val diverseReference: String,
     val donorReference: String,
     val kind: String,
@@ -1542,7 +1542,7 @@ extends
  */
 case class TransactionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val accountPayment: String,
     val auxiliaryChargePayment: String,
     val diversePayment: String,
@@ -1618,7 +1618,7 @@ extends
  */
 case class Transactor
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1656,7 +1656,7 @@ extends
  */
 case class Vendor
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1699,7 +1699,7 @@ extends
  */
 case class VendorShift
 (
-    override val sup: Element,
+    override val sup: Shift,
     val merchantDebitAmount: Double,
     val posted: Boolean,
     val MerchantAccount: String,

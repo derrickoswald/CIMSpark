@@ -25,7 +25,7 @@ import ch.ninecode.cim.Context
  */
 case class MarketInvoice
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val amount: Double,
     val billMediaKind: String,
     val dueDate: String,
@@ -101,7 +101,7 @@ extends
  */
 case class MarketInvoiceLineItem
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val billPeriod: String,
     val glAccount: String,
     val glDateTime: String,
@@ -175,7 +175,7 @@ extends
  */
 case class MarketLedger
 (
-    override val sup: Element
+    override val sup: BasicElement
 )
 extends
     Element
@@ -220,7 +220,7 @@ extends
  */
 case class MarketLedgerEntry
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val accountID: String,
     val accountKind: String,
     val amount: Double,
@@ -281,7 +281,7 @@ extends
  */
 case class MktActivityRecord
 (
-    override val sup: Element
+    override val sup: ActivityRecord
 )
 extends
     Element
@@ -323,7 +323,7 @@ extends
  */
 case class MktConnectivityNode
 (
-    override val sup: Element,
+    override val sup: ConnectivityNode,
     val endEffectiveDate: String,
     val startEffectiveDate: String,
     val IndividualPnode: String,
@@ -376,7 +376,7 @@ extends
  */
 case class MktEnergyConsumer
 (
-    override val sup: Element,
+    override val sup: EnergyConsumer,
     val RegisteredLoad: String
 )
 extends
@@ -417,7 +417,7 @@ extends
  */
 case class MktGeneratingUnit
 (
-    override val sup: Element,
+    override val sup: GeneratingUnit,
     val RegisteredGenerator: String
 )
 extends
@@ -458,7 +458,7 @@ extends
  */
 case class MktLine
 (
-    override val sup: Element,
+    override val sup: Line,
     val TransmissionRightOfWay: String
 )
 extends
@@ -498,7 +498,7 @@ extends
  */
 case class MktLoadArea
 (
-    override val sup: Element
+    override val sup: LoadArea
 )
 extends
     Element
@@ -538,7 +538,7 @@ extends
  */
 case class MktMeasurement
 (
-    override val sup: Element,
+    override val sup: Measurement,
     val ByTiePoint: String,
     val ForTiePoint: String,
     val Pnode: String
@@ -592,7 +592,7 @@ extends
  */
 case class MktOrganisation
 (
-    override val sup: Element,
+    override val sup: Organisation,
     val creditFlag: String,
     val creditStartEffectiveDate: String,
     val endEffectiveDate: String,
@@ -655,7 +655,7 @@ extends
  */
 case class MktPowerTransformer
 (
-    override val sup: Element,
+    override val sup: PowerTransformer,
     val EndAFlow: String,
     val EndBFlow: String
 )
@@ -701,7 +701,7 @@ extends
  */
 case class MktTerminal
 (
-    override val sup: Element,
+    override val sup: Terminal,
     val endEffectiveDate: String,
     val startEffectiveDate: String,
     val Flowgate: String
@@ -747,7 +747,7 @@ extends
  */
 case class MktUserAttribute
 (
-    override val sup: Element
+    override val sup: UserAttribute
 )
 extends
     Element

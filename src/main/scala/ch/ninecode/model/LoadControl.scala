@@ -29,7 +29,7 @@ import ch.ninecode.cim.Context
  */
 case class ConnectDisconnectFunction
 (
-    override val sup: Element,
+    override val sup: EndDeviceFunction,
     val eventCount: Int,
     val isConnected: Boolean,
     val isDelayedDiscon: Boolean,
@@ -105,7 +105,7 @@ extends
  */
 case class RemoteConnectDisconnectInfo
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val armedTimeout: Double,
     val customerVoltageLimit: Double,
     val energyLimit: Double,

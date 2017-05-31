@@ -16,7 +16,7 @@ import ch.ninecode.cim.Context
  */
 case class CommunicationLink
 (
-    override val sup: Element
+    override val sup: PowerSystemResource
 )
 extends
     Element
@@ -57,7 +57,7 @@ extends
  */
 case class RemoteControl
 (
-    override val sup: Element,
+    override val sup: RemotePoint,
     val actuatorMaximum: Double,
     val actuatorMinimum: Double,
     val remoteControlled: Boolean,
@@ -108,7 +108,7 @@ extends
  */
 case class RemotePoint
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val RemoteUnit: String
 )
 extends
@@ -153,7 +153,7 @@ extends
  */
 case class RemoteSource
 (
-    override val sup: Element,
+    override val sup: RemotePoint,
     val deadband: Double,
     val scanInterval: Double,
     val sensorMaximum: Double,
@@ -207,7 +207,7 @@ extends
  */
 case class RemoteUnit
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val remoteUnitType: String
 )
 extends
@@ -251,7 +251,7 @@ extends
  */
 case class RemoteUnitType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ControlCenter: String,
     val IED: String,
     val RTU: String,
@@ -303,7 +303,7 @@ extends
  */
 case class Source
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val DEFAULTED: String,
     val PROCESS: String,
     val SUBSTITUTED: String

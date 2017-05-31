@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class PackageDependenciesCIMVersion
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val date: String,
     val version: String
 )

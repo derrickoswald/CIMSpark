@@ -15,7 +15,7 @@ import ch.ninecode.cim.Context
  */
 case class ActionRequest
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val actionName: String
 )
 extends
@@ -58,7 +58,7 @@ extends
  */
 case class AreaLoadBid
 (
-    override val sup: Element,
+    override val sup: Bid,
     val demandBidMW: Double
 )
 extends
@@ -102,7 +102,7 @@ extends
  */
 case class AttributeProperty
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val propertyName: String,
     val propertyValue: String,
     val sequence: String,
@@ -158,7 +158,7 @@ extends
  */
 case class Bid
 (
-    override val sup: Element,
+    override val sup: Document,
     val marketType: String,
     val startTime: String,
     val stopTime: String,
@@ -219,7 +219,7 @@ extends
  */
 case class BidDistributionFactor
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val timeIntervalEnd: String,
     val timeIntervalStart: String,
     val ProductBid: String
@@ -274,7 +274,7 @@ extends
  */
 case class BidError
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val componentType: String,
     val endTime: String,
     val errMessage: String,
@@ -339,7 +339,7 @@ extends
  */
 case class BidHourlyProductSchedule
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val ProductBid: String
 )
 extends
@@ -380,7 +380,7 @@ extends
  */
 case class BidHourlySchedule
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val Bid: String
 )
 extends
@@ -420,7 +420,7 @@ extends
  */
 case class BidPriceCurve
 (
-    override val sup: Element
+    override val sup: Curve
 )
 extends
     Element
@@ -471,7 +471,7 @@ I - Initial Bid;
  */
 case class BidPriceSchedule
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val bidType: String,
     val mitigationStatus: String,
     val BidPriceCurve: String,
@@ -540,7 +540,7 @@ extends
  */
 case class BidSelfSched
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val balancingFlag: String,
     val bidType: String,
     val priorityFlag: String,
@@ -623,7 +623,7 @@ extends
  */
 case class BidSet
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -669,7 +669,7 @@ extends
  */
 case class ChargeComponent
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val deleteStatus: String,
     val effectiveDate: String,
     val equation: String,
@@ -739,7 +739,7 @@ extends
  */
 case class ChargeGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val effectiveDate: String,
     val marketCode: String,
     val terminationDate: String,
@@ -803,7 +803,7 @@ extends
  */
 case class ChargeType
 (
-    override val sup: Element,
+    override val sup: Document,
     val chargeOrder: String,
     val chargeVersion: String,
     val effectiveDate: String,
@@ -886,7 +886,7 @@ out of sequence
  */
 case class DispatchInstReply
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val acceptMW: Double,
     val acceptStatus: String,
     val certificationName: String,
@@ -953,7 +953,7 @@ extends
  */
 case class EnergyPriceCurve
 (
-    override val sup: Element
+    override val sup: BasicElement
 )
 extends
     Element
@@ -1018,7 +1018,7 @@ extends
  */
 case class GeneratingBid
 (
-    override val sup: Element,
+    override val sup: ResourceBid,
     val combinedCycleUnitOffer: String,
     val downTimeMax: Double,
     val installedCapacity: Double,
@@ -1123,7 +1123,7 @@ extends
  */
 case class HourlyPreDispatchSchedule
 (
-    override val sup: Element,
+    override val sup: BidHourlySchedule,
     val value: Boolean
 )
 extends
@@ -1165,7 +1165,7 @@ extends
  */
 case class InterTieBid
 (
-    override val sup: Element,
+    override val sup: ResourceBid,
     val minHourlyBlock_1: Int,
     val RegisteredInterTie: String
 )
@@ -1216,7 +1216,7 @@ extends
  */
 case class InterTieDispatchResponse
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val acceptMW: Double,
     val acceptStatus: String,
     val clearedMW: Double,
@@ -1290,7 +1290,7 @@ extends
  */
 case class LoadBid
 (
-    override val sup: Element,
+    override val sup: ResourceBid,
     val dropRampRate: Double,
     val loadRedInitiationCost: Double,
     val loadRedInitiationTime: Double,
@@ -1381,7 +1381,7 @@ extends
  */
 case class LoadFollowingInst
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val endTime: String,
     val loadFollowingMW: Double,
     val mssInstructionID: String,
@@ -1435,7 +1435,7 @@ extends
  */
 case class LoadReductionPriceCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val LoadBid: String
 )
 extends
@@ -1486,7 +1486,7 @@ extends
  */
 case class MajorChargeGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val effectiveDate: String,
     val frequencyType: String,
     val invoiceType: String,
@@ -1554,7 +1554,7 @@ extends
  */
 case class MarketScheduledEvent
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val category: String,
     val duration: Double,
     val status: String,
@@ -1604,7 +1604,7 @@ extends
  */
 case class NotificationTimeCurve
 (
-    override val sup: Element
+    override val sup: Curve
 )
 extends
     Element
@@ -1643,7 +1643,7 @@ extends
  */
 case class OpenTieSchedule
 (
-    override val sup: Element,
+    override val sup: BidHourlySchedule,
     val value: Boolean
 )
 extends
@@ -1685,7 +1685,7 @@ extends
  */
 case class ProductBid
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Bid: String,
     val MarketProduct: String
 )
@@ -1730,7 +1730,7 @@ extends
  */
 case class PumpingCostSchedule
 (
-    override val sup: Element,
+    override val sup: BidHourlyProductSchedule,
     val value: Double
 )
 extends
@@ -1772,7 +1772,7 @@ extends
  */
 case class PumpingLevelSchedule
 (
-    override val sup: Element,
+    override val sup: BidHourlyProductSchedule,
     val value: Double
 )
 extends
@@ -1814,7 +1814,7 @@ extends
  */
 case class PumpingShutDownCostSchedule
 (
-    override val sup: Element,
+    override val sup: BidHourlyProductSchedule,
     val value: Double
 )
 extends
@@ -1861,7 +1861,7 @@ extends
  */
 case class RampRateCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val condition: String,
     val constraintRampType: String,
     val rampRateType: String,
@@ -1949,7 +1949,7 @@ extends
  */
 case class ResourceBid
 (
-    override val sup: Element,
+    override val sup: Bid,
     val aggregationFlag: Int,
     val bidStatus: String,
     val commodityType: String,
@@ -2036,7 +2036,7 @@ extends
  */
 case class StartUpCostCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerators: List[String]
 )
 extends
@@ -2078,7 +2078,7 @@ extends
  */
 case class StartUpTimeCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val RegisteredGenerator: String
 )
 extends
@@ -2143,7 +2143,7 @@ If tradeType = IST, The amount of an Energy Trade.
  */
 case class Trade
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val adjustedTradeQuantity: Double,
     val counterTradeQuantity: Double,
     val dependOnTradeName: String,
@@ -2256,7 +2256,7 @@ extends
  */
 case class TradeError
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val endTime: String,
     val errMessage: String,
     val errPriority: Int,
@@ -2332,7 +2332,7 @@ AST - Ancilliary Services Trade;
  */
 case class TradeProduct
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val tradeProductType: String,
     val tradeType: String
 )
@@ -2382,7 +2382,7 @@ extends
  */
 case class TransactionBid
 (
-    override val sup: Element,
+    override val sup: Bid,
     val demandTransaction: Boolean,
     val dispatchable: Boolean,
     val payCongestion: Boolean,

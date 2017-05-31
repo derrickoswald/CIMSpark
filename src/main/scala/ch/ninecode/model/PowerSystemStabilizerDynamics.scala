@@ -30,7 +30,7 @@ import ch.ninecode.cim.Context
  */
 case class InputSignalKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val branchCurrent: String,
     val busFrequency: String,
     val busFrequencyDeviation: String,
@@ -98,7 +98,7 @@ extends
  */
 case class PowerSystemStabilizerDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val ExcitationSystemDynamics: String
 )
 extends
@@ -170,7 +170,7 @@ extends
  */
 case class Pss1
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val kf: Double,
     val kpe: Double,
     val ks: Double,
@@ -277,7 +277,7 @@ true = e<sup>-sTdelay</sup> used
  */
 case class Pss1A
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val a1: Double,
     val a2: Double,
     val a3: Double,
@@ -443,7 +443,7 @@ extends
  */
 case class Pss2B
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val a: Double,
     val inputSignal1Type: String,
     val inputSignal2Type: String,
@@ -593,7 +593,7 @@ extends
  */
 case class Pss2ST
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val inputSignal1Type: String,
     val inputSignal2Type: String,
     val k1: Double,
@@ -724,7 +724,7 @@ false = frequency.
  */
 case class Pss5
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val ctw2: Boolean,
     val deadband: Double,
     val isfreq: Boolean,
@@ -834,7 +834,7 @@ extends
  */
 case class PssELIN2
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val apss: Double,
     val ks1: Double,
     val ks2: Double,
@@ -929,7 +929,7 @@ extends
  */
 case class PssIEEE1A
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val a1: Double,
     val a2: Double,
     val inputSignalType: String,
@@ -1057,7 +1057,7 @@ extends
  */
 case class PssIEEE2B
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val inputSignal1Type: String,
     val inputSignal2Type: String,
     val ks1: Double,
@@ -1214,7 +1214,7 @@ extends
  */
 case class PssIEEE3B
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val a1: Double,
     val a2: Double,
     val a3: Double,
@@ -1435,7 +1435,7 @@ extends
  */
 case class PssIEEE4B
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val bwh1: Double,
     val bwh2: Double,
     val bwl1: Double,
@@ -1695,7 +1695,7 @@ extends
  */
 case class PssPTIST1
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val dtc: Double,
     val dtf: Double,
     val dtp: Double,
@@ -1814,7 +1814,7 @@ true = produce analog output
  */
 case class PssPTIST3
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val a0: Double,
     val a1: Double,
     val a2: Double,
@@ -1964,7 +1964,7 @@ extends
  */
 case class PssSB4
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val kx: Double,
     val ta: Double,
     val tb: Double,
@@ -2060,7 +2060,7 @@ extends
  */
 case class PssSH
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val k: Double,
     val k0: Double,
     val k1: Double,
@@ -2158,7 +2158,7 @@ extends
  */
 case class PssSK
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val k1: Double,
     val k2: Double,
     val k3: Double,
@@ -2246,7 +2246,7 @@ extends
  */
 case class PssWECC
 (
-    override val sup: Element,
+    override val sup: PowerSystemStabilizerDynamics,
     val inputSignal1Type: String,
     val inputSignal2Type: String,
     val k1: Double,

@@ -12,7 +12,7 @@ import ch.ninecode.cim.Context
  */
 case class InterTieClearing
 (
-    override val sup: Element
+    override val sup: MarketFactors
 )
 extends
     Element
@@ -54,7 +54,7 @@ extends
  */
 case class InterTieResults
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val baseMW: Double,
     val clearedValue: Double,
     val Flowgate: String,
@@ -114,7 +114,7 @@ extends
  */
 case class MarketCaseClearing
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val caseType: String,
     val modifiedDate: String,
     val postedDate: String
@@ -163,7 +163,7 @@ extends
  */
 case class SecurityConstraintsClearing
 (
-    override val sup: Element,
+    override val sup: MarketFactors,
     val mwFlow: Double,
     val mwLimit: Double,
     val shadowPrice: Double

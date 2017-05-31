@@ -51,7 +51,7 @@ For inverter operation with losses Pdc=Pac+lossP
  */
 case class ACDCConverter
 (
-    override val sup: Element,
+    override val sup: ConductingEquipment,
     val baseS: Double,
     val idc: Double,
     val idleLoss: Double,
@@ -145,7 +145,7 @@ extends
  */
 case class ACDCConverterDCTerminal
 (
-    override val sup: Element,
+    override val sup: DCBaseTerminal,
     val polarity: String,
     val DCConductingEquipment: String
 )
@@ -215,7 +215,7 @@ extends
  */
 case class CsConverter
 (
-    override val sup: Element,
+    override val sup: ACDCConverter,
     val alpha: Double,
     val gamma: Double,
     val maxAlpha: Double,
@@ -296,7 +296,7 @@ extends
  */
 case class CsOperatingModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val inverter: String,
     val rectifier: String
 )
@@ -342,7 +342,7 @@ extends
  */
 case class CsPpccControlKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val activePower: String,
     val dcCurrent: String,
     val dcVoltage: String
@@ -392,7 +392,7 @@ extends
  */
 case class DCBaseTerminal
 (
-    override val sup: Element,
+    override val sup: ACDCTerminal,
     val DCNode: String,
     val DCTopologicalNode: String
 )
@@ -435,7 +435,7 @@ extends
  */
 case class DCBreaker
 (
-    override val sup: Element
+    override val sup: DCSwitch
 )
 extends
     Element
@@ -472,7 +472,7 @@ extends
  */
 case class DCBusbar
 (
-    override val sup: Element
+    override val sup: DCConductingEquipment
 )
 extends
     Element
@@ -510,7 +510,7 @@ extends
  */
 case class DCChopper
 (
-    override val sup: Element
+    override val sup: DCConductingEquipment
 )
 extends
     Element
@@ -547,7 +547,7 @@ extends
  */
 case class DCConductingEquipment
 (
-    override val sup: Element
+    override val sup: Equipment
 )
 extends
     Element
@@ -587,7 +587,7 @@ extends
  */
 case class DCConverterOperatingModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val bipolar: String,
     val monopolarGroundReturn: String,
     val monopolarMetallicReturn: String
@@ -634,7 +634,7 @@ extends
  */
 case class DCConverterUnit
 (
-    override val sup: Element,
+    override val sup: DCEquipmentContainer,
     val operationMode: String
 )
 extends
@@ -674,7 +674,7 @@ extends
  */
 case class DCDisconnector
 (
-    override val sup: Element
+    override val sup: DCSwitch
 )
 extends
     Element
@@ -712,7 +712,7 @@ extends
  */
 case class DCEquipmentContainer
 (
-    override val sup: Element
+    override val sup: EquipmentContainer
 )
 extends
     Element
@@ -751,7 +751,7 @@ extends
  */
 case class DCGround
 (
-    override val sup: Element,
+    override val sup: DCConductingEquipment,
     val inductance: Double,
     val r: Double
 )
@@ -795,7 +795,7 @@ extends
  */
 case class DCLine
 (
-    override val sup: Element,
+    override val sup: DCEquipmentContainer,
     val Region: String
 )
 extends
@@ -842,7 +842,7 @@ extends
  */
 case class DCLineSegment
 (
-    override val sup: Element,
+    override val sup: DCConductingEquipment,
     val capacitance: Double,
     val inductance: Double,
     val len: Double,
@@ -897,7 +897,7 @@ extends
  */
 case class DCNode
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val DCEquipmentContainer: String,
     val DCTopologicalNode: String
 )
@@ -943,7 +943,7 @@ extends
  */
 case class DCPolarityKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val middle: String,
     val negative: String,
     val positive: String
@@ -994,7 +994,7 @@ extends
  */
 case class DCSeriesDevice
 (
-    override val sup: Element,
+    override val sup: DCConductingEquipment,
     val inductance: Double,
     val ratedUdc: Double,
     val resistance: Double
@@ -1045,7 +1045,7 @@ extends
  */
 case class DCShunt
 (
-    override val sup: Element,
+    override val sup: DCConductingEquipment,
     val capacitance: Double,
     val ratedUdc: Double,
     val resistance: Double
@@ -1091,7 +1091,7 @@ extends
  */
 case class DCSwitch
 (
-    override val sup: Element
+    override val sup: DCConductingEquipment
 )
 extends
     Element
@@ -1129,7 +1129,7 @@ extends
  */
 case class DCTerminal
 (
-    override val sup: Element,
+    override val sup: DCBaseTerminal,
     val DCConductingEquipment: String
 )
 extends
@@ -1170,7 +1170,7 @@ extends
  */
 case class DCTopologicalIsland
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1203,7 +1203,7 @@ extends
 
 case class PerLengthDCLineParameter
 (
-    override val sup: Element,
+    override val sup: PerLengthLineParameter,
     val capacitance: Double,
     val inductance: Double,
     val resistance: Double
@@ -1249,7 +1249,7 @@ extends
  */
 case class VsCapabilityCurve
 (
-    override val sup: Element
+    override val sup: Curve
 )
 extends
     Element
@@ -1303,7 +1303,7 @@ extends
  */
 case class VsConverter
 (
-    override val sup: Element,
+    override val sup: ACDCConverter,
     val delta: Double,
     val droop: Double,
     val droopCompensation: Double,
@@ -1381,7 +1381,7 @@ extends
  */
 case class VsPpccControlKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val pPcc: String,
     val pPccAndUdcDroop: String,
     val pPccAndUdcDroopPilot: String,
@@ -1429,7 +1429,7 @@ extends
 
 case class VsQpccControlKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val powerFactorPcc: String,
     val reactivePcc: String,
     val voltagePcc: String

@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class AirCompressor
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val airCompressorRating: Double,
     val CAESPlant: String,
     val CombustionTurbine: String
@@ -68,7 +68,7 @@ extends
  */
 case class CAESPlant
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val energyStorageCapacity: Double,
     val ratedCapacityP: Double,
     val AirCompressor: String,
@@ -121,7 +121,7 @@ extends
  */
 case class Classification
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplier: String,
     val unit: String,
     val value: Int
@@ -174,7 +174,7 @@ extends
  */
 case class CogenerationPlant
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val cogenHPSendoutRating: Double,
     val cogenHPSteamRating: Double,
     val cogenLPSendoutRating: Double,
@@ -230,7 +230,7 @@ extends
  */
 case class CombinedCyclePlant
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val combCyclePlantRating: Double
 )
 extends
@@ -275,7 +275,7 @@ extends
  */
 case class CostPerHeatUnit
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominatorMultiplier: String,
     val denominatorUnit: String,
     val multiplier: String,
@@ -332,7 +332,7 @@ extends
  */
 case class Emission
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominatorMultiplier: String,
     val denominatorUnit: String,
     val multiplier: String,
@@ -389,7 +389,7 @@ extends
  */
 case class EmissionAccount
 (
-    override val sup: Element,
+    override val sup: Curve,
     val emissionType: String,
     val emissionValueSource: String,
     val ThermalGeneratingUnit: String
@@ -441,7 +441,7 @@ extends
  */
 case class EmissionCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val emissionContent: String,
     val emissionType: String,
     val isNetGrossP: Boolean,
@@ -496,7 +496,7 @@ extends
  */
 case class EmissionType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val carbonDioxide: String,
     val carbonDisulfide: String,
     val chlorine: String,
@@ -553,7 +553,7 @@ extends
  */
 case class EmissionValueSource
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val calculated: String,
     val measured: String
 )
@@ -610,7 +610,7 @@ extends
  */
 case class FossilFuel
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val fossilFuelType: String,
     val fuelCost: String,
     val fuelDispatchCost: String,
@@ -687,7 +687,7 @@ extends
  */
 case class FuelAllocationSchedule
 (
-    override val sup: Element,
+    override val sup: Curve,
     val fuelAllocationEndDate: String,
     val fuelAllocationStartDate: String,
     val fuelType: String,
@@ -752,7 +752,7 @@ extends
  */
 case class FuelType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val coal: String,
     val gas: String,
     val hardCoal: String,
@@ -810,7 +810,7 @@ extends
  */
 case class GenUnitOpCostCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val isNetGrossP: Boolean,
     val GeneratingUnit: String
 )
@@ -855,7 +855,7 @@ extends
  */
 case class GenUnitOpSchedule
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val GeneratingUnit: String
 )
 extends
@@ -940,7 +940,7 @@ extends
  */
 case class GeneratingUnit
 (
-    override val sup: Element,
+    override val sup: Equipment,
     val allocSpinResP: Double,
     val autoCntrlMarginP: Double,
     val baseP: Double,
@@ -1093,7 +1093,7 @@ extends
  */
 case class GeneratorControlMode
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val pulse: String,
     val setpoint: String
 )
@@ -1140,7 +1140,7 @@ extends
  */
 case class GeneratorControlSource
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val offAGC: String,
     val onAGC: String,
     val plantControl: String,
@@ -1191,7 +1191,7 @@ extends
  */
 case class GrossToNetActivePowerCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val GeneratingUnit: String
 )
 extends
@@ -1238,7 +1238,7 @@ extends
  */
 case class HeatInputCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val auxPowerMult: Double,
     val auxPowerOffset: Double,
     val heatInputEff: Double,
@@ -1298,7 +1298,7 @@ extends
  */
 case class HeatRate
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominatorMultiplier: String,
     val denominatorUnit: String,
     val multiplier: String,
@@ -1353,7 +1353,7 @@ extends
  */
 case class HeatRateCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val isNetGrossP: Boolean,
     val ThermalGeneratingUnit: String
 )
@@ -1398,7 +1398,7 @@ extends
  */
 case class HydroEnergyConversionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val generator: String,
     val pumpAndGenerator: String
 )
@@ -1443,7 +1443,7 @@ extends
  */
 case class HydroGeneratingEfficiencyCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val HydroGeneratingUnit: String
 )
 extends
@@ -1487,7 +1487,7 @@ extends
  */
 case class HydroGeneratingUnit
 (
-    override val sup: Element,
+    override val sup: GeneratingUnit,
     val energyConversionCapability: String,
     val hydroUnitWaterCost: Double,
     val HydroPowerPlant: String,
@@ -1539,7 +1539,7 @@ extends
  */
 case class HydroPlantStorageKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val pumpedStorage: String,
     val runOfRiver: String,
     val storage: String
@@ -1597,7 +1597,7 @@ extends
  */
 case class HydroPowerPlant
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val dischargeTravelDelay: Double,
     val genRatedP: Double,
     val hydroPlantStorageType: String,
@@ -1675,7 +1675,7 @@ extends
  */
 case class HydroPump
 (
-    override val sup: Element,
+    override val sup: Equipment,
     val pumpDischAtMaxHead: Double,
     val pumpDischAtMinHead: Double,
     val pumpPowerAtMaxHead: Double,
@@ -1735,7 +1735,7 @@ extends
  */
 case class HydroPumpOpSchedule
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val HydroPump: String
 )
 extends
@@ -1778,7 +1778,7 @@ extends
  */
 case class IncrementalHeatRateCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val isNetGrossP: Boolean,
     val ThermalGeneratingUnit: String
 )
@@ -1823,7 +1823,7 @@ extends
  */
 case class InflowForecast
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val Reservoir: String
 )
 extends
@@ -1865,7 +1865,7 @@ extends
  */
 case class LevelVsVolumeCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val Reservoir: String
 )
 extends
@@ -1905,7 +1905,7 @@ extends
  */
 case class NuclearGeneratingUnit
 (
-    override val sup: Element
+    override val sup: GeneratingUnit
 )
 extends
     Element
@@ -1944,7 +1944,7 @@ extends
  */
 case class PenstockLossCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val HydroGeneratingUnit: String
 )
 extends
@@ -1999,7 +1999,7 @@ extends
  */
 case class Reservoir
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val activeStorageCapacity: Double,
     val energyStorageRating: Double,
     val fullSupplyLevel: Double,
@@ -2078,7 +2078,7 @@ extends
  */
 case class ShutdownCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val shutdownCost: Double,
     val shutdownDate: String,
     val ThermalGeneratingUnit: String
@@ -2124,7 +2124,7 @@ extends
  */
 case class SolarGeneratingUnit
 (
-    override val sup: Element
+    override val sup: GeneratingUnit
 )
 extends
     Element
@@ -2163,7 +2163,7 @@ extends
  */
 case class StartIgnFuelCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val ignitionFuelType: String,
     val StartupModel: String
 )
@@ -2208,7 +2208,7 @@ extends
  */
 case class StartMainFuelCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val mainFuelType: String,
     val StartupModel: String
 )
@@ -2253,7 +2253,7 @@ extends
  */
 case class StartRampCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val hotStandbyRamp: Double,
     val StartupModel: String
 )
@@ -2312,7 +2312,7 @@ extends
  */
 case class StartupModel
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val fixedMaintCost: Double,
     val hotStandbyHeat: String,
     val incrementalMaintCost: Double,
@@ -2392,7 +2392,7 @@ extends
  */
 case class SteamSendoutSchedule
 (
-    override val sup: Element,
+    override val sup: RegularIntervalSchedule,
     val CogenerationPlant: String
 )
 extends
@@ -2434,7 +2434,7 @@ extends
  */
 case class TailbayLossCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val HydroGeneratingUnit: String
 )
 extends
@@ -2478,7 +2478,7 @@ extends
  */
 case class TargetLevelSchedule
 (
-    override val sup: Element,
+    override val sup: Curve,
     val highLevelLimit: Double,
     val lowLevelLimit: Double,
     val Reservoir: String
@@ -2533,7 +2533,7 @@ extends
  */
 case class ThermalGeneratingUnit
 (
-    override val sup: Element,
+    override val sup: GeneratingUnit,
     val oMCost: String,
     val CAESPlant: String,
     val CogenerationPlant: String,
@@ -2599,7 +2599,7 @@ extends
  */
 case class WindGenUnitKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val offshore: String,
     val onshore: String
 )
@@ -2644,7 +2644,7 @@ extends
  */
 case class WindGeneratingUnit
 (
-    override val sup: Element,
+    override val sup: GeneratingUnit,
     val windGenUnitType: String
 )
 extends

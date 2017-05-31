@@ -22,7 +22,7 @@ import ch.ninecode.cim.Context
  */
 case class AmiBillingReadyKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val amiCapable: String,
     val amiDisabled: String,
     val billingApproved: String,
@@ -85,7 +85,7 @@ extends
  */
 case class BaseReading
 (
-    override val sup: Element,
+    override val sup: MeasurementValue,
     val reportedDateTime: String,
     val source: String,
     val timePeriod: String,
@@ -138,7 +138,7 @@ extends
  */
 case class Channel
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val isVirtual: Boolean,
     val ReadingType: String,
     val Register: String
@@ -187,7 +187,7 @@ extends
  */
 case class ComDirectionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val biDirectional: String,
     val fromDevice: String,
     val toDevice: String
@@ -238,7 +238,7 @@ extends
  */
 case class ComFunction
 (
-    override val sup: Element,
+    override val sup: EndDeviceFunction,
     val amrAddress: String,
     val amrRouter: String,
     val direction: String,
@@ -294,7 +294,7 @@ extends
  */
 case class ComModule
 (
-    override val sup: Element,
+    override val sup: Asset,
     val amrSystem: String,
     val supportsAutonomousDst: Boolean,
     val timeZoneOffset: Double
@@ -354,7 +354,7 @@ extends
  */
 case class ComTechnologyKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val cellular: String,
     val ethernet: String,
     val homePlug: String,
@@ -430,7 +430,7 @@ extends
  */
 case class ControlledAppliance
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val isElectricVehicle: Boolean,
     val isExteriorLighting: Boolean,
     val isGenerationSystem: Boolean,
@@ -509,7 +509,7 @@ extends
  */
 case class DemandResponseProgram
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val typ: String,
     val validityInterval: String,
     val CustomerAgreements: List[String],
@@ -572,7 +572,7 @@ extends
  */
 case class EndDevice
 (
-    override val sup: Element,
+    override val sup: AssetContainer,
     val amrSystem: String,
     val installCode: String,
     val isPan: Boolean,
@@ -641,7 +641,7 @@ extends
  */
 case class EndDeviceAction
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val command: String,
     val duration: Double,
     val durationIndefinite: Boolean,
@@ -711,7 +711,7 @@ extends
  */
 case class EndDeviceCapability
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val autonomousDst: Boolean,
     val communication: Boolean,
     val connectDisconnect: Boolean,
@@ -821,7 +821,7 @@ extends
  */
 case class EndDeviceControl
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val drProgramLevel: Int,
     val drProgramMandatory: Boolean,
     val issuerID: String,
@@ -907,7 +907,7 @@ extends
  */
 case class EndDeviceControlType
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val domain: String,
     val eventOrAction: String,
     val subDomain: String,
@@ -964,7 +964,7 @@ extends
  */
 case class EndDeviceEvent
 (
-    override val sup: Element,
+    override val sup: ActivityRecord,
     val issuerID: String,
     val issuerTrackingID: String,
     val userID: String,
@@ -1025,7 +1025,7 @@ extends
  */
 case class EndDeviceEventDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val name: String,
     val value: String,
     val EndDeviceEvent: String
@@ -1079,7 +1079,7 @@ extends
  */
 case class EndDeviceEventType
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val domain: String,
     val eventOrAction: String,
     val subDomain: String,
@@ -1130,7 +1130,7 @@ extends
  */
 case class EndDeviceFunction
 (
-    override val sup: Element,
+    override val sup: AssetFunction,
     val enabled: Boolean,
     val EndDevice: String
 )
@@ -1183,7 +1183,7 @@ extends
  */
 case class EndDeviceFunctionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val autonomousDst: String,
     val demandResponse: String,
     val electricMetering: String,
@@ -1254,7 +1254,7 @@ extends
  */
 case class EndDeviceGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val typ: String,
     val EndDeviceControls: List[String],
     val EndDevices: List[String]
@@ -1305,7 +1305,7 @@ extends
  */
 case class EndDeviceInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val capability: String,
     val isSolidState: Boolean,
     val phaseCount: Int,
@@ -1361,7 +1361,7 @@ extends
  */
 case class EndDeviceTiming
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val duration: Double,
     val durationIndefinite: Boolean,
     val interval: String,
@@ -1415,7 +1415,7 @@ extends
  */
 case class IntervalBlock
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val IntervalReadings: List[String],
     val MeterReading: String,
     val PendingCalculation: String,
@@ -1465,7 +1465,7 @@ extends
  */
 case class IntervalReading
 (
-    override val sup: Element
+    override val sup: BaseReading
 )
 extends
     Element
@@ -1505,7 +1505,7 @@ extends
  */
 case class Meter
 (
-    override val sup: Element,
+    override val sup: EndDevice,
     val formNumber: String
 )
 extends
@@ -1548,7 +1548,7 @@ extends
  */
 case class MeterMultiplier
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val kind: String,
     val value: Double,
     val Meter: String
@@ -1602,7 +1602,7 @@ extends
  */
 case class MeterMultiplierKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ctRatio: String,
     val kE: String,
     val kH: String,
@@ -1662,7 +1662,7 @@ extends
  */
 case class MeterReading
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val isCoincidentTrigger: Boolean,
     val valuesInterval: String,
     val CustomerAgreement: String,
@@ -1717,7 +1717,7 @@ extends
  */
 case class MeterServiceWork
 (
-    override val sup: Element,
+    override val sup: Work,
     val Meter: String,
     val OldMeter: String,
     val UsagePoint: String
@@ -1765,7 +1765,7 @@ extends
  */
 case class MetrologyRequirement
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val reason: String,
     val UsagePoints: List[String]
 )
@@ -1828,7 +1828,7 @@ extends
  */
 case class PanDemandResponse
 (
-    override val sup: Element,
+    override val sup: EndDeviceAction,
     val appliance: String,
     val avgLoadAdjustment: Double,
     val cancelControlMode: String,
@@ -1905,7 +1905,7 @@ extends
  */
 case class PanDisplay
 (
-    override val sup: Element,
+    override val sup: EndDeviceAction,
     val confirmationRequired: Boolean,
     val priority: String,
     val textMessage: String,
@@ -1955,7 +1955,7 @@ extends
  */
 case class PanPricing
 (
-    override val sup: Element,
+    override val sup: EndDeviceAction,
     val providerID: Int
 )
 extends
@@ -2011,7 +2011,7 @@ extends
  */
 case class PanPricingDetail
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val alternateCostDelivered: Double,
     val alternateCostUnit: String,
     val currentTimeDate: String,
@@ -2098,7 +2098,7 @@ extends
  */
 case class PendingCalculation
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val multiplyBeforeAdd: Boolean,
     val offset: Int,
     val scalarDenominator: Int,
@@ -2159,7 +2159,7 @@ extends
  */
 case class RandomisationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val default: String,
     val end: String,
     val none: String,
@@ -2214,7 +2214,7 @@ extends
  */
 case class RationalNumber
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominator: Int,
     val numerator: Int
 )
@@ -2261,7 +2261,7 @@ extends
  */
 case class Reading
 (
-    override val sup: Element,
+    override val sup: BaseReading,
     val reason: String,
     val MeterReadings: List[String],
     val ReadingType: String
@@ -2311,7 +2311,7 @@ extends
  */
 case class ReadingInterharmonic
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val denominator: Int,
     val numerator: Int
 )
@@ -2360,7 +2360,7 @@ extends
  */
 case class ReadingQuality
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val comment: String,
     val source: String,
     val timeStamp: String,
@@ -2416,7 +2416,7 @@ extends
  */
 case class ReadingQualityType
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val category: String,
     val subCategory: String,
     val systemId: String
@@ -2475,7 +2475,7 @@ extends
  */
 case class ReadingReasonKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val billing: String,
     val demandReset: String,
     val inquiry: String,
@@ -2575,7 +2575,7 @@ extends
  */
 case class ReadingType
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val accumulation: String,
     val aggregate: String,
     val argument: String,
@@ -2674,7 +2674,7 @@ extends
  */
 case class Register
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val isVirtual: Boolean,
     val leftDigitCount: Int,
     val rightDigitCount: Int,
@@ -2732,7 +2732,7 @@ extends
  */
 case class ServiceMultiplier
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val kind: String,
     val value: Double,
     val UsagePoint: String
@@ -2781,7 +2781,7 @@ extends
  */
 case class ServiceMultiplierKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ctRatio: String,
     val ptRatio: String,
     val transformerRatio: String
@@ -2829,7 +2829,7 @@ extends
  */
 case class SimpleEndDeviceFunction
 (
-    override val sup: Element,
+    override val sup: EndDeviceFunction,
     val kind: String
 )
 extends
@@ -2872,7 +2872,7 @@ extends
  */
 case class TransmissionModeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val anonymous: String,
     val both: String,
     val normal: String
@@ -2949,7 +2949,7 @@ extends
  */
 case class UsagePoint
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val amiBillingReady: String,
     val checkBilling: Boolean,
     val connectionState: String,
@@ -3060,7 +3060,7 @@ extends
  */
 case class UsagePointConnectedKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val connected: String,
     val logicallyDisconnected: String,
     val physicallyDisconnected: String
@@ -3109,7 +3109,7 @@ extends
  */
 case class UsagePointGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val typ: String,
     val UsagePoints: List[String]
 )
@@ -3157,7 +3157,7 @@ extends
  */
 case class UsagePointLocation
 (
-    override val sup: Element,
+    override val sup: Location,
     val accessMethod: String,
     val remark: String,
     val siteAccessProblem: String

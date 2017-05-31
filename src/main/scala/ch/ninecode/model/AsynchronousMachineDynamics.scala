@@ -24,7 +24,7 @@ import ch.ninecode.cim.Context
  */
 case class AsynchronousMachineDynamics
 (
-    override val sup: Element,
+    override val sup: RotatingMachineDynamics,
     val AsynchronousMachine: String,
     val MechanicalLoadDynamics: String,
     val TurbineGovernorDynamics: String,
@@ -92,7 +92,7 @@ tpo = (xm + xlr1) / (2*pi*nominal frequency * rr1)
  */
 case class AsynchronousMachineEquivalentCircuit
 (
-    override val sup: Element,
+    override val sup: AsynchronousMachineDynamics,
     val rr1: Double,
     val rr2: Double,
     val xlr1: Double,
@@ -174,7 +174,7 @@ The parameters used for models expressed in time constant reactance form include
  */
 case class AsynchronousMachineTimeConstantReactance
 (
-    override val sup: Element,
+    override val sup: AsynchronousMachineDynamics,
     val tpo: Double,
     val tppo: Double,
     val xp: Double,

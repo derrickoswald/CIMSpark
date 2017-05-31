@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class ControlAreaOperator
 (
-    override val sup: Element,
+    override val sup: Organisation,
     val CAChildOf: List[String],
     val ControlledBy: String
 )
@@ -61,7 +61,7 @@ extends
  */
 case class CustomerConsumer
 (
-    override val sup: Element
+    override val sup: Organisation
 )
 extends
     Element
@@ -98,7 +98,7 @@ extends
  */
 case class GenerationProvider
 (
-    override val sup: Element
+    override val sup: Organisation
 )
 extends
     Element
@@ -138,7 +138,7 @@ extends
  */
 case class IntSchedAgreement
 (
-    override val sup: Element,
+    override val sup: Agreement,
     val defaultIntegrationMethod: String,
     val MktOrganisation: List[String]
 )
@@ -181,7 +181,7 @@ extends
  */
 case class Marketer
 (
-    override val sup: Element
+    override val sup: Organisation
 )
 extends
     Element
@@ -218,7 +218,7 @@ extends
  */
 case class OpenAccessProduct
 (
-    override val sup: Element
+    override val sup: Agreement
 )
 extends
     Element
@@ -251,7 +251,7 @@ extends
 
 case class TransmissionProduct
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val transmissionProductType: String,
     val LocationFor: List[String],
     val TransmissionProvider: String
@@ -298,7 +298,7 @@ extends
  */
 case class TransmissionProvider
 (
-    override val sup: Element
+    override val sup: Organisation
 )
 extends
     Element

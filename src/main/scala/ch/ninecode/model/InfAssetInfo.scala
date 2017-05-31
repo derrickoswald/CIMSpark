@@ -13,7 +13,7 @@ import ch.ninecode.cim.Context
  */
 case class AssetModelCatalogue
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String
 )
 extends
@@ -58,7 +58,7 @@ extends
  */
 case class AssetModelCatalogueItem
 (
-    override val sup: Element,
+    override val sup: Document,
     val unitCost: Double,
     val AssetModel: String,
     val AssetModelCatalogue: String
@@ -105,7 +105,7 @@ extends
  */
 case class BreakerInfo
 (
-    override val sup: Element,
+    override val sup: OldSwitchInfo,
     val phaseTrip: Double
 )
 extends
@@ -154,7 +154,7 @@ extends
  */
 case class CompositeSwitchInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val ganged: Boolean,
     val initOpMode: String,
     val interruptingRating: Double,
@@ -225,7 +225,7 @@ extends
  */
 case class CompositeSwitchKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val escoThrowOver: String,
     val gral: String,
     val other: String,
@@ -299,7 +299,7 @@ extends
  */
 case class CurrentTransformerInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val accuracyClass: String,
     val accuracyLimit: Double,
     val coreCount: Int,
@@ -385,7 +385,7 @@ extends
  */
 case class FaultIndicatorInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val resetKind: String
 )
 extends
@@ -429,7 +429,7 @@ extends
  */
 case class FaultIndicatorResetKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val automatic: String,
     val manual: String,
     val other: String,
@@ -482,7 +482,7 @@ extends
  */
 case class OilPreservationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val conservator: String,
     val freeBreathing: String,
     val nitrogenBlanket: String,
@@ -539,7 +539,7 @@ extends
  */
 case class OldSwitchInfo
 (
-    override val sup: Element,
+    override val sup: SwitchInfo,
     val dielectricStrength: Double,
     val loadBreak: Boolean,
     val makingCapacity: Double,
@@ -593,7 +593,7 @@ extends
 
 case class OldTransformerEndInfo
 (
-    override val sup: Element,
+    override val sup: TransformerEndInfo,
     val dayOverLoadRating: Double,
     val hourOverLoadRating: Double,
     val solidInsulationWeight: Double,
@@ -638,7 +638,7 @@ extends
 
 case class OldTransformerTankInfo
 (
-    override val sup: Element,
+    override val sup: TransformerTankInfo,
     val constructionKind: String,
     val coreCoilsWeight: Double,
     val coreKind: String,
@@ -700,7 +700,7 @@ extends
  */
 case class PotentialTransformerInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val accuracyClass: String,
     val nominalRatio: String,
     val primaryRatio: String,
@@ -760,7 +760,7 @@ extends
  */
 case class ProtectionEquipmentInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val groundTrip: Double,
     val phaseTrip: Double
 )
@@ -808,7 +808,7 @@ extends
  */
 case class RecloserInfo
 (
-    override val sup: Element,
+    override val sup: OldSwitchInfo,
     val groundTripCapable: Boolean,
     val groundTripNormalEnabled: Boolean,
     val groundTripRating: Double,
@@ -868,7 +868,7 @@ extends
  */
 case class RegulationBranchKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val breaker: String,
     val fuse: String,
     val line: String,
@@ -933,7 +933,7 @@ extends
  */
 case class ShuntImpedanceControlKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val fixed: String,
     val localOnly: String,
     val remoteOnly: String,
@@ -989,7 +989,7 @@ extends
  */
 case class ShuntImpedanceLocalControlKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val current: String,
     val none: String,
     val powerFactor: String,
@@ -1059,7 +1059,7 @@ extends
  */
 case class SurgeArresterInfo
 (
-    override val sup: Element,
+    override val sup: AssetInfo,
     val continuousOperatingVoltage: Double,
     val isPolymer: Boolean,
     val lightningImpulseDischargeVoltage: Double,
@@ -1139,7 +1139,7 @@ extends
  */
 case class TransformerConstructionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val aerial: String,
     val dryType: String,
     val network: String,
@@ -1226,7 +1226,7 @@ extends
  */
 case class TransformerCoreKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val core: String,
     val shell: String
 )
@@ -1274,7 +1274,7 @@ extends
  */
 case class TransformerFunctionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val autotransformer: String,
     val other: String,
     val powerTransformer: String,
@@ -1330,7 +1330,7 @@ extends
  */
 case class WindingInsulationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val nomex: String,
     val other: String,
     val paper: String,

@@ -27,7 +27,7 @@ import ch.ninecode.cim.Context
  */
 case class VAdjIEEE
 (
-    override val sup: Element,
+    override val sup: VoltageAdjusterDynamics,
     val adjslew: Double,
     val taoff: Double,
     val taon: Double,
@@ -83,7 +83,7 @@ extends
  */
 case class VoltageAdjusterDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val PFVArControllerType1Dynamics: String
 )
 extends

@@ -19,7 +19,7 @@ import ch.ninecode.cim.Context
  */
 case class AllocationResult
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalStartTime: String,
     val updateTimeStamp: String,
     val updateUser: String
@@ -79,7 +79,7 @@ DAC - Day Ahead Capacity;
  */
 case class AllocationResultValues
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val aggregateType: String,
     val allocationMwHour: Double,
     val allocationPrice: Double,
@@ -141,7 +141,7 @@ extends
  */
 case class AuxiliaryCost
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalStartTime: String,
     val marketType: String,
     val updateTimeStamp: String,
@@ -192,7 +192,7 @@ extends
  */
 case class AuxiliaryObject
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val RegisteredGenerator: String,
     val RegisteredLoad: String
 )
@@ -246,7 +246,7 @@ extends
  */
 case class AuxiliaryValues
 (
-    override val sup: Element,
+    override val sup: AuxiliaryObject,
     val availUndispatchedQ: Double,
     val incrementalORAvail: Double,
     val maxExpostCapacity: Double,
@@ -319,7 +319,7 @@ extends
  */
 case class ExpectedEnergy
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalStartTime: String,
     val updateTimeStamp: String,
     val updateUser: String
@@ -369,7 +369,7 @@ extends
  */
 case class ExpectedEnergyValues
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val energyTypeCode: String,
     val expectedMwh: Double,
     val ExpectedEnergy: String,
@@ -421,7 +421,7 @@ extends
  */
 case class FiveMinAuxiliaryData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalStartTime: String,
     val updateTimeStamp: String,
     val updateUser: String
@@ -470,7 +470,7 @@ extends
  */
 case class TenMinAuxiliaryData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalStartTime: String,
     val updateTimeStamp: String,
     val updateUser: String
@@ -520,7 +520,7 @@ extends
  */
 case class TradingHubPrice
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val intervalStartTime: String,
     val marketType: String,
     val updateTimeStamp: String,
@@ -573,7 +573,7 @@ extends
  */
 case class TradingHubValues
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val price: Double,
     val AggregatedPnode: String,
     val TradingHubPrice: String

@@ -14,7 +14,7 @@ import ch.ninecode.cim.Context
  */
 case class StateVariable
 (
-    override val sup: Element
+    override val sup: BasicElement
 )
 extends
     Element
@@ -57,7 +57,7 @@ extends
  */
 case class SvInjection
 (
-    override val sup: Element,
+    override val sup: StateVariable,
     val pInjection: Double,
     val qInjection: Double,
     val TopologicalNode: String
@@ -109,7 +109,7 @@ extends
  */
 case class SvPowerFlow
 (
-    override val sup: Element,
+    override val sup: StateVariable,
     val p: Double,
     val q: Double,
     val Terminal: String
@@ -158,7 +158,7 @@ extends
  */
 case class SvShuntCompensatorSections
 (
-    override val sup: Element,
+    override val sup: StateVariable,
     val sections: Double,
     val ShuntCompensator: String
 )
@@ -203,7 +203,7 @@ extends
  */
 case class SvStatus
 (
-    override val sup: Element,
+    override val sup: StateVariable,
     val inService: Boolean,
     val ConductingEquipment: String
 )
@@ -250,7 +250,7 @@ extends
  */
 case class SvTapStep
 (
-    override val sup: Element,
+    override val sup: StateVariable,
     val position: Double,
     val TapChanger: String
 )
@@ -296,7 +296,7 @@ extends
  */
 case class SvVoltage
 (
-    override val sup: Element,
+    override val sup: StateVariable,
     val angle: Double,
     val v: Double,
     val TopologicalNode: String

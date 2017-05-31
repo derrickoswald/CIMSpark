@@ -13,7 +13,7 @@ import ch.ninecode.cim.Context
  */
 case class WheelingReferenceSchedule
 (
-    override val sup: Element,
+    override val sup: BidHourlySchedule,
     val value: String
 )
 extends

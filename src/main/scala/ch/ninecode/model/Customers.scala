@@ -23,7 +23,7 @@ import ch.ninecode.cim.Context
  */
 case class Customer
 (
-    override val sup: Element,
+    override val sup: OrganisationRole,
     val kind: String,
     val locale: String,
     val priority: String,
@@ -88,7 +88,7 @@ extends
  */
 case class CustomerAccount
 (
-    override val sup: Element,
+    override val sup: Document,
     val billingCycle: String,
     val budgetBill: String,
     val Customer: String
@@ -143,7 +143,7 @@ extends
  */
 case class CustomerAgreement
 (
-    override val sup: Element,
+    override val sup: Agreement,
     val loadMgmt: String,
     val Customer: String,
     val CustomerAccount: String,
@@ -216,7 +216,7 @@ extends
  */
 case class CustomerKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val commercialIndustrial: String,
     val energyServiceScheduler: String,
     val energyServiceSupplier: String,
@@ -296,7 +296,7 @@ extends
  */
 case class CustomerNotification
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val contactType: String,
     val contactValue: String,
     val earliestDateTimeToCall: String,
@@ -357,7 +357,7 @@ extends
  */
 case class IncidentHazard
 (
-    override val sup: Element,
+    override val sup: Hazard,
     val Incident: String,
     val TroubleTicket: String
 )
@@ -405,7 +405,7 @@ extends
  */
 case class NotificationTriggerKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val etrChange: String,
     val informDispatched: String,
     val initialEtr: String,
@@ -468,7 +468,7 @@ extends
  */
 case class PricingStructure
 (
-    override val sup: Element,
+    override val sup: Document,
     val code: String,
     val dailyCeilingUsage: Int,
     val dailyEstimatedUsage: Int,
@@ -539,7 +539,7 @@ extends
  */
 case class RevenueKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val commercial: String,
     val industrial: String,
     val irrigation: String,
@@ -598,7 +598,7 @@ extends
  */
 case class ServiceCategory
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val kind: String
 )
 extends
@@ -649,7 +649,7 @@ extends
  */
 case class ServiceKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val electricity: String,
     val gas: String,
     val heat: String,
@@ -725,7 +725,7 @@ extends
  */
 case class ServiceLocation
 (
-    override val sup: Element,
+    override val sup: WorkLocation,
     val accessMethod: String,
     val needsInspection: Boolean,
     val siteAccessProblem: String
@@ -775,7 +775,7 @@ extends
  */
 case class Tariff
 (
-    override val sup: Element,
+    override val sup: Document,
     val endDate: String,
     val startDate: String,
     val TariffProfiles: List[String]
@@ -826,7 +826,7 @@ extends
  */
 case class TroubleReportingKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val call: String,
     val email: String,
     val ivr: String,
@@ -874,7 +874,7 @@ extends
 
 case class TroubleTicket
 (
-    override val sup: Element,
+    override val sup: Document,
     val dateTimeOfReport: String,
     val firstResponder: String,
     val reportingKind: String,

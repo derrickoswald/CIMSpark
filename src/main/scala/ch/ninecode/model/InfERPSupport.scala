@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class BillMediaKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val electronic: String,
     val other: String,
     val paper: String
@@ -68,7 +68,7 @@ extends
  */
 case class ErpAccountKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val estimate: String,
     val normal: String,
     val reversal: String,
@@ -119,7 +119,7 @@ extends
  */
 case class ErpBOM
 (
-    override val sup: Element,
+    override val sup: ErpDocument,
     val Design: String
 )
 extends
@@ -161,7 +161,7 @@ extends
  */
 case class ErpBankAccount
 (
-    override val sup: Element,
+    override val sup: BankAccount,
     val bankABA: String
 )
 extends
@@ -204,7 +204,7 @@ extends
  */
 case class ErpBomItemData
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val DesignLocation: String,
     val ErpBOM: String,
     val TypeAsset: String
@@ -251,7 +251,7 @@ extends
  */
 case class ErpChartOfAccounts
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -289,7 +289,7 @@ extends
  */
 case class ErpCompetency
 (
-    override val sup: Element
+    override val sup: ErpIdentifiedObject
 )
 extends
     Element
@@ -327,7 +327,7 @@ extends
  */
 case class ErpDocument
 (
-    override val sup: Element
+    override val sup: Document
 )
 extends
     Element
@@ -364,7 +364,7 @@ extends
  */
 case class ErpEngChangeOrder
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -402,7 +402,7 @@ extends
  */
 case class ErpIdentifiedObject
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -442,7 +442,7 @@ extends
  */
 case class ErpInventory
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val Asset: String
 )
@@ -488,7 +488,7 @@ extends
  */
 case class ErpInventoryCount
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val AssetModel: String
 )
@@ -543,7 +543,7 @@ extends
  */
 case class ErpInvoice
 (
-    override val sup: Element,
+    override val sup: ErpDocument,
     val amount: Double,
     val billMediaKind: String,
     val dueDate: String,
@@ -612,7 +612,7 @@ extends
  */
 case class ErpInvoiceKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val purchase: String,
     val sale: String
 )
@@ -672,7 +672,7 @@ extends
  */
 case class ErpInvoiceLineItem
 (
-    override val sup: Element,
+    override val sup: ErpDocument,
     val billPeriod: String,
     val glAccount: String,
     val glDateTime: String,
@@ -763,7 +763,7 @@ extends
  */
 case class ErpInvoiceLineItemKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val initial: String,
     val other: String,
     val recalculation: String
@@ -812,7 +812,7 @@ extends
  */
 case class ErpIssueInventory
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val TypeAsset: String,
     val TypeMaterial: String
@@ -861,7 +861,7 @@ extends
  */
 case class ErpItemMaster
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val Asset: String
 )
@@ -905,7 +905,7 @@ extends
  */
 case class ErpJournal
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -951,7 +951,7 @@ extends
  */
 case class ErpJournalEntry
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val accountID: String,
     val amount: Double,
     val postingDateTime: String,
@@ -1018,7 +1018,7 @@ extends
  */
 case class ErpLedBudLineItem
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val ErpLedBudLineItem_attr: String,
     val ErpLedgerBudget: String
@@ -1065,7 +1065,7 @@ extends
  */
 case class ErpLedger
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1103,7 +1103,7 @@ extends
  */
 case class ErpLedgerBudget
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1150,7 +1150,7 @@ extends
  */
 case class ErpLedgerEntry
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val accountID: String,
     val accountKind: String,
     val amount: Double,
@@ -1221,7 +1221,7 @@ extends
  */
 case class ErpPOLineItem
 (
-    override val sup: Element,
+    override val sup: ErpDocument,
     val AssetModelCatalogueItem: String,
     val ErpPurchaseOrder: String,
     val ErpRecDelLineItem: String,
@@ -1271,7 +1271,7 @@ extends
  */
 case class ErpPayable
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1313,7 +1313,7 @@ extends
  */
 case class ErpPayableLineItem
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val ErpInvoiceLineItem: String,
     val ErpJournalEntries: List[String],
@@ -1367,7 +1367,7 @@ extends
  */
 case class ErpPayment
 (
-    override val sup: Element,
+    override val sup: ErpDocument,
     val termsPayment: String
 )
 extends
@@ -1408,7 +1408,7 @@ extends
  */
 case class ErpPersonnel
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String
 )
 extends
@@ -1449,7 +1449,7 @@ extends
  */
 case class ErpProjectAccounting
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1487,7 +1487,7 @@ extends
  */
 case class ErpPurchaseOrder
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1525,7 +1525,7 @@ extends
  */
 case class ErpQuote
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1569,7 +1569,7 @@ extends
  */
 case class ErpQuoteLineItem
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val AssetModelCatalogueItem: String,
     val Design: String,
@@ -1629,7 +1629,7 @@ extends
  */
 case class ErpRecDelvLineItem
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val ErpInvoiceLineItem: String,
     val ErpPOLineItem: String,
@@ -1683,7 +1683,7 @@ extends
  */
 case class ErpRecLineItem
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val ErpInvoiceLineItem: String,
     val ErpJournalEntries: List[String],
@@ -1736,7 +1736,7 @@ extends
  */
 case class ErpReceivable
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1774,7 +1774,7 @@ extends
  */
 case class ErpReceiveDelivery
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1821,7 +1821,7 @@ extends
  */
 case class ErpReqLineItem
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val code: String,
     val cost: Double,
     val deliveryDate: String,
@@ -1889,7 +1889,7 @@ extends
  */
 case class ErpRequisition
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1927,7 +1927,7 @@ extends
  */
 case class ErpSalesOrder
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element
@@ -1967,7 +1967,7 @@ extends
  */
 case class ErpSiteLevelData
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val LandProperty: String
 )
@@ -2013,7 +2013,7 @@ extends
  */
 case class ErpTimeEntry
 (
-    override val sup: Element,
+    override val sup: ErpIdentifiedObject,
     val status: String,
     val ErpProjectAccounting: String,
     val ErpTimeSheet: String
@@ -2060,7 +2060,7 @@ extends
  */
 case class ErpTimeSheet
 (
-    override val sup: Element
+    override val sup: ErpDocument
 )
 extends
     Element

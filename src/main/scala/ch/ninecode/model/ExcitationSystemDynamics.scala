@@ -61,7 +61,7 @@ false = gates are not used.
  */
 case class ExcAC1A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val hvlvgates: Boolean,
     val ka: Double,
     val kc: Double,
@@ -224,7 +224,7 @@ false = gate is not used.
  */
 case class ExcAC2A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val hvgate: Boolean,
     val ka: Double,
     val kb: Double,
@@ -397,7 +397,7 @@ extends
  */
 case class ExcAC3A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdn: Double,
     val ka: Double,
     val kc: Double,
@@ -530,7 +530,7 @@ extends
  */
 case class ExcAC4A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kc: Double,
     val ta: Double,
@@ -630,7 +630,7 @@ extends
  */
 case class ExcAC5A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val a: Double,
     val efd1: Double,
     val efd2: Double,
@@ -767,7 +767,7 @@ extends
  */
 case class ExcAC6A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kc: Double,
     val kd: Double,
@@ -933,7 +933,7 @@ false = limits are not multiplied by generator's terminal voltage.
  */
 case class ExcAC8B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val inlim: Boolean,
     val ka: Double,
     val kc: Double,
@@ -1086,7 +1086,7 @@ extends
  */
 case class ExcANS
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val blint: Int,
     val ifmn: Double,
     val ifmx: Double,
@@ -1190,7 +1190,7 @@ extends
  */
 case class ExcAVR1
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val e1: Double,
     val e2: Double,
     val ka: Double,
@@ -1290,7 +1290,7 @@ extends
  */
 case class ExcAVR2
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val e1: Double,
     val e2: Double,
     val ka: Double,
@@ -1391,7 +1391,7 @@ extends
  */
 case class ExcAVR3
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val e1: Double,
     val e2: Double,
     val ka: Double,
@@ -1495,7 +1495,7 @@ false = selector is not connected.
  */
 case class ExcAVR4
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val imul: Boolean,
     val ka: Double,
     val ke: Double,
@@ -1579,7 +1579,7 @@ extends
  */
 case class ExcAVR5
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val rex: Double,
     val ta: Double
@@ -1667,7 +1667,7 @@ extends
  */
 case class ExcAVR7
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val a1: Double,
     val a2: Double,
     val a3: Double,
@@ -1792,7 +1792,7 @@ false =  Vs connected to 1st summing point (see diagram).
  */
 case class ExcBBC
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdmax: Double,
     val efdmin: Double,
     val k: Double,
@@ -1872,7 +1872,7 @@ extends
  */
 case class ExcCZ
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdmax: Double,
     val efdmin: Double,
     val ka: Double,
@@ -1975,7 +1975,7 @@ extends
  */
 case class ExcDC1A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val edfmax: Double,
     val efd1: Double,
     val efd2: Double,
@@ -2105,7 +2105,7 @@ false = limiter at the block is not dependent on Vt.
  */
 case class ExcDC2A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efd1: Double,
     val efd2: Double,
     val exclim: Boolean,
@@ -2231,7 +2231,7 @@ false = exciter output limiter not active.
  */
 case class ExcDC3A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val edfmax: Double,
     val efd1: Double,
     val efd2: Double,
@@ -2348,7 +2348,7 @@ false = Vb1max is active.
  */
 case class ExcDC3A1
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val exclim: Boolean,
     val ka: Double,
     val ke: Double,
@@ -2458,7 +2458,7 @@ extends
  */
 case class ExcELIN1
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val dpnf: Double,
     val efmax: Double,
     val efmin: Double,
@@ -2595,7 +2595,7 @@ extends
  */
 case class ExcELIN2
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdbas: Double,
     val iefmax: Double,
     val iefmax2: Double,
@@ -2737,7 +2737,7 @@ extends
  */
 case class ExcHU
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ae: Double,
     val ai: Double,
     val atr: Double,
@@ -2847,7 +2847,7 @@ extends
  */
 case class ExcIEEEAC1A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kc: Double,
     val kd: Double,
@@ -2981,7 +2981,7 @@ extends
  */
 case class ExcIEEEAC2A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kb: Double,
     val kc: Double,
@@ -3124,7 +3124,7 @@ extends
  */
 case class ExcIEEEAC3A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdn: Double,
     val ka: Double,
     val kc: Double,
@@ -3243,7 +3243,7 @@ extends
  */
 case class ExcIEEEAC4A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kc: Double,
     val ta: Double,
@@ -3336,7 +3336,7 @@ extends
  */
 case class ExcIEEEAC5A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efd1: Double,
     val efd2: Double,
     val ka: Double,
@@ -3460,7 +3460,7 @@ extends
  */
 case class ExcIEEEAC6A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kc: Double,
     val kd: Double,
@@ -3616,7 +3616,7 @@ extends
  */
 case class ExcIEEEAC7B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val kc: Double,
     val kd: Double,
     val kdr: Double,
@@ -3768,7 +3768,7 @@ extends
  */
 case class ExcIEEEAC8B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kc: Double,
     val kd: Double,
@@ -3894,7 +3894,7 @@ false = input connects to the error signal.
  */
 case class ExcIEEEDC1A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efd1: Double,
     val efd2: Double,
     val exclim: Boolean,
@@ -4014,7 +4014,7 @@ false = input connects to the error signal.
  */
 case class ExcIEEEDC2A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efd1: Double,
     val efd2: Double,
     val exclim: Double,
@@ -4122,7 +4122,7 @@ extends
  */
 case class ExcIEEEDC3A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efd1: Double,
     val efd2: Double,
     val exclim: Boolean,
@@ -4235,7 +4235,7 @@ false = add to error signal.
  */
 case class ExcIEEEDC4B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efd1: Double,
     val efd2: Double,
     val ka: Double,
@@ -4370,7 +4370,7 @@ false = PSS input (Vs) added to voltage regulator output.
  */
 case class ExcIEEEST1A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ilr: Double,
     val ka: Double,
     val kc: Double,
@@ -4468,7 +4468,7 @@ extends
  */
 case class ExcIEEEST1AUELselectorKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ignoreUELsignal: String,
     val inputAddedToErrorSignal: String,
     val inputHVgateErrorSignal: String,
@@ -4546,7 +4546,7 @@ false = add to error signal.
  */
 case class ExcIEEEST2A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdmax: Double,
     val ka: Double,
     val kc: Double,
@@ -4663,7 +4663,7 @@ extends
  */
 case class ExcIEEEST3A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ka: Double,
     val kc: Double,
     val kg: Double,
@@ -4793,7 +4793,7 @@ extends
  */
 case class ExcIEEEST4B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val kc: Double,
     val kg: Double,
     val ki: Double,
@@ -4913,7 +4913,7 @@ extends
  */
 case class ExcIEEEST5B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val kc: Double,
     val kr: Double,
     val t1: Double,
@@ -5030,7 +5030,7 @@ extends
  */
 case class ExcIEEEST6B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ilr: Double,
     val kci: Double,
     val kff: Double,
@@ -5140,7 +5140,7 @@ extends
  */
 case class ExcIEEEST7B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val kh: Double,
     val kia: Double,
     val kl: Double,
@@ -5241,7 +5241,7 @@ extends
  */
 case class ExcOEX3T
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val e1: Double,
     val e2: Double,
     val ka: Double,
@@ -5382,7 +5382,7 @@ extends
  */
 case class ExcPIC
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val e1: Double,
     val e2: Double,
     val efdmax: Double,
@@ -5561,7 +5561,7 @@ extends
  */
 case class ExcREXS
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val e1: Double,
     val e2: Double,
     val fbf: String,
@@ -5710,7 +5710,7 @@ extends
  */
 case class ExcREXSFeedbackSignalKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val fieldCurrent: String,
     val fieldVoltage: String,
     val outputVoltage: String
@@ -5773,7 +5773,7 @@ true = fixed voltage of 1.0 PU
  */
 case class ExcSCRX
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val cswitch: Boolean,
     val emax: Double,
     val emin: Double,
@@ -5854,7 +5854,7 @@ extends
  */
 case class ExcSEXS
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdmax: Double,
     val efdmin: Double,
     val emax: Double,
@@ -5986,7 +5986,7 @@ false = manual set is active; the use of desired value of reactive power (Qz) is
  */
 case class ExcSK
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdmax: Double,
     val efdmin: Double,
     val emax: Double,
@@ -6155,7 +6155,7 @@ extends
  */
 case class ExcST1A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ilr: Double,
     val ka: Double,
     val kc: Double,
@@ -6278,7 +6278,7 @@ false = add to error signal.
  */
 case class ExcST2A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdmax: Double,
     val ka: Double,
     val kc: Double,
@@ -6400,7 +6400,7 @@ extends
  */
 case class ExcST3A
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val efdmax: Double,
     val kc: Double,
     val kg: Double,
@@ -6539,7 +6539,7 @@ false = UEL is not part of block diagram.
  */
 case class ExcST4B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val kc: Double,
     val kg: Double,
     val ki: Double,
@@ -6685,7 +6685,7 @@ false = do not multiply regulator output by terminal voltage.
  */
 case class ExcST6B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val ilr: Double,
     val k1: Boolean,
     val kcl: Double,
@@ -6794,7 +6794,7 @@ extends
  */
 case class ExcST6BOELselectorKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val afterUEL: String,
     val beforeUEL: String,
     val noOELinput: String
@@ -6872,7 +6872,7 @@ extends
  */
 case class ExcST7B
 (
-    override val sup: Element,
+    override val sup: ExcitationSystemDynamics,
     val kh: Double,
     val kia: Double,
     val kl: Double,
@@ -6961,7 +6961,7 @@ extends
  */
 case class ExcST7BOELselectorKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val addVref: String,
     val inputLVgate: String,
     val noOELinput: String,
@@ -7014,7 +7014,7 @@ extends
  */
 case class ExcST7BUELselectorKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val addVref: String,
     val inputHVgate: String,
     val noUELinput: String,
@@ -7071,7 +7071,7 @@ extends
  */
 case class ExcitationSystemDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val DiscontinuousExcitationControlDynamics: String,
     val OverexcitationLimiterDynamics: String,
     val PFVArControllerType1Dynamics: String,

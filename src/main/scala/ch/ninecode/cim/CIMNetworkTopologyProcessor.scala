@@ -205,11 +205,12 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         return (ret)
     }
 
-    def vertex_id (string: String): VertexId = {
+    def vertex_id (string: String): VertexId =
+    {
         var h = 2166136261l;
         for (c ← string)
             h = (h * 16777619) ^ c
-        h.asInstanceOf[VertexId]    
+        h.asInstanceOf[VertexId]
     }
 
     def make_graph_edges (e: CuttingEdge): Edge[CuttingEdge] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)

@@ -30,7 +30,7 @@ import ch.ninecode.cim.Context
  */
 case class UnderexcLim2Simplified
 (
-    override val sup: Element,
+    override val sup: UnderexcitationLimiterDynamics,
     val kui: Double,
     val p0: Double,
     val p1: Double,
@@ -117,7 +117,7 @@ extends
  */
 case class UnderexcLimIEEE1
 (
-    override val sup: Element,
+    override val sup: UnderexcitationLimiterDynamics,
     val kuc: Double,
     val kuf: Double,
     val kui: Double,
@@ -268,7 +268,7 @@ extends
  */
 case class UnderexcLimIEEE2
 (
-    override val sup: Element,
+    override val sup: UnderexcitationLimiterDynamics,
     val k1: Double,
     val k2: Double,
     val kfb: Double,
@@ -431,7 +431,7 @@ extends
  */
 case class UnderexcLimX1
 (
-    override val sup: Element,
+    override val sup: UnderexcitationLimiterDynamics,
     val k: Double,
     val kf2: Double,
     val km: Double,
@@ -493,7 +493,7 @@ extends
  */
 case class UnderexcLimX2
 (
-    override val sup: Element,
+    override val sup: UnderexcitationLimiterDynamics,
     val kf2: Double,
     val km: Double,
     val melmax: Double,
@@ -553,7 +553,7 @@ extends
  */
 case class UnderexcitationLimiterDynamics
 (
-    override val sup: Element,
+    override val sup: DynamicsFunctionBlock,
     val ExcitationSystemDynamics: String,
     val RemoteInputSignal: String
 )

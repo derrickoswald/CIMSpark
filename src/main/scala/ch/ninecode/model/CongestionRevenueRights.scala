@@ -24,7 +24,7 @@ import ch.ninecode.cim.Context
  */
 case class CRR
 (
-    override val sup: Element,
+    override val sup: Document,
     val cRRcategory: String,
     val cRRtype: String,
     val hedgeType: String,
@@ -86,7 +86,7 @@ extends
  */
 case class CRROrgRole
 (
-    override val sup: Element,
+    override val sup: OrganisationRole,
     val kind: String,
     val status: String,
     val CRR: String,
@@ -142,7 +142,7 @@ extends
  */
 case class CRRSegment
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val amount: Double,
     val clearingPrice: Double,
     val endDateTime: String,

@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class ClearanceAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val kind: String,
     val Clearance: String,
     val SwitchingStepGroup: String
@@ -66,7 +66,7 @@ extends
  */
 case class ClearanceActionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val issue: String,
     val release: String,
     val update: String
@@ -117,7 +117,7 @@ extends
  */
 case class ClearanceDocument
 (
-    override val sup: Element,
+    override val sup: SafetyDocument,
     val mustBeDeenergised: Boolean,
     val mustBeGrounded: Boolean,
     val ClearanceAction: String,
@@ -169,7 +169,7 @@ extends
  */
 case class CutAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val kind: String,
     val Cut: String,
     val SwitchingStepGroup: String
@@ -218,7 +218,7 @@ extends
  */
 case class EnergySourceAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val kind: String,
     val EnergySource: String,
     val SwitchingStepGroup: String
@@ -265,7 +265,7 @@ extends
  */
 case class GenericAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val SwitchingStepGroup: String
 )
 extends
@@ -312,7 +312,7 @@ extends
  */
 case class GroundAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val kind: String,
     val AlongACLineSegment: String,
     val Ground: String,
@@ -369,7 +369,7 @@ extends
  */
 case class Incident
 (
-    override val sup: Element,
+    override val sup: Document,
     val cause: String,
     val Outage: String,
     val Owner: String,
@@ -421,7 +421,7 @@ extends
  */
 case class JumperAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val kind: String,
     val Jumper: String,
     val SwitchingStepGroup: String
@@ -463,7 +463,7 @@ extends
 
 case class OperationTag
 (
-    override val sup: Element,
+    override val sup: Document,
     val Asset: String,
     val PowerSystemResource: String,
     val TagAction: String
@@ -514,7 +514,7 @@ extends
  */
 case class OperationalRestriction
 (
-    override val sup: Element,
+    override val sup: Document,
     val activePeriod: String,
     val restrictedValue: String,
     val Equipments: List[String],
@@ -565,7 +565,7 @@ extends
  */
 case class OperationalUpdatedRating
 (
-    override val sup: Element,
+    override val sup: OperationalRestriction,
     val changeType: String,
     val PlannedOutage: String
 )
@@ -621,7 +621,7 @@ extends
  */
 case class Outage
 (
-    override val sup: Element,
+    override val sup: Document,
     val actualPeriod: String,
     val cancelledDateTime: String,
     val cause: String,
@@ -689,7 +689,7 @@ extends
  */
 case class OutageSchedule
 (
-    override val sup: Element
+    override val sup: Document
 )
 extends
     Element
@@ -728,7 +728,7 @@ extends
  */
 case class PSREvent
 (
-    override val sup: Element,
+    override val sup: ActivityRecord,
     val kind: String,
     val PowerSystemResource: String
 )
@@ -778,7 +778,7 @@ extends
  */
 case class PSREventKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val inService: String,
     val other: String,
     val outOfService: String,
@@ -837,7 +837,7 @@ extends
  */
 case class SafetyDocument
 (
-    override val sup: Element,
+    override val sup: Document,
     val SwitchingPlan: String
 )
 extends
@@ -880,7 +880,7 @@ extends
  */
 case class ServicePointOutageSummary
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val criticalCount: Int,
     val totalCount: Int
 )
@@ -927,7 +927,7 @@ extends
  */
 case class SwitchAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val kind: String,
     val OperatedSwitch: String,
     val PlannedOutage: String,
@@ -980,7 +980,7 @@ extends
  */
 case class SwitchActionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val close: String,
     val disableReclosing: String,
     val enableReclosing: String,
@@ -1034,7 +1034,7 @@ extends
  */
 case class SwitchingPlan
 (
-    override val sup: Element,
+    override val sup: SwitchingStepGroup,
     val purpose: String,
     val rank: Int,
     val Outage: String
@@ -1087,7 +1087,7 @@ extends
  */
 case class SwitchingStep
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val description: String,
     val executedDateTime: String,
     val isFreeSequence: Boolean,
@@ -1148,7 +1148,7 @@ extends
  */
 case class SwitchingStepGroup
 (
-    override val sup: Element,
+    override val sup: Document,
     val isFreeSequence: Boolean,
     val sequenceNumber: Int,
     val SwitchingPlan: String
@@ -1197,7 +1197,7 @@ extends
  */
 case class TagAction
 (
-    override val sup: Element,
+    override val sup: SwitchingStep,
     val kind: String,
     val OperationTag: String,
     val SwitchingStepGroup: String
@@ -1246,7 +1246,7 @@ extends
  */
 case class TagActionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val place: String,
     val remove: String,
     val verify: String
@@ -1294,7 +1294,7 @@ extends
  */
 case class TempEquipActionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val place: String,
     val remove: String
 )

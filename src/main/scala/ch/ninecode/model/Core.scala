@@ -21,7 +21,7 @@ import ch.ninecode.cim.Context
  */
 case class ACDCTerminal
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val connected: Boolean,
     val sequenceNumber: Int,
     val BusNameMarker: String
@@ -69,7 +69,7 @@ extends
  */
 case class BaseFrequency
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val frequency: Double
 )
 extends
@@ -110,7 +110,7 @@ extends
  */
 case class BasePower
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val basePower: Double
 )
 extends
@@ -151,7 +151,7 @@ extends
  */
 case class BaseVoltage
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val nominalVoltage: Double
 )
 extends
@@ -196,7 +196,7 @@ extends
  */
 case class BasicIntervalSchedule
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val startTime: String,
     val value1Multiplier: String,
     val value1Unit: String,
@@ -255,7 +255,7 @@ extends
  */
 case class Bay
 (
-    override val sup: Element,
+    override val sup: EquipmentContainer,
     val bayEnergyMeasFlag: Boolean,
     val bayPowerMeasFlag: Boolean,
     val breakerConfiguration: String,
@@ -314,7 +314,7 @@ extends
  */
 case class BreakerConfiguration
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val breakerAndAHalf: String,
     val doubleBreaker: String,
     val noBreaker: String,
@@ -367,7 +367,7 @@ extends
  */
 case class BusbarConfiguration
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val doubleBus: String,
     val mainWithTransfer: String,
     val ringBus: String,
@@ -421,7 +421,7 @@ extends
  */
 case class ConductingEquipment
 (
-    override val sup: Element,
+    override val sup: Equipment,
     val BaseVoltage: String,
     val GroundingAction: String,
     val JumpingAction: String,
@@ -473,7 +473,7 @@ extends
  */
 case class ConnectivityNode
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val ConnectivityNodeContainer: String,
     val TopologicalNode: String
 )
@@ -516,7 +516,7 @@ extends
  */
 case class ConnectivityNodeContainer
 (
-    override val sup: Element
+    override val sup: PowerSystemResource
 )
 extends
     Element
@@ -562,7 +562,7 @@ extends
  */
 case class Curve
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val curveStyle: String,
     val xMultiplier: String,
     val xUnit: String,
@@ -632,7 +632,7 @@ extends
  */
 case class CurveData
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val xvalue: Double,
     val y1value: Double,
     val y2value: Double,
@@ -687,7 +687,7 @@ extends
  */
 case class CurveStyle
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val constantYValue: String,
     val straightLineYValues: String
 )
@@ -735,7 +735,7 @@ extends
  */
 case class Equipment
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val aggregate: Boolean,
     val normallyInService: Boolean,
     val EquipmentContainer: String,
@@ -784,7 +784,7 @@ extends
  */
 case class EquipmentContainer
 (
-    override val sup: Element
+    override val sup: ConnectivityNodeContainer
 )
 extends
     Element
@@ -821,7 +821,7 @@ extends
  */
 case class GeographicalRegion
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -865,7 +865,7 @@ extends
  */
 case class IdentifiedObject
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val aliasName: String,
     val description: String,
     val mRID: String,
@@ -914,7 +914,7 @@ extends
  */
 case class IrregularIntervalSchedule
 (
-    override val sup: Element
+    override val sup: BasicIntervalSchedule
 )
 extends
     Element
@@ -957,7 +957,7 @@ extends
  */
 case class IrregularTimePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val time: Double,
     val value1: Double,
     val value2: Double,
@@ -1010,7 +1010,7 @@ extends
  */
 case class Name
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val name: String,
     val IdentifiedObject: String,
     val NameType: String
@@ -1060,7 +1060,7 @@ extends
  */
 case class NameType
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val description: String,
     val name: String,
     val NameTypeAuthority: String
@@ -1108,7 +1108,7 @@ extends
  */
 case class NameTypeAuthority
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val description: String,
     val name: String
 )
@@ -1152,7 +1152,7 @@ extends
  */
 case class OperatingParticipant
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1193,7 +1193,7 @@ extends
  */
 case class OperatingShare
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val percentage: Double,
     val OperatingParticipant: String,
     val PowerSystemResource: String
@@ -1240,7 +1240,7 @@ extends
  */
 case class PSRType
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1299,7 +1299,7 @@ extends
  */
 case class PhaseCode
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val s1: String,
     val s12: String,
     val s12N: String,
@@ -1403,7 +1403,7 @@ extends
  */
 case class PowerSystemResource
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val AssetDatasheet: String,
     val Location: String,
     val PSRType: String
@@ -1451,7 +1451,7 @@ extends
  */
 case class RegularIntervalSchedule
 (
-    override val sup: Element,
+    override val sup: BasicIntervalSchedule,
     val endTime: String,
     val timeStep: Double
 )
@@ -1501,7 +1501,7 @@ extends
  */
 case class RegularTimePoint
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val sequenceNumber: Int,
     val value1: Double,
     val value2: Double,
@@ -1551,7 +1551,7 @@ extends
  */
 case class ReportingGroup
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val PowerSystemResource: List[String]
 )
 extends
@@ -1591,7 +1591,7 @@ extends
  */
 case class ReportingSuperGroup
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1629,7 +1629,7 @@ extends
  */
 case class SubGeographicalRegion
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val Region: String
 )
 extends
@@ -1670,7 +1670,7 @@ extends
  */
 case class Substation
 (
-    override val sup: Element,
+    override val sup: EquipmentContainer,
     val Region: String
 )
 extends
@@ -1720,7 +1720,7 @@ extends
  */
 case class Terminal
 (
-    override val sup: Element,
+    override val sup: ACDCTerminal,
     val phases: String,
     val Bushing: String,
     val ConductingEquipment: String,
@@ -1780,7 +1780,7 @@ extends
  */
 case class VoltageLevel
 (
-    override val sup: Element,
+    override val sup: EquipmentContainer,
     val highVoltageLimit: Double,
     val lowVoltageLimit: Double,
     val BaseVoltage: String,

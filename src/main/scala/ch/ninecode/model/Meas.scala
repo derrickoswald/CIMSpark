@@ -17,7 +17,7 @@ import ch.ninecode.cim.Context
  */
 case class Accumulator
 (
-    override val sup: Element,
+    override val sup: Measurement,
     val maxValue: Int,
     val LimitSets: List[String]
 )
@@ -63,7 +63,7 @@ extends
  */
 case class AccumulatorLimit
 (
-    override val sup: Element,
+    override val sup: Limit,
     val value: Int,
     val LimitSet: String
 )
@@ -106,7 +106,7 @@ extends
  */
 case class AccumulatorLimitSet
 (
-    override val sup: Element
+    override val sup: LimitSet
 )
 extends
     Element
@@ -144,7 +144,7 @@ extends
  */
 case class AccumulatorReset
 (
-    override val sup: Element,
+    override val sup: Control,
     val AccumulatorValue: String
 )
 extends
@@ -188,7 +188,7 @@ extends
  */
 case class AccumulatorValue
 (
-    override val sup: Element,
+    override val sup: MeasurementValue,
     val value: Int,
     val Accumulator: String,
     val AccumulatorReset: String
@@ -241,7 +241,7 @@ extends
  */
 case class Analog
 (
-    override val sup: Element,
+    override val sup: Measurement,
     val maxValue: Double,
     val minValue: Double,
     val normalValue: Double,
@@ -298,7 +298,7 @@ extends
  */
 case class AnalogControl
 (
-    override val sup: Element,
+    override val sup: Control,
     val maxValue: Double,
     val minValue: Double,
     val AnalogValue: String
@@ -346,7 +346,7 @@ extends
  */
 case class AnalogLimit
 (
-    override val sup: Element,
+    override val sup: Limit,
     val value: Double,
     val LimitSet: String
 )
@@ -389,7 +389,7 @@ extends
  */
 case class AnalogLimitSet
 (
-    override val sup: Element
+    override val sup: LimitSet
 )
 extends
     Element
@@ -429,7 +429,7 @@ extends
  */
 case class AnalogValue
 (
-    override val sup: Element,
+    override val sup: MeasurementValue,
     val value: Double,
     val Analog: String,
     val AnalogControl: String
@@ -479,7 +479,7 @@ extends
  */
 case class Command
 (
-    override val sup: Element,
+    override val sup: Control,
     val normalValue: Int,
     val value: Int,
     val DiscreteValue: String,
@@ -537,7 +537,7 @@ extends
  */
 case class Control
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val controlType: String,
     val operationInProgress: Boolean,
     val timeStamp: String,
@@ -601,7 +601,7 @@ extends
  */
 case class Discrete
 (
-    override val sup: Element,
+    override val sup: Measurement,
     val maxValue: Int,
     val minValue: Int,
     val normalValue: Int,
@@ -646,7 +646,7 @@ extends
 
 case class DiscreteCommand
 (
-    override val sup: Element
+    override val sup: Command
 )
 extends
     Element
@@ -686,7 +686,7 @@ extends
  */
 case class DiscreteValue
 (
-    override val sup: Element,
+    override val sup: MeasurementValue,
     val value: Int,
     val Command: String,
     val Discrete: String
@@ -733,7 +733,7 @@ extends
  */
 case class Limit
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -772,7 +772,7 @@ extends
  */
 case class LimitSet
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val isPercentageLimits: Boolean
 )
 extends
@@ -822,7 +822,7 @@ extends
  */
 case class Measurement
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val measurementType: String,
     val phases: String,
     val unitMultiplier: String,
@@ -889,7 +889,7 @@ extends
  */
 case class MeasurementValue
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val attr: String,
     val sensorAccuracy: Double,
     val timeStamp: String,
@@ -949,7 +949,7 @@ extends
  */
 case class MeasurementValueQuality
 (
-    override val sup: Element,
+    override val sup: Quality61850,
     val MeasurementValue: String
 )
 extends
@@ -990,7 +990,7 @@ extends
  */
 case class MeasurementValueSource
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1043,7 +1043,7 @@ extends
  */
 case class Quality61850
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val badReference: Boolean,
     val estimatorReplaced: Boolean,
     val failure: Boolean,
@@ -1117,7 +1117,7 @@ extends
  */
 case class RaiseLowerCommand
 (
-    override val sup: Element,
+    override val sup: AnalogControl,
     val ValueAliasSet: String
 )
 extends
@@ -1159,7 +1159,7 @@ extends
  */
 case class SetPoint
 (
-    override val sup: Element,
+    override val sup: AnalogControl,
     val normalValue: Double,
     val value: Double
 )
@@ -1202,7 +1202,7 @@ extends
  */
 case class StringMeasurement
 (
-    override val sup: Element
+    override val sup: Measurement
 )
 extends
     Element
@@ -1241,7 +1241,7 @@ extends
  */
 case class StringMeasurementValue
 (
-    override val sup: Element,
+    override val sup: MeasurementValue,
     val value: String,
     val StringMeasurement: String
 )
@@ -1289,7 +1289,7 @@ extends
  */
 case class Validity
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val GOOD: String,
     val INVALID: String,
     val QUESTIONABLE: String
@@ -1336,7 +1336,7 @@ extends
  */
 case class ValueAliasSet
 (
-    override val sup: Element
+    override val sup: IdentifiedObject
 )
 extends
     Element
@@ -1375,7 +1375,7 @@ extends
  */
 case class ValueToAlias
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val value: Int,
     val ValueAliasSet: String
 )

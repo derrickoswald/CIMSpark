@@ -24,7 +24,7 @@ import ch.ninecode.cim.Context
  */
 case class DiagnosisDataSet
 (
-    override val sup: Element,
+    override val sup: ProcedureDataSet,
     val effect: String,
     val failureMode: String,
     val finalCause: String,
@@ -101,7 +101,7 @@ extends
  */
 case class InspectionDataSet
 (
-    override val sup: Element,
+    override val sup: ProcedureDataSet,
     val locationCondition: String
 )
 extends
@@ -144,7 +144,7 @@ extends
  */
 case class MaintenanceDataSet
 (
-    override val sup: Element,
+    override val sup: ProcedureDataSet,
     val conditionAfter: String,
     val conditionBefore: String,
     val maintCode: String
@@ -193,7 +193,7 @@ extends
  */
 case class TestDataSet
 (
-    override val sup: Element,
+    override val sup: ProcedureDataSet,
     val conclusion: String,
     val specimenID: String,
     val specimenToLabDateTime: String

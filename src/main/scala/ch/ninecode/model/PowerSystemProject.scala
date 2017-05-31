@@ -24,7 +24,7 @@ import ch.ninecode.cim.Context
  */
 case class PowerSystemProject
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val attr: String,
     val description: String,
     val name: String,
@@ -81,7 +81,7 @@ extends
 
 case class PowerSystemProjectSchedule
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val actualEnd: String,
     val actualStart: String,
     val attr: String,
@@ -140,7 +140,7 @@ extends
  */
 case class PowerSystemSubProject
 (
-    override val sup: Element,
+    override val sup: PowerSystemProject,
     val Project: String
 )
 extends
@@ -186,7 +186,7 @@ extends
  */
 case class ProjectStep
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val actualEnd: String,
     val actualStart: String,
     val scheduledEnd: String,
@@ -237,7 +237,7 @@ extends
 
 case class ProjectStepStatusKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val approved: String,
     val cancelled: String,
     val inProgress: String,
@@ -291,7 +291,7 @@ extends
  */
 case class StepKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val commissioning: String,
     val design_and_construction: String,
     val planning: String,

@@ -22,7 +22,7 @@ import ch.ninecode.cim.Context
  */
 case class AnchorKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val concrete: String,
     val helix: String,
     val multiHelix: String,
@@ -82,7 +82,7 @@ extends
  */
 case class AssetPropertyCurve
 (
-    override val sup: Element,
+    override val sup: Curve,
     val Specification: String
 )
 extends
@@ -128,7 +128,7 @@ extends
  */
 case class Bushing
 (
-    override val sup: Element,
+    override val sup: Asset,
     val c1Capacitance: Double,
     val c1PowerFactor: Double,
     val c2Capacitance: Double,
@@ -187,7 +187,7 @@ extends
  */
 case class BushingInsulationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val compound: String,
     val other: String,
     val paperoil: String,
@@ -241,7 +241,7 @@ extends
  */
 case class BushingInsulationPF
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val status: String,
     val testKind: String,
     val Bushing: String,
@@ -292,7 +292,7 @@ extends
  */
 case class BushingInsulationPfTestKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val c1: String,
     val c2: String
 )
@@ -335,7 +335,7 @@ extends
  */
 case class Cabinet
 (
-    override val sup: Element
+    override val sup: AssetContainer
 )
 extends
     Element
@@ -376,7 +376,7 @@ extends
  */
 case class CoolingKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val forcedAir: String,
     val forcedOilAndAir: String,
     val other: String,
@@ -430,7 +430,7 @@ extends
  */
 case class CoolingPowerRating
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val coolingKind: String,
     val powerRating: Double,
     val stage: Int,
@@ -487,7 +487,7 @@ extends
  */
 case class DimensionsInfo
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val orientation: String,
     val sizeDepth: Double,
     val sizeDiameter: Double,
@@ -544,7 +544,7 @@ extends
  */
 case class DuctBank
 (
-    override val sup: Element,
+    override val sup: AssetContainer,
     val circuitCount: Int
 )
 extends
@@ -585,7 +585,7 @@ extends
  */
 case class FACTSDevice
 (
-    override val sup: Element,
+    override val sup: Asset,
     val kind: String
 )
 extends
@@ -633,7 +633,7 @@ extends
  */
 case class FACTSDeviceKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val statcom: String,
     val svc: String,
     val tcpar: String,
@@ -695,7 +695,7 @@ extends
  */
 case class Facility
 (
-    override val sup: Element,
+    override val sup: AssetContainer,
     val kind: String
 )
 extends
@@ -740,7 +740,7 @@ extends
  */
 case class FailureEvent
 (
-    override val sup: Element,
+    override val sup: ActivityRecord,
     val corporateCode: String,
     val failureIsolationMethod: String,
     val faultLocatingMethod: String,
@@ -794,7 +794,7 @@ extends
  */
 case class FailureIsolationMethodKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val breakerOperation: String,
     val burnedInTheClear: String,
     val fuse: String,
@@ -860,7 +860,7 @@ extends
  */
 case class FinancialInfo
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val account: String,
     val actualPurchaseCost: Double,
     val costDescription: String,
@@ -940,7 +940,7 @@ extends
  */
 case class GenericAssetModelOrMaterial
 (
-    override val sup: Element,
+    override val sup: AssetModel,
     val estimatedUnitCost: Double,
     val quantity: String,
     val stockItem: Boolean,
@@ -999,7 +999,7 @@ extends
  */
 case class Joint
 (
-    override val sup: Element,
+    override val sup: Asset,
     val configurationKind: String,
     val fillKind: String,
     val insulation: String
@@ -1049,7 +1049,7 @@ extends
  */
 case class JointConfigurationKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val other: String,
     val wires1to1: String,
     val wires2to1: String,
@@ -1108,7 +1108,7 @@ extends
  */
 case class JointFillKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val airNoFilling: String,
     val asphaltic: String,
     val bluefill254: String,
@@ -1180,7 +1180,7 @@ extends
  */
 case class Medium
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val kind: String,
     val volumeSpec: Double,
     val Assets: List[String],
@@ -1232,7 +1232,7 @@ extends
  */
 case class MediumKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val gas: String,
     val liquid: String,
     val solid: String
@@ -1291,7 +1291,7 @@ extends
  */
 case class Pole
 (
-    override val sup: Element,
+    override val sup: Structure,
     val baseKind: String,
     val breastBlock: Boolean,
     val classification: String,
@@ -1366,7 +1366,7 @@ extends
  */
 case class PoleBaseKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val asphalt: String,
     val cement: String,
     val dirt: String,
@@ -1425,7 +1425,7 @@ extends
  */
 case class PolePreservativeKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val cellon: String,
     val chemonite: String,
     val creosote: String,
@@ -1491,7 +1491,7 @@ extends
  */
 case class PoleTreatmentKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val butt: String,
     val full: String,
     val grayStain: String,
@@ -1554,7 +1554,7 @@ extends
  */
 case class Reconditioning
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val dateTime: String,
     val Asset: String
 )
@@ -1601,7 +1601,7 @@ extends
  */
 case class ReliabilityInfo
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val mTTR: Double,
     val momFailureRate: Double,
     val Assets: List[String],
@@ -1651,7 +1651,7 @@ extends
  */
 case class Specification
 (
-    override val sup: Element
+    override val sup: Document
 )
 extends
     Element
@@ -1693,7 +1693,7 @@ extends
  */
 case class Streetlight
 (
-    override val sup: Element,
+    override val sup: Asset,
     val armLength: Double,
     val lampKind: String,
     val lightRating: Double,
@@ -1746,7 +1746,7 @@ extends
  */
 case class StreetlightLampKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val highPressureSodium: String,
     val mercuryVapor: String,
     val metalHalide: String,
@@ -1804,7 +1804,7 @@ extends
  */
 case class Structure
 (
-    override val sup: Element,
+    override val sup: AssetContainer,
     val fumigantAppliedDate: String,
     val fumigantName: String,
     val height: Double,
@@ -1866,7 +1866,7 @@ extends
  */
 case class StructureMaterialKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val concrete: String,
     val other: String,
     val steel: String,
@@ -1923,7 +1923,7 @@ extends
  */
 case class StructureSupport
 (
-    override val sup: Element,
+    override val sup: Asset,
     val anchorKind: String,
     val anchorRodCount: Int,
     val anchorRodLength: Double,
@@ -1986,7 +1986,7 @@ extends
  */
 case class StructureSupportKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val anchor: String,
     val guy: String
 )
@@ -2031,7 +2031,7 @@ extends
  */
 case class Tower
 (
-    override val sup: Element,
+    override val sup: Structure,
     val constructionKind: String
 )
 extends
@@ -2073,7 +2073,7 @@ extends
  */
 case class TowerConstructionKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val suspension: String,
     val tension: String
 )
@@ -2136,7 +2136,7 @@ extends
  */
 case class TransformerObservation
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val bushingTemp: Double,
     val dga: String,
     val freqResp: String,
@@ -2225,7 +2225,7 @@ extends
  */
 case class UndergroundStructure
 (
-    override val sup: Element,
+    override val sup: Structure,
     val hasVentilation: Boolean,
     val kind: String,
     val material: String,
@@ -2284,7 +2284,7 @@ extends
  */
 case class UndergroundStructureKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val burd: String,
     val enclosure: String,
     val handhole: String,
@@ -2359,7 +2359,7 @@ extends
  */
 case class WindingInsulation
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val insulationPFStatus: String,
     val insulationResistance: String,
     val leakageReactance: Double,

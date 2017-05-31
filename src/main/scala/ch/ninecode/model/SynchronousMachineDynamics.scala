@@ -18,7 +18,7 @@ import ch.ninecode.cim.Context
  */
 case class IfdBaseKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val ifag: String,
     val iffl: String,
     val ifnl: String
@@ -66,7 +66,7 @@ extends
  */
 case class RotorKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val roundRotor: String,
     val salientPole: String
 )
@@ -118,7 +118,7 @@ extends
  */
 case class SynchronousMachineDetailed
 (
-    override val sup: Element,
+    override val sup: SynchronousMachineDynamics,
     val efdBaseRatio: Double,
     val ifdBaseType: String,
     val saturationFactor120QAxis: Double,
@@ -182,7 +182,7 @@ extends
  */
 case class SynchronousMachineDynamics
 (
-    override val sup: Element,
+    override val sup: RotatingMachineDynamics,
     val ExcitationSystemDynamics: String,
     val MechanicalLoadDynamics: String,
     val SynchronousMachine: String,
@@ -267,7 +267,7 @@ tppqo = (xaq * x1q + xaq * x2q + x1q * x2q)/ (2*pi*nominal frequency * r2q * (xa
  */
 case class SynchronousMachineEquivalentCircuit
 (
-    override val sup: Element,
+    override val sup: SynchronousMachineDetailed,
     val r1d: Double,
     val r1q: Double,
     val r2q: Double,
@@ -342,7 +342,7 @@ extends
  */
 case class SynchronousMachineModelKind
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val subtransient: String,
     val subtransientSimplified: String,
     val subtransientSimplifiedDirectAxis: String,
@@ -395,7 +395,7 @@ extends
  */
 case class SynchronousMachineSimplified
 (
-    override val sup: Element
+    override val sup: SynchronousMachineDynamics
 )
 extends
     Element
@@ -491,7 +491,7 @@ extends
  */
 case class SynchronousMachineTimeConstantReactance
 (
-    override val sup: Element,
+    override val sup: SynchronousMachineDetailed,
     val ks: Double,
     val modelType: String,
     val rotorType: String,

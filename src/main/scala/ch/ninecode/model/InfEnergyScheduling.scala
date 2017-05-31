@@ -23,7 +23,7 @@ import ch.ninecode.cim.Context
  */
 case class AreaReserveSpec
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val lowerRegMarginReqt: Double,
     val opReserveReqt: Double,
     val primaryReserveReqt: Double,
@@ -85,7 +85,7 @@ extends
  */
 case class CurrentEmergencyScheduledInterchange
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val emergencyScheduleMW: Double,
     val emergencyScheduleRampTime: Int,
     val emergencyScheduleStartTime: String,
@@ -138,7 +138,7 @@ extends
  */
 case class CurrentScheduledInterchange
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val currentNetTieMW: Double,
     val useEmergencySchedule: Boolean,
     val InternalControlArea: String
@@ -186,7 +186,7 @@ extends
  */
 case class CurtailmentProfile
 (
-    override val sup: Element,
+    override val sup: Profile,
     val EnergyTransaction: String
 )
 extends
@@ -232,7 +232,7 @@ extends
  */
 case class DynamicSchedule
 (
-    override val sup: Element,
+    override val sup: BasicIntervalSchedule,
     val dynSchedSignRev: Boolean,
     val dynSchedStatus: String,
     val MktMeasurement: String,
@@ -287,7 +287,7 @@ extends
  */
 case class EnergyProduct
 (
-    override val sup: Element,
+    override val sup: Agreement,
     val GenerationProvider: String,
     val ResoldBy_Marketer: List[String],
     val TitleHeldBy_Marketer: String
@@ -335,7 +335,7 @@ extends
  */
 case class InadvertentAccount
 (
-    override val sup: Element,
+    override val sup: BasicElement,
     val SubControlArea: String
 )
 extends
@@ -377,7 +377,7 @@ extends
  */
 case class InternalControlArea
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val CurrentScheduledInterchange: String
 )
 extends
@@ -420,7 +420,7 @@ extends
  */
 case class LossProfile
 (
-    override val sup: Element,
+    override val sup: Profile,
     val EnergyTransaction: String,
     val HasLoss_1: String
 )
@@ -459,7 +459,7 @@ extends
 
 case class TieLine
 (
-    override val sup: Element,
+    override val sup: IdentifiedObject,
     val EnergyTransaction: String,
     val ParentOfB: String,
     val SideA_SubControlArea: String,
@@ -508,7 +508,7 @@ extends
  */
 case class TransmissionCorridor
 (
-    override val sup: Element
+    override val sup: PowerSystemResource
 )
 extends
     Element
@@ -546,7 +546,7 @@ extends
  */
 case class TransmissionRightOfWay
 (
-    override val sup: Element,
+    override val sup: PowerSystemResource,
     val TransmissionCorridor: String
 )
 extends
