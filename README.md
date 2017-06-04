@@ -3,6 +3,8 @@ CIMReader
 
 Spark access to Common Information Model (CIM) files as RDD and Hive SQL.
 
+A good overview presentation is [Network Analysis and Simulation using Apache Spark on Compute Clusters](https://derrickoswald.github.io/CIMSparkPresentation/index.html?audio), or [without the audio tracks](https://derrickoswald.github.io/CIMSparkPresentation).
+
 # Overview
 
 This program reads in CIM files which are a 
