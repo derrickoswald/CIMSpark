@@ -81,123 +81,82 @@ trait Parser
      * Parse one or more XML elements from a string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @return A function for parsing the elements.
+     * @param context The context for the substring in the XML and
+     * line number and position context for reporting in case of an error.
+     * @return The matched group(s) from the regular expression.
      */
-    def parse_elements (pattern: Tuple2[Pattern, Int]): Context => List[String] =
+    def parse_elements (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
     {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The matched group(s) from the regular expression or null if none were found.
-        (context: Context) =>
+        var ret: List[String] = null
+
+        val matcher = pattern._1.matcher (context.subxml)
+        while (matcher.find ())
         {
-            var ret: List[String] = null
-
-            val matcher = pattern._1.matcher (context.subxml)
-            while (matcher.find ())
-            {
-                val string = matcher.group (pattern._2)
-                if (Context.DEBUG)
-                    context.coverage += Tuple2 (matcher.start, matcher.end)
-                if (null != string)
-                    ret = if (null == ret) List (string) else ret :+ string
-            }
-
-            ret
+            val string = matcher.group (pattern._2)
+            if (Context.DEBUG)
+                context.coverage += Tuple2 (matcher.start, matcher.end)
+            if (null != string)
+                ret = if (null == ret) List (string) else ret :+ string
         }
+
+        return (ret)
     }
 
     /**
-     * Create a function to parse one XML element from a string.
+     * Parse one XML element from a string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @return A function for parsing the element.
+     * @param context The context for the substring in the XML and
+     * line number and position context for reporting in case of an error.
+     * @return The matched group from the regular expression, or null if the pattern wasn't found.
      */
-    def parse_element (pattern: Tuple2[Pattern, Int]): Context => String =
+    def parse_element (pattern: Tuple2[Pattern, Int])(context: Context): String =
     {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The matched group from the regular expression, or null if the pattern wasn't found.
-        (context: Context) =>
-        {
-            val matcher = pattern._1.matcher (context.subxml)
-            if (matcher.find ())
-            {
-                val string = matcher.group (pattern._2)
-                if (Context.DEBUG)
-                    context.coverage += Tuple2 (matcher.start, matcher.end)
-                string
-            }
-            else
-                null
-        }
+        val elements = parse_elements (pattern)(context)
+        return (if (null == elements) null else elements.head)
     }
 
     /**
-     * Create a function to parse one or more attributes from an XML string.
+     * Parse one or more attributes from an XML string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @return A function for parsing the attributes.
+     * @param context The context for the substring in the XML and
+     * line number and position context for reporting in case of an error.
+     * @return The attribute value(s) (with leading # stripped off).
      */
-    def parse_attributes (pattern: Tuple2[Pattern, Int]): Context => List[String] =
+    def parse_attributes (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
     {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The attribute value(s) (with leading # stripped off).
-        context: Context =>
+        var ret: List[String] = null
+
+        val matcher = pattern._1.matcher (context.subxml)
+        while (matcher.find ())
         {
-            var ret: List[String] = null
-
-            val matcher = pattern._1.matcher (context.subxml)
-            while (matcher.find ())
+            var string = matcher.group (pattern._2)
+            if (Context.DEBUG)
+                context.coverage += Tuple2 (matcher.start, matcher.end)
+            if (null != string)
             {
-                val start = matcher.start (pattern._2)
-                val end = matcher.end (pattern._2)
-                if ((-1 != start) && (-1 != end))
-                {
-                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
-                    val string = context.subxml.subSequence (begin, end).toString
-                    if (Context.DEBUG)
-                        context.coverage += Tuple2 (matcher.start, matcher.end)
-                    ret = if (null == ret) List (string) else ret :+ string
-                }
+                if (string.startsWith ("#")) // remove '#'
+                    string = string.substring (1)
+                ret = if (null == ret) List (string) else ret :+ string
             }
-
-            ret
         }
+
+        return (ret)
     }
 
     /**
-     * Create a function to parse one attribute from an XML string.
+     * Parse one attribute from an XML string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @return A function for parsing the attribute.
+     * @param context The context for the substring in the XML and
+     * line number and position context for reporting in case of an error.
+     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
      */
-    def parse_attribute (pattern: Tuple2[Pattern, Int]): Context => String =
+    def parse_attribute (pattern: Tuple2[Pattern, Int])(context: Context): String =
     {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
-        (context: Context) =>
-        {
-            val matcher = pattern._1.matcher (context.subxml)
-            if (matcher.find ())
-            {
-                val start = matcher.start (pattern._2)
-                val end = matcher.end (pattern._2)
-                if ((-1 != start) && (-1 != end))
-                {
-                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
-                    val string = context.subxml.subSequence (begin, end).toString
-                    if (Context.DEBUG)
-                        context.coverage += Tuple2 (matcher.start, matcher.end)
-                    string
-                }
-                else
-                    null
-            }
-            else
-                null
-        }
+        val attributes = parse_attributes (pattern)(context)
+        return (if (null == attributes) null else attributes.head)
     }
 
     /**
@@ -305,14 +264,18 @@ object Parser
  * 
  * @tparam A The CIM class type.
  */
-abstract class Parseable[+A <: Product : ClassTag : TypeTag]
+abstract class Parseable[A <: Product : ClassTag : TypeTag]
 extends
     Parser
 {
     def runtime_class = classTag[A].runtimeClass
     def classname = runtime_class.getName
     def cls = classname.substring (classname.lastIndexOf (".") + 1)
+    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
+    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
+    val lock: AnyRef = SerializableObject ("scalasucks")
     def register: Unit =
+    lock.synchronized
     {
         CHIM.LOOKUP += ((Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]]))
         CHIM.SUBSETTERS += ((Parser.namespace + ":" + cls, new CIMSubsetter[A]()))
@@ -353,7 +316,7 @@ object BasicElement
      * Parse an element.
      * Simply extracts the id.
      */
-    val mRID = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
+    val mRID = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))_
     override def parse(context: Context): BasicElement =
     {
         new BasicElement (null, mRID (context))
@@ -386,8 +349,7 @@ case class Unknown(
 }
 
 object Unknown
-extends
-    Parseable[Unknown]
+    extends Parser
 {
     /**
      * The current element name.
@@ -434,125 +396,29 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     val matcher = Parser.rddex.matcher (xml)
     val bytes = ByteBuffer.wrap (new Array[Byte] (4 * CHIM.OVERREAD))
     val encoder = Charset.forName ("UTF-8").newEncoder ()
-    //val lookup = new HashMap[String, Parseable[Product]]
+
     var value: Element = null
 
-    if (!CHIM.ALL_CLASSES)
-    {
-        _AssetInfo.register
-        _Assets.register
-        _Common.register
-        _Core.register
-        _Customers.register
-        _DiagramLayout.register
-        _Domain.register
-        _ExternalInputs.register
-        _InfAssets.register
-        _LoadControl.register
-        _LoadModel.register
-        _Meas.register
-        _Metering.register
-        _PaymentMetering.register
-        _Production.register
-        _Protection.register
-        _StateVariables.register
-        _Topology.register
-        _Wires.register
-        _Work.register
-    }
-    else
-    {
-        _AssetInfo.register
-        _Assets.register
-        _AsynchronousMachineDynamics.register
-        _AuxiliaryEquipment.register
-        _Common.register
-        _CongestionRevenueRights.register
-        _Contingency.register
-        _ControlArea.register
-        _Core.register
-        _Customers.register
-        _DC.register
-        _DiagramLayout.register
-        _DiscontinuousExcitationControlDynamics.register
-        _Domain.register
-        _Equivalents.register
-        _ExcitationSystemDynamics.register
-        _ExistingEnumExtensions.register
-        _ExternalInputs.register
-        _Faults.register
-        _GenerationTrainingSimulation.register
-        _ICCP.register
-        _IEC61968.register
-        _IEC61970.register
-        _IEC62325.register
-        _InfAssetInfo.register
-        _InfAssets.register
-        _InfCommon.register
-        _InfCongestionRevenueRights.register
-        _InfCustomers.register
-        _InfDomain.register
-        _InfERPSupport.register
-        _InfEnergyScheduling.register
-        _InfEnergySource.register
-        _InfExternalInputs.register
-        _InfFinancial.register
-        _InfLocations.register
-        _InfMarketOperations.register
-        _InfMarketResults.register
-        _InfNewAssets.register
-        _InfOperationalLimits.register
-        _InfParticipantInterfaces.register
-        _InfReservation.register
-        _InfSIPS.register
-        _InfTypeAsset.register
-        _InfWiresExt.register
-        _InfWork.register
-        _LoadControl.register
-        _LoadDynamics.register
-        _LoadModel.register
-        _MarketCommon.register
-        _MarketManagement.register
-        _MarketOpCommon.register
-        _MarketPlan.register
-        _MarketQualitySystem.register
-        _MarketResults.register
-        _Meas.register
-        _MechanicalLoadDynamics.register
-        _Metering.register
-        _MktDomain.register
-        _ModelAuthority.register
-        _ModelDescription.register
-        _OperationalLimits.register
-        _Operations.register
-        _OverexcitationLimiterDynamics.register
-        _PFVArControllerType1Dynamics.register
-        _PFVArControllerType2Dynamics.register
-        _PackageDependencies.register
-        _ParticipantInterfaces.register
-        _PaymentMetering.register
-        _PowerSystemProject.register
-        _PowerSystemStabilizerDynamics.register
-        _Production.register
-        _Protection.register
-        _ReadingTypeEnumerations.register
-        _ReferenceData.register
-        _SCADA.register
-        _StandardInterconnections.register
-        _StandardModels.register
-        _StateVariables.register
-        _SynchronousMachineDynamics.register
-        _Topology.register
-        _TurbineGovernorDynamics.register
-        _TurbineLoadControllerDynamics.register
-        _UnderexcitationLimiterDynamics.register
-        _UserDefinedModels.register
-        _VoltageAdjusterDynamics.register
-        _VoltageCompensatorDynamics.register
-        _WindDynamics.register
-        _Wires.register
-        _Work.register
-    }
+    _AssetInfo.register
+    Assets.register
+    Common.register
+    Core.register
+    Customers.register
+    DiagramLayout.register
+    Domain.register
+    ExternalInputs.register
+    InfAssets.register
+    LoadControl.register
+    LoadModel.register
+    Meas.register
+    Metering.register
+    PaymentMetering.register
+    Production.register
+    Protection.register
+    StateVariables.register
+    Topology.register
+    Wires.register
+    _Work.register
 
     def progress (): Float =
     {
@@ -587,15 +453,6 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
                     context.subxml = matcher.group (2)
                     Unknown.name = name
                     value = CHIM.LOOKUP.getOrElse (name, Unknown).parse (context)
-//                    val parser = lookup.getOrElse (name, null);
-//                    value = (if (null == parser)
-//                    {
-//                        val parser = CHIM.LOOKUP.getOrElse (name, Unknown)
-//                        lookup.put (name, parser)
-//                        parser
-//                    }
-//                    else
-//                        parser).parse (context)
 
                     // return success unless there was unrecognized text before the match
                     // that wasn't at the start of the xml
@@ -642,7 +499,6 @@ object CHIM
     val CHUNK = 1024*1024*64
     val OVERREAD = 1024*32 // should be large enough that no RDF element is bigger than this
 
-    var ALL_CLASSES = false
     val LOOKUP = new HashMap[String, Parseable[Product]]
     val SUBSETTERS = new HashMap[String, CIMSubsetter[_]]
 
@@ -656,7 +512,7 @@ object CHIM
 
     def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit) =
     {
-        val chim = new CHIM ("") // ensure registration has occurred
+        val chim = new CHIM ("") // ensure registration has occured
         for ((name, subsetter) <- SUBSETTERS.iterator)
             fn (subsetter)
     }
@@ -718,12 +574,6 @@ object CHIM
     {
         if (args.size > 0)
         {
-            if (args.size > 1)
-            {
-                println ("Press [Return] to continue...")
-                System.console().readLine()
-            }
-
             val filename = args (0)
             val fis = new FileInputStream (filename)
             val size = fis.available ()
@@ -758,7 +608,7 @@ object CHIM
             println ("reading %g seconds".format (reading / 1e6))
             println ("parsing %g seconds".format (parsing / 1e6))
             println (result.size + " identified elements parsed")
-            val subset = result.values.filter (_.getClass() == classOf[Unknown])
+            val subset = result.filter (_._2.getClass() == classOf[Unknown])
             println (subset.size + " unknown elements")
         }
         else

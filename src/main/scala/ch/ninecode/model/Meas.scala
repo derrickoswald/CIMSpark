@@ -4,29 +4,21 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
 
-/**
- * Contains entities that describe dynamic measurement data exchanged between applications.
+/*
+ * Package: Meas
  */
 
-/**
- * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
- * @param sup Reference to the superclass object.
- * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
- *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
- * @param LimitSets A measurement may have zero or more limit ranges defined for it.
- */
 case class Accumulator
 (
     override val sup: Measurement,
-    val maxValue: Int,
-    val LimitSets: List[String]
+    val maxValue: Int
 )
 extends
     Element
 {
-    def this () = { this (null, 0, List()) }
+    def this () = { this (null, 0) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[Accumulator]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Accumulator]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -41,26 +33,19 @@ object Accumulator
 extends
     Parseable[Accumulator]
 {
-    val sup = Measurement.parse _
-    val maxValue = parse_element (element ("""Accumulator.maxValue"""))
-    val LimitSets = parse_attributes (attribute ("""Accumulator.LimitSets"""))
+    val maxValue = parse_element (element ("""Accumulator.maxValue"""))_
     def parse (context: Context): Accumulator =
     {
-        Accumulator(
-            sup (context),
-            toInteger (maxValue (context), context),
-            LimitSets (context)
+        return (
+            Accumulator
+            (
+                Measurement.parse (context),
+                toInteger (maxValue (context), context)
+            )
         )
     }
 }
 
-/**
- * Limit values for Accumulator measurements.
- * @param sup Reference to the superclass object.
- * @param value The value to supervise against.
- *        The value is positive.
- * @param LimitSet The set of limits.
- */
 case class AccumulatorLimit
 (
     override val sup: Limit,
@@ -72,7 +57,7 @@ extends
 {
     def this () = { this (null, 0, null) }
     def Limit: Limit = sup.asInstanceOf[Limit]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorLimit]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorLimit]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -87,23 +72,21 @@ object AccumulatorLimit
 extends
     Parseable[AccumulatorLimit]
 {
-    val sup = Limit.parse _
-    val value = parse_element (element ("""AccumulatorLimit.value"""))
-    val LimitSet = parse_attribute (attribute ("""AccumulatorLimit.LimitSet"""))
+    val value = parse_element (element ("""AccumulatorLimit.value"""))_
+    val LimitSet = parse_attribute (attribute ("""AccumulatorLimit.LimitSet"""))_
     def parse (context: Context): AccumulatorLimit =
     {
-        AccumulatorLimit(
-            sup (context),
-            toInteger (value (context), context),
-            LimitSet (context)
+        return (
+            AccumulatorLimit
+            (
+                Limit.parse (context),
+                toInteger (value (context), context),
+                LimitSet (context)
+            )
         )
     }
 }
 
-/**
- * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
- * @param sup Reference to the superclass object.
- */
 case class AccumulatorLimitSet
 (
     override val sup: LimitSet
@@ -113,7 +96,7 @@ extends
 {
     def this () = { this (null) }
     def LimitSet: LimitSet = sup.asInstanceOf[LimitSet]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorLimitSet]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorLimitSet]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -128,20 +111,17 @@ object AccumulatorLimitSet
 extends
     Parseable[AccumulatorLimitSet]
 {
-    val sup = LimitSet.parse _
     def parse (context: Context): AccumulatorLimitSet =
     {
-        AccumulatorLimitSet(
-            sup (context)
+        return (
+            AccumulatorLimitSet
+            (
+                LimitSet.parse (context)
+            )
         )
     }
 }
 
-/**
- * This command reset the counter value to zero.
- * @param sup Reference to the superclass object.
- * @param AccumulatorValue The accumulator value that is reset by the command.
- */
 case class AccumulatorReset
 (
     override val sup: Control,
@@ -152,7 +132,7 @@ extends
 {
     def this () = { this (null, null) }
     def Control: Control = sup.asInstanceOf[Control]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorReset]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorReset]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -167,25 +147,19 @@ object AccumulatorReset
 extends
     Parseable[AccumulatorReset]
 {
-    val sup = Control.parse _
-    val AccumulatorValue = parse_attribute (attribute ("""AccumulatorReset.AccumulatorValue"""))
+    val AccumulatorValue = parse_attribute (attribute ("""AccumulatorReset.AccumulatorValue"""))_
     def parse (context: Context): AccumulatorReset =
     {
-        AccumulatorReset(
-            sup (context),
-            AccumulatorValue (context)
+        return (
+            AccumulatorReset
+            (
+                Control.parse (context),
+                AccumulatorValue (context)
+            )
         )
     }
 }
 
-/**
- * AccumulatorValue represents an accumulated (counted) MeasurementValue.
- * @param sup Reference to the superclass object.
- * @param value The value to supervise.
- *        The value is positive.
- * @param Accumulator Measurement to which this value is connected.
- * @param AccumulatorReset The command that reset the accumulator value.
- */
 case class AccumulatorValue
 (
     override val sup: MeasurementValue,
@@ -198,7 +172,7 @@ extends
 {
     def this () = { this (null, 0, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorValue]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorValue]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -213,47 +187,37 @@ object AccumulatorValue
 extends
     Parseable[AccumulatorValue]
 {
-    val sup = MeasurementValue.parse _
-    val value = parse_element (element ("""AccumulatorValue.value"""))
-    val Accumulator = parse_attribute (attribute ("""AccumulatorValue.Accumulator"""))
-    val AccumulatorReset = parse_attribute (attribute ("""AccumulatorValue.AccumulatorReset"""))
+    val value = parse_element (element ("""AccumulatorValue.value"""))_
+    val Accumulator = parse_attribute (attribute ("""AccumulatorValue.Accumulator"""))_
+    val AccumulatorReset = parse_attribute (attribute ("""AccumulatorValue.AccumulatorReset"""))_
     def parse (context: Context): AccumulatorValue =
     {
-        AccumulatorValue(
-            sup (context),
-            toInteger (value (context), context),
-            Accumulator (context),
-            AccumulatorReset (context)
+        return (
+            AccumulatorValue
+            (
+                MeasurementValue.parse (context),
+                toInteger (value (context), context),
+                Accumulator (context),
+                AccumulatorReset (context)
+            )
         )
     }
 }
 
-/**
- * Analog represents an analog Measurement.
- * @param sup Reference to the superclass object.
- * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
- *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
- * @param minValue Normal value range minimum for any of the MeasurementValue.values.
- *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
- * @param normalValue Normal measurement value, e.g., used for percentage calculations.
- * @param positiveFlowIn If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource.
- * @param LimitSets A measurement may have zero or more limit ranges defined for it.
- */
 case class Analog
 (
     override val sup: Measurement,
     val maxValue: Double,
     val minValue: Double,
     val normalValue: Double,
-    val positiveFlowIn: Boolean,
-    val LimitSets: List[String]
+    val positiveFlowIn: Boolean
 )
 extends
     Element
 {
-    def this () = { this (null, 0.0, 0.0, 0.0, false, List()) }
+    def this () = { this (null, 0.0, 0.0, 0.0, false) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[Analog]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Analog]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -268,34 +232,25 @@ object Analog
 extends
     Parseable[Analog]
 {
-    val sup = Measurement.parse _
-    val maxValue = parse_element (element ("""Analog.maxValue"""))
-    val minValue = parse_element (element ("""Analog.minValue"""))
-    val normalValue = parse_element (element ("""Analog.normalValue"""))
-    val positiveFlowIn = parse_element (element ("""Analog.positiveFlowIn"""))
-    val LimitSets = parse_attributes (attribute ("""Analog.LimitSets"""))
+    val maxValue = parse_element (element ("""Analog.maxValue"""))_
+    val minValue = parse_element (element ("""Analog.minValue"""))_
+    val normalValue = parse_element (element ("""Analog.normalValue"""))_
+    val positiveFlowIn = parse_element (element ("""Analog.positiveFlowIn"""))_
     def parse (context: Context): Analog =
     {
-        Analog(
-            sup (context),
-            toDouble (maxValue (context), context),
-            toDouble (minValue (context), context),
-            toDouble (normalValue (context), context),
-            toBoolean (positiveFlowIn (context), context),
-            LimitSets (context)
+        return (
+            Analog
+            (
+                Measurement.parse (context),
+                toDouble (maxValue (context), context),
+                toDouble (minValue (context), context),
+                toDouble (normalValue (context), context),
+                toBoolean (positiveFlowIn (context), context)
+            )
         )
     }
 }
 
-/**
- * An analog control used for supervisory control.
- * @param sup Reference to the superclass object.
- * @param maxValue Normal value range maximum for any of the Control.value.
- *        Used for scaling, e.g. in bar graphs.
- * @param minValue Normal value range minimum for any of the Control.value.
- *        Used for scaling, e.g. in bar graphs.
- * @param AnalogValue The MeasurementValue that is controlled.
- */
 case class AnalogControl
 (
     override val sup: Control,
@@ -308,7 +263,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null) }
     def Control: Control = sup.asInstanceOf[Control]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogControl]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AnalogControl]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -323,27 +278,23 @@ object AnalogControl
 extends
     Parseable[AnalogControl]
 {
-    val sup = Control.parse _
-    val maxValue = parse_element (element ("""AnalogControl.maxValue"""))
-    val minValue = parse_element (element ("""AnalogControl.minValue"""))
-    val AnalogValue = parse_attribute (attribute ("""AnalogControl.AnalogValue"""))
+    val maxValue = parse_element (element ("""AnalogControl.maxValue"""))_
+    val minValue = parse_element (element ("""AnalogControl.minValue"""))_
+    val AnalogValue = parse_attribute (attribute ("""AnalogControl.AnalogValue"""))_
     def parse (context: Context): AnalogControl =
     {
-        AnalogControl(
-            sup (context),
-            toDouble (maxValue (context), context),
-            toDouble (minValue (context), context),
-            AnalogValue (context)
+        return (
+            AnalogControl
+            (
+                Control.parse (context),
+                toDouble (maxValue (context), context),
+                toDouble (minValue (context), context),
+                AnalogValue (context)
+            )
         )
     }
 }
 
-/**
- * Limit values for Analog measurements.
- * @param sup Reference to the superclass object.
- * @param value The value to supervise against.
- * @param LimitSet The set of limits.
- */
 case class AnalogLimit
 (
     override val sup: Limit,
@@ -355,7 +306,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def Limit: Limit = sup.asInstanceOf[Limit]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogLimit]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AnalogLimit]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -370,23 +321,21 @@ object AnalogLimit
 extends
     Parseable[AnalogLimit]
 {
-    val sup = Limit.parse _
-    val value = parse_element (element ("""AnalogLimit.value"""))
-    val LimitSet = parse_attribute (attribute ("""AnalogLimit.LimitSet"""))
+    val value = parse_element (element ("""AnalogLimit.value"""))_
+    val LimitSet = parse_attribute (attribute ("""AnalogLimit.LimitSet"""))_
     def parse (context: Context): AnalogLimit =
     {
-        AnalogLimit(
-            sup (context),
-            toDouble (value (context), context),
-            LimitSet (context)
+        return (
+            AnalogLimit
+            (
+                Limit.parse (context),
+                toDouble (value (context), context),
+                LimitSet (context)
+            )
         )
     }
 }
 
-/**
- * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
- * @param sup Reference to the superclass object.
- */
 case class AnalogLimitSet
 (
     override val sup: LimitSet
@@ -396,7 +345,7 @@ extends
 {
     def this () = { this (null) }
     def LimitSet: LimitSet = sup.asInstanceOf[LimitSet]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogLimitSet]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AnalogLimitSet]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -411,22 +360,17 @@ object AnalogLimitSet
 extends
     Parseable[AnalogLimitSet]
 {
-    val sup = LimitSet.parse _
     def parse (context: Context): AnalogLimitSet =
     {
-        AnalogLimitSet(
-            sup (context)
+        return (
+            AnalogLimitSet
+            (
+                LimitSet.parse (context)
+            )
         )
     }
 }
 
-/**
- * AnalogValue represents an analog MeasurementValue.
- * @param sup Reference to the superclass object.
- * @param value The value to supervise.
- * @param Analog Measurement to which this value is connected.
- * @param AnalogControl The Control variable associated with the MeasurementValue.
- */
 case class AnalogValue
 (
     override val sup: MeasurementValue,
@@ -439,7 +383,7 @@ extends
 {
     def this () = { this (null, 0.0, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogValue]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[AnalogValue]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -454,29 +398,23 @@ object AnalogValue
 extends
     Parseable[AnalogValue]
 {
-    val sup = MeasurementValue.parse _
-    val value = parse_element (element ("""AnalogValue.value"""))
-    val Analog = parse_attribute (attribute ("""AnalogValue.Analog"""))
-    val AnalogControl = parse_attribute (attribute ("""AnalogValue.AnalogControl"""))
+    val value = parse_element (element ("""AnalogValue.value"""))_
+    val Analog = parse_attribute (attribute ("""AnalogValue.Analog"""))_
+    val AnalogControl = parse_attribute (attribute ("""AnalogValue.AnalogControl"""))_
     def parse (context: Context): AnalogValue =
     {
-        AnalogValue(
-            sup (context),
-            toDouble (value (context), context),
-            Analog (context),
-            AnalogControl (context)
+        return (
+            AnalogValue
+            (
+                MeasurementValue.parse (context),
+                toDouble (value (context), context),
+                Analog (context),
+                AnalogControl (context)
+            )
         )
     }
 }
 
-/**
- * A Command is a discrete control used for supervisory control.
- * @param sup Reference to the superclass object.
- * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
- * @param value The value representing the actuator output.
- * @param DiscreteValue The MeasurementValue that is controlled.
- * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
- */
 case class Command
 (
     override val sup: Control,
@@ -490,7 +428,7 @@ extends
 {
     def this () = { this (null, 0, 0, null, null) }
     def Control: Control = sup.asInstanceOf[Control]
-    override def copy (): Row = { return (clone ().asInstanceOf[Command]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Command]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -505,36 +443,25 @@ object Command
 extends
     Parseable[Command]
 {
-    val sup = Control.parse _
-    val normalValue = parse_element (element ("""Command.normalValue"""))
-    val value = parse_element (element ("""Command.value"""))
-    val DiscreteValue = parse_attribute (attribute ("""Command.DiscreteValue"""))
-    val ValueAliasSet = parse_attribute (attribute ("""Command.ValueAliasSet"""))
+    val normalValue = parse_element (element ("""Command.normalValue"""))_
+    val value = parse_element (element ("""Command.value"""))_
+    val DiscreteValue = parse_attribute (attribute ("""Command.DiscreteValue"""))_
+    val ValueAliasSet = parse_attribute (attribute ("""Command.ValueAliasSet"""))_
     def parse (context: Context): Command =
     {
-        Command(
-            sup (context),
-            toInteger (normalValue (context), context),
-            toInteger (value (context), context),
-            DiscreteValue (context),
-            ValueAliasSet (context)
+        return (
+            Command
+            (
+                Control.parse (context),
+                toInteger (normalValue (context), context),
+                toInteger (value (context), context),
+                DiscreteValue (context),
+                ValueAliasSet (context)
+            )
         )
     }
 }
 
-/**
- * Control is used for supervisory/device control.
- * It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
- * @param sup Reference to the superclass object.
- * @param controlType Specifies the type of Control, e.g.
- *        BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
- * @param operationInProgress Indicates that a client is currently sending control commands that has not completed.
- * @param timeStamp The last time a control output was sent.
- * @param unitMultiplier The unit multiplier of the controlled quantity.
- * @param unitSymbol The unit of measure of the controlled quantity.
- * @param PowerSystemResource Regulating device governed by this control output.
- * @param RemoteControl The remote point controlling the physical actuator.
- */
 case class Control
 (
     override val sup: IdentifiedObject,
@@ -551,7 +478,7 @@ extends
 {
     def this () = { this (null, null, false, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Control]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Control]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -566,53 +493,45 @@ object Control
 extends
     Parseable[Control]
 {
-    val sup = IdentifiedObject.parse _
-    val controlType = parse_element (element ("""Control.controlType"""))
-    val operationInProgress = parse_element (element ("""Control.operationInProgress"""))
-    val timeStamp = parse_element (element ("""Control.timeStamp"""))
-    val unitMultiplier = parse_attribute (attribute ("""Control.unitMultiplier"""))
-    val unitSymbol = parse_attribute (attribute ("""Control.unitSymbol"""))
-    val PowerSystemResource = parse_attribute (attribute ("""Control.PowerSystemResource"""))
-    val RemoteControl = parse_attribute (attribute ("""Control.RemoteControl"""))
+    val controlType = parse_element (element ("""Control.controlType"""))_
+    val operationInProgress = parse_element (element ("""Control.operationInProgress"""))_
+    val timeStamp = parse_element (element ("""Control.timeStamp"""))_
+    val unitMultiplier = parse_attribute (attribute ("""Control.unitMultiplier"""))_
+    val unitSymbol = parse_attribute (attribute ("""Control.unitSymbol"""))_
+    val PowerSystemResource = parse_attribute (attribute ("""Control.PowerSystemResource"""))_
+    val RemoteControl = parse_attribute (attribute ("""Control.RemoteControl"""))_
     def parse (context: Context): Control =
     {
-        Control(
-            sup (context),
-            controlType (context),
-            toBoolean (operationInProgress (context), context),
-            timeStamp (context),
-            unitMultiplier (context),
-            unitSymbol (context),
-            PowerSystemResource (context),
-            RemoteControl (context)
+        return (
+            Control
+            (
+                IdentifiedObject.parse (context),
+                controlType (context),
+                toBoolean (operationInProgress (context), context),
+                timeStamp (context),
+                unitMultiplier (context),
+                unitSymbol (context),
+                PowerSystemResource (context),
+                RemoteControl (context)
+            )
         )
     }
 }
 
-/**
- * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
- * @param sup Reference to the superclass object.
- * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
- *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
- * @param minValue Normal value range minimum for any of the MeasurementValue.values.
- *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
- * @param normalValue Normal measurement value, e.g., used for percentage calculations.
- * @param ValueAliasSet The ValueAliasSet used for translation of a MeasurementValue.value to a name.
- */
 case class Discrete
 (
     override val sup: Measurement,
     val maxValue: Int,
     val minValue: Int,
     val normalValue: Int,
-    val ValueAliasSet: String
+    val valueAliasSet: String
 )
 extends
     Element
 {
     def this () = { this (null, 0, 0, 0, null) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[Discrete]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Discrete]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -627,19 +546,21 @@ object Discrete
 extends
     Parseable[Discrete]
 {
-    val sup = Measurement.parse _
-    val maxValue = parse_element (element ("""Discrete.maxValue"""))
-    val minValue = parse_element (element ("""Discrete.minValue"""))
-    val normalValue = parse_element (element ("""Discrete.normalValue"""))
-    val ValueAliasSet = parse_attribute (attribute ("""Discrete.ValueAliasSet"""))
+    val maxValue = parse_element (element ("""Discrete.maxValue"""))_
+    val minValue = parse_element (element ("""Discrete.minValue"""))_
+    val normalValue = parse_element (element ("""Discrete.normalValue"""))_
+    val valueAliasSet = parse_attribute (attribute ("""Discrete.valueAliasSet"""))_
     def parse (context: Context): Discrete =
     {
-        Discrete(
-            sup (context),
-            toInteger (maxValue (context), context),
-            toInteger (minValue (context), context),
-            toInteger (normalValue (context), context),
-            ValueAliasSet (context)
+        return (
+            Discrete
+            (
+                Measurement.parse (context),
+                toInteger (maxValue (context), context),
+                toInteger (minValue (context), context),
+                toInteger (normalValue (context), context),
+                valueAliasSet (context)
+            )
         )
     }
 }
@@ -653,7 +574,7 @@ extends
 {
     def this () = { this (null) }
     def Command: Command = sup.asInstanceOf[Command]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiscreteCommand]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[DiscreteCommand]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -668,22 +589,17 @@ object DiscreteCommand
 extends
     Parseable[DiscreteCommand]
 {
-    val sup = Command.parse _
     def parse (context: Context): DiscreteCommand =
     {
-        DiscreteCommand(
-            sup (context)
+        return (
+            DiscreteCommand
+            (
+                Command.parse (context)
+            )
         )
     }
 }
 
-/**
- * DiscreteValue represents a discrete MeasurementValue.
- * @param sup Reference to the superclass object.
- * @param value The value to supervise.
- * @param Command The Control variable associated with the MeasurementValue.
- * @param Discrete Measurement to which this value is connected.
- */
 case class DiscreteValue
 (
     override val sup: MeasurementValue,
@@ -696,7 +612,7 @@ extends
 {
     def this () = { this (null, 0, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiscreteValue]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[DiscreteValue]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -711,26 +627,23 @@ object DiscreteValue
 extends
     Parseable[DiscreteValue]
 {
-    val sup = MeasurementValue.parse _
-    val value = parse_element (element ("""DiscreteValue.value"""))
-    val Command = parse_attribute (attribute ("""DiscreteValue.Command"""))
-    val Discrete = parse_attribute (attribute ("""DiscreteValue.Discrete"""))
+    val value = parse_element (element ("""DiscreteValue.value"""))_
+    val Command = parse_attribute (attribute ("""DiscreteValue.Command"""))_
+    val Discrete = parse_attribute (attribute ("""DiscreteValue.Discrete"""))_
     def parse (context: Context): DiscreteValue =
     {
-        DiscreteValue(
-            sup (context),
-            toInteger (value (context), context),
-            Command (context),
-            Discrete (context)
+        return (
+            DiscreteValue
+            (
+                MeasurementValue.parse (context),
+                toInteger (value (context), context),
+                Command (context),
+                Discrete (context)
+            )
         )
     }
 }
 
-/**
- * Specifies one limit value for a Measurement.
- * A Measurement typically has several limits that are kept together by the LimitSet class. The actual meaning and use of a Limit instance (i.e., if it is an alarm or warning limit or if it is a high or low limit) is not captured in the Limit class. However the name of a Limit instance may indicate both meaning and use.
- * @param sup Reference to the superclass object.
- */
 case class Limit
 (
     override val sup: IdentifiedObject
@@ -740,7 +653,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Limit]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Limit]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -755,21 +668,17 @@ object Limit
 extends
     Parseable[Limit]
 {
-    val sup = IdentifiedObject.parse _
     def parse (context: Context): Limit =
     {
-        Limit(
-            sup (context)
+        return (
+            Limit
+            (
+                IdentifiedObject.parse (context)
+            )
         )
     }
 }
 
-/**
- * Specifies a set of Limits that are associated with a Measurement.
- * A Measurement may have several LimitSets corresponding to seasonal or other changing conditions. The condition is captured in the name and description attributes. The same LimitSet may be used for several Measurements. In particular percentage limits are used this way.
- * @param sup Reference to the superclass object.
- * @param isPercentageLimits Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
- */
 case class LimitSet
 (
     override val sup: IdentifiedObject,
@@ -780,7 +689,7 @@ extends
 {
     def this () = { this (null, false) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[LimitSet]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[LimitSet]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -795,31 +704,19 @@ object LimitSet
 extends
     Parseable[LimitSet]
 {
-    val sup = IdentifiedObject.parse _
-    val isPercentageLimits = parse_element (element ("""LimitSet.isPercentageLimits"""))
+    val isPercentageLimits = parse_element (element ("""LimitSet.isPercentageLimits"""))_
     def parse (context: Context): LimitSet =
     {
-        LimitSet(
-            sup (context),
-            toBoolean (isPercentageLimits (context), context)
+        return (
+            LimitSet
+            (
+                IdentifiedObject.parse (context),
+                toBoolean (isPercentageLimits (context), context)
+            )
         )
     }
 }
 
-/**
- * A Measurement represents any measured, calculated or non-measured non-calculated quantity.
- * Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.
- * @param sup Reference to the superclass object.
- * @param measurementType Specifies the type of measurement.
- *        For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
- * @param phases Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
- *        The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
- * @param unitMultiplier The unit multiplier of the measured quantity.
- * @param unitSymbol The unit of measure of the measured quantity.
- * @param Asset
- * @param PowerSystemResource The power system resource that contains the measurement.
- * @param Terminal One or more measurements may be associated with a terminal in the network.
- */
 case class Measurement
 (
     override val sup: IdentifiedObject,
@@ -836,7 +733,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Measurement]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Measurement]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -851,59 +748,46 @@ object Measurement
 extends
     Parseable[Measurement]
 {
-    val sup = IdentifiedObject.parse _
-    val measurementType = parse_element (element ("""Measurement.measurementType"""))
-    val phases = parse_attribute (attribute ("""Measurement.phases"""))
-    val unitMultiplier = parse_attribute (attribute ("""Measurement.unitMultiplier"""))
-    val unitSymbol = parse_attribute (attribute ("""Measurement.unitSymbol"""))
-    val Asset = parse_attribute (attribute ("""Measurement.Asset"""))
-    val PowerSystemResource = parse_attribute (attribute ("""Measurement.PowerSystemResource"""))
-    val Terminal = parse_attribute (attribute ("""Measurement.Terminal"""))
+    val measurementType = parse_element (element ("""Measurement.measurementType"""))_
+    val phases = parse_attribute (attribute ("""Measurement.phases"""))_
+    val unitMultiplier = parse_attribute (attribute ("""Measurement.unitMultiplier"""))_
+    val unitSymbol = parse_attribute (attribute ("""Measurement.unitSymbol"""))_
+    val Asset = parse_attribute (attribute ("""Measurement.Asset"""))_
+    val PowerSystemResource = parse_attribute (attribute ("""Measurement.PowerSystemResource"""))_
+    val Terminal = parse_attribute (attribute ("""Measurement.Terminal"""))_
     def parse (context: Context): Measurement =
     {
-        Measurement(
-            sup (context),
-            measurementType (context),
-            phases (context),
-            unitMultiplier (context),
-            unitSymbol (context),
-            Asset (context),
-            PowerSystemResource (context),
-            Terminal (context)
+        return (
+            Measurement
+            (
+                IdentifiedObject.parse (context),
+                measurementType (context),
+                phases (context),
+                unitMultiplier (context),
+                unitSymbol (context),
+                Asset (context),
+                PowerSystemResource (context),
+                Terminal (context)
+            )
         )
     }
 }
 
-/**
- * The current state for a measurement.
- * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
- * @param sup Reference to the superclass object.
- * @param attr
- * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
- * @param timeStamp The time when the value was last updated
- * @param ErpPerson
- * @param MeasurementValueQuality A MeasurementValue has a MeasurementValueQuality associated with it.
- * @param MeasurementValueSource A reference to the type of source that updates the MeasurementValue, e.g.
- *        SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
- * @param RemoteSource Link to the physical telemetered point associated with this measurement.
- */
 case class MeasurementValue
 (
     override val sup: IdentifiedObject,
-    val attr: String,
     val sensorAccuracy: Double,
     val timeStamp: String,
     val ErpPerson: String,
-    val MeasurementValueQuality: String,
-    val MeasurementValueSource: String,
+    val measurementValueSource: String,
     val RemoteSource: String
 )
 extends
     Element
 {
-    def this () = { this (null, null, 0.0, null, null, null, null, null) }
+    def this () = { this (null, 0.0, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValue]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValue]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -918,35 +802,27 @@ object MeasurementValue
 extends
     Parseable[MeasurementValue]
 {
-    val sup = IdentifiedObject.parse _
-    val attr = parse_attribute (attribute ("""MeasurementValue."""))
-    val sensorAccuracy = parse_element (element ("""MeasurementValue.sensorAccuracy"""))
-    val timeStamp = parse_element (element ("""MeasurementValue.timeStamp"""))
-    val ErpPerson = parse_attribute (attribute ("""MeasurementValue.ErpPerson"""))
-    val MeasurementValueQuality = parse_attribute (attribute ("""MeasurementValue.MeasurementValueQuality"""))
-    val MeasurementValueSource = parse_attribute (attribute ("""MeasurementValue.MeasurementValueSource"""))
-    val RemoteSource = parse_attribute (attribute ("""MeasurementValue.RemoteSource"""))
+    val sensorAccuracy = parse_element (element ("""MeasurementValue.sensorAccuracy"""))_
+    val timeStamp = parse_element (element ("""MeasurementValue.timeStamp"""))_
+    val ErpPerson = parse_attribute (attribute ("""MeasurementValue.ErpPerson"""))_
+    val measurementValueSource = parse_attribute (attribute ("""MeasurementValue.measurementValueSource"""))_
+    val RemoteSource = parse_attribute (attribute ("""MeasurementValue.RemoteSource"""))_
     def parse (context: Context): MeasurementValue =
     {
-        MeasurementValue(
-            sup (context),
-            attr (context),
-            toDouble (sensorAccuracy (context), context),
-            timeStamp (context),
-            ErpPerson (context),
-            MeasurementValueQuality (context),
-            MeasurementValueSource (context),
-            RemoteSource (context)
+        return (
+            MeasurementValue
+            (
+                IdentifiedObject.parse (context),
+                toDouble (sensorAccuracy (context), context),
+                timeStamp (context),
+                ErpPerson (context),
+                measurementValueSource (context),
+                RemoteSource (context)
+            )
         )
     }
 }
 
-/**
- * Measurement quality flags.
- * Bits 0-10 are defined for substation automation in draft IEC 61850 part 7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
- * @param sup Reference to the superclass object.
- * @param MeasurementValue A MeasurementValue has a MeasurementValueQuality associated with it.
- */
 case class MeasurementValueQuality
 (
     override val sup: Quality61850,
@@ -957,7 +833,7 @@ extends
 {
     def this () = { this (null, null) }
     def Quality61850: Quality61850 = sup.asInstanceOf[Quality61850]
-    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValueQuality]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValueQuality]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -972,22 +848,19 @@ object MeasurementValueQuality
 extends
     Parseable[MeasurementValueQuality]
 {
-    val sup = Quality61850.parse _
-    val MeasurementValue = parse_attribute (attribute ("""MeasurementValueQuality.MeasurementValue"""))
+    val MeasurementValue = parse_attribute (attribute ("""MeasurementValueQuality.MeasurementValue"""))_
     def parse (context: Context): MeasurementValueQuality =
     {
-        MeasurementValueQuality(
-            sup (context),
-            MeasurementValue (context)
+        return (
+            MeasurementValueQuality
+            (
+                Quality61850.parse (context),
+                MeasurementValue (context)
+            )
         )
     }
 }
 
-/**
- * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
- * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
- * @param sup Reference to the superclass object.
- */
 case class MeasurementValueSource
 (
     override val sup: IdentifiedObject
@@ -997,7 +870,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValueSource]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValueSource]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1012,35 +885,17 @@ object MeasurementValueSource
 extends
     Parseable[MeasurementValueSource]
 {
-    val sup = IdentifiedObject.parse _
     def parse (context: Context): MeasurementValueSource =
     {
-        MeasurementValueSource(
-            sup (context)
+        return (
+            MeasurementValueSource
+            (
+                IdentifiedObject.parse (context)
+            )
         )
     }
 }
 
-/**
- * Quality flags in this class are as defined in IEC 61850, except for estimatorReplaced, which has been included in this class for convenience.
- * @param sup Reference to the superclass object.
- * @param badReference Measurement value may be incorrect due to a reference being out of calibration.
- * @param estimatorReplaced Value has been replaced by State Estimator. estimatorReplaced is not an IEC61850 quality bit but has been put in this class for convenience.
- * @param failure This identifier indicates that a supervision function has detected an internal or external failure, e.g. communication failure.
- * @param oldData Measurement value is old and possibly invalid, as it has not been successfully updated during a specified time interval.
- * @param operatorBlocked Measurement value is blocked and hence unavailable for transmission.
- * @param oscillatory To prevent some overload of the communication it is sensible to detect and suppress oscillating (fast changing) binary inputs.
- *        If a signal changes in a defined time (tosc) twice in the same direction (from 0 to 1 or from 1 to 0) then oscillation is detected and the detail quality identifier "oscillatory" is set. If it is detected a configured numbers of transient changes could be passed by. In this time the validity status "questionable" is set. If after this defined numbers of changes the signal is still in the oscillating state the value shall be set either to the opposite state of the previous stable value or to a defined default value. In this case the validity status "questionable" is reset and "invalid" is set as long as the signal is oscillating. If it is configured such that no transient changes should be passed by then the validity status "invalid" is set immediately in addition to the detail quality identifier "oscillatory" (used for status information only).
- * @param outOfRange Measurement value is beyond a predefined range of value.
- * @param overFlow Measurement value is beyond the capability of being  represented properly.
- *        For example, a counter value overflows from maximum count back to a value of zero.
- * @param source Source gives information related to the origin of a value.
- *        The value may be acquired from the process, defaulted or substituted.
- * @param suspect A correlation function has detected that the value is not consitent with other values.
- *        Typically set by a network State Estimator.
- * @param test Measurement value is transmitted for test purposes.
- * @param validity Validity of the measurement value.
- */
 case class Quality61850
 (
     override val sup: BasicElement,
@@ -1062,7 +917,7 @@ extends
 {
     def this () = { this (null, false, false, false, false, false, false, false, false, null, false, false, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[Quality61850]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[Quality61850]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1077,44 +932,41 @@ object Quality61850
 extends
     Parseable[Quality61850]
 {
-    val sup = BasicElement.parse _
-    val badReference = parse_element (element ("""Quality61850.badReference"""))
-    val estimatorReplaced = parse_element (element ("""Quality61850.estimatorReplaced"""))
-    val failure = parse_element (element ("""Quality61850.failure"""))
-    val oldData = parse_element (element ("""Quality61850.oldData"""))
-    val operatorBlocked = parse_element (element ("""Quality61850.operatorBlocked"""))
-    val oscillatory = parse_element (element ("""Quality61850.oscillatory"""))
-    val outOfRange = parse_element (element ("""Quality61850.outOfRange"""))
-    val overFlow = parse_element (element ("""Quality61850.overFlow"""))
-    val source = parse_attribute (attribute ("""Quality61850.source"""))
-    val suspect = parse_element (element ("""Quality61850.suspect"""))
-    val test = parse_element (element ("""Quality61850.test"""))
-    val validity = parse_attribute (attribute ("""Quality61850.validity"""))
+    val badReference = parse_element (element ("""Quality61850.badReference"""))_
+    val estimatorReplaced = parse_element (element ("""Quality61850.estimatorReplaced"""))_
+    val failure = parse_element (element ("""Quality61850.failure"""))_
+    val oldData = parse_element (element ("""Quality61850.oldData"""))_
+    val operatorBlocked = parse_element (element ("""Quality61850.operatorBlocked"""))_
+    val oscillatory = parse_element (element ("""Quality61850.oscillatory"""))_
+    val outOfRange = parse_element (element ("""Quality61850.outOfRange"""))_
+    val overFlow = parse_element (element ("""Quality61850.overFlow"""))_
+    val source = parse_attribute (attribute ("""Quality61850.source"""))_
+    val suspect = parse_element (element ("""Quality61850.suspect"""))_
+    val test = parse_element (element ("""Quality61850.test"""))_
+    val validity = parse_attribute (attribute ("""Quality61850.validity"""))_
     def parse (context: Context): Quality61850 =
     {
-        Quality61850(
-            sup (context),
-            toBoolean (badReference (context), context),
-            toBoolean (estimatorReplaced (context), context),
-            toBoolean (failure (context), context),
-            toBoolean (oldData (context), context),
-            toBoolean (operatorBlocked (context), context),
-            toBoolean (oscillatory (context), context),
-            toBoolean (outOfRange (context), context),
-            toBoolean (overFlow (context), context),
-            source (context),
-            toBoolean (suspect (context), context),
-            toBoolean (test (context), context),
-            validity (context)
+        return (
+            Quality61850
+            (
+                BasicElement.parse (context),
+                toBoolean (badReference (context), context),
+                toBoolean (estimatorReplaced (context), context),
+                toBoolean (failure (context), context),
+                toBoolean (oldData (context), context),
+                toBoolean (operatorBlocked (context), context),
+                toBoolean (oscillatory (context), context),
+                toBoolean (outOfRange (context), context),
+                toBoolean (overFlow (context), context),
+                source (context),
+                toBoolean (suspect (context), context),
+                toBoolean (test (context), context),
+                validity (context)
+            )
         )
     }
 }
 
-/**
- * An analog control that increase or decrease a set point value with pulses.
- * @param sup Reference to the superclass object.
- * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
- */
 case class RaiseLowerCommand
 (
     override val sup: AnalogControl,
@@ -1125,7 +977,7 @@ extends
 {
     def this () = { this (null, null) }
     def AnalogControl: AnalogControl = sup.asInstanceOf[AnalogControl]
-    override def copy (): Row = { return (clone ().asInstanceOf[RaiseLowerCommand]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[RaiseLowerCommand]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1140,23 +992,19 @@ object RaiseLowerCommand
 extends
     Parseable[RaiseLowerCommand]
 {
-    val sup = AnalogControl.parse _
-    val ValueAliasSet = parse_attribute (attribute ("""RaiseLowerCommand.ValueAliasSet"""))
+    val ValueAliasSet = parse_attribute (attribute ("""RaiseLowerCommand.ValueAliasSet"""))_
     def parse (context: Context): RaiseLowerCommand =
     {
-        RaiseLowerCommand(
-            sup (context),
-            ValueAliasSet (context)
+        return (
+            RaiseLowerCommand
+            (
+                AnalogControl.parse (context),
+                ValueAliasSet (context)
+            )
         )
     }
 }
 
-/**
- * An analog control that issue a set point value.
- * @param sup Reference to the superclass object.
- * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
- * @param value The value representing the actuator output.
- */
 case class SetPoint
 (
     override val sup: AnalogControl,
@@ -1168,7 +1016,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def AnalogControl: AnalogControl = sup.asInstanceOf[AnalogControl]
-    override def copy (): Row = { return (clone ().asInstanceOf[SetPoint]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[SetPoint]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1183,23 +1031,21 @@ object SetPoint
 extends
     Parseable[SetPoint]
 {
-    val sup = AnalogControl.parse _
-    val normalValue = parse_element (element ("""SetPoint.normalValue"""))
-    val value = parse_element (element ("""SetPoint.value"""))
+    val normalValue = parse_element (element ("""SetPoint.normalValue"""))_
+    val value = parse_element (element ("""SetPoint.value"""))_
     def parse (context: Context): SetPoint =
     {
-        SetPoint(
-            sup (context),
-            toDouble (normalValue (context), context),
-            toDouble (value (context), context)
+        return (
+            SetPoint
+            (
+                AnalogControl.parse (context),
+                toDouble (normalValue (context), context),
+                toDouble (value (context), context)
+            )
         )
     }
 }
 
-/**
- * StringMeasurement represents a measurement with values of type string.
- * @param sup Reference to the superclass object.
- */
 case class StringMeasurement
 (
     override val sup: Measurement
@@ -1209,7 +1055,7 @@ extends
 {
     def this () = { this (null) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[StringMeasurement]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[StringMeasurement]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1224,21 +1070,17 @@ object StringMeasurement
 extends
     Parseable[StringMeasurement]
 {
-    val sup = Measurement.parse _
     def parse (context: Context): StringMeasurement =
     {
-        StringMeasurement(
-            sup (context)
+        return (
+            StringMeasurement
+            (
+                Measurement.parse (context)
+            )
         )
     }
 }
 
-/**
- * StringMeasurementValue represents a measurement value of type string.
- * @param sup Reference to the superclass object.
- * @param value The value to supervise.
- * @param StringMeasurement Measurement to which this value is connected.
- */
 case class StringMeasurementValue
 (
     override val sup: MeasurementValue,
@@ -1250,7 +1092,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[StringMeasurementValue]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[StringMeasurementValue]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1265,75 +1107,21 @@ object StringMeasurementValue
 extends
     Parseable[StringMeasurementValue]
 {
-    val sup = MeasurementValue.parse _
-    val value = parse_element (element ("""StringMeasurementValue.value"""))
-    val StringMeasurement = parse_attribute (attribute ("""StringMeasurementValue.StringMeasurement"""))
+    val value = parse_element (element ("""StringMeasurementValue.value"""))_
+    val StringMeasurement = parse_attribute (attribute ("""StringMeasurementValue.StringMeasurement"""))_
     def parse (context: Context): StringMeasurementValue =
     {
-        StringMeasurementValue(
-            sup (context),
-            value (context),
-            StringMeasurement (context)
+        return (
+            StringMeasurementValue
+            (
+                MeasurementValue.parse (context),
+                value (context),
+                StringMeasurement (context)
+            )
         )
     }
 }
 
-/**
- * Validity for MeasurementValue.
- * @param sup Reference to the superclass object.
- * @param GOOD The value is marked good if no abnormal condition of the acquisition function or the information source is detected.
- * @param INVALID The value is marked invalid when a supervision function recognises abnormal conditions of the acquisition function or the information source (missing or non-operating updating devices).
- *        The value is not defined under this condition. The mark invalid is used to indicate to the client that the value may be incorrect and shall not be used.
- * @param QUESTIONABLE The value is marked questionable if a supervision function detects an abnormal behaviour, however the value could still be valid.
- *        The client is responsible for determining whether or not values marked "questionable" should be used.
- */
-case class Validity
-(
-    override val sup: BasicElement,
-    val GOOD: String,
-    val INVALID: String,
-    val QUESTIONABLE: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[Validity]) }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-}
-
-object Validity
-extends
-    Parseable[Validity]
-{
-    val sup = BasicElement.parse _
-    val GOOD = parse_attribute (attribute ("""Validity.GOOD"""))
-    val INVALID = parse_attribute (attribute ("""Validity.INVALID"""))
-    val QUESTIONABLE = parse_attribute (attribute ("""Validity.QUESTIONABLE"""))
-    def parse (context: Context): Validity =
-    {
-        Validity(
-            sup (context),
-            GOOD (context),
-            INVALID (context),
-            QUESTIONABLE (context)
-        )
-    }
-}
-
-/**
- * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
- * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
- * @param sup Reference to the superclass object.
- */
 case class ValueAliasSet
 (
     override val sup: IdentifiedObject
@@ -1343,7 +1131,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[ValueAliasSet]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[ValueAliasSet]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1358,21 +1146,17 @@ object ValueAliasSet
 extends
     Parseable[ValueAliasSet]
 {
-    val sup = IdentifiedObject.parse _
     def parse (context: Context): ValueAliasSet =
     {
-        ValueAliasSet(
-            sup (context)
+        return (
+            ValueAliasSet
+            (
+                IdentifiedObject.parse (context)
+            )
         )
     }
 }
 
-/**
- * Describes the translation of one particular value into a name, e.g. 1 as "Open".
- * @param sup Reference to the superclass object.
- * @param value The value that is mapped.
- * @param ValueAliasSet The ValueAliasSet having the ValueToAlias mappings.
- */
 case class ValueToAlias
 (
     override val sup: IdentifiedObject,
@@ -1384,7 +1168,7 @@ extends
 {
     def this () = { this (null, 0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[ValueToAlias]) }
+    override def copy (): Row = { return (clone ().asInstanceOf[ValueToAlias]); }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1399,20 +1183,22 @@ object ValueToAlias
 extends
     Parseable[ValueToAlias]
 {
-    val sup = IdentifiedObject.parse _
-    val value = parse_element (element ("""ValueToAlias.value"""))
-    val ValueAliasSet = parse_attribute (attribute ("""ValueToAlias.ValueAliasSet"""))
+    val value = parse_element (element ("""ValueToAlias.value"""))_
+    val ValueAliasSet = parse_attribute (attribute ("""ValueToAlias.ValueAliasSet"""))_
     def parse (context: Context): ValueToAlias =
     {
-        ValueToAlias(
-            sup (context),
-            toInteger (value (context), context),
-            ValueAliasSet (context)
+        return (
+            ValueToAlias
+            (
+                IdentifiedObject.parse (context),
+                toInteger (value (context), context),
+                ValueAliasSet (context)
+            )
         )
     }
 }
 
-object _Meas
+object Meas
 {
     def register: Unit =
     {
@@ -1442,7 +1228,6 @@ object _Meas
         SetPoint.register
         StringMeasurement.register
         StringMeasurementValue.register
-        Validity.register
         ValueAliasSet.register
         ValueToAlias.register
     }
