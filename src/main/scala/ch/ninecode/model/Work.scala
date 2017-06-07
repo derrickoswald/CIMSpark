@@ -3,6 +3,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
 
 /*
  * Package: Work
@@ -36,10 +37,10 @@ object BaseWork
 extends
     Parseable[BaseWork]
 {
-    val kind = parse_attribute (attribute ("""BaseWork.kind"""))_
-    val statusKind = parse_attribute (attribute ("""BaseWork.statusKind"""))_
-    val WorkLocation = parse_attribute (attribute ("""BaseWork.WorkLocation"""))_
-    val priority = parse_attribute (attribute ("""BaseWork.priority"""))_
+    val kind = parse_attribute (attribute ("""BaseWork.kind"""))
+    val statusKind = parse_attribute (attribute ("""BaseWork.statusKind"""))
+    val WorkLocation = parse_attribute (attribute ("""BaseWork.WorkLocation"""))
+    val priority = parse_attribute (attribute ("""BaseWork.priority"""))
     def parse (context: Context): BaseWork =
     {
         return (
@@ -84,11 +85,11 @@ object Work
 extends
     Parseable[Work]
 {
-    val requestDateTime = parse_element (element ("""Work.requestDateTime"""))_
-    val BusinessCase = parse_attribute (attribute ("""Work.BusinessCase"""))_
-    val ErpProjectAccounting = parse_attribute (attribute ("""Work.ErpProjectAccounting"""))_
-    val Project = parse_attribute (attribute ("""Work.Project"""))_
-    val WorkBillingInfo = parse_attribute (attribute ("""Work.WorkBillingInfo"""))_
+    val requestDateTime = parse_element (element ("""Work.requestDateTime"""))
+    val BusinessCase = parse_attribute (attribute ("""Work.BusinessCase"""))
+    val ErpProjectAccounting = parse_attribute (attribute ("""Work.ErpProjectAccounting"""))
+    val Project = parse_attribute (attribute ("""Work.Project"""))
+    val WorkBillingInfo = parse_attribute (attribute ("""Work.WorkBillingInfo"""))
     def parse (context: Context): Work =
     {
         return (
@@ -130,7 +131,7 @@ object WorkLocation
 extends
     Parseable[WorkLocation]
 {Work
-    val OneCallRequest = parse_element (element ("""WorkLocation.OneCallRequest"""))_
+    val OneCallRequest = parse_element (element ("""WorkLocation.OneCallRequest"""))
     def parse (context: Context): WorkLocation =
     {
         return (

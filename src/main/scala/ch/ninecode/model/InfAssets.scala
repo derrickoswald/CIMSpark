@@ -3,6 +3,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
 
 /*
  * Package: InfAssets
@@ -33,7 +34,7 @@ object AssetPropertyCurve
 extends
     Parseable[AssetPropertyCurve]
 {
-    val Specification = parse_attribute (attribute ("""AssetPropertyCurve.AssetModel"""))_
+    val Specification = parse_attribute (attribute ("""AssetPropertyCurve.AssetModel"""))
     def parse (context: Context): AssetPropertyCurve =
     {
         return (
@@ -76,12 +77,12 @@ object Bushing
 extends
     Parseable[Bushing]
 {
-    val c1Capacitance = parse_element (element ("""Bushing.c1Capacitance"""))_
-    val c1PowerFactor = parse_element (element ("""Bushing.c1PowerFactor"""))_
-    val c2Capacitance = parse_element (element ("""Bushing.c2Capacitance"""))_
-    val c2PowerFactor = parse_element (element ("""Bushing.c2PowerFactor"""))_
-    val insulationKind = parse_attribute (attribute ("""Bushing.insulationKind"""))_
-    val Terminal = parse_attribute (attribute ("""Bushing.Terminal"""))_
+    val c1Capacitance = parse_element (element ("""Bushing.c1Capacitance"""))
+    val c1PowerFactor = parse_element (element ("""Bushing.c1PowerFactor"""))
+    val c2Capacitance = parse_element (element ("""Bushing.c2Capacitance"""))
+    val c2PowerFactor = parse_element (element ("""Bushing.c2PowerFactor"""))
+    val insulationKind = parse_attribute (attribute ("""Bushing.insulationKind"""))
+    val Terminal = parse_attribute (attribute ("""Bushing.Terminal"""))
     def parse (context: Context): Bushing =
     {
         return (
@@ -127,10 +128,10 @@ object BushingInsulationPF
 extends
     Parseable[BushingInsulationPF]
 {
-    val testKind = parse_attribute (attribute ("""BushingInsulationPF.testKind"""))_
-    val Bushing = parse_attribute (attribute ("""BushingInsulationPF.Bushing"""))_
-    val TransformerObservation = parse_attribute (attribute ("""BushingInsulationPF.TransformerObservation"""))_
-    val status = parse_attribute (attribute ("""BushingInsulationPF.status"""))_
+    val testKind = parse_attribute (attribute ("""BushingInsulationPF.testKind"""))
+    val Bushing = parse_attribute (attribute ("""BushingInsulationPF.Bushing"""))
+    val TransformerObservation = parse_attribute (attribute ("""BushingInsulationPF.TransformerObservation"""))
+    val status = parse_attribute (attribute ("""BushingInsulationPF.status"""))
     def parse (context: Context): BushingInsulationPF =
     {
         return (
@@ -208,9 +209,9 @@ object CoolingPowerRating
 extends
     Parseable[CoolingPowerRating]
 {
-    val coolingKind = parse_attribute (attribute ("""CoolingPowerRating.coolingKind"""))_
-    val powerRating = parse_element (element ("""CoolingPowerRating.powerRating"""))_
-    val stage = parse_element (element ("""CoolingPowerRating.stage"""))_
+    val coolingKind = parse_attribute (attribute ("""CoolingPowerRating.coolingKind"""))
+    val powerRating = parse_element (element ("""CoolingPowerRating.powerRating"""))
+    val stage = parse_element (element ("""CoolingPowerRating.stage"""))
     def parse (context: Context): CoolingPowerRating =
     {
         return (
@@ -254,11 +255,11 @@ object DimensionsInfo
 extends
     Parseable[DimensionsInfo]
 {
-    val orientation = parse_element (element ("""DimensionsInfo.orientation"""))_
-    val sizeDepth = parse_element (element ("""DimensionsInfo.sizeDepth"""))_
-    val sizeDiameter = parse_element (element ("""DimensionsInfo.sizeDiameter"""))_
-    val sizeLength = parse_element (element ("""DimensionsInfo.sizeLength"""))_
-    val sizeWidth = parse_element (element ("""DimensionsInfo.sizeWidth"""))_
+    val orientation = parse_element (element ("""DimensionsInfo.orientation"""))
+    val sizeDepth = parse_element (element ("""DimensionsInfo.sizeDepth"""))
+    val sizeDiameter = parse_element (element ("""DimensionsInfo.sizeDiameter"""))
+    val sizeLength = parse_element (element ("""DimensionsInfo.sizeLength"""))
+    val sizeWidth = parse_element (element ("""DimensionsInfo.sizeWidth"""))
     def parse (context: Context): DimensionsInfo =
     {
         return (
@@ -300,7 +301,7 @@ object DuctBank
 extends
     Parseable[DuctBank]
 {
-    val circuitCount = parse_element (element ("""DuctBank.circuitCount"""))_
+    val circuitCount = parse_element (element ("""DuctBank.circuitCount"""))
     def parse (context: Context): DuctBank =
     {
         return (
@@ -338,7 +339,7 @@ object FACTSDevice
 extends
     Parseable[FACTSDevice]
 {
-    val kind = parse_attribute (attribute ("""FACTSDevice.kind"""))_
+    val kind = parse_attribute (attribute ("""FACTSDevice.kind"""))
     def parse (context: Context): FACTSDevice =
     {
         return (
@@ -376,7 +377,7 @@ object Facility
 extends
     Parseable[Facility]
 {
-    val kind = parse_element (element ("""Facility.kind"""))_
+    val kind = parse_element (element ("""Facility.kind"""))
     def parse (context: Context): Facility =
     {
         return (
@@ -417,10 +418,10 @@ object FailureEvent
 extends
     Parseable[FailureEvent]
 {
-    val corporateCode = parse_element (element ("""FailureEvent.corporateCode"""))_
-    val failureIsolationMethod = parse_attribute (attribute ("""FailureEvent.failureIsolationMethod"""))_
-    val faultLocatingMethod = parse_element (element ("""FailureEvent.faultLocatingMethod"""))_
-    val location = parse_element (element ("""FailureEvent.location"""))_
+    val corporateCode = parse_element (element ("""FailureEvent.corporateCode"""))
+    val failureIsolationMethod = parse_attribute (attribute ("""FailureEvent.failureIsolationMethod"""))
+    val faultLocatingMethod = parse_element (element ("""FailureEvent.faultLocatingMethod"""))
+    val location = parse_element (element ("""FailureEvent.location"""))
     def parse (context: Context): FailureEvent =
     {
         return (
@@ -472,18 +473,18 @@ object FinancialInfo
 extends
     Parseable[FinancialInfo]
 {
-    val account = parse_element (element ("""FinancialInfo.account"""))_
-    val actualPurchaseCost = parse_element (element ("""FinancialInfo.actualPurchaseCost"""))_
-    val costDescription = parse_element (element ("""FinancialInfo.costDescription"""))_
-    val costType = parse_element (element ("""FinancialInfo.costType"""))_
-    val financialValue = parse_element (element ("""FinancialInfo.financialValue"""))_
-    val plantTransferDateTime = parse_element (element ("""FinancialInfo.plantTransferDateTime"""))_
-    val purchaseDateTime = parse_element (element ("""FinancialInfo.purchaseDateTime"""))_
-    val purchaseOrderNumber = parse_element (element ("""FinancialInfo.purchaseOrderNumber"""))_
-    val valueDateTime = parse_element (element ("""FinancialInfo.valueDateTime"""))_
-    val warrantyEndDateTime = parse_element (element ("""FinancialInfo.warrantyEndDateTime"""))_
-    val Asset = parse_attribute (attribute ("""FinancialInfo.Asset"""))_
-    val quantity = parse_attribute (attribute ("""FinancialInfo.quantity"""))_
+    val account = parse_element (element ("""FinancialInfo.account"""))
+    val actualPurchaseCost = parse_element (element ("""FinancialInfo.actualPurchaseCost"""))
+    val costDescription = parse_element (element ("""FinancialInfo.costDescription"""))
+    val costType = parse_element (element ("""FinancialInfo.costType"""))
+    val financialValue = parse_element (element ("""FinancialInfo.financialValue"""))
+    val plantTransferDateTime = parse_element (element ("""FinancialInfo.plantTransferDateTime"""))
+    val purchaseDateTime = parse_element (element ("""FinancialInfo.purchaseDateTime"""))
+    val purchaseOrderNumber = parse_element (element ("""FinancialInfo.purchaseOrderNumber"""))
+    val valueDateTime = parse_element (element ("""FinancialInfo.valueDateTime"""))
+    val warrantyEndDateTime = parse_element (element ("""FinancialInfo.warrantyEndDateTime"""))
+    val Asset = parse_attribute (attribute ("""FinancialInfo.Asset"""))
+    val quantity = parse_attribute (attribute ("""FinancialInfo.quantity"""))
     def parse (context: Context): FinancialInfo =
     {
         return (
@@ -537,12 +538,12 @@ object GenericAssetModelOrMaterial
 extends
     Parseable[GenericAssetModelOrMaterial]
 {
-    val estimatedUnitCost = parse_element (element ("""GenericAssetModelOrMaterial.estimatedUnitCost"""))_
-    val stockItem = parse_element (element ("""GenericAssetModelOrMaterial.stockItem"""))_
-    val CUAsset = parse_attribute (attribute ("""GenericAssetModelOrMaterial.CUAsset"""))_
-    val CUWorkEquipmentAsset = parse_attribute (attribute ("""GenericAssetModelOrMaterial.CUWorkEquipmentAsset"""))_
-    val TypeAssetCatalogue = parse_attribute (attribute ("""GenericAssetModelOrMaterial.TypeAssetCatalogue"""))_
-    val quantity = parse_attribute (attribute ("""GenericAssetModelOrMaterial.quantity"""))_
+    val estimatedUnitCost = parse_element (element ("""GenericAssetModelOrMaterial.estimatedUnitCost"""))
+    val stockItem = parse_element (element ("""GenericAssetModelOrMaterial.stockItem"""))
+    val CUAsset = parse_attribute (attribute ("""GenericAssetModelOrMaterial.CUAsset"""))
+    val CUWorkEquipmentAsset = parse_attribute (attribute ("""GenericAssetModelOrMaterial.CUWorkEquipmentAsset"""))
+    val TypeAssetCatalogue = parse_attribute (attribute ("""GenericAssetModelOrMaterial.TypeAssetCatalogue"""))
+    val quantity = parse_attribute (attribute ("""GenericAssetModelOrMaterial.quantity"""))
     def parse (context: Context): GenericAssetModelOrMaterial =
     {
         return (
@@ -587,9 +588,9 @@ object Joint
 extends
     Parseable[Joint]
 {
-    val configurationKind = parse_attribute (attribute ("""Joint.configurationKind"""))_
-    val fillKind = parse_attribute (attribute ("""Joint.fillKind"""))_
-    val insulation = parse_element (element ("""Joint.insulation"""))_
+    val configurationKind = parse_attribute (attribute ("""Joint.configurationKind"""))
+    val fillKind = parse_attribute (attribute ("""Joint.fillKind"""))
+    val insulation = parse_element (element ("""Joint.insulation"""))
     def parse (context: Context): Joint =
     {
         return (
@@ -631,9 +632,9 @@ object Medium
 extends
     Parseable[Medium]
 {
-    val kind = parse_attribute (attribute ("""Medium.kind"""))_
-    val volumeSpec = parse_element (element ("""Medium.volumeSpec"""))_
-    val Specification = parse_attribute (attribute ("""Medium.Specification"""))_
+    val kind = parse_attribute (attribute ("""Medium.kind"""))
+    val volumeSpec = parse_element (element ("""Medium.volumeSpec"""))
+    val Specification = parse_attribute (attribute ("""Medium.Specification"""))
     def parse (context: Context): Medium =
     {
         return (
@@ -683,17 +684,17 @@ object Pole
 extends
     Parseable[Pole]
 {
-    val baseKind = parse_attribute (attribute ("""Pole.baseKind"""))_
-    val breastBlock = parse_element (element ("""Pole.breastBlock"""))_
-    val classification = parse_element (element ("""Pole.classification"""))_
-    val construction = parse_element (element ("""Pole.construction"""))_
-    val diameter = parse_element (element ("""Pole.diameter"""))_
-    val jpaReference = parse_element (element ("""Pole.jpaReference"""))_
-    val len = parse_element (element ("""Pole.len"""))_
-    val preservativeKind = parse_attribute (attribute ("""Pole.preservativeKind"""))_
-    val speciesType = parse_element (element ("""Pole.speciesType"""))_
-    val treatedDateTime = parse_element (element ("""Pole.treatedDateTime"""))_
-    val treatmentKind = parse_attribute (attribute ("""Pole.treatmentKind"""))_
+    val baseKind = parse_attribute (attribute ("""Pole.baseKind"""))
+    val breastBlock = parse_element (element ("""Pole.breastBlock"""))
+    val classification = parse_element (element ("""Pole.classification"""))
+    val construction = parse_element (element ("""Pole.construction"""))
+    val diameter = parse_element (element ("""Pole.diameter"""))
+    val jpaReference = parse_element (element ("""Pole.jpaReference"""))
+    val len = parse_element (element ("""Pole.len"""))
+    val preservativeKind = parse_attribute (attribute ("""Pole.preservativeKind"""))
+    val speciesType = parse_element (element ("""Pole.speciesType"""))
+    val treatedDateTime = parse_element (element ("""Pole.treatedDateTime"""))
+    val treatmentKind = parse_attribute (attribute ("""Pole.treatmentKind"""))
     def parse (context: Context): Pole =
     {
         return (
@@ -742,8 +743,8 @@ object Reconditioning
 extends
     Parseable[Reconditioning]
 {
-    val dateTime = parse_element (element ("""Reconditioning.dateTime"""))_
-    val Asset = parse_attribute (attribute ("""Reconditioning.Asset"""))_
+    val dateTime = parse_element (element ("""Reconditioning.dateTime"""))
+    val Asset = parse_attribute (attribute ("""Reconditioning.Asset"""))
     def parse (context: Context): Reconditioning =
     {
         return (
@@ -784,9 +785,9 @@ object ReliabilityInfo
 extends
     Parseable[ReliabilityInfo]
 {
-    val mTTR = parse_element (element ("""ReliabilityInfo.mTTR"""))_
-    val momFailureRate = parse_element (element ("""ReliabilityInfo.momFailureRate"""))_
-    val Specification = parse_attribute (attribute ("""ReliabilityInfo.Specification"""))_
+    val mTTR = parse_element (element ("""ReliabilityInfo.mTTR"""))
+    val momFailureRate = parse_element (element ("""ReliabilityInfo.momFailureRate"""))
+    val Specification = parse_attribute (attribute ("""ReliabilityInfo.Specification"""))
     def parse (context: Context): ReliabilityInfo =
     {
         return (
@@ -864,10 +865,10 @@ object Streetlight
 extends
     Parseable[Streetlight]
 {
-    val armLength = parse_element (element ("""Streetlight.armLength"""))_
-    val lampKind = parse_attribute (attribute ("""Streetlight.lampKind"""))_
-    val lightRating = parse_element (element ("""Streetlight.lightRating"""))_
-    val Pole = parse_attribute (attribute ("""Streetlight.Pole"""))_
+    val armLength = parse_element (element ("""Streetlight.armLength"""))
+    val lampKind = parse_attribute (attribute ("""Streetlight.lampKind"""))
+    val lightRating = parse_element (element ("""Streetlight.lightRating"""))
+    val Pole = parse_attribute (attribute ("""Streetlight.Pole"""))
     def parse (context: Context): Streetlight =
     {
         return (
@@ -914,13 +915,13 @@ object Structure
 extends
     Parseable[Structure]
 {
-    val fumigantAppliedDate = parse_element (element ("""Structure.fumigantAppliedDate"""))_
-    val fumigantName = parse_element (element ("""Structure.fumigantName"""))_
-    val height = parse_element (element ("""Structure.height"""))_
-    val materialKind = parse_attribute (attribute ("""Structure.materialKind"""))_
-    val ratedVoltage = parse_element (element ("""Structure.ratedVoltage"""))_
-    val removeWeed = parse_element (element ("""Structure.removeWeed"""))_
-    val weedRemovedDate = parse_element (element ("""Structure.weedRemovedDate"""))_
+    val fumigantAppliedDate = parse_element (element ("""Structure.fumigantAppliedDate"""))
+    val fumigantName = parse_element (element ("""Structure.fumigantName"""))
+    val height = parse_element (element ("""Structure.height"""))
+    val materialKind = parse_attribute (attribute ("""Structure.materialKind"""))
+    val ratedVoltage = parse_element (element ("""Structure.ratedVoltage"""))
+    val removeWeed = parse_element (element ("""Structure.removeWeed"""))
+    val weedRemovedDate = parse_element (element ("""Structure.weedRemovedDate"""))
     def parse (context: Context): Structure =
     {
         return (
@@ -971,14 +972,14 @@ object StructureSupport
 extends
     Parseable[StructureSupport]
 {
-    val anchorKind = parse_attribute (attribute ("""StructureSupport.anchorKind"""))_
-    val anchorRodCount = parse_element (element ("""StructureSupport.anchorRodCount"""))_
-    val anchorRodLength = parse_element (element ("""StructureSupport.anchorRodLength"""))_
-    val direction = parse_element (element ("""StructureSupport.direction"""))_
-    val kind = parse_attribute (attribute ("""StructureSupport.kind"""))_
-    val len = parse_element (element ("""StructureSupport.len"""))_
-    val siz = parse_element (element ("""StructureSupport.siz"""))_
-    val securedStructure = parse_attribute (attribute ("""StructureSupport.securedStructure"""))_
+    val anchorKind = parse_attribute (attribute ("""StructureSupport.anchorKind"""))
+    val anchorRodCount = parse_element (element ("""StructureSupport.anchorRodCount"""))
+    val anchorRodLength = parse_element (element ("""StructureSupport.anchorRodLength"""))
+    val direction = parse_element (element ("""StructureSupport.direction"""))
+    val kind = parse_attribute (attribute ("""StructureSupport.kind"""))
+    val len = parse_element (element ("""StructureSupport.len"""))
+    val siz = parse_element (element ("""StructureSupport.siz"""))
+    val securedStructure = parse_attribute (attribute ("""StructureSupport.securedStructure"""))
     def parse (context: Context): StructureSupport =
     {
         return (
@@ -1023,7 +1024,7 @@ object Tower
 extends
     Parseable[Tower]
 {
-    val constructionKind = parse_attribute (attribute ("""Tower.constructionKind"""))_
+    val constructionKind = parse_attribute (attribute ("""Tower.constructionKind"""))
     def parse (context: Context): Tower =
     {
         return (
@@ -1076,22 +1077,22 @@ object TransformerObservation
 extends
     Parseable[TransformerObservation]
 {
-    val bushingTemp = parse_element (element ("""TransformerObservation.bushingTemp"""))_
-    val dga = parse_element (element ("""TransformerObservation.dga"""))_
-    val freqResp = parse_element (element ("""TransformerObservation.freqResp"""))_
-    val furfuralDP = parse_element (element ("""TransformerObservation.furfuralDP"""))_
-    val hotSpotTemp = parse_element (element ("""TransformerObservation.hotSpotTemp"""))_
-    val oilColor = parse_element (element ("""TransformerObservation.oilColor"""))_
-    val oilDielectricStrength = parse_element (element ("""TransformerObservation.oilDielectricStrength"""))_
-    val oilIFT = parse_element (element ("""TransformerObservation.oilIFT"""))_
-    val oilLevel = parse_element (element ("""TransformerObservation.oilLevel"""))_
-    val oilNeutralizationNumber = parse_element (element ("""TransformerObservation.oilNeutralizationNumber"""))_
-    val pumpVibration = parse_element (element ("""TransformerObservation.pumpVibration"""))_
-    val topOilTemp = parse_element (element ("""TransformerObservation.topOilTemp"""))_
-    val waterContent = parse_element (element ("""TransformerObservation.waterContent"""))_
-    val Reconditioning = parse_attribute (attribute ("""TransformerObservation.Reconditioning"""))_
-    val Transformer = parse_attribute (attribute ("""TransformerObservation.Transformer"""))_
-    val status = parse_attribute (attribute ("""TransformerObservation.status"""))_
+    val bushingTemp = parse_element (element ("""TransformerObservation.bushingTemp"""))
+    val dga = parse_element (element ("""TransformerObservation.dga"""))
+    val freqResp = parse_element (element ("""TransformerObservation.freqResp"""))
+    val furfuralDP = parse_element (element ("""TransformerObservation.furfuralDP"""))
+    val hotSpotTemp = parse_element (element ("""TransformerObservation.hotSpotTemp"""))
+    val oilColor = parse_element (element ("""TransformerObservation.oilColor"""))
+    val oilDielectricStrength = parse_element (element ("""TransformerObservation.oilDielectricStrength"""))
+    val oilIFT = parse_element (element ("""TransformerObservation.oilIFT"""))
+    val oilLevel = parse_element (element ("""TransformerObservation.oilLevel"""))
+    val oilNeutralizationNumber = parse_element (element ("""TransformerObservation.oilNeutralizationNumber"""))
+    val pumpVibration = parse_element (element ("""TransformerObservation.pumpVibration"""))
+    val topOilTemp = parse_element (element ("""TransformerObservation.topOilTemp"""))
+    val waterContent = parse_element (element ("""TransformerObservation.waterContent"""))
+    val Reconditioning = parse_attribute (attribute ("""TransformerObservation.Reconditioning"""))
+    val Transformer = parse_attribute (attribute ("""TransformerObservation.Transformer"""))
+    val status = parse_attribute (attribute ("""TransformerObservation.status"""))
     def parse (context: Context): TransformerObservation =
     {
         return (
@@ -1147,10 +1148,10 @@ object UndergroundStructure
 extends
     Parseable[UndergroundStructure]
 {
-    val hasVentilation = parse_element (element ("""UndergroundStructure.hasVentilation"""))_
-    val kind = parse_attribute (attribute ("""UndergroundStructure.kind"""))_
-    val material = parse_element (element ("""UndergroundStructure.material"""))_
-    val sealingWarrantyExpiresDate = parse_element (element ("""UndergroundStructure.sealingWarrantyExpiresDate"""))_
+    val hasVentilation = parse_element (element ("""UndergroundStructure.hasVentilation"""))
+    val kind = parse_attribute (attribute ("""UndergroundStructure.kind"""))
+    val material = parse_element (element ("""UndergroundStructure.material"""))
+    val sealingWarrantyExpiresDate = parse_element (element ("""UndergroundStructure.sealingWarrantyExpiresDate"""))
     def parse (context: Context): UndergroundStructure =
     {
         return (
@@ -1197,13 +1198,13 @@ object WindingInsulation
 extends
     Parseable[WindingInsulation]
 {
-    val insulationPFStatus = parse_element (element ("""WindingInsulation.insulationPFStatus"""))_
-    val insulationResistance = parse_element (element ("""WindingInsulation.insulationResistance"""))_
-    val leakageReactance = parse_element (element ("""WindingInsulation.leakageReactance"""))_
-    val FromWinding = parse_attribute (attribute ("""WindingInsulation.FromWinding"""))_
-    val ToWinding = parse_attribute (attribute ("""WindingInsulation.ToWinding"""))_
-    val TransformerObservation = parse_attribute (attribute ("""WindingInsulation.TransformerObservation"""))_
-    val status = parse_attribute (attribute ("""WindingInsulation.status"""))_
+    val insulationPFStatus = parse_element (element ("""WindingInsulation.insulationPFStatus"""))
+    val insulationResistance = parse_element (element ("""WindingInsulation.insulationResistance"""))
+    val leakageReactance = parse_element (element ("""WindingInsulation.leakageReactance"""))
+    val FromWinding = parse_attribute (attribute ("""WindingInsulation.FromWinding"""))
+    val ToWinding = parse_attribute (attribute ("""WindingInsulation.ToWinding"""))
+    val TransformerObservation = parse_attribute (attribute ("""WindingInsulation.TransformerObservation"""))
+    val status = parse_attribute (attribute ("""WindingInsulation.status"""))
     def parse (context: Context): WindingInsulation =
     {
         return (

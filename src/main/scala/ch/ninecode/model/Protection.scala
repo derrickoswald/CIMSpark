@@ -3,6 +3,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
 
 /*
  * Package: Protection
@@ -39,13 +40,13 @@ object CurrentRelay
 extends
     Parseable[CurrentRelay]
 {
-    val currentLimit1 = parse_element (element ("""CurrentRelay.currentLimit1"""))_
-    val currentLimit2 = parse_element (element ("""CurrentRelay.currentLimit2"""))_
-    val currentLimit3 = parse_element (element ("""CurrentRelay.currentLimit3"""))_
-    val inverseTimeFlag = parse_element (element ("""CurrentRelay.inverseTimeFlag"""))_
-    val timeDelay1 = parse_element (element ("""CurrentRelay.timeDelay1"""))_
-    val timeDelay2 = parse_element (element ("""CurrentRelay.timeDelay2"""))_
-    val timeDelay3 = parse_element (element ("""CurrentRelay.timeDelay2"""))_
+    val currentLimit1 = parse_element (element ("""CurrentRelay.currentLimit1"""))
+    val currentLimit2 = parse_element (element ("""CurrentRelay.currentLimit2"""))
+    val currentLimit3 = parse_element (element ("""CurrentRelay.currentLimit3"""))
+    val inverseTimeFlag = parse_element (element ("""CurrentRelay.inverseTimeFlag"""))
+    val timeDelay1 = parse_element (element ("""CurrentRelay.timeDelay1"""))
+    val timeDelay2 = parse_element (element ("""CurrentRelay.timeDelay2"""))
+    val timeDelay3 = parse_element (element ("""CurrentRelay.timeDelay2"""))
     def parse (context: Context): CurrentRelay =
     {
         return (
@@ -94,12 +95,12 @@ object ProtectionEquipment
 extends
     Parseable[ProtectionEquipment]
 {
-    val highLimit = parse_element (element ("""ProtectionEquipment.highLimit"""))_
-    val lowLimit = parse_element (element ("""ProtectionEquipment.lowLimit"""))_
-    val powerDirectionFlag = parse_element (element ("""ProtectionEquipment.powerDirectionFlag"""))_
-    val relayDelayTime = parse_element (element ("""ProtectionEquipment.relayDelayTime"""))_
-    val unitMultiplier = parse_element (element ("""ProtectionEquipment.unitMultiplier"""))_
-    val unitSymbol = parse_element (element ("""ProtectionEquipment.unitSymbol"""))_
+    val highLimit = parse_element (element ("""ProtectionEquipment.highLimit"""))
+    val lowLimit = parse_element (element ("""ProtectionEquipment.lowLimit"""))
+    val powerDirectionFlag = parse_element (element ("""ProtectionEquipment.powerDirectionFlag"""))
+    val relayDelayTime = parse_element (element ("""ProtectionEquipment.relayDelayTime"""))
+    val unitMultiplier = parse_element (element ("""ProtectionEquipment.unitMultiplier"""))
+    val unitSymbol = parse_element (element ("""ProtectionEquipment.unitSymbol"""))
     def parse (context: Context): ProtectionEquipment =
     {
         return (

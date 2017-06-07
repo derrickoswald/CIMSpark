@@ -3,6 +3,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
 
 /*
  * Production
@@ -33,7 +34,7 @@ object GeneratingUnit
 extends
     Parseable[GeneratingUnit]
 {
-    val ratedNetMaxP = parse_element (element ("""GeneratingUnit.ratedNetMaxP"""))_
+    val ratedNetMaxP = parse_element (element ("""GeneratingUnit.ratedNetMaxP"""))
     def parse (context: Context): GeneratingUnit =
     {
         return (

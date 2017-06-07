@@ -2,6 +2,7 @@ package ch.ninecode
 
 import org.scalatest.FunSuite
 
+import ch.ninecode.cim.CHIM
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Context._
 import ch.ninecode.model._

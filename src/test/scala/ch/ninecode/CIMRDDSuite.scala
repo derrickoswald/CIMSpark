@@ -18,9 +18,9 @@ import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
 import org.scalatest.fixture.FunSuite
 
+import ch.ninecode.cim.CHIM
 import ch.ninecode.cim.CIMInputFormat
 import ch.ninecode.cim.CIMRecordReader
-import ch.ninecode.model.CHIM
 import ch.ninecode.model.Element
 import ch.ninecode.model.Unknown
 

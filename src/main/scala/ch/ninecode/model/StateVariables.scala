@@ -3,6 +3,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
 
 /*
  * StateVariables
@@ -71,8 +72,8 @@ extends
 {
     def parse (context: Context): SvStatus =
     {
-        val inService = parse_element (element ("""SvStatus.inService"""))_
-        val ConductingEquipment = parse_attribute (attribute ("""SvStatus.ConductingEquipment"""))_
+        val inService = parse_element (element ("""SvStatus.inService"""))
+        val ConductingEquipment = parse_attribute (attribute ("""SvStatus.ConductingEquipment"""))
         return (
             SvStatus
             (

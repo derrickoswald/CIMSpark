@@ -6,7 +6,10 @@ import org.apache.spark.sql.catalyst.expressions.GenericInternalRow
 import org.apache.spark.sql.catalyst.expressions.GenericMutableRow
 import org.apache.spark.sql.catalyst.expressions.UnsafeRow
 import org.apache.spark.unsafe.types.UTF8String
-import ch.ninecode.model._
+
+import ch.ninecode.cim.CHIM
+import ch.ninecode.model.BasicElement
+import ch.ninecode.model.Element
 
 /**
  * User-defined type for [[ch.ninecode.model.Element]].

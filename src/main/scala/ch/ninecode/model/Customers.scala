@@ -3,6 +3,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
 
 /*
  * Package: Customers
@@ -39,13 +40,13 @@ object Customer
 extends
     Parseable[Customer]
 {
-    val kind = parse_attribute (attribute ("""Customer.kind"""))_
-    val locale = parse_element (element ("""Customer.locale"""))_
-    val pucNumber = parse_element (element ("""Customer.pucNumber"""))_
-    val specialNeed = parse_element (element ("""Customer.specialNeed"""))_
-    val vip = parse_element (element ("""Customer.vip"""))_
-    val priority = parse_attribute (attribute ("""Customer.priority"""))_
-    val status = parse_attribute (attribute ("""Customer.status"""))_
+    val kind = parse_attribute (attribute ("""Customer.kind"""))
+    val locale = parse_element (element ("""Customer.locale"""))
+    val pucNumber = parse_element (element ("""Customer.pucNumber"""))
+    val specialNeed = parse_element (element ("""Customer.specialNeed"""))
+    val vip = parse_element (element ("""Customer.vip"""))
+    val priority = parse_attribute (attribute ("""Customer.priority"""))
+    val status = parse_attribute (attribute ("""Customer.status"""))
     def parse (context: Context): Customer =
     {
         return (
@@ -91,9 +92,9 @@ object CustomerAccount
 extends
     Parseable[CustomerAccount]
 {
-    val billingCycle = parse_element (element ("""CustomerAccount.billingCycle"""))_
-    val budgetBill = parse_element (element ("""CustomerAccount.budgetBill"""))_
-    val Customer = parse_attribute (attribute ("""CustomerAccount.Customer"""))_
+    val billingCycle = parse_element (element ("""CustomerAccount.billingCycle"""))
+    val budgetBill = parse_element (element ("""CustomerAccount.budgetBill"""))
+    val Customer = parse_attribute (attribute ("""CustomerAccount.Customer"""))
     def parse (context: Context): CustomerAccount =
     {
         return (
@@ -138,12 +139,12 @@ object CustomerAgreement
 extends
     Parseable[CustomerAgreement]
 {
-    val loadMgmt = parse_element (element ("""CustomerAgreement.loadMgmt"""))_
-    val Customer = parse_attribute (attribute ("""CustomerAgreement.Customer"""))_
-    val CustomerAccount = parse_attribute (attribute ("""CustomerAgreement.CustomerAccount"""))_
-    val ServiceCategory = parse_attribute (attribute ("""CustomerAgreement.ServiceCategory"""))_
-    val ServiceSupplier = parse_attribute (attribute ("""CustomerAgreement.ServiceSupplier"""))_
-    val StandardIndustryCode = parse_attribute (attribute ("""CustomerAgreement.StandardIndustryCode"""))_
+    val loadMgmt = parse_element (element ("""CustomerAgreement.loadMgmt"""))
+    val Customer = parse_attribute (attribute ("""CustomerAgreement.Customer"""))
+    val CustomerAccount = parse_attribute (attribute ("""CustomerAgreement.CustomerAccount"""))
+    val ServiceCategory = parse_attribute (attribute ("""CustomerAgreement.ServiceCategory"""))
+    val ServiceSupplier = parse_attribute (attribute ("""CustomerAgreement.ServiceSupplier"""))
+    val StandardIndustryCode = parse_attribute (attribute ("""CustomerAgreement.StandardIndustryCode"""))
     def parse (context: Context): CustomerAgreement =
     {
         return (
@@ -192,13 +193,13 @@ object PricingStructure
 extends
     Parseable[PricingStructure]
 {
-    val code = parse_element (element ("""PricingStructure.code"""))_
-    val dailyCeilingUsage = parse_element (element ("""PricingStructure.dailyCeilingUsage"""))_
-    val dailyEstimatedUsage = parse_element (element ("""PricingStructure.dailyEstimatedUsage"""))_
-    val dailyFloorUsage = parse_element (element ("""PricingStructure.dailyFloorUsage"""))_
-    val revenueKind = parse_attribute (attribute ("""PricingStructure.revenueKind"""))_
-    val taxExemption = parse_element (element ("""PricingStructure.taxExemption"""))_
-    val ServiceCategory = parse_attribute (attribute ("""PricingStructure.ServiceCategory"""))_
+    val code = parse_element (element ("""PricingStructure.code"""))
+    val dailyCeilingUsage = parse_element (element ("""PricingStructure.dailyCeilingUsage"""))
+    val dailyEstimatedUsage = parse_element (element ("""PricingStructure.dailyEstimatedUsage"""))
+    val dailyFloorUsage = parse_element (element ("""PricingStructure.dailyFloorUsage"""))
+    val revenueKind = parse_attribute (attribute ("""PricingStructure.revenueKind"""))
+    val taxExemption = parse_element (element ("""PricingStructure.taxExemption"""))
+    val ServiceCategory = parse_attribute (attribute ("""PricingStructure.ServiceCategory"""))
     def parse (context: Context): PricingStructure =
     {
         return (
@@ -242,7 +243,7 @@ object ServiceCategory
 extends
     Parseable[ServiceCategory]
 {
-    val kind = parse_attribute (attribute ("""ServiceCategory.kind"""))_
+    val kind = parse_attribute (attribute ("""ServiceCategory.kind"""))
     def parse (context: Context): ServiceCategory =
     {
         return (
@@ -282,9 +283,9 @@ object ServiceLocation
 extends
     Parseable[ServiceLocation]
 {
-    val accessMethod = parse_element (element ("""ServiceLocation.accessMethod"""))_
-    val needsInspection = parse_element (element ("""ServiceLocation.needsInspection"""))_
-    val siteAccessProblem = parse_element (element ("""ServiceLocation.siteAccessProblem"""))_
+    val accessMethod = parse_element (element ("""ServiceLocation.accessMethod"""))
+    val needsInspection = parse_element (element ("""ServiceLocation.needsInspection"""))
+    val siteAccessProblem = parse_element (element ("""ServiceLocation.siteAccessProblem"""))
     def parse (context: Context): ServiceLocation =
     {
         return (
@@ -325,8 +326,8 @@ object Tariff
 extends
     Parseable[Tariff]
 {
-    val endDate = parse_element (element ("""Tariff.endDate"""))_
-    val startDate = parse_element (element ("""Tariff.startDate"""))_
+    val endDate = parse_element (element ("""Tariff.endDate"""))
+    val startDate = parse_element (element ("""Tariff.startDate"""))
     def parse (context: Context): Tariff =
     {
         return (

@@ -1,4 +1,4 @@
-package ch.ninecode.model
+package ch.ninecode.cim
 
 import java.io.File
 import java.io.FileInputStream
@@ -15,9 +15,7 @@ import scala.reflect.runtime.universe.TypeTag
 
 import org.apache.spark.sql.Row
 
-import ch.ninecode.cim.CIMSubsetter
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Context._
+import ch.ninecode.model._
 
 /**
  * A bogus class needed for synchronization.
@@ -81,82 +79,123 @@ trait Parser
      * Parse one or more XML elements from a string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The matched group(s) from the regular expression.
+     * @return A function for parsing the elements.
      */
-    def parse_elements (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
+    def parse_elements (pattern: Tuple2[Pattern, Int]): Context => List[String] =
     {
-        var ret: List[String] = null
-
-        val matcher = pattern._1.matcher (context.subxml)
-        while (matcher.find ())
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The matched group(s) from the regular expression or null if none were found.
+        (context: Context) =>
         {
-            val string = matcher.group (pattern._2)
-            if (Context.DEBUG)
-                context.coverage += Tuple2 (matcher.start, matcher.end)
-            if (null != string)
-                ret = if (null == ret) List (string) else ret :+ string
-        }
+            var ret: List[String] = null
 
-        return (ret)
-    }
-
-    /**
-     * Parse one XML element from a string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The matched group from the regular expression, or null if the pattern wasn't found.
-     */
-    def parse_element (pattern: Tuple2[Pattern, Int])(context: Context): String =
-    {
-        val elements = parse_elements (pattern)(context)
-        return (if (null == elements) null else elements.head)
-    }
-
-    /**
-     * Parse one or more attributes from an XML string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The attribute value(s) (with leading # stripped off).
-     */
-    def parse_attributes (pattern: Tuple2[Pattern, Int])(context: Context): List[String] =
-    {
-        var ret: List[String] = null
-
-        val matcher = pattern._1.matcher (context.subxml)
-        while (matcher.find ())
-        {
-            var string = matcher.group (pattern._2)
-            if (Context.DEBUG)
-                context.coverage += Tuple2 (matcher.start, matcher.end)
-            if (null != string)
+            val matcher = pattern._1.matcher (context.subxml)
+            while (matcher.find ())
             {
-                if (string.startsWith ("#")) // remove '#'
-                    string = string.substring (1)
-                ret = if (null == ret) List (string) else ret :+ string
+                val string = matcher.group (pattern._2)
+                if (Context.DEBUG)
+                    context.coverage += Tuple2 (matcher.start, matcher.end)
+                if (null != string)
+                    ret = if (null == ret) List (string) else ret :+ string
             }
-        }
 
-        return (ret)
+            ret
+        }
     }
 
     /**
-     * Parse one attribute from an XML string.
+     * Create a function to parse one XML element from a string.
      * @param pattern._1 The regular expression pattern to look for.
      * @param pattern._2 The index of the capture group to extract from within the pattern.
-     * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
-     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
+     * @return A function for parsing the element.
      */
-    def parse_attribute (pattern: Tuple2[Pattern, Int])(context: Context): String =
+    def parse_element (pattern: Tuple2[Pattern, Int]): Context => String =
     {
-        val attributes = parse_attributes (pattern)(context)
-        return (if (null == attributes) null else attributes.head)
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The matched group from the regular expression, or null if the pattern wasn't found.
+        (context: Context) =>
+        {
+            val matcher = pattern._1.matcher (context.subxml)
+            if (matcher.find ())
+            {
+                val string = matcher.group (pattern._2)
+                if (Context.DEBUG)
+                    context.coverage += Tuple2 (matcher.start, matcher.end)
+                string
+            }
+            else
+                null
+        }
+    }
+
+    /**
+     * Create a function to parse one or more attributes from an XML string.
+     * @param pattern._1 The regular expression pattern to look for.
+     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @return A function for parsing the attributes.
+     */
+    def parse_attributes (pattern: Tuple2[Pattern, Int]): Context => List[String] =
+    {
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The attribute value(s) (with leading # stripped off).
+        context: Context =>
+        {
+            var ret: List[String] = null
+
+            val matcher = pattern._1.matcher (context.subxml)
+            while (matcher.find ())
+            {
+                val start = matcher.start (pattern._2)
+                val end = matcher.end (pattern._2)
+                if ((-1 != start) && (-1 != end))
+                {
+                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
+                    val string = context.subxml.subSequence (begin, end).toString
+                    if (Context.DEBUG)
+                        context.coverage += Tuple2 (matcher.start, matcher.end)
+                    ret = if (null == ret) List (string) else ret :+ string
+                }
+            }
+
+            ret
+        }
+    }
+
+    /**
+     * Create a function to parse one attribute from an XML string.
+     * @param pattern._1 The regular expression pattern to look for.
+     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @return A function for parsing the attribute.
+     */
+    def parse_attribute (pattern: Tuple2[Pattern, Int]): Context => String =
+    {
+//     * @param context The context for the substring in the XML and
+//     * line number and position context for reporting in case of an error.
+//     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
+        (context: Context) =>
+        {
+            val matcher = pattern._1.matcher (context.subxml)
+            if (matcher.find ())
+            {
+                val start = matcher.start (pattern._2)
+                val end = matcher.end (pattern._2)
+                if ((-1 != start) && (-1 != end))
+                {
+                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
+                    val string = context.subxml.subSequence (begin, end).toString
+                    if (Context.DEBUG)
+                        context.coverage += Tuple2 (matcher.start, matcher.end)
+                    string
+                }
+                else
+                    null
+            }
+            else
+                null
+        }
     }
 
     /**
@@ -264,111 +303,20 @@ object Parser
  * 
  * @tparam A The CIM class type.
  */
-abstract class Parseable[A <: Product : ClassTag : TypeTag]
+abstract class Parseable[+A <: Product : ClassTag : TypeTag]
 extends
     Parser
 {
     def runtime_class = classTag[A].runtimeClass
     def classname = runtime_class.getName
     def cls = classname.substring (classname.lastIndexOf (".") + 1)
-    // try to avoid deadlock due to https://issues.scala-lang.org/browse/SI-6240
-    // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
-    val lock: AnyRef = SerializableObject ("scalasucks")
     def register: Unit =
-    lock.synchronized
     {
         CHIM.LOOKUP += ((Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]]))
         CHIM.SUBSETTERS += ((Parser.namespace + ":" + cls, new CIMSubsetter[A]()))
     }
 }
 
-
-/**
- * Top level element.
- * Not all elements really have an mRID (classes in package Common like PositionPoint and PostalAddress)
- * But our exporter gives them one, and Spark needs identifiers for joins, so for now all elements have an mRID.
- */
-case class BasicElement
-(
-    override val sup: Element = null,
-    val mRID: String = null
-)
-extends
-    Element
-{
-    def this () = { this (null, null) }
-    override def id: String = mRID
-    override def copy(): Row = { return (clone().asInstanceOf[Element]) }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-}
-
-object BasicElement
-    extends Parser
-{
-    /**
-     * Parse an element.
-     * Simply extracts the id.
-     */
-    val mRID = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))_
-    override def parse(context: Context): BasicElement =
-    {
-        new BasicElement (null, mRID (context))
-    }
-}
-
-/**
- * Unknown element
- * Default parsed element, when no other more specific class applies
- */
-case class Unknown(
-    override val sup: Element = null,
-    guts: String,
-    line: Int,
-    start: Long,
-    end: Long)
-      extends Element
-{
-    def this() = { this(null, null, 0, 0l, 0l) }
-    def Element: Element = sup
-    override def copy(): Row = { return (clone().asInstanceOf[Unknown]) }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-}
-
-object Unknown
-    extends Parser
-{
-    /**
-     * The current element name.
-     * Used for error messages.
-     */
-    var name: String = "";
-
-    def parse(context: Context): Unknown =
-    {
-        if ((Context.DEBUG) && (context.errors.size < Context.MAXERRORS))
-            context.errors += "Unknown element \"" + name + "\" at line " + context.line_number()
-        Unknown (
-            BasicElement.parse(context),
-            context.subxml,
-            context.line_number(),
-            context.start,
-            context.end)
-    }
-}
 
 // Classes are organized by CIM package in .scala files and arranged alphabetically within the package.
 // All attributes have been included for the classes except:
@@ -396,7 +344,6 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     val matcher = Parser.rddex.matcher (xml)
     val bytes = ByteBuffer.wrap (new Array[Byte] (4 * CHIM.OVERREAD))
     val encoder = Charset.forName ("UTF-8").newEncoder ()
-
     var value: Element = null
 
     _AssetInfo.register
@@ -499,6 +446,7 @@ object CHIM
     val CHUNK = 1024*1024*64
     val OVERREAD = 1024*32 // should be large enough that no RDF element is bigger than this
 
+    var ALL_CLASSES = false
     val LOOKUP = new HashMap[String, Parseable[Product]]
     val SUBSETTERS = new HashMap[String, CIMSubsetter[_]]
 
@@ -512,7 +460,7 @@ object CHIM
 
     def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit) =
     {
-        val chim = new CHIM ("") // ensure registration has occured
+        val chim = new CHIM ("") // ensure registration has occurred
         for ((name, subsetter) <- SUBSETTERS.iterator)
             fn (subsetter)
     }
@@ -574,6 +522,12 @@ object CHIM
     {
         if (args.size > 0)
         {
+            if (args.size > 1)
+            {
+                println ("Press [Return] to continue...")
+                System.console().readLine()
+            }
+
             val filename = args (0)
             val fis = new FileInputStream (filename)
             val size = fis.available ()
@@ -608,7 +562,7 @@ object CHIM
             println ("reading %g seconds".format (reading / 1e6))
             println ("parsing %g seconds".format (parsing / 1e6))
             println (result.size + " identified elements parsed")
-            val subset = result.filter (_._2.getClass() == classOf[Unknown])
+            val subset = result.values.filter (_.getClass() == classOf[Unknown])
             println (subset.size + " unknown elements")
         }
         else

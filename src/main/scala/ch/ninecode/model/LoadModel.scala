@@ -3,6 +3,7 @@ package ch.ninecode.model
 import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
 
 /*
  * Package: LoadModel
@@ -34,8 +35,8 @@ object SeasonDayTypeSchedule
 extends
     Parseable[SeasonDayTypeSchedule]
 {
-    val DayType = parse_attribute (attribute ("""SeasonDayTypeSchedule.DayType"""))_
-    val Season = parse_attribute (attribute ("""SeasonDayTypeSchedule.Season"""))_
+    val DayType = parse_attribute (attribute ("""SeasonDayTypeSchedule.DayType"""))
+    val Season = parse_attribute (attribute ("""SeasonDayTypeSchedule.Season"""))
     def parse (context: Context): SeasonDayTypeSchedule =
     {
         return (

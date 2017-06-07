@@ -18,7 +18,6 @@ import org.apache.spark.sql.types.ElementRegistration
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 
-import ch.ninecode.model.CHIM
 import ch.ninecode.model.Element
 
 class CIMRelation (
