@@ -162,29 +162,15 @@ object CIMRDD
                 }
                 configuration.set ("spark.ui.showConsoleProgress", "false")
                 configuration.set ("spark.ui.showConsoleProgress", "false")
-                val session = SparkSession.builder ().config (configuration).getOrCreate ()
+                configuration.set ("spark.sql.hive.thriftServer.singleSession", "true")
+                val session_builder = SparkSession.builder()
+                session_builder.enableHiveSupport()
+                val session = session_builder.config (configuration).getOrCreate ()
+                log.info ("Spark " + session.version +  " session established")
 
                 try
                 {
-                    // set up the SQL context
-                    val session_builder = SparkSession.builder()
-                    session_builder.enableHiveSupport()
-                    val sql_context = session_builder.getOrCreate().sqlContext
-                    log.info ("Spark session established")
 
-                    // set the port if it was specified, otherwise use the default of port 10000
-                    sql_context.setConf ("hive.server2.thrift.port", arguments.port.toString)
-
-                    // start the thrift JDBC server
-                    HiveThriftServer2.startWithContext (sql_context)
-                    log.info ("thriftserver started")
-
-                    // show databases
-//                log.info ("databases")
-//                var sql = "show databases";
-//                val databases = sql_context.sql (sql)
-//                for (database <- databases)
-//                   log.info (database.toString ())
 
                     // read the file
                     log.info ("reading CIM files")
@@ -200,19 +186,37 @@ object CIMRDD
                     else
                         log.info (elements.count () + " elements")
 
-//                    var sql = "create temporary table elements using ch.ninecode.cim options (path '" + filename + "')"
-//                    val dataframe = sql_context.sql (sql)
-//                    val count = sql_context.sql ("select count(*) from elements")
-//                    println ("dataframe created with " + count.head().getLong(0) + " elements")
 
-                    log.info ("tables")
-                    val tables = sql_context.tableNames ()
-                    for (table <- tables)
-                       log.info (table.toString ())
+//                    var sql = "create temporary table elements using ch.ninecode.cim options (path '" + arguments.files.mkString (",") + "')"
+//                    val dataframe = session.sqlContext.sql (sql)
+//                    val count = session.sqlContext.sql ("select count(*) from elements")
+//                    println ("dataframe created with " + count.head ().getLong (0) + " elements")
+
+                    // start the thrift JDBC server
+                    // set the port if it was specified, otherwise use the default of port 10000
+                    session.sqlContext.setConf ("hive.server2.thrift.port", arguments.port.toString)
+                    HiveThriftServer2.startWithContext (session.sqlContext)
+                    log.info ("thriftserver started")
+
+                    // show databases
+//                log.info ("databases")
+//                var sql = "show databases";
+//                val databases = sql_context.sql (sql)
+//                for (database <- databases)
+//                   log.info (database.toString ())
+
+//                    log.info ("tables")
+//                    val tables = session.sqlContext.tableNames ()
+//                    for (table <- tables)
+//                       log.info (table.toString ())
+
+                    var sql = "show tables"
+                    val dataframe = session.sqlContext.sql (sql)
+                    for (x <- dataframe)
+                        log.info (x.getString (0))
 
                     scala.io.StdIn.readLine ("Press [Return] to exit...")
-//                    println ("Press [Return] to exit...")
-//                    System.console().readLine()
+                    println ("Done.")
                 }
                 finally
                 {
