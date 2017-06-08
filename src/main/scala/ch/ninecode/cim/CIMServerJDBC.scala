@@ -2,35 +2,80 @@ package ch.ninecode.cim
 
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
+import java.util.Properties
 
 import scala.tools.nsc.io.Jar
 import scala.util.Random
 
 import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 
-import ch.ninecode.model._
-
-//// NOTE: in order to get maven and scala to work together in Eclipse
-//// I needed to install the maven-scala plugin from here:
-//// http://alchim31.free.fr/m2e-scala/update-site/
+import ch.ninecode.model.BasicElement
+import ch.ninecode.model.Element
+import ch.ninecode.model.Unknown
 
 /**
- * Wrapper class for CIM.
+ * Application to expose CIM files as a Hive database.
  *
- * This class isolates the Spark related dependencies, so the CIM
- * class remains unencumbered by the heavy overhead.
+ * This program reads in one or more CIM files and
+ * runs a Hive/Thrift server to expose the RDD as JDBC tables.
+ *
+ * The program is usually run on the master node with a command like:
+ * <code>
+ * $ spark-submit --conf spark.driver.memory=2g --conf spark.executor.memory=4g /opt/code/CIMReader-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/cim_data_file.rdf"
+ * </code>
+ *
+ * It will read the rdf file and create a Spark RDD for each CIM class,
+ * a description of which can be found in [Model.md](https://github.com/derrickoswald/CIMReader/blob/master/Model.md).
+ *
+ * It then sets up a Hive/Thrift server on port 10004 (or what was specified on the command line)
+ * to serve these RDD as JDBC tables.
+ *
+ * The program then waits for a Return to signal that it should exit.
+ *
+ * A java client program can get a JDBC connection to the Hive/Thrift server
+ * using the [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)
+ * and the usual JDBC connection process:
+ * <code>
+ * private static String driverName = "org.apache.hive.jdbc.HiveDriver";
+ * private static String port = "10004";
+ * private static String database = "default";
+ * private static String host = "localhost";
+ * private static String user = "hive";
+ * try
+ * {
+ *     Class.forName (driverName);
+ * }
+ * catch (ClassNotFoundException e)
+ * {
+ *     e.printStackTrace ();
+ *     System.exit (1);
+ * }
+ * Connection con = DriverManager.getConnection ("jdbc:hive2://" + host + ":" + port + "/" + database, user, "");
+ * </code>
+ *
+ * A [sample program](https://github.com/derrickoswald/CIMReader/blob/master/src/test/java/ch/ninecode/CIMJava.java)
+ * is provided in the src/main/java directory.
  *
  */
-object CIMRDD
+object CIMServerJDBC
 {
-    private val log = LoggerFactory.getLogger(getClass)
-    val APPLICATION_NAME = "CIMRDD JDBC Server"
-    val APPLICATION_VERSION = "2.11-2.0.2-2.0.0"
+    val properties =
+    {
+        val in = this.getClass.getResourceAsStream ("/app.properties")
+        val p = new Properties ();
+        p.load (in)
+        in.close
+        p
+    }
+    val APPLICATION_NAME = getClass.getName.substring (getClass.getName.lastIndexOf (".") + 1, getClass.getName.length - 1)
+    val APPLICATION_VERSION = properties.getProperty ("version")
+    val SPARK = properties.getProperty ("spark")
+
+    private val log = LoggerFactory.getLogger (APPLICATION_NAME)
 
     object LogLevels extends Enumeration
     {
@@ -133,8 +178,9 @@ object CIMRDD
         parser.parse (args, Arguments ()) match
         {
             case Some (arguments) =>
-                if (!arguments.quiet) org.apache.log4j.LogManager.getLogger ("ch.ninecode.cim.CIMRDD$").setLevel (org.apache.log4j.Level.INFO)
-                val log = LoggerFactory.getLogger (getClass)
+                if (!arguments.quiet)
+                    org.apache.log4j.LogManager.getLogger (APPLICATION_NAME).setLevel (org.apache.log4j.Level.INFO)
+                val log = LoggerFactory.getLogger (APPLICATION_NAME)
 
                 val configuration = new SparkConf ()
                 configuration.setAppName (APPLICATION_NAME)
@@ -161,12 +207,14 @@ object CIMRDD
                     configuration.registerKryoClasses (Array (classOf[CuttingEdge], classOf[TopologicalData]))
                 }
                 configuration.set ("spark.ui.showConsoleProgress", "false")
-                configuration.set ("spark.ui.showConsoleProgress", "false")
                 configuration.set ("spark.sql.hive.thriftServer.singleSession", "true")
                 val session_builder = SparkSession.builder()
                 session_builder.enableHiveSupport()
                 val session = session_builder.config (configuration).getOrCreate ()
-                log.info ("Spark " + session.version +  " session established")
+                val version = session.version
+                log.info (s"Spark $version session established")
+                if (session.version != SPARK)
+                    log.warn (s"Spark version ($version) does not match the version ($SPARK) used to build $APPLICATION_NAME")
 
                 try
                 {
@@ -184,7 +232,7 @@ object CIMRDD
                     if (-1 != session.sparkContext.master.indexOf ("sandbox")) // are we in development
                         elements.explain
                     else
-                        log.info (elements.count () + " elements")
+                        log.info ("" + elements.count + " elements")
 
 
 //                    var sql = "create temporary table elements using ch.ninecode.cim options (path '" + arguments.files.mkString (",") + "')"

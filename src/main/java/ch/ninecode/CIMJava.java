@@ -11,7 +11,10 @@ import java.sql.DriverManager;
 public class CIMJava
 {
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
-
+    private static String port = "10004";
+    private static String database = "default";
+    private static String host = "localhost";
+    private static String user = "hive"; // replace "hive" here with the name of the user the queries should run as
     public static void main (String[] args) throws SQLException
     {
         try
@@ -23,8 +26,7 @@ public class CIMJava
             e.printStackTrace ();
             System.exit (1);
         }
-        // replace "hive" here with the name of the user the queries should run as
-        Connection con = DriverManager.getConnection ("jdbc:hive2://localhost:10004/default", "hive", "");
+        Connection con = DriverManager.getConnection ("jdbc:hive2://" + host + ":" + port + "/" + database, user, "");
         Statement stmt = con.createStatement ();
 
         // show databases

@@ -217,22 +217,28 @@ All RDD are also exposed as temporary tables, so one can use SQL syntax to const
     +--------------+--------------------+--------------------+--------------------+-----+----------+----------------+-------------+-------------+
     only showing top 5 rows
 
-To expose the RDD as Hive SQL tables that are available externally, via JDBC for instance, a utility main() function is provided in CIMRDD:
+To expose the RDD as Hive SQL tables that are available externally, via JDBC for instance,
+there is a stand-alone application built in to the CIMReader called CIMServerJDBC.
+The program can be executed usng spark-submit with the name of the CIMServerJDBC jar file
+that includes all necessary dependencies and the CIM file:
 
-    spark-submit --class ch.ninecode.cim.CIMRDD --jars /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar --master yarn --deploy-mode client --driver-memory 1g --executor-memory 4g --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
+    spark-submit /opt/code/CIMServerJDBC-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
     ...
     Press [Return] to exit...
 
-The program will serve on port 10000 until you press Return.
+The program will serve on port 10004 until you press Return.
+Incidentally, the Tracking UI for the Application Master (on the master node port 4040) is really good.
+But it disappears when the program terminates.
 
-The java client code required can be black-box included by adding this magic incantation in
+There is a small amount of command line help if you specify --help instead of the CIM file name,
+for example on how to change the port number.
+
+There is a [sample Java JDBC program](https://github.com/derrickoswald/CIMReader/blob/master/src/test/java/ch/ninecode/CIMJava.java) provided in the src/main/java directory.
+
+The Java [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)
+can be black-box included by adding this magic incantation in
 the maven pom:
 
-    <dependency>
-        <groupId>org.apache.hadoop</groupId>
-        <artifactId>hadoop-core</artifactId>
-        <version>1.2.1</version>
-    </dependency>
     <dependency>
         <groupId>org.spark-project.hive</groupId>
         <artifactId>hive-jdbc</artifactId>
@@ -241,164 +247,6 @@ the maven pom:
 
 Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works).
 
-    private static String driverName = "org.apache.hive.jdbc.HiveDriver";
-
-    public static void main (String[] args) throws SQLException
-    {
-        try
-        {
-            Class.forName (driverName);
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace ();
-            System.exit (1);
-        }
-        // replace "hive" here with the name of the user the queries should run as
-        Connection con = DriverManager.getConnection ("jdbc:hive2://localhost:10000/default", "hive", "");
-        Statement stmt = con.createStatement ();
-
-        // show tables
-        String sql = "show tables";
-        System.out.println ("Running: " + sql);
-        ResultSet res = stmt.executeQuery (sql);
-        while (res.next ())
-            System.out.println ("    " + res.getString (1));
-        res.close ();
-
-        String tableName = "points";
-
-        // describe table
-        sql = "describe " + tableName;
-        System.out.println ("Running: " + sql);
-        res = stmt.executeQuery (sql);
-        while (res.next ())
-            System.out.println ("    " + res.getString (1) + "\t" + res.getString (2));
-        res.close ();
-
-        // select * query
-        sql = "select * from " + tableName;
-        System.out.println ("Running: " + sql);
-        res = stmt.executeQuery (sql);
-        int index = 0;
-        while (res.next () && (index++ < 5))
-            System.out.println (String.valueOf (res.getString (1)) + "\t" + res.getDouble (2)+ "\t" + res.getDouble (3));
-        res.close ();
-
-        // count query
-        sql = "select count(1) from " + tableName;
-        System.out.println ("Running: " + sql);
-        res = stmt.executeQuery (sql);
-        while (res.next ())
-            System.out.println (res.getString (1));
-        res.close ();
-
-        System.out.println ("done");
-        con.close ();
-    }
-
-yields output:
-
-    16/01/26 15:40:32 INFO jdbc.Utils: Supplied authorities: localhost:10000
-    16/01/26 15:40:32 INFO jdbc.Utils: Resolved authority: localhost:10000
-    16/01/26 15:40:32 INFO jdbc.HiveConnection: Will try to open client transport with JDBC Uri: jdbc:hive2://localhost:10000/default
-    Running: show tables
-        points
-        lines
-    Running: describe points
-        id  string
-        x   double
-        y   double
-    Running: select * from points
-    _location_1610744576_427087414_2073666  8.52831529608   46.9951049314
-    _location_5773096_1152305167_985581 8.60289818799   46.995578585
-    _location_5773116_972140366_615398  8.5110791419    46.9933251694
-    _location_5773096_823727318_151097  8.6133386841    47.003597305
-    _location_1610642176_427083559_1978331  8.58587930233   47.0543961057
-    Running: select count(1) from points
-    7540
-    done
-
-# Programmatic Usage
-
-The jars to start the thrift server are not automatically added to the classpath for spark-submit,
-so use the following to allow execution of a program that creates a Hive SQL context and thrift server instance
-just like the spark-shell environment:
-
-    --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar 
-
-The program runs out of memory at the `new HiveContext (spark)` call when the `--deploy-mode` is `cluster`.
-The error:
-
-    16/01/05 03:56:32 ERROR yarn.ApplicationMaster: User class threw exception: java.lang.OutOfMemoryError: PermGen space
-    java.lang.OutOfMemoryError: PermGen space
-
-seems to indicate (from search results) that the maxpermsize is too small.
-The suggested fix was to set `spark.executor.extraJavaOptions=-XX:MaxPermSize=256M`,
-but this didn't work because in this case it is the driver program that's failing.
-Fortunately there's another setting for the driver, so this works:
-
-    spark.driver.extraJavaOptions=-XX:MaxPermSize=256M
-
-So the complete command for cluster deploy is:
-
-    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode cluster --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
-
-To run the driver program on the client (only differs in `--deploy-mode` parameter):
-
-    spark-submit --conf spark.driver.extraJavaOptions=-XX:MaxPermSize=256M --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
-
-but it's unclear how much is actually executing on the cluster vs. directly on the driver machine.
-
-Using Java directly, you can run the sample program that creates a ThriftServer2 and fills a temporary table using the command line:
-
-    /usr/java/default/bin/java -cp /usr/local/spark/conf/:/usr/local/spark/lib/spark-assembly-1.6.0-hadoop2.6.0.jar:/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar:/usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar:/usr/local/spark/lib/datanucleus-core-3.2.10.jar:/usr/local/hadoop/etc/hadoop/:/usr/local/hadoop/etc/hadoop/:/opt/code/CIMReader-2.11-2.0.2-2.0.0.jar -Dscala.usejavacp=true -Xms3g -Xmx3g -XX:MaxPermSize=256m org.apache.spark.deploy.SparkSubmit --master yarn --deploy-mode cluster --conf spark.driver.memory=2g --class ch.ninecode.CIMRDD --name "Dorkhead" --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true --jars /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
-
-The program can also be executed using:
-
-    export SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dscala.usejavacp=true"
-    spark-submit --class ch.ninecode.CIMRDD --jars /usr/local/spark/lib/datanucleus-api-jdo-3.2.6.jar,/usr/local/spark/lib/datanucleus-core-3.2.10.jar,/usr/local/spark/lib/datanucleus-rdbms-3.2.9.jar --master yarn --deploy-mode client --driver-memory 2g --executor-memory 2g --executor-cores 1 --conf spark.sql.hive.thriftServer.singleSession=true /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar "/opt/data/dump_all.xml"
-
-Incidentally, the Tracking UI for the Application Master is really good.
-But it disappears when the program terminates.
-
-# Exposing RDD as Table
-
-The RDD needs to be converted to a dataframe. Using a naive conversion supplying the class as a schema:
-
-    sql_context.createDataFrame (rdd, classOf [ch.ninecode.Element])
-
-it turns out that the dataframe is empty - it has rows, but no columns - indicating a lack of schema.
- 
-If the second argument is omitted (so it is supposed to do reflection to determine the schema),
-it [blows up](https://github.com/apache/spark/blob/master/sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/ScalaReflection.scala) with:
-
-    sqlContext.createDataFrame (rdd)
-    java.lang.UnsupportedOperationException: Schema for type ch.ninecode.Element is not supported
-        at org.apache.spark.sql.catalyst.ScalaReflection$class.schemaFor(ScalaReflection.scala:153)
-
-There are at least three ways to supply the schema information:
-
-* supply an explicit schema, e.g. 
-    val schema =
-      StructType(
-        StructField("id", StringType, false) ::
-        StructField("data", StructType(XXXXX), true) :: Nil)
-as the second argument to sqlContext.createDataFrame (rdd, schema)
-* annotate the classes (Element, Location etc.) with `SQLUserDefinedType` and 
-define a [User Defined Type e.g. UserDefinedType[Element]](https://github.com/apache/spark/blob/master/sql/core/src/main/scala/org/apache/spark/sql/test/ExamplePointUDT.scala) helper class to perform the serialization
-(see also [the test suite]( https://github.com/apache/spark/blob/master/sql/core/src/test/scala/org/apache/spark/sql/UserDefinedTypeSuite.scala))
-* refactor the classes to [Scala case classes](http://docs.scala-lang.org/tutorials/tour/case-classes.html) which are similar to [PoJo](https://en.wikipedia.org/wiki/Plain_Old_Java_Object)s
-* another way that wasn't explored might be to disguise the data as a `Product` (these are treated specially and look like they will unpack a Tuple)
-
-I've selected to refactor the program into case classes.
-This is why this code now works:
-
-    val locations = sqlContext.createDataFrame (locations)
-
-There are a number of base classes that are not case classes.
-Specifically Element, IdentifiedElement, NamedElement, and LocatedElement.
-Experimentation on what is and isn't possible is ongoing.
 
 # Notes
 
