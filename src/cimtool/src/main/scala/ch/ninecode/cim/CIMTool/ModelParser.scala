@@ -300,7 +300,7 @@ case class ModelParser (db: Database)
 
 object ModelParser
 {
-    val VERSION = "16"
+    val VERSION = "17"
 
     def main(args : Array[String])
     {

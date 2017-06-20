@@ -14,7 +14,7 @@ public class CIMJava
     private static String port = "10004";
     private static String database = "default";
     private static String host = "localhost";
-    private static String user = "hive"; // replace "hive" here with the name of the user the queries should run as
+    private static String user = "derrick"; // replace "hive" here with the name of the user the queries should run as
     public static void main (String[] args) throws SQLException
     {
         try

@@ -34,6 +34,7 @@ services:
       - "8088:8088"
       - "10000:10000" # Thriftserver JDBC port
       - "10001:10001"
+      - "10004:10004" # CIMServerJDBC default JDBC port
       - "50010:50010"
       - "50070:50070"
     volumes:

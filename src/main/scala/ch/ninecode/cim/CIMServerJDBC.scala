@@ -25,7 +25,7 @@ import ch.ninecode.model.Unknown
  *
  * The program is usually run on the master node with a command like:
  * <code>
- * $ spark-submit --conf spark.driver.memory=2g --conf spark.executor.memory=4g /opt/code/CIMReader-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/cim_data_file.rdf"
+ * $ spark-submit --conf spark.driver.memory=2g --conf spark.executor.memory=4g /opt/code/CIMServerJDBC-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/cim_data_file.rdf"
  * </code>
  *
  * It will read the rdf file and create a Spark RDD for each CIM class,
@@ -208,8 +208,10 @@ object CIMServerJDBC
                 }
                 configuration.set ("spark.ui.showConsoleProgress", "false")
                 configuration.set ("spark.sql.hive.thriftServer.singleSession", "true")
-                val session_builder = SparkSession.builder()
-                session_builder.enableHiveSupport()
+                // set the port if it was specified, otherwise use the default of port 10004
+                configuration.set ("hive.server2.thrift.port", arguments.port.toString)
+                val session_builder = SparkSession.builder ()
+                session_builder.enableHiveSupport ()
                 val session = session_builder.config (configuration).getOrCreate ()
                 val version = session.version
                 log.info (s"Spark $version session established")
@@ -226,7 +228,7 @@ object CIMServerJDBC
                     reader_options.put ("path", arguments.files.mkString (","))
                     reader_options.put ("ch.ninecode.cim.make_edges", "false")
                     reader_options.put ("ch.ninecode.cim.do_join", "false")
-                    reader_options.put ("ch.ninecode.cim.do_topo", "false") // use the topological processor after reading
+                    reader_options.put ("ch.ninecode.cim.do_topo", "false")
                     reader_options.put ("ch.ninecode.cim.do_topo_islands", "false")
                     val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files:_*)
                     if (-1 != session.sparkContext.master.indexOf ("sandbox")) // are we in development
@@ -241,10 +243,8 @@ object CIMServerJDBC
 //                    println ("dataframe created with " + count.head ().getLong (0) + " elements")
 
                     // start the thrift JDBC server
-                    // set the port if it was specified, otherwise use the default of port 10000
-                    session.sqlContext.setConf ("hive.server2.thrift.port", arguments.port.toString)
                     HiveThriftServer2.startWithContext (session.sqlContext)
-                    log.info ("thriftserver started")
+                    log.info ("thriftserver started on port " + arguments.port)
 
                     // show databases
 //                log.info ("databases")
