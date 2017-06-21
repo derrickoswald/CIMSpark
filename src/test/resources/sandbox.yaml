@@ -1,22 +1,23 @@
 # Spark local cluster using Docker
 #
-# Note: from CIMReader directory run with:
-#       docker-compose --file src/test/resources/sandbox.yaml up&
+# Note: from CIMReader/test/resources/ directory run with:
+#       docker-compose up&
 # stop with:
-#       docker-compose --file src/test/resources/sandbox.yaml down
+#       docker-compose down
 #
 # Note: for more worker nodes use:
-#       docker-compose --file src/test/resources/sandbox.yaml scale worker=2
+#       docker-compose scale worker=2
 #
 # Note: to start a shell on the cluster use:
-#       docker exec --interactive --tty resources_sandbox_1 bash
-# or    docker exec --interactive --tty resources_worker_1 bash
+#       docker exec --interactive --tty spark_master bash
+# or    docker exec --interactive --tty spark_worker_1 bash
 #
 
 version: "2" # Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0)
 
 services:
   sandbox:
+    container_name: spark_master
     image: derrickoswald/spark-docker
     command: start-spark master
     environment:
@@ -33,7 +34,7 @@ services:
       - "8081:8080"
       - "8088:8088"
       - "10000:10000" # Thriftserver JDBC port
-      - "10001:10001"
+      - "10001:10001" # Thriftserver HTTP protocol JDBC port
       - "10004:10004" # CIMServerJDBC default JDBC port
       - "50010:50010"
       - "50070:50070"

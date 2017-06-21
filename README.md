@@ -52,7 +52,7 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 ## Jar Naming Scheme
 
-The name of the jar file (e.g. CIMReader-2.11-2.0.2-2.0.0.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+The name of the jar file (e.g. CIMReader-2.11-2.0.2-2.0.2.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
 
 The first version number is the Scala library version. This follows [Scala libray naming semantics](https://github.com/scalacenter/scaladex).
 
@@ -72,25 +72,25 @@ A sample [yaml](http://yaml.org/) file to be used with docker compose is src/tes
 
 Assuming, Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0) are installed, the following steps would launch the cluster and start a Spark shell (:quit to exit).
 
-* Change to the top level CIMReader directory:
+* Change to the top level CIMReader test resources directory:
 ```
-cd CIMReader
+cd CIMReader/src/test/resources/
 ```
-* Initialize the cluster (default is two containers, "sandbox" and "worker"):
+* Initialize the cluster:
 ```
-docker-compose --file src/test/resources/sandbox.yaml up&
+docker-compose up&
 ```
-* To increase the number of worker nodes:
+* To increase the number of worker nodes (default is two containers, "spark_master" and "spark_worker_1"):
 ```
-docker-compose --file src/test/resources/sandbox.yaml scale worker=2
+docker-compose scale worker=2
 ```
 * To shut down the cluster:
 ```
-docker-compose --file src/test/resources/sandbox.yaml down
+docker-compose down
 ```
 * To run an interactive shell in the master container:
 ```
-docker exec --interactive --tty resources_sandbox_1 bash
+docker exec --interactive --tty spark_master bash
 ```
 * From within the interactive shell, to copy data files to HDFS
 ```
@@ -108,7 +108,7 @@ From within the interactive shell in the master container, to start the Spark sh
 either change to any subdirectory (i.e. ```cd /opt```) or
 add the warehouse.dir configuration as shown here] 
 ```
-spark-shell --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.0.0.jar
+spark-shell --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.0.2.jar
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
@@ -346,7 +346,7 @@ Follow the instructions in [Starting up from RStudio](https://spark.apache.org/d
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-2.0.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-2.0.2.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):
