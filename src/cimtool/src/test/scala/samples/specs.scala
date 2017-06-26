@@ -1,4 +1,4 @@
-package samples
+// package samples
 
 //import org.junit.runner.RunWith
 //import org.specs2.mutable._
