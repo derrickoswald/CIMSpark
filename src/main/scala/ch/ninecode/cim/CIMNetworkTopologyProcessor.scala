@@ -584,7 +584,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).map (update_cn)
 
         // swap the old ConnectivityNode RDD for the new one
-        old_cn.name = null
+        old_cn.name = "nontopological_ConnectivityNode"
         new_cn.name = "ConnectivityNode"
         new_cn.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -610,7 +610,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                 )
 
         // swap the old Terminal RDD for the new one
-        old_terminals.name = null
+        old_terminals.name = "nontopological_Terminal"
         new_term.name = "Terminal"
         new_term.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -633,7 +633,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                 )
 
         // swap the old ACDCTerminal RDD for the new one
-        old_acdc_term.name = null
+        old_acdc_term.name = "nontopological_ACDCTerminal"
         new_acdc_term.name = "ACDCTerminal"
         new_acdc_term.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -662,7 +662,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                 )
 
         // swap the old IdentifiedObject RDD for the new one
-        old_idobj.name = null
+        old_idobj.name = "nontopological_IdentifiedObject"
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -691,7 +691,7 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
                 )
 
         // swap the old Elements RDD for the new one
-        old_elements.name = null
+        old_elements.name = "nontopological_Elements"
         new_elements.name = "Elements"
         new_elements.persist (storage)
         session.sparkContext.getCheckpointDir match

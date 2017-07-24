@@ -55,7 +55,7 @@ class CIMDeDup (session: SparkSession, storage: StorageLevel) extends Serializab
         val new_elements = elements.keyBy (_.id).groupByKey ().values.flatMap (dedup)
 
         // swap the old Elements RDD for the new one
-        elements.name = null
+        elements.name = "duplicate_Elements"
         new_elements.name = "Elements"
         new_elements.persist (storage)
         session.sparkContext.getCheckpointDir match

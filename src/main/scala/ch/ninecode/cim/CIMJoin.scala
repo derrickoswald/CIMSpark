@@ -200,7 +200,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs).values.map (edit_position_point)
 
         // swap the old PositionPoint RDD for the new one
-        points.name = null
+        points.name = "unjoined_PositionPoint"
         updated_points.name = "PositionPoint"
         updated_points.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -214,7 +214,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
 
         // swap the old UserAttribute RDD for the new one
-        attributes.name = null
+        attributes.name = "unjoined_UserAttribute"
         updated_attributes.name = "UserAttribute"
         updated_attributes.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -230,7 +230,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         val updated_names = names.keyBy (_.IdentifiedObj).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
 
         // swap the old Name RDD for the new one
-        names.name = null
+        names.name = "unjoined_Name"
         updated_names.name = "Name"
         updated_names.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -241,7 +241,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         session.createDataFrame (updated_names).createOrReplaceTempView ("Name")
 
         // swap the old ServiceLocation RDD for the new one
-        locations.name = null
+        locations.name = "unjoined_ServiceLocation"
         updated_locations.name = "ServiceLocation"
         updated_locations.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -265,7 +265,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                 )
 
         // swap the old WorkLocation RDD for the new one
-        old_work_loc.name = null
+        old_work_loc.name = "unjoined_WorkLocation"
         new_work_loc.name = "WorkLocation"
         new_work_loc.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -288,7 +288,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                 )
 
         // swap the old Location RDD for the new one
-        old_loc.name = null
+        old_loc.name = "unjoined_Location"
         new_loc.name = "Location"
         new_loc.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -314,7 +314,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                 )
 
         // swap the old IdentifiedObject RDD for the new one
-        old_idobj.name = null
+        old_idobj.name = "unjoined_IdentifiedObject"
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
         session.sparkContext.getCheckpointDir match
@@ -343,7 +343,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                 )
 
         // swap the old Elements RDD for the new one
-        old_elements.name = null
+        old_elements.name = "unjoined_Elements"
         new_elements.name = "Elements"
         new_elements.persist (storage)
         session.sparkContext.getCheckpointDir match
