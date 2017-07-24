@@ -25,7 +25,7 @@ import ch.ninecode.model.Unknown
  *
  * The program is usually run on the master node with a command like:
  * <code>
- * $ spark-submit --conf spark.driver.memory=2g --conf spark.executor.memory=4g /opt/code/CIMServerJDBC-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/cim_data_file.rdf"
+ * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/cim_data_file.rdf"
  * </code>
  *
  * It will read the rdf file and create a Spark RDD for each CIM class,
@@ -105,6 +105,7 @@ object CIMServerJDBC
         storage: String = "MEMORY_AND_DISK_SER",
         dedup: Boolean = false,
         log_level: LogLevels.Value = LogLevels.OFF,
+        host: String = "localhost",
         port: Int = 10004,
         files: Seq[String] = Seq()
     )
@@ -136,6 +137,10 @@ object CIMServerJDBC
         opt[LogLevels.Value]('l', "logging").
             action ((x, c) => c.copy (log_level = x)).
             text ("log level, one of " + LogLevels.values.iterator.mkString (","))
+
+        opt[String]('h', "host").valueName ("host name or IP address").
+            action ((x, c) => c.copy (host = x)).
+            text ("Hive Thriftserver host interface to bind to")
 
         opt[Int]('p', "port").valueName ("integer").
             action ((x, c) => c.copy (port = x)).
@@ -208,8 +213,11 @@ object CIMServerJDBC
                 }
                 configuration.set ("spark.ui.showConsoleProgress", "false")
                 configuration.set ("spark.sql.hive.thriftServer.singleSession", "true")
-                // set the port if it was specified, otherwise use the default of port 10004
+                // set the host and port if specified, otherwise use the default of localhost:10004
+                configuration.set ("hive.server2.thrift.bind.host", arguments.host)
                 configuration.set ("hive.server2.thrift.port", arguments.port.toString)
+                configuration.set ("hive.server2.authentication", "NOSASL")
+                configuration.set ("hive.server2.enable.doAs", "false")
                 val session_builder = SparkSession.builder ()
                 session_builder.enableHiveSupport ()
                 val session = session_builder.config (configuration).getOrCreate ()

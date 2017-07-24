@@ -52,7 +52,7 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 ## Jar Naming Scheme
 
-The name of the jar file (e.g. CIMReader-2.11-2.0.2-2.0.2.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+The name of the jar file (e.g. CIMReader-2.11-2.0.2-2.0.1.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
 
 The first version number is the Scala library version. This follows [Scala libray naming semantics](https://github.com/scalacenter/scaladex).
 
@@ -108,7 +108,7 @@ From within the interactive shell in the master container, to start the Spark sh
 either change to any subdirectory (i.e. ```cd /opt```) or
 add the warehouse.dir configuration as shown here] 
 ```
-spark-shell --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.0.2.jar
+spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.0.1.jar
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
@@ -346,7 +346,7 @@ Follow the instructions in [Starting up from RStudio](https://spark.apache.org/d
 Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
 Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-2.0.2.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-2.0.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):
