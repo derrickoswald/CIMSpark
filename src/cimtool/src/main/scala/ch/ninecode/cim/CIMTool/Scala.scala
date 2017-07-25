@@ -153,9 +153,320 @@ case class Scala (parser: ModelParser, pkg: Package)
             Member (name, variable, false, comment, true, true, "List[String]", "List()", "")
     }
 
+//val valid_classes = """ACLineSegment
+//ACLineSegmentPhase
+//AsynchronousMachine
+//Breaker
+//BusbarSection
+//Clamp
+//CompositeSwitch
+//Conductor
+//Connector
+//Cut
+//Disconnector
+//EarthFaultCompensator
+//EnergyConsumer
+//EnergyConsumerPhase
+//EnergySource
+//ExternalNetworkInjection
+//FrequencyConverter
+//Fuse
+//Ground
+//GroundDisconnector
+//GroundingImpedance
+//Jumper
+//Junction
+//Line
+//LinearShuntCompensator
+//LinearShuntCompensatorPhase
+//LoadBreakSwitch
+//MutualCoupling
+//NonLinearShuntCompensator
+//NonLinearShuntCompensatorPhase
+//NonlinearShuntCompensatorPhasePoint
+//NonlinearShuntCompensatorPoint
+//PerLengthImpedance
+//PerLengthLineParameter
+//PerLengthPhaseImpedance
+//PerLengthSequenceImpedance
+//PetersenCoil
+//PhaseImpedanceData
+//PhaseTapChanger
+//PhaseTapChangerAsymmetrical
+//PhaseTapChangerLinear
+//PhaseTapChangerNonLinear
+//PhaseTapChangerSymmetrical
+//PhaseTapChangerTable
+//PhaseTapChangerTablePoint
+//PhaseTapChangerTabular
+//Plant
+//PowerTransformer
+//PowerTransformerEnd
+//ProtectedSwitch
+//RatioTapChanger
+//RatioTapChangerTable
+//RatioTapChangerTablePoint
+//ReactiveCapabilityCurve
+//Recloser
+//RegulatingCondEq
+//RegulatingControl
+//RegulationSchedule
+//RotatingMachine
+//Sectionaliser
+//SeriesCompensator
+//ShuntCompensator
+//ShuntCompensatorPhase
+//StaticVarCompensator
+//Switch
+//SwitchPhase
+//SwitchSchedule
+//SynchronousMachine
+//TapChanger
+//TapChangerControl
+//TapChangerTablePoint
+//TapSchedule
+//TransformerCoreAdmittance
+//TransformerEnd
+//TransformerMeshImpedance
+//TransformerStarImpedance
+//TransformerTank
+//TransformerTankEnd
+//VoltageControlZone
+//Diagram
+//DiagramObject
+//DiagramObjectGluePoint
+//DiagramObjectPoint
+//DiagramObjectStyle
+//DiagramStyle
+//TextDiagramObject
+//VisibilityLayer
+//StringQuantity
+//SeasonDayTypeSchedule
+//GeneratingUnit
+//SolarGeneratingUnit
+//BusNameMarker
+//DCTopologicalNode
+//TopologicalIsland
+//TopologicalNode
+//AssetPropertyCurve
+//Bushing
+//BushingInsulationPF
+//Cabinet
+//CoolingPowerRating
+//DimensionsInfo
+//DuctBank
+//FACTSDevice
+//Facility
+//FailureEvent
+//FinancialInfo
+//GenericAssetModelOrMaterial
+//Joint
+//Medium
+//Pole
+//Reconditioning
+//ReliabilityInfo
+//Specification
+//Streetlight
+//Structure
+//StructureSupport
+//Tower
+//TransformerObservation
+//UndergroundStructure
+//WindingInsulation
+//ActivityRecord
+//Agreement
+//Appointment
+//ConfigurationEvent
+//CoordinateSystem
+//Crew
+//CrewMember
+//CrewType
+//Document
+//ElectronicAddress
+//Hazard
+//Location
+//OperationPersonRole
+//Operator
+//Organisation
+//OrganisationRole
+//Ownership
+//Person
+//PersonRole
+//PositionPoint
+//PostalAddress
+//Priority
+//ScheduledEvent
+//ScheduledEventData
+//Status
+//StreetAddress
+//StreetDetail
+//TelephoneNumber
+//TimePoint
+//TimeSchedule
+//TownDetail
+//UserAttribute
+//BaseReading
+//Channel
+//ComFunction
+//ComModule
+//ControlledAppliance
+//DemandResponseProgram
+//EndDevice
+//EndDeviceAction
+//EndDeviceCapability
+//EndDeviceControl
+//EndDeviceControlType
+//EndDeviceEvent
+//EndDeviceEventDetail
+//EndDeviceEventType
+//EndDeviceFunction
+//EndDeviceGroup
+//EndDeviceInfo
+//EndDeviceTiming
+//IntervalBlock
+//IntervalReading
+//Meter
+//MeterMultiplier
+//MeterReading
+//MeterServiceWork
+//MetrologyRequirement
+//PanDemandResponse
+//PanDisplay
+//PanPricing
+//PanPricingDetail
+//PendingCalculation
+//RationalNumber
+//Reading
+//ReadingInterharmonic
+//ReadingQuality
+//ReadingQualityType
+//ReadingType
+//Register
+//ServiceMultiplier
+//SimpleEndDeviceFunction
+//UsagePoint
+//UsagePointGroup
+//UsagePointLocation
+//CurrentRelay
+//ProtectionEquipment
+//Accumulator
+//AccumulatorLimit
+//AccumulatorLimitSet
+//AccumulatorReset
+//AccumulatorValue
+//Analog
+//AnalogControl
+//AnalogLimit
+//AnalogLimitSet
+//AnalogValue
+//Command
+//Control
+//Discrete
+//DiscreteCommand
+//DiscreteValue
+//Limit
+//LimitSet
+//Measurement
+//MeasurementValue
+//MeasurementValueQuality
+//MeasurementValueSource
+//Quality61850
+//RaiseLowerCommand
+//SetPoint
+//StringMeasurement
+//StringMeasurementValue
+//ValueAliasSet
+//ValueToAlias
+//Customer
+//CustomerAccount
+//CustomerAgreement
+//PricingStructure
+//ServiceCategory
+//ServiceLocation
+//Tariff
+//BasicElement
+//Unknown(
+//ACDCTerminal
+//BaseFrequency
+//BasePower
+//BaseVoltage
+//BasicIntervalSchedule
+//Bay
+//ConductingEquipment
+//ConnectivityNode
+//ConnectivityNodeContainer
+//Curve
+//CurveData
+//Equipment
+//EquipmentContainer
+//GeographicalRegion
+//IdentifiedObject
+//IrregularIntervalSchedule
+//IrregularTimePoint
+//Name
+//NameType
+//NameTypeAuthority
+//OperatingParticipant
+//OperatingShare
+//PSRType
+//PowerSystemResource
+//RegularIntervalSchedule
+//RegularTimePoint
+//ReportingGroup
+//ReportingSuperGroup
+//SubGeographicalRegion
+//Substation
+//Terminal
+//VoltageLevel
+//BusbarSectionInfo
+//CableInfo
+//ConcentricNeutralCableInfo
+//NoLoadTest
+//OpenCircuitTest
+//OverheadWireInfo
+//PowerTransformerInfo
+//ShortCircuitTest
+//ShuntCompensatorInfo
+//SwitchInfo
+//TapChangerInfo
+//TapeShieldCableInfo
+//TransformerEndInfo
+//TransformerTankInfo
+//TransformerTest
+//WireInfo
+//WirePosition
+//WireSpacingInfo
+//MktSwitch
+//StateVariable
+//SvStatus
+//BaseWork
+//Work
+//WorkLocation
+//ConnectDisconnectFunction
+//RemoteConnectDisconnectInfo
+//AcceptanceTest
+//Asset
+//AssetContainer
+//AssetFunction
+//AssetInfo
+//AssetLocationHazard
+//AssetModel
+//AssetOrganisationRole
+//AssetOwner
+//AssetUser
+//ComMedia
+//LifecycleDate
+//Maintainer
+//Manufacturer
+//Procedure
+//ProcedureDataSet
+//ProductAssetModel
+//Seal""".split ("\n")
+
     def asText (): String =
     {
-        val classes = parser.classes.filter (_._2.pkg == pkg)
+        val classes = parser.classes.filter (x => x._2.pkg == pkg)
+
         implicit val ordering = new Ordering[(String, Int)]
         {
            def compare (a: (String, Int), b: (String, Int)) = a._1.compareTo (b._1)
@@ -273,17 +584,10 @@ case class Scala (parser: ModelParser, pkg: Package)
             |""".stripMargin)
             for (product <- members)
             {
-                s.append ("""    val """.stripMargin)
-                s.append (product.variable)
-                if (product.name == "sup")
+                if (product.name != "sup")
                 {
-                    s.append (""" = """)
-                    s.append (product.datatype)
-                    s.append (""".parse _
-                    |""".stripMargin)
-                }
-                else
-                {
+                    s.append ("""    val """.stripMargin)
+                    s.append (product.variable)
                     if (product.reference)
                         if (product.multiple)
                             s.append (""" = parse_attributes (attribute ("""")
@@ -307,8 +611,12 @@ case class Scala (parser: ModelParser, pkg: Package)
             |    {
             |        """.stripMargin)
             if (identified_object)
-                s.append ("""val base = sup (context)
-            |        """.stripMargin)
+            {
+                s.append ("""val base = """)
+                s.append (sup.datatype)
+                s.append (""".parse (context)
+                |        """.stripMargin)
+            }
             s.append (name)
             s.append ("""(""")
             for (product <- members)
@@ -346,7 +654,13 @@ case class Scala (parser: ModelParser, pkg: Package)
                         s.append (product.function)
                         s.append (""" (""")
                     }
-                    s.append (product.variable)
+                    if (product.name == "sup")
+                    {
+                        s.append (product.datatype)
+                        s.append (""".parse""")
+                    }
+                    else
+                        s.append (product.variable)
                     s.append (""" (context)""")
                     if (product.function != "")
                         s.append (""", context)""")

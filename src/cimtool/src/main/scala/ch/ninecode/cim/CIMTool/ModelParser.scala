@@ -151,6 +151,7 @@ case class ModelParser (db: Database)
         }
     }
 
+
     def extractClasses =
     {
         val it = getObjectTable.iterator ()

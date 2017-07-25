@@ -307,13 +307,13 @@ abstract class Parseable[+A <: Product : ClassTag : TypeTag]
 extends
     Parser
 {
-    def runtime_class = classTag[A].runtimeClass
-    def classname = runtime_class.getName
-    def cls = classname.substring (classname.lastIndexOf (".") + 1)
+    val runtime_class = classTag[A].runtimeClass
+    val classname = runtime_class.getName
+    val cls = classname.substring (classname.lastIndexOf (".") + 1)
     def register: Unit =
     {
-        CHIM.LOOKUP += ((Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]]))
-        CHIM.SUBSETTERS += ((Parser.namespace + ":" + cls, new CIMSubsetter[A]()))
+        CHIM.LOOKUP.put (Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]])
+        CHIM.SUBSETTERS put (Parser.namespace + ":" + cls, new CIMSubsetter[A]())
     }
 }
 
@@ -446,7 +446,6 @@ object CHIM
     val CHUNK = 1024*1024*64
     val OVERREAD = 1024*32 // should be large enough that no RDF element is bigger than this
 
-    var ALL_CLASSES = false
     val LOOKUP = new HashMap[String, Parseable[Product]]
     val SUBSETTERS = new HashMap[String, CIMSubsetter[_]]
 
