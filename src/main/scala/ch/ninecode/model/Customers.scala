@@ -25,7 +25,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, false, null, null) }
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
-    override def copy (): Row = { return (clone ().asInstanceOf[Customer]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Customer]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -77,7 +77,7 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { return (clone ().asInstanceOf[CustomerAccount]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[CustomerAccount]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -124,7 +124,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null) }
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
-    override def copy (): Row = { return (clone ().asInstanceOf[CustomerAgreement]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[CustomerAgreement]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -178,7 +178,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, false, null) }
     def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { return (clone ().asInstanceOf[PricingStructure]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PricingStructure]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -228,7 +228,7 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[ServiceCategory]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ServiceCategory]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -268,7 +268,7 @@ extends
 {
     def this () = { this (null, null, false, null) }
     def WorkLocation: WorkLocation = sup.asInstanceOf[WorkLocation]
-    override def copy (): Row = { return (clone ().asInstanceOf[ServiceLocation]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ServiceLocation]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -311,7 +311,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { return (clone ().asInstanceOf[Tariff]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Tariff]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

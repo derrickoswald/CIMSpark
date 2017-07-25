@@ -20,7 +20,7 @@ extends
 {
     def this () = { this (null, 0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[BusNameMarker]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[BusNameMarker]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -60,7 +60,7 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DCTopologicalNode]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[DCTopologicalNode]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -98,7 +98,7 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TopologicalIsland]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TopologicalIsland]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -144,7 +144,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TopologicalNode]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TopologicalNode]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

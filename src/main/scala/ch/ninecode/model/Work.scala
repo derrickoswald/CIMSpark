@@ -22,7 +22,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { return (clone ().asInstanceOf[BaseWork]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[BaseWork]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -70,7 +70,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null) }
     def BaseWork: BaseWork = sup.asInstanceOf[BaseWork]
-    override def copy (): Row = { return (clone ().asInstanceOf[Work]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Work]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -116,7 +116,7 @@ extends
 {
     def this () = { this (null, null) }
     def Location: Location = sup.asInstanceOf[Location]
-    override def copy (): Row = { return (clone ().asInstanceOf[WorkLocation]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[WorkLocation]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

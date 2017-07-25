@@ -30,7 +30,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def Conductor: Conductor = sup.asInstanceOf[Conductor]
-    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -91,7 +91,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegmentPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegmentPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -151,7 +151,7 @@ extends
 {
     def this () = { this (null, null, false, 0.0, 0.0, 0.0, 0.0, 0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
-    override def copy (): Row = { return (clone ().asInstanceOf[AsynchronousMachine]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[AsynchronousMachine]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -229,7 +229,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Breaker]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Breaker]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -287,7 +287,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def Connector: Connector = sup.asInstanceOf[Connector]
-    override def copy (): Row = { return (clone ().asInstanceOf[BusbarSection]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[BusbarSection]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -328,7 +328,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Clamp]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Clamp]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -368,7 +368,7 @@ extends
 {
     def this () = { this (null, null) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[CompositeSwitch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[CompositeSwitch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -406,7 +406,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Conductor]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Conductor]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -443,7 +443,7 @@ extends
 {
     def this () = { this (null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Connector]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Connector]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -482,7 +482,7 @@ extends
 {
     def this () = { this (null, 0.0, null, null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Cut]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Cut]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -523,7 +523,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Disconnector]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Disconnector]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -559,7 +559,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[EarthFaultCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EarthFaultCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -608,7 +608,7 @@ extends
 {
     def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumer]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumer]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -673,7 +673,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumerPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergyConsumerPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -734,7 +734,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[EnergySource]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[EnergySource]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -815,7 +815,7 @@ extends
 {
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[ExternalNetworkInjection]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ExternalNetworkInjection]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -891,7 +891,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[FrequencyConverter]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[FrequencyConverter]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -936,7 +936,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Fuse]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Fuse]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -972,7 +972,7 @@ extends
 {
     def this () = { this (null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Ground]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Ground]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1009,7 +1009,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[GroundDisconnector]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[GroundDisconnector]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1045,7 +1045,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def EarthFaultCompensator: EarthFaultCompensator = sup.asInstanceOf[EarthFaultCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[GroundingImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[GroundingImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1083,7 +1083,7 @@ extends
 {
     def this () = { this (null, null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Jumper]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Jumper]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1120,7 +1120,7 @@ extends
 {
     def this () = { this (null) }
     def Connector: Connector = sup.asInstanceOf[Connector]
-    override def copy (): Row = { return (clone ().asInstanceOf[Junction]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Junction]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1156,7 +1156,7 @@ extends
 {
     def this () = { this (null, null) }
     def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[Line]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Line]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1197,7 +1197,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1242,7 +1242,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def ShuntCompensatorPhase: ShuntCompensatorPhase = sup.asInstanceOf[ShuntCompensatorPhase]
-    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensatorPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[LinearShuntCompensatorPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1281,7 +1281,7 @@ extends
 {
     def this () = { this (null) }
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
-    override def copy (): Row = { return (clone ().asInstanceOf[LoadBreakSwitch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[LoadBreakSwitch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1326,7 +1326,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[MutualCoupling]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[MutualCoupling]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1381,7 +1381,7 @@ extends
 {
     def this () = { this (null) }
     def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonLinearShuntCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonLinearShuntCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1416,7 +1416,7 @@ extends
 {
     def this () = { this (null) }
     def ShuntCompensatorPhase: ShuntCompensatorPhase = sup.asInstanceOf[ShuntCompensatorPhase]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonLinearShuntCompensatorPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonLinearShuntCompensatorPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1454,7 +1454,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPhasePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPhasePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1500,7 +1500,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[NonlinearShuntCompensatorPoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1545,7 +1545,7 @@ extends
 {
     def this () = { this (null) }
     def PerLengthLineParameter: PerLengthLineParameter = sup.asInstanceOf[PerLengthLineParameter]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1581,7 +1581,7 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthLineParameter]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthLineParameter]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1619,7 +1619,7 @@ extends
 {
     def this () = { this (null, 0) }
     def PerLengthImpedance: PerLengthImpedance = sup.asInstanceOf[PerLengthImpedance]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthPhaseImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthPhaseImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1664,7 +1664,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def PerLengthImpedance: PerLengthImpedance = sup.asInstanceOf[PerLengthImpedance]
-    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthSequenceImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PerLengthSequenceImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1722,7 +1722,7 @@ extends
 {
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def EarthFaultCompensator: EarthFaultCompensator = sup.asInstanceOf[EarthFaultCompensator]
-    override def copy (): Row = { return (clone ().asInstanceOf[PetersenCoil]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PetersenCoil]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1776,7 +1776,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0, 0.0, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseImpedanceData]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseImpedanceData]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1822,7 +1822,7 @@ extends
 {
     def this () = { this (null, null) }
     def TapChanger: TapChanger = sup.asInstanceOf[TapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChanger]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChanger]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1860,7 +1860,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = sup.asInstanceOf[PhaseTapChangerNonLinear]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerAsymmetrical]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerAsymmetrical]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1900,7 +1900,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0) }
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerLinear]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerLinear]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1944,7 +1944,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0) }
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerNonLinear]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerNonLinear]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1985,7 +1985,7 @@ extends
 {
     def this () = { this (null) }
     def PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = sup.asInstanceOf[PhaseTapChangerNonLinear]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerSymmetrical]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerSymmetrical]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2020,7 +2020,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTable]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTable]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2057,7 +2057,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def TapChangerTablePoint: TapChangerTablePoint = sup.asInstanceOf[TapChangerTablePoint]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTablePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTablePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2097,7 +2097,7 @@ extends
 {
     def this () = { this (null, null) }
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTabular]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PhaseTapChangerTabular]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2134,7 +2134,7 @@ extends
 {
     def this () = { this (null) }
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[Plant]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Plant]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2176,7 +2176,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformer]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformer]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2238,7 +2238,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
-    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformerEnd]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[PowerTransformerEnd]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2301,7 +2301,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[ProtectedSwitch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ProtectedSwitch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2342,7 +2342,7 @@ extends
 {
     def this () = { this (null, 0.0, null, null, null) }
     def TapChanger: TapChanger = sup.asInstanceOf[TapChanger]
-    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChanger]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChanger]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2385,7 +2385,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTable]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTable]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2421,7 +2421,7 @@ extends
 {
     def this () = { this (null, null) }
     def TapChangerTablePoint: TapChangerTablePoint = sup.asInstanceOf[TapChangerTablePoint]
-    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTablePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RatioTapChangerTablePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2460,7 +2460,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { return (clone ().asInstanceOf[ReactiveCapabilityCurve]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ReactiveCapabilityCurve]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2499,7 +2499,7 @@ extends
 {
     def this () = { this (null) }
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Recloser]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Recloser]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2536,7 +2536,7 @@ extends
 {
     def this () = { this (null, false, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingCondEq]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingCondEq]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2583,7 +2583,7 @@ extends
 {
     def this () = { this (null, false, false, null, null, 0.0, 0.0, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingControl]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulatingControl]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2635,7 +2635,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[RegulationSchedule]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RegulationSchedule]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2679,7 +2679,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[RotatingMachine]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RotatingMachine]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2728,7 +2728,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[Sectionaliser]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Sectionaliser]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2770,7 +2770,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[SeriesCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SeriesCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2830,7 +2830,7 @@ extends
 {
     def this () = { this (null, 0.0, false, 0, 0.0, 0, null, 0.0, 0, null, 0.0, null) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2891,7 +2891,7 @@ extends
 {
     def this () = { this (null, 0, 0, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensatorPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ShuntCompensatorPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2940,7 +2940,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, 0.0) }
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
-    override def copy (): Row = { return (clone ().asInstanceOf[StaticVarCompensator]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[StaticVarCompensator]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2997,7 +2997,7 @@ extends
 {
     def this () = { this (null, false, false, 0.0, false, 0, null, null, null) }
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[Switch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[Switch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3053,7 +3053,7 @@ extends
 {
     def this () = { this (null, false, false, null, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[SwitchPhase]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SwitchPhase]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3099,7 +3099,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[SwitchSchedule]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SwitchSchedule]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3172,7 +3172,7 @@ extends
         /* false, 0.0, 0.0, */ 0.0, /* 0.0, */ 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0,
         /* 0.0, 0.0, 0.0, null, */ null, /* 0.0, */ 0.0, 0.0, null, null) }
     def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
-    override def copy (): Row = { return (clone ().asInstanceOf[SynchronousMachine]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SynchronousMachine]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3283,7 +3283,7 @@ extends
 {
     def this () = { this (null, false, 0, 0.0, 0, false, 0, 0.0, 0, 0.0, 0.0, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapChanger]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChanger]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3348,7 +3348,7 @@ extends
 {
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
     def RegulatingControl: RegulatingControl = sup.asInstanceOf[RegulatingControl]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerControl]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerControl]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3401,7 +3401,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, 0.0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerTablePoint]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapChangerTablePoint]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3449,7 +3449,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[TapSchedule]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TapSchedule]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3491,7 +3491,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerCoreAdmittance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerCoreAdmittance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3549,7 +3549,7 @@ extends
 {
     def this () = { this (null, 0.0, 0, false, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerEnd]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerEnd]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3616,7 +3616,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerMeshImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerMeshImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3668,7 +3668,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerStarImpedance]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerStarImpedance]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3714,7 +3714,7 @@ extends
 {
     def this () = { this (null, null) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTank]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTank]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3753,7 +3753,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTankEnd]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[TransformerTankEnd]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -3794,7 +3794,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[VoltageControlZone]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[VoltageControlZone]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

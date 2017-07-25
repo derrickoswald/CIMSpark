@@ -184,9 +184,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
 
         // get only the cim:Name objects pertaining to the ServiceLocation join
         val isusl = names.keyBy (_.name).join (locations.keyBy (_.id)).values
-// legacy
-//        val nissl = names.keyBy (_.IdentifiedObject).join (locations.keyBy (_.id)).values
-        val nissl = names.keyBy (_.IdentifiedObj).join (locations.keyBy (_.id)).values
+        val nissl = names.keyBy (_.IdentifiedObject).join (locations.keyBy (_.id)).values
 
         // construct a useful intermediate representation of the cim:Name objects
         val pairs = isusl.keyBy (_._1.id).join (nissl.keyBy (_._1.id)).values.map (unbundle)
@@ -225,9 +223,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         session.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
 
         // step 5 and 6, delete the Name objects that are no longer needed
-// legacy
-//        val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
-        val updated_names = names.keyBy (_.IdentifiedObj).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
+        val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
 
         // swap the old Name RDD for the new one
         names.name = "unjoined_Name"

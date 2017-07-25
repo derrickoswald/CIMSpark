@@ -53,7 +53,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "" => "attr" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
-                s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
+                s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""").replace (""":""", """_""").replace ("""(""", """_""").replace (""")""", """_""")
                 if (identifier.endsWith ("_")) identifier + "1" else identifier
         }
         val stupid_name =
@@ -373,6 +373,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             |import org.apache.spark.sql.Row
             |
             |import ch.ninecode.cim.Context
+            |import ch.ninecode.cim.Parseable
             |
             |""".stripMargin)
             v.append (JavaDoc (pkg.notes, 0).asText ())

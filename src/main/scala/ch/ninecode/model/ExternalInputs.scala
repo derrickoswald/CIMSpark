@@ -18,7 +18,7 @@ extends
 {
     def this () = { this (null) }
     def Switch: Switch = sup.asInstanceOf[Switch]
-    override def copy (): Row = { return (clone ().asInstanceOf[MktSwitch]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[MktSwitch]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

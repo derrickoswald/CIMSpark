@@ -19,7 +19,7 @@ extends
 {
     def this () = { this (null, 0.0) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[GeneratingUnit]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[GeneratingUnit]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -56,7 +56,7 @@ extends
 {
     def this () = { this (null) }
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
-    override def copy (): Row = { return (clone ().asInstanceOf[SolarGeneratingUnit]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SolarGeneratingUnit]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

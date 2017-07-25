@@ -26,7 +26,7 @@ extends
 {
     def this () = { this (null, 0, false, false, false, false, false, false, null) }
     def EndDeviceFunction: EndDeviceFunction = sup.asInstanceOf[EndDeviceFunction]
-    override def copy (): Row = { return (clone ().asInstanceOf[ConnectDisconnectFunction]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ConnectDisconnectFunction]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -89,7 +89,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, false, false, false, false, false, 0.0, false) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[RemoteConnectDisconnectInfo]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[RemoteConnectDisconnectInfo]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

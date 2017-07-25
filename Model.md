@@ -58,7 +58,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def Conductor: Conductor = sup.asInstanceOf[Conductor]
-    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

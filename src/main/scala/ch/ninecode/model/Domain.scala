@@ -21,7 +21,7 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[StringQuantity]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[StringQuantity]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

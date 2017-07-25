@@ -18,7 +18,7 @@ extends
 {
     def this () = { this (null) }
     def Element: Element = sup
-    override def copy (): Row = { return (clone ().asInstanceOf[StateVariable]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[StateVariable]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -55,7 +55,7 @@ extends
 {
     def this () = { this (null, false, null) }
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
-    override def copy (): Row = { return (clone ().asInstanceOf[SvStatus]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SvStatus]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

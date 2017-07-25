@@ -20,7 +20,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[SeasonDayTypeSchedule]); }
+    override def copy (): Row = { return (clone ().asInstanceOf[SeasonDayTypeSchedule]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)
