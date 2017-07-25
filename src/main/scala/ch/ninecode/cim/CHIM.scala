@@ -353,7 +353,6 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     _Customers.register
     _DiagramLayout.register
     _Domain.register
-    _ExternalInputs.register
     _InfAssets.register
     _LoadControl.register
     _LoadModel.register
