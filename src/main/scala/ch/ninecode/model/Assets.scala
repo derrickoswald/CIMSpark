@@ -795,7 +795,7 @@ extends
     }
 }
 
-object Assets
+object _Assets
 {
     def register: Unit =
     {

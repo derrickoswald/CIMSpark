@@ -1223,7 +1223,7 @@ extends
     }
 }
 
-object InfAssets
+object _InfAssets
 {
     def register: Unit =
     {

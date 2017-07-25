@@ -1371,7 +1371,7 @@ extends
     }
 }
 
-object Core
+object _Core
 {
     def register: Unit =
     {

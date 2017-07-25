@@ -53,7 +53,7 @@ extends
     }
 }
 
-object Domain
+object _Domain
 {
     def register: Unit =
     {

@@ -82,7 +82,7 @@ extends
     }
 }
 
-object Production
+object _Production
 {
     def register: Unit =
     {

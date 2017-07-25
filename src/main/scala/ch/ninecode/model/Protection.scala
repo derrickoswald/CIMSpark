@@ -118,7 +118,7 @@ extends
     }
 }
 
-object Protection
+object _Protection
 {
     def register: Unit =
     {

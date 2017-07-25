@@ -347,24 +347,23 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     var value: Element = null
 
     _AssetInfo.register
-    Assets.register
-    Common.register
-    Core.register
-    Customers.register
-    DiagramLayout.register
-    Domain.register
-    ExternalInputs.register
-    InfAssets.register
-    LoadControl.register
-    LoadModel.register
-    Meas.register
-    Metering.register
-    PaymentMetering.register
-    Production.register
-    Protection.register
-    StateVariables.register
-    Topology.register
-    Wires.register
+    _Assets.register
+    _Common.register
+    _Core.register
+    _Customers.register
+    _DiagramLayout.register
+    _Domain.register
+    _ExternalInputs.register
+    _InfAssets.register
+    _LoadControl.register
+    _LoadModel.register
+    _Meas.register
+    _Metering.register
+    _Production.register
+    _Protection.register
+    _StateVariables.register
+    _Topology.register
+    _Wires.register
     _Work.register
 
     def progress (): Float =

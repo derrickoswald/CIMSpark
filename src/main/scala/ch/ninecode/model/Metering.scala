@@ -2149,7 +2149,7 @@ extends
     }
 }
 
-object Metering
+object _Metering
 {
     def register: Unit =
     {

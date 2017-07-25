@@ -85,7 +85,7 @@ extends
     }
 }
 
-object StateVariables
+object _StateVariables
 {
     def register: Unit =
     {

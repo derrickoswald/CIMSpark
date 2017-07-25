@@ -188,7 +188,7 @@ extends
     }
 }
 
-object Topology
+object _Topology
 {
     def register: Unit =
     {

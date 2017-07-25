@@ -3824,7 +3824,7 @@ extends
     }
 }
 
-object Wires
+object _Wires
 {
     def register: Unit =
     {

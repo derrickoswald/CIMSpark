@@ -139,7 +139,7 @@ extends
     }
 }
 
-object LoadControl
+object _LoadControl
 {
     def register: Unit =
     {

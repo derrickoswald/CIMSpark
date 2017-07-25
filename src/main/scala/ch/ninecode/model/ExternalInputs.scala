@@ -44,7 +44,7 @@ extends
     }
 }
 
-object ExternalInputs
+object _ExternalInputs
 {
     def register: Unit =
     {

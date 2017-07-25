@@ -341,7 +341,7 @@ extends
     }
 }
 
-object Customers
+object _Customers
 {
     def register: Unit =
     {

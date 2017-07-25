@@ -1199,7 +1199,7 @@ extends
     }
 }
 
-object Meas
+object _Meas
 {
     def register: Unit =
     {

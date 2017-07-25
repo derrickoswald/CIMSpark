@@ -355,7 +355,7 @@ extends
     }
 }
 
-object DiagramLayout
+object _DiagramLayout
 {
     def register: Unit =
     {

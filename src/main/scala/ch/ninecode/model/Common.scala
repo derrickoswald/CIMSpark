@@ -1552,7 +1552,7 @@ extends
     }
 }
 
-object Common
+object _Common
 {
     def register: Unit =
     {

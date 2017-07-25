@@ -50,7 +50,7 @@ extends
     }
 }
 
-object LoadModel
+object _LoadModel
 {
     def register: Unit =
     {
