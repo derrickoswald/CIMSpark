@@ -31,7 +31,7 @@ with
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def copy(): Row = { throw new Exception("not implemented yet") }
+    override def copy (): Row = { throw new Exception ("not implemented yet") }
 }
 
 /**
@@ -68,7 +68,7 @@ object BasicElement
      * Simply extracts the id.
      */
     val mRID = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
-    override def parse(context: Context): BasicElement =
+    override def parse (context: Context): BasicElement =
     {
         new BasicElement (null, mRID (context))
     }
@@ -88,7 +88,7 @@ case class Unknown(
 {
     def this() = { this(null, null, 0, 0l, 0l) }
     def Element: Element = sup
-    override def copy(): Row = { return (clone().asInstanceOf[Unknown]) }
+    override def copy (): Row = { return (clone().asInstanceOf[Unknown]) }
     override def get (i: Int): Object =
     {
         if (i < productArity)

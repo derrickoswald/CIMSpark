@@ -58,15 +58,6 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     def Conductor: Conductor = sup.asInstanceOf[Conductor]
-    override def copy (): Row = { return (clone ().asInstanceOf[ACLineSegment]) }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
 }
 
 object ACLineSegment
@@ -87,23 +78,21 @@ extends
     val PerLengthImpedance = parse_attribute (attribute ("""ACLineSegment.PerLengthImpedance"""))_
     def parse (context: Context): ACLineSegment =
     {
-        return (
-            ACLineSegment
-            (
-                Conductor.parse (context),
-                toDouble (b0ch (context), context),
-                toDouble (bch (context), context),
-                toDouble (g0ch (context), context),
-                toDouble (gch (context), context),
-                toDouble (r0 (context), context),
-                toDouble (r (context), context),
-                toDouble (shortCircuitEndTemperature (context), context),
-                toDouble (x0 (context), context),
-                toDouble (x (context), context),
-                LineGroundingAction (context),
-                LineJumpingAction (context),
-                PerLengthImpedance (context)
-            )
+        ACLineSegment
+        (
+            Conductor.parse (context),
+            toDouble (b0ch (context), context),
+            toDouble (bch (context), context),
+            toDouble (g0ch (context), context),
+            toDouble (gch (context), context),
+            toDouble (r0 (context), context),
+            toDouble (r (context), context),
+            toDouble (shortCircuitEndTemperature (context), context),
+            toDouble (x0 (context), context),
+            toDouble (x (context), context),
+            LineGroundingAction (context),
+            LineJumpingAction (context),
+            PerLengthImpedance (context)
         )
     }
 }
