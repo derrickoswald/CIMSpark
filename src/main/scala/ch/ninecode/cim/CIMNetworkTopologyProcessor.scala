@@ -35,7 +35,9 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
     def name: String =
     {
         if (node_label.endsWith ("_node_fuse"))
-            node_label.substring (0, node_label.length - "_node_fuse".length) + "_topo_fuse"
+            node_label.substring (0, node_label.length - "_node_fuse".length) + "_fuse_topo"
+        else if (node_label.endsWith ("_fuse_node"))
+            node_label.substring (0, node_label.length - "_fuse_node".length) + "_fuse_topo"
         else if (node_label.endsWith ("_node"))
             node_label.substring (0, node_label.length - "_node".length) + "_topo"
         else
@@ -378,38 +380,37 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         )
     }
 
-    def update_cn (arg: Tuple2[VertexId, Tuple2[ConnectivityNode,Option[TopologicalData]]]): ConnectivityNode =
+    def update_cn (arg: (ConnectivityNode,Option[TopologicalData])): ConnectivityNode =
     {
-        val c = arg._2._1
-        arg._2._2 match
+        val c = arg._1
+        arg._2 match
         {
             case Some (node) =>
+                // ToDo: should be: c.copy (TopologicalNode = node.name)
                 ConnectivityNode (
-                    c.IdentifiedObject.copy ().asInstanceOf[IdentifiedObject],
-                    c.ConnectivityNodeContainer,
-                    node.name
+                    c.IdentifiedObject,
+                    ConnectivityNodeContainer = c.ConnectivityNodeContainer,
+                    TopologicalNode = node.name
                 )
             case None => c
         }
     }
 
-    def update_terminals (arg: Tuple2[VertexId, Tuple2[Terminal,Option[TopologicalData]]]): Terminal =
+    def update_terminals (arg: (Terminal,Option[TopologicalData])): Terminal =
     {
-        val t = arg._2._1
-        val a = t.ACDCTerminal
-        arg._2._2 match
+        val t = arg._1
+        arg._2 match
         {
             case Some (node) =>
-                val id = a.IdentifiedObject.copy ().asInstanceOf[IdentifiedObject]
-                val acdc = ACDCTerminal (id, a.connected, a.sequenceNumber, a.BusNameMarker)
+                // ToDo: should be: t.copy (TopologicalNode = node.name)
                 Terminal (
-                    acdc,
-                    t.phases,
-                    t.Bushing,
-                    t.ConductingEquipment,
-                    t.ConnectivityNode,
-                    t.SvPowerFlow,
-                    node.name
+                    t.ACDCTerminal,
+                    phases = t.phases,
+                    Bushing = t.Bushing,
+                    ConductingEquipment = t.ConductingEquipment,
+                    ConnectivityNode = t.ConnectivityNode,
+                    SvPowerFlow = t.SvPowerFlow,
+                    TopologicalNode = node.name
                 )
             case None => t
         }
@@ -519,8 +520,12 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         log.info ("identifyNodes")
         var graph = identifyNodes (initial)
 
+        // get the original island and node RDD
+        val old_ti = get ("TopologicalIsland").asInstanceOf[RDD[TopologicalIsland]]
+        val old_tn = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]]
+
         // create a new TopologicalNode RDD
-        val new_tn = if (identify_islands)
+        val (new_tn, new_ti) = if (identify_islands)
         {
             // get the topological islands
             log.info ("identifyIslands")
@@ -536,7 +541,6 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             val islands = td_plus.groupBy (_._1._1.island).values.map (to_islands)
 
             // create a new TopologicalIsland RDD
-            val old_ti = get ("TopologicalIsland").asInstanceOf[RDD[TopologicalIsland]]
             val new_ti = islands.values
 
             // swap the old TopologicalIsland RDD for the new one
@@ -555,13 +559,12 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
             session.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
-            nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
+            (nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes), new_ti)
         }
         else
-            graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes)
+            (graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes), session.sparkContext.emptyRDD[TopologicalIsland])
 
         // swap the old TopologicalNode RDD for the new one
-        val old_tn = get ("TopologicalNode").asInstanceOf[RDD[TopologicalNode]]
         if (null != old_tn)
         {
             old_tn.unpersist (false)
@@ -576,12 +579,11 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         }
         session.createDataFrame (new_tn).createOrReplaceTempView ("TopologicalNode")
 
-        // assume the old TopologicalIsland and TopologicalNode RDD were empty
         // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
 
         // assign every ConnectivtyNode to a TopologicalNode
         val old_cn = get ("ConnectivityNode").asInstanceOf[RDD[ConnectivityNode]]
-        val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).map (update_cn)
+        val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).values.map (update_cn)
 
         // swap the old ConnectivityNode RDD for the new one
         old_cn.name = "nontopological_ConnectivityNode"
@@ -594,72 +596,42 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         }
         session.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
 
-        // assign every Terminal to a TopologicalNode
+        // assign every Terminal with a connectivity node to a TopologicalNode
+        // note: keep the original enclosed ACDCTerminal objects
         val old_terminals = get ("Terminal").asInstanceOf[RDD[Terminal]]
-        val new_terminals = old_terminals.filter (null != _.ConnectivityNode).keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).map (update_terminals)
-
-        // replace terminals in Terminal
-        val new_term = old_terminals.keyBy (_.id).leftOuterJoin (new_terminals.keyBy (_.id)).
-            values.flatMap (
-                (arg: Tuple2[Terminal, Option[Terminal]]) =>
-                    arg._2 match
-                     {
-                        case Some (x) => List(x)
-                        case None => List (arg._1)
-                     }
-                )
+        val t_with = old_terminals.filter (null != _.ConnectivityNode)
+        val t_without = old_terminals.filter (null == _.ConnectivityNode)
+        val new_terminals = t_with.keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).values.map (update_terminals)
+            .union (t_without)
 
         // swap the old Terminal RDD for the new one
         old_terminals.name = "nontopological_Terminal"
-        new_term.name = "Terminal"
-        new_term.persist (storage)
+        new_terminals.name = "Terminal"
+        new_terminals.persist (storage)
         session.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => new_term.checkpoint ()
+            case Some (dir) => new_terminals.checkpoint ()
             case None =>
         }
-        session.createDataFrame (new_term).createOrReplaceTempView ("Terminal")
+        session.createDataFrame (new_terminals).createOrReplaceTempView ("Terminal")
 
-        // replace terminals in ACDCTerminal
-        val old_acdc_term = get ("ACDCTerminal").asInstanceOf[RDD[ACDCTerminal]]
-        val new_acdc_term = old_acdc_term.keyBy (_.id).leftOuterJoin (new_terminals.map (_.ACDCTerminal).keyBy (_.id)).
-            values.flatMap (
-                (arg: Tuple2[ACDCTerminal, Option[ACDCTerminal]]) =>
-                    arg._2 match
-                    {
-                        case Some (x) => List(x)
-                        case None => List (arg._1)
-                    }
-                )
-
-        // swap the old ACDCTerminal RDD for the new one
-        old_acdc_term.name = "nontopological_ACDCTerminal"
-        new_acdc_term.name = "ACDCTerminal"
-        new_acdc_term.persist (storage)
-        session.sparkContext.getCheckpointDir match
-        {
-            case Some (dir) => new_acdc_term.checkpoint ()
-            case None =>
-        }
-        session.createDataFrame (new_acdc_term).createOrReplaceTempView ("ACDCTerminal")
+        // make a union of all old RDD as IdentifiedObject
+        val oldobj =
+            (if (null == old_ti) session.sparkContext.emptyRDD[TopologicalIsland] else old_ti).map (_.IdentifiedObject).
+            union ((if (null == old_tn) session.sparkContext.emptyRDD[TopologicalNode] else old_tn).map (_.IdentifiedObject)).
+            union (old_cn.map (_.IdentifiedObject)).
+            union (old_terminals.map (_.ACDCTerminal.IdentifiedObject))
 
         // make a union of all new RDD as IdentifiedObject
-        val idobj = get ("TopologicalIsland").asInstanceOf[RDD[TopologicalIsland]].map (_.IdentifiedObject).
+        val newobj =
+                   new_ti.map (_.IdentifiedObject).
             union (new_tn.map (_.IdentifiedObject)).
             union (new_cn.map (_.IdentifiedObject)).
-            union (new_acdc_term.map (_.IdentifiedObject))
+            union (new_terminals.map (_.ACDCTerminal.IdentifiedObject))
 
         // replace identified objects in IdentifiedObject
         val old_idobj = get ("IdentifiedObject").asInstanceOf[RDD[IdentifiedObject]]
-        val new_idobj = old_idobj.keyBy (_.id).leftOuterJoin (idobj.keyBy (_.id)).
-            values.flatMap (
-                (arg: Tuple2[IdentifiedObject, Option[IdentifiedObject]]) =>
-                    arg._2 match
-                    {
-                        case Some (x) => List(x)
-                        case None => List (arg._1)
-                    }
-                )
+        val new_idobj = old_idobj.keyBy (_.id).subtract (oldobj.keyBy (_.id)).values.union (newobj)
 
         // swap the old IdentifiedObject RDD for the new one
         old_idobj.name = "nontopological_IdentifiedObject"
@@ -672,23 +644,22 @@ class CIMNetworkTopologyProcessor (session: SparkSession, storage: StorageLevel)
         }
         session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
+        // make a union of all old RDD as Element
+        val oldelem =
+            (if (null == old_ti) session.sparkContext.emptyRDD[TopologicalIsland] else old_ti).asInstanceOf[RDD[Element]].
+            union ((if (null == old_tn) session.sparkContext.emptyRDD[TopologicalNode] else old_tn).asInstanceOf[RDD[Element]]).
+            union (old_cn.asInstanceOf[RDD[Element]]).
+            union (old_terminals.asInstanceOf[RDD[Element]])
+
         // make a union of all new RDD as Element
         val newelem = get ("TopologicalIsland").
             union (new_tn.asInstanceOf[RDD[Element]]).
             union (new_cn.asInstanceOf[RDD[Element]]).
-            union (new_acdc_term.asInstanceOf[RDD[Element]])
+            union (new_terminals.asInstanceOf[RDD[Element]])
 
         // replace elements in Elements
         val old_elements = get ("Elements")
-        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
-            values.flatMap (
-                (arg: Tuple2[Element, Option[Element]]) =>
-                    arg._2 match
-                    {
-                        case Some (x) => List(x)
-                        case None => List (arg._1)
-                    }
-                )
+        val new_elements = old_elements.keyBy (_.id).subtract (oldelem.keyBy (_.id)).values.union (newelem)
 
         // swap the old Elements RDD for the new one
         old_elements.name = "nontopological_Elements"
