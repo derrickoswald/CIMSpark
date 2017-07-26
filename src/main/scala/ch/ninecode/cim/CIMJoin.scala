@@ -61,7 +61,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                         status = isu.WorkLocation.Location.status,
                         typ = nis.WorkLocation.Location.typ,               // e.g. geographic
 // legacy
-//                        Measurements = nis.WorkLocation.Location.Measurements,
+                        Measurements = nis.WorkLocation.Location.Measurements,
                         CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem  // e.g. wgs_84
                     )
                     val worklocation = WorkLocation (
@@ -127,7 +127,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
                     Transaction = a._1.Transaction,
                     RatingSpecification = a._1.RatingSpecification,
 // legacy
-//                    ProcedureDataSets = a._1.ProcedureDataSets,
+                    ProcedureDataSets = a._1.ProcedureDataSets,
                     PropertySpecification = a._1.PropertySpecification
                     )
 

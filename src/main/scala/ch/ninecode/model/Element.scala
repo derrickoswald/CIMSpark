@@ -32,6 +32,8 @@ with
             throw new IllegalArgumentException ("invalid property index " + i)
     }
     override def copy (): Row = { throw new Exception ("not implemented yet") }
+    def export_fields: String = ""
+    def export: String = ""
 }
 
 /**

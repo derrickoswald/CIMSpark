@@ -571,6 +571,83 @@ case class Scala (parser: ModelParser, pkg: Package)
             |            throw new IllegalArgumentException ("invalid property index " + i)
             |    }
             |    override def length: Int = productArity
+            |    override def export_fields: String =
+            |    {
+            |        sup.export_fields +
+            |""".stripMargin)
+            var more = members.size
+            if (2 > more)
+                s.append ("""        ""
+                |""".stripMargin)
+            else
+                for (product <- members)
+                {
+                    if (product.name != "sup" && product.variable != "mRID")
+                    {
+                        val nullable = ((product.reference) || ("String" == product.datatype))
+                        s.append ("""        """)
+                        if (nullable)
+                        {
+                            s.append ("""(if (null != """)
+                            s.append (product.variable)
+                            s.append (""") """)
+                        }
+                        if (product.multiple)
+                        {
+                            s.append (product.variable)
+                            s.append (""".map (x => """)
+                        }
+                        s.append (""""\t\t<cim:""")
+                        s.append (cls.name)
+                        s.append (""".""")
+                        s.append (product.name)
+                        if (product.reference)
+                        {
+                            s.append (""" rdf:resource=\"#" + """)
+                            if (product.multiple)
+                                s.append ("""x""")
+                            else
+                                s.append (product.variable)
+                            s.append (""" + "\"/>""")
+                        }
+                        else
+                        {
+                            s.append (""">" + """)
+                            s.append (product.variable)
+                            s.append (""" + "</cim:""")
+                            s.append (cls.name)
+                            s.append (""".""")
+                            s.append (product.name)
+                            s.append (""">""")
+                        }
+                        s.append ("""\n"""")
+                        if (nullable)
+                        {
+                            if (product.multiple)
+                                s.append (""").mkString""")
+                            s.append (""" else "")""")
+                        }
+                        if (more > 1)
+                            s.append (""" +
+                            |""".stripMargin)
+                        else
+                            s.append ("""
+                            |""".stripMargin)
+                    }
+                    more = more - 1
+                }
+            s.append ("""|    }
+            |    override def export: String =
+            |    {
+            |        "\t<cim:""".stripMargin)
+            s.append (cls.name)
+            s.append (""" rdf:ID=\"" + id + "\">\n" +
+            |""".stripMargin)
+            s.append ("""|        export_fields +
+            |        "\t</cim:""".stripMargin)
+            s.append (cls.name)
+            s.append (""">\n"
+            |    }
             |}
             |
             |object """.stripMargin)
