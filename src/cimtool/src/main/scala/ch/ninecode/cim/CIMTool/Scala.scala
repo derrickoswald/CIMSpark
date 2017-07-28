@@ -560,9 +560,9 @@ case class Scala (parser: ModelParser, pkg: Package)
             else
                 s.append ("""Element: Element = sup.asInstanceOf[Element""")
             s.append ("""]
-            |    override def copy (): Row = { return (clone ().asInstanceOf[""".stripMargin)
+            |    override def copy (): Row = { clone ().asInstanceOf[""".stripMargin)
             s.append (name)
-            s.append ("""]) }
+            s.append ("""] }
             |    override def get (i: Int): Object =
             |    {
             |        if (i < productArity)

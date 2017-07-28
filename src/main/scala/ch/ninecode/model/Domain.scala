@@ -27,7 +27,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[DateInterval]) }
+    override def copy (): Row = { clone ().asInstanceOf[DateInterval] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -83,7 +83,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[DateTimeInterval]) }
+    override def copy (): Row = { clone ().asInstanceOf[DateTimeInterval] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -135,7 +135,7 @@ extends
 {
     def this () = { this (null, null, null, null, 0.0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[DecimalQuantity]) }
+    override def copy (): Row = { clone ().asInstanceOf[DecimalQuantity] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -199,7 +199,7 @@ extends
 {
     def this () = { this (null, null, null, 0.0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[FloatQuantity]) }
+    override def copy (): Row = { clone ().asInstanceOf[FloatQuantity] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -260,7 +260,7 @@ extends
 {
     def this () = { this (null, null, null, 0) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[IntegerQuantity]) }
+    override def copy (): Row = { clone ().asInstanceOf[IntegerQuantity] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -319,7 +319,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[MonthDayInterval]) }
+    override def copy (): Row = { clone ().asInstanceOf[MonthDayInterval] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -377,7 +377,7 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[StringQuantity]) }
+    override def copy (): Row = { clone ().asInstanceOf[StringQuantity] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -436,7 +436,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[TimeInterval]) }
+    override def copy (): Row = { clone ().asInstanceOf[TimeInterval] }
     override def get (i: Int): Object =
     {
         if (i < productArity)

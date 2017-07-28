@@ -37,7 +37,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf[ProtectionEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[CurrentRelay]) }
+    override def copy (): Row = { clone ().asInstanceOf[CurrentRelay] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -121,7 +121,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, false, 0.0, null, null, List(), List()) }
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[ProtectionEquipment]) }
+    override def copy (): Row = { clone ().asInstanceOf[ProtectionEquipment] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -197,7 +197,7 @@ extends
 {
     def this () = { this (null, 0.0, 0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[RecloseSequence]) }
+    override def copy (): Row = { clone ().asInstanceOf[RecloseSequence] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -259,7 +259,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0) }
     def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf[ProtectionEquipment]
-    override def copy (): Row = { return (clone ().asInstanceOf[SynchrocheckRelay]) }
+    override def copy (): Row = { clone ().asInstanceOf[SynchrocheckRelay] }
     override def get (i: Int): Object =
     {
         if (i < productArity)

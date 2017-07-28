@@ -31,7 +31,7 @@ with
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
-    override def copy (): Row = { throw new Exception ("not implemented yet") }
+    override def copy (): Row = { throw new Exception ("copy() should be overridden in derived classes") }
     def export_fields: String = ""
     def export: String = ""
 }
@@ -51,7 +51,7 @@ extends
 {
     def this () = { this (null, null) }
     override def id: String = mRID
-    override def copy(): Row = { return (clone().asInstanceOf[Element]) }
+    override def copy(): Row = { clone ().asInstanceOf[Element] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -88,9 +88,9 @@ case class Unknown(
     end: Long)
       extends Element
 {
-    def this() = { this(null, null, 0, 0l, 0l) }
+    def this() = { this (null, null, 0, 0l, 0l) }
     def Element: Element = sup
-    override def copy (): Row = { return (clone().asInstanceOf[Unknown]) }
+    override def copy (): Row = { clone ().asInstanceOf[Unknown] }
     override def get (i: Int): Object =
     {
         if (i < productArity)

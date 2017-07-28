@@ -27,7 +27,7 @@ extends
 {
     def this () = { this (null, 0, List()) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[Accumulator]) }
+    override def copy (): Row = { clone ().asInstanceOf[Accumulator] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -84,7 +84,7 @@ extends
 {
     def this () = { this (null, 0, null) }
     def Limit: Limit = sup.asInstanceOf[Limit]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorLimit]) }
+    override def copy (): Row = { clone ().asInstanceOf[AccumulatorLimit] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -136,7 +136,7 @@ extends
 {
     def this () = { this (null) }
     def LimitSet: LimitSet = sup.asInstanceOf[LimitSet]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorLimitSet]) }
+    override def copy (): Row = { clone ().asInstanceOf[AccumulatorLimitSet] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -185,7 +185,7 @@ extends
 {
     def this () = { this (null, null) }
     def Control: Control = sup.asInstanceOf[Control]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorReset]) }
+    override def copy (): Row = { clone ().asInstanceOf[AccumulatorReset] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -241,7 +241,7 @@ extends
 {
     def this () = { this (null, 0, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[AccumulatorValue]) }
+    override def copy (): Row = { clone ().asInstanceOf[AccumulatorValue] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -308,7 +308,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, false, List()) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[Analog]) }
+    override def copy (): Row = { clone ().asInstanceOf[Analog] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -377,7 +377,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, null) }
     def Control: Control = sup.asInstanceOf[Control]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogControl]) }
+    override def copy (): Row = { clone ().asInstanceOf[AnalogControl] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -436,7 +436,7 @@ extends
 {
     def this () = { this (null, 0.0, null) }
     def Limit: Limit = sup.asInstanceOf[Limit]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogLimit]) }
+    override def copy (): Row = { clone ().asInstanceOf[AnalogLimit] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -488,7 +488,7 @@ extends
 {
     def this () = { this (null) }
     def LimitSet: LimitSet = sup.asInstanceOf[LimitSet]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogLimitSet]) }
+    override def copy (): Row = { clone ().asInstanceOf[AnalogLimitSet] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -541,7 +541,7 @@ extends
 {
     def this () = { this (null, 0.0, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnalogValue]) }
+    override def copy (): Row = { clone ().asInstanceOf[AnalogValue] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -604,7 +604,7 @@ extends
 {
     def this () = { this (null, 0, 0, null, null) }
     def Control: Control = sup.asInstanceOf[Control]
-    override def copy (): Row = { return (clone ().asInstanceOf[Command]) }
+    override def copy (): Row = { clone ().asInstanceOf[Command] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -678,7 +678,7 @@ extends
 {
     def this () = { this (null, null, false, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Control]) }
+    override def copy (): Row = { clone ().asInstanceOf[Control] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -755,7 +755,7 @@ extends
 {
     def this () = { this (null, 0, 0, 0, null) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[Discrete]) }
+    override def copy (): Row = { clone ().asInstanceOf[Discrete] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -809,7 +809,7 @@ extends
 {
     def this () = { this (null) }
     def Command: Command = sup.asInstanceOf[Command]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiscreteCommand]) }
+    override def copy (): Row = { clone ().asInstanceOf[DiscreteCommand] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -862,7 +862,7 @@ extends
 {
     def this () = { this (null, 0, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiscreteValue]) }
+    override def copy (): Row = { clone ().asInstanceOf[DiscreteValue] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -918,7 +918,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Limit]) }
+    override def copy (): Row = { clone ().asInstanceOf[Limit] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -968,7 +968,7 @@ extends
 {
     def this () = { this (null, false) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[LimitSet]) }
+    override def copy (): Row = { clone ().asInstanceOf[LimitSet] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1034,7 +1034,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Measurement]) }
+    override def copy (): Row = { clone ().asInstanceOf[Measurement] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1117,7 +1117,7 @@ extends
 {
     def this () = { this (null, null, 0.0, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValue]) }
+    override def copy (): Row = { clone ().asInstanceOf[MeasurementValue] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1187,7 +1187,7 @@ extends
 {
     def this () = { this (null, null) }
     def Quality61850: Quality61850 = sup.asInstanceOf[Quality61850]
-    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValueQuality]) }
+    override def copy (): Row = { clone ().asInstanceOf[MeasurementValueQuality] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1237,7 +1237,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[MeasurementValueSource]) }
+    override def copy (): Row = { clone ().asInstanceOf[MeasurementValueSource] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1312,7 +1312,7 @@ extends
 {
     def this () = { this (null, false, false, false, false, false, false, false, false, null, false, false, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[Quality61850]) }
+    override def copy (): Row = { clone ().asInstanceOf[Quality61850] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1396,7 +1396,7 @@ extends
 {
     def this () = { this (null, null) }
     def AnalogControl: AnalogControl = sup.asInstanceOf[AnalogControl]
-    override def copy (): Row = { return (clone ().asInstanceOf[RaiseLowerCommand]) }
+    override def copy (): Row = { clone ().asInstanceOf[RaiseLowerCommand] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1449,7 +1449,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def AnalogControl: AnalogControl = sup.asInstanceOf[AnalogControl]
-    override def copy (): Row = { return (clone ().asInstanceOf[SetPoint]) }
+    override def copy (): Row = { clone ().asInstanceOf[SetPoint] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1501,7 +1501,7 @@ extends
 {
     def this () = { this (null) }
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
-    override def copy (): Row = { return (clone ().asInstanceOf[StringMeasurement]) }
+    override def copy (): Row = { clone ().asInstanceOf[StringMeasurement] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1552,7 +1552,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
-    override def copy (): Row = { return (clone ().asInstanceOf[StringMeasurementValue]) }
+    override def copy (): Row = { clone ().asInstanceOf[StringMeasurementValue] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1612,7 +1612,7 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[Validity]) }
+    override def copy (): Row = { clone ().asInstanceOf[Validity] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1668,7 +1668,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[ValueAliasSet]) }
+    override def copy (): Row = { clone ().asInstanceOf[ValueAliasSet] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1719,7 +1719,7 @@ extends
 {
     def this () = { this (null, 0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[ValueToAlias]) }
+    override def copy (): Row = { clone ().asInstanceOf[ValueToAlias] }
     override def get (i: Int): Object =
     {
         if (i < productArity)

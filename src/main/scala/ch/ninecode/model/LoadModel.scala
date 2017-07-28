@@ -25,7 +25,7 @@ extends
 {
     def this () = { this (null, null) }
     def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
-    override def copy (): Row = { return (clone ().asInstanceOf[ConformLoad]) }
+    override def copy (): Row = { clone ().asInstanceOf[ConformLoad] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -74,7 +74,7 @@ extends
 {
     def this () = { this (null) }
     def LoadGroup: LoadGroup = sup.asInstanceOf[LoadGroup]
-    override def copy (): Row = { return (clone ().asInstanceOf[ConformLoadGroup]) }
+    override def copy (): Row = { clone ().asInstanceOf[ConformLoadGroup] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -124,7 +124,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[ConformLoadSchedule]) }
+    override def copy (): Row = { clone ().asInstanceOf[ConformLoadSchedule] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -174,7 +174,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DayType]) }
+    override def copy (): Row = { clone ().asInstanceOf[DayType] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -224,7 +224,7 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[EnergyArea]) }
+    override def copy (): Row = { clone ().asInstanceOf[EnergyArea] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -273,7 +273,7 @@ extends
 {
     def this () = { this (null) }
     def EnergyArea: EnergyArea = sup.asInstanceOf[EnergyArea]
-    override def copy (): Row = { return (clone ().asInstanceOf[LoadArea]) }
+    override def copy (): Row = { clone ().asInstanceOf[LoadArea] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -322,7 +322,7 @@ extends
 {
     def this () = { this (null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[LoadGroup]) }
+    override def copy (): Row = { clone ().asInstanceOf[LoadGroup] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -395,7 +395,7 @@ extends
 {
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[LoadResponseCharacteristic]) }
+    override def copy (): Row = { clone ().asInstanceOf[LoadResponseCharacteristic] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -476,7 +476,7 @@ extends
 {
     def this () = { this (null, null) }
     def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonConformLoad]) }
+    override def copy (): Row = { clone ().asInstanceOf[NonConformLoad] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -525,7 +525,7 @@ extends
 {
     def this () = { this (null) }
     def LoadGroup: LoadGroup = sup.asInstanceOf[LoadGroup]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonConformLoadGroup]) }
+    override def copy (): Row = { clone ().asInstanceOf[NonConformLoadGroup] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -574,7 +574,7 @@ extends
 {
     def this () = { this (null, null) }
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[NonConformLoadSchedule]) }
+    override def copy (): Row = { clone ().asInstanceOf[NonConformLoadSchedule] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -627,7 +627,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0) }
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { return (clone ().asInstanceOf[PowerCutZone]) }
+    override def copy (): Row = { clone ().asInstanceOf[PowerCutZone] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -683,7 +683,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Season]) }
+    override def copy (): Row = { clone ().asInstanceOf[Season] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -739,7 +739,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
-    override def copy (): Row = { return (clone ().asInstanceOf[SeasonDayTypeSchedule]) }
+    override def copy (): Row = { clone ().asInstanceOf[SeasonDayTypeSchedule] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -791,7 +791,7 @@ extends
 {
     def this () = { this (null) }
     def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
-    override def copy (): Row = { return (clone ().asInstanceOf[StationSupply]) }
+    override def copy (): Row = { clone ().asInstanceOf[StationSupply] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -840,7 +840,7 @@ extends
 {
     def this () = { this (null, null) }
     def EnergyArea: EnergyArea = sup.asInstanceOf[EnergyArea]
-    override def copy (): Row = { return (clone ().asInstanceOf[SubLoadArea]) }
+    override def copy (): Row = { clone ().asInstanceOf[SubLoadArea] }
     override def get (i: Int): Object =
     {
         if (i < productArity)

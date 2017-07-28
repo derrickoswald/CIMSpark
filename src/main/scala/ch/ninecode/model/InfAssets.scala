@@ -37,7 +37,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[AnchorKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[AnchorKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -107,7 +107,7 @@ extends
 {
     def this () = { this (null, null) }
     def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { return (clone ().asInstanceOf[AssetPropertyCurve]) }
+    override def copy (): Row = { clone ().asInstanceOf[AssetPropertyCurve] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -168,7 +168,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
     def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { return (clone ().asInstanceOf[Bushing]) }
+    override def copy (): Row = { clone ().asInstanceOf[Bushing] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -240,7 +240,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[BushingInsulationKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[BushingInsulationKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -307,7 +307,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[BushingInsulationPF]) }
+    override def copy (): Row = { clone ().asInstanceOf[BushingInsulationPF] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -369,7 +369,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[BushingInsulationPfTestKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[BushingInsulationPfTestKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -421,7 +421,7 @@ extends
 {
     def this () = { this (null) }
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[Cabinet]) }
+    override def copy (): Row = { clone ().asInstanceOf[Cabinet] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -476,7 +476,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[CoolingKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[CoolingKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -543,7 +543,7 @@ extends
 {
     def this () = { this (null, null, 0.0, 0, List()) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[CoolingPowerRating]) }
+    override def copy (): Row = { clone ().asInstanceOf[CoolingPowerRating] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -615,7 +615,7 @@ extends
 {
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, List()) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DimensionsInfo]) }
+    override def copy (): Row = { clone ().asInstanceOf[DimensionsInfo] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -682,7 +682,7 @@ extends
 {
     def this () = { this (null, 0) }
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[DuctBank]) }
+    override def copy (): Row = { clone ().asInstanceOf[DuctBank] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -733,7 +733,7 @@ extends
 {
     def this () = { this (null, null) }
     def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { return (clone ().asInstanceOf[FACTSDevice]) }
+    override def copy (): Row = { clone ().asInstanceOf[FACTSDevice] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -798,7 +798,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[FACTSDeviceKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[FACTSDeviceKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -870,7 +870,7 @@ extends
 {
     def this () = { this (null, null) }
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[Facility]) }
+    override def copy (): Row = { clone ().asInstanceOf[Facility] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -928,7 +928,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
-    override def copy (): Row = { return (clone ().asInstanceOf[FailureEvent]) }
+    override def copy (): Row = { clone ().asInstanceOf[FailureEvent] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -996,7 +996,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[FailureIsolationMethodKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[FailureIsolationMethodKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1083,7 +1083,7 @@ extends
 {
     def this () = { this (null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[FinancialInfo]) }
+    override def copy (): Row = { clone ().asInstanceOf[FinancialInfo] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1178,7 +1178,7 @@ extends
 {
     def this () = { this (null, 0.0, null, false, null, null, null) }
     def AssetModel: AssetModel = sup.asInstanceOf[AssetModel]
-    override def copy (): Row = { return (clone ().asInstanceOf[GenericAssetModelOrMaterial]) }
+    override def copy (): Row = { clone ().asInstanceOf[GenericAssetModelOrMaterial] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1249,7 +1249,7 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { return (clone ().asInstanceOf[Joint]) }
+    override def copy (): Row = { clone ().asInstanceOf[Joint] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1312,7 +1312,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[JointConfigurationKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[JointConfigurationKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1390,7 +1390,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[JointFillKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[JointFillKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1475,7 +1475,7 @@ extends
 {
     def this () = { this (null, null, 0.0, List(), null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Medium]) }
+    override def copy (): Row = { clone ().asInstanceOf[Medium] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1539,7 +1539,7 @@ extends
 {
     def this () = { this (null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[MediumKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[MediumKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1618,7 +1618,7 @@ extends
 {
     def this () = { this (null, null, false, null, null, 0.0, null, 0.0, null, null, null, null) }
     def Structure: Structure = sup.asInstanceOf[Structure]
-    override def copy (): Row = { return (clone ().asInstanceOf[Pole]) }
+    override def copy (): Row = { clone ().asInstanceOf[Pole] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1707,7 +1707,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[PoleBaseKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[PoleBaseKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1782,7 +1782,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[PolePreservativeKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[PolePreservativeKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1865,7 +1865,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[PoleTreatmentKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[PoleTreatmentKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1939,7 +1939,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Reconditioning]) }
+    override def copy (): Row = { clone ().asInstanceOf[Reconditioning] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1999,7 +1999,7 @@ extends
 {
     def this () = { this (null, 0.0, 0.0, List(), null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[ReliabilityInfo]) }
+    override def copy (): Row = { clone ().asInstanceOf[ReliabilityInfo] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2058,7 +2058,7 @@ extends
 {
     def this () = { this (null) }
     def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { return (clone ().asInstanceOf[Specification]) }
+    override def copy (): Row = { clone ().asInstanceOf[Specification] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2114,7 +2114,7 @@ extends
 {
     def this () = { this (null, 0.0, null, 0.0, null) }
     def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { return (clone ().asInstanceOf[Streetlight]) }
+    override def copy (): Row = { clone ().asInstanceOf[Streetlight] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2180,7 +2180,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[StreetlightLampKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[StreetlightLampKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2254,7 +2254,7 @@ extends
 {
     def this () = { this (null, null, null, 0.0, null, 0.0, false, null) }
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { return (clone ().asInstanceOf[Structure]) }
+    override def copy (): Row = { clone ().asInstanceOf[Structure] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2329,7 +2329,7 @@ extends
 {
     def this () = { this (null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[StructureMaterialKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[StructureMaterialKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2403,7 +2403,7 @@ extends
 {
     def this () = { this (null, null, 0, 0.0, 0.0, null, 0.0, null, null) }
     def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { return (clone ().asInstanceOf[StructureSupport]) }
+    override def copy (): Row = { clone ().asInstanceOf[StructureSupport] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2477,7 +2477,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[StructureSupportKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[StructureSupportKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2532,7 +2532,7 @@ extends
 {
     def this () = { this (null, null) }
     def Structure: Structure = sup.asInstanceOf[Structure]
-    override def copy (): Row = { return (clone ().asInstanceOf[Tower]) }
+    override def copy (): Row = { clone ().asInstanceOf[Tower] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2585,7 +2585,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[TowerConstructionKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[TowerConstructionKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2673,7 +2673,7 @@ extends
 {
     def this () = { this (null, 0.0, null, null, null, 0.0, null, 0.0, null, null, null, null, null, 0.0, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TransformerObservation]) }
+    override def copy (): Row = { clone ().asInstanceOf[TransformerObservation] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2775,7 +2775,7 @@ extends
 {
     def this () = { this (null, false, null, null, null) }
     def Structure: Structure = sup.asInstanceOf[Structure]
-    override def copy (): Row = { return (clone ().asInstanceOf[UndergroundStructure]) }
+    override def copy (): Row = { clone ().asInstanceOf[UndergroundStructure] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2853,7 +2853,7 @@ extends
 {
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[UndergroundStructureKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[UndergroundStructureKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -2944,7 +2944,7 @@ extends
 {
     def this () = { this (null, null, null, 0.0, null, null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[WindingInsulation]) }
+    override def copy (): Row = { clone ().asInstanceOf[WindingInsulation] }
     override def get (i: Int): Object =
     {
         if (i < productArity)

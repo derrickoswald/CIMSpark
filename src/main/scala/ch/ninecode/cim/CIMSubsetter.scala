@@ -27,11 +27,11 @@ import ch.ninecode.model.Element
  */
 class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 {
-    def runtime_class = classTag[A].runtimeClass
+    val runtime_class = classTag[A].runtimeClass
 
-    def classname = runtime_class.getName
+    val classname = runtime_class.getName
 
-    def cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
+    val cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
 
     def subclass (x: Element): A =
     {

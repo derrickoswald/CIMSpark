@@ -36,7 +36,7 @@ extends
 {
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[Diagram]) }
+    override def copy (): Row = { clone ().asInstanceOf[Diagram] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -124,7 +124,7 @@ extends
 {
     def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, null, null, List()) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObject]) }
+    override def copy (): Row = { clone ().asInstanceOf[DiagramObject] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -197,7 +197,7 @@ extends
 {
     def this () = { this (null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectGluePoint]) }
+    override def copy (): Row = { clone ().asInstanceOf[DiagramObjectGluePoint] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -257,7 +257,7 @@ extends
 {
     def this () = { this (null, 0, 0.0, 0.0, 0.0, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectPoint]) }
+    override def copy (): Row = { clone ().asInstanceOf[DiagramObjectPoint] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -322,7 +322,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramObjectStyle]) }
+    override def copy (): Row = { clone ().asInstanceOf[DiagramObjectStyle] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -370,7 +370,7 @@ extends
 {
     def this () = { this (null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[DiagramStyle]) }
+    override def copy (): Row = { clone ().asInstanceOf[DiagramStyle] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -423,7 +423,7 @@ extends
 {
     def this () = { this (null, null, null) }
     def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { return (clone ().asInstanceOf[OrientationKind]) }
+    override def copy (): Row = { clone ().asInstanceOf[OrientationKind] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -477,7 +477,7 @@ extends
 {
     def this () = { this (null, null) }
     def DiagramObject: DiagramObject = sup.asInstanceOf[DiagramObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[TextDiagramObject]) }
+    override def copy (): Row = { clone ().asInstanceOf[TextDiagramObject] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -530,7 +530,7 @@ extends
 {
     def this () = { this (null, 0) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { return (clone ().asInstanceOf[VisibilityLayer]) }
+    override def copy (): Row = { clone ().asInstanceOf[VisibilityLayer] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
