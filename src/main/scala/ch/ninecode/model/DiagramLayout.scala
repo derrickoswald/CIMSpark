@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -568,16 +570,18 @@ extends
 
 object _DiagramLayout
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        Diagram.register
-        DiagramObject.register
-        DiagramObjectGluePoint.register
-        DiagramObjectPoint.register
-        DiagramObjectStyle.register
-        DiagramStyle.register
-        OrientationKind.register
-        TextDiagramObject.register
-        VisibilityLayer.register
+        List (
+            Diagram.register,
+            DiagramObject.register,
+            DiagramObjectGluePoint.register,
+            DiagramObjectPoint.register,
+            DiagramObjectStyle.register,
+            DiagramStyle.register,
+            OrientationKind.register,
+            TextDiagramObject.register,
+            VisibilityLayer.register
+        )
     }
 }

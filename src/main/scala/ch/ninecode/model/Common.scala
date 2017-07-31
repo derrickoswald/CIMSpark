@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -2214,39 +2216,41 @@ extends
 
 object _Common
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        ActivityRecord.register
-        Agreement.register
-        Appointment.register
-        ConfigurationEvent.register
-        CoordinateSystem.register
-        Crew.register
-        CrewMember.register
-        CrewType.register
-        Document.register
-        ElectronicAddress.register
-        Hazard.register
-        Location.register
-        OperationPersonRole.register
-        Operator.register
-        Organisation.register
-        OrganisationRole.register
-        Ownership.register
-        Person.register
-        PersonRole.register
-        PositionPoint.register
-        PostalAddress.register
-        Priority.register
-        ScheduledEvent.register
-        ScheduledEventData.register
-        Status.register
-        StreetAddress.register
-        StreetDetail.register
-        TelephoneNumber.register
-        TimePoint.register
-        TimeSchedule.register
-        TownDetail.register
-        UserAttribute.register
+        List (
+            ActivityRecord.register,
+            Agreement.register,
+            Appointment.register,
+            ConfigurationEvent.register,
+            CoordinateSystem.register,
+            Crew.register,
+            CrewMember.register,
+            CrewType.register,
+            Document.register,
+            ElectronicAddress.register,
+            Hazard.register,
+            Location.register,
+            OperationPersonRole.register,
+            Operator.register,
+            Organisation.register,
+            OrganisationRole.register,
+            Ownership.register,
+            Person.register,
+            PersonRole.register,
+            PositionPoint.register,
+            PostalAddress.register,
+            Priority.register,
+            ScheduledEvent.register,
+            ScheduledEventData.register,
+            Status.register,
+            StreetAddress.register,
+            StreetDetail.register,
+            TelephoneNumber.register,
+            TimePoint.register,
+            TimeSchedule.register,
+            TownDetail.register,
+            UserAttribute.register
+        )
     }
 }

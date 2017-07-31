@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -418,14 +420,16 @@ extends
 
 object _StateVariables
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        StateVariable.register
-        SvInjection.register
-        SvPowerFlow.register
-        SvShuntCompensatorSections.register
-        SvStatus.register
-        SvTapStep.register
-        SvVoltage.register
+        List (
+            StateVariable.register,
+            SvInjection.register,
+            SvPowerFlow.register,
+            SvShuntCompensatorSections.register,
+            SvStatus.register,
+            SvTapStep.register,
+            SvVoltage.register
+        )
     }
 }

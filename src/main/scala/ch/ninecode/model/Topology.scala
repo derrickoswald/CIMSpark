@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -269,11 +271,13 @@ extends
 
 object _Topology
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        BusNameMarker.register
-        DCTopologicalNode.register
-        TopologicalIsland.register
-        TopologicalNode.register
+        List (
+            BusNameMarker.register,
+            DCTopologicalNode.register,
+            TopologicalIsland.register,
+            TopologicalNode.register
+        )
     }
 }

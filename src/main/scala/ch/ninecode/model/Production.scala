@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -3329,55 +3331,57 @@ extends
 
 object _Production
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        AirCompressor.register
-        CAESPlant.register
-        Classification.register
-        CogenerationPlant.register
-        CombinedCyclePlant.register
-        CostPerHeatUnit.register
-        Emission.register
-        EmissionAccount.register
-        EmissionCurve.register
-        EmissionType.register
-        EmissionValueSource.register
-        FossilFuel.register
-        FuelAllocationSchedule.register
-        FuelType.register
-        GenUnitOpCostCurve.register
-        GenUnitOpSchedule.register
-        GeneratingUnit.register
-        GeneratorControlMode.register
-        GeneratorControlSource.register
-        GrossToNetActivePowerCurve.register
-        HeatInputCurve.register
-        HeatRate.register
-        HeatRateCurve.register
-        HydroEnergyConversionKind.register
-        HydroGeneratingEfficiencyCurve.register
-        HydroGeneratingUnit.register
-        HydroPlantStorageKind.register
-        HydroPowerPlant.register
-        HydroPump.register
-        HydroPumpOpSchedule.register
-        IncrementalHeatRateCurve.register
-        InflowForecast.register
-        LevelVsVolumeCurve.register
-        NuclearGeneratingUnit.register
-        PenstockLossCurve.register
-        Reservoir.register
-        ShutdownCurve.register
-        SolarGeneratingUnit.register
-        StartIgnFuelCurve.register
-        StartMainFuelCurve.register
-        StartRampCurve.register
-        StartupModel.register
-        SteamSendoutSchedule.register
-        TailbayLossCurve.register
-        TargetLevelSchedule.register
-        ThermalGeneratingUnit.register
-        WindGenUnitKind.register
-        WindGeneratingUnit.register
+        List (
+            AirCompressor.register,
+            CAESPlant.register,
+            Classification.register,
+            CogenerationPlant.register,
+            CombinedCyclePlant.register,
+            CostPerHeatUnit.register,
+            Emission.register,
+            EmissionAccount.register,
+            EmissionCurve.register,
+            EmissionType.register,
+            EmissionValueSource.register,
+            FossilFuel.register,
+            FuelAllocationSchedule.register,
+            FuelType.register,
+            GenUnitOpCostCurve.register,
+            GenUnitOpSchedule.register,
+            GeneratingUnit.register,
+            GeneratorControlMode.register,
+            GeneratorControlSource.register,
+            GrossToNetActivePowerCurve.register,
+            HeatInputCurve.register,
+            HeatRate.register,
+            HeatRateCurve.register,
+            HydroEnergyConversionKind.register,
+            HydroGeneratingEfficiencyCurve.register,
+            HydroGeneratingUnit.register,
+            HydroPlantStorageKind.register,
+            HydroPowerPlant.register,
+            HydroPump.register,
+            HydroPumpOpSchedule.register,
+            IncrementalHeatRateCurve.register,
+            InflowForecast.register,
+            LevelVsVolumeCurve.register,
+            NuclearGeneratingUnit.register,
+            PenstockLossCurve.register,
+            Reservoir.register,
+            ShutdownCurve.register,
+            SolarGeneratingUnit.register,
+            StartIgnFuelCurve.register,
+            StartMainFuelCurve.register,
+            StartRampCurve.register,
+            StartupModel.register,
+            SteamSendoutSchedule.register,
+            TailbayLossCurve.register,
+            TargetLevelSchedule.register,
+            ThermalGeneratingUnit.register,
+            WindGenUnitKind.register,
+            WindGeneratingUnit.register
+        )
     }
 }

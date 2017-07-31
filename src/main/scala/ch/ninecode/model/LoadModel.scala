@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -878,23 +880,25 @@ extends
 
 object _LoadModel
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        ConformLoad.register
-        ConformLoadGroup.register
-        ConformLoadSchedule.register
-        DayType.register
-        EnergyArea.register
-        LoadArea.register
-        LoadGroup.register
-        LoadResponseCharacteristic.register
-        NonConformLoad.register
-        NonConformLoadGroup.register
-        NonConformLoadSchedule.register
-        PowerCutZone.register
-        Season.register
-        SeasonDayTypeSchedule.register
-        StationSupply.register
-        SubLoadArea.register
+        List (
+            ConformLoad.register,
+            ConformLoadGroup.register,
+            ConformLoadSchedule.register,
+            DayType.register,
+            EnergyArea.register,
+            LoadArea.register,
+            LoadGroup.register,
+            LoadResponseCharacteristic.register,
+            NonConformLoad.register,
+            NonConformLoadGroup.register,
+            NonConformLoadSchedule.register,
+            PowerCutZone.register,
+            Season.register,
+            SeasonDayTypeSchedule.register,
+            StationSupply.register,
+            SubLoadArea.register
+        )
     }
 }

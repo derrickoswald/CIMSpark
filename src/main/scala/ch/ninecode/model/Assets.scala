@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -1531,30 +1533,32 @@ extends
 
 object _Assets
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        AcceptanceTest.register
-        Asset.register
-        AssetContainer.register
-        AssetFunction.register
-        AssetInfo.register
-        AssetLocationHazard.register
-        AssetModel.register
-        AssetModelUsageKind.register
-        AssetOrganisationRole.register
-        AssetOwner.register
-        AssetUser.register
-        ComMedia.register
-        CorporateStandardKind.register
-        LifecycleDate.register
-        Maintainer.register
-        Manufacturer.register
-        Procedure.register
-        ProcedureDataSet.register
-        ProcedureKind.register
-        ProductAssetModel.register
-        Seal.register
-        SealConditionKind.register
-        SealKind.register
+        List (
+            AcceptanceTest.register,
+            Asset.register,
+            AssetContainer.register,
+            AssetFunction.register,
+            AssetInfo.register,
+            AssetLocationHazard.register,
+            AssetModel.register,
+            AssetModelUsageKind.register,
+            AssetOrganisationRole.register,
+            AssetOwner.register,
+            AssetUser.register,
+            ComMedia.register,
+            CorporateStandardKind.register,
+            LifecycleDate.register,
+            Maintainer.register,
+            Manufacturer.register,
+            Procedure.register,
+            ProcedureDataSet.register,
+            ProcedureKind.register,
+            ProductAssetModel.register,
+            Seal.register,
+            SealConditionKind.register,
+            SealKind.register
+        )
     }
 }

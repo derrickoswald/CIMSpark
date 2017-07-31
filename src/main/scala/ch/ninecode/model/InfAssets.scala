@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -3000,49 +3002,51 @@ extends
 
 object _InfAssets
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        AnchorKind.register
-        AssetPropertyCurve.register
-        Bushing.register
-        BushingInsulationKind.register
-        BushingInsulationPF.register
-        BushingInsulationPfTestKind.register
-        Cabinet.register
-        CoolingKind.register
-        CoolingPowerRating.register
-        DimensionsInfo.register
-        DuctBank.register
-        FACTSDevice.register
-        FACTSDeviceKind.register
-        Facility.register
-        FailureEvent.register
-        FailureIsolationMethodKind.register
-        FinancialInfo.register
-        GenericAssetModelOrMaterial.register
-        Joint.register
-        JointConfigurationKind.register
-        JointFillKind.register
-        Medium.register
-        MediumKind.register
-        Pole.register
-        PoleBaseKind.register
-        PolePreservativeKind.register
-        PoleTreatmentKind.register
-        Reconditioning.register
-        ReliabilityInfo.register
-        Specification.register
-        Streetlight.register
-        StreetlightLampKind.register
-        Structure.register
-        StructureMaterialKind.register
-        StructureSupport.register
-        StructureSupportKind.register
-        Tower.register
-        TowerConstructionKind.register
-        TransformerObservation.register
-        UndergroundStructure.register
-        UndergroundStructureKind.register
-        WindingInsulation.register
+        List (
+            AnchorKind.register,
+            AssetPropertyCurve.register,
+            Bushing.register,
+            BushingInsulationKind.register,
+            BushingInsulationPF.register,
+            BushingInsulationPfTestKind.register,
+            Cabinet.register,
+            CoolingKind.register,
+            CoolingPowerRating.register,
+            DimensionsInfo.register,
+            DuctBank.register,
+            FACTSDevice.register,
+            FACTSDeviceKind.register,
+            Facility.register,
+            FailureEvent.register,
+            FailureIsolationMethodKind.register,
+            FinancialInfo.register,
+            GenericAssetModelOrMaterial.register,
+            Joint.register,
+            JointConfigurationKind.register,
+            JointFillKind.register,
+            Medium.register,
+            MediumKind.register,
+            Pole.register,
+            PoleBaseKind.register,
+            PolePreservativeKind.register,
+            PoleTreatmentKind.register,
+            Reconditioning.register,
+            ReliabilityInfo.register,
+            Specification.register,
+            Streetlight.register,
+            StreetlightLampKind.register,
+            Structure.register,
+            StructureMaterialKind.register,
+            StructureSupport.register,
+            StructureSupportKind.register,
+            Tower.register,
+            TowerConstructionKind.register,
+            TransformerObservation.register,
+            UndergroundStructure.register,
+            UndergroundStructureKind.register,
+            WindingInsulation.register
+        )
     }
 }

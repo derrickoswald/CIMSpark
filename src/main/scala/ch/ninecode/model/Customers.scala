@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -1159,22 +1161,24 @@ extends
 
 object _Customers
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        Customer.register
-        CustomerAccount.register
-        CustomerAgreement.register
-        CustomerKind.register
-        CustomerNotification.register
-        IncidentHazard.register
-        NotificationTriggerKind.register
-        PricingStructure.register
-        RevenueKind.register
-        ServiceCategory.register
-        ServiceKind.register
-        ServiceLocation.register
-        Tariff.register
-        TroubleReportingKind.register
-        TroubleTicket.register
+        List (
+            Customer.register,
+            CustomerAccount.register,
+            CustomerAgreement.register,
+            CustomerKind.register,
+            CustomerNotification.register,
+            IncidentHazard.register,
+            NotificationTriggerKind.register,
+            PricingStructure.register,
+            RevenueKind.register,
+            ServiceCategory.register,
+            ServiceKind.register,
+            ServiceLocation.register,
+            Tariff.register,
+            TroubleReportingKind.register,
+            TroubleTicket.register
+        )
     }
 }

@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -303,11 +305,13 @@ extends
 
 object _Protection
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        CurrentRelay.register
-        ProtectionEquipment.register
-        RecloseSequence.register
-        SynchrocheckRelay.register
+        List (
+            CurrentRelay.register,
+            ProtectionEquipment.register,
+            RecloseSequence.register,
+            SynchrocheckRelay.register
+        )
     }
 }

@@ -763,7 +763,9 @@ case class Scala (parser: ModelParser, pkg: Package)
             |
             |import org.apache.spark.sql.Row
             |
+            |import ch.ninecode.cim.ClassInfo
             |import ch.ninecode.cim.Context
+            |import ch.ninecode.cim.CIMSubsetter
             |import ch.ninecode.cim.Parseable
             |
             |""".stripMargin)
@@ -776,18 +778,17 @@ case class Scala (parser: ModelParser, pkg: Package)
             v.append (register)
             v.append ("""
                 |{
-                |    def register: Unit =
+                |    def register: List[ClassInfo] =
                 |    {
+                |        List (
                 |""".stripMargin)
-            for (cl <- case_classes)
-            {
-                v.append ("""        """)
-                v.append (cl._1)
-                v.append (""".register
-                |""".stripMargin)
-            }
-            v.append ("""    }
-            |}""".stripMargin)
+            v.append ("""            """)
+            v.append (case_classes.map (_._1).mkString (""".register,
+                |            """.stripMargin))
+            v.append (""".register
+                |        )
+                |    }
+                |}""".stripMargin)
 
             v.toString
         }

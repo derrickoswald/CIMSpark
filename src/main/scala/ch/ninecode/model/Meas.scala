@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -1760,36 +1762,38 @@ extends
 
 object _Meas
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        Accumulator.register
-        AccumulatorLimit.register
-        AccumulatorLimitSet.register
-        AccumulatorReset.register
-        AccumulatorValue.register
-        Analog.register
-        AnalogControl.register
-        AnalogLimit.register
-        AnalogLimitSet.register
-        AnalogValue.register
-        Command.register
-        Control.register
-        Discrete.register
-        DiscreteCommand.register
-        DiscreteValue.register
-        Limit.register
-        LimitSet.register
-        Measurement.register
-        MeasurementValue.register
-        MeasurementValueQuality.register
-        MeasurementValueSource.register
-        Quality61850.register
-        RaiseLowerCommand.register
-        SetPoint.register
-        StringMeasurement.register
-        StringMeasurementValue.register
-        Validity.register
-        ValueAliasSet.register
-        ValueToAlias.register
+        List (
+            Accumulator.register,
+            AccumulatorLimit.register,
+            AccumulatorLimitSet.register,
+            AccumulatorReset.register,
+            AccumulatorValue.register,
+            Analog.register,
+            AnalogControl.register,
+            AnalogLimit.register,
+            AnalogLimitSet.register,
+            AnalogValue.register,
+            Command.register,
+            Control.register,
+            Discrete.register,
+            DiscreteCommand.register,
+            DiscreteValue.register,
+            Limit.register,
+            LimitSet.register,
+            Measurement.register,
+            MeasurementValue.register,
+            MeasurementValueQuality.register,
+            MeasurementValueSource.register,
+            Quality61850.register,
+            RaiseLowerCommand.register,
+            SetPoint.register,
+            StringMeasurement.register,
+            StringMeasurementValue.register,
+            Validity.register,
+            ValueAliasSet.register,
+            ValueToAlias.register
+        )
     }
 }

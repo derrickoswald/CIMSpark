@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -2270,43 +2272,45 @@ extends
 
 object _Core
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        ACDCTerminal.register
-        BaseFrequency.register
-        BasePower.register
-        BaseVoltage.register
-        BasicIntervalSchedule.register
-        Bay.register
-        BreakerConfiguration.register
-        BusbarConfiguration.register
-        ConductingEquipment.register
-        ConnectivityNode.register
-        ConnectivityNodeContainer.register
-        Curve.register
-        CurveData.register
-        CurveStyle.register
-        Equipment.register
-        EquipmentContainer.register
-        GeographicalRegion.register
-        IdentifiedObject.register
-        IrregularIntervalSchedule.register
-        IrregularTimePoint.register
-        Name.register
-        NameType.register
-        NameTypeAuthority.register
-        OperatingParticipant.register
-        OperatingShare.register
-        PSRType.register
-        PhaseCode.register
-        PowerSystemResource.register
-        RegularIntervalSchedule.register
-        RegularTimePoint.register
-        ReportingGroup.register
-        ReportingSuperGroup.register
-        SubGeographicalRegion.register
-        Substation.register
-        Terminal.register
-        VoltageLevel.register
+        List (
+            ACDCTerminal.register,
+            BaseFrequency.register,
+            BasePower.register,
+            BaseVoltage.register,
+            BasicIntervalSchedule.register,
+            Bay.register,
+            BreakerConfiguration.register,
+            BusbarConfiguration.register,
+            ConductingEquipment.register,
+            ConnectivityNode.register,
+            ConnectivityNodeContainer.register,
+            Curve.register,
+            CurveData.register,
+            CurveStyle.register,
+            Equipment.register,
+            EquipmentContainer.register,
+            GeographicalRegion.register,
+            IdentifiedObject.register,
+            IrregularIntervalSchedule.register,
+            IrregularTimePoint.register,
+            Name.register,
+            NameType.register,
+            NameTypeAuthority.register,
+            OperatingParticipant.register,
+            OperatingShare.register,
+            PSRType.register,
+            PhaseCode.register,
+            PowerSystemResource.register,
+            RegularIntervalSchedule.register,
+            RegularTimePoint.register,
+            ReportingGroup.register,
+            ReportingSuperGroup.register,
+            SubGeographicalRegion.register,
+            Substation.register,
+            Terminal.register,
+            VoltageLevel.register
+        )
     }
 }

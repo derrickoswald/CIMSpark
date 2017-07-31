@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -3966,59 +3968,61 @@ extends
 
 object _Metering
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        AmiBillingReadyKind.register
-        BaseReading.register
-        Channel.register
-        ComDirectionKind.register
-        ComFunction.register
-        ComModule.register
-        ComTechnologyKind.register
-        ControlledAppliance.register
-        DemandResponseProgram.register
-        EndDevice.register
-        EndDeviceAction.register
-        EndDeviceCapability.register
-        EndDeviceControl.register
-        EndDeviceControlType.register
-        EndDeviceEvent.register
-        EndDeviceEventDetail.register
-        EndDeviceEventType.register
-        EndDeviceFunction.register
-        EndDeviceFunctionKind.register
-        EndDeviceGroup.register
-        EndDeviceInfo.register
-        EndDeviceTiming.register
-        IntervalBlock.register
-        IntervalReading.register
-        Meter.register
-        MeterMultiplier.register
-        MeterMultiplierKind.register
-        MeterReading.register
-        MeterServiceWork.register
-        MetrologyRequirement.register
-        PanDemandResponse.register
-        PanDisplay.register
-        PanPricing.register
-        PanPricingDetail.register
-        PendingCalculation.register
-        RandomisationKind.register
-        RationalNumber.register
-        Reading.register
-        ReadingInterharmonic.register
-        ReadingQuality.register
-        ReadingQualityType.register
-        ReadingReasonKind.register
-        ReadingType.register
-        Register.register
-        ServiceMultiplier.register
-        ServiceMultiplierKind.register
-        SimpleEndDeviceFunction.register
-        TransmissionModeKind.register
-        UsagePoint.register
-        UsagePointConnectedKind.register
-        UsagePointGroup.register
-        UsagePointLocation.register
+        List (
+            AmiBillingReadyKind.register,
+            BaseReading.register,
+            Channel.register,
+            ComDirectionKind.register,
+            ComFunction.register,
+            ComModule.register,
+            ComTechnologyKind.register,
+            ControlledAppliance.register,
+            DemandResponseProgram.register,
+            EndDevice.register,
+            EndDeviceAction.register,
+            EndDeviceCapability.register,
+            EndDeviceControl.register,
+            EndDeviceControlType.register,
+            EndDeviceEvent.register,
+            EndDeviceEventDetail.register,
+            EndDeviceEventType.register,
+            EndDeviceFunction.register,
+            EndDeviceFunctionKind.register,
+            EndDeviceGroup.register,
+            EndDeviceInfo.register,
+            EndDeviceTiming.register,
+            IntervalBlock.register,
+            IntervalReading.register,
+            Meter.register,
+            MeterMultiplier.register,
+            MeterMultiplierKind.register,
+            MeterReading.register,
+            MeterServiceWork.register,
+            MetrologyRequirement.register,
+            PanDemandResponse.register,
+            PanDisplay.register,
+            PanPricing.register,
+            PanPricingDetail.register,
+            PendingCalculation.register,
+            RandomisationKind.register,
+            RationalNumber.register,
+            Reading.register,
+            ReadingInterharmonic.register,
+            ReadingQuality.register,
+            ReadingQualityType.register,
+            ReadingReasonKind.register,
+            ReadingType.register,
+            Register.register,
+            ServiceMultiplier.register,
+            ServiceMultiplierKind.register,
+            SimpleEndDeviceFunction.register,
+            TransmissionModeKind.register,
+            UsagePoint.register,
+            UsagePointConnectedKind.register,
+            UsagePointGroup.register,
+            UsagePointLocation.register
+        )
     }
 }

@@ -8,7 +8,8 @@ import java.nio.charset.Charset
 import java.util.regex.Pattern
 
 import scala.collection.mutable.ArrayBuffer
-import scala.collection.mutable.HashMap
+import scala.collection.immutable.HashMap
+import scala.language.existentials
 import scala.reflect.ClassTag
 import scala.reflect.classTag
 import scala.reflect.runtime.universe.TypeTag
@@ -288,6 +289,11 @@ object Parser
     val rddex = Pattern.compile ("""\s*<(""" + namespace + """:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 }
 
+case class ClassInfo (
+    name: String,
+    parseable: Parseable[Product],
+    subsetter: CIMSubsetter[_ <: Product])
+
 /**
  * Typed base class for registration and subsetting.
  * Provides facilities to register subclasses with the CHIM parsing framework
@@ -310,11 +316,8 @@ extends
     val runtime_class = classTag[A].runtimeClass
     val classname = runtime_class.getName
     val cls = classname.substring (classname.lastIndexOf (".") + 1)
-    def register: Unit =
-    {
-        CHIM.LOOKUP.put (Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]])
-        CHIM.SUBSETTERS put (Parser.namespace + ":" + cls, new CIMSubsetter[A]())
-    }
+    def register: ClassInfo =
+        ClassInfo (Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]], new CIMSubsetter[A]())
 }
 
 
@@ -346,24 +349,29 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     val encoder = Charset.forName ("UTF-8").newEncoder ()
     var value: Element = null
 
-    _AssetInfo.register
-    _Assets.register
-    _Common.register
-    _Core.register
-    _Customers.register
-    _DiagramLayout.register
-    _Domain.register
-    _InfAssets.register
-    _LoadControl.register
-    _LoadModel.register
-    _Meas.register
-    _Metering.register
-    _Production.register
-    _Protection.register
-    _StateVariables.register
-    _Topology.register
-    _Wires.register
-    _Work.register
+    def classes (): List[ClassInfo] =
+        List (
+            _AssetInfo.register,
+            _Assets.register,
+            _Common.register,
+            _Core.register,
+            _Customers.register,
+            _DiagramLayout.register,
+            _Domain.register,
+            _InfAssets.register,
+            _LoadControl.register,
+            _LoadModel.register,
+            _Meas.register,
+            _Metering.register,
+            _Production.register,
+            _Protection.register,
+            _StateVariables.register,
+            _Topology.register,
+            _Wires.register,
+            _Work.register
+        ).flatten
+    val parsers = classes.map (x => (x.name, x.parseable))
+    val lookup: HashMap[String, Parseable[Product]] = HashMap (parsers: _*)
 
     def progress (): Float =
     {
@@ -397,7 +405,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
                 {
                     context.subxml = matcher.group (2)
                     Unknown.name = name
-                    value = CHIM.LOOKUP.getOrElse (name, Unknown).parse (context)
+                    value = lookup.getOrElse (name, Unknown).parse (context)
 
                     // return success unless there was unrecognized text before the match
                     // that wasn't at the start of the xml
@@ -444,12 +452,9 @@ object CHIM
     val CHUNK = 1024*1024*64
     val OVERREAD = 1024*32 // should be large enough that no RDF element is bigger than this
 
-    val LOOKUP = new HashMap[String, Parseable[Product]]
-    val SUBSETTERS = new HashMap[String, CIMSubsetter[_]]
-
-    def parse (parser: CHIM): (HashMap[String, Element], ArrayBuffer[String]) =
+    def parse (parser: CHIM): (scala.collection.mutable.HashMap[String, Element], ArrayBuffer[String]) =
     {
-        val result = new HashMap[String, Element]
+        val result = new scala.collection.mutable.HashMap[String, Element]
         while (parser.parse_one ())
             result.put (parser.value.id, parser.value)
         return ((result, parser.context.errors))
@@ -458,8 +463,8 @@ object CHIM
     def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit) =
     {
         val chim = new CHIM ("") // ensure registration has occurred
-        for ((name, subsetter) <- SUBSETTERS.iterator)
-            fn (subsetter)
+        for (i <- chim.classes)
+            fn (i.subsetter)
     }
 
     def read (filename: String, start: Long, size: Long, overread: Long = OVERREAD): (String, Long, Long) =
@@ -530,7 +535,7 @@ object CHIM
             val size = fis.available ()
             fis.close ()
 
-            val result = new HashMap[String, Element]
+            val result = new scala.collection.mutable.HashMap[String, Element]
             var offset = 0L
             var reading = 0.0
             var parsing = 0.0

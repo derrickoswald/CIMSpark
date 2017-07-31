@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -214,9 +216,11 @@ extends
 
 object _LoadControl
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        ConnectDisconnectFunction.register
-        RemoteConnectDisconnectInfo.register
+        List (
+            ConnectDisconnectFunction.register,
+            RemoteConnectDisconnectInfo.register
+        )
     }
 }

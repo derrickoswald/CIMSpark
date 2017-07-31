@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -1908,31 +1910,33 @@ extends
 
 object _AssetInfo
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        BusbarSectionInfo.register
-        CableConstructionKind.register
-        CableInfo.register
-        CableOuterJacketKind.register
-        CableShieldMaterialKind.register
-        ConcentricNeutralCableInfo.register
-        NoLoadTest.register
-        OpenCircuitTest.register
-        OverheadWireInfo.register
-        PowerTransformerInfo.register
-        ShortCircuitTest.register
-        ShuntCompensatorInfo.register
-        SwitchInfo.register
-        TapChangerInfo.register
-        TapeShieldCableInfo.register
-        TransformerEndInfo.register
-        TransformerTankInfo.register
-        TransformerTest.register
-        WireInfo.register
-        WireInsulationKind.register
-        WireMaterialKind.register
-        WirePosition.register
-        WireSpacingInfo.register
-        WireUsageKind.register
+        List (
+            BusbarSectionInfo.register,
+            CableConstructionKind.register,
+            CableInfo.register,
+            CableOuterJacketKind.register,
+            CableShieldMaterialKind.register,
+            ConcentricNeutralCableInfo.register,
+            NoLoadTest.register,
+            OpenCircuitTest.register,
+            OverheadWireInfo.register,
+            PowerTransformerInfo.register,
+            ShortCircuitTest.register,
+            ShuntCompensatorInfo.register,
+            SwitchInfo.register,
+            TapChangerInfo.register,
+            TapeShieldCableInfo.register,
+            TransformerEndInfo.register,
+            TransformerTankInfo.register,
+            TransformerTest.register,
+            WireInfo.register,
+            WireInsulationKind.register,
+            WireMaterialKind.register,
+            WirePosition.register,
+            WireSpacingInfo.register,
+            WireUsageKind.register
+        )
     }
 }

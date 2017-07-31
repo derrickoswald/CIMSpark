@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import org.apache.spark.sql.Row
 
+import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
+import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -1022,22 +1024,24 @@ extends
 
 object _Work
 {
-    def register: Unit =
+    def register: List[ClassInfo] =
     {
-        BaseWork.register
-        MaintenanceLocation.register
-        MaterialItem.register
-        Tool.register
-        Vehicle.register
-        VehicleUsageKind.register
-        Work.register
-        WorkAsset.register
-        WorkKind.register
-        WorkLocation.register
-        WorkStatusKind.register
-        WorkTask.register
-        WorkTaskKind.register
-        WorkTimeSchedule.register
-        WorkTimeScheduleKind.register
+        List (
+            BaseWork.register,
+            MaintenanceLocation.register,
+            MaterialItem.register,
+            Tool.register,
+            Vehicle.register,
+            VehicleUsageKind.register,
+            Work.register,
+            WorkAsset.register,
+            WorkKind.register,
+            WorkLocation.register,
+            WorkStatusKind.register,
+            WorkTask.register,
+            WorkTaskKind.register,
+            WorkTimeSchedule.register,
+            WorkTimeScheduleKind.register
+        )
     }
 }
