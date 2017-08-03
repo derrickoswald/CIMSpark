@@ -29,7 +29,7 @@ case class Package (
  * CIM class.
  * @param xuid Unique identifier in the model.
  * @param name The class name.
- * @param notes Textual notes attached to the class.
+ * @param note Textual notes attached to the class.
  * @param pkg Containing package.
  * @param stereotype UML stereotype for the class.
  */
@@ -158,7 +158,7 @@ case class ModelParser (db: Database)
         while (it.hasNext ())
         {
             val row = new Row (it.next ())
-            if (row.getObjectType.equals ("Class"))
+            if (row.getObjectType.equals ("Class") || row.getObjectType.equals ("Enumeration"))
             {
                 val pkg = packages.getOrElse (row.getPackageID, globalPackage)
                 val stereotype = if (row.hasStereotype) row.getStereotype else null
@@ -187,7 +187,7 @@ case class ModelParser (db: Database)
                     attributes.put (cls_id, List (attribute))
             }
             else
-                System.out.println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id);
+                System.out.println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id)
         }
     }
 
@@ -209,7 +209,7 @@ case class ModelParser (db: Database)
                     else
                     {
                         val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, true)
-                        val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, false);
+                        val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, false)
                         rolea.mate = roleb
                         roleb.mate = rolea
                         roles.add (rolea)
@@ -260,6 +260,7 @@ case class ModelParser (db: Database)
                     }
                 }
             case None =>
+                System.out.println("Could not find the Domain package")
         }
     }
 
@@ -301,7 +302,7 @@ case class ModelParser (db: Database)
 
 object ModelParser
 {
-    val VERSION = "16"
+    val VERSION = "17"
 
     def main(args : Array[String])
     {
@@ -310,7 +311,8 @@ object ModelParser
             case "14" => "iec61970cim14v15_iec61968cim10v31_combined.eap"
             case "15" => "iec61970cim15v33_iec61968cim11v13_iec62325cim01v07.eap"
             case "16" => "iec61970cim16v29a_iec61968cim12v08_iec62325cim03v01a.eap"
-            case "17" => "iec61970cim17v16_iec61968cim13v10_iec62325cim03v14.eap" // preview
+            //case "17" => "iec61970cim17v16_iec61968cim13v11_iec62325cim03v14.eap"
+            case "17" => "iec61970cim17v22_iec61968cim13v11_iec62325cim03v14.eap"
         }
 
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))
@@ -335,14 +337,14 @@ object ModelParser
             val packages = SortedSet[(String, Int)]()
             for (pkg <- parser.packages)
             {
-                val scala = Scala (parser, pkg._2);
+                val scala = Scala (parser, pkg._2)
                 packages.add ((scala.register, pkg._1))
             }
             val register = new StringBuilder ()
             for (q <- packages)
             {
                 val p = parser.packages (q._2)
-                val scala = Scala (parser, p);
+                val scala = Scala (parser, p)
                 val s = scala.asText ()
                 if (s.trim != "")
                 {
@@ -362,11 +364,11 @@ object ModelParser
             for (pkg <- parser.packages)
             {
                 val p = pkg._2
-                val js = JavaScript (parser, p);
+                val js = JavaScript (parser, p)
                 val s = js.asText ()
                 if (s.trim != "")
                 {
-                    files.add (p.name);
+                    files.add (p.name)
                     println ("target/model/" + p.name + ".js:")
                     Files.write (Paths.get ("target/model/" + p.name + ".js"), s.getBytes (StandardCharsets.UTF_8))
                 }

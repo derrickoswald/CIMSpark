@@ -13,8 +13,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <version.dependency.scala>2.11</version.dependency.scala>
         <version.dependency.scalalibrary>2.11.8</version.dependency.scalalibrary>
-        <version.dependency.jackcess>2.1.6</version.dependency.jackcess>
-        <version.dependency.jena>3.2.0</version.dependency.jena>
+        <version.dependency.jackcess>2.1.8</version.dependency.jackcess>
+        <version.dependency.jena>3.4.0</version.dependency.jena>
         <version.dependency.commons-logging>1.2</version.dependency.commons-logging>
         <version.dependency.commons-lang>2.6</version.dependency.commons-lang>
         <version.dependency.scalatest>3.0.1</version.dependency.scalatest>

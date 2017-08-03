@@ -25,7 +25,7 @@ import ch.ninecode.model.Unknown
  *
  * The program is usually run on the master node with a command like:
  * <code>
- * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/cim_data_file.rdf"
+ * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.0.2-2.1.0-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"
  * </code>
  *
  * It will read the rdf file and create a Spark RDD for each CIM class,
@@ -216,8 +216,12 @@ object CIMServerJDBC
                 // set the host and port if specified, otherwise use the default of localhost:10004
                 configuration.set ("hive.server2.thrift.bind.host", arguments.host)
                 configuration.set ("hive.server2.thrift.port", arguments.port.toString)
-                configuration.set ("hive.server2.authentication", "NOSASL")
+                configuration.set ("hive.server2.authentication", "NONE")
                 configuration.set ("hive.server2.enable.doAs", "false")
+                configuration.set ("hive.server2.enable.impersonation", "false")
+                // https://issues.apache.org/jira/browse/SPARK-5159
+                // https://issues.apache.org/jira/browse/SPARK-11248
+//                configuration.set ("hive.metastore.execute.setugi", "true")
                 val session_builder = SparkSession.builder ()
                 session_builder.enableHiveSupport ()
                 val session = session_builder.config (configuration).getOrCreate ()
@@ -228,8 +232,6 @@ object CIMServerJDBC
 
                 try
                 {
-
-
                     // read the file
                     log.info ("reading CIM files")
                     val reader_options = new scala.collection.mutable.HashMap[String, String] ()
@@ -244,32 +246,24 @@ object CIMServerJDBC
                     else
                         log.info ("" + elements.count + " elements")
 
-
-//                    var sql = "create temporary table elements using ch.ninecode.cim options (path '" + arguments.files.mkString (",") + "')"
-//                    val dataframe = session.sqlContext.sql (sql)
-//                    val count = session.sqlContext.sql ("select count(*) from elements")
-//                    println ("dataframe created with " + count.head ().getLong (0) + " elements")
-
                     // start the thrift JDBC server
                     HiveThriftServer2.startWithContext (session.sqlContext)
                     log.info ("thriftserver started on port " + arguments.port)
 
-                    // show databases
-//                log.info ("databases")
-//                var sql = "show databases";
-//                val databases = sql_context.sql (sql)
-//                for (database <- databases)
-//                   log.info (database.toString ())
+//                    log.info ("databases")
+//                    val databases = session.sqlContext.sql ("show databases")
+//                    for (database <- databases)
+//                        log.info (database.toString ())
 
-//                    log.info ("tables")
-//                    val tables = session.sqlContext.tableNames ()
-//                    for (table <- tables)
-//                       log.info (table.toString ())
+                    log.info ("serving tables:")
+                    val tables = session.sqlContext.tableNames ()
+                    for (table <- tables)
+                       log.info (table.toString ())
 
-                    var sql = "show tables"
-                    val dataframe = session.sqlContext.sql (sql)
-                    for (x <- dataframe)
-                        log.info (x.getString (0))
+//                    log.info ("tables #2")
+//                    val dataframe = session.sqlContext.sql ("show tables")
+//                    for (x <- dataframe)
+//                        log.info (x.getString (0))
 
                     scala.io.StdIn.readLine ("Press [Return] to exit...")
                     println ("Done.")

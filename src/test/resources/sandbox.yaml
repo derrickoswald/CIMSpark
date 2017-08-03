@@ -1,6 +1,6 @@
 # Spark local cluster using Docker
 #
-# Note: from CIMReader/test/resources/ directory run with:
+# Note: from CIMReader/src/test/resources/ directory run with:
 #       docker-compose up&
 # stop with:
 #       docker-compose down
@@ -21,7 +21,7 @@ services:
     image: derrickoswald/spark-docker
     command: start-spark master
     environment:
-      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
+      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
     hostname: sandbox
     ports: # not sure how many of these are really needed:
       - "4040:4040"

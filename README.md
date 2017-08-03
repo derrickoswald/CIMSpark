@@ -16,7 +16,7 @@ and produces a Spark Resilient Distributed Dataset (RDD) for each CIM class.
 
 These RDDs can be manipulated by native Spark programs written in
 [Scala, Java or Python](http://spark.apache.org/docs/latest/programming-guide.html),
-or can be accessed via [SparkR](http://spark.apache.org/docs/latest/sparkr.html) in R.  
+or can be accessed via [SparkR](http://spark.apache.org/docs/latest/sparkr.html) in R.
 
 The RDDs are also exposed as Hive2 tables using Thrift for legacy JDBC access.
 
@@ -58,7 +58,7 @@ The first version number is the Scala library version. This follows [Scala libra
 
 The second version number is the [Spark version](https://spark.apache.org/downloads.html).
 
-The third version number is the CIMReader version number, which is set (hardcoded) in the pom.xml and build.sbt files.  
+The third version number is the CIMReader version number, which is set (hardcoded) in the pom.xml and build.sbt files.
 
 # Sample Interactive Usage
 

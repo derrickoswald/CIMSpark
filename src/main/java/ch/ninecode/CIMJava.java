@@ -26,8 +26,14 @@ public class CIMJava
             e.printStackTrace ();
             System.exit (1);
         }
-        String url = "jdbc:hive2://" + host + ":" + port + "/" + database + ";auth=noSasl"; // https://issues.apache.org/jira/browse/HIVE-6852
-        Connection con = DriverManager.getConnection (url, user, "");
+        String url = "jdbc:hive2://" + host + ":" + port + "/" + database + ";AuthMech=0;transportMode=binary;"; // https://issues.apache.org/jira/browse/HIVE-6852
+        // using the docker-compose "sandbox.yaml",
+        // the value in the "USER" environment sets the "HADOOP_USER_NAME" (Spark owner/operator) on the spark_master node,
+        // so we use the same value if available:
+        String username = System.getenv ("USER");
+        if (null == username)
+            username = user;
+        Connection con = DriverManager.getConnection (url, username, "");
         Statement stmt = con.createStatement ();
 
         // show databases
