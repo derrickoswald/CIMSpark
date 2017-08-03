@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -22,10 +21,10 @@ import ch.ninecode.cim.Parseable
 case class BaseWork
 (
     override val sup: Document,
-    val kind: String,
-    val priority: String,
-    val statusKind: String,
-    val WorkLocation: String
+    kind: String,
+    priority: String,
+    statusKind: String,
+    WorkLocation: String
 )
 extends
     Element
@@ -61,10 +60,10 @@ object BaseWork
 extends
     Parseable[BaseWork]
 {
-    val kind = parse_attribute (attribute ("""BaseWork.kind"""))
-    val priority = parse_attribute (attribute ("""BaseWork.priority"""))
-    val statusKind = parse_attribute (attribute ("""BaseWork.statusKind"""))
-    val WorkLocation = parse_attribute (attribute ("""BaseWork.WorkLocation"""))
+    val kind: (Context) => String = parse_attribute (attribute ("""BaseWork.kind"""))
+    val priority: (Context) => String = parse_attribute (attribute ("""BaseWork.priority"""))
+    val statusKind: (Context) => String = parse_attribute (attribute ("""BaseWork.statusKind"""))
+    val WorkLocation: (Context) => String = parse_attribute (attribute ("""BaseWork.WorkLocation"""))
     def parse (context: Context): BaseWork =
     {
         BaseWork(
@@ -88,10 +87,10 @@ extends
 case class MaintenanceLocation
 (
     override val sup: WorkLocation,
-    val block: String,
-    val lot: String,
-    val nearestIntersection: String,
-    val subdivision: String
+    block: String,
+    lot: String,
+    nearestIntersection: String,
+    subdivision: String
 )
 extends
     Element
@@ -127,10 +126,10 @@ object MaintenanceLocation
 extends
     Parseable[MaintenanceLocation]
 {
-    val block = parse_element (element ("""MaintenanceLocation.block"""))
-    val lot = parse_element (element ("""MaintenanceLocation.lot"""))
-    val nearestIntersection = parse_element (element ("""MaintenanceLocation.nearestIntersection"""))
-    val subdivision = parse_element (element ("""MaintenanceLocation.subdivision"""))
+    val block: (Context) => String = parse_element (element ("""MaintenanceLocation.block"""))
+    val lot: (Context) => String = parse_element (element ("""MaintenanceLocation.lot"""))
+    val nearestIntersection: (Context) => String = parse_element (element ("""MaintenanceLocation.nearestIntersection"""))
+    val subdivision: (Context) => String = parse_element (element ("""MaintenanceLocation.subdivision"""))
     def parse (context: Context): MaintenanceLocation =
     {
         MaintenanceLocation(
@@ -148,15 +147,15 @@ extends
  * It includes items such as nuts, bolts, brackets, glue, etc.
  * @param sup Reference to the superclass object.
  * @param quantity Quantity of material used.
- * @param TypeMaterial
- * @param WorkTask
+ * @param TypeMaterial <em>undocumented</em>
+ * @param WorkTask <em>undocumented</em>
  */
 case class MaterialItem
 (
     override val sup: IdentifiedObject,
-    val quantity: String,
-    val TypeMaterial: String,
-    val WorkTask: String
+    quantity: String,
+    TypeMaterial: String,
+    WorkTask: String
 )
 extends
     Element
@@ -191,9 +190,9 @@ object MaterialItem
 extends
     Parseable[MaterialItem]
 {
-    val quantity = parse_attribute (attribute ("""MaterialItem.quantity"""))
-    val TypeMaterial = parse_attribute (attribute ("""MaterialItem.TypeMaterial"""))
-    val WorkTask = parse_attribute (attribute ("""MaterialItem.WorkTask"""))
+    val quantity: (Context) => String = parse_attribute (attribute ("""MaterialItem.quantity"""))
+    val TypeMaterial: (Context) => String = parse_attribute (attribute ("""MaterialItem.TypeMaterial"""))
+    val WorkTask: (Context) => String = parse_attribute (attribute ("""MaterialItem.WorkTask"""))
     def parse (context: Context): MaterialItem =
     {
         MaterialItem(
@@ -213,7 +212,7 @@ extends
 case class Tool
 (
     override val sup: WorkAsset,
-    val lastCalibrationDate: String
+    lastCalibrationDate: String
 )
 extends
     Element
@@ -246,7 +245,7 @@ object Tool
 extends
     Parseable[Tool]
 {
-    val lastCalibrationDate = parse_element (element ("""Tool.lastCalibrationDate"""))
+    val lastCalibrationDate: (Context) => String = parse_element (element ("""Tool.lastCalibrationDate"""))
     def parse (context: Context): Tool =
     {
         Tool(
@@ -267,9 +266,9 @@ extends
 case class Vehicle
 (
     override val sup: WorkAsset,
-    val odometerReadDateTime: String,
-    val odometerReading: Double,
-    val usageKind: String
+    odometerReadDateTime: String,
+    odometerReading: Double,
+    usageKind: String
 )
 extends
     Element
@@ -304,9 +303,9 @@ object Vehicle
 extends
     Parseable[Vehicle]
 {
-    val odometerReadDateTime = parse_element (element ("""Vehicle.odometerReadDateTime"""))
-    val odometerReading = parse_element (element ("""Vehicle.odometerReading"""))
-    val usageKind = parse_attribute (attribute ("""Vehicle.usageKind"""))
+    val odometerReadDateTime: (Context) => String = parse_element (element ("""Vehicle.odometerReadDateTime"""))
+    val odometerReading: (Context) => String = parse_element (element ("""Vehicle.odometerReading"""))
+    val usageKind: (Context) => String = parse_attribute (attribute ("""Vehicle.usageKind"""))
     def parse (context: Context): Vehicle =
     {
         Vehicle(
@@ -321,18 +320,18 @@ extends
 /**
  * Usage of a vehicle.
  * @param sup Reference to the superclass object.
- * @param contractor
- * @param crew
- * @param other
- * @param user
+ * @param contractor <em>undocumented</em>
+ * @param crew <em>undocumented</em>
+ * @param other <em>undocumented</em>
+ * @param user <em>undocumented</em>
  */
 case class VehicleUsageKind
 (
     override val sup: BasicElement,
-    val contractor: String,
-    val crew: String,
-    val other: String,
-    val user: String
+    contractor: String,
+    crew: String,
+    other: String,
+    user: String
 )
 extends
     Element
@@ -368,10 +367,10 @@ object VehicleUsageKind
 extends
     Parseable[VehicleUsageKind]
 {
-    val contractor = parse_attribute (attribute ("""VehicleUsageKind.contractor"""))
-    val crew = parse_attribute (attribute ("""VehicleUsageKind.crew"""))
-    val other = parse_attribute (attribute ("""VehicleUsageKind.other"""))
-    val user = parse_attribute (attribute ("""VehicleUsageKind.user"""))
+    val contractor: (Context) => String = parse_attribute (attribute ("""VehicleUsageKind.contractor"""))
+    val crew: (Context) => String = parse_attribute (attribute ("""VehicleUsageKind.crew"""))
+    val other: (Context) => String = parse_attribute (attribute ("""VehicleUsageKind.other"""))
+    val user: (Context) => String = parse_attribute (attribute ("""VehicleUsageKind.user"""))
     def parse (context: Context): VehicleUsageKind =
     {
         VehicleUsageKind(
@@ -388,19 +387,19 @@ extends
  * Document used to request, initiate, track and record work.
  * @param sup Reference to the superclass object.
  * @param requestDateTime Date and time work was requested.
- * @param BusinessCase
- * @param ErpProjectAccounting
- * @param Project
- * @param WorkBillingInfo
+ * @param BusinessCase <em>undocumented</em>
+ * @param ErpProjectAccounting <em>undocumented</em>
+ * @param Project <em>undocumented</em>
+ * @param WorkBillingInfo <em>undocumented</em>
  */
 case class Work
 (
     override val sup: BaseWork,
-    val requestDateTime: String,
-    val BusinessCase: String,
-    val ErpProjectAccounting: String,
-    val Project: String,
-    val WorkBillingInfo: String
+    requestDateTime: String,
+    BusinessCase: String,
+    ErpProjectAccounting: String,
+    Project: String,
+    WorkBillingInfo: String
 )
 extends
     Element
@@ -437,11 +436,11 @@ object Work
 extends
     Parseable[Work]
 {
-    val requestDateTime = parse_element (element ("""Work.requestDateTime"""))
-    val BusinessCase = parse_attribute (attribute ("""Work.BusinessCase"""))
-    val ErpProjectAccounting = parse_attribute (attribute ("""Work.ErpProjectAccounting"""))
-    val Project = parse_attribute (attribute ("""Work.Project"""))
-    val WorkBillingInfo = parse_attribute (attribute ("""Work.WorkBillingInfo"""))
+    val requestDateTime: (Context) => String = parse_element (element ("""Work.requestDateTime"""))
+    val BusinessCase: (Context) => String = parse_attribute (attribute ("""Work.BusinessCase"""))
+    val ErpProjectAccounting: (Context) => String = parse_attribute (attribute ("""Work.ErpProjectAccounting"""))
+    val Project: (Context) => String = parse_attribute (attribute ("""Work.Project"""))
+    val WorkBillingInfo: (Context) => String = parse_attribute (attribute ("""Work.WorkBillingInfo"""))
     def parse (context: Context): Work =
     {
         Work(
@@ -463,7 +462,7 @@ extends
 case class WorkAsset
 (
     override val sup: Asset,
-    val Crew: String
+    Crew: String
 )
 extends
     Element
@@ -496,7 +495,7 @@ object WorkAsset
 extends
     Parseable[WorkAsset]
 {
-    val Crew = parse_attribute (attribute ("""WorkAsset.Crew"""))
+    val Crew: (Context) => String = parse_attribute (attribute ("""WorkAsset.Crew"""))
     def parse (context: Context): WorkAsset =
     {
         WorkAsset(
@@ -523,16 +522,16 @@ extends
 case class WorkKind
 (
     override val sup: BasicElement,
-    val connect: String,
-    val construction: String,
-    val disconnect: String,
-    val inspection: String,
-    val maintenance: String,
-    val other: String,
-    val reconnect: String,
-    val repair: String,
-    val service: String,
-    val test: String
+    connect: String,
+    construction: String,
+    disconnect: String,
+    inspection: String,
+    maintenance: String,
+    other: String,
+    reconnect: String,
+    repair: String,
+    service: String,
+    test: String
 )
 extends
     Element
@@ -574,16 +573,16 @@ object WorkKind
 extends
     Parseable[WorkKind]
 {
-    val connect = parse_attribute (attribute ("""WorkKind.connect"""))
-    val construction = parse_attribute (attribute ("""WorkKind.construction"""))
-    val disconnect = parse_attribute (attribute ("""WorkKind.disconnect"""))
-    val inspection = parse_attribute (attribute ("""WorkKind.inspection"""))
-    val maintenance = parse_attribute (attribute ("""WorkKind.maintenance"""))
-    val other = parse_attribute (attribute ("""WorkKind.other"""))
-    val reconnect = parse_attribute (attribute ("""WorkKind.reconnect"""))
-    val repair = parse_attribute (attribute ("""WorkKind.repair"""))
-    val service = parse_attribute (attribute ("""WorkKind.service"""))
-    val test = parse_attribute (attribute ("""WorkKind.test"""))
+    val connect: (Context) => String = parse_attribute (attribute ("""WorkKind.connect"""))
+    val construction: (Context) => String = parse_attribute (attribute ("""WorkKind.construction"""))
+    val disconnect: (Context) => String = parse_attribute (attribute ("""WorkKind.disconnect"""))
+    val inspection: (Context) => String = parse_attribute (attribute ("""WorkKind.inspection"""))
+    val maintenance: (Context) => String = parse_attribute (attribute ("""WorkKind.maintenance"""))
+    val other: (Context) => String = parse_attribute (attribute ("""WorkKind.other"""))
+    val reconnect: (Context) => String = parse_attribute (attribute ("""WorkKind.reconnect"""))
+    val repair: (Context) => String = parse_attribute (attribute ("""WorkKind.repair"""))
+    val service: (Context) => String = parse_attribute (attribute ("""WorkKind.service"""))
+    val test: (Context) => String = parse_attribute (attribute ("""WorkKind.test"""))
     def parse (context: Context): WorkKind =
     {
         WorkKind(
@@ -605,12 +604,12 @@ extends
 /**
  * Information about a particular location for various forms of work.
  * @param sup Reference to the superclass object.
- * @param OneCallRequest
+ * @param OneCallRequest <em>undocumented</em>
  */
 case class WorkLocation
 (
     override val sup: Location,
-    val OneCallRequest: String
+    OneCallRequest: String
 )
 extends
     Element
@@ -643,7 +642,7 @@ object WorkLocation
 extends
     Parseable[WorkLocation]
 {
-    val OneCallRequest = parse_attribute (attribute ("""WorkLocation.OneCallRequest"""))
+    val OneCallRequest: (Context) => String = parse_attribute (attribute ("""WorkLocation.OneCallRequest"""))
     def parse (context: Context): WorkLocation =
     {
         WorkLocation(
@@ -672,18 +671,18 @@ extends
 case class WorkStatusKind
 (
     override val sup: BasicElement,
-    val approved: String,
-    val cancelled: String,
-    val closed: String,
-    val completed: String,
-    val dispatched: String,
-    val enroute: String,
-    val inProgress: String,
-    val onSite: String,
-    val scheduled: String,
-    val waitingOnApproval: String,
-    val waitingOnMaterial: String,
-    val waitingToBeScheduled: String
+    approved: String,
+    cancelled: String,
+    closed: String,
+    completed: String,
+    dispatched: String,
+    enroute: String,
+    inProgress: String,
+    onSite: String,
+    scheduled: String,
+    waitingOnApproval: String,
+    waitingOnMaterial: String,
+    waitingToBeScheduled: String
 )
 extends
     Element
@@ -727,18 +726,18 @@ object WorkStatusKind
 extends
     Parseable[WorkStatusKind]
 {
-    val approved = parse_attribute (attribute ("""WorkStatusKind.approved"""))
-    val cancelled = parse_attribute (attribute ("""WorkStatusKind.cancelled"""))
-    val closed = parse_attribute (attribute ("""WorkStatusKind.closed"""))
-    val completed = parse_attribute (attribute ("""WorkStatusKind.completed"""))
-    val dispatched = parse_attribute (attribute ("""WorkStatusKind.dispatched"""))
-    val enroute = parse_attribute (attribute ("""WorkStatusKind.enroute"""))
-    val inProgress = parse_attribute (attribute ("""WorkStatusKind.inProgress"""))
-    val onSite = parse_attribute (attribute ("""WorkStatusKind.onSite"""))
-    val scheduled = parse_attribute (attribute ("""WorkStatusKind.scheduled"""))
-    val waitingOnApproval = parse_attribute (attribute ("""WorkStatusKind.waitingOnApproval"""))
-    val waitingOnMaterial = parse_attribute (attribute ("""WorkStatusKind.waitingOnMaterial"""))
-    val waitingToBeScheduled = parse_attribute (attribute ("""WorkStatusKind.waitingToBeScheduled"""))
+    val approved: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.approved"""))
+    val cancelled: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.cancelled"""))
+    val closed: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.closed"""))
+    val completed: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.completed"""))
+    val dispatched: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.dispatched"""))
+    val enroute: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.enroute"""))
+    val inProgress: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.inProgress"""))
+    val onSite: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.onSite"""))
+    val scheduled: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.scheduled"""))
+    val waitingOnApproval: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.waitingOnApproval"""))
+    val waitingOnMaterial: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.waitingOnMaterial"""))
+    val waitingToBeScheduled: (Context) => String = parse_attribute (attribute ("""WorkStatusKind.waitingToBeScheduled"""))
     def parse (context: Context): WorkStatusKind =
     {
         WorkStatusKind(
@@ -762,15 +761,15 @@ extends
 case class WorkTask
 (
     override val sup: BaseWork,
-    val crewETA: String,
-    val instruction: String,
-    val schedOverride: String,
-    val taskKind: String,
-    val Assets: List[String],
-    val Crews: List[String],
-    val OldAsset: String,
-    val SwitchingPlan: String,
-    val Work: String
+    crewETA: String,
+    instruction: String,
+    schedOverride: String,
+    taskKind: String,
+    Assets: List[String],
+    Crews: List[String],
+    OldAsset: String,
+    SwitchingPlan: String,
+    Work: String
 )
 extends
     Element
@@ -811,15 +810,15 @@ object WorkTask
 extends
     Parseable[WorkTask]
 {
-    val crewETA = parse_element (element ("""WorkTask.crewETA"""))
-    val instruction = parse_element (element ("""WorkTask.instruction"""))
-    val schedOverride = parse_element (element ("""WorkTask.schedOverride"""))
-    val taskKind = parse_attribute (attribute ("""WorkTask.taskKind"""))
-    val Assets = parse_attributes (attribute ("""WorkTask.Assets"""))
-    val Crews = parse_attributes (attribute ("""WorkTask.Crews"""))
-    val OldAsset = parse_attribute (attribute ("""WorkTask.OldAsset"""))
-    val SwitchingPlan = parse_attribute (attribute ("""WorkTask.SwitchingPlan"""))
-    val Work = parse_attribute (attribute ("""WorkTask.Work"""))
+    val crewETA: (Context) => String = parse_element (element ("""WorkTask.crewETA"""))
+    val instruction: (Context) => String = parse_element (element ("""WorkTask.instruction"""))
+    val schedOverride: (Context) => String = parse_element (element ("""WorkTask.schedOverride"""))
+    val taskKind: (Context) => String = parse_attribute (attribute ("""WorkTask.taskKind"""))
+    val Assets: (Context) => List[String] = parse_attributes (attribute ("""WorkTask.Assets"""))
+    val Crews: (Context) => List[String] = parse_attributes (attribute ("""WorkTask.Crews"""))
+    val OldAsset: (Context) => String = parse_attribute (attribute ("""WorkTask.OldAsset"""))
+    val SwitchingPlan: (Context) => String = parse_attribute (attribute ("""WorkTask.SwitchingPlan"""))
+    val Work: (Context) => String = parse_attribute (attribute ("""WorkTask.Work"""))
     def parse (context: Context): WorkTask =
     {
         WorkTask(
@@ -840,10 +839,10 @@ extends
 case class WorkTaskKind
 (
     override val sup: BasicElement,
-    val exchange: String,
-    val install: String,
-    val investigate: String,
-    val remove: String
+    exchange: String,
+    install: String,
+    investigate: String,
+    remove: String
 )
 extends
     Element
@@ -879,10 +878,10 @@ object WorkTaskKind
 extends
     Parseable[WorkTaskKind]
 {
-    val exchange = parse_attribute (attribute ("""WorkTaskKind.exchange"""))
-    val install = parse_attribute (attribute ("""WorkTaskKind.install"""))
-    val investigate = parse_attribute (attribute ("""WorkTaskKind.investigate"""))
-    val remove = parse_attribute (attribute ("""WorkTaskKind.remove"""))
+    val exchange: (Context) => String = parse_attribute (attribute ("""WorkTaskKind.exchange"""))
+    val install: (Context) => String = parse_attribute (attribute ("""WorkTaskKind.install"""))
+    val investigate: (Context) => String = parse_attribute (attribute ("""WorkTaskKind.investigate"""))
+    val remove: (Context) => String = parse_attribute (attribute ("""WorkTaskKind.remove"""))
     def parse (context: Context): WorkTaskKind =
     {
         WorkTaskKind(
@@ -904,8 +903,8 @@ extends
 case class WorkTimeSchedule
 (
     override val sup: TimeSchedule,
-    val kind: String,
-    val BaseWork: String
+    kind: String,
+    BaseWork: String
 )
 extends
     Element
@@ -939,8 +938,8 @@ object WorkTimeSchedule
 extends
     Parseable[WorkTimeSchedule]
 {
-    val kind = parse_attribute (attribute ("""WorkTimeSchedule.kind"""))
-    val BaseWork = parse_attribute (attribute ("""WorkTimeSchedule.BaseWork"""))
+    val kind: (Context) => String = parse_attribute (attribute ("""WorkTimeSchedule.kind"""))
+    val BaseWork: (Context) => String = parse_attribute (attribute ("""WorkTimeSchedule.BaseWork"""))
     def parse (context: Context): WorkTimeSchedule =
     {
         WorkTimeSchedule(
@@ -954,20 +953,20 @@ extends
 /**
  * Kind of work schedule.
  * @param sup Reference to the superclass object.
- * @param actual
- * @param earliest
- * @param estimate
- * @param latest
- * @param request
+ * @param actual <em>undocumented</em>
+ * @param earliest <em>undocumented</em>
+ * @param estimate <em>undocumented</em>
+ * @param latest <em>undocumented</em>
+ * @param request <em>undocumented</em>
  */
 case class WorkTimeScheduleKind
 (
     override val sup: BasicElement,
-    val actual: String,
-    val earliest: String,
-    val estimate: String,
-    val latest: String,
-    val request: String
+    actual: String,
+    earliest: String,
+    estimate: String,
+    latest: String,
+    request: String
 )
 extends
     Element
@@ -1004,11 +1003,11 @@ object WorkTimeScheduleKind
 extends
     Parseable[WorkTimeScheduleKind]
 {
-    val actual = parse_attribute (attribute ("""WorkTimeScheduleKind.actual"""))
-    val earliest = parse_attribute (attribute ("""WorkTimeScheduleKind.earliest"""))
-    val estimate = parse_attribute (attribute ("""WorkTimeScheduleKind.estimate"""))
-    val latest = parse_attribute (attribute ("""WorkTimeScheduleKind.latest"""))
-    val request = parse_attribute (attribute ("""WorkTimeScheduleKind.request"""))
+    val actual: (Context) => String = parse_attribute (attribute ("""WorkTimeScheduleKind.actual"""))
+    val earliest: (Context) => String = parse_attribute (attribute ("""WorkTimeScheduleKind.earliest"""))
+    val estimate: (Context) => String = parse_attribute (attribute ("""WorkTimeScheduleKind.estimate"""))
+    val latest: (Context) => String = parse_attribute (attribute ("""WorkTimeScheduleKind.latest"""))
+    val request: (Context) => String = parse_attribute (attribute ("""WorkTimeScheduleKind.request"""))
     def parse (context: Context): WorkTimeScheduleKind =
     {
         WorkTimeScheduleKind(
@@ -1022,7 +1021,7 @@ extends
     }
 }
 
-object _Work
+private[ninecode] object _Work
 {
     def register: List[ClassInfo] =
     {

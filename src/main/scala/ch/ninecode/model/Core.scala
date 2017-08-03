@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -25,9 +24,9 @@ import ch.ninecode.cim.Parseable
 case class ACDCTerminal
 (
     override val sup: IdentifiedObject,
-    val connected: Boolean,
-    val sequenceNumber: Int,
-    val BusNameMarker: String
+    connected: Boolean,
+    sequenceNumber: Int,
+    BusNameMarker: String
 )
 extends
     Element
@@ -62,9 +61,9 @@ object ACDCTerminal
 extends
     Parseable[ACDCTerminal]
 {
-    val connected = parse_element (element ("""ACDCTerminal.connected"""))
-    val sequenceNumber = parse_element (element ("""ACDCTerminal.sequenceNumber"""))
-    val BusNameMarker = parse_attribute (attribute ("""ACDCTerminal.BusNameMarker"""))
+    val connected: (Context) => String = parse_element (element ("""ACDCTerminal.connected"""))
+    val sequenceNumber: (Context) => String = parse_element (element ("""ACDCTerminal.sequenceNumber"""))
+    val BusNameMarker: (Context) => String = parse_attribute (attribute ("""ACDCTerminal.BusNameMarker"""))
     def parse (context: Context): ACDCTerminal =
     {
         ACDCTerminal(
@@ -85,7 +84,7 @@ extends
 case class BaseFrequency
 (
     override val sup: IdentifiedObject,
-    val frequency: Double
+    frequency: Double
 )
 extends
     Element
@@ -118,7 +117,7 @@ object BaseFrequency
 extends
     Parseable[BaseFrequency]
 {
-    val frequency = parse_element (element ("""BaseFrequency.frequency"""))
+    val frequency: (Context) => String = parse_element (element ("""BaseFrequency.frequency"""))
     def parse (context: Context): BaseFrequency =
     {
         BaseFrequency(
@@ -136,7 +135,7 @@ extends
 case class BasePower
 (
     override val sup: IdentifiedObject,
-    val basePower: Double
+    basePower: Double
 )
 extends
     Element
@@ -169,7 +168,7 @@ object BasePower
 extends
     Parseable[BasePower]
 {
-    val basePower = parse_element (element ("""BasePower.basePower"""))
+    val basePower: (Context) => String = parse_element (element ("""BasePower.basePower"""))
     def parse (context: Context): BasePower =
     {
         BasePower(
@@ -187,7 +186,7 @@ extends
 case class BaseVoltage
 (
     override val sup: IdentifiedObject,
-    val nominalVoltage: Double
+    nominalVoltage: Double
 )
 extends
     Element
@@ -220,7 +219,7 @@ object BaseVoltage
 extends
     Parseable[BaseVoltage]
 {
-    val nominalVoltage = parse_element (element ("""BaseVoltage.nominalVoltage"""))
+    val nominalVoltage: (Context) => String = parse_element (element ("""BaseVoltage.nominalVoltage"""))
     def parse (context: Context): BaseVoltage =
     {
         BaseVoltage(
@@ -242,11 +241,11 @@ extends
 case class BasicIntervalSchedule
 (
     override val sup: IdentifiedObject,
-    val startTime: String,
-    val value1Multiplier: String,
-    val value1Unit: String,
-    val value2Multiplier: String,
-    val value2Unit: String
+    startTime: String,
+    value1Multiplier: String,
+    value1Unit: String,
+    value2Multiplier: String,
+    value2Unit: String
 )
 extends
     Element
@@ -283,11 +282,11 @@ object BasicIntervalSchedule
 extends
     Parseable[BasicIntervalSchedule]
 {
-    val startTime = parse_element (element ("""BasicIntervalSchedule.startTime"""))
-    val value1Multiplier = parse_attribute (attribute ("""BasicIntervalSchedule.value1Multiplier"""))
-    val value1Unit = parse_attribute (attribute ("""BasicIntervalSchedule.value1Unit"""))
-    val value2Multiplier = parse_attribute (attribute ("""BasicIntervalSchedule.value2Multiplier"""))
-    val value2Unit = parse_attribute (attribute ("""BasicIntervalSchedule.value2Unit"""))
+    val startTime: (Context) => String = parse_element (element ("""BasicIntervalSchedule.startTime"""))
+    val value1Multiplier: (Context) => String = parse_attribute (attribute ("""BasicIntervalSchedule.value1Multiplier"""))
+    val value1Unit: (Context) => String = parse_attribute (attribute ("""BasicIntervalSchedule.value1Unit"""))
+    val value2Multiplier: (Context) => String = parse_attribute (attribute ("""BasicIntervalSchedule.value2Multiplier"""))
+    val value2Unit: (Context) => String = parse_attribute (attribute ("""BasicIntervalSchedule.value2Unit"""))
     def parse (context: Context): BasicIntervalSchedule =
     {
         BasicIntervalSchedule(
@@ -315,12 +314,12 @@ extends
 case class Bay
 (
     override val sup: EquipmentContainer,
-    val bayEnergyMeasFlag: Boolean,
-    val bayPowerMeasFlag: Boolean,
-    val breakerConfiguration: String,
-    val busBarConfiguration: String,
-    val Substation: String,
-    val VoltageLevel: String
+    bayEnergyMeasFlag: Boolean,
+    bayPowerMeasFlag: Boolean,
+    breakerConfiguration: String,
+    busBarConfiguration: String,
+    Substation: String,
+    VoltageLevel: String
 )
 extends
     Element
@@ -358,12 +357,12 @@ object Bay
 extends
     Parseable[Bay]
 {
-    val bayEnergyMeasFlag = parse_element (element ("""Bay.bayEnergyMeasFlag"""))
-    val bayPowerMeasFlag = parse_element (element ("""Bay.bayPowerMeasFlag"""))
-    val breakerConfiguration = parse_attribute (attribute ("""Bay.breakerConfiguration"""))
-    val busBarConfiguration = parse_attribute (attribute ("""Bay.busBarConfiguration"""))
-    val Substation = parse_attribute (attribute ("""Bay.Substation"""))
-    val VoltageLevel = parse_attribute (attribute ("""Bay.VoltageLevel"""))
+    val bayEnergyMeasFlag: (Context) => String = parse_element (element ("""Bay.bayEnergyMeasFlag"""))
+    val bayPowerMeasFlag: (Context) => String = parse_element (element ("""Bay.bayPowerMeasFlag"""))
+    val breakerConfiguration: (Context) => String = parse_attribute (attribute ("""Bay.breakerConfiguration"""))
+    val busBarConfiguration: (Context) => String = parse_attribute (attribute ("""Bay.busBarConfiguration"""))
+    val Substation: (Context) => String = parse_attribute (attribute ("""Bay.Substation"""))
+    val VoltageLevel: (Context) => String = parse_attribute (attribute ("""Bay.VoltageLevel"""))
     def parse (context: Context): Bay =
     {
         Bay(
@@ -389,10 +388,10 @@ extends
 case class BreakerConfiguration
 (
     override val sup: BasicElement,
-    val breakerAndAHalf: String,
-    val doubleBreaker: String,
-    val noBreaker: String,
-    val singleBreaker: String
+    breakerAndAHalf: String,
+    doubleBreaker: String,
+    noBreaker: String,
+    singleBreaker: String
 )
 extends
     Element
@@ -428,10 +427,10 @@ object BreakerConfiguration
 extends
     Parseable[BreakerConfiguration]
 {
-    val breakerAndAHalf = parse_attribute (attribute ("""BreakerConfiguration.breakerAndAHalf"""))
-    val doubleBreaker = parse_attribute (attribute ("""BreakerConfiguration.doubleBreaker"""))
-    val noBreaker = parse_attribute (attribute ("""BreakerConfiguration.noBreaker"""))
-    val singleBreaker = parse_attribute (attribute ("""BreakerConfiguration.singleBreaker"""))
+    val breakerAndAHalf: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.breakerAndAHalf"""))
+    val doubleBreaker: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.doubleBreaker"""))
+    val noBreaker: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.noBreaker"""))
+    val singleBreaker: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.singleBreaker"""))
     def parse (context: Context): BreakerConfiguration =
     {
         BreakerConfiguration(
@@ -455,10 +454,10 @@ extends
 case class BusbarConfiguration
 (
     override val sup: BasicElement,
-    val doubleBus: String,
-    val mainWithTransfer: String,
-    val ringBus: String,
-    val singleBus: String
+    doubleBus: String,
+    mainWithTransfer: String,
+    ringBus: String,
+    singleBus: String
 )
 extends
     Element
@@ -494,10 +493,10 @@ object BusbarConfiguration
 extends
     Parseable[BusbarConfiguration]
 {
-    val doubleBus = parse_attribute (attribute ("""BusbarConfiguration.doubleBus"""))
-    val mainWithTransfer = parse_attribute (attribute ("""BusbarConfiguration.mainWithTransfer"""))
-    val ringBus = parse_attribute (attribute ("""BusbarConfiguration.ringBus"""))
-    val singleBus = parse_attribute (attribute ("""BusbarConfiguration.singleBus"""))
+    val doubleBus: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.doubleBus"""))
+    val mainWithTransfer: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.mainWithTransfer"""))
+    val ringBus: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.ringBus"""))
+    val singleBus: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.singleBus"""))
     def parse (context: Context): BusbarConfiguration =
     {
         BusbarConfiguration(
@@ -522,10 +521,10 @@ extends
 case class ConductingEquipment
 (
     override val sup: Equipment,
-    val BaseVoltage: String,
-    val GroundingAction: String,
-    val JumpingAction: String,
-    val SvStatus: String
+    BaseVoltage: String,
+    GroundingAction: String,
+    JumpingAction: String,
+    SvStatus: String
 )
 extends
     Element
@@ -561,10 +560,10 @@ object ConductingEquipment
 extends
     Parseable[ConductingEquipment]
 {
-    val BaseVoltage = parse_attribute (attribute ("""ConductingEquipment.BaseVoltage"""))
-    val GroundingAction = parse_attribute (attribute ("""ConductingEquipment.GroundingAction"""))
-    val JumpingAction = parse_attribute (attribute ("""ConductingEquipment.JumpingAction"""))
-    val SvStatus = parse_attribute (attribute ("""ConductingEquipment.SvStatus"""))
+    val BaseVoltage: (Context) => String = parse_attribute (attribute ("""ConductingEquipment.BaseVoltage"""))
+    val GroundingAction: (Context) => String = parse_attribute (attribute ("""ConductingEquipment.GroundingAction"""))
+    val JumpingAction: (Context) => String = parse_attribute (attribute ("""ConductingEquipment.JumpingAction"""))
+    val SvStatus: (Context) => String = parse_attribute (attribute ("""ConductingEquipment.SvStatus"""))
     def parse (context: Context): ConductingEquipment =
     {
         ConductingEquipment(
@@ -587,8 +586,8 @@ extends
 case class ConnectivityNode
 (
     override val sup: IdentifiedObject,
-    val ConnectivityNodeContainer: String,
-    val TopologicalNode: String
+    ConnectivityNodeContainer: String,
+    TopologicalNode: String
 )
 extends
     Element
@@ -622,8 +621,8 @@ object ConnectivityNode
 extends
     Parseable[ConnectivityNode]
 {
-    val ConnectivityNodeContainer = parse_attribute (attribute ("""ConnectivityNode.ConnectivityNodeContainer"""))
-    val TopologicalNode = parse_attribute (attribute ("""ConnectivityNode.TopologicalNode"""))
+    val ConnectivityNodeContainer: (Context) => String = parse_attribute (attribute ("""ConnectivityNode.ConnectivityNodeContainer"""))
+    val TopologicalNode: (Context) => String = parse_attribute (attribute ("""ConnectivityNode.TopologicalNode"""))
     def parse (context: Context): ConnectivityNode =
     {
         ConnectivityNode(
@@ -697,15 +696,15 @@ extends
 case class Curve
 (
     override val sup: IdentifiedObject,
-    val curveStyle: String,
-    val xMultiplier: String,
-    val xUnit: String,
-    val y1Multiplier: String,
-    val y1Unit: String,
-    val y2Multiplier: String,
-    val y2Unit: String,
-    val y3Multiplier: String,
-    val y3Unit: String
+    curveStyle: String,
+    xMultiplier: String,
+    xUnit: String,
+    y1Multiplier: String,
+    y1Unit: String,
+    y2Multiplier: String,
+    y2Unit: String,
+    y3Multiplier: String,
+    y3Unit: String
 )
 extends
     Element
@@ -746,15 +745,15 @@ object Curve
 extends
     Parseable[Curve]
 {
-    val curveStyle = parse_attribute (attribute ("""Curve.curveStyle"""))
-    val xMultiplier = parse_attribute (attribute ("""Curve.xMultiplier"""))
-    val xUnit = parse_attribute (attribute ("""Curve.xUnit"""))
-    val y1Multiplier = parse_attribute (attribute ("""Curve.y1Multiplier"""))
-    val y1Unit = parse_attribute (attribute ("""Curve.y1Unit"""))
-    val y2Multiplier = parse_attribute (attribute ("""Curve.y2Multiplier"""))
-    val y2Unit = parse_attribute (attribute ("""Curve.y2Unit"""))
-    val y3Multiplier = parse_attribute (attribute ("""Curve.y3Multiplier"""))
-    val y3Unit = parse_attribute (attribute ("""Curve.y3Unit"""))
+    val curveStyle: (Context) => String = parse_attribute (attribute ("""Curve.curveStyle"""))
+    val xMultiplier: (Context) => String = parse_attribute (attribute ("""Curve.xMultiplier"""))
+    val xUnit: (Context) => String = parse_attribute (attribute ("""Curve.xUnit"""))
+    val y1Multiplier: (Context) => String = parse_attribute (attribute ("""Curve.y1Multiplier"""))
+    val y1Unit: (Context) => String = parse_attribute (attribute ("""Curve.y1Unit"""))
+    val y2Multiplier: (Context) => String = parse_attribute (attribute ("""Curve.y2Multiplier"""))
+    val y2Unit: (Context) => String = parse_attribute (attribute ("""Curve.y2Unit"""))
+    val y3Multiplier: (Context) => String = parse_attribute (attribute ("""Curve.y3Multiplier"""))
+    val y3Unit: (Context) => String = parse_attribute (attribute ("""Curve.y3Unit"""))
     def parse (context: Context): Curve =
     {
         Curve(
@@ -785,11 +784,11 @@ extends
 case class CurveData
 (
     override val sup: BasicElement,
-    val xvalue: Double,
-    val y1value: Double,
-    val y2value: Double,
-    val y3value: Double,
-    val Curve: String
+    xvalue: Double,
+    y1value: Double,
+    y2value: Double,
+    y3value: Double,
+    Curve: String
 )
 extends
     Element
@@ -826,11 +825,11 @@ object CurveData
 extends
     Parseable[CurveData]
 {
-    val xvalue = parse_element (element ("""CurveData.xvalue"""))
-    val y1value = parse_element (element ("""CurveData.y1value"""))
-    val y2value = parse_element (element ("""CurveData.y2value"""))
-    val y3value = parse_element (element ("""CurveData.y3value"""))
-    val Curve = parse_attribute (attribute ("""CurveData.Curve"""))
+    val xvalue: (Context) => String = parse_element (element ("""CurveData.xvalue"""))
+    val y1value: (Context) => String = parse_element (element ("""CurveData.y1value"""))
+    val y2value: (Context) => String = parse_element (element ("""CurveData.y2value"""))
+    val y3value: (Context) => String = parse_element (element ("""CurveData.y3value"""))
+    val Curve: (Context) => String = parse_attribute (attribute ("""CurveData.Curve"""))
     def parse (context: Context): CurveData =
     {
         CurveData(
@@ -854,8 +853,8 @@ extends
 case class CurveStyle
 (
     override val sup: BasicElement,
-    val constantYValue: String,
-    val straightLineYValues: String
+    constantYValue: String,
+    straightLineYValues: String
 )
 extends
     Element
@@ -889,8 +888,8 @@ object CurveStyle
 extends
     Parseable[CurveStyle]
 {
-    val constantYValue = parse_attribute (attribute ("""CurveStyle.constantYValue"""))
-    val straightLineYValues = parse_attribute (attribute ("""CurveStyle.straightLineYValues"""))
+    val constantYValue: (Context) => String = parse_attribute (attribute ("""CurveStyle.constantYValue"""))
+    val straightLineYValues: (Context) => String = parse_attribute (attribute ("""CurveStyle.straightLineYValues"""))
     def parse (context: Context): CurveStyle =
     {
         CurveStyle(
@@ -908,15 +907,15 @@ extends
  *        Examples would be power transformers or synchronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.
  * @param normallyInService If true, the equipment is normally in service.
  * @param EquipmentContainer Container of this equipment.
- * @param WeatherStation
+ * @param WeatherStation <em>undocumented</em>
  */
 case class Equipment
 (
     override val sup: PowerSystemResource,
-    val aggregate: Boolean,
-    val normallyInService: Boolean,
-    val EquipmentContainer: String,
-    val WeatherStation: List[String]
+    aggregate: Boolean,
+    normallyInService: Boolean,
+    EquipmentContainer: String,
+    WeatherStation: List[String]
 )
 extends
     Element
@@ -952,10 +951,10 @@ object Equipment
 extends
     Parseable[Equipment]
 {
-    val aggregate = parse_element (element ("""Equipment.aggregate"""))
-    val normallyInService = parse_element (element ("""Equipment.normallyInService"""))
-    val EquipmentContainer = parse_attribute (attribute ("""Equipment.EquipmentContainer"""))
-    val WeatherStation = parse_attributes (attribute ("""Equipment.WeatherStation"""))
+    val aggregate: (Context) => String = parse_element (element ("""Equipment.aggregate"""))
+    val normallyInService: (Context) => String = parse_element (element ("""Equipment.normallyInService"""))
+    val EquipmentContainer: (Context) => String = parse_attribute (attribute ("""Equipment.EquipmentContainer"""))
+    val WeatherStation: (Context) => List[String] = parse_attributes (attribute ("""Equipment.WeatherStation"""))
     def parse (context: Context): Equipment =
     {
         Equipment(
@@ -1076,10 +1075,10 @@ extends
 case class IdentifiedObject
 (
     override val sup: BasicElement,
-    val aliasName: String,
-    val description: String,
-    val mRID: String,
-    val name: String
+    aliasName: String,
+    description: String,
+    mRID: String,
+    name: String
 )
 extends
     Element
@@ -1114,10 +1113,10 @@ object IdentifiedObject
 extends
     Parseable[IdentifiedObject]
 {
-    val aliasName = parse_element (element ("""IdentifiedObject.aliasName"""))
-    val description = parse_element (element ("""IdentifiedObject.description"""))
-    val mRID = parse_element (element ("""IdentifiedObject.mRID"""))
-    val name = parse_element (element ("""IdentifiedObject.name"""))
+    val aliasName: (Context) => String = parse_element (element ("""IdentifiedObject.aliasName"""))
+    val description: (Context) => String = parse_element (element ("""IdentifiedObject.description"""))
+    val mRID: (Context) => String = parse_element (element ("""IdentifiedObject.mRID"""))
+    val name: (Context) => String = parse_element (element ("""IdentifiedObject.name"""))
     def parse (context: Context): IdentifiedObject =
     {
         val base = BasicElement.parse (context)
@@ -1191,10 +1190,10 @@ extends
 case class IrregularTimePoint
 (
     override val sup: BasicElement,
-    val time: Double,
-    val value1: Double,
-    val value2: Double,
-    val IntervalSchedule: String
+    time: Double,
+    value1: Double,
+    value2: Double,
+    IntervalSchedule: String
 )
 extends
     Element
@@ -1230,10 +1229,10 @@ object IrregularTimePoint
 extends
     Parseable[IrregularTimePoint]
 {
-    val time = parse_element (element ("""IrregularTimePoint.time"""))
-    val value1 = parse_element (element ("""IrregularTimePoint.value1"""))
-    val value2 = parse_element (element ("""IrregularTimePoint.value2"""))
-    val IntervalSchedule = parse_attribute (attribute ("""IrregularTimePoint.IntervalSchedule"""))
+    val time: (Context) => String = parse_element (element ("""IrregularTimePoint.time"""))
+    val value1: (Context) => String = parse_element (element ("""IrregularTimePoint.value1"""))
+    val value2: (Context) => String = parse_element (element ("""IrregularTimePoint.value2"""))
+    val IntervalSchedule: (Context) => String = parse_attribute (attribute ("""IrregularTimePoint.IntervalSchedule"""))
     def parse (context: Context): IrregularTimePoint =
     {
         IrregularTimePoint(
@@ -1257,9 +1256,9 @@ extends
 case class Name
 (
     override val sup: BasicElement,
-    val name: String,
-    val IdentifiedObject: String,
-    val NameType: String
+    name: String,
+    IdentifiedObject: String,
+    NameType: String
 )
 extends
     Element
@@ -1294,9 +1293,9 @@ object Name
 extends
     Parseable[Name]
 {
-    val name = parse_element (element ("""Name.name"""))
-    val IdentifiedObject = parse_attribute (attribute ("""Name.IdentifiedObject"""))
-    val NameType = parse_attribute (attribute ("""Name.NameType"""))
+    val name: (Context) => String = parse_element (element ("""Name.name"""))
+    val IdentifiedObject: (Context) => String = parse_attribute (attribute ("""Name.IdentifiedObject"""))
+    val NameType: (Context) => String = parse_attribute (attribute ("""Name.NameType"""))
     def parse (context: Context): Name =
     {
         Name(
@@ -1319,9 +1318,9 @@ extends
 case class NameType
 (
     override val sup: BasicElement,
-    val description: String,
-    val name: String,
-    val NameTypeAuthority: String
+    description: String,
+    name: String,
+    NameTypeAuthority: String
 )
 extends
     Element
@@ -1356,9 +1355,9 @@ object NameType
 extends
     Parseable[NameType]
 {
-    val description = parse_element (element ("""NameType.description"""))
-    val name = parse_element (element ("""NameType.name"""))
-    val NameTypeAuthority = parse_attribute (attribute ("""NameType.NameTypeAuthority"""))
+    val description: (Context) => String = parse_element (element ("""NameType.description"""))
+    val name: (Context) => String = parse_element (element ("""NameType.name"""))
+    val NameTypeAuthority: (Context) => String = parse_attribute (attribute ("""NameType.NameTypeAuthority"""))
     def parse (context: Context): NameType =
     {
         NameType(
@@ -1379,8 +1378,8 @@ extends
 case class NameTypeAuthority
 (
     override val sup: BasicElement,
-    val description: String,
-    val name: String
+    description: String,
+    name: String
 )
 extends
     Element
@@ -1414,8 +1413,8 @@ object NameTypeAuthority
 extends
     Parseable[NameTypeAuthority]
 {
-    val description = parse_element (element ("""NameTypeAuthority.description"""))
-    val name = parse_element (element ("""NameTypeAuthority.name"""))
+    val description: (Context) => String = parse_element (element ("""NameTypeAuthority.description"""))
+    val name: (Context) => String = parse_element (element ("""NameTypeAuthority.name"""))
     def parse (context: Context): NameTypeAuthority =
     {
         NameTypeAuthority(
@@ -1485,9 +1484,9 @@ extends
 case class OperatingShare
 (
     override val sup: BasicElement,
-    val percentage: Double,
-    val OperatingParticipant: String,
-    val PowerSystemResource: String
+    percentage: Double,
+    OperatingParticipant: String,
+    PowerSystemResource: String
 )
 extends
     Element
@@ -1522,9 +1521,9 @@ object OperatingShare
 extends
     Parseable[OperatingShare]
 {
-    val percentage = parse_element (element ("""OperatingShare.percentage"""))
-    val OperatingParticipant = parse_attribute (attribute ("""OperatingShare.OperatingParticipant"""))
-    val PowerSystemResource = parse_attribute (attribute ("""OperatingShare.PowerSystemResource"""))
+    val percentage: (Context) => String = parse_element (element ("""OperatingShare.percentage"""))
+    val OperatingParticipant: (Context) => String = parse_attribute (attribute ("""OperatingShare.OperatingParticipant"""))
+    val PowerSystemResource: (Context) => String = parse_attribute (attribute ("""OperatingShare.PowerSystemResource"""))
     def parse (context: Context): OperatingShare =
     {
         OperatingShare(
@@ -1613,27 +1612,27 @@ extends
 case class PhaseCode
 (
     override val sup: BasicElement,
-    val s1: String,
-    val s12: String,
-    val s12N: String,
-    val s1N: String,
-    val s2: String,
-    val s2N: String,
-    val A: String,
-    val AB: String,
-    val ABC: String,
-    val ABCN: String,
-    val ABN: String,
-    val AC: String,
-    val ACN: String,
-    val AN: String,
-    val B: String,
-    val BC: String,
-    val BCN: String,
-    val BN: String,
-    val C: String,
-    val CN: String,
-    val N: String
+    s1: String,
+    s12: String,
+    s12N: String,
+    s1N: String,
+    s2: String,
+    s2N: String,
+    A: String,
+    AB: String,
+    ABC: String,
+    ABCN: String,
+    ABN: String,
+    AC: String,
+    ACN: String,
+    AN: String,
+    B: String,
+    BC: String,
+    BCN: String,
+    BN: String,
+    C: String,
+    CN: String,
+    N: String
 )
 extends
     Element
@@ -1686,27 +1685,27 @@ object PhaseCode
 extends
     Parseable[PhaseCode]
 {
-    val s1 = parse_attribute (attribute ("""PhaseCode.s1"""))
-    val s12 = parse_attribute (attribute ("""PhaseCode.s12"""))
-    val s12N = parse_attribute (attribute ("""PhaseCode.s12N"""))
-    val s1N = parse_attribute (attribute ("""PhaseCode.s1N"""))
-    val s2 = parse_attribute (attribute ("""PhaseCode.s2"""))
-    val s2N = parse_attribute (attribute ("""PhaseCode.s2N"""))
-    val A = parse_attribute (attribute ("""PhaseCode.A"""))
-    val AB = parse_attribute (attribute ("""PhaseCode.AB"""))
-    val ABC = parse_attribute (attribute ("""PhaseCode.ABC"""))
-    val ABCN = parse_attribute (attribute ("""PhaseCode.ABCN"""))
-    val ABN = parse_attribute (attribute ("""PhaseCode.ABN"""))
-    val AC = parse_attribute (attribute ("""PhaseCode.AC"""))
-    val ACN = parse_attribute (attribute ("""PhaseCode.ACN"""))
-    val AN = parse_attribute (attribute ("""PhaseCode.AN"""))
-    val B = parse_attribute (attribute ("""PhaseCode.B"""))
-    val BC = parse_attribute (attribute ("""PhaseCode.BC"""))
-    val BCN = parse_attribute (attribute ("""PhaseCode.BCN"""))
-    val BN = parse_attribute (attribute ("""PhaseCode.BN"""))
-    val C = parse_attribute (attribute ("""PhaseCode.C"""))
-    val CN = parse_attribute (attribute ("""PhaseCode.CN"""))
-    val N = parse_attribute (attribute ("""PhaseCode.N"""))
+    val s1: (Context) => String = parse_attribute (attribute ("""PhaseCode.s1"""))
+    val s12: (Context) => String = parse_attribute (attribute ("""PhaseCode.s12"""))
+    val s12N: (Context) => String = parse_attribute (attribute ("""PhaseCode.s12N"""))
+    val s1N: (Context) => String = parse_attribute (attribute ("""PhaseCode.s1N"""))
+    val s2: (Context) => String = parse_attribute (attribute ("""PhaseCode.s2"""))
+    val s2N: (Context) => String = parse_attribute (attribute ("""PhaseCode.s2N"""))
+    val A: (Context) => String = parse_attribute (attribute ("""PhaseCode.A"""))
+    val AB: (Context) => String = parse_attribute (attribute ("""PhaseCode.AB"""))
+    val ABC: (Context) => String = parse_attribute (attribute ("""PhaseCode.ABC"""))
+    val ABCN: (Context) => String = parse_attribute (attribute ("""PhaseCode.ABCN"""))
+    val ABN: (Context) => String = parse_attribute (attribute ("""PhaseCode.ABN"""))
+    val AC: (Context) => String = parse_attribute (attribute ("""PhaseCode.AC"""))
+    val ACN: (Context) => String = parse_attribute (attribute ("""PhaseCode.ACN"""))
+    val AN: (Context) => String = parse_attribute (attribute ("""PhaseCode.AN"""))
+    val B: (Context) => String = parse_attribute (attribute ("""PhaseCode.B"""))
+    val BC: (Context) => String = parse_attribute (attribute ("""PhaseCode.BC"""))
+    val BCN: (Context) => String = parse_attribute (attribute ("""PhaseCode.BCN"""))
+    val BN: (Context) => String = parse_attribute (attribute ("""PhaseCode.BN"""))
+    val C: (Context) => String = parse_attribute (attribute ("""PhaseCode.C"""))
+    val CN: (Context) => String = parse_attribute (attribute ("""PhaseCode.CN"""))
+    val N: (Context) => String = parse_attribute (attribute ("""PhaseCode.N"""))
     def parse (context: Context): PhaseCode =
     {
         PhaseCode(
@@ -1747,9 +1746,9 @@ extends
 case class PowerSystemResource
 (
     override val sup: IdentifiedObject,
-    val AssetDatasheet: String,
-    val Location: String,
-    val PSRType: String
+    AssetDatasheet: String,
+    Location: String,
+    PSRType: String
 )
 extends
     Element
@@ -1784,9 +1783,9 @@ object PowerSystemResource
 extends
     Parseable[PowerSystemResource]
 {
-    val AssetDatasheet = parse_attribute (attribute ("""PowerSystemResource.AssetDatasheet"""))
-    val Location = parse_attribute (attribute ("""PowerSystemResource.Location"""))
-    val PSRType = parse_attribute (attribute ("""PowerSystemResource.PSRType"""))
+    val AssetDatasheet: (Context) => String = parse_attribute (attribute ("""PowerSystemResource.AssetDatasheet"""))
+    val Location: (Context) => String = parse_attribute (attribute ("""PowerSystemResource.Location"""))
+    val PSRType: (Context) => String = parse_attribute (attribute ("""PowerSystemResource.PSRType"""))
     def parse (context: Context): PowerSystemResource =
     {
         PowerSystemResource(
@@ -1807,8 +1806,8 @@ extends
 case class RegularIntervalSchedule
 (
     override val sup: BasicIntervalSchedule,
-    val endTime: String,
-    val timeStep: Double
+    endTime: String,
+    timeStep: Double
 )
 extends
     Element
@@ -1842,8 +1841,8 @@ object RegularIntervalSchedule
 extends
     Parseable[RegularIntervalSchedule]
 {
-    val endTime = parse_element (element ("""RegularIntervalSchedule.endTime"""))
-    val timeStep = parse_element (element ("""RegularIntervalSchedule.timeStep"""))
+    val endTime: (Context) => String = parse_element (element ("""RegularIntervalSchedule.endTime"""))
+    val timeStep: (Context) => String = parse_element (element ("""RegularIntervalSchedule.timeStep"""))
     def parse (context: Context): RegularIntervalSchedule =
     {
         RegularIntervalSchedule(
@@ -1868,10 +1867,10 @@ extends
 case class RegularTimePoint
 (
     override val sup: BasicElement,
-    val sequenceNumber: Int,
-    val value1: Double,
-    val value2: Double,
-    val IntervalSchedule: String
+    sequenceNumber: Int,
+    value1: Double,
+    value2: Double,
+    IntervalSchedule: String
 )
 extends
     Element
@@ -1907,10 +1906,10 @@ object RegularTimePoint
 extends
     Parseable[RegularTimePoint]
 {
-    val sequenceNumber = parse_element (element ("""RegularTimePoint.sequenceNumber"""))
-    val value1 = parse_element (element ("""RegularTimePoint.value1"""))
-    val value2 = parse_element (element ("""RegularTimePoint.value2"""))
-    val IntervalSchedule = parse_attribute (attribute ("""RegularTimePoint.IntervalSchedule"""))
+    val sequenceNumber: (Context) => String = parse_element (element ("""RegularTimePoint.sequenceNumber"""))
+    val value1: (Context) => String = parse_element (element ("""RegularTimePoint.value1"""))
+    val value2: (Context) => String = parse_element (element ("""RegularTimePoint.value2"""))
+    val IntervalSchedule: (Context) => String = parse_attribute (attribute ("""RegularTimePoint.IntervalSchedule"""))
     def parse (context: Context): RegularTimePoint =
     {
         RegularTimePoint(
@@ -1931,7 +1930,7 @@ extends
 case class ReportingGroup
 (
     override val sup: IdentifiedObject,
-    val PowerSystemResource: List[String]
+    PowerSystemResource: List[String]
 )
 extends
     Element
@@ -1964,7 +1963,7 @@ object ReportingGroup
 extends
     Parseable[ReportingGroup]
 {
-    val PowerSystemResource = parse_attributes (attribute ("""ReportingGroup.PowerSystemResource"""))
+    val PowerSystemResource: (Context) => List[String] = parse_attributes (attribute ("""ReportingGroup.PowerSystemResource"""))
     def parse (context: Context): ReportingGroup =
     {
         ReportingGroup(
@@ -2029,7 +2028,7 @@ extends
 case class SubGeographicalRegion
 (
     override val sup: IdentifiedObject,
-    val Region: String
+    Region: String
 )
 extends
     Element
@@ -2062,7 +2061,7 @@ object SubGeographicalRegion
 extends
     Parseable[SubGeographicalRegion]
 {
-    val Region = parse_attribute (attribute ("""SubGeographicalRegion.Region"""))
+    val Region: (Context) => String = parse_attribute (attribute ("""SubGeographicalRegion.Region"""))
     def parse (context: Context): SubGeographicalRegion =
     {
         SubGeographicalRegion(
@@ -2080,7 +2079,7 @@ extends
 case class Substation
 (
     override val sup: EquipmentContainer,
-    val Region: String
+    Region: String
 )
 extends
     Element
@@ -2113,7 +2112,7 @@ object Substation
 extends
     Parseable[Substation]
 {
-    val Region = parse_attribute (attribute ("""Substation.Region"""))
+    val Region: (Context) => String = parse_attribute (attribute ("""Substation.Region"""))
     def parse (context: Context): Substation =
     {
         Substation(
@@ -2129,7 +2128,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param phases Represents the normal network phasing condition.
  *        If the attribute is missing three phases (ABC or ABCN) shall be assumed.
- * @param Bushing
+ * @param Bushing <em>undocumented</em>
  * @param ConductingEquipment The conducting equipment of the terminal.
  *        Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.
  * @param ConnectivityNode The connectivity node to which this terminal connects with zero impedance.
@@ -2140,12 +2139,12 @@ extends
 case class Terminal
 (
     override val sup: ACDCTerminal,
-    val phases: String,
-    val Bushing: String,
-    val ConductingEquipment: String,
-    val ConnectivityNode: String,
-    val SvPowerFlow: String,
-    val TopologicalNode: String
+    phases: String,
+    Bushing: String,
+    ConductingEquipment: String,
+    ConnectivityNode: String,
+    SvPowerFlow: String,
+    TopologicalNode: String
 )
 extends
     Element
@@ -2183,12 +2182,12 @@ object Terminal
 extends
     Parseable[Terminal]
 {
-    val phases = parse_attribute (attribute ("""Terminal.phases"""))
-    val Bushing = parse_attribute (attribute ("""Terminal.Bushing"""))
-    val ConductingEquipment = parse_attribute (attribute ("""Terminal.ConductingEquipment"""))
-    val ConnectivityNode = parse_attribute (attribute ("""Terminal.ConnectivityNode"""))
-    val SvPowerFlow = parse_attribute (attribute ("""Terminal.SvPowerFlow"""))
-    val TopologicalNode = parse_attribute (attribute ("""Terminal.TopologicalNode"""))
+    val phases: (Context) => String = parse_attribute (attribute ("""Terminal.phases"""))
+    val Bushing: (Context) => String = parse_attribute (attribute ("""Terminal.Bushing"""))
+    val ConductingEquipment: (Context) => String = parse_attribute (attribute ("""Terminal.ConductingEquipment"""))
+    val ConnectivityNode: (Context) => String = parse_attribute (attribute ("""Terminal.ConnectivityNode"""))
+    val SvPowerFlow: (Context) => String = parse_attribute (attribute ("""Terminal.SvPowerFlow"""))
+    val TopologicalNode: (Context) => String = parse_attribute (attribute ("""Terminal.TopologicalNode"""))
     def parse (context: Context): Terminal =
     {
         Terminal(
@@ -2215,10 +2214,10 @@ extends
 case class VoltageLevel
 (
     override val sup: EquipmentContainer,
-    val highVoltageLimit: Double,
-    val lowVoltageLimit: Double,
-    val BaseVoltage: String,
-    val Substation: String
+    highVoltageLimit: Double,
+    lowVoltageLimit: Double,
+    BaseVoltage: String,
+    Substation: String
 )
 extends
     Element
@@ -2254,10 +2253,10 @@ object VoltageLevel
 extends
     Parseable[VoltageLevel]
 {
-    val highVoltageLimit = parse_element (element ("""VoltageLevel.highVoltageLimit"""))
-    val lowVoltageLimit = parse_element (element ("""VoltageLevel.lowVoltageLimit"""))
-    val BaseVoltage = parse_attribute (attribute ("""VoltageLevel.BaseVoltage"""))
-    val Substation = parse_attribute (attribute ("""VoltageLevel.Substation"""))
+    val highVoltageLimit: (Context) => String = parse_element (element ("""VoltageLevel.highVoltageLimit"""))
+    val lowVoltageLimit: (Context) => String = parse_element (element ("""VoltageLevel.lowVoltageLimit"""))
+    val BaseVoltage: (Context) => String = parse_attribute (attribute ("""VoltageLevel.BaseVoltage"""))
+    val Substation: (Context) => String = parse_attribute (attribute ("""VoltageLevel.Substation"""))
     def parse (context: Context): VoltageLevel =
     {
         VoltageLevel(
@@ -2270,7 +2269,7 @@ extends
     }
 }
 
-object _Core
+private[ninecode] object _Core
 {
     def register: List[ClassInfo] =
     {

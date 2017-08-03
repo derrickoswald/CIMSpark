@@ -533,8 +533,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                 }
                 initializers.append (product.initializer)
                 s.append ("""    """)
-                if (product.overrid) s.append ("""override """)
-                s.append ("""val """)
+                if (product.overrid) s.append ("""override val """)
                 s.append (product.variable)
                 s.append (""": """)
                 s.append (product.datatype)
@@ -667,11 +666,11 @@ case class Scala (parser: ModelParser, pkg: Package)
                     s.append (product.variable)
                     if (product.reference)
                         if (product.multiple)
-                            s.append (""" = parse_attributes (attribute ("""")
+                            s.append (""": (Context) => List[String] = parse_attributes (attribute ("""")
                         else
-                            s.append (""" = parse_attribute (attribute ("""")
+                            s.append (""": (Context) => String = parse_attribute (attribute ("""")
                     else
-                        s.append (""" = parse_element (element ("""")
+                        s.append (""": (Context) => String = parse_element (element ("""")
                     s.append ("""""""")
                     s.append (name)
                     s.append (""".""")
@@ -765,7 +764,6 @@ case class Scala (parser: ModelParser, pkg: Package)
             |
             |import ch.ninecode.cim.ClassInfo
             |import ch.ninecode.cim.Context
-            |import ch.ninecode.cim.CIMSubsetter
             |import ch.ninecode.cim.Parseable
             |
             |""".stripMargin)
@@ -774,7 +772,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                 |""".stripMargin)
             v.append (p.toString)
 
-            v.append ("""object """)
+            v.append ("""private[ninecode] object """)
             v.append (register)
             v.append ("""
                 |{

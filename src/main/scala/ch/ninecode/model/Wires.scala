@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -34,18 +33,18 @@ import ch.ninecode.cim.Parseable
 case class ACLineSegment
 (
     override val sup: Conductor,
-    val b0ch: Double,
-    val bch: Double,
-    val g0ch: Double,
-    val gch: Double,
-    val r: Double,
-    val r0: Double,
-    val shortCircuitEndTemperature: Double,
-    val x: Double,
-    val x0: Double,
-    val LineGroundingAction: String,
-    val LineJumpingAction: String,
-    val PerLengthImpedance: String
+    b0ch: Double,
+    bch: Double,
+    g0ch: Double,
+    gch: Double,
+    r: Double,
+    r0: Double,
+    shortCircuitEndTemperature: Double,
+    x: Double,
+    x0: Double,
+    LineGroundingAction: String,
+    LineJumpingAction: String,
+    PerLengthImpedance: String
 )
 extends
     Element
@@ -89,18 +88,18 @@ object ACLineSegment
 extends
     Parseable[ACLineSegment]
 {
-    val b0ch = parse_element (element ("""ACLineSegment.b0ch"""))
-    val bch = parse_element (element ("""ACLineSegment.bch"""))
-    val g0ch = parse_element (element ("""ACLineSegment.g0ch"""))
-    val gch = parse_element (element ("""ACLineSegment.gch"""))
-    val r = parse_element (element ("""ACLineSegment.r"""))
-    val r0 = parse_element (element ("""ACLineSegment.r0"""))
-    val shortCircuitEndTemperature = parse_element (element ("""ACLineSegment.shortCircuitEndTemperature"""))
-    val x = parse_element (element ("""ACLineSegment.x"""))
-    val x0 = parse_element (element ("""ACLineSegment.x0"""))
-    val LineGroundingAction = parse_attribute (attribute ("""ACLineSegment.LineGroundingAction"""))
-    val LineJumpingAction = parse_attribute (attribute ("""ACLineSegment.LineJumpingAction"""))
-    val PerLengthImpedance = parse_attribute (attribute ("""ACLineSegment.PerLengthImpedance"""))
+    val b0ch: (Context) => String = parse_element (element ("""ACLineSegment.b0ch"""))
+    val bch: (Context) => String = parse_element (element ("""ACLineSegment.bch"""))
+    val g0ch: (Context) => String = parse_element (element ("""ACLineSegment.g0ch"""))
+    val gch: (Context) => String = parse_element (element ("""ACLineSegment.gch"""))
+    val r: (Context) => String = parse_element (element ("""ACLineSegment.r"""))
+    val r0: (Context) => String = parse_element (element ("""ACLineSegment.r0"""))
+    val shortCircuitEndTemperature: (Context) => String = parse_element (element ("""ACLineSegment.shortCircuitEndTemperature"""))
+    val x: (Context) => String = parse_element (element ("""ACLineSegment.x"""))
+    val x0: (Context) => String = parse_element (element ("""ACLineSegment.x0"""))
+    val LineGroundingAction: (Context) => String = parse_attribute (attribute ("""ACLineSegment.LineGroundingAction"""))
+    val LineJumpingAction: (Context) => String = parse_attribute (attribute ("""ACLineSegment.LineJumpingAction"""))
+    val PerLengthImpedance: (Context) => String = parse_attribute (attribute ("""ACLineSegment.PerLengthImpedance"""))
     def parse (context: Context): ACLineSegment =
     {
         ACLineSegment(
@@ -130,8 +129,8 @@ extends
 case class ACLineSegmentPhase
 (
     override val sup: PowerSystemResource,
-    val phase: String,
-    val ACLineSegment: String
+    phase: String,
+    ACLineSegment: String
 )
 extends
     Element
@@ -165,8 +164,8 @@ object ACLineSegmentPhase
 extends
     Parseable[ACLineSegmentPhase]
 {
-    val phase = parse_attribute (attribute ("""ACLineSegmentPhase.phase"""))
-    val ACLineSegment = parse_attribute (attribute ("""ACLineSegmentPhase.ACLineSegment"""))
+    val phase: (Context) => String = parse_attribute (attribute ("""ACLineSegmentPhase.phase"""))
+    val ACLineSegment: (Context) => String = parse_attribute (attribute ("""ACLineSegmentPhase.ACLineSegment"""))
     def parse (context: Context): ACLineSegmentPhase =
     {
         ACLineSegmentPhase(
@@ -214,27 +213,27 @@ extends
 case class AsynchronousMachine
 (
     override val sup: RotatingMachine,
-    val asynchronousMachineType: String,
-    val converterFedDrive: Boolean,
-    val efficiency: Double,
-    val iaIrRatio: Double,
-    val nominalFrequency: Double,
-    val nominalSpeed: Double,
-    val polePairNumber: Int,
-    val ratedMechanicalPower: Double,
-    val reversible: Boolean,
-    val rr1: Double,
-    val rr2: Double,
-    val rxLockedRotorRatio: Double,
-    val tpo: Double,
-    val tppo: Double,
-    val xlr1: Double,
-    val xlr2: Double,
-    val xm: Double,
-    val xp: Double,
-    val xpp: Double,
-    val xs: Double,
-    val AsynchronousMachineDynamics: String
+    asynchronousMachineType: String,
+    converterFedDrive: Boolean,
+    efficiency: Double,
+    iaIrRatio: Double,
+    nominalFrequency: Double,
+    nominalSpeed: Double,
+    polePairNumber: Int,
+    ratedMechanicalPower: Double,
+    reversible: Boolean,
+    rr1: Double,
+    rr2: Double,
+    rxLockedRotorRatio: Double,
+    tpo: Double,
+    tppo: Double,
+    xlr1: Double,
+    xlr2: Double,
+    xm: Double,
+    xp: Double,
+    xpp: Double,
+    xs: Double,
+    AsynchronousMachineDynamics: String
 )
 extends
     Element
@@ -287,27 +286,27 @@ object AsynchronousMachine
 extends
     Parseable[AsynchronousMachine]
 {
-    val asynchronousMachineType = parse_attribute (attribute ("""AsynchronousMachine.asynchronousMachineType"""))
-    val converterFedDrive = parse_element (element ("""AsynchronousMachine.converterFedDrive"""))
-    val efficiency = parse_element (element ("""AsynchronousMachine.efficiency"""))
-    val iaIrRatio = parse_element (element ("""AsynchronousMachine.iaIrRatio"""))
-    val nominalFrequency = parse_element (element ("""AsynchronousMachine.nominalFrequency"""))
-    val nominalSpeed = parse_element (element ("""AsynchronousMachine.nominalSpeed"""))
-    val polePairNumber = parse_element (element ("""AsynchronousMachine.polePairNumber"""))
-    val ratedMechanicalPower = parse_element (element ("""AsynchronousMachine.ratedMechanicalPower"""))
-    val reversible = parse_element (element ("""AsynchronousMachine.reversible"""))
-    val rr1 = parse_element (element ("""AsynchronousMachine.rr1"""))
-    val rr2 = parse_element (element ("""AsynchronousMachine.rr2"""))
-    val rxLockedRotorRatio = parse_element (element ("""AsynchronousMachine.rxLockedRotorRatio"""))
-    val tpo = parse_element (element ("""AsynchronousMachine.tpo"""))
-    val tppo = parse_element (element ("""AsynchronousMachine.tppo"""))
-    val xlr1 = parse_element (element ("""AsynchronousMachine.xlr1"""))
-    val xlr2 = parse_element (element ("""AsynchronousMachine.xlr2"""))
-    val xm = parse_element (element ("""AsynchronousMachine.xm"""))
-    val xp = parse_element (element ("""AsynchronousMachine.xp"""))
-    val xpp = parse_element (element ("""AsynchronousMachine.xpp"""))
-    val xs = parse_element (element ("""AsynchronousMachine.xs"""))
-    val AsynchronousMachineDynamics = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineDynamics"""))
+    val asynchronousMachineType: (Context) => String = parse_attribute (attribute ("""AsynchronousMachine.asynchronousMachineType"""))
+    val converterFedDrive: (Context) => String = parse_element (element ("""AsynchronousMachine.converterFedDrive"""))
+    val efficiency: (Context) => String = parse_element (element ("""AsynchronousMachine.efficiency"""))
+    val iaIrRatio: (Context) => String = parse_element (element ("""AsynchronousMachine.iaIrRatio"""))
+    val nominalFrequency: (Context) => String = parse_element (element ("""AsynchronousMachine.nominalFrequency"""))
+    val nominalSpeed: (Context) => String = parse_element (element ("""AsynchronousMachine.nominalSpeed"""))
+    val polePairNumber: (Context) => String = parse_element (element ("""AsynchronousMachine.polePairNumber"""))
+    val ratedMechanicalPower: (Context) => String = parse_element (element ("""AsynchronousMachine.ratedMechanicalPower"""))
+    val reversible: (Context) => String = parse_element (element ("""AsynchronousMachine.reversible"""))
+    val rr1: (Context) => String = parse_element (element ("""AsynchronousMachine.rr1"""))
+    val rr2: (Context) => String = parse_element (element ("""AsynchronousMachine.rr2"""))
+    val rxLockedRotorRatio: (Context) => String = parse_element (element ("""AsynchronousMachine.rxLockedRotorRatio"""))
+    val tpo: (Context) => String = parse_element (element ("""AsynchronousMachine.tpo"""))
+    val tppo: (Context) => String = parse_element (element ("""AsynchronousMachine.tppo"""))
+    val xlr1: (Context) => String = parse_element (element ("""AsynchronousMachine.xlr1"""))
+    val xlr2: (Context) => String = parse_element (element ("""AsynchronousMachine.xlr2"""))
+    val xm: (Context) => String = parse_element (element ("""AsynchronousMachine.xm"""))
+    val xp: (Context) => String = parse_element (element ("""AsynchronousMachine.xp"""))
+    val xpp: (Context) => String = parse_element (element ("""AsynchronousMachine.xpp"""))
+    val xs: (Context) => String = parse_element (element ("""AsynchronousMachine.xs"""))
+    val AsynchronousMachineDynamics: (Context) => String = parse_attribute (attribute ("""AsynchronousMachine.AsynchronousMachineDynamics"""))
     def parse (context: Context): AsynchronousMachine =
     {
         AsynchronousMachine(
@@ -346,8 +345,8 @@ extends
 case class AsynchronousMachineKind
 (
     override val sup: BasicElement,
-    val generator: String,
-    val motor: String
+    generator: String,
+    motor: String
 )
 extends
     Element
@@ -381,8 +380,8 @@ object AsynchronousMachineKind
 extends
     Parseable[AsynchronousMachineKind]
 {
-    val generator = parse_attribute (attribute ("""AsynchronousMachineKind.generator"""))
-    val motor = parse_attribute (attribute ("""AsynchronousMachineKind.motor"""))
+    val generator: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineKind.generator"""))
+    val motor: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineKind.motor"""))
     def parse (context: Context): AsynchronousMachineKind =
     {
         AsynchronousMachineKind(
@@ -401,7 +400,7 @@ extends
 case class Breaker
 (
     override val sup: ProtectedSwitch,
-    val inTransitTime: Double
+    inTransitTime: Double
 )
 extends
     Element
@@ -434,7 +433,7 @@ object Breaker
 extends
     Parseable[Breaker]
 {
-    val inTransitTime = parse_element (element ("""Breaker.inTransitTime"""))
+    val inTransitTime: (Context) => String = parse_element (element ("""Breaker.inTransitTime"""))
     def parse (context: Context): Breaker =
     {
         Breaker(
@@ -455,8 +454,8 @@ extends
 case class BusbarSection
 (
     override val sup: Connector,
-    val ipMax: Double,
-    val VoltageControlZone: String
+    ipMax: Double,
+    VoltageControlZone: String
 )
 extends
     Element
@@ -490,8 +489,8 @@ object BusbarSection
 extends
     Parseable[BusbarSection]
 {
-    val ipMax = parse_element (element ("""BusbarSection.ipMax"""))
-    val VoltageControlZone = parse_attribute (attribute ("""BusbarSection.VoltageControlZone"""))
+    val ipMax: (Context) => String = parse_element (element ("""BusbarSection.ipMax"""))
+    val VoltageControlZone: (Context) => String = parse_attribute (attribute ("""BusbarSection.VoltageControlZone"""))
     def parse (context: Context): BusbarSection =
     {
         BusbarSection(
@@ -512,8 +511,8 @@ extends
 case class Clamp
 (
     override val sup: ConductingEquipment,
-    val lengthFromTerminal1: Double,
-    val ACLineSegment: String
+    lengthFromTerminal1: Double,
+    ACLineSegment: String
 )
 extends
     Element
@@ -547,8 +546,8 @@ object Clamp
 extends
     Parseable[Clamp]
 {
-    val lengthFromTerminal1 = parse_element (element ("""Clamp.lengthFromTerminal1"""))
-    val ACLineSegment = parse_attribute (attribute ("""Clamp.ACLineSegment"""))
+    val lengthFromTerminal1: (Context) => String = parse_element (element ("""Clamp.lengthFromTerminal1"""))
+    val ACLineSegment: (Context) => String = parse_attribute (attribute ("""Clamp.ACLineSegment"""))
     def parse (context: Context): Clamp =
     {
         Clamp(
@@ -568,7 +567,7 @@ extends
 case class CompositeSwitch
 (
     override val sup: Equipment,
-    val compositeSwitchType: String
+    compositeSwitchType: String
 )
 extends
     Element
@@ -601,7 +600,7 @@ object CompositeSwitch
 extends
     Parseable[CompositeSwitch]
 {
-    val compositeSwitchType = parse_element (element ("""CompositeSwitch.compositeSwitchType"""))
+    val compositeSwitchType: (Context) => String = parse_element (element ("""CompositeSwitch.compositeSwitchType"""))
     def parse (context: Context): CompositeSwitch =
     {
         CompositeSwitch(
@@ -619,7 +618,7 @@ extends
 case class Conductor
 (
     override val sup: ConductingEquipment,
-    val len: Double
+    len: Double
 )
 extends
     Element
@@ -652,7 +651,7 @@ object Conductor
 extends
     Parseable[Conductor]
 {
-    val len = parse_element (element ("""Conductor.length"""))
+    val len: (Context) => String = parse_element (element ("""Conductor.length"""))
     def parse (context: Context): Conductor =
     {
         Conductor(
@@ -719,9 +718,9 @@ extends
 case class CoolantType
 (
     override val sup: BasicElement,
-    val air: String,
-    val hydrogenGas: String,
-    val water: String
+    air: String,
+    hydrogenGas: String,
+    water: String
 )
 extends
     Element
@@ -756,9 +755,9 @@ object CoolantType
 extends
     Parseable[CoolantType]
 {
-    val air = parse_attribute (attribute ("""CoolantType.air"""))
-    val hydrogenGas = parse_attribute (attribute ("""CoolantType.hydrogenGas"""))
-    val water = parse_attribute (attribute ("""CoolantType.water"""))
+    val air: (Context) => String = parse_attribute (attribute ("""CoolantType.air"""))
+    val hydrogenGas: (Context) => String = parse_attribute (attribute ("""CoolantType.hydrogenGas"""))
+    val water: (Context) => String = parse_attribute (attribute ("""CoolantType.water"""))
     def parse (context: Context): CoolantType =
     {
         CoolantType(
@@ -781,9 +780,9 @@ extends
 case class Cut
 (
     override val sup: Switch,
-    val lengthFromTerminal1: Double,
-    val ACLineSegment: String,
-    val CutAction: String
+    lengthFromTerminal1: Double,
+    ACLineSegment: String,
+    CutAction: String
 )
 extends
     Element
@@ -818,9 +817,9 @@ object Cut
 extends
     Parseable[Cut]
 {
-    val lengthFromTerminal1 = parse_element (element ("""Cut.lengthFromTerminal1"""))
-    val ACLineSegment = parse_attribute (attribute ("""Cut.ACLineSegment"""))
-    val CutAction = parse_attribute (attribute ("""Cut.CutAction"""))
+    val lengthFromTerminal1: (Context) => String = parse_element (element ("""Cut.lengthFromTerminal1"""))
+    val ACLineSegment: (Context) => String = parse_attribute (attribute ("""Cut.ACLineSegment"""))
+    val CutAction: (Context) => String = parse_attribute (attribute ("""Cut.CutAction"""))
     def parse (context: Context): Cut =
     {
         Cut(
@@ -889,7 +888,7 @@ extends
 case class EarthFaultCompensator
 (
     override val sup: ConductingEquipment,
-    val r: Double
+    r: Double
 )
 extends
     Element
@@ -922,7 +921,7 @@ object EarthFaultCompensator
 extends
     Parseable[EarthFaultCompensator]
 {
-    val r = parse_element (element ("""EarthFaultCompensator.r"""))
+    val r: (Context) => String = parse_element (element ("""EarthFaultCompensator.r"""))
     def parse (context: Context): EarthFaultCompensator =
     {
         EarthFaultCompensator(
@@ -959,18 +958,18 @@ extends
 case class EnergyConsumer
 (
     override val sup: ConductingEquipment,
-    val customerCount: Int,
-    val grounded: Boolean,
-    val p: Double,
-    val pfixed: Double,
-    val pfixedPct: Double,
-    val phaseConnection: String,
-    val q: Double,
-    val qfixed: Double,
-    val qfixedPct: Double,
-    val LoadDynamics: String,
-    val LoadResponse: String,
-    val PowerCutZone: String
+    customerCount: Int,
+    grounded: Boolean,
+    p: Double,
+    pfixed: Double,
+    pfixedPct: Double,
+    phaseConnection: String,
+    q: Double,
+    qfixed: Double,
+    qfixedPct: Double,
+    LoadDynamics: String,
+    LoadResponse: String,
+    PowerCutZone: String
 )
 extends
     Element
@@ -1014,18 +1013,18 @@ object EnergyConsumer
 extends
     Parseable[EnergyConsumer]
 {
-    val customerCount = parse_element (element ("""EnergyConsumer.customerCount"""))
-    val grounded = parse_element (element ("""EnergyConsumer.grounded"""))
-    val p = parse_element (element ("""EnergyConsumer.p"""))
-    val pfixed = parse_element (element ("""EnergyConsumer.pfixed"""))
-    val pfixedPct = parse_element (element ("""EnergyConsumer.pfixedPct"""))
-    val phaseConnection = parse_attribute (attribute ("""EnergyConsumer.phaseConnection"""))
-    val q = parse_element (element ("""EnergyConsumer.q"""))
-    val qfixed = parse_element (element ("""EnergyConsumer.qfixed"""))
-    val qfixedPct = parse_element (element ("""EnergyConsumer.qfixedPct"""))
-    val LoadDynamics = parse_attribute (attribute ("""EnergyConsumer.LoadDynamics"""))
-    val LoadResponse = parse_attribute (attribute ("""EnergyConsumer.LoadResponse"""))
-    val PowerCutZone = parse_attribute (attribute ("""EnergyConsumer.PowerCutZone"""))
+    val customerCount: (Context) => String = parse_element (element ("""EnergyConsumer.customerCount"""))
+    val grounded: (Context) => String = parse_element (element ("""EnergyConsumer.grounded"""))
+    val p: (Context) => String = parse_element (element ("""EnergyConsumer.p"""))
+    val pfixed: (Context) => String = parse_element (element ("""EnergyConsumer.pfixed"""))
+    val pfixedPct: (Context) => String = parse_element (element ("""EnergyConsumer.pfixedPct"""))
+    val phaseConnection: (Context) => String = parse_attribute (attribute ("""EnergyConsumer.phaseConnection"""))
+    val q: (Context) => String = parse_element (element ("""EnergyConsumer.q"""))
+    val qfixed: (Context) => String = parse_element (element ("""EnergyConsumer.qfixed"""))
+    val qfixedPct: (Context) => String = parse_element (element ("""EnergyConsumer.qfixedPct"""))
+    val LoadDynamics: (Context) => String = parse_attribute (attribute ("""EnergyConsumer.LoadDynamics"""))
+    val LoadResponse: (Context) => String = parse_attribute (attribute ("""EnergyConsumer.LoadResponse"""))
+    val PowerCutZone: (Context) => String = parse_attribute (attribute ("""EnergyConsumer.PowerCutZone"""))
     def parse (context: Context): EnergyConsumer =
     {
         EnergyConsumer(
@@ -1064,12 +1063,12 @@ extends
 case class EnergyConsumerPhase
 (
     override val sup: PowerSystemResource,
-    val pfixed: Double,
-    val pfixedPct: Double,
-    val phase: String,
-    val qfixed: Double,
-    val qfixedPct: Double,
-    val EnergyConsumer: String
+    pfixed: Double,
+    pfixedPct: Double,
+    phase: String,
+    qfixed: Double,
+    qfixedPct: Double,
+    EnergyConsumer: String
 )
 extends
     Element
@@ -1107,12 +1106,12 @@ object EnergyConsumerPhase
 extends
     Parseable[EnergyConsumerPhase]
 {
-    val pfixed = parse_element (element ("""EnergyConsumerPhase.pfixed"""))
-    val pfixedPct = parse_element (element ("""EnergyConsumerPhase.pfixedPct"""))
-    val phase = parse_attribute (attribute ("""EnergyConsumerPhase.phase"""))
-    val qfixed = parse_element (element ("""EnergyConsumerPhase.qfixed"""))
-    val qfixedPct = parse_element (element ("""EnergyConsumerPhase.qfixedPct"""))
-    val EnergyConsumer = parse_attribute (attribute ("""EnergyConsumerPhase.EnergyConsumer"""))
+    val pfixed: (Context) => String = parse_element (element ("""EnergyConsumerPhase.pfixed"""))
+    val pfixedPct: (Context) => String = parse_element (element ("""EnergyConsumerPhase.pfixedPct"""))
+    val phase: (Context) => String = parse_attribute (attribute ("""EnergyConsumerPhase.phase"""))
+    val qfixed: (Context) => String = parse_element (element ("""EnergyConsumerPhase.qfixed"""))
+    val qfixedPct: (Context) => String = parse_element (element ("""EnergyConsumerPhase.qfixedPct"""))
+    val EnergyConsumer: (Context) => String = parse_attribute (attribute ("""EnergyConsumerPhase.EnergyConsumer"""))
     def parse (context: Context): EnergyConsumerPhase =
     {
         EnergyConsumerPhase(
@@ -1150,20 +1149,20 @@ extends
 case class EnergySource
 (
     override val sup: ConductingEquipment,
-    val activePower: Double,
-    val nominalVoltage: Double,
-    val r: Double,
-    val r0: Double,
-    val reactivePower: Double,
-    val rn: Double,
-    val voltageAngle: Double,
-    val voltageMagnitude: Double,
-    val x: Double,
-    val x0: Double,
-    val xn: Double,
-    val EnergySchedulingType: String,
-    val EnergySourceAction: String,
-    val WindTurbineType3or4Dynamics: String
+    activePower: Double,
+    nominalVoltage: Double,
+    r: Double,
+    r0: Double,
+    reactivePower: Double,
+    rn: Double,
+    voltageAngle: Double,
+    voltageMagnitude: Double,
+    x: Double,
+    x0: Double,
+    xn: Double,
+    EnergySchedulingType: String,
+    EnergySourceAction: String,
+    WindTurbineType3or4Dynamics: String
 )
 extends
     Element
@@ -1209,20 +1208,20 @@ object EnergySource
 extends
     Parseable[EnergySource]
 {
-    val activePower = parse_element (element ("""EnergySource.activePower"""))
-    val nominalVoltage = parse_element (element ("""EnergySource.nominalVoltage"""))
-    val r = parse_element (element ("""EnergySource.r"""))
-    val r0 = parse_element (element ("""EnergySource.r0"""))
-    val reactivePower = parse_element (element ("""EnergySource.reactivePower"""))
-    val rn = parse_element (element ("""EnergySource.rn"""))
-    val voltageAngle = parse_element (element ("""EnergySource.voltageAngle"""))
-    val voltageMagnitude = parse_element (element ("""EnergySource.voltageMagnitude"""))
-    val x = parse_element (element ("""EnergySource.x"""))
-    val x0 = parse_element (element ("""EnergySource.x0"""))
-    val xn = parse_element (element ("""EnergySource.xn"""))
-    val EnergySchedulingType = parse_attribute (attribute ("""EnergySource.EnergySchedulingType"""))
-    val EnergySourceAction = parse_attribute (attribute ("""EnergySource.EnergySourceAction"""))
-    val WindTurbineType3or4Dynamics = parse_attribute (attribute ("""EnergySource.WindTurbineType3or4Dynamics"""))
+    val activePower: (Context) => String = parse_element (element ("""EnergySource.activePower"""))
+    val nominalVoltage: (Context) => String = parse_element (element ("""EnergySource.nominalVoltage"""))
+    val r: (Context) => String = parse_element (element ("""EnergySource.r"""))
+    val r0: (Context) => String = parse_element (element ("""EnergySource.r0"""))
+    val reactivePower: (Context) => String = parse_element (element ("""EnergySource.reactivePower"""))
+    val rn: (Context) => String = parse_element (element ("""EnergySource.rn"""))
+    val voltageAngle: (Context) => String = parse_element (element ("""EnergySource.voltageAngle"""))
+    val voltageMagnitude: (Context) => String = parse_element (element ("""EnergySource.voltageMagnitude"""))
+    val x: (Context) => String = parse_element (element ("""EnergySource.x"""))
+    val x0: (Context) => String = parse_element (element ("""EnergySource.x0"""))
+    val xn: (Context) => String = parse_element (element ("""EnergySource.xn"""))
+    val EnergySchedulingType: (Context) => String = parse_attribute (attribute ("""EnergySource.EnergySchedulingType"""))
+    val EnergySourceAction: (Context) => String = parse_attribute (attribute ("""EnergySource.EnergySourceAction"""))
+    val WindTurbineType3or4Dynamics: (Context) => String = parse_attribute (attribute ("""EnergySource.WindTurbineType3or4Dynamics"""))
     def parse (context: Context): EnergySource =
     {
         EnergySource(
@@ -1283,24 +1282,24 @@ extends
 case class ExternalNetworkInjection
 (
     override val sup: RegulatingCondEq,
-    val governorSCD: Double,
-    val ikSecond: Boolean,
-    val maxInitialSymShCCurrent: Double,
-    val maxP: Double,
-    val maxQ: Double,
-    val maxR0ToX0Ratio: Double,
-    val maxR1ToX1Ratio: Double,
-    val maxZ0ToZ1Ratio: Double,
-    val minInitialSymShCCurrent: Double,
-    val minP: Double,
-    val minQ: Double,
-    val minR0ToX0Ratio: Double,
-    val minR1ToX1Ratio: Double,
-    val minZ0ToZ1Ratio: Double,
-    val p: Double,
-    val q: Double,
-    val referencePriority: Int,
-    val voltageFactor: Double
+    governorSCD: Double,
+    ikSecond: Boolean,
+    maxInitialSymShCCurrent: Double,
+    maxP: Double,
+    maxQ: Double,
+    maxR0ToX0Ratio: Double,
+    maxR1ToX1Ratio: Double,
+    maxZ0ToZ1Ratio: Double,
+    minInitialSymShCCurrent: Double,
+    minP: Double,
+    minQ: Double,
+    minR0ToX0Ratio: Double,
+    minR1ToX1Ratio: Double,
+    minZ0ToZ1Ratio: Double,
+    p: Double,
+    q: Double,
+    referencePriority: Int,
+    voltageFactor: Double
 )
 extends
     Element
@@ -1350,24 +1349,24 @@ object ExternalNetworkInjection
 extends
     Parseable[ExternalNetworkInjection]
 {
-    val governorSCD = parse_element (element ("""ExternalNetworkInjection.governorSCD"""))
-    val ikSecond = parse_element (element ("""ExternalNetworkInjection.ikSecond"""))
-    val maxInitialSymShCCurrent = parse_element (element ("""ExternalNetworkInjection.maxInitialSymShCCurrent"""))
-    val maxP = parse_element (element ("""ExternalNetworkInjection.maxP"""))
-    val maxQ = parse_element (element ("""ExternalNetworkInjection.maxQ"""))
-    val maxR0ToX0Ratio = parse_element (element ("""ExternalNetworkInjection.maxR0ToX0Ratio"""))
-    val maxR1ToX1Ratio = parse_element (element ("""ExternalNetworkInjection.maxR1ToX1Ratio"""))
-    val maxZ0ToZ1Ratio = parse_element (element ("""ExternalNetworkInjection.maxZ0ToZ1Ratio"""))
-    val minInitialSymShCCurrent = parse_element (element ("""ExternalNetworkInjection.minInitialSymShCCurrent"""))
-    val minP = parse_element (element ("""ExternalNetworkInjection.minP"""))
-    val minQ = parse_element (element ("""ExternalNetworkInjection.minQ"""))
-    val minR0ToX0Ratio = parse_element (element ("""ExternalNetworkInjection.minR0ToX0Ratio"""))
-    val minR1ToX1Ratio = parse_element (element ("""ExternalNetworkInjection.minR1ToX1Ratio"""))
-    val minZ0ToZ1Ratio = parse_element (element ("""ExternalNetworkInjection.minZ0ToZ1Ratio"""))
-    val p = parse_element (element ("""ExternalNetworkInjection.p"""))
-    val q = parse_element (element ("""ExternalNetworkInjection.q"""))
-    val referencePriority = parse_element (element ("""ExternalNetworkInjection.referencePriority"""))
-    val voltageFactor = parse_element (element ("""ExternalNetworkInjection.voltageFactor"""))
+    val governorSCD: (Context) => String = parse_element (element ("""ExternalNetworkInjection.governorSCD"""))
+    val ikSecond: (Context) => String = parse_element (element ("""ExternalNetworkInjection.ikSecond"""))
+    val maxInitialSymShCCurrent: (Context) => String = parse_element (element ("""ExternalNetworkInjection.maxInitialSymShCCurrent"""))
+    val maxP: (Context) => String = parse_element (element ("""ExternalNetworkInjection.maxP"""))
+    val maxQ: (Context) => String = parse_element (element ("""ExternalNetworkInjection.maxQ"""))
+    val maxR0ToX0Ratio: (Context) => String = parse_element (element ("""ExternalNetworkInjection.maxR0ToX0Ratio"""))
+    val maxR1ToX1Ratio: (Context) => String = parse_element (element ("""ExternalNetworkInjection.maxR1ToX1Ratio"""))
+    val maxZ0ToZ1Ratio: (Context) => String = parse_element (element ("""ExternalNetworkInjection.maxZ0ToZ1Ratio"""))
+    val minInitialSymShCCurrent: (Context) => String = parse_element (element ("""ExternalNetworkInjection.minInitialSymShCCurrent"""))
+    val minP: (Context) => String = parse_element (element ("""ExternalNetworkInjection.minP"""))
+    val minQ: (Context) => String = parse_element (element ("""ExternalNetworkInjection.minQ"""))
+    val minR0ToX0Ratio: (Context) => String = parse_element (element ("""ExternalNetworkInjection.minR0ToX0Ratio"""))
+    val minR1ToX1Ratio: (Context) => String = parse_element (element ("""ExternalNetworkInjection.minR1ToX1Ratio"""))
+    val minZ0ToZ1Ratio: (Context) => String = parse_element (element ("""ExternalNetworkInjection.minZ0ToZ1Ratio"""))
+    val p: (Context) => String = parse_element (element ("""ExternalNetworkInjection.p"""))
+    val q: (Context) => String = parse_element (element ("""ExternalNetworkInjection.q"""))
+    val referencePriority: (Context) => String = parse_element (element ("""ExternalNetworkInjection.referencePriority"""))
+    val voltageFactor: (Context) => String = parse_element (element ("""ExternalNetworkInjection.voltageFactor"""))
     def parse (context: Context): ExternalNetworkInjection =
     {
         ExternalNetworkInjection(
@@ -1407,11 +1406,11 @@ extends
 case class FrequencyConverter
 (
     override val sup: RegulatingCondEq,
-    val frequency: Double,
-    val maxP: Double,
-    val maxU: Double,
-    val minP: Double,
-    val minU: Double
+    frequency: Double,
+    maxP: Double,
+    maxU: Double,
+    minP: Double,
+    minU: Double
 )
 extends
     Element
@@ -1448,11 +1447,11 @@ object FrequencyConverter
 extends
     Parseable[FrequencyConverter]
 {
-    val frequency = parse_element (element ("""FrequencyConverter.frequency"""))
-    val maxP = parse_element (element ("""FrequencyConverter.maxP"""))
-    val maxU = parse_element (element ("""FrequencyConverter.maxU"""))
-    val minP = parse_element (element ("""FrequencyConverter.minP"""))
-    val minU = parse_element (element ("""FrequencyConverter.minU"""))
+    val frequency: (Context) => String = parse_element (element ("""FrequencyConverter.frequency"""))
+    val maxP: (Context) => String = parse_element (element ("""FrequencyConverter.maxP"""))
+    val maxU: (Context) => String = parse_element (element ("""FrequencyConverter.maxU"""))
+    val minP: (Context) => String = parse_element (element ("""FrequencyConverter.minP"""))
+    val minU: (Context) => String = parse_element (element ("""FrequencyConverter.minU"""))
     def parse (context: Context): FrequencyConverter =
     {
         FrequencyConverter(
@@ -1523,7 +1522,7 @@ extends
 case class Ground
 (
     override val sup: ConductingEquipment,
-    val GroundAction: String
+    GroundAction: String
 )
 extends
     Element
@@ -1556,7 +1555,7 @@ object Ground
 extends
     Parseable[Ground]
 {
-    val GroundAction = parse_attribute (attribute ("""Ground.GroundAction"""))
+    val GroundAction: (Context) => String = parse_attribute (attribute ("""Ground.GroundAction"""))
     def parse (context: Context): Ground =
     {
         Ground(
@@ -1621,7 +1620,7 @@ extends
 case class GroundingImpedance
 (
     override val sup: EarthFaultCompensator,
-    val x: Double
+    x: Double
 )
 extends
     Element
@@ -1654,7 +1653,7 @@ object GroundingImpedance
 extends
     Parseable[GroundingImpedance]
 {
-    val x = parse_element (element ("""GroundingImpedance.x"""))
+    val x: (Context) => String = parse_element (element ("""GroundingImpedance.x"""))
     def parse (context: Context): GroundingImpedance =
     {
         GroundingImpedance(
@@ -1673,7 +1672,7 @@ extends
 case class Jumper
 (
     override val sup: Switch,
-    val JumperAction: String
+    JumperAction: String
 )
 extends
     Element
@@ -1706,7 +1705,7 @@ object Jumper
 extends
     Parseable[Jumper]
 {
-    val JumperAction = parse_attribute (attribute ("""Jumper.JumperAction"""))
+    val JumperAction: (Context) => String = parse_attribute (attribute ("""Jumper.JumperAction"""))
     def parse (context: Context): Jumper =
     {
         Jumper(
@@ -1771,7 +1770,7 @@ extends
 case class Line
 (
     override val sup: EquipmentContainer,
-    val Region: String
+    Region: String
 )
 extends
     Element
@@ -1804,7 +1803,7 @@ object Line
 extends
     Parseable[Line]
 {
-    val Region = parse_attribute (attribute ("""Line.Region"""))
+    val Region: (Context) => String = parse_attribute (attribute ("""Line.Region"""))
     def parse (context: Context): Line =
     {
         Line(
@@ -1825,10 +1824,10 @@ extends
 case class LinearShuntCompensator
 (
     override val sup: ShuntCompensator,
-    val b0PerSection: Double,
-    val bPerSection: Double,
-    val g0PerSection: Double,
-    val gPerSection: Double
+    b0PerSection: Double,
+    bPerSection: Double,
+    g0PerSection: Double,
+    gPerSection: Double
 )
 extends
     Element
@@ -1864,10 +1863,10 @@ object LinearShuntCompensator
 extends
     Parseable[LinearShuntCompensator]
 {
-    val b0PerSection = parse_element (element ("""LinearShuntCompensator.b0PerSection"""))
-    val bPerSection = parse_element (element ("""LinearShuntCompensator.bPerSection"""))
-    val g0PerSection = parse_element (element ("""LinearShuntCompensator.g0PerSection"""))
-    val gPerSection = parse_element (element ("""LinearShuntCompensator.gPerSection"""))
+    val b0PerSection: (Context) => String = parse_element (element ("""LinearShuntCompensator.b0PerSection"""))
+    val bPerSection: (Context) => String = parse_element (element ("""LinearShuntCompensator.bPerSection"""))
+    val g0PerSection: (Context) => String = parse_element (element ("""LinearShuntCompensator.g0PerSection"""))
+    val gPerSection: (Context) => String = parse_element (element ("""LinearShuntCompensator.gPerSection"""))
     def parse (context: Context): LinearShuntCompensator =
     {
         LinearShuntCompensator(
@@ -1891,8 +1890,8 @@ extends
 case class LinearShuntCompensatorPhase
 (
     override val sup: ShuntCompensatorPhase,
-    val bPerSection: Double,
-    val gPerSection: Double
+    bPerSection: Double,
+    gPerSection: Double
 )
 extends
     Element
@@ -1926,8 +1925,8 @@ object LinearShuntCompensatorPhase
 extends
     Parseable[LinearShuntCompensatorPhase]
 {
-    val bPerSection = parse_element (element ("""LinearShuntCompensatorPhase.bPerSection"""))
-    val gPerSection = parse_element (element ("""LinearShuntCompensatorPhase.gPerSection"""))
+    val bPerSection: (Context) => String = parse_element (element ("""LinearShuntCompensatorPhase.bPerSection"""))
+    val gPerSection: (Context) => String = parse_element (element ("""LinearShuntCompensatorPhase.gPerSection"""))
     def parse (context: Context): LinearShuntCompensatorPhase =
     {
         LinearShuntCompensatorPhase(
@@ -2003,16 +2002,16 @@ extends
 case class MutualCoupling
 (
     override val sup: IdentifiedObject,
-    val b0ch: Double,
-    val distance11: Double,
-    val distance12: Double,
-    val distance21: Double,
-    val distance22: Double,
-    val g0ch: Double,
-    val r0: Double,
-    val x0: Double,
-    val First_Terminal: String,
-    val Second_Terminal: String
+    b0ch: Double,
+    distance11: Double,
+    distance12: Double,
+    distance21: Double,
+    distance22: Double,
+    g0ch: Double,
+    r0: Double,
+    x0: Double,
+    First_Terminal: String,
+    Second_Terminal: String
 )
 extends
     Element
@@ -2054,16 +2053,16 @@ object MutualCoupling
 extends
     Parseable[MutualCoupling]
 {
-    val b0ch = parse_element (element ("""MutualCoupling.b0ch"""))
-    val distance11 = parse_element (element ("""MutualCoupling.distance11"""))
-    val distance12 = parse_element (element ("""MutualCoupling.distance12"""))
-    val distance21 = parse_element (element ("""MutualCoupling.distance21"""))
-    val distance22 = parse_element (element ("""MutualCoupling.distance22"""))
-    val g0ch = parse_element (element ("""MutualCoupling.g0ch"""))
-    val r0 = parse_element (element ("""MutualCoupling.r0"""))
-    val x0 = parse_element (element ("""MutualCoupling.x0"""))
-    val First_Terminal = parse_attribute (attribute ("""MutualCoupling.First_Terminal"""))
-    val Second_Terminal = parse_attribute (attribute ("""MutualCoupling.Second_Terminal"""))
+    val b0ch: (Context) => String = parse_element (element ("""MutualCoupling.b0ch"""))
+    val distance11: (Context) => String = parse_element (element ("""MutualCoupling.distance11"""))
+    val distance12: (Context) => String = parse_element (element ("""MutualCoupling.distance12"""))
+    val distance21: (Context) => String = parse_element (element ("""MutualCoupling.distance21"""))
+    val distance22: (Context) => String = parse_element (element ("""MutualCoupling.distance22"""))
+    val g0ch: (Context) => String = parse_element (element ("""MutualCoupling.g0ch"""))
+    val r0: (Context) => String = parse_element (element ("""MutualCoupling.r0"""))
+    val x0: (Context) => String = parse_element (element ("""MutualCoupling.x0"""))
+    val First_Terminal: (Context) => String = parse_attribute (attribute ("""MutualCoupling.First_Terminal"""))
+    val Second_Terminal: (Context) => String = parse_attribute (attribute ("""MutualCoupling.Second_Terminal"""))
     def parse (context: Context): MutualCoupling =
     {
         MutualCoupling(
@@ -2186,9 +2185,9 @@ extends
 case class NonlinearShuntCompensatorPhasePoint
 (
     override val sup: BasicElement,
-    val b: Double,
-    val g: Double,
-    val sectionNumber: Int
+    b: Double,
+    g: Double,
+    sectionNumber: Int
 )
 extends
     Element
@@ -2223,9 +2222,9 @@ object NonlinearShuntCompensatorPhasePoint
 extends
     Parseable[NonlinearShuntCompensatorPhasePoint]
 {
-    val b = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.b"""))
-    val g = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.g"""))
-    val sectionNumber = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.sectionNumber"""))
+    val b: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.b"""))
+    val g: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.g"""))
+    val sectionNumber: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.sectionNumber"""))
     def parse (context: Context): NonlinearShuntCompensatorPhasePoint =
     {
         NonlinearShuntCompensatorPhasePoint(
@@ -2249,11 +2248,11 @@ extends
 case class NonlinearShuntCompensatorPoint
 (
     override val sup: BasicElement,
-    val b: Double,
-    val b0: Double,
-    val g: Double,
-    val g0: Double,
-    val sectionNumber: Int
+    b: Double,
+    b0: Double,
+    g: Double,
+    g0: Double,
+    sectionNumber: Int
 )
 extends
     Element
@@ -2290,11 +2289,11 @@ object NonlinearShuntCompensatorPoint
 extends
     Parseable[NonlinearShuntCompensatorPoint]
 {
-    val b = parse_element (element ("""NonlinearShuntCompensatorPoint.b"""))
-    val b0 = parse_element (element ("""NonlinearShuntCompensatorPoint.b0"""))
-    val g = parse_element (element ("""NonlinearShuntCompensatorPoint.g"""))
-    val g0 = parse_element (element ("""NonlinearShuntCompensatorPoint.g0"""))
-    val sectionNumber = parse_element (element ("""NonlinearShuntCompensatorPoint.sectionNumber"""))
+    val b: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.b"""))
+    val b0: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.b0"""))
+    val g: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.g"""))
+    val g0: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.g0"""))
+    val sectionNumber: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.sectionNumber"""))
     def parse (context: Context): NonlinearShuntCompensatorPoint =
     {
         NonlinearShuntCompensatorPoint(
@@ -2363,7 +2362,7 @@ extends
 case class PerLengthLineParameter
 (
     override val sup: IdentifiedObject,
-    val WireSpacingInfo: String
+    WireSpacingInfo: String
 )
 extends
     Element
@@ -2396,7 +2395,7 @@ object PerLengthLineParameter
 extends
     Parseable[PerLengthLineParameter]
 {
-    val WireSpacingInfo = parse_attribute (attribute ("""PerLengthLineParameter.WireSpacingInfo"""))
+    val WireSpacingInfo: (Context) => String = parse_attribute (attribute ("""PerLengthLineParameter.WireSpacingInfo"""))
     def parse (context: Context): PerLengthLineParameter =
     {
         PerLengthLineParameter(
@@ -2415,7 +2414,7 @@ extends
 case class PerLengthPhaseImpedance
 (
     override val sup: PerLengthImpedance,
-    val conductorCount: Int
+    conductorCount: Int
 )
 extends
     Element
@@ -2448,7 +2447,7 @@ object PerLengthPhaseImpedance
 extends
     Parseable[PerLengthPhaseImpedance]
 {
-    val conductorCount = parse_element (element ("""PerLengthPhaseImpedance.conductorCount"""))
+    val conductorCount: (Context) => String = parse_element (element ("""PerLengthPhaseImpedance.conductorCount"""))
     def parse (context: Context): PerLengthPhaseImpedance =
     {
         PerLengthPhaseImpedance(
@@ -2474,14 +2473,14 @@ extends
 case class PerLengthSequenceImpedance
 (
     override val sup: PerLengthImpedance,
-    val b0ch: Double,
-    val bch: Double,
-    val g0ch: Double,
-    val gch: Double,
-    val r: Double,
-    val r0: Double,
-    val x: Double,
-    val x0: Double
+    b0ch: Double,
+    bch: Double,
+    g0ch: Double,
+    gch: Double,
+    r: Double,
+    r0: Double,
+    x: Double,
+    x0: Double
 )
 extends
     Element
@@ -2521,14 +2520,14 @@ object PerLengthSequenceImpedance
 extends
     Parseable[PerLengthSequenceImpedance]
 {
-    val b0ch = parse_element (element ("""PerLengthSequenceImpedance.b0ch"""))
-    val bch = parse_element (element ("""PerLengthSequenceImpedance.bch"""))
-    val g0ch = parse_element (element ("""PerLengthSequenceImpedance.g0ch"""))
-    val gch = parse_element (element ("""PerLengthSequenceImpedance.gch"""))
-    val r = parse_element (element ("""PerLengthSequenceImpedance.r"""))
-    val r0 = parse_element (element ("""PerLengthSequenceImpedance.r0"""))
-    val x = parse_element (element ("""PerLengthSequenceImpedance.x"""))
-    val x0 = parse_element (element ("""PerLengthSequenceImpedance.x0"""))
+    val b0ch: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.b0ch"""))
+    val bch: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.bch"""))
+    val g0ch: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.g0ch"""))
+    val gch: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.gch"""))
+    val r: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.r"""))
+    val r0: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.r0"""))
+    val x: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.x"""))
+    val x0: (Context) => String = parse_element (element ("""PerLengthSequenceImpedance.x0"""))
     def parse (context: Context): PerLengthSequenceImpedance =
     {
         PerLengthSequenceImpedance(
@@ -2562,13 +2561,13 @@ extends
 case class PetersenCoil
 (
     override val sup: EarthFaultCompensator,
-    val mode: String,
-    val nominalU: Double,
-    val offsetCurrent: Double,
-    val positionCurrent: Double,
-    val xGroundMax: Double,
-    val xGroundMin: Double,
-    val xGroundNominal: Double
+    mode: String,
+    nominalU: Double,
+    offsetCurrent: Double,
+    positionCurrent: Double,
+    xGroundMax: Double,
+    xGroundMin: Double,
+    xGroundNominal: Double
 )
 extends
     Element
@@ -2607,13 +2606,13 @@ object PetersenCoil
 extends
     Parseable[PetersenCoil]
 {
-    val mode = parse_attribute (attribute ("""PetersenCoil.mode"""))
-    val nominalU = parse_element (element ("""PetersenCoil.nominalU"""))
-    val offsetCurrent = parse_element (element ("""PetersenCoil.offsetCurrent"""))
-    val positionCurrent = parse_element (element ("""PetersenCoil.positionCurrent"""))
-    val xGroundMax = parse_element (element ("""PetersenCoil.xGroundMax"""))
-    val xGroundMin = parse_element (element ("""PetersenCoil.xGroundMin"""))
-    val xGroundNominal = parse_element (element ("""PetersenCoil.xGroundNominal"""))
+    val mode: (Context) => String = parse_attribute (attribute ("""PetersenCoil.mode"""))
+    val nominalU: (Context) => String = parse_element (element ("""PetersenCoil.nominalU"""))
+    val offsetCurrent: (Context) => String = parse_element (element ("""PetersenCoil.offsetCurrent"""))
+    val positionCurrent: (Context) => String = parse_element (element ("""PetersenCoil.positionCurrent"""))
+    val xGroundMax: (Context) => String = parse_element (element ("""PetersenCoil.xGroundMax"""))
+    val xGroundMin: (Context) => String = parse_element (element ("""PetersenCoil.xGroundMin"""))
+    val xGroundNominal: (Context) => String = parse_element (element ("""PetersenCoil.xGroundNominal"""))
     def parse (context: Context): PetersenCoil =
     {
         PetersenCoil(
@@ -2639,9 +2638,9 @@ extends
 case class PetersenCoilModeKind
 (
     override val sup: BasicElement,
-    val automaticPositioning: String,
-    val fixed: String,
-    val manual: String
+    automaticPositioning: String,
+    fixed: String,
+    manual: String
 )
 extends
     Element
@@ -2676,9 +2675,9 @@ object PetersenCoilModeKind
 extends
     Parseable[PetersenCoilModeKind]
 {
-    val automaticPositioning = parse_attribute (attribute ("""PetersenCoilModeKind.automaticPositioning"""))
-    val fixed = parse_attribute (attribute ("""PetersenCoilModeKind.fixed"""))
-    val manual = parse_attribute (attribute ("""PetersenCoilModeKind.manual"""))
+    val automaticPositioning: (Context) => String = parse_attribute (attribute ("""PetersenCoilModeKind.automaticPositioning"""))
+    val fixed: (Context) => String = parse_attribute (attribute ("""PetersenCoilModeKind.fixed"""))
+    val manual: (Context) => String = parse_attribute (attribute ("""PetersenCoilModeKind.manual"""))
     def parse (context: Context): PetersenCoilModeKind =
     {
         PetersenCoilModeKind(
@@ -2703,11 +2702,11 @@ extends
 case class PhaseImpedanceData
 (
     override val sup: BasicElement,
-    val b: Double,
-    val r: Double,
-    val sequenceNumber: Int,
-    val x: Double,
-    val PhaseImpedance: String
+    b: Double,
+    r: Double,
+    sequenceNumber: Int,
+    x: Double,
+    PhaseImpedance: String
 )
 extends
     Element
@@ -2744,11 +2743,11 @@ object PhaseImpedanceData
 extends
     Parseable[PhaseImpedanceData]
 {
-    val b = parse_element (element ("""PhaseImpedanceData.b"""))
-    val r = parse_element (element ("""PhaseImpedanceData.r"""))
-    val sequenceNumber = parse_element (element ("""PhaseImpedanceData.sequenceNumber"""))
-    val x = parse_element (element ("""PhaseImpedanceData.x"""))
-    val PhaseImpedance = parse_attribute (attribute ("""PhaseImpedanceData.PhaseImpedance"""))
+    val b: (Context) => String = parse_element (element ("""PhaseImpedanceData.b"""))
+    val r: (Context) => String = parse_element (element ("""PhaseImpedanceData.r"""))
+    val sequenceNumber: (Context) => String = parse_element (element ("""PhaseImpedanceData.sequenceNumber"""))
+    val x: (Context) => String = parse_element (element ("""PhaseImpedanceData.x"""))
+    val PhaseImpedance: (Context) => String = parse_attribute (attribute ("""PhaseImpedanceData.PhaseImpedance"""))
     def parse (context: Context): PhaseImpedanceData =
     {
         PhaseImpedanceData(
@@ -2773,10 +2772,10 @@ extends
 case class PhaseShuntConnectionKind
 (
     override val sup: BasicElement,
-    val D: String,
-    val I: String,
-    val Y: String,
-    val Yn: String
+    D: String,
+    I: String,
+    Y: String,
+    Yn: String
 )
 extends
     Element
@@ -2812,10 +2811,10 @@ object PhaseShuntConnectionKind
 extends
     Parseable[PhaseShuntConnectionKind]
 {
-    val D = parse_attribute (attribute ("""PhaseShuntConnectionKind.D"""))
-    val I = parse_attribute (attribute ("""PhaseShuntConnectionKind.I"""))
-    val Y = parse_attribute (attribute ("""PhaseShuntConnectionKind.Y"""))
-    val Yn = parse_attribute (attribute ("""PhaseShuntConnectionKind.Yn"""))
+    val D: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.D"""))
+    val I: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.I"""))
+    val Y: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.Y"""))
+    val Yn: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.Yn"""))
     def parse (context: Context): PhaseShuntConnectionKind =
     {
         PhaseShuntConnectionKind(
@@ -2837,7 +2836,7 @@ extends
 case class PhaseTapChanger
 (
     override val sup: TapChanger,
-    val TransformerEnd: String
+    TransformerEnd: String
 )
 extends
     Element
@@ -2870,7 +2869,7 @@ object PhaseTapChanger
 extends
     Parseable[PhaseTapChanger]
 {
-    val TransformerEnd = parse_attribute (attribute ("""PhaseTapChanger.TransformerEnd"""))
+    val TransformerEnd: (Context) => String = parse_attribute (attribute ("""PhaseTapChanger.TransformerEnd"""))
     def parse (context: Context): PhaseTapChanger =
     {
         PhaseTapChanger(
@@ -2890,7 +2889,7 @@ extends
 case class PhaseTapChangerAsymmetrical
 (
     override val sup: PhaseTapChangerNonLinear,
-    val windingConnectionAngle: Double
+    windingConnectionAngle: Double
 )
 extends
     Element
@@ -2923,7 +2922,7 @@ object PhaseTapChangerAsymmetrical
 extends
     Parseable[PhaseTapChangerAsymmetrical]
 {
-    val windingConnectionAngle = parse_element (element ("""PhaseTapChangerAsymmetrical.windingConnectionAngle"""))
+    val windingConnectionAngle: (Context) => String = parse_element (element ("""PhaseTapChangerAsymmetrical.windingConnectionAngle"""))
     def parse (context: Context): PhaseTapChangerAsymmetrical =
     {
         PhaseTapChangerAsymmetrical(
@@ -2947,9 +2946,9 @@ extends
 case class PhaseTapChangerLinear
 (
     override val sup: PhaseTapChanger,
-    val stepPhaseShiftIncrement: Double,
-    val xMax: Double,
-    val xMin: Double
+    stepPhaseShiftIncrement: Double,
+    xMax: Double,
+    xMin: Double
 )
 extends
     Element
@@ -2984,9 +2983,9 @@ object PhaseTapChangerLinear
 extends
     Parseable[PhaseTapChangerLinear]
 {
-    val stepPhaseShiftIncrement = parse_element (element ("""PhaseTapChangerLinear.stepPhaseShiftIncrement"""))
-    val xMax = parse_element (element ("""PhaseTapChangerLinear.xMax"""))
-    val xMin = parse_element (element ("""PhaseTapChangerLinear.xMin"""))
+    val stepPhaseShiftIncrement: (Context) => String = parse_element (element ("""PhaseTapChangerLinear.stepPhaseShiftIncrement"""))
+    val xMax: (Context) => String = parse_element (element ("""PhaseTapChangerLinear.xMax"""))
+    val xMin: (Context) => String = parse_element (element ("""PhaseTapChangerLinear.xMin"""))
     def parse (context: Context): PhaseTapChangerLinear =
     {
         PhaseTapChangerLinear(
@@ -3011,9 +3010,9 @@ extends
 case class PhaseTapChangerNonLinear
 (
     override val sup: PhaseTapChanger,
-    val voltageStepIncrement: Double,
-    val xMax: Double,
-    val xMin: Double
+    voltageStepIncrement: Double,
+    xMax: Double,
+    xMin: Double
 )
 extends
     Element
@@ -3048,9 +3047,9 @@ object PhaseTapChangerNonLinear
 extends
     Parseable[PhaseTapChangerNonLinear]
 {
-    val voltageStepIncrement = parse_element (element ("""PhaseTapChangerNonLinear.voltageStepIncrement"""))
-    val xMax = parse_element (element ("""PhaseTapChangerNonLinear.xMax"""))
-    val xMin = parse_element (element ("""PhaseTapChangerNonLinear.xMin"""))
+    val voltageStepIncrement: (Context) => String = parse_element (element ("""PhaseTapChangerNonLinear.voltageStepIncrement"""))
+    val xMax: (Context) => String = parse_element (element ("""PhaseTapChangerNonLinear.xMax"""))
+    val xMin: (Context) => String = parse_element (element ("""PhaseTapChangerNonLinear.xMin"""))
     def parse (context: Context): PhaseTapChangerNonLinear =
     {
         PhaseTapChangerNonLinear(
@@ -3166,8 +3165,8 @@ extends
 case class PhaseTapChangerTablePoint
 (
     override val sup: TapChangerTablePoint,
-    val angle: Double,
-    val PhaseTapChangerTable: String
+    angle: Double,
+    PhaseTapChangerTable: String
 )
 extends
     Element
@@ -3201,8 +3200,8 @@ object PhaseTapChangerTablePoint
 extends
     Parseable[PhaseTapChangerTablePoint]
 {
-    val angle = parse_element (element ("""PhaseTapChangerTablePoint.angle"""))
-    val PhaseTapChangerTable = parse_attribute (attribute ("""PhaseTapChangerTablePoint.PhaseTapChangerTable"""))
+    val angle: (Context) => String = parse_element (element ("""PhaseTapChangerTablePoint.angle"""))
+    val PhaseTapChangerTable: (Context) => String = parse_attribute (attribute ("""PhaseTapChangerTablePoint.PhaseTapChangerTable"""))
     def parse (context: Context): PhaseTapChangerTablePoint =
     {
         PhaseTapChangerTablePoint(
@@ -3216,7 +3215,7 @@ extends
 case class PhaseTapChangerTabular
 (
     override val sup: PhaseTapChanger,
-    val PhaseTapChangerTable: String
+    PhaseTapChangerTable: String
 )
 extends
     Element
@@ -3249,7 +3248,7 @@ object PhaseTapChangerTabular
 extends
     Parseable[PhaseTapChangerTabular]
 {
-    val PhaseTapChangerTable = parse_attribute (attribute ("""PhaseTapChangerTabular.PhaseTapChangerTable"""))
+    val PhaseTapChangerTable: (Context) => String = parse_attribute (attribute ("""PhaseTapChangerTabular.PhaseTapChangerTable"""))
     def parse (context: Context): PhaseTapChangerTabular =
     {
         PhaseTapChangerTabular(
@@ -3328,13 +3327,13 @@ extends
 case class PowerTransformer
 (
     override val sup: ConductingEquipment,
-    val beforeShCircuitHighestOperatingCurrent: Double,
-    val beforeShCircuitHighestOperatingVoltage: Double,
-    val beforeShortCircuitAnglePf: Double,
-    val highSideMinOperatingU: Double,
-    val isPartOfGeneratorUnit: Boolean,
-    val operationalValuesConsidered: Boolean,
-    val vectorGroup: String
+    beforeShCircuitHighestOperatingCurrent: Double,
+    beforeShCircuitHighestOperatingVoltage: Double,
+    beforeShortCircuitAnglePf: Double,
+    highSideMinOperatingU: Double,
+    isPartOfGeneratorUnit: Boolean,
+    operationalValuesConsidered: Boolean,
+    vectorGroup: String
 )
 extends
     Element
@@ -3373,13 +3372,13 @@ object PowerTransformer
 extends
     Parseable[PowerTransformer]
 {
-    val beforeShCircuitHighestOperatingCurrent = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingCurrent"""))
-    val beforeShCircuitHighestOperatingVoltage = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingVoltage"""))
-    val beforeShortCircuitAnglePf = parse_element (element ("""PowerTransformer.beforeShortCircuitAnglePf"""))
-    val highSideMinOperatingU = parse_element (element ("""PowerTransformer.highSideMinOperatingU"""))
-    val isPartOfGeneratorUnit = parse_element (element ("""PowerTransformer.isPartOfGeneratorUnit"""))
-    val operationalValuesConsidered = parse_element (element ("""PowerTransformer.operationalValuesConsidered"""))
-    val vectorGroup = parse_element (element ("""PowerTransformer.vectorGroup"""))
+    val beforeShCircuitHighestOperatingCurrent: (Context) => String = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingCurrent"""))
+    val beforeShCircuitHighestOperatingVoltage: (Context) => String = parse_element (element ("""PowerTransformer.beforeShCircuitHighestOperatingVoltage"""))
+    val beforeShortCircuitAnglePf: (Context) => String = parse_element (element ("""PowerTransformer.beforeShortCircuitAnglePf"""))
+    val highSideMinOperatingU: (Context) => String = parse_element (element ("""PowerTransformer.highSideMinOperatingU"""))
+    val isPartOfGeneratorUnit: (Context) => String = parse_element (element ("""PowerTransformer.isPartOfGeneratorUnit"""))
+    val operationalValuesConsidered: (Context) => String = parse_element (element ("""PowerTransformer.operationalValuesConsidered"""))
+    val vectorGroup: (Context) => String = parse_element (element ("""PowerTransformer.vectorGroup"""))
     def parse (context: Context): PowerTransformer =
     {
         PowerTransformer(
@@ -3421,19 +3420,19 @@ extends
 case class PowerTransformerEnd
 (
     override val sup: TransformerEnd,
-    val b: Double,
-    val b0: Double,
-    val connectionKind: String,
-    val g: Double,
-    val g0: Double,
-    val phaseAngleClock: Int,
-    val r: Double,
-    val r0: Double,
-    val ratedS: Double,
-    val ratedU: Double,
-    val x: Double,
-    val x0: Double,
-    val PowerTransformer: String
+    b: Double,
+    b0: Double,
+    connectionKind: String,
+    g: Double,
+    g0: Double,
+    phaseAngleClock: Int,
+    r: Double,
+    r0: Double,
+    ratedS: Double,
+    ratedU: Double,
+    x: Double,
+    x0: Double,
+    PowerTransformer: String
 )
 extends
     Element
@@ -3478,19 +3477,19 @@ object PowerTransformerEnd
 extends
     Parseable[PowerTransformerEnd]
 {
-    val b = parse_element (element ("""PowerTransformerEnd.b"""))
-    val b0 = parse_element (element ("""PowerTransformerEnd.b0"""))
-    val connectionKind = parse_attribute (attribute ("""PowerTransformerEnd.connectionKind"""))
-    val g = parse_element (element ("""PowerTransformerEnd.g"""))
-    val g0 = parse_element (element ("""PowerTransformerEnd.g0"""))
-    val phaseAngleClock = parse_element (element ("""PowerTransformerEnd.phaseAngleClock"""))
-    val r = parse_element (element ("""PowerTransformerEnd.r"""))
-    val r0 = parse_element (element ("""PowerTransformerEnd.r0"""))
-    val ratedS = parse_element (element ("""PowerTransformerEnd.ratedS"""))
-    val ratedU = parse_element (element ("""PowerTransformerEnd.ratedU"""))
-    val x = parse_element (element ("""PowerTransformerEnd.x"""))
-    val x0 = parse_element (element ("""PowerTransformerEnd.x0"""))
-    val PowerTransformer = parse_attribute (attribute ("""PowerTransformerEnd.PowerTransformer"""))
+    val b: (Context) => String = parse_element (element ("""PowerTransformerEnd.b"""))
+    val b0: (Context) => String = parse_element (element ("""PowerTransformerEnd.b0"""))
+    val connectionKind: (Context) => String = parse_attribute (attribute ("""PowerTransformerEnd.connectionKind"""))
+    val g: (Context) => String = parse_element (element ("""PowerTransformerEnd.g"""))
+    val g0: (Context) => String = parse_element (element ("""PowerTransformerEnd.g0"""))
+    val phaseAngleClock: (Context) => String = parse_element (element ("""PowerTransformerEnd.phaseAngleClock"""))
+    val r: (Context) => String = parse_element (element ("""PowerTransformerEnd.r"""))
+    val r0: (Context) => String = parse_element (element ("""PowerTransformerEnd.r0"""))
+    val ratedS: (Context) => String = parse_element (element ("""PowerTransformerEnd.ratedS"""))
+    val ratedU: (Context) => String = parse_element (element ("""PowerTransformerEnd.ratedU"""))
+    val x: (Context) => String = parse_element (element ("""PowerTransformerEnd.x"""))
+    val x0: (Context) => String = parse_element (element ("""PowerTransformerEnd.x0"""))
+    val PowerTransformer: (Context) => String = parse_attribute (attribute ("""PowerTransformerEnd.PowerTransformer"""))
     def parse (context: Context): PowerTransformerEnd =
     {
         PowerTransformerEnd(
@@ -3520,7 +3519,7 @@ extends
 case class ProtectedSwitch
 (
     override val sup: Switch,
-    val breakingCapacity: Double
+    breakingCapacity: Double
 )
 extends
     Element
@@ -3553,7 +3552,7 @@ object ProtectedSwitch
 extends
     Parseable[ProtectedSwitch]
 {
-    val breakingCapacity = parse_element (element ("""ProtectedSwitch.breakingCapacity"""))
+    val breakingCapacity: (Context) => String = parse_element (element ("""ProtectedSwitch.breakingCapacity"""))
     def parse (context: Context): ProtectedSwitch =
     {
         ProtectedSwitch(
@@ -3574,10 +3573,10 @@ extends
 case class RatioTapChanger
 (
     override val sup: TapChanger,
-    val stepVoltageIncrement: Double,
-    val tculControlMode: String,
-    val RatioTapChangerTable: String,
-    val TransformerEnd: String
+    stepVoltageIncrement: Double,
+    tculControlMode: String,
+    RatioTapChangerTable: String,
+    TransformerEnd: String
 )
 extends
     Element
@@ -3613,10 +3612,10 @@ object RatioTapChanger
 extends
     Parseable[RatioTapChanger]
 {
-    val stepVoltageIncrement = parse_element (element ("""RatioTapChanger.stepVoltageIncrement"""))
-    val tculControlMode = parse_attribute (attribute ("""RatioTapChanger.tculControlMode"""))
-    val RatioTapChangerTable = parse_attribute (attribute ("""RatioTapChanger.RatioTapChangerTable"""))
-    val TransformerEnd = parse_attribute (attribute ("""RatioTapChanger.TransformerEnd"""))
+    val stepVoltageIncrement: (Context) => String = parse_element (element ("""RatioTapChanger.stepVoltageIncrement"""))
+    val tculControlMode: (Context) => String = parse_attribute (attribute ("""RatioTapChanger.tculControlMode"""))
+    val RatioTapChangerTable: (Context) => String = parse_attribute (attribute ("""RatioTapChanger.RatioTapChangerTable"""))
+    val TransformerEnd: (Context) => String = parse_attribute (attribute ("""RatioTapChanger.TransformerEnd"""))
     def parse (context: Context): RatioTapChanger =
     {
         RatioTapChanger(
@@ -3684,7 +3683,7 @@ extends
 case class RatioTapChangerTablePoint
 (
     override val sup: TapChangerTablePoint,
-    val RatioTapChangerTable: String
+    RatioTapChangerTable: String
 )
 extends
     Element
@@ -3717,7 +3716,7 @@ object RatioTapChangerTablePoint
 extends
     Parseable[RatioTapChangerTablePoint]
 {
-    val RatioTapChangerTable = parse_attribute (attribute ("""RatioTapChangerTablePoint.RatioTapChangerTable"""))
+    val RatioTapChangerTable: (Context) => String = parse_attribute (attribute ("""RatioTapChangerTablePoint.RatioTapChangerTable"""))
     def parse (context: Context): RatioTapChangerTablePoint =
     {
         RatioTapChangerTablePoint(
@@ -3737,8 +3736,8 @@ extends
 case class ReactiveCapabilityCurve
 (
     override val sup: Curve,
-    val coolantTemperature: Double,
-    val hydrogenPressure: Double
+    coolantTemperature: Double,
+    hydrogenPressure: Double
 )
 extends
     Element
@@ -3772,8 +3771,8 @@ object ReactiveCapabilityCurve
 extends
     Parseable[ReactiveCapabilityCurve]
 {
-    val coolantTemperature = parse_element (element ("""ReactiveCapabilityCurve.coolantTemperature"""))
-    val hydrogenPressure = parse_element (element ("""ReactiveCapabilityCurve.hydrogenPressure"""))
+    val coolantTemperature: (Context) => String = parse_element (element ("""ReactiveCapabilityCurve.coolantTemperature"""))
+    val hydrogenPressure: (Context) => String = parse_element (element ("""ReactiveCapabilityCurve.hydrogenPressure"""))
     def parse (context: Context): ReactiveCapabilityCurve =
     {
         ReactiveCapabilityCurve(
@@ -3841,8 +3840,8 @@ extends
 case class RegulatingCondEq
 (
     override val sup: ConductingEquipment,
-    val controlEnabled: Boolean,
-    val RegulatingControl: String
+    controlEnabled: Boolean,
+    RegulatingControl: String
 )
 extends
     Element
@@ -3876,8 +3875,8 @@ object RegulatingCondEq
 extends
     Parseable[RegulatingCondEq]
 {
-    val controlEnabled = parse_element (element ("""RegulatingCondEq.controlEnabled"""))
-    val RegulatingControl = parse_attribute (attribute ("""RegulatingCondEq.RegulatingControl"""))
+    val controlEnabled: (Context) => String = parse_element (element ("""RegulatingCondEq.controlEnabled"""))
+    val RegulatingControl: (Context) => String = parse_attribute (attribute ("""RegulatingCondEq.RegulatingControl"""))
     def parse (context: Context): RegulatingCondEq =
     {
         RegulatingCondEq(
@@ -3909,14 +3908,14 @@ extends
 case class RegulatingControl
 (
     override val sup: PowerSystemResource,
-    val discrete: Boolean,
-    val enabled: Boolean,
-    val mode: String,
-    val monitoredPhase: String,
-    val targetDeadband: Double,
-    val targetValue: Double,
-    val targetValueUnitMultiplier: String,
-    val Terminal: String
+    discrete: Boolean,
+    enabled: Boolean,
+    mode: String,
+    monitoredPhase: String,
+    targetDeadband: Double,
+    targetValue: Double,
+    targetValueUnitMultiplier: String,
+    Terminal: String
 )
 extends
     Element
@@ -3956,14 +3955,14 @@ object RegulatingControl
 extends
     Parseable[RegulatingControl]
 {
-    val discrete = parse_element (element ("""RegulatingControl.discrete"""))
-    val enabled = parse_element (element ("""RegulatingControl.enabled"""))
-    val mode = parse_attribute (attribute ("""RegulatingControl.mode"""))
-    val monitoredPhase = parse_attribute (attribute ("""RegulatingControl.monitoredPhase"""))
-    val targetDeadband = parse_element (element ("""RegulatingControl.targetDeadband"""))
-    val targetValue = parse_element (element ("""RegulatingControl.targetValue"""))
-    val targetValueUnitMultiplier = parse_attribute (attribute ("""RegulatingControl.targetValueUnitMultiplier"""))
-    val Terminal = parse_attribute (attribute ("""RegulatingControl.Terminal"""))
+    val discrete: (Context) => String = parse_element (element ("""RegulatingControl.discrete"""))
+    val enabled: (Context) => String = parse_element (element ("""RegulatingControl.enabled"""))
+    val mode: (Context) => String = parse_attribute (attribute ("""RegulatingControl.mode"""))
+    val monitoredPhase: (Context) => String = parse_attribute (attribute ("""RegulatingControl.monitoredPhase"""))
+    val targetDeadband: (Context) => String = parse_element (element ("""RegulatingControl.targetDeadband"""))
+    val targetValue: (Context) => String = parse_element (element ("""RegulatingControl.targetValue"""))
+    val targetValueUnitMultiplier: (Context) => String = parse_attribute (attribute ("""RegulatingControl.targetValueUnitMultiplier"""))
+    val Terminal: (Context) => String = parse_attribute (attribute ("""RegulatingControl.Terminal"""))
     def parse (context: Context): RegulatingControl =
     {
         RegulatingControl(
@@ -3997,14 +3996,14 @@ extends
 case class RegulatingControlModeKind
 (
     override val sup: BasicElement,
-    val activePower: String,
-    val admittance: String,
-    val currentFlow: String,
-    val powerFactor: String,
-    val reactivePower: String,
-    val temperature: String,
-    val timeScheduled: String,
-    val voltage: String
+    activePower: String,
+    admittance: String,
+    currentFlow: String,
+    powerFactor: String,
+    reactivePower: String,
+    temperature: String,
+    timeScheduled: String,
+    voltage: String
 )
 extends
     Element
@@ -4044,14 +4043,14 @@ object RegulatingControlModeKind
 extends
     Parseable[RegulatingControlModeKind]
 {
-    val activePower = parse_attribute (attribute ("""RegulatingControlModeKind.activePower"""))
-    val admittance = parse_attribute (attribute ("""RegulatingControlModeKind.admittance"""))
-    val currentFlow = parse_attribute (attribute ("""RegulatingControlModeKind.currentFlow"""))
-    val powerFactor = parse_attribute (attribute ("""RegulatingControlModeKind.powerFactor"""))
-    val reactivePower = parse_attribute (attribute ("""RegulatingControlModeKind.reactivePower"""))
-    val temperature = parse_attribute (attribute ("""RegulatingControlModeKind.temperature"""))
-    val timeScheduled = parse_attribute (attribute ("""RegulatingControlModeKind.timeScheduled"""))
-    val voltage = parse_attribute (attribute ("""RegulatingControlModeKind.voltage"""))
+    val activePower: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.activePower"""))
+    val admittance: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.admittance"""))
+    val currentFlow: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.currentFlow"""))
+    val powerFactor: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.powerFactor"""))
+    val reactivePower: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.reactivePower"""))
+    val temperature: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.temperature"""))
+    val timeScheduled: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.timeScheduled"""))
+    val voltage: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.voltage"""))
     def parse (context: Context): RegulatingControlModeKind =
     {
         RegulatingControlModeKind(
@@ -4076,7 +4075,7 @@ extends
 case class RegulationSchedule
 (
     override val sup: SeasonDayTypeSchedule,
-    val RegulatingControl: String
+    RegulatingControl: String
 )
 extends
     Element
@@ -4109,7 +4108,7 @@ object RegulationSchedule
 extends
     Parseable[RegulationSchedule]
 {
-    val RegulatingControl = parse_attribute (attribute ("""RegulationSchedule.RegulatingControl"""))
+    val RegulatingControl: (Context) => String = parse_attribute (attribute ("""RegulationSchedule.RegulatingControl"""))
     def parse (context: Context): RegulationSchedule =
     {
         RegulationSchedule(
@@ -4139,13 +4138,13 @@ extends
 case class RotatingMachine
 (
     override val sup: RegulatingCondEq,
-    val p: Double,
-    val q: Double,
-    val ratedPowerFactor: Double,
-    val ratedS: Double,
-    val ratedU: Double,
-    val GeneratingUnit: String,
-    val HydroPump: String
+    p: Double,
+    q: Double,
+    ratedPowerFactor: Double,
+    ratedS: Double,
+    ratedU: Double,
+    GeneratingUnit: String,
+    HydroPump: String
 )
 extends
     Element
@@ -4184,13 +4183,13 @@ object RotatingMachine
 extends
     Parseable[RotatingMachine]
 {
-    val p = parse_element (element ("""RotatingMachine.p"""))
-    val q = parse_element (element ("""RotatingMachine.q"""))
-    val ratedPowerFactor = parse_element (element ("""RotatingMachine.ratedPowerFactor"""))
-    val ratedS = parse_element (element ("""RotatingMachine.ratedS"""))
-    val ratedU = parse_element (element ("""RotatingMachine.ratedU"""))
-    val GeneratingUnit = parse_attribute (attribute ("""RotatingMachine.GeneratingUnit"""))
-    val HydroPump = parse_attribute (attribute ("""RotatingMachine.HydroPump"""))
+    val p: (Context) => String = parse_element (element ("""RotatingMachine.p"""))
+    val q: (Context) => String = parse_element (element ("""RotatingMachine.q"""))
+    val ratedPowerFactor: (Context) => String = parse_element (element ("""RotatingMachine.ratedPowerFactor"""))
+    val ratedS: (Context) => String = parse_element (element ("""RotatingMachine.ratedS"""))
+    val ratedU: (Context) => String = parse_element (element ("""RotatingMachine.ratedU"""))
+    val GeneratingUnit: (Context) => String = parse_attribute (attribute ("""RotatingMachine.GeneratingUnit"""))
+    val HydroPump: (Context) => String = parse_attribute (attribute ("""RotatingMachine.HydroPump"""))
     def parse (context: Context): RotatingMachine =
     {
         RotatingMachine(
@@ -4209,14 +4208,14 @@ extends
 /**
  * Static VAr Compensator control mode.
  * @param sup Reference to the superclass object.
- * @param reactivePower
- * @param voltage
+ * @param reactivePower <em>undocumented</em>
+ * @param voltage <em>undocumented</em>
  */
 case class SVCControlMode
 (
     override val sup: BasicElement,
-    val reactivePower: String,
-    val voltage: String
+    reactivePower: String,
+    voltage: String
 )
 extends
     Element
@@ -4250,8 +4249,8 @@ object SVCControlMode
 extends
     Parseable[SVCControlMode]
 {
-    val reactivePower = parse_attribute (attribute ("""SVCControlMode.reactivePower"""))
-    val voltage = parse_attribute (attribute ("""SVCControlMode.voltage"""))
+    val reactivePower: (Context) => String = parse_attribute (attribute ("""SVCControlMode.reactivePower"""))
+    val voltage: (Context) => String = parse_attribute (attribute ("""SVCControlMode.voltage"""))
     def parse (context: Context): SVCControlMode =
     {
         SVCControlMode(
@@ -4325,13 +4324,13 @@ extends
 case class SeriesCompensator
 (
     override val sup: ConductingEquipment,
-    val r: Double,
-    val r0: Double,
-    val varistorPresent: Boolean,
-    val varistorRatedCurrent: Double,
-    val varistorVoltageThreshold: Double,
-    val x: Double,
-    val x0: Double
+    r: Double,
+    r0: Double,
+    varistorPresent: Boolean,
+    varistorRatedCurrent: Double,
+    varistorVoltageThreshold: Double,
+    x: Double,
+    x0: Double
 )
 extends
     Element
@@ -4370,13 +4369,13 @@ object SeriesCompensator
 extends
     Parseable[SeriesCompensator]
 {
-    val r = parse_element (element ("""SeriesCompensator.r"""))
-    val r0 = parse_element (element ("""SeriesCompensator.r0"""))
-    val varistorPresent = parse_element (element ("""SeriesCompensator.varistorPresent"""))
-    val varistorRatedCurrent = parse_element (element ("""SeriesCompensator.varistorRatedCurrent"""))
-    val varistorVoltageThreshold = parse_element (element ("""SeriesCompensator.varistorVoltageThreshold"""))
-    val x = parse_element (element ("""SeriesCompensator.x"""))
-    val x0 = parse_element (element ("""SeriesCompensator.x0"""))
+    val r: (Context) => String = parse_element (element ("""SeriesCompensator.r"""))
+    val r0: (Context) => String = parse_element (element ("""SeriesCompensator.r0"""))
+    val varistorPresent: (Context) => String = parse_element (element ("""SeriesCompensator.varistorPresent"""))
+    val varistorRatedCurrent: (Context) => String = parse_element (element ("""SeriesCompensator.varistorRatedCurrent"""))
+    val varistorVoltageThreshold: (Context) => String = parse_element (element ("""SeriesCompensator.varistorVoltageThreshold"""))
+    val x: (Context) => String = parse_element (element ("""SeriesCompensator.x"""))
+    val x0: (Context) => String = parse_element (element ("""SeriesCompensator.x0"""))
     def parse (context: Context): SeriesCompensator =
     {
         SeriesCompensator(
@@ -4403,10 +4402,10 @@ extends
 case class ShortCircuitRotorKind
 (
     override val sup: BasicElement,
-    val salientPole1: String,
-    val salientPole2: String,
-    val turboSeries1: String,
-    val turboSeries2: String
+    salientPole1: String,
+    salientPole2: String,
+    turboSeries1: String,
+    turboSeries2: String
 )
 extends
     Element
@@ -4442,10 +4441,10 @@ object ShortCircuitRotorKind
 extends
     Parseable[ShortCircuitRotorKind]
 {
-    val salientPole1 = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole1"""))
-    val salientPole2 = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole2"""))
-    val turboSeries1 = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries1"""))
-    val turboSeries2 = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries2"""))
+    val salientPole1: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole1"""))
+    val salientPole2: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole2"""))
+    val turboSeries1: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries1"""))
+    val turboSeries2: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries2"""))
     def parse (context: Context): ShortCircuitRotorKind =
     {
         ShortCircuitRotorKind(
@@ -4480,17 +4479,17 @@ extends
 case class ShuntCompensator
 (
     override val sup: RegulatingCondEq,
-    val aVRDelay: Double,
-    val grounded: Boolean,
-    val maximumSections: Int,
-    val nomU: Double,
-    val normalSections: Int,
-    val phaseConnection: String,
-    val sections: Double,
-    val switchOnCount: Int,
-    val switchOnDate: String,
-    val voltageSensitivity: Double,
-    val SvShuntCompensatorSections: String
+    aVRDelay: Double,
+    grounded: Boolean,
+    maximumSections: Int,
+    nomU: Double,
+    normalSections: Int,
+    phaseConnection: String,
+    sections: Double,
+    switchOnCount: Int,
+    switchOnDate: String,
+    voltageSensitivity: Double,
+    SvShuntCompensatorSections: String
 )
 extends
     Element
@@ -4533,17 +4532,17 @@ object ShuntCompensator
 extends
     Parseable[ShuntCompensator]
 {
-    val aVRDelay = parse_element (element ("""ShuntCompensator.aVRDelay"""))
-    val grounded = parse_element (element ("""ShuntCompensator.grounded"""))
-    val maximumSections = parse_element (element ("""ShuntCompensator.maximumSections"""))
-    val nomU = parse_element (element ("""ShuntCompensator.nomU"""))
-    val normalSections = parse_element (element ("""ShuntCompensator.normalSections"""))
-    val phaseConnection = parse_attribute (attribute ("""ShuntCompensator.phaseConnection"""))
-    val sections = parse_element (element ("""ShuntCompensator.sections"""))
-    val switchOnCount = parse_element (element ("""ShuntCompensator.switchOnCount"""))
-    val switchOnDate = parse_element (element ("""ShuntCompensator.switchOnDate"""))
-    val voltageSensitivity = parse_element (element ("""ShuntCompensator.voltageSensitivity"""))
-    val SvShuntCompensatorSections = parse_attribute (attribute ("""ShuntCompensator.SvShuntCompensatorSections"""))
+    val aVRDelay: (Context) => String = parse_element (element ("""ShuntCompensator.aVRDelay"""))
+    val grounded: (Context) => String = parse_element (element ("""ShuntCompensator.grounded"""))
+    val maximumSections: (Context) => String = parse_element (element ("""ShuntCompensator.maximumSections"""))
+    val nomU: (Context) => String = parse_element (element ("""ShuntCompensator.nomU"""))
+    val normalSections: (Context) => String = parse_element (element ("""ShuntCompensator.normalSections"""))
+    val phaseConnection: (Context) => String = parse_attribute (attribute ("""ShuntCompensator.phaseConnection"""))
+    val sections: (Context) => String = parse_element (element ("""ShuntCompensator.sections"""))
+    val switchOnCount: (Context) => String = parse_element (element ("""ShuntCompensator.switchOnCount"""))
+    val switchOnDate: (Context) => String = parse_element (element ("""ShuntCompensator.switchOnDate"""))
+    val voltageSensitivity: (Context) => String = parse_element (element ("""ShuntCompensator.voltageSensitivity"""))
+    val SvShuntCompensatorSections: (Context) => String = parse_attribute (attribute ("""ShuntCompensator.SvShuntCompensatorSections"""))
     def parse (context: Context): ShuntCompensator =
     {
         ShuntCompensator(
@@ -4575,10 +4574,10 @@ extends
 case class ShuntCompensatorPhase
 (
     override val sup: PowerSystemResource,
-    val maximumSections: Int,
-    val normalSections: Int,
-    val phase: String,
-    val ShuntCompensator: String
+    maximumSections: Int,
+    normalSections: Int,
+    phase: String,
+    ShuntCompensator: String
 )
 extends
     Element
@@ -4614,10 +4613,10 @@ object ShuntCompensatorPhase
 extends
     Parseable[ShuntCompensatorPhase]
 {
-    val maximumSections = parse_element (element ("""ShuntCompensatorPhase.maximumSections"""))
-    val normalSections = parse_element (element ("""ShuntCompensatorPhase.normalSections"""))
-    val phase = parse_attribute (attribute ("""ShuntCompensatorPhase.phase"""))
-    val ShuntCompensator = parse_attribute (attribute ("""ShuntCompensatorPhase.ShuntCompensator"""))
+    val maximumSections: (Context) => String = parse_element (element ("""ShuntCompensatorPhase.maximumSections"""))
+    val normalSections: (Context) => String = parse_element (element ("""ShuntCompensatorPhase.normalSections"""))
+    val phase: (Context) => String = parse_attribute (attribute ("""ShuntCompensatorPhase.phase"""))
+    val ShuntCompensator: (Context) => String = parse_attribute (attribute ("""ShuntCompensatorPhase.ShuntCompensator"""))
     def parse (context: Context): ShuntCompensatorPhase =
     {
         ShuntCompensatorPhase(
@@ -4644,12 +4643,12 @@ extends
 case class SinglePhaseKind
 (
     override val sup: BasicElement,
-    val s1: String,
-    val s2: String,
-    val A: String,
-    val B: String,
-    val C: String,
-    val N: String
+    s1: String,
+    s2: String,
+    A: String,
+    B: String,
+    C: String,
+    N: String
 )
 extends
     Element
@@ -4687,12 +4686,12 @@ object SinglePhaseKind
 extends
     Parseable[SinglePhaseKind]
 {
-    val s1 = parse_attribute (attribute ("""SinglePhaseKind.s1"""))
-    val s2 = parse_attribute (attribute ("""SinglePhaseKind.s2"""))
-    val A = parse_attribute (attribute ("""SinglePhaseKind.A"""))
-    val B = parse_attribute (attribute ("""SinglePhaseKind.B"""))
-    val C = parse_attribute (attribute ("""SinglePhaseKind.C"""))
-    val N = parse_attribute (attribute ("""SinglePhaseKind.N"""))
+    val s1: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.s1"""))
+    val s2: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.s2"""))
+    val A: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.A"""))
+    val B: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.B"""))
+    val C: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.C"""))
+    val N: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.N"""))
     def parse (context: Context): SinglePhaseKind =
     {
         SinglePhaseKind(
@@ -4723,12 +4722,12 @@ extends
 case class StaticVarCompensator
 (
     override val sup: RegulatingCondEq,
-    val capacitiveRating: Double,
-    val inductiveRating: Double,
-    val q: Double,
-    val sVCControlMode: String,
-    val slope: Double,
-    val voltageSetPoint: Double
+    capacitiveRating: Double,
+    inductiveRating: Double,
+    q: Double,
+    sVCControlMode: String,
+    slope: Double,
+    voltageSetPoint: Double
 )
 extends
     Element
@@ -4766,12 +4765,12 @@ object StaticVarCompensator
 extends
     Parseable[StaticVarCompensator]
 {
-    val capacitiveRating = parse_element (element ("""StaticVarCompensator.capacitiveRating"""))
-    val inductiveRating = parse_element (element ("""StaticVarCompensator.inductiveRating"""))
-    val q = parse_element (element ("""StaticVarCompensator.q"""))
-    val sVCControlMode = parse_attribute (attribute ("""StaticVarCompensator.sVCControlMode"""))
-    val slope = parse_element (element ("""StaticVarCompensator.slope"""))
-    val voltageSetPoint = parse_element (element ("""StaticVarCompensator.voltageSetPoint"""))
+    val capacitiveRating: (Context) => String = parse_element (element ("""StaticVarCompensator.capacitiveRating"""))
+    val inductiveRating: (Context) => String = parse_element (element ("""StaticVarCompensator.inductiveRating"""))
+    val q: (Context) => String = parse_element (element ("""StaticVarCompensator.q"""))
+    val sVCControlMode: (Context) => String = parse_attribute (attribute ("""StaticVarCompensator.sVCControlMode"""))
+    val slope: (Context) => String = parse_element (element ("""StaticVarCompensator.slope"""))
+    val voltageSetPoint: (Context) => String = parse_element (element ("""StaticVarCompensator.voltageSetPoint"""))
     def parse (context: Context): StaticVarCompensator =
     {
         StaticVarCompensator(
@@ -4805,15 +4804,15 @@ extends
 case class Switch
 (
     override val sup: ConductingEquipment,
-    val normalOpen: Boolean,
-    val open: Boolean,
-    val ratedCurrent: Double,
-    val retained: Boolean,
-    val switchOnCount: Int,
-    val switchOnDate: String,
-    val CompositeSwitch: String,
-    val Outage: String,
-    val SwitchAction: String
+    normalOpen: Boolean,
+    open: Boolean,
+    ratedCurrent: Double,
+    retained: Boolean,
+    switchOnCount: Int,
+    switchOnDate: String,
+    CompositeSwitch: String,
+    Outage: String,
+    SwitchAction: String
 )
 extends
     Element
@@ -4854,15 +4853,15 @@ object Switch
 extends
     Parseable[Switch]
 {
-    val normalOpen = parse_element (element ("""Switch.normalOpen"""))
-    val open = parse_element (element ("""Switch.open"""))
-    val ratedCurrent = parse_element (element ("""Switch.ratedCurrent"""))
-    val retained = parse_element (element ("""Switch.retained"""))
-    val switchOnCount = parse_element (element ("""Switch.switchOnCount"""))
-    val switchOnDate = parse_element (element ("""Switch.switchOnDate"""))
-    val CompositeSwitch = parse_attribute (attribute ("""Switch.CompositeSwitch"""))
-    val Outage = parse_attribute (attribute ("""Switch.Outage"""))
-    val SwitchAction = parse_attribute (attribute ("""Switch.SwitchAction"""))
+    val normalOpen: (Context) => String = parse_element (element ("""Switch.normalOpen"""))
+    val open: (Context) => String = parse_element (element ("""Switch.open"""))
+    val ratedCurrent: (Context) => String = parse_element (element ("""Switch.ratedCurrent"""))
+    val retained: (Context) => String = parse_element (element ("""Switch.retained"""))
+    val switchOnCount: (Context) => String = parse_element (element ("""Switch.switchOnCount"""))
+    val switchOnDate: (Context) => String = parse_element (element ("""Switch.switchOnDate"""))
+    val CompositeSwitch: (Context) => String = parse_attribute (attribute ("""Switch.CompositeSwitch"""))
+    val Outage: (Context) => String = parse_attribute (attribute ("""Switch.Outage"""))
+    val SwitchAction: (Context) => String = parse_attribute (attribute ("""Switch.SwitchAction"""))
     def parse (context: Context): Switch =
     {
         Switch(
@@ -4895,11 +4894,11 @@ extends
 case class SwitchPhase
 (
     override val sup: PowerSystemResource,
-    val closed: Boolean,
-    val normalOpen: Boolean,
-    val phaseSide1: String,
-    val phaseSide2: String,
-    val Switch: String
+    closed: Boolean,
+    normalOpen: Boolean,
+    phaseSide1: String,
+    phaseSide2: String,
+    Switch: String
 )
 extends
     Element
@@ -4936,11 +4935,11 @@ object SwitchPhase
 extends
     Parseable[SwitchPhase]
 {
-    val closed = parse_element (element ("""SwitchPhase.closed"""))
-    val normalOpen = parse_element (element ("""SwitchPhase.normalOpen"""))
-    val phaseSide1 = parse_attribute (attribute ("""SwitchPhase.phaseSide1"""))
-    val phaseSide2 = parse_attribute (attribute ("""SwitchPhase.phaseSide2"""))
-    val Switch = parse_attribute (attribute ("""SwitchPhase.Switch"""))
+    val closed: (Context) => String = parse_element (element ("""SwitchPhase.closed"""))
+    val normalOpen: (Context) => String = parse_element (element ("""SwitchPhase.normalOpen"""))
+    val phaseSide1: (Context) => String = parse_attribute (attribute ("""SwitchPhase.phaseSide1"""))
+    val phaseSide2: (Context) => String = parse_attribute (attribute ("""SwitchPhase.phaseSide2"""))
+    val Switch: (Context) => String = parse_attribute (attribute ("""SwitchPhase.Switch"""))
     def parse (context: Context): SwitchPhase =
     {
         SwitchPhase(
@@ -4963,7 +4962,7 @@ extends
 case class SwitchSchedule
 (
     override val sup: SeasonDayTypeSchedule,
-    val Switch: String
+    Switch: String
 )
 extends
     Element
@@ -4996,7 +4995,7 @@ object SwitchSchedule
 extends
     Parseable[SwitchSchedule]
 {
-    val Switch = parse_attribute (attribute ("""SwitchSchedule.Switch"""))
+    val Switch: (Context) => String = parse_attribute (attribute ("""SwitchSchedule.Switch"""))
     def parse (context: Context): SwitchSchedule =
     {
         SwitchSchedule(
@@ -5060,38 +5059,38 @@ extends
 case class SynchronousMachine
 (
     override val sup: RotatingMachine,
-    val aVRToManualLag: Double,
-    val aVRToManualLead: Double,
-    val baseQ: Double,
-    val condenserP: Double,
-    val coolantCondition: Double,
-    val coolantType: String,
-    val earthing: Boolean,
-    val earthingStarPointR: Double,
-    val earthingStarPointX: Double,
-    val ikk: Double,
-    val manualToAVR: Double,
-    val maxQ: Double,
-    val maxU: Double,
-    val minQ: Double,
-    val minU: Double,
-    val mu: Double,
-    val operatingMode: String,
-    val qPercent: Double,
-    val r: Double,
-    val r0: Double,
-    val r2: Double,
-    val referencePriority: Int,
-    val satDirectSubtransX: Double,
-    val satDirectSyncX: Double,
-    val satDirectTransX: Double,
-    val shortCircuitRotorType: String,
-    val typ: String,
-    val voltageRegulationRange: Double,
-    val x0: Double,
-    val x2: Double,
-    val InitialReactiveCapabilityCurve: String,
-    val SynchronousMachineDynamics: String
+    aVRToManualLag: Double,
+    aVRToManualLead: Double,
+    baseQ: Double,
+    condenserP: Double,
+    coolantCondition: Double,
+    coolantType: String,
+    earthing: Boolean,
+    earthingStarPointR: Double,
+    earthingStarPointX: Double,
+    ikk: Double,
+    manualToAVR: Double,
+    maxQ: Double,
+    maxU: Double,
+    minQ: Double,
+    minU: Double,
+    mu: Double,
+    operatingMode: String,
+    qPercent: Double,
+    r: Double,
+    r0: Double,
+    r2: Double,
+    referencePriority: Int,
+    satDirectSubtransX: Double,
+    satDirectSyncX: Double,
+    satDirectTransX: Double,
+    shortCircuitRotorType: String,
+    typ: String,
+    voltageRegulationRange: Double,
+    x0: Double,
+    x2: Double,
+    InitialReactiveCapabilityCurve: String,
+    SynchronousMachineDynamics: String
 )
 extends
     Element
@@ -5155,38 +5154,38 @@ object SynchronousMachine
 extends
     Parseable[SynchronousMachine]
 {
-    val aVRToManualLag = parse_element (element ("""SynchronousMachine.aVRToManualLag"""))
-    val aVRToManualLead = parse_element (element ("""SynchronousMachine.aVRToManualLead"""))
-    val baseQ = parse_element (element ("""SynchronousMachine.baseQ"""))
-    val condenserP = parse_element (element ("""SynchronousMachine.condenserP"""))
-    val coolantCondition = parse_element (element ("""SynchronousMachine.coolantCondition"""))
-    val coolantType = parse_attribute (attribute ("""SynchronousMachine.coolantType"""))
-    val earthing = parse_element (element ("""SynchronousMachine.earthing"""))
-    val earthingStarPointR = parse_element (element ("""SynchronousMachine.earthingStarPointR"""))
-    val earthingStarPointX = parse_element (element ("""SynchronousMachine.earthingStarPointX"""))
-    val ikk = parse_element (element ("""SynchronousMachine.ikk"""))
-    val manualToAVR = parse_element (element ("""SynchronousMachine.manualToAVR"""))
-    val maxQ = parse_element (element ("""SynchronousMachine.maxQ"""))
-    val maxU = parse_element (element ("""SynchronousMachine.maxU"""))
-    val minQ = parse_element (element ("""SynchronousMachine.minQ"""))
-    val minU = parse_element (element ("""SynchronousMachine.minU"""))
-    val mu = parse_element (element ("""SynchronousMachine.mu"""))
-    val operatingMode = parse_attribute (attribute ("""SynchronousMachine.operatingMode"""))
-    val qPercent = parse_element (element ("""SynchronousMachine.qPercent"""))
-    val r = parse_element (element ("""SynchronousMachine.r"""))
-    val r0 = parse_element (element ("""SynchronousMachine.r0"""))
-    val r2 = parse_element (element ("""SynchronousMachine.r2"""))
-    val referencePriority = parse_element (element ("""SynchronousMachine.referencePriority"""))
-    val satDirectSubtransX = parse_element (element ("""SynchronousMachine.satDirectSubtransX"""))
-    val satDirectSyncX = parse_element (element ("""SynchronousMachine.satDirectSyncX"""))
-    val satDirectTransX = parse_element (element ("""SynchronousMachine.satDirectTransX"""))
-    val shortCircuitRotorType = parse_attribute (attribute ("""SynchronousMachine.shortCircuitRotorType"""))
-    val typ = parse_attribute (attribute ("""SynchronousMachine.type"""))
-    val voltageRegulationRange = parse_element (element ("""SynchronousMachine.voltageRegulationRange"""))
-    val x0 = parse_element (element ("""SynchronousMachine.x0"""))
-    val x2 = parse_element (element ("""SynchronousMachine.x2"""))
-    val InitialReactiveCapabilityCurve = parse_attribute (attribute ("""SynchronousMachine.InitialReactiveCapabilityCurve"""))
-    val SynchronousMachineDynamics = parse_attribute (attribute ("""SynchronousMachine.SynchronousMachineDynamics"""))
+    val aVRToManualLag: (Context) => String = parse_element (element ("""SynchronousMachine.aVRToManualLag"""))
+    val aVRToManualLead: (Context) => String = parse_element (element ("""SynchronousMachine.aVRToManualLead"""))
+    val baseQ: (Context) => String = parse_element (element ("""SynchronousMachine.baseQ"""))
+    val condenserP: (Context) => String = parse_element (element ("""SynchronousMachine.condenserP"""))
+    val coolantCondition: (Context) => String = parse_element (element ("""SynchronousMachine.coolantCondition"""))
+    val coolantType: (Context) => String = parse_attribute (attribute ("""SynchronousMachine.coolantType"""))
+    val earthing: (Context) => String = parse_element (element ("""SynchronousMachine.earthing"""))
+    val earthingStarPointR: (Context) => String = parse_element (element ("""SynchronousMachine.earthingStarPointR"""))
+    val earthingStarPointX: (Context) => String = parse_element (element ("""SynchronousMachine.earthingStarPointX"""))
+    val ikk: (Context) => String = parse_element (element ("""SynchronousMachine.ikk"""))
+    val manualToAVR: (Context) => String = parse_element (element ("""SynchronousMachine.manualToAVR"""))
+    val maxQ: (Context) => String = parse_element (element ("""SynchronousMachine.maxQ"""))
+    val maxU: (Context) => String = parse_element (element ("""SynchronousMachine.maxU"""))
+    val minQ: (Context) => String = parse_element (element ("""SynchronousMachine.minQ"""))
+    val minU: (Context) => String = parse_element (element ("""SynchronousMachine.minU"""))
+    val mu: (Context) => String = parse_element (element ("""SynchronousMachine.mu"""))
+    val operatingMode: (Context) => String = parse_attribute (attribute ("""SynchronousMachine.operatingMode"""))
+    val qPercent: (Context) => String = parse_element (element ("""SynchronousMachine.qPercent"""))
+    val r: (Context) => String = parse_element (element ("""SynchronousMachine.r"""))
+    val r0: (Context) => String = parse_element (element ("""SynchronousMachine.r0"""))
+    val r2: (Context) => String = parse_element (element ("""SynchronousMachine.r2"""))
+    val referencePriority: (Context) => String = parse_element (element ("""SynchronousMachine.referencePriority"""))
+    val satDirectSubtransX: (Context) => String = parse_element (element ("""SynchronousMachine.satDirectSubtransX"""))
+    val satDirectSyncX: (Context) => String = parse_element (element ("""SynchronousMachine.satDirectSyncX"""))
+    val satDirectTransX: (Context) => String = parse_element (element ("""SynchronousMachine.satDirectTransX"""))
+    val shortCircuitRotorType: (Context) => String = parse_attribute (attribute ("""SynchronousMachine.shortCircuitRotorType"""))
+    val typ: (Context) => String = parse_attribute (attribute ("""SynchronousMachine.type"""))
+    val voltageRegulationRange: (Context) => String = parse_element (element ("""SynchronousMachine.voltageRegulationRange"""))
+    val x0: (Context) => String = parse_element (element ("""SynchronousMachine.x0"""))
+    val x2: (Context) => String = parse_element (element ("""SynchronousMachine.x2"""))
+    val InitialReactiveCapabilityCurve: (Context) => String = parse_attribute (attribute ("""SynchronousMachine.InitialReactiveCapabilityCurve"""))
+    val SynchronousMachineDynamics: (Context) => String = parse_attribute (attribute ("""SynchronousMachine.SynchronousMachineDynamics"""))
     def parse (context: Context): SynchronousMachine =
     {
         SynchronousMachine(
@@ -5230,24 +5229,24 @@ extends
 /**
  * Synchronous machine type.
  * @param sup Reference to the superclass object.
- * @param condenser
- * @param generator
- * @param generatorOrCondenser
- * @param generatorOrCondenserOrMotor
- * @param generatorOrMotor
- * @param motor
- * @param motorOrCondenser
+ * @param condenser <em>undocumented</em>
+ * @param generator <em>undocumented</em>
+ * @param generatorOrCondenser <em>undocumented</em>
+ * @param generatorOrCondenserOrMotor <em>undocumented</em>
+ * @param generatorOrMotor <em>undocumented</em>
+ * @param motor <em>undocumented</em>
+ * @param motorOrCondenser <em>undocumented</em>
  */
 case class SynchronousMachineKind
 (
     override val sup: BasicElement,
-    val condenser: String,
-    val generator: String,
-    val generatorOrCondenser: String,
-    val generatorOrCondenserOrMotor: String,
-    val generatorOrMotor: String,
-    val motor: String,
-    val motorOrCondenser: String
+    condenser: String,
+    generator: String,
+    generatorOrCondenser: String,
+    generatorOrCondenserOrMotor: String,
+    generatorOrMotor: String,
+    motor: String,
+    motorOrCondenser: String
 )
 extends
     Element
@@ -5286,13 +5285,13 @@ object SynchronousMachineKind
 extends
     Parseable[SynchronousMachineKind]
 {
-    val condenser = parse_attribute (attribute ("""SynchronousMachineKind.condenser"""))
-    val generator = parse_attribute (attribute ("""SynchronousMachineKind.generator"""))
-    val generatorOrCondenser = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenser"""))
-    val generatorOrCondenserOrMotor = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenserOrMotor"""))
-    val generatorOrMotor = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrMotor"""))
-    val motor = parse_attribute (attribute ("""SynchronousMachineKind.motor"""))
-    val motorOrCondenser = parse_attribute (attribute ("""SynchronousMachineKind.motorOrCondenser"""))
+    val condenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.condenser"""))
+    val generator: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generator"""))
+    val generatorOrCondenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenser"""))
+    val generatorOrCondenserOrMotor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenserOrMotor"""))
+    val generatorOrMotor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrMotor"""))
+    val motor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.motor"""))
+    val motorOrCondenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.motorOrCondenser"""))
     def parse (context: Context): SynchronousMachineKind =
     {
         SynchronousMachineKind(
@@ -5311,16 +5310,16 @@ extends
 /**
  * Synchronous machine operating mode.
  * @param sup Reference to the superclass object.
- * @param condenser
- * @param generator
- * @param motor
+ * @param condenser <em>undocumented</em>
+ * @param generator <em>undocumented</em>
+ * @param motor <em>undocumented</em>
  */
 case class SynchronousMachineOperatingMode
 (
     override val sup: BasicElement,
-    val condenser: String,
-    val generator: String,
-    val motor: String
+    condenser: String,
+    generator: String,
+    motor: String
 )
 extends
     Element
@@ -5355,9 +5354,9 @@ object SynchronousMachineOperatingMode
 extends
     Parseable[SynchronousMachineOperatingMode]
 {
-    val condenser = parse_attribute (attribute ("""SynchronousMachineOperatingMode.condenser"""))
-    val generator = parse_attribute (attribute ("""SynchronousMachineOperatingMode.generator"""))
-    val motor = parse_attribute (attribute ("""SynchronousMachineOperatingMode.motor"""))
+    val condenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineOperatingMode.condenser"""))
+    val generator: (Context) => String = parse_attribute (attribute ("""SynchronousMachineOperatingMode.generator"""))
+    val motor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineOperatingMode.motor"""))
     def parse (context: Context): SynchronousMachineOperatingMode =
     {
         SynchronousMachineOperatingMode(
@@ -5393,18 +5392,18 @@ extends
 case class TapChanger
 (
     override val sup: PowerSystemResource,
-    val controlEnabled: Boolean,
-    val highStep: Int,
-    val initialDelay: Double,
-    val lowStep: Int,
-    val ltcFlag: Boolean,
-    val neutralStep: Int,
-    val neutralU: Double,
-    val normalStep: Int,
-    val step: Double,
-    val subsequentDelay: Double,
-    val SvTapStep: String,
-    val TapChangerControl: String
+    controlEnabled: Boolean,
+    highStep: Int,
+    initialDelay: Double,
+    lowStep: Int,
+    ltcFlag: Boolean,
+    neutralStep: Int,
+    neutralU: Double,
+    normalStep: Int,
+    step: Double,
+    subsequentDelay: Double,
+    SvTapStep: String,
+    TapChangerControl: String
 )
 extends
     Element
@@ -5448,18 +5447,18 @@ object TapChanger
 extends
     Parseable[TapChanger]
 {
-    val controlEnabled = parse_element (element ("""TapChanger.controlEnabled"""))
-    val highStep = parse_element (element ("""TapChanger.highStep"""))
-    val initialDelay = parse_element (element ("""TapChanger.initialDelay"""))
-    val lowStep = parse_element (element ("""TapChanger.lowStep"""))
-    val ltcFlag = parse_element (element ("""TapChanger.ltcFlag"""))
-    val neutralStep = parse_element (element ("""TapChanger.neutralStep"""))
-    val neutralU = parse_element (element ("""TapChanger.neutralU"""))
-    val normalStep = parse_element (element ("""TapChanger.normalStep"""))
-    val step = parse_element (element ("""TapChanger.step"""))
-    val subsequentDelay = parse_element (element ("""TapChanger.subsequentDelay"""))
-    val SvTapStep = parse_attribute (attribute ("""TapChanger.SvTapStep"""))
-    val TapChangerControl = parse_attribute (attribute ("""TapChanger.TapChangerControl"""))
+    val controlEnabled: (Context) => String = parse_element (element ("""TapChanger.controlEnabled"""))
+    val highStep: (Context) => String = parse_element (element ("""TapChanger.highStep"""))
+    val initialDelay: (Context) => String = parse_element (element ("""TapChanger.initialDelay"""))
+    val lowStep: (Context) => String = parse_element (element ("""TapChanger.lowStep"""))
+    val ltcFlag: (Context) => String = parse_element (element ("""TapChanger.ltcFlag"""))
+    val neutralStep: (Context) => String = parse_element (element ("""TapChanger.neutralStep"""))
+    val neutralU: (Context) => String = parse_element (element ("""TapChanger.neutralU"""))
+    val normalStep: (Context) => String = parse_element (element ("""TapChanger.normalStep"""))
+    val step: (Context) => String = parse_element (element ("""TapChanger.step"""))
+    val subsequentDelay: (Context) => String = parse_element (element ("""TapChanger.subsequentDelay"""))
+    val SvTapStep: (Context) => String = parse_attribute (attribute ("""TapChanger.SvTapStep"""))
+    val TapChangerControl: (Context) => String = parse_attribute (attribute ("""TapChanger.TapChangerControl"""))
     def parse (context: Context): TapChanger =
     {
         TapChanger(
@@ -5494,12 +5493,12 @@ extends
 case class TapChangerControl
 (
     override val sup: RegulatingControl,
-    val limitVoltage: Double,
-    val lineDropCompensation: Boolean,
-    val lineDropR: Double,
-    val lineDropX: Double,
-    val reverseLineDropR: Double,
-    val reverseLineDropX: Double
+    limitVoltage: Double,
+    lineDropCompensation: Boolean,
+    lineDropR: Double,
+    lineDropX: Double,
+    reverseLineDropR: Double,
+    reverseLineDropX: Double
 )
 extends
     Element
@@ -5537,12 +5536,12 @@ object TapChangerControl
 extends
     Parseable[TapChangerControl]
 {
-    val limitVoltage = parse_element (element ("""TapChangerControl.limitVoltage"""))
-    val lineDropCompensation = parse_element (element ("""TapChangerControl.lineDropCompensation"""))
-    val lineDropR = parse_element (element ("""TapChangerControl.lineDropR"""))
-    val lineDropX = parse_element (element ("""TapChangerControl.lineDropX"""))
-    val reverseLineDropR = parse_element (element ("""TapChangerControl.reverseLineDropR"""))
-    val reverseLineDropX = parse_element (element ("""TapChangerControl.reverseLineDropX"""))
+    val limitVoltage: (Context) => String = parse_element (element ("""TapChangerControl.limitVoltage"""))
+    val lineDropCompensation: (Context) => String = parse_element (element ("""TapChangerControl.lineDropCompensation"""))
+    val lineDropR: (Context) => String = parse_element (element ("""TapChangerControl.lineDropR"""))
+    val lineDropX: (Context) => String = parse_element (element ("""TapChangerControl.lineDropX"""))
+    val reverseLineDropR: (Context) => String = parse_element (element ("""TapChangerControl.reverseLineDropR"""))
+    val reverseLineDropX: (Context) => String = parse_element (element ("""TapChangerControl.reverseLineDropX"""))
     def parse (context: Context): TapChangerControl =
     {
         TapChangerControl(
@@ -5560,12 +5559,12 @@ extends
 case class TapChangerTablePoint
 (
     override val sup: BasicElement,
-    val b: Double,
-    val g: Double,
-    val r: Double,
-    val ratio: Double,
-    val step: Int,
-    val x: Double
+    b: Double,
+    g: Double,
+    r: Double,
+    ratio: Double,
+    step: Int,
+    x: Double
 )
 extends
     Element
@@ -5603,12 +5602,12 @@ object TapChangerTablePoint
 extends
     Parseable[TapChangerTablePoint]
 {
-    val b = parse_element (element ("""TapChangerTablePoint.b"""))
-    val g = parse_element (element ("""TapChangerTablePoint.g"""))
-    val r = parse_element (element ("""TapChangerTablePoint.r"""))
-    val ratio = parse_element (element ("""TapChangerTablePoint.ratio"""))
-    val step = parse_element (element ("""TapChangerTablePoint.step"""))
-    val x = parse_element (element ("""TapChangerTablePoint.x"""))
+    val b: (Context) => String = parse_element (element ("""TapChangerTablePoint.b"""))
+    val g: (Context) => String = parse_element (element ("""TapChangerTablePoint.g"""))
+    val r: (Context) => String = parse_element (element ("""TapChangerTablePoint.r"""))
+    val ratio: (Context) => String = parse_element (element ("""TapChangerTablePoint.ratio"""))
+    val step: (Context) => String = parse_element (element ("""TapChangerTablePoint.step"""))
+    val x: (Context) => String = parse_element (element ("""TapChangerTablePoint.x"""))
     def parse (context: Context): TapChangerTablePoint =
     {
         TapChangerTablePoint(
@@ -5631,7 +5630,7 @@ extends
 case class TapSchedule
 (
     override val sup: SeasonDayTypeSchedule,
-    val TapChanger: String
+    TapChanger: String
 )
 extends
     Element
@@ -5664,7 +5663,7 @@ object TapSchedule
 extends
     Parseable[TapSchedule]
 {
-    val TapChanger = parse_attribute (attribute ("""TapSchedule.TapChanger"""))
+    val TapChanger: (Context) => String = parse_attribute (attribute ("""TapSchedule.TapChanger"""))
     def parse (context: Context): TapSchedule =
     {
         TapSchedule(
@@ -5683,8 +5682,8 @@ extends
 case class TransformerControlMode
 (
     override val sup: BasicElement,
-    val reactive: String,
-    val volt: String
+    reactive: String,
+    volt: String
 )
 extends
     Element
@@ -5718,8 +5717,8 @@ object TransformerControlMode
 extends
     Parseable[TransformerControlMode]
 {
-    val reactive = parse_attribute (attribute ("""TransformerControlMode.reactive"""))
-    val volt = parse_attribute (attribute ("""TransformerControlMode.volt"""))
+    val reactive: (Context) => String = parse_attribute (attribute ("""TransformerControlMode.reactive"""))
+    val volt: (Context) => String = parse_attribute (attribute ("""TransformerControlMode.volt"""))
     def parse (context: Context): TransformerControlMode =
     {
         TransformerControlMode(
@@ -5744,11 +5743,11 @@ extends
 case class TransformerCoreAdmittance
 (
     override val sup: IdentifiedObject,
-    val b: Double,
-    val b0: Double,
-    val g: Double,
-    val g0: Double,
-    val TransformerEndInfo: String
+    b: Double,
+    b0: Double,
+    g: Double,
+    g0: Double,
+    TransformerEndInfo: String
 )
 extends
     Element
@@ -5785,11 +5784,11 @@ object TransformerCoreAdmittance
 extends
     Parseable[TransformerCoreAdmittance]
 {
-    val b = parse_element (element ("""TransformerCoreAdmittance.b"""))
-    val b0 = parse_element (element ("""TransformerCoreAdmittance.b0"""))
-    val g = parse_element (element ("""TransformerCoreAdmittance.g"""))
-    val g0 = parse_element (element ("""TransformerCoreAdmittance.g0"""))
-    val TransformerEndInfo = parse_attribute (attribute ("""TransformerCoreAdmittance.TransformerEndInfo"""))
+    val b: (Context) => String = parse_element (element ("""TransformerCoreAdmittance.b"""))
+    val b0: (Context) => String = parse_element (element ("""TransformerCoreAdmittance.b0"""))
+    val g: (Context) => String = parse_element (element ("""TransformerCoreAdmittance.g"""))
+    val g0: (Context) => String = parse_element (element ("""TransformerCoreAdmittance.g0"""))
+    val TransformerEndInfo: (Context) => String = parse_attribute (attribute ("""TransformerCoreAdmittance.TransformerEndInfo"""))
     def parse (context: Context): TransformerCoreAdmittance =
     {
         TransformerCoreAdmittance(
@@ -5828,19 +5827,19 @@ extends
 case class TransformerEnd
 (
     override val sup: IdentifiedObject,
-    val bmagSat: Double,
-    val endNumber: Int,
-    val grounded: Boolean,
-    val magBaseU: Double,
-    val magSatFlux: Double,
-    val rground: Double,
-    val xground: Double,
-    val BaseVoltage: String,
-    val CoreAdmittance: String,
-    val PhaseTapChanger: String,
-    val RatioTapChanger: String,
-    val StarImpedance: String,
-    val Terminal: String
+    bmagSat: Double,
+    endNumber: Int,
+    grounded: Boolean,
+    magBaseU: Double,
+    magSatFlux: Double,
+    rground: Double,
+    xground: Double,
+    BaseVoltage: String,
+    CoreAdmittance: String,
+    PhaseTapChanger: String,
+    RatioTapChanger: String,
+    StarImpedance: String,
+    Terminal: String
 )
 extends
     Element
@@ -5885,19 +5884,19 @@ object TransformerEnd
 extends
     Parseable[TransformerEnd]
 {
-    val bmagSat = parse_element (element ("""TransformerEnd.bmagSat"""))
-    val endNumber = parse_element (element ("""TransformerEnd.endNumber"""))
-    val grounded = parse_element (element ("""TransformerEnd.grounded"""))
-    val magBaseU = parse_element (element ("""TransformerEnd.magBaseU"""))
-    val magSatFlux = parse_element (element ("""TransformerEnd.magSatFlux"""))
-    val rground = parse_element (element ("""TransformerEnd.rground"""))
-    val xground = parse_element (element ("""TransformerEnd.xground"""))
-    val BaseVoltage = parse_attribute (attribute ("""TransformerEnd.BaseVoltage"""))
-    val CoreAdmittance = parse_attribute (attribute ("""TransformerEnd.CoreAdmittance"""))
-    val PhaseTapChanger = parse_attribute (attribute ("""TransformerEnd.PhaseTapChanger"""))
-    val RatioTapChanger = parse_attribute (attribute ("""TransformerEnd.RatioTapChanger"""))
-    val StarImpedance = parse_attribute (attribute ("""TransformerEnd.StarImpedance"""))
-    val Terminal = parse_attribute (attribute ("""TransformerEnd.Terminal"""))
+    val bmagSat: (Context) => String = parse_element (element ("""TransformerEnd.bmagSat"""))
+    val endNumber: (Context) => String = parse_element (element ("""TransformerEnd.endNumber"""))
+    val grounded: (Context) => String = parse_element (element ("""TransformerEnd.grounded"""))
+    val magBaseU: (Context) => String = parse_element (element ("""TransformerEnd.magBaseU"""))
+    val magSatFlux: (Context) => String = parse_element (element ("""TransformerEnd.magSatFlux"""))
+    val rground: (Context) => String = parse_element (element ("""TransformerEnd.rground"""))
+    val xground: (Context) => String = parse_element (element ("""TransformerEnd.xground"""))
+    val BaseVoltage: (Context) => String = parse_attribute (attribute ("""TransformerEnd.BaseVoltage"""))
+    val CoreAdmittance: (Context) => String = parse_attribute (attribute ("""TransformerEnd.CoreAdmittance"""))
+    val PhaseTapChanger: (Context) => String = parse_attribute (attribute ("""TransformerEnd.PhaseTapChanger"""))
+    val RatioTapChanger: (Context) => String = parse_attribute (attribute ("""TransformerEnd.RatioTapChanger"""))
+    val StarImpedance: (Context) => String = parse_attribute (attribute ("""TransformerEnd.StarImpedance"""))
+    val Terminal: (Context) => String = parse_attribute (attribute ("""TransformerEnd.Terminal"""))
     def parse (context: Context): TransformerEnd =
     {
         TransformerEnd(
@@ -5935,12 +5934,12 @@ extends
 case class TransformerMeshImpedance
 (
     override val sup: IdentifiedObject,
-    val r: Double,
-    val r0: Double,
-    val x: Double,
-    val x0: Double,
-    val FromTransformerEnd: String,
-    val FromTransformerEndInfo: String
+    r: Double,
+    r0: Double,
+    x: Double,
+    x0: Double,
+    FromTransformerEnd: String,
+    FromTransformerEndInfo: String
 )
 extends
     Element
@@ -5978,12 +5977,12 @@ object TransformerMeshImpedance
 extends
     Parseable[TransformerMeshImpedance]
 {
-    val r = parse_element (element ("""TransformerMeshImpedance.r"""))
-    val r0 = parse_element (element ("""TransformerMeshImpedance.r0"""))
-    val x = parse_element (element ("""TransformerMeshImpedance.x"""))
-    val x0 = parse_element (element ("""TransformerMeshImpedance.x0"""))
-    val FromTransformerEnd = parse_attribute (attribute ("""TransformerMeshImpedance.FromTransformerEnd"""))
-    val FromTransformerEndInfo = parse_attribute (attribute ("""TransformerMeshImpedance.FromTransformerEndInfo"""))
+    val r: (Context) => String = parse_element (element ("""TransformerMeshImpedance.r"""))
+    val r0: (Context) => String = parse_element (element ("""TransformerMeshImpedance.r0"""))
+    val x: (Context) => String = parse_element (element ("""TransformerMeshImpedance.x"""))
+    val x0: (Context) => String = parse_element (element ("""TransformerMeshImpedance.x0"""))
+    val FromTransformerEnd: (Context) => String = parse_attribute (attribute ("""TransformerMeshImpedance.FromTransformerEnd"""))
+    val FromTransformerEndInfo: (Context) => String = parse_attribute (attribute ("""TransformerMeshImpedance.FromTransformerEndInfo"""))
     def parse (context: Context): TransformerMeshImpedance =
     {
         TransformerMeshImpedance(
@@ -6011,11 +6010,11 @@ extends
 case class TransformerStarImpedance
 (
     override val sup: IdentifiedObject,
-    val r: Double,
-    val r0: Double,
-    val x: Double,
-    val x0: Double,
-    val TransformerEndInfo: String
+    r: Double,
+    r0: Double,
+    x: Double,
+    x0: Double,
+    TransformerEndInfo: String
 )
 extends
     Element
@@ -6052,11 +6051,11 @@ object TransformerStarImpedance
 extends
     Parseable[TransformerStarImpedance]
 {
-    val r = parse_element (element ("""TransformerStarImpedance.r"""))
-    val r0 = parse_element (element ("""TransformerStarImpedance.r0"""))
-    val x = parse_element (element ("""TransformerStarImpedance.x"""))
-    val x0 = parse_element (element ("""TransformerStarImpedance.x0"""))
-    val TransformerEndInfo = parse_attribute (attribute ("""TransformerStarImpedance.TransformerEndInfo"""))
+    val r: (Context) => String = parse_element (element ("""TransformerStarImpedance.r"""))
+    val r0: (Context) => String = parse_element (element ("""TransformerStarImpedance.r0"""))
+    val x: (Context) => String = parse_element (element ("""TransformerStarImpedance.x"""))
+    val x0: (Context) => String = parse_element (element ("""TransformerStarImpedance.x0"""))
+    val TransformerEndInfo: (Context) => String = parse_attribute (attribute ("""TransformerStarImpedance.TransformerEndInfo"""))
     def parse (context: Context): TransformerStarImpedance =
     {
         TransformerStarImpedance(
@@ -6079,7 +6078,7 @@ extends
 case class TransformerTank
 (
     override val sup: Equipment,
-    val PowerTransformer: String
+    PowerTransformer: String
 )
 extends
     Element
@@ -6112,7 +6111,7 @@ object TransformerTank
 extends
     Parseable[TransformerTank]
 {
-    val PowerTransformer = parse_attribute (attribute ("""TransformerTank.PowerTransformer"""))
+    val PowerTransformer: (Context) => String = parse_attribute (attribute ("""TransformerTank.PowerTransformer"""))
     def parse (context: Context): TransformerTank =
     {
         TransformerTank(
@@ -6131,8 +6130,8 @@ extends
 case class TransformerTankEnd
 (
     override val sup: TransformerEnd,
-    val phases: String,
-    val TransformerTank: String
+    phases: String,
+    TransformerTank: String
 )
 extends
     Element
@@ -6166,8 +6165,8 @@ object TransformerTankEnd
 extends
     Parseable[TransformerTankEnd]
 {
-    val phases = parse_attribute (attribute ("""TransformerTankEnd.phases"""))
-    val TransformerTank = parse_attribute (attribute ("""TransformerTankEnd.TransformerTank"""))
+    val phases: (Context) => String = parse_attribute (attribute ("""TransformerTankEnd.phases"""))
+    val TransformerTank: (Context) => String = parse_attribute (attribute ("""TransformerTankEnd.TransformerTank"""))
     def parse (context: Context): TransformerTankEnd =
     {
         TransformerTankEnd(
@@ -6188,8 +6187,8 @@ extends
 case class VoltageControlZone
 (
     override val sup: PowerSystemResource,
-    val BusbarSection: String,
-    val RegulationSchedule: String
+    BusbarSection: String,
+    RegulationSchedule: String
 )
 extends
     Element
@@ -6223,8 +6222,8 @@ object VoltageControlZone
 extends
     Parseable[VoltageControlZone]
 {
-    val BusbarSection = parse_attribute (attribute ("""VoltageControlZone.BusbarSection"""))
-    val RegulationSchedule = parse_attribute (attribute ("""VoltageControlZone.RegulationSchedule"""))
+    val BusbarSection: (Context) => String = parse_attribute (attribute ("""VoltageControlZone.BusbarSection"""))
+    val RegulationSchedule: (Context) => String = parse_attribute (attribute ("""VoltageControlZone.RegulationSchedule"""))
     def parse (context: Context): VoltageControlZone =
     {
         VoltageControlZone(
@@ -6249,13 +6248,13 @@ extends
 case class WindingConnection
 (
     override val sup: BasicElement,
-    val A: String,
-    val D: String,
-    val I: String,
-    val Y: String,
-    val Yn: String,
-    val Z: String,
-    val Zn: String
+    A: String,
+    D: String,
+    I: String,
+    Y: String,
+    Yn: String,
+    Z: String,
+    Zn: String
 )
 extends
     Element
@@ -6294,13 +6293,13 @@ object WindingConnection
 extends
     Parseable[WindingConnection]
 {
-    val A = parse_attribute (attribute ("""WindingConnection.A"""))
-    val D = parse_attribute (attribute ("""WindingConnection.D"""))
-    val I = parse_attribute (attribute ("""WindingConnection.I"""))
-    val Y = parse_attribute (attribute ("""WindingConnection.Y"""))
-    val Yn = parse_attribute (attribute ("""WindingConnection.Yn"""))
-    val Z = parse_attribute (attribute ("""WindingConnection.Z"""))
-    val Zn = parse_attribute (attribute ("""WindingConnection.Zn"""))
+    val A: (Context) => String = parse_attribute (attribute ("""WindingConnection.A"""))
+    val D: (Context) => String = parse_attribute (attribute ("""WindingConnection.D"""))
+    val I: (Context) => String = parse_attribute (attribute ("""WindingConnection.I"""))
+    val Y: (Context) => String = parse_attribute (attribute ("""WindingConnection.Y"""))
+    val Yn: (Context) => String = parse_attribute (attribute ("""WindingConnection.Yn"""))
+    val Z: (Context) => String = parse_attribute (attribute ("""WindingConnection.Z"""))
+    val Zn: (Context) => String = parse_attribute (attribute ("""WindingConnection.Zn"""))
     def parse (context: Context): WindingConnection =
     {
         WindingConnection(
@@ -6316,7 +6315,7 @@ extends
     }
 }
 
-object _Wires
+private[ninecode] object _Wires
 {
     def register: List[ClassInfo] =
     {

@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -21,8 +20,8 @@ import ch.ninecode.cim.Parseable
 case class Accumulator
 (
     override val sup: Measurement,
-    val maxValue: Int,
-    val LimitSets: List[String]
+    maxValue: Int,
+    LimitSets: List[String]
 )
 extends
     Element
@@ -56,8 +55,8 @@ object Accumulator
 extends
     Parseable[Accumulator]
 {
-    val maxValue = parse_element (element ("""Accumulator.maxValue"""))
-    val LimitSets = parse_attributes (attribute ("""Accumulator.LimitSets"""))
+    val maxValue: (Context) => String = parse_element (element ("""Accumulator.maxValue"""))
+    val LimitSets: (Context) => List[String] = parse_attributes (attribute ("""Accumulator.LimitSets"""))
     def parse (context: Context): Accumulator =
     {
         Accumulator(
@@ -78,8 +77,8 @@ extends
 case class AccumulatorLimit
 (
     override val sup: Limit,
-    val value: Int,
-    val LimitSet: String
+    value: Int,
+    LimitSet: String
 )
 extends
     Element
@@ -113,8 +112,8 @@ object AccumulatorLimit
 extends
     Parseable[AccumulatorLimit]
 {
-    val value = parse_element (element ("""AccumulatorLimit.value"""))
-    val LimitSet = parse_attribute (attribute ("""AccumulatorLimit.LimitSet"""))
+    val value: (Context) => String = parse_element (element ("""AccumulatorLimit.value"""))
+    val LimitSet: (Context) => String = parse_attribute (attribute ("""AccumulatorLimit.LimitSet"""))
     def parse (context: Context): AccumulatorLimit =
     {
         AccumulatorLimit(
@@ -180,7 +179,7 @@ extends
 case class AccumulatorReset
 (
     override val sup: Control,
-    val AccumulatorValue: String
+    AccumulatorValue: String
 )
 extends
     Element
@@ -213,7 +212,7 @@ object AccumulatorReset
 extends
     Parseable[AccumulatorReset]
 {
-    val AccumulatorValue = parse_attribute (attribute ("""AccumulatorReset.AccumulatorValue"""))
+    val AccumulatorValue: (Context) => String = parse_attribute (attribute ("""AccumulatorReset.AccumulatorValue"""))
     def parse (context: Context): AccumulatorReset =
     {
         AccumulatorReset(
@@ -234,9 +233,9 @@ extends
 case class AccumulatorValue
 (
     override val sup: MeasurementValue,
-    val value: Int,
-    val Accumulator: String,
-    val AccumulatorReset: String
+    value: Int,
+    Accumulator: String,
+    AccumulatorReset: String
 )
 extends
     Element
@@ -271,9 +270,9 @@ object AccumulatorValue
 extends
     Parseable[AccumulatorValue]
 {
-    val value = parse_element (element ("""AccumulatorValue.value"""))
-    val Accumulator = parse_attribute (attribute ("""AccumulatorValue.Accumulator"""))
-    val AccumulatorReset = parse_attribute (attribute ("""AccumulatorValue.AccumulatorReset"""))
+    val value: (Context) => String = parse_element (element ("""AccumulatorValue.value"""))
+    val Accumulator: (Context) => String = parse_attribute (attribute ("""AccumulatorValue.Accumulator"""))
+    val AccumulatorReset: (Context) => String = parse_attribute (attribute ("""AccumulatorValue.AccumulatorReset"""))
     def parse (context: Context): AccumulatorValue =
     {
         AccumulatorValue(
@@ -299,11 +298,11 @@ extends
 case class Analog
 (
     override val sup: Measurement,
-    val maxValue: Double,
-    val minValue: Double,
-    val normalValue: Double,
-    val positiveFlowIn: Boolean,
-    val LimitSets: List[String]
+    maxValue: Double,
+    minValue: Double,
+    normalValue: Double,
+    positiveFlowIn: Boolean,
+    LimitSets: List[String]
 )
 extends
     Element
@@ -340,11 +339,11 @@ object Analog
 extends
     Parseable[Analog]
 {
-    val maxValue = parse_element (element ("""Analog.maxValue"""))
-    val minValue = parse_element (element ("""Analog.minValue"""))
-    val normalValue = parse_element (element ("""Analog.normalValue"""))
-    val positiveFlowIn = parse_element (element ("""Analog.positiveFlowIn"""))
-    val LimitSets = parse_attributes (attribute ("""Analog.LimitSets"""))
+    val maxValue: (Context) => String = parse_element (element ("""Analog.maxValue"""))
+    val minValue: (Context) => String = parse_element (element ("""Analog.minValue"""))
+    val normalValue: (Context) => String = parse_element (element ("""Analog.normalValue"""))
+    val positiveFlowIn: (Context) => String = parse_element (element ("""Analog.positiveFlowIn"""))
+    val LimitSets: (Context) => List[String] = parse_attributes (attribute ("""Analog.LimitSets"""))
     def parse (context: Context): Analog =
     {
         Analog(
@@ -370,9 +369,9 @@ extends
 case class AnalogControl
 (
     override val sup: Control,
-    val maxValue: Double,
-    val minValue: Double,
-    val AnalogValue: String
+    maxValue: Double,
+    minValue: Double,
+    AnalogValue: String
 )
 extends
     Element
@@ -407,9 +406,9 @@ object AnalogControl
 extends
     Parseable[AnalogControl]
 {
-    val maxValue = parse_element (element ("""AnalogControl.maxValue"""))
-    val minValue = parse_element (element ("""AnalogControl.minValue"""))
-    val AnalogValue = parse_attribute (attribute ("""AnalogControl.AnalogValue"""))
+    val maxValue: (Context) => String = parse_element (element ("""AnalogControl.maxValue"""))
+    val minValue: (Context) => String = parse_element (element ("""AnalogControl.minValue"""))
+    val AnalogValue: (Context) => String = parse_attribute (attribute ("""AnalogControl.AnalogValue"""))
     def parse (context: Context): AnalogControl =
     {
         AnalogControl(
@@ -430,8 +429,8 @@ extends
 case class AnalogLimit
 (
     override val sup: Limit,
-    val value: Double,
-    val LimitSet: String
+    value: Double,
+    LimitSet: String
 )
 extends
     Element
@@ -465,8 +464,8 @@ object AnalogLimit
 extends
     Parseable[AnalogLimit]
 {
-    val value = parse_element (element ("""AnalogLimit.value"""))
-    val LimitSet = parse_attribute (attribute ("""AnalogLimit.LimitSet"""))
+    val value: (Context) => String = parse_element (element ("""AnalogLimit.value"""))
+    val LimitSet: (Context) => String = parse_attribute (attribute ("""AnalogLimit.LimitSet"""))
     def parse (context: Context): AnalogLimit =
     {
         AnalogLimit(
@@ -534,9 +533,9 @@ extends
 case class AnalogValue
 (
     override val sup: MeasurementValue,
-    val value: Double,
-    val Analog: String,
-    val AnalogControl: String
+    value: Double,
+    Analog: String,
+    AnalogControl: String
 )
 extends
     Element
@@ -571,9 +570,9 @@ object AnalogValue
 extends
     Parseable[AnalogValue]
 {
-    val value = parse_element (element ("""AnalogValue.value"""))
-    val Analog = parse_attribute (attribute ("""AnalogValue.Analog"""))
-    val AnalogControl = parse_attribute (attribute ("""AnalogValue.AnalogControl"""))
+    val value: (Context) => String = parse_element (element ("""AnalogValue.value"""))
+    val Analog: (Context) => String = parse_attribute (attribute ("""AnalogValue.Analog"""))
+    val AnalogControl: (Context) => String = parse_attribute (attribute ("""AnalogValue.AnalogControl"""))
     def parse (context: Context): AnalogValue =
     {
         AnalogValue(
@@ -596,10 +595,10 @@ extends
 case class Command
 (
     override val sup: Control,
-    val normalValue: Int,
-    val value: Int,
-    val DiscreteValue: String,
-    val ValueAliasSet: String
+    normalValue: Int,
+    value: Int,
+    DiscreteValue: String,
+    ValueAliasSet: String
 )
 extends
     Element
@@ -635,10 +634,10 @@ object Command
 extends
     Parseable[Command]
 {
-    val normalValue = parse_element (element ("""Command.normalValue"""))
-    val value = parse_element (element ("""Command.value"""))
-    val DiscreteValue = parse_attribute (attribute ("""Command.DiscreteValue"""))
-    val ValueAliasSet = parse_attribute (attribute ("""Command.ValueAliasSet"""))
+    val normalValue: (Context) => String = parse_element (element ("""Command.normalValue"""))
+    val value: (Context) => String = parse_element (element ("""Command.value"""))
+    val DiscreteValue: (Context) => String = parse_attribute (attribute ("""Command.DiscreteValue"""))
+    val ValueAliasSet: (Context) => String = parse_attribute (attribute ("""Command.ValueAliasSet"""))
     def parse (context: Context): Command =
     {
         Command(
@@ -667,13 +666,13 @@ extends
 case class Control
 (
     override val sup: IdentifiedObject,
-    val controlType: String,
-    val operationInProgress: Boolean,
-    val timeStamp: String,
-    val unitMultiplier: String,
-    val unitSymbol: String,
-    val PowerSystemResource: String,
-    val RemoteControl: String
+    controlType: String,
+    operationInProgress: Boolean,
+    timeStamp: String,
+    unitMultiplier: String,
+    unitSymbol: String,
+    PowerSystemResource: String,
+    RemoteControl: String
 )
 extends
     Element
@@ -712,13 +711,13 @@ object Control
 extends
     Parseable[Control]
 {
-    val controlType = parse_element (element ("""Control.controlType"""))
-    val operationInProgress = parse_element (element ("""Control.operationInProgress"""))
-    val timeStamp = parse_element (element ("""Control.timeStamp"""))
-    val unitMultiplier = parse_attribute (attribute ("""Control.unitMultiplier"""))
-    val unitSymbol = parse_attribute (attribute ("""Control.unitSymbol"""))
-    val PowerSystemResource = parse_attribute (attribute ("""Control.PowerSystemResource"""))
-    val RemoteControl = parse_attribute (attribute ("""Control.RemoteControl"""))
+    val controlType: (Context) => String = parse_element (element ("""Control.controlType"""))
+    val operationInProgress: (Context) => String = parse_element (element ("""Control.operationInProgress"""))
+    val timeStamp: (Context) => String = parse_element (element ("""Control.timeStamp"""))
+    val unitMultiplier: (Context) => String = parse_attribute (attribute ("""Control.unitMultiplier"""))
+    val unitSymbol: (Context) => String = parse_attribute (attribute ("""Control.unitSymbol"""))
+    val PowerSystemResource: (Context) => String = parse_attribute (attribute ("""Control.PowerSystemResource"""))
+    val RemoteControl: (Context) => String = parse_attribute (attribute ("""Control.RemoteControl"""))
     def parse (context: Context): Control =
     {
         Control(
@@ -747,10 +746,10 @@ extends
 case class Discrete
 (
     override val sup: Measurement,
-    val maxValue: Int,
-    val minValue: Int,
-    val normalValue: Int,
-    val ValueAliasSet: String
+    maxValue: Int,
+    minValue: Int,
+    normalValue: Int,
+    ValueAliasSet: String
 )
 extends
     Element
@@ -786,10 +785,10 @@ object Discrete
 extends
     Parseable[Discrete]
 {
-    val maxValue = parse_element (element ("""Discrete.maxValue"""))
-    val minValue = parse_element (element ("""Discrete.minValue"""))
-    val normalValue = parse_element (element ("""Discrete.normalValue"""))
-    val ValueAliasSet = parse_attribute (attribute ("""Discrete.ValueAliasSet"""))
+    val maxValue: (Context) => String = parse_element (element ("""Discrete.maxValue"""))
+    val minValue: (Context) => String = parse_element (element ("""Discrete.minValue"""))
+    val normalValue: (Context) => String = parse_element (element ("""Discrete.normalValue"""))
+    val ValueAliasSet: (Context) => String = parse_attribute (attribute ("""Discrete.ValueAliasSet"""))
     def parse (context: Context): Discrete =
     {
         Discrete(
@@ -855,9 +854,9 @@ extends
 case class DiscreteValue
 (
     override val sup: MeasurementValue,
-    val value: Int,
-    val Command: String,
-    val Discrete: String
+    value: Int,
+    Command: String,
+    Discrete: String
 )
 extends
     Element
@@ -892,9 +891,9 @@ object DiscreteValue
 extends
     Parseable[DiscreteValue]
 {
-    val value = parse_element (element ("""DiscreteValue.value"""))
-    val Command = parse_attribute (attribute ("""DiscreteValue.Command"""))
-    val Discrete = parse_attribute (attribute ("""DiscreteValue.Discrete"""))
+    val value: (Context) => String = parse_element (element ("""DiscreteValue.value"""))
+    val Command: (Context) => String = parse_attribute (attribute ("""DiscreteValue.Command"""))
+    val Discrete: (Context) => String = parse_attribute (attribute ("""DiscreteValue.Discrete"""))
     def parse (context: Context): DiscreteValue =
     {
         DiscreteValue(
@@ -963,7 +962,7 @@ extends
 case class LimitSet
 (
     override val sup: IdentifiedObject,
-    val isPercentageLimits: Boolean
+    isPercentageLimits: Boolean
 )
 extends
     Element
@@ -996,7 +995,7 @@ object LimitSet
 extends
     Parseable[LimitSet]
 {
-    val isPercentageLimits = parse_element (element ("""LimitSet.isPercentageLimits"""))
+    val isPercentageLimits: (Context) => String = parse_element (element ("""LimitSet.isPercentageLimits"""))
     def parse (context: Context): LimitSet =
     {
         LimitSet(
@@ -1016,20 +1015,20 @@ extends
  *        The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
  * @param unitMultiplier The unit multiplier of the measured quantity.
  * @param unitSymbol The unit of measure of the measured quantity.
- * @param Asset
+ * @param Asset <em>undocumented</em>
  * @param PowerSystemResource The power system resource that contains the measurement.
  * @param Terminal One or more measurements may be associated with a terminal in the network.
  */
 case class Measurement
 (
     override val sup: IdentifiedObject,
-    val measurementType: String,
-    val phases: String,
-    val unitMultiplier: String,
-    val unitSymbol: String,
-    val Asset: String,
-    val PowerSystemResource: String,
-    val Terminal: String
+    measurementType: String,
+    phases: String,
+    unitMultiplier: String,
+    unitSymbol: String,
+    Asset: String,
+    PowerSystemResource: String,
+    Terminal: String
 )
 extends
     Element
@@ -1068,13 +1067,13 @@ object Measurement
 extends
     Parseable[Measurement]
 {
-    val measurementType = parse_element (element ("""Measurement.measurementType"""))
-    val phases = parse_attribute (attribute ("""Measurement.phases"""))
-    val unitMultiplier = parse_attribute (attribute ("""Measurement.unitMultiplier"""))
-    val unitSymbol = parse_attribute (attribute ("""Measurement.unitSymbol"""))
-    val Asset = parse_attribute (attribute ("""Measurement.Asset"""))
-    val PowerSystemResource = parse_attribute (attribute ("""Measurement.PowerSystemResource"""))
-    val Terminal = parse_attribute (attribute ("""Measurement.Terminal"""))
+    val measurementType: (Context) => String = parse_element (element ("""Measurement.measurementType"""))
+    val phases: (Context) => String = parse_attribute (attribute ("""Measurement.phases"""))
+    val unitMultiplier: (Context) => String = parse_attribute (attribute ("""Measurement.unitMultiplier"""))
+    val unitSymbol: (Context) => String = parse_attribute (attribute ("""Measurement.unitSymbol"""))
+    val Asset: (Context) => String = parse_attribute (attribute ("""Measurement.Asset"""))
+    val PowerSystemResource: (Context) => String = parse_attribute (attribute ("""Measurement.PowerSystemResource"""))
+    val Terminal: (Context) => String = parse_attribute (attribute ("""Measurement.Terminal"""))
     def parse (context: Context): Measurement =
     {
         Measurement(
@@ -1094,10 +1093,10 @@ extends
  * The current state for a measurement.
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
  * @param sup Reference to the superclass object.
- * @param attr
+ * @param attr <em>undocumented</em>
  * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
  * @param timeStamp The time when the value was last updated
- * @param ErpPerson
+ * @param ErpPerson <em>undocumented</em>
  * @param MeasurementValueQuality A MeasurementValue has a MeasurementValueQuality associated with it.
  * @param MeasurementValueSource A reference to the type of source that updates the MeasurementValue, e.g.
  *        SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
@@ -1106,13 +1105,13 @@ extends
 case class MeasurementValue
 (
     override val sup: IdentifiedObject,
-    val attr: String,
-    val sensorAccuracy: Double,
-    val timeStamp: String,
-    val ErpPerson: String,
-    val MeasurementValueQuality: String,
-    val MeasurementValueSource: String,
-    val RemoteSource: String
+    attr: String,
+    sensorAccuracy: Double,
+    timeStamp: String,
+    ErpPerson: String,
+    MeasurementValueQuality: String,
+    MeasurementValueSource: String,
+    RemoteSource: String
 )
 extends
     Element
@@ -1151,13 +1150,13 @@ object MeasurementValue
 extends
     Parseable[MeasurementValue]
 {
-    val attr = parse_attribute (attribute ("""MeasurementValue."""))
-    val sensorAccuracy = parse_element (element ("""MeasurementValue.sensorAccuracy"""))
-    val timeStamp = parse_element (element ("""MeasurementValue.timeStamp"""))
-    val ErpPerson = parse_attribute (attribute ("""MeasurementValue.ErpPerson"""))
-    val MeasurementValueQuality = parse_attribute (attribute ("""MeasurementValue.MeasurementValueQuality"""))
-    val MeasurementValueSource = parse_attribute (attribute ("""MeasurementValue.MeasurementValueSource"""))
-    val RemoteSource = parse_attribute (attribute ("""MeasurementValue.RemoteSource"""))
+    val attr: (Context) => String = parse_attribute (attribute ("""MeasurementValue."""))
+    val sensorAccuracy: (Context) => String = parse_element (element ("""MeasurementValue.sensorAccuracy"""))
+    val timeStamp: (Context) => String = parse_element (element ("""MeasurementValue.timeStamp"""))
+    val ErpPerson: (Context) => String = parse_attribute (attribute ("""MeasurementValue.ErpPerson"""))
+    val MeasurementValueQuality: (Context) => String = parse_attribute (attribute ("""MeasurementValue.MeasurementValueQuality"""))
+    val MeasurementValueSource: (Context) => String = parse_attribute (attribute ("""MeasurementValue.MeasurementValueSource"""))
+    val RemoteSource: (Context) => String = parse_attribute (attribute ("""MeasurementValue.RemoteSource"""))
     def parse (context: Context): MeasurementValue =
     {
         MeasurementValue(
@@ -1182,7 +1181,7 @@ extends
 case class MeasurementValueQuality
 (
     override val sup: Quality61850,
-    val MeasurementValue: String
+    MeasurementValue: String
 )
 extends
     Element
@@ -1215,7 +1214,7 @@ object MeasurementValueQuality
 extends
     Parseable[MeasurementValueQuality]
 {
-    val MeasurementValue = parse_attribute (attribute ("""MeasurementValueQuality.MeasurementValue"""))
+    val MeasurementValue: (Context) => String = parse_attribute (attribute ("""MeasurementValueQuality.MeasurementValue"""))
     def parse (context: Context): MeasurementValueQuality =
     {
         MeasurementValueQuality(
@@ -1296,18 +1295,18 @@ extends
 case class Quality61850
 (
     override val sup: BasicElement,
-    val badReference: Boolean,
-    val estimatorReplaced: Boolean,
-    val failure: Boolean,
-    val oldData: Boolean,
-    val operatorBlocked: Boolean,
-    val oscillatory: Boolean,
-    val outOfRange: Boolean,
-    val overFlow: Boolean,
-    val source: String,
-    val suspect: Boolean,
-    val test: Boolean,
-    val validity: String
+    badReference: Boolean,
+    estimatorReplaced: Boolean,
+    failure: Boolean,
+    oldData: Boolean,
+    operatorBlocked: Boolean,
+    oscillatory: Boolean,
+    outOfRange: Boolean,
+    overFlow: Boolean,
+    source: String,
+    suspect: Boolean,
+    test: Boolean,
+    validity: String
 )
 extends
     Element
@@ -1351,18 +1350,18 @@ object Quality61850
 extends
     Parseable[Quality61850]
 {
-    val badReference = parse_element (element ("""Quality61850.badReference"""))
-    val estimatorReplaced = parse_element (element ("""Quality61850.estimatorReplaced"""))
-    val failure = parse_element (element ("""Quality61850.failure"""))
-    val oldData = parse_element (element ("""Quality61850.oldData"""))
-    val operatorBlocked = parse_element (element ("""Quality61850.operatorBlocked"""))
-    val oscillatory = parse_element (element ("""Quality61850.oscillatory"""))
-    val outOfRange = parse_element (element ("""Quality61850.outOfRange"""))
-    val overFlow = parse_element (element ("""Quality61850.overFlow"""))
-    val source = parse_attribute (attribute ("""Quality61850.source"""))
-    val suspect = parse_element (element ("""Quality61850.suspect"""))
-    val test = parse_element (element ("""Quality61850.test"""))
-    val validity = parse_attribute (attribute ("""Quality61850.validity"""))
+    val badReference: (Context) => String = parse_element (element ("""Quality61850.badReference"""))
+    val estimatorReplaced: (Context) => String = parse_element (element ("""Quality61850.estimatorReplaced"""))
+    val failure: (Context) => String = parse_element (element ("""Quality61850.failure"""))
+    val oldData: (Context) => String = parse_element (element ("""Quality61850.oldData"""))
+    val operatorBlocked: (Context) => String = parse_element (element ("""Quality61850.operatorBlocked"""))
+    val oscillatory: (Context) => String = parse_element (element ("""Quality61850.oscillatory"""))
+    val outOfRange: (Context) => String = parse_element (element ("""Quality61850.outOfRange"""))
+    val overFlow: (Context) => String = parse_element (element ("""Quality61850.overFlow"""))
+    val source: (Context) => String = parse_attribute (attribute ("""Quality61850.source"""))
+    val suspect: (Context) => String = parse_element (element ("""Quality61850.suspect"""))
+    val test: (Context) => String = parse_element (element ("""Quality61850.test"""))
+    val validity: (Context) => String = parse_attribute (attribute ("""Quality61850.validity"""))
     def parse (context: Context): Quality61850 =
     {
         Quality61850(
@@ -1391,7 +1390,7 @@ extends
 case class RaiseLowerCommand
 (
     override val sup: AnalogControl,
-    val ValueAliasSet: String
+    ValueAliasSet: String
 )
 extends
     Element
@@ -1424,7 +1423,7 @@ object RaiseLowerCommand
 extends
     Parseable[RaiseLowerCommand]
 {
-    val ValueAliasSet = parse_attribute (attribute ("""RaiseLowerCommand.ValueAliasSet"""))
+    val ValueAliasSet: (Context) => String = parse_attribute (attribute ("""RaiseLowerCommand.ValueAliasSet"""))
     def parse (context: Context): RaiseLowerCommand =
     {
         RaiseLowerCommand(
@@ -1443,8 +1442,8 @@ extends
 case class SetPoint
 (
     override val sup: AnalogControl,
-    val normalValue: Double,
-    val value: Double
+    normalValue: Double,
+    value: Double
 )
 extends
     Element
@@ -1478,8 +1477,8 @@ object SetPoint
 extends
     Parseable[SetPoint]
 {
-    val normalValue = parse_element (element ("""SetPoint.normalValue"""))
-    val value = parse_element (element ("""SetPoint.value"""))
+    val normalValue: (Context) => String = parse_element (element ("""SetPoint.normalValue"""))
+    val value: (Context) => String = parse_element (element ("""SetPoint.value"""))
     def parse (context: Context): SetPoint =
     {
         SetPoint(
@@ -1546,8 +1545,8 @@ extends
 case class StringMeasurementValue
 (
     override val sup: MeasurementValue,
-    val value: String,
-    val StringMeasurement: String
+    value: String,
+    StringMeasurement: String
 )
 extends
     Element
@@ -1581,8 +1580,8 @@ object StringMeasurementValue
 extends
     Parseable[StringMeasurementValue]
 {
-    val value = parse_element (element ("""StringMeasurementValue.value"""))
-    val StringMeasurement = parse_attribute (attribute ("""StringMeasurementValue.StringMeasurement"""))
+    val value: (Context) => String = parse_element (element ("""StringMeasurementValue.value"""))
+    val StringMeasurement: (Context) => String = parse_attribute (attribute ("""StringMeasurementValue.StringMeasurement"""))
     def parse (context: Context): StringMeasurementValue =
     {
         StringMeasurementValue(
@@ -1605,9 +1604,9 @@ extends
 case class Validity
 (
     override val sup: BasicElement,
-    val GOOD: String,
-    val INVALID: String,
-    val QUESTIONABLE: String
+    GOOD: String,
+    INVALID: String,
+    QUESTIONABLE: String
 )
 extends
     Element
@@ -1642,9 +1641,9 @@ object Validity
 extends
     Parseable[Validity]
 {
-    val GOOD = parse_attribute (attribute ("""Validity.GOOD"""))
-    val INVALID = parse_attribute (attribute ("""Validity.INVALID"""))
-    val QUESTIONABLE = parse_attribute (attribute ("""Validity.QUESTIONABLE"""))
+    val GOOD: (Context) => String = parse_attribute (attribute ("""Validity.GOOD"""))
+    val INVALID: (Context) => String = parse_attribute (attribute ("""Validity.INVALID"""))
+    val QUESTIONABLE: (Context) => String = parse_attribute (attribute ("""Validity.QUESTIONABLE"""))
     def parse (context: Context): Validity =
     {
         Validity(
@@ -1713,8 +1712,8 @@ extends
 case class ValueToAlias
 (
     override val sup: IdentifiedObject,
-    val value: Int,
-    val ValueAliasSet: String
+    value: Int,
+    ValueAliasSet: String
 )
 extends
     Element
@@ -1748,8 +1747,8 @@ object ValueToAlias
 extends
     Parseable[ValueToAlias]
 {
-    val value = parse_element (element ("""ValueToAlias.value"""))
-    val ValueAliasSet = parse_attribute (attribute ("""ValueToAlias.ValueAliasSet"""))
+    val value: (Context) => String = parse_element (element ("""ValueToAlias.value"""))
+    val ValueAliasSet: (Context) => String = parse_attribute (attribute ("""ValueToAlias.ValueAliasSet"""))
     def parse (context: Context): ValueToAlias =
     {
         ValueToAlias(
@@ -1760,7 +1759,7 @@ extends
     }
 }
 
-object _Meas
+private[ninecode] object _Meas
 {
     def register: List[ClassInfo] =
     {

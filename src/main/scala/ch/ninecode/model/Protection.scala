@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -26,13 +25,13 @@ import ch.ninecode.cim.Parseable
 case class CurrentRelay
 (
     override val sup: ProtectionEquipment,
-    val currentLimit1: Double,
-    val currentLimit2: Double,
-    val currentLimit3: Double,
-    val inverseTimeFlag: Boolean,
-    val timeDelay1: Double,
-    val timeDelay2: Double,
-    val timeDelay3: Double
+    currentLimit1: Double,
+    currentLimit2: Double,
+    currentLimit3: Double,
+    inverseTimeFlag: Boolean,
+    timeDelay1: Double,
+    timeDelay2: Double,
+    timeDelay3: Double
 )
 extends
     Element
@@ -71,13 +70,13 @@ object CurrentRelay
 extends
     Parseable[CurrentRelay]
 {
-    val currentLimit1 = parse_element (element ("""CurrentRelay.currentLimit1"""))
-    val currentLimit2 = parse_element (element ("""CurrentRelay.currentLimit2"""))
-    val currentLimit3 = parse_element (element ("""CurrentRelay.currentLimit3"""))
-    val inverseTimeFlag = parse_element (element ("""CurrentRelay.inverseTimeFlag"""))
-    val timeDelay1 = parse_element (element ("""CurrentRelay.timeDelay1"""))
-    val timeDelay2 = parse_element (element ("""CurrentRelay.timeDelay2"""))
-    val timeDelay3 = parse_element (element ("""CurrentRelay.timeDelay3"""))
+    val currentLimit1: (Context) => String = parse_element (element ("""CurrentRelay.currentLimit1"""))
+    val currentLimit2: (Context) => String = parse_element (element ("""CurrentRelay.currentLimit2"""))
+    val currentLimit3: (Context) => String = parse_element (element ("""CurrentRelay.currentLimit3"""))
+    val inverseTimeFlag: (Context) => String = parse_element (element ("""CurrentRelay.inverseTimeFlag"""))
+    val timeDelay1: (Context) => String = parse_element (element ("""CurrentRelay.timeDelay1"""))
+    val timeDelay2: (Context) => String = parse_element (element ("""CurrentRelay.timeDelay2"""))
+    val timeDelay3: (Context) => String = parse_element (element ("""CurrentRelay.timeDelay3"""))
     def parse (context: Context): CurrentRelay =
     {
         CurrentRelay(
@@ -109,14 +108,14 @@ extends
 case class ProtectionEquipment
 (
     override val sup: Equipment,
-    val highLimit: Double,
-    val lowLimit: Double,
-    val powerDirectionFlag: Boolean,
-    val relayDelayTime: Double,
-    val unitMultiplier: String,
-    val unitSymbol: String,
-    val ConductingEquipments: List[String],
-    val ProtectedSwitches: List[String]
+    highLimit: Double,
+    lowLimit: Double,
+    powerDirectionFlag: Boolean,
+    relayDelayTime: Double,
+    unitMultiplier: String,
+    unitSymbol: String,
+    ConductingEquipments: List[String],
+    ProtectedSwitches: List[String]
 )
 extends
     Element
@@ -156,14 +155,14 @@ object ProtectionEquipment
 extends
     Parseable[ProtectionEquipment]
 {
-    val highLimit = parse_element (element ("""ProtectionEquipment.highLimit"""))
-    val lowLimit = parse_element (element ("""ProtectionEquipment.lowLimit"""))
-    val powerDirectionFlag = parse_element (element ("""ProtectionEquipment.powerDirectionFlag"""))
-    val relayDelayTime = parse_element (element ("""ProtectionEquipment.relayDelayTime"""))
-    val unitMultiplier = parse_attribute (attribute ("""ProtectionEquipment.unitMultiplier"""))
-    val unitSymbol = parse_attribute (attribute ("""ProtectionEquipment.unitSymbol"""))
-    val ConductingEquipments = parse_attributes (attribute ("""ProtectionEquipment.ConductingEquipments"""))
-    val ProtectedSwitches = parse_attributes (attribute ("""ProtectionEquipment.ProtectedSwitches"""))
+    val highLimit: (Context) => String = parse_element (element ("""ProtectionEquipment.highLimit"""))
+    val lowLimit: (Context) => String = parse_element (element ("""ProtectionEquipment.lowLimit"""))
+    val powerDirectionFlag: (Context) => String = parse_element (element ("""ProtectionEquipment.powerDirectionFlag"""))
+    val relayDelayTime: (Context) => String = parse_element (element ("""ProtectionEquipment.relayDelayTime"""))
+    val unitMultiplier: (Context) => String = parse_attribute (attribute ("""ProtectionEquipment.unitMultiplier"""))
+    val unitSymbol: (Context) => String = parse_attribute (attribute ("""ProtectionEquipment.unitSymbol"""))
+    val ConductingEquipments: (Context) => List[String] = parse_attributes (attribute ("""ProtectionEquipment.ConductingEquipments"""))
+    val ProtectedSwitches: (Context) => List[String] = parse_attributes (attribute ("""ProtectionEquipment.ProtectedSwitches"""))
     def parse (context: Context): ProtectionEquipment =
     {
         ProtectionEquipment(
@@ -190,9 +189,9 @@ extends
 case class RecloseSequence
 (
     override val sup: IdentifiedObject,
-    val recloseDelay: Double,
-    val recloseStep: Int,
-    val ProtectedSwitch: String
+    recloseDelay: Double,
+    recloseStep: Int,
+    ProtectedSwitch: String
 )
 extends
     Element
@@ -227,9 +226,9 @@ object RecloseSequence
 extends
     Parseable[RecloseSequence]
 {
-    val recloseDelay = parse_element (element ("""RecloseSequence.recloseDelay"""))
-    val recloseStep = parse_element (element ("""RecloseSequence.recloseStep"""))
-    val ProtectedSwitch = parse_attribute (attribute ("""RecloseSequence.ProtectedSwitch"""))
+    val recloseDelay: (Context) => String = parse_element (element ("""RecloseSequence.recloseDelay"""))
+    val recloseStep: (Context) => String = parse_element (element ("""RecloseSequence.recloseStep"""))
+    val ProtectedSwitch: (Context) => String = parse_attribute (attribute ("""RecloseSequence.ProtectedSwitch"""))
     def parse (context: Context): RecloseSequence =
     {
         RecloseSequence(
@@ -252,9 +251,9 @@ extends
 case class SynchrocheckRelay
 (
     override val sup: ProtectionEquipment,
-    val maxAngleDiff: Double,
-    val maxFreqDiff: Double,
-    val maxVoltDiff: Double
+    maxAngleDiff: Double,
+    maxFreqDiff: Double,
+    maxVoltDiff: Double
 )
 extends
     Element
@@ -289,9 +288,9 @@ object SynchrocheckRelay
 extends
     Parseable[SynchrocheckRelay]
 {
-    val maxAngleDiff = parse_element (element ("""SynchrocheckRelay.maxAngleDiff"""))
-    val maxFreqDiff = parse_element (element ("""SynchrocheckRelay.maxFreqDiff"""))
-    val maxVoltDiff = parse_element (element ("""SynchrocheckRelay.maxVoltDiff"""))
+    val maxAngleDiff: (Context) => String = parse_element (element ("""SynchrocheckRelay.maxAngleDiff"""))
+    val maxFreqDiff: (Context) => String = parse_element (element ("""SynchrocheckRelay.maxFreqDiff"""))
+    val maxVoltDiff: (Context) => String = parse_element (element ("""SynchrocheckRelay.maxVoltDiff"""))
     def parse (context: Context): SynchrocheckRelay =
     {
         SynchrocheckRelay(
@@ -303,7 +302,7 @@ extends
     }
 }
 
-object _Protection
+private[ninecode] object _Protection
 {
     def register: List[ClassInfo] =
     {

@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -28,20 +27,20 @@ import ch.ninecode.cim.Parseable
  * @param isRemoteAutoReconOp If set true and if reconnection can be operated remotely, then the operation happens automatically.
  *        If set false and if reconnection can be operated remotely, then the operation happens manually.
  * @param rcdInfo Information on remote connect disconnect switch.
- * @param Switches
+ * @param Switches <em>undocumented</em>
  */
 case class ConnectDisconnectFunction
 (
     override val sup: EndDeviceFunction,
-    val eventCount: Int,
-    val isConnected: Boolean,
-    val isDelayedDiscon: Boolean,
-    val isLocalAutoDisconOp: Boolean,
-    val isLocalAutoReconOp: Boolean,
-    val isRemoteAutoDisconOp: Boolean,
-    val isRemoteAutoReconOp: Boolean,
-    val rcdInfo: String,
-    val Switches: List[String]
+    eventCount: Int,
+    isConnected: Boolean,
+    isDelayedDiscon: Boolean,
+    isLocalAutoDisconOp: Boolean,
+    isLocalAutoReconOp: Boolean,
+    isRemoteAutoDisconOp: Boolean,
+    isRemoteAutoReconOp: Boolean,
+    rcdInfo: String,
+    Switches: List[String]
 )
 extends
     Element
@@ -82,15 +81,15 @@ object ConnectDisconnectFunction
 extends
     Parseable[ConnectDisconnectFunction]
 {
-    val eventCount = parse_element (element ("""ConnectDisconnectFunction.eventCount"""))
-    val isConnected = parse_element (element ("""ConnectDisconnectFunction.isConnected"""))
-    val isDelayedDiscon = parse_element (element ("""ConnectDisconnectFunction.isDelayedDiscon"""))
-    val isLocalAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoDisconOp"""))
-    val isLocalAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoReconOp"""))
-    val isRemoteAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoDisconOp"""))
-    val isRemoteAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoReconOp"""))
-    val rcdInfo = parse_attribute (attribute ("""ConnectDisconnectFunction.rcdInfo"""))
-    val Switches = parse_attributes (attribute ("""ConnectDisconnectFunction.Switches"""))
+    val eventCount: (Context) => String = parse_element (element ("""ConnectDisconnectFunction.eventCount"""))
+    val isConnected: (Context) => String = parse_element (element ("""ConnectDisconnectFunction.isConnected"""))
+    val isDelayedDiscon: (Context) => String = parse_element (element ("""ConnectDisconnectFunction.isDelayedDiscon"""))
+    val isLocalAutoDisconOp: (Context) => String = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoDisconOp"""))
+    val isLocalAutoReconOp: (Context) => String = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoReconOp"""))
+    val isRemoteAutoDisconOp: (Context) => String = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoDisconOp"""))
+    val isRemoteAutoReconOp: (Context) => String = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoReconOp"""))
+    val rcdInfo: (Context) => String = parse_attribute (attribute ("""ConnectDisconnectFunction.rcdInfo"""))
+    val Switches: (Context) => List[String] = parse_attributes (attribute ("""ConnectDisconnectFunction.Switches"""))
     def parse (context: Context): ConnectDisconnectFunction =
     {
         ConnectDisconnectFunction(
@@ -127,18 +126,18 @@ extends
 case class RemoteConnectDisconnectInfo
 (
     override val sup: BasicElement,
-    val armedTimeout: Double,
-    val customerVoltageLimit: Double,
-    val energyLimit: Double,
-    val energyUsageStartDateTime: String,
-    val energyUsageWarning: Double,
-    val isArmConnect: Boolean,
-    val isArmDisconnect: Boolean,
-    val isEnergyLimiting: Boolean,
-    val needsPowerLimitCheck: Boolean,
-    val needsVoltageLimitCheck: Boolean,
-    val powerLimit: Double,
-    val usePushbutton: Boolean
+    armedTimeout: Double,
+    customerVoltageLimit: Double,
+    energyLimit: Double,
+    energyUsageStartDateTime: String,
+    energyUsageWarning: Double,
+    isArmConnect: Boolean,
+    isArmDisconnect: Boolean,
+    isEnergyLimiting: Boolean,
+    needsPowerLimitCheck: Boolean,
+    needsVoltageLimitCheck: Boolean,
+    powerLimit: Double,
+    usePushbutton: Boolean
 )
 extends
     Element
@@ -182,18 +181,18 @@ object RemoteConnectDisconnectInfo
 extends
     Parseable[RemoteConnectDisconnectInfo]
 {
-    val armedTimeout = parse_element (element ("""RemoteConnectDisconnectInfo.armedTimeout"""))
-    val customerVoltageLimit = parse_element (element ("""RemoteConnectDisconnectInfo.customerVoltageLimit"""))
-    val energyLimit = parse_element (element ("""RemoteConnectDisconnectInfo.energyLimit"""))
-    val energyUsageStartDateTime = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageStartDateTime"""))
-    val energyUsageWarning = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageWarning"""))
-    val isArmConnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmConnect"""))
-    val isArmDisconnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmDisconnect"""))
-    val isEnergyLimiting = parse_element (element ("""RemoteConnectDisconnectInfo.isEnergyLimiting"""))
-    val needsPowerLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsPowerLimitCheck"""))
-    val needsVoltageLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsVoltageLimitCheck"""))
-    val powerLimit = parse_element (element ("""RemoteConnectDisconnectInfo.powerLimit"""))
-    val usePushbutton = parse_element (element ("""RemoteConnectDisconnectInfo.usePushbutton"""))
+    val armedTimeout: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.armedTimeout"""))
+    val customerVoltageLimit: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.customerVoltageLimit"""))
+    val energyLimit: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.energyLimit"""))
+    val energyUsageStartDateTime: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageStartDateTime"""))
+    val energyUsageWarning: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageWarning"""))
+    val isArmConnect: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.isArmConnect"""))
+    val isArmDisconnect: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.isArmDisconnect"""))
+    val isEnergyLimiting: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.isEnergyLimiting"""))
+    val needsPowerLimitCheck: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.needsPowerLimitCheck"""))
+    val needsVoltageLimitCheck: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.needsVoltageLimitCheck"""))
+    val powerLimit: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.powerLimit"""))
+    val usePushbutton: (Context) => String = parse_element (element ("""RemoteConnectDisconnectInfo.usePushbutton"""))
     def parse (context: Context): RemoteConnectDisconnectInfo =
     {
         RemoteConnectDisconnectInfo(
@@ -214,7 +213,7 @@ extends
     }
 }
 
-object _LoadControl
+private[ninecode] object _LoadControl
 {
     def register: List[ClassInfo] =
     {

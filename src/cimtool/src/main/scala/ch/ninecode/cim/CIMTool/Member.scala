@@ -17,7 +17,7 @@ case class Member (
         val jd = JavaDoc (comment, 0)
         " * @param " + variable +
         (if (jd.summary == "")
-            ""
+            " <em>undocumented</em>"
         else
             " " + 
             jd.summary +

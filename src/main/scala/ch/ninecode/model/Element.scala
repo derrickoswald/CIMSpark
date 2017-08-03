@@ -14,15 +14,15 @@ import ch.ninecode.cim.Parser
 
 @SQLUserDefinedType(udt = classOf[ElementUDT])
 trait Element
-extends 
+extends
     Row
-with 
+with
     Serializable
-with 
-    Cloneable 
+with
+    Cloneable
 {
     def sup: Element = null
-    def id: String = if (null == sup) "0" else (sup.id)
+    def id: String = if (null == sup) "0" else sup.id
     override def length: Int = 1
     override def get (i: Int): Object =
     {
@@ -44,13 +44,13 @@ with
 case class BasicElement
 (
     override val sup: Element = null,
-    val mRID: String = null
+    mRID: String = null
 )
 extends
     Element
 {
     def this () = { this (null, null) }
-    override def id: String = mRID
+    override def id: String = { mRID }
     override def copy(): Row = { clone ().asInstanceOf[Element] }
     override def get (i: Int): Object =
     {
@@ -69,7 +69,7 @@ object BasicElement
      * Parse an element.
      * Simply extracts the id.
      */
-    val mRID = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
+    val mRID: (Context) => String = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
     override def parse (context: Context): BasicElement =
     {
         new BasicElement (null, mRID (context))
@@ -109,11 +109,11 @@ extends
      * The current element name.
      * Used for error messages.
      */
-    var name: String = "";
+    var name: String = ""
 
     def parse(context: Context): Unknown =
     {
-        if ((Context.DEBUG) && (context.errors.size < Context.MAXERRORS))
+        if (Context.DEBUG && (context.errors.size < Context.MAXERRORS))
             context.errors += "Unknown element \"" + name + "\" at line " + context.line_number()
         Unknown (
             BasicElement.parse(context),

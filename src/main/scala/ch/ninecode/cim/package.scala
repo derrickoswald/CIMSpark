@@ -3,18 +3,20 @@ package ch.ninecode
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.DataFrameReader
 import org.apache.spark.sql.DataFrameWriter
-import org.apache.spark.sql.SQLContext
-import org.slf4j.LoggerFactory
 
 /**
  * Spark Common Information Model (CIM) reader.
  * Implements an Apache Spark file reader for CIM classes,
  * generating an RDD for all Element objects and one for each specific
  * CIM class.
- * The reader fits inot the overall Spark architecture as shown in the following image:
+ * The reader fits into the overall Spark architecture as shown in the following image:
+ *
  * <img src="https://camo.githubusercontent.com/88a29d3c7147bc4019dc828efe42243b43941211/68747470733a2f2f7261776769742e636f6d2f6465727269636b6f7377616c642f43494d5265616465722f6d61737465722f696d672f4f766572766965772e737667">
+ *
  * The architecture follows the standard Relation/InputFormat structure as other readers:
+ *
  * <img src="https://camo.githubusercontent.com/282a70889397714141c1dc5a6f809838c3d0d937/68747470733a2f2f7261776769742e636f6d2f6465727269636b6f7377616c642f43494d5265616465722f6d61737465722f696d672f4172636869746563747572652e737667">
+ *
  */
 package object cim
 {

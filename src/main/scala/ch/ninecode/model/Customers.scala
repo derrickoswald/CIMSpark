@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -27,14 +26,14 @@ import ch.ninecode.cim.Parseable
 case class Customer
 (
     override val sup: OrganisationRole,
-    val kind: String,
-    val locale: String,
-    val priority: String,
-    val pucNumber: String,
-    val specialNeed: String,
-    val status: String,
-    val vip: Boolean,
-    val Works: List[String]
+    kind: String,
+    locale: String,
+    priority: String,
+    pucNumber: String,
+    specialNeed: String,
+    status: String,
+    vip: Boolean,
+    Works: List[String]
 )
 extends
     Element
@@ -74,14 +73,14 @@ object Customer
 extends
     Parseable[Customer]
 {
-    val kind = parse_attribute (attribute ("""Customer.kind"""))
-    val locale = parse_element (element ("""Customer.locale"""))
-    val priority = parse_attribute (attribute ("""Customer.priority"""))
-    val pucNumber = parse_element (element ("""Customer.pucNumber"""))
-    val specialNeed = parse_element (element ("""Customer.specialNeed"""))
-    val status = parse_attribute (attribute ("""Customer.status"""))
-    val vip = parse_element (element ("""Customer.vip"""))
-    val Works = parse_attributes (attribute ("""Customer.Works"""))
+    val kind: (Context) => String = parse_attribute (attribute ("""Customer.kind"""))
+    val locale: (Context) => String = parse_element (element ("""Customer.locale"""))
+    val priority: (Context) => String = parse_attribute (attribute ("""Customer.priority"""))
+    val pucNumber: (Context) => String = parse_element (element ("""Customer.pucNumber"""))
+    val specialNeed: (Context) => String = parse_element (element ("""Customer.specialNeed"""))
+    val status: (Context) => String = parse_attribute (attribute ("""Customer.status"""))
+    val vip: (Context) => String = parse_element (element ("""Customer.vip"""))
+    val Works: (Context) => List[String] = parse_attributes (attribute ("""Customer.Works"""))
     def parse (context: Context): Customer =
     {
         Customer(
@@ -109,9 +108,9 @@ extends
 case class CustomerAccount
 (
     override val sup: Document,
-    val billingCycle: String,
-    val budgetBill: String,
-    val Customer: String
+    billingCycle: String,
+    budgetBill: String,
+    Customer: String
 )
 extends
     Element
@@ -146,9 +145,9 @@ object CustomerAccount
 extends
     Parseable[CustomerAccount]
 {
-    val billingCycle = parse_element (element ("""CustomerAccount.billingCycle"""))
-    val budgetBill = parse_element (element ("""CustomerAccount.budgetBill"""))
-    val Customer = parse_attribute (attribute ("""CustomerAccount.Customer"""))
+    val billingCycle: (Context) => String = parse_element (element ("""CustomerAccount.billingCycle"""))
+    val budgetBill: (Context) => String = parse_element (element ("""CustomerAccount.budgetBill"""))
+    val Customer: (Context) => String = parse_attribute (attribute ("""CustomerAccount.Customer"""))
     def parse (context: Context): CustomerAccount =
     {
         CustomerAccount(
@@ -171,19 +170,19 @@ extends
  * @param ServiceCategory Service category for this agreement.
  * @param ServiceLocations All service locations regulated by this customer agreement.
  * @param ServiceSupplier Service supplier for this customer agreement.
- * @param StandardIndustryCode
+ * @param StandardIndustryCode <em>undocumented</em>
  */
 case class CustomerAgreement
 (
     override val sup: Agreement,
-    val loadMgmt: String,
-    val Customer: String,
-    val CustomerAccount: String,
-    val PricingStructures: List[String],
-    val ServiceCategory: String,
-    val ServiceLocations: List[String],
-    val ServiceSupplier: String,
-    val StandardIndustryCode: String
+    loadMgmt: String,
+    Customer: String,
+    CustomerAccount: String,
+    PricingStructures: List[String],
+    ServiceCategory: String,
+    ServiceLocations: List[String],
+    ServiceSupplier: String,
+    StandardIndustryCode: String
 )
 extends
     Element
@@ -223,14 +222,14 @@ object CustomerAgreement
 extends
     Parseable[CustomerAgreement]
 {
-    val loadMgmt = parse_element (element ("""CustomerAgreement.loadMgmt"""))
-    val Customer = parse_attribute (attribute ("""CustomerAgreement.Customer"""))
-    val CustomerAccount = parse_attribute (attribute ("""CustomerAgreement.CustomerAccount"""))
-    val PricingStructures = parse_attributes (attribute ("""CustomerAgreement.PricingStructures"""))
-    val ServiceCategory = parse_attribute (attribute ("""CustomerAgreement.ServiceCategory"""))
-    val ServiceLocations = parse_attributes (attribute ("""CustomerAgreement.ServiceLocations"""))
-    val ServiceSupplier = parse_attribute (attribute ("""CustomerAgreement.ServiceSupplier"""))
-    val StandardIndustryCode = parse_attribute (attribute ("""CustomerAgreement.StandardIndustryCode"""))
+    val loadMgmt: (Context) => String = parse_element (element ("""CustomerAgreement.loadMgmt"""))
+    val Customer: (Context) => String = parse_attribute (attribute ("""CustomerAgreement.Customer"""))
+    val CustomerAccount: (Context) => String = parse_attribute (attribute ("""CustomerAgreement.CustomerAccount"""))
+    val PricingStructures: (Context) => List[String] = parse_attributes (attribute ("""CustomerAgreement.PricingStructures"""))
+    val ServiceCategory: (Context) => String = parse_attribute (attribute ("""CustomerAgreement.ServiceCategory"""))
+    val ServiceLocations: (Context) => List[String] = parse_attributes (attribute ("""CustomerAgreement.ServiceLocations"""))
+    val ServiceSupplier: (Context) => String = parse_attribute (attribute ("""CustomerAgreement.ServiceSupplier"""))
+    val StandardIndustryCode: (Context) => String = parse_attribute (attribute ("""CustomerAgreement.StandardIndustryCode"""))
     def parse (context: Context): CustomerAgreement =
     {
         CustomerAgreement(
@@ -266,18 +265,18 @@ extends
 case class CustomerKind
 (
     override val sup: BasicElement,
-    val commercialIndustrial: String,
-    val energyServiceScheduler: String,
-    val energyServiceSupplier: String,
-    val internalUse: String,
-    val other: String,
-    val pumpingLoad: String,
-    val residential: String,
-    val residentialAndCommercial: String,
-    val residentialAndStreetlight: String,
-    val residentialFarmService: String,
-    val residentialStreetlightOthers: String,
-    val windMachine: String
+    commercialIndustrial: String,
+    energyServiceScheduler: String,
+    energyServiceSupplier: String,
+    internalUse: String,
+    other: String,
+    pumpingLoad: String,
+    residential: String,
+    residentialAndCommercial: String,
+    residentialAndStreetlight: String,
+    residentialFarmService: String,
+    residentialStreetlightOthers: String,
+    windMachine: String
 )
 extends
     Element
@@ -321,18 +320,18 @@ object CustomerKind
 extends
     Parseable[CustomerKind]
 {
-    val commercialIndustrial = parse_attribute (attribute ("""CustomerKind.commercialIndustrial"""))
-    val energyServiceScheduler = parse_attribute (attribute ("""CustomerKind.energyServiceScheduler"""))
-    val energyServiceSupplier = parse_attribute (attribute ("""CustomerKind.energyServiceSupplier"""))
-    val internalUse = parse_attribute (attribute ("""CustomerKind.internalUse"""))
-    val other = parse_attribute (attribute ("""CustomerKind.other"""))
-    val pumpingLoad = parse_attribute (attribute ("""CustomerKind.pumpingLoad"""))
-    val residential = parse_attribute (attribute ("""CustomerKind.residential"""))
-    val residentialAndCommercial = parse_attribute (attribute ("""CustomerKind.residentialAndCommercial"""))
-    val residentialAndStreetlight = parse_attribute (attribute ("""CustomerKind.residentialAndStreetlight"""))
-    val residentialFarmService = parse_attribute (attribute ("""CustomerKind.residentialFarmService"""))
-    val residentialStreetlightOthers = parse_attribute (attribute ("""CustomerKind.residentialStreetlightOthers"""))
-    val windMachine = parse_attribute (attribute ("""CustomerKind.windMachine"""))
+    val commercialIndustrial: (Context) => String = parse_attribute (attribute ("""CustomerKind.commercialIndustrial"""))
+    val energyServiceScheduler: (Context) => String = parse_attribute (attribute ("""CustomerKind.energyServiceScheduler"""))
+    val energyServiceSupplier: (Context) => String = parse_attribute (attribute ("""CustomerKind.energyServiceSupplier"""))
+    val internalUse: (Context) => String = parse_attribute (attribute ("""CustomerKind.internalUse"""))
+    val other: (Context) => String = parse_attribute (attribute ("""CustomerKind.other"""))
+    val pumpingLoad: (Context) => String = parse_attribute (attribute ("""CustomerKind.pumpingLoad"""))
+    val residential: (Context) => String = parse_attribute (attribute ("""CustomerKind.residential"""))
+    val residentialAndCommercial: (Context) => String = parse_attribute (attribute ("""CustomerKind.residentialAndCommercial"""))
+    val residentialAndStreetlight: (Context) => String = parse_attribute (attribute ("""CustomerKind.residentialAndStreetlight"""))
+    val residentialFarmService: (Context) => String = parse_attribute (attribute ("""CustomerKind.residentialFarmService"""))
+    val residentialStreetlightOthers: (Context) => String = parse_attribute (attribute ("""CustomerKind.residentialStreetlightOthers"""))
+    val windMachine: (Context) => String = parse_attribute (attribute ("""CustomerKind.windMachine"""))
     def parse (context: Context): CustomerKind =
     {
         CustomerKind(
@@ -367,13 +366,13 @@ extends
 case class CustomerNotification
 (
     override val sup: BasicElement,
-    val contactType: String,
-    val contactValue: String,
-    val earliestDateTimeToCall: String,
-    val latestDateTimeToCall: String,
-    val trigger: String,
-    val Customer: String,
-    val Incident: String
+    contactType: String,
+    contactValue: String,
+    earliestDateTimeToCall: String,
+    latestDateTimeToCall: String,
+    trigger: String,
+    Customer: String,
+    Incident: String
 )
 extends
     Element
@@ -412,13 +411,13 @@ object CustomerNotification
 extends
     Parseable[CustomerNotification]
 {
-    val contactType = parse_element (element ("""CustomerNotification.contactType"""))
-    val contactValue = parse_element (element ("""CustomerNotification.contactValue"""))
-    val earliestDateTimeToCall = parse_element (element ("""CustomerNotification.earliestDateTimeToCall"""))
-    val latestDateTimeToCall = parse_element (element ("""CustomerNotification.latestDateTimeToCall"""))
-    val trigger = parse_attribute (attribute ("""CustomerNotification.trigger"""))
-    val Customer = parse_attribute (attribute ("""CustomerNotification.Customer"""))
-    val Incident = parse_attribute (attribute ("""CustomerNotification.Incident"""))
+    val contactType: (Context) => String = parse_element (element ("""CustomerNotification.contactType"""))
+    val contactValue: (Context) => String = parse_element (element ("""CustomerNotification.contactValue"""))
+    val earliestDateTimeToCall: (Context) => String = parse_element (element ("""CustomerNotification.earliestDateTimeToCall"""))
+    val latestDateTimeToCall: (Context) => String = parse_element (element ("""CustomerNotification.latestDateTimeToCall"""))
+    val trigger: (Context) => String = parse_attribute (attribute ("""CustomerNotification.trigger"""))
+    val Customer: (Context) => String = parse_attribute (attribute ("""CustomerNotification.Customer"""))
+    val Incident: (Context) => String = parse_attribute (attribute ("""CustomerNotification.Incident"""))
     def parse (context: Context): CustomerNotification =
     {
         CustomerNotification(
@@ -444,8 +443,8 @@ extends
 case class IncidentHazard
 (
     override val sup: Hazard,
-    val Incident: String,
-    val TroubleTicket: String
+    Incident: String,
+    TroubleTicket: String
 )
 extends
     Element
@@ -479,8 +478,8 @@ object IncidentHazard
 extends
     Parseable[IncidentHazard]
 {
-    val Incident = parse_attribute (attribute ("""IncidentHazard.Incident"""))
-    val TroubleTicket = parse_attribute (attribute ("""IncidentHazard.TroubleTicket"""))
+    val Incident: (Context) => String = parse_attribute (attribute ("""IncidentHazard.Incident"""))
+    val TroubleTicket: (Context) => String = parse_attribute (attribute ("""IncidentHazard.TroubleTicket"""))
     def parse (context: Context): IncidentHazard =
     {
         IncidentHazard(
@@ -503,11 +502,11 @@ extends
 case class NotificationTriggerKind
 (
     override val sup: BasicElement,
-    val etrChange: String,
-    val informDispatched: String,
-    val initialEtr: String,
-    val powerOut: String,
-    val powerRestored: String
+    etrChange: String,
+    informDispatched: String,
+    initialEtr: String,
+    powerOut: String,
+    powerRestored: String
 )
 extends
     Element
@@ -544,11 +543,11 @@ object NotificationTriggerKind
 extends
     Parseable[NotificationTriggerKind]
 {
-    val etrChange = parse_attribute (attribute ("""NotificationTriggerKind.etrChange"""))
-    val informDispatched = parse_attribute (attribute ("""NotificationTriggerKind.informDispatched"""))
-    val initialEtr = parse_attribute (attribute ("""NotificationTriggerKind.initialEtr"""))
-    val powerOut = parse_attribute (attribute ("""NotificationTriggerKind.powerOut"""))
-    val powerRestored = parse_attribute (attribute ("""NotificationTriggerKind.powerRestored"""))
+    val etrChange: (Context) => String = parse_attribute (attribute ("""NotificationTriggerKind.etrChange"""))
+    val informDispatched: (Context) => String = parse_attribute (attribute ("""NotificationTriggerKind.informDispatched"""))
+    val initialEtr: (Context) => String = parse_attribute (attribute ("""NotificationTriggerKind.initialEtr"""))
+    val powerOut: (Context) => String = parse_attribute (attribute ("""NotificationTriggerKind.powerOut"""))
+    val powerRestored: (Context) => String = parse_attribute (attribute ("""NotificationTriggerKind.powerRestored"""))
     def parse (context: Context): NotificationTriggerKind =
     {
         NotificationTriggerKind(
@@ -580,15 +579,15 @@ extends
 case class PricingStructure
 (
     override val sup: Document,
-    val code: String,
-    val dailyCeilingUsage: Int,
-    val dailyEstimatedUsage: Int,
-    val dailyFloorUsage: Int,
-    val revenueKind: String,
-    val taxExemption: Boolean,
-    val ServiceCategory: String,
-    val Tariffs: List[String],
-    val UsagePoints: List[String]
+    code: String,
+    dailyCeilingUsage: Int,
+    dailyEstimatedUsage: Int,
+    dailyFloorUsage: Int,
+    revenueKind: String,
+    taxExemption: Boolean,
+    ServiceCategory: String,
+    Tariffs: List[String],
+    UsagePoints: List[String]
 )
 extends
     Element
@@ -629,15 +628,15 @@ object PricingStructure
 extends
     Parseable[PricingStructure]
 {
-    val code = parse_element (element ("""PricingStructure.code"""))
-    val dailyCeilingUsage = parse_element (element ("""PricingStructure.dailyCeilingUsage"""))
-    val dailyEstimatedUsage = parse_element (element ("""PricingStructure.dailyEstimatedUsage"""))
-    val dailyFloorUsage = parse_element (element ("""PricingStructure.dailyFloorUsage"""))
-    val revenueKind = parse_attribute (attribute ("""PricingStructure.revenueKind"""))
-    val taxExemption = parse_element (element ("""PricingStructure.taxExemption"""))
-    val ServiceCategory = parse_attribute (attribute ("""PricingStructure.ServiceCategory"""))
-    val Tariffs = parse_attributes (attribute ("""PricingStructure.Tariffs"""))
-    val UsagePoints = parse_attributes (attribute ("""PricingStructure.UsagePoints"""))
+    val code: (Context) => String = parse_element (element ("""PricingStructure.code"""))
+    val dailyCeilingUsage: (Context) => String = parse_element (element ("""PricingStructure.dailyCeilingUsage"""))
+    val dailyEstimatedUsage: (Context) => String = parse_element (element ("""PricingStructure.dailyEstimatedUsage"""))
+    val dailyFloorUsage: (Context) => String = parse_element (element ("""PricingStructure.dailyFloorUsage"""))
+    val revenueKind: (Context) => String = parse_attribute (attribute ("""PricingStructure.revenueKind"""))
+    val taxExemption: (Context) => String = parse_element (element ("""PricingStructure.taxExemption"""))
+    val ServiceCategory: (Context) => String = parse_attribute (attribute ("""PricingStructure.ServiceCategory"""))
+    val Tariffs: (Context) => List[String] = parse_attributes (attribute ("""PricingStructure.Tariffs"""))
+    val UsagePoints: (Context) => List[String] = parse_attributes (attribute ("""PricingStructure.UsagePoints"""))
     def parse (context: Context): PricingStructure =
     {
         PricingStructure(
@@ -669,13 +668,13 @@ extends
 case class RevenueKind
 (
     override val sup: BasicElement,
-    val commercial: String,
-    val industrial: String,
-    val irrigation: String,
-    val nonResidential: String,
-    val other: String,
-    val residential: String,
-    val streetLight: String
+    commercial: String,
+    industrial: String,
+    irrigation: String,
+    nonResidential: String,
+    other: String,
+    residential: String,
+    streetLight: String
 )
 extends
     Element
@@ -714,13 +713,13 @@ object RevenueKind
 extends
     Parseable[RevenueKind]
 {
-    val commercial = parse_attribute (attribute ("""RevenueKind.commercial"""))
-    val industrial = parse_attribute (attribute ("""RevenueKind.industrial"""))
-    val irrigation = parse_attribute (attribute ("""RevenueKind.irrigation"""))
-    val nonResidential = parse_attribute (attribute ("""RevenueKind.nonResidential"""))
-    val other = parse_attribute (attribute ("""RevenueKind.other"""))
-    val residential = parse_attribute (attribute ("""RevenueKind.residential"""))
-    val streetLight = parse_attribute (attribute ("""RevenueKind.streetLight"""))
+    val commercial: (Context) => String = parse_attribute (attribute ("""RevenueKind.commercial"""))
+    val industrial: (Context) => String = parse_attribute (attribute ("""RevenueKind.industrial"""))
+    val irrigation: (Context) => String = parse_attribute (attribute ("""RevenueKind.irrigation"""))
+    val nonResidential: (Context) => String = parse_attribute (attribute ("""RevenueKind.nonResidential"""))
+    val other: (Context) => String = parse_attribute (attribute ("""RevenueKind.other"""))
+    val residential: (Context) => String = parse_attribute (attribute ("""RevenueKind.residential"""))
+    val streetLight: (Context) => String = parse_attribute (attribute ("""RevenueKind.streetLight"""))
     def parse (context: Context): RevenueKind =
     {
         RevenueKind(
@@ -744,7 +743,7 @@ extends
 case class ServiceCategory
 (
     override val sup: IdentifiedObject,
-    val kind: String
+    kind: String
 )
 extends
     Element
@@ -777,7 +776,7 @@ object ServiceCategory
 extends
     Parseable[ServiceCategory]
 {
-    val kind = parse_attribute (attribute ("""ServiceCategory.kind"""))
+    val kind: (Context) => String = parse_attribute (attribute ("""ServiceCategory.kind"""))
     def parse (context: Context): ServiceCategory =
     {
         ServiceCategory(
@@ -805,17 +804,17 @@ extends
 case class ServiceKind
 (
     override val sup: BasicElement,
-    val electricity: String,
-    val gas: String,
-    val heat: String,
-    val internet: String,
-    val other: String,
-    val rates: String,
-    val refuse: String,
-    val sewerage: String,
-    val time: String,
-    val tvLicence: String,
-    val water: String
+    electricity: String,
+    gas: String,
+    heat: String,
+    internet: String,
+    other: String,
+    rates: String,
+    refuse: String,
+    sewerage: String,
+    time: String,
+    tvLicence: String,
+    water: String
 )
 extends
     Element
@@ -858,17 +857,17 @@ object ServiceKind
 extends
     Parseable[ServiceKind]
 {
-    val electricity = parse_attribute (attribute ("""ServiceKind.electricity"""))
-    val gas = parse_attribute (attribute ("""ServiceKind.gas"""))
-    val heat = parse_attribute (attribute ("""ServiceKind.heat"""))
-    val internet = parse_attribute (attribute ("""ServiceKind.internet"""))
-    val other = parse_attribute (attribute ("""ServiceKind.other"""))
-    val rates = parse_attribute (attribute ("""ServiceKind.rates"""))
-    val refuse = parse_attribute (attribute ("""ServiceKind.refuse"""))
-    val sewerage = parse_attribute (attribute ("""ServiceKind.sewerage"""))
-    val time = parse_attribute (attribute ("""ServiceKind.time"""))
-    val tvLicence = parse_attribute (attribute ("""ServiceKind.tvLicence"""))
-    val water = parse_attribute (attribute ("""ServiceKind.water"""))
+    val electricity: (Context) => String = parse_attribute (attribute ("""ServiceKind.electricity"""))
+    val gas: (Context) => String = parse_attribute (attribute ("""ServiceKind.gas"""))
+    val heat: (Context) => String = parse_attribute (attribute ("""ServiceKind.heat"""))
+    val internet: (Context) => String = parse_attribute (attribute ("""ServiceKind.internet"""))
+    val other: (Context) => String = parse_attribute (attribute ("""ServiceKind.other"""))
+    val rates: (Context) => String = parse_attribute (attribute ("""ServiceKind.rates"""))
+    val refuse: (Context) => String = parse_attribute (attribute ("""ServiceKind.refuse"""))
+    val sewerage: (Context) => String = parse_attribute (attribute ("""ServiceKind.sewerage"""))
+    val time: (Context) => String = parse_attribute (attribute ("""ServiceKind.time"""))
+    val tvLicence: (Context) => String = parse_attribute (attribute ("""ServiceKind.tvLicence"""))
+    val water: (Context) => String = parse_attribute (attribute ("""ServiceKind.water"""))
     def parse (context: Context): ServiceKind =
     {
         ServiceKind(
@@ -901,9 +900,9 @@ extends
 case class ServiceLocation
 (
     override val sup: WorkLocation,
-    val accessMethod: String,
-    val needsInspection: Boolean,
-    val siteAccessProblem: String
+    accessMethod: String,
+    needsInspection: Boolean,
+    siteAccessProblem: String
 )
 extends
     Element
@@ -938,9 +937,9 @@ object ServiceLocation
 extends
     Parseable[ServiceLocation]
 {
-    val accessMethod = parse_element (element ("""ServiceLocation.accessMethod"""))
-    val needsInspection = parse_element (element ("""ServiceLocation.needsInspection"""))
-    val siteAccessProblem = parse_element (element ("""ServiceLocation.siteAccessProblem"""))
+    val accessMethod: (Context) => String = parse_element (element ("""ServiceLocation.accessMethod"""))
+    val needsInspection: (Context) => String = parse_element (element ("""ServiceLocation.needsInspection"""))
+    val siteAccessProblem: (Context) => String = parse_element (element ("""ServiceLocation.siteAccessProblem"""))
     def parse (context: Context): ServiceLocation =
     {
         ServiceLocation(
@@ -963,9 +962,9 @@ extends
 case class Tariff
 (
     override val sup: Document,
-    val endDate: String,
-    val startDate: String,
-    val TariffProfiles: List[String]
+    endDate: String,
+    startDate: String,
+    TariffProfiles: List[String]
 )
 extends
     Element
@@ -1000,9 +999,9 @@ object Tariff
 extends
     Parseable[Tariff]
 {
-    val endDate = parse_element (element ("""Tariff.endDate"""))
-    val startDate = parse_element (element ("""Tariff.startDate"""))
-    val TariffProfiles = parse_attributes (attribute ("""Tariff.TariffProfiles"""))
+    val endDate: (Context) => String = parse_element (element ("""Tariff.endDate"""))
+    val startDate: (Context) => String = parse_element (element ("""Tariff.startDate"""))
+    val TariffProfiles: (Context) => List[String] = parse_attributes (attribute ("""Tariff.TariffProfiles"""))
     def parse (context: Context): Tariff =
     {
         Tariff(
@@ -1026,11 +1025,11 @@ extends
 case class TroubleReportingKind
 (
     override val sup: BasicElement,
-    val call: String,
-    val email: String,
-    val ivr: String,
-    val letter: String,
-    val other: String
+    call: String,
+    email: String,
+    ivr: String,
+    letter: String,
+    other: String
 )
 extends
     Element
@@ -1067,11 +1066,11 @@ object TroubleReportingKind
 extends
     Parseable[TroubleReportingKind]
 {
-    val call = parse_attribute (attribute ("""TroubleReportingKind.call"""))
-    val email = parse_attribute (attribute ("""TroubleReportingKind.email"""))
-    val ivr = parse_attribute (attribute ("""TroubleReportingKind.ivr"""))
-    val letter = parse_attribute (attribute ("""TroubleReportingKind.letter"""))
-    val other = parse_attribute (attribute ("""TroubleReportingKind.other"""))
+    val call: (Context) => String = parse_attribute (attribute ("""TroubleReportingKind.call"""))
+    val email: (Context) => String = parse_attribute (attribute ("""TroubleReportingKind.email"""))
+    val ivr: (Context) => String = parse_attribute (attribute ("""TroubleReportingKind.ivr"""))
+    val letter: (Context) => String = parse_attribute (attribute ("""TroubleReportingKind.letter"""))
+    val other: (Context) => String = parse_attribute (attribute ("""TroubleReportingKind.other"""))
     def parse (context: Context): TroubleReportingKind =
     {
         TroubleReportingKind(
@@ -1088,14 +1087,14 @@ extends
 case class TroubleTicket
 (
     override val sup: Document,
-    val dateTimeOfReport: String,
-    val firstResponder: String,
-    val reportingKind: String,
-    val resolvedDateTime: String,
-    val troubleCode: String,
-    val Customer: String,
-    val Incident: String,
-    val Notification: String
+    dateTimeOfReport: String,
+    firstResponder: String,
+    reportingKind: String,
+    resolvedDateTime: String,
+    troubleCode: String,
+    Customer: String,
+    Incident: String,
+    Notification: String
 )
 extends
     Element
@@ -1135,14 +1134,14 @@ object TroubleTicket
 extends
     Parseable[TroubleTicket]
 {
-    val dateTimeOfReport = parse_element (element ("""TroubleTicket.dateTimeOfReport"""))
-    val firstResponder = parse_element (element ("""TroubleTicket.firstResponder"""))
-    val reportingKind = parse_attribute (attribute ("""TroubleTicket.reportingKind"""))
-    val resolvedDateTime = parse_element (element ("""TroubleTicket.resolvedDateTime"""))
-    val troubleCode = parse_element (element ("""TroubleTicket.troubleCode"""))
-    val Customer = parse_attribute (attribute ("""TroubleTicket.Customer"""))
-    val Incident = parse_attribute (attribute ("""TroubleTicket.Incident"""))
-    val Notification = parse_attribute (attribute ("""TroubleTicket.Notification"""))
+    val dateTimeOfReport: (Context) => String = parse_element (element ("""TroubleTicket.dateTimeOfReport"""))
+    val firstResponder: (Context) => String = parse_element (element ("""TroubleTicket.firstResponder"""))
+    val reportingKind: (Context) => String = parse_attribute (attribute ("""TroubleTicket.reportingKind"""))
+    val resolvedDateTime: (Context) => String = parse_element (element ("""TroubleTicket.resolvedDateTime"""))
+    val troubleCode: (Context) => String = parse_element (element ("""TroubleTicket.troubleCode"""))
+    val Customer: (Context) => String = parse_attribute (attribute ("""TroubleTicket.Customer"""))
+    val Incident: (Context) => String = parse_attribute (attribute ("""TroubleTicket.Incident"""))
+    val Notification: (Context) => String = parse_attribute (attribute ("""TroubleTicket.Notification"""))
     def parse (context: Context): TroubleTicket =
     {
         TroubleTicket(
@@ -1159,7 +1158,7 @@ extends
     }
 }
 
-object _Customers
+private[ninecode] object _Customers
 {
     def register: List[ClassInfo] =
     {

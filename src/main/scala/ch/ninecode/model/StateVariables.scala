@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -71,9 +70,9 @@ extends
 case class SvInjection
 (
     override val sup: StateVariable,
-    val pInjection: Double,
-    val qInjection: Double,
-    val TopologicalNode: String
+    pInjection: Double,
+    qInjection: Double,
+    TopologicalNode: String
 )
 extends
     Element
@@ -108,9 +107,9 @@ object SvInjection
 extends
     Parseable[SvInjection]
 {
-    val pInjection = parse_element (element ("""SvInjection.pInjection"""))
-    val qInjection = parse_element (element ("""SvInjection.qInjection"""))
-    val TopologicalNode = parse_attribute (attribute ("""SvInjection.TopologicalNode"""))
+    val pInjection: (Context) => String = parse_element (element ("""SvInjection.pInjection"""))
+    val qInjection: (Context) => String = parse_element (element ("""SvInjection.qInjection"""))
+    val TopologicalNode: (Context) => String = parse_attribute (attribute ("""SvInjection.TopologicalNode"""))
     def parse (context: Context): SvInjection =
     {
         SvInjection(
@@ -135,9 +134,9 @@ extends
 case class SvPowerFlow
 (
     override val sup: StateVariable,
-    val p: Double,
-    val q: Double,
-    val Terminal: String
+    p: Double,
+    q: Double,
+    Terminal: String
 )
 extends
     Element
@@ -172,9 +171,9 @@ object SvPowerFlow
 extends
     Parseable[SvPowerFlow]
 {
-    val p = parse_element (element ("""SvPowerFlow.p"""))
-    val q = parse_element (element ("""SvPowerFlow.q"""))
-    val Terminal = parse_attribute (attribute ("""SvPowerFlow.Terminal"""))
+    val p: (Context) => String = parse_element (element ("""SvPowerFlow.p"""))
+    val q: (Context) => String = parse_element (element ("""SvPowerFlow.q"""))
+    val Terminal: (Context) => String = parse_attribute (attribute ("""SvPowerFlow.Terminal"""))
     def parse (context: Context): SvPowerFlow =
     {
         SvPowerFlow(
@@ -196,8 +195,8 @@ extends
 case class SvShuntCompensatorSections
 (
     override val sup: StateVariable,
-    val sections: Double,
-    val ShuntCompensator: String
+    sections: Double,
+    ShuntCompensator: String
 )
 extends
     Element
@@ -231,8 +230,8 @@ object SvShuntCompensatorSections
 extends
     Parseable[SvShuntCompensatorSections]
 {
-    val sections = parse_element (element ("""SvShuntCompensatorSections.sections"""))
-    val ShuntCompensator = parse_attribute (attribute ("""SvShuntCompensatorSections.ShuntCompensator"""))
+    val sections: (Context) => String = parse_element (element ("""SvShuntCompensatorSections.sections"""))
+    val ShuntCompensator: (Context) => String = parse_attribute (attribute ("""SvShuntCompensatorSections.ShuntCompensator"""))
     def parse (context: Context): SvShuntCompensatorSections =
     {
         SvShuntCompensatorSections(
@@ -252,8 +251,8 @@ extends
 case class SvStatus
 (
     override val sup: StateVariable,
-    val inService: Boolean,
-    val ConductingEquipment: String
+    inService: Boolean,
+    ConductingEquipment: String
 )
 extends
     Element
@@ -287,8 +286,8 @@ object SvStatus
 extends
     Parseable[SvStatus]
 {
-    val inService = parse_element (element ("""SvStatus.inService"""))
-    val ConductingEquipment = parse_attribute (attribute ("""SvStatus.ConductingEquipment"""))
+    val inService: (Context) => String = parse_element (element ("""SvStatus.inService"""))
+    val ConductingEquipment: (Context) => String = parse_attribute (attribute ("""SvStatus.ConductingEquipment"""))
     def parse (context: Context): SvStatus =
     {
         SvStatus(
@@ -310,8 +309,8 @@ extends
 case class SvTapStep
 (
     override val sup: StateVariable,
-    val position: Double,
-    val TapChanger: String
+    position: Double,
+    TapChanger: String
 )
 extends
     Element
@@ -345,8 +344,8 @@ object SvTapStep
 extends
     Parseable[SvTapStep]
 {
-    val position = parse_element (element ("""SvTapStep.position"""))
-    val TapChanger = parse_attribute (attribute ("""SvTapStep.TapChanger"""))
+    val position: (Context) => String = parse_element (element ("""SvTapStep.position"""))
+    val TapChanger: (Context) => String = parse_attribute (attribute ("""SvTapStep.TapChanger"""))
     def parse (context: Context): SvTapStep =
     {
         SvTapStep(
@@ -367,9 +366,9 @@ extends
 case class SvVoltage
 (
     override val sup: StateVariable,
-    val angle: Double,
-    val v: Double,
-    val TopologicalNode: String
+    angle: Double,
+    v: Double,
+    TopologicalNode: String
 )
 extends
     Element
@@ -404,9 +403,9 @@ object SvVoltage
 extends
     Parseable[SvVoltage]
 {
-    val angle = parse_element (element ("""SvVoltage.angle"""))
-    val v = parse_element (element ("""SvVoltage.v"""))
-    val TopologicalNode = parse_attribute (attribute ("""SvVoltage.TopologicalNode"""))
+    val angle: (Context) => String = parse_element (element ("""SvVoltage.angle"""))
+    val v: (Context) => String = parse_element (element ("""SvVoltage.v"""))
+    val TopologicalNode: (Context) => String = parse_attribute (attribute ("""SvVoltage.TopologicalNode"""))
     def parse (context: Context): SvVoltage =
     {
         SvVoltage(
@@ -418,7 +417,7 @@ extends
     }
 }
 
-object _StateVariables
+private[ninecode] object _StateVariables
 {
     def register: List[ClassInfo] =
     {

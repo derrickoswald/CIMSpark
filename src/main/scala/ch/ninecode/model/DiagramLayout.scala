@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -26,12 +25,12 @@ import ch.ninecode.cim.Parseable
 case class Diagram
 (
     override val sup: IdentifiedObject,
-    val orientation: String,
-    val x1InitialView: Double,
-    val x2InitialView: Double,
-    val y1InitialView: Double,
-    val y2InitialView: Double,
-    val DiagramStyle: String
+    orientation: String,
+    x1InitialView: Double,
+    x2InitialView: Double,
+    y1InitialView: Double,
+    y2InitialView: Double,
+    DiagramStyle: String
 )
 extends
     Element
@@ -69,12 +68,12 @@ object Diagram
 extends
     Parseable[Diagram]
 {
-    val orientation = parse_attribute (attribute ("""Diagram.orientation"""))
-    val x1InitialView = parse_element (element ("""Diagram.x1InitialView"""))
-    val x2InitialView = parse_element (element ("""Diagram.x2InitialView"""))
-    val y1InitialView = parse_element (element ("""Diagram.y1InitialView"""))
-    val y2InitialView = parse_element (element ("""Diagram.y2InitialView"""))
-    val DiagramStyle = parse_attribute (attribute ("""Diagram.DiagramStyle"""))
+    val orientation: (Context) => String = parse_attribute (attribute ("""Diagram.orientation"""))
+    val x1InitialView: (Context) => String = parse_element (element ("""Diagram.x1InitialView"""))
+    val x2InitialView: (Context) => String = parse_element (element ("""Diagram.x2InitialView"""))
+    val y1InitialView: (Context) => String = parse_element (element ("""Diagram.y1InitialView"""))
+    val y2InitialView: (Context) => String = parse_element (element ("""Diagram.y2InitialView"""))
+    val DiagramStyle: (Context) => String = parse_attribute (attribute ("""Diagram.DiagramStyle"""))
     def parse (context: Context): Diagram =
     {
         Diagram(
@@ -111,15 +110,15 @@ extends
 case class DiagramObject
 (
     override val sup: IdentifiedObject,
-    val drawingOrder: Int,
-    val isPolygon: Boolean,
-    val offsetX: Double,
-    val offsetY: Double,
-    val rotation: Double,
-    val Diagram: String,
-    val DiagramObjectStyle: String,
-    val IdentifiedObject_attr: String,
-    val VisibilityLayers: List[String]
+    drawingOrder: Int,
+    isPolygon: Boolean,
+    offsetX: Double,
+    offsetY: Double,
+    rotation: Double,
+    Diagram: String,
+    DiagramObjectStyle: String,
+    IdentifiedObject_attr: String,
+    VisibilityLayers: List[String]
 )
 extends
     Element
@@ -160,15 +159,15 @@ object DiagramObject
 extends
     Parseable[DiagramObject]
 {
-    val drawingOrder = parse_element (element ("""DiagramObject.drawingOrder"""))
-    val isPolygon = parse_element (element ("""DiagramObject.isPolygon"""))
-    val offsetX = parse_element (element ("""DiagramObject.offsetX"""))
-    val offsetY = parse_element (element ("""DiagramObject.offsetY"""))
-    val rotation = parse_element (element ("""DiagramObject.rotation"""))
-    val Diagram = parse_attribute (attribute ("""DiagramObject.Diagram"""))
-    val DiagramObjectStyle = parse_attribute (attribute ("""DiagramObject.DiagramObjectStyle"""))
-    val IdentifiedObject_attr = parse_attribute (attribute ("""DiagramObject.IdentifiedObject"""))
-    val VisibilityLayers = parse_attributes (attribute ("""DiagramObject.VisibilityLayers"""))
+    val drawingOrder: (Context) => String = parse_element (element ("""DiagramObject.drawingOrder"""))
+    val isPolygon: (Context) => String = parse_element (element ("""DiagramObject.isPolygon"""))
+    val offsetX: (Context) => String = parse_element (element ("""DiagramObject.offsetX"""))
+    val offsetY: (Context) => String = parse_element (element ("""DiagramObject.offsetY"""))
+    val rotation: (Context) => String = parse_element (element ("""DiagramObject.rotation"""))
+    val Diagram: (Context) => String = parse_attribute (attribute ("""DiagramObject.Diagram"""))
+    val DiagramObjectStyle: (Context) => String = parse_attribute (attribute ("""DiagramObject.DiagramObjectStyle"""))
+    val IdentifiedObject_attr: (Context) => String = parse_attribute (attribute ("""DiagramObject.IdentifiedObject"""))
+    val VisibilityLayers: (Context) => List[String] = parse_attributes (attribute ("""DiagramObject.VisibilityLayers"""))
     def parse (context: Context): DiagramObject =
     {
         DiagramObject(
@@ -247,12 +246,12 @@ extends
 case class DiagramObjectPoint
 (
     override val sup: BasicElement,
-    val sequenceNumber: Int,
-    val xPosition: Double,
-    val yPosition: Double,
-    val zPosition: Double,
-    val DiagramObject: String,
-    val DiagramObjectGluePoint: String
+    sequenceNumber: Int,
+    xPosition: Double,
+    yPosition: Double,
+    zPosition: Double,
+    DiagramObject: String,
+    DiagramObjectGluePoint: String
 )
 extends
     Element
@@ -290,12 +289,12 @@ object DiagramObjectPoint
 extends
     Parseable[DiagramObjectPoint]
 {
-    val sequenceNumber = parse_element (element ("""DiagramObjectPoint.sequenceNumber"""))
-    val xPosition = parse_element (element ("""DiagramObjectPoint.xPosition"""))
-    val yPosition = parse_element (element ("""DiagramObjectPoint.yPosition"""))
-    val zPosition = parse_element (element ("""DiagramObjectPoint.zPosition"""))
-    val DiagramObject = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObject"""))
-    val DiagramObjectGluePoint = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObjectGluePoint"""))
+    val sequenceNumber: (Context) => String = parse_element (element ("""DiagramObjectPoint.sequenceNumber"""))
+    val xPosition: (Context) => String = parse_element (element ("""DiagramObjectPoint.xPosition"""))
+    val yPosition: (Context) => String = parse_element (element ("""DiagramObjectPoint.yPosition"""))
+    val zPosition: (Context) => String = parse_element (element ("""DiagramObjectPoint.zPosition"""))
+    val DiagramObject: (Context) => String = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObject"""))
+    val DiagramObjectGluePoint: (Context) => String = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObjectGluePoint"""))
     def parse (context: Context): DiagramObjectPoint =
     {
         DiagramObjectPoint(
@@ -417,8 +416,8 @@ extends
 case class OrientationKind
 (
     override val sup: BasicElement,
-    val negative: String,
-    val positive: String
+    negative: String,
+    positive: String
 )
 extends
     Element
@@ -452,8 +451,8 @@ object OrientationKind
 extends
     Parseable[OrientationKind]
 {
-    val negative = parse_attribute (attribute ("""OrientationKind.negative"""))
-    val positive = parse_attribute (attribute ("""OrientationKind.positive"""))
+    val negative: (Context) => String = parse_attribute (attribute ("""OrientationKind.negative"""))
+    val positive: (Context) => String = parse_attribute (attribute ("""OrientationKind.positive"""))
     def parse (context: Context): OrientationKind =
     {
         OrientationKind(
@@ -472,7 +471,7 @@ extends
 case class TextDiagramObject
 (
     override val sup: DiagramObject,
-    val text: String
+    text: String
 )
 extends
     Element
@@ -505,7 +504,7 @@ object TextDiagramObject
 extends
     Parseable[TextDiagramObject]
 {
-    val text = parse_element (element ("""TextDiagramObject.text"""))
+    val text: (Context) => String = parse_element (element ("""TextDiagramObject.text"""))
     def parse (context: Context): TextDiagramObject =
     {
         TextDiagramObject(
@@ -525,7 +524,7 @@ extends
 case class VisibilityLayer
 (
     override val sup: IdentifiedObject,
-    val drawingOrder: Int
+    drawingOrder: Int
 )
 extends
     Element
@@ -558,7 +557,7 @@ object VisibilityLayer
 extends
     Parseable[VisibilityLayer]
 {
-    val drawingOrder = parse_element (element ("""VisibilityLayer.drawingOrder"""))
+    val drawingOrder: (Context) => String = parse_element (element ("""VisibilityLayer.drawingOrder"""))
     def parse (context: Context): VisibilityLayer =
     {
         VisibilityLayer(
@@ -568,7 +567,7 @@ extends
     }
 }
 
-object _DiagramLayout
+private[ninecode] object _DiagramLayout
 {
     def register: List[ClassInfo] =
     {

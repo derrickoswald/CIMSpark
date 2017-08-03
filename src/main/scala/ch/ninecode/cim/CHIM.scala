@@ -4,8 +4,8 @@ import java.io.File
 import java.io.FileInputStream
 import java.nio.CharBuffer
 import java.nio.ByteBuffer
-import java.nio.charset.Charset
-import java.util.regex.Pattern
+import java.nio.charset.{Charset, CharsetEncoder}
+import java.util.regex.{Matcher, Pattern}
 
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.immutable.HashMap
@@ -13,9 +13,7 @@ import scala.language.existentials
 import scala.reflect.ClassTag
 import scala.reflect.classTag
 import scala.reflect.runtime.universe.TypeTag
-
 import org.apache.spark.sql.Row
-
 import ch.ninecode.model._
 
 /**
@@ -40,7 +38,7 @@ trait Parser
      * @param name The element name (without namespace prefix).
      * @return The compiled regex pattern and the index of the match group.
      */
-    def element (name: String) = (Pattern.compile ("""<""" + namespace + """:""" + name + """>([\s\S]*?)<\/""" + namespace + """:""" + name + """>"""), 1)
+    def element (name: String): (Pattern, Int) = (Pattern.compile ("""<""" + namespace + """:""" + name + """>([\s\S]*?)<\/""" + namespace + """:""" + name + """>"""), 1)
 
     /**
      * Regular expression to parse an attribute.
@@ -48,7 +46,7 @@ trait Parser
      * @param name The attribute name (without namespace prefix).
      * @return The compiled regex pattern and the index of the match group.
      */
-    def attribute (name: String) = (Pattern.compile ("""<""" + namespace + """:""" + name + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
+    def attribute (name: String): (Pattern, Int) = (Pattern.compile ("""<""" + namespace + """:""" + name + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
 
     /**
      * Abstract parse function.
@@ -78,11 +76,11 @@ trait Parser
 
     /**
      * Parse one or more XML elements from a string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @param pattern A Tuple2 of the regular expression pattern to look for and
+     * the index of the capture group to extract from within the pattern.
      * @return A function for parsing the elements.
      */
-    def parse_elements (pattern: Tuple2[Pattern, Int]): Context => List[String] =
+    def parse_elements (pattern: (Pattern, Int)): (Context) => List[String] =
     {
 //     * @param context The context for the substring in the XML and
 //     * line number and position context for reporting in case of an error.
@@ -107,11 +105,11 @@ trait Parser
 
     /**
      * Create a function to parse one XML element from a string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @param pattern A Tuple2 of the regular expression pattern to look for and
+     * the index of the capture group to extract from within the pattern.
      * @return A function for parsing the element.
      */
-    def parse_element (pattern: Tuple2[Pattern, Int]): Context => String =
+    def parse_element (pattern: (Pattern, Int)): Context => String =
     {
 //     * @param context The context for the substring in the XML and
 //     * line number and position context for reporting in case of an error.
@@ -133,11 +131,11 @@ trait Parser
 
     /**
      * Create a function to parse one or more attributes from an XML string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @param pattern A Tuple2 of the regular expression pattern to look for and
+     * the index of the capture group to extract from within the pattern.
      * @return A function for parsing the attributes.
      */
-    def parse_attributes (pattern: Tuple2[Pattern, Int]): Context => List[String] =
+    def parse_attributes (pattern: (Pattern, Int)): Context => List[String] =
     {
 //     * @param context The context for the substring in the XML and
 //     * line number and position context for reporting in case of an error.
@@ -167,11 +165,11 @@ trait Parser
 
     /**
      * Create a function to parse one attribute from an XML string.
-     * @param pattern._1 The regular expression pattern to look for.
-     * @param pattern._2 The index of the capture group to extract from within the pattern.
+     * @param pattern A Tuple2 of the regular expression pattern to look for and
+     * the index of the capture group to extract from within the pattern.
      * @return A function for parsing the attribute.
      */
-    def parse_attribute (pattern: Tuple2[Pattern, Int]): Context => String =
+    def parse_attribute (pattern: (Pattern, Int)): Context => String =
     {
 //     * @param context The context for the substring in the XML and
 //     * line number and position context for reporting in case of an error.
@@ -211,15 +209,13 @@ trait Parser
 
         if ((null != string) && ("" != string))
             try
-            {
                 ret = string.toBoolean
-            }
             catch
             {
-                case nfe: IllegalArgumentException ⇒ throw new Exception ("unparsable boolean (" + string + ") found while parsing at line " + context.line_number ())
+                case _: Throwable ⇒ throw new Exception ("unparsable boolean (" + string + ") found while parsing at line " + context.line_number())
             }
 
-        return (ret)
+        ret
     }
 
     /**
@@ -234,15 +230,13 @@ trait Parser
 
         if ((null != string) && ("" != string))
             try
-            {
                 ret = string.trim.toInt
-            }
             catch
             {
-                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number ())
+                case _: Throwable ⇒ throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number())
             }
 
-        return (ret)
+        ret
     }
 
     /**
@@ -257,15 +251,13 @@ trait Parser
 
         if ((null != string) && ("" != string))
             try
-            {
                 ret = string.trim.toDouble
-            }
             catch
             {
-                case nfe: NumberFormatException ⇒ throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
+                case _: Throwable ⇒ throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
             }
 
-      return (ret)
+      ret
     }
 }
 
@@ -282,11 +274,11 @@ object Parser
     /**
      * The CIM namespace ("cim").
      */
-    val namespace = "cim"
+    val namespace: String = "cim"
     /**
      * The regular expression for parsing top level elements.
      */
-    val rddex = Pattern.compile ("""\s*<(""" + namespace + """:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
+    val rddex: Pattern = Pattern.compile ("""\s*<(""" + namespace + """:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 }
 
 case class ClassInfo (
@@ -313,23 +305,20 @@ abstract class Parseable[+A <: Product : ClassTag : TypeTag]
 extends
     Parser
 {
-    val runtime_class = classTag[A].runtimeClass
-    val classname = runtime_class.getName
-    val cls = classname.substring (classname.lastIndexOf (".") + 1)
+    val runtime_class: Class[_] = classTag[A].runtimeClass
+    val classname: String = runtime_class.getName
+    val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
     def register: ClassInfo =
         ClassInfo (Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]], new CIMSubsetter[A]())
 }
-
 
 // Classes are organized by CIM package in .scala files and arranged alphabetically within the package.
 // All attributes have been included for the classes except:
 //   - m:n relations, e.g. ConnectDisconnectFunctions in Switch
 //   - containment attributes and relations
-//   - some gargantuan classes, e.g. SolarGeneratingUnit
-// At the end of a package .scala file is an object with the same name as the package, e.g. Common,
-// used to register the classes at runtime.
+// At the end of a package .scala file is an object with the same name as the package
+// with an underscore prefix, e.g. _Common, used to register the classes at runtime.
 // ** It is important to include any new classes in their package object so they are registered **
-//
 
 /**
  * Common Hierarchical Information Model
@@ -342,14 +331,14 @@ extends
  */
 class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val first_byte: Long = 0L, val last_byte: Long = 0L) extends Serializable
 {
-    val last = if (last_byte != 0L) last_byte else xml.getBytes ("UTF-8").length
-    val context = new Context (xml, start, start, first_byte)
-    val matcher = Parser.rddex.matcher (xml)
-    val bytes = ByteBuffer.wrap (new Array[Byte] (4 * CHIM.OVERREAD))
-    val encoder = Charset.forName ("UTF-8").newEncoder ()
-    var value: Element = null
+    val last: Long = if (last_byte != 0L) last_byte else xml.getBytes ("UTF-8").length
+    val context: Context = new Context (xml, start, start, first_byte)
+    val matcher: Matcher = Parser.rddex.matcher (xml)
+    val bytes: ByteBuffer = ByteBuffer.wrap (new Array[Byte] (4 * CHIM.OVERREAD))
+    val encoder: CharsetEncoder = Charset.forName ("UTF-8").newEncoder ()
+    var value: Element = _
 
-    def classes (): List[ClassInfo] =
+    def classes: List[ClassInfo] =
         List (
             _AssetInfo.register,
             _Assets.register,
@@ -370,7 +359,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
             _Wires.register,
             _Work.register
         ).flatten
-    val parsers = classes.map (x => (x.name, x.parseable))
+    val parsers: List[(String, Parseable[Product])] = classes.map (x => (x.name, x.parseable))
     val lookup: HashMap[String, Parseable[Product]] = HashMap (parsers: _*)
 
     def progress (): Float =
@@ -384,7 +373,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
         bytes.position (0)
         val cr = encoder.encode (cb, bytes, true)
         if (!cr.isUnderflow)
-            cr.throwException
+            cr.throwException ()
         bytes.position
     }
 
@@ -443,24 +432,25 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
             }
         }
 
-        return (ret)
+        ret
     }
 }
 
 object CHIM
 {
-    val CHUNK = 1024*1024*64
-    val OVERREAD = 1024*32 // should be large enough that no RDF element is bigger than this
+    val CHUNK: Int = 1024*1024*64
+    val OVERREAD: Int = 1024*32 // should be large enough that no RDF element is bigger than this
+    val row: Row = null
 
     def parse (parser: CHIM): (scala.collection.mutable.HashMap[String, Element], ArrayBuffer[String]) =
     {
         val result = new scala.collection.mutable.HashMap[String, Element]
         while (parser.parse_one ())
             result.put (parser.value.id, parser.value)
-        return ((result, parser.context.errors))
+        (result, parser.context.errors)
     }
 
-    def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit) =
+    def apply_to_all_classes (fn: (CIMSubsetter[_]) => Unit): Unit =
     {
         val chim = new CHIM ("") // ensure registration has occurred
         for (i <- chim.classes)
@@ -475,7 +465,6 @@ object CHIM
         {
             // open the file and skip to the starting offset
             val in = new FileInputStream (file)
-            val gross = in.available ()
             val skipped = in.skip (start)
             if (start == skipped)
             {
@@ -511,10 +500,13 @@ object CHIM
 
                 val len = new String (buffer, first, size - first - extra, "UTF-8").length
                 val xml = new String (buffer, first, size - first, "UTF-8")
-                return ((xml, first, first + len))
+                (xml, first, first + len)
             }
+            else
+                ("", 0L, 0L)
         }
-        return ("", 0L, 0L)
+        else
+            ("", 0L, 0L)
     }
 
     /**
@@ -522,9 +514,9 @@ object CHIM
      */
     def main (args: Array[String])
     {
-        if (args.size > 0)
+        if (args.length > 0)
         {
-            if (args.size > 1)
+            if (args.length > 1)
             {
                 println ("Press [Return] to continue...")
                 System.console().readLine()
@@ -564,7 +556,7 @@ object CHIM
             println ("reading %g seconds".format (reading / 1e6))
             println ("parsing %g seconds".format (parsing / 1e6))
             println (result.size + " identified elements parsed")
-            val subset = result.values.filter (_.getClass() == classOf[Unknown])
+            val subset = result.values.filter (_.getClass == classOf[Unknown])
             println (subset.size + " unknown elements")
         }
         else

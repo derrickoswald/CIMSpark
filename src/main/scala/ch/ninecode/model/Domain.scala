@@ -4,7 +4,6 @@ import org.apache.spark.sql.Row
 
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
-import ch.ninecode.cim.CIMSubsetter
 import ch.ninecode.cim.Parseable
 
 /**
@@ -21,8 +20,8 @@ import ch.ninecode.cim.Parseable
 case class DateInterval
 (
     override val sup: BasicElement,
-    val end: String,
-    val start: String
+    end: String,
+    start: String
 )
 extends
     Element
@@ -56,8 +55,8 @@ object DateInterval
 extends
     Parseable[DateInterval]
 {
-    val end = parse_element (element ("""DateInterval.end"""))
-    val start = parse_element (element ("""DateInterval.start"""))
+    val end: (Context) => String = parse_element (element ("""DateInterval.end"""))
+    val start: (Context) => String = parse_element (element ("""DateInterval.start"""))
     def parse (context: Context): DateInterval =
     {
         DateInterval(
@@ -77,8 +76,8 @@ extends
 case class DateTimeInterval
 (
     override val sup: BasicElement,
-    val end: String,
-    val start: String
+    end: String,
+    start: String
 )
 extends
     Element
@@ -112,8 +111,8 @@ object DateTimeInterval
 extends
     Parseable[DateTimeInterval]
 {
-    val end = parse_element (element ("""DateTimeInterval.end"""))
-    val start = parse_element (element ("""DateTimeInterval.start"""))
+    val end: (Context) => String = parse_element (element ("""DateTimeInterval.end"""))
+    val start: (Context) => String = parse_element (element ("""DateTimeInterval.start"""))
     def parse (context: Context): DateTimeInterval =
     {
         DateTimeInterval(
@@ -127,10 +126,10 @@ extends
 case class DecimalQuantity
 (
     override val sup: BasicElement,
-    val currency: String,
-    val multiplier: String,
-    val unit: String,
-    val value: Double
+    currency: String,
+    multiplier: String,
+    unit: String,
+    value: Double
 )
 extends
     Element
@@ -166,10 +165,10 @@ object DecimalQuantity
 extends
     Parseable[DecimalQuantity]
 {
-    val currency = parse_attribute (attribute ("""DecimalQuantity.currency"""))
-    val multiplier = parse_attribute (attribute ("""DecimalQuantity.multiplier"""))
-    val unit = parse_attribute (attribute ("""DecimalQuantity.unit"""))
-    val value = parse_element (element ("""DecimalQuantity.value"""))
+    val currency: (Context) => String = parse_attribute (attribute ("""DecimalQuantity.currency"""))
+    val multiplier: (Context) => String = parse_attribute (attribute ("""DecimalQuantity.multiplier"""))
+    val unit: (Context) => String = parse_attribute (attribute ("""DecimalQuantity.unit"""))
+    val value: (Context) => String = parse_element (element ("""DecimalQuantity.value"""))
     def parse (context: Context): DecimalQuantity =
     {
         DecimalQuantity(
@@ -185,16 +184,16 @@ extends
 /**
  * Quantity with float value and associated unit information.
  * @param sup Reference to the superclass object.
- * @param multiplier
- * @param unit
- * @param value
+ * @param multiplier <em>undocumented</em>
+ * @param unit <em>undocumented</em>
+ * @param value <em>undocumented</em>
  */
 case class FloatQuantity
 (
     override val sup: BasicElement,
-    val multiplier: String,
-    val unit: String,
-    val value: Double
+    multiplier: String,
+    unit: String,
+    value: Double
 )
 extends
     Element
@@ -229,9 +228,9 @@ object FloatQuantity
 extends
     Parseable[FloatQuantity]
 {
-    val multiplier = parse_attribute (attribute ("""FloatQuantity.multiplier"""))
-    val unit = parse_attribute (attribute ("""FloatQuantity.unit"""))
-    val value = parse_element (element ("""FloatQuantity.value"""))
+    val multiplier: (Context) => String = parse_attribute (attribute ("""FloatQuantity.multiplier"""))
+    val unit: (Context) => String = parse_attribute (attribute ("""FloatQuantity.unit"""))
+    val value: (Context) => String = parse_element (element ("""FloatQuantity.value"""))
     def parse (context: Context): FloatQuantity =
     {
         FloatQuantity(
@@ -246,16 +245,16 @@ extends
 /**
  * Quantity with integer value and associated unit information.
  * @param sup Reference to the superclass object.
- * @param multiplier
- * @param unit
- * @param value
+ * @param multiplier <em>undocumented</em>
+ * @param unit <em>undocumented</em>
+ * @param value <em>undocumented</em>
  */
 case class IntegerQuantity
 (
     override val sup: BasicElement,
-    val multiplier: String,
-    val unit: String,
-    val value: Int
+    multiplier: String,
+    unit: String,
+    value: Int
 )
 extends
     Element
@@ -290,9 +289,9 @@ object IntegerQuantity
 extends
     Parseable[IntegerQuantity]
 {
-    val multiplier = parse_attribute (attribute ("""IntegerQuantity.multiplier"""))
-    val unit = parse_attribute (attribute ("""IntegerQuantity.unit"""))
-    val value = parse_element (element ("""IntegerQuantity.value"""))
+    val multiplier: (Context) => String = parse_attribute (attribute ("""IntegerQuantity.multiplier"""))
+    val unit: (Context) => String = parse_attribute (attribute ("""IntegerQuantity.unit"""))
+    val value: (Context) => String = parse_element (element ("""IntegerQuantity.value"""))
     def parse (context: Context): IntegerQuantity =
     {
         IntegerQuantity(
@@ -313,8 +312,8 @@ extends
 case class MonthDayInterval
 (
     override val sup: BasicElement,
-    val end: String,
-    val start: String
+    end: String,
+    start: String
 )
 extends
     Element
@@ -348,8 +347,8 @@ object MonthDayInterval
 extends
     Parseable[MonthDayInterval]
 {
-    val end = parse_element (element ("""MonthDayInterval.end"""))
-    val start = parse_element (element ("""MonthDayInterval.start"""))
+    val end: (Context) => String = parse_element (element ("""MonthDayInterval.end"""))
+    val start: (Context) => String = parse_element (element ("""MonthDayInterval.start"""))
     def parse (context: Context): MonthDayInterval =
     {
         MonthDayInterval(
@@ -363,16 +362,16 @@ extends
 /**
  * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
  * @param sup Reference to the superclass object.
- * @param multiplier
- * @param unit
- * @param value
+ * @param multiplier <em>undocumented</em>
+ * @param unit <em>undocumented</em>
+ * @param value <em>undocumented</em>
  */
 case class StringQuantity
 (
     override val sup: BasicElement,
-    val multiplier: String,
-    val unit: String,
-    val value: String
+    multiplier: String,
+    unit: String,
+    value: String
 )
 extends
     Element
@@ -407,9 +406,9 @@ object StringQuantity
 extends
     Parseable[StringQuantity]
 {
-    val multiplier = parse_attribute (attribute ("""StringQuantity.multiplier"""))
-    val unit = parse_attribute (attribute ("""StringQuantity.unit"""))
-    val value = parse_element (element ("""StringQuantity.value"""))
+    val multiplier: (Context) => String = parse_attribute (attribute ("""StringQuantity.multiplier"""))
+    val unit: (Context) => String = parse_attribute (attribute ("""StringQuantity.unit"""))
+    val value: (Context) => String = parse_element (element ("""StringQuantity.value"""))
     def parse (context: Context): StringQuantity =
     {
         StringQuantity(
@@ -430,8 +429,8 @@ extends
 case class TimeInterval
 (
     override val sup: BasicElement,
-    val end: String,
-    val start: String
+    end: String,
+    start: String
 )
 extends
     Element
@@ -465,8 +464,8 @@ object TimeInterval
 extends
     Parseable[TimeInterval]
 {
-    val end = parse_element (element ("""TimeInterval.end"""))
-    val start = parse_element (element ("""TimeInterval.start"""))
+    val end: (Context) => String = parse_element (element ("""TimeInterval.end"""))
+    val start: (Context) => String = parse_element (element ("""TimeInterval.start"""))
     def parse (context: Context): TimeInterval =
     {
         TimeInterval(
@@ -477,7 +476,7 @@ extends
     }
 }
 
-object _Domain
+private[ninecode] object _Domain
 {
     def register: List[ClassInfo] =
     {
