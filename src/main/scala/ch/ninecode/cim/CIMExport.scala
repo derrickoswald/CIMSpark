@@ -8,47 +8,25 @@ import java.time.LocalDateTime
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
-import org.slf4j.LoggerFactory
+import org.slf4j.{Logger, LoggerFactory}
 
 import ch.ninecode.model._
-
-import scala.reflect._
 
 /**
  * Export a (subset) of CIM data.
  */
-class CIMExport (spark: SparkSession) extends Serializable
+class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 {
-    private val log = LoggerFactory.getLogger (getClass)
-
-    def get[T : ClassTag](name: String): RDD[T] =
-    {
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
-        {
-            case Some ((index: Int, rdd: RDD[_])) =>
-                rdd.asInstanceOf[RDD[Element]].asInstanceOf[RDD[T]]
-            case Some (_) =>
-                log.error (name + " not found in Spark context persistent RDDs")
-                null
-            case None =>
-                log.error (name + " not found in Spark context persistent RDDs")
-                null
-        }
-    }
-
-    def get[T : ClassTag]: RDD[T] =
-    {
-        val classname = classTag[T].runtimeClass.getName
-        val name = { classname.substring (classname.lastIndexOf (".") + 1) }
-        get (name)
-    }
+    private implicit val session = spark
+    private implicit val log = LoggerFactory.getLogger (getClass)
 
     /**
      * Export elements.
-     * Typical usage:
      *
+     * @example
+     * {{{
      * // enter Spark shell environment
-     * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.0.1.jar
+     * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.1.0.jar
      *
      * // read the large CIM file
      * import scala.collection.mutable.HashMap
@@ -80,9 +58,11 @@ class CIMExport (spark: SparkSession) extends Serializable
      * // export the reduced CIM file
      * val export = new CIMExport (spark)
      * export.exportIsland ("TRA7872_terminal_2_topo", "TRA7872.rdf")
-     * 
+     * }}}
+     *
      * @param elements The elements to export.
      * @param filename The name of the file to write.
+     * @param about The about string for the CIM file header.
      */
     def export (elements: RDD[Element], filename: String, about: String = ""):Unit =
     {

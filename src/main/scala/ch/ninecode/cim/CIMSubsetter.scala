@@ -12,9 +12,6 @@ import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.sql.types._
 
-import org.apache.spark.sql.Encoders
-import org.apache.spark.sql.SparkSession
-
 import ch.ninecode.model.Element
 
 /**
@@ -27,9 +24,9 @@ import ch.ninecode.model.Element
  */
 class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 {
-    val runtime_class = classTag[A].runtimeClass
+    val runtime_class: Class[_] = classTag[A].runtimeClass
 
-    val classname = runtime_class.getName
+    val classname: String = runtime_class.getName
 
     val cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
 
@@ -37,7 +34,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     {
         var ret = x
 
-        while ((null != ret) && (ret.getClass () != runtime_class))
+        while ((null != ret) && (ret.getClass != runtime_class))
             ret = ret.sup
 
         ret.asInstanceOf[A]
@@ -45,7 +42,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 
     val pf:PartialFunction[Element, A] =
     {
-        case x: Element if (null != subclass (x)) =>
+        case x: Element if null != subclass (x) =>
             subclass (x)
     }
 
@@ -56,7 +53,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
         subrdd.persist (storage)
         context.getCheckpointDir match
         {
-            case Some (dir) => subrdd.checkpoint ()
+            case Some (_) => subrdd.checkpoint ()
             case None =>
         }
         subrdd
@@ -89,7 +86,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
      * @param rdd The raw Element RDD to subset.
      * @param storage The storage level to persist the subset RDD with.
      */
-    def make (context: SQLContext, rdd: RDD[Element], storage: StorageLevel) =
+    def make (context: SQLContext, rdd: RDD[Element], storage: StorageLevel): Unit =
     {
         val sub = subset (rdd, storage, context.sparkSession.sparkContext)
         val df = context.sparkSession.createDataFrame (sub)(typeTag[A])

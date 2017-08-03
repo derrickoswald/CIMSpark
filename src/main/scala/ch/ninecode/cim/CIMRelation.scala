@@ -12,12 +12,10 @@ import org.apache.spark.sql.execution.datasources.FileCatalog
 import org.apache.spark.sql.execution.datasources.FileFormat
 import org.apache.spark.sql.sources.BaseRelation
 import org.apache.spark.sql.sources.TableScan
-import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.types.ElementRegistration
 import org.apache.spark.storage.StorageLevel
-import org.slf4j.LoggerFactory
-
+import org.slf4j.{Logger, LoggerFactory}
 import ch.ninecode.model.Element
 
 class CIMRelation (
@@ -43,7 +41,7 @@ with
     TableScan
 {
 
-    val log = LoggerFactory.getLogger (getClass)
+    val log: Logger = LoggerFactory.getLogger (getClass)
 
     // check for a storage level option
     val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
@@ -60,8 +58,8 @@ with
     // check for split size option, default is 64MB
     val _SplitSize: Long = parameters.getOrElse ("ch.ninecode.cim.split_maxsize", "67108864").toLong
 
-    log.info ("parameters: " + parameters.toString ())
-    log.info ("sqlContext: " + sqlContext.toString ())
+    log.info ("parameters: " + parameters.toString)
+    log.info ("sqlContext: " + sqlContext.toString)
     log.info ("storage: " + _StorageLevel.description)
 
     def sqlContext: SQLContext = sparkSession.sqlContext
@@ -103,8 +101,8 @@ with
 
         // make a config
         val configuration = new Configuration (sqlContext.sparkContext.hadoopConfiguration)
-        configuration.set (FileInputFormat.INPUT_DIR, path);
-        configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize);
+        configuration.set (FileInputFormat.INPUT_DIR, path)
+        configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
 
         val rdd = sqlContext.sparkContext.newAPIHadoopRDD (
             configuration,
@@ -117,7 +115,7 @@ with
         ret.persist (_StorageLevel)
         sparkSession.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => ret.checkpoint ()
+            case Some (_) => ret.checkpoint ()
             case None =>
         }
 

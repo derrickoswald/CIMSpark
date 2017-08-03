@@ -48,7 +48,7 @@ extends
         options: Map[String, String],
         files: Seq[FileStatus]): Option[StructType] =
     {
-        return (Some (ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]))
+        Some (ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType])
     }
 
     /**
@@ -75,7 +75,7 @@ extends
         options: Map[String, String],
         path: Path): Boolean =
     {
-        return (true)
+        true
     }
 
     /**

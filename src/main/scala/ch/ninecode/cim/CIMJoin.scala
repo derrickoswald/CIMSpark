@@ -3,99 +3,83 @@ package ch.ninecode.cim
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.SQLUserDefinedType
 import org.apache.spark.storage.StorageLevel
+import org.slf4j.LoggerFactory
 
-import org.apache.spark.sql.types._
 import ch.ninecode.model._
 
-class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializable
+class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
-    def get (name: String): RDD[Element] =
+    private implicit val session = spark
+    private implicit val log = LoggerFactory.getLogger (getClass)
+
+    def unbundle (a: ((Name,ServiceLocation), (Name,ServiceLocation))): (String, (ServiceLocation, ServiceLocation)) =
     {
-        val rdds = session.sparkContext.getPersistentRDDs
-        for (key <- rdds.keys)
+        (a._2._2.id, (a._1._2, a._2._2))
+    }
+
+    def edit_service_location (a: (ServiceLocation, Option[(String, (ServiceLocation, ServiceLocation))])): ServiceLocation =
+    {
+        a._2 match
         {
-            val rdd = rdds (key)
-            if (rdd.name == name)
-                return (rdd.asInstanceOf[RDD[Element]])
-        }
-        return (null)
-    }
-
-    def unbundle (a: Tuple2[Tuple2[Name,ServiceLocation], Tuple2[Name,ServiceLocation]]): Tuple2[String, Tuple2[ServiceLocation, ServiceLocation]] =
-    {
-        return ((a._2._2.id, (a._1._2, a._2._2)))
-    }
-
-    def edit_service_location (a: Tuple2[ServiceLocation, Option[(String, (ServiceLocation, ServiceLocation))]]): ServiceLocation =
-    {
-        return (
-            a._2 match
-            {
-                case (Some (x)) ⇒
-                {
-                    // for ISU ServiceLocation with a matching NIS ServiceLocation, make a merged one
-                    val isu = x._2._1
-                    val nis = x._2._2
-                    val element = BasicElement (
-                        null,
-                        isu.WorkLocation.Location.IdentifiedObject.mRID
-                    )
-                    val id = IdentifiedObject (
-                        element,
-                        nis.WorkLocation.Location.IdentifiedObject.aliasName, // aliasName, e.g. ######:nis_el_meter_point
-                        isu.WorkLocation.Location.IdentifiedObject.aliasName, // description, e.g. Anschlussobjekt
-                        element.mRID,                            // mRID
-                        nis.WorkLocation.Location.IdentifiedObject.name       // name, e.g. MST###
-                    )
-                    val location = Location (
-                        sup = id,
-                        direction = isu.WorkLocation.Location.direction,
-                        electronicAddress = isu.WorkLocation.Location.electronicAddress,
-                        geoInfoReference = isu.WorkLocation.Location.geoInfoReference,
-                        mainAddress = isu.WorkLocation.Location.mainAddress,
-                        phone1 = isu.WorkLocation.Location.phone1,
-                        phone2 = isu.WorkLocation.Location.phone2,
-                        secondaryAddress = nis.WorkLocation.Location.secondaryAddress, // take any NIS address it might have
-                        status = isu.WorkLocation.Location.status,
-                        typ = nis.WorkLocation.Location.typ,               // e.g. geographic
+            case (Some (x)) ⇒
+                // for ISU ServiceLocation with a matching NIS ServiceLocation, make a merged one
+                val isu = x._2._1
+                val nis = x._2._2
+                val element = BasicElement (
+                    null,
+                    isu.WorkLocation.Location.IdentifiedObject.mRID
+                )
+                val id = IdentifiedObject (
+                    element,
+                    nis.WorkLocation.Location.IdentifiedObject.aliasName, // aliasName, e.g. ######:nis_el_meter_point
+                    isu.WorkLocation.Location.IdentifiedObject.aliasName, // description, e.g. Anschlussobjekt
+                    element.mRID,                            // mRID
+                    nis.WorkLocation.Location.IdentifiedObject.name       // name, e.g. MST###
+                )
+                val location = Location (
+                    sup = id,
+                    direction = isu.WorkLocation.Location.direction,
+                    electronicAddress = isu.WorkLocation.Location.electronicAddress,
+                    geoInfoReference = isu.WorkLocation.Location.geoInfoReference,
+                    mainAddress = isu.WorkLocation.Location.mainAddress,
+                    phone1 = isu.WorkLocation.Location.phone1,
+                    phone2 = isu.WorkLocation.Location.phone2,
+                    secondaryAddress = nis.WorkLocation.Location.secondaryAddress, // take any NIS address it might have
+                    status = isu.WorkLocation.Location.status,
+                    typ = nis.WorkLocation.Location.typ,               // e.g. geographic
 // legacy
-                        Measurements = nis.WorkLocation.Location.Measurements,
-                        CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem  // e.g. wgs_84
-                    )
-                    val worklocation = WorkLocation (
-                        location,
-                        isu.WorkLocation.OneCallRequest
-                    )
-                    ServiceLocation (
-                        worklocation,
-                        isu.accessMethod,
-                        isu.needsInspection,
-                        isu.siteAccessProblem
-                    )
-                }
-                case (None) ⇒
-                {
-                    // the default action is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match
-                    a._1
-                }
-            }
-        )
+                    Measurements = nis.WorkLocation.Location.Measurements,
+                    CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem  // e.g. wgs_84
+                )
+                val worklocation = WorkLocation (
+                    location,
+                    isu.WorkLocation.OneCallRequest
+                )
+                ServiceLocation (
+                    worklocation,
+                    isu.accessMethod,
+                    isu.needsInspection,
+                    isu.siteAccessProblem
+                )
+            case (None) ⇒
+                // the default action is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match
+                a._1
+        }
     }
 
-    def delete_service_location (a: Tuple2[ServiceLocation, Option[(ServiceLocation, ServiceLocation)]]): Boolean =
+    def delete_service_location (a: (ServiceLocation, Option[(ServiceLocation, ServiceLocation)])): Boolean =
     {
         a._2 match
         {
             // delete ServiceLocation that match (they were edited already and new ones have an ISU mRID)
-            case (Some (x)) ⇒ false
+            case (Some (_)) ⇒ false
             // keep ServiceLocation without a match
             case (None) ⇒ true
         }
     }
 
-    def edit_position_point (a: Tuple2[PositionPoint, Option[(ServiceLocation, ServiceLocation)]]): PositionPoint =
+    def edit_position_point (a: (PositionPoint, Option[(ServiceLocation, ServiceLocation)])): PositionPoint =
     {
         a._2 match
         {
@@ -113,7 +97,7 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         }
     }
 
-    def edit_user_attribute (a: Tuple2[UserAttribute, Option[(ServiceLocation, ServiceLocation)]]): UserAttribute =
+    def edit_user_attribute (a: (UserAttribute, Option[(ServiceLocation, ServiceLocation)])): UserAttribute =
     {
         a._2 match
         {
@@ -136,12 +120,12 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         }
     }
 
-    def delete_name (a: Tuple2[Name, Option[(ServiceLocation, ServiceLocation)]]): Boolean =
+    def delete_name (a: (Name, Option[(ServiceLocation, ServiceLocation)])): Boolean =
     {
         a._2 match
         {
             // delete Name that matches (it was used to perform the join already)
-            case (Some (x)) ⇒ false
+            case (Some (_)) ⇒ false
             // keep Name without a match
             case (None) ⇒ true
         }
@@ -177,10 +161,10 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
      */
     def do_join (): RDD[Element] =
     {
-        val names = get ("Name").asInstanceOf[RDD[Name]]
-        val locations = get ("ServiceLocation").asInstanceOf[RDD[ServiceLocation]]
-        val points = get ("PositionPoint").asInstanceOf[RDD[PositionPoint]]
-        val attributes = get ("UserAttribute").asInstanceOf[RDD[UserAttribute]]
+        val names = get[Name]
+        val locations = get[ServiceLocation]
+        val points = get[PositionPoint]
+        val attributes = get[UserAttribute]
 
         // get only the cim:Name objects pertaining to the ServiceLocation join
         val isusl = names.keyBy (_.name).join (locations.keyBy (_.id)).values
@@ -201,12 +185,12 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         points.name = "unjoined_PositionPoint"
         updated_points.name = "PositionPoint"
         updated_points.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => updated_points.checkpoint ()
+            case Some (_) => updated_points.checkpoint ()
             case None =>
         }
-        session.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
+        spark.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
 
         // step 3, change the name attribute of affected UserAttribute
         val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
@@ -215,12 +199,12 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         attributes.name = "unjoined_UserAttribute"
         updated_attributes.name = "UserAttribute"
         updated_attributes.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => updated_attributes.checkpoint ()
+            case Some (_) => updated_attributes.checkpoint ()
             case None =>
         }
-        session.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
+        spark.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
 
         // step 5 and 6, delete the Name objects that are no longer needed
         val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
@@ -229,30 +213,30 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         names.name = "unjoined_Name"
         updated_names.name = "Name"
         updated_names.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => updated_names.checkpoint ()
+            case Some (_) => updated_names.checkpoint ()
             case None =>
         }
-        session.createDataFrame (updated_names).createOrReplaceTempView ("Name")
+        spark.createDataFrame (updated_names).createOrReplaceTempView ("Name")
 
         // swap the old ServiceLocation RDD for the new one
         locations.name = "unjoined_ServiceLocation"
         updated_locations.name = "ServiceLocation"
         updated_locations.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => updated_locations.checkpoint ()
+            case Some (_) => updated_locations.checkpoint ()
             case None =>
         }
-        session.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
+        spark.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
 
         // replace service locations in WorkLocation
-        val old_work_loc = get ("WorkLocation").asInstanceOf[RDD[WorkLocation]]
+        val old_work_loc = get[WorkLocation]
         val updated_worklocations_pairrdd = updated_locations.map (_.WorkLocation).keyBy (_.id)
-        val new_work_loc = old_work_loc.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation).keyBy (_.id)).
+        val new_work_loc = old_work_loc.keyBy (_.id).leftOuterJoin (updated_worklocations_pairrdd).
             values.flatMap (
-                (arg: Tuple2[WorkLocation, Option[WorkLocation]]) =>
+                (arg: (WorkLocation, Option[WorkLocation])) =>
                     arg._2 match
                     {
                         case Some (x) => List(x)
@@ -264,18 +248,18 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_work_loc.name = "unjoined_WorkLocation"
         new_work_loc.name = "WorkLocation"
         new_work_loc.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => new_work_loc.checkpoint ()
+            case Some (_) => new_work_loc.checkpoint ()
             case None =>
         }
-        session.createDataFrame (new_work_loc).createOrReplaceTempView ("WorkLocation")
+        spark.createDataFrame (new_work_loc).createOrReplaceTempView ("WorkLocation")
 
         // replace service locations in Location
-        val old_loc = get ("Location").asInstanceOf[RDD[Location]]
+        val old_loc = get[Location]
         val new_loc = old_loc.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation.Location).keyBy (_.id)).
             values.flatMap (
-                (arg: Tuple2[Location, Option[Location]]) =>
+                (arg: (Location, Option[Location])) =>
                     arg._2 match
                     {
                         case Some (x) => List(x)
@@ -287,21 +271,21 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_loc.name = "unjoined_Location"
         new_loc.name = "Location"
         new_loc.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => new_loc.checkpoint ()
+            case Some (_) => new_loc.checkpoint ()
             case None =>
         }
-        session.createDataFrame (new_loc).createOrReplaceTempView ("Location")
+        spark.createDataFrame (new_loc).createOrReplaceTempView ("Location")
 
         // new RDD as IdentifiedObject
         val idobj = old_loc.map (_.IdentifiedObject)
 
         // replace identified objects in IdentifiedObject
-        val old_idobj = get ("IdentifiedObject").asInstanceOf[RDD[IdentifiedObject]]
+        val old_idobj = get[IdentifiedObject]
         val new_idobj = old_idobj.keyBy (_.id).leftOuterJoin (idobj.keyBy (_.id)).
             values.flatMap (
-                (arg: Tuple2[IdentifiedObject, Option[IdentifiedObject]]) =>
+                (arg: (IdentifiedObject, Option[IdentifiedObject])) =>
                     arg._2 match
                     {
                         case Some (x) => List(x)
@@ -313,12 +297,12 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_idobj.name = "unjoined_IdentifiedObject"
         new_idobj.name = "IdentifiedObject"
         new_idobj.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => new_idobj.checkpoint ()
+            case Some (_) => new_idobj.checkpoint ()
             case None =>
         }
-        session.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
+        spark.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
 
         // make a union of all new RDD as Element
         val newelem = updated_points.asInstanceOf[RDD[Element]].
@@ -327,10 +311,10 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
             union (updated_locations.asInstanceOf[RDD[Element]])
 
         // replace elements in Elements
-        val old_elements = get ("Elements").asInstanceOf[RDD[Element]]
+        val old_elements = get[Element]("Elements")
         val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
             values.flatMap (
-                (arg: Tuple2[Element, Option[Element]]) =>
+                (arg: (Element, Option[Element])) =>
                     arg._2 match
                     {
                         case Some (x) => List(x)
@@ -342,9 +326,9 @@ class CIMJoin (session: SparkSession, storage: StorageLevel) extends Serializabl
         old_elements.name = "unjoined_Elements"
         new_elements.name = "Elements"
         new_elements.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => new_elements.checkpoint ()
+            case Some (_) => new_elements.checkpoint ()
             case None =>
         }
 

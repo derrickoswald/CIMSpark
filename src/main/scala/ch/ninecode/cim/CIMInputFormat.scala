@@ -1,17 +1,16 @@
 package ch.ninecode.cim
 
-import org.apache.commons.logging.LogFactory
+import org.apache.commons.logging.{Log, LogFactory}
 import org.apache.hadoop.mapreduce.InputSplit
 import org.apache.hadoop.mapreduce.JobContext
 import org.apache.hadoop.mapreduce.RecordReader
 import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
-
 import ch.ninecode.model.Element
 
 class CIMInputFormat extends FileInputFormat[String, Element]
 {
-    val LocalLog = LogFactory.getLog (classOf[CIMInputFormat]);
+    val log: Log = LogFactory.getLog (classOf[CIMInputFormat])
 
 //    /**
 //     * A factory that makes the split for this class. It can be overridden
@@ -36,15 +35,15 @@ class CIMInputFormat extends FileInputFormat[String, Element]
      */
     override def getSplits (context: JobContext): java.util.List[InputSplit] =
     {
-        LocalLog.info ("getSplits")
+        log.info ("getSplits")
 
         // Note: we don't need to override this yet,
         // but the JobContext has the Credentials (@see org.apache.hadoop.mapreduce.JobContext.getCredentials())
         // which would be checked here.
         val ret = super.getSplits (context)
 
-        LocalLog.info ("getSplits: " + ret.size() + " splits returned")
-        return (ret)
+        log.info ("getSplits: " + ret.size() + " splits returned")
+        ret
     }
 
    /**
@@ -55,9 +54,9 @@ class CIMInputFormat extends FileInputFormat[String, Element]
     */
     def createRecordReader (split: InputSplit, context: TaskAttemptContext): RecordReader[String, Element] =
     {
-        LocalLog.info ("createRecordReader")
-        LocalLog.info ("split: " + split.toString ())
-        LocalLog.info ("context: " + context.toString ())
-        return (new CIMRecordReader ());
+        log.info ("createRecordReader")
+        log.info ("split: " + split.toString)
+        log.info ("context: " + context.toString)
+        new CIMRecordReader ()
     }
 }

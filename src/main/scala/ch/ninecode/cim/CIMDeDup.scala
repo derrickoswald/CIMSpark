@@ -9,21 +9,10 @@ import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
 
-class CIMDeDup (session: SparkSession, storage: StorageLevel) extends Serializable
+class CIMDeDup (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
-    private val log = LoggerFactory.getLogger(getClass)
-
-    def get (name: String): RDD[Element] =
-    {
-        val rdds = session.sparkContext.getPersistentRDDs
-        for (key <- rdds.keys)
-        {
-            val rdd = rdds (key)
-            if (rdd.name == name)
-                return (rdd.asInstanceOf[RDD[Element]])
-        }
-        return (null)
-    }
+    private implicit val session = spark
+    private implicit val log = LoggerFactory.getLogger (getClass)
 
     def check (element: Element, others: Iterable[Element]): Unit =
     {
@@ -49,7 +38,7 @@ class CIMDeDup (session: SparkSession, storage: StorageLevel) extends Serializab
     def do_dedupulicate (): (RDD[Element], RDD[Row]) =
     {
         // get the elements RDD
-        val elements = get ("Elements").asInstanceOf[RDD[Element]]
+        val elements = get[Element]("Elements")
 
         // deduplicate
         val new_elements = elements.keyBy (_.id).groupByKey ().values.flatMap (dedup)
@@ -58,9 +47,9 @@ class CIMDeDup (session: SparkSession, storage: StorageLevel) extends Serializab
         elements.name = "duplicate_Elements"
         new_elements.name = "Elements"
         new_elements.persist (storage)
-        session.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
-            case Some (dir) => new_elements.checkpoint ()
+            case Some (_) => new_elements.checkpoint ()
             case None =>
         }
 

@@ -20,35 +20,35 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
     /**
      * The array of character positions of newlines in the xml string.
      */
-    val newlines = index_string (xml, start)
+    val newlines: ArrayBuffer[Long] = index_string (xml, start)
 
     /**
      * An array of string start and end offsets that have been parsed. 
      */
-    val coverage = new ArrayBuffer[Tuple2[Int, Int]]
+    val coverage: ArrayBuffer[(Int, Int)] = new ArrayBuffer[(Int, Int)]
 
     /**
      * An array of up to MAXERRORS error messages.
      */
-    val errors = new ArrayBuffer[String]
+    val errors: ArrayBuffer[String] = new ArrayBuffer[String]
 
     /**
      * The byte offset of the last successfully parsed full element.
      */
-    var last_byte = first_byte;
+    var last_byte: Long = first_byte
 
     /**
      * The internal XML for an element being parsed.
      */
-    var subxml: String = null
+    var subxml: String = _
 
     /**
      * Create an index of newline characters in a string.
      * The index of newlines for the string
      * "Now is the time\nfor all good men\nto come to the aid of the party\n"
      * is [15, 32, 64]
-     * @param {String} string - the string to index
-     * @param {Number} offset - optional offset to add to the index values
+     * @param string - the string to index
+     * @param offset - optional offset to add to the index values
      * @return {Unit} nothing
      */
     def index_string (string: String, offset: Long = 0L, n: ArrayBuffer[Long] = ArrayBuffer[Long] ()): ArrayBuffer[Long] =
@@ -56,7 +56,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
         val matcher = lines.matcher (string)
         while (matcher.find ())
             n += (matcher.start () + offset)
-        return (n)
+        n
     }
 
     /**
@@ -75,7 +75,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
         while (min <= max)
         {
             index = (min + max) / 2 | 0
-            var item = newlines(index)
+            val item = newlines(index)
 
             if (item < offset)
                 min = index + 1
@@ -88,7 +88,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
         if (newlines(index) <= offset)
             index += 1
 
-        return (index + 1)
+        index + 1
     }
 
     /**
@@ -119,7 +119,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
             index += 1
         }
 
-        return (ret)
+        ret
     }
 
     /**
@@ -151,5 +151,5 @@ object Context
     /**
      * Regular expression for line counting.
      */
-    val lines = Pattern.compile ("""\n""")
+    val lines: Pattern = Pattern.compile ("""\n""")
 }

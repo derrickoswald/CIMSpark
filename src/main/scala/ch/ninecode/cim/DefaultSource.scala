@@ -41,7 +41,7 @@ extends
         val partitionSchema = fileCatalog.partitionSpec().partitionColumns
         val format = new CIMFileFormat ()
         val dataSchema = format.inferSchema (session, parameters, fileCatalog.allFiles ()).get
-        return (new CIMRelation (fileCatalog, partitionSchema, dataSchema, format, parameters) (session))
+        new CIMRelation (fileCatalog, partitionSchema, dataSchema, format, parameters) (session)
     }
 }
 

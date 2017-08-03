@@ -1,37 +1,35 @@
 package ch.ninecode.cim
 
-import org.apache.commons.logging.LogFactory
+import org.apache.commons.logging.{Log, LogFactory}
 import org.apache.hadoop.mapreduce.InputSplit
 import org.apache.hadoop.mapreduce.RecordReader
 import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.hadoop.mapreduce.lib.input.FileSplit
 import org.apache.hadoop.io.Text
-import org.apache.spark.sql.Row
-
 import ch.ninecode.model.Element
 
 class CIMRecordReader extends RecordReader[String, Element]
 {
-    val LocalLog = LogFactory.getLog (classOf[CIMRecordReader])
-    var cim: CHIM = null
+    val log: Log = LogFactory.getLog (classOf[CIMRecordReader])
+    var cim: CHIM = _
 
     def initialize (genericSplit: InputSplit, context: TaskAttemptContext): Unit =
     {
-        LocalLog.info ("initialize")
-        LocalLog.info ("genericSplit: " + genericSplit.toString ())
-        LocalLog.info ("context: " + context.toString ())
-        val job = context.getConfiguration ()
+        log.info ("initialize")
+        log.info ("genericSplit: " + genericSplit.toString)
+        log.info ("context: " + context.toString)
+        val job = context.getConfiguration
         val split = genericSplit.asInstanceOf[FileSplit]
-        val start = split.getStart ()
-        val bytes = split.getLength ()
-        val file = split.getPath ()
+        val start = split.getStart
+        val bytes = split.getLength
+        val file = split.getPath
 
         // open the file and seek to the start of the split
         val fs = file.getFileSystem (job)
         val in = fs.open (file)
 
         val end = start + bytes
-        val available = fs.getFileStatus (file).getLen ()
+        val available = fs.getFileStatus (file).getLen
         val extra = if (available > end) Math.min (CHIM.OVERREAD.toLong, available - end) else 0L
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
         val size = (bytes + extra).toInt
@@ -68,21 +66,21 @@ class CIMRecordReader extends RecordReader[String, Element]
         // ToDo: using first here is approximate,
         // the real character count would require reading the complete file
         // from 0 to (start + first) and converting to characters
-        LocalLog.info ("XML text starting at byte offset " + (start + first) + " of length " + len + " characters begins with: " + xml.substring (0, 120))
+        log.info ("XML text starting at byte offset " + (start + first) + " of length " + len + " characters begins with: " + xml.substring (0, 120))
         cim = new CHIM (xml, first, first + len, start, start + bytes)
     }
 
     def close (): Unit =
     {
-        LocalLog.info ("close")
+        log.info ("close")
         cim = null
     }
 
-    def getCurrentKey (): String = cim.value.id
+    def getCurrentKey: String = cim.value.id
 
-    def getCurrentValue (): Element = cim.value
+    def getCurrentValue: Element = cim.value
 
-    def getProgress (): Float = cim.progress
+    def getProgress: Float = cim.progress ()
 
-    def nextKeyValue (): Boolean = cim.parse_one
+    def nextKeyValue (): Boolean = cim.parse_one ()
 }
