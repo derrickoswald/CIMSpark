@@ -2181,18 +2181,20 @@ extends
  * @param b Positive sequence shunt (charging) susceptance per section
  * @param g Positive sequence shunt (charging) conductance per section
  * @param sectionNumber The number of the section.
+ * @param NonlinearShuntCompensatorPhase Non-linear shunt compensator phase owning this point.
  */
 case class NonlinearShuntCompensatorPhasePoint
 (
     override val sup: BasicElement,
     b: Double,
     g: Double,
-    sectionNumber: Int
+    sectionNumber: Int,
+    NonlinearShuntCompensatorPhase: String
 )
 extends
     Element
 {
-    def this () = { this (null, 0.0, 0.0, 0) }
+    def this () = { this (null, 0.0, 0.0, 0, null) }
     def Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[NonlinearShuntCompensatorPhasePoint] }
     override def get (i: Int): Object =
@@ -2208,7 +2210,8 @@ extends
         sup.export_fields +
         "\t\t<cim:NonlinearShuntCompensatorPhasePoint.b>" + b + "</cim:NonlinearShuntCompensatorPhasePoint.b>\n" +
         "\t\t<cim:NonlinearShuntCompensatorPhasePoint.g>" + g + "</cim:NonlinearShuntCompensatorPhasePoint.g>\n" +
-        "\t\t<cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>" + sectionNumber + "</cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>\n"
+        "\t\t<cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>" + sectionNumber + "</cim:NonlinearShuntCompensatorPhasePoint.sectionNumber>\n" +
+        (if (null != NonlinearShuntCompensatorPhase) "\t\t<cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase rdf:resource=\"#" + NonlinearShuntCompensatorPhase + "\"/>\n" else "")
     }
     override def export: String =
     {
@@ -2225,13 +2228,15 @@ extends
     val b: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.b"""))
     val g: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.g"""))
     val sectionNumber: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPhasePoint.sectionNumber"""))
+    val NonlinearShuntCompensatorPhase: (Context) => String = parse_attribute (attribute ("""NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase"""))
     def parse (context: Context): NonlinearShuntCompensatorPhasePoint =
     {
         NonlinearShuntCompensatorPhasePoint(
             BasicElement.parse (context),
             toDouble (b (context), context),
             toDouble (g (context), context),
-            toInteger (sectionNumber (context), context)
+            toInteger (sectionNumber (context), context),
+            NonlinearShuntCompensatorPhase (context)
         )
     }
 }
@@ -2244,6 +2249,7 @@ extends
  * @param g Positive sequence shunt (charging) conductance per section
  * @param g0 Zero sequence shunt (charging) conductance per section
  * @param sectionNumber The number of the section.
+ * @param NonlinearShuntCompensator Non-linear shunt compensator owning this point.
  */
 case class NonlinearShuntCompensatorPoint
 (
@@ -2252,12 +2258,13 @@ case class NonlinearShuntCompensatorPoint
     b0: Double,
     g: Double,
     g0: Double,
-    sectionNumber: Int
+    sectionNumber: Int,
+    NonlinearShuntCompensator: String
 )
 extends
     Element
 {
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, null) }
     def Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[NonlinearShuntCompensatorPoint] }
     override def get (i: Int): Object =
@@ -2275,7 +2282,8 @@ extends
         "\t\t<cim:NonlinearShuntCompensatorPoint.b0>" + b0 + "</cim:NonlinearShuntCompensatorPoint.b0>\n" +
         "\t\t<cim:NonlinearShuntCompensatorPoint.g>" + g + "</cim:NonlinearShuntCompensatorPoint.g>\n" +
         "\t\t<cim:NonlinearShuntCompensatorPoint.g0>" + g0 + "</cim:NonlinearShuntCompensatorPoint.g0>\n" +
-        "\t\t<cim:NonlinearShuntCompensatorPoint.sectionNumber>" + sectionNumber + "</cim:NonlinearShuntCompensatorPoint.sectionNumber>\n"
+        "\t\t<cim:NonlinearShuntCompensatorPoint.sectionNumber>" + sectionNumber + "</cim:NonlinearShuntCompensatorPoint.sectionNumber>\n" +
+        (if (null != NonlinearShuntCompensator) "\t\t<cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator rdf:resource=\"#" + NonlinearShuntCompensator + "\"/>\n" else "")
     }
     override def export: String =
     {
@@ -2294,6 +2302,7 @@ extends
     val g: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.g"""))
     val g0: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.g0"""))
     val sectionNumber: (Context) => String = parse_element (element ("""NonlinearShuntCompensatorPoint.sectionNumber"""))
+    val NonlinearShuntCompensator: (Context) => String = parse_attribute (attribute ("""NonlinearShuntCompensatorPoint.NonlinearShuntCompensator"""))
     def parse (context: Context): NonlinearShuntCompensatorPoint =
     {
         NonlinearShuntCompensatorPoint(
@@ -2302,7 +2311,8 @@ extends
             toDouble (b0 (context), context),
             toDouble (g (context), context),
             toDouble (g0 (context), context),
-            toInteger (sectionNumber (context), context)
+            toInteger (sectionNumber (context), context),
+            NonlinearShuntCompensator (context)
         )
     }
 }

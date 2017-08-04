@@ -198,7 +198,7 @@ case class ModelParser (db: Database)
         {
             val row = new Row (it.next ())
             val typ = row.getConnectorType
-            if (typ.equals ("Generalization") || typ.equals ("Association"))
+            if (typ.equals ("Generalization") || typ.equals ("Association") || typ.equals ("Aggregation"))
             {
                 val src = classes.getOrElse (row.getStartObjectID, null)
                 val dst = classes.getOrElse (row.getEndObjectID, null)
@@ -222,7 +222,7 @@ case class ModelParser (db: Database)
 
     def extractDomains
     {
-        packages.find (_._2.name == "Domain") match
+        packages.find (p => p._2.name == "Domain" || p._2.name == "DomainProfile") match
         {
             case Some (pkg) =>
                 val it = getObjectTable.iterator ()
@@ -303,6 +303,7 @@ case class ModelParser (db: Database)
 object ModelParser
 {
     val VERSION = "16"
+    val SCALA = true
 
     def main(args : Array[String])
     {
@@ -311,7 +312,7 @@ object ModelParser
             case "14" => "iec61970cim14v15_iec61968cim10v31_combined.eap"
             case "15" => "iec61970cim15v33_iec61968cim11v13_iec62325cim01v07.eap"
             case "16" => "iec61970cim16v29a_iec61968cim12v08_iec62325cim03v01a.eap"
-            //case "17" => "iec61970cim17v16_iec61968cim13v11_iec62325cim03v14.eap"
+            case "ENTSOE" => "ENTSOE_CGMES_v2.4.15_7Aug2014.eap"
             case "17" => "iec61970cim17v22_iec61968cim13v11_iec62325cim03v14.eap"
         }
 
@@ -328,7 +329,7 @@ object ModelParser
 
         val dir = new File ("target/model/")
         dir.mkdir
-        if (true)
+        if (SCALA)
         {
             implicit val ordering = new Ordering[(String, Int)]
             {
@@ -341,6 +342,10 @@ object ModelParser
                 packages.add ((scala.register, pkg._1))
             }
             val register = new StringBuilder ()
+            register.append ("""    def classes: List[ClassInfo] =
+                |        List (
+                |""".stripMargin)
+            var registers: List[String] = List[String]()
             for (q <- packages)
             {
                 val p = parser.packages (q._2)
@@ -350,12 +355,13 @@ object ModelParser
                 {
                     println ("target/model/" + p.name + ".scala:")
                     Files.write (Paths.get ("target/model/" + p.name + ".scala"), s.getBytes (StandardCharsets.UTF_8))
-                    register.append ("""    """)
-                    register.append (scala.register)
-                    register.append (""".register
-                    |""".stripMargin)
+                    registers = registers :+ """            """ + scala.register + """.register"""
                 }
             }
+            register.append (registers.mkString (",\n"))
+            register.append ("""
+                |        ).flatten
+                |""".stripMargin)
             Files.write (Paths.get ("target/chim_register.scala"), register.toString.getBytes (StandardCharsets.UTF_8))
         }
         else

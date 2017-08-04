@@ -1,0 +1,1873 @@
+package ch.ninecode.model
+
+import org.apache.spark.sql.Row
+
+import ch.ninecode.cim.ClassInfo
+import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
+
+/**
+ * This package contains model for direct current equipment and controls.
+ */
+
+/**
+ * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
+ * @param sup Reference to the superclass object.
+ * @param baseS Base apparent power of the converter pole.
+ * @param idc Converter DC current, also called Id.
+ *        Converter state variable, result from power flow.
+ * @param idleLoss Active power loss in pole at no power transfer.
+ *        Converter configuration data used in power flow.
+ * @param maxUdc The maximum voltage on the DC side at which the converter should operate.
+ *        Converter configuration data used in power flow.
+ * @param minUdc Min allowed converter DC voltage.
+ *        Converter configuration data used in power flow.
+ * @param numberOfValves Number of valves in the converter.
+ *        Used in loss calculations.
+ * @param p Active power at the point of common coupling.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param poleLossP The active power loss at a DC Pole 
+= idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc^2
+For lossless operation Pdc=Pac
+For rectifier operation with losses Pdc=Pac-lossP
+For inverter operation with losses Pdc=Pac+lossP
+ *        Converter state variable used in power flow.
+ * @param q Reactive power at the point of common coupling.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param ratedUdc Rated converter DC voltage, also called UdN.
+ *        Converter configuration data used in power flow.
+ * @param resistiveLoss Converter configuration data used in power flow.
+ *        Refer to poleLossP.
+ * @param switchingLoss Switching losses, relative to the base apparent power 'baseS'.
+ *        Refer to poleLossP.
+ * @param targetPpcc Real power injection target in AC grid, at point of common coupling.
+ * @param targetUdc Target value for DC voltage magnitude.
+ * @param uc Line-to-line converter voltage, the voltage at the AC side of the valve.
+ *        Converter state variable, result from power flow.
+ * @param udc Converter voltage at the DC side, also called Ud.
+ *        Converter state variable, result from power flow.
+ * @param valveU0 Valve threshold voltage, also called Uvalve.
+ *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
+ * @param PccTerminal Point of common coupling terminal for this converter DC side.
+ *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
+ */
+case class ACDCConverter
+(
+    override val sup: ConductingEquipment,
+    baseS: Double,
+    idc: Double,
+    idleLoss: Double,
+    maxUdc: Double,
+    minUdc: Double,
+    numberOfValves: Int,
+    p: Double,
+    poleLossP: Double,
+    q: Double,
+    ratedUdc: Double,
+    resistiveLoss: Double,
+    switchingLoss: Double,
+    targetPpcc: Double,
+    targetUdc: Double,
+    uc: Double,
+    udc: Double,
+    valveU0: Double,
+    PccTerminal: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[ACDCConverter] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:ACDCConverter.baseS>" + baseS + "</cim:ACDCConverter.baseS>\n" +
+        "\t\t<cim:ACDCConverter.idc>" + idc + "</cim:ACDCConverter.idc>\n" +
+        "\t\t<cim:ACDCConverter.idleLoss>" + idleLoss + "</cim:ACDCConverter.idleLoss>\n" +
+        "\t\t<cim:ACDCConverter.maxUdc>" + maxUdc + "</cim:ACDCConverter.maxUdc>\n" +
+        "\t\t<cim:ACDCConverter.minUdc>" + minUdc + "</cim:ACDCConverter.minUdc>\n" +
+        "\t\t<cim:ACDCConverter.numberOfValves>" + numberOfValves + "</cim:ACDCConverter.numberOfValves>\n" +
+        "\t\t<cim:ACDCConverter.p>" + p + "</cim:ACDCConverter.p>\n" +
+        "\t\t<cim:ACDCConverter.poleLossP>" + poleLossP + "</cim:ACDCConverter.poleLossP>\n" +
+        "\t\t<cim:ACDCConverter.q>" + q + "</cim:ACDCConverter.q>\n" +
+        "\t\t<cim:ACDCConverter.ratedUdc>" + ratedUdc + "</cim:ACDCConverter.ratedUdc>\n" +
+        "\t\t<cim:ACDCConverter.resistiveLoss>" + resistiveLoss + "</cim:ACDCConverter.resistiveLoss>\n" +
+        "\t\t<cim:ACDCConverter.switchingLoss>" + switchingLoss + "</cim:ACDCConverter.switchingLoss>\n" +
+        "\t\t<cim:ACDCConverter.targetPpcc>" + targetPpcc + "</cim:ACDCConverter.targetPpcc>\n" +
+        "\t\t<cim:ACDCConverter.targetUdc>" + targetUdc + "</cim:ACDCConverter.targetUdc>\n" +
+        "\t\t<cim:ACDCConverter.uc>" + uc + "</cim:ACDCConverter.uc>\n" +
+        "\t\t<cim:ACDCConverter.udc>" + udc + "</cim:ACDCConverter.udc>\n" +
+        "\t\t<cim:ACDCConverter.valveU0>" + valveU0 + "</cim:ACDCConverter.valveU0>\n" +
+        (if (null != PccTerminal) "\t\t<cim:ACDCConverter.PccTerminal rdf:resource=\"#" + PccTerminal + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:ACDCConverter rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:ACDCConverter>\n"
+    }
+}
+
+object ACDCConverter
+extends
+    Parseable[ACDCConverter]
+{
+    val baseS: (Context) => String = parse_element (element ("""ACDCConverter.baseS"""))
+    val idc: (Context) => String = parse_element (element ("""ACDCConverter.idc"""))
+    val idleLoss: (Context) => String = parse_element (element ("""ACDCConverter.idleLoss"""))
+    val maxUdc: (Context) => String = parse_element (element ("""ACDCConverter.maxUdc"""))
+    val minUdc: (Context) => String = parse_element (element ("""ACDCConverter.minUdc"""))
+    val numberOfValves: (Context) => String = parse_element (element ("""ACDCConverter.numberOfValves"""))
+    val p: (Context) => String = parse_element (element ("""ACDCConverter.p"""))
+    val poleLossP: (Context) => String = parse_element (element ("""ACDCConverter.poleLossP"""))
+    val q: (Context) => String = parse_element (element ("""ACDCConverter.q"""))
+    val ratedUdc: (Context) => String = parse_element (element ("""ACDCConverter.ratedUdc"""))
+    val resistiveLoss: (Context) => String = parse_element (element ("""ACDCConverter.resistiveLoss"""))
+    val switchingLoss: (Context) => String = parse_element (element ("""ACDCConverter.switchingLoss"""))
+    val targetPpcc: (Context) => String = parse_element (element ("""ACDCConverter.targetPpcc"""))
+    val targetUdc: (Context) => String = parse_element (element ("""ACDCConverter.targetUdc"""))
+    val uc: (Context) => String = parse_element (element ("""ACDCConverter.uc"""))
+    val udc: (Context) => String = parse_element (element ("""ACDCConverter.udc"""))
+    val valveU0: (Context) => String = parse_element (element ("""ACDCConverter.valveU0"""))
+    val PccTerminal: (Context) => String = parse_attribute (attribute ("""ACDCConverter.PccTerminal"""))
+    def parse (context: Context): ACDCConverter =
+    {
+        ACDCConverter(
+            ConductingEquipment.parse (context),
+            toDouble (baseS (context), context),
+            toDouble (idc (context), context),
+            toDouble (idleLoss (context), context),
+            toDouble (maxUdc (context), context),
+            toDouble (minUdc (context), context),
+            toInteger (numberOfValves (context), context),
+            toDouble (p (context), context),
+            toDouble (poleLossP (context), context),
+            toDouble (q (context), context),
+            toDouble (ratedUdc (context), context),
+            toDouble (resistiveLoss (context), context),
+            toDouble (switchingLoss (context), context),
+            toDouble (targetPpcc (context), context),
+            toDouble (targetUdc (context), context),
+            toDouble (uc (context), context),
+            toDouble (udc (context), context),
+            toDouble (valveU0 (context), context),
+            PccTerminal (context)
+        )
+    }
+}
+
+/**
+ * A DC electrical connection point at the AC/DC converter.
+ * The AC/DC converter is electrically connected also to the AC side. The AC connection is inherited from the AC conducting equipment in the same way as any other AC equipment. The AC/DC converter DC terminal is separate from generic DC terminal to restrict the connection with the AC side to AC/DC converter and so that no other DC conducting equipment can be connected to the AC side.
+ * @param sup Reference to the superclass object.
+ * @param polarity Represents the normal network polarity condition.
+ * @param DCConductingEquipment <em>undocumented</em>
+ */
+case class ACDCConverterDCTerminal
+(
+    override val sup: DCBaseTerminal,
+    polarity: String,
+    DCConductingEquipment: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def DCBaseTerminal: DCBaseTerminal = sup.asInstanceOf[DCBaseTerminal]
+    override def copy (): Row = { clone ().asInstanceOf[ACDCConverterDCTerminal] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != polarity) "\t\t<cim:ACDCConverterDCTerminal.polarity rdf:resource=\"#" + polarity + "\"/>\n" else "") +
+        (if (null != DCConductingEquipment) "\t\t<cim:ACDCConverterDCTerminal.DCConductingEquipment rdf:resource=\"#" + DCConductingEquipment + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:ACDCConverterDCTerminal rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:ACDCConverterDCTerminal>\n"
+    }
+}
+
+object ACDCConverterDCTerminal
+extends
+    Parseable[ACDCConverterDCTerminal]
+{
+    val polarity: (Context) => String = parse_attribute (attribute ("""ACDCConverterDCTerminal.polarity"""))
+    val DCConductingEquipment: (Context) => String = parse_attribute (attribute ("""ACDCConverterDCTerminal.DCConductingEquipment"""))
+    def parse (context: Context): ACDCConverterDCTerminal =
+    {
+        ACDCConverterDCTerminal(
+            DCBaseTerminal.parse (context),
+            polarity (context),
+            DCConductingEquipment (context)
+        )
+    }
+}
+
+/**
+ * DC side of the current source converter (CSC).
+ * @param sup Reference to the superclass object.
+ * @param alpha Firing angle, typical value between 10 and 18 degrees for a rectifier.
+ *        CSC state variable, result from power flow.
+ * @param gamma Extinction angle.
+ *        CSC state variable, result from power flow.
+ * @param maxAlpha Maximum firing angle.
+ *        CSC configuration data used in power flow.
+ * @param maxGamma Maximum extinction angle.
+ *        CSC configuration data used in power flow.
+ * @param maxIdc The maximum direct current (Id) on the DC side at which the converter should operate.
+ *        Converter configuration data use in power flow.
+ * @param minAlpha Minimum firing angle.
+ *        CSC configuration data used in power flow.
+ * @param minGamma Minimum extinction angle.
+ *        CSC configuration data used in power flow.
+ * @param minIdc The minimum direct current (Id) on the DC side at which the converter should operate.
+ *        CSC configuration data used in power flow.
+ * @param operatingMode Indicates whether the DC pole is operating as an inverter or as a rectifier.
+ *        CSC control variable used in power flow.
+ * @param pPccControl <em>undocumented</em>
+ * @param ratedIdc Rated converter DC current, also called IdN.
+ *        Converter configuration data used in power flow.
+ * @param targetAlpha Target firing angle.
+ *        CSC control variable used in power flow.
+ * @param targetGamma Target extinction angle.
+ *        CSC  control variable used in power flow.
+ * @param targetIdc DC current target value.
+ *        CSC control variable used in power flow.
+ */
+case class CsConverter
+(
+    override val sup: ACDCConverter,
+    alpha: Double,
+    gamma: Double,
+    maxAlpha: Double,
+    maxGamma: Double,
+    maxIdc: Double,
+    minAlpha: Double,
+    minGamma: Double,
+    minIdc: Double,
+    operatingMode: String,
+    pPccControl: String,
+    ratedIdc: Double,
+    targetAlpha: Double,
+    targetGamma: Double,
+    targetIdc: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0) }
+    def ACDCConverter: ACDCConverter = sup.asInstanceOf[ACDCConverter]
+    override def copy (): Row = { clone ().asInstanceOf[CsConverter] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:CsConverter.alpha>" + alpha + "</cim:CsConverter.alpha>\n" +
+        "\t\t<cim:CsConverter.gamma>" + gamma + "</cim:CsConverter.gamma>\n" +
+        "\t\t<cim:CsConverter.maxAlpha>" + maxAlpha + "</cim:CsConverter.maxAlpha>\n" +
+        "\t\t<cim:CsConverter.maxGamma>" + maxGamma + "</cim:CsConverter.maxGamma>\n" +
+        "\t\t<cim:CsConverter.maxIdc>" + maxIdc + "</cim:CsConverter.maxIdc>\n" +
+        "\t\t<cim:CsConverter.minAlpha>" + minAlpha + "</cim:CsConverter.minAlpha>\n" +
+        "\t\t<cim:CsConverter.minGamma>" + minGamma + "</cim:CsConverter.minGamma>\n" +
+        "\t\t<cim:CsConverter.minIdc>" + minIdc + "</cim:CsConverter.minIdc>\n" +
+        (if (null != operatingMode) "\t\t<cim:CsConverter.operatingMode rdf:resource=\"#" + operatingMode + "\"/>\n" else "") +
+        (if (null != pPccControl) "\t\t<cim:CsConverter.pPccControl rdf:resource=\"#" + pPccControl + "\"/>\n" else "") +
+        "\t\t<cim:CsConverter.ratedIdc>" + ratedIdc + "</cim:CsConverter.ratedIdc>\n" +
+        "\t\t<cim:CsConverter.targetAlpha>" + targetAlpha + "</cim:CsConverter.targetAlpha>\n" +
+        "\t\t<cim:CsConverter.targetGamma>" + targetGamma + "</cim:CsConverter.targetGamma>\n" +
+        "\t\t<cim:CsConverter.targetIdc>" + targetIdc + "</cim:CsConverter.targetIdc>\n"
+    }
+    override def export: String =
+    {
+        "\t<cim:CsConverter rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:CsConverter>\n"
+    }
+}
+
+object CsConverter
+extends
+    Parseable[CsConverter]
+{
+    val alpha: (Context) => String = parse_element (element ("""CsConverter.alpha"""))
+    val gamma: (Context) => String = parse_element (element ("""CsConverter.gamma"""))
+    val maxAlpha: (Context) => String = parse_element (element ("""CsConverter.maxAlpha"""))
+    val maxGamma: (Context) => String = parse_element (element ("""CsConverter.maxGamma"""))
+    val maxIdc: (Context) => String = parse_element (element ("""CsConverter.maxIdc"""))
+    val minAlpha: (Context) => String = parse_element (element ("""CsConverter.minAlpha"""))
+    val minGamma: (Context) => String = parse_element (element ("""CsConverter.minGamma"""))
+    val minIdc: (Context) => String = parse_element (element ("""CsConverter.minIdc"""))
+    val operatingMode: (Context) => String = parse_attribute (attribute ("""CsConverter.operatingMode"""))
+    val pPccControl: (Context) => String = parse_attribute (attribute ("""CsConverter.pPccControl"""))
+    val ratedIdc: (Context) => String = parse_element (element ("""CsConverter.ratedIdc"""))
+    val targetAlpha: (Context) => String = parse_element (element ("""CsConverter.targetAlpha"""))
+    val targetGamma: (Context) => String = parse_element (element ("""CsConverter.targetGamma"""))
+    val targetIdc: (Context) => String = parse_element (element ("""CsConverter.targetIdc"""))
+    def parse (context: Context): CsConverter =
+    {
+        CsConverter(
+            ACDCConverter.parse (context),
+            toDouble (alpha (context), context),
+            toDouble (gamma (context), context),
+            toDouble (maxAlpha (context), context),
+            toDouble (maxGamma (context), context),
+            toDouble (maxIdc (context), context),
+            toDouble (minAlpha (context), context),
+            toDouble (minGamma (context), context),
+            toDouble (minIdc (context), context),
+            operatingMode (context),
+            pPccControl (context),
+            toDouble (ratedIdc (context), context),
+            toDouble (targetAlpha (context), context),
+            toDouble (targetGamma (context), context),
+            toDouble (targetIdc (context), context)
+        )
+    }
+}
+
+/**
+ * Operating mode for HVDC line operating as Current Source Converter.
+ * @param sup Reference to the superclass object.
+ * @param inverter Operating as inverter
+ * @param rectifier Operating as rectifier.
+ */
+case class CsOperatingModeKind
+(
+    override val sup: BasicElement,
+    inverter: String,
+    rectifier: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[CsOperatingModeKind] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != inverter) "\t\t<cim:CsOperatingModeKind.inverter rdf:resource=\"#" + inverter + "\"/>\n" else "") +
+        (if (null != rectifier) "\t\t<cim:CsOperatingModeKind.rectifier rdf:resource=\"#" + rectifier + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:CsOperatingModeKind rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:CsOperatingModeKind>\n"
+    }
+}
+
+object CsOperatingModeKind
+extends
+    Parseable[CsOperatingModeKind]
+{
+    val inverter: (Context) => String = parse_attribute (attribute ("""CsOperatingModeKind.inverter"""))
+    val rectifier: (Context) => String = parse_attribute (attribute ("""CsOperatingModeKind.rectifier"""))
+    def parse (context: Context): CsOperatingModeKind =
+    {
+        CsOperatingModeKind(
+            BasicElement.parse (context),
+            inverter (context),
+            rectifier (context)
+        )
+    }
+}
+
+/**
+ * Active power control modes for HVDC line operating as Current Source Converter.
+ * @param sup Reference to the superclass object.
+ * @param activePower Active power control at AC side.
+ * @param dcCurrent DC current control
+ * @param dcVoltage DC voltage control.
+ */
+case class CsPpccControlKind
+(
+    override val sup: BasicElement,
+    activePower: String,
+    dcCurrent: String,
+    dcVoltage: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[CsPpccControlKind] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != activePower) "\t\t<cim:CsPpccControlKind.activePower rdf:resource=\"#" + activePower + "\"/>\n" else "") +
+        (if (null != dcCurrent) "\t\t<cim:CsPpccControlKind.dcCurrent rdf:resource=\"#" + dcCurrent + "\"/>\n" else "") +
+        (if (null != dcVoltage) "\t\t<cim:CsPpccControlKind.dcVoltage rdf:resource=\"#" + dcVoltage + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:CsPpccControlKind rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:CsPpccControlKind>\n"
+    }
+}
+
+object CsPpccControlKind
+extends
+    Parseable[CsPpccControlKind]
+{
+    val activePower: (Context) => String = parse_attribute (attribute ("""CsPpccControlKind.activePower"""))
+    val dcCurrent: (Context) => String = parse_attribute (attribute ("""CsPpccControlKind.dcCurrent"""))
+    val dcVoltage: (Context) => String = parse_attribute (attribute ("""CsPpccControlKind.dcVoltage"""))
+    def parse (context: Context): CsPpccControlKind =
+    {
+        CsPpccControlKind(
+            BasicElement.parse (context),
+            activePower (context),
+            dcCurrent (context),
+            dcVoltage (context)
+        )
+    }
+}
+
+/**
+ * An electrical connection point at a piece of DC conducting equipment.
+ * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
+ * @param sup Reference to the superclass object.
+ * @param DCNode <em>undocumented</em>
+ * @param DCTopologicalNode See association end Terminal.
+ *        TopologicalNode.
+ */
+case class DCBaseTerminal
+(
+    override val sup: ACDCTerminal,
+    DCNode: String,
+    DCTopologicalNode: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def ACDCTerminal: ACDCTerminal = sup.asInstanceOf[ACDCTerminal]
+    override def copy (): Row = { clone ().asInstanceOf[DCBaseTerminal] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != DCNode) "\t\t<cim:DCBaseTerminal.DCNode rdf:resource=\"#" + DCNode + "\"/>\n" else "") +
+        (if (null != DCTopologicalNode) "\t\t<cim:DCBaseTerminal.DCTopologicalNode rdf:resource=\"#" + DCTopologicalNode + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCBaseTerminal rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCBaseTerminal>\n"
+    }
+}
+
+object DCBaseTerminal
+extends
+    Parseable[DCBaseTerminal]
+{
+    val DCNode: (Context) => String = parse_attribute (attribute ("""DCBaseTerminal.DCNode"""))
+    val DCTopologicalNode: (Context) => String = parse_attribute (attribute ("""DCBaseTerminal.DCTopologicalNode"""))
+    def parse (context: Context): DCBaseTerminal =
+    {
+        DCBaseTerminal(
+            ACDCTerminal.parse (context),
+            DCNode (context),
+            DCTopologicalNode (context)
+        )
+    }
+}
+
+/**
+ * A breaker within a DC system.
+ * @param sup Reference to the superclass object.
+ */
+case class DCBreaker
+(
+    override val sup: DCSwitch
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def DCSwitch: DCSwitch = sup.asInstanceOf[DCSwitch]
+    override def copy (): Row = { clone ().asInstanceOf[DCBreaker] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCBreaker rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCBreaker>\n"
+    }
+}
+
+object DCBreaker
+extends
+    Parseable[DCBreaker]
+{
+    def parse (context: Context): DCBreaker =
+    {
+        DCBreaker(
+            DCSwitch.parse (context)
+        )
+    }
+}
+
+/**
+ * A busbar within a DC system.
+ * @param sup Reference to the superclass object.
+ */
+case class DCBusbar
+(
+    override val sup: DCConductingEquipment
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCBusbar] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCBusbar rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCBusbar>\n"
+    }
+}
+
+object DCBusbar
+extends
+    Parseable[DCBusbar]
+{
+    def parse (context: Context): DCBusbar =
+    {
+        DCBusbar(
+            DCConductingEquipment.parse (context)
+        )
+    }
+}
+
+/**
+ * Low resistance equipment used in the internal DC circuit to balance voltages.
+ * It has typically positive and negative pole terminals and a ground.
+ * @param sup Reference to the superclass object.
+ */
+case class DCChopper
+(
+    override val sup: DCConductingEquipment
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCChopper] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCChopper rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCChopper>\n"
+    }
+}
+
+object DCChopper
+extends
+    Parseable[DCChopper]
+{
+    def parse (context: Context): DCChopper =
+    {
+        DCChopper(
+            DCConductingEquipment.parse (context)
+        )
+    }
+}
+
+/**
+ * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
+ * @param sup Reference to the superclass object.
+ */
+case class DCConductingEquipment
+(
+    override val sup: Equipment
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def Equipment: Equipment = sup.asInstanceOf[Equipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCConductingEquipment] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCConductingEquipment rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCConductingEquipment>\n"
+    }
+}
+
+object DCConductingEquipment
+extends
+    Parseable[DCConductingEquipment]
+{
+    def parse (context: Context): DCConductingEquipment =
+    {
+        DCConductingEquipment(
+            Equipment.parse (context)
+        )
+    }
+}
+
+/**
+ * The operating mode of an HVDC bipole.
+ * @param sup Reference to the superclass object.
+ * @param bipolar Bipolar operation.
+ * @param monopolarGroundReturn Monopolar operation with ground return
+ * @param monopolarMetallicReturn Monopolar operation with metallic return
+ */
+case class DCConverterOperatingModeKind
+(
+    override val sup: BasicElement,
+    bipolar: String,
+    monopolarGroundReturn: String,
+    monopolarMetallicReturn: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[DCConverterOperatingModeKind] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != bipolar) "\t\t<cim:DCConverterOperatingModeKind.bipolar rdf:resource=\"#" + bipolar + "\"/>\n" else "") +
+        (if (null != monopolarGroundReturn) "\t\t<cim:DCConverterOperatingModeKind.monopolarGroundReturn rdf:resource=\"#" + monopolarGroundReturn + "\"/>\n" else "") +
+        (if (null != monopolarMetallicReturn) "\t\t<cim:DCConverterOperatingModeKind.monopolarMetallicReturn rdf:resource=\"#" + monopolarMetallicReturn + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCConverterOperatingModeKind rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCConverterOperatingModeKind>\n"
+    }
+}
+
+object DCConverterOperatingModeKind
+extends
+    Parseable[DCConverterOperatingModeKind]
+{
+    val bipolar: (Context) => String = parse_attribute (attribute ("""DCConverterOperatingModeKind.bipolar"""))
+    val monopolarGroundReturn: (Context) => String = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarGroundReturn"""))
+    val monopolarMetallicReturn: (Context) => String = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarMetallicReturn"""))
+    def parse (context: Context): DCConverterOperatingModeKind =
+    {
+        DCConverterOperatingModeKind(
+            BasicElement.parse (context),
+            bipolar (context),
+            monopolarGroundReturn (context),
+            monopolarMetallicReturn (context)
+        )
+    }
+}
+
+/**
+ * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
+ * @param sup Reference to the superclass object.
+ * @param operationMode <em>undocumented</em>
+ * @param Substation <em>undocumented</em>
+ */
+case class DCConverterUnit
+(
+    override val sup: DCEquipmentContainer,
+    operationMode: String,
+    Substation: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def DCEquipmentContainer: DCEquipmentContainer = sup.asInstanceOf[DCEquipmentContainer]
+    override def copy (): Row = { clone ().asInstanceOf[DCConverterUnit] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != operationMode) "\t\t<cim:DCConverterUnit.operationMode rdf:resource=\"#" + operationMode + "\"/>\n" else "") +
+        (if (null != Substation) "\t\t<cim:DCConverterUnit.Substation rdf:resource=\"#" + Substation + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCConverterUnit rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCConverterUnit>\n"
+    }
+}
+
+object DCConverterUnit
+extends
+    Parseable[DCConverterUnit]
+{
+    val operationMode: (Context) => String = parse_attribute (attribute ("""DCConverterUnit.operationMode"""))
+    val Substation: (Context) => String = parse_attribute (attribute ("""DCConverterUnit.Substation"""))
+    def parse (context: Context): DCConverterUnit =
+    {
+        DCConverterUnit(
+            DCEquipmentContainer.parse (context),
+            operationMode (context),
+            Substation (context)
+        )
+    }
+}
+
+/**
+ * A disconnector within a DC system.
+ * @param sup Reference to the superclass object.
+ */
+case class DCDisconnector
+(
+    override val sup: DCSwitch
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def DCSwitch: DCSwitch = sup.asInstanceOf[DCSwitch]
+    override def copy (): Row = { clone ().asInstanceOf[DCDisconnector] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCDisconnector rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCDisconnector>\n"
+    }
+}
+
+object DCDisconnector
+extends
+    Parseable[DCDisconnector]
+{
+    def parse (context: Context): DCDisconnector =
+    {
+        DCDisconnector(
+            DCSwitch.parse (context)
+        )
+    }
+}
+
+/**
+ * A modeling construct to provide a root class for containment of DC as well as AC equipment.
+ * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
+ * @param sup Reference to the superclass object.
+ */
+case class DCEquipmentContainer
+(
+    override val sup: EquipmentContainer
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
+    override def copy (): Row = { clone ().asInstanceOf[DCEquipmentContainer] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCEquipmentContainer rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCEquipmentContainer>\n"
+    }
+}
+
+object DCEquipmentContainer
+extends
+    Parseable[DCEquipmentContainer]
+{
+    def parse (context: Context): DCEquipmentContainer =
+    {
+        DCEquipmentContainer(
+            EquipmentContainer.parse (context)
+        )
+    }
+}
+
+/**
+ * A ground within a DC system.
+ * @param sup Reference to the superclass object.
+ * @param inductance Inductance to ground.
+ * @param r Resistance to ground.
+ */
+case class DCGround
+(
+    override val sup: DCConductingEquipment,
+    inductance: Double,
+    r: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0) }
+    def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCGround] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:DCGround.inductance>" + inductance + "</cim:DCGround.inductance>\n" +
+        "\t\t<cim:DCGround.r>" + r + "</cim:DCGround.r>\n"
+    }
+    override def export: String =
+    {
+        "\t<cim:DCGround rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCGround>\n"
+    }
+}
+
+object DCGround
+extends
+    Parseable[DCGround]
+{
+    val inductance: (Context) => String = parse_element (element ("""DCGround.inductance"""))
+    val r: (Context) => String = parse_element (element ("""DCGround.r"""))
+    def parse (context: Context): DCGround =
+    {
+        DCGround(
+            DCConductingEquipment.parse (context),
+            toDouble (inductance (context), context),
+            toDouble (r (context), context)
+        )
+    }
+}
+
+/**
+ * Overhead lines and/or cables connecting two or more HVDC substations.
+ * @param sup Reference to the superclass object.
+ * @param Region <em>undocumented</em>
+ */
+case class DCLine
+(
+    override val sup: DCEquipmentContainer,
+    Region: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def DCEquipmentContainer: DCEquipmentContainer = sup.asInstanceOf[DCEquipmentContainer]
+    override def copy (): Row = { clone ().asInstanceOf[DCLine] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != Region) "\t\t<cim:DCLine.Region rdf:resource=\"#" + Region + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCLine rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCLine>\n"
+    }
+}
+
+object DCLine
+extends
+    Parseable[DCLine]
+{
+    val Region: (Context) => String = parse_attribute (attribute ("""DCLine.Region"""))
+    def parse (context: Context): DCLine =
+    {
+        DCLine(
+            DCEquipmentContainer.parse (context),
+            Region (context)
+        )
+    }
+}
+
+/**
+ * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
+ * @param sup Reference to the superclass object.
+ * @param capacitance Capacitance of the DC line segment.
+ *        Significant for cables only.
+ * @param inductance Inductance of the DC line segment.
+ *        Neglectable compared with DCSeriesDevice used for smoothing.
+ * @param len Segment length for calculating line section capabilities.
+ * @param resistance Resistance of the DC line segment.
+ * @param PerLengthParameter Set of per-length parameters for this line segment.
+ */
+case class DCLineSegment
+(
+    override val sup: DCConductingEquipment,
+    capacitance: Double,
+    inductance: Double,
+    len: Double,
+    resistance: Double,
+    PerLengthParameter: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
+    def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCLineSegment] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:DCLineSegment.capacitance>" + capacitance + "</cim:DCLineSegment.capacitance>\n" +
+        "\t\t<cim:DCLineSegment.inductance>" + inductance + "</cim:DCLineSegment.inductance>\n" +
+        "\t\t<cim:DCLineSegment.length>" + len + "</cim:DCLineSegment.length>\n" +
+        "\t\t<cim:DCLineSegment.resistance>" + resistance + "</cim:DCLineSegment.resistance>\n" +
+        (if (null != PerLengthParameter) "\t\t<cim:DCLineSegment.PerLengthParameter rdf:resource=\"#" + PerLengthParameter + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCLineSegment rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCLineSegment>\n"
+    }
+}
+
+object DCLineSegment
+extends
+    Parseable[DCLineSegment]
+{
+    val capacitance: (Context) => String = parse_element (element ("""DCLineSegment.capacitance"""))
+    val inductance: (Context) => String = parse_element (element ("""DCLineSegment.inductance"""))
+    val len: (Context) => String = parse_element (element ("""DCLineSegment.length"""))
+    val resistance: (Context) => String = parse_element (element ("""DCLineSegment.resistance"""))
+    val PerLengthParameter: (Context) => String = parse_attribute (attribute ("""DCLineSegment.PerLengthParameter"""))
+    def parse (context: Context): DCLineSegment =
+    {
+        DCLineSegment(
+            DCConductingEquipment.parse (context),
+            toDouble (capacitance (context), context),
+            toDouble (inductance (context), context),
+            toDouble (len (context), context),
+            toDouble (resistance (context), context),
+            PerLengthParameter (context)
+        )
+    }
+}
+
+/**
+ * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
+ * @param sup Reference to the superclass object.
+ * @param DCEquipmentContainer <em>undocumented</em>
+ * @param DCTopologicalNode See association end ConnectivityNode.
+ *        TopologicalNode.
+ */
+case class DCNode
+(
+    override val sup: IdentifiedObject,
+    DCEquipmentContainer: String,
+    DCTopologicalNode: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[DCNode] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != DCEquipmentContainer) "\t\t<cim:DCNode.DCEquipmentContainer rdf:resource=\"#" + DCEquipmentContainer + "\"/>\n" else "") +
+        (if (null != DCTopologicalNode) "\t\t<cim:DCNode.DCTopologicalNode rdf:resource=\"#" + DCTopologicalNode + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCNode rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCNode>\n"
+    }
+}
+
+object DCNode
+extends
+    Parseable[DCNode]
+{
+    val DCEquipmentContainer: (Context) => String = parse_attribute (attribute ("""DCNode.DCEquipmentContainer"""))
+    val DCTopologicalNode: (Context) => String = parse_attribute (attribute ("""DCNode.DCTopologicalNode"""))
+    def parse (context: Context): DCNode =
+    {
+        DCNode(
+            IdentifiedObject.parse (context),
+            DCEquipmentContainer (context),
+            DCTopologicalNode (context)
+        )
+    }
+}
+
+/**
+ * Polarity for DC circuits.
+ * @param sup Reference to the superclass object.
+ * @param middle Middle pole, potentially grounded.
+ * @param negative Negative pole.
+ * @param positive Positive pole.
+ */
+case class DCPolarityKind
+(
+    override val sup: BasicElement,
+    middle: String,
+    negative: String,
+    positive: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[DCPolarityKind] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != middle) "\t\t<cim:DCPolarityKind.middle rdf:resource=\"#" + middle + "\"/>\n" else "") +
+        (if (null != negative) "\t\t<cim:DCPolarityKind.negative rdf:resource=\"#" + negative + "\"/>\n" else "") +
+        (if (null != positive) "\t\t<cim:DCPolarityKind.positive rdf:resource=\"#" + positive + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCPolarityKind rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCPolarityKind>\n"
+    }
+}
+
+object DCPolarityKind
+extends
+    Parseable[DCPolarityKind]
+{
+    val middle: (Context) => String = parse_attribute (attribute ("""DCPolarityKind.middle"""))
+    val negative: (Context) => String = parse_attribute (attribute ("""DCPolarityKind.negative"""))
+    val positive: (Context) => String = parse_attribute (attribute ("""DCPolarityKind.positive"""))
+    def parse (context: Context): DCPolarityKind =
+    {
+        DCPolarityKind(
+            BasicElement.parse (context),
+            middle (context),
+            negative (context),
+            positive (context)
+        )
+    }
+}
+
+/**
+ * A series device within the DC system, typically a reactor used for filtering or smoothing.
+ * Needed for transient and short circuit studies.
+ * @param sup Reference to the superclass object.
+ * @param inductance Inductance of the device.
+ * @param ratedUdc Rated DC device voltage.
+ *        Converter configuration data used in power flow.
+ * @param resistance Resistance of the DC device.
+ */
+case class DCSeriesDevice
+(
+    override val sup: DCConductingEquipment,
+    inductance: Double,
+    ratedUdc: Double,
+    resistance: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0) }
+    def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCSeriesDevice] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:DCSeriesDevice.inductance>" + inductance + "</cim:DCSeriesDevice.inductance>\n" +
+        "\t\t<cim:DCSeriesDevice.ratedUdc>" + ratedUdc + "</cim:DCSeriesDevice.ratedUdc>\n" +
+        "\t\t<cim:DCSeriesDevice.resistance>" + resistance + "</cim:DCSeriesDevice.resistance>\n"
+    }
+    override def export: String =
+    {
+        "\t<cim:DCSeriesDevice rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCSeriesDevice>\n"
+    }
+}
+
+object DCSeriesDevice
+extends
+    Parseable[DCSeriesDevice]
+{
+    val inductance: (Context) => String = parse_element (element ("""DCSeriesDevice.inductance"""))
+    val ratedUdc: (Context) => String = parse_element (element ("""DCSeriesDevice.ratedUdc"""))
+    val resistance: (Context) => String = parse_element (element ("""DCSeriesDevice.resistance"""))
+    def parse (context: Context): DCSeriesDevice =
+    {
+        DCSeriesDevice(
+            DCConductingEquipment.parse (context),
+            toDouble (inductance (context), context),
+            toDouble (ratedUdc (context), context),
+            toDouble (resistance (context), context)
+        )
+    }
+}
+
+/**
+ * A shunt device within the DC system, typically used for filtering.
+ * Needed for transient and short circuit studies.
+ * @param sup Reference to the superclass object.
+ * @param capacitance Capacitance of the DC shunt.
+ * @param ratedUdc Rated DC device voltage.
+ *        Converter configuration data used in power flow.
+ * @param resistance Resistance of the DC device.
+ */
+case class DCShunt
+(
+    override val sup: DCConductingEquipment,
+    capacitance: Double,
+    ratedUdc: Double,
+    resistance: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0) }
+    def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCShunt] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:DCShunt.capacitance>" + capacitance + "</cim:DCShunt.capacitance>\n" +
+        "\t\t<cim:DCShunt.ratedUdc>" + ratedUdc + "</cim:DCShunt.ratedUdc>\n" +
+        "\t\t<cim:DCShunt.resistance>" + resistance + "</cim:DCShunt.resistance>\n"
+    }
+    override def export: String =
+    {
+        "\t<cim:DCShunt rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCShunt>\n"
+    }
+}
+
+object DCShunt
+extends
+    Parseable[DCShunt]
+{
+    val capacitance: (Context) => String = parse_element (element ("""DCShunt.capacitance"""))
+    val ratedUdc: (Context) => String = parse_element (element ("""DCShunt.ratedUdc"""))
+    val resistance: (Context) => String = parse_element (element ("""DCShunt.resistance"""))
+    def parse (context: Context): DCShunt =
+    {
+        DCShunt(
+            DCConductingEquipment.parse (context),
+            toDouble (capacitance (context), context),
+            toDouble (ratedUdc (context), context),
+            toDouble (resistance (context), context)
+        )
+    }
+}
+
+/**
+ * A switch within the DC system.
+ * @param sup Reference to the superclass object.
+ */
+case class DCSwitch
+(
+    override val sup: DCConductingEquipment
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[DCSwitch] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCSwitch rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCSwitch>\n"
+    }
+}
+
+object DCSwitch
+extends
+    Parseable[DCSwitch]
+{
+    def parse (context: Context): DCSwitch =
+    {
+        DCSwitch(
+            DCConductingEquipment.parse (context)
+        )
+    }
+}
+
+/**
+ * An electrical connection point to generic DC conducting equipment.
+ * @param sup Reference to the superclass object.
+ * @param DCConductingEquipment <em>undocumented</em>
+ */
+case class DCTerminal
+(
+    override val sup: DCBaseTerminal,
+    DCConductingEquipment: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def DCBaseTerminal: DCBaseTerminal = sup.asInstanceOf[DCBaseTerminal]
+    override def copy (): Row = { clone ().asInstanceOf[DCTerminal] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != DCConductingEquipment) "\t\t<cim:DCTerminal.DCConductingEquipment rdf:resource=\"#" + DCConductingEquipment + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:DCTerminal rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCTerminal>\n"
+    }
+}
+
+object DCTerminal
+extends
+    Parseable[DCTerminal]
+{
+    val DCConductingEquipment: (Context) => String = parse_attribute (attribute ("""DCTerminal.DCConductingEquipment"""))
+    def parse (context: Context): DCTerminal =
+    {
+        DCTerminal(
+            DCBaseTerminal.parse (context),
+            DCConductingEquipment (context)
+        )
+    }
+}
+
+/**
+ * An electrically connected subset of the network.
+ * DC topological islands can change as the current network state changes: e.g. due to
+ * @param sup Reference to the superclass object.
+ */
+case class DCTopologicalIsland
+(
+    override val sup: IdentifiedObject
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[DCTopologicalIsland] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:DCTopologicalIsland rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:DCTopologicalIsland>\n"
+    }
+}
+
+object DCTopologicalIsland
+extends
+    Parseable[DCTopologicalIsland]
+{
+    def parse (context: Context): DCTopologicalIsland =
+    {
+        DCTopologicalIsland(
+            IdentifiedObject.parse (context)
+        )
+    }
+}
+
+case class PerLengthDCLineParameter
+(
+    override val sup: PerLengthLineParameter,
+    capacitance: Double,
+    inductance: Double,
+    resistance: Double
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0) }
+    def PerLengthLineParameter: PerLengthLineParameter = sup.asInstanceOf[PerLengthLineParameter]
+    override def copy (): Row = { clone ().asInstanceOf[PerLengthDCLineParameter] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:PerLengthDCLineParameter.capacitance>" + capacitance + "</cim:PerLengthDCLineParameter.capacitance>\n" +
+        "\t\t<cim:PerLengthDCLineParameter.inductance>" + inductance + "</cim:PerLengthDCLineParameter.inductance>\n" +
+        "\t\t<cim:PerLengthDCLineParameter.resistance>" + resistance + "</cim:PerLengthDCLineParameter.resistance>\n"
+    }
+    override def export: String =
+    {
+        "\t<cim:PerLengthDCLineParameter rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:PerLengthDCLineParameter>\n"
+    }
+}
+
+object PerLengthDCLineParameter
+extends
+    Parseable[PerLengthDCLineParameter]
+{
+    val capacitance: (Context) => String = parse_element (element ("""PerLengthDCLineParameter.capacitance"""))
+    val inductance: (Context) => String = parse_element (element ("""PerLengthDCLineParameter.inductance"""))
+    val resistance: (Context) => String = parse_element (element ("""PerLengthDCLineParameter.resistance"""))
+    def parse (context: Context): PerLengthDCLineParameter =
+    {
+        PerLengthDCLineParameter(
+            PerLengthLineParameter.parse (context),
+            toDouble (capacitance (context), context),
+            toDouble (inductance (context), context),
+            toDouble (resistance (context), context)
+        )
+    }
+}
+
+/**
+ * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
+ * @param sup Reference to the superclass object.
+ */
+case class VsCapabilityCurve
+(
+    override val sup: Curve
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def Curve: Curve = sup.asInstanceOf[Curve]
+    override def copy (): Row = { clone ().asInstanceOf[VsCapabilityCurve] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:VsCapabilityCurve rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:VsCapabilityCurve>\n"
+    }
+}
+
+object VsCapabilityCurve
+extends
+    Parseable[VsCapabilityCurve]
+{
+    def parse (context: Context): VsCapabilityCurve =
+    {
+        VsCapabilityCurve(
+            Curve.parse (context)
+        )
+    }
+}
+
+/**
+ * DC side of the voltage source converter (VSC).
+ * @param sup Reference to the superclass object.
+ * @param delta Angle between uf and uc.
+ *        Converter state variable used in power flow.
+ * @param droop Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.
+ * @param droopCompensation Compensation constant.
+ *        Used to compensate for voltage drop when controlling voltage at a distant bus.
+ * @param maxModulationIndex The max quotient between the AC converter voltage (Uc) and DC voltage (Ud).
+ *        A factor typically less than 1. VSC configuration data used in power flow.
+ * @param maxValveCurrent The maximum current through a valve.
+ *        This current limit is the basis for calculating the capability diagram. VSC  configuration data.
+ * @param pPccControl Kind of control of real power and/or DC voltage.
+ * @param qPccControl <em>undocumented</em>
+ * @param qShare Reactive power sharing factor among parallel converters on Uac control.
+ * @param targetQpcc Reactive power injection target in AC grid, at point of common coupling.
+ * @param targetUpcc Voltage target in AC grid, at point of common coupling.
+ * @param uf Line-to-line voltage on the valve side of the converter transformer.
+ *        Converter state variable, result from power flow.
+ * @param CapabilityCurve Capability curve of this converter.
+ */
+case class VsConverter
+(
+    override val sup: ACDCConverter,
+    delta: Double,
+    droop: Double,
+    droopCompensation: Double,
+    maxModulationIndex: Double,
+    maxValveCurrent: Double,
+    pPccControl: String,
+    qPccControl: String,
+    qShare: Double,
+    targetQpcc: Double,
+    targetUpcc: Double,
+    uf: Double,
+    CapabilityCurve: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, null) }
+    def ACDCConverter: ACDCConverter = sup.asInstanceOf[ACDCConverter]
+    override def copy (): Row = { clone ().asInstanceOf[VsConverter] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:VsConverter.delta>" + delta + "</cim:VsConverter.delta>\n" +
+        "\t\t<cim:VsConverter.droop>" + droop + "</cim:VsConverter.droop>\n" +
+        "\t\t<cim:VsConverter.droopCompensation>" + droopCompensation + "</cim:VsConverter.droopCompensation>\n" +
+        "\t\t<cim:VsConverter.maxModulationIndex>" + maxModulationIndex + "</cim:VsConverter.maxModulationIndex>\n" +
+        "\t\t<cim:VsConverter.maxValveCurrent>" + maxValveCurrent + "</cim:VsConverter.maxValveCurrent>\n" +
+        (if (null != pPccControl) "\t\t<cim:VsConverter.pPccControl rdf:resource=\"#" + pPccControl + "\"/>\n" else "") +
+        (if (null != qPccControl) "\t\t<cim:VsConverter.qPccControl rdf:resource=\"#" + qPccControl + "\"/>\n" else "") +
+        "\t\t<cim:VsConverter.qShare>" + qShare + "</cim:VsConverter.qShare>\n" +
+        "\t\t<cim:VsConverter.targetQpcc>" + targetQpcc + "</cim:VsConverter.targetQpcc>\n" +
+        "\t\t<cim:VsConverter.targetUpcc>" + targetUpcc + "</cim:VsConverter.targetUpcc>\n" +
+        "\t\t<cim:VsConverter.uf>" + uf + "</cim:VsConverter.uf>\n" +
+        (if (null != CapabilityCurve) "\t\t<cim:VsConverter.CapabilityCurve rdf:resource=\"#" + CapabilityCurve + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:VsConverter rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:VsConverter>\n"
+    }
+}
+
+object VsConverter
+extends
+    Parseable[VsConverter]
+{
+    val delta: (Context) => String = parse_element (element ("""VsConverter.delta"""))
+    val droop: (Context) => String = parse_element (element ("""VsConverter.droop"""))
+    val droopCompensation: (Context) => String = parse_element (element ("""VsConverter.droopCompensation"""))
+    val maxModulationIndex: (Context) => String = parse_element (element ("""VsConverter.maxModulationIndex"""))
+    val maxValveCurrent: (Context) => String = parse_element (element ("""VsConverter.maxValveCurrent"""))
+    val pPccControl: (Context) => String = parse_attribute (attribute ("""VsConverter.pPccControl"""))
+    val qPccControl: (Context) => String = parse_attribute (attribute ("""VsConverter.qPccControl"""))
+    val qShare: (Context) => String = parse_element (element ("""VsConverter.qShare"""))
+    val targetQpcc: (Context) => String = parse_element (element ("""VsConverter.targetQpcc"""))
+    val targetUpcc: (Context) => String = parse_element (element ("""VsConverter.targetUpcc"""))
+    val uf: (Context) => String = parse_element (element ("""VsConverter.uf"""))
+    val CapabilityCurve: (Context) => String = parse_attribute (attribute ("""VsConverter.CapabilityCurve"""))
+    def parse (context: Context): VsConverter =
+    {
+        VsConverter(
+            ACDCConverter.parse (context),
+            toDouble (delta (context), context),
+            toDouble (droop (context), context),
+            toDouble (droopCompensation (context), context),
+            toDouble (maxModulationIndex (context), context),
+            toDouble (maxValveCurrent (context), context),
+            pPccControl (context),
+            qPccControl (context),
+            toDouble (qShare (context), context),
+            toDouble (targetQpcc (context), context),
+            toDouble (targetUpcc (context), context),
+            toDouble (uf (context), context),
+            CapabilityCurve (context)
+        )
+    }
+}
+
+/**
+ * Types applicable to the control of real power and/or DC voltage by voltage source converter.
+ * @param sup Reference to the superclass object.
+ * @param pPcc Control variable (target) is real power at PCC bus.
+ * @param pPccAndUdcDroop Control variables (targets) are both active power at point of common coupling and local DC voltage, with the droop.
+ * @param pPccAndUdcDroopPilot Control variables (targets) are both active power at point of common coupling and the pilot DC voltage, with the droop.
+ * @param pPccAndUdcDroopWithCompensation Control variables (targets) are both active power at point of common coupling and compensated DC voltage, with the droop; compensation factor is the resistance, as an approximation of the DC voltage of a common (real or virtual) node in the DC network.
+ * @param udc Control variable (target) is DC voltage and real power at PCC bus is derived.
+ */
+case class VsPpccControlKind
+(
+    override val sup: BasicElement,
+    pPcc: String,
+    pPccAndUdcDroop: String,
+    pPccAndUdcDroopPilot: String,
+    pPccAndUdcDroopWithCompensation: String,
+    udc: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[VsPpccControlKind] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != pPcc) "\t\t<cim:VsPpccControlKind.pPcc rdf:resource=\"#" + pPcc + "\"/>\n" else "") +
+        (if (null != pPccAndUdcDroop) "\t\t<cim:VsPpccControlKind.pPccAndUdcDroop rdf:resource=\"#" + pPccAndUdcDroop + "\"/>\n" else "") +
+        (if (null != pPccAndUdcDroopPilot) "\t\t<cim:VsPpccControlKind.pPccAndUdcDroopPilot rdf:resource=\"#" + pPccAndUdcDroopPilot + "\"/>\n" else "") +
+        (if (null != pPccAndUdcDroopWithCompensation) "\t\t<cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation rdf:resource=\"#" + pPccAndUdcDroopWithCompensation + "\"/>\n" else "") +
+        (if (null != udc) "\t\t<cim:VsPpccControlKind.udc rdf:resource=\"#" + udc + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:VsPpccControlKind rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:VsPpccControlKind>\n"
+    }
+}
+
+object VsPpccControlKind
+extends
+    Parseable[VsPpccControlKind]
+{
+    val pPcc: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPcc"""))
+    val pPccAndUdcDroop: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroop"""))
+    val pPccAndUdcDroopPilot: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopPilot"""))
+    val pPccAndUdcDroopWithCompensation: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopWithCompensation"""))
+    val udc: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.udc"""))
+    def parse (context: Context): VsPpccControlKind =
+    {
+        VsPpccControlKind(
+            BasicElement.parse (context),
+            pPcc (context),
+            pPccAndUdcDroop (context),
+            pPccAndUdcDroopPilot (context),
+            pPccAndUdcDroopWithCompensation (context),
+            udc (context)
+        )
+    }
+}
+
+case class VsQpccControlKind
+(
+    override val sup: BasicElement,
+    powerFactorPcc: String,
+    reactivePcc: String,
+    voltagePcc: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[VsQpccControlKind] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != powerFactorPcc) "\t\t<cim:VsQpccControlKind.powerFactorPcc rdf:resource=\"#" + powerFactorPcc + "\"/>\n" else "") +
+        (if (null != reactivePcc) "\t\t<cim:VsQpccControlKind.reactivePcc rdf:resource=\"#" + reactivePcc + "\"/>\n" else "") +
+        (if (null != voltagePcc) "\t\t<cim:VsQpccControlKind.voltagePcc rdf:resource=\"#" + voltagePcc + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:VsQpccControlKind rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:VsQpccControlKind>\n"
+    }
+}
+
+object VsQpccControlKind
+extends
+    Parseable[VsQpccControlKind]
+{
+    val powerFactorPcc: (Context) => String = parse_attribute (attribute ("""VsQpccControlKind.powerFactorPcc"""))
+    val reactivePcc: (Context) => String = parse_attribute (attribute ("""VsQpccControlKind.reactivePcc"""))
+    val voltagePcc: (Context) => String = parse_attribute (attribute ("""VsQpccControlKind.voltagePcc"""))
+    def parse (context: Context): VsQpccControlKind =
+    {
+        VsQpccControlKind(
+            BasicElement.parse (context),
+            powerFactorPcc (context),
+            reactivePcc (context),
+            voltagePcc (context)
+        )
+    }
+}
+
+private[ninecode] object _DC
+{
+    def register: List[ClassInfo] =
+    {
+        List (
+            ACDCConverter.register,
+            ACDCConverterDCTerminal.register,
+            CsConverter.register,
+            CsOperatingModeKind.register,
+            CsPpccControlKind.register,
+            DCBaseTerminal.register,
+            DCBreaker.register,
+            DCBusbar.register,
+            DCChopper.register,
+            DCConductingEquipment.register,
+            DCConverterOperatingModeKind.register,
+            DCConverterUnit.register,
+            DCDisconnector.register,
+            DCEquipmentContainer.register,
+            DCGround.register,
+            DCLine.register,
+            DCLineSegment.register,
+            DCNode.register,
+            DCPolarityKind.register,
+            DCSeriesDevice.register,
+            DCShunt.register,
+            DCSwitch.register,
+            DCTerminal.register,
+            DCTopologicalIsland.register,
+            PerLengthDCLineParameter.register,
+            VsCapabilityCurve.register,
+            VsConverter.register,
+            VsPpccControlKind.register,
+            VsQpccControlKind.register
+        )
+    }
+}

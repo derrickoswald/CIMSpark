@@ -1,0 +1,997 @@
+package ch.ninecode.model
+
+import org.apache.spark.sql.Row
+
+import ch.ninecode.cim.ClassInfo
+import ch.ninecode.cim.Context
+import ch.ninecode.cim.Parseable
+
+/**
+ * This package contains the common objects shared by MarketOperations packages.
+ */
+
+/**
+ * A roll up of invoice line items.
+ * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
+ * @param sup Reference to the superclass object.
+ * @param amount Total amount due on this invoice based on line items and applicable adjustments.
+ * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
+ * @param dueDate Calculated date upon which the Invoice amount is due.
+ * @param kind Kind of invoice (default is 'sales').
+ * @param mailedDate Date on which the customer billing statement/invoice was printed/mailed.
+ * @param proForma True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
+ *        EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
+ * @param referenceNumber Number of an invoice to be reference by this invoice.
+ * @param transactionDateTime Date and time when the invoice is issued.
+ * @param transferType Type of invoice transfer.
+ */
+case class MarketInvoice
+(
+    override val sup: BasicElement,
+    amount: Double,
+    billMediaKind: String,
+    dueDate: String,
+    kind: String,
+    mailedDate: String,
+    proForma: Boolean,
+    referenceNumber: String,
+    transactionDateTime: String,
+    transferType: String
+)
+extends
+    Element
+{
+    def this () = { this (null, 0.0, null, null, null, null, false, null, null, null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[MarketInvoice] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        "\t\t<cim:MarketInvoice.amount>" + amount + "</cim:MarketInvoice.amount>\n" +
+        (if (null != billMediaKind) "\t\t<cim:MarketInvoice.billMediaKind rdf:resource=\"#" + billMediaKind + "\"/>\n" else "") +
+        (if (null != dueDate) "\t\t<cim:MarketInvoice.dueDate>" + dueDate + "</cim:MarketInvoice.dueDate>\n" else "") +
+        (if (null != kind) "\t\t<cim:MarketInvoice.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
+        (if (null != mailedDate) "\t\t<cim:MarketInvoice.mailedDate>" + mailedDate + "</cim:MarketInvoice.mailedDate>\n" else "") +
+        "\t\t<cim:MarketInvoice.proForma>" + proForma + "</cim:MarketInvoice.proForma>\n" +
+        (if (null != referenceNumber) "\t\t<cim:MarketInvoice.referenceNumber>" + referenceNumber + "</cim:MarketInvoice.referenceNumber>\n" else "") +
+        (if (null != transactionDateTime) "\t\t<cim:MarketInvoice.transactionDateTime>" + transactionDateTime + "</cim:MarketInvoice.transactionDateTime>\n" else "") +
+        (if (null != transferType) "\t\t<cim:MarketInvoice.transferType>" + transferType + "</cim:MarketInvoice.transferType>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MarketInvoice rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MarketInvoice>\n"
+    }
+}
+
+object MarketInvoice
+extends
+    Parseable[MarketInvoice]
+{
+    val amount: (Context) => String = parse_element (element ("""MarketInvoice.amount"""))
+    val billMediaKind: (Context) => String = parse_attribute (attribute ("""MarketInvoice.billMediaKind"""))
+    val dueDate: (Context) => String = parse_element (element ("""MarketInvoice.dueDate"""))
+    val kind: (Context) => String = parse_attribute (attribute ("""MarketInvoice.kind"""))
+    val mailedDate: (Context) => String = parse_element (element ("""MarketInvoice.mailedDate"""))
+    val proForma: (Context) => String = parse_element (element ("""MarketInvoice.proForma"""))
+    val referenceNumber: (Context) => String = parse_element (element ("""MarketInvoice.referenceNumber"""))
+    val transactionDateTime: (Context) => String = parse_element (element ("""MarketInvoice.transactionDateTime"""))
+    val transferType: (Context) => String = parse_element (element ("""MarketInvoice.transferType"""))
+    def parse (context: Context): MarketInvoice =
+    {
+        MarketInvoice(
+            BasicElement.parse (context),
+            toDouble (amount (context), context),
+            billMediaKind (context),
+            dueDate (context),
+            kind (context),
+            mailedDate (context),
+            toBoolean (proForma (context), context),
+            referenceNumber (context),
+            transactionDateTime (context),
+            transferType (context)
+        )
+    }
+}
+
+/**
+ * An individual line item on an invoice.
+ * @param sup Reference to the superclass object.
+ * @param billPeriod Bill period for the line item.
+ * @param glAccount General Ledger account code, shall be a valid combination.
+ * @param glDateTime Date and time line item will be posted to the General Ledger.
+ * @param kind Kind of line item.
+ * @param lineAmount Amount due for this line item.
+ * @param lineNumber Line item number on invoice statement.
+ * @param lineVersion Version number of the bill run.
+ * @param netAmount Net line item charge amount.
+ * @param previousAmount Previous line item charge amount.
+ * @param ContainerMarketInvoiceLineItem <em>undocumented</em>
+ * @param MarketInvoice <em>undocumented</em>
+ * @param Settlement <em>undocumented</em>
+ */
+case class MarketInvoiceLineItem
+(
+    override val sup: BasicElement,
+    billPeriod: String,
+    glAccount: String,
+    glDateTime: String,
+    kind: String,
+    lineAmount: Double,
+    lineNumber: String,
+    lineVersion: String,
+    netAmount: Double,
+    previousAmount: Double,
+    ContainerMarketInvoiceLineItem: String,
+    MarketInvoice: String,
+    Settlement: List[String]
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, 0.0, null, null, 0.0, 0.0, null, null, List()) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[MarketInvoiceLineItem] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != billPeriod) "\t\t<cim:MarketInvoiceLineItem.billPeriod rdf:resource=\"#" + billPeriod + "\"/>\n" else "") +
+        (if (null != glAccount) "\t\t<cim:MarketInvoiceLineItem.glAccount>" + glAccount + "</cim:MarketInvoiceLineItem.glAccount>\n" else "") +
+        (if (null != glDateTime) "\t\t<cim:MarketInvoiceLineItem.glDateTime>" + glDateTime + "</cim:MarketInvoiceLineItem.glDateTime>\n" else "") +
+        (if (null != kind) "\t\t<cim:MarketInvoiceLineItem.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
+        "\t\t<cim:MarketInvoiceLineItem.lineAmount>" + lineAmount + "</cim:MarketInvoiceLineItem.lineAmount>\n" +
+        (if (null != lineNumber) "\t\t<cim:MarketInvoiceLineItem.lineNumber>" + lineNumber + "</cim:MarketInvoiceLineItem.lineNumber>\n" else "") +
+        (if (null != lineVersion) "\t\t<cim:MarketInvoiceLineItem.lineVersion>" + lineVersion + "</cim:MarketInvoiceLineItem.lineVersion>\n" else "") +
+        "\t\t<cim:MarketInvoiceLineItem.netAmount>" + netAmount + "</cim:MarketInvoiceLineItem.netAmount>\n" +
+        "\t\t<cim:MarketInvoiceLineItem.previousAmount>" + previousAmount + "</cim:MarketInvoiceLineItem.previousAmount>\n" +
+        (if (null != ContainerMarketInvoiceLineItem) "\t\t<cim:MarketInvoiceLineItem.ContainerMarketInvoiceLineItem rdf:resource=\"#" + ContainerMarketInvoiceLineItem + "\"/>\n" else "") +
+        (if (null != MarketInvoice) "\t\t<cim:MarketInvoiceLineItem.MarketInvoice rdf:resource=\"#" + MarketInvoice + "\"/>\n" else "") +
+        (if (null != Settlement) Settlement.map (x => "\t\t<cim:MarketInvoiceLineItem.Settlement rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MarketInvoiceLineItem rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MarketInvoiceLineItem>\n"
+    }
+}
+
+object MarketInvoiceLineItem
+extends
+    Parseable[MarketInvoiceLineItem]
+{
+    val billPeriod: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.billPeriod"""))
+    val glAccount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.glAccount"""))
+    val glDateTime: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.glDateTime"""))
+    val kind: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.kind"""))
+    val lineAmount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.lineAmount"""))
+    val lineNumber: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.lineNumber"""))
+    val lineVersion: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.lineVersion"""))
+    val netAmount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.netAmount"""))
+    val previousAmount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.previousAmount"""))
+    val ContainerMarketInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.ContainerMarketInvoiceLineItem"""))
+    val MarketInvoice: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.MarketInvoice"""))
+    val Settlement: (Context) => List[String] = parse_attributes (attribute ("""MarketInvoiceLineItem.Settlement"""))
+    def parse (context: Context): MarketInvoiceLineItem =
+    {
+        MarketInvoiceLineItem(
+            BasicElement.parse (context),
+            billPeriod (context),
+            glAccount (context),
+            glDateTime (context),
+            kind (context),
+            toDouble (lineAmount (context), context),
+            lineNumber (context),
+            lineVersion (context),
+            toDouble (netAmount (context), context),
+            toDouble (previousAmount (context), context),
+            ContainerMarketInvoiceLineItem (context),
+            MarketInvoice (context),
+            Settlement (context)
+        )
+    }
+}
+
+/**
+ * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
+ * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
+ * @param sup Reference to the superclass object.
+ */
+case class MarketLedger
+(
+    override val sup: BasicElement
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[MarketLedger] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:MarketLedger rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MarketLedger>\n"
+    }
+}
+
+object MarketLedger
+extends
+    Parseable[MarketLedger]
+{
+    def parse (context: Context): MarketLedger =
+    {
+        MarketLedger(
+            BasicElement.parse (context)
+        )
+    }
+}
+
+/**
+ * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
+ * @param sup Reference to the superclass object.
+ * @param accountID Account identifier for this entry.
+ * @param accountKind Kind of account for this entry.
+ * @param amount The amount of the debit or credit for this account.
+ * @param postedDateTime Date and time this entry was posted to the ledger.
+ * @param status Status of ledger entry.
+ * @param transactionDateTime Date and time journal entry was recorded.
+ * @param MarketLedger <em>undocumented</em>
+ * @param Settlement <em>undocumented</em>
+ */
+case class MarketLedgerEntry
+(
+    override val sup: BasicElement,
+    accountID: String,
+    accountKind: String,
+    amount: Double,
+    postedDateTime: String,
+    status: String,
+    transactionDateTime: String,
+    MarketLedger: String,
+    Settlement: List[String]
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, 0.0, null, null, null, null, List()) }
+    def Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[MarketLedgerEntry] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != accountID) "\t\t<cim:MarketLedgerEntry.accountID>" + accountID + "</cim:MarketLedgerEntry.accountID>\n" else "") +
+        (if (null != accountKind) "\t\t<cim:MarketLedgerEntry.accountKind rdf:resource=\"#" + accountKind + "\"/>\n" else "") +
+        "\t\t<cim:MarketLedgerEntry.amount>" + amount + "</cim:MarketLedgerEntry.amount>\n" +
+        (if (null != postedDateTime) "\t\t<cim:MarketLedgerEntry.postedDateTime>" + postedDateTime + "</cim:MarketLedgerEntry.postedDateTime>\n" else "") +
+        (if (null != status) "\t\t<cim:MarketLedgerEntry.status rdf:resource=\"#" + status + "\"/>\n" else "") +
+        (if (null != transactionDateTime) "\t\t<cim:MarketLedgerEntry.transactionDateTime>" + transactionDateTime + "</cim:MarketLedgerEntry.transactionDateTime>\n" else "") +
+        (if (null != MarketLedger) "\t\t<cim:MarketLedgerEntry.MarketLedger rdf:resource=\"#" + MarketLedger + "\"/>\n" else "") +
+        (if (null != Settlement) Settlement.map (x => "\t\t<cim:MarketLedgerEntry.Settlement rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MarketLedgerEntry rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MarketLedgerEntry>\n"
+    }
+}
+
+object MarketLedgerEntry
+extends
+    Parseable[MarketLedgerEntry]
+{
+    val accountID: (Context) => String = parse_element (element ("""MarketLedgerEntry.accountID"""))
+    val accountKind: (Context) => String = parse_attribute (attribute ("""MarketLedgerEntry.accountKind"""))
+    val amount: (Context) => String = parse_element (element ("""MarketLedgerEntry.amount"""))
+    val postedDateTime: (Context) => String = parse_element (element ("""MarketLedgerEntry.postedDateTime"""))
+    val status: (Context) => String = parse_attribute (attribute ("""MarketLedgerEntry.status"""))
+    val transactionDateTime: (Context) => String = parse_element (element ("""MarketLedgerEntry.transactionDateTime"""))
+    val MarketLedger: (Context) => String = parse_attribute (attribute ("""MarketLedgerEntry.MarketLedger"""))
+    val Settlement: (Context) => List[String] = parse_attributes (attribute ("""MarketLedgerEntry.Settlement"""))
+    def parse (context: Context): MarketLedgerEntry =
+    {
+        MarketLedgerEntry(
+            BasicElement.parse (context),
+            accountID (context),
+            accountKind (context),
+            toDouble (amount (context), context),
+            postedDateTime (context),
+            status (context),
+            transactionDateTime (context),
+            MarketLedger (context),
+            Settlement (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61968: Common:ActivityRecord
+ * @param sup Reference to the superclass object.
+ */
+case class MktActivityRecord
+(
+    override val sup: ActivityRecord
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
+    override def copy (): Row = { clone ().asInstanceOf[MktActivityRecord] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:MktActivityRecord rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktActivityRecord>\n"
+    }
+}
+
+object MktActivityRecord
+extends
+    Parseable[MktActivityRecord]
+{
+    def parse (context: Context): MktActivityRecord =
+    {
+        MktActivityRecord(
+            ActivityRecord.parse (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61970:Topology:ConnectivityNode
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate end effective date
+ * @param startEffectiveDate start effective date
+ * @param IndividualPnode <em>undocumented</em>
+ * @param RTO <em>undocumented</em>
+ * @param SysLoadDistribuFactor <em>undocumented</em>
+ */
+case class MktConnectivityNode
+(
+    override val sup: ConnectivityNode,
+    endEffectiveDate: String,
+    startEffectiveDate: String,
+    IndividualPnode: String,
+    RTO: String,
+    SysLoadDistribuFactor: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, null) }
+    def ConnectivityNode: ConnectivityNode = sup.asInstanceOf[ConnectivityNode]
+    override def copy (): Row = { clone ().asInstanceOf[MktConnectivityNode] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != endEffectiveDate) "\t\t<cim:MktConnectivityNode.endEffectiveDate>" + endEffectiveDate + "</cim:MktConnectivityNode.endEffectiveDate>\n" else "") +
+        (if (null != startEffectiveDate) "\t\t<cim:MktConnectivityNode.startEffectiveDate>" + startEffectiveDate + "</cim:MktConnectivityNode.startEffectiveDate>\n" else "") +
+        (if (null != IndividualPnode) "\t\t<cim:MktConnectivityNode.IndividualPnode rdf:resource=\"#" + IndividualPnode + "\"/>\n" else "") +
+        (if (null != RTO) "\t\t<cim:MktConnectivityNode.RTO rdf:resource=\"#" + RTO + "\"/>\n" else "") +
+        (if (null != SysLoadDistribuFactor) "\t\t<cim:MktConnectivityNode.SysLoadDistribuFactor rdf:resource=\"#" + SysLoadDistribuFactor + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktConnectivityNode rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktConnectivityNode>\n"
+    }
+}
+
+object MktConnectivityNode
+extends
+    Parseable[MktConnectivityNode]
+{
+    val endEffectiveDate: (Context) => String = parse_element (element ("""MktConnectivityNode.endEffectiveDate"""))
+    val startEffectiveDate: (Context) => String = parse_element (element ("""MktConnectivityNode.startEffectiveDate"""))
+    val IndividualPnode: (Context) => String = parse_attribute (attribute ("""MktConnectivityNode.IndividualPnode"""))
+    val RTO: (Context) => String = parse_attribute (attribute ("""MktConnectivityNode.RTO"""))
+    val SysLoadDistribuFactor: (Context) => String = parse_attribute (attribute ("""MktConnectivityNode.SysLoadDistribuFactor"""))
+    def parse (context: Context): MktConnectivityNode =
+    {
+        MktConnectivityNode(
+            ConnectivityNode.parse (context),
+            endEffectiveDate (context),
+            startEffectiveDate (context),
+            IndividualPnode (context),
+            RTO (context),
+            SysLoadDistribuFactor (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61970:Wires:EnergyConsumer
+ * @param sup Reference to the superclass object.
+ * @param RegisteredLoad <em>undocumented</em>
+ */
+case class MktEnergyConsumer
+(
+    override val sup: EnergyConsumer,
+    RegisteredLoad: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
+    override def copy (): Row = { clone ().asInstanceOf[MktEnergyConsumer] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != RegisteredLoad) "\t\t<cim:MktEnergyConsumer.RegisteredLoad rdf:resource=\"#" + RegisteredLoad + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktEnergyConsumer rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktEnergyConsumer>\n"
+    }
+}
+
+object MktEnergyConsumer
+extends
+    Parseable[MktEnergyConsumer]
+{
+    val RegisteredLoad: (Context) => String = parse_attribute (attribute ("""MktEnergyConsumer.RegisteredLoad"""))
+    def parse (context: Context): MktEnergyConsumer =
+    {
+        MktEnergyConsumer(
+            EnergyConsumer.parse (context),
+            RegisteredLoad (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61970:Production:GeneratingUnit
+ * @param sup Reference to the superclass object.
+ * @param RegisteredGenerator <em>undocumented</em>
+ */
+case class MktGeneratingUnit
+(
+    override val sup: GeneratingUnit,
+    RegisteredGenerator: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
+    override def copy (): Row = { clone ().asInstanceOf[MktGeneratingUnit] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != RegisteredGenerator) "\t\t<cim:MktGeneratingUnit.RegisteredGenerator rdf:resource=\"#" + RegisteredGenerator + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktGeneratingUnit rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktGeneratingUnit>\n"
+    }
+}
+
+object MktGeneratingUnit
+extends
+    Parseable[MktGeneratingUnit]
+{
+    val RegisteredGenerator: (Context) => String = parse_attribute (attribute ("""MktGeneratingUnit.RegisteredGenerator"""))
+    def parse (context: Context): MktGeneratingUnit =
+    {
+        MktGeneratingUnit(
+            GeneratingUnit.parse (context),
+            RegisteredGenerator (context)
+        )
+    }
+}
+
+/**
+ * Subclass for IEC61970:Wires:Line
+ * @param sup Reference to the superclass object.
+ * @param TransmissionRightOfWay <em>undocumented</em>
+ */
+case class MktLine
+(
+    override val sup: Line,
+    TransmissionRightOfWay: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null) }
+    def Line: Line = sup.asInstanceOf[Line]
+    override def copy (): Row = { clone ().asInstanceOf[MktLine] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != TransmissionRightOfWay) "\t\t<cim:MktLine.TransmissionRightOfWay rdf:resource=\"#" + TransmissionRightOfWay + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktLine rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktLine>\n"
+    }
+}
+
+object MktLine
+extends
+    Parseable[MktLine]
+{
+    val TransmissionRightOfWay: (Context) => String = parse_attribute (attribute ("""MktLine.TransmissionRightOfWay"""))
+    def parse (context: Context): MktLine =
+    {
+        MktLine(
+            Line.parse (context),
+            TransmissionRightOfWay (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61970:LoadModel: LoadArea
+ * @param sup Reference to the superclass object.
+ */
+case class MktLoadArea
+(
+    override val sup: LoadArea
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def LoadArea: LoadArea = sup.asInstanceOf[LoadArea]
+    override def copy (): Row = { clone ().asInstanceOf[MktLoadArea] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:MktLoadArea rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktLoadArea>\n"
+    }
+}
+
+object MktLoadArea
+extends
+    Parseable[MktLoadArea]
+{
+    def parse (context: Context): MktLoadArea =
+    {
+        MktLoadArea(
+            LoadArea.parse (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61970:Meas:Measurement
+ * @param sup Reference to the superclass object.
+ * @param ByTiePoint A measurement is made on the B side of a tie point
+ * @param ForTiePoint A measurement is made on the A side of a tie point
+ * @param Pnode <em>undocumented</em>
+ */
+case class MktMeasurement
+(
+    override val sup: Measurement,
+    ByTiePoint: String,
+    ForTiePoint: String,
+    Pnode: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Measurement: Measurement = sup.asInstanceOf[Measurement]
+    override def copy (): Row = { clone ().asInstanceOf[MktMeasurement] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != ByTiePoint) "\t\t<cim:MktMeasurement.ByTiePoint rdf:resource=\"#" + ByTiePoint + "\"/>\n" else "") +
+        (if (null != ForTiePoint) "\t\t<cim:MktMeasurement.ForTiePoint rdf:resource=\"#" + ForTiePoint + "\"/>\n" else "") +
+        (if (null != Pnode) "\t\t<cim:MktMeasurement.Pnode rdf:resource=\"#" + Pnode + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktMeasurement rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktMeasurement>\n"
+    }
+}
+
+object MktMeasurement
+extends
+    Parseable[MktMeasurement]
+{
+    val ByTiePoint: (Context) => String = parse_attribute (attribute ("""MktMeasurement.ByTiePoint"""))
+    val ForTiePoint: (Context) => String = parse_attribute (attribute ("""MktMeasurement.ForTiePoint"""))
+    val Pnode: (Context) => String = parse_attribute (attribute ("""MktMeasurement.Pnode"""))
+    def parse (context: Context): MktMeasurement =
+    {
+        MktMeasurement(
+            Measurement.parse (context),
+            ByTiePoint (context),
+            ForTiePoint (context),
+            Pnode (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61968:Core2:TopLevel:Organisation
+ * @param sup Reference to the superclass object.
+ * @param creditFlag Flag to indicate creditworthiness (Y, N)
+ * @param creditStartEffectiveDate Date that the organisation becomes creditworthy.
+ * @param endEffectiveDate end effective date
+ * @param lastModified Indication of the last time this Organization information was modified.
+ * @param organisationID Organisation (internal) ID
+ * @param qualificationStatus Organisation qualification status, Qualified, Not Qualified, or Disqualified
+ * @param startEffectiveDate start effective date
+ * @param MarketPerson <em>undocumented</em>
+ */
+case class MktOrganisation
+(
+    override val sup: Organisation,
+    creditFlag: String,
+    creditStartEffectiveDate: String,
+    endEffectiveDate: String,
+    lastModified: String,
+    organisationID: Int,
+    qualificationStatus: String,
+    startEffectiveDate: String,
+    MarketPerson: List[String]
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null, null, 0, null, null, List()) }
+    def Organisation: Organisation = sup.asInstanceOf[Organisation]
+    override def copy (): Row = { clone ().asInstanceOf[MktOrganisation] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != creditFlag) "\t\t<cim:MktOrganisation.creditFlag rdf:resource=\"#" + creditFlag + "\"/>\n" else "") +
+        (if (null != creditStartEffectiveDate) "\t\t<cim:MktOrganisation.creditStartEffectiveDate>" + creditStartEffectiveDate + "</cim:MktOrganisation.creditStartEffectiveDate>\n" else "") +
+        (if (null != endEffectiveDate) "\t\t<cim:MktOrganisation.endEffectiveDate>" + endEffectiveDate + "</cim:MktOrganisation.endEffectiveDate>\n" else "") +
+        (if (null != lastModified) "\t\t<cim:MktOrganisation.lastModified>" + lastModified + "</cim:MktOrganisation.lastModified>\n" else "") +
+        "\t\t<cim:MktOrganisation.organisationID>" + organisationID + "</cim:MktOrganisation.organisationID>\n" +
+        (if (null != qualificationStatus) "\t\t<cim:MktOrganisation.qualificationStatus>" + qualificationStatus + "</cim:MktOrganisation.qualificationStatus>\n" else "") +
+        (if (null != startEffectiveDate) "\t\t<cim:MktOrganisation.startEffectiveDate>" + startEffectiveDate + "</cim:MktOrganisation.startEffectiveDate>\n" else "") +
+        (if (null != MarketPerson) MarketPerson.map (x => "\t\t<cim:MktOrganisation.MarketPerson rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktOrganisation rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktOrganisation>\n"
+    }
+}
+
+object MktOrganisation
+extends
+    Parseable[MktOrganisation]
+{
+    val creditFlag: (Context) => String = parse_attribute (attribute ("""MktOrganisation.creditFlag"""))
+    val creditStartEffectiveDate: (Context) => String = parse_element (element ("""MktOrganisation.creditStartEffectiveDate"""))
+    val endEffectiveDate: (Context) => String = parse_element (element ("""MktOrganisation.endEffectiveDate"""))
+    val lastModified: (Context) => String = parse_element (element ("""MktOrganisation.lastModified"""))
+    val organisationID: (Context) => String = parse_element (element ("""MktOrganisation.organisationID"""))
+    val qualificationStatus: (Context) => String = parse_element (element ("""MktOrganisation.qualificationStatus"""))
+    val startEffectiveDate: (Context) => String = parse_element (element ("""MktOrganisation.startEffectiveDate"""))
+    val MarketPerson: (Context) => List[String] = parse_attributes (attribute ("""MktOrganisation.MarketPerson"""))
+    def parse (context: Context): MktOrganisation =
+    {
+        MktOrganisation(
+            Organisation.parse (context),
+            creditFlag (context),
+            creditStartEffectiveDate (context),
+            endEffectiveDate (context),
+            lastModified (context),
+            toInteger (organisationID (context), context),
+            qualificationStatus (context),
+            startEffectiveDate (context),
+            MarketPerson (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61970:Wires:PowerTransformer
+ * @param sup Reference to the superclass object.
+ * @param EndAFlow <em>undocumented</em>
+ * @param EndBFlow <em>undocumented</em>
+ */
+case class MktPowerTransformer
+(
+    override val sup: PowerTransformer,
+    EndAFlow: String,
+    EndBFlow: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null) }
+    def PowerTransformer: PowerTransformer = sup.asInstanceOf[PowerTransformer]
+    override def copy (): Row = { clone ().asInstanceOf[MktPowerTransformer] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != EndAFlow) "\t\t<cim:MktPowerTransformer.EndAFlow rdf:resource=\"#" + EndAFlow + "\"/>\n" else "") +
+        (if (null != EndBFlow) "\t\t<cim:MktPowerTransformer.EndBFlow rdf:resource=\"#" + EndBFlow + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktPowerTransformer rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktPowerTransformer>\n"
+    }
+}
+
+object MktPowerTransformer
+extends
+    Parseable[MktPowerTransformer]
+{
+    val EndAFlow: (Context) => String = parse_attribute (attribute ("""MktPowerTransformer.EndAFlow"""))
+    val EndBFlow: (Context) => String = parse_attribute (attribute ("""MktPowerTransformer.EndBFlow"""))
+    def parse (context: Context): MktPowerTransformer =
+    {
+        MktPowerTransformer(
+            PowerTransformer.parse (context),
+            EndAFlow (context),
+            EndBFlow (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61970:Core:Terminal
+ * @param sup Reference to the superclass object.
+ * @param endEffectiveDate This is the end date/time of the element eligibility for the flowgate.
+ * @param startEffectiveDate This is the begin date/time of the element eligibility for the flowgate.
+ * @param Flowgate <em>undocumented</em>
+ */
+case class MktTerminal
+(
+    override val sup: Terminal,
+    endEffectiveDate: String,
+    startEffectiveDate: String,
+    Flowgate: String
+)
+extends
+    Element
+{
+    def this () = { this (null, null, null, null) }
+    def Terminal: Terminal = sup.asInstanceOf[Terminal]
+    override def copy (): Row = { clone ().asInstanceOf[MktTerminal] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        (if (null != endEffectiveDate) "\t\t<cim:MktTerminal.endEffectiveDate>" + endEffectiveDate + "</cim:MktTerminal.endEffectiveDate>\n" else "") +
+        (if (null != startEffectiveDate) "\t\t<cim:MktTerminal.startEffectiveDate>" + startEffectiveDate + "</cim:MktTerminal.startEffectiveDate>\n" else "") +
+        (if (null != Flowgate) "\t\t<cim:MktTerminal.Flowgate rdf:resource=\"#" + Flowgate + "\"/>\n" else "")
+    }
+    override def export: String =
+    {
+        "\t<cim:MktTerminal rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktTerminal>\n"
+    }
+}
+
+object MktTerminal
+extends
+    Parseable[MktTerminal]
+{
+    val endEffectiveDate: (Context) => String = parse_element (element ("""MktTerminal.endEffectiveDate"""))
+    val startEffectiveDate: (Context) => String = parse_element (element ("""MktTerminal.startEffectiveDate"""))
+    val Flowgate: (Context) => String = parse_attribute (attribute ("""MktTerminal.Flowgate"""))
+    def parse (context: Context): MktTerminal =
+    {
+        MktTerminal(
+            Terminal.parse (context),
+            endEffectiveDate (context),
+            startEffectiveDate (context),
+            Flowgate (context)
+        )
+    }
+}
+
+/**
+ * Subclass of IEC61968:Domain2:UserAttribute
+ * @param sup Reference to the superclass object.
+ */
+case class MktUserAttribute
+(
+    override val sup: UserAttribute
+)
+extends
+    Element
+{
+    def this () = { this (null) }
+    def UserAttribute: UserAttribute = sup.asInstanceOf[UserAttribute]
+    override def copy (): Row = { clone ().asInstanceOf[MktUserAttribute] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields +
+        ""
+    }
+    override def export: String =
+    {
+        "\t<cim:MktUserAttribute rdf:ID=\"" + id + "\">\n" +
+        export_fields +
+        "\t</cim:MktUserAttribute>\n"
+    }
+}
+
+object MktUserAttribute
+extends
+    Parseable[MktUserAttribute]
+{
+    def parse (context: Context): MktUserAttribute =
+    {
+        MktUserAttribute(
+            UserAttribute.parse (context)
+        )
+    }
+}
+
+private[ninecode] object _MarketOpCommon
+{
+    def register: List[ClassInfo] =
+    {
+        List (
+            MarketInvoice.register,
+            MarketInvoiceLineItem.register,
+            MarketLedger.register,
+            MarketLedgerEntry.register,
+            MktActivityRecord.register,
+            MktConnectivityNode.register,
+            MktEnergyConsumer.register,
+            MktGeneratingUnit.register,
+            MktLine.register,
+            MktLoadArea.register,
+            MktMeasurement.register,
+            MktOrganisation.register,
+            MktPowerTransformer.register,
+            MktTerminal.register,
+            MktUserAttribute.register
+        )
+    }
+}

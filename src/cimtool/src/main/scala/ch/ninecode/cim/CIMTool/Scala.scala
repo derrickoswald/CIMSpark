@@ -25,6 +25,8 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "class" => "_class"
             case "%" => "percent"
             case "length" => "len"
+            case "Boolean" => "Boolean_"
+            case "String" => "String_"
             case "" => "attr" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
@@ -469,7 +471,7 @@ case class Scala (parser: ModelParser, pkg: Package)
 
         implicit val ordering = new Ordering[(String, Int)]
         {
-           def compare (a: (String, Int), b: (String, Int)) = a._1.compareTo (b._1)
+           def compare (a: (String, Int), b: (String, Int)): Int = a._1.compareTo (b._1)
         }
         val case_classes = SortedSet[(String,Int)]()
         for (cls <- classes)
@@ -486,12 +488,12 @@ case class Scala (parser: ModelParser, pkg: Package)
             def myattribute (attribute: Attribute): Boolean = attribute.name != "" // ToDo: why empty names?
             def myrole (role: Role): Boolean =
             {
-                def many_to_many: Boolean = ((role.card == "0..*") && (role.mate.card == "0..*") && role.sideA)
+                def many_to_many: Boolean = (role.card == "0..*") && (role.mate.card == "0..*") && role.sideA
                 role.src == cls && ((role.upper == 1) || many_to_many)
             }
             implicit val ordering = new Ordering[Member]
             {
-               def compare (a: Member, b: Member) =
+               def compare (a: Member, b: Member): Int =
                    if (a.name == "sup")
                        -1
                    else if (b.name == "sup")
@@ -510,9 +512,9 @@ case class Scala (parser: ModelParser, pkg: Package)
             }
             val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "")
             val members =
-                (SortedSet[Member] (sup) ++
-                    parser.attributes.getOrElse (c._2, List[Attribute]()).filter (myattribute).map (details).toSet
-                    .union (parser.roles.filter (myrole).map (details)))
+                SortedSet[Member](sup) ++
+                    parser.attributes.getOrElse(c._2, List[Attribute]()).filter(myattribute).map(details).toSet
+                        .union(parser.roles.filter(myrole).map(details))
 
             val s = new StringBuilder ()
             if (null != cls.note)
@@ -525,7 +527,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             val initializers = new StringBuilder ()
             for (product <- members)
             {
-                if (initializers.length > 0)
+                if (initializers.nonEmpty)
                 {
                     initializers.append (", ")
                     s.append (""",
@@ -583,7 +585,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                 {
                     if (product.name != "sup" && product.variable != "mRID")
                     {
-                        val nullable = ((product.reference) || ("String" == product.datatype))
+                        val nullable = product.reference || ("String" == product.datatype)
                         s.append ("""        """)
                         if (nullable)
                         {
@@ -753,10 +755,9 @@ case class Scala (parser: ModelParser, pkg: Package)
             p.append (s)
         }
 
-        if (case_classes.size > 0)
+        if (case_classes.nonEmpty)
         {
             val v = new StringBuilder ()
-            val r = scala.collection.mutable.SortedSet[String]()
 
             v.append ("""package ch.ninecode.model
             |

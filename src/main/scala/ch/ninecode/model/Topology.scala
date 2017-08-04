@@ -73,16 +73,18 @@ extends
  * DC bus.
  * @param sup Reference to the superclass object.
  * @param DCEquipmentContainer <em>undocumented</em>
+ * @param DCTopologicalIsland <em>undocumented</em>
  */
 case class DCTopologicalNode
 (
     override val sup: IdentifiedObject,
-    DCEquipmentContainer: String
+    DCEquipmentContainer: String,
+    DCTopologicalIsland: String
 )
 extends
     Element
 {
-    def this () = { this (null, null) }
+    def this () = { this (null, null, null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DCTopologicalNode] }
     override def get (i: Int): Object =
@@ -96,7 +98,8 @@ extends
     override def export_fields: String =
     {
         sup.export_fields +
-        (if (null != DCEquipmentContainer) "\t\t<cim:DCTopologicalNode.DCEquipmentContainer rdf:resource=\"#" + DCEquipmentContainer + "\"/>\n" else "")
+        (if (null != DCEquipmentContainer) "\t\t<cim:DCTopologicalNode.DCEquipmentContainer rdf:resource=\"#" + DCEquipmentContainer + "\"/>\n" else "") +
+        (if (null != DCTopologicalIsland) "\t\t<cim:DCTopologicalNode.DCTopologicalIsland rdf:resource=\"#" + DCTopologicalIsland + "\"/>\n" else "")
     }
     override def export: String =
     {
@@ -111,11 +114,13 @@ extends
     Parseable[DCTopologicalNode]
 {
     val DCEquipmentContainer: (Context) => String = parse_attribute (attribute ("""DCTopologicalNode.DCEquipmentContainer"""))
+    val DCTopologicalIsland: (Context) => String = parse_attribute (attribute ("""DCTopologicalNode.DCTopologicalIsland"""))
     def parse (context: Context): DCTopologicalNode =
     {
         DCTopologicalNode(
             IdentifiedObject.parse (context),
-            DCEquipmentContainer (context)
+            DCEquipmentContainer (context),
+            DCTopologicalIsland (context)
         )
     }
 }

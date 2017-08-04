@@ -1926,16 +1926,18 @@ extends
  * A reporting group is used for various ad-hoc groupings used for reporting.
  * @param sup Reference to the superclass object.
  * @param PowerSystemResource Power system resources which belong to this reporting group.
+ * @param ReportingSuperGroup Reporting super group to which this reporting group belongs.
  */
 case class ReportingGroup
 (
     override val sup: IdentifiedObject,
-    PowerSystemResource: List[String]
+    PowerSystemResource: List[String],
+    ReportingSuperGroup: String
 )
 extends
     Element
 {
-    def this () = { this (null, List()) }
+    def this () = { this (null, List(), null) }
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ReportingGroup] }
     override def get (i: Int): Object =
@@ -1949,7 +1951,8 @@ extends
     override def export_fields: String =
     {
         sup.export_fields +
-        (if (null != PowerSystemResource) PowerSystemResource.map (x => "\t\t<cim:ReportingGroup.PowerSystemResource rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        (if (null != PowerSystemResource) PowerSystemResource.map (x => "\t\t<cim:ReportingGroup.PowerSystemResource rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
+        (if (null != ReportingSuperGroup) "\t\t<cim:ReportingGroup.ReportingSuperGroup rdf:resource=\"#" + ReportingSuperGroup + "\"/>\n" else "")
     }
     override def export: String =
     {
@@ -1964,11 +1967,13 @@ extends
     Parseable[ReportingGroup]
 {
     val PowerSystemResource: (Context) => List[String] = parse_attributes (attribute ("""ReportingGroup.PowerSystemResource"""))
+    val ReportingSuperGroup: (Context) => String = parse_attribute (attribute ("""ReportingGroup.ReportingSuperGroup"""))
     def parse (context: Context): ReportingGroup =
     {
         ReportingGroup(
             IdentifiedObject.parse (context),
-            PowerSystemResource (context)
+            PowerSystemResource (context),
+            ReportingSuperGroup (context)
         )
     }
 }
