@@ -3,7 +3,6 @@ package org.apache.spark.sql.types
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.expressions.GenericInternalRow
-import org.apache.spark.sql.catalyst.expressions.GenericMutableRow
 import org.apache.spark.sql.catalyst.expressions.UnsafeRow
 import org.apache.spark.unsafe.types.UTF8String
 
@@ -46,7 +45,7 @@ class ElementUDT extends UserDefinedType[Element]
     {
           val output = new Array[Any](1)
           output (0) = UTF8String.fromString (obj.id.toString)
-          val r = new GenericMutableRow (output)
+          val r = new GenericInternalRow (output)
           r
     }
 

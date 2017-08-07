@@ -4,7 +4,7 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.Path
 import org.apache.spark.deploy.SparkHadoopUtil
 import org.apache.spark.sql.SQLContext
-import org.apache.spark.sql.execution.datasources.ListingFileCatalog
+import org.apache.spark.sql.execution.datasources.InMemoryFileIndex
 import org.apache.spark.sql.sources.BaseRelation
 import org.apache.spark.sql.sources.RelationProvider
 import org.slf4j.LoggerFactory
@@ -37,7 +37,7 @@ extends
                     throw new java.io.FileNotFoundException (s"Path does not exist: ${globPath.head}")
                 globPath
         }
-        val fileCatalog = new ListingFileCatalog (session, globbedPaths, parameters, None, false)
+        val fileCatalog = new InMemoryFileIndex (session, globbedPaths, parameters, None)
         val partitionSchema = fileCatalog.partitionSpec().partitionColumns
         val format = new CIMFileFormat ()
         val dataSchema = format.inferSchema (session, parameters, fileCatalog.allFiles ()).get

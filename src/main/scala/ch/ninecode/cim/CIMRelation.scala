@@ -8,7 +8,7 @@ import org.apache.spark.sql.Row
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.catalyst.ScalaReflection
-import org.apache.spark.sql.execution.datasources.FileCatalog
+import org.apache.spark.sql.execution.datasources.FileIndex
 import org.apache.spark.sql.execution.datasources.FileFormat
 import org.apache.spark.sql.sources.BaseRelation
 import org.apache.spark.sql.sources.TableScan
@@ -19,7 +19,7 @@ import org.slf4j.{Logger, LoggerFactory}
 import ch.ninecode.model.Element
 
 class CIMRelation (
-    location: FileCatalog,
+    location: FileIndex,
     partitionSchema: StructType,
     dataSchema: StructType,
     fileFormat: FileFormat,

@@ -52,6 +52,10 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "length" => "len"
             case "size" => "size1"
             case "lock" => "lock1"
+            case "switch" => "switch1"
+            case "char" => "char1"
+            case "default" => "default1"
+            case "native" => "native1"
             case "" => "attr" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
@@ -79,6 +83,12 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "class" => "_class"
             case "%" => "percent"
             case "length" => "len"
+            case "size" => "size1"
+            case "lock" => "lock1"
+            case "switch" => "switch1"
+            case "char" => "char1"
+            case "default" => "default1"
+            case "native" => "native1"
             case "" => "attr" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +

@@ -227,7 +227,7 @@ object CIMServerJDBC
                 val session = session_builder.config (configuration).getOrCreate ()
                 val version = session.version
                 log.info (s"Spark $version session established")
-                if (version.take (SPARK.length) == SPARK.take (version.length))
+                if (version.take (SPARK.length) != SPARK.take (version.length))
                     log.warn (s"Spark version ($version) does not match the version ($SPARK) used to build $APPLICATION_NAME")
 
                 try

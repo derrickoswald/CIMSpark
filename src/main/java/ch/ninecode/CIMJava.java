@@ -51,7 +51,7 @@ public class CIMJava
         ArrayList<String> names = new ArrayList<String> ();
         while (res.next ())
         {
-            String name = res.getString (1);
+            String name = res.getString (2);
             names.add (name);
         }
         res.close ();

@@ -312,7 +312,7 @@ extends
  * @param btu Energy, British Thermal Units, BTU
  * @param btuPerH Power, BTU per hour, BTU/h
  * @param cd Luminous intensity, candela, cd
- * @param char Number of characters, characters, char
+ * @param char1 Number of characters, characters, char
  * @param charPerSec Data rate, characters per second, char/s
  * @param code Application Value, encoded value, code
  * @param cosTheta Power factor, Dimensionless &lt;img src="HTS_1.
@@ -450,7 +450,7 @@ case class ExtUnitSymbolKind
     btu: String,
     btuPerH: String,
     cd: String,
-    char: String,
+    char1: String,
     charPerSec: String,
     code: String,
     cosTheta: String,
@@ -593,7 +593,7 @@ extends
         (if (null != btu) "\t\t<cim:ExtUnitSymbolKind.btu rdf:resource=\"#" + btu + "\"/>\n" else "") +
         (if (null != btuPerH) "\t\t<cim:ExtUnitSymbolKind.btuPerH rdf:resource=\"#" + btuPerH + "\"/>\n" else "") +
         (if (null != cd) "\t\t<cim:ExtUnitSymbolKind.cd rdf:resource=\"#" + cd + "\"/>\n" else "") +
-        (if (null != char) "\t\t<cim:ExtUnitSymbolKind.char rdf:resource=\"#" + char + "\"/>\n" else "") +
+        (if (null != char1) "\t\t<cim:ExtUnitSymbolKind.char rdf:resource=\"#" + char1 + "\"/>\n" else "") +
         (if (null != charPerSec) "\t\t<cim:ExtUnitSymbolKind.charPerSec rdf:resource=\"#" + charPerSec + "\"/>\n" else "") +
         (if (null != code) "\t\t<cim:ExtUnitSymbolKind.code rdf:resource=\"#" + code + "\"/>\n" else "") +
         (if (null != cosTheta) "\t\t<cim:ExtUnitSymbolKind.cosTheta rdf:resource=\"#" + cosTheta + "\"/>\n" else "") +
@@ -731,7 +731,7 @@ extends
     val btu: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.btu"""))
     val btuPerH: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.btuPerH"""))
     val cd: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.cd"""))
-    val char: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.char"""))
+    val char1: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.char"""))
     val charPerSec: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.charPerSec"""))
     val code: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.code"""))
     val cosTheta: (Context) => String = parse_attribute (attribute ("""ExtUnitSymbolKind.cosTheta"""))
@@ -860,7 +860,7 @@ extends
             btu (context),
             btuPerH (context),
             cd (context),
-            char (context),
+            char1 (context),
             charPerSec (context),
             code (context),
             cosTheta (context),

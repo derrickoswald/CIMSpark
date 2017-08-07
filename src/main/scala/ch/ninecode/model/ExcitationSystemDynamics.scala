@@ -2141,7 +2141,7 @@ extends
  *        Typical Value = -5.
  * @param k Steady state gain (K).
  *        Typical Value = 300.
- * @param switch Supplementary signal routing selector (switch).
+ * @param switch1 Supplementary signal routing selector (switch).
 true = Vs connected to 3rd summing point
 false =  Vs connected to 1st summing point (see diagram).
  *        Typical Value = true.
@@ -2166,7 +2166,7 @@ case class ExcBBC
     efdmax: Double,
     efdmin: Double,
     k: Double,
-    switch: Boolean,
+    switch1: Boolean,
     t1: Double,
     t2: Double,
     t3: Double,
@@ -2195,7 +2195,7 @@ extends
         "\t\t<cim:ExcBBC.efdmax>" + efdmax + "</cim:ExcBBC.efdmax>\n" +
         "\t\t<cim:ExcBBC.efdmin>" + efdmin + "</cim:ExcBBC.efdmin>\n" +
         "\t\t<cim:ExcBBC.k>" + k + "</cim:ExcBBC.k>\n" +
-        "\t\t<cim:ExcBBC.switch>" + switch + "</cim:ExcBBC.switch>\n" +
+        "\t\t<cim:ExcBBC.switch>" + switch1 + "</cim:ExcBBC.switch>\n" +
         "\t\t<cim:ExcBBC.t1>" + t1 + "</cim:ExcBBC.t1>\n" +
         "\t\t<cim:ExcBBC.t2>" + t2 + "</cim:ExcBBC.t2>\n" +
         "\t\t<cim:ExcBBC.t3>" + t3 + "</cim:ExcBBC.t3>\n" +
@@ -2219,7 +2219,7 @@ extends
     val efdmax: (Context) => String = parse_element (element ("""ExcBBC.efdmax"""))
     val efdmin: (Context) => String = parse_element (element ("""ExcBBC.efdmin"""))
     val k: (Context) => String = parse_element (element ("""ExcBBC.k"""))
-    val switch: (Context) => String = parse_element (element ("""ExcBBC.switch"""))
+    val switch1: (Context) => String = parse_element (element ("""ExcBBC.switch"""))
     val t1: (Context) => String = parse_element (element ("""ExcBBC.t1"""))
     val t2: (Context) => String = parse_element (element ("""ExcBBC.t2"""))
     val t3: (Context) => String = parse_element (element ("""ExcBBC.t3"""))
@@ -2234,7 +2234,7 @@ extends
             toDouble (efdmax (context), context),
             toDouble (efdmin (context), context),
             toDouble (k (context), context),
-            toBoolean (switch (context), context),
+            toBoolean (switch1 (context), context),
             toDouble (t1 (context), context),
             toDouble (t2 (context), context),
             toDouble (t3 (context), context),

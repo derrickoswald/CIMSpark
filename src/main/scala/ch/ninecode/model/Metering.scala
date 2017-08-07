@@ -2669,7 +2669,7 @@ extends
  * Kind of randomisation to be applied to control the timing of end device control commands and/or the definition of demand response and load control events.
  * Value other than 'none' is typically used to mitigate potential deleterious effects of simultaneous operation of multiple devices.
  * @param sup Reference to the superclass object.
- * @param default Randomisation of start and/or end times involving the operation of one or more devices is controlled by default settings for the device(s).
+ * @param default1 Randomisation of start and/or end times involving the operation of one or more devices is controlled by default settings for the device(s).
  * @param end End time of an event or control action affecting one or more devices is randomised to prevent simultaneous operation.
  * @param none Neither the start time nor the end time of an event or control action affecting one or more devices is randomised.
  * @param start Start time of an event or control action affecting one or more multiple devices is randomised.
@@ -2678,7 +2678,7 @@ extends
 case class RandomisationKind
 (
     override val sup: BasicElement,
-    default: String,
+    default1: String,
     end: String,
     none: String,
     start: String,
@@ -2701,7 +2701,7 @@ extends
     override def export_fields: String =
     {
         sup.export_fields +
-        (if (null != default) "\t\t<cim:RandomisationKind.default rdf:resource=\"#" + default + "\"/>\n" else "") +
+        (if (null != default1) "\t\t<cim:RandomisationKind.default rdf:resource=\"#" + default1 + "\"/>\n" else "") +
         (if (null != end) "\t\t<cim:RandomisationKind.end rdf:resource=\"#" + end + "\"/>\n" else "") +
         (if (null != none) "\t\t<cim:RandomisationKind.none rdf:resource=\"#" + none + "\"/>\n" else "") +
         (if (null != start) "\t\t<cim:RandomisationKind.start rdf:resource=\"#" + start + "\"/>\n" else "") +
@@ -2719,7 +2719,7 @@ object RandomisationKind
 extends
     Parseable[RandomisationKind]
 {
-    val default: (Context) => String = parse_attribute (attribute ("""RandomisationKind.default"""))
+    val default1: (Context) => String = parse_attribute (attribute ("""RandomisationKind.default"""))
     val end: (Context) => String = parse_attribute (attribute ("""RandomisationKind.end"""))
     val none: (Context) => String = parse_attribute (attribute ("""RandomisationKind.none"""))
     val start: (Context) => String = parse_attribute (attribute ("""RandomisationKind.start"""))
@@ -2728,7 +2728,7 @@ extends
     {
         RandomisationKind(
             BasicElement.parse (context),
-            default (context),
+            default1 (context),
             end (context),
             none (context),
             start (context),

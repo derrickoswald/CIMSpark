@@ -1077,7 +1077,7 @@ extends
  * @param other <em>undocumented</em>
  * @param recloser <em>undocumented</em>
  * @param sectionner <em>undocumented</em>
- * @param switch <em>undocumented</em>
+ * @param switch1 <em>undocumented</em>
  * @param transformer <em>undocumented</em>
  */
 case class RegulationBranchKind
@@ -1089,7 +1089,7 @@ case class RegulationBranchKind
     other: String,
     recloser: String,
     sectionner: String,
-    switch: String,
+    switch1: String,
     transformer: String
 )
 extends
@@ -1115,7 +1115,7 @@ extends
         (if (null != other) "\t\t<cim:RegulationBranchKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
         (if (null != recloser) "\t\t<cim:RegulationBranchKind.recloser rdf:resource=\"#" + recloser + "\"/>\n" else "") +
         (if (null != sectionner) "\t\t<cim:RegulationBranchKind.sectionner rdf:resource=\"#" + sectionner + "\"/>\n" else "") +
-        (if (null != switch) "\t\t<cim:RegulationBranchKind.switch rdf:resource=\"#" + switch + "\"/>\n" else "") +
+        (if (null != switch1) "\t\t<cim:RegulationBranchKind.switch rdf:resource=\"#" + switch1 + "\"/>\n" else "") +
         (if (null != transformer) "\t\t<cim:RegulationBranchKind.transformer rdf:resource=\"#" + transformer + "\"/>\n" else "")
     }
     override def export: String =
@@ -1136,7 +1136,7 @@ extends
     val other: (Context) => String = parse_attribute (attribute ("""RegulationBranchKind.other"""))
     val recloser: (Context) => String = parse_attribute (attribute ("""RegulationBranchKind.recloser"""))
     val sectionner: (Context) => String = parse_attribute (attribute ("""RegulationBranchKind.sectionner"""))
-    val switch: (Context) => String = parse_attribute (attribute ("""RegulationBranchKind.switch"""))
+    val switch1: (Context) => String = parse_attribute (attribute ("""RegulationBranchKind.switch"""))
     val transformer: (Context) => String = parse_attribute (attribute ("""RegulationBranchKind.transformer"""))
     def parse (context: Context): RegulationBranchKind =
     {
@@ -1148,7 +1148,7 @@ extends
             other (context),
             recloser (context),
             sectionner (context),
-            switch (context),
+            switch1 (context),
             transformer (context)
         )
     }

@@ -113,16 +113,4 @@ extends
             }
         }
     }
-
-    /**
-     * Returns a factory for generating output writers that can write data.
-     * <em>Currently not supported</em>
-     */
-    override def buildWriter (
-        sqlContext: SQLContext,
-        dataSchema: StructType,
-        options: Map[String, String]): OutputWriterFactory =
-    {
-        throw new UnsupportedOperationException ("buildWriter is not supported")
-    }
 }

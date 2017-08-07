@@ -963,7 +963,7 @@ extends
  * Indicates Control Area associated with self-schedule.
  * @param sup Reference to the superclass object.
  * @param attained Attained.
- * @param native Native.
+ * @param native1 Native.
  * @param RegisteredResource <em>undocumented</em>
  * @param SubControlArea <em>undocumented</em>
  */
@@ -971,7 +971,7 @@ case class ControlAreaDesignation
 (
     override val sup: BasicElement,
     attained: String,
-    native: String,
+    native1: String,
     RegisteredResource: List[String],
     SubControlArea: List[String]
 )
@@ -993,7 +993,7 @@ extends
     {
         sup.export_fields +
         (if (null != attained) "\t\t<cim:ControlAreaDesignation.attained rdf:resource=\"#" + attained + "\"/>\n" else "") +
-        (if (null != native) "\t\t<cim:ControlAreaDesignation.native rdf:resource=\"#" + native + "\"/>\n" else "") +
+        (if (null != native1) "\t\t<cim:ControlAreaDesignation.native rdf:resource=\"#" + native1 + "\"/>\n" else "") +
         (if (null != RegisteredResource) RegisteredResource.map (x => "\t\t<cim:ControlAreaDesignation.RegisteredResource rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
         (if (null != SubControlArea) SubControlArea.map (x => "\t\t<cim:ControlAreaDesignation.SubControlArea rdf:resource=\"#" + x + "\"/>\n").mkString else "")
     }
@@ -1010,7 +1010,7 @@ extends
     Parseable[ControlAreaDesignation]
 {
     val attained: (Context) => String = parse_attribute (attribute ("""ControlAreaDesignation.attained"""))
-    val native: (Context) => String = parse_attribute (attribute ("""ControlAreaDesignation.native"""))
+    val native1: (Context) => String = parse_attribute (attribute ("""ControlAreaDesignation.native"""))
     val RegisteredResource: (Context) => List[String] = parse_attributes (attribute ("""ControlAreaDesignation.RegisteredResource"""))
     val SubControlArea: (Context) => List[String] = parse_attributes (attribute ("""ControlAreaDesignation.SubControlArea"""))
     def parse (context: Context): ControlAreaDesignation =
@@ -1018,7 +1018,7 @@ extends
         ControlAreaDesignation(
             BasicElement.parse (context),
             attained (context),
-            native (context),
+            native1 (context),
             RegisteredResource (context),
             SubControlArea (context)
         )
