@@ -133,6 +133,21 @@ with
 
         // as a side effect, define all the other temporary tables
         log.info ("creating temporary tables")
+        val names = elements.flatMap (
+            (x: Element) => // hierarchy: List[String]
+            {
+                var ret = List[String]()
+                var clz = x
+
+                while (null != clz)
+                {
+                    ret = ret :+ clz.getClass.getName
+                    clz = clz.sup
+                }
+
+                ret.map (x => x.substring (x.lastIndexOf (".") + 1))
+            }
+        ).distinct.collect
         CHIM.apply_to_all_classes (
             (subsetter: CIMSubsetter[_]) =>
             {
@@ -145,8 +160,11 @@ with
                 // which is due to https://issues.scala-lang.org/browse/SI-6240
                 // and described in http://docs.scala-lang.org/overviews/reflection/thread-safety.html
                 // p.s. Scala's type system is a shit show of kludgy code
-                log.info ("building " + subsetter.cls)
-                subsetter.make (sqlContext, elements, _StorageLevel)
+                if (names.contains (subsetter.cls))
+                {
+                    log.info ("building " + subsetter.cls)
+                    subsetter.make (sqlContext, elements, _StorageLevel)
+                }
             }
         )
 

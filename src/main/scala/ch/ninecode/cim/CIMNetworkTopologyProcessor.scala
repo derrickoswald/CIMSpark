@@ -392,7 +392,6 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         }
     }
 
-
     def identifyIslands (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
     {
         def vertex_program (id: VertexId, attr: TopologicalData, msg: TopologicalData): TopologicalData =
@@ -497,8 +496,10 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         var graph = identifyNodes (initial)
 
         // get the original island and node RDD
-        val old_ti = get[TopologicalIsland]
-        val old_tn = get[TopologicalNode]
+        val _old_ti = get[TopologicalIsland]
+        val _old_tn = get[TopologicalNode]
+        val old_ti = if (null == _old_ti) spark.sparkContext.emptyRDD[TopologicalIsland] else _old_ti
+        val old_tn = if (null == _old_tn) spark.sparkContext.emptyRDD[TopologicalNode] else _old_tn
 
         // create a new TopologicalNode RDD
         val (new_tn, new_ti) = if (identify_islands)
@@ -520,10 +521,10 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
             val new_ti = islands.values
 
             // swap the old TopologicalIsland RDD for the new one
-            if (null != old_ti)
+            if (null != _old_ti)
             {
                 old_ti.unpersist (false)
-                old_ti.name = null
+                old_ti.name = "old_TopologicalIsland"
             }
             new_ti.name = "TopologicalIsland"
             new_ti.persist (storage)
@@ -541,10 +542,10 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
             (graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes), spark.sparkContext.emptyRDD[TopologicalIsland])
 
         // swap the old TopologicalNode RDD for the new one
-        if (null != old_tn)
+        if (null != _old_tn)
         {
             old_tn.unpersist (false)
-            old_tn.name = null
+            old_tn.name = "old_TopologicalNode"
         }
         new_tn.name = "TopologicalNode"
         new_tn.persist (storage)
@@ -593,8 +594,8 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
 
         // make a union of all old RDD as IdentifiedObject
         val oldobj =
-            (if (null == old_ti) spark.sparkContext.emptyRDD[TopologicalIsland] else old_ti).map (_.IdentifiedObject).
-            union ((if (null == old_tn) spark.sparkContext.emptyRDD[TopologicalNode] else old_tn).map (_.IdentifiedObject)).
+                   old_ti.map (_.IdentifiedObject).
+            union (old_tn.map (_.IdentifiedObject)).
             union (old_cn.map (_.IdentifiedObject)).
             union (old_terminals.map (_.ACDCTerminal.IdentifiedObject))
 
@@ -622,13 +623,13 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
 
         // make a union of all old RDD as Element
         val oldelem =
-            (if (null == old_ti) spark.sparkContext.emptyRDD[TopologicalIsland] else old_ti).asInstanceOf[RDD[Element]].
-            union ((if (null == old_tn) spark.sparkContext.emptyRDD[TopologicalNode] else old_tn).asInstanceOf[RDD[Element]]).
+                   old_ti.asInstanceOf[RDD[Element]].
+            union (old_tn.asInstanceOf[RDD[Element]]).
             union (old_cn.asInstanceOf[RDD[Element]]).
             union (old_terminals.asInstanceOf[RDD[Element]])
 
         // make a union of all new RDD as Element
-        val newelem = get[TopologicalIsland].asInstanceOf[RDD[Element]].
+        val newelem = new_ti.asInstanceOf[RDD[Element]].
             union (new_tn.asInstanceOf[RDD[Element]]).
             union (new_cn.asInstanceOf[RDD[Element]]).
             union (new_terminals.asInstanceOf[RDD[Element]])

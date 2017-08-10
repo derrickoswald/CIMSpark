@@ -114,6 +114,9 @@
                 <configuration>
                     <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
                     <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
+                    <jvmArgs>
+                        <jvmArg>-Xss4m</jvmArg>
+                    </jvmArgs>
                 </configuration>
                 <executions>
                     <execution>
