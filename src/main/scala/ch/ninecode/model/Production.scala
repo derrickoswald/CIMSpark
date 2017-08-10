@@ -139,68 +139,6 @@ extends
 }
 
 /**
- * Classification of level.
- * Specify as 1..n, with 1 being the most detailed, highest priority, etc as described on the attribue using this data type.
- * @param sup Reference to the superclass object.
- * @param multiplier <em>undocumented</em>
- * @param unit <em>undocumented</em>
- * @param value <em>undocumented</em>
- */
-case class Classification
-(
-    override val sup: BasicElement,
-    multiplier: String,
-    unit: String,
-    value: Int
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, 0) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[Classification] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != multiplier) "\t\t<cim:Classification.multiplier rdf:resource=\"#" + multiplier + "\"/>\n" else "") +
-        (if (null != unit) "\t\t<cim:Classification.unit rdf:resource=\"#" + unit + "\"/>\n" else "") +
-        "\t\t<cim:Classification.value>" + value + "</cim:Classification.value>\n"
-    }
-    override def export: String =
-    {
-        "\t<cim:Classification rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Classification>\n"
-    }
-}
-
-object Classification
-extends
-    Parseable[Classification]
-{
-    val multiplier: (Context) => String = parse_attribute (attribute ("""Classification.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""Classification.unit"""))
-    val value: (Context) => String = parse_element (element ("""Classification.value"""))
-    def parse (context: Context): Classification =
-    {
-        Classification(
-            BasicElement.parse (context),
-            multiplier (context),
-            unit (context),
-            toInteger (value (context), context)
-        )
-    }
-}
-
-/**
  * A set of thermal generating units for the production of electrical energy and process steam (usually from the output of the steam turbines).
  * The steam sendout is typically used for industrial purposes or for municipal heating and cooling.
  * @param sup Reference to the superclass object.
@@ -324,148 +262,6 @@ extends
         CombinedCyclePlant(
             PowerSystemResource.parse (context),
             toDouble (combCyclePlantRating (context), context)
-        )
-    }
-}
-
-/**
- * Cost, in units of currency, per quantity of heat generated.
- * @param sup Reference to the superclass object.
- * @param denominatorMultiplier <em>undocumented</em>
- * @param denominatorUnit <em>undocumented</em>
- * @param multiplier <em>undocumented</em>
- * @param unit <em>undocumented</em>
- * @param value <em>undocumented</em>
- */
-case class CostPerHeatUnit
-(
-    override val sup: BasicElement,
-    denominatorMultiplier: String,
-    denominatorUnit: String,
-    multiplier: String,
-    unit: String,
-    value: Double
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CostPerHeatUnit] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != denominatorMultiplier) "\t\t<cim:CostPerHeatUnit.denominatorMultiplier rdf:resource=\"#" + denominatorMultiplier + "\"/>\n" else "") +
-        (if (null != denominatorUnit) "\t\t<cim:CostPerHeatUnit.denominatorUnit rdf:resource=\"#" + denominatorUnit + "\"/>\n" else "") +
-        (if (null != multiplier) "\t\t<cim:CostPerHeatUnit.multiplier rdf:resource=\"#" + multiplier + "\"/>\n" else "") +
-        (if (null != unit) "\t\t<cim:CostPerHeatUnit.unit rdf:resource=\"#" + unit + "\"/>\n" else "") +
-        "\t\t<cim:CostPerHeatUnit.value>" + value + "</cim:CostPerHeatUnit.value>\n"
-    }
-    override def export: String =
-    {
-        "\t<cim:CostPerHeatUnit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CostPerHeatUnit>\n"
-    }
-}
-
-object CostPerHeatUnit
-extends
-    Parseable[CostPerHeatUnit]
-{
-    val denominatorMultiplier: (Context) => String = parse_attribute (attribute ("""CostPerHeatUnit.denominatorMultiplier"""))
-    val denominatorUnit: (Context) => String = parse_attribute (attribute ("""CostPerHeatUnit.denominatorUnit"""))
-    val multiplier: (Context) => String = parse_attribute (attribute ("""CostPerHeatUnit.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""CostPerHeatUnit.unit"""))
-    val value: (Context) => String = parse_element (element ("""CostPerHeatUnit.value"""))
-    def parse (context: Context): CostPerHeatUnit =
-    {
-        CostPerHeatUnit(
-            BasicElement.parse (context),
-            denominatorMultiplier (context),
-            denominatorUnit (context),
-            multiplier (context),
-            unit (context),
-            toDouble (value (context), context)
-        )
-    }
-}
-
-/**
- * Quantity of emission per fuel heat content.
- * @param sup Reference to the superclass object.
- * @param denominatorMultiplier <em>undocumented</em>
- * @param denominatorUnit <em>undocumented</em>
- * @param multiplier <em>undocumented</em>
- * @param unit <em>undocumented</em>
- * @param value <em>undocumented</em>
- */
-case class Emission
-(
-    override val sup: BasicElement,
-    denominatorMultiplier: String,
-    denominatorUnit: String,
-    multiplier: String,
-    unit: String,
-    value: Double
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[Emission] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != denominatorMultiplier) "\t\t<cim:Emission.denominatorMultiplier rdf:resource=\"#" + denominatorMultiplier + "\"/>\n" else "") +
-        (if (null != denominatorUnit) "\t\t<cim:Emission.denominatorUnit rdf:resource=\"#" + denominatorUnit + "\"/>\n" else "") +
-        (if (null != multiplier) "\t\t<cim:Emission.multiplier rdf:resource=\"#" + multiplier + "\"/>\n" else "") +
-        (if (null != unit) "\t\t<cim:Emission.unit rdf:resource=\"#" + unit + "\"/>\n" else "") +
-        "\t\t<cim:Emission.value>" + value + "</cim:Emission.value>\n"
-    }
-    override def export: String =
-    {
-        "\t<cim:Emission rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Emission>\n"
-    }
-}
-
-object Emission
-extends
-    Parseable[Emission]
-{
-    val denominatorMultiplier: (Context) => String = parse_attribute (attribute ("""Emission.denominatorMultiplier"""))
-    val denominatorUnit: (Context) => String = parse_attribute (attribute ("""Emission.denominatorUnit"""))
-    val multiplier: (Context) => String = parse_attribute (attribute ("""Emission.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""Emission.unit"""))
-    val value: (Context) => String = parse_element (element ("""Emission.value"""))
-    def parse (context: Context): Emission =
-    {
-        Emission(
-            BasicElement.parse (context),
-            denominatorMultiplier (context),
-            denominatorUnit (context),
-            multiplier (context),
-            unit (context),
-            toDouble (value (context), context)
         )
     }
 }
@@ -597,138 +393,6 @@ extends
             emissionType (context),
             toBoolean (isNetGrossP (context), context),
             ThermalGeneratingUnit (context)
-        )
-    }
-}
-
-/**
- * The type of emission.
- * @param sup Reference to the superclass object.
- * @param carbonDioxide Carbon diaoxide.
- * @param carbonDisulfide Carbon disulfide.
- * @param chlorine Clorine.
- * @param hydrogenSulfide Hydrogen sulfide.
- * @param nitrogenOxide Nitrogen oxide.
- * @param sulfurDioxide Sulfer dioxide.
- */
-case class EmissionType
-(
-    override val sup: BasicElement,
-    carbonDioxide: String,
-    carbonDisulfide: String,
-    chlorine: String,
-    hydrogenSulfide: String,
-    nitrogenOxide: String,
-    sulfurDioxide: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[EmissionType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != carbonDioxide) "\t\t<cim:EmissionType.carbonDioxide rdf:resource=\"#" + carbonDioxide + "\"/>\n" else "") +
-        (if (null != carbonDisulfide) "\t\t<cim:EmissionType.carbonDisulfide rdf:resource=\"#" + carbonDisulfide + "\"/>\n" else "") +
-        (if (null != chlorine) "\t\t<cim:EmissionType.chlorine rdf:resource=\"#" + chlorine + "\"/>\n" else "") +
-        (if (null != hydrogenSulfide) "\t\t<cim:EmissionType.hydrogenSulfide rdf:resource=\"#" + hydrogenSulfide + "\"/>\n" else "") +
-        (if (null != nitrogenOxide) "\t\t<cim:EmissionType.nitrogenOxide rdf:resource=\"#" + nitrogenOxide + "\"/>\n" else "") +
-        (if (null != sulfurDioxide) "\t\t<cim:EmissionType.sulfurDioxide rdf:resource=\"#" + sulfurDioxide + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:EmissionType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EmissionType>\n"
-    }
-}
-
-object EmissionType
-extends
-    Parseable[EmissionType]
-{
-    val carbonDioxide: (Context) => String = parse_attribute (attribute ("""EmissionType.carbonDioxide"""))
-    val carbonDisulfide: (Context) => String = parse_attribute (attribute ("""EmissionType.carbonDisulfide"""))
-    val chlorine: (Context) => String = parse_attribute (attribute ("""EmissionType.chlorine"""))
-    val hydrogenSulfide: (Context) => String = parse_attribute (attribute ("""EmissionType.hydrogenSulfide"""))
-    val nitrogenOxide: (Context) => String = parse_attribute (attribute ("""EmissionType.nitrogenOxide"""))
-    val sulfurDioxide: (Context) => String = parse_attribute (attribute ("""EmissionType.sulfurDioxide"""))
-    def parse (context: Context): EmissionType =
-    {
-        EmissionType(
-            BasicElement.parse (context),
-            carbonDioxide (context),
-            carbonDisulfide (context),
-            chlorine (context),
-            hydrogenSulfide (context),
-            nitrogenOxide (context),
-            sulfurDioxide (context)
-        )
-    }
-}
-
-/**
- * The source of the emission value.
- * @param sup Reference to the superclass object.
- * @param calculated Calculated.
- * @param measured Measured.
- */
-case class EmissionValueSource
-(
-    override val sup: BasicElement,
-    calculated: String,
-    measured: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[EmissionValueSource] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != calculated) "\t\t<cim:EmissionValueSource.calculated rdf:resource=\"#" + calculated + "\"/>\n" else "") +
-        (if (null != measured) "\t\t<cim:EmissionValueSource.measured rdf:resource=\"#" + measured + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:EmissionValueSource rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EmissionValueSource>\n"
-    }
-}
-
-object EmissionValueSource
-extends
-    Parseable[EmissionValueSource]
-{
-    val calculated: (Context) => String = parse_attribute (attribute ("""EmissionValueSource.calculated"""))
-    val measured: (Context) => String = parse_attribute (attribute ("""EmissionValueSource.measured"""))
-    def parse (context: Context): EmissionValueSource =
-    {
-        EmissionValueSource(
-            BasicElement.parse (context),
-            calculated (context),
-            measured (context)
         )
     }
 }
@@ -914,83 +578,6 @@ extends
             toDouble (minFuelAllocation (context), context),
             FossilFuel (context),
             ThermalGeneratingUnit (context)
-        )
-    }
-}
-
-/**
- * Type of fuel.
- * @param sup Reference to the superclass object.
- * @param coal Generic coal, not including lignite type.
- * @param gas Natural gas.
- * @param hardCoal Hard coal
- * @param lignite The fuel is lignite coal.
- *        Note that this is a special type of coal, so the other enum of coal is reserved for hard coal types or if the exact type of coal is not known.
- * @param oil Oil.
- * @param oilShale Oil Shale
- */
-case class FuelType
-(
-    override val sup: BasicElement,
-    coal: String,
-    gas: String,
-    hardCoal: String,
-    lignite: String,
-    oil: String,
-    oilShale: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[FuelType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != coal) "\t\t<cim:FuelType.coal rdf:resource=\"#" + coal + "\"/>\n" else "") +
-        (if (null != gas) "\t\t<cim:FuelType.gas rdf:resource=\"#" + gas + "\"/>\n" else "") +
-        (if (null != hardCoal) "\t\t<cim:FuelType.hardCoal rdf:resource=\"#" + hardCoal + "\"/>\n" else "") +
-        (if (null != lignite) "\t\t<cim:FuelType.lignite rdf:resource=\"#" + lignite + "\"/>\n" else "") +
-        (if (null != oil) "\t\t<cim:FuelType.oil rdf:resource=\"#" + oil + "\"/>\n" else "") +
-        (if (null != oilShale) "\t\t<cim:FuelType.oilShale rdf:resource=\"#" + oilShale + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:FuelType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:FuelType>\n"
-    }
-}
-
-object FuelType
-extends
-    Parseable[FuelType]
-{
-    val coal: (Context) => String = parse_attribute (attribute ("""FuelType.coal"""))
-    val gas: (Context) => String = parse_attribute (attribute ("""FuelType.gas"""))
-    val hardCoal: (Context) => String = parse_attribute (attribute ("""FuelType.hardCoal"""))
-    val lignite: (Context) => String = parse_attribute (attribute ("""FuelType.lignite"""))
-    val oil: (Context) => String = parse_attribute (attribute ("""FuelType.oil"""))
-    val oilShale: (Context) => String = parse_attribute (attribute ("""FuelType.oilShale"""))
-    def parse (context: Context): FuelType =
-    {
-        FuelType(
-            BasicElement.parse (context),
-            coal (context),
-            gas (context),
-            hardCoal (context),
-            lignite (context),
-            oil (context),
-            oilShale (context)
         )
     }
 }
@@ -1348,128 +935,6 @@ extends
 }
 
 /**
- * Unit control modes.
- * @param sup Reference to the superclass object.
- * @param pulse Pulse control mode.
- * @param setpoint Setpoint control mode.
- */
-case class GeneratorControlMode
-(
-    override val sup: BasicElement,
-    pulse: String,
-    setpoint: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[GeneratorControlMode] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != pulse) "\t\t<cim:GeneratorControlMode.pulse rdf:resource=\"#" + pulse + "\"/>\n" else "") +
-        (if (null != setpoint) "\t\t<cim:GeneratorControlMode.setpoint rdf:resource=\"#" + setpoint + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:GeneratorControlMode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GeneratorControlMode>\n"
-    }
-}
-
-object GeneratorControlMode
-extends
-    Parseable[GeneratorControlMode]
-{
-    val pulse: (Context) => String = parse_attribute (attribute ("""GeneratorControlMode.pulse"""))
-    val setpoint: (Context) => String = parse_attribute (attribute ("""GeneratorControlMode.setpoint"""))
-    def parse (context: Context): GeneratorControlMode =
-    {
-        GeneratorControlMode(
-            BasicElement.parse (context),
-            pulse (context),
-            setpoint (context)
-        )
-    }
-}
-
-/**
- * The source of controls for a generating unit.
- * @param sup Reference to the superclass object.
- * @param offAGC Off of automatic generation control (AGC).
- * @param onAGC On automatic generation control (AGC).
- * @param plantControl Plant is controlling.
- * @param unavailable Not available.
- */
-case class GeneratorControlSource
-(
-    override val sup: BasicElement,
-    offAGC: String,
-    onAGC: String,
-    plantControl: String,
-    unavailable: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[GeneratorControlSource] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != offAGC) "\t\t<cim:GeneratorControlSource.offAGC rdf:resource=\"#" + offAGC + "\"/>\n" else "") +
-        (if (null != onAGC) "\t\t<cim:GeneratorControlSource.onAGC rdf:resource=\"#" + onAGC + "\"/>\n" else "") +
-        (if (null != plantControl) "\t\t<cim:GeneratorControlSource.plantControl rdf:resource=\"#" + plantControl + "\"/>\n" else "") +
-        (if (null != unavailable) "\t\t<cim:GeneratorControlSource.unavailable rdf:resource=\"#" + unavailable + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:GeneratorControlSource rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GeneratorControlSource>\n"
-    }
-}
-
-object GeneratorControlSource
-extends
-    Parseable[GeneratorControlSource]
-{
-    val offAGC: (Context) => String = parse_attribute (attribute ("""GeneratorControlSource.offAGC"""))
-    val onAGC: (Context) => String = parse_attribute (attribute ("""GeneratorControlSource.onAGC"""))
-    val plantControl: (Context) => String = parse_attribute (attribute ("""GeneratorControlSource.plantControl"""))
-    val unavailable: (Context) => String = parse_attribute (attribute ("""GeneratorControlSource.unavailable"""))
-    def parse (context: Context): GeneratorControlSource =
-    {
-        GeneratorControlSource(
-            BasicElement.parse (context),
-            offAGC (context),
-            onAGC (context),
-            plantControl (context),
-            unavailable (context)
-        )
-    }
-}
-
-/**
  * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
  * Station service loads, when modeled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
  * @param sup Reference to the superclass object.
@@ -1599,77 +1064,6 @@ extends
 }
 
 /**
- * Heat generated, in energy pertime unit of elapsed time.
- * @param sup Reference to the superclass object.
- * @param denominatorMultiplier <em>undocumented</em>
- * @param denominatorUnit <em>undocumented</em>
- * @param multiplier <em>undocumented</em>
- * @param unit <em>undocumented</em>
- * @param value <em>undocumented</em>
- */
-case class HeatRate
-(
-    override val sup: BasicElement,
-    denominatorMultiplier: String,
-    denominatorUnit: String,
-    multiplier: String,
-    unit: String,
-    value: Double
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[HeatRate] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != denominatorMultiplier) "\t\t<cim:HeatRate.denominatorMultiplier rdf:resource=\"#" + denominatorMultiplier + "\"/>\n" else "") +
-        (if (null != denominatorUnit) "\t\t<cim:HeatRate.denominatorUnit rdf:resource=\"#" + denominatorUnit + "\"/>\n" else "") +
-        (if (null != multiplier) "\t\t<cim:HeatRate.multiplier rdf:resource=\"#" + multiplier + "\"/>\n" else "") +
-        (if (null != unit) "\t\t<cim:HeatRate.unit rdf:resource=\"#" + unit + "\"/>\n" else "") +
-        "\t\t<cim:HeatRate.value>" + value + "</cim:HeatRate.value>\n"
-    }
-    override def export: String =
-    {
-        "\t<cim:HeatRate rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:HeatRate>\n"
-    }
-}
-
-object HeatRate
-extends
-    Parseable[HeatRate]
-{
-    val denominatorMultiplier: (Context) => String = parse_attribute (attribute ("""HeatRate.denominatorMultiplier"""))
-    val denominatorUnit: (Context) => String = parse_attribute (attribute ("""HeatRate.denominatorUnit"""))
-    val multiplier: (Context) => String = parse_attribute (attribute ("""HeatRate.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""HeatRate.unit"""))
-    val value: (Context) => String = parse_element (element ("""HeatRate.value"""))
-    def parse (context: Context): HeatRate =
-    {
-        HeatRate(
-            BasicElement.parse (context),
-            denominatorMultiplier (context),
-            denominatorUnit (context),
-            multiplier (context),
-            unit (context),
-            toDouble (value (context), context)
-        )
-    }
-}
-
-/**
  * Relationship between unit heat rate per active power (Y-axis) and  unit output (X-axis).
  * The heat input is from all fuels.
  * @param sup Reference to the superclass object.
@@ -1722,62 +1116,6 @@ extends
             Curve.parse (context),
             toBoolean (isNetGrossP (context), context),
             ThermalGeneratingUnit (context)
-        )
-    }
-}
-
-/**
- * Specifies the capability of the hydro generating unit to convert energy as a generator or pump.
- * @param sup Reference to the superclass object.
- * @param generator Able to generate power, but not able to pump water for energy storage.
- * @param pumpAndGenerator Able to both generate power and pump water for energy storage.
- */
-case class HydroEnergyConversionKind
-(
-    override val sup: BasicElement,
-    generator: String,
-    pumpAndGenerator: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[HydroEnergyConversionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != generator) "\t\t<cim:HydroEnergyConversionKind.generator rdf:resource=\"#" + generator + "\"/>\n" else "") +
-        (if (null != pumpAndGenerator) "\t\t<cim:HydroEnergyConversionKind.pumpAndGenerator rdf:resource=\"#" + pumpAndGenerator + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:HydroEnergyConversionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:HydroEnergyConversionKind>\n"
-    }
-}
-
-object HydroEnergyConversionKind
-extends
-    Parseable[HydroEnergyConversionKind]
-{
-    val generator: (Context) => String = parse_attribute (attribute ("""HydroEnergyConversionKind.generator"""))
-    val pumpAndGenerator: (Context) => String = parse_attribute (attribute ("""HydroEnergyConversionKind.pumpAndGenerator"""))
-    def parse (context: Context): HydroEnergyConversionKind =
-    {
-        HydroEnergyConversionKind(
-            BasicElement.parse (context),
-            generator (context),
-            pumpAndGenerator (context)
         )
     }
 }
@@ -1896,67 +1234,6 @@ extends
             toDouble (hydroUnitWaterCost (context), context),
             HydroPowerPlant (context),
             PenstockLossCurve (context)
-        )
-    }
-}
-
-/**
- * The type of hydro power plant.
- * @param sup Reference to the superclass object.
- * @param pumpedStorage Pumped storage.
- * @param runOfRiver Run of river.
- * @param storage Storage.
- */
-case class HydroPlantStorageKind
-(
-    override val sup: BasicElement,
-    pumpedStorage: String,
-    runOfRiver: String,
-    storage: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[HydroPlantStorageKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != pumpedStorage) "\t\t<cim:HydroPlantStorageKind.pumpedStorage rdf:resource=\"#" + pumpedStorage + "\"/>\n" else "") +
-        (if (null != runOfRiver) "\t\t<cim:HydroPlantStorageKind.runOfRiver rdf:resource=\"#" + runOfRiver + "\"/>\n" else "") +
-        (if (null != storage) "\t\t<cim:HydroPlantStorageKind.storage rdf:resource=\"#" + storage + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:HydroPlantStorageKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:HydroPlantStorageKind>\n"
-    }
-}
-
-object HydroPlantStorageKind
-extends
-    Parseable[HydroPlantStorageKind]
-{
-    val pumpedStorage: (Context) => String = parse_attribute (attribute ("""HydroPlantStorageKind.pumpedStorage"""))
-    val runOfRiver: (Context) => String = parse_attribute (attribute ("""HydroPlantStorageKind.runOfRiver"""))
-    val storage: (Context) => String = parse_attribute (attribute ("""HydroPlantStorageKind.storage"""))
-    def parse (context: Context): HydroPlantStorageKind =
-    {
-        HydroPlantStorageKind(
-            BasicElement.parse (context),
-            pumpedStorage (context),
-            runOfRiver (context),
-            storage (context)
         )
     }
 }
@@ -3221,62 +2498,6 @@ extends
 }
 
 /**
- * Kind of wind generating unit.
- * @param sup Reference to the superclass object.
- * @param offshore The wind generating unit is located offshore.
- * @param onshore The wind generating unit is located onshore.
- */
-case class WindGenUnitKind
-(
-    override val sup: BasicElement,
-    offshore: String,
-    onshore: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[WindGenUnitKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != offshore) "\t\t<cim:WindGenUnitKind.offshore rdf:resource=\"#" + offshore + "\"/>\n" else "") +
-        (if (null != onshore) "\t\t<cim:WindGenUnitKind.onshore rdf:resource=\"#" + onshore + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:WindGenUnitKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenUnitKind>\n"
-    }
-}
-
-object WindGenUnitKind
-extends
-    Parseable[WindGenUnitKind]
-{
-    val offshore: (Context) => String = parse_attribute (attribute ("""WindGenUnitKind.offshore"""))
-    val onshore: (Context) => String = parse_attribute (attribute ("""WindGenUnitKind.onshore"""))
-    def parse (context: Context): WindGenUnitKind =
-    {
-        WindGenUnitKind(
-            BasicElement.parse (context),
-            offshore (context),
-            onshore (context)
-        )
-    }
-}
-
-/**
  * A wind driven generating unit.
  * May be used to represent a single turbine or an aggregation.
  * @param sup Reference to the superclass object.
@@ -3335,31 +2556,20 @@ private[ninecode] object _Production
         List (
             AirCompressor.register,
             CAESPlant.register,
-            Classification.register,
             CogenerationPlant.register,
             CombinedCyclePlant.register,
-            CostPerHeatUnit.register,
-            Emission.register,
             EmissionAccount.register,
             EmissionCurve.register,
-            EmissionType.register,
-            EmissionValueSource.register,
             FossilFuel.register,
             FuelAllocationSchedule.register,
-            FuelType.register,
             GenUnitOpCostCurve.register,
             GenUnitOpSchedule.register,
             GeneratingUnit.register,
-            GeneratorControlMode.register,
-            GeneratorControlSource.register,
             GrossToNetActivePowerCurve.register,
             HeatInputCurve.register,
-            HeatRate.register,
             HeatRateCurve.register,
-            HydroEnergyConversionKind.register,
             HydroGeneratingEfficiencyCurve.register,
             HydroGeneratingUnit.register,
-            HydroPlantStorageKind.register,
             HydroPowerPlant.register,
             HydroPump.register,
             HydroPumpOpSchedule.register,
@@ -3379,7 +2589,6 @@ private[ninecode] object _Production
             TailbayLossCurve.register,
             TargetLevelSchedule.register,
             ThermalGeneratingUnit.register,
-            WindGenUnitKind.register,
             WindGeneratingUnit.register
         )
     }

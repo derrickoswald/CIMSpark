@@ -72,67 +72,6 @@ extends
 }
 
 /**
- * Type of clearance action.
- * @param sup Reference to the superclass object.
- * @param issue Issue clearance.
- * @param release Release clearance.
- * @param update Update clearance.
- */
-case class ClearanceActionKind
-(
-    override val sup: BasicElement,
-    issue: String,
-    release: String,
-    update: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ClearanceActionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != issue) "\t\t<cim:ClearanceActionKind.issue rdf:resource=\"#" + issue + "\"/>\n" else "") +
-        (if (null != release) "\t\t<cim:ClearanceActionKind.release rdf:resource=\"#" + release + "\"/>\n" else "") +
-        (if (null != update) "\t\t<cim:ClearanceActionKind.update rdf:resource=\"#" + update + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ClearanceActionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ClearanceActionKind>\n"
-    }
-}
-
-object ClearanceActionKind
-extends
-    Parseable[ClearanceActionKind]
-{
-    val issue: (Context) => String = parse_attribute (attribute ("""ClearanceActionKind.issue"""))
-    val release: (Context) => String = parse_attribute (attribute ("""ClearanceActionKind.release"""))
-    val update: (Context) => String = parse_attribute (attribute ("""ClearanceActionKind.update"""))
-    def parse (context: Context): ClearanceActionKind =
-    {
-        ClearanceActionKind(
-            BasicElement.parse (context),
-            issue (context),
-            release (context),
-            update (context)
-        )
-    }
-}
-
-/**
  * Safety document used to authorise work on conducting equipment in the field.
  * Tagged equipment is not allowed to be operated.
  * @param sup Reference to the superclass object.
@@ -954,87 +893,6 @@ extends
 }
 
 /**
- * Kind of power system resource event.
- * @param sup Reference to the superclass object.
- * @param inService Power system resource state change to in service.
- * @param other Other power system resource state change.
- * @param outOfService Power system resource state change to out of service.
- * @param pendingAdd Power system resource state change to pending add.
- * @param pendingRemove Power system resource state change to pending remove.
- * @param pendingReplace Power system resource state change to pending replace.
- * @param unknown Unknown power system resource state change.
- */
-case class PSREventKind
-(
-    override val sup: BasicElement,
-    inService: String,
-    other: String,
-    outOfService: String,
-    pendingAdd: String,
-    pendingRemove: String,
-    pendingReplace: String,
-    unknown: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PSREventKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != inService) "\t\t<cim:PSREventKind.inService rdf:resource=\"#" + inService + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:PSREventKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != outOfService) "\t\t<cim:PSREventKind.outOfService rdf:resource=\"#" + outOfService + "\"/>\n" else "") +
-        (if (null != pendingAdd) "\t\t<cim:PSREventKind.pendingAdd rdf:resource=\"#" + pendingAdd + "\"/>\n" else "") +
-        (if (null != pendingRemove) "\t\t<cim:PSREventKind.pendingRemove rdf:resource=\"#" + pendingRemove + "\"/>\n" else "") +
-        (if (null != pendingReplace) "\t\t<cim:PSREventKind.pendingReplace rdf:resource=\"#" + pendingReplace + "\"/>\n" else "") +
-        (if (null != unknown) "\t\t<cim:PSREventKind.unknown rdf:resource=\"#" + unknown + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PSREventKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PSREventKind>\n"
-    }
-}
-
-object PSREventKind
-extends
-    Parseable[PSREventKind]
-{
-    val inService: (Context) => String = parse_attribute (attribute ("""PSREventKind.inService"""))
-    val other: (Context) => String = parse_attribute (attribute ("""PSREventKind.other"""))
-    val outOfService: (Context) => String = parse_attribute (attribute ("""PSREventKind.outOfService"""))
-    val pendingAdd: (Context) => String = parse_attribute (attribute ("""PSREventKind.pendingAdd"""))
-    val pendingRemove: (Context) => String = parse_attribute (attribute ("""PSREventKind.pendingRemove"""))
-    val pendingReplace: (Context) => String = parse_attribute (attribute ("""PSREventKind.pendingReplace"""))
-    val unknown: (Context) => String = parse_attribute (attribute ("""PSREventKind.unknown"""))
-    def parse (context: Context): PSREventKind =
-    {
-        PSREventKind(
-            BasicElement.parse (context),
-            inService (context),
-            other (context),
-            outOfService (context),
-            pendingAdd (context),
-            pendingRemove (context),
-            pendingReplace (context),
-            unknown (context)
-        )
-    }
-}
-
-/**
  * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
  * @param sup Reference to the superclass object.
  * @param SwitchingPlan Switching plan to which this safety document applies.
@@ -1204,72 +1062,6 @@ extends
             OperatedSwitch (context),
             PlannedOutage (context),
             SwitchingStepGroup (context)
-        )
-    }
-}
-
-/**
- * Kind of action on switch.
- * @param sup Reference to the superclass object.
- * @param close Close the switch.
- * @param disableReclosing Disable (automatic) switch reclosing.
- * @param enableReclosing Enable (automatic) switch reclosing.
- * @param open Open the switch.
- */
-case class SwitchActionKind
-(
-    override val sup: BasicElement,
-    close: String,
-    disableReclosing: String,
-    enableReclosing: String,
-    open: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SwitchActionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != close) "\t\t<cim:SwitchActionKind.close rdf:resource=\"#" + close + "\"/>\n" else "") +
-        (if (null != disableReclosing) "\t\t<cim:SwitchActionKind.disableReclosing rdf:resource=\"#" + disableReclosing + "\"/>\n" else "") +
-        (if (null != enableReclosing) "\t\t<cim:SwitchActionKind.enableReclosing rdf:resource=\"#" + enableReclosing + "\"/>\n" else "") +
-        (if (null != open) "\t\t<cim:SwitchActionKind.open rdf:resource=\"#" + open + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SwitchActionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SwitchActionKind>\n"
-    }
-}
-
-object SwitchActionKind
-extends
-    Parseable[SwitchActionKind]
-{
-    val close: (Context) => String = parse_attribute (attribute ("""SwitchActionKind.close"""))
-    val disableReclosing: (Context) => String = parse_attribute (attribute ("""SwitchActionKind.disableReclosing"""))
-    val enableReclosing: (Context) => String = parse_attribute (attribute ("""SwitchActionKind.enableReclosing"""))
-    val open: (Context) => String = parse_attribute (attribute ("""SwitchActionKind.open"""))
-    def parse (context: Context): SwitchActionKind =
-    {
-        SwitchActionKind(
-            BasicElement.parse (context),
-            close (context),
-            disableReclosing (context),
-            enableReclosing (context),
-            open (context)
         )
     }
 }
@@ -1540,130 +1332,12 @@ extends
     }
 }
 
-/**
- * Kind of action on tag.
- * @param sup Reference to the superclass object.
- * @param place Place the tag.
- * @param remove Remove the tag.
- * @param verify Verify the tag.
- */
-case class TagActionKind
-(
-    override val sup: BasicElement,
-    place: String,
-    remove: String,
-    verify: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TagActionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != place) "\t\t<cim:TagActionKind.place rdf:resource=\"#" + place + "\"/>\n" else "") +
-        (if (null != remove) "\t\t<cim:TagActionKind.remove rdf:resource=\"#" + remove + "\"/>\n" else "") +
-        (if (null != verify) "\t\t<cim:TagActionKind.verify rdf:resource=\"#" + verify + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:TagActionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TagActionKind>\n"
-    }
-}
-
-object TagActionKind
-extends
-    Parseable[TagActionKind]
-{
-    val place: (Context) => String = parse_attribute (attribute ("""TagActionKind.place"""))
-    val remove: (Context) => String = parse_attribute (attribute ("""TagActionKind.remove"""))
-    val verify: (Context) => String = parse_attribute (attribute ("""TagActionKind.verify"""))
-    def parse (context: Context): TagActionKind =
-    {
-        TagActionKind(
-            BasicElement.parse (context),
-            place (context),
-            remove (context),
-            verify (context)
-        )
-    }
-}
-
-/**
- * Kind of action on temporary equipment (such as cut, jumper, ground, energy source).
- * @param sup Reference to the superclass object.
- * @param place Place the jumper (close) or the cut (open).
- * @param remove Remove the jumper (open) or the cut (close).
- */
-case class TempEquipActionKind
-(
-    override val sup: BasicElement,
-    place: String,
-    remove: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TempEquipActionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != place) "\t\t<cim:TempEquipActionKind.place rdf:resource=\"#" + place + "\"/>\n" else "") +
-        (if (null != remove) "\t\t<cim:TempEquipActionKind.remove rdf:resource=\"#" + remove + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:TempEquipActionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TempEquipActionKind>\n"
-    }
-}
-
-object TempEquipActionKind
-extends
-    Parseable[TempEquipActionKind]
-{
-    val place: (Context) => String = parse_attribute (attribute ("""TempEquipActionKind.place"""))
-    val remove: (Context) => String = parse_attribute (attribute ("""TempEquipActionKind.remove"""))
-    def parse (context: Context): TempEquipActionKind =
-    {
-        TempEquipActionKind(
-            BasicElement.parse (context),
-            place (context),
-            remove (context)
-        )
-    }
-}
-
 private[ninecode] object _Operations
 {
     def register: List[ClassInfo] =
     {
         List (
             ClearanceAction.register,
-            ClearanceActionKind.register,
             ClearanceDocument.register,
             CutAction.register,
             EnergySourceAction.register,
@@ -1677,17 +1351,13 @@ private[ninecode] object _Operations
             Outage.register,
             OutageSchedule.register,
             PSREvent.register,
-            PSREventKind.register,
             SafetyDocument.register,
             ServicePointOutageSummary.register,
             SwitchAction.register,
-            SwitchActionKind.register,
             SwitchingPlan.register,
             SwitchingStep.register,
             SwitchingStepGroup.register,
-            TagAction.register,
-            TagActionKind.register,
-            TempEquipActionKind.register
+            TagAction.register
         )
     }
 }

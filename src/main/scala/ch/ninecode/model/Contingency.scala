@@ -169,62 +169,6 @@ extends
     }
 }
 
-/**
- * Indicates the state which the contingency equipment is to be in when the contingency is applied.
- * @param sup Reference to the superclass object.
- * @param inService The equipment is in service.
- * @param outOfService The equipment is to be taken out of service.
- */
-case class ContingencyEquipmentStatusKind
-(
-    override val sup: BasicElement,
-    inService: String,
-    outOfService: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ContingencyEquipmentStatusKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != inService) "\t\t<cim:ContingencyEquipmentStatusKind.inService rdf:resource=\"#" + inService + "\"/>\n" else "") +
-        (if (null != outOfService) "\t\t<cim:ContingencyEquipmentStatusKind.outOfService rdf:resource=\"#" + outOfService + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ContingencyEquipmentStatusKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ContingencyEquipmentStatusKind>\n"
-    }
-}
-
-object ContingencyEquipmentStatusKind
-extends
-    Parseable[ContingencyEquipmentStatusKind]
-{
-    val inService: (Context) => String = parse_attribute (attribute ("""ContingencyEquipmentStatusKind.inService"""))
-    val outOfService: (Context) => String = parse_attribute (attribute ("""ContingencyEquipmentStatusKind.outOfService"""))
-    def parse (context: Context): ContingencyEquipmentStatusKind =
-    {
-        ContingencyEquipmentStatusKind(
-            BasicElement.parse (context),
-            inService (context),
-            outOfService (context)
-        )
-    }
-}
-
 private[ninecode] object _Contingency
 {
     def register: List[ClassInfo] =
@@ -232,8 +176,7 @@ private[ninecode] object _Contingency
         List (
             Contingency.register,
             ContingencyElement.register,
-            ContingencyEquipment.register,
-            ContingencyEquipmentStatusKind.register
+            ContingencyEquipment.register
         )
     }
 }

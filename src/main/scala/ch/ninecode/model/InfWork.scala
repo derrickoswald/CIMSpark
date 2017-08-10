@@ -939,77 +939,6 @@ extends
 }
 
 /**
- * Kind of condition factor.
- * @param sup Reference to the superclass object.
- * @param accountAllocation <em>undocumented</em>
- * @param labor <em>undocumented</em>
- * @param material <em>undocumented</em>
- * @param other <em>undocumented</em>
- * @param travel <em>undocumented</em>
- */
-case class ConditionFactorKind
-(
-    override val sup: BasicElement,
-    accountAllocation: String,
-    labor: String,
-    material: String,
-    other: String,
-    travel: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ConditionFactorKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != accountAllocation) "\t\t<cim:ConditionFactorKind.accountAllocation rdf:resource=\"#" + accountAllocation + "\"/>\n" else "") +
-        (if (null != labor) "\t\t<cim:ConditionFactorKind.labor rdf:resource=\"#" + labor + "\"/>\n" else "") +
-        (if (null != material) "\t\t<cim:ConditionFactorKind.material rdf:resource=\"#" + material + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:ConditionFactorKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != travel) "\t\t<cim:ConditionFactorKind.travel rdf:resource=\"#" + travel + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ConditionFactorKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ConditionFactorKind>\n"
-    }
-}
-
-object ConditionFactorKind
-extends
-    Parseable[ConditionFactorKind]
-{
-    val accountAllocation: (Context) => String = parse_attribute (attribute ("""ConditionFactorKind.accountAllocation"""))
-    val labor: (Context) => String = parse_attribute (attribute ("""ConditionFactorKind.labor"""))
-    val material: (Context) => String = parse_attribute (attribute ("""ConditionFactorKind.material"""))
-    val other: (Context) => String = parse_attribute (attribute ("""ConditionFactorKind.other"""))
-    val travel: (Context) => String = parse_attribute (attribute ("""ConditionFactorKind.travel"""))
-    def parse (context: Context): ConditionFactorKind =
-    {
-        ConditionFactorKind(
-            BasicElement.parse (context),
-            accountAllocation (context),
-            labor (context),
-            material (context),
-            other (context),
-            travel (context)
-        )
-    }
-}
-
-/**
  * Contractor information for work task.
  * @param sup Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
@@ -1245,67 +1174,6 @@ extends
             ConditionFactors (context),
             ErpQuoteLineItem (context),
             Work (context)
-        )
-    }
-}
-
-/**
- * Kind of design.
- * @param sup Reference to the superclass object.
- * @param asBuilt <em>undocumented</em>
- * @param estimated <em>undocumented</em>
- * @param other <em>undocumented</em>
- */
-case class DesignKind
-(
-    override val sup: BasicElement,
-    asBuilt: String,
-    estimated: String,
-    other: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[DesignKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != asBuilt) "\t\t<cim:DesignKind.asBuilt rdf:resource=\"#" + asBuilt + "\"/>\n" else "") +
-        (if (null != estimated) "\t\t<cim:DesignKind.estimated rdf:resource=\"#" + estimated + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:DesignKind.other rdf:resource=\"#" + other + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:DesignKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DesignKind>\n"
-    }
-}
-
-object DesignKind
-extends
-    Parseable[DesignKind]
-{
-    val asBuilt: (Context) => String = parse_attribute (attribute ("""DesignKind.asBuilt"""))
-    val estimated: (Context) => String = parse_attribute (attribute ("""DesignKind.estimated"""))
-    val other: (Context) => String = parse_attribute (attribute ("""DesignKind.other"""))
-    def parse (context: Context): DesignKind =
-    {
-        DesignKind(
-            BasicElement.parse (context),
-            asBuilt (context),
-            estimated (context),
-            other (context)
         )
     }
 }
@@ -2414,72 +2282,6 @@ extends
 }
 
 /**
- * Kinds of activities to be performed on a Compatible Unit.
- * @param sup Reference to the superclass object.
- * @param abandon Leave it in place but not use it.
- * @param install Install.
- * @param remove Remove.
- * @param transfer Remove from one and install at another loctation.
- */
-case class WorkActionKind
-(
-    override val sup: BasicElement,
-    abandon: String,
-    install: String,
-    remove: String,
-    transfer: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[WorkActionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != abandon) "\t\t<cim:WorkActionKind.abandon rdf:resource=\"#" + abandon + "\"/>\n" else "") +
-        (if (null != install) "\t\t<cim:WorkActionKind.install rdf:resource=\"#" + install + "\"/>\n" else "") +
-        (if (null != remove) "\t\t<cim:WorkActionKind.remove rdf:resource=\"#" + remove + "\"/>\n" else "") +
-        (if (null != transfer) "\t\t<cim:WorkActionKind.transfer rdf:resource=\"#" + transfer + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:WorkActionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WorkActionKind>\n"
-    }
-}
-
-object WorkActionKind
-extends
-    Parseable[WorkActionKind]
-{
-    val abandon: (Context) => String = parse_attribute (attribute ("""WorkActionKind.abandon"""))
-    val install: (Context) => String = parse_attribute (attribute ("""WorkActionKind.install"""))
-    val remove: (Context) => String = parse_attribute (attribute ("""WorkActionKind.remove"""))
-    val transfer: (Context) => String = parse_attribute (attribute ("""WorkActionKind.transfer"""))
-    def parse (context: Context): WorkActionKind =
-    {
-        WorkActionKind(
-            BasicElement.parse (context),
-            abandon (context),
-            install (context),
-            remove (context),
-            transfer (context)
-        )
-    }
-}
-
-/**
  * A collection of all of the individual cost items collected from multiple sources.
  * @param sup Reference to the superclass object.
  * @param amount Amount in designated currency for work, either a total or an individual element.
@@ -2860,11 +2662,9 @@ private[ninecode] object _InfWork
             Capability.register,
             CompatibleUnit.register,
             ConditionFactor.register,
-            ConditionFactorKind.register,
             ContractorItem.register,
             CostType.register,
             Design.register,
-            DesignKind.register,
             DesignLocation.register,
             DesignLocationCU.register,
             InfoQuestion.register,
@@ -2881,7 +2681,6 @@ private[ninecode] object _InfWork
             ShiftPattern.register,
             TypeMaterial.register,
             Usage.register,
-            WorkActionKind.register,
             WorkCostDetail.register,
             WorkCostSummary.register,
             WorkDocument.register,

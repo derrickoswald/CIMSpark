@@ -514,92 +514,6 @@ extends
 }
 
 /**
- * Usage for an asset model.
- * @param sup Reference to the superclass object.
- * @param customerSubstation Asset model is intended for use in customer substation.
- * @param distributionOverhead Asset model is intended for use in distribution overhead network.
- * @param distributionUnderground Asset model is intended for use in underground distribution network.
- * @param other Other kind of asset model usage.
- * @param streetlight Asset model is intended for use as streetlight.
- * @param substation Asset model is intended for use in substation.
- * @param transmission Asset model is intended for use in transmission network.
- * @param unknown Usage of the asset model is unknown.
- */
-case class AssetModelUsageKind
-(
-    override val sup: BasicElement,
-    customerSubstation: String,
-    distributionOverhead: String,
-    distributionUnderground: String,
-    other: String,
-    streetlight: String,
-    substation: String,
-    transmission: String,
-    unknown: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[AssetModelUsageKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != customerSubstation) "\t\t<cim:AssetModelUsageKind.customerSubstation rdf:resource=\"#" + customerSubstation + "\"/>\n" else "") +
-        (if (null != distributionOverhead) "\t\t<cim:AssetModelUsageKind.distributionOverhead rdf:resource=\"#" + distributionOverhead + "\"/>\n" else "") +
-        (if (null != distributionUnderground) "\t\t<cim:AssetModelUsageKind.distributionUnderground rdf:resource=\"#" + distributionUnderground + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:AssetModelUsageKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != streetlight) "\t\t<cim:AssetModelUsageKind.streetlight rdf:resource=\"#" + streetlight + "\"/>\n" else "") +
-        (if (null != substation) "\t\t<cim:AssetModelUsageKind.substation rdf:resource=\"#" + substation + "\"/>\n" else "") +
-        (if (null != transmission) "\t\t<cim:AssetModelUsageKind.transmission rdf:resource=\"#" + transmission + "\"/>\n" else "") +
-        (if (null != unknown) "\t\t<cim:AssetModelUsageKind.unknown rdf:resource=\"#" + unknown + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:AssetModelUsageKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AssetModelUsageKind>\n"
-    }
-}
-
-object AssetModelUsageKind
-extends
-    Parseable[AssetModelUsageKind]
-{
-    val customerSubstation: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.customerSubstation"""))
-    val distributionOverhead: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.distributionOverhead"""))
-    val distributionUnderground: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.distributionUnderground"""))
-    val other: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.other"""))
-    val streetlight: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.streetlight"""))
-    val substation: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.substation"""))
-    val transmission: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.transmission"""))
-    val unknown: (Context) => String = parse_attribute (attribute ("""AssetModelUsageKind.unknown"""))
-    def parse (context: Context): AssetModelUsageKind =
-    {
-        AssetModelUsageKind(
-            BasicElement.parse (context),
-            customerSubstation (context),
-            distributionOverhead (context),
-            distributionUnderground (context),
-            other (context),
-            streetlight (context),
-            substation (context),
-            transmission (context),
-            unknown (context)
-        )
-    }
-}
-
-/**
  * Role an organisation plays with respect to asset.
  * @param sup Reference to the superclass object.
  */
@@ -783,72 +697,6 @@ extends
     {
         ComMedia(
             Asset.parse (context)
-        )
-    }
-}
-
-/**
- * Kind of corporate standard.
- * @param sup Reference to the superclass object.
- * @param experimental Asset model is used experimentally.
- * @param other Other kind of corporate standard for the asset model.
- * @param standard Asset model is used as corporate standard.
- * @param underEvaluation Asset model usage is under evaluation.
- */
-case class CorporateStandardKind
-(
-    override val sup: BasicElement,
-    experimental: String,
-    other: String,
-    standard: String,
-    underEvaluation: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CorporateStandardKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != experimental) "\t\t<cim:CorporateStandardKind.experimental rdf:resource=\"#" + experimental + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:CorporateStandardKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != standard) "\t\t<cim:CorporateStandardKind.standard rdf:resource=\"#" + standard + "\"/>\n" else "") +
-        (if (null != underEvaluation) "\t\t<cim:CorporateStandardKind.underEvaluation rdf:resource=\"#" + underEvaluation + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:CorporateStandardKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CorporateStandardKind>\n"
-    }
-}
-
-object CorporateStandardKind
-extends
-    Parseable[CorporateStandardKind]
-{
-    val experimental: (Context) => String = parse_attribute (attribute ("""CorporateStandardKind.experimental"""))
-    val other: (Context) => String = parse_attribute (attribute ("""CorporateStandardKind.other"""))
-    val standard: (Context) => String = parse_attribute (attribute ("""CorporateStandardKind.standard"""))
-    val underEvaluation: (Context) => String = parse_attribute (attribute ("""CorporateStandardKind.underEvaluation"""))
-    def parse (context: Context): CorporateStandardKind =
-    {
-        CorporateStandardKind(
-            BasicElement.parse (context),
-            experimental (context),
-            other (context),
-            standard (context),
-            underEvaluation (context)
         )
     }
 }
@@ -1171,77 +1019,6 @@ extends
 }
 
 /**
- * Kind of procedure.
- * @param sup Reference to the superclass object.
- * @param diagnosis <em>undocumented</em>
- * @param inspection <em>undocumented</em>
- * @param maintenance <em>undocumented</em>
- * @param other <em>undocumented</em>
- * @param test <em>undocumented</em>
- */
-case class ProcedureKind
-(
-    override val sup: BasicElement,
-    diagnosis: String,
-    inspection: String,
-    maintenance: String,
-    other: String,
-    test: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ProcedureKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != diagnosis) "\t\t<cim:ProcedureKind.diagnosis rdf:resource=\"#" + diagnosis + "\"/>\n" else "") +
-        (if (null != inspection) "\t\t<cim:ProcedureKind.inspection rdf:resource=\"#" + inspection + "\"/>\n" else "") +
-        (if (null != maintenance) "\t\t<cim:ProcedureKind.maintenance rdf:resource=\"#" + maintenance + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:ProcedureKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != test) "\t\t<cim:ProcedureKind.test rdf:resource=\"#" + test + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ProcedureKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ProcedureKind>\n"
-    }
-}
-
-object ProcedureKind
-extends
-    Parseable[ProcedureKind]
-{
-    val diagnosis: (Context) => String = parse_attribute (attribute ("""ProcedureKind.diagnosis"""))
-    val inspection: (Context) => String = parse_attribute (attribute ("""ProcedureKind.inspection"""))
-    val maintenance: (Context) => String = parse_attribute (attribute ("""ProcedureKind.maintenance"""))
-    val other: (Context) => String = parse_attribute (attribute ("""ProcedureKind.other"""))
-    val test: (Context) => String = parse_attribute (attribute ("""ProcedureKind.test"""))
-    def parse (context: Context): ProcedureKind =
-    {
-        ProcedureKind(
-            BasicElement.parse (context),
-            diagnosis (context),
-            inspection (context),
-            maintenance (context),
-            other (context),
-            test (context)
-        )
-    }
-}
-
-/**
  * Asset model by a specific manufacturer.
  * @param sup Reference to the superclass object.
  * @param corporateStandardKind Kind of corporate standard for this asset model.
@@ -1393,143 +1170,6 @@ extends
     }
 }
 
-/**
- * Kind of seal condition.
- * @param sup Reference to the superclass object.
- * @param broken Seal is broken.
- * @param locked Seal is locked.
- * @param missing Seal is missing.
- * @param open Seal is open.
- * @param other Other kind of seal condition.
- */
-case class SealConditionKind
-(
-    override val sup: BasicElement,
-    broken: String,
-    locked: String,
-    missing: String,
-    open: String,
-    other: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SealConditionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != broken) "\t\t<cim:SealConditionKind.broken rdf:resource=\"#" + broken + "\"/>\n" else "") +
-        (if (null != locked) "\t\t<cim:SealConditionKind.locked rdf:resource=\"#" + locked + "\"/>\n" else "") +
-        (if (null != missing) "\t\t<cim:SealConditionKind.missing rdf:resource=\"#" + missing + "\"/>\n" else "") +
-        (if (null != open) "\t\t<cim:SealConditionKind.open rdf:resource=\"#" + open + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:SealConditionKind.other rdf:resource=\"#" + other + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SealConditionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SealConditionKind>\n"
-    }
-}
-
-object SealConditionKind
-extends
-    Parseable[SealConditionKind]
-{
-    val broken: (Context) => String = parse_attribute (attribute ("""SealConditionKind.broken"""))
-    val locked: (Context) => String = parse_attribute (attribute ("""SealConditionKind.locked"""))
-    val missing: (Context) => String = parse_attribute (attribute ("""SealConditionKind.missing"""))
-    val open: (Context) => String = parse_attribute (attribute ("""SealConditionKind.open"""))
-    val other: (Context) => String = parse_attribute (attribute ("""SealConditionKind.other"""))
-    def parse (context: Context): SealConditionKind =
-    {
-        SealConditionKind(
-            BasicElement.parse (context),
-            broken (context),
-            locked (context),
-            missing (context),
-            open (context),
-            other (context)
-        )
-    }
-}
-
-/**
- * Kind of seal.
- * @param sup Reference to the superclass object.
- * @param lead Lead seal.
- * @param lock1 Lock seal.
- * @param other Other kind of seal.
- * @param steel Steel seal.
- */
-case class SealKind
-(
-    override val sup: BasicElement,
-    lead: String,
-    lock1: String,
-    other: String,
-    steel: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SealKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != lead) "\t\t<cim:SealKind.lead rdf:resource=\"#" + lead + "\"/>\n" else "") +
-        (if (null != lock1) "\t\t<cim:SealKind.lock rdf:resource=\"#" + lock1 + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:SealKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != steel) "\t\t<cim:SealKind.steel rdf:resource=\"#" + steel + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SealKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SealKind>\n"
-    }
-}
-
-object SealKind
-extends
-    Parseable[SealKind]
-{
-    val lead: (Context) => String = parse_attribute (attribute ("""SealKind.lead"""))
-    val lock1: (Context) => String = parse_attribute (attribute ("""SealKind.lock"""))
-    val other: (Context) => String = parse_attribute (attribute ("""SealKind.other"""))
-    val steel: (Context) => String = parse_attribute (attribute ("""SealKind.steel"""))
-    def parse (context: Context): SealKind =
-    {
-        SealKind(
-            BasicElement.parse (context),
-            lead (context),
-            lock1 (context),
-            other (context),
-            steel (context)
-        )
-    }
-}
-
 private[ninecode] object _Assets
 {
     def register: List[ClassInfo] =
@@ -1542,22 +1182,17 @@ private[ninecode] object _Assets
             AssetInfo.register,
             AssetLocationHazard.register,
             AssetModel.register,
-            AssetModelUsageKind.register,
             AssetOrganisationRole.register,
             AssetOwner.register,
             AssetUser.register,
             ComMedia.register,
-            CorporateStandardKind.register,
             LifecycleDate.register,
             Maintainer.register,
             Manufacturer.register,
             Procedure.register,
             ProcedureDataSet.register,
-            ProcedureKind.register,
             ProductAssetModel.register,
-            Seal.register,
-            SealConditionKind.register,
-            SealKind.register
+            Seal.register
         )
     }
 }

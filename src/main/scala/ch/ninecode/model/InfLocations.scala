@@ -8,67 +8,6 @@ import ch.ninecode.cim.Parseable
 
 
 /**
- * Demographic kind of a land property.
- * @param sup Reference to the superclass object.
- * @param other <em>undocumented</em>
- * @param rural <em>undocumented</em>
- * @param urban <em>undocumented</em>
- */
-case class DemographicKind
-(
-    override val sup: BasicElement,
-    other: String,
-    rural: String,
-    urban: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[DemographicKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != other) "\t\t<cim:DemographicKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != rural) "\t\t<cim:DemographicKind.rural rdf:resource=\"#" + rural + "\"/>\n" else "") +
-        (if (null != urban) "\t\t<cim:DemographicKind.urban rdf:resource=\"#" + urban + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:DemographicKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DemographicKind>\n"
-    }
-}
-
-object DemographicKind
-extends
-    Parseable[DemographicKind]
-{
-    val other: (Context) => String = parse_attribute (attribute ("""DemographicKind.other"""))
-    val rural: (Context) => String = parse_attribute (attribute ("""DemographicKind.rural"""))
-    val urban: (Context) => String = parse_attribute (attribute ("""DemographicKind.urban"""))
-    def parse (context: Context): DemographicKind =
-    {
-        DemographicKind(
-            BasicElement.parse (context),
-            other (context),
-            rural (context),
-            urban (context)
-        )
-    }
-}
-
-/**
  * Information about a particular piece of (land) property such as its use.
  * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
  * @param sup Reference to the superclass object.
@@ -142,87 +81,6 @@ extends
             status (context),
             AssetContainers (context),
             Locations (context)
-        )
-    }
-}
-
-/**
- * Kind of (land) property.
- * @param sup Reference to the superclass object.
- * @param building Site enclosed within a building.
- * @param customerPremise Site with a customer.
- * @param depot Storehouse for supplies that also serves as a station for supporting crews.
- * @param external Property owned or used by an external party that is not a customer.
- * @param gridSupplyPoint Substation where the distribution and transmission networks meet and hence have mixed ownership and mixed operational control.
- * @param store Place of storage (e.g., a warehouse) to put aside, or accumulate, material and equipment for use when needed.
- * @param substation Transmission network switchyard.
- */
-case class LandPropertyKind
-(
-    override val sup: BasicElement,
-    building: String,
-    customerPremise: String,
-    depot: String,
-    external: String,
-    gridSupplyPoint: String,
-    store: String,
-    substation: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[LandPropertyKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != building) "\t\t<cim:LandPropertyKind.building rdf:resource=\"#" + building + "\"/>\n" else "") +
-        (if (null != customerPremise) "\t\t<cim:LandPropertyKind.customerPremise rdf:resource=\"#" + customerPremise + "\"/>\n" else "") +
-        (if (null != depot) "\t\t<cim:LandPropertyKind.depot rdf:resource=\"#" + depot + "\"/>\n" else "") +
-        (if (null != external) "\t\t<cim:LandPropertyKind.external rdf:resource=\"#" + external + "\"/>\n" else "") +
-        (if (null != gridSupplyPoint) "\t\t<cim:LandPropertyKind.gridSupplyPoint rdf:resource=\"#" + gridSupplyPoint + "\"/>\n" else "") +
-        (if (null != store) "\t\t<cim:LandPropertyKind.store rdf:resource=\"#" + store + "\"/>\n" else "") +
-        (if (null != substation) "\t\t<cim:LandPropertyKind.substation rdf:resource=\"#" + substation + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:LandPropertyKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LandPropertyKind>\n"
-    }
-}
-
-object LandPropertyKind
-extends
-    Parseable[LandPropertyKind]
-{
-    val building: (Context) => String = parse_attribute (attribute ("""LandPropertyKind.building"""))
-    val customerPremise: (Context) => String = parse_attribute (attribute ("""LandPropertyKind.customerPremise"""))
-    val depot: (Context) => String = parse_attribute (attribute ("""LandPropertyKind.depot"""))
-    val external: (Context) => String = parse_attribute (attribute ("""LandPropertyKind.external"""))
-    val gridSupplyPoint: (Context) => String = parse_attribute (attribute ("""LandPropertyKind.gridSupplyPoint"""))
-    val store: (Context) => String = parse_attribute (attribute ("""LandPropertyKind.store"""))
-    val substation: (Context) => String = parse_attribute (attribute ("""LandPropertyKind.substation"""))
-    def parse (context: Context): LandPropertyKind =
-    {
-        LandPropertyKind(
-            BasicElement.parse (context),
-            building (context),
-            customerPremise (context),
-            depot (context),
-            external (context),
-            gridSupplyPoint (context),
-            store (context),
-            substation (context)
         )
     }
 }
@@ -508,86 +366,17 @@ extends
     }
 }
 
-/**
- * Kind of zone.
- * @param sup Reference to the superclass object.
- * @param electricalNetwork <em>undocumented</em>
- * @param other <em>undocumented</em>
- * @param specialRestrictionLand <em>undocumented</em>
- * @param weatherZone <em>undocumented</em>
- */
-case class ZoneKind
-(
-    override val sup: BasicElement,
-    electricalNetwork: String,
-    other: String,
-    specialRestrictionLand: String,
-    weatherZone: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ZoneKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != electricalNetwork) "\t\t<cim:ZoneKind.electricalNetwork rdf:resource=\"#" + electricalNetwork + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:ZoneKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != specialRestrictionLand) "\t\t<cim:ZoneKind.specialRestrictionLand rdf:resource=\"#" + specialRestrictionLand + "\"/>\n" else "") +
-        (if (null != weatherZone) "\t\t<cim:ZoneKind.weatherZone rdf:resource=\"#" + weatherZone + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ZoneKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ZoneKind>\n"
-    }
-}
-
-object ZoneKind
-extends
-    Parseable[ZoneKind]
-{
-    val electricalNetwork: (Context) => String = parse_attribute (attribute ("""ZoneKind.electricalNetwork"""))
-    val other: (Context) => String = parse_attribute (attribute ("""ZoneKind.other"""))
-    val specialRestrictionLand: (Context) => String = parse_attribute (attribute ("""ZoneKind.specialRestrictionLand"""))
-    val weatherZone: (Context) => String = parse_attribute (attribute ("""ZoneKind.weatherZone"""))
-    def parse (context: Context): ZoneKind =
-    {
-        ZoneKind(
-            BasicElement.parse (context),
-            electricalNetwork (context),
-            other (context),
-            specialRestrictionLand (context),
-            weatherZone (context)
-        )
-    }
-}
-
 private[ninecode] object _InfLocations
 {
     def register: List[ClassInfo] =
     {
         List (
-            DemographicKind.register,
             LandProperty.register,
-            LandPropertyKind.register,
             LocationGrant.register,
             RedLine.register,
             RightOfWay.register,
             Route.register,
-            Zone.register,
-            ZoneKind.register
+            Zone.register
         )
     }
 }

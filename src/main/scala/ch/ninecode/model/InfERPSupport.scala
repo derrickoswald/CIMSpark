@@ -12,133 +12,6 @@ import ch.ninecode.cim.Parseable
  */
 
 /**
- * Kind of bill media.
- * @param sup Reference to the superclass object.
- * @param electronic <em>undocumented</em>
- * @param other <em>undocumented</em>
- * @param paper <em>undocumented</em>
- */
-case class BillMediaKind
-(
-    override val sup: BasicElement,
-    electronic: String,
-    other: String,
-    paper: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[BillMediaKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != electronic) "\t\t<cim:BillMediaKind.electronic rdf:resource=\"#" + electronic + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:BillMediaKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != paper) "\t\t<cim:BillMediaKind.paper rdf:resource=\"#" + paper + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:BillMediaKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BillMediaKind>\n"
-    }
-}
-
-object BillMediaKind
-extends
-    Parseable[BillMediaKind]
-{
-    val electronic: (Context) => String = parse_attribute (attribute ("""BillMediaKind.electronic"""))
-    val other: (Context) => String = parse_attribute (attribute ("""BillMediaKind.other"""))
-    val paper: (Context) => String = parse_attribute (attribute ("""BillMediaKind.paper"""))
-    def parse (context: Context): BillMediaKind =
-    {
-        BillMediaKind(
-            BasicElement.parse (context),
-            electronic (context),
-            other (context),
-            paper (context)
-        )
-    }
-}
-
-/**
- * Kind of ERP account.
- * @param sup Reference to the superclass object.
- * @param estimate <em>undocumented</em>
- * @param normal <em>undocumented</em>
- * @param reversal <em>undocumented</em>
- * @param statistical <em>undocumented</em>
- */
-case class ErpAccountKind
-(
-    override val sup: BasicElement,
-    estimate: String,
-    normal: String,
-    reversal: String,
-    statistical: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ErpAccountKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != estimate) "\t\t<cim:ErpAccountKind.estimate rdf:resource=\"#" + estimate + "\"/>\n" else "") +
-        (if (null != normal) "\t\t<cim:ErpAccountKind.normal rdf:resource=\"#" + normal + "\"/>\n" else "") +
-        (if (null != reversal) "\t\t<cim:ErpAccountKind.reversal rdf:resource=\"#" + reversal + "\"/>\n" else "") +
-        (if (null != statistical) "\t\t<cim:ErpAccountKind.statistical rdf:resource=\"#" + statistical + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ErpAccountKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ErpAccountKind>\n"
-    }
-}
-
-object ErpAccountKind
-extends
-    Parseable[ErpAccountKind]
-{
-    val estimate: (Context) => String = parse_attribute (attribute ("""ErpAccountKind.estimate"""))
-    val normal: (Context) => String = parse_attribute (attribute ("""ErpAccountKind.normal"""))
-    val reversal: (Context) => String = parse_attribute (attribute ("""ErpAccountKind.reversal"""))
-    val statistical: (Context) => String = parse_attribute (attribute ("""ErpAccountKind.statistical"""))
-    def parse (context: Context): ErpAccountKind =
-    {
-        ErpAccountKind(
-            BasicElement.parse (context),
-            estimate (context),
-            normal (context),
-            reversal (context),
-            statistical (context)
-        )
-    }
-}
-
-/**
  * Information that generally describes the Bill of Material Structure and its contents for a utility.
  * This is used by ERP systems to transfer Bill of Material information between two business applications.
  * @param sup Reference to the superclass object.
@@ -755,62 +628,6 @@ extends
 }
 
 /**
- * Kind of ERP invoice.
- * @param sup Reference to the superclass object.
- * @param purchase <em>undocumented</em>
- * @param sale <em>undocumented</em>
- */
-case class ErpInvoiceKind
-(
-    override val sup: BasicElement,
-    purchase: String,
-    sale: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ErpInvoiceKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != purchase) "\t\t<cim:ErpInvoiceKind.purchase rdf:resource=\"#" + purchase + "\"/>\n" else "") +
-        (if (null != sale) "\t\t<cim:ErpInvoiceKind.sale rdf:resource=\"#" + sale + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ErpInvoiceKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ErpInvoiceKind>\n"
-    }
-}
-
-object ErpInvoiceKind
-extends
-    Parseable[ErpInvoiceKind]
-{
-    val purchase: (Context) => String = parse_attribute (attribute ("""ErpInvoiceKind.purchase"""))
-    val sale: (Context) => String = parse_attribute (attribute ("""ErpInvoiceKind.sale"""))
-    def parse (context: Context): ErpInvoiceKind =
-    {
-        ErpInvoiceKind(
-            BasicElement.parse (context),
-            purchase (context),
-            sale (context)
-        )
-    }
-}
-
-/**
  * An individual line item on an invoice.
  * @param sup Reference to the superclass object.
  * @param billPeriod Bill period for the line item.
@@ -937,67 +754,6 @@ extends
             ErpRecDelvLineItem (context),
             ErpRecLineItem (context),
             UserAttributes (context)
-        )
-    }
-}
-
-/**
- * Kind of invoice line item.
- * @param sup Reference to the superclass object.
- * @param initial <em>undocumented</em>
- * @param other <em>undocumented</em>
- * @param recalculation <em>undocumented</em>
- */
-case class ErpInvoiceLineItemKind
-(
-    override val sup: BasicElement,
-    initial: String,
-    other: String,
-    recalculation: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ErpInvoiceLineItemKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != initial) "\t\t<cim:ErpInvoiceLineItemKind.initial rdf:resource=\"#" + initial + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:ErpInvoiceLineItemKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != recalculation) "\t\t<cim:ErpInvoiceLineItemKind.recalculation rdf:resource=\"#" + recalculation + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ErpInvoiceLineItemKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ErpInvoiceLineItemKind>\n"
-    }
-}
-
-object ErpInvoiceLineItemKind
-extends
-    Parseable[ErpInvoiceLineItemKind]
-{
-    val initial: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItemKind.initial"""))
-    val other: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItemKind.other"""))
-    val recalculation: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItemKind.recalculation"""))
-    def parse (context: Context): ErpInvoiceLineItemKind =
-    {
-        ErpInvoiceLineItemKind(
-            BasicElement.parse (context),
-            initial (context),
-            other (context),
-            recalculation (context)
         )
     }
 }
@@ -2618,8 +2374,6 @@ private[ninecode] object _InfERPSupport
     def register: List[ClassInfo] =
     {
         List (
-            BillMediaKind.register,
-            ErpAccountKind.register,
             ErpBOM.register,
             ErpBankAccount.register,
             ErpBomItemData.register,
@@ -2631,9 +2385,7 @@ private[ninecode] object _InfERPSupport
             ErpInventory.register,
             ErpInventoryCount.register,
             ErpInvoice.register,
-            ErpInvoiceKind.register,
             ErpInvoiceLineItem.register,
-            ErpInvoiceLineItemKind.register,
             ErpIssueInventory.register,
             ErpItemMaster.register,
             ErpJournal.register,

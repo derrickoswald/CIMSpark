@@ -295,135 +295,6 @@ extends
     }
 }
 
-case class ProjectStepStatusKind
-(
-    override val sup: BasicElement,
-    approved: String,
-    cancelled: String,
-    inProgress: String,
-    inactive: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ProjectStepStatusKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != approved) "\t\t<cim:ProjectStepStatusKind.approved rdf:resource=\"#" + approved + "\"/>\n" else "") +
-        (if (null != cancelled) "\t\t<cim:ProjectStepStatusKind.cancelled rdf:resource=\"#" + cancelled + "\"/>\n" else "") +
-        (if (null != inProgress) "\t\t<cim:ProjectStepStatusKind.inProgress rdf:resource=\"#" + inProgress + "\"/>\n" else "") +
-        (if (null != inactive) "\t\t<cim:ProjectStepStatusKind.inactive rdf:resource=\"#" + inactive + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ProjectStepStatusKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ProjectStepStatusKind>\n"
-    }
-}
-
-object ProjectStepStatusKind
-extends
-    Parseable[ProjectStepStatusKind]
-{
-    val approved: (Context) => String = parse_attribute (attribute ("""ProjectStepStatusKind.approved"""))
-    val cancelled: (Context) => String = parse_attribute (attribute ("""ProjectStepStatusKind.cancelled"""))
-    val inProgress: (Context) => String = parse_attribute (attribute ("""ProjectStepStatusKind.inProgress"""))
-    val inactive: (Context) => String = parse_attribute (attribute ("""ProjectStepStatusKind.inactive"""))
-    def parse (context: Context): ProjectStepStatusKind =
-    {
-        ProjectStepStatusKind(
-            BasicElement.parse (context),
-            approved (context),
-            cancelled (context),
-            inProgress (context),
-            inactive (context)
-        )
-    }
-}
-
-/**
- * State of the project
- * @param sup Reference to the superclass object.
- * @param commissioning The project is commissioned and added to the network model.
- * @param design_and_construction Project is approved for realisation and the construction is starting, under construction or in the state of being realist.
- * @param planning First phase investigation and planning.
- * @param revision <em>undocumented</em>
- * @param ____list_incomplete__more_to_come <em>undocumented</em>
- */
-case class StepKind
-(
-    override val sup: BasicElement,
-    commissioning: String,
-    design_and_construction: String,
-    planning: String,
-    revision: String,
-    ____list_incomplete__more_to_come: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[StepKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != commissioning) "\t\t<cim:StepKind.commissioning rdf:resource=\"#" + commissioning + "\"/>\n" else "") +
-        (if (null != design_and_construction) "\t\t<cim:StepKind.design and construction rdf:resource=\"#" + design_and_construction + "\"/>\n" else "") +
-        (if (null != planning) "\t\t<cim:StepKind.planning rdf:resource=\"#" + planning + "\"/>\n" else "") +
-        (if (null != revision) "\t\t<cim:StepKind.revision rdf:resource=\"#" + revision + "\"/>\n" else "") +
-        (if (null != ____list_incomplete__more_to_come) "\t\t<cim:StepKind.... list incomplete, more to come rdf:resource=\"#" + ____list_incomplete__more_to_come + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:StepKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:StepKind>\n"
-    }
-}
-
-object StepKind
-extends
-    Parseable[StepKind]
-{
-    val commissioning: (Context) => String = parse_attribute (attribute ("""StepKind.commissioning"""))
-    val design_and_construction: (Context) => String = parse_attribute (attribute ("""StepKind.design and construction"""))
-    val planning: (Context) => String = parse_attribute (attribute ("""StepKind.planning"""))
-    val revision: (Context) => String = parse_attribute (attribute ("""StepKind.revision"""))
-    val ____list_incomplete__more_to_come: (Context) => String = parse_attribute (attribute ("""StepKind.... list incomplete, more to come"""))
-    def parse (context: Context): StepKind =
-    {
-        StepKind(
-            BasicElement.parse (context),
-            commissioning (context),
-            design_and_construction (context),
-            planning (context),
-            revision (context),
-            ____list_incomplete__more_to_come (context)
-        )
-    }
-}
-
 private[ninecode] object _PowerSystemProject
 {
     def register: List[ClassInfo] =
@@ -432,9 +303,7 @@ private[ninecode] object _PowerSystemProject
             PowerSystemProject.register,
             PowerSystemProjectSchedule.register,
             PowerSystemSubProject.register,
-            ProjectStep.register,
-            ProjectStepStatusKind.register,
-            StepKind.register
+            ProjectStep.register
         )
     }
 }

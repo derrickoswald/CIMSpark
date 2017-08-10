@@ -12,123 +12,6 @@ import ch.ninecode.cim.Parseable
  */
 
 /**
- * Excitation base system mode.
- * @param sup Reference to the superclass object.
- * @param ifag Air gap line mode.  ifdBaseValue is computed, not defined by the user, in this mode.
- * @param iffl Full load system mode.  ifdBaseValue is computed, not defined by the user, in this mode.
- * @param ifnl No load system with saturation mode.  ifdBaseValue is computed, not defined by the user, in this mode.
- */
-case class IfdBaseKind
-(
-    override val sup: BasicElement,
-    ifag: String,
-    iffl: String,
-    ifnl: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[IfdBaseKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != ifag) "\t\t<cim:IfdBaseKind.ifag rdf:resource=\"#" + ifag + "\"/>\n" else "") +
-        (if (null != iffl) "\t\t<cim:IfdBaseKind.iffl rdf:resource=\"#" + iffl + "\"/>\n" else "") +
-        (if (null != ifnl) "\t\t<cim:IfdBaseKind.ifnl rdf:resource=\"#" + ifnl + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:IfdBaseKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:IfdBaseKind>\n"
-    }
-}
-
-object IfdBaseKind
-extends
-    Parseable[IfdBaseKind]
-{
-    val ifag: (Context) => String = parse_attribute (attribute ("""IfdBaseKind.ifag"""))
-    val iffl: (Context) => String = parse_attribute (attribute ("""IfdBaseKind.iffl"""))
-    val ifnl: (Context) => String = parse_attribute (attribute ("""IfdBaseKind.ifnl"""))
-    def parse (context: Context): IfdBaseKind =
-    {
-        IfdBaseKind(
-            BasicElement.parse (context),
-            ifag (context),
-            iffl (context),
-            ifnl (context)
-        )
-    }
-}
-
-/**
- * Type of rotor on physical machine.
- * @param sup Reference to the superclass object.
- * @param roundRotor Round rotor type of synchronous machine.
- * @param salientPole Salient pole type of synchronous machine.
- */
-case class RotorKind
-(
-    override val sup: BasicElement,
-    roundRotor: String,
-    salientPole: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[RotorKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != roundRotor) "\t\t<cim:RotorKind.roundRotor rdf:resource=\"#" + roundRotor + "\"/>\n" else "") +
-        (if (null != salientPole) "\t\t<cim:RotorKind.salientPole rdf:resource=\"#" + salientPole + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:RotorKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RotorKind>\n"
-    }
-}
-
-object RotorKind
-extends
-    Parseable[RotorKind]
-{
-    val roundRotor: (Context) => String = parse_attribute (attribute ("""RotorKind.roundRotor"""))
-    val salientPole: (Context) => String = parse_attribute (attribute ("""RotorKind.salientPole"""))
-    def parse (context: Context): RotorKind =
-    {
-        RotorKind(
-            BasicElement.parse (context),
-            roundRotor (context),
-            salientPole (context)
-        )
-    }
-}
-
-/**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
  * The several variations differ in the following ways:
  * @param sup Reference to the superclass object.
@@ -403,77 +286,6 @@ extends
 }
 
 /**
- * Type of synchronous machine model used in Dynamic simulation applications.
- * @param sup Reference to the superclass object.
- * @param subtransient Subtransient synchronous machine model.
- * @param subtransientSimplified Simplified version of subtransient synchronous machine model where magnetic coupling between the direct and quadrature axes is ignored.
- * @param subtransientSimplifiedDirectAxis Simplified version of a subtransient synchronous machine model with no damper circuit on d-axis.
- * @param subtransientTypeF WECC Type F variant of subtransient synchronous machine model.
- * @param subtransientTypeJ WECC Type J variant of subtransient synchronous machine model.
- */
-case class SynchronousMachineModelKind
-(
-    override val sup: BasicElement,
-    subtransient: String,
-    subtransientSimplified: String,
-    subtransientSimplifiedDirectAxis: String,
-    subtransientTypeF: String,
-    subtransientTypeJ: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineModelKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != subtransient) "\t\t<cim:SynchronousMachineModelKind.subtransient rdf:resource=\"#" + subtransient + "\"/>\n" else "") +
-        (if (null != subtransientSimplified) "\t\t<cim:SynchronousMachineModelKind.subtransientSimplified rdf:resource=\"#" + subtransientSimplified + "\"/>\n" else "") +
-        (if (null != subtransientSimplifiedDirectAxis) "\t\t<cim:SynchronousMachineModelKind.subtransientSimplifiedDirectAxis rdf:resource=\"#" + subtransientSimplifiedDirectAxis + "\"/>\n" else "") +
-        (if (null != subtransientTypeF) "\t\t<cim:SynchronousMachineModelKind.subtransientTypeF rdf:resource=\"#" + subtransientTypeF + "\"/>\n" else "") +
-        (if (null != subtransientTypeJ) "\t\t<cim:SynchronousMachineModelKind.subtransientTypeJ rdf:resource=\"#" + subtransientTypeJ + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SynchronousMachineModelKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineModelKind>\n"
-    }
-}
-
-object SynchronousMachineModelKind
-extends
-    Parseable[SynchronousMachineModelKind]
-{
-    val subtransient: (Context) => String = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransient"""))
-    val subtransientSimplified: (Context) => String = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientSimplified"""))
-    val subtransientSimplifiedDirectAxis: (Context) => String = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientSimplifiedDirectAxis"""))
-    val subtransientTypeF: (Context) => String = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientTypeF"""))
-    val subtransientTypeJ: (Context) => String = parse_attribute (attribute ("""SynchronousMachineModelKind.subtransientTypeJ"""))
-    def parse (context: Context): SynchronousMachineModelKind =
-    {
-        SynchronousMachineModelKind(
-            BasicElement.parse (context),
-            subtransient (context),
-            subtransientSimplified (context),
-            subtransientSimplifiedDirectAxis (context),
-            subtransientTypeF (context),
-            subtransientTypeJ (context)
-        )
-    }
-}
-
-/**
  * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance (<b>Rs</b> + <b>jXp</b>) as shown in the Simplified diagram.
  * Since internal voltage is held constant, there is no <b>Efd</b> input and any excitation system model will be ignored.  There is also no <b>Ifd</b> output.
  * @param sup Reference to the superclass object.
@@ -687,12 +499,9 @@ private[ninecode] object _SynchronousMachineDynamics
     def register: List[ClassInfo] =
     {
         List (
-            IfdBaseKind.register,
-            RotorKind.register,
             SynchronousMachineDetailed.register,
             SynchronousMachineDynamics.register,
             SynchronousMachineEquivalentCircuit.register,
-            SynchronousMachineModelKind.register,
             SynchronousMachineSimplified.register,
             SynchronousMachineTimeConstantReactance.register
         )

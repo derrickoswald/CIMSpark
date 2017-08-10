@@ -5398,72 +5398,6 @@ extends
 }
 
 /**
- * Type of connection for the UEL input used in ExcIEEEST1A.
- * @param sup Reference to the superclass object.
- * @param ignoreUELsignal Ignore UEL signal.
- * @param inputAddedToErrorSignal UEL input added to error signal.
- * @param inputHVgateErrorSignal UEL input HV gate with error signal.
- * @param inputHVgateVoltageOutput UEL input HV gate with voltage regulator output.
- */
-case class ExcIEEEST1AUELselectorKind
-(
-    override val sup: BasicElement,
-    ignoreUELsignal: String,
-    inputAddedToErrorSignal: String,
-    inputHVgateErrorSignal: String,
-    inputHVgateVoltageOutput: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST1AUELselectorKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != ignoreUELsignal) "\t\t<cim:ExcIEEEST1AUELselectorKind.ignoreUELsignal rdf:resource=\"#" + ignoreUELsignal + "\"/>\n" else "") +
-        (if (null != inputAddedToErrorSignal) "\t\t<cim:ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal rdf:resource=\"#" + inputAddedToErrorSignal + "\"/>\n" else "") +
-        (if (null != inputHVgateErrorSignal) "\t\t<cim:ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal rdf:resource=\"#" + inputHVgateErrorSignal + "\"/>\n" else "") +
-        (if (null != inputHVgateVoltageOutput) "\t\t<cim:ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput rdf:resource=\"#" + inputHVgateVoltageOutput + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ExcIEEEST1AUELselectorKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST1AUELselectorKind>\n"
-    }
-}
-
-object ExcIEEEST1AUELselectorKind
-extends
-    Parseable[ExcIEEEST1AUELselectorKind]
-{
-    val ignoreUELsignal: (Context) => String = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.ignoreUELsignal"""))
-    val inputAddedToErrorSignal: (Context) => String = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal"""))
-    val inputHVgateErrorSignal: (Context) => String = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal"""))
-    val inputHVgateVoltageOutput: (Context) => String = parse_attribute (attribute ("""ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput"""))
-    def parse (context: Context): ExcIEEEST1AUELselectorKind =
-    {
-        ExcIEEEST1AUELselectorKind(
-            BasicElement.parse (context),
-            ignoreUELsignal (context),
-            inputAddedToErrorSignal (context),
-            inputHVgateErrorSignal (context),
-            inputHVgateVoltageOutput (context)
-        )
-    }
-}
-
-/**
  * The class represents IEEE Std 421.5-2005 type ST2A model.
  * Some static systems utilize both current and voltage sources (generator terminal quantities) to comprise the power source.  The regulator controls the exciter output through controlled saturation of the power transformer components.  These compound-source rectifier excitation systems are designated Type ST2A and are represented by ExcIEEEST2A.
  * @param sup Reference to the superclass object.
@@ -6907,68 +6841,6 @@ extends
 }
 
 /**
- * Type of rate feedback signals.
- * @param sup Reference to the superclass object.
- * @param fieldCurrent The exciter field current is used.
- * @param fieldVoltage The voltage regulator output voltage is used.
- *        It is the same as exciter field voltage.
- * @param outputVoltage The output voltage of the exciter is used.
- */
-case class ExcREXSFeedbackSignalKind
-(
-    override val sup: BasicElement,
-    fieldCurrent: String,
-    fieldVoltage: String,
-    outputVoltage: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ExcREXSFeedbackSignalKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != fieldCurrent) "\t\t<cim:ExcREXSFeedbackSignalKind.fieldCurrent rdf:resource=\"#" + fieldCurrent + "\"/>\n" else "") +
-        (if (null != fieldVoltage) "\t\t<cim:ExcREXSFeedbackSignalKind.fieldVoltage rdf:resource=\"#" + fieldVoltage + "\"/>\n" else "") +
-        (if (null != outputVoltage) "\t\t<cim:ExcREXSFeedbackSignalKind.outputVoltage rdf:resource=\"#" + outputVoltage + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ExcREXSFeedbackSignalKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcREXSFeedbackSignalKind>\n"
-    }
-}
-
-object ExcREXSFeedbackSignalKind
-extends
-    Parseable[ExcREXSFeedbackSignalKind]
-{
-    val fieldCurrent: (Context) => String = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.fieldCurrent"""))
-    val fieldVoltage: (Context) => String = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.fieldVoltage"""))
-    val outputVoltage: (Context) => String = parse_attribute (attribute ("""ExcREXSFeedbackSignalKind.outputVoltage"""))
-    def parse (context: Context): ExcREXSFeedbackSignalKind =
-    {
-        ExcREXSFeedbackSignalKind(
-            BasicElement.parse (context),
-            fieldCurrent (context),
-            fieldVoltage (context),
-            outputVoltage (context)
-        )
-    }
-}
-
-/**
  * Simple excitation system model representing generic characteristics of many excitation systems; intended for use where negative field current may be a problem.
  * @param sup Reference to the superclass object.
  * @param cswitch Power source switch (Cswitch).
@@ -8221,67 +8093,6 @@ extends
 }
 
 /**
- * Type of connection for the OEL input used for static excitation systems type 6B.
- * @param sup Reference to the superclass object.
- * @param afterUEL The connection is after UEL.
- * @param beforeUEL The connection is before UEL.
- * @param noOELinput No OEL input is used.
- */
-case class ExcST6BOELselectorKind
-(
-    override val sup: BasicElement,
-    afterUEL: String,
-    beforeUEL: String,
-    noOELinput: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ExcST6BOELselectorKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != afterUEL) "\t\t<cim:ExcST6BOELselectorKind.afterUEL rdf:resource=\"#" + afterUEL + "\"/>\n" else "") +
-        (if (null != beforeUEL) "\t\t<cim:ExcST6BOELselectorKind.beforeUEL rdf:resource=\"#" + beforeUEL + "\"/>\n" else "") +
-        (if (null != noOELinput) "\t\t<cim:ExcST6BOELselectorKind.noOELinput rdf:resource=\"#" + noOELinput + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ExcST6BOELselectorKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST6BOELselectorKind>\n"
-    }
-}
-
-object ExcST6BOELselectorKind
-extends
-    Parseable[ExcST6BOELselectorKind]
-{
-    val afterUEL: (Context) => String = parse_attribute (attribute ("""ExcST6BOELselectorKind.afterUEL"""))
-    val beforeUEL: (Context) => String = parse_attribute (attribute ("""ExcST6BOELselectorKind.beforeUEL"""))
-    val noOELinput: (Context) => String = parse_attribute (attribute ("""ExcST6BOELselectorKind.noOELinput"""))
-    def parse (context: Context): ExcST6BOELselectorKind =
-    {
-        ExcST6BOELselectorKind(
-            BasicElement.parse (context),
-            afterUEL (context),
-            beforeUEL (context),
-            noOELinput (context)
-        )
-    }
-}
-
-/**
  * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
  * @param sup Reference to the superclass object.
  * @param kh High-value gate feedback gain (Kh).
@@ -8424,138 +8235,6 @@ extends
 }
 
 /**
- * Type of connection for the OEL input used for static excitation systems type 7B.
- * @param sup Reference to the superclass object.
- * @param addVref The signal is added to Vref.
- * @param inputLVgate The signal is connected in the input of the LV gate.
- * @param noOELinput No OEL input is used.
- * @param outputLVgate The signal is connected in the output of the LV gate.
- */
-case class ExcST7BOELselectorKind
-(
-    override val sup: BasicElement,
-    addVref: String,
-    inputLVgate: String,
-    noOELinput: String,
-    outputLVgate: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ExcST7BOELselectorKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != addVref) "\t\t<cim:ExcST7BOELselectorKind.addVref rdf:resource=\"#" + addVref + "\"/>\n" else "") +
-        (if (null != inputLVgate) "\t\t<cim:ExcST7BOELselectorKind.inputLVgate rdf:resource=\"#" + inputLVgate + "\"/>\n" else "") +
-        (if (null != noOELinput) "\t\t<cim:ExcST7BOELselectorKind.noOELinput rdf:resource=\"#" + noOELinput + "\"/>\n" else "") +
-        (if (null != outputLVgate) "\t\t<cim:ExcST7BOELselectorKind.outputLVgate rdf:resource=\"#" + outputLVgate + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ExcST7BOELselectorKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST7BOELselectorKind>\n"
-    }
-}
-
-object ExcST7BOELselectorKind
-extends
-    Parseable[ExcST7BOELselectorKind]
-{
-    val addVref: (Context) => String = parse_attribute (attribute ("""ExcST7BOELselectorKind.addVref"""))
-    val inputLVgate: (Context) => String = parse_attribute (attribute ("""ExcST7BOELselectorKind.inputLVgate"""))
-    val noOELinput: (Context) => String = parse_attribute (attribute ("""ExcST7BOELselectorKind.noOELinput"""))
-    val outputLVgate: (Context) => String = parse_attribute (attribute ("""ExcST7BOELselectorKind.outputLVgate"""))
-    def parse (context: Context): ExcST7BOELselectorKind =
-    {
-        ExcST7BOELselectorKind(
-            BasicElement.parse (context),
-            addVref (context),
-            inputLVgate (context),
-            noOELinput (context),
-            outputLVgate (context)
-        )
-    }
-}
-
-/**
- * Type of connection for the UEL input used for static excitation systems type 7B.
- * @param sup Reference to the superclass object.
- * @param addVref The signal is added to Vref.
- * @param inputHVgate The signal is connected in the input of the HV gate.
- * @param noUELinput No UEL input is used.
- * @param outputHVgate The signal is connected in the output of the HV gate.
- */
-case class ExcST7BUELselectorKind
-(
-    override val sup: BasicElement,
-    addVref: String,
-    inputHVgate: String,
-    noUELinput: String,
-    outputHVgate: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ExcST7BUELselectorKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != addVref) "\t\t<cim:ExcST7BUELselectorKind.addVref rdf:resource=\"#" + addVref + "\"/>\n" else "") +
-        (if (null != inputHVgate) "\t\t<cim:ExcST7BUELselectorKind.inputHVgate rdf:resource=\"#" + inputHVgate + "\"/>\n" else "") +
-        (if (null != noUELinput) "\t\t<cim:ExcST7BUELselectorKind.noUELinput rdf:resource=\"#" + noUELinput + "\"/>\n" else "") +
-        (if (null != outputHVgate) "\t\t<cim:ExcST7BUELselectorKind.outputHVgate rdf:resource=\"#" + outputHVgate + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ExcST7BUELselectorKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST7BUELselectorKind>\n"
-    }
-}
-
-object ExcST7BUELselectorKind
-extends
-    Parseable[ExcST7BUELselectorKind]
-{
-    val addVref: (Context) => String = parse_attribute (attribute ("""ExcST7BUELselectorKind.addVref"""))
-    val inputHVgate: (Context) => String = parse_attribute (attribute ("""ExcST7BUELselectorKind.inputHVgate"""))
-    val noUELinput: (Context) => String = parse_attribute (attribute ("""ExcST7BUELselectorKind.noUELinput"""))
-    val outputHVgate: (Context) => String = parse_attribute (attribute ("""ExcST7BUELselectorKind.outputHVgate"""))
-    def parse (context: Context): ExcST7BUELselectorKind =
-    {
-        ExcST7BUELselectorKind(
-            BasicElement.parse (context),
-            addVref (context),
-            inputHVgate (context),
-            noUELinput (context),
-            outputHVgate (context)
-        )
-    }
-}
-
-/**
  * Excitation system function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param DiscontinuousExcitationControlDynamics Discontinuous excitation control model associated with this excitation system model.
@@ -8682,7 +8361,6 @@ private[ninecode] object _ExcitationSystemDynamics
             ExcIEEEDC3A.register,
             ExcIEEEDC4B.register,
             ExcIEEEST1A.register,
-            ExcIEEEST1AUELselectorKind.register,
             ExcIEEEST2A.register,
             ExcIEEEST3A.register,
             ExcIEEEST4B.register,
@@ -8692,7 +8370,6 @@ private[ninecode] object _ExcitationSystemDynamics
             ExcOEX3T.register,
             ExcPIC.register,
             ExcREXS.register,
-            ExcREXSFeedbackSignalKind.register,
             ExcSCRX.register,
             ExcSEXS.register,
             ExcSK.register,
@@ -8701,10 +8378,7 @@ private[ninecode] object _ExcitationSystemDynamics
             ExcST3A.register,
             ExcST4B.register,
             ExcST6B.register,
-            ExcST6BOELselectorKind.register,
             ExcST7B.register,
-            ExcST7BOELselectorKind.register,
-            ExcST7BUELselectorKind.register,
             ExcitationSystemDynamics.register
         )
     }

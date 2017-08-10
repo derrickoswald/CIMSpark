@@ -300,133 +300,6 @@ extends
     }
 }
 
-/**
- * Type of remote unit.
- * @param sup Reference to the superclass object.
- * @param ControlCenter Control center.
- * @param IED Intelligent electronic device (IED).
- * @param RTU Remote terminal unit.
- * @param SubstationControlSystem Substation control system.
- */
-case class RemoteUnitType
-(
-    override val sup: BasicElement,
-    ControlCenter: String,
-    IED: String,
-    RTU: String,
-    SubstationControlSystem: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[RemoteUnitType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != ControlCenter) "\t\t<cim:RemoteUnitType.ControlCenter rdf:resource=\"#" + ControlCenter + "\"/>\n" else "") +
-        (if (null != IED) "\t\t<cim:RemoteUnitType.IED rdf:resource=\"#" + IED + "\"/>\n" else "") +
-        (if (null != RTU) "\t\t<cim:RemoteUnitType.RTU rdf:resource=\"#" + RTU + "\"/>\n" else "") +
-        (if (null != SubstationControlSystem) "\t\t<cim:RemoteUnitType.SubstationControlSystem rdf:resource=\"#" + SubstationControlSystem + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:RemoteUnitType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemoteUnitType>\n"
-    }
-}
-
-object RemoteUnitType
-extends
-    Parseable[RemoteUnitType]
-{
-    val ControlCenter: (Context) => String = parse_attribute (attribute ("""RemoteUnitType.ControlCenter"""))
-    val IED: (Context) => String = parse_attribute (attribute ("""RemoteUnitType.IED"""))
-    val RTU: (Context) => String = parse_attribute (attribute ("""RemoteUnitType.RTU"""))
-    val SubstationControlSystem: (Context) => String = parse_attribute (attribute ("""RemoteUnitType.SubstationControlSystem"""))
-    def parse (context: Context): RemoteUnitType =
-    {
-        RemoteUnitType(
-            BasicElement.parse (context),
-            ControlCenter (context),
-            IED (context),
-            RTU (context),
-            SubstationControlSystem (context)
-        )
-    }
-}
-
-/**
- * Source gives information related to the origin of a value.
- * @param sup Reference to the superclass object.
- * @param DEFAULTED The value contains a default value.
- * @param PROCESS The value is provided by input from the process I/O or being calculated from some function.
- * @param SUBSTITUTED The value is provided by input of an operator or by an automatic source.
- */
-case class Source
-(
-    override val sup: BasicElement,
-    DEFAULTED: String,
-    PROCESS: String,
-    SUBSTITUTED: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[Source] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != DEFAULTED) "\t\t<cim:Source.DEFAULTED rdf:resource=\"#" + DEFAULTED + "\"/>\n" else "") +
-        (if (null != PROCESS) "\t\t<cim:Source.PROCESS rdf:resource=\"#" + PROCESS + "\"/>\n" else "") +
-        (if (null != SUBSTITUTED) "\t\t<cim:Source.SUBSTITUTED rdf:resource=\"#" + SUBSTITUTED + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:Source rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Source>\n"
-    }
-}
-
-object Source
-extends
-    Parseable[Source]
-{
-    val DEFAULTED: (Context) => String = parse_attribute (attribute ("""Source.DEFAULTED"""))
-    val PROCESS: (Context) => String = parse_attribute (attribute ("""Source.PROCESS"""))
-    val SUBSTITUTED: (Context) => String = parse_attribute (attribute ("""Source.SUBSTITUTED"""))
-    def parse (context: Context): Source =
-    {
-        Source(
-            BasicElement.parse (context),
-            DEFAULTED (context),
-            PROCESS (context),
-            SUBSTITUTED (context)
-        )
-    }
-}
-
 private[ninecode] object _SCADA
 {
     def register: List[ClassInfo] =
@@ -436,9 +309,7 @@ private[ninecode] object _SCADA
             RemoteControl.register,
             RemotePoint.register,
             RemoteSource.register,
-            RemoteUnit.register,
-            RemoteUnitType.register,
-            Source.register
+            RemoteUnit.register
         )
     }
 }

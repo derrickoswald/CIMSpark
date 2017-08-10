@@ -420,53 +420,6 @@ extends
     }
 }
 
-/**
- * URI is a string following the rules defined by the W3C/IETF URI Planning Interest Group in a set of RFCs of which one is RFC 3305.
- * @param sup Reference to the superclass object.
- */
-case class URI
-(
-    override val sup: BasicElement
-)
-extends
-    Element
-{
-    def this () = { this (null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[URI] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        ""
-    }
-    override def export: String =
-    {
-        "\t<cim:URI rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:URI>\n"
-    }
-}
-
-object URI
-extends
-    Parseable[URI]
-{
-    def parse (context: Context): URI =
-    {
-        URI(
-            BasicElement.parse (context)
-        )
-    }
-}
-
 private[ninecode] object _ModelDescription
 {
     def register: List[ClassInfo] =
@@ -479,8 +432,7 @@ private[ninecode] object _ModelDescription
             FullModelDocumentElement.register,
             Model.register,
             ModelDescriptionCIMVersion.register,
-            Statements.register,
-            URI.register
+            Statements.register
         )
     }
 }

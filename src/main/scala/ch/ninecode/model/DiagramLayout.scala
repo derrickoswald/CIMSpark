@@ -406,64 +406,6 @@ extends
 }
 
 /**
- * The orientation of the coordinate system with respect to top, left, and the coordinate number system.
- * @param sup Reference to the superclass object.
- * @param negative For 2D diagrams, a negative orientation gives the left-hand orientation (favoured by computer graphics displays) with X values increasing from left to right and Y values increasing from top to bottom.
- *        This is also known as a left hand orientation.
- * @param positive For 2D diagrams, a positive orientation will result in X values increasing from left to right and Y values increasing from bottom to top.
- *        This is also known as a right hand orientation.
- */
-case class OrientationKind
-(
-    override val sup: BasicElement,
-    negative: String,
-    positive: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[OrientationKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != negative) "\t\t<cim:OrientationKind.negative rdf:resource=\"#" + negative + "\"/>\n" else "") +
-        (if (null != positive) "\t\t<cim:OrientationKind.positive rdf:resource=\"#" + positive + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:OrientationKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OrientationKind>\n"
-    }
-}
-
-object OrientationKind
-extends
-    Parseable[OrientationKind]
-{
-    val negative: (Context) => String = parse_attribute (attribute ("""OrientationKind.negative"""))
-    val positive: (Context) => String = parse_attribute (attribute ("""OrientationKind.positive"""))
-    def parse (context: Context): OrientationKind =
-    {
-        OrientationKind(
-            BasicElement.parse (context),
-            negative (context),
-            positive (context)
-        )
-    }
-}
-
-/**
  * A diagram object for placing free-text or text derived from an associated domain object.
  * @param sup Reference to the superclass object.
  * @param text The text that is displayed by this text diagram object.
@@ -578,7 +520,6 @@ private[ninecode] object _DiagramLayout
             DiagramObjectPoint.register,
             DiagramObjectStyle.register,
             DiagramStyle.register,
-            OrientationKind.register,
             TextDiagramObject.register,
             VisibilityLayer.register
         )

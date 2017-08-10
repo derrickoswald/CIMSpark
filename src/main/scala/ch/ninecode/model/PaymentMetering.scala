@@ -647,81 +647,6 @@ extends
 }
 
 /**
- * Kind of charge.
- * @param sup Reference to the superclass object.
- * @param auxiliaryCharge Any other charge which is not a consumptionCharge or demandCharge.
- *        For example: debt recovery, arrears, standing charge or charge for another service such as street lighting.
- * @param consumptionCharge The charge levied for the actual usage of the service, normally expressed in terms of a tariff.
- *        For example: usage x price per kWh = total charge for consumption.
- * @param demandCharge The charge related to the usage within a defined time interval, normally expressed in terms of a tariff.
- *        For example: a maximum-demand tariff will levy an additional charge on top of the consumption charge if the usage exceeds a defined limit per hour.
- * @param other Other kind of charge.
- * @param taxCharge Any charge that is classified as a tax of a kind.
- *        For example: VAT, GST, TV tax, etc.
- */
-case class ChargeKind
-(
-    override val sup: BasicElement,
-    auxiliaryCharge: String,
-    consumptionCharge: String,
-    demandCharge: String,
-    other: String,
-    taxCharge: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ChargeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != auxiliaryCharge) "\t\t<cim:ChargeKind.auxiliaryCharge rdf:resource=\"#" + auxiliaryCharge + "\"/>\n" else "") +
-        (if (null != consumptionCharge) "\t\t<cim:ChargeKind.consumptionCharge rdf:resource=\"#" + consumptionCharge + "\"/>\n" else "") +
-        (if (null != demandCharge) "\t\t<cim:ChargeKind.demandCharge rdf:resource=\"#" + demandCharge + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:ChargeKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != taxCharge) "\t\t<cim:ChargeKind.taxCharge rdf:resource=\"#" + taxCharge + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ChargeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ChargeKind>\n"
-    }
-}
-
-object ChargeKind
-extends
-    Parseable[ChargeKind]
-{
-    val auxiliaryCharge: (Context) => String = parse_attribute (attribute ("""ChargeKind.auxiliaryCharge"""))
-    val consumptionCharge: (Context) => String = parse_attribute (attribute ("""ChargeKind.consumptionCharge"""))
-    val demandCharge: (Context) => String = parse_attribute (attribute ("""ChargeKind.demandCharge"""))
-    val other: (Context) => String = parse_attribute (attribute ("""ChargeKind.other"""))
-    val taxCharge: (Context) => String = parse_attribute (attribute ("""ChargeKind.taxCharge"""))
-    def parse (context: Context): ChargeKind =
-    {
-        ChargeKind(
-            BasicElement.parse (context),
-            auxiliaryCharge (context),
-            consumptionCharge (context),
-            demandCharge (context),
-            other (context),
-            taxCharge (context)
-        )
-    }
-}
-
-/**
  * The actual tender when it is a type of cheque.
  * @param sup Reference to the superclass object.
  * @param bankAccountDetail Details of the account holder and bank.
@@ -793,67 +718,6 @@ extends
             kind (context),
             micrNumber (context),
             Tender (context)
-        )
-    }
-}
-
-/**
- * Kind of cheque.
- * @param sup Reference to the superclass object.
- * @param bankOrder Payment order used by a bank.
- * @param other Other kind of cheque.
- * @param postalOrder Payment order used by institutions other than banks.
- */
-case class ChequeKind
-(
-    override val sup: BasicElement,
-    bankOrder: String,
-    other: String,
-    postalOrder: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ChequeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != bankOrder) "\t\t<cim:ChequeKind.bankOrder rdf:resource=\"#" + bankOrder + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:ChequeKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != postalOrder) "\t\t<cim:ChequeKind.postalOrder rdf:resource=\"#" + postalOrder + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ChequeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ChequeKind>\n"
-    }
-}
-
-object ChequeKind
-extends
-    Parseable[ChequeKind]
-{
-    val bankOrder: (Context) => String = parse_attribute (attribute ("""ChequeKind.bankOrder"""))
-    val other: (Context) => String = parse_attribute (attribute ("""ChequeKind.other"""))
-    val postalOrder: (Context) => String = parse_attribute (attribute ("""ChequeKind.postalOrder"""))
-    def parse (context: Context): ChequeKind =
-    {
-        ChequeKind(
-            BasicElement.parse (context),
-            bankOrder (context),
-            other (context),
-            postalOrder (context)
         )
     }
 }
@@ -1435,67 +1299,6 @@ extends
 }
 
 /**
- * Kind of supplier.
- * @param sup Reference to the superclass object.
- * @param other Other kind of supplier.
- * @param retailer Entity that sells the service, but does not deliver to the customer; applies to the deregulated markets.
- * @param utility Entity that delivers the service to the customer.
- */
-case class SupplierKind
-(
-    override val sup: BasicElement,
-    other: String,
-    retailer: String,
-    utility: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SupplierKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != other) "\t\t<cim:SupplierKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != retailer) "\t\t<cim:SupplierKind.retailer rdf:resource=\"#" + retailer + "\"/>\n" else "") +
-        (if (null != utility) "\t\t<cim:SupplierKind.utility rdf:resource=\"#" + utility + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SupplierKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SupplierKind>\n"
-    }
-}
-
-object SupplierKind
-extends
-    Parseable[SupplierKind]
-{
-    val other: (Context) => String = parse_attribute (attribute ("""SupplierKind.other"""))
-    val retailer: (Context) => String = parse_attribute (attribute ("""SupplierKind.retailer"""))
-    val utility: (Context) => String = parse_attribute (attribute ("""SupplierKind.utility"""))
-    def parse (context: Context): SupplierKind =
-    {
-        SupplierKind(
-            BasicElement.parse (context),
-            other (context),
-            retailer (context),
-            utility (context)
-        )
-    }
-}
-
-/**
  * A schedule of charges; structure associated with Tariff that allows the definition of complex tarif structures such as step and time of use when used in conjunction with TimeTariffInterval and Charge.
  * Inherited 'status.value' is defined in the context of the utility's business rules, for example: active, inactive, etc.
  * @param sup Reference to the superclass object.
@@ -1631,77 +1434,6 @@ extends
             Card (context),
             Cheque (context),
             Receipt (context)
-        )
-    }
-}
-
-/**
- * Kind of tender.
- * @param sup Reference to the superclass object.
- * @param card Payment method by means of a credit or debit card.
- * @param cash Payment method by means of cash.
- * @param cheque Payment method by means of a cheque.
- * @param other Other payment method such as electronic finds transfer.
- * @param unspecified Payment method is not known.
- */
-case class TenderKind
-(
-    override val sup: BasicElement,
-    card: String,
-    cash: String,
-    cheque: String,
-    other: String,
-    unspecified: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TenderKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != card) "\t\t<cim:TenderKind.card rdf:resource=\"#" + card + "\"/>\n" else "") +
-        (if (null != cash) "\t\t<cim:TenderKind.cash rdf:resource=\"#" + cash + "\"/>\n" else "") +
-        (if (null != cheque) "\t\t<cim:TenderKind.cheque rdf:resource=\"#" + cheque + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:TenderKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != unspecified) "\t\t<cim:TenderKind.unspecified rdf:resource=\"#" + unspecified + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:TenderKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TenderKind>\n"
-    }
-}
-
-object TenderKind
-extends
-    Parseable[TenderKind]
-{
-    val card: (Context) => String = parse_attribute (attribute ("""TenderKind.card"""))
-    val cash: (Context) => String = parse_attribute (attribute ("""TenderKind.cash"""))
-    val cheque: (Context) => String = parse_attribute (attribute ("""TenderKind.cheque"""))
-    val other: (Context) => String = parse_attribute (attribute ("""TenderKind.other"""))
-    val unspecified: (Context) => String = parse_attribute (attribute ("""TenderKind.unspecified"""))
-    def parse (context: Context): TenderKind =
-    {
-        TenderKind(
-            BasicElement.parse (context),
-            card (context),
-            cash (context),
-            cheque (context),
-            other (context),
-            unspecified (context)
         )
     }
 }
@@ -1891,117 +1623,6 @@ extends
 }
 
 /**
- * Kind of transaction.
- * @param sup Reference to the superclass object.
- * @param accountPayment Payment against a specified account.
- * @param auxiliaryChargePayment Payment against a specified auxiliary account.
- * @param diversePayment Payment against an item other than an account.
- * @param meterConfigurationToken Issue of token that will alter the meter configuration.
- * @param other Other kind of transaction.
- * @param serviceChargePayment Payment for a service.
- * @param taxChargePayment Payment for a tax.
- * @param tokenCancellation Cancellation of a previously issued token.
- * @param tokenExchange Exchange of a previously issued token for a new token.
- * @param tokenFreeIssue Issue of a free credit token where the donor is the supplier.
- * @param tokenGrant Issue of a free credit token where the donor is a 3<sup>rd</sup> party.
- * @param tokenSalePayment Payment for a credit token sale to a customer.
- * @param transactionReversal Reversal of a previous transaction.
- */
-case class TransactionKind
-(
-    override val sup: BasicElement,
-    accountPayment: String,
-    auxiliaryChargePayment: String,
-    diversePayment: String,
-    meterConfigurationToken: String,
-    other: String,
-    serviceChargePayment: String,
-    taxChargePayment: String,
-    tokenCancellation: String,
-    tokenExchange: String,
-    tokenFreeIssue: String,
-    tokenGrant: String,
-    tokenSalePayment: String,
-    transactionReversal: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TransactionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != accountPayment) "\t\t<cim:TransactionKind.accountPayment rdf:resource=\"#" + accountPayment + "\"/>\n" else "") +
-        (if (null != auxiliaryChargePayment) "\t\t<cim:TransactionKind.auxiliaryChargePayment rdf:resource=\"#" + auxiliaryChargePayment + "\"/>\n" else "") +
-        (if (null != diversePayment) "\t\t<cim:TransactionKind.diversePayment rdf:resource=\"#" + diversePayment + "\"/>\n" else "") +
-        (if (null != meterConfigurationToken) "\t\t<cim:TransactionKind.meterConfigurationToken rdf:resource=\"#" + meterConfigurationToken + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:TransactionKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != serviceChargePayment) "\t\t<cim:TransactionKind.serviceChargePayment rdf:resource=\"#" + serviceChargePayment + "\"/>\n" else "") +
-        (if (null != taxChargePayment) "\t\t<cim:TransactionKind.taxChargePayment rdf:resource=\"#" + taxChargePayment + "\"/>\n" else "") +
-        (if (null != tokenCancellation) "\t\t<cim:TransactionKind.tokenCancellation rdf:resource=\"#" + tokenCancellation + "\"/>\n" else "") +
-        (if (null != tokenExchange) "\t\t<cim:TransactionKind.tokenExchange rdf:resource=\"#" + tokenExchange + "\"/>\n" else "") +
-        (if (null != tokenFreeIssue) "\t\t<cim:TransactionKind.tokenFreeIssue rdf:resource=\"#" + tokenFreeIssue + "\"/>\n" else "") +
-        (if (null != tokenGrant) "\t\t<cim:TransactionKind.tokenGrant rdf:resource=\"#" + tokenGrant + "\"/>\n" else "") +
-        (if (null != tokenSalePayment) "\t\t<cim:TransactionKind.tokenSalePayment rdf:resource=\"#" + tokenSalePayment + "\"/>\n" else "") +
-        (if (null != transactionReversal) "\t\t<cim:TransactionKind.transactionReversal rdf:resource=\"#" + transactionReversal + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:TransactionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TransactionKind>\n"
-    }
-}
-
-object TransactionKind
-extends
-    Parseable[TransactionKind]
-{
-    val accountPayment: (Context) => String = parse_attribute (attribute ("""TransactionKind.accountPayment"""))
-    val auxiliaryChargePayment: (Context) => String = parse_attribute (attribute ("""TransactionKind.auxiliaryChargePayment"""))
-    val diversePayment: (Context) => String = parse_attribute (attribute ("""TransactionKind.diversePayment"""))
-    val meterConfigurationToken: (Context) => String = parse_attribute (attribute ("""TransactionKind.meterConfigurationToken"""))
-    val other: (Context) => String = parse_attribute (attribute ("""TransactionKind.other"""))
-    val serviceChargePayment: (Context) => String = parse_attribute (attribute ("""TransactionKind.serviceChargePayment"""))
-    val taxChargePayment: (Context) => String = parse_attribute (attribute ("""TransactionKind.taxChargePayment"""))
-    val tokenCancellation: (Context) => String = parse_attribute (attribute ("""TransactionKind.tokenCancellation"""))
-    val tokenExchange: (Context) => String = parse_attribute (attribute ("""TransactionKind.tokenExchange"""))
-    val tokenFreeIssue: (Context) => String = parse_attribute (attribute ("""TransactionKind.tokenFreeIssue"""))
-    val tokenGrant: (Context) => String = parse_attribute (attribute ("""TransactionKind.tokenGrant"""))
-    val tokenSalePayment: (Context) => String = parse_attribute (attribute ("""TransactionKind.tokenSalePayment"""))
-    val transactionReversal: (Context) => String = parse_attribute (attribute ("""TransactionKind.transactionReversal"""))
-    def parse (context: Context): TransactionKind =
-    {
-        TransactionKind(
-            BasicElement.parse (context),
-            accountPayment (context),
-            auxiliaryChargePayment (context),
-            diversePayment (context),
-            meterConfigurationToken (context),
-            other (context),
-            serviceChargePayment (context),
-            taxChargePayment (context),
-            tokenCancellation (context),
-            tokenExchange (context),
-            tokenFreeIssue (context),
-            tokenGrant (context),
-            tokenSalePayment (context),
-            transactionReversal (context)
-        )
-    }
-}
-
-/**
  * The entity that ultimately executes the transaction and which is in control of the process; typically this is embodied in secure software running on a server that may employ secure hardware encryption devices for secure transaction processing.
  * @param sup Reference to the superclass object.
  */
@@ -2178,9 +1799,7 @@ private[ninecode] object _PaymentMetering
             Cashier.register,
             CashierShift.register,
             Charge.register,
-            ChargeKind.register,
             Cheque.register,
-            ChequeKind.register,
             ConsumptionTariffInterval.register,
             Due.register,
             LineDetail.register,
@@ -2190,13 +1809,10 @@ private[ninecode] object _PaymentMetering
             Receipt.register,
             ServiceSupplier.register,
             Shift.register,
-            SupplierKind.register,
             TariffProfile.register,
             Tender.register,
-            TenderKind.register,
             TimeTariffInterval.register,
             Transaction.register,
-            TransactionKind.register,
             Transactor.register,
             Vendor.register,
             VendorShift.register

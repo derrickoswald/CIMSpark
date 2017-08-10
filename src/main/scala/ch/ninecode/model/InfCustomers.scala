@@ -163,72 +163,6 @@ extends
 }
 
 /**
- * Kind of customer billing.
- * @param sup Reference to the superclass object.
- * @param consolidatedEss Consolidated bill from energy service supplier (ESS).
- * @param consolidatedUdc Consolidated bill from utility distribution company (UDC).
- * @param other <em>undocumented</em>
- * @param separateEssUdc Separate bills from ESS and UDC.
- */
-case class CustomerBillingKind
-(
-    override val sup: BasicElement,
-    consolidatedEss: String,
-    consolidatedUdc: String,
-    other: String,
-    separateEssUdc: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CustomerBillingKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != consolidatedEss) "\t\t<cim:CustomerBillingKind.consolidatedEss rdf:resource=\"#" + consolidatedEss + "\"/>\n" else "") +
-        (if (null != consolidatedUdc) "\t\t<cim:CustomerBillingKind.consolidatedUdc rdf:resource=\"#" + consolidatedUdc + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:CustomerBillingKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != separateEssUdc) "\t\t<cim:CustomerBillingKind.separateEssUdc rdf:resource=\"#" + separateEssUdc + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:CustomerBillingKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CustomerBillingKind>\n"
-    }
-}
-
-object CustomerBillingKind
-extends
-    Parseable[CustomerBillingKind]
-{
-    val consolidatedEss: (Context) => String = parse_attribute (attribute ("""CustomerBillingKind.consolidatedEss"""))
-    val consolidatedUdc: (Context) => String = parse_attribute (attribute ("""CustomerBillingKind.consolidatedUdc"""))
-    val other: (Context) => String = parse_attribute (attribute ("""CustomerBillingKind.other"""))
-    val separateEssUdc: (Context) => String = parse_attribute (attribute ("""CustomerBillingKind.separateEssUdc"""))
-    def parse (context: Context): CustomerBillingKind =
-    {
-        CustomerBillingKind(
-            BasicElement.parse (context),
-            consolidatedEss (context),
-            consolidatedUdc (context),
-            other (context),
-            separateEssUdc (context)
-        )
-    }
-}
-
-/**
  * A type of customer agreement involving an external agency.
  * For example, a customer may form a contracts with an Energy Service Supplier if Direct Access is permitted.
  * @param sup Reference to the superclass object.
@@ -632,7 +566,6 @@ private[ninecode] object _InfCustomers
         List (
             ComplianceEvent.register,
             CustomerBillingInfo.register,
-            CustomerBillingKind.register,
             ExternalCustomerAgreement.register,
             PowerQualityPricing.register,
             ServiceGuarantee.register,

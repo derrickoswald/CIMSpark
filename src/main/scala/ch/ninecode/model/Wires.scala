@@ -337,62 +337,6 @@ extends
 }
 
 /**
- * Kind of Asynchronous Machine.
- * @param sup Reference to the superclass object.
- * @param generator The Asynchronous Machine is a generator.
- * @param motor The Asynchronous Machine is a motor.
- */
-case class AsynchronousMachineKind
-(
-    override val sup: BasicElement,
-    generator: String,
-    motor: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[AsynchronousMachineKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != generator) "\t\t<cim:AsynchronousMachineKind.generator rdf:resource=\"#" + generator + "\"/>\n" else "") +
-        (if (null != motor) "\t\t<cim:AsynchronousMachineKind.motor rdf:resource=\"#" + motor + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:AsynchronousMachineKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AsynchronousMachineKind>\n"
-    }
-}
-
-object AsynchronousMachineKind
-extends
-    Parseable[AsynchronousMachineKind]
-{
-    val generator: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineKind.generator"""))
-    val motor: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineKind.motor"""))
-    def parse (context: Context): AsynchronousMachineKind =
-    {
-        AsynchronousMachineKind(
-            BasicElement.parse (context),
-            generator (context),
-            motor (context)
-        )
-    }
-}
-
-/**
  * A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time, and breaking currents under specified abnormal circuit conditions e.g.  those of short circuit.
  * @param sup Reference to the superclass object.
  * @param inTransitTime The transition time from open to close.
@@ -704,67 +648,6 @@ extends
     {
         Connector(
             ConductingEquipment.parse (context)
-        )
-    }
-}
-
-/**
- * Method of cooling a machine.
- * @param sup Reference to the superclass object.
- * @param air Air.
- * @param hydrogenGas Hydrogen gas.
- * @param water Water.
- */
-case class CoolantType
-(
-    override val sup: BasicElement,
-    air: String,
-    hydrogenGas: String,
-    water: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CoolantType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != air) "\t\t<cim:CoolantType.air rdf:resource=\"#" + air + "\"/>\n" else "") +
-        (if (null != hydrogenGas) "\t\t<cim:CoolantType.hydrogenGas rdf:resource=\"#" + hydrogenGas + "\"/>\n" else "") +
-        (if (null != water) "\t\t<cim:CoolantType.water rdf:resource=\"#" + water + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:CoolantType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CoolantType>\n"
-    }
-}
-
-object CoolantType
-extends
-    Parseable[CoolantType]
-{
-    val air: (Context) => String = parse_attribute (attribute ("""CoolantType.air"""))
-    val hydrogenGas: (Context) => String = parse_attribute (attribute ("""CoolantType.hydrogenGas"""))
-    val water: (Context) => String = parse_attribute (attribute ("""CoolantType.water"""))
-    def parse (context: Context): CoolantType =
-    {
-        CoolantType(
-            BasicElement.parse (context),
-            air (context),
-            hydrogenGas (context),
-            water (context)
         )
     }
 }
@@ -2639,67 +2522,6 @@ extends
 }
 
 /**
- * The mode of operation for a Petersen coil.
- * @param sup Reference to the superclass object.
- * @param automaticPositioning Automatic positioning.
- * @param fixed Fixed position.
- * @param manual Manual positioning.
- */
-case class PetersenCoilModeKind
-(
-    override val sup: BasicElement,
-    automaticPositioning: String,
-    fixed: String,
-    manual: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PetersenCoilModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != automaticPositioning) "\t\t<cim:PetersenCoilModeKind.automaticPositioning rdf:resource=\"#" + automaticPositioning + "\"/>\n" else "") +
-        (if (null != fixed) "\t\t<cim:PetersenCoilModeKind.fixed rdf:resource=\"#" + fixed + "\"/>\n" else "") +
-        (if (null != manual) "\t\t<cim:PetersenCoilModeKind.manual rdf:resource=\"#" + manual + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PetersenCoilModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PetersenCoilModeKind>\n"
-    }
-}
-
-object PetersenCoilModeKind
-extends
-    Parseable[PetersenCoilModeKind]
-{
-    val automaticPositioning: (Context) => String = parse_attribute (attribute ("""PetersenCoilModeKind.automaticPositioning"""))
-    val fixed: (Context) => String = parse_attribute (attribute ("""PetersenCoilModeKind.fixed"""))
-    val manual: (Context) => String = parse_attribute (attribute ("""PetersenCoilModeKind.manual"""))
-    def parse (context: Context): PetersenCoilModeKind =
-    {
-        PetersenCoilModeKind(
-            BasicElement.parse (context),
-            automaticPositioning (context),
-            fixed (context),
-            manual (context)
-        )
-    }
-}
-
-/**
  * Triplet of resistance, reactance, and susceptance matrix element values.
  * @param sup Reference to the superclass object.
  * @param b Susceptance matrix element value, per length of unit.
@@ -2767,72 +2589,6 @@ extends
             toInteger (sequenceNumber (context), context),
             toDouble (x (context), context),
             PhaseImpedance (context)
-        )
-    }
-}
-
-/**
- * The configuration of phase connections for a single terminal device such as a load or capactitor.
- * @param sup Reference to the superclass object.
- * @param D Delta connection.
- * @param I Independent winding, for single-phase connections.
- * @param Y Wye connection.
- * @param Yn Wye, with neutral brought out for grounding.
- */
-case class PhaseShuntConnectionKind
-(
-    override val sup: BasicElement,
-    D: String,
-    I: String,
-    Y: String,
-    Yn: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PhaseShuntConnectionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != D) "\t\t<cim:PhaseShuntConnectionKind.D rdf:resource=\"#" + D + "\"/>\n" else "") +
-        (if (null != I) "\t\t<cim:PhaseShuntConnectionKind.I rdf:resource=\"#" + I + "\"/>\n" else "") +
-        (if (null != Y) "\t\t<cim:PhaseShuntConnectionKind.Y rdf:resource=\"#" + Y + "\"/>\n" else "") +
-        (if (null != Yn) "\t\t<cim:PhaseShuntConnectionKind.Yn rdf:resource=\"#" + Yn + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PhaseShuntConnectionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PhaseShuntConnectionKind>\n"
-    }
-}
-
-object PhaseShuntConnectionKind
-extends
-    Parseable[PhaseShuntConnectionKind]
-{
-    val D: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.D"""))
-    val I: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.I"""))
-    val Y: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.Y"""))
-    val Yn: (Context) => String = parse_attribute (attribute ("""PhaseShuntConnectionKind.Yn"""))
-    def parse (context: Context): PhaseShuntConnectionKind =
-    {
-        PhaseShuntConnectionKind(
-            BasicElement.parse (context),
-            D (context),
-            I (context),
-            Y (context),
-            Yn (context)
         )
     }
 }
@@ -3990,94 +3746,6 @@ extends
 }
 
 /**
- * The kind of regulation model.
- * For example regulating voltage, reactive power, active power, etc.
- * @param sup Reference to the superclass object.
- * @param activePower Active power is specified.
- * @param admittance Admittance is specified.
- * @param currentFlow Current flow is specified.
- * @param powerFactor Power factor is specified.
- * @param reactivePower Reactive power is specified.
- * @param temperature Control switches on/off based on the local temperature (i.e., a thermostat).
- * @param timeScheduled Control switches on/off by time of day.
- *        The times may change on the weekend, or in different seasons.
- * @param voltage Voltage is specified.
- */
-case class RegulatingControlModeKind
-(
-    override val sup: BasicElement,
-    activePower: String,
-    admittance: String,
-    currentFlow: String,
-    powerFactor: String,
-    reactivePower: String,
-    temperature: String,
-    timeScheduled: String,
-    voltage: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[RegulatingControlModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != activePower) "\t\t<cim:RegulatingControlModeKind.activePower rdf:resource=\"#" + activePower + "\"/>\n" else "") +
-        (if (null != admittance) "\t\t<cim:RegulatingControlModeKind.admittance rdf:resource=\"#" + admittance + "\"/>\n" else "") +
-        (if (null != currentFlow) "\t\t<cim:RegulatingControlModeKind.currentFlow rdf:resource=\"#" + currentFlow + "\"/>\n" else "") +
-        (if (null != powerFactor) "\t\t<cim:RegulatingControlModeKind.powerFactor rdf:resource=\"#" + powerFactor + "\"/>\n" else "") +
-        (if (null != reactivePower) "\t\t<cim:RegulatingControlModeKind.reactivePower rdf:resource=\"#" + reactivePower + "\"/>\n" else "") +
-        (if (null != temperature) "\t\t<cim:RegulatingControlModeKind.temperature rdf:resource=\"#" + temperature + "\"/>\n" else "") +
-        (if (null != timeScheduled) "\t\t<cim:RegulatingControlModeKind.timeScheduled rdf:resource=\"#" + timeScheduled + "\"/>\n" else "") +
-        (if (null != voltage) "\t\t<cim:RegulatingControlModeKind.voltage rdf:resource=\"#" + voltage + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:RegulatingControlModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RegulatingControlModeKind>\n"
-    }
-}
-
-object RegulatingControlModeKind
-extends
-    Parseable[RegulatingControlModeKind]
-{
-    val activePower: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.activePower"""))
-    val admittance: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.admittance"""))
-    val currentFlow: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.currentFlow"""))
-    val powerFactor: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.powerFactor"""))
-    val reactivePower: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.reactivePower"""))
-    val temperature: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.temperature"""))
-    val timeScheduled: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.timeScheduled"""))
-    val voltage: (Context) => String = parse_attribute (attribute ("""RegulatingControlModeKind.voltage"""))
-    def parse (context: Context): RegulatingControlModeKind =
-    {
-        RegulatingControlModeKind(
-            BasicElement.parse (context),
-            activePower (context),
-            admittance (context),
-            currentFlow (context),
-            powerFactor (context),
-            reactivePower (context),
-            temperature (context),
-            timeScheduled (context),
-            voltage (context)
-        )
-    }
-}
-
-/**
  * A pre-established pattern over time for a controlled variable, e.g., busbar voltage.
  * @param sup Reference to the superclass object.
  * @param RegulatingControl Regulating controls that have this Schedule.
@@ -4216,62 +3884,6 @@ extends
 }
 
 /**
- * Static VAr Compensator control mode.
- * @param sup Reference to the superclass object.
- * @param reactivePower <em>undocumented</em>
- * @param voltage <em>undocumented</em>
- */
-case class SVCControlMode
-(
-    override val sup: BasicElement,
-    reactivePower: String,
-    voltage: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SVCControlMode] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != reactivePower) "\t\t<cim:SVCControlMode.reactivePower rdf:resource=\"#" + reactivePower + "\"/>\n" else "") +
-        (if (null != voltage) "\t\t<cim:SVCControlMode.voltage rdf:resource=\"#" + voltage + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SVCControlMode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SVCControlMode>\n"
-    }
-}
-
-object SVCControlMode
-extends
-    Parseable[SVCControlMode]
-{
-    val reactivePower: (Context) => String = parse_attribute (attribute ("""SVCControlMode.reactivePower"""))
-    val voltage: (Context) => String = parse_attribute (attribute ("""SVCControlMode.voltage"""))
-    def parse (context: Context): SVCControlMode =
-    {
-        SVCControlMode(
-            BasicElement.parse (context),
-            reactivePower (context),
-            voltage (context)
-        )
-    }
-}
-
-/**
  * Automatic switch that will lock open to isolate a faulted section.
  * It may, or may not, have load breaking capability. Its primary purpose is to provide fault sectionalising at locations where the fault current is either too high, or too low, for proper coordination of fuses.
  * @param sup Reference to the superclass object.
@@ -4397,72 +4009,6 @@ extends
             toDouble (varistorVoltageThreshold (context), context),
             toDouble (x (context), context),
             toDouble (x0 (context), context)
-        )
-    }
-}
-
-/**
- * Type of rotor, used by short circuit applications.
- * @param sup Reference to the superclass object.
- * @param salientPole1 Salient pole 1 in the IEC 60909
- * @param salientPole2 Salient pole 2 in IEC 60909
- * @param turboSeries1 Turbo Series 1 in the IEC 60909
- * @param turboSeries2 Turbo series 2 in IEC 60909
- */
-case class ShortCircuitRotorKind
-(
-    override val sup: BasicElement,
-    salientPole1: String,
-    salientPole2: String,
-    turboSeries1: String,
-    turboSeries2: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ShortCircuitRotorKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != salientPole1) "\t\t<cim:ShortCircuitRotorKind.salientPole1 rdf:resource=\"#" + salientPole1 + "\"/>\n" else "") +
-        (if (null != salientPole2) "\t\t<cim:ShortCircuitRotorKind.salientPole2 rdf:resource=\"#" + salientPole2 + "\"/>\n" else "") +
-        (if (null != turboSeries1) "\t\t<cim:ShortCircuitRotorKind.turboSeries1 rdf:resource=\"#" + turboSeries1 + "\"/>\n" else "") +
-        (if (null != turboSeries2) "\t\t<cim:ShortCircuitRotorKind.turboSeries2 rdf:resource=\"#" + turboSeries2 + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ShortCircuitRotorKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ShortCircuitRotorKind>\n"
-    }
-}
-
-object ShortCircuitRotorKind
-extends
-    Parseable[ShortCircuitRotorKind]
-{
-    val salientPole1: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole1"""))
-    val salientPole2: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.salientPole2"""))
-    val turboSeries1: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries1"""))
-    val turboSeries2: (Context) => String = parse_attribute (attribute ("""ShortCircuitRotorKind.turboSeries2"""))
-    def parse (context: Context): ShortCircuitRotorKind =
-    {
-        ShortCircuitRotorKind(
-            BasicElement.parse (context),
-            salientPole1 (context),
-            salientPole2 (context),
-            turboSeries1 (context),
-            turboSeries2 (context)
         )
     }
 }
@@ -4635,83 +4181,6 @@ extends
             toInteger (normalSections (context), context),
             phase (context),
             ShuntCompensator (context)
-        )
-    }
-}
-
-/**
- * Enumeration of single phase identifiers.
- * Allows designation of single phases for both transmission and distribution equipment, circuits and loads.
- * @param sup Reference to the superclass object.
- * @param s1 Secondary phase 1.
- * @param s2 Secondary phase 2.
- * @param A Phase A.
- * @param B Phase B.
- * @param C Phase C.
- * @param N Neutral.
- */
-case class SinglePhaseKind
-(
-    override val sup: BasicElement,
-    s1: String,
-    s2: String,
-    A: String,
-    B: String,
-    C: String,
-    N: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SinglePhaseKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != s1) "\t\t<cim:SinglePhaseKind.s1 rdf:resource=\"#" + s1 + "\"/>\n" else "") +
-        (if (null != s2) "\t\t<cim:SinglePhaseKind.s2 rdf:resource=\"#" + s2 + "\"/>\n" else "") +
-        (if (null != A) "\t\t<cim:SinglePhaseKind.A rdf:resource=\"#" + A + "\"/>\n" else "") +
-        (if (null != B) "\t\t<cim:SinglePhaseKind.B rdf:resource=\"#" + B + "\"/>\n" else "") +
-        (if (null != C) "\t\t<cim:SinglePhaseKind.C rdf:resource=\"#" + C + "\"/>\n" else "") +
-        (if (null != N) "\t\t<cim:SinglePhaseKind.N rdf:resource=\"#" + N + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SinglePhaseKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SinglePhaseKind>\n"
-    }
-}
-
-object SinglePhaseKind
-extends
-    Parseable[SinglePhaseKind]
-{
-    val s1: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.s1"""))
-    val s2: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.s2"""))
-    val A: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.A"""))
-    val B: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.B"""))
-    val C: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.C"""))
-    val N: (Context) => String = parse_attribute (attribute ("""SinglePhaseKind.N"""))
-    def parse (context: Context): SinglePhaseKind =
-    {
-        SinglePhaseKind(
-            BasicElement.parse (context),
-            s1 (context),
-            s2 (context),
-            A (context),
-            B (context),
-            C (context),
-            N (context)
         )
     }
 }
@@ -5237,148 +4706,6 @@ extends
 }
 
 /**
- * Synchronous machine type.
- * @param sup Reference to the superclass object.
- * @param condenser <em>undocumented</em>
- * @param generator <em>undocumented</em>
- * @param generatorOrCondenser <em>undocumented</em>
- * @param generatorOrCondenserOrMotor <em>undocumented</em>
- * @param generatorOrMotor <em>undocumented</em>
- * @param motor <em>undocumented</em>
- * @param motorOrCondenser <em>undocumented</em>
- */
-case class SynchronousMachineKind
-(
-    override val sup: BasicElement,
-    condenser: String,
-    generator: String,
-    generatorOrCondenser: String,
-    generatorOrCondenserOrMotor: String,
-    generatorOrMotor: String,
-    motor: String,
-    motorOrCondenser: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != condenser) "\t\t<cim:SynchronousMachineKind.condenser rdf:resource=\"#" + condenser + "\"/>\n" else "") +
-        (if (null != generator) "\t\t<cim:SynchronousMachineKind.generator rdf:resource=\"#" + generator + "\"/>\n" else "") +
-        (if (null != generatorOrCondenser) "\t\t<cim:SynchronousMachineKind.generatorOrCondenser rdf:resource=\"#" + generatorOrCondenser + "\"/>\n" else "") +
-        (if (null != generatorOrCondenserOrMotor) "\t\t<cim:SynchronousMachineKind.generatorOrCondenserOrMotor rdf:resource=\"#" + generatorOrCondenserOrMotor + "\"/>\n" else "") +
-        (if (null != generatorOrMotor) "\t\t<cim:SynchronousMachineKind.generatorOrMotor rdf:resource=\"#" + generatorOrMotor + "\"/>\n" else "") +
-        (if (null != motor) "\t\t<cim:SynchronousMachineKind.motor rdf:resource=\"#" + motor + "\"/>\n" else "") +
-        (if (null != motorOrCondenser) "\t\t<cim:SynchronousMachineKind.motorOrCondenser rdf:resource=\"#" + motorOrCondenser + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SynchronousMachineKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineKind>\n"
-    }
-}
-
-object SynchronousMachineKind
-extends
-    Parseable[SynchronousMachineKind]
-{
-    val condenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.condenser"""))
-    val generator: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generator"""))
-    val generatorOrCondenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenser"""))
-    val generatorOrCondenserOrMotor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrCondenserOrMotor"""))
-    val generatorOrMotor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.generatorOrMotor"""))
-    val motor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.motor"""))
-    val motorOrCondenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineKind.motorOrCondenser"""))
-    def parse (context: Context): SynchronousMachineKind =
-    {
-        SynchronousMachineKind(
-            BasicElement.parse (context),
-            condenser (context),
-            generator (context),
-            generatorOrCondenser (context),
-            generatorOrCondenserOrMotor (context),
-            generatorOrMotor (context),
-            motor (context),
-            motorOrCondenser (context)
-        )
-    }
-}
-
-/**
- * Synchronous machine operating mode.
- * @param sup Reference to the superclass object.
- * @param condenser <em>undocumented</em>
- * @param generator <em>undocumented</em>
- * @param motor <em>undocumented</em>
- */
-case class SynchronousMachineOperatingMode
-(
-    override val sup: BasicElement,
-    condenser: String,
-    generator: String,
-    motor: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineOperatingMode] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != condenser) "\t\t<cim:SynchronousMachineOperatingMode.condenser rdf:resource=\"#" + condenser + "\"/>\n" else "") +
-        (if (null != generator) "\t\t<cim:SynchronousMachineOperatingMode.generator rdf:resource=\"#" + generator + "\"/>\n" else "") +
-        (if (null != motor) "\t\t<cim:SynchronousMachineOperatingMode.motor rdf:resource=\"#" + motor + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SynchronousMachineOperatingMode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineOperatingMode>\n"
-    }
-}
-
-object SynchronousMachineOperatingMode
-extends
-    Parseable[SynchronousMachineOperatingMode]
-{
-    val condenser: (Context) => String = parse_attribute (attribute ("""SynchronousMachineOperatingMode.condenser"""))
-    val generator: (Context) => String = parse_attribute (attribute ("""SynchronousMachineOperatingMode.generator"""))
-    val motor: (Context) => String = parse_attribute (attribute ("""SynchronousMachineOperatingMode.motor"""))
-    def parse (context: Context): SynchronousMachineOperatingMode =
-    {
-        SynchronousMachineOperatingMode(
-            BasicElement.parse (context),
-            condenser (context),
-            generator (context),
-            motor (context)
-        )
-    }
-}
-
-/**
  * Mechanism for changing transformer winding tap positions.
  * @param sup Reference to the superclass object.
  * @param controlEnabled Specifies the regulation status of the equipment.
@@ -5679,62 +5006,6 @@ extends
         TapSchedule(
             SeasonDayTypeSchedule.parse (context),
             TapChanger (context)
-        )
-    }
-}
-
-/**
- * Control modes for a transformer.
- * @param sup Reference to the superclass object.
- * @param reactive Reactive power flow control
- * @param volt Voltage control
- */
-case class TransformerControlMode
-(
-    override val sup: BasicElement,
-    reactive: String,
-    volt: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TransformerControlMode] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != reactive) "\t\t<cim:TransformerControlMode.reactive rdf:resource=\"#" + reactive + "\"/>\n" else "") +
-        (if (null != volt) "\t\t<cim:TransformerControlMode.volt rdf:resource=\"#" + volt + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:TransformerControlMode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TransformerControlMode>\n"
-    }
-}
-
-object TransformerControlMode
-extends
-    Parseable[TransformerControlMode]
-{
-    val reactive: (Context) => String = parse_attribute (attribute ("""TransformerControlMode.reactive"""))
-    val volt: (Context) => String = parse_attribute (attribute ("""TransformerControlMode.volt"""))
-    def parse (context: Context): TransformerControlMode =
-    {
-        TransformerControlMode(
-            BasicElement.parse (context),
-            reactive (context),
-            volt (context)
         )
     }
 }
@@ -6244,87 +5515,6 @@ extends
     }
 }
 
-/**
- * Winding connection type.
- * @param sup Reference to the superclass object.
- * @param A Autotransformer common winding
- * @param D Delta
- * @param I Independent winding, for single-phase connections
- * @param Y Wye
- * @param Yn Wye, with neutral brought out for grounding.
- * @param Z ZigZag
- * @param Zn ZigZag, with neutral brought out for grounding.
- */
-case class WindingConnection
-(
-    override val sup: BasicElement,
-    A: String,
-    D: String,
-    I: String,
-    Y: String,
-    Yn: String,
-    Z: String,
-    Zn: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[WindingConnection] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != A) "\t\t<cim:WindingConnection.A rdf:resource=\"#" + A + "\"/>\n" else "") +
-        (if (null != D) "\t\t<cim:WindingConnection.D rdf:resource=\"#" + D + "\"/>\n" else "") +
-        (if (null != I) "\t\t<cim:WindingConnection.I rdf:resource=\"#" + I + "\"/>\n" else "") +
-        (if (null != Y) "\t\t<cim:WindingConnection.Y rdf:resource=\"#" + Y + "\"/>\n" else "") +
-        (if (null != Yn) "\t\t<cim:WindingConnection.Yn rdf:resource=\"#" + Yn + "\"/>\n" else "") +
-        (if (null != Z) "\t\t<cim:WindingConnection.Z rdf:resource=\"#" + Z + "\"/>\n" else "") +
-        (if (null != Zn) "\t\t<cim:WindingConnection.Zn rdf:resource=\"#" + Zn + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:WindingConnection rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindingConnection>\n"
-    }
-}
-
-object WindingConnection
-extends
-    Parseable[WindingConnection]
-{
-    val A: (Context) => String = parse_attribute (attribute ("""WindingConnection.A"""))
-    val D: (Context) => String = parse_attribute (attribute ("""WindingConnection.D"""))
-    val I: (Context) => String = parse_attribute (attribute ("""WindingConnection.I"""))
-    val Y: (Context) => String = parse_attribute (attribute ("""WindingConnection.Y"""))
-    val Yn: (Context) => String = parse_attribute (attribute ("""WindingConnection.Yn"""))
-    val Z: (Context) => String = parse_attribute (attribute ("""WindingConnection.Z"""))
-    val Zn: (Context) => String = parse_attribute (attribute ("""WindingConnection.Zn"""))
-    def parse (context: Context): WindingConnection =
-    {
-        WindingConnection(
-            BasicElement.parse (context),
-            A (context),
-            D (context),
-            I (context),
-            Y (context),
-            Yn (context),
-            Z (context),
-            Zn (context)
-        )
-    }
-}
-
 private[ninecode] object _Wires
 {
     def register: List[ClassInfo] =
@@ -6333,14 +5523,12 @@ private[ninecode] object _Wires
             ACLineSegment.register,
             ACLineSegmentPhase.register,
             AsynchronousMachine.register,
-            AsynchronousMachineKind.register,
             Breaker.register,
             BusbarSection.register,
             Clamp.register,
             CompositeSwitch.register,
             Conductor.register,
             Connector.register,
-            CoolantType.register,
             Cut.register,
             Disconnector.register,
             EarthFaultCompensator.register,
@@ -6369,9 +5557,7 @@ private[ninecode] object _Wires
             PerLengthPhaseImpedance.register,
             PerLengthSequenceImpedance.register,
             PetersenCoil.register,
-            PetersenCoilModeKind.register,
             PhaseImpedanceData.register,
-            PhaseShuntConnectionKind.register,
             PhaseTapChanger.register,
             PhaseTapChangerAsymmetrical.register,
             PhaseTapChangerLinear.register,
@@ -6391,36 +5577,28 @@ private[ninecode] object _Wires
             Recloser.register,
             RegulatingCondEq.register,
             RegulatingControl.register,
-            RegulatingControlModeKind.register,
             RegulationSchedule.register,
             RotatingMachine.register,
-            SVCControlMode.register,
             Sectionaliser.register,
             SeriesCompensator.register,
-            ShortCircuitRotorKind.register,
             ShuntCompensator.register,
             ShuntCompensatorPhase.register,
-            SinglePhaseKind.register,
             StaticVarCompensator.register,
             Switch.register,
             SwitchPhase.register,
             SwitchSchedule.register,
             SynchronousMachine.register,
-            SynchronousMachineKind.register,
-            SynchronousMachineOperatingMode.register,
             TapChanger.register,
             TapChangerControl.register,
             TapChangerTablePoint.register,
             TapSchedule.register,
-            TransformerControlMode.register,
             TransformerCoreAdmittance.register,
             TransformerEnd.register,
             TransformerMeshImpedance.register,
             TransformerStarImpedance.register,
             TransformerTank.register,
             TransformerTankEnd.register,
-            VoltageControlZone.register,
-            WindingConnection.register
+            VoltageControlZone.register
         )
     }
 }

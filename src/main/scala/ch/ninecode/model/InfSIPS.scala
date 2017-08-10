@@ -12,148 +12,6 @@ import ch.ninecode.cim.Parseable
  */
 
 /**
- * Categories of analog to digital (or logical result) comparison.
- * @param sup Reference to the superclass object.
- * @param eq Equal (like) comparison operation.
- * @param ge Greater or equal comparison operation.
- * @param gt Greater than comparison operation.
- * @param le Less or equal comparison operation.
- * @param lt Less than comparison operation.
- * @param ne Not equal (unlike) comparison operation.
- */
-case class AnalogToDigitalLogicKind
-(
-    override val sup: BasicElement,
-    eq: String,
-    ge: String,
-    gt: String,
-    le: String,
-    lt: String,
-    ne: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[AnalogToDigitalLogicKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != eq) "\t\t<cim:AnalogToDigitalLogicKind.eq rdf:resource=\"#" + eq + "\"/>\n" else "") +
-        (if (null != ge) "\t\t<cim:AnalogToDigitalLogicKind.ge rdf:resource=\"#" + ge + "\"/>\n" else "") +
-        (if (null != gt) "\t\t<cim:AnalogToDigitalLogicKind.gt rdf:resource=\"#" + gt + "\"/>\n" else "") +
-        (if (null != le) "\t\t<cim:AnalogToDigitalLogicKind.le rdf:resource=\"#" + le + "\"/>\n" else "") +
-        (if (null != lt) "\t\t<cim:AnalogToDigitalLogicKind.lt rdf:resource=\"#" + lt + "\"/>\n" else "") +
-        (if (null != ne) "\t\t<cim:AnalogToDigitalLogicKind.ne rdf:resource=\"#" + ne + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:AnalogToDigitalLogicKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AnalogToDigitalLogicKind>\n"
-    }
-}
-
-object AnalogToDigitalLogicKind
-extends
-    Parseable[AnalogToDigitalLogicKind]
-{
-    val eq: (Context) => String = parse_attribute (attribute ("""AnalogToDigitalLogicKind.eq"""))
-    val ge: (Context) => String = parse_attribute (attribute ("""AnalogToDigitalLogicKind.ge"""))
-    val gt: (Context) => String = parse_attribute (attribute ("""AnalogToDigitalLogicKind.gt"""))
-    val le: (Context) => String = parse_attribute (attribute ("""AnalogToDigitalLogicKind.le"""))
-    val lt: (Context) => String = parse_attribute (attribute ("""AnalogToDigitalLogicKind.lt"""))
-    val ne: (Context) => String = parse_attribute (attribute ("""AnalogToDigitalLogicKind.ne"""))
-    def parse (context: Context): AnalogToDigitalLogicKind =
-    {
-        AnalogToDigitalLogicKind(
-            BasicElement.parse (context),
-            eq (context),
-            ge (context),
-            gt (context),
-            le (context),
-            lt (context),
-            ne (context)
-        )
-    }
-}
-
-/**
- * Categorisation of calculation operation that can be done to Measurement.
- * @param sup Reference to the superclass object.
- * @param div Division operation the input values (operands).
- * @param mul Multiplication operation the input values (operands).
- * @param sqrt Square root operator - only one input value (operands).
- * @param sum Summation operation over the input values (operands).
- */
-case class CalculationKind
-(
-    override val sup: BasicElement,
-    div: String,
-    mul: String,
-    sqrt: String,
-    sum: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CalculationKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != div) "\t\t<cim:CalculationKind.div rdf:resource=\"#" + div + "\"/>\n" else "") +
-        (if (null != mul) "\t\t<cim:CalculationKind.mul rdf:resource=\"#" + mul + "\"/>\n" else "") +
-        (if (null != sqrt) "\t\t<cim:CalculationKind.sqrt rdf:resource=\"#" + sqrt + "\"/>\n" else "") +
-        (if (null != sum) "\t\t<cim:CalculationKind.sum rdf:resource=\"#" + sum + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:CalculationKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CalculationKind>\n"
-    }
-}
-
-object CalculationKind
-extends
-    Parseable[CalculationKind]
-{
-    val div: (Context) => String = parse_attribute (attribute ("""CalculationKind.div"""))
-    val mul: (Context) => String = parse_attribute (attribute ("""CalculationKind.mul"""))
-    val sqrt: (Context) => String = parse_attribute (attribute ("""CalculationKind.sqrt"""))
-    val sum: (Context) => String = parse_attribute (attribute ("""CalculationKind.sum"""))
-    def parse (context: Context): CalculationKind =
-    {
-        CalculationKind(
-            BasicElement.parse (context),
-            div (context),
-            mul (context),
-            sqrt (context),
-            sum (context)
-        )
-    }
-}
-
-/**
  * Logical gate than support logical operation based on the input.
  * @param sup Reference to the superclass object.
  * @param kind The logical operation of the gate.
@@ -283,94 +141,6 @@ extends
             toDouble (thresholdPercentage (context), context),
             toDouble (thresholdValue (context), context),
             Gate (context)
-        )
-    }
-}
-
-/**
- * Define the different logical operations.
- * @param sup Reference to the superclass object.
- * @param and A logical AND operation.
- *        True when all input are true.
- * @param nand A logical NAND operation.
- *        False when all input are true.
- * @param nor A logical NOR operation.
- *        False when one or more input are true.
- * @param not A logical NOT operation.
- *        Only one input and true input will give false out and false in will give true out. An inverter.
- * @param or A logical OR operation.
- *        True when one or more input are true.
- * @param xnor A logical XNOR operation.
- *        The function is the inverse of the exclusive OR (XOR) gate. All input false or true will give true. Otherwise false.
- * @param xor A logical XOR operation.
- *        All input false or true will give false. Otherwise true.
- */
-case class GateLogicKind
-(
-    override val sup: BasicElement,
-    and: String,
-    nand: String,
-    nor: String,
-    not: String,
-    or: String,
-    xnor: String,
-    xor: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[GateLogicKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != and) "\t\t<cim:GateLogicKind.and rdf:resource=\"#" + and + "\"/>\n" else "") +
-        (if (null != nand) "\t\t<cim:GateLogicKind.nand rdf:resource=\"#" + nand + "\"/>\n" else "") +
-        (if (null != nor) "\t\t<cim:GateLogicKind.nor rdf:resource=\"#" + nor + "\"/>\n" else "") +
-        (if (null != not) "\t\t<cim:GateLogicKind.not rdf:resource=\"#" + not + "\"/>\n" else "") +
-        (if (null != or) "\t\t<cim:GateLogicKind.or rdf:resource=\"#" + or + "\"/>\n" else "") +
-        (if (null != xnor) "\t\t<cim:GateLogicKind.xnor rdf:resource=\"#" + xnor + "\"/>\n" else "") +
-        (if (null != xor) "\t\t<cim:GateLogicKind.xor rdf:resource=\"#" + xor + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:GateLogicKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GateLogicKind>\n"
-    }
-}
-
-object GateLogicKind
-extends
-    Parseable[GateLogicKind]
-{
-    val and: (Context) => String = parse_attribute (attribute ("""GateLogicKind.and"""))
-    val nand: (Context) => String = parse_attribute (attribute ("""GateLogicKind.nand"""))
-    val nor: (Context) => String = parse_attribute (attribute ("""GateLogicKind.nor"""))
-    val not: (Context) => String = parse_attribute (attribute ("""GateLogicKind.not"""))
-    val or: (Context) => String = parse_attribute (attribute ("""GateLogicKind.or"""))
-    val xnor: (Context) => String = parse_attribute (attribute ("""GateLogicKind.xnor"""))
-    val xor: (Context) => String = parse_attribute (attribute ("""GateLogicKind.xor"""))
-    def parse (context: Context): GateLogicKind =
-    {
-        GateLogicKind(
-            BasicElement.parse (context),
-            and (context),
-            nand (context),
-            nor (context),
-            not (context),
-            or (context),
-            xnor (context),
-            xor (context)
         )
     }
 }
@@ -551,62 +321,6 @@ extends
 }
 
 /**
- * Categorisation of type of compare done on a branch group.
- * @param sup Reference to the superclass object.
- * @param activePower Active power in the branch group.
- * @param reactivePower reactive power in the branch group.
- */
-case class PinBranchGroupKind
-(
-    override val sup: BasicElement,
-    activePower: String,
-    reactivePower: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PinBranchGroupKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != activePower) "\t\t<cim:PinBranchGroupKind.activePower rdf:resource=\"#" + activePower + "\"/>\n" else "") +
-        (if (null != reactivePower) "\t\t<cim:PinBranchGroupKind.reactivePower rdf:resource=\"#" + reactivePower + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PinBranchGroupKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PinBranchGroupKind>\n"
-    }
-}
-
-object PinBranchGroupKind
-extends
-    Parseable[PinBranchGroupKind]
-{
-    val activePower: (Context) => String = parse_attribute (attribute ("""PinBranchGroupKind.activePower"""))
-    val reactivePower: (Context) => String = parse_attribute (attribute ("""PinBranchGroupKind.reactivePower"""))
-    def parse (context: Context): PinBranchGroupKind =
-    {
-        PinBranchGroupKind(
-            BasicElement.parse (context),
-            activePower (context),
-            reactivePower (context)
-        )
-    }
-}
-
-/**
  * Value associated with Equipment is used as compare.
  * @param sup Reference to the superclass object.
  * @param kind The compare operation done on the equipment.
@@ -658,87 +372,6 @@ extends
             GateInputPin.parse (context),
             kind (context),
             Equipment (context)
-        )
-    }
-}
-
-/**
- * Categorisation of type of compare done on Equipment.
- * @param sup Reference to the superclass object.
- * @param activePowerLimit Compare load flow result against the active limit for active power for the given equipment.
- * @param apparentPowerLimit Compare load flow result against the active limit for apparent power for the given equipment.
- * @param connected Check if all terminal on the equipment is connected.
- * @param currentLimit Compare load flow result against the active current limit for the equipment.
- * @param inService Check if equipment is in service, True if in service otherwise false.
- * @param ratedCurrent Compare load flow result against rated current on the equipment (switch).
- * @param voltageLimit Compare load flow result against the active voltage limit for the equipment.
- */
-case class PinEquipmentKind
-(
-    override val sup: BasicElement,
-    activePowerLimit: String,
-    apparentPowerLimit: String,
-    connected: String,
-    currentLimit: String,
-    inService: String,
-    ratedCurrent: String,
-    voltageLimit: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PinEquipmentKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != activePowerLimit) "\t\t<cim:PinEquipmentKind.activePowerLimit rdf:resource=\"#" + activePowerLimit + "\"/>\n" else "") +
-        (if (null != apparentPowerLimit) "\t\t<cim:PinEquipmentKind.apparentPowerLimit rdf:resource=\"#" + apparentPowerLimit + "\"/>\n" else "") +
-        (if (null != connected) "\t\t<cim:PinEquipmentKind.connected rdf:resource=\"#" + connected + "\"/>\n" else "") +
-        (if (null != currentLimit) "\t\t<cim:PinEquipmentKind.currentLimit rdf:resource=\"#" + currentLimit + "\"/>\n" else "") +
-        (if (null != inService) "\t\t<cim:PinEquipmentKind.inService rdf:resource=\"#" + inService + "\"/>\n" else "") +
-        (if (null != ratedCurrent) "\t\t<cim:PinEquipmentKind.ratedCurrent rdf:resource=\"#" + ratedCurrent + "\"/>\n" else "") +
-        (if (null != voltageLimit) "\t\t<cim:PinEquipmentKind.voltageLimit rdf:resource=\"#" + voltageLimit + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PinEquipmentKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PinEquipmentKind>\n"
-    }
-}
-
-object PinEquipmentKind
-extends
-    Parseable[PinEquipmentKind]
-{
-    val activePowerLimit: (Context) => String = parse_attribute (attribute ("""PinEquipmentKind.activePowerLimit"""))
-    val apparentPowerLimit: (Context) => String = parse_attribute (attribute ("""PinEquipmentKind.apparentPowerLimit"""))
-    val connected: (Context) => String = parse_attribute (attribute ("""PinEquipmentKind.connected"""))
-    val currentLimit: (Context) => String = parse_attribute (attribute ("""PinEquipmentKind.currentLimit"""))
-    val inService: (Context) => String = parse_attribute (attribute ("""PinEquipmentKind.inService"""))
-    val ratedCurrent: (Context) => String = parse_attribute (attribute ("""PinEquipmentKind.ratedCurrent"""))
-    val voltageLimit: (Context) => String = parse_attribute (attribute ("""PinEquipmentKind.voltageLimit"""))
-    def parse (context: Context): PinEquipmentKind =
-    {
-        PinEquipmentKind(
-            BasicElement.parse (context),
-            activePowerLimit (context),
-            apparentPowerLimit (context),
-            connected (context),
-            currentLimit (context),
-            inService (context),
-            ratedCurrent (context),
-            voltageLimit (context)
         )
     }
 }
@@ -907,72 +540,6 @@ extends
 }
 
 /**
- * Categorisation of type of compare done on Terminal.
- * @param sup Reference to the superclass object.
- * @param activePower Active Power on the Terminal.
- * @param apparentPower Apparent Power on the Terminal.
- * @param reactivePower Reactive Power on the Terminal.
- * @param voltage Voltage on the Terminal.
- */
-case class PinTerminalKind
-(
-    override val sup: BasicElement,
-    activePower: String,
-    apparentPower: String,
-    reactivePower: String,
-    voltage: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PinTerminalKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != activePower) "\t\t<cim:PinTerminalKind.activePower rdf:resource=\"#" + activePower + "\"/>\n" else "") +
-        (if (null != apparentPower) "\t\t<cim:PinTerminalKind.apparentPower rdf:resource=\"#" + apparentPower + "\"/>\n" else "") +
-        (if (null != reactivePower) "\t\t<cim:PinTerminalKind.reactivePower rdf:resource=\"#" + reactivePower + "\"/>\n" else "") +
-        (if (null != voltage) "\t\t<cim:PinTerminalKind.voltage rdf:resource=\"#" + voltage + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PinTerminalKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PinTerminalKind>\n"
-    }
-}
-
-object PinTerminalKind
-extends
-    Parseable[PinTerminalKind]
-{
-    val activePower: (Context) => String = parse_attribute (attribute ("""PinTerminalKind.activePower"""))
-    val apparentPower: (Context) => String = parse_attribute (attribute ("""PinTerminalKind.apparentPower"""))
-    val reactivePower: (Context) => String = parse_attribute (attribute ("""PinTerminalKind.reactivePower"""))
-    val voltage: (Context) => String = parse_attribute (attribute ("""PinTerminalKind.voltage"""))
-    def parse (context: Context): PinTerminalKind =
-    {
-        PinTerminalKind(
-            BasicElement.parse (context),
-            activePower (context),
-            apparentPower (context),
-            reactivePower (context),
-            voltage (context)
-        )
-    }
-}
-
-/**
  * A protective action for supporting the integrity of the power system.
  * @param sup Reference to the superclass object.
  * @param enabled The status of the class set by operation or by signal.
@@ -1134,72 +701,6 @@ extends
             ConductingEquipment (context),
             DCConductingEquipment (context),
             Measurement (context)
-        )
-    }
-}
-
-/**
- * Categorisation of different protective action adjustments that can be performed on equipment.
- * @param sup Reference to the superclass object.
- * @param byPercentage The adjustment is in percentage of the active value.
- * @param byValue The adjustment is in given by a value that defined the changes that will be done to the active value.
- * @param measurement The equipment will operating on a value given by a measurement.
- * @param setValue The equipment will operate on the new value.
- */
-case class ProtectiveActionAdjustmentKind
-(
-    override val sup: BasicElement,
-    byPercentage: String,
-    byValue: String,
-    measurement: String,
-    setValue: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionAdjustmentKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != byPercentage) "\t\t<cim:ProtectiveActionAdjustmentKind.byPercentage rdf:resource=\"#" + byPercentage + "\"/>\n" else "") +
-        (if (null != byValue) "\t\t<cim:ProtectiveActionAdjustmentKind.byValue rdf:resource=\"#" + byValue + "\"/>\n" else "") +
-        (if (null != measurement) "\t\t<cim:ProtectiveActionAdjustmentKind.measurement rdf:resource=\"#" + measurement + "\"/>\n" else "") +
-        (if (null != setValue) "\t\t<cim:ProtectiveActionAdjustmentKind.setValue rdf:resource=\"#" + setValue + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ProtectiveActionAdjustmentKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ProtectiveActionAdjustmentKind>\n"
-    }
-}
-
-object ProtectiveActionAdjustmentKind
-extends
-    Parseable[ProtectiveActionAdjustmentKind]
-{
-    val byPercentage: (Context) => String = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.byPercentage"""))
-    val byValue: (Context) => String = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.byValue"""))
-    val measurement: (Context) => String = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.measurement"""))
-    val setValue: (Context) => String = parse_attribute (attribute ("""ProtectiveActionAdjustmentKind.setValue"""))
-    def parse (context: Context): ProtectiveActionAdjustmentKind =
-    {
-        ProtectiveActionAdjustmentKind(
-            BasicElement.parse (context),
-            byPercentage (context),
-            byValue (context),
-            measurement (context),
-            setValue (context)
         )
     }
 }
@@ -1437,62 +938,6 @@ extends
 }
 
 /**
- * Classification of Remedial Action Scheme.
- * @param sup Reference to the superclass object.
- * @param rAP Remedial Action Plan (RAP)
- * @param rAS Remedial Action Scheme (RAS).
- */
-case class RemedialActionSchemeKind
-(
-    override val sup: BasicElement,
-    rAP: String,
-    rAS: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[RemedialActionSchemeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != rAP) "\t\t<cim:RemedialActionSchemeKind.rAP rdf:resource=\"#" + rAP + "\"/>\n" else "") +
-        (if (null != rAS) "\t\t<cim:RemedialActionSchemeKind.rAS rdf:resource=\"#" + rAS + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:RemedialActionSchemeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemedialActionSchemeKind>\n"
-    }
-}
-
-object RemedialActionSchemeKind
-extends
-    Parseable[RemedialActionSchemeKind]
-{
-    val rAP: (Context) => String = parse_attribute (attribute ("""RemedialActionSchemeKind.rAP"""))
-    val rAS: (Context) => String = parse_attribute (attribute ("""RemedialActionSchemeKind.rAS"""))
-    def parse (context: Context): RemedialActionSchemeKind =
-    {
-        RemedialActionSchemeKind(
-            BasicElement.parse (context),
-            rAP (context),
-            rAS (context)
-        )
-    }
-}
-
-/**
  * Stage of a remedial action scheme.
  * @param sup Reference to the superclass object.
  * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
@@ -1698,29 +1143,21 @@ private[ninecode] object _InfSIPS
     def register: List[ClassInfo] =
     {
         List (
-            AnalogToDigitalLogicKind.register,
-            CalculationKind.register,
             Gate.register,
             GateInputPin.register,
-            GateLogicKind.register,
             MeasurementCalculator.register,
             MeasurementCalculatorInput.register,
             PinBranchGroup.register,
-            PinBranchGroupKind.register,
             PinEquipment.register,
-            PinEquipmentKind.register,
             PinGate.register,
             PinMeasurement.register,
             PinTerminal.register,
-            PinTerminalKind.register,
             ProtectiveAction.register,
             ProtectiveActionAdjustment.register,
-            ProtectiveActionAdjustmentKind.register,
             ProtectiveActionCollection.register,
             ProtectiveActionEquipment.register,
             ProtectiveActionRegulation.register,
             RemedialActionScheme.register,
-            RemedialActionSchemeKind.register,
             Stage.register,
             StageTrigger.register,
             TriggerCondition.register

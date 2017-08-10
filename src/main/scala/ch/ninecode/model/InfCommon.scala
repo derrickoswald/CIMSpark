@@ -940,72 +940,6 @@ extends
     }
 }
 
-/**
- * Kind of skill level.
- * @param sup Reference to the superclass object.
- * @param apprentice <em>undocumented</em>
- * @param master <em>undocumented</em>
- * @param other <em>undocumented</em>
- * @param standard <em>undocumented</em>
- */
-case class SkillLevelKind
-(
-    override val sup: BasicElement,
-    apprentice: String,
-    master: String,
-    other: String,
-    standard: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[SkillLevelKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != apprentice) "\t\t<cim:SkillLevelKind.apprentice rdf:resource=\"#" + apprentice + "\"/>\n" else "") +
-        (if (null != master) "\t\t<cim:SkillLevelKind.master rdf:resource=\"#" + master + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:SkillLevelKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != standard) "\t\t<cim:SkillLevelKind.standard rdf:resource=\"#" + standard + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:SkillLevelKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SkillLevelKind>\n"
-    }
-}
-
-object SkillLevelKind
-extends
-    Parseable[SkillLevelKind]
-{
-    val apprentice: (Context) => String = parse_attribute (attribute ("""SkillLevelKind.apprentice"""))
-    val master: (Context) => String = parse_attribute (attribute ("""SkillLevelKind.master"""))
-    val other: (Context) => String = parse_attribute (attribute ("""SkillLevelKind.other"""))
-    val standard: (Context) => String = parse_attribute (attribute ("""SkillLevelKind.standard"""))
-    def parse (context: Context): SkillLevelKind =
-    {
-        SkillLevelKind(
-            BasicElement.parse (context),
-            apprentice (context),
-            master (context),
-            other (context),
-            standard (context)
-        )
-    }
-}
-
 private[ninecode] object _InfCommon
 {
     def register: List[ClassInfo] =
@@ -1026,8 +960,7 @@ private[ninecode] object _InfCommon
             PropertyOrganisationRole.register,
             Ratio.register,
             Role.register,
-            Skill.register,
-            SkillLevelKind.register
+            Skill.register
         )
     }
 }

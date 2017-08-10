@@ -298,62 +298,6 @@ extends
 }
 
 /**
- * The construction kind of the potential transformer.
- * @param sup Reference to the superclass object.
- * @param capacitiveCoupling The potential transformer is using capacitive coupling to create secondary voltage.
- * @param inductive The potential transformer is using induction coils to create secondary voltage.
- */
-case class PotentialTransformerKind
-(
-    override val sup: BasicElement,
-    capacitiveCoupling: String,
-    inductive: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PotentialTransformerKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != capacitiveCoupling) "\t\t<cim:PotentialTransformerKind.capacitiveCoupling rdf:resource=\"#" + capacitiveCoupling + "\"/>\n" else "") +
-        (if (null != inductive) "\t\t<cim:PotentialTransformerKind.inductive rdf:resource=\"#" + inductive + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PotentialTransformerKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PotentialTransformerKind>\n"
-    }
-}
-
-object PotentialTransformerKind
-extends
-    Parseable[PotentialTransformerKind]
-{
-    val capacitiveCoupling: (Context) => String = parse_attribute (attribute ("""PotentialTransformerKind.capacitiveCoupling"""))
-    val inductive: (Context) => String = parse_attribute (attribute ("""PotentialTransformerKind.inductive"""))
-    def parse (context: Context): PotentialTransformerKind =
-    {
-        PotentialTransformerKind(
-            BasicElement.parse (context),
-            capacitiveCoupling (context),
-            inductive (context)
-        )
-    }
-}
-
-/**
  * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
  * @param sup Reference to the superclass object.
  */
@@ -504,7 +448,6 @@ private[ninecode] object _AuxiliaryEquipment
             FaultIndicator.register,
             PostLineSensor.register,
             PotentialTransformer.register,
-            PotentialTransformerKind.register,
             Sensor.register,
             SurgeArrester.register,
             WaveTrap.register

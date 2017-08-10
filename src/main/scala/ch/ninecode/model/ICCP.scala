@@ -103,56 +103,6 @@ extends
     }
 }
 
-case class ICCPControlPointDeviceClass
-(
-    override val sup: BasicElement,
-    NONSBO: String,
-    SBO: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ICCPControlPointDeviceClass] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != NONSBO) "\t\t<cim:ICCPControlPointDeviceClass.NONSBO rdf:resource=\"#" + NONSBO + "\"/>\n" else "") +
-        (if (null != SBO) "\t\t<cim:ICCPControlPointDeviceClass.SBO rdf:resource=\"#" + SBO + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ICCPControlPointDeviceClass rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPControlPointDeviceClass>\n"
-    }
-}
-
-object ICCPControlPointDeviceClass
-extends
-    Parseable[ICCPControlPointDeviceClass]
-{
-    val NONSBO: (Context) => String = parse_attribute (attribute ("""ICCPControlPointDeviceClass.NONSBO"""))
-    val SBO: (Context) => String = parse_attribute (attribute ("""ICCPControlPointDeviceClass.SBO"""))
-    def parse (context: Context): ICCPControlPointDeviceClass =
-    {
-        ICCPControlPointDeviceClass(
-            BasicElement.parse (context),
-            NONSBO (context),
-            SBO (context)
-        )
-    }
-}
-
 case class ICCPIndicationPoint
 (
     override val sup: ICCPPoint,
@@ -199,60 +149,6 @@ extends
             ICCPPoint.parse (context),
             attr (context),
             typ (context)
-        )
-    }
-}
-
-case class ICCPIndicationPointType
-(
-    override val sup: BasicElement,
-    DISCRETE: String,
-    REAL: String,
-    STATE: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ICCPIndicationPointType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != DISCRETE) "\t\t<cim:ICCPIndicationPointType.DISCRETE rdf:resource=\"#" + DISCRETE + "\"/>\n" else "") +
-        (if (null != REAL) "\t\t<cim:ICCPIndicationPointType.REAL rdf:resource=\"#" + REAL + "\"/>\n" else "") +
-        (if (null != STATE) "\t\t<cim:ICCPIndicationPointType.STATE rdf:resource=\"#" + STATE + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ICCPIndicationPointType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPIndicationPointType>\n"
-    }
-}
-
-object ICCPIndicationPointType
-extends
-    Parseable[ICCPIndicationPointType]
-{
-    val DISCRETE: (Context) => String = parse_attribute (attribute ("""ICCPIndicationPointType.DISCRETE"""))
-    val REAL: (Context) => String = parse_attribute (attribute ("""ICCPIndicationPointType.REAL"""))
-    val STATE: (Context) => String = parse_attribute (attribute ("""ICCPIndicationPointType.STATE"""))
-    def parse (context: Context): ICCPIndicationPointType =
-    {
-        ICCPIndicationPointType(
-            BasicElement.parse (context),
-            DISCRETE (context),
-            REAL (context),
-            STATE (context)
         )
     }
 }
@@ -316,56 +212,6 @@ extends
             attr (context),
             localReference (context),
             scope (context)
-        )
-    }
-}
-
-case class ICCPPScope
-(
-    override val sup: BasicElement,
-    ICC: String,
-    VCC: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ICCPPScope] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != ICC) "\t\t<cim:ICCPPScope.ICC rdf:resource=\"#" + ICC + "\"/>\n" else "") +
-        (if (null != VCC) "\t\t<cim:ICCPPScope.VCC rdf:resource=\"#" + VCC + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ICCPPScope rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPPScope>\n"
-    }
-}
-
-object ICCPPScope
-extends
-    Parseable[ICCPPScope]
-{
-    val ICC: (Context) => String = parse_attribute (attribute ("""ICCPPScope.ICC"""))
-    val VCC: (Context) => String = parse_attribute (attribute ("""ICCPPScope.VCC"""))
-    def parse (context: Context): ICCPPScope =
-    {
-        ICCPPScope(
-            BasicElement.parse (context),
-            ICC (context),
-            VCC (context)
         )
     }
 }
@@ -477,56 +323,6 @@ extends
     }
 }
 
-case class ICCPSetPointType
-(
-    override val sup: BasicElement,
-    DISCRETE: String,
-    REAL: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ICCPSetPointType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != DISCRETE) "\t\t<cim:ICCPSetPointType.DISCRETE rdf:resource=\"#" + DISCRETE + "\"/>\n" else "") +
-        (if (null != REAL) "\t\t<cim:ICCPSetPointType.REAL rdf:resource=\"#" + REAL + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ICCPSetPointType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPSetPointType>\n"
-    }
-}
-
-object ICCPSetPointType
-extends
-    Parseable[ICCPSetPointType]
-{
-    val DISCRETE: (Context) => String = parse_attribute (attribute ("""ICCPSetPointType.DISCRETE"""))
-    val REAL: (Context) => String = parse_attribute (attribute ("""ICCPSetPointType.REAL"""))
-    def parse (context: Context): ICCPSetPointType =
-    {
-        ICCPSetPointType(
-            BasicElement.parse (context),
-            DISCRETE (context),
-            REAL (context)
-        )
-    }
-}
-
 case class IPAccessPoint
 (
     override val sup: BasicElement,
@@ -585,114 +381,6 @@ extends
             attr (context),
             gateway (context),
             subnet (context)
-        )
-    }
-}
-
-case class IPAddressType
-(
-    override val sup: BasicElement,
-    multiplier: String,
-    unit: String,
-    value: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[IPAddressType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != multiplier) "\t\t<cim:IPAddressType.multiplier rdf:resource=\"#" + multiplier + "\"/>\n" else "") +
-        (if (null != unit) "\t\t<cim:IPAddressType.unit rdf:resource=\"#" + unit + "\"/>\n" else "") +
-        (if (null != value) "\t\t<cim:IPAddressType.value>" + value + "</cim:IPAddressType.value>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:IPAddressType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:IPAddressType>\n"
-    }
-}
-
-object IPAddressType
-extends
-    Parseable[IPAddressType]
-{
-    val multiplier: (Context) => String = parse_attribute (attribute ("""IPAddressType.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""IPAddressType.unit"""))
-    val value: (Context) => String = parse_element (element ("""IPAddressType.value"""))
-    def parse (context: Context): IPAddressType =
-    {
-        IPAddressType(
-            BasicElement.parse (context),
-            multiplier (context),
-            unit (context),
-            value (context)
-        )
-    }
-}
-
-case class ISOAPAddressing
-(
-    override val sup: BasicElement,
-    multiplier: String,
-    unit: String,
-    value: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ISOAPAddressing] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != multiplier) "\t\t<cim:ISOAPAddressing.multiplier rdf:resource=\"#" + multiplier + "\"/>\n" else "") +
-        (if (null != unit) "\t\t<cim:ISOAPAddressing.unit rdf:resource=\"#" + unit + "\"/>\n" else "") +
-        (if (null != value) "\t\t<cim:ISOAPAddressing.value>" + value + "</cim:ISOAPAddressing.value>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ISOAPAddressing rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ISOAPAddressing>\n"
-    }
-}
-
-object ISOAPAddressing
-extends
-    Parseable[ISOAPAddressing]
-{
-    val multiplier: (Context) => String = parse_attribute (attribute ("""ISOAPAddressing.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""ISOAPAddressing.unit"""))
-    val value: (Context) => String = parse_element (element ("""ISOAPAddressing.value"""))
-    def parse (context: Context): ISOAPAddressing =
-    {
-        ISOAPAddressing(
-            BasicElement.parse (context),
-            multiplier (context),
-            unit (context),
-            value (context)
         )
     }
 }
@@ -881,17 +569,11 @@ private[ninecode] object _ICCP
         List (
             ICCPCommandPoint.register,
             ICCPControlPoint.register,
-            ICCPControlPointDeviceClass.register,
             ICCPIndicationPoint.register,
-            ICCPIndicationPointType.register,
             ICCPInformationMessage.register,
-            ICCPPScope.register,
             ICCPPoint.register,
             ICCPSetPoint.register,
-            ICCPSetPointType.register,
             IPAccessPoint.register,
-            IPAddressType.register,
-            ISOAPAddressing.register,
             ISOUpperLayer.register,
             TASE2BilateralTable.register,
             TCPAcessPoint.register

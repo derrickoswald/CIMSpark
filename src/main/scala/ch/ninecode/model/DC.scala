@@ -352,123 +352,6 @@ extends
 }
 
 /**
- * Operating mode for HVDC line operating as Current Source Converter.
- * @param sup Reference to the superclass object.
- * @param inverter Operating as inverter
- * @param rectifier Operating as rectifier.
- */
-case class CsOperatingModeKind
-(
-    override val sup: BasicElement,
-    inverter: String,
-    rectifier: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CsOperatingModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != inverter) "\t\t<cim:CsOperatingModeKind.inverter rdf:resource=\"#" + inverter + "\"/>\n" else "") +
-        (if (null != rectifier) "\t\t<cim:CsOperatingModeKind.rectifier rdf:resource=\"#" + rectifier + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:CsOperatingModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CsOperatingModeKind>\n"
-    }
-}
-
-object CsOperatingModeKind
-extends
-    Parseable[CsOperatingModeKind]
-{
-    val inverter: (Context) => String = parse_attribute (attribute ("""CsOperatingModeKind.inverter"""))
-    val rectifier: (Context) => String = parse_attribute (attribute ("""CsOperatingModeKind.rectifier"""))
-    def parse (context: Context): CsOperatingModeKind =
-    {
-        CsOperatingModeKind(
-            BasicElement.parse (context),
-            inverter (context),
-            rectifier (context)
-        )
-    }
-}
-
-/**
- * Active power control modes for HVDC line operating as Current Source Converter.
- * @param sup Reference to the superclass object.
- * @param activePower Active power control at AC side.
- * @param dcCurrent DC current control
- * @param dcVoltage DC voltage control.
- */
-case class CsPpccControlKind
-(
-    override val sup: BasicElement,
-    activePower: String,
-    dcCurrent: String,
-    dcVoltage: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CsPpccControlKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != activePower) "\t\t<cim:CsPpccControlKind.activePower rdf:resource=\"#" + activePower + "\"/>\n" else "") +
-        (if (null != dcCurrent) "\t\t<cim:CsPpccControlKind.dcCurrent rdf:resource=\"#" + dcCurrent + "\"/>\n" else "") +
-        (if (null != dcVoltage) "\t\t<cim:CsPpccControlKind.dcVoltage rdf:resource=\"#" + dcVoltage + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:CsPpccControlKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CsPpccControlKind>\n"
-    }
-}
-
-object CsPpccControlKind
-extends
-    Parseable[CsPpccControlKind]
-{
-    val activePower: (Context) => String = parse_attribute (attribute ("""CsPpccControlKind.activePower"""))
-    val dcCurrent: (Context) => String = parse_attribute (attribute ("""CsPpccControlKind.dcCurrent"""))
-    val dcVoltage: (Context) => String = parse_attribute (attribute ("""CsPpccControlKind.dcVoltage"""))
-    def parse (context: Context): CsPpccControlKind =
-    {
-        CsPpccControlKind(
-            BasicElement.parse (context),
-            activePower (context),
-            dcCurrent (context),
-            dcVoltage (context)
-        )
-    }
-}
-
-/**
  * An electrical connection point at a piece of DC conducting equipment.
  * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
  * @param sup Reference to the superclass object.
@@ -711,67 +594,6 @@ extends
     {
         DCConductingEquipment(
             Equipment.parse (context)
-        )
-    }
-}
-
-/**
- * The operating mode of an HVDC bipole.
- * @param sup Reference to the superclass object.
- * @param bipolar Bipolar operation.
- * @param monopolarGroundReturn Monopolar operation with ground return
- * @param monopolarMetallicReturn Monopolar operation with metallic return
- */
-case class DCConverterOperatingModeKind
-(
-    override val sup: BasicElement,
-    bipolar: String,
-    monopolarGroundReturn: String,
-    monopolarMetallicReturn: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[DCConverterOperatingModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != bipolar) "\t\t<cim:DCConverterOperatingModeKind.bipolar rdf:resource=\"#" + bipolar + "\"/>\n" else "") +
-        (if (null != monopolarGroundReturn) "\t\t<cim:DCConverterOperatingModeKind.monopolarGroundReturn rdf:resource=\"#" + monopolarGroundReturn + "\"/>\n" else "") +
-        (if (null != monopolarMetallicReturn) "\t\t<cim:DCConverterOperatingModeKind.monopolarMetallicReturn rdf:resource=\"#" + monopolarMetallicReturn + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:DCConverterOperatingModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DCConverterOperatingModeKind>\n"
-    }
-}
-
-object DCConverterOperatingModeKind
-extends
-    Parseable[DCConverterOperatingModeKind]
-{
-    val bipolar: (Context) => String = parse_attribute (attribute ("""DCConverterOperatingModeKind.bipolar"""))
-    val monopolarGroundReturn: (Context) => String = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarGroundReturn"""))
-    val monopolarMetallicReturn: (Context) => String = parse_attribute (attribute ("""DCConverterOperatingModeKind.monopolarMetallicReturn"""))
-    def parse (context: Context): DCConverterOperatingModeKind =
-    {
-        DCConverterOperatingModeKind(
-            BasicElement.parse (context),
-            bipolar (context),
-            monopolarGroundReturn (context),
-            monopolarMetallicReturn (context)
         )
     }
 }
@@ -1160,67 +982,6 @@ extends
             IdentifiedObject.parse (context),
             DCEquipmentContainer (context),
             DCTopologicalNode (context)
-        )
-    }
-}
-
-/**
- * Polarity for DC circuits.
- * @param sup Reference to the superclass object.
- * @param middle Middle pole, potentially grounded.
- * @param negative Negative pole.
- * @param positive Positive pole.
- */
-case class DCPolarityKind
-(
-    override val sup: BasicElement,
-    middle: String,
-    negative: String,
-    positive: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[DCPolarityKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != middle) "\t\t<cim:DCPolarityKind.middle rdf:resource=\"#" + middle + "\"/>\n" else "") +
-        (if (null != negative) "\t\t<cim:DCPolarityKind.negative rdf:resource=\"#" + negative + "\"/>\n" else "") +
-        (if (null != positive) "\t\t<cim:DCPolarityKind.positive rdf:resource=\"#" + positive + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:DCPolarityKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DCPolarityKind>\n"
-    }
-}
-
-object DCPolarityKind
-extends
-    Parseable[DCPolarityKind]
-{
-    val middle: (Context) => String = parse_attribute (attribute ("""DCPolarityKind.middle"""))
-    val negative: (Context) => String = parse_attribute (attribute ("""DCPolarityKind.negative"""))
-    val positive: (Context) => String = parse_attribute (attribute ("""DCPolarityKind.positive"""))
-    def parse (context: Context): DCPolarityKind =
-    {
-        DCPolarityKind(
-            BasicElement.parse (context),
-            middle (context),
-            negative (context),
-            positive (context)
         )
     }
 }
@@ -1709,131 +1470,6 @@ extends
     }
 }
 
-/**
- * Types applicable to the control of real power and/or DC voltage by voltage source converter.
- * @param sup Reference to the superclass object.
- * @param pPcc Control variable (target) is real power at PCC bus.
- * @param pPccAndUdcDroop Control variables (targets) are both active power at point of common coupling and local DC voltage, with the droop.
- * @param pPccAndUdcDroopPilot Control variables (targets) are both active power at point of common coupling and the pilot DC voltage, with the droop.
- * @param pPccAndUdcDroopWithCompensation Control variables (targets) are both active power at point of common coupling and compensated DC voltage, with the droop; compensation factor is the resistance, as an approximation of the DC voltage of a common (real or virtual) node in the DC network.
- * @param udc Control variable (target) is DC voltage and real power at PCC bus is derived.
- */
-case class VsPpccControlKind
-(
-    override val sup: BasicElement,
-    pPcc: String,
-    pPccAndUdcDroop: String,
-    pPccAndUdcDroopPilot: String,
-    pPccAndUdcDroopWithCompensation: String,
-    udc: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[VsPpccControlKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != pPcc) "\t\t<cim:VsPpccControlKind.pPcc rdf:resource=\"#" + pPcc + "\"/>\n" else "") +
-        (if (null != pPccAndUdcDroop) "\t\t<cim:VsPpccControlKind.pPccAndUdcDroop rdf:resource=\"#" + pPccAndUdcDroop + "\"/>\n" else "") +
-        (if (null != pPccAndUdcDroopPilot) "\t\t<cim:VsPpccControlKind.pPccAndUdcDroopPilot rdf:resource=\"#" + pPccAndUdcDroopPilot + "\"/>\n" else "") +
-        (if (null != pPccAndUdcDroopWithCompensation) "\t\t<cim:VsPpccControlKind.pPccAndUdcDroopWithCompensation rdf:resource=\"#" + pPccAndUdcDroopWithCompensation + "\"/>\n" else "") +
-        (if (null != udc) "\t\t<cim:VsPpccControlKind.udc rdf:resource=\"#" + udc + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:VsPpccControlKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VsPpccControlKind>\n"
-    }
-}
-
-object VsPpccControlKind
-extends
-    Parseable[VsPpccControlKind]
-{
-    val pPcc: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPcc"""))
-    val pPccAndUdcDroop: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroop"""))
-    val pPccAndUdcDroopPilot: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopPilot"""))
-    val pPccAndUdcDroopWithCompensation: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.pPccAndUdcDroopWithCompensation"""))
-    val udc: (Context) => String = parse_attribute (attribute ("""VsPpccControlKind.udc"""))
-    def parse (context: Context): VsPpccControlKind =
-    {
-        VsPpccControlKind(
-            BasicElement.parse (context),
-            pPcc (context),
-            pPccAndUdcDroop (context),
-            pPccAndUdcDroopPilot (context),
-            pPccAndUdcDroopWithCompensation (context),
-            udc (context)
-        )
-    }
-}
-
-case class VsQpccControlKind
-(
-    override val sup: BasicElement,
-    powerFactorPcc: String,
-    reactivePcc: String,
-    voltagePcc: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[VsQpccControlKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != powerFactorPcc) "\t\t<cim:VsQpccControlKind.powerFactorPcc rdf:resource=\"#" + powerFactorPcc + "\"/>\n" else "") +
-        (if (null != reactivePcc) "\t\t<cim:VsQpccControlKind.reactivePcc rdf:resource=\"#" + reactivePcc + "\"/>\n" else "") +
-        (if (null != voltagePcc) "\t\t<cim:VsQpccControlKind.voltagePcc rdf:resource=\"#" + voltagePcc + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:VsQpccControlKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VsQpccControlKind>\n"
-    }
-}
-
-object VsQpccControlKind
-extends
-    Parseable[VsQpccControlKind]
-{
-    val powerFactorPcc: (Context) => String = parse_attribute (attribute ("""VsQpccControlKind.powerFactorPcc"""))
-    val reactivePcc: (Context) => String = parse_attribute (attribute ("""VsQpccControlKind.reactivePcc"""))
-    val voltagePcc: (Context) => String = parse_attribute (attribute ("""VsQpccControlKind.voltagePcc"""))
-    def parse (context: Context): VsQpccControlKind =
-    {
-        VsQpccControlKind(
-            BasicElement.parse (context),
-            powerFactorPcc (context),
-            reactivePcc (context),
-            voltagePcc (context)
-        )
-    }
-}
-
 private[ninecode] object _DC
 {
     def register: List[ClassInfo] =
@@ -1842,14 +1478,11 @@ private[ninecode] object _DC
             ACDCConverter.register,
             ACDCConverterDCTerminal.register,
             CsConverter.register,
-            CsOperatingModeKind.register,
-            CsPpccControlKind.register,
             DCBaseTerminal.register,
             DCBreaker.register,
             DCBusbar.register,
             DCChopper.register,
             DCConductingEquipment.register,
-            DCConverterOperatingModeKind.register,
             DCConverterUnit.register,
             DCDisconnector.register,
             DCEquipmentContainer.register,
@@ -1857,7 +1490,6 @@ private[ninecode] object _DC
             DCLine.register,
             DCLineSegment.register,
             DCNode.register,
-            DCPolarityKind.register,
             DCSeriesDevice.register,
             DCShunt.register,
             DCSwitch.register,
@@ -1865,9 +1497,7 @@ private[ninecode] object _DC
             DCTopologicalIsland.register,
             PerLengthDCLineParameter.register,
             VsCapabilityCurve.register,
-            VsConverter.register,
-            VsPpccControlKind.register,
-            VsQpccControlKind.register
+            VsConverter.register
         )
     }
 }

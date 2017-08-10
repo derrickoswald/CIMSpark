@@ -1593,69 +1593,6 @@ extends
 }
 
 /**
- * Validity for MeasurementValue.
- * @param sup Reference to the superclass object.
- * @param GOOD The value is marked good if no abnormal condition of the acquisition function or the information source is detected.
- * @param INVALID The value is marked invalid when a supervision function recognises abnormal conditions of the acquisition function or the information source (missing or non-operating updating devices).
- *        The value is not defined under this condition. The mark invalid is used to indicate to the client that the value may be incorrect and shall not be used.
- * @param QUESTIONABLE The value is marked questionable if a supervision function detects an abnormal behaviour, however the value could still be valid.
- *        The client is responsible for determining whether or not values marked "questionable" should be used.
- */
-case class Validity
-(
-    override val sup: BasicElement,
-    GOOD: String,
-    INVALID: String,
-    QUESTIONABLE: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[Validity] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != GOOD) "\t\t<cim:Validity.GOOD rdf:resource=\"#" + GOOD + "\"/>\n" else "") +
-        (if (null != INVALID) "\t\t<cim:Validity.INVALID rdf:resource=\"#" + INVALID + "\"/>\n" else "") +
-        (if (null != QUESTIONABLE) "\t\t<cim:Validity.QUESTIONABLE rdf:resource=\"#" + QUESTIONABLE + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:Validity rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Validity>\n"
-    }
-}
-
-object Validity
-extends
-    Parseable[Validity]
-{
-    val GOOD: (Context) => String = parse_attribute (attribute ("""Validity.GOOD"""))
-    val INVALID: (Context) => String = parse_attribute (attribute ("""Validity.INVALID"""))
-    val QUESTIONABLE: (Context) => String = parse_attribute (attribute ("""Validity.QUESTIONABLE"""))
-    def parse (context: Context): Validity =
-    {
-        Validity(
-            BasicElement.parse (context),
-            GOOD (context),
-            INVALID (context),
-            QUESTIONABLE (context)
-        )
-    }
-}
-
-/**
  * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
  * @param sup Reference to the superclass object.
@@ -1790,7 +1727,6 @@ private[ninecode] object _Meas
             SetPoint.register,
             StringMeasurement.register,
             StringMeasurementValue.register,
-            Validity.register,
             ValueAliasSet.register,
             ValueToAlias.register
         )

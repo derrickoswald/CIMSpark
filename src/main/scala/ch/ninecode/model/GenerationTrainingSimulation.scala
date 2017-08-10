@@ -162,62 +162,6 @@ extends
 }
 
 /**
- * Boiler control mode.
- * @param sup Reference to the superclass object.
- * @param coordinated Coordinated.
- * @param following Following.
- */
-case class BoilerControlMode
-(
-    override val sup: BasicElement,
-    coordinated: String,
-    following: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[BoilerControlMode] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != coordinated) "\t\t<cim:BoilerControlMode.coordinated rdf:resource=\"#" + coordinated + "\"/>\n" else "") +
-        (if (null != following) "\t\t<cim:BoilerControlMode.following rdf:resource=\"#" + following + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:BoilerControlMode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BoilerControlMode>\n"
-    }
-}
-
-object BoilerControlMode
-extends
-    Parseable[BoilerControlMode]
-{
-    val coordinated: (Context) => String = parse_attribute (attribute ("""BoilerControlMode.coordinated"""))
-    val following: (Context) => String = parse_attribute (attribute ("""BoilerControlMode.following"""))
-    def parse (context: Context): BoilerControlMode =
-    {
-        BoilerControlMode(
-            BasicElement.parse (context),
-            coordinated (context),
-            following (context)
-        )
-    }
-}
-
-/**
  * Relationship between the combustion turbine's power output rating in gross active power (X-axis) and the ambient air temperature (Y-axis).
  * @param sup Reference to the superclass object.
  * @param CombustionTurbine A combustion turbine may have an active power versus ambient temperature relationship.
@@ -1212,74 +1156,12 @@ extends
     }
 }
 
-/**
- * Type of turbine.
- * @param sup Reference to the superclass object.
- * @param francis Francis.
- * @param kaplan Kaplan.
- * @param pelton Pelton.
- */
-case class TurbineType
-(
-    override val sup: BasicElement,
-    francis: String,
-    kaplan: String,
-    pelton: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TurbineType] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != francis) "\t\t<cim:TurbineType.francis rdf:resource=\"#" + francis + "\"/>\n" else "") +
-        (if (null != kaplan) "\t\t<cim:TurbineType.kaplan rdf:resource=\"#" + kaplan + "\"/>\n" else "") +
-        (if (null != pelton) "\t\t<cim:TurbineType.pelton rdf:resource=\"#" + pelton + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:TurbineType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TurbineType>\n"
-    }
-}
-
-object TurbineType
-extends
-    Parseable[TurbineType]
-{
-    val francis: (Context) => String = parse_attribute (attribute ("""TurbineType.francis"""))
-    val kaplan: (Context) => String = parse_attribute (attribute ("""TurbineType.kaplan"""))
-    val pelton: (Context) => String = parse_attribute (attribute ("""TurbineType.pelton"""))
-    def parse (context: Context): TurbineType =
-    {
-        TurbineType(
-            BasicElement.parse (context),
-            francis (context),
-            kaplan (context),
-            pelton (context)
-        )
-    }
-}
-
 private[ninecode] object _GenerationTrainingSimulation
 {
     def register: List[ClassInfo] =
     {
         List (
             BWRSteamSupply.register,
-            BoilerControlMode.register,
             CTTempActivePowerCurve.register,
             CombustionTurbine.register,
             DrumBoiler.register,
@@ -1291,8 +1173,7 @@ private[ninecode] object _GenerationTrainingSimulation
             SteamSupply.register,
             SteamTurbine.register,
             Subcritical.register,
-            Supercritical.register,
-            TurbineType.register
+            Supercritical.register
         )
     }
 }

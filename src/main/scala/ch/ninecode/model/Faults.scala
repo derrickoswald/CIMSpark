@@ -309,70 +309,6 @@ extends
     }
 }
 
-/**
- * The type of fault connection among phases.
- * @param sup Reference to the superclass object.
- * @param lineToGround The fault connects the indicated phases to ground.
- *        The line to line fault impedance is not used and assumed infinite. The full ground impedance is connected between each phase specified in the fault and ground, but not between the phases.
- * @param lineToLine The fault connects the specified phases together without a connection to ground.
- *        The ground impedance of this fault is ignored. The line to line impedance is connected between each of the phases specified in the fault. For example three times for a three phase fault, one time for a two phase fault.  A single phase fault should not be specified.
- * @param lineToLineToGround The fault connects the indicated phases to ground and to each other.
- *        The line to line impedance is connected between each of the phases specified in the fault in a full mesh. For example three times for a three phase fault, one time for a two phase fault. A single phase fault should not be specified. The full ground impedance is connected between each phase specified in the fault and ground.
- */
-case class PhaseConnectedFaultKind
-(
-    override val sup: BasicElement,
-    lineToGround: String,
-    lineToLine: String,
-    lineToLineToGround: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PhaseConnectedFaultKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != lineToGround) "\t\t<cim:PhaseConnectedFaultKind.lineToGround rdf:resource=\"#" + lineToGround + "\"/>\n" else "") +
-        (if (null != lineToLine) "\t\t<cim:PhaseConnectedFaultKind.lineToLine rdf:resource=\"#" + lineToLine + "\"/>\n" else "") +
-        (if (null != lineToLineToGround) "\t\t<cim:PhaseConnectedFaultKind.lineToLineToGround rdf:resource=\"#" + lineToLineToGround + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PhaseConnectedFaultKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PhaseConnectedFaultKind>\n"
-    }
-}
-
-object PhaseConnectedFaultKind
-extends
-    Parseable[PhaseConnectedFaultKind]
-{
-    val lineToGround: (Context) => String = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToGround"""))
-    val lineToLine: (Context) => String = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToLine"""))
-    val lineToLineToGround: (Context) => String = parse_attribute (attribute ("""PhaseConnectedFaultKind.lineToLineToGround"""))
-    def parse (context: Context): PhaseConnectedFaultKind =
-    {
-        PhaseConnectedFaultKind(
-            BasicElement.parse (context),
-            lineToGround (context),
-            lineToLine (context),
-            lineToLineToGround (context)
-        )
-    }
-}
-
 private[ninecode] object _Faults
 {
     def register: List[ClassInfo] =
@@ -382,8 +318,7 @@ private[ninecode] object _Faults
             Fault.register,
             FaultCauseType.register,
             FaultImpedance.register,
-            LineFault.register,
-            PhaseConnectedFaultKind.register
+            LineFault.register
         )
     }
 }

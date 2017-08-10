@@ -107,104 +107,12 @@ extends
     }
 }
 
-/**
- * Type of input signal coming from remote bus.
- * @param sup Reference to the superclass object.
- * @param remoteBranchCurrentAmplitude Input is branch current amplitude from remote terminal bus.
- * @param remoteBusFrequency Input is frequency from remote terminal bus.
- * @param remoteBusFrequencyDeviation Input is frequency deviation from remote terminal bus.
- * @param remoteBusVoltage Input is voltage from remote terminal bus.
- * @param remoteBusVoltageAmplitude Input is voltage amplitude from remote terminal bus.
- * @param remoteBusVoltageAmplitudeDerivative Input is branch current amplitude derivative from remote terminal bus.
- * @param remoteBusVoltageFrequency Input is voltage frequency from remote terminal bus.
- * @param remoteBusVoltageFrequencyDeviation Input is voltage frequency deviation from remote terminal bus.
- * @param remotePuBusVoltageDerivative Input is PU voltage derivative from remote terminal bus.
- */
-case class RemoteSignalKind
-(
-    override val sup: BasicElement,
-    remoteBranchCurrentAmplitude: String,
-    remoteBusFrequency: String,
-    remoteBusFrequencyDeviation: String,
-    remoteBusVoltage: String,
-    remoteBusVoltageAmplitude: String,
-    remoteBusVoltageAmplitudeDerivative: String,
-    remoteBusVoltageFrequency: String,
-    remoteBusVoltageFrequencyDeviation: String,
-    remotePuBusVoltageDerivative: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[RemoteSignalKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != remoteBranchCurrentAmplitude) "\t\t<cim:RemoteSignalKind.remoteBranchCurrentAmplitude rdf:resource=\"#" + remoteBranchCurrentAmplitude + "\"/>\n" else "") +
-        (if (null != remoteBusFrequency) "\t\t<cim:RemoteSignalKind.remoteBusFrequency rdf:resource=\"#" + remoteBusFrequency + "\"/>\n" else "") +
-        (if (null != remoteBusFrequencyDeviation) "\t\t<cim:RemoteSignalKind.remoteBusFrequencyDeviation rdf:resource=\"#" + remoteBusFrequencyDeviation + "\"/>\n" else "") +
-        (if (null != remoteBusVoltage) "\t\t<cim:RemoteSignalKind.remoteBusVoltage rdf:resource=\"#" + remoteBusVoltage + "\"/>\n" else "") +
-        (if (null != remoteBusVoltageAmplitude) "\t\t<cim:RemoteSignalKind.remoteBusVoltageAmplitude rdf:resource=\"#" + remoteBusVoltageAmplitude + "\"/>\n" else "") +
-        (if (null != remoteBusVoltageAmplitudeDerivative) "\t\t<cim:RemoteSignalKind.remoteBusVoltageAmplitudeDerivative rdf:resource=\"#" + remoteBusVoltageAmplitudeDerivative + "\"/>\n" else "") +
-        (if (null != remoteBusVoltageFrequency) "\t\t<cim:RemoteSignalKind.remoteBusVoltageFrequency rdf:resource=\"#" + remoteBusVoltageFrequency + "\"/>\n" else "") +
-        (if (null != remoteBusVoltageFrequencyDeviation) "\t\t<cim:RemoteSignalKind.remoteBusVoltageFrequencyDeviation rdf:resource=\"#" + remoteBusVoltageFrequencyDeviation + "\"/>\n" else "") +
-        (if (null != remotePuBusVoltageDerivative) "\t\t<cim:RemoteSignalKind.remotePuBusVoltageDerivative rdf:resource=\"#" + remotePuBusVoltageDerivative + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:RemoteSignalKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemoteSignalKind>\n"
-    }
-}
-
-object RemoteSignalKind
-extends
-    Parseable[RemoteSignalKind]
-{
-    val remoteBranchCurrentAmplitude: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBranchCurrentAmplitude"""))
-    val remoteBusFrequency: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBusFrequency"""))
-    val remoteBusFrequencyDeviation: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBusFrequencyDeviation"""))
-    val remoteBusVoltage: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltage"""))
-    val remoteBusVoltageAmplitude: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageAmplitude"""))
-    val remoteBusVoltageAmplitudeDerivative: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageAmplitudeDerivative"""))
-    val remoteBusVoltageFrequency: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageFrequency"""))
-    val remoteBusVoltageFrequencyDeviation: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remoteBusVoltageFrequencyDeviation"""))
-    val remotePuBusVoltageDerivative: (Context) => String = parse_attribute (attribute ("""RemoteSignalKind.remotePuBusVoltageDerivative"""))
-    def parse (context: Context): RemoteSignalKind =
-    {
-        RemoteSignalKind(
-            BasicElement.parse (context),
-            remoteBranchCurrentAmplitude (context),
-            remoteBusFrequency (context),
-            remoteBusFrequencyDeviation (context),
-            remoteBusVoltage (context),
-            remoteBusVoltageAmplitude (context),
-            remoteBusVoltageAmplitudeDerivative (context),
-            remoteBusVoltageFrequency (context),
-            remoteBusVoltageFrequencyDeviation (context),
-            remotePuBusVoltageDerivative (context)
-        )
-    }
-}
-
 private[ninecode] object _StandardInterconnections
 {
     def register: List[ClassInfo] =
     {
         List (
-            RemoteInputSignal.register,
-            RemoteSignalKind.register
+            RemoteInputSignal.register
         )
     }
 }

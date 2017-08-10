@@ -1743,148 +1743,6 @@ extends
 }
 
 /**
- * Function of the lookup table.
- * @param sup Reference to the superclass object.
- * @param ipmax Lookup table for voltage dependency of active current limits (i<sub>pmax</sub>(u<sub>WT</sub>)).
- *        It is used for current limitation model, IEC 61400-27-1, section 5.6.5.8.
- * @param iqmax Lookup table for voltage dependency of reactive current limits (i<sub>qmax</sub>(u<sub>WT</sub>)).
- *        It is used for current limitation model, IEC 61400-27-1, section 5.6.5.8.
- * @param omegap Power vs. speed lookup table (omega(p)).
- *        It is used for P control model type 3, IEC 61400-27-1, section 5.6.5.4.
- * @param prr Power versus speed change (negative slip) lookup table (p<sub>rr</sub>(deltaomega)).
- *        It is used for rotor resistance control model, IEC 61400-27-1, section 5.6.5.3.
- * @param pwp Power vs. frequency lookup table (p<sub>WPbias</sub>(f)).
- *        It is used for wind power plant frequency and active power control model, IEC 61400-27-1, Annex D.
- * @param qmaxp Lookup table for active power dependency of reactive power maximum limit (q<sub>maxp</sub>(p)).
- *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
- * @param qmaxu Lookup table for voltage dependency of reactive power maximum limit (q<sub>maxu</sub>(p)).
- *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
- * @param qminp Lookup table for active power dependency of reactive power minimum limit (q<sub>minp</sub>(p)).
- *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
- * @param qminu Lookup table for voltage dependency of reactive power minimum limit (q<sub>minu</sub>(p)).
- *        It is used for QP and QU limitation model, IEC 61400-27-1, section 5.6.5.10.
- * @param qwp Look up table for the UQ static mode (q<sub>WP</sub>(u<sub>err</sub>)).
- *        It is used for voltage and reactive power control model, IEC 61400-27-1, Annex D.
- * @param tcwdu Crowbar duration versus voltage variation look-up table (T<sub>CW</sub>(du)).
- *        It is case dependent parameter. It is used for type 3B generator set model, IEC 61400-27-1, section 5.6.3.3.
- * @param tduwt Lookup table to determine the duration of the power reduction after a voltage dip, depending on the size of the voltage dip (T<sub>d</sub>(u<sub>WT</sub>)).
- *        It is type dependent parameter. It is used for pitch control power model, IEC 61400-27-1, section 5.6.5.1.
- * @param tfover Disconnection time versus over frequency lookup table (T<sub>fover</sub>(f<sub>WT</sub>)).
- *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
- * @param tfunder Disconnection time versus under frequency lookup table (T<sub>funder</sub>(f<sub>WT</sub>)).
- *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
- * @param tuover Disconnection time versus over voltage lookup table (T<sub>uover</sub>(u<sub>WT</sub>)).
- *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
- * @param tuunder Disconnection time versus under voltage lookup table (T<sub>uunder</sub>(u<sub>WT</sub>)).
- *        It is used for grid protection model, IEC 61400-27-1, section 5.6.6.
- */
-case class WindLookupTableFunctionKind
-(
-    override val sup: BasicElement,
-    ipmax: String,
-    iqmax: String,
-    omegap: String,
-    prr: String,
-    pwp: String,
-    qmaxp: String,
-    qmaxu: String,
-    qminp: String,
-    qminu: String,
-    qwp: String,
-    tcwdu: String,
-    tduwt: String,
-    tfover: String,
-    tfunder: String,
-    tuover: String,
-    tuunder: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[WindLookupTableFunctionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != ipmax) "\t\t<cim:WindLookupTableFunctionKind.ipmax rdf:resource=\"#" + ipmax + "\"/>\n" else "") +
-        (if (null != iqmax) "\t\t<cim:WindLookupTableFunctionKind.iqmax rdf:resource=\"#" + iqmax + "\"/>\n" else "") +
-        (if (null != omegap) "\t\t<cim:WindLookupTableFunctionKind.omegap rdf:resource=\"#" + omegap + "\"/>\n" else "") +
-        (if (null != prr) "\t\t<cim:WindLookupTableFunctionKind.prr rdf:resource=\"#" + prr + "\"/>\n" else "") +
-        (if (null != pwp) "\t\t<cim:WindLookupTableFunctionKind.pwp rdf:resource=\"#" + pwp + "\"/>\n" else "") +
-        (if (null != qmaxp) "\t\t<cim:WindLookupTableFunctionKind.qmaxp rdf:resource=\"#" + qmaxp + "\"/>\n" else "") +
-        (if (null != qmaxu) "\t\t<cim:WindLookupTableFunctionKind.qmaxu rdf:resource=\"#" + qmaxu + "\"/>\n" else "") +
-        (if (null != qminp) "\t\t<cim:WindLookupTableFunctionKind.qminp rdf:resource=\"#" + qminp + "\"/>\n" else "") +
-        (if (null != qminu) "\t\t<cim:WindLookupTableFunctionKind.qminu rdf:resource=\"#" + qminu + "\"/>\n" else "") +
-        (if (null != qwp) "\t\t<cim:WindLookupTableFunctionKind.qwp rdf:resource=\"#" + qwp + "\"/>\n" else "") +
-        (if (null != tcwdu) "\t\t<cim:WindLookupTableFunctionKind.tcwdu rdf:resource=\"#" + tcwdu + "\"/>\n" else "") +
-        (if (null != tduwt) "\t\t<cim:WindLookupTableFunctionKind.tduwt rdf:resource=\"#" + tduwt + "\"/>\n" else "") +
-        (if (null != tfover) "\t\t<cim:WindLookupTableFunctionKind.tfover rdf:resource=\"#" + tfover + "\"/>\n" else "") +
-        (if (null != tfunder) "\t\t<cim:WindLookupTableFunctionKind.tfunder rdf:resource=\"#" + tfunder + "\"/>\n" else "") +
-        (if (null != tuover) "\t\t<cim:WindLookupTableFunctionKind.tuover rdf:resource=\"#" + tuover + "\"/>\n" else "") +
-        (if (null != tuunder) "\t\t<cim:WindLookupTableFunctionKind.tuunder rdf:resource=\"#" + tuunder + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:WindLookupTableFunctionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindLookupTableFunctionKind>\n"
-    }
-}
-
-object WindLookupTableFunctionKind
-extends
-    Parseable[WindLookupTableFunctionKind]
-{
-    val ipmax: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.ipmax"""))
-    val iqmax: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.iqmax"""))
-    val omegap: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.omegap"""))
-    val prr: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.prr"""))
-    val pwp: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.pwp"""))
-    val qmaxp: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.qmaxp"""))
-    val qmaxu: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.qmaxu"""))
-    val qminp: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.qminp"""))
-    val qminu: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.qminu"""))
-    val qwp: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.qwp"""))
-    val tcwdu: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.tcwdu"""))
-    val tduwt: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.tduwt"""))
-    val tfover: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.tfover"""))
-    val tfunder: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.tfunder"""))
-    val tuover: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.tuover"""))
-    val tuunder: (Context) => String = parse_attribute (attribute ("""WindLookupTableFunctionKind.tuunder"""))
-    def parse (context: Context): WindLookupTableFunctionKind =
-    {
-        WindLookupTableFunctionKind(
-            BasicElement.parse (context),
-            ipmax (context),
-            iqmax (context),
-            omegap (context),
-            prr (context),
-            pwp (context),
-            qmaxp (context),
-            qmaxu (context),
-            qminp (context),
-            qminu (context),
-            qwp (context),
-            tcwdu (context),
-            tduwt (context),
-            tfover (context),
-            tfunder (context),
-            tuover (context),
-            tuunder (context)
-        )
-    }
-}
-
-/**
  * Two mass model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.2.1.
  * @param sup Reference to the superclass object.
@@ -2320,72 +2178,6 @@ extends
 }
 
 /**
- * Reactive power/voltage controller mode.
- * @param sup Reference to the superclass object.
- * @param powerFactor Power factor reference.
- * @param reactivePower Reactive power reference.
- * @param uqStatic UQ static.
- * @param voltageControl Voltage control.
- */
-case class WindPlantQcontrolModeKind
-(
-    override val sup: BasicElement,
-    powerFactor: String,
-    reactivePower: String,
-    uqStatic: String,
-    voltageControl: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[WindPlantQcontrolModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != powerFactor) "\t\t<cim:WindPlantQcontrolModeKind.powerFactor rdf:resource=\"#" + powerFactor + "\"/>\n" else "") +
-        (if (null != reactivePower) "\t\t<cim:WindPlantQcontrolModeKind.reactivePower rdf:resource=\"#" + reactivePower + "\"/>\n" else "") +
-        (if (null != uqStatic) "\t\t<cim:WindPlantQcontrolModeKind.uqStatic rdf:resource=\"#" + uqStatic + "\"/>\n" else "") +
-        (if (null != voltageControl) "\t\t<cim:WindPlantQcontrolModeKind.voltageControl rdf:resource=\"#" + voltageControl + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:WindPlantQcontrolModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindPlantQcontrolModeKind>\n"
-    }
-}
-
-object WindPlantQcontrolModeKind
-extends
-    Parseable[WindPlantQcontrolModeKind]
-{
-    val powerFactor: (Context) => String = parse_attribute (attribute ("""WindPlantQcontrolModeKind.powerFactor"""))
-    val reactivePower: (Context) => String = parse_attribute (attribute ("""WindPlantQcontrolModeKind.reactivePower"""))
-    val uqStatic: (Context) => String = parse_attribute (attribute ("""WindPlantQcontrolModeKind.uqStatic"""))
-    val voltageControl: (Context) => String = parse_attribute (attribute ("""WindPlantQcontrolModeKind.voltageControl"""))
-    def parse (context: Context): WindPlantQcontrolModeKind =
-    {
-        WindPlantQcontrolModeKind(
-            BasicElement.parse (context),
-            powerFactor (context),
-            reactivePower (context),
-            uqStatic (context),
-            voltageControl (context)
-        )
-    }
-}
-
-/**
  * Simplified plant voltage and reactive power control model for use with type 3 and type 4 wind turbine models.
  * Reference: IEC Standard 61400-27-1 Annex D.
  * @param sup Reference to the superclass object.
@@ -2640,77 +2432,6 @@ extends
             toDouble (uunder (context), context),
             WindTurbineType1or2IEC (context),
             WindTurbineType3or4IEC (context)
-        )
-    }
-}
-
-/**
- * General wind turbine Q control modes <i>M</i><sub>qG</sub>.
- * @param sup Reference to the superclass object.
- * @param openLoopReactivePower Open loop reactive power control (only used with closed loop at plant level) (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 2).
- * @param openLooppowerFactor Open loop power factor control (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 4).
- * @param powerFactor Power factor control (<i>M</i><i><sub>q</sub></i><sub>G </sub>equals 3).
- * @param reactivePower Reactive power control (<i>M</i><i><sub>q</sub></i><sub>G</sub> equals 1).
- * @param voltage Voltage control (<i>M</i><i><sub>q</sub></i><sub>G</sub> equals 0).
- */
-case class WindQcontrolModeKind
-(
-    override val sup: BasicElement,
-    openLoopReactivePower: String,
-    openLooppowerFactor: String,
-    powerFactor: String,
-    reactivePower: String,
-    voltage: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[WindQcontrolModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != openLoopReactivePower) "\t\t<cim:WindQcontrolModeKind.openLoopReactivePower rdf:resource=\"#" + openLoopReactivePower + "\"/>\n" else "") +
-        (if (null != openLooppowerFactor) "\t\t<cim:WindQcontrolModeKind.openLooppowerFactor rdf:resource=\"#" + openLooppowerFactor + "\"/>\n" else "") +
-        (if (null != powerFactor) "\t\t<cim:WindQcontrolModeKind.powerFactor rdf:resource=\"#" + powerFactor + "\"/>\n" else "") +
-        (if (null != reactivePower) "\t\t<cim:WindQcontrolModeKind.reactivePower rdf:resource=\"#" + reactivePower + "\"/>\n" else "") +
-        (if (null != voltage) "\t\t<cim:WindQcontrolModeKind.voltage rdf:resource=\"#" + voltage + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:WindQcontrolModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindQcontrolModeKind>\n"
-    }
-}
-
-object WindQcontrolModeKind
-extends
-    Parseable[WindQcontrolModeKind]
-{
-    val openLoopReactivePower: (Context) => String = parse_attribute (attribute ("""WindQcontrolModeKind.openLoopReactivePower"""))
-    val openLooppowerFactor: (Context) => String = parse_attribute (attribute ("""WindQcontrolModeKind.openLooppowerFactor"""))
-    val powerFactor: (Context) => String = parse_attribute (attribute ("""WindQcontrolModeKind.powerFactor"""))
-    val reactivePower: (Context) => String = parse_attribute (attribute ("""WindQcontrolModeKind.reactivePower"""))
-    val voltage: (Context) => String = parse_attribute (attribute ("""WindQcontrolModeKind.voltage"""))
-    def parse (context: Context): WindQcontrolModeKind =
-    {
-        WindQcontrolModeKind(
-            BasicElement.parse (context),
-            openLoopReactivePower (context),
-            openLooppowerFactor (context),
-            powerFactor (context),
-            reactivePower (context),
-            voltage (context)
         )
     }
 }
@@ -3281,67 +3002,6 @@ extends
     }
 }
 
-/**
- * UVRT Q control modes <i>M</i><sub>qUVRT</sub>.
- * @param sup Reference to the superclass object.
- * @param mode0 Voltage dependent reactive current injection (<i>M</i><i><sub>q</sub></i><sub>UVRT </sub>equals 0).
- * @param mode1 Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection (<i>M</i><i><sub>q</sub></i><sub>UVRT</sub> equals 1).
- * @param mode2 Reactive current injection controlled as the pre-fault value plus an additional voltage dependent reactive current injection during fault, and as the pre-fault value plus an additional constant reactive current injection post fault (<i>M</i><i><sub>q</sub></i><sub>UVRT </sub>equals 2).
- */
-case class WindUVRTQcontrolModeKind
-(
-    override val sup: BasicElement,
-    mode0: String,
-    mode1: String,
-    mode2: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[WindUVRTQcontrolModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != mode0) "\t\t<cim:WindUVRTQcontrolModeKind.mode0 rdf:resource=\"#" + mode0 + "\"/>\n" else "") +
-        (if (null != mode1) "\t\t<cim:WindUVRTQcontrolModeKind.mode1 rdf:resource=\"#" + mode1 + "\"/>\n" else "") +
-        (if (null != mode2) "\t\t<cim:WindUVRTQcontrolModeKind.mode2 rdf:resource=\"#" + mode2 + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:WindUVRTQcontrolModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindUVRTQcontrolModeKind>\n"
-    }
-}
-
-object WindUVRTQcontrolModeKind
-extends
-    Parseable[WindUVRTQcontrolModeKind]
-{
-    val mode0: (Context) => String = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode0"""))
-    val mode1: (Context) => String = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode1"""))
-    val mode2: (Context) => String = parse_attribute (attribute ("""WindUVRTQcontrolModeKind.mode2"""))
-    def parse (context: Context): WindUVRTQcontrolModeKind =
-    {
-        WindUVRTQcontrolModeKind(
-            BasicElement.parse (context),
-            mode0 (context),
-            mode1 (context),
-            mode2 (context)
-        )
-    }
-}
-
 private[ninecode] object _WindDynamics
 {
     def register: List[ClassInfo] =
@@ -3367,16 +3027,13 @@ private[ninecode] object _WindDynamics
             WindGenType3aIEC.register,
             WindGenType3bIEC.register,
             WindGenType4IEC.register,
-            WindLookupTableFunctionKind.register,
             WindMechIEC.register,
             WindPitchContPowerIEC.register,
             WindPlantDynamics.register,
             WindPlantFreqPcontrolIEC.register,
             WindPlantIEC.register,
-            WindPlantQcontrolModeKind.register,
             WindPlantReactiveControlIEC.register,
             WindProtectionIEC.register,
-            WindQcontrolModeKind.register,
             WindRefFrameRotIEC.register,
             WindTurbineType1or2Dynamics.register,
             WindTurbineType1or2IEC.register,
@@ -3385,8 +3042,7 @@ private[ninecode] object _WindDynamics
             WindTurbineType3or4IEC.register,
             WindTurbineType4IEC.register,
             WindTurbineType4aIEC.register,
-            WindTurbineType4bIEC.register,
-            WindUVRTQcontrolModeKind.register
+            WindTurbineType4bIEC.register
         )
     }
 }

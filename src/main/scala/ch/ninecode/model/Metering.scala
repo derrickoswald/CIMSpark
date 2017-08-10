@@ -12,87 +12,6 @@ import ch.ninecode.cim.Parseable
  */
 
 /**
- * Lifecycle states of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.
- * @param sup Reference to the superclass object.
- * @param amiCapable Usage point is equipped with an AMI capable meter that is not yet currently equipped with a communications module.
- * @param amiDisabled Usage point is equipped with an AMI capable meter; however, the AMI functionality has been disabled or is not being used.
- * @param billingApproved Usage point is equipped with an operating AMI capable meter and accuracy has been certified for billing purposes.
- * @param enabled Usage point is equipped with an AMI capable meter having communications capability.
- * @param nonAmi Usage point is equipped with a non AMI capable meter.
- * @param nonMetered Usage point is not currently equipped with a meter.
- * @param operable Usage point is equipped with an AMI capable meter that is functioning and communicating with the AMI network.
- */
-case class AmiBillingReadyKind
-(
-    override val sup: BasicElement,
-    amiCapable: String,
-    amiDisabled: String,
-    billingApproved: String,
-    enabled: String,
-    nonAmi: String,
-    nonMetered: String,
-    operable: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[AmiBillingReadyKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != amiCapable) "\t\t<cim:AmiBillingReadyKind.amiCapable rdf:resource=\"#" + amiCapable + "\"/>\n" else "") +
-        (if (null != amiDisabled) "\t\t<cim:AmiBillingReadyKind.amiDisabled rdf:resource=\"#" + amiDisabled + "\"/>\n" else "") +
-        (if (null != billingApproved) "\t\t<cim:AmiBillingReadyKind.billingApproved rdf:resource=\"#" + billingApproved + "\"/>\n" else "") +
-        (if (null != enabled) "\t\t<cim:AmiBillingReadyKind.enabled rdf:resource=\"#" + enabled + "\"/>\n" else "") +
-        (if (null != nonAmi) "\t\t<cim:AmiBillingReadyKind.nonAmi rdf:resource=\"#" + nonAmi + "\"/>\n" else "") +
-        (if (null != nonMetered) "\t\t<cim:AmiBillingReadyKind.nonMetered rdf:resource=\"#" + nonMetered + "\"/>\n" else "") +
-        (if (null != operable) "\t\t<cim:AmiBillingReadyKind.operable rdf:resource=\"#" + operable + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:AmiBillingReadyKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AmiBillingReadyKind>\n"
-    }
-}
-
-object AmiBillingReadyKind
-extends
-    Parseable[AmiBillingReadyKind]
-{
-    val amiCapable: (Context) => String = parse_attribute (attribute ("""AmiBillingReadyKind.amiCapable"""))
-    val amiDisabled: (Context) => String = parse_attribute (attribute ("""AmiBillingReadyKind.amiDisabled"""))
-    val billingApproved: (Context) => String = parse_attribute (attribute ("""AmiBillingReadyKind.billingApproved"""))
-    val enabled: (Context) => String = parse_attribute (attribute ("""AmiBillingReadyKind.enabled"""))
-    val nonAmi: (Context) => String = parse_attribute (attribute ("""AmiBillingReadyKind.nonAmi"""))
-    val nonMetered: (Context) => String = parse_attribute (attribute ("""AmiBillingReadyKind.nonMetered"""))
-    val operable: (Context) => String = parse_attribute (attribute ("""AmiBillingReadyKind.operable"""))
-    def parse (context: Context): AmiBillingReadyKind =
-    {
-        AmiBillingReadyKind(
-            BasicElement.parse (context),
-            amiCapable (context),
-            amiDisabled (context),
-            billingApproved (context),
-            enabled (context),
-            nonAmi (context),
-            nonMetered (context),
-            operable (context)
-        )
-    }
-}
-
-/**
  * Common representation for reading values.
  * Note that a reading value may have multiple qualities, as produced by various systems ('ReadingQuality.source').
  * @param sup Reference to the superclass object.
@@ -217,67 +136,6 @@ extends
             toBoolean (isVirtual (context), context),
             ReadingType (context),
             Register (context)
-        )
-    }
-}
-
-/**
- * Kind of communication direction.
- * @param sup Reference to the superclass object.
- * @param biDirectional Communication with the device is bi-directional.
- * @param fromDevice Communication is from device.
- * @param toDevice Communication is to device.
- */
-case class ComDirectionKind
-(
-    override val sup: BasicElement,
-    biDirectional: String,
-    fromDevice: String,
-    toDevice: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ComDirectionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != biDirectional) "\t\t<cim:ComDirectionKind.biDirectional rdf:resource=\"#" + biDirectional + "\"/>\n" else "") +
-        (if (null != fromDevice) "\t\t<cim:ComDirectionKind.fromDevice rdf:resource=\"#" + fromDevice + "\"/>\n" else "") +
-        (if (null != toDevice) "\t\t<cim:ComDirectionKind.toDevice rdf:resource=\"#" + toDevice + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ComDirectionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ComDirectionKind>\n"
-    }
-}
-
-object ComDirectionKind
-extends
-    Parseable[ComDirectionKind]
-{
-    val biDirectional: (Context) => String = parse_attribute (attribute ("""ComDirectionKind.biDirectional"""))
-    val fromDevice: (Context) => String = parse_attribute (attribute ("""ComDirectionKind.fromDevice"""))
-    val toDevice: (Context) => String = parse_attribute (attribute ("""ComDirectionKind.toDevice"""))
-    def parse (context: Context): ComDirectionKind =
-    {
-        ComDirectionKind(
-            BasicElement.parse (context),
-            biDirectional (context),
-            fromDevice (context),
-            toDevice (context)
         )
     }
 }
@@ -411,102 +269,6 @@ extends
             amrSystem (context),
             toBoolean (supportsAutonomousDst (context), context),
             toDouble (timeZoneOffset (context), context)
-        )
-    }
-}
-
-/**
- * Kind of communication technology.
- * @param sup Reference to the superclass object.
- * @param cellular Communicates using a public cellular radio network.
- *        A specific variant of 'rf'.
- * @param ethernet Communicates using one or more of a family of frame-based computer networking technologies conforming to the IEEE 802.3 standard.
- * @param homePlug Communicates using power line communication technologies conforming to the standards established by the HomePlug Powerline Alliance.
- *        A specific variant of 'plc'.
- * @param pager Communicates using a public one-way or two-way radio-based paging network.
- *        A specific variant of 'rf'.
- * @param phone Communicates using a basic, wireline telephone system.
- * @param plc Communicates using power line communication technologies.
- * @param rf Communicates using private or public radio-based technology.
- * @param rfMesh Communicates using a mesh radio technology.
- *        A specific variant of 'rf'.
- * @param zigbee Communicates using radio communication technologies conforming to the standards established by the ZigBee.
- *        A specific variant of 'rf'.
- */
-case class ComTechnologyKind
-(
-    override val sup: BasicElement,
-    cellular: String,
-    ethernet: String,
-    homePlug: String,
-    pager: String,
-    phone: String,
-    plc: String,
-    rf: String,
-    rfMesh: String,
-    zigbee: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ComTechnologyKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != cellular) "\t\t<cim:ComTechnologyKind.cellular rdf:resource=\"#" + cellular + "\"/>\n" else "") +
-        (if (null != ethernet) "\t\t<cim:ComTechnologyKind.ethernet rdf:resource=\"#" + ethernet + "\"/>\n" else "") +
-        (if (null != homePlug) "\t\t<cim:ComTechnologyKind.homePlug rdf:resource=\"#" + homePlug + "\"/>\n" else "") +
-        (if (null != pager) "\t\t<cim:ComTechnologyKind.pager rdf:resource=\"#" + pager + "\"/>\n" else "") +
-        (if (null != phone) "\t\t<cim:ComTechnologyKind.phone rdf:resource=\"#" + phone + "\"/>\n" else "") +
-        (if (null != plc) "\t\t<cim:ComTechnologyKind.plc rdf:resource=\"#" + plc + "\"/>\n" else "") +
-        (if (null != rf) "\t\t<cim:ComTechnologyKind.rf rdf:resource=\"#" + rf + "\"/>\n" else "") +
-        (if (null != rfMesh) "\t\t<cim:ComTechnologyKind.rfMesh rdf:resource=\"#" + rfMesh + "\"/>\n" else "") +
-        (if (null != zigbee) "\t\t<cim:ComTechnologyKind.zigbee rdf:resource=\"#" + zigbee + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ComTechnologyKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ComTechnologyKind>\n"
-    }
-}
-
-object ComTechnologyKind
-extends
-    Parseable[ComTechnologyKind]
-{
-    val cellular: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.cellular"""))
-    val ethernet: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.ethernet"""))
-    val homePlug: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.homePlug"""))
-    val pager: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.pager"""))
-    val phone: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.phone"""))
-    val plc: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.plc"""))
-    val rf: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.rf"""))
-    val rfMesh: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.rfMesh"""))
-    val zigbee: (Context) => String = parse_attribute (attribute ("""ComTechnologyKind.zigbee"""))
-    def parse (context: Context): ComTechnologyKind =
-    {
-        ComTechnologyKind(
-            BasicElement.parse (context),
-            cellular (context),
-            ethernet (context),
-            homePlug (context),
-            pager (context),
-            phone (context),
-            plc (context),
-            rf (context),
-            rfMesh (context),
-            zigbee (context)
         )
     }
 }
@@ -1449,102 +1211,6 @@ extends
 }
 
 /**
- * Kind of end device function.
- * @param sup Reference to the superclass object.
- * @param autonomousDst Autonomous application of daylight saving time (DST).
- * @param demandResponse Demand response functions.
- * @param electricMetering Electricity metering.
- * @param gasMetering Gas metering.
- * @param metrology Presentation of metered values to a user or another system (always a function of a meter, but might not be supported by a load control unit).
- * @param onRequestRead On-request reads.
- * @param outageHistory Reporting historical power interruption data.
- * @param relaysProgramming Support for one or more relays that may be programmable in the meter (and tied to TOU, time pulse, load control or other functions).
- * @param reverseFlow Detection and monitoring of reverse flow.
- * @param waterMetering Water metering.
- */
-case class EndDeviceFunctionKind
-(
-    override val sup: BasicElement,
-    autonomousDst: String,
-    demandResponse: String,
-    electricMetering: String,
-    gasMetering: String,
-    metrology: String,
-    onRequestRead: String,
-    outageHistory: String,
-    relaysProgramming: String,
-    reverseFlow: String,
-    waterMetering: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[EndDeviceFunctionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != autonomousDst) "\t\t<cim:EndDeviceFunctionKind.autonomousDst rdf:resource=\"#" + autonomousDst + "\"/>\n" else "") +
-        (if (null != demandResponse) "\t\t<cim:EndDeviceFunctionKind.demandResponse rdf:resource=\"#" + demandResponse + "\"/>\n" else "") +
-        (if (null != electricMetering) "\t\t<cim:EndDeviceFunctionKind.electricMetering rdf:resource=\"#" + electricMetering + "\"/>\n" else "") +
-        (if (null != gasMetering) "\t\t<cim:EndDeviceFunctionKind.gasMetering rdf:resource=\"#" + gasMetering + "\"/>\n" else "") +
-        (if (null != metrology) "\t\t<cim:EndDeviceFunctionKind.metrology rdf:resource=\"#" + metrology + "\"/>\n" else "") +
-        (if (null != onRequestRead) "\t\t<cim:EndDeviceFunctionKind.onRequestRead rdf:resource=\"#" + onRequestRead + "\"/>\n" else "") +
-        (if (null != outageHistory) "\t\t<cim:EndDeviceFunctionKind.outageHistory rdf:resource=\"#" + outageHistory + "\"/>\n" else "") +
-        (if (null != relaysProgramming) "\t\t<cim:EndDeviceFunctionKind.relaysProgramming rdf:resource=\"#" + relaysProgramming + "\"/>\n" else "") +
-        (if (null != reverseFlow) "\t\t<cim:EndDeviceFunctionKind.reverseFlow rdf:resource=\"#" + reverseFlow + "\"/>\n" else "") +
-        (if (null != waterMetering) "\t\t<cim:EndDeviceFunctionKind.waterMetering rdf:resource=\"#" + waterMetering + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:EndDeviceFunctionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EndDeviceFunctionKind>\n"
-    }
-}
-
-object EndDeviceFunctionKind
-extends
-    Parseable[EndDeviceFunctionKind]
-{
-    val autonomousDst: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.autonomousDst"""))
-    val demandResponse: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.demandResponse"""))
-    val electricMetering: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.electricMetering"""))
-    val gasMetering: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.gasMetering"""))
-    val metrology: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.metrology"""))
-    val onRequestRead: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.onRequestRead"""))
-    val outageHistory: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.outageHistory"""))
-    val relaysProgramming: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.relaysProgramming"""))
-    val reverseFlow: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.reverseFlow"""))
-    val waterMetering: (Context) => String = parse_attribute (attribute ("""EndDeviceFunctionKind.waterMetering"""))
-    def parse (context: Context): EndDeviceFunctionKind =
-    {
-        EndDeviceFunctionKind(
-            BasicElement.parse (context),
-            autonomousDst (context),
-            demandResponse (context),
-            electricMetering (context),
-            gasMetering (context),
-            metrology (context),
-            onRequestRead (context),
-            outageHistory (context),
-            relaysProgramming (context),
-            reverseFlow (context),
-            waterMetering (context)
-        )
-    }
-}
-
-/**
  * Abstraction for management of group communications within a two-way AMR system or the data for a group of related end devices.
  * Commands can be issued to all of the end devices that belong to the group using a defined group address and the underlying AMR communication infrastructure.
  * @param sup Reference to the superclass object.
@@ -1968,84 +1634,6 @@ extends
             kind (context),
             toDouble (value (context), context),
             Meter (context)
-        )
-    }
-}
-
-/**
- * Kind of meter multiplier.
- * @param sup Reference to the superclass object.
- * @param ctRatio Current transformer ratio used to convert associated quantities to real measurements.
- * @param kE Test constant.
- * @param kH Meter kh (watthour) constant.
- *        The number of watthours that must be applied to the meter to cause one disk revolution for an electromechanical meter or the number of watthours represented by one increment pulse for an electronic meter.
- * @param kR Register multiplier.
- *        The number to multiply the register reading by in order to get kWh.
- * @param ptRatio Potential transformer ratio used to convert associated quantities to real measurements.
- * @param transformerRatio Product of the CT ratio and PT ratio.
- */
-case class MeterMultiplierKind
-(
-    override val sup: BasicElement,
-    ctRatio: String,
-    kE: String,
-    kH: String,
-    kR: String,
-    ptRatio: String,
-    transformerRatio: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[MeterMultiplierKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != ctRatio) "\t\t<cim:MeterMultiplierKind.ctRatio rdf:resource=\"#" + ctRatio + "\"/>\n" else "") +
-        (if (null != kE) "\t\t<cim:MeterMultiplierKind.kE rdf:resource=\"#" + kE + "\"/>\n" else "") +
-        (if (null != kH) "\t\t<cim:MeterMultiplierKind.kH rdf:resource=\"#" + kH + "\"/>\n" else "") +
-        (if (null != kR) "\t\t<cim:MeterMultiplierKind.kR rdf:resource=\"#" + kR + "\"/>\n" else "") +
-        (if (null != ptRatio) "\t\t<cim:MeterMultiplierKind.ptRatio rdf:resource=\"#" + ptRatio + "\"/>\n" else "") +
-        (if (null != transformerRatio) "\t\t<cim:MeterMultiplierKind.transformerRatio rdf:resource=\"#" + transformerRatio + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:MeterMultiplierKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MeterMultiplierKind>\n"
-    }
-}
-
-object MeterMultiplierKind
-extends
-    Parseable[MeterMultiplierKind]
-{
-    val ctRatio: (Context) => String = parse_attribute (attribute ("""MeterMultiplierKind.ctRatio"""))
-    val kE: (Context) => String = parse_attribute (attribute ("""MeterMultiplierKind.kE"""))
-    val kH: (Context) => String = parse_attribute (attribute ("""MeterMultiplierKind.kH"""))
-    val kR: (Context) => String = parse_attribute (attribute ("""MeterMultiplierKind.kR"""))
-    val ptRatio: (Context) => String = parse_attribute (attribute ("""MeterMultiplierKind.ptRatio"""))
-    val transformerRatio: (Context) => String = parse_attribute (attribute ("""MeterMultiplierKind.transformerRatio"""))
-    def parse (context: Context): MeterMultiplierKind =
-    {
-        MeterMultiplierKind(
-            BasicElement.parse (context),
-            ctRatio (context),
-            kE (context),
-            kH (context),
-            kR (context),
-            ptRatio (context),
-            transformerRatio (context)
         )
     }
 }
@@ -2666,78 +2254,6 @@ extends
 }
 
 /**
- * Kind of randomisation to be applied to control the timing of end device control commands and/or the definition of demand response and load control events.
- * Value other than 'none' is typically used to mitigate potential deleterious effects of simultaneous operation of multiple devices.
- * @param sup Reference to the superclass object.
- * @param default1 Randomisation of start and/or end times involving the operation of one or more devices is controlled by default settings for the device(s).
- * @param end End time of an event or control action affecting one or more devices is randomised to prevent simultaneous operation.
- * @param none Neither the start time nor the end time of an event or control action affecting one or more devices is randomised.
- * @param start Start time of an event or control action affecting one or more multiple devices is randomised.
- * @param startAndEnd Both the start time and the end time of an event or control action affecting one or more devices are randomised to prevent simultaneous operation.
- */
-case class RandomisationKind
-(
-    override val sup: BasicElement,
-    default1: String,
-    end: String,
-    none: String,
-    start: String,
-    startAndEnd: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[RandomisationKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != default1) "\t\t<cim:RandomisationKind.default rdf:resource=\"#" + default1 + "\"/>\n" else "") +
-        (if (null != end) "\t\t<cim:RandomisationKind.end rdf:resource=\"#" + end + "\"/>\n" else "") +
-        (if (null != none) "\t\t<cim:RandomisationKind.none rdf:resource=\"#" + none + "\"/>\n" else "") +
-        (if (null != start) "\t\t<cim:RandomisationKind.start rdf:resource=\"#" + start + "\"/>\n" else "") +
-        (if (null != startAndEnd) "\t\t<cim:RandomisationKind.startAndEnd rdf:resource=\"#" + startAndEnd + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:RandomisationKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RandomisationKind>\n"
-    }
-}
-
-object RandomisationKind
-extends
-    Parseable[RandomisationKind]
-{
-    val default1: (Context) => String = parse_attribute (attribute ("""RandomisationKind.default"""))
-    val end: (Context) => String = parse_attribute (attribute ("""RandomisationKind.end"""))
-    val none: (Context) => String = parse_attribute (attribute ("""RandomisationKind.none"""))
-    val start: (Context) => String = parse_attribute (attribute ("""RandomisationKind.start"""))
-    val startAndEnd: (Context) => String = parse_attribute (attribute ("""RandomisationKind.startAndEnd"""))
-    def parse (context: Context): RandomisationKind =
-    {
-        RandomisationKind(
-            BasicElement.parse (context),
-            default1 (context),
-            end (context),
-            none (context),
-            start (context),
-            startAndEnd (context)
-        )
-    }
-}
-
-/**
  * Rational number = 'numerator' / 'denominator'.
  * @param sup Reference to the superclass object.
  * @param denominator Denominator.
@@ -3049,113 +2565,6 @@ extends
 }
 
 /**
- * Reason for the reading being taken.
- * @param sup Reference to the superclass object.
- * @param billing Reading(s) taken or to be taken in response to a billing-related inquiry by a customer or other party.
- *        A variant of 'inquiry'.
- * @param demandReset Reading(s) taken or to be taken in conjunction with the resetting of one or more demand registers in a meter.
- * @param inquiry Reading(s) taken or to be taken in response to an inquiry by a customer or other party.
- * @param installation Reading(s) taken or to be taken in conjunction with installation of a meter.
- * @param loadManagement Reading(s) taken or to be taken to support management of loads on distribution networks or devices.
- * @param loadResearch Reading(s) taken or to be taken to support research and analysis of loads on distribution networks or devices.
- * @param moveIn Reading(s) taken or to be taken in conjunction with a customer move-in event.
- * @param moveOut Reading(s) taken or to be taken in conjunction with a customer move-out event.
- * @param other Reading(s) taken or to be taken for some other reason or purpose.
- * @param removal Reading(s) taken or to be taken in conjunction with removal of a meter.
- * @param serviceConnect Reading(s) taken or to be taken in conjunction with a connection or re-connection of service.
- * @param serviceDisconnect Reading(s) taken or to be taken in conjunction with a disconnection of service.
- */
-case class ReadingReasonKind
-(
-    override val sup: BasicElement,
-    billing: String,
-    demandReset: String,
-    inquiry: String,
-    installation: String,
-    loadManagement: String,
-    loadResearch: String,
-    moveIn: String,
-    moveOut: String,
-    other: String,
-    removal: String,
-    serviceConnect: String,
-    serviceDisconnect: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ReadingReasonKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != billing) "\t\t<cim:ReadingReasonKind.billing rdf:resource=\"#" + billing + "\"/>\n" else "") +
-        (if (null != demandReset) "\t\t<cim:ReadingReasonKind.demandReset rdf:resource=\"#" + demandReset + "\"/>\n" else "") +
-        (if (null != inquiry) "\t\t<cim:ReadingReasonKind.inquiry rdf:resource=\"#" + inquiry + "\"/>\n" else "") +
-        (if (null != installation) "\t\t<cim:ReadingReasonKind.installation rdf:resource=\"#" + installation + "\"/>\n" else "") +
-        (if (null != loadManagement) "\t\t<cim:ReadingReasonKind.loadManagement rdf:resource=\"#" + loadManagement + "\"/>\n" else "") +
-        (if (null != loadResearch) "\t\t<cim:ReadingReasonKind.loadResearch rdf:resource=\"#" + loadResearch + "\"/>\n" else "") +
-        (if (null != moveIn) "\t\t<cim:ReadingReasonKind.moveIn rdf:resource=\"#" + moveIn + "\"/>\n" else "") +
-        (if (null != moveOut) "\t\t<cim:ReadingReasonKind.moveOut rdf:resource=\"#" + moveOut + "\"/>\n" else "") +
-        (if (null != other) "\t\t<cim:ReadingReasonKind.other rdf:resource=\"#" + other + "\"/>\n" else "") +
-        (if (null != removal) "\t\t<cim:ReadingReasonKind.removal rdf:resource=\"#" + removal + "\"/>\n" else "") +
-        (if (null != serviceConnect) "\t\t<cim:ReadingReasonKind.serviceConnect rdf:resource=\"#" + serviceConnect + "\"/>\n" else "") +
-        (if (null != serviceDisconnect) "\t\t<cim:ReadingReasonKind.serviceDisconnect rdf:resource=\"#" + serviceDisconnect + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ReadingReasonKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ReadingReasonKind>\n"
-    }
-}
-
-object ReadingReasonKind
-extends
-    Parseable[ReadingReasonKind]
-{
-    val billing: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.billing"""))
-    val demandReset: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.demandReset"""))
-    val inquiry: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.inquiry"""))
-    val installation: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.installation"""))
-    val loadManagement: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.loadManagement"""))
-    val loadResearch: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.loadResearch"""))
-    val moveIn: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.moveIn"""))
-    val moveOut: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.moveOut"""))
-    val other: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.other"""))
-    val removal: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.removal"""))
-    val serviceConnect: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.serviceConnect"""))
-    val serviceDisconnect: (Context) => String = parse_attribute (attribute ("""ReadingReasonKind.serviceDisconnect"""))
-    def parse (context: Context): ReadingReasonKind =
-    {
-        ReadingReasonKind(
-            BasicElement.parse (context),
-            billing (context),
-            demandReset (context),
-            inquiry (context),
-            installation (context),
-            loadManagement (context),
-            loadResearch (context),
-            moveIn (context),
-            moveOut (context),
-            other (context),
-            removal (context),
-            serviceConnect (context),
-            serviceDisconnect (context)
-        )
-    }
-}
-
-/**
  * Detailed description for a type of a reading value.
  * Values in attributes allow for the creation of recommended codes to be used for identifying reading value types as follows: &lt;macroPeriod&gt;.&lt;aggregate&gt;.&lt;measuringPeriod&gt;.&lt;accumulation&gt;.&lt;flowDirection&gt;.&lt;commodity&gt;.&lt;measurementKind&gt;.&lt;interharmonic.numerator&gt;.&lt;interharmonic.denominator&gt;.&lt;argument.numerator&gt;.&lt;argument.denominator&gt;.&lt;tou&gt;.&lt;cpp&gt;.&lt;consumptionTier&gt;.&lt;phases&gt;.&lt;multiplier&gt;.&lt;unit&gt;.&lt;currency&gt;.
  * @param sup Reference to the superclass object.
@@ -3440,67 +2849,6 @@ extends
 }
 
 /**
- * Kind of service multiplier.
- * @param sup Reference to the superclass object.
- * @param ctRatio Current transformer ratio used to convert associated quantities to real measurements.
- * @param ptRatio Voltage transformer ratio used to convert associated quantities to real measurements.
- * @param transformerRatio Product of the CT ratio and PT ratio.
- */
-case class ServiceMultiplierKind
-(
-    override val sup: BasicElement,
-    ctRatio: String,
-    ptRatio: String,
-    transformerRatio: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ServiceMultiplierKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != ctRatio) "\t\t<cim:ServiceMultiplierKind.ctRatio rdf:resource=\"#" + ctRatio + "\"/>\n" else "") +
-        (if (null != ptRatio) "\t\t<cim:ServiceMultiplierKind.ptRatio rdf:resource=\"#" + ptRatio + "\"/>\n" else "") +
-        (if (null != transformerRatio) "\t\t<cim:ServiceMultiplierKind.transformerRatio rdf:resource=\"#" + transformerRatio + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ServiceMultiplierKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ServiceMultiplierKind>\n"
-    }
-}
-
-object ServiceMultiplierKind
-extends
-    Parseable[ServiceMultiplierKind]
-{
-    val ctRatio: (Context) => String = parse_attribute (attribute ("""ServiceMultiplierKind.ctRatio"""))
-    val ptRatio: (Context) => String = parse_attribute (attribute ("""ServiceMultiplierKind.ptRatio"""))
-    val transformerRatio: (Context) => String = parse_attribute (attribute ("""ServiceMultiplierKind.transformerRatio"""))
-    def parse (context: Context): ServiceMultiplierKind =
-    {
-        ServiceMultiplierKind(
-            BasicElement.parse (context),
-            ctRatio (context),
-            ptRatio (context),
-            transformerRatio (context)
-        )
-    }
-}
-
-/**
  * Simple end device function distinguished by 'kind'.
  * Use this class for instances that cannot be represented by another end device function specialisations.
  * @param sup Reference to the superclass object.
@@ -3548,67 +2896,6 @@ extends
         SimpleEndDeviceFunction(
             EndDeviceFunction.parse (context),
             kind (context)
-        )
-    }
-}
-
-/**
- * Transmission mode for end device display controls, applicable to premises area network (PAN) devices.
- * @param sup Reference to the superclass object.
- * @param anonymous Message transmission mode whereby messages or commands are broadcast to unspecified devices listening for such communications.
- * @param both Message transmission mode whereby messages or commands are sent by both 'normal' and 'anonymous' methods.
- * @param normal Message transmission mode whereby messages or commands are sent to specific devices.
- */
-case class TransmissionModeKind
-(
-    override val sup: BasicElement,
-    anonymous: String,
-    both: String,
-    normal: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TransmissionModeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != anonymous) "\t\t<cim:TransmissionModeKind.anonymous rdf:resource=\"#" + anonymous + "\"/>\n" else "") +
-        (if (null != both) "\t\t<cim:TransmissionModeKind.both rdf:resource=\"#" + both + "\"/>\n" else "") +
-        (if (null != normal) "\t\t<cim:TransmissionModeKind.normal rdf:resource=\"#" + normal + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:TransmissionModeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TransmissionModeKind>\n"
-    }
-}
-
-object TransmissionModeKind
-extends
-    Parseable[TransmissionModeKind]
-{
-    val anonymous: (Context) => String = parse_attribute (attribute ("""TransmissionModeKind.anonymous"""))
-    val both: (Context) => String = parse_attribute (attribute ("""TransmissionModeKind.both"""))
-    val normal: (Context) => String = parse_attribute (attribute ("""TransmissionModeKind.normal"""))
-    def parse (context: Context): TransmissionModeKind =
-    {
-        TransmissionModeKind(
-            BasicElement.parse (context),
-            anonymous (context),
-            both (context),
-            normal (context)
         )
     }
 }
@@ -3783,69 +3070,6 @@ extends
 }
 
 /**
- * State of the usage point with respect to connection to the network.
- * @param sup Reference to the superclass object.
- * @param connected The usage point is connected to the network and able to receive or send the applicable commodity (electricity, gas, water, etc.).
- * @param logicallyDisconnected The usage point has been disconnected through operation of a disconnect function within the meter present at the usage point.
- *        The usage point is unable to receive or send the applicable commodity (electricity, gas, water, etc.)  A logical disconnect can often be achieved without utilising a field crew.
- * @param physicallyDisconnected The usage point has been disconnected from the network at a point upstream of the meter.
- *        The usage point is unable to receive or send the applicable commodity (electricity, gas, water, etc.). A physical disconnect is often achieved by utilising a field crew.
- */
-case class UsagePointConnectedKind
-(
-    override val sup: BasicElement,
-    connected: String,
-    logicallyDisconnected: String,
-    physicallyDisconnected: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[UsagePointConnectedKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != connected) "\t\t<cim:UsagePointConnectedKind.connected rdf:resource=\"#" + connected + "\"/>\n" else "") +
-        (if (null != logicallyDisconnected) "\t\t<cim:UsagePointConnectedKind.logicallyDisconnected rdf:resource=\"#" + logicallyDisconnected + "\"/>\n" else "") +
-        (if (null != physicallyDisconnected) "\t\t<cim:UsagePointConnectedKind.physicallyDisconnected rdf:resource=\"#" + physicallyDisconnected + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:UsagePointConnectedKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UsagePointConnectedKind>\n"
-    }
-}
-
-object UsagePointConnectedKind
-extends
-    Parseable[UsagePointConnectedKind]
-{
-    val connected: (Context) => String = parse_attribute (attribute ("""UsagePointConnectedKind.connected"""))
-    val logicallyDisconnected: (Context) => String = parse_attribute (attribute ("""UsagePointConnectedKind.logicallyDisconnected"""))
-    val physicallyDisconnected: (Context) => String = parse_attribute (attribute ("""UsagePointConnectedKind.physicallyDisconnected"""))
-    def parse (context: Context): UsagePointConnectedKind =
-    {
-        UsagePointConnectedKind(
-            BasicElement.parse (context),
-            connected (context),
-            logicallyDisconnected (context),
-            physicallyDisconnected (context)
-        )
-    }
-}
-
-/**
  * Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points.
  * Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.
  * @param sup Reference to the superclass object.
@@ -3970,13 +3194,10 @@ private[ninecode] object _Metering
     def register: List[ClassInfo] =
     {
         List (
-            AmiBillingReadyKind.register,
             BaseReading.register,
             Channel.register,
-            ComDirectionKind.register,
             ComFunction.register,
             ComModule.register,
-            ComTechnologyKind.register,
             ControlledAppliance.register,
             DemandResponseProgram.register,
             EndDevice.register,
@@ -3988,7 +3209,6 @@ private[ninecode] object _Metering
             EndDeviceEventDetail.register,
             EndDeviceEventType.register,
             EndDeviceFunction.register,
-            EndDeviceFunctionKind.register,
             EndDeviceGroup.register,
             EndDeviceInfo.register,
             EndDeviceTiming.register,
@@ -3996,7 +3216,6 @@ private[ninecode] object _Metering
             IntervalReading.register,
             Meter.register,
             MeterMultiplier.register,
-            MeterMultiplierKind.register,
             MeterReading.register,
             MeterServiceWork.register,
             MetrologyRequirement.register,
@@ -4005,21 +3224,16 @@ private[ninecode] object _Metering
             PanPricing.register,
             PanPricingDetail.register,
             PendingCalculation.register,
-            RandomisationKind.register,
             RationalNumber.register,
             Reading.register,
             ReadingInterharmonic.register,
             ReadingQuality.register,
             ReadingQualityType.register,
-            ReadingReasonKind.register,
             ReadingType.register,
             Register.register,
             ServiceMultiplier.register,
-            ServiceMultiplierKind.register,
             SimpleEndDeviceFunction.register,
-            TransmissionModeKind.register,
             UsagePoint.register,
-            UsagePointConnectedKind.register,
             UsagePointGroup.register,
             UsagePointLocation.register
         )

@@ -378,138 +378,6 @@ extends
 }
 
 /**
- * Switching arrangement for bay.
- * @param sup Reference to the superclass object.
- * @param breakerAndAHalf Breaker and a half.
- * @param doubleBreaker Double breaker.
- * @param noBreaker No breaker.
- * @param singleBreaker Single breaker.
- */
-case class BreakerConfiguration
-(
-    override val sup: BasicElement,
-    breakerAndAHalf: String,
-    doubleBreaker: String,
-    noBreaker: String,
-    singleBreaker: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[BreakerConfiguration] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != breakerAndAHalf) "\t\t<cim:BreakerConfiguration.breakerAndAHalf rdf:resource=\"#" + breakerAndAHalf + "\"/>\n" else "") +
-        (if (null != doubleBreaker) "\t\t<cim:BreakerConfiguration.doubleBreaker rdf:resource=\"#" + doubleBreaker + "\"/>\n" else "") +
-        (if (null != noBreaker) "\t\t<cim:BreakerConfiguration.noBreaker rdf:resource=\"#" + noBreaker + "\"/>\n" else "") +
-        (if (null != singleBreaker) "\t\t<cim:BreakerConfiguration.singleBreaker rdf:resource=\"#" + singleBreaker + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:BreakerConfiguration rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BreakerConfiguration>\n"
-    }
-}
-
-object BreakerConfiguration
-extends
-    Parseable[BreakerConfiguration]
-{
-    val breakerAndAHalf: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.breakerAndAHalf"""))
-    val doubleBreaker: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.doubleBreaker"""))
-    val noBreaker: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.noBreaker"""))
-    val singleBreaker: (Context) => String = parse_attribute (attribute ("""BreakerConfiguration.singleBreaker"""))
-    def parse (context: Context): BreakerConfiguration =
-    {
-        BreakerConfiguration(
-            BasicElement.parse (context),
-            breakerAndAHalf (context),
-            doubleBreaker (context),
-            noBreaker (context),
-            singleBreaker (context)
-        )
-    }
-}
-
-/**
- * Busbar layout for bay.
- * @param sup Reference to the superclass object.
- * @param doubleBus Double bus.
- * @param mainWithTransfer Main bus with transfer bus.
- * @param ringBus Ring bus.
- * @param singleBus Single bus.
- */
-case class BusbarConfiguration
-(
-    override val sup: BasicElement,
-    doubleBus: String,
-    mainWithTransfer: String,
-    ringBus: String,
-    singleBus: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[BusbarConfiguration] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != doubleBus) "\t\t<cim:BusbarConfiguration.doubleBus rdf:resource=\"#" + doubleBus + "\"/>\n" else "") +
-        (if (null != mainWithTransfer) "\t\t<cim:BusbarConfiguration.mainWithTransfer rdf:resource=\"#" + mainWithTransfer + "\"/>\n" else "") +
-        (if (null != ringBus) "\t\t<cim:BusbarConfiguration.ringBus rdf:resource=\"#" + ringBus + "\"/>\n" else "") +
-        (if (null != singleBus) "\t\t<cim:BusbarConfiguration.singleBus rdf:resource=\"#" + singleBus + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:BusbarConfiguration rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BusbarConfiguration>\n"
-    }
-}
-
-object BusbarConfiguration
-extends
-    Parseable[BusbarConfiguration]
-{
-    val doubleBus: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.doubleBus"""))
-    val mainWithTransfer: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.mainWithTransfer"""))
-    val ringBus: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.ringBus"""))
-    val singleBus: (Context) => String = parse_attribute (attribute ("""BusbarConfiguration.singleBus"""))
-    def parse (context: Context): BusbarConfiguration =
-    {
-        BusbarConfiguration(
-            BasicElement.parse (context),
-            doubleBus (context),
-            mainWithTransfer (context),
-            ringBus (context),
-            singleBus (context)
-        )
-    }
-}
-
-/**
  * The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
  * @param sup Reference to the superclass object.
  * @param BaseVoltage Base voltage of this conducting equipment.
@@ -839,63 +707,6 @@ extends
             toDouble (y2value (context), context),
             toDouble (y3value (context), context),
             Curve (context)
-        )
-    }
-}
-
-/**
- * Style or shape of curve.
- * @param sup Reference to the superclass object.
- * @param constantYValue The Y-axis values are assumed constant until the next curve point and prior to the first curve point.
- * @param straightLineYValues The Y-axis values are assumed to be a straight line between values.
- *        Also known as linear interpolation.
- */
-case class CurveStyle
-(
-    override val sup: BasicElement,
-    constantYValue: String,
-    straightLineYValues: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[CurveStyle] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != constantYValue) "\t\t<cim:CurveStyle.constantYValue rdf:resource=\"#" + constantYValue + "\"/>\n" else "") +
-        (if (null != straightLineYValues) "\t\t<cim:CurveStyle.straightLineYValues rdf:resource=\"#" + straightLineYValues + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:CurveStyle rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CurveStyle>\n"
-    }
-}
-
-object CurveStyle
-extends
-    Parseable[CurveStyle]
-{
-    val constantYValue: (Context) => String = parse_attribute (attribute ("""CurveStyle.constantYValue"""))
-    val straightLineYValues: (Context) => String = parse_attribute (attribute ("""CurveStyle.straightLineYValues"""))
-    def parse (context: Context): CurveStyle =
-    {
-        CurveStyle(
-            BasicElement.parse (context),
-            constantYValue (context),
-            straightLineYValues (context)
         )
     }
 }
@@ -1584,158 +1395,6 @@ extends
 }
 
 /**
- * Enumeration of phase identifiers.
- * Allows designation of phases for both transmission and distribution equipment, circuits and loads.
- * @param sup Reference to the superclass object.
- * @param s1 Secondary phase 1.
- * @param s12 Secondary phase 1 and 2.
- * @param s12N Secondary phases 1, 2, and neutral.
- * @param s1N Secondary phase 1 and neutral.
- * @param s2 Secondary phase 2.
- * @param s2N Secondary phase 2 and neutral.
- * @param A Phase A.
- * @param AB Phases A and B.
- * @param ABC Phases A, B, and C.
- * @param ABCN Phases A, B, C, and N.
- * @param ABN Phases A, B, and neutral.
- * @param AC Phases A and C.
- * @param ACN Phases A, C and neutral.
- * @param AN Phases A and neutral.
- * @param B Phase B.
- * @param BC Phases B and C.
- * @param BCN Phases B, C, and neutral.
- * @param BN Phases B and neutral.
- * @param C Phase C.
- * @param CN Phases C and neutral.
- * @param N Neutral phase.
- */
-case class PhaseCode
-(
-    override val sup: BasicElement,
-    s1: String,
-    s12: String,
-    s12N: String,
-    s1N: String,
-    s2: String,
-    s2N: String,
-    A: String,
-    AB: String,
-    ABC: String,
-    ABCN: String,
-    ABN: String,
-    AC: String,
-    ACN: String,
-    AN: String,
-    B: String,
-    BC: String,
-    BCN: String,
-    BN: String,
-    C: String,
-    CN: String,
-    N: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PhaseCode] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != s1) "\t\t<cim:PhaseCode.s1 rdf:resource=\"#" + s1 + "\"/>\n" else "") +
-        (if (null != s12) "\t\t<cim:PhaseCode.s12 rdf:resource=\"#" + s12 + "\"/>\n" else "") +
-        (if (null != s12N) "\t\t<cim:PhaseCode.s12N rdf:resource=\"#" + s12N + "\"/>\n" else "") +
-        (if (null != s1N) "\t\t<cim:PhaseCode.s1N rdf:resource=\"#" + s1N + "\"/>\n" else "") +
-        (if (null != s2) "\t\t<cim:PhaseCode.s2 rdf:resource=\"#" + s2 + "\"/>\n" else "") +
-        (if (null != s2N) "\t\t<cim:PhaseCode.s2N rdf:resource=\"#" + s2N + "\"/>\n" else "") +
-        (if (null != A) "\t\t<cim:PhaseCode.A rdf:resource=\"#" + A + "\"/>\n" else "") +
-        (if (null != AB) "\t\t<cim:PhaseCode.AB rdf:resource=\"#" + AB + "\"/>\n" else "") +
-        (if (null != ABC) "\t\t<cim:PhaseCode.ABC rdf:resource=\"#" + ABC + "\"/>\n" else "") +
-        (if (null != ABCN) "\t\t<cim:PhaseCode.ABCN rdf:resource=\"#" + ABCN + "\"/>\n" else "") +
-        (if (null != ABN) "\t\t<cim:PhaseCode.ABN rdf:resource=\"#" + ABN + "\"/>\n" else "") +
-        (if (null != AC) "\t\t<cim:PhaseCode.AC rdf:resource=\"#" + AC + "\"/>\n" else "") +
-        (if (null != ACN) "\t\t<cim:PhaseCode.ACN rdf:resource=\"#" + ACN + "\"/>\n" else "") +
-        (if (null != AN) "\t\t<cim:PhaseCode.AN rdf:resource=\"#" + AN + "\"/>\n" else "") +
-        (if (null != B) "\t\t<cim:PhaseCode.B rdf:resource=\"#" + B + "\"/>\n" else "") +
-        (if (null != BC) "\t\t<cim:PhaseCode.BC rdf:resource=\"#" + BC + "\"/>\n" else "") +
-        (if (null != BCN) "\t\t<cim:PhaseCode.BCN rdf:resource=\"#" + BCN + "\"/>\n" else "") +
-        (if (null != BN) "\t\t<cim:PhaseCode.BN rdf:resource=\"#" + BN + "\"/>\n" else "") +
-        (if (null != C) "\t\t<cim:PhaseCode.C rdf:resource=\"#" + C + "\"/>\n" else "") +
-        (if (null != CN) "\t\t<cim:PhaseCode.CN rdf:resource=\"#" + CN + "\"/>\n" else "") +
-        (if (null != N) "\t\t<cim:PhaseCode.N rdf:resource=\"#" + N + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:PhaseCode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PhaseCode>\n"
-    }
-}
-
-object PhaseCode
-extends
-    Parseable[PhaseCode]
-{
-    val s1: (Context) => String = parse_attribute (attribute ("""PhaseCode.s1"""))
-    val s12: (Context) => String = parse_attribute (attribute ("""PhaseCode.s12"""))
-    val s12N: (Context) => String = parse_attribute (attribute ("""PhaseCode.s12N"""))
-    val s1N: (Context) => String = parse_attribute (attribute ("""PhaseCode.s1N"""))
-    val s2: (Context) => String = parse_attribute (attribute ("""PhaseCode.s2"""))
-    val s2N: (Context) => String = parse_attribute (attribute ("""PhaseCode.s2N"""))
-    val A: (Context) => String = parse_attribute (attribute ("""PhaseCode.A"""))
-    val AB: (Context) => String = parse_attribute (attribute ("""PhaseCode.AB"""))
-    val ABC: (Context) => String = parse_attribute (attribute ("""PhaseCode.ABC"""))
-    val ABCN: (Context) => String = parse_attribute (attribute ("""PhaseCode.ABCN"""))
-    val ABN: (Context) => String = parse_attribute (attribute ("""PhaseCode.ABN"""))
-    val AC: (Context) => String = parse_attribute (attribute ("""PhaseCode.AC"""))
-    val ACN: (Context) => String = parse_attribute (attribute ("""PhaseCode.ACN"""))
-    val AN: (Context) => String = parse_attribute (attribute ("""PhaseCode.AN"""))
-    val B: (Context) => String = parse_attribute (attribute ("""PhaseCode.B"""))
-    val BC: (Context) => String = parse_attribute (attribute ("""PhaseCode.BC"""))
-    val BCN: (Context) => String = parse_attribute (attribute ("""PhaseCode.BCN"""))
-    val BN: (Context) => String = parse_attribute (attribute ("""PhaseCode.BN"""))
-    val C: (Context) => String = parse_attribute (attribute ("""PhaseCode.C"""))
-    val CN: (Context) => String = parse_attribute (attribute ("""PhaseCode.CN"""))
-    val N: (Context) => String = parse_attribute (attribute ("""PhaseCode.N"""))
-    def parse (context: Context): PhaseCode =
-    {
-        PhaseCode(
-            BasicElement.parse (context),
-            s1 (context),
-            s12 (context),
-            s12N (context),
-            s1N (context),
-            s2 (context),
-            s2N (context),
-            A (context),
-            AB (context),
-            ABC (context),
-            ABCN (context),
-            ABN (context),
-            AC (context),
-            ACN (context),
-            AN (context),
-            B (context),
-            BC (context),
-            BCN (context),
-            BN (context),
-            C (context),
-            CN (context),
-            N (context)
-        )
-    }
-}
-
-/**
  * A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area.
  * Power system resources can have measurements associated.
  * @param sup Reference to the superclass object.
@@ -2285,14 +1944,11 @@ private[ninecode] object _Core
             BaseVoltage.register,
             BasicIntervalSchedule.register,
             Bay.register,
-            BreakerConfiguration.register,
-            BusbarConfiguration.register,
             ConductingEquipment.register,
             ConnectivityNode.register,
             ConnectivityNodeContainer.register,
             Curve.register,
             CurveData.register,
-            CurveStyle.register,
             Equipment.register,
             EquipmentContainer.register,
             GeographicalRegion.register,
@@ -2305,7 +1961,6 @@ private[ninecode] object _Core
             OperatingParticipant.register,
             OperatingShare.register,
             PSRType.register,
-            PhaseCode.register,
             PowerSystemResource.register,
             RegularIntervalSchedule.register,
             RegularTimePoint.register,

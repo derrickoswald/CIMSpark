@@ -12,62 +12,6 @@ import ch.ninecode.cim.Parseable
  */
 
 /**
- * Type of generic non-linear load model.
- * @param sup Reference to the superclass object.
- * @param exponentialRecovery Exponential recovery model.
- * @param loadAdaptive Load adaptive model.
- */
-case class GenericNonLinearLoadModelKind
-(
-    override val sup: BasicElement,
-    exponentialRecovery: String,
-    loadAdaptive: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[GenericNonLinearLoadModelKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != exponentialRecovery) "\t\t<cim:GenericNonLinearLoadModelKind.exponentialRecovery rdf:resource=\"#" + exponentialRecovery + "\"/>\n" else "") +
-        (if (null != loadAdaptive) "\t\t<cim:GenericNonLinearLoadModelKind.loadAdaptive rdf:resource=\"#" + loadAdaptive + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:GenericNonLinearLoadModelKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GenericNonLinearLoadModelKind>\n"
-    }
-}
-
-object GenericNonLinearLoadModelKind
-extends
-    Parseable[GenericNonLinearLoadModelKind]
-{
-    val exponentialRecovery: (Context) => String = parse_attribute (attribute ("""GenericNonLinearLoadModelKind.exponentialRecovery"""))
-    val loadAdaptive: (Context) => String = parse_attribute (attribute ("""GenericNonLinearLoadModelKind.loadAdaptive"""))
-    def parse (context: Context): GenericNonLinearLoadModelKind =
-    {
-        GenericNonLinearLoadModelKind(
-            BasicElement.parse (context),
-            exponentialRecovery (context),
-            loadAdaptive (context)
-        )
-    }
-}
-
-/**
  * Standard aggregate load model comprised of static and/or dynamic components.
  * A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can used to represent the aggregate response of the motor components of the load.
  * @param sup Reference to the superclass object.
@@ -661,91 +605,17 @@ extends
     }
 }
 
-/**
- * Type of static load model.
- * @param sup Reference to the superclass object.
- * @param constantZ The load is represented as a constant impedance.
- *        ConstantZ P and Q equations are used and no attributes are required.
- * @param exponential Exponential P and Q equations are used and the following attributes are required:
-kp1, kp2, kp3, kpf, ep1, ep2, ep3
- *        kq1, kq2, kq3, kqf, eq1, eq2, eq3.
- * @param zIP1 ZIP1 P and Q equations are used and the following attributes are required:
-kp1, kp2, kp3, kpf
- *        kq1, kq2, kq3, kqf.
- * @param zIP2 This model separates the frequency-dependent load (primarily motors) from other load.
- *        ZIP2 P and Q equations are used and the following attributes are required:
- */
-case class StaticLoadModelKind
-(
-    override val sup: BasicElement,
-    constantZ: String,
-    exponential: String,
-    zIP1: String,
-    zIP2: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[StaticLoadModelKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != constantZ) "\t\t<cim:StaticLoadModelKind.constantZ rdf:resource=\"#" + constantZ + "\"/>\n" else "") +
-        (if (null != exponential) "\t\t<cim:StaticLoadModelKind.exponential rdf:resource=\"#" + exponential + "\"/>\n" else "") +
-        (if (null != zIP1) "\t\t<cim:StaticLoadModelKind.zIP1 rdf:resource=\"#" + zIP1 + "\"/>\n" else "") +
-        (if (null != zIP2) "\t\t<cim:StaticLoadModelKind.zIP2 rdf:resource=\"#" + zIP2 + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:StaticLoadModelKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:StaticLoadModelKind>\n"
-    }
-}
-
-object StaticLoadModelKind
-extends
-    Parseable[StaticLoadModelKind]
-{
-    val constantZ: (Context) => String = parse_attribute (attribute ("""StaticLoadModelKind.constantZ"""))
-    val exponential: (Context) => String = parse_attribute (attribute ("""StaticLoadModelKind.exponential"""))
-    val zIP1: (Context) => String = parse_attribute (attribute ("""StaticLoadModelKind.zIP1"""))
-    val zIP2: (Context) => String = parse_attribute (attribute ("""StaticLoadModelKind.zIP2"""))
-    def parse (context: Context): StaticLoadModelKind =
-    {
-        StaticLoadModelKind(
-            BasicElement.parse (context),
-            constantZ (context),
-            exponential (context),
-            zIP1 (context),
-            zIP2 (context)
-        )
-    }
-}
-
 private[ninecode] object _LoadDynamics
 {
     def register: List[ClassInfo] =
     {
         List (
-            GenericNonLinearLoadModelKind.register,
             LoadAggregate.register,
             LoadComposite.register,
             LoadDynamics.register,
             LoadGenericNonLinear.register,
             LoadMotor.register,
-            LoadStatic.register,
-            StaticLoadModelKind.register
+            LoadStatic.register
         )
     }
 }

@@ -12,107 +12,6 @@ import ch.ninecode.cim.Parseable
  */
 
 /**
- * Input signal type.
- * In Dynamics modelling, commonly represented by j parameter.
- * @param sup Reference to the superclass object.
- * @param branchCurrent Input signal is amplitude of remote branch current.
- * @param busFrequency Input signal is bus voltage fr<font color="#0f0f0f">equency.
- *        This could be a terminal frequency or remote frequency.</font>
- * @param busFrequencyDeviation Input signal is deviation of bus voltage frequ<font color="#0f0f0f">ency.
- *        This could be a terminal frequency deviation or remote frequency deviation.</font>
- * @param busVoltage Input signal <font color="#0f0f0f">is bus voltage.
- *        This could be a terminal voltage or remote voltage.</font>
- * @param busVoltageDerivative Input signal is derivative of bus voltag<font color="#0f0f0f">e.
- *        This could be a terminal voltage derivative or remote voltage derivative.</font>
- * @param fieldCurrent Input signal is generator field current.
- * @param generatorAcceleratingPower Input signal is generating accelerating power.
- * @param generatorElectricalPower Input signal is generator electrical power on rated S.
- * @param rotorAngularFrequencyDeviation Input signal is rotor or shaft angular frequency deviation.
- * @param rotorSpeed Input signal is rotor or shaft speed (angular frequency).
- */
-case class InputSignalKind
-(
-    override val sup: BasicElement,
-    branchCurrent: String,
-    busFrequency: String,
-    busFrequencyDeviation: String,
-    busVoltage: String,
-    busVoltageDerivative: String,
-    fieldCurrent: String,
-    generatorAcceleratingPower: String,
-    generatorElectricalPower: String,
-    rotorAngularFrequencyDeviation: String,
-    rotorSpeed: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[InputSignalKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != branchCurrent) "\t\t<cim:InputSignalKind.branchCurrent rdf:resource=\"#" + branchCurrent + "\"/>\n" else "") +
-        (if (null != busFrequency) "\t\t<cim:InputSignalKind.busFrequency rdf:resource=\"#" + busFrequency + "\"/>\n" else "") +
-        (if (null != busFrequencyDeviation) "\t\t<cim:InputSignalKind.busFrequencyDeviation rdf:resource=\"#" + busFrequencyDeviation + "\"/>\n" else "") +
-        (if (null != busVoltage) "\t\t<cim:InputSignalKind.busVoltage rdf:resource=\"#" + busVoltage + "\"/>\n" else "") +
-        (if (null != busVoltageDerivative) "\t\t<cim:InputSignalKind.busVoltageDerivative rdf:resource=\"#" + busVoltageDerivative + "\"/>\n" else "") +
-        (if (null != fieldCurrent) "\t\t<cim:InputSignalKind.fieldCurrent rdf:resource=\"#" + fieldCurrent + "\"/>\n" else "") +
-        (if (null != generatorAcceleratingPower) "\t\t<cim:InputSignalKind.generatorAcceleratingPower rdf:resource=\"#" + generatorAcceleratingPower + "\"/>\n" else "") +
-        (if (null != generatorElectricalPower) "\t\t<cim:InputSignalKind.generatorElectricalPower rdf:resource=\"#" + generatorElectricalPower + "\"/>\n" else "") +
-        (if (null != rotorAngularFrequencyDeviation) "\t\t<cim:InputSignalKind.rotorAngularFrequencyDeviation rdf:resource=\"#" + rotorAngularFrequencyDeviation + "\"/>\n" else "") +
-        (if (null != rotorSpeed) "\t\t<cim:InputSignalKind.rotorSpeed rdf:resource=\"#" + rotorSpeed + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:InputSignalKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:InputSignalKind>\n"
-    }
-}
-
-object InputSignalKind
-extends
-    Parseable[InputSignalKind]
-{
-    val branchCurrent: (Context) => String = parse_attribute (attribute ("""InputSignalKind.branchCurrent"""))
-    val busFrequency: (Context) => String = parse_attribute (attribute ("""InputSignalKind.busFrequency"""))
-    val busFrequencyDeviation: (Context) => String = parse_attribute (attribute ("""InputSignalKind.busFrequencyDeviation"""))
-    val busVoltage: (Context) => String = parse_attribute (attribute ("""InputSignalKind.busVoltage"""))
-    val busVoltageDerivative: (Context) => String = parse_attribute (attribute ("""InputSignalKind.busVoltageDerivative"""))
-    val fieldCurrent: (Context) => String = parse_attribute (attribute ("""InputSignalKind.fieldCurrent"""))
-    val generatorAcceleratingPower: (Context) => String = parse_attribute (attribute ("""InputSignalKind.generatorAcceleratingPower"""))
-    val generatorElectricalPower: (Context) => String = parse_attribute (attribute ("""InputSignalKind.generatorElectricalPower"""))
-    val rotorAngularFrequencyDeviation: (Context) => String = parse_attribute (attribute ("""InputSignalKind.rotorAngularFrequencyDeviation"""))
-    val rotorSpeed: (Context) => String = parse_attribute (attribute ("""InputSignalKind.rotorSpeed"""))
-    def parse (context: Context): InputSignalKind =
-    {
-        InputSignalKind(
-            BasicElement.parse (context),
-            branchCurrent (context),
-            busFrequency (context),
-            busFrequencyDeviation (context),
-            busVoltage (context),
-            busVoltageDerivative (context),
-            fieldCurrent (context),
-            generatorAcceleratingPower (context),
-            generatorElectricalPower (context),
-            rotorAngularFrequencyDeviation (context),
-            rotorSpeed (context)
-        )
-    }
-}
-
-/**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this power system stabilizer model is associated.
@@ -2848,7 +2747,6 @@ private[ninecode] object _PowerSystemStabilizerDynamics
     def register: List[ClassInfo] =
     {
         List (
-            InputSignalKind.register,
             PowerSystemStabilizerDynamics.register,
             Pss1.register,
             Pss1A.register,

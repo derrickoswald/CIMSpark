@@ -485,9 +485,17 @@ case class Scala (parser: ModelParser, pkg: Package)
         }
         val case_classes = SortedSet[(String,Int)]()
         for (cls <- classes)
-            // special handling for Domain
-            if ((pkg.name != "Domain") || (cls._2.stereotype == "Compound"))
-                case_classes.add ((valid_class_name (cls._2.name), cls._1))
+        {
+            // special handling for domains, datatypes, primitives and enumerations
+            if (((pkg.name != "Domain") && (pkg.name != "DomainProfile")) || (cls._2.stereotype == "Compound"))
+                if (
+                    (cls._2.stereotype != "enumeration") &&
+                    (cls._2.stereotype != "CIMDatatype") &&
+                    (cls._2.stereotype != "Primitive"))
+                {
+                    case_classes.add ((valid_class_name (cls._2.name), cls._1))
+                }
+        }
 
         val p = new StringBuilder ()
         for (c <- case_classes)

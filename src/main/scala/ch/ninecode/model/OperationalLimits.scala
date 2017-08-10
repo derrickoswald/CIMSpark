@@ -366,69 +366,6 @@ extends
 }
 
 /**
- * The direction attribute describes the side of  a limit that is a violation.
- * @param sup Reference to the superclass object.
- * @param absoluteValue An absoluteValue limit means that a monitored absolute value above the limit value is a violation.
- * @param high High means that a monitored value above the limit value is a violation.
- *        If applied to a terminal flow, the positive direction is into the terminal.
- * @param low Low means a monitored value below the limit is a violation.
- *        If applied to a terminal flow, the positive direction is into the terminal.
- */
-case class OperationalLimitDirectionKind
-(
-    override val sup: BasicElement,
-    absoluteValue: String,
-    high: String,
-    low: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[OperationalLimitDirectionKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != absoluteValue) "\t\t<cim:OperationalLimitDirectionKind.absoluteValue rdf:resource=\"#" + absoluteValue + "\"/>\n" else "") +
-        (if (null != high) "\t\t<cim:OperationalLimitDirectionKind.high rdf:resource=\"#" + high + "\"/>\n" else "") +
-        (if (null != low) "\t\t<cim:OperationalLimitDirectionKind.low rdf:resource=\"#" + low + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:OperationalLimitDirectionKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OperationalLimitDirectionKind>\n"
-    }
-}
-
-object OperationalLimitDirectionKind
-extends
-    Parseable[OperationalLimitDirectionKind]
-{
-    val absoluteValue: (Context) => String = parse_attribute (attribute ("""OperationalLimitDirectionKind.absoluteValue"""))
-    val high: (Context) => String = parse_attribute (attribute ("""OperationalLimitDirectionKind.high"""))
-    val low: (Context) => String = parse_attribute (attribute ("""OperationalLimitDirectionKind.low"""))
-    def parse (context: Context): OperationalLimitDirectionKind =
-    {
-        OperationalLimitDirectionKind(
-            BasicElement.parse (context),
-            absoluteValue (context),
-            high (context),
-            low (context)
-        )
-    }
-}
-
-/**
  * A set of limits associated with equipment.
  * Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.
  * @param sup Reference to the superclass object.
@@ -610,7 +547,6 @@ private[ninecode] object _OperationalLimits
             BranchGroupTerminal.register,
             CurrentLimit.register,
             OperationalLimit.register,
-            OperationalLimitDirectionKind.register,
             OperationalLimitSet.register,
             OperationalLimitType.register,
             VoltageLimit.register

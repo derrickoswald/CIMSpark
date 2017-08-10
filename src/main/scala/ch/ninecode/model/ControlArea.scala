@@ -262,67 +262,6 @@ extends
 }
 
 /**
- * The type of control area.
- * @param sup Reference to the superclass object.
- * @param AGC Used for automatic generation control.
- * @param Forecast Used for load forecast.
- * @param Interchange Used for interchange specification or control.
- */
-case class ControlAreaTypeKind
-(
-    override val sup: BasicElement,
-    AGC: String,
-    Forecast: String,
-    Interchange: String
-)
-extends
-    Element
-{
-    def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ControlAreaTypeKind] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields +
-        (if (null != AGC) "\t\t<cim:ControlAreaTypeKind.AGC rdf:resource=\"#" + AGC + "\"/>\n" else "") +
-        (if (null != Forecast) "\t\t<cim:ControlAreaTypeKind.Forecast rdf:resource=\"#" + Forecast + "\"/>\n" else "") +
-        (if (null != Interchange) "\t\t<cim:ControlAreaTypeKind.Interchange rdf:resource=\"#" + Interchange + "\"/>\n" else "")
-    }
-    override def export: String =
-    {
-        "\t<cim:ControlAreaTypeKind rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ControlAreaTypeKind>\n"
-    }
-}
-
-object ControlAreaTypeKind
-extends
-    Parseable[ControlAreaTypeKind]
-{
-    val AGC: (Context) => String = parse_attribute (attribute ("""ControlAreaTypeKind.AGC"""))
-    val Forecast: (Context) => String = parse_attribute (attribute ("""ControlAreaTypeKind.Forecast"""))
-    val Interchange: (Context) => String = parse_attribute (attribute ("""ControlAreaTypeKind.Interchange"""))
-    def parse (context: Context): ControlAreaTypeKind =
-    {
-        ControlAreaTypeKind(
-            BasicElement.parse (context),
-            AGC (context),
-            Forecast (context),
-            Interchange (context)
-        )
-    }
-}
-
-/**
  * A flow specification in terms of location and direction for a control area.
  * @param sup Reference to the superclass object.
  * @param positiveFlowIn True if the flow into the terminal (load convention) is also flow into the control area.
@@ -393,7 +332,6 @@ private[ninecode] object _ControlArea
             AltTieMeas.register,
             ControlArea.register,
             ControlAreaGeneratingUnit.register,
-            ControlAreaTypeKind.register,
             TieFlow.register
         )
     }
