@@ -1,4 +1,4 @@
-package ch.ninecode;
+package ch.ninecode.cim;
 
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -8,6 +8,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.sql.DriverManager;
 
+/**
+ * Sample JDBC access to CIMServerJDBC.
+ *
+ * Build CIMReader:
+ * cd CIMReader
+ * mvn -DskipTests package
+ *
+ * Run the spark-docker container:
+ * cd src/test/resource
+ * docker-compose up&
+ *
+ * In another terminal session execute CIMServerJDBC:
+ * /spark/spark-2.1.1-bin-hadoop2.7/bin/spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g target/CIMServerJDBC-2.11-2.1.1-2.1.0-jar-with-dependencies.jar "hdfs://sandbox:8020/data/some_CIM_data.rdf"
+ *
+ * In another terminal session build and execute the CIMJava jar:
+ * cd src/jdbc
+ * mvn package
+ * java -jar target/CIMJava-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+ *
+ * @implNote The above instructions run the CIMServerJDBC externally from the cluster,
+ * I didn't have any success running the CIMServerJDBC on the spark master.
+ * Running as root (or as derrick, see the USER environment usage in the code) there is an issue with how
+ * credentials get passed from the client across to the cluster.
+ * Connection succeeds for user derrick, but then executing a "select" query yields:
+ * Exception “Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): User: derrick is not allowed to impersonate derrick”
+ */
 public class CIMJava
 {
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
@@ -15,6 +41,7 @@ public class CIMJava
     private static String database = "default";
     private static String host = "localhost";
     private static String user = "hive"; // replace "hive" here with the name of the user the queries should run as
+
     public static void main (String[] args) throws SQLException
     {
         try
@@ -66,25 +93,15 @@ public class CIMJava
         if (0 != names.size ())
         {
             // describe table
-            System.out.println ("Running: count and describe <table>");
+            System.out.println ("Running: describe <table>");
             for (String name: ordered)
             {
-                // count query
-                sql = "select count(*) from " + name;
+                System.out.println ("    " + name);
+                sql = "describe " + name;
                 res = stmt.executeQuery (sql);
-                int count = 0;
-                if (res.next ())
-                    count = Integer.parseInt (res.getString (1));
+                while (res.next ())
+                    System.out.println ("        " + res.getString (1) + "\t" + res.getString (2));
                 res.close ();
-                if (0 != count)
-                {
-                    System.out.println ("    " + name + " has " + count + " rows");
-                    sql = "describe " + name;
-                    res = stmt.executeQuery (sql);
-                    while (res.next ())
-                        System.out.println ("        " + res.getString (1) + "\t" + res.getString (2));
-                    res.close ();
-                }
             }
 
             if (names.contains ("edges"))
@@ -117,11 +134,10 @@ public class CIMJava
             if (names.contains ("positionpoint"))
             {
                 // select * query on PositionPoint
-                sql = "select * from PositionPoint";
+                sql = "select * from PositionPoint limit 5";
                 System.out.println ("Running: " + sql);
                 res = stmt.executeQuery (sql);
-                int index = 0;
-                while (res.next () && (index++ < 5))
+                while (res.next ())
                     System.out.println (res.getString (1) + "\t" + res.getInt (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5)+ "\t" + res.getString (6));
                 res.close ();
             }
@@ -140,36 +156,33 @@ public class CIMJava
                 // phone2  string
                 // secondaryAddress    string
                 // status  string
-                sql = "select IdentifiedObject.aliasName, IdentifiedObject.description, IdentifiedObject.mRID, IdentifiedObject.name, direction, geoInfoReference, typ, CoordinateSystem, electronicAddress, mainAddress, phone1, phone2, secondaryAddress, status from Location";
+                sql = "select IdentifiedObject.aliasName, IdentifiedObject.description, IdentifiedObject.mRID, IdentifiedObject.name, direction, geoInfoReference, typ, CoordinateSystem, electronicAddress, mainAddress, phone1, phone2, secondaryAddress, status from Location limit 5";
                 System.out.println ("Running: " + sql);
                 res = stmt.executeQuery (sql);
-                int index = 0;
-                while (res.next () && (index++ < 5))
+                while (res.next ())
                     System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getString (5) + "\t" + res.getString (6) + "\t" + res.getString (7) + "\t" + res.getString (8) + "\t" + res.getString (9) + "\t" + res.getString (10) + "\t" + res.getString (11) + "\t" + res.getString (12) + "\t" + res.getString (13) + "\t" + res.getString (14));
                 res.close ();
             }
 
             // java.lang.RuntimeException: scala.MatchError: ([null,],org.apache.spark.sql.types.ElementUDT@89856685) (of class scala.Tuple2)
-//            if (names.contains ("switch"))
-//            {
-//                // select * query on Switch
-//                sql = "select * from Switch";
-//                System.out.println ("Running: " + sql);
-//                res = stmt.executeQuery (sql);
-//                int index = 0;
-//                while (res.next () && (index++ < 5))
-//                    System.out.println (/*res.getString (1) + "\t" + */ res.getBoolean ("normalOpen") + "\t" + res.getBoolean ("open") + "\t" + res.getDouble ("ratedCurrent") + "\t" + res.getBoolean ("retained")+ "\t" + res.getInt ("switchOnCount"));
-//                res.close ();
-//            }
+            if (names.contains ("switch"))
+            {
+                // select * query on Switch
+                sql = "select * from Switch limit 5";
+                System.out.println ("Running: " + sql);
+                res = stmt.executeQuery (sql);
+                while (res.next ())
+                    System.out.println (/*res.getString (1) + "\t" + */ res.getBoolean ("normalOpen") + "\t" + res.getBoolean ("open") + "\t" + res.getDouble ("ratedCurrent") + "\t" + res.getBoolean ("retained")+ "\t" + res.getInt ("switchOnCount"));
+                res.close ();
+            }
 
             if (names.contains ("switch") && names.contains ("location") && names.contains ("positionpoint"))
             {
                 // join query on Switch
-                sql = "select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0";
+                sql = "select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description description, open, normalOpen no, l.CoordinateSystem cs, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0 limit 5";
                 System.out.println ("Running: " + sql);
                 res = stmt.executeQuery (sql);
-                int index = 0;
-                while (res.next () && (index++ < 5))
+                while (res.next ())
                     System.out.println (res.getString (1) + "\t" + res.getString (2) + "\t" + res.getString (3) + "\t" + res.getString (4) + "\t" + res.getBoolean (5)+ "\t" + res.getBoolean (6) + "\t" + res.getString (7) + "\t" + res.getString (8) + "\t" + res.getString (9));
                 res.close ();
             }
