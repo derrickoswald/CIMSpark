@@ -53,7 +53,7 @@ extends
     {
         "\t<cim:ACDCTerminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ACDCTerminal>\n"
+        "\t</cim:ACDCTerminal>"
     }
 }
 
@@ -109,7 +109,7 @@ extends
     {
         "\t<cim:BaseFrequency rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BaseFrequency>\n"
+        "\t</cim:BaseFrequency>"
     }
 }
 
@@ -160,7 +160,7 @@ extends
     {
         "\t<cim:BasePower rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BasePower>\n"
+        "\t</cim:BasePower>"
     }
 }
 
@@ -211,7 +211,7 @@ extends
     {
         "\t<cim:BaseVoltage rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BaseVoltage>\n"
+        "\t</cim:BaseVoltage>"
     }
 }
 
@@ -274,7 +274,7 @@ extends
     {
         "\t<cim:BasicIntervalSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BasicIntervalSchedule>\n"
+        "\t</cim:BasicIntervalSchedule>"
     }
 }
 
@@ -349,7 +349,7 @@ extends
     {
         "\t<cim:Bay rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Bay>\n"
+        "\t</cim:Bay>"
     }
 }
 
@@ -420,7 +420,7 @@ extends
     {
         "\t<cim:ConductingEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConductingEquipment>\n"
+        "\t</cim:ConductingEquipment>"
     }
 }
 
@@ -481,7 +481,7 @@ extends
     {
         "\t<cim:ConnectivityNode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConnectivityNode>\n"
+        "\t</cim:ConnectivityNode>"
     }
 }
 
@@ -532,7 +532,7 @@ extends
     {
         "\t<cim:ConnectivityNodeContainer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConnectivityNodeContainer>\n"
+        "\t</cim:ConnectivityNodeContainer>"
     }
 }
 
@@ -605,7 +605,7 @@ extends
     {
         "\t<cim:Curve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Curve>\n"
+        "\t</cim:Curve>"
     }
 }
 
@@ -685,7 +685,7 @@ extends
     {
         "\t<cim:CurveData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurveData>\n"
+        "\t</cim:CurveData>"
     }
 }
 
@@ -754,7 +754,7 @@ extends
     {
         "\t<cim:Equipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Equipment>\n"
+        "\t</cim:Equipment>"
     }
 }
 
@@ -809,7 +809,7 @@ extends
     {
         "\t<cim:EquipmentContainer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquipmentContainer>\n"
+        "\t</cim:EquipmentContainer>"
     }
 }
 
@@ -856,7 +856,7 @@ extends
     {
         "\t<cim:GeographicalRegion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GeographicalRegion>\n"
+        "\t</cim:GeographicalRegion>"
     }
 }
 
@@ -916,7 +916,7 @@ extends
     {
         "\t<cim:IdentifiedObject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IdentifiedObject>\n"
+        "\t</cim:IdentifiedObject>"
     }
 }
 
@@ -972,7 +972,7 @@ extends
     {
         "\t<cim:IrregularIntervalSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IrregularIntervalSchedule>\n"
+        "\t</cim:IrregularIntervalSchedule>"
     }
 }
 
@@ -1032,7 +1032,7 @@ extends
     {
         "\t<cim:IrregularTimePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IrregularTimePoint>\n"
+        "\t</cim:IrregularTimePoint>"
     }
 }
 
@@ -1096,7 +1096,7 @@ extends
     {
         "\t<cim:Name rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Name>\n"
+        "\t</cim:Name>"
     }
 }
 
@@ -1158,7 +1158,7 @@ extends
     {
         "\t<cim:NameType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NameType>\n"
+        "\t</cim:NameType>"
     }
 }
 
@@ -1216,7 +1216,7 @@ extends
     {
         "\t<cim:NameTypeAuthority rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NameTypeAuthority>\n"
+        "\t</cim:NameTypeAuthority>"
     }
 }
 
@@ -1268,7 +1268,7 @@ extends
     {
         "\t<cim:OperatingParticipant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperatingParticipant>\n"
+        "\t</cim:OperatingParticipant>"
     }
 }
 
@@ -1324,7 +1324,7 @@ extends
     {
         "\t<cim:OperatingShare rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperatingShare>\n"
+        "\t</cim:OperatingShare>"
     }
 }
 
@@ -1378,7 +1378,7 @@ extends
     {
         "\t<cim:PSRType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PSRType>\n"
+        "\t</cim:PSRType>"
     }
 }
 
@@ -1434,7 +1434,7 @@ extends
     {
         "\t<cim:PowerSystemResource rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerSystemResource>\n"
+        "\t</cim:PowerSystemResource>"
     }
 }
 
@@ -1492,7 +1492,7 @@ extends
     {
         "\t<cim:RegularIntervalSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegularIntervalSchedule>\n"
+        "\t</cim:RegularIntervalSchedule>"
     }
 }
 
@@ -1557,7 +1557,7 @@ extends
     {
         "\t<cim:RegularTimePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegularTimePoint>\n"
+        "\t</cim:RegularTimePoint>"
     }
 }
 
@@ -1617,7 +1617,7 @@ extends
     {
         "\t<cim:ReportingGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReportingGroup>\n"
+        "\t</cim:ReportingGroup>"
     }
 }
 
@@ -1668,7 +1668,7 @@ extends
     {
         "\t<cim:ReportingSuperGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReportingSuperGroup>\n"
+        "\t</cim:ReportingSuperGroup>"
     }
 }
 
@@ -1717,7 +1717,7 @@ extends
     {
         "\t<cim:SubGeographicalRegion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SubGeographicalRegion>\n"
+        "\t</cim:SubGeographicalRegion>"
     }
 }
 
@@ -1768,7 +1768,7 @@ extends
     {
         "\t<cim:Substation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Substation>\n"
+        "\t</cim:Substation>"
     }
 }
 
@@ -1838,7 +1838,7 @@ extends
     {
         "\t<cim:Terminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Terminal>\n"
+        "\t</cim:Terminal>"
     }
 }
 
@@ -1909,7 +1909,7 @@ extends
     {
         "\t<cim:VoltageLevel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VoltageLevel>\n"
+        "\t</cim:VoltageLevel>"
     }
 }
 

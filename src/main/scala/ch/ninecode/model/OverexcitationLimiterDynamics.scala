@@ -58,7 +58,7 @@ extends
     {
         "\t<cim:OverexcLim2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverexcLim2>\n"
+        "\t</cim:OverexcLim2>"
     }
 }
 
@@ -137,7 +137,7 @@ extends
     {
         "\t<cim:OverexcLimIEEE rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverexcLimIEEE>\n"
+        "\t</cim:OverexcLimIEEE>"
     }
 }
 
@@ -234,7 +234,7 @@ extends
     {
         "\t<cim:OverexcLimX1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverexcLimX1>\n"
+        "\t</cim:OverexcLimX1>"
     }
 }
 
@@ -344,7 +344,7 @@ extends
     {
         "\t<cim:OverexcLimX2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverexcLimX2>\n"
+        "\t</cim:OverexcLimX2>"
     }
 }
 
@@ -415,7 +415,7 @@ extends
     {
         "\t<cim:OverexcitationLimiterDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverexcitationLimiterDynamics>\n"
+        "\t</cim:OverexcitationLimiterDynamics>"
     }
 }
 

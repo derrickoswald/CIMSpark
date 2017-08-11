@@ -39,7 +39,7 @@ extends
     {
         "\t<cim:InterTieClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InterTieClearing>\n"
+        "\t</cim:InterTieClearing>"
     }
 }
 
@@ -98,7 +98,7 @@ extends
     {
         "\t<cim:InterTieResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InterTieResults>\n"
+        "\t</cim:InterTieResults>"
     }
 }
 
@@ -169,7 +169,7 @@ extends
     {
         "\t<cim:MarketCaseClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketCaseClearing>\n"
+        "\t</cim:MarketCaseClearing>"
     }
 }
 
@@ -230,7 +230,7 @@ extends
     {
         "\t<cim:SecurityConstraintsClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SecurityConstraintsClearing>\n"
+        "\t</cim:SecurityConstraintsClearing>"
     }
 }
 

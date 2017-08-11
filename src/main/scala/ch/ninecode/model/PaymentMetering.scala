@@ -52,7 +52,7 @@ extends
     {
         "\t<cim:AccountMovement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AccountMovement>\n"
+        "\t</cim:AccountMovement>"
     }
 }
 
@@ -116,7 +116,7 @@ extends
     {
         "\t<cim:AccountingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AccountingUnit>\n"
+        "\t</cim:AccountingUnit>"
     }
 }
 
@@ -192,7 +192,7 @@ extends
     {
         "\t<cim:AuxiliaryAccount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AuxiliaryAccount>\n"
+        "\t</cim:AuxiliaryAccount>"
     }
 }
 
@@ -288,7 +288,7 @@ extends
     {
         "\t<cim:AuxiliaryAgreement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AuxiliaryAgreement>\n"
+        "\t</cim:AuxiliaryAgreement>"
     }
 }
 
@@ -369,7 +369,7 @@ extends
     {
         "\t<cim:BankAccountDetail rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BankAccountDetail>\n"
+        "\t</cim:BankAccountDetail>"
     }
 }
 
@@ -440,7 +440,7 @@ extends
     {
         "\t<cim:Card rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Card>\n"
+        "\t</cim:Card>"
     }
 }
 
@@ -500,7 +500,7 @@ extends
     {
         "\t<cim:Cashier rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Cashier>\n"
+        "\t</cim:Cashier>"
     }
 }
 
@@ -557,7 +557,7 @@ extends
     {
         "\t<cim:CashierShift rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CashierShift>\n"
+        "\t</cim:CashierShift>"
     }
 }
 
@@ -622,7 +622,7 @@ extends
     {
         "\t<cim:Charge rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Charge>\n"
+        "\t</cim:Charge>"
     }
 }
 
@@ -694,7 +694,7 @@ extends
     {
         "\t<cim:Cheque rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Cheque>\n"
+        "\t</cim:Cheque>"
     }
 }
 
@@ -766,7 +766,7 @@ extends
     {
         "\t<cim:ConsumptionTariffInterval rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConsumptionTariffInterval>\n"
+        "\t</cim:ConsumptionTariffInterval>"
     }
 }
 
@@ -836,7 +836,7 @@ extends
     {
         "\t<cim:Due rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Due>\n"
+        "\t</cim:Due>"
     }
 }
 
@@ -904,7 +904,7 @@ extends
     {
         "\t<cim:LineDetail rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LineDetail>\n"
+        "\t</cim:LineDetail>"
     }
 }
 
@@ -971,7 +971,7 @@ extends
     {
         "\t<cim:MerchantAccount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MerchantAccount>\n"
+        "\t</cim:MerchantAccount>"
     }
 }
 
@@ -1027,7 +1027,7 @@ extends
     {
         "\t<cim:MerchantAgreement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MerchantAgreement>\n"
+        "\t</cim:MerchantAgreement>"
     }
 }
 
@@ -1076,7 +1076,7 @@ extends
     {
         "\t<cim:PointOfSale rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PointOfSale>\n"
+        "\t</cim:PointOfSale>"
     }
 }
 
@@ -1136,7 +1136,7 @@ extends
     {
         "\t<cim:Receipt rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Receipt>\n"
+        "\t</cim:Receipt>"
     }
 }
 
@@ -1196,7 +1196,7 @@ extends
     {
         "\t<cim:ServiceSupplier rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ServiceSupplier>\n"
+        "\t</cim:ServiceSupplier>"
     }
 }
 
@@ -1270,7 +1270,7 @@ extends
     {
         "\t<cim:Shift rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Shift>\n"
+        "\t</cim:Shift>"
     }
 }
 
@@ -1339,7 +1339,7 @@ extends
     {
         "\t<cim:TariffProfile rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TariffProfile>\n"
+        "\t</cim:TariffProfile>"
     }
 }
 
@@ -1410,7 +1410,7 @@ extends
     {
         "\t<cim:Tender rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Tender>\n"
+        "\t</cim:Tender>"
     }
 }
 
@@ -1479,7 +1479,7 @@ extends
     {
         "\t<cim:TimeTariffInterval rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TimeTariffInterval>\n"
+        "\t</cim:TimeTariffInterval>"
     }
 }
 
@@ -1576,7 +1576,7 @@ extends
     {
         "\t<cim:Transaction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Transaction>\n"
+        "\t</cim:Transaction>"
     }
 }
 
@@ -1653,7 +1653,7 @@ extends
     {
         "\t<cim:Transactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Transactor>\n"
+        "\t</cim:Transactor>"
     }
 }
 
@@ -1701,7 +1701,7 @@ extends
     {
         "\t<cim:Vendor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Vendor>\n"
+        "\t</cim:Vendor>"
     }
 }
 
@@ -1761,7 +1761,7 @@ extends
     {
         "\t<cim:VendorShift rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VendorShift>\n"
+        "\t</cim:VendorShift>"
     }
 }
 

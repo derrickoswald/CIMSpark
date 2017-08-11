@@ -45,7 +45,7 @@ extends
     {
         "\t<cim:AuxiliaryEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AuxiliaryEquipment>\n"
+        "\t</cim:AuxiliaryEquipment>"
     }
 }
 
@@ -109,7 +109,7 @@ extends
     {
         "\t<cim:CurrentTransformer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurrentTransformer>\n"
+        "\t</cim:CurrentTransformer>"
     }
 }
 
@@ -167,7 +167,7 @@ extends
     {
         "\t<cim:FaultIndicator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FaultIndicator>\n"
+        "\t</cim:FaultIndicator>"
     }
 }
 
@@ -214,7 +214,7 @@ extends
     {
         "\t<cim:PostLineSensor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PostLineSensor>\n"
+        "\t</cim:PostLineSensor>"
     }
 }
 
@@ -273,7 +273,7 @@ extends
     {
         "\t<cim:PotentialTransformer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PotentialTransformer>\n"
+        "\t</cim:PotentialTransformer>"
     }
 }
 
@@ -328,7 +328,7 @@ extends
     {
         "\t<cim:Sensor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Sensor>\n"
+        "\t</cim:Sensor>"
     }
 }
 
@@ -375,7 +375,7 @@ extends
     {
         "\t<cim:SurgeArrester rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SurgeArrester>\n"
+        "\t</cim:SurgeArrester>"
     }
 }
 
@@ -422,7 +422,7 @@ extends
     {
         "\t<cim:WaveTrap rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WaveTrap>\n"
+        "\t</cim:WaveTrap>"
     }
 }
 

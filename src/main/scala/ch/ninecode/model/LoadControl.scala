@@ -73,7 +73,7 @@ extends
     {
         "\t<cim:ConnectDisconnectFunction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConnectDisconnectFunction>\n"
+        "\t</cim:ConnectDisconnectFunction>"
     }
 }
 
@@ -173,7 +173,7 @@ extends
     {
         "\t<cim:RemoteConnectDisconnectInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RemoteConnectDisconnectInfo>\n"
+        "\t</cim:RemoteConnectDisconnectInfo>"
     }
 }
 

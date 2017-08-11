@@ -43,7 +43,7 @@ extends
     {
         "\t<cim:CRRMarket rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CRRMarket>\n"
+        "\t</cim:CRRMarket>"
     }
 }
 
@@ -101,7 +101,7 @@ extends
     {
         "\t<cim:EnergyMarket rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyMarket>\n"
+        "\t</cim:EnergyMarket>"
     }
 }
 
@@ -192,7 +192,7 @@ extends
     {
         "\t<cim:Market rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Market>\n"
+        "\t</cim:Market>"
     }
 }
 
@@ -274,7 +274,7 @@ extends
     {
         "\t<cim:MarketActualEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketActualEvent>\n"
+        "\t</cim:MarketActualEvent>"
     }
 }
 
@@ -342,7 +342,7 @@ extends
     {
         "\t<cim:MarketFactors rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketFactors>\n"
+        "\t</cim:MarketFactors>"
     }
 }
 
@@ -409,7 +409,7 @@ extends
     {
         "\t<cim:MarketPlan rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketPlan>\n"
+        "\t</cim:MarketPlan>"
     }
 }
 
@@ -484,7 +484,7 @@ extends
     {
         "\t<cim:MarketProduct rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketProduct>\n"
+        "\t</cim:MarketProduct>"
     }
 }
 
@@ -580,7 +580,7 @@ extends
     {
         "\t<cim:MarketRun rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketRun>\n"
+        "\t</cim:MarketRun>"
     }
 }
 
@@ -667,7 +667,7 @@ extends
     {
         "\t<cim:PlannedMarket rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PlannedMarket>\n"
+        "\t</cim:PlannedMarket>"
     }
 }
 
@@ -737,7 +737,7 @@ extends
     {
         "\t<cim:PlannedMarketEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PlannedMarketEvent>\n"
+        "\t</cim:PlannedMarketEvent>"
     }
 }
 

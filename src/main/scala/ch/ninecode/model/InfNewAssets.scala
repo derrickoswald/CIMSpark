@@ -76,7 +76,7 @@ extends
     {
         "\t<cim:DiagnosisDataSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiagnosisDataSet>\n"
+        "\t</cim:DiagnosisDataSet>"
     }
 }
 
@@ -151,7 +151,7 @@ extends
     {
         "\t<cim:InspectionDataSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InspectionDataSet>\n"
+        "\t</cim:InspectionDataSet>"
     }
 }
 
@@ -208,7 +208,7 @@ extends
     {
         "\t<cim:MaintenanceDataSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MaintenanceDataSet>\n"
+        "\t</cim:MaintenanceDataSet>"
     }
 }
 
@@ -269,7 +269,7 @@ extends
     {
         "\t<cim:TestDataSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TestDataSet>\n"
+        "\t</cim:TestDataSet>"
     }
 }
 

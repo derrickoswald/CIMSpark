@@ -55,7 +55,7 @@ extends
     {
         "\t<cim:AdjacentCASet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AdjacentCASet>\n"
+        "\t</cim:AdjacentCASet>"
     }
 }
 
@@ -134,7 +134,7 @@ extends
     {
         "\t<cim:AggregateNode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AggregateNode>\n"
+        "\t</cim:AggregateNode>"
     }
 }
 
@@ -211,7 +211,7 @@ extends
     {
         "\t<cim:AggregatedPnode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AggregatedPnode>\n"
+        "\t</cim:AggregatedPnode>"
     }
 }
 
@@ -286,7 +286,7 @@ extends
     {
         "\t<cim:BidPriceCap rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidPriceCap>\n"
+        "\t</cim:BidPriceCap>"
     }
 }
 
@@ -365,7 +365,7 @@ extends
     {
         "\t<cim:CnodeDistributionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CnodeDistributionFactor>\n"
+        "\t</cim:CnodeDistributionFactor>"
     }
 }
 
@@ -436,7 +436,7 @@ extends
     {
         "\t<cim:CombinedCycleConfiguration rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CombinedCycleConfiguration>\n"
+        "\t</cim:CombinedCycleConfiguration>"
     }
 }
 
@@ -502,7 +502,7 @@ extends
     {
         "\t<cim:CombinedCycleConfigurationMember rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CombinedCycleConfigurationMember>\n"
+        "\t</cim:CombinedCycleConfigurationMember>"
     }
 }
 
@@ -560,7 +560,7 @@ extends
     {
         "\t<cim:CombinedCycleLogicalConfiguration rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CombinedCycleLogicalConfiguration>\n"
+        "\t</cim:CombinedCycleLogicalConfiguration>"
     }
 }
 
@@ -618,7 +618,7 @@ extends
     {
         "\t<cim:CombinedCycleTransitionState rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CombinedCycleTransitionState>\n"
+        "\t</cim:CombinedCycleTransitionState>"
     }
 }
 
@@ -673,7 +673,7 @@ extends
     {
         "\t<cim:CongestionArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CongestionArea>\n"
+        "\t</cim:CongestionArea>"
     }
 }
 
@@ -739,7 +739,7 @@ extends
     {
         "\t<cim:ContractDistributionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ContractDistributionFactor>\n"
+        "\t</cim:ContractDistributionFactor>"
     }
 }
 
@@ -887,7 +887,7 @@ extends
     {
         "\t<cim:ContractRight rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ContractRight>\n"
+        "\t</cim:ContractRight>"
     }
 }
 
@@ -1001,7 +1001,7 @@ extends
     {
         "\t<cim:ControlAreaDesignation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ControlAreaDesignation>\n"
+        "\t</cim:ControlAreaDesignation>"
     }
 }
 
@@ -1094,7 +1094,7 @@ extends
     {
         "\t<cim:Flowgate rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Flowgate>\n"
+        "\t</cim:Flowgate>"
     }
 }
 
@@ -1169,7 +1169,7 @@ extends
     {
         "\t<cim:FlowgatePartner rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FlowgatePartner>\n"
+        "\t</cim:FlowgatePartner>"
     }
 }
 
@@ -1232,7 +1232,7 @@ extends
     {
         "\t<cim:FlowgateRelief rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FlowgateRelief>\n"
+        "\t</cim:FlowgateRelief>"
     }
 }
 
@@ -1312,7 +1312,7 @@ extends
     {
         "\t<cim:FlowgateValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FlowgateValue>\n"
+        "\t</cim:FlowgateValue>"
     }
 }
 
@@ -1387,7 +1387,7 @@ extends
     {
         "\t<cim:ForbiddenRegion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ForbiddenRegion>\n"
+        "\t</cim:ForbiddenRegion>"
     }
 }
 
@@ -1445,7 +1445,7 @@ extends
     {
         "\t<cim:FormerReference rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FormerReference>\n"
+        "\t</cim:FormerReference>"
     }
 }
 
@@ -1496,7 +1496,7 @@ extends
     {
         "\t<cim:FuelCostCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FuelCostCurve>\n"
+        "\t</cim:FuelCostCurve>"
     }
 }
 
@@ -1565,7 +1565,7 @@ extends
     {
         "\t<cim:FuelRegion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FuelRegion>\n"
+        "\t</cim:FuelRegion>"
     }
 }
 
@@ -1631,7 +1631,7 @@ extends
     {
         "\t<cim:GasPrice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GasPrice>\n"
+        "\t</cim:GasPrice>"
     }
 }
 
@@ -1706,7 +1706,7 @@ extends
     {
         "\t<cim:HostControlArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HostControlArea>\n"
+        "\t</cim:HostControlArea>"
     }
 }
 
@@ -1777,7 +1777,7 @@ extends
     {
         "\t<cim:IndividualPnode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IndividualPnode>\n"
+        "\t</cim:IndividualPnode>"
     }
 }
 
@@ -1831,7 +1831,7 @@ extends
     {
         "\t<cim:LoadAggregationPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadAggregationPoint>\n"
+        "\t</cim:LoadAggregationPoint>"
     }
 }
 
@@ -1889,7 +1889,7 @@ extends
     {
         "\t<cim:LoadRatio rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadRatio>\n"
+        "\t</cim:LoadRatio>"
     }
 }
 
@@ -1948,7 +1948,7 @@ extends
     {
         "\t<cim:LoadReductionTimeCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadReductionTimeCurve>\n"
+        "\t</cim:LoadReductionTimeCurve>"
     }
 }
 
@@ -1999,7 +1999,7 @@ extends
     {
         "\t<cim:LocalReliabilityArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LocalReliabilityArea>\n"
+        "\t</cim:LocalReliabilityArea>"
     }
 }
 
@@ -2065,7 +2065,7 @@ extends
     {
         "\t<cim:MPMTestCategory rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MPMTestCategory>\n"
+        "\t</cim:MPMTestCategory>"
     }
 }
 
@@ -2132,7 +2132,7 @@ extends
     {
         "\t<cim:MPMTestThreshold rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MPMTestThreshold>\n"
+        "\t</cim:MPMTestThreshold>"
     }
 }
 
@@ -2217,7 +2217,7 @@ extends
     {
         "\t<cim:MSSAggregation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MSSAggregation>\n"
+        "\t</cim:MSSAggregation>"
     }
 }
 
@@ -2295,7 +2295,7 @@ extends
     {
         "\t<cim:MSSZone rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MSSZone>\n"
+        "\t</cim:MSSZone>"
     }
 }
 
@@ -2392,7 +2392,7 @@ extends
     {
         "\t<cim:MarketPerson rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketPerson>\n"
+        "\t</cim:MarketPerson>"
     }
 }
 
@@ -2483,7 +2483,7 @@ extends
     {
         "\t<cim:MarketQualificationRequirement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketQualificationRequirement>\n"
+        "\t</cim:MarketQualificationRequirement>"
     }
 }
 
@@ -2541,7 +2541,7 @@ extends
     {
         "\t<cim:MarketRegion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketRegion>\n"
+        "\t</cim:MarketRegion>"
     }
 }
 
@@ -2602,7 +2602,7 @@ extends
     {
         "\t<cim:MarketSkill rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketSkill>\n"
+        "\t</cim:MarketSkill>"
     }
 }
 
@@ -2660,7 +2660,7 @@ extends
     {
         "\t<cim:MaxStartUpCostCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MaxStartUpCostCurve>\n"
+        "\t</cim:MaxStartUpCostCurve>"
     }
 }
 
@@ -2709,7 +2709,7 @@ extends
     {
         "\t<cim:MeteredSubSystem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeteredSubSystem>\n"
+        "\t</cim:MeteredSubSystem>"
     }
 }
 
@@ -2761,7 +2761,7 @@ extends
     {
         "\t<cim:MktCombinedCyclePlant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktCombinedCyclePlant>\n"
+        "\t</cim:MktCombinedCyclePlant>"
     }
 }
 
@@ -2810,7 +2810,7 @@ extends
     {
         "\t<cim:MktConductingEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktConductingEquipment>\n"
+        "\t</cim:MktConductingEquipment>"
     }
 }
 
@@ -2878,7 +2878,7 @@ extends
     {
         "\t<cim:MktContingency rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktContingency>\n"
+        "\t</cim:MktContingency>"
     }
 }
 
@@ -2942,7 +2942,7 @@ extends
     {
         "\t<cim:MktHeatRateCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktHeatRateCurve>\n"
+        "\t</cim:MktHeatRateCurve>"
     }
 }
 
@@ -2993,7 +2993,7 @@ extends
     {
         "\t<cim:MktThermalGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktThermalGeneratingUnit>\n"
+        "\t</cim:MktThermalGeneratingUnit>"
     }
 }
 
@@ -3045,7 +3045,7 @@ extends
     {
         "\t<cim:OilPrice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OilPrice>\n"
+        "\t</cim:OilPrice>"
     }
 }
 
@@ -3110,7 +3110,7 @@ extends
     {
         "\t<cim:OrgPnodeAllocation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OrgPnodeAllocation>\n"
+        "\t</cim:OrgPnodeAllocation>"
     }
 }
 
@@ -3187,7 +3187,7 @@ extends
     {
         "\t<cim:OrgResOwnership rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OrgResOwnership>\n"
+        "\t</cim:OrgResOwnership>"
     }
 }
 
@@ -3281,7 +3281,7 @@ extends
     {
         "\t<cim:Pnode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Pnode>\n"
+        "\t</cim:Pnode>"
     }
 }
 
@@ -3364,7 +3364,7 @@ extends
     {
         "\t<cim:PnodeDistributionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PnodeDistributionFactor>\n"
+        "\t</cim:PnodeDistributionFactor>"
     }
 }
 
@@ -3425,7 +3425,7 @@ extends
     {
         "\t<cim:RMRHeatRateCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RMRHeatRateCurve>\n"
+        "\t</cim:RMRHeatRateCurve>"
     }
 }
 
@@ -3476,7 +3476,7 @@ extends
     {
         "\t<cim:RMRStartUpCostCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RMRStartUpCostCurve>\n"
+        "\t</cim:RMRStartUpCostCurve>"
     }
 }
 
@@ -3527,7 +3527,7 @@ extends
     {
         "\t<cim:RMRStartUpEnergyCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RMRStartUpEnergyCurve>\n"
+        "\t</cim:RMRStartUpEnergyCurve>"
     }
 }
 
@@ -3578,7 +3578,7 @@ extends
     {
         "\t<cim:RMRStartUpFuelCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RMRStartUpFuelCurve>\n"
+        "\t</cim:RMRStartUpFuelCurve>"
     }
 }
 
@@ -3629,7 +3629,7 @@ extends
     {
         "\t<cim:RMRStartUpTimeCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RMRStartUpTimeCurve>\n"
+        "\t</cim:RMRStartUpTimeCurve>"
     }
 }
 
@@ -3678,7 +3678,7 @@ extends
     {
         "\t<cim:RTO rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RTO>\n"
+        "\t</cim:RTO>"
     }
 }
 
@@ -3726,7 +3726,7 @@ extends
     {
         "\t<cim:RUCZone rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RUCZone>\n"
+        "\t</cim:RUCZone>"
     }
 }
 
@@ -4027,7 +4027,7 @@ extends
     {
         "\t<cim:RegisteredGenerator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegisteredGenerator>\n"
+        "\t</cim:RegisteredGenerator>"
     }
 }
 
@@ -4244,7 +4244,7 @@ extends
     {
         "\t<cim:RegisteredInterTie rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegisteredInterTie>\n"
+        "\t</cim:RegisteredInterTie>"
     }
 }
 
@@ -4376,7 +4376,7 @@ extends
     {
         "\t<cim:RegisteredLoad rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegisteredLoad>\n"
+        "\t</cim:RegisteredLoad>"
     }
 }
 
@@ -4475,7 +4475,7 @@ extends
     {
         "\t<cim:RegulatingLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegulatingLimit>\n"
+        "\t</cim:RegulatingLimit>"
     }
 }
 
@@ -4548,7 +4548,7 @@ extends
     {
         "\t<cim:ResourceAncillaryServiceQualification rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceAncillaryServiceQualification>\n"
+        "\t</cim:ResourceAncillaryServiceQualification>"
     }
 }
 
@@ -4630,7 +4630,7 @@ extends
     {
         "\t<cim:ResourceCapacity rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceCapacity>\n"
+        "\t</cim:ResourceCapacity>"
     }
 }
 
@@ -4708,7 +4708,7 @@ extends
     {
         "\t<cim:ResourceOperationMaintenanceCost rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceOperationMaintenanceCost>\n"
+        "\t</cim:ResourceOperationMaintenanceCost>"
     }
 }
 
@@ -4821,7 +4821,7 @@ extends
     {
         "\t<cim:ResourceStartupCost rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceStartupCost>\n"
+        "\t</cim:ResourceStartupCost>"
     }
 }
 
@@ -4910,7 +4910,7 @@ extends
     {
         "\t<cim:ResourceVerifiableCosts rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceVerifiableCosts>\n"
+        "\t</cim:ResourceVerifiableCosts>"
     }
 }
 
@@ -4972,7 +4972,7 @@ extends
     {
         "\t<cim:SchedulingCoordinator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SchedulingCoordinator>\n"
+        "\t</cim:SchedulingCoordinator>"
     }
 }
 
@@ -5039,7 +5039,7 @@ extends
     {
         "\t<cim:SchedulingCoordinatorUser rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SchedulingCoordinatorUser>\n"
+        "\t</cim:SchedulingCoordinatorUser>"
     }
 }
 
@@ -5104,7 +5104,7 @@ extends
     {
         "\t<cim:SchedulingPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SchedulingPoint>\n"
+        "\t</cim:SchedulingPoint>"
     }
 }
 
@@ -5160,7 +5160,7 @@ extends
     {
         "\t<cim:StartUpEnergyCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartUpEnergyCurve>\n"
+        "\t</cim:StartUpEnergyCurve>"
     }
 }
 
@@ -5211,7 +5211,7 @@ extends
     {
         "\t<cim:StartUpFuelCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartUpFuelCurve>\n"
+        "\t</cim:StartUpFuelCurve>"
     }
 }
 
@@ -5306,7 +5306,7 @@ extends
     {
         "\t<cim:SubControlArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SubControlArea>\n"
+        "\t</cim:SubControlArea>"
     }
 }
 
@@ -5393,7 +5393,7 @@ extends
     {
         "\t<cim:SubstitutionResourceList rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SubstitutionResourceList>\n"
+        "\t</cim:SubstitutionResourceList>"
     }
 }
 
@@ -5452,7 +5452,7 @@ extends
     {
         "\t<cim:TACArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TACArea>\n"
+        "\t</cim:TACArea>"
     }
 }
 
@@ -5515,7 +5515,7 @@ extends
     {
         "\t<cim:TransmissionRightChain rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionRightChain>\n"
+        "\t</cim:TransmissionRightChain>"
     }
 }
 
@@ -5572,7 +5572,7 @@ extends
     {
         "\t<cim:WheelingCounterParty rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WheelingCounterParty>\n"
+        "\t</cim:WheelingCounterParty>"
     }
 }
 

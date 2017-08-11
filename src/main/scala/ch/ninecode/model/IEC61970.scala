@@ -47,7 +47,7 @@ extends
     {
         "\t<cim:IEC61970CIMVersion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IEC61970CIMVersion>\n"
+        "\t</cim:IEC61970CIMVersion>"
     }
 }
 

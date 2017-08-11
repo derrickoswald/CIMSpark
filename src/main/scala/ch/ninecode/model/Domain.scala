@@ -47,7 +47,7 @@ extends
     {
         "\t<cim:DateInterval rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DateInterval>\n"
+        "\t</cim:DateInterval>"
     }
 }
 
@@ -103,7 +103,7 @@ extends
     {
         "\t<cim:DateTimeInterval rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DateTimeInterval>\n"
+        "\t</cim:DateTimeInterval>"
     }
 }
 
@@ -157,7 +157,7 @@ extends
     {
         "\t<cim:DecimalQuantity rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DecimalQuantity>\n"
+        "\t</cim:DecimalQuantity>"
     }
 }
 
@@ -220,7 +220,7 @@ extends
     {
         "\t<cim:FloatQuantity rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FloatQuantity>\n"
+        "\t</cim:FloatQuantity>"
     }
 }
 
@@ -281,7 +281,7 @@ extends
     {
         "\t<cim:IntegerQuantity rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IntegerQuantity>\n"
+        "\t</cim:IntegerQuantity>"
     }
 }
 
@@ -339,7 +339,7 @@ extends
     {
         "\t<cim:MonthDayInterval rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MonthDayInterval>\n"
+        "\t</cim:MonthDayInterval>"
     }
 }
 
@@ -398,7 +398,7 @@ extends
     {
         "\t<cim:StringQuantity rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StringQuantity>\n"
+        "\t</cim:StringQuantity>"
     }
 }
 
@@ -456,7 +456,7 @@ extends
     {
         "\t<cim:TimeInterval rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TimeInterval>\n"
+        "\t</cim:TimeInterval>"
     }
 }
 

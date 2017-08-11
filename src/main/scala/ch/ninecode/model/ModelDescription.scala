@@ -49,7 +49,7 @@ extends
     {
         "\t<cim:Description rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Description>\n"
+        "\t</cim:Description>"
     }
 }
 
@@ -99,7 +99,7 @@ extends
     {
         "\t<cim:DescriptionID rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DescriptionID>\n"
+        "\t</cim:DescriptionID>"
     }
 }
 
@@ -147,7 +147,7 @@ extends
     {
         "\t<cim:DifferenceModel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DifferenceModel>\n"
+        "\t</cim:DifferenceModel>"
     }
 }
 
@@ -194,7 +194,7 @@ extends
     {
         "\t<cim:FullModel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FullModel>\n"
+        "\t</cim:FullModel>"
     }
 }
 
@@ -237,7 +237,7 @@ extends
     {
         "\t<cim:FullModelDocumentElement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FullModelDocumentElement>\n"
+        "\t</cim:FullModelDocumentElement>"
     }
 }
 
@@ -295,7 +295,7 @@ extends
     {
         "\t<cim:Model rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Model>\n"
+        "\t</cim:Model>"
     }
 }
 
@@ -357,7 +357,7 @@ extends
     {
         "\t<cim:ModelDescriptionCIMVersion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ModelDescriptionCIMVersion>\n"
+        "\t</cim:ModelDescriptionCIMVersion>"
     }
 }
 
@@ -404,7 +404,7 @@ extends
     {
         "\t<cim:Statements rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Statements>\n"
+        "\t</cim:Statements>"
     }
 }
 

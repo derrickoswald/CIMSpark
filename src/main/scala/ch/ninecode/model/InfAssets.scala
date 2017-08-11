@@ -45,7 +45,7 @@ extends
     {
         "\t<cim:AssetPropertyCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetPropertyCurve>\n"
+        "\t</cim:AssetPropertyCurve>"
     }
 }
 
@@ -111,7 +111,7 @@ extends
     {
         "\t<cim:Bushing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Bushing>\n"
+        "\t</cim:Bushing>"
     }
 }
 
@@ -182,7 +182,7 @@ extends
     {
         "\t<cim:BushingInsulationPF rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BushingInsulationPF>\n"
+        "\t</cim:BushingInsulationPF>"
     }
 }
 
@@ -237,7 +237,7 @@ extends
     {
         "\t<cim:Cabinet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Cabinet>\n"
+        "\t</cim:Cabinet>"
     }
 }
 
@@ -296,7 +296,7 @@ extends
     {
         "\t<cim:CoolingPowerRating rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CoolingPowerRating>\n"
+        "\t</cim:CoolingPowerRating>"
     }
 }
 
@@ -370,7 +370,7 @@ extends
     {
         "\t<cim:DimensionsInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DimensionsInfo>\n"
+        "\t</cim:DimensionsInfo>"
     }
 }
 
@@ -432,7 +432,7 @@ extends
     {
         "\t<cim:DuctBank rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DuctBank>\n"
+        "\t</cim:DuctBank>"
     }
 }
 
@@ -483,7 +483,7 @@ extends
     {
         "\t<cim:FACTSDevice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FACTSDevice>\n"
+        "\t</cim:FACTSDevice>"
     }
 }
 
@@ -534,7 +534,7 @@ extends
     {
         "\t<cim:Facility rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Facility>\n"
+        "\t</cim:Facility>"
     }
 }
 
@@ -595,7 +595,7 @@ extends
     {
         "\t<cim:FailureEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FailureEvent>\n"
+        "\t</cim:FailureEvent>"
     }
 }
 
@@ -687,7 +687,7 @@ extends
     {
         "\t<cim:FinancialInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FinancialInfo>\n"
+        "\t</cim:FinancialInfo>"
     }
 }
 
@@ -776,7 +776,7 @@ extends
     {
         "\t<cim:GenericAssetModelOrMaterial rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenericAssetModelOrMaterial>\n"
+        "\t</cim:GenericAssetModelOrMaterial>"
     }
 }
 
@@ -844,7 +844,7 @@ extends
     {
         "\t<cim:Joint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Joint>\n"
+        "\t</cim:Joint>"
     }
 }
 
@@ -909,7 +909,7 @@ extends
     {
         "\t<cim:Medium rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Medium>\n"
+        "\t</cim:Medium>"
     }
 }
 
@@ -998,7 +998,7 @@ extends
     {
         "\t<cim:Pole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Pole>\n"
+        "\t</cim:Pole>"
     }
 }
 
@@ -1072,7 +1072,7 @@ extends
     {
         "\t<cim:Reconditioning rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Reconditioning>\n"
+        "\t</cim:Reconditioning>"
     }
 }
 
@@ -1134,7 +1134,7 @@ extends
     {
         "\t<cim:ReliabilityInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReliabilityInfo>\n"
+        "\t</cim:ReliabilityInfo>"
     }
 }
 
@@ -1190,7 +1190,7 @@ extends
     {
         "\t<cim:Specification rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Specification>\n"
+        "\t</cim:Specification>"
     }
 }
 
@@ -1249,7 +1249,7 @@ extends
     {
         "\t<cim:Streetlight rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Streetlight>\n"
+        "\t</cim:Streetlight>"
     }
 }
 
@@ -1326,7 +1326,7 @@ extends
     {
         "\t<cim:Structure rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Structure>\n"
+        "\t</cim:Structure>"
     }
 }
 
@@ -1410,7 +1410,7 @@ extends
     {
         "\t<cim:StructureSupport rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StructureSupport>\n"
+        "\t</cim:StructureSupport>"
     }
 }
 
@@ -1476,7 +1476,7 @@ extends
     {
         "\t<cim:Tower rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Tower>\n"
+        "\t</cim:Tower>"
     }
 }
 
@@ -1576,7 +1576,7 @@ extends
     {
         "\t<cim:TransformerObservation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerObservation>\n"
+        "\t</cim:TransformerObservation>"
     }
 }
 
@@ -1666,7 +1666,7 @@ extends
     {
         "\t<cim:UndergroundStructure rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UndergroundStructure>\n"
+        "\t</cim:UndergroundStructure>"
     }
 }
 
@@ -1742,7 +1742,7 @@ extends
     {
         "\t<cim:WindingInsulation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindingInsulation>\n"
+        "\t</cim:WindingInsulation>"
     }
 }
 

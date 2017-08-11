@@ -46,7 +46,7 @@ extends
     {
         "\t<cim:ReserveReq rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReserveReq>\n"
+        "\t</cim:ReserveReq>"
     }
 }
 
@@ -102,7 +102,7 @@ extends
     {
         "\t<cim:ReserveReqCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReserveReqCurve>\n"
+        "\t</cim:ReserveReqCurve>"
     }
 }
 
@@ -156,7 +156,7 @@ extends
     {
         "\t<cim:ResourceGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceGroup>\n"
+        "\t</cim:ResourceGroup>"
     }
 }
 
@@ -212,7 +212,7 @@ extends
     {
         "\t<cim:ResourceGroupReq rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceGroupReq>\n"
+        "\t</cim:ResourceGroupReq>"
     }
 }
 
@@ -266,7 +266,7 @@ extends
     {
         "\t<cim:SensitivityPriceCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SensitivityPriceCurve>\n"
+        "\t</cim:SensitivityPriceCurve>"
     }
 }
 

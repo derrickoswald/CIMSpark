@@ -57,7 +57,7 @@ extends
     {
         "\t<cim:AccessPermit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AccessPermit>\n"
+        "\t</cim:AccessPermit>"
     }
 }
 
@@ -117,7 +117,7 @@ extends
     {
         "\t<cim:Assignment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Assignment>\n"
+        "\t</cim:Assignment>"
     }
 }
 
@@ -168,7 +168,7 @@ extends
     {
         "\t<cim:BusinessCase rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BusinessCase>\n"
+        "\t</cim:BusinessCase>"
     }
 }
 
@@ -219,7 +219,7 @@ extends
     {
         "\t<cim:CUAllowableAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CUAllowableAction>\n"
+        "\t</cim:CUAllowableAction>"
     }
 }
 
@@ -279,7 +279,7 @@ extends
     {
         "\t<cim:CUAsset rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CUAsset>\n"
+        "\t</cim:CUAsset>"
     }
 }
 
@@ -345,7 +345,7 @@ extends
     {
         "\t<cim:CUContractorItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CUContractorItem>\n"
+        "\t</cim:CUContractorItem>"
     }
 }
 
@@ -405,7 +405,7 @@ extends
     {
         "\t<cim:CUGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CUGroup>\n"
+        "\t</cim:CUGroup>"
     }
 }
 
@@ -461,7 +461,7 @@ extends
     {
         "\t<cim:CULaborCode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CULaborCode>\n"
+        "\t</cim:CULaborCode>"
     }
 }
 
@@ -532,7 +532,7 @@ extends
     {
         "\t<cim:CULaborItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CULaborItem>\n"
+        "\t</cim:CULaborItem>"
     }
 }
 
@@ -608,7 +608,7 @@ extends
     {
         "\t<cim:CUMaterialItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CUMaterialItem>\n"
+        "\t</cim:CUMaterialItem>"
     }
 }
 
@@ -679,7 +679,7 @@ extends
     {
         "\t<cim:CUWorkEquipmentItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CUWorkEquipmentItem>\n"
+        "\t</cim:CUWorkEquipmentItem>"
     }
 }
 
@@ -756,7 +756,7 @@ extends
     {
         "\t<cim:Capability rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Capability>\n"
+        "\t</cim:Capability>"
     }
 }
 
@@ -843,7 +843,7 @@ extends
     {
         "\t<cim:CompatibleUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CompatibleUnit>\n"
+        "\t</cim:CompatibleUnit>"
     }
 }
 
@@ -916,7 +916,7 @@ extends
     {
         "\t<cim:ConditionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConditionFactor>\n"
+        "\t</cim:ConditionFactor>"
     }
 }
 
@@ -989,7 +989,7 @@ extends
     {
         "\t<cim:ContractorItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ContractorItem>\n"
+        "\t</cim:ContractorItem>"
     }
 }
 
@@ -1071,7 +1071,7 @@ extends
     {
         "\t<cim:CostType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CostType>\n"
+        "\t</cim:CostType>"
     }
 }
 
@@ -1150,7 +1150,7 @@ extends
     {
         "\t<cim:Design rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Design>\n"
+        "\t</cim:Design>"
     }
 }
 
@@ -1218,7 +1218,7 @@ extends
     {
         "\t<cim:DesignLocation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DesignLocation>\n"
+        "\t</cim:DesignLocation>"
     }
 }
 
@@ -1307,7 +1307,7 @@ extends
     {
         "\t<cim:DesignLocationCU rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DesignLocationCU>\n"
+        "\t</cim:DesignLocationCU>"
     }
 }
 
@@ -1400,7 +1400,7 @@ extends
     {
         "\t<cim:InfoQuestion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InfoQuestion>\n"
+        "\t</cim:InfoQuestion>"
     }
 }
 
@@ -1482,7 +1482,7 @@ extends
     {
         "\t<cim:LaborItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LaborItem>\n"
+        "\t</cim:LaborItem>"
     }
 }
 
@@ -1570,7 +1570,7 @@ extends
     {
         "\t<cim:MiscCostItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MiscCostItem>\n"
+        "\t</cim:MiscCostItem>"
     }
 }
 
@@ -1637,7 +1637,7 @@ extends
     {
         "\t<cim:NonStandardItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonStandardItem>\n"
+        "\t</cim:NonStandardItem>"
     }
 }
 
@@ -1697,7 +1697,7 @@ extends
     {
         "\t<cim:OldWorkTask rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OldWorkTask>\n"
+        "\t</cim:OldWorkTask>"
     }
 }
 
@@ -1760,7 +1760,7 @@ extends
     {
         "\t<cim:OneCallRequest rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OneCallRequest>\n"
+        "\t</cim:OneCallRequest>"
     }
 }
 
@@ -1821,7 +1821,7 @@ extends
     {
         "\t<cim:OverheadCost rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverheadCost>\n"
+        "\t</cim:OverheadCost>"
     }
 }
 
@@ -1886,7 +1886,7 @@ extends
     {
         "\t<cim:Project rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Project>\n"
+        "\t</cim:Project>"
     }
 }
 
@@ -1956,7 +1956,7 @@ extends
     {
         "\t<cim:PropertyUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PropertyUnit>\n"
+        "\t</cim:PropertyUnit>"
     }
 }
 
@@ -2018,7 +2018,7 @@ extends
     {
         "\t<cim:QualificationRequirement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:QualificationRequirement>\n"
+        "\t</cim:QualificationRequirement>"
     }
 }
 
@@ -2072,7 +2072,7 @@ extends
     {
         "\t<cim:Regulation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Regulation>\n"
+        "\t</cim:Regulation>"
     }
 }
 
@@ -2132,7 +2132,7 @@ extends
     {
         "\t<cim:ShiftPattern rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShiftPattern>\n"
+        "\t</cim:ShiftPattern>"
     }
 }
 
@@ -2200,7 +2200,7 @@ extends
     {
         "\t<cim:TypeMaterial rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TypeMaterial>\n"
+        "\t</cim:TypeMaterial>"
     }
 }
 
@@ -2261,7 +2261,7 @@ extends
     {
         "\t<cim:Usage rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Usage>\n"
+        "\t</cim:Usage>"
     }
 }
 
@@ -2345,7 +2345,7 @@ extends
     {
         "\t<cim:WorkCostDetail rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkCostDetail>\n"
+        "\t</cim:WorkCostDetail>"
     }
 }
 
@@ -2417,7 +2417,7 @@ extends
     {
         "\t<cim:WorkCostSummary rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkCostSummary>\n"
+        "\t</cim:WorkCostSummary>"
     }
 }
 
@@ -2467,7 +2467,7 @@ extends
     {
         "\t<cim:WorkDocument rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkDocument>\n"
+        "\t</cim:WorkDocument>"
     }
 }
 
@@ -2522,7 +2522,7 @@ extends
     {
         "\t<cim:WorkFlowStep rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkFlowStep>\n"
+        "\t</cim:WorkFlowStep>"
     }
 }
 
@@ -2576,7 +2576,7 @@ extends
     {
         "\t<cim:WorkIdentifiedObject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkIdentifiedObject>\n"
+        "\t</cim:WorkIdentifiedObject>"
     }
 }
 
@@ -2625,7 +2625,7 @@ extends
     {
         "\t<cim:WorkStatusEntry rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkStatusEntry>\n"
+        "\t</cim:WorkStatusEntry>"
     }
 }
 

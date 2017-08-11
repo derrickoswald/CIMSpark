@@ -66,7 +66,7 @@ extends
     {
         "\t<cim:PowerSystemProject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerSystemProject>\n"
+        "\t</cim:PowerSystemProject>"
     }
 }
 
@@ -138,7 +138,7 @@ extends
     {
         "\t<cim:PowerSystemProjectSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerSystemProjectSchedule>\n"
+        "\t</cim:PowerSystemProjectSchedule>"
     }
 }
 
@@ -201,7 +201,7 @@ extends
     {
         "\t<cim:PowerSystemSubProject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerSystemSubProject>\n"
+        "\t</cim:PowerSystemSubProject>"
     }
 }
 
@@ -267,7 +267,7 @@ extends
     {
         "\t<cim:ProjectStep rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProjectStep>\n"
+        "\t</cim:ProjectStep>"
     }
 }
 

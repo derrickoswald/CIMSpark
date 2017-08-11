@@ -50,7 +50,7 @@ extends
     {
         "\t<cim:AcceptanceTest rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AcceptanceTest>\n"
+        "\t</cim:AcceptanceTest>"
     }
 }
 
@@ -175,7 +175,7 @@ extends
     {
         "\t<cim:Asset rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Asset>\n"
+        "\t</cim:Asset>"
     }
 }
 
@@ -268,7 +268,7 @@ extends
     {
         "\t<cim:AssetContainer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetContainer>\n"
+        "\t</cim:AssetContainer>"
     }
 }
 
@@ -329,7 +329,7 @@ extends
     {
         "\t<cim:AssetFunction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetFunction>\n"
+        "\t</cim:AssetFunction>"
     }
 }
 
@@ -391,7 +391,7 @@ extends
     {
         "\t<cim:AssetInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetInfo>\n"
+        "\t</cim:AssetInfo>"
     }
 }
 
@@ -443,7 +443,7 @@ extends
     {
         "\t<cim:AssetLocationHazard rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetLocationHazard>\n"
+        "\t</cim:AssetLocationHazard>"
     }
 }
 
@@ -495,7 +495,7 @@ extends
     {
         "\t<cim:AssetModel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetModel>\n"
+        "\t</cim:AssetModel>"
     }
 }
 
@@ -544,7 +544,7 @@ extends
     {
         "\t<cim:AssetOrganisationRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetOrganisationRole>\n"
+        "\t</cim:AssetOrganisationRole>"
     }
 }
 
@@ -591,7 +591,7 @@ extends
     {
         "\t<cim:AssetOwner rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetOwner>\n"
+        "\t</cim:AssetOwner>"
     }
 }
 
@@ -638,7 +638,7 @@ extends
     {
         "\t<cim:AssetUser rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetUser>\n"
+        "\t</cim:AssetUser>"
     }
 }
 
@@ -685,7 +685,7 @@ extends
     {
         "\t<cim:ComMedia rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ComMedia>\n"
+        "\t</cim:ComMedia>"
     }
 }
 
@@ -753,7 +753,7 @@ extends
     {
         "\t<cim:LifecycleDate rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LifecycleDate>\n"
+        "\t</cim:LifecycleDate>"
     }
 }
 
@@ -812,7 +812,7 @@ extends
     {
         "\t<cim:Maintainer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Maintainer>\n"
+        "\t</cim:Maintainer>"
     }
 }
 
@@ -859,7 +859,7 @@ extends
     {
         "\t<cim:Manufacturer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Manufacturer>\n"
+        "\t</cim:Manufacturer>"
     }
 }
 
@@ -923,7 +923,7 @@ extends
     {
         "\t<cim:Procedure rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Procedure>\n"
+        "\t</cim:Procedure>"
     }
 }
 
@@ -994,7 +994,7 @@ extends
     {
         "\t<cim:ProcedureDataSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProcedureDataSet>\n"
+        "\t</cim:ProcedureDataSet>"
     }
 }
 
@@ -1069,7 +1069,7 @@ extends
     {
         "\t<cim:ProductAssetModel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProductAssetModel>\n"
+        "\t</cim:ProductAssetModel>"
     }
 }
 
@@ -1144,7 +1144,7 @@ extends
     {
         "\t<cim:Seal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Seal>\n"
+        "\t</cim:Seal>"
     }
 }
 

@@ -44,7 +44,7 @@ extends
     {
         "\t<cim:Gate rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Gate>\n"
+        "\t</cim:Gate>"
     }
 }
 
@@ -115,7 +115,7 @@ extends
     {
         "\t<cim:GateInputPin rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GateInputPin>\n"
+        "\t</cim:GateInputPin>"
     }
 }
 
@@ -178,7 +178,7 @@ extends
     {
         "\t<cim:MeasurementCalculator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeasurementCalculator>\n"
+        "\t</cim:MeasurementCalculator>"
     }
 }
 
@@ -240,7 +240,7 @@ extends
     {
         "\t<cim:MeasurementCalculatorInput rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeasurementCalculatorInput>\n"
+        "\t</cim:MeasurementCalculatorInput>"
     }
 }
 
@@ -300,7 +300,7 @@ extends
     {
         "\t<cim:PinBranchGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PinBranchGroup>\n"
+        "\t</cim:PinBranchGroup>"
     }
 }
 
@@ -356,7 +356,7 @@ extends
     {
         "\t<cim:PinEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PinEquipment>\n"
+        "\t</cim:PinEquipment>"
     }
 }
 
@@ -409,7 +409,7 @@ extends
     {
         "\t<cim:PinGate rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PinGate>\n"
+        "\t</cim:PinGate>"
     }
 }
 
@@ -463,7 +463,7 @@ extends
     {
         "\t<cim:PinMeasurement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PinMeasurement>\n"
+        "\t</cim:PinMeasurement>"
     }
 }
 
@@ -519,7 +519,7 @@ extends
     {
         "\t<cim:PinTerminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PinTerminal>\n"
+        "\t</cim:PinTerminal>"
     }
 }
 
@@ -588,7 +588,7 @@ extends
     {
         "\t<cim:ProtectiveAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectiveAction>\n"
+        "\t</cim:ProtectiveAction>"
     }
 }
 
@@ -673,7 +673,7 @@ extends
     {
         "\t<cim:ProtectiveActionAdjustment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectiveActionAdjustment>\n"
+        "\t</cim:ProtectiveActionAdjustment>"
     }
 }
 
@@ -736,7 +736,7 @@ extends
     {
         "\t<cim:ProtectiveActionCollection rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectiveActionCollection>\n"
+        "\t</cim:ProtectiveActionCollection>"
     }
 }
 
@@ -788,7 +788,7 @@ extends
     {
         "\t<cim:ProtectiveActionEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectiveActionEquipment>\n"
+        "\t</cim:ProtectiveActionEquipment>"
     }
 }
 
@@ -848,7 +848,7 @@ extends
     {
         "\t<cim:ProtectiveActionRegulation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectiveActionRegulation>\n"
+        "\t</cim:ProtectiveActionRegulation>"
     }
 }
 
@@ -913,7 +913,7 @@ extends
     {
         "\t<cim:RemedialActionScheme rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RemedialActionScheme>\n"
+        "\t</cim:RemedialActionScheme>"
     }
 }
 
@@ -974,7 +974,7 @@ extends
     {
         "\t<cim:Stage rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Stage>\n"
+        "\t</cim:Stage>"
     }
 }
 
@@ -1050,7 +1050,7 @@ extends
     {
         "\t<cim:StageTrigger rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StageTrigger>\n"
+        "\t</cim:StageTrigger>"
     }
 }
 
@@ -1118,7 +1118,7 @@ extends
     {
         "\t<cim:TriggerCondition rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TriggerCondition>\n"
+        "\t</cim:TriggerCondition>"
     }
 }
 

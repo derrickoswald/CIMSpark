@@ -44,7 +44,7 @@ extends
     {
         "\t<cim:ASRequirements rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ASRequirements>\n"
+        "\t</cim:ASRequirements>"
     }
 }
 
@@ -98,7 +98,7 @@ extends
     {
         "\t<cim:AnalogMeasurementValueQuality rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AnalogMeasurementValueQuality>\n"
+        "\t</cim:AnalogMeasurementValueQuality>"
     }
 }
 
@@ -160,7 +160,7 @@ extends
     {
         "\t<cim:AreaLoadCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AreaLoadCurve>\n"
+        "\t</cim:AreaLoadCurve>"
     }
 }
 
@@ -218,7 +218,7 @@ extends
     {
         "\t<cim:BaseCaseConstraintLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BaseCaseConstraintLimit>\n"
+        "\t</cim:BaseCaseConstraintLimit>"
     }
 }
 
@@ -286,7 +286,7 @@ extends
     {
         "\t<cim:BranchEndFlow rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BranchEndFlow>\n"
+        "\t</cim:BranchEndFlow>"
     }
 }
 
@@ -353,7 +353,7 @@ extends
     {
         "\t<cim:ConstraintTerm rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConstraintTerm>\n"
+        "\t</cim:ConstraintTerm>"
     }
 }
 
@@ -415,7 +415,7 @@ extends
     {
         "\t<cim:ContingencyConstraintLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ContingencyConstraintLimit>\n"
+        "\t</cim:ContingencyConstraintLimit>"
     }
 }
 
@@ -478,7 +478,7 @@ extends
     {
         "\t<cim:ControlAreaSolutionData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ControlAreaSolutionData>\n"
+        "\t</cim:ControlAreaSolutionData>"
     }
 }
 
@@ -549,7 +549,7 @@ extends
     {
         "\t<cim:DefaultBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DefaultBid>\n"
+        "\t</cim:DefaultBid>"
     }
 }
 
@@ -614,7 +614,7 @@ extends
     {
         "\t<cim:DefaultBidCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DefaultBidCurve>\n"
+        "\t</cim:DefaultBidCurve>"
     }
 }
 
@@ -669,7 +669,7 @@ extends
     {
         "\t<cim:DefaultBidCurveData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DefaultBidCurveData>\n"
+        "\t</cim:DefaultBidCurveData>"
     }
 }
 
@@ -721,7 +721,7 @@ extends
     {
         "\t<cim:DefaultConstraintLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DefaultConstraintLimit>\n"
+        "\t</cim:DefaultConstraintLimit>"
     }
 }
 
@@ -780,7 +780,7 @@ extends
     {
         "\t<cim:DiscreteMeasurementValueQuality rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscreteMeasurementValueQuality>\n"
+        "\t</cim:DiscreteMeasurementValueQuality>"
     }
 }
 
@@ -851,7 +851,7 @@ extends
     {
         "\t<cim:DistributionFactorSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DistributionFactorSet>\n"
+        "\t</cim:DistributionFactorSet>"
     }
 }
 
@@ -920,7 +920,7 @@ extends
     {
         "\t<cim:EnergyConsumerData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyConsumerData>\n"
+        "\t</cim:EnergyConsumerData>"
     }
 }
 
@@ -991,7 +991,7 @@ extends
     {
         "\t<cim:EnergyPriceIndex rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyPriceIndex>\n"
+        "\t</cim:EnergyPriceIndex>"
     }
 }
 
@@ -1055,7 +1055,7 @@ extends
     {
         "\t<cim:EnergyProfile rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyProfile>\n"
+        "\t</cim:EnergyProfile>"
     }
 }
 
@@ -1149,7 +1149,7 @@ extends
     {
         "\t<cim:EnergyTransaction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyTransaction>\n"
+        "\t</cim:EnergyTransaction>"
     }
 }
 
@@ -1233,7 +1233,7 @@ extends
     {
         "\t<cim:GenDistributionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenDistributionFactor>\n"
+        "\t</cim:GenDistributionFactor>"
     }
 }
 
@@ -1311,7 +1311,7 @@ extends
     {
         "\t<cim:GeneratingUnitDynamicValues rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GeneratingUnitDynamicValues>\n"
+        "\t</cim:GeneratingUnitDynamicValues>"
     }
 }
 
@@ -1386,7 +1386,7 @@ extends
     {
         "\t<cim:GenericConstraints rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenericConstraints>\n"
+        "\t</cim:GenericConstraints>"
     }
 }
 
@@ -1449,7 +1449,7 @@ extends
     {
         "\t<cim:InterchangeETCData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InterchangeETCData>\n"
+        "\t</cim:InterchangeETCData>"
     }
 }
 
@@ -1534,7 +1534,7 @@ extends
     {
         "\t<cim:InterchangeSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InterchangeSchedule>\n"
+        "\t</cim:InterchangeSchedule>"
     }
 }
 
@@ -1608,7 +1608,7 @@ extends
     {
         "\t<cim:IntermittentResourceEligibility rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IntermittentResourceEligibility>\n"
+        "\t</cim:IntermittentResourceEligibility>"
     }
 }
 
@@ -1671,7 +1671,7 @@ extends
     {
         "\t<cim:LoadDistributionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadDistributionFactor>\n"
+        "\t</cim:LoadDistributionFactor>"
     }
 }
 
@@ -1732,7 +1732,7 @@ extends
     {
         "\t<cim:LossSensitivity rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LossSensitivity>\n"
+        "\t</cim:LossSensitivity>"
     }
 }
 
@@ -1785,7 +1785,7 @@ extends
     {
         "\t<cim:MWLimitSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MWLimitSchedule>\n"
+        "\t</cim:MWLimitSchedule>"
     }
 }
 
@@ -1839,7 +1839,7 @@ extends
     {
         "\t<cim:MktACLineSegment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktACLineSegment>\n"
+        "\t</cim:MktACLineSegment>"
     }
 }
 
@@ -1902,7 +1902,7 @@ extends
     {
         "\t<cim:MktAnalogLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktAnalogLimit>\n"
+        "\t</cim:MktAnalogLimit>"
     }
 }
 
@@ -1955,7 +1955,7 @@ extends
     {
         "\t<cim:MktAnalogLimitSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktAnalogLimitSet>\n"
+        "\t</cim:MktAnalogLimitSet>"
     }
 }
 
@@ -2004,7 +2004,7 @@ extends
     {
         "\t<cim:MktAnalogValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktAnalogValue>\n"
+        "\t</cim:MktAnalogValue>"
     }
 }
 
@@ -2051,7 +2051,7 @@ extends
     {
         "\t<cim:MktControlArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktControlArea>\n"
+        "\t</cim:MktControlArea>"
     }
 }
 
@@ -2098,7 +2098,7 @@ extends
     {
         "\t<cim:MktDiscreteValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktDiscreteValue>\n"
+        "\t</cim:MktDiscreteValue>"
     }
 }
 
@@ -2150,7 +2150,7 @@ extends
     {
         "\t<cim:MktSeriesCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktSeriesCompensator>\n"
+        "\t</cim:MktSeriesCompensator>"
     }
 }
 
@@ -2201,7 +2201,7 @@ extends
     {
         "\t<cim:MktShuntCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktShuntCompensator>\n"
+        "\t</cim:MktShuntCompensator>"
     }
 }
 
@@ -2248,7 +2248,7 @@ extends
     {
         "\t<cim:MktSwitch rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktSwitch>\n"
+        "\t</cim:MktSwitch>"
     }
 }
 
@@ -2295,7 +2295,7 @@ extends
     {
         "\t<cim:MktTapChanger rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktTapChanger>\n"
+        "\t</cim:MktTapChanger>"
     }
 }
 
@@ -2345,7 +2345,7 @@ extends
     {
         "\t<cim:NodeConstraintTerm rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NodeConstraintTerm>\n"
+        "\t</cim:NodeConstraintTerm>"
     }
 }
 
@@ -2394,7 +2394,7 @@ extends
     {
         "\t<cim:Profile rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Profile>\n"
+        "\t</cim:Profile>"
     }
 }
 
@@ -2464,7 +2464,7 @@ extends
     {
         "\t<cim:ProfileData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProfileData>\n"
+        "\t</cim:ProfileData>"
     }
 }
 
@@ -2540,7 +2540,7 @@ extends
     {
         "\t<cim:ReserveDemandCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReserveDemandCurve>\n"
+        "\t</cim:ReserveDemandCurve>"
     }
 }
 
@@ -2597,7 +2597,7 @@ extends
     {
         "\t<cim:SCADAInformation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SCADAInformation>\n"
+        "\t</cim:SCADAInformation>"
     }
 }
 
@@ -2655,7 +2655,7 @@ extends
     {
         "\t<cim:SecurityConstraintSum rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SecurityConstraintSum>\n"
+        "\t</cim:SecurityConstraintSum>"
     }
 }
 
@@ -2725,7 +2725,7 @@ extends
     {
         "\t<cim:SecurityConstraints rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SecurityConstraints>\n"
+        "\t</cim:SecurityConstraints>"
     }
 }
 
@@ -2785,7 +2785,7 @@ extends
     {
         "\t<cim:ServicePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ServicePoint>\n"
+        "\t</cim:ServicePoint>"
     }
 }
 
@@ -2850,7 +2850,7 @@ extends
     {
         "\t<cim:ShuntCompensatorDynamicData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShuntCompensatorDynamicData>\n"
+        "\t</cim:ShuntCompensatorDynamicData>"
     }
 }
 
@@ -2914,7 +2914,7 @@ extends
     {
         "\t<cim:SwitchStatus rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchStatus>\n"
+        "\t</cim:SwitchStatus>"
     }
 }
 
@@ -2974,7 +2974,7 @@ extends
     {
         "\t<cim:SysLoadDistributionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SysLoadDistributionFactor>\n"
+        "\t</cim:SysLoadDistributionFactor>"
     }
 }
 
@@ -3036,7 +3036,7 @@ extends
     {
         "\t<cim:TREntitlement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TREntitlement>\n"
+        "\t</cim:TREntitlement>"
     }
 }
 
@@ -3118,7 +3118,7 @@ extends
     {
         "\t<cim:TapChangerDynamicData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TapChangerDynamicData>\n"
+        "\t</cim:TapChangerDynamicData>"
     }
 }
 
@@ -3185,7 +3185,7 @@ extends
     {
         "\t<cim:TerminalConstraintTerm rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TerminalConstraintTerm>\n"
+        "\t</cim:TerminalConstraintTerm>"
     }
 }
 
@@ -3239,7 +3239,7 @@ extends
     {
         "\t<cim:TransferInterface rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransferInterface>\n"
+        "\t</cim:TransferInterface>"
     }
 }
 
@@ -3309,7 +3309,7 @@ extends
     {
         "\t<cim:TransferInterfaceSolution rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransferInterfaceSolution>\n"
+        "\t</cim:TransferInterfaceSolution>"
     }
 }
 
@@ -3399,7 +3399,7 @@ extends
     {
         "\t<cim:TransmissionCapacity rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionCapacity>\n"
+        "\t</cim:TransmissionCapacity>"
     }
 }
 
@@ -3484,7 +3484,7 @@ extends
     {
         "\t<cim:TransmissionInterfaceRightEntitlement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionInterfaceRightEntitlement>\n"
+        "\t</cim:TransmissionInterfaceRightEntitlement>"
     }
 }
 
@@ -3561,7 +3561,7 @@ extends
     {
         "\t<cim:TransmissionPath rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionPath>\n"
+        "\t</cim:TransmissionPath>"
     }
 }
 
@@ -3634,7 +3634,7 @@ extends
     {
         "\t<cim:TransmissionReservation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionReservation>\n"
+        "\t</cim:TransmissionReservation>"
     }
 }
 
@@ -3724,7 +3724,7 @@ extends
     {
         "\t<cim:UnitInitialConditions rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnitInitialConditions>\n"
+        "\t</cim:UnitInitialConditions>"
     }
 }
 

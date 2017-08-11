@@ -44,7 +44,7 @@ extends
     {
         "\t<cim:MarketParticipant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketParticipant>\n"
+        "\t</cim:MarketParticipant>"
     }
 }
 
@@ -105,7 +105,7 @@ extends
     {
         "\t<cim:MarketRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketRole>\n"
+        "\t</cim:MarketRole>"
     }
 }
 
@@ -295,7 +295,7 @@ extends
     {
         "\t<cim:RegisteredResource rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegisteredResource>\n"
+        "\t</cim:RegisteredResource>"
     }
 }
 

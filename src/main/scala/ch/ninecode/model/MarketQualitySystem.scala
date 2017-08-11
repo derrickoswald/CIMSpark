@@ -51,7 +51,7 @@ extends
     {
         "\t<cim:AllocationResult rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AllocationResult>\n"
+        "\t</cim:AllocationResult>"
     }
 }
 
@@ -131,7 +131,7 @@ extends
     {
         "\t<cim:AllocationResultValues rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AllocationResultValues>\n"
+        "\t</cim:AllocationResultValues>"
     }
 }
 
@@ -203,7 +203,7 @@ extends
     {
         "\t<cim:AuxiliaryCost rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AuxiliaryCost>\n"
+        "\t</cim:AuxiliaryCost>"
     }
 }
 
@@ -263,7 +263,7 @@ extends
     {
         "\t<cim:AuxiliaryObject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AuxiliaryObject>\n"
+        "\t</cim:AuxiliaryObject>"
     }
 }
 
@@ -346,7 +346,7 @@ extends
     {
         "\t<cim:AuxiliaryValues rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AuxiliaryValues>\n"
+        "\t</cim:AuxiliaryValues>"
     }
 }
 
@@ -423,7 +423,7 @@ extends
     {
         "\t<cim:ExpectedEnergy rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExpectedEnergy>\n"
+        "\t</cim:ExpectedEnergy>"
     }
 }
 
@@ -487,7 +487,7 @@ extends
     {
         "\t<cim:ExpectedEnergyValues rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExpectedEnergyValues>\n"
+        "\t</cim:ExpectedEnergyValues>"
     }
 }
 
@@ -550,7 +550,7 @@ extends
     {
         "\t<cim:FiveMinAuxiliaryData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FiveMinAuxiliaryData>\n"
+        "\t</cim:FiveMinAuxiliaryData>"
     }
 }
 
@@ -611,7 +611,7 @@ extends
     {
         "\t<cim:TenMinAuxiliaryData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TenMinAuxiliaryData>\n"
+        "\t</cim:TenMinAuxiliaryData>"
     }
 }
 
@@ -675,7 +675,7 @@ extends
     {
         "\t<cim:TradingHubPrice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TradingHubPrice>\n"
+        "\t</cim:TradingHubPrice>"
     }
 }
 
@@ -739,7 +739,7 @@ extends
     {
         "\t<cim:TradingHubValues rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TradingHubValues>\n"
+        "\t</cim:TradingHubValues>"
     }
 }
 

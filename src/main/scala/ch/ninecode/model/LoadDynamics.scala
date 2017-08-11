@@ -48,7 +48,7 @@ extends
     {
         "\t<cim:LoadAggregate rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadAggregate>\n"
+        "\t</cim:LoadAggregate>"
     }
 }
 
@@ -143,7 +143,7 @@ extends
     {
         "\t<cim:LoadComposite rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadComposite>\n"
+        "\t</cim:LoadComposite>"
     }
 }
 
@@ -215,7 +215,7 @@ extends
     {
         "\t<cim:LoadDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadDynamics>\n"
+        "\t</cim:LoadDynamics>"
     }
 }
 
@@ -288,7 +288,7 @@ extends
     {
         "\t<cim:LoadGenericNonLinear rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadGenericNonLinear>\n"
+        "\t</cim:LoadGenericNonLinear>"
     }
 }
 
@@ -408,7 +408,7 @@ extends
     {
         "\t<cim:LoadMotor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadMotor>\n"
+        "\t</cim:LoadMotor>"
     }
 }
 
@@ -553,7 +553,7 @@ extends
     {
         "\t<cim:LoadStatic rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadStatic>\n"
+        "\t</cim:LoadStatic>"
     }
 }
 

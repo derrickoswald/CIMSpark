@@ -35,7 +35,7 @@ extends
     {
         "\t<cim:ICCPCommandPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ICCPCommandPoint>\n"
+        "\t</cim:ICCPCommandPoint>"
     }
 }
 
@@ -83,7 +83,7 @@ extends
     {
         "\t<cim:ICCPControlPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ICCPControlPoint>\n"
+        "\t</cim:ICCPControlPoint>"
     }
 }
 
@@ -133,7 +133,7 @@ extends
     {
         "\t<cim:ICCPIndicationPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ICCPIndicationPoint>\n"
+        "\t</cim:ICCPIndicationPoint>"
     }
 }
 
@@ -194,7 +194,7 @@ extends
     {
         "\t<cim:ICCPInformationMessage rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ICCPInformationMessage>\n"
+        "\t</cim:ICCPInformationMessage>"
     }
 }
 
@@ -253,7 +253,7 @@ extends
     {
         "\t<cim:ICCPPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ICCPPoint>\n"
+        "\t</cim:ICCPPoint>"
     }
 }
 
@@ -303,7 +303,7 @@ extends
     {
         "\t<cim:ICCPSetPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ICCPSetPoint>\n"
+        "\t</cim:ICCPSetPoint>"
     }
 }
 
@@ -359,7 +359,7 @@ extends
     {
         "\t<cim:IPAccessPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IPAccessPoint>\n"
+        "\t</cim:IPAccessPoint>"
     }
 }
 
@@ -419,7 +419,7 @@ extends
     {
         "\t<cim:ISOUpperLayer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ISOUpperLayer>\n"
+        "\t</cim:ISOUpperLayer>"
     }
 }
 
@@ -488,7 +488,7 @@ extends
     {
         "\t<cim:TASE2BilateralTable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TASE2BilateralTable>\n"
+        "\t</cim:TASE2BilateralTable>"
     }
 }
 
@@ -542,7 +542,7 @@ extends
     {
         "\t<cim:TCPAcessPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TCPAcessPoint>\n"
+        "\t</cim:TCPAcessPoint>"
     }
 }
 

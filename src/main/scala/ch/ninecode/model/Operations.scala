@@ -49,7 +49,7 @@ extends
     {
         "\t<cim:ClearanceAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ClearanceAction>\n"
+        "\t</cim:ClearanceAction>"
     }
 }
 
@@ -114,7 +114,7 @@ extends
     {
         "\t<cim:ClearanceDocument rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ClearanceDocument>\n"
+        "\t</cim:ClearanceDocument>"
     }
 }
 
@@ -177,7 +177,7 @@ extends
     {
         "\t<cim:CutAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CutAction>\n"
+        "\t</cim:CutAction>"
     }
 }
 
@@ -238,7 +238,7 @@ extends
     {
         "\t<cim:EnergySourceAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergySourceAction>\n"
+        "\t</cim:EnergySourceAction>"
     }
 }
 
@@ -293,7 +293,7 @@ extends
     {
         "\t<cim:GenericAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenericAction>\n"
+        "\t</cim:GenericAction>"
     }
 }
 
@@ -358,7 +358,7 @@ extends
     {
         "\t<cim:GroundAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GroundAction>\n"
+        "\t</cim:GroundAction>"
     }
 }
 
@@ -427,7 +427,7 @@ extends
     {
         "\t<cim:Incident rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Incident>\n"
+        "\t</cim:Incident>"
     }
 }
 
@@ -490,7 +490,7 @@ extends
     {
         "\t<cim:JumperAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:JumperAction>\n"
+        "\t</cim:JumperAction>"
     }
 }
 
@@ -544,7 +544,7 @@ extends
     {
         "\t<cim:OperationTag rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperationTag>\n"
+        "\t</cim:OperationTag>"
     }
 }
 
@@ -609,7 +609,7 @@ extends
     {
         "\t<cim:OperationalRestriction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperationalRestriction>\n"
+        "\t</cim:OperationalRestriction>"
     }
 }
 
@@ -669,7 +669,7 @@ extends
     {
         "\t<cim:OperationalUpdatedRating rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperationalUpdatedRating>\n"
+        "\t</cim:OperationalUpdatedRating>"
     }
 }
 
@@ -752,7 +752,7 @@ extends
     {
         "\t<cim:Outage rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Outage>\n"
+        "\t</cim:Outage>"
     }
 }
 
@@ -820,7 +820,7 @@ extends
     {
         "\t<cim:OutageSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OutageSchedule>\n"
+        "\t</cim:OutageSchedule>"
     }
 }
 
@@ -872,7 +872,7 @@ extends
     {
         "\t<cim:PSREvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PSREvent>\n"
+        "\t</cim:PSREvent>"
     }
 }
 
@@ -925,7 +925,7 @@ extends
     {
         "\t<cim:SafetyDocument rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SafetyDocument>\n"
+        "\t</cim:SafetyDocument>"
     }
 }
 
@@ -980,7 +980,7 @@ extends
     {
         "\t<cim:ServicePointOutageSummary rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ServicePointOutageSummary>\n"
+        "\t</cim:ServicePointOutageSummary>"
     }
 }
 
@@ -1042,7 +1042,7 @@ extends
     {
         "\t<cim:SwitchAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchAction>\n"
+        "\t</cim:SwitchAction>"
     }
 }
 
@@ -1107,7 +1107,7 @@ extends
     {
         "\t<cim:SwitchingPlan rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchingPlan>\n"
+        "\t</cim:SwitchingPlan>"
     }
 }
 
@@ -1180,7 +1180,7 @@ extends
     {
         "\t<cim:SwitchingStep rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchingStep>\n"
+        "\t</cim:SwitchingStep>"
     }
 }
 
@@ -1249,7 +1249,7 @@ extends
     {
         "\t<cim:SwitchingStepGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchingStepGroup>\n"
+        "\t</cim:SwitchingStepGroup>"
     }
 }
 
@@ -1310,7 +1310,7 @@ extends
     {
         "\t<cim:TagAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TagAction>\n"
+        "\t</cim:TagAction>"
     }
 }
 

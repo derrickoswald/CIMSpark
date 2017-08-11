@@ -49,7 +49,7 @@ extends
     {
         "\t<cim:BusNameMarker rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BusNameMarker>\n"
+        "\t</cim:BusNameMarker>"
     }
 }
 
@@ -105,7 +105,7 @@ extends
     {
         "\t<cim:DCTopologicalNode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCTopologicalNode>\n"
+        "\t</cim:DCTopologicalNode>"
     }
 }
 
@@ -160,7 +160,7 @@ extends
     {
         "\t<cim:TopologicalIsland rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TopologicalIsland>\n"
+        "\t</cim:TopologicalIsland>"
     }
 }
 
@@ -239,7 +239,7 @@ extends
     {
         "\t<cim:TopologicalNode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TopologicalNode>\n"
+        "\t</cim:TopologicalNode>"
     }
 }
 

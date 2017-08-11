@@ -43,7 +43,7 @@ extends
     {
         "\t<cim:SVC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SVC>\n"
+        "\t</cim:SVC>"
     }
 }
 
@@ -150,7 +150,7 @@ extends
     {
         "\t<cim:ShuntCompensatorControl rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShuntCompensatorControl>\n"
+        "\t</cim:ShuntCompensatorControl>"
     }
 }
 

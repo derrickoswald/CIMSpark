@@ -44,7 +44,7 @@ extends
     {
         "\t<cim:ConformLoad rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConformLoad>\n"
+        "\t</cim:ConformLoad>"
     }
 }
 
@@ -93,7 +93,7 @@ extends
     {
         "\t<cim:ConformLoadGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConformLoadGroup>\n"
+        "\t</cim:ConformLoadGroup>"
     }
 }
 
@@ -143,7 +143,7 @@ extends
     {
         "\t<cim:ConformLoadSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConformLoadSchedule>\n"
+        "\t</cim:ConformLoadSchedule>"
     }
 }
 
@@ -193,7 +193,7 @@ extends
     {
         "\t<cim:DayType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DayType>\n"
+        "\t</cim:DayType>"
     }
 }
 
@@ -243,7 +243,7 @@ extends
     {
         "\t<cim:EnergyArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyArea>\n"
+        "\t</cim:EnergyArea>"
     }
 }
 
@@ -292,7 +292,7 @@ extends
     {
         "\t<cim:LoadArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadArea>\n"
+        "\t</cim:LoadArea>"
     }
 }
 
@@ -341,7 +341,7 @@ extends
     {
         "\t<cim:LoadGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadGroup>\n"
+        "\t</cim:LoadGroup>"
     }
 }
 
@@ -424,7 +424,7 @@ extends
     {
         "\t<cim:LoadResponseCharacteristic rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadResponseCharacteristic>\n"
+        "\t</cim:LoadResponseCharacteristic>"
     }
 }
 
@@ -495,7 +495,7 @@ extends
     {
         "\t<cim:NonConformLoad rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonConformLoad>\n"
+        "\t</cim:NonConformLoad>"
     }
 }
 
@@ -544,7 +544,7 @@ extends
     {
         "\t<cim:NonConformLoadGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonConformLoadGroup>\n"
+        "\t</cim:NonConformLoadGroup>"
     }
 }
 
@@ -593,7 +593,7 @@ extends
     {
         "\t<cim:NonConformLoadSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonConformLoadSchedule>\n"
+        "\t</cim:NonConformLoadSchedule>"
     }
 }
 
@@ -647,7 +647,7 @@ extends
     {
         "\t<cim:PowerCutZone rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerCutZone>\n"
+        "\t</cim:PowerCutZone>"
     }
 }
 
@@ -703,7 +703,7 @@ extends
     {
         "\t<cim:Season rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Season>\n"
+        "\t</cim:Season>"
     }
 }
 
@@ -759,7 +759,7 @@ extends
     {
         "\t<cim:SeasonDayTypeSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SeasonDayTypeSchedule>\n"
+        "\t</cim:SeasonDayTypeSchedule>"
     }
 }
 
@@ -810,7 +810,7 @@ extends
     {
         "\t<cim:StationSupply rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StationSupply>\n"
+        "\t</cim:StationSupply>"
     }
 }
 
@@ -859,7 +859,7 @@ extends
     {
         "\t<cim:SubLoadArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SubLoadArea>\n"
+        "\t</cim:SubLoadArea>"
     }
 }
 

@@ -43,7 +43,7 @@ extends
     {
         "\t<cim:ActivePowerLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ActivePowerLimit>\n"
+        "\t</cim:ActivePowerLimit>"
     }
 }
 
@@ -94,7 +94,7 @@ extends
     {
         "\t<cim:ApparentPowerLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ApparentPowerLimit>\n"
+        "\t</cim:ApparentPowerLimit>"
     }
 }
 
@@ -161,7 +161,7 @@ extends
     {
         "\t<cim:BranchGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BranchGroup>\n"
+        "\t</cim:BranchGroup>"
     }
 }
 
@@ -229,7 +229,7 @@ extends
     {
         "\t<cim:BranchGroupTerminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BranchGroupTerminal>\n"
+        "\t</cim:BranchGroupTerminal>"
     }
 }
 
@@ -284,7 +284,7 @@ extends
     {
         "\t<cim:CurrentLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurrentLimit>\n"
+        "\t</cim:CurrentLimit>"
     }
 }
 
@@ -343,7 +343,7 @@ extends
     {
         "\t<cim:OperationalLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperationalLimit>\n"
+        "\t</cim:OperationalLimit>"
     }
 }
 
@@ -402,7 +402,7 @@ extends
     {
         "\t<cim:OperationalLimitSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperationalLimitSet>\n"
+        "\t</cim:OperationalLimitSet>"
     }
 }
 
@@ -462,7 +462,7 @@ extends
     {
         "\t<cim:OperationalLimitType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperationalLimitType>\n"
+        "\t</cim:OperationalLimitType>"
     }
 }
 
@@ -518,7 +518,7 @@ extends
     {
         "\t<cim:VoltageLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VoltageLimit>\n"
+        "\t</cim:VoltageLimit>"
     }
 }
 

@@ -61,7 +61,7 @@ extends
     {
         "\t<cim:FTR rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FTR>\n"
+        "\t</cim:FTR>"
     }
 }
 
@@ -135,7 +135,7 @@ extends
     {
         "\t<cim:ViolationLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ViolationLimit>\n"
+        "\t</cim:ViolationLimit>"
     }
 }
 

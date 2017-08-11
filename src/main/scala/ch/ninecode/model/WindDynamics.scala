@@ -45,7 +45,7 @@ extends
     {
         "\t<cim:WindAeroConstIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindAeroConstIEC>\n"
+        "\t</cim:WindAeroConstIEC>"
     }
 }
 
@@ -105,7 +105,7 @@ extends
     {
         "\t<cim:WindAeroOneDimIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindAeroOneDimIEC>\n"
+        "\t</cim:WindAeroOneDimIEC>"
     }
 }
 
@@ -189,7 +189,7 @@ extends
     {
         "\t<cim:WindAeroTwoDimIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindAeroTwoDimIEC>\n"
+        "\t</cim:WindAeroTwoDimIEC>"
     }
 }
 
@@ -287,7 +287,7 @@ extends
     {
         "\t<cim:WindContCurrLimIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContCurrLimIEC>\n"
+        "\t</cim:WindContCurrLimIEC>"
     }
 }
 
@@ -447,7 +447,7 @@ extends
     {
         "\t<cim:WindContPType3IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContPType3IEC>\n"
+        "\t</cim:WindContPType3IEC>"
     }
 }
 
@@ -557,7 +557,7 @@ extends
     {
         "\t<cim:WindContPType4aIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContPType4aIEC>\n"
+        "\t</cim:WindContPType4aIEC>"
     }
 }
 
@@ -631,7 +631,7 @@ extends
     {
         "\t<cim:WindContPType4bIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContPType4bIEC>\n"
+        "\t</cim:WindContPType4bIEC>"
     }
 }
 
@@ -731,7 +731,7 @@ extends
     {
         "\t<cim:WindContPitchAngleIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContPitchAngleIEC>\n"
+        "\t</cim:WindContPitchAngleIEC>"
     }
 }
 
@@ -895,7 +895,7 @@ extends
     {
         "\t<cim:WindContQIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContQIEC>\n"
+        "\t</cim:WindContQIEC>"
     }
 }
 
@@ -1001,7 +1001,7 @@ extends
     {
         "\t<cim:WindContQLimIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContQLimIEC>\n"
+        "\t</cim:WindContQLimIEC>"
     }
 }
 
@@ -1065,7 +1065,7 @@ extends
     {
         "\t<cim:WindContQPQULimIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContQPQULimIEC>\n"
+        "\t</cim:WindContQPQULimIEC>"
     }
 }
 
@@ -1153,7 +1153,7 @@ extends
     {
         "\t<cim:WindContRotorRIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindContRotorRIEC>\n"
+        "\t</cim:WindContRotorRIEC>"
     }
 }
 
@@ -1256,7 +1256,7 @@ extends
     {
         "\t<cim:WindDynamicsLookupTable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindDynamicsLookupTable>\n"
+        "\t</cim:WindDynamicsLookupTable>"
     }
 }
 
@@ -1332,7 +1332,7 @@ extends
     {
         "\t<cim:WindGenTurbineType1aIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGenTurbineType1aIEC>\n"
+        "\t</cim:WindGenTurbineType1aIEC>"
     }
 }
 
@@ -1384,7 +1384,7 @@ extends
     {
         "\t<cim:WindGenTurbineType1bIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGenTurbineType1bIEC>\n"
+        "\t</cim:WindGenTurbineType1bIEC>"
     }
 }
 
@@ -1439,7 +1439,7 @@ extends
     {
         "\t<cim:WindGenTurbineType2IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGenTurbineType2IEC>\n"
+        "\t</cim:WindGenTurbineType2IEC>"
     }
 }
 
@@ -1504,7 +1504,7 @@ extends
     {
         "\t<cim:WindGenType3IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGenType3IEC>\n"
+        "\t</cim:WindGenType3IEC>"
     }
 }
 
@@ -1570,7 +1570,7 @@ extends
     {
         "\t<cim:WindGenType3aIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGenType3aIEC>\n"
+        "\t</cim:WindGenType3aIEC>"
     }
 }
 
@@ -1639,7 +1639,7 @@ extends
     {
         "\t<cim:WindGenType3bIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGenType3bIEC>\n"
+        "\t</cim:WindGenType3bIEC>"
     }
 }
 
@@ -1714,7 +1714,7 @@ extends
     {
         "\t<cim:WindGenType4IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGenType4IEC>\n"
+        "\t</cim:WindGenType4IEC>"
     }
 }
 
@@ -1798,7 +1798,7 @@ extends
     {
         "\t<cim:WindMechIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindMechIEC>\n"
+        "\t</cim:WindMechIEC>"
     }
 }
 
@@ -1893,7 +1893,7 @@ extends
     {
         "\t<cim:WindPitchContPowerIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindPitchContPowerIEC>\n"
+        "\t</cim:WindPitchContPowerIEC>"
     }
 }
 
@@ -1960,7 +1960,7 @@ extends
     {
         "\t<cim:WindPlantDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindPlantDynamics>\n"
+        "\t</cim:WindPlantDynamics>"
     }
 }
 
@@ -2072,7 +2072,7 @@ extends
     {
         "\t<cim:WindPlantFreqPcontrolIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindPlantFreqPcontrolIEC>\n"
+        "\t</cim:WindPlantFreqPcontrolIEC>"
     }
 }
 
@@ -2157,7 +2157,7 @@ extends
     {
         "\t<cim:WindPlantIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindPlantIEC>\n"
+        "\t</cim:WindPlantIEC>"
     }
 }
 
@@ -2283,7 +2283,7 @@ extends
     {
         "\t<cim:WindPlantReactiveControlIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindPlantReactiveControlIEC>\n"
+        "\t</cim:WindPlantReactiveControlIEC>"
     }
 }
 
@@ -2402,7 +2402,7 @@ extends
     {
         "\t<cim:WindProtectionIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindProtectionIEC>\n"
+        "\t</cim:WindProtectionIEC>"
     }
 }
 
@@ -2482,7 +2482,7 @@ extends
     {
         "\t<cim:WindRefFrameRotIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindRefFrameRotIEC>\n"
+        "\t</cim:WindRefFrameRotIEC>"
     }
 }
 
@@ -2542,7 +2542,7 @@ extends
     {
         "\t<cim:WindTurbineType1or2Dynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType1or2Dynamics>\n"
+        "\t</cim:WindTurbineType1or2Dynamics>"
     }
 }
 
@@ -2599,7 +2599,7 @@ extends
     {
         "\t<cim:WindTurbineType1or2IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType1or2IEC>\n"
+        "\t</cim:WindTurbineType1or2IEC>"
     }
 }
 
@@ -2667,7 +2667,7 @@ extends
     {
         "\t<cim:WindTurbineType3IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType3IEC>\n"
+        "\t</cim:WindTurbineType3IEC>"
     }
 }
 
@@ -2734,7 +2734,7 @@ extends
     {
         "\t<cim:WindTurbineType3or4Dynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType3or4Dynamics>\n"
+        "\t</cim:WindTurbineType3or4Dynamics>"
     }
 }
 
@@ -2804,7 +2804,7 @@ extends
     {
         "\t<cim:WindTurbineType3or4IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType3or4IEC>\n"
+        "\t</cim:WindTurbineType3or4IEC>"
     }
 }
 
@@ -2865,7 +2865,7 @@ extends
     {
         "\t<cim:WindTurbineType4IEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType4IEC>\n"
+        "\t</cim:WindTurbineType4IEC>"
     }
 }
 
@@ -2920,7 +2920,7 @@ extends
     {
         "\t<cim:WindTurbineType4aIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType4aIEC>\n"
+        "\t</cim:WindTurbineType4aIEC>"
     }
 }
 
@@ -2980,7 +2980,7 @@ extends
     {
         "\t<cim:WindTurbineType4bIEC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindTurbineType4bIEC>\n"
+        "\t</cim:WindTurbineType4bIEC>"
     }
 }
 

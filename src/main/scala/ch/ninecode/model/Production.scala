@@ -50,7 +50,7 @@ extends
     {
         "\t<cim:AirCompressor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AirCompressor>\n"
+        "\t</cim:AirCompressor>"
     }
 }
 
@@ -114,7 +114,7 @@ extends
     {
         "\t<cim:CAESPlant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CAESPlant>\n"
+        "\t</cim:CAESPlant>"
     }
 }
 
@@ -187,7 +187,7 @@ extends
     {
         "\t<cim:CogenerationPlant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CogenerationPlant>\n"
+        "\t</cim:CogenerationPlant>"
     }
 }
 
@@ -248,7 +248,7 @@ extends
     {
         "\t<cim:CombinedCyclePlant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CombinedCyclePlant>\n"
+        "\t</cim:CombinedCyclePlant>"
     }
 }
 
@@ -307,7 +307,7 @@ extends
     {
         "\t<cim:EmissionAccount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EmissionAccount>\n"
+        "\t</cim:EmissionAccount>"
     }
 }
 
@@ -373,7 +373,7 @@ extends
     {
         "\t<cim:EmissionCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EmissionCurve>\n"
+        "\t</cim:EmissionCurve>"
     }
 }
 
@@ -463,7 +463,7 @@ extends
     {
         "\t<cim:FossilFuel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FossilFuel>\n"
+        "\t</cim:FossilFuel>"
     }
 }
 
@@ -552,7 +552,7 @@ extends
     {
         "\t<cim:FuelAllocationSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FuelAllocationSchedule>\n"
+        "\t</cim:FuelAllocationSchedule>"
     }
 }
 
@@ -619,7 +619,7 @@ extends
     {
         "\t<cim:GenUnitOpCostCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenUnitOpCostCurve>\n"
+        "\t</cim:GenUnitOpCostCurve>"
     }
 }
 
@@ -673,7 +673,7 @@ extends
     {
         "\t<cim:GenUnitOpSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenUnitOpSchedule>\n"
+        "\t</cim:GenUnitOpSchedule>"
     }
 }
 
@@ -842,7 +842,7 @@ extends
     {
         "\t<cim:GeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GeneratingUnit>\n"
+        "\t</cim:GeneratingUnit>"
     }
 }
 
@@ -968,7 +968,7 @@ extends
     {
         "\t<cim:GrossToNetActivePowerCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GrossToNetActivePowerCurve>\n"
+        "\t</cim:GrossToNetActivePowerCurve>"
     }
 }
 
@@ -1035,7 +1035,7 @@ extends
     {
         "\t<cim:HeatInputCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HeatInputCurve>\n"
+        "\t</cim:HeatInputCurve>"
     }
 }
 
@@ -1100,7 +1100,7 @@ extends
     {
         "\t<cim:HeatRateCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HeatRateCurve>\n"
+        "\t</cim:HeatRateCurve>"
     }
 }
 
@@ -1154,7 +1154,7 @@ extends
     {
         "\t<cim:HydroGeneratingEfficiencyCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HydroGeneratingEfficiencyCurve>\n"
+        "\t</cim:HydroGeneratingEfficiencyCurve>"
     }
 }
 
@@ -1214,7 +1214,7 @@ extends
     {
         "\t<cim:HydroGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HydroGeneratingUnit>\n"
+        "\t</cim:HydroGeneratingUnit>"
     }
 }
 
@@ -1302,7 +1302,7 @@ extends
     {
         "\t<cim:HydroPowerPlant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HydroPowerPlant>\n"
+        "\t</cim:HydroPowerPlant>"
     }
 }
 
@@ -1392,7 +1392,7 @@ extends
     {
         "\t<cim:HydroPump rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HydroPump>\n"
+        "\t</cim:HydroPump>"
     }
 }
 
@@ -1456,7 +1456,7 @@ extends
     {
         "\t<cim:HydroPumpOpSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HydroPumpOpSchedule>\n"
+        "\t</cim:HydroPumpOpSchedule>"
     }
 }
 
@@ -1511,7 +1511,7 @@ extends
     {
         "\t<cim:IncrementalHeatRateCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IncrementalHeatRateCurve>\n"
+        "\t</cim:IncrementalHeatRateCurve>"
     }
 }
 
@@ -1565,7 +1565,7 @@ extends
     {
         "\t<cim:InflowForecast rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InflowForecast>\n"
+        "\t</cim:InflowForecast>"
     }
 }
 
@@ -1617,7 +1617,7 @@ extends
     {
         "\t<cim:LevelVsVolumeCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LevelVsVolumeCurve>\n"
+        "\t</cim:LevelVsVolumeCurve>"
     }
 }
 
@@ -1666,7 +1666,7 @@ extends
     {
         "\t<cim:NuclearGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NuclearGeneratingUnit>\n"
+        "\t</cim:NuclearGeneratingUnit>"
     }
 }
 
@@ -1716,7 +1716,7 @@ extends
     {
         "\t<cim:PenstockLossCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PenstockLossCurve>\n"
+        "\t</cim:PenstockLossCurve>"
     }
 }
 
@@ -1805,7 +1805,7 @@ extends
     {
         "\t<cim:Reservoir rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Reservoir>\n"
+        "\t</cim:Reservoir>"
     }
 }
 
@@ -1886,7 +1886,7 @@ extends
     {
         "\t<cim:ShutdownCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShutdownCurve>\n"
+        "\t</cim:ShutdownCurve>"
     }
 }
 
@@ -1939,7 +1939,7 @@ extends
     {
         "\t<cim:SolarGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SolarGeneratingUnit>\n"
+        "\t</cim:SolarGeneratingUnit>"
     }
 }
 
@@ -1991,7 +1991,7 @@ extends
     {
         "\t<cim:StartIgnFuelCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartIgnFuelCurve>\n"
+        "\t</cim:StartIgnFuelCurve>"
     }
 }
 
@@ -2047,7 +2047,7 @@ extends
     {
         "\t<cim:StartMainFuelCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartMainFuelCurve>\n"
+        "\t</cim:StartMainFuelCurve>"
     }
 }
 
@@ -2103,7 +2103,7 @@ extends
     {
         "\t<cim:StartRampCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartRampCurve>\n"
+        "\t</cim:StartRampCurve>"
     }
 }
 
@@ -2197,7 +2197,7 @@ extends
     {
         "\t<cim:StartupModel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartupModel>\n"
+        "\t</cim:StartupModel>"
     }
 }
 
@@ -2274,7 +2274,7 @@ extends
     {
         "\t<cim:SteamSendoutSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SteamSendoutSchedule>\n"
+        "\t</cim:SteamSendoutSchedule>"
     }
 }
 
@@ -2326,7 +2326,7 @@ extends
     {
         "\t<cim:TailbayLossCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TailbayLossCurve>\n"
+        "\t</cim:TailbayLossCurve>"
     }
 }
 
@@ -2384,7 +2384,7 @@ extends
     {
         "\t<cim:TargetLevelSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TargetLevelSchedule>\n"
+        "\t</cim:TargetLevelSchedule>"
     }
 }
 
@@ -2463,7 +2463,7 @@ extends
     {
         "\t<cim:ThermalGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ThermalGeneratingUnit>\n"
+        "\t</cim:ThermalGeneratingUnit>"
     }
 }
 
@@ -2531,7 +2531,7 @@ extends
     {
         "\t<cim:WindGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindGeneratingUnit>\n"
+        "\t</cim:WindGeneratingUnit>"
     }
 }
 

@@ -41,7 +41,7 @@ extends
     {
         "\t<cim:StateVariable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StateVariable>\n"
+        "\t</cim:StateVariable>"
     }
 }
 
@@ -99,7 +99,7 @@ extends
     {
         "\t<cim:SvInjection rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SvInjection>\n"
+        "\t</cim:SvInjection>"
     }
 }
 
@@ -163,7 +163,7 @@ extends
     {
         "\t<cim:SvPowerFlow rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SvPowerFlow>\n"
+        "\t</cim:SvPowerFlow>"
     }
 }
 
@@ -222,7 +222,7 @@ extends
     {
         "\t<cim:SvShuntCompensatorSections rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SvShuntCompensatorSections>\n"
+        "\t</cim:SvShuntCompensatorSections>"
     }
 }
 
@@ -278,7 +278,7 @@ extends
     {
         "\t<cim:SvStatus rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SvStatus>\n"
+        "\t</cim:SvStatus>"
     }
 }
 
@@ -336,7 +336,7 @@ extends
     {
         "\t<cim:SvTapStep rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SvTapStep>\n"
+        "\t</cim:SvTapStep>"
     }
 }
 
@@ -395,7 +395,7 @@ extends
     {
         "\t<cim:SvVoltage rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SvVoltage>\n"
+        "\t</cim:SvVoltage>"
     }
 }
 

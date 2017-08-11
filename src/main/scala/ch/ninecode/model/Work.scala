@@ -52,7 +52,7 @@ extends
     {
         "\t<cim:BaseWork rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BaseWork>\n"
+        "\t</cim:BaseWork>"
     }
 }
 
@@ -118,7 +118,7 @@ extends
     {
         "\t<cim:MaintenanceLocation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MaintenanceLocation>\n"
+        "\t</cim:MaintenanceLocation>"
     }
 }
 
@@ -182,7 +182,7 @@ extends
     {
         "\t<cim:MaterialItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MaterialItem>\n"
+        "\t</cim:MaterialItem>"
     }
 }
 
@@ -237,7 +237,7 @@ extends
     {
         "\t<cim:Tool rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Tool>\n"
+        "\t</cim:Tool>"
     }
 }
 
@@ -295,7 +295,7 @@ extends
     {
         "\t<cim:Vehicle rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Vehicle>\n"
+        "\t</cim:Vehicle>"
     }
 }
 
@@ -362,7 +362,7 @@ extends
     {
         "\t<cim:Work rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Work>\n"
+        "\t</cim:Work>"
     }
 }
 
@@ -421,7 +421,7 @@ extends
     {
         "\t<cim:WorkAsset rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkAsset>\n"
+        "\t</cim:WorkAsset>"
     }
 }
 
@@ -472,7 +472,7 @@ extends
     {
         "\t<cim:WorkLocation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkLocation>\n"
+        "\t</cim:WorkLocation>"
     }
 }
 
@@ -534,7 +534,7 @@ extends
     {
         "\t<cim:WorkTask rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkTask>\n"
+        "\t</cim:WorkTask>"
     }
 }
 
@@ -604,7 +604,7 @@ extends
     {
         "\t<cim:WorkTimeSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkTimeSchedule>\n"
+        "\t</cim:WorkTimeSchedule>"
     }
 }
 

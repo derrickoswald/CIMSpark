@@ -131,7 +131,7 @@ extends
     {
         "\t<cim:ExcAC1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAC1A>\n"
+        "\t</cim:ExcAC1A>"
     }
 }
 
@@ -337,7 +337,7 @@ extends
     {
         "\t<cim:ExcAC2A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAC2A>\n"
+        "\t</cim:ExcAC2A>"
     }
 }
 
@@ -543,7 +543,7 @@ extends
     {
         "\t<cim:ExcAC3A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAC3A>\n"
+        "\t</cim:ExcAC3A>"
     }
 }
 
@@ -677,7 +677,7 @@ extends
     {
         "\t<cim:ExcAC4A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAC4A>\n"
+        "\t</cim:ExcAC4A>"
     }
 }
 
@@ -813,7 +813,7 @@ extends
     {
         "\t<cim:ExcAC5A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAC5A>\n"
+        "\t</cim:ExcAC5A>"
     }
 }
 
@@ -987,7 +987,7 @@ extends
     {
         "\t<cim:ExcAC6A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAC6A>\n"
+        "\t</cim:ExcAC6A>"
     }
 }
 
@@ -1193,7 +1193,7 @@ extends
     {
         "\t<cim:ExcAC8B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAC8B>\n"
+        "\t</cim:ExcAC8B>"
     }
 }
 
@@ -1356,7 +1356,7 @@ extends
     {
         "\t<cim:ExcANS rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcANS>\n"
+        "\t</cim:ExcANS>"
     }
 }
 
@@ -1479,7 +1479,7 @@ extends
     {
         "\t<cim:ExcAVR1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAVR1>\n"
+        "\t</cim:ExcAVR1>"
     }
 }
 
@@ -1602,7 +1602,7 @@ extends
     {
         "\t<cim:ExcAVR2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAVR2>\n"
+        "\t</cim:ExcAVR2>"
     }
 }
 
@@ -1723,7 +1723,7 @@ extends
     {
         "\t<cim:ExcAVR3 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAVR3>\n"
+        "\t</cim:ExcAVR3>"
     }
 }
 
@@ -1852,7 +1852,7 @@ extends
     {
         "\t<cim:ExcAVR4 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAVR4>\n"
+        "\t</cim:ExcAVR4>"
     }
 }
 
@@ -1937,7 +1937,7 @@ extends
     {
         "\t<cim:ExcAVR5 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAVR5>\n"
+        "\t</cim:ExcAVR5>"
     }
 }
 
@@ -2073,7 +2073,7 @@ extends
     {
         "\t<cim:ExcAVR7 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcAVR7>\n"
+        "\t</cim:ExcAVR7>"
     }
 }
 
@@ -2208,7 +2208,7 @@ extends
     {
         "\t<cim:ExcBBC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcBBC>\n"
+        "\t</cim:ExcBBC>"
     }
 }
 
@@ -2306,7 +2306,7 @@ extends
     {
         "\t<cim:ExcCZ rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcCZ>\n"
+        "\t</cim:ExcCZ>"
     }
 }
 
@@ -2444,7 +2444,7 @@ extends
     {
         "\t<cim:ExcDC1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcDC1A>\n"
+        "\t</cim:ExcDC1A>"
     }
 }
 
@@ -2601,7 +2601,7 @@ extends
     {
         "\t<cim:ExcDC2A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcDC2A>\n"
+        "\t</cim:ExcDC2A>"
     }
 }
 
@@ -2750,7 +2750,7 @@ extends
     {
         "\t<cim:ExcDC3A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcDC3A>\n"
+        "\t</cim:ExcDC3A>"
     }
 }
 
@@ -2888,7 +2888,7 @@ extends
     {
         "\t<cim:ExcDC3A1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcDC3A1>\n"
+        "\t</cim:ExcDC3A1>"
     }
 }
 
@@ -3023,7 +3023,7 @@ extends
     {
         "\t<cim:ExcELIN1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcELIN1>\n"
+        "\t</cim:ExcELIN1>"
     }
 }
 
@@ -3208,7 +3208,7 @@ extends
     {
         "\t<cim:ExcELIN2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcELIN2>\n"
+        "\t</cim:ExcELIN2>"
     }
 }
 
@@ -3356,7 +3356,7 @@ extends
     {
         "\t<cim:ExcHU rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcHU>\n"
+        "\t</cim:ExcHU>"
     }
 }
 
@@ -3499,7 +3499,7 @@ extends
     {
         "\t<cim:ExcIEEEAC1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC1A>\n"
+        "\t</cim:ExcIEEEAC1A>"
     }
 }
 
@@ -3666,7 +3666,7 @@ extends
     {
         "\t<cim:ExcIEEEAC2A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC2A>\n"
+        "\t</cim:ExcIEEEAC2A>"
     }
 }
 
@@ -3839,7 +3839,7 @@ extends
     {
         "\t<cim:ExcIEEEAC3A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC3A>\n"
+        "\t</cim:ExcIEEEAC3A>"
     }
 }
 
@@ -3964,7 +3964,7 @@ extends
     {
         "\t<cim:ExcIEEEAC4A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC4A>\n"
+        "\t</cim:ExcIEEEAC4A>"
     }
 }
 
@@ -4085,7 +4085,7 @@ extends
     {
         "\t<cim:ExcIEEEAC5A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC5A>\n"
+        "\t</cim:ExcIEEEAC5A>"
     }
 }
 
@@ -4248,7 +4248,7 @@ extends
     {
         "\t<cim:ExcIEEEAC6A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC6A>\n"
+        "\t</cim:ExcIEEEAC6A>"
     }
 }
 
@@ -4443,7 +4443,7 @@ extends
     {
         "\t<cim:ExcIEEEAC7B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC7B>\n"
+        "\t</cim:ExcIEEEAC7B>"
     }
 }
 
@@ -4614,7 +4614,7 @@ extends
     {
         "\t<cim:ExcIEEEAC8B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEAC8B>\n"
+        "\t</cim:ExcIEEEAC8B>"
     }
 }
 
@@ -4763,7 +4763,7 @@ extends
     {
         "\t<cim:ExcIEEEDC1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEDC1A>\n"
+        "\t</cim:ExcIEEEDC1A>"
     }
 }
 
@@ -4908,7 +4908,7 @@ extends
     {
         "\t<cim:ExcIEEEDC2A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEDC2A>\n"
+        "\t</cim:ExcIEEEDC2A>"
     }
 }
 
@@ -5031,7 +5031,7 @@ extends
     {
         "\t<cim:ExcIEEEDC3A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEDC3A>\n"
+        "\t</cim:ExcIEEEDC3A>"
     }
 }
 
@@ -5180,7 +5180,7 @@ extends
     {
         "\t<cim:ExcIEEEDC4B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEDC4B>\n"
+        "\t</cim:ExcIEEEDC4B>"
     }
 }
 
@@ -5343,7 +5343,7 @@ extends
     {
         "\t<cim:ExcIEEEST1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEST1A>\n"
+        "\t</cim:ExcIEEEST1A>"
     }
 }
 
@@ -5482,7 +5482,7 @@ extends
     {
         "\t<cim:ExcIEEEST2A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEST2A>\n"
+        "\t</cim:ExcIEEEST2A>"
     }
 }
 
@@ -5635,7 +5635,7 @@ extends
     {
         "\t<cim:ExcIEEEST3A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEST3A>\n"
+        "\t</cim:ExcIEEEST3A>"
     }
 }
 
@@ -5786,7 +5786,7 @@ extends
     {
         "\t<cim:ExcIEEEST4B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEST4B>\n"
+        "\t</cim:ExcIEEEST4B>"
     }
 }
 
@@ -5933,7 +5933,7 @@ extends
     {
         "\t<cim:ExcIEEEST5B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEST5B>\n"
+        "\t</cim:ExcIEEEST5B>"
     }
 }
 
@@ -6070,7 +6070,7 @@ extends
     {
         "\t<cim:ExcIEEEST6B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEST6B>\n"
+        "\t</cim:ExcIEEEST6B>"
     }
 }
 
@@ -6205,7 +6205,7 @@ extends
     {
         "\t<cim:ExcIEEEST7B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcIEEEST7B>\n"
+        "\t</cim:ExcIEEEST7B>"
     }
 }
 
@@ -6338,7 +6338,7 @@ extends
     {
         "\t<cim:ExcOEX3T rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcOEX3T>\n"
+        "\t</cim:ExcOEX3T>"
     }
 }
 
@@ -6515,7 +6515,7 @@ extends
     {
         "\t<cim:ExcPIC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcPIC>\n"
+        "\t</cim:ExcPIC>"
     }
 }
 
@@ -6752,7 +6752,7 @@ extends
     {
         "\t<cim:ExcREXS rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcREXS>\n"
+        "\t</cim:ExcREXS>"
     }
 }
 
@@ -6903,7 +6903,7 @@ extends
     {
         "\t<cim:ExcSCRX rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcSCRX>\n"
+        "\t</cim:ExcSCRX>"
     }
 }
 
@@ -7005,7 +7005,7 @@ extends
     {
         "\t<cim:ExcSEXS rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcSEXS>\n"
+        "\t</cim:ExcSEXS>"
     }
 }
 
@@ -7200,7 +7200,7 @@ extends
     {
         "\t<cim:ExcSK rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcSK>\n"
+        "\t</cim:ExcSK>"
     }
 }
 
@@ -7382,7 +7382,7 @@ extends
     {
         "\t<cim:ExcST1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcST1A>\n"
+        "\t</cim:ExcST1A>"
     }
 }
 
@@ -7526,7 +7526,7 @@ extends
     {
         "\t<cim:ExcST2A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcST2A>\n"
+        "\t</cim:ExcST2A>"
     }
 }
 
@@ -7682,7 +7682,7 @@ extends
     {
         "\t<cim:ExcST3A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcST3A>\n"
+        "\t</cim:ExcST3A>"
     }
 }
 
@@ -7848,7 +7848,7 @@ extends
     {
         "\t<cim:ExcST4B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcST4B>\n"
+        "\t</cim:ExcST4B>"
     }
 }
 
@@ -8030,7 +8030,7 @@ extends
     {
         "\t<cim:ExcST6B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcST6B>\n"
+        "\t</cim:ExcST6B>"
     }
 }
 
@@ -8186,7 +8186,7 @@ extends
     {
         "\t<cim:ExcST7B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcST7B>\n"
+        "\t</cim:ExcST7B>"
     }
 }
 
@@ -8288,7 +8288,7 @@ extends
     {
         "\t<cim:ExcitationSystemDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcitationSystemDynamics>\n"
+        "\t</cim:ExcitationSystemDynamics>"
     }
 }
 

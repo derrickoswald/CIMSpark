@@ -48,7 +48,7 @@ extends
     {
         "\t<cim:AsynchronousMachineUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AsynchronousMachineUserDefined>\n"
+        "\t</cim:AsynchronousMachineUserDefined>"
     }
 }
 
@@ -101,7 +101,7 @@ extends
     {
         "\t<cim:DiscontinuousExcitationControlUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscontinuousExcitationControlUserDefined>\n"
+        "\t</cim:DiscontinuousExcitationControlUserDefined>"
     }
 }
 
@@ -154,7 +154,7 @@ extends
     {
         "\t<cim:ExcitationSystemUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExcitationSystemUserDefined>\n"
+        "\t</cim:ExcitationSystemUserDefined>"
     }
 }
 
@@ -207,7 +207,7 @@ extends
     {
         "\t<cim:LoadUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadUserDefined>\n"
+        "\t</cim:LoadUserDefined>"
     }
 }
 
@@ -260,7 +260,7 @@ extends
     {
         "\t<cim:MechanicalLoadUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MechanicalLoadUserDefined>\n"
+        "\t</cim:MechanicalLoadUserDefined>"
     }
 }
 
@@ -313,7 +313,7 @@ extends
     {
         "\t<cim:OverexcitationLimiterUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverexcitationLimiterUserDefined>\n"
+        "\t</cim:OverexcitationLimiterUserDefined>"
     }
 }
 
@@ -366,7 +366,7 @@ extends
     {
         "\t<cim:PFVArControllerType1UserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PFVArControllerType1UserDefined>\n"
+        "\t</cim:PFVArControllerType1UserDefined>"
     }
 }
 
@@ -419,7 +419,7 @@ extends
     {
         "\t<cim:PFVArControllerType2UserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PFVArControllerType2UserDefined>\n"
+        "\t</cim:PFVArControllerType2UserDefined>"
     }
 }
 
@@ -472,7 +472,7 @@ extends
     {
         "\t<cim:PowerSystemStabilizerUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerSystemStabilizerUserDefined>\n"
+        "\t</cim:PowerSystemStabilizerUserDefined>"
     }
 }
 
@@ -590,7 +590,7 @@ extends
     {
         "\t<cim:ProprietaryParameterDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProprietaryParameterDynamics>\n"
+        "\t</cim:ProprietaryParameterDynamics>"
     }
 }
 
@@ -685,7 +685,7 @@ extends
     {
         "\t<cim:SynchronousMachineUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchronousMachineUserDefined>\n"
+        "\t</cim:SynchronousMachineUserDefined>"
     }
 }
 
@@ -738,7 +738,7 @@ extends
     {
         "\t<cim:TurbineGovernorUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TurbineGovernorUserDefined>\n"
+        "\t</cim:TurbineGovernorUserDefined>"
     }
 }
 
@@ -791,7 +791,7 @@ extends
     {
         "\t<cim:TurbineLoadControllerUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TurbineLoadControllerUserDefined>\n"
+        "\t</cim:TurbineLoadControllerUserDefined>"
     }
 }
 
@@ -844,7 +844,7 @@ extends
     {
         "\t<cim:UnderexcitationLimiterUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnderexcitationLimiterUserDefined>\n"
+        "\t</cim:UnderexcitationLimiterUserDefined>"
     }
 }
 
@@ -897,7 +897,7 @@ extends
     {
         "\t<cim:VoltageAdjusterUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VoltageAdjusterUserDefined>\n"
+        "\t</cim:VoltageAdjusterUserDefined>"
     }
 }
 
@@ -950,7 +950,7 @@ extends
     {
         "\t<cim:VoltageCompensatorUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VoltageCompensatorUserDefined>\n"
+        "\t</cim:VoltageCompensatorUserDefined>"
     }
 }
 
@@ -1003,7 +1003,7 @@ extends
     {
         "\t<cim:WindPlantUserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindPlantUserDefined>\n"
+        "\t</cim:WindPlantUserDefined>"
     }
 }
 
@@ -1056,7 +1056,7 @@ extends
     {
         "\t<cim:WindType1or2UserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindType1or2UserDefined>\n"
+        "\t</cim:WindType1or2UserDefined>"
     }
 }
 
@@ -1109,7 +1109,7 @@ extends
     {
         "\t<cim:WindType3or4UserDefined rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WindType3or4UserDefined>\n"
+        "\t</cim:WindType3or4UserDefined>"
     }
 }
 

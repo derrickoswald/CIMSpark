@@ -60,7 +60,7 @@ extends
     {
         "\t<cim:Diagram rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Diagram>\n"
+        "\t</cim:Diagram>"
     }
 }
 
@@ -151,7 +151,7 @@ extends
     {
         "\t<cim:DiagramObject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiagramObject>\n"
+        "\t</cim:DiagramObject>"
     }
 }
 
@@ -216,7 +216,7 @@ extends
     {
         "\t<cim:DiagramObjectGluePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiagramObjectGluePoint>\n"
+        "\t</cim:DiagramObjectGluePoint>"
     }
 }
 
@@ -281,7 +281,7 @@ extends
     {
         "\t<cim:DiagramObjectPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiagramObjectPoint>\n"
+        "\t</cim:DiagramObjectPoint>"
     }
 }
 
@@ -341,7 +341,7 @@ extends
     {
         "\t<cim:DiagramObjectStyle rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiagramObjectStyle>\n"
+        "\t</cim:DiagramObjectStyle>"
     }
 }
 
@@ -389,7 +389,7 @@ extends
     {
         "\t<cim:DiagramStyle rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiagramStyle>\n"
+        "\t</cim:DiagramStyle>"
     }
 }
 
@@ -438,7 +438,7 @@ extends
     {
         "\t<cim:TextDiagramObject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TextDiagramObject>\n"
+        "\t</cim:TextDiagramObject>"
     }
 }
 
@@ -491,7 +491,7 @@ extends
     {
         "\t<cim:VisibilityLayer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VisibilityLayer>\n"
+        "\t</cim:VisibilityLayer>"
     }
 }
 

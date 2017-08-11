@@ -103,7 +103,7 @@ extends
     {
         "\t<cim:BWRSteamSupply rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BWRSteamSupply>\n"
+        "\t</cim:BWRSteamSupply>"
     }
 }
 
@@ -194,7 +194,7 @@ extends
     {
         "\t<cim:CTTempActivePowerCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CTTempActivePowerCurve>\n"
+        "\t</cim:CTTempActivePowerCurve>"
     }
 }
 
@@ -278,7 +278,7 @@ extends
     {
         "\t<cim:CombustionTurbine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CombustionTurbine>\n"
+        "\t</cim:CombustionTurbine>"
     }
 }
 
@@ -349,7 +349,7 @@ extends
     {
         "\t<cim:DrumBoiler rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DrumBoiler>\n"
+        "\t</cim:DrumBoiler>"
     }
 }
 
@@ -477,7 +477,7 @@ extends
     {
         "\t<cim:FossilSteamSupply rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FossilSteamSupply>\n"
+        "\t</cim:FossilSteamSupply>"
     }
 }
 
@@ -578,7 +578,7 @@ extends
     {
         "\t<cim:HeatRecoveryBoiler rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HeatRecoveryBoiler>\n"
+        "\t</cim:HeatRecoveryBoiler>"
     }
 }
 
@@ -660,7 +660,7 @@ extends
     {
         "\t<cim:HydroTurbine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HydroTurbine>\n"
+        "\t</cim:HydroTurbine>"
     }
 }
 
@@ -788,7 +788,7 @@ extends
     {
         "\t<cim:PWRSteamSupply rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PWRSteamSupply>\n"
+        "\t</cim:PWRSteamSupply>"
     }
 }
 
@@ -880,7 +880,7 @@ extends
     {
         "\t<cim:PrimeMover rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PrimeMover>\n"
+        "\t</cim:PrimeMover>"
     }
 }
 
@@ -936,7 +936,7 @@ extends
     {
         "\t<cim:SteamSupply rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SteamSupply>\n"
+        "\t</cim:SteamSupply>"
     }
 }
 
@@ -1022,7 +1022,7 @@ extends
     {
         "\t<cim:SteamTurbine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SteamTurbine>\n"
+        "\t</cim:SteamTurbine>"
     }
 }
 
@@ -1093,7 +1093,7 @@ extends
     {
         "\t<cim:Subcritical rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Subcritical>\n"
+        "\t</cim:Subcritical>"
     }
 }
 
@@ -1140,7 +1140,7 @@ extends
     {
         "\t<cim:Supercritical rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Supercritical>\n"
+        "\t</cim:Supercritical>"
     }
 }
 

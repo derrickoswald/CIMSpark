@@ -53,7 +53,7 @@ extends
     {
         "\t<cim:GenICompensationForGenJ rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenICompensationForGenJ>\n"
+        "\t</cim:GenICompensationForGenJ>"
     }
 }
 
@@ -117,7 +117,7 @@ extends
     {
         "\t<cim:VCompIEEEType1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VCompIEEEType1>\n"
+        "\t</cim:VCompIEEEType1>"
     }
 }
 
@@ -173,7 +173,7 @@ extends
     {
         "\t<cim:VCompIEEEType2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VCompIEEEType2>\n"
+        "\t</cim:VCompIEEEType2>"
     }
 }
 
@@ -227,7 +227,7 @@ extends
     {
         "\t<cim:VoltageCompensatorDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VoltageCompensatorDynamics>\n"
+        "\t</cim:VoltageCompensatorDynamics>"
     }
 }
 

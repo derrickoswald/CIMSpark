@@ -65,7 +65,7 @@ extends
     {
         "\t<cim:Customer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Customer>\n"
+        "\t</cim:Customer>"
     }
 }
 
@@ -137,7 +137,7 @@ extends
     {
         "\t<cim:CustomerAccount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CustomerAccount>\n"
+        "\t</cim:CustomerAccount>"
     }
 }
 
@@ -214,7 +214,7 @@ extends
     {
         "\t<cim:CustomerAgreement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CustomerAgreement>\n"
+        "\t</cim:CustomerAgreement>"
     }
 }
 
@@ -297,7 +297,7 @@ extends
     {
         "\t<cim:CustomerNotification rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CustomerNotification>\n"
+        "\t</cim:CustomerNotification>"
     }
 }
 
@@ -364,7 +364,7 @@ extends
     {
         "\t<cim:IncidentHazard rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IncidentHazard>\n"
+        "\t</cim:IncidentHazard>"
     }
 }
 
@@ -443,7 +443,7 @@ extends
     {
         "\t<cim:PricingStructure rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PricingStructure>\n"
+        "\t</cim:PricingStructure>"
     }
 }
 
@@ -510,7 +510,7 @@ extends
     {
         "\t<cim:ServiceCategory rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ServiceCategory>\n"
+        "\t</cim:ServiceCategory>"
     }
 }
 
@@ -570,7 +570,7 @@ extends
     {
         "\t<cim:ServiceLocation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ServiceLocation>\n"
+        "\t</cim:ServiceLocation>"
     }
 }
 
@@ -632,7 +632,7 @@ extends
     {
         "\t<cim:Tariff rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Tariff>\n"
+        "\t</cim:Tariff>"
     }
 }
 
@@ -696,7 +696,7 @@ extends
     {
         "\t<cim:TroubleTicket rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TroubleTicket>\n"
+        "\t</cim:TroubleTicket>"
     }
 }
 

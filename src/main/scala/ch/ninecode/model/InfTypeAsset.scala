@@ -86,7 +86,7 @@ extends
     {
         "\t<cim:GeneratorTypeAsset rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GeneratorTypeAsset>\n"
+        "\t</cim:GeneratorTypeAsset>"
     }
 }
 
@@ -168,7 +168,7 @@ extends
     {
         "\t<cim:TypeAssetCatalogue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TypeAssetCatalogue>\n"
+        "\t</cim:TypeAssetCatalogue>"
     }
 }
 

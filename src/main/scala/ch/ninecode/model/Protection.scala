@@ -62,7 +62,7 @@ extends
     {
         "\t<cim:CurrentRelay rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurrentRelay>\n"
+        "\t</cim:CurrentRelay>"
     }
 }
 
@@ -147,7 +147,7 @@ extends
     {
         "\t<cim:ProtectionEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectionEquipment>\n"
+        "\t</cim:ProtectionEquipment>"
     }
 }
 
@@ -218,7 +218,7 @@ extends
     {
         "\t<cim:RecloseSequence rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RecloseSequence>\n"
+        "\t</cim:RecloseSequence>"
     }
 }
 
@@ -280,7 +280,7 @@ extends
     {
         "\t<cim:SynchrocheckRelay rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchrocheckRelay>\n"
+        "\t</cim:SynchrocheckRelay>"
     }
 }
 

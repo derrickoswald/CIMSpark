@@ -44,7 +44,7 @@ extends
     {
         "\t<cim:ComplianceEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ComplianceEvent>\n"
+        "\t</cim:ComplianceEvent>"
     }
 }
 
@@ -126,7 +126,7 @@ extends
     {
         "\t<cim:CustomerBillingInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CustomerBillingInfo>\n"
+        "\t</cim:CustomerBillingInfo>"
     }
 }
 
@@ -194,7 +194,7 @@ extends
     {
         "\t<cim:ExternalCustomerAgreement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExternalCustomerAgreement>\n"
+        "\t</cim:ExternalCustomerAgreement>"
     }
 }
 
@@ -267,7 +267,7 @@ extends
     {
         "\t<cim:PowerQualityPricing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerQualityPricing>\n"
+        "\t</cim:PowerQualityPricing>"
     }
 }
 
@@ -344,7 +344,7 @@ extends
     {
         "\t<cim:ServiceGuarantee rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ServiceGuarantee>\n"
+        "\t</cim:ServiceGuarantee>"
     }
 }
 
@@ -402,7 +402,7 @@ extends
     {
         "\t<cim:StandardIndustryCode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StandardIndustryCode>\n"
+        "\t</cim:StandardIndustryCode>"
     }
 }
 
@@ -451,7 +451,7 @@ extends
     {
         "\t<cim:SubscribePowerCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SubscribePowerCurve>\n"
+        "\t</cim:SubscribePowerCurve>"
     }
 }
 
@@ -525,7 +525,7 @@ extends
     {
         "\t<cim:WorkBillingInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WorkBillingInfo>\n"
+        "\t</cim:WorkBillingInfo>"
     }
 }
 

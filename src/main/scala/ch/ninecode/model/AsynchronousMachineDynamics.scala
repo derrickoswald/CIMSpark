@@ -58,7 +58,7 @@ extends
     {
         "\t<cim:AsynchronousMachineDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AsynchronousMachineDynamics>\n"
+        "\t</cim:AsynchronousMachineDynamics>"
     }
 }
 
@@ -141,7 +141,7 @@ extends
     {
         "\t<cim:AsynchronousMachineEquivalentCircuit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AsynchronousMachineEquivalentCircuit>\n"
+        "\t</cim:AsynchronousMachineEquivalentCircuit>"
     }
 }
 
@@ -237,7 +237,7 @@ extends
     {
         "\t<cim:AsynchronousMachineTimeConstantReactance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AsynchronousMachineTimeConstantReactance>\n"
+        "\t</cim:AsynchronousMachineTimeConstantReactance>"
     }
 }
 

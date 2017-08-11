@@ -184,7 +184,7 @@ extends
     {
         "\t<cim:GovCT1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovCT1>\n"
+        "\t</cim:GovCT1>"
     }
 }
 
@@ -527,7 +527,7 @@ extends
     {
         "\t<cim:GovCT2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovCT2>\n"
+        "\t</cim:GovCT2>"
     }
 }
 
@@ -724,7 +724,7 @@ extends
     {
         "\t<cim:GovGAST rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovGAST>\n"
+        "\t</cim:GovGAST>"
     }
 }
 
@@ -926,7 +926,7 @@ extends
     {
         "\t<cim:GovGAST1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovGAST1>\n"
+        "\t</cim:GovGAST1>"
     }
 }
 
@@ -1145,7 +1145,7 @@ extends
     {
         "\t<cim:GovGAST2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovGAST2>\n"
+        "\t</cim:GovGAST2>"
     }
 }
 
@@ -1339,7 +1339,7 @@ extends
     {
         "\t<cim:GovGAST3 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovGAST3>\n"
+        "\t</cim:GovGAST3>"
     }
 }
 
@@ -1471,7 +1471,7 @@ extends
     {
         "\t<cim:GovGAST4 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovGAST4>\n"
+        "\t</cim:GovGAST4>"
     }
 }
 
@@ -1642,7 +1642,7 @@ extends
     {
         "\t<cim:GovGASTWD rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovGASTWD>\n"
+        "\t</cim:GovGASTWD>"
     }
 }
 
@@ -1810,7 +1810,7 @@ extends
     {
         "\t<cim:GovHydro1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydro1>\n"
+        "\t</cim:GovHydro1>"
     }
 }
 
@@ -2000,7 +2000,7 @@ extends
     {
         "\t<cim:GovHydro2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydro2>\n"
+        "\t</cim:GovHydro2>"
     }
 }
 
@@ -2251,7 +2251,7 @@ extends
     {
         "\t<cim:GovHydro3 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydro3>\n"
+        "\t</cim:GovHydro3>"
     }
 }
 
@@ -2522,7 +2522,7 @@ extends
     {
         "\t<cim:GovHydro4 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydro4>\n"
+        "\t</cim:GovHydro4>"
     }
 }
 
@@ -2786,7 +2786,7 @@ extends
     {
         "\t<cim:GovHydroDD rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroDD>\n"
+        "\t</cim:GovHydroDD>"
     }
 }
 
@@ -3013,7 +3013,7 @@ extends
     {
         "\t<cim:GovHydroFrancis rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroFrancis>\n"
+        "\t</cim:GovHydroFrancis>"
     }
 }
 
@@ -3142,7 +3142,7 @@ extends
     {
         "\t<cim:GovHydroIEEE0 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroIEEE0>\n"
+        "\t</cim:GovHydroIEEE0>"
     }
 }
 
@@ -3309,7 +3309,7 @@ extends
     {
         "\t<cim:GovHydroIEEE2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroIEEE2>\n"
+        "\t</cim:GovHydroIEEE2>"
     }
 }
 
@@ -3541,7 +3541,7 @@ extends
     {
         "\t<cim:GovHydroPID rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroPID>\n"
+        "\t</cim:GovHydroPID>"
     }
 }
 
@@ -3743,7 +3743,7 @@ extends
     {
         "\t<cim:GovHydroPID2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroPID2>\n"
+        "\t</cim:GovHydroPID2>"
     }
 }
 
@@ -3952,7 +3952,7 @@ extends
     {
         "\t<cim:GovHydroPelton rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroPelton>\n"
+        "\t</cim:GovHydroPelton>"
     }
 }
 
@@ -4224,7 +4224,7 @@ extends
     {
         "\t<cim:GovHydroR rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroR>\n"
+        "\t</cim:GovHydroR>"
     }
 }
 
@@ -4542,7 +4542,7 @@ extends
     {
         "\t<cim:GovHydroWEH rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroWEH>\n"
+        "\t</cim:GovHydroWEH>"
     }
 }
 
@@ -4766,7 +4766,7 @@ extends
     {
         "\t<cim:GovHydroWPID rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovHydroWPID>\n"
+        "\t</cim:GovHydroWPID>"
     }
 }
 
@@ -4888,7 +4888,7 @@ extends
     {
         "\t<cim:GovSteam0 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteam0>\n"
+        "\t</cim:GovSteam0>"
     }
 }
 
@@ -5112,7 +5112,7 @@ extends
     {
         "\t<cim:GovSteam1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteam1>\n"
+        "\t</cim:GovSteam1>"
     }
 }
 
@@ -5268,7 +5268,7 @@ extends
     {
         "\t<cim:GovSteam2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteam2>\n"
+        "\t</cim:GovSteam2>"
     }
 }
 
@@ -5398,7 +5398,7 @@ extends
     {
         "\t<cim:GovSteamCC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteamCC>\n"
+        "\t</cim:GovSteamCC>"
     }
 }
 
@@ -5618,7 +5618,7 @@ extends
     {
         "\t<cim:GovSteamEU rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteamEU>\n"
+        "\t</cim:GovSteamEU>"
     }
 }
 
@@ -5774,7 +5774,7 @@ extends
     {
         "\t<cim:GovSteamFV2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteamFV2>\n"
+        "\t</cim:GovSteamFV2>"
     }
 }
 
@@ -5922,7 +5922,7 @@ extends
     {
         "\t<cim:GovSteamFV3 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteamFV3>\n"
+        "\t</cim:GovSteamFV3>"
     }
 }
 
@@ -6210,7 +6210,7 @@ extends
     {
         "\t<cim:GovSteamFV4 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteamFV4>\n"
+        "\t</cim:GovSteamFV4>"
     }
 }
 
@@ -6442,7 +6442,7 @@ extends
     {
         "\t<cim:GovSteamIEEE1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteamIEEE1>\n"
+        "\t</cim:GovSteamIEEE1>"
     }
 }
 
@@ -6567,7 +6567,7 @@ extends
     {
         "\t<cim:GovSteamSGO rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GovSteamSGO>\n"
+        "\t</cim:GovSteamSGO>"
     }
 }
 
@@ -6643,7 +6643,7 @@ extends
     {
         "\t<cim:TurbineGovernorDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TurbineGovernorDynamics>\n"
+        "\t</cim:TurbineGovernorDynamics>"
     }
 }
 

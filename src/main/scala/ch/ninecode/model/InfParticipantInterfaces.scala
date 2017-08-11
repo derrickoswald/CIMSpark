@@ -41,7 +41,7 @@ extends
     {
         "\t<cim:WheelingReferenceSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WheelingReferenceSchedule>\n"
+        "\t</cim:WheelingReferenceSchedule>"
     }
 }
 

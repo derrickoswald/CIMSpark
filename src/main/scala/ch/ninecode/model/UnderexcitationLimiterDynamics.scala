@@ -70,7 +70,7 @@ extends
     {
         "\t<cim:UnderexcLim2Simplified rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnderexcLim2Simplified>\n"
+        "\t</cim:UnderexcLim2Simplified>"
     }
 }
 
@@ -189,7 +189,7 @@ extends
     {
         "\t<cim:UnderexcLimIEEE1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnderexcLimIEEE1>\n"
+        "\t</cim:UnderexcLimIEEE1>"
     }
 }
 
@@ -414,7 +414,7 @@ extends
     {
         "\t<cim:UnderexcLimIEEE2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnderexcLimIEEE2>\n"
+        "\t</cim:UnderexcLimIEEE2>"
     }
 }
 
@@ -558,7 +558,7 @@ extends
     {
         "\t<cim:UnderexcLimX1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnderexcLimX1>\n"
+        "\t</cim:UnderexcLimX1>"
     }
 }
 
@@ -637,7 +637,7 @@ extends
     {
         "\t<cim:UnderexcLimX2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnderexcLimX2>\n"
+        "\t</cim:UnderexcLimX2>"
     }
 }
 
@@ -703,7 +703,7 @@ extends
     {
         "\t<cim:UnderexcitationLimiterDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UnderexcitationLimiterDynamics>\n"
+        "\t</cim:UnderexcitationLimiterDynamics>"
     }
 }
 

@@ -69,7 +69,7 @@ extends
     {
         "\t<cim:MarketInvoice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketInvoice>\n"
+        "\t</cim:MarketInvoice>"
     }
 }
 
@@ -169,7 +169,7 @@ extends
     {
         "\t<cim:MarketInvoiceLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketInvoiceLineItem>\n"
+        "\t</cim:MarketInvoiceLineItem>"
     }
 }
 
@@ -241,7 +241,7 @@ extends
     {
         "\t<cim:MarketLedger rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketLedger>\n"
+        "\t</cim:MarketLedger>"
     }
 }
 
@@ -311,7 +311,7 @@ extends
     {
         "\t<cim:MarketLedgerEntry rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketLedgerEntry>\n"
+        "\t</cim:MarketLedgerEntry>"
     }
 }
 
@@ -374,7 +374,7 @@ extends
     {
         "\t<cim:MktActivityRecord rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktActivityRecord>\n"
+        "\t</cim:MktActivityRecord>"
     }
 }
 
@@ -435,7 +435,7 @@ extends
     {
         "\t<cim:MktConnectivityNode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktConnectivityNode>\n"
+        "\t</cim:MktConnectivityNode>"
     }
 }
 
@@ -494,7 +494,7 @@ extends
     {
         "\t<cim:MktEnergyConsumer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktEnergyConsumer>\n"
+        "\t</cim:MktEnergyConsumer>"
     }
 }
 
@@ -545,7 +545,7 @@ extends
     {
         "\t<cim:MktGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktGeneratingUnit>\n"
+        "\t</cim:MktGeneratingUnit>"
     }
 }
 
@@ -596,7 +596,7 @@ extends
     {
         "\t<cim:MktLine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktLine>\n"
+        "\t</cim:MktLine>"
     }
 }
 
@@ -645,7 +645,7 @@ extends
     {
         "\t<cim:MktLoadArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktLoadArea>\n"
+        "\t</cim:MktLoadArea>"
     }
 }
 
@@ -700,7 +700,7 @@ extends
     {
         "\t<cim:MktMeasurement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktMeasurement>\n"
+        "\t</cim:MktMeasurement>"
     }
 }
 
@@ -776,7 +776,7 @@ extends
     {
         "\t<cim:MktOrganisation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktOrganisation>\n"
+        "\t</cim:MktOrganisation>"
     }
 }
 
@@ -844,7 +844,7 @@ extends
     {
         "\t<cim:MktPowerTransformer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktPowerTransformer>\n"
+        "\t</cim:MktPowerTransformer>"
     }
 }
 
@@ -903,7 +903,7 @@ extends
     {
         "\t<cim:MktTerminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktTerminal>\n"
+        "\t</cim:MktTerminal>"
     }
 }
 
@@ -956,7 +956,7 @@ extends
     {
         "\t<cim:MktUserAttribute rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktUserAttribute>\n"
+        "\t</cim:MktUserAttribute>"
     }
 }
 

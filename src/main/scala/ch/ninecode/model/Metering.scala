@@ -54,7 +54,7 @@ extends
     {
         "\t<cim:BaseReading rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BaseReading>\n"
+        "\t</cim:BaseReading>"
     }
 }
 
@@ -118,7 +118,7 @@ extends
     {
         "\t<cim:Channel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Channel>\n"
+        "\t</cim:Channel>"
     }
 }
 
@@ -185,7 +185,7 @@ extends
     {
         "\t<cim:ComFunction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ComFunction>\n"
+        "\t</cim:ComFunction>"
     }
 }
 
@@ -251,7 +251,7 @@ extends
     {
         "\t<cim:ComModule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ComModule>\n"
+        "\t</cim:ComModule>"
     }
 }
 
@@ -339,7 +339,7 @@ extends
     {
         "\t<cim:ControlledAppliance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ControlledAppliance>\n"
+        "\t</cim:ControlledAppliance>"
     }
 }
 
@@ -425,7 +425,7 @@ extends
     {
         "\t<cim:DemandResponseProgram rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DemandResponseProgram>\n"
+        "\t</cim:DemandResponseProgram>"
     }
 }
 
@@ -510,7 +510,7 @@ extends
     {
         "\t<cim:EndDevice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDevice>\n"
+        "\t</cim:EndDevice>"
     }
 }
 
@@ -589,7 +589,7 @@ extends
     {
         "\t<cim:EndDeviceAction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceAction>\n"
+        "\t</cim:EndDeviceAction>"
     }
 }
 
@@ -699,7 +699,7 @@ extends
     {
         "\t<cim:EndDeviceCapability rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceCapability>\n"
+        "\t</cim:EndDeviceCapability>"
     }
 }
 
@@ -828,7 +828,7 @@ extends
     {
         "\t<cim:EndDeviceControl rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceControl>\n"
+        "\t</cim:EndDeviceControl>"
     }
 }
 
@@ -917,7 +917,7 @@ extends
     {
         "\t<cim:EndDeviceControlType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceControlType>\n"
+        "\t</cim:EndDeviceControlType>"
     }
 }
 
@@ -993,7 +993,7 @@ extends
     {
         "\t<cim:EndDeviceEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceEvent>\n"
+        "\t</cim:EndDeviceEvent>"
     }
 }
 
@@ -1062,7 +1062,7 @@ extends
     {
         "\t<cim:EndDeviceEventDetail rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceEventDetail>\n"
+        "\t</cim:EndDeviceEventDetail>"
     }
 }
 
@@ -1130,7 +1130,7 @@ extends
     {
         "\t<cim:EndDeviceEventType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceEventType>\n"
+        "\t</cim:EndDeviceEventType>"
     }
 }
 
@@ -1190,7 +1190,7 @@ extends
     {
         "\t<cim:EndDeviceFunction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceFunction>\n"
+        "\t</cim:EndDeviceFunction>"
     }
 }
 
@@ -1250,7 +1250,7 @@ extends
     {
         "\t<cim:EndDeviceGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceGroup>\n"
+        "\t</cim:EndDeviceGroup>"
     }
 }
 
@@ -1317,7 +1317,7 @@ extends
     {
         "\t<cim:EndDeviceInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceInfo>\n"
+        "\t</cim:EndDeviceInfo>"
     }
 }
 
@@ -1385,7 +1385,7 @@ extends
     {
         "\t<cim:EndDeviceTiming rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EndDeviceTiming>\n"
+        "\t</cim:EndDeviceTiming>"
     }
 }
 
@@ -1452,7 +1452,7 @@ extends
     {
         "\t<cim:IntervalBlock rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IntervalBlock>\n"
+        "\t</cim:IntervalBlock>"
     }
 }
 
@@ -1508,7 +1508,7 @@ extends
     {
         "\t<cim:IntervalReading rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IntervalReading>\n"
+        "\t</cim:IntervalReading>"
     }
 }
 
@@ -1559,7 +1559,7 @@ extends
     {
         "\t<cim:Meter rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Meter>\n"
+        "\t</cim:Meter>"
     }
 }
 
@@ -1616,7 +1616,7 @@ extends
     {
         "\t<cim:MeterMultiplier rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeterMultiplier>\n"
+        "\t</cim:MeterMultiplier>"
     }
 }
 
@@ -1683,7 +1683,7 @@ extends
     {
         "\t<cim:MeterReading rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeterReading>\n"
+        "\t</cim:MeterReading>"
     }
 }
 
@@ -1748,7 +1748,7 @@ extends
     {
         "\t<cim:MeterServiceWork rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeterServiceWork>\n"
+        "\t</cim:MeterServiceWork>"
     }
 }
 
@@ -1806,7 +1806,7 @@ extends
     {
         "\t<cim:MetrologyRequirement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MetrologyRequirement>\n"
+        "\t</cim:MetrologyRequirement>"
     }
 }
 
@@ -1900,7 +1900,7 @@ extends
     {
         "\t<cim:PanDemandResponse rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PanDemandResponse>\n"
+        "\t</cim:PanDemandResponse>"
     }
 }
 
@@ -1982,7 +1982,7 @@ extends
     {
         "\t<cim:PanDisplay rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PanDisplay>\n"
+        "\t</cim:PanDisplay>"
     }
 }
 
@@ -2039,7 +2039,7 @@ extends
     {
         "\t<cim:PanPricing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PanPricing>\n"
+        "\t</cim:PanPricing>"
     }
 }
 
@@ -2131,7 +2131,7 @@ extends
     {
         "\t<cim:PanPricingDetail rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PanPricingDetail>\n"
+        "\t</cim:PanPricingDetail>"
     }
 }
 
@@ -2225,7 +2225,7 @@ extends
     {
         "\t<cim:PendingCalculation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PendingCalculation>\n"
+        "\t</cim:PendingCalculation>"
     }
 }
 
@@ -2290,7 +2290,7 @@ extends
     {
         "\t<cim:RationalNumber rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RationalNumber>\n"
+        "\t</cim:RationalNumber>"
     }
 }
 
@@ -2350,7 +2350,7 @@ extends
     {
         "\t<cim:Reading rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Reading>\n"
+        "\t</cim:Reading>"
     }
 }
 
@@ -2410,7 +2410,7 @@ extends
     {
         "\t<cim:ReadingInterharmonic rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReadingInterharmonic>\n"
+        "\t</cim:ReadingInterharmonic>"
     }
 }
 
@@ -2476,7 +2476,7 @@ extends
     {
         "\t<cim:ReadingQuality rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReadingQuality>\n"
+        "\t</cim:ReadingQuality>"
     }
 }
 
@@ -2542,7 +2542,7 @@ extends
     {
         "\t<cim:ReadingQualityType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReadingQualityType>\n"
+        "\t</cim:ReadingQualityType>"
     }
 }
 
@@ -2657,7 +2657,7 @@ extends
     {
         "\t<cim:ReadingType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReadingType>\n"
+        "\t</cim:ReadingType>"
     }
 }
 
@@ -2759,7 +2759,7 @@ extends
     {
         "\t<cim:Register rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Register>\n"
+        "\t</cim:Register>"
     }
 }
 
@@ -2826,7 +2826,7 @@ extends
     {
         "\t<cim:ServiceMultiplier rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ServiceMultiplier>\n"
+        "\t</cim:ServiceMultiplier>"
     }
 }
 
@@ -2882,7 +2882,7 @@ extends
     {
         "\t<cim:SimpleEndDeviceFunction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SimpleEndDeviceFunction>\n"
+        "\t</cim:SimpleEndDeviceFunction>"
     }
 }
 
@@ -3007,7 +3007,7 @@ extends
     {
         "\t<cim:UsagePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UsagePoint>\n"
+        "\t</cim:UsagePoint>"
     }
 }
 
@@ -3106,7 +3106,7 @@ extends
     {
         "\t<cim:UsagePointGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UsagePointGroup>\n"
+        "\t</cim:UsagePointGroup>"
     }
 }
 
@@ -3167,7 +3167,7 @@ extends
     {
         "\t<cim:UsagePointLocation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UsagePointLocation>\n"
+        "\t</cim:UsagePointLocation>"
     }
 }
 

@@ -58,7 +58,7 @@ extends
     {
         "\t<cim:SynchronousMachineDetailed rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchronousMachineDetailed>\n"
+        "\t</cim:SynchronousMachineDetailed>"
     }
 }
 
@@ -135,7 +135,7 @@ extends
     {
         "\t<cim:SynchronousMachineDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchronousMachineDynamics>\n"
+        "\t</cim:SynchronousMachineDynamics>"
     }
 }
 
@@ -247,7 +247,7 @@ extends
     {
         "\t<cim:SynchronousMachineEquivalentCircuit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchronousMachineEquivalentCircuit>\n"
+        "\t</cim:SynchronousMachineEquivalentCircuit>"
     }
 }
 
@@ -317,7 +317,7 @@ extends
     {
         "\t<cim:SynchronousMachineSimplified rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchronousMachineSimplified>\n"
+        "\t</cim:SynchronousMachineSimplified>"
     }
 }
 
@@ -450,7 +450,7 @@ extends
     {
         "\t<cim:SynchronousMachineTimeConstantReactance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchronousMachineTimeConstantReactance>\n"
+        "\t</cim:SynchronousMachineTimeConstantReactance>"
     }
 }
 

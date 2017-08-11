@@ -51,7 +51,7 @@ extends
     {
         "\t<cim:AltGeneratingUnitMeas rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AltGeneratingUnitMeas>\n"
+        "\t</cim:AltGeneratingUnitMeas>"
     }
 }
 
@@ -113,7 +113,7 @@ extends
     {
         "\t<cim:AltTieMeas rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AltTieMeas>\n"
+        "\t</cim:AltTieMeas>"
     }
 }
 
@@ -179,7 +179,7 @@ extends
     {
         "\t<cim:ControlArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ControlArea>\n"
+        "\t</cim:ControlArea>"
     }
 }
 
@@ -241,7 +241,7 @@ extends
     {
         "\t<cim:ControlAreaGeneratingUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ControlAreaGeneratingUnit>\n"
+        "\t</cim:ControlAreaGeneratingUnit>"
     }
 }
 
@@ -301,7 +301,7 @@ extends
     {
         "\t<cim:TieFlow rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TieFlow>\n"
+        "\t</cim:TieFlow>"
     }
 }
 

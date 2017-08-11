@@ -61,7 +61,7 @@ extends
     {
         "\t<cim:AreaReserveSpec rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AreaReserveSpec>\n"
+        "\t</cim:AreaReserveSpec>"
     }
 }
 
@@ -134,7 +134,7 @@ extends
     {
         "\t<cim:CurrentEmergencyScheduledInterchange rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurrentEmergencyScheduledInterchange>\n"
+        "\t</cim:CurrentEmergencyScheduledInterchange>"
     }
 }
 
@@ -198,7 +198,7 @@ extends
     {
         "\t<cim:CurrentScheduledInterchange rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurrentScheduledInterchange>\n"
+        "\t</cim:CurrentScheduledInterchange>"
     }
 }
 
@@ -254,7 +254,7 @@ extends
     {
         "\t<cim:CurtailmentProfile rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurtailmentProfile>\n"
+        "\t</cim:CurtailmentProfile>"
     }
 }
 
@@ -318,7 +318,7 @@ extends
     {
         "\t<cim:DynamicSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DynamicSchedule>\n"
+        "\t</cim:DynamicSchedule>"
     }
 }
 
@@ -383,7 +383,7 @@ extends
     {
         "\t<cim:EnergyProduct rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyProduct>\n"
+        "\t</cim:EnergyProduct>"
     }
 }
 
@@ -439,7 +439,7 @@ extends
     {
         "\t<cim:InadvertentAccount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InadvertentAccount>\n"
+        "\t</cim:InadvertentAccount>"
     }
 }
 
@@ -491,7 +491,7 @@ extends
     {
         "\t<cim:InternalControlArea rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InternalControlArea>\n"
+        "\t</cim:InternalControlArea>"
     }
 }
 
@@ -546,7 +546,7 @@ extends
     {
         "\t<cim:LossProfile rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LossProfile>\n"
+        "\t</cim:LossProfile>"
     }
 }
 
@@ -600,7 +600,7 @@ extends
     {
         "\t<cim:TieLine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TieLine>\n"
+        "\t</cim:TieLine>"
     }
 }
 
@@ -655,7 +655,7 @@ extends
     {
         "\t<cim:TransmissionCorridor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionCorridor>\n"
+        "\t</cim:TransmissionCorridor>"
     }
 }
 
@@ -704,7 +704,7 @@ extends
     {
         "\t<cim:TransmissionRightOfWay rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionRightOfWay>\n"
+        "\t</cim:TransmissionRightOfWay>"
     }
 }
 

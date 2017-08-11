@@ -48,7 +48,7 @@ extends
     {
         "\t<cim:ControlAreaOperator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ControlAreaOperator>\n"
+        "\t</cim:ControlAreaOperator>"
     }
 }
 
@@ -99,7 +99,7 @@ extends
     {
         "\t<cim:CustomerConsumer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CustomerConsumer>\n"
+        "\t</cim:CustomerConsumer>"
     }
 }
 
@@ -146,7 +146,7 @@ extends
     {
         "\t<cim:GenerationProvider rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GenerationProvider>\n"
+        "\t</cim:GenerationProvider>"
     }
 }
 
@@ -199,7 +199,7 @@ extends
     {
         "\t<cim:IntSchedAgreement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:IntSchedAgreement>\n"
+        "\t</cim:IntSchedAgreement>"
     }
 }
 
@@ -250,7 +250,7 @@ extends
     {
         "\t<cim:Marketer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Marketer>\n"
+        "\t</cim:Marketer>"
     }
 }
 
@@ -297,7 +297,7 @@ extends
     {
         "\t<cim:OpenAccessProduct rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OpenAccessProduct>\n"
+        "\t</cim:OpenAccessProduct>"
     }
 }
 
@@ -345,7 +345,7 @@ extends
     {
         "\t<cim:TransmissionProduct rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionProduct>\n"
+        "\t</cim:TransmissionProduct>"
     }
 }
 
@@ -399,7 +399,7 @@ extends
     {
         "\t<cim:TransmissionProvider rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransmissionProvider>\n"
+        "\t</cim:TransmissionProvider>"
     }
 }
 

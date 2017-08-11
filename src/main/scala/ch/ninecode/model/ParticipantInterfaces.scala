@@ -43,7 +43,7 @@ extends
     {
         "\t<cim:ActionRequest rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ActionRequest>\n"
+        "\t</cim:ActionRequest>"
     }
 }
 
@@ -96,7 +96,7 @@ extends
     {
         "\t<cim:AreaLoadBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AreaLoadBid>\n"
+        "\t</cim:AreaLoadBid>"
     }
 }
 
@@ -156,7 +156,7 @@ extends
     {
         "\t<cim:AttributeProperty rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AttributeProperty>\n"
+        "\t</cim:AttributeProperty>"
     }
 }
 
@@ -231,7 +231,7 @@ extends
     {
         "\t<cim:Bid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Bid>\n"
+        "\t</cim:Bid>"
     }
 }
 
@@ -300,7 +300,7 @@ extends
     {
         "\t<cim:BidDistributionFactor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidDistributionFactor>\n"
+        "\t</cim:BidDistributionFactor>"
     }
 }
 
@@ -379,7 +379,7 @@ extends
     {
         "\t<cim:BidError rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidError>\n"
+        "\t</cim:BidError>"
     }
 }
 
@@ -446,7 +446,7 @@ extends
     {
         "\t<cim:BidHourlyProductSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidHourlyProductSchedule>\n"
+        "\t</cim:BidHourlyProductSchedule>"
     }
 }
 
@@ -497,7 +497,7 @@ extends
     {
         "\t<cim:BidHourlySchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidHourlySchedule>\n"
+        "\t</cim:BidHourlySchedule>"
     }
 }
 
@@ -546,7 +546,7 @@ extends
     {
         "\t<cim:BidPriceCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidPriceCurve>\n"
+        "\t</cim:BidPriceCurve>"
     }
 }
 
@@ -614,7 +614,7 @@ extends
     {
         "\t<cim:BidPriceSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidPriceSchedule>\n"
+        "\t</cim:BidPriceSchedule>"
     }
 }
 
@@ -718,7 +718,7 @@ extends
     {
         "\t<cim:BidSelfSched rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidSelfSched>\n"
+        "\t</cim:BidSelfSched>"
     }
 }
 
@@ -796,7 +796,7 @@ extends
     {
         "\t<cim:BidSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidSet>\n"
+        "\t</cim:BidSet>"
     }
 }
 
@@ -869,7 +869,7 @@ extends
     {
         "\t<cim:ChargeComponent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ChargeComponent>\n"
+        "\t</cim:ChargeComponent>"
     }
 }
 
@@ -949,7 +949,7 @@ extends
     {
         "\t<cim:ChargeGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ChargeGroup>\n"
+        "\t</cim:ChargeGroup>"
     }
 }
 
@@ -1037,7 +1037,7 @@ extends
     {
         "\t<cim:ChargeType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ChargeType>\n"
+        "\t</cim:ChargeType>"
     }
 }
 
@@ -1139,7 +1139,7 @@ extends
     {
         "\t<cim:DispatchInstReply rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DispatchInstReply>\n"
+        "\t</cim:DispatchInstReply>"
     }
 }
 
@@ -1206,7 +1206,7 @@ extends
     {
         "\t<cim:EnergyPriceCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyPriceCurve>\n"
+        "\t</cim:EnergyPriceCurve>"
     }
 }
 
@@ -1324,7 +1324,7 @@ extends
     {
         "\t<cim:GeneratingBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GeneratingBid>\n"
+        "\t</cim:GeneratingBid>"
     }
 }
 
@@ -1418,7 +1418,7 @@ extends
     {
         "\t<cim:HourlyPreDispatchSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:HourlyPreDispatchSchedule>\n"
+        "\t</cim:HourlyPreDispatchSchedule>"
     }
 }
 
@@ -1472,7 +1472,7 @@ extends
     {
         "\t<cim:InterTieBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InterTieBid>\n"
+        "\t</cim:InterTieBid>"
     }
 }
 
@@ -1542,7 +1542,7 @@ extends
     {
         "\t<cim:InterTieDispatchResponse rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InterTieDispatchResponse>\n"
+        "\t</cim:InterTieDispatchResponse>"
     }
 }
 
@@ -1651,7 +1651,7 @@ extends
     {
         "\t<cim:LoadBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadBid>\n"
+        "\t</cim:LoadBid>"
     }
 }
 
@@ -1745,7 +1745,7 @@ extends
     {
         "\t<cim:LoadFollowingInst rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadFollowingInst>\n"
+        "\t</cim:LoadFollowingInst>"
     }
 }
 
@@ -1805,7 +1805,7 @@ extends
     {
         "\t<cim:LoadReductionPriceCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadReductionPriceCurve>\n"
+        "\t</cim:LoadReductionPriceCurve>"
     }
 }
 
@@ -1882,7 +1882,7 @@ extends
     {
         "\t<cim:MajorChargeGroup rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MajorChargeGroup>\n"
+        "\t</cim:MajorChargeGroup>"
     }
 }
 
@@ -1958,7 +1958,7 @@ extends
     {
         "\t<cim:MarketScheduledEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketScheduledEvent>\n"
+        "\t</cim:MarketScheduledEvent>"
     }
 }
 
@@ -2014,7 +2014,7 @@ extends
     {
         "\t<cim:NotificationTimeCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NotificationTimeCurve>\n"
+        "\t</cim:NotificationTimeCurve>"
     }
 }
 
@@ -2064,7 +2064,7 @@ extends
     {
         "\t<cim:OpenTieSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OpenTieSchedule>\n"
+        "\t</cim:OpenTieSchedule>"
     }
 }
 
@@ -2118,7 +2118,7 @@ extends
     {
         "\t<cim:ProductBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProductBid>\n"
+        "\t</cim:ProductBid>"
     }
 }
 
@@ -2172,7 +2172,7 @@ extends
     {
         "\t<cim:PumpingCostSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PumpingCostSchedule>\n"
+        "\t</cim:PumpingCostSchedule>"
     }
 }
 
@@ -2224,7 +2224,7 @@ extends
     {
         "\t<cim:PumpingLevelSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PumpingLevelSchedule>\n"
+        "\t</cim:PumpingLevelSchedule>"
     }
 }
 
@@ -2276,7 +2276,7 @@ extends
     {
         "\t<cim:PumpingShutDownCostSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PumpingShutDownCostSchedule>\n"
+        "\t</cim:PumpingShutDownCostSchedule>"
     }
 }
 
@@ -2343,7 +2343,7 @@ extends
     {
         "\t<cim:RampRateCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RampRateCurve>\n"
+        "\t</cim:RampRateCurve>"
     }
 }
 
@@ -2466,7 +2466,7 @@ extends
     {
         "\t<cim:ResourceBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceBid>\n"
+        "\t</cim:ResourceBid>"
     }
 }
 
@@ -2548,7 +2548,7 @@ extends
     {
         "\t<cim:StartUpCostCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartUpCostCurve>\n"
+        "\t</cim:StartUpCostCurve>"
     }
 }
 
@@ -2600,7 +2600,7 @@ extends
     {
         "\t<cim:StartUpTimeCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StartUpTimeCurve>\n"
+        "\t</cim:StartUpTimeCurve>"
     }
 }
 
@@ -2719,7 +2719,7 @@ extends
     {
         "\t<cim:Trade rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Trade>\n"
+        "\t</cim:Trade>"
     }
 }
 
@@ -2832,7 +2832,7 @@ extends
     {
         "\t<cim:TradeError rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TradeError>\n"
+        "\t</cim:TradeError>"
     }
 }
 
@@ -2914,7 +2914,7 @@ extends
     {
         "\t<cim:TradeProduct rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TradeProduct>\n"
+        "\t</cim:TradeProduct>"
     }
 }
 
@@ -2983,7 +2983,7 @@ extends
     {
         "\t<cim:TransactionBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransactionBid>\n"
+        "\t</cim:TransactionBid>"
     }
 }
 

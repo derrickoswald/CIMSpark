@@ -64,7 +64,7 @@ extends
     {
         "\t<cim:CRR rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CRR>\n"
+        "\t</cim:CRR>"
     }
 }
 
@@ -136,7 +136,7 @@ extends
     {
         "\t<cim:CRROrgRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CRROrgRole>\n"
+        "\t</cim:CRROrgRole>"
     }
 }
 
@@ -209,7 +209,7 @@ extends
     {
         "\t<cim:CRRSegment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CRRSegment>\n"
+        "\t</cim:CRRSegment>"
     }
 }
 

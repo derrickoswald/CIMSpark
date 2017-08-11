@@ -57,7 +57,7 @@ extends
     {
         "\t<cim:LandProperty rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LandProperty>\n"
+        "\t</cim:LandProperty>"
     }
 }
 
@@ -123,7 +123,7 @@ extends
     {
         "\t<cim:LocationGrant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LocationGrant>\n"
+        "\t</cim:LocationGrant>"
     }
 }
 
@@ -177,7 +177,7 @@ extends
     {
         "\t<cim:RedLine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RedLine>\n"
+        "\t</cim:RedLine>"
     }
 }
 
@@ -233,7 +233,7 @@ extends
     {
         "\t<cim:RightOfWay rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RightOfWay>\n"
+        "\t</cim:RightOfWay>"
     }
 }
 
@@ -292,7 +292,7 @@ extends
     {
         "\t<cim:Route rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Route>\n"
+        "\t</cim:Route>"
     }
 }
 
@@ -348,7 +348,7 @@ extends
     {
         "\t<cim:Zone rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Zone>\n"
+        "\t</cim:Zone>"
     }
 }
 

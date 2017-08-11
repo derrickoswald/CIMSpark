@@ -80,7 +80,7 @@ extends
     {
         "\t<cim:ACLineSegment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ACLineSegment>\n"
+        "\t</cim:ACLineSegment>"
     }
 }
 
@@ -156,7 +156,7 @@ extends
     {
         "\t<cim:ACLineSegmentPhase rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ACLineSegmentPhase>\n"
+        "\t</cim:ACLineSegmentPhase>"
     }
 }
 
@@ -278,7 +278,7 @@ extends
     {
         "\t<cim:AsynchronousMachine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AsynchronousMachine>\n"
+        "\t</cim:AsynchronousMachine>"
     }
 }
 
@@ -369,7 +369,7 @@ extends
     {
         "\t<cim:Breaker rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Breaker>\n"
+        "\t</cim:Breaker>"
     }
 }
 
@@ -425,7 +425,7 @@ extends
     {
         "\t<cim:BusbarSection rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BusbarSection>\n"
+        "\t</cim:BusbarSection>"
     }
 }
 
@@ -482,7 +482,7 @@ extends
     {
         "\t<cim:Clamp rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Clamp>\n"
+        "\t</cim:Clamp>"
     }
 }
 
@@ -536,7 +536,7 @@ extends
     {
         "\t<cim:CompositeSwitch rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CompositeSwitch>\n"
+        "\t</cim:CompositeSwitch>"
     }
 }
 
@@ -587,7 +587,7 @@ extends
     {
         "\t<cim:Conductor rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Conductor>\n"
+        "\t</cim:Conductor>"
     }
 }
 
@@ -636,7 +636,7 @@ extends
     {
         "\t<cim:Connector rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Connector>\n"
+        "\t</cim:Connector>"
     }
 }
 
@@ -692,7 +692,7 @@ extends
     {
         "\t<cim:Cut rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Cut>\n"
+        "\t</cim:Cut>"
     }
 }
 
@@ -746,7 +746,7 @@ extends
     {
         "\t<cim:Disconnector rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Disconnector>\n"
+        "\t</cim:Disconnector>"
     }
 }
 
@@ -796,7 +796,7 @@ extends
     {
         "\t<cim:EarthFaultCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EarthFaultCompensator>\n"
+        "\t</cim:EarthFaultCompensator>"
     }
 }
 
@@ -888,7 +888,7 @@ extends
     {
         "\t<cim:EnergyConsumer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyConsumer>\n"
+        "\t</cim:EnergyConsumer>"
     }
 }
 
@@ -981,7 +981,7 @@ extends
     {
         "\t<cim:EnergyConsumerPhase rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergyConsumerPhase>\n"
+        "\t</cim:EnergyConsumerPhase>"
     }
 }
 
@@ -1083,7 +1083,7 @@ extends
     {
         "\t<cim:EnergySource rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergySource>\n"
+        "\t</cim:EnergySource>"
     }
 }
 
@@ -1224,7 +1224,7 @@ extends
     {
         "\t<cim:ExternalNetworkInjection rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExternalNetworkInjection>\n"
+        "\t</cim:ExternalNetworkInjection>"
     }
 }
 
@@ -1322,7 +1322,7 @@ extends
     {
         "\t<cim:FrequencyConverter rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FrequencyConverter>\n"
+        "\t</cim:FrequencyConverter>"
     }
 }
 
@@ -1380,7 +1380,7 @@ extends
     {
         "\t<cim:Fuse rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Fuse>\n"
+        "\t</cim:Fuse>"
     }
 }
 
@@ -1430,7 +1430,7 @@ extends
     {
         "\t<cim:Ground rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Ground>\n"
+        "\t</cim:Ground>"
     }
 }
 
@@ -1479,7 +1479,7 @@ extends
     {
         "\t<cim:GroundDisconnector rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GroundDisconnector>\n"
+        "\t</cim:GroundDisconnector>"
     }
 }
 
@@ -1528,7 +1528,7 @@ extends
     {
         "\t<cim:GroundingImpedance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GroundingImpedance>\n"
+        "\t</cim:GroundingImpedance>"
     }
 }
 
@@ -1580,7 +1580,7 @@ extends
     {
         "\t<cim:Jumper rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Jumper>\n"
+        "\t</cim:Jumper>"
     }
 }
 
@@ -1629,7 +1629,7 @@ extends
     {
         "\t<cim:Junction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Junction>\n"
+        "\t</cim:Junction>"
     }
 }
 
@@ -1678,7 +1678,7 @@ extends
     {
         "\t<cim:Line rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Line>\n"
+        "\t</cim:Line>"
     }
 }
 
@@ -1738,7 +1738,7 @@ extends
     {
         "\t<cim:LinearShuntCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LinearShuntCompensator>\n"
+        "\t</cim:LinearShuntCompensator>"
     }
 }
 
@@ -1800,7 +1800,7 @@ extends
     {
         "\t<cim:LinearShuntCompensatorPhase rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LinearShuntCompensatorPhase>\n"
+        "\t</cim:LinearShuntCompensatorPhase>"
     }
 }
 
@@ -1851,7 +1851,7 @@ extends
     {
         "\t<cim:LoadBreakSwitch rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadBreakSwitch>\n"
+        "\t</cim:LoadBreakSwitch>"
     }
 }
 
@@ -1928,7 +1928,7 @@ extends
     {
         "\t<cim:MutualCoupling rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MutualCoupling>\n"
+        "\t</cim:MutualCoupling>"
     }
 }
 
@@ -1995,7 +1995,7 @@ extends
     {
         "\t<cim:NonlinearShuntCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonlinearShuntCompensator>\n"
+        "\t</cim:NonlinearShuntCompensator>"
     }
 }
 
@@ -2042,7 +2042,7 @@ extends
     {
         "\t<cim:NonlinearShuntCompensatorPhase rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonlinearShuntCompensatorPhase>\n"
+        "\t</cim:NonlinearShuntCompensatorPhase>"
     }
 }
 
@@ -2100,7 +2100,7 @@ extends
     {
         "\t<cim:NonlinearShuntCompensatorPhasePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonlinearShuntCompensatorPhasePoint>\n"
+        "\t</cim:NonlinearShuntCompensatorPhasePoint>"
     }
 }
 
@@ -2172,7 +2172,7 @@ extends
     {
         "\t<cim:NonlinearShuntCompensatorPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NonlinearShuntCompensatorPoint>\n"
+        "\t</cim:NonlinearShuntCompensatorPoint>"
     }
 }
 
@@ -2231,7 +2231,7 @@ extends
     {
         "\t<cim:PerLengthImpedance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PerLengthImpedance>\n"
+        "\t</cim:PerLengthImpedance>"
     }
 }
 
@@ -2280,7 +2280,7 @@ extends
     {
         "\t<cim:PerLengthLineParameter rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PerLengthLineParameter>\n"
+        "\t</cim:PerLengthLineParameter>"
     }
 }
 
@@ -2332,7 +2332,7 @@ extends
     {
         "\t<cim:PerLengthPhaseImpedance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PerLengthPhaseImpedance>\n"
+        "\t</cim:PerLengthPhaseImpedance>"
     }
 }
 
@@ -2405,7 +2405,7 @@ extends
     {
         "\t<cim:PerLengthSequenceImpedance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PerLengthSequenceImpedance>\n"
+        "\t</cim:PerLengthSequenceImpedance>"
     }
 }
 
@@ -2491,7 +2491,7 @@ extends
     {
         "\t<cim:PetersenCoil rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PetersenCoil>\n"
+        "\t</cim:PetersenCoil>"
     }
 }
 
@@ -2567,7 +2567,7 @@ extends
     {
         "\t<cim:PhaseImpedanceData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseImpedanceData>\n"
+        "\t</cim:PhaseImpedanceData>"
     }
 }
 
@@ -2627,7 +2627,7 @@ extends
     {
         "\t<cim:PhaseTapChanger rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChanger>\n"
+        "\t</cim:PhaseTapChanger>"
     }
 }
 
@@ -2680,7 +2680,7 @@ extends
     {
         "\t<cim:PhaseTapChangerAsymmetrical rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChangerAsymmetrical>\n"
+        "\t</cim:PhaseTapChangerAsymmetrical>"
     }
 }
 
@@ -2741,7 +2741,7 @@ extends
     {
         "\t<cim:PhaseTapChangerLinear rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChangerLinear>\n"
+        "\t</cim:PhaseTapChangerLinear>"
     }
 }
 
@@ -2805,7 +2805,7 @@ extends
     {
         "\t<cim:PhaseTapChangerNonLinear rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChangerNonLinear>\n"
+        "\t</cim:PhaseTapChangerNonLinear>"
     }
 }
 
@@ -2859,7 +2859,7 @@ extends
     {
         "\t<cim:PhaseTapChangerSymmetrical rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChangerSymmetrical>\n"
+        "\t</cim:PhaseTapChangerSymmetrical>"
     }
 }
 
@@ -2906,7 +2906,7 @@ extends
     {
         "\t<cim:PhaseTapChangerTable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChangerTable>\n"
+        "\t</cim:PhaseTapChangerTable>"
     }
 }
 
@@ -2958,7 +2958,7 @@ extends
     {
         "\t<cim:PhaseTapChangerTablePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChangerTablePoint>\n"
+        "\t</cim:PhaseTapChangerTablePoint>"
     }
 }
 
@@ -3006,7 +3006,7 @@ extends
     {
         "\t<cim:PhaseTapChangerTabular rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PhaseTapChangerTabular>\n"
+        "\t</cim:PhaseTapChangerTabular>"
     }
 }
 
@@ -3055,7 +3055,7 @@ extends
     {
         "\t<cim:Plant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Plant>\n"
+        "\t</cim:Plant>"
     }
 }
 
@@ -3130,7 +3130,7 @@ extends
     {
         "\t<cim:PowerTransformer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerTransformer>\n"
+        "\t</cim:PowerTransformer>"
     }
 }
 
@@ -3235,7 +3235,7 @@ extends
     {
         "\t<cim:PowerTransformerEnd rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerTransformerEnd>\n"
+        "\t</cim:PowerTransformerEnd>"
     }
 }
 
@@ -3310,7 +3310,7 @@ extends
     {
         "\t<cim:ProtectedSwitch rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectedSwitch>\n"
+        "\t</cim:ProtectedSwitch>"
     }
 }
 
@@ -3370,7 +3370,7 @@ extends
     {
         "\t<cim:RatioTapChanger rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RatioTapChanger>\n"
+        "\t</cim:RatioTapChanger>"
     }
 }
 
@@ -3425,7 +3425,7 @@ extends
     {
         "\t<cim:RatioTapChangerTable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RatioTapChangerTable>\n"
+        "\t</cim:RatioTapChangerTable>"
     }
 }
 
@@ -3474,7 +3474,7 @@ extends
     {
         "\t<cim:RatioTapChangerTablePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RatioTapChangerTablePoint>\n"
+        "\t</cim:RatioTapChangerTablePoint>"
     }
 }
 
@@ -3529,7 +3529,7 @@ extends
     {
         "\t<cim:ReactiveCapabilityCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ReactiveCapabilityCurve>\n"
+        "\t</cim:ReactiveCapabilityCurve>"
     }
 }
 
@@ -3580,7 +3580,7 @@ extends
     {
         "\t<cim:Recloser rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Recloser>\n"
+        "\t</cim:Recloser>"
     }
 }
 
@@ -3633,7 +3633,7 @@ extends
     {
         "\t<cim:RegulatingCondEq rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegulatingCondEq>\n"
+        "\t</cim:RegulatingCondEq>"
     }
 }
 
@@ -3713,7 +3713,7 @@ extends
     {
         "\t<cim:RegulatingControl rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegulatingControl>\n"
+        "\t</cim:RegulatingControl>"
     }
 }
 
@@ -3778,7 +3778,7 @@ extends
     {
         "\t<cim:RegulationSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RegulationSchedule>\n"
+        "\t</cim:RegulationSchedule>"
     }
 }
 
@@ -3853,7 +3853,7 @@ extends
     {
         "\t<cim:RotatingMachine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RotatingMachine>\n"
+        "\t</cim:RotatingMachine>"
     }
 }
 
@@ -3915,7 +3915,7 @@ extends
     {
         "\t<cim:Sectionaliser rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Sectionaliser>\n"
+        "\t</cim:Sectionaliser>"
     }
 }
 
@@ -3983,7 +3983,7 @@ extends
     {
         "\t<cim:SeriesCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SeriesCompensator>\n"
+        "\t</cim:SeriesCompensator>"
     }
 }
 
@@ -4080,7 +4080,7 @@ extends
     {
         "\t<cim:ShuntCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShuntCompensator>\n"
+        "\t</cim:ShuntCompensator>"
     }
 }
 
@@ -4161,7 +4161,7 @@ extends
     {
         "\t<cim:ShuntCompensatorPhase rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShuntCompensatorPhase>\n"
+        "\t</cim:ShuntCompensatorPhase>"
     }
 }
 
@@ -4236,7 +4236,7 @@ extends
     {
         "\t<cim:StaticVarCompensator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StaticVarCompensator>\n"
+        "\t</cim:StaticVarCompensator>"
     }
 }
 
@@ -4324,7 +4324,7 @@ extends
     {
         "\t<cim:Switch rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Switch>\n"
+        "\t</cim:Switch>"
     }
 }
 
@@ -4406,7 +4406,7 @@ extends
     {
         "\t<cim:SwitchPhase rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchPhase>\n"
+        "\t</cim:SwitchPhase>"
     }
 }
 
@@ -4466,7 +4466,7 @@ extends
     {
         "\t<cim:SwitchSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchSchedule>\n"
+        "\t</cim:SwitchSchedule>"
     }
 }
 
@@ -4625,7 +4625,7 @@ extends
     {
         "\t<cim:SynchronousMachine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SynchronousMachine>\n"
+        "\t</cim:SynchronousMachine>"
     }
 }
 
@@ -4776,7 +4776,7 @@ extends
     {
         "\t<cim:TapChanger rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TapChanger>\n"
+        "\t</cim:TapChanger>"
     }
 }
 
@@ -4865,7 +4865,7 @@ extends
     {
         "\t<cim:TapChangerControl rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TapChangerControl>\n"
+        "\t</cim:TapChangerControl>"
     }
 }
 
@@ -4931,7 +4931,7 @@ extends
     {
         "\t<cim:TapChangerTablePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TapChangerTablePoint>\n"
+        "\t</cim:TapChangerTablePoint>"
     }
 }
 
@@ -4992,7 +4992,7 @@ extends
     {
         "\t<cim:TapSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TapSchedule>\n"
+        "\t</cim:TapSchedule>"
     }
 }
 
@@ -5057,7 +5057,7 @@ extends
     {
         "\t<cim:TransformerCoreAdmittance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerCoreAdmittance>\n"
+        "\t</cim:TransformerCoreAdmittance>"
     }
 }
 
@@ -5157,7 +5157,7 @@ extends
     {
         "\t<cim:TransformerEnd rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerEnd>\n"
+        "\t</cim:TransformerEnd>"
     }
 }
 
@@ -5250,7 +5250,7 @@ extends
     {
         "\t<cim:TransformerMeshImpedance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerMeshImpedance>\n"
+        "\t</cim:TransformerMeshImpedance>"
     }
 }
 
@@ -5324,7 +5324,7 @@ extends
     {
         "\t<cim:TransformerStarImpedance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerStarImpedance>\n"
+        "\t</cim:TransformerStarImpedance>"
     }
 }
 
@@ -5384,7 +5384,7 @@ extends
     {
         "\t<cim:TransformerTank rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerTank>\n"
+        "\t</cim:TransformerTank>"
     }
 }
 
@@ -5438,7 +5438,7 @@ extends
     {
         "\t<cim:TransformerTankEnd rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerTankEnd>\n"
+        "\t</cim:TransformerTankEnd>"
     }
 }
 
@@ -5495,7 +5495,7 @@ extends
     {
         "\t<cim:VoltageControlZone rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VoltageControlZone>\n"
+        "\t</cim:VoltageControlZone>"
     }
 }
 

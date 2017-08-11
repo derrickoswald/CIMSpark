@@ -45,7 +45,7 @@ extends
     {
         "\t<cim:ErpBOM rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpBOM>\n"
+        "\t</cim:ErpBOM>"
     }
 }
 
@@ -97,7 +97,7 @@ extends
     {
         "\t<cim:ErpBankAccount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpBankAccount>\n"
+        "\t</cim:ErpBankAccount>"
     }
 }
 
@@ -154,7 +154,7 @@ extends
     {
         "\t<cim:ErpBomItemData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpBomItemData>\n"
+        "\t</cim:ErpBomItemData>"
     }
 }
 
@@ -208,7 +208,7 @@ extends
     {
         "\t<cim:ErpChartOfAccounts rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpChartOfAccounts>\n"
+        "\t</cim:ErpChartOfAccounts>"
     }
 }
 
@@ -256,7 +256,7 @@ extends
     {
         "\t<cim:ErpCompetency rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpCompetency>\n"
+        "\t</cim:ErpCompetency>"
     }
 }
 
@@ -304,7 +304,7 @@ extends
     {
         "\t<cim:ErpDocument rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpDocument>\n"
+        "\t</cim:ErpDocument>"
     }
 }
 
@@ -351,7 +351,7 @@ extends
     {
         "\t<cim:ErpEngChangeOrder rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpEngChangeOrder>\n"
+        "\t</cim:ErpEngChangeOrder>"
     }
 }
 
@@ -399,7 +399,7 @@ extends
     {
         "\t<cim:ErpIdentifiedObject rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpIdentifiedObject>\n"
+        "\t</cim:ErpIdentifiedObject>"
     }
 }
 
@@ -452,7 +452,7 @@ extends
     {
         "\t<cim:ErpInventory rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpInventory>\n"
+        "\t</cim:ErpInventory>"
     }
 }
 
@@ -509,7 +509,7 @@ extends
     {
         "\t<cim:ErpInventoryCount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpInventoryCount>\n"
+        "\t</cim:ErpInventoryCount>"
     }
 }
 
@@ -591,7 +591,7 @@ extends
     {
         "\t<cim:ErpInvoice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpInvoice>\n"
+        "\t</cim:ErpInvoice>"
     }
 }
 
@@ -708,7 +708,7 @@ extends
     {
         "\t<cim:ErpInvoiceLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpInvoiceLineItem>\n"
+        "\t</cim:ErpInvoiceLineItem>"
     }
 }
 
@@ -797,7 +797,7 @@ extends
     {
         "\t<cim:ErpIssueInventory rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpIssueInventory>\n"
+        "\t</cim:ErpIssueInventory>"
     }
 }
 
@@ -856,7 +856,7 @@ extends
     {
         "\t<cim:ErpItemMaster rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpItemMaster>\n"
+        "\t</cim:ErpItemMaster>"
     }
 }
 
@@ -908,7 +908,7 @@ extends
     {
         "\t<cim:ErpJournal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpJournal>\n"
+        "\t</cim:ErpJournal>"
     }
 }
 
@@ -981,7 +981,7 @@ extends
     {
         "\t<cim:ErpJournalEntry rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpJournalEntry>\n"
+        "\t</cim:ErpJournalEntry>"
     }
 }
 
@@ -1054,7 +1054,7 @@ extends
     {
         "\t<cim:ErpLedBudLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpLedBudLineItem>\n"
+        "\t</cim:ErpLedBudLineItem>"
     }
 }
 
@@ -1108,7 +1108,7 @@ extends
     {
         "\t<cim:ErpLedger rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpLedger>\n"
+        "\t</cim:ErpLedger>"
     }
 }
 
@@ -1156,7 +1156,7 @@ extends
     {
         "\t<cim:ErpLedgerBudget rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpLedgerBudget>\n"
+        "\t</cim:ErpLedgerBudget>"
     }
 }
 
@@ -1232,7 +1232,7 @@ extends
     {
         "\t<cim:ErpLedgerEntry rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpLedgerEntry>\n"
+        "\t</cim:ErpLedgerEntry>"
     }
 }
 
@@ -1310,7 +1310,7 @@ extends
     {
         "\t<cim:ErpPOLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpPOLineItem>\n"
+        "\t</cim:ErpPOLineItem>"
     }
 }
 
@@ -1366,7 +1366,7 @@ extends
     {
         "\t<cim:ErpPayable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpPayable>\n"
+        "\t</cim:ErpPayable>"
     }
 }
 
@@ -1427,7 +1427,7 @@ extends
     {
         "\t<cim:ErpPayableLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpPayableLineItem>\n"
+        "\t</cim:ErpPayableLineItem>"
     }
 }
 
@@ -1487,7 +1487,7 @@ extends
     {
         "\t<cim:ErpPayment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpPayment>\n"
+        "\t</cim:ErpPayment>"
     }
 }
 
@@ -1538,7 +1538,7 @@ extends
     {
         "\t<cim:ErpPersonnel rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpPersonnel>\n"
+        "\t</cim:ErpPersonnel>"
     }
 }
 
@@ -1588,7 +1588,7 @@ extends
     {
         "\t<cim:ErpProjectAccounting rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpProjectAccounting>\n"
+        "\t</cim:ErpProjectAccounting>"
     }
 }
 
@@ -1636,7 +1636,7 @@ extends
     {
         "\t<cim:ErpPurchaseOrder rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpPurchaseOrder>\n"
+        "\t</cim:ErpPurchaseOrder>"
     }
 }
 
@@ -1684,7 +1684,7 @@ extends
     {
         "\t<cim:ErpQuote rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpQuote>\n"
+        "\t</cim:ErpQuote>"
     }
 }
 
@@ -1749,7 +1749,7 @@ extends
     {
         "\t<cim:ErpQuoteLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpQuoteLineItem>\n"
+        "\t</cim:ErpQuoteLineItem>"
     }
 }
 
@@ -1820,7 +1820,7 @@ extends
     {
         "\t<cim:ErpRecDelvLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpRecDelvLineItem>\n"
+        "\t</cim:ErpRecDelvLineItem>"
     }
 }
 
@@ -1889,7 +1889,7 @@ extends
     {
         "\t<cim:ErpRecLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpRecLineItem>\n"
+        "\t</cim:ErpRecLineItem>"
     }
 }
 
@@ -1947,7 +1947,7 @@ extends
     {
         "\t<cim:ErpReceivable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpReceivable>\n"
+        "\t</cim:ErpReceivable>"
     }
 }
 
@@ -1995,7 +1995,7 @@ extends
     {
         "\t<cim:ErpReceiveDelivery rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpReceiveDelivery>\n"
+        "\t</cim:ErpReceiveDelivery>"
     }
 }
 
@@ -2071,7 +2071,7 @@ extends
     {
         "\t<cim:ErpReqLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpReqLineItem>\n"
+        "\t</cim:ErpReqLineItem>"
     }
 }
 
@@ -2139,7 +2139,7 @@ extends
     {
         "\t<cim:ErpRequisition rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpRequisition>\n"
+        "\t</cim:ErpRequisition>"
     }
 }
 
@@ -2187,7 +2187,7 @@ extends
     {
         "\t<cim:ErpSalesOrder rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpSalesOrder>\n"
+        "\t</cim:ErpSalesOrder>"
     }
 }
 
@@ -2240,7 +2240,7 @@ extends
     {
         "\t<cim:ErpSiteLevelData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpSiteLevelData>\n"
+        "\t</cim:ErpSiteLevelData>"
     }
 }
 
@@ -2299,7 +2299,7 @@ extends
     {
         "\t<cim:ErpTimeEntry rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpTimeEntry>\n"
+        "\t</cim:ErpTimeEntry>"
     }
 }
 
@@ -2353,7 +2353,7 @@ extends
     {
         "\t<cim:ErpTimeSheet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ErpTimeSheet>\n"
+        "\t</cim:ErpTimeSheet>"
     }
 }
 

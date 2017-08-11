@@ -43,7 +43,7 @@ extends
     {
         "\t<cim:CommunicationLink rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CommunicationLink>\n"
+        "\t</cim:CommunicationLink>"
     }
 }
 
@@ -101,7 +101,7 @@ extends
     {
         "\t<cim:RemoteControl rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RemoteControl>\n"
+        "\t</cim:RemoteControl>"
     }
 }
 
@@ -159,7 +159,7 @@ extends
     {
         "\t<cim:RemotePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RemotePoint>\n"
+        "\t</cim:RemotePoint>"
     }
 }
 
@@ -222,7 +222,7 @@ extends
     {
         "\t<cim:RemoteSource rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RemoteSource>\n"
+        "\t</cim:RemoteSource>"
     }
 }
 
@@ -282,7 +282,7 @@ extends
     {
         "\t<cim:RemoteUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RemoteUnit>\n"
+        "\t</cim:RemoteUnit>"
     }
 }
 

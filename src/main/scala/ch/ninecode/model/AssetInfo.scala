@@ -47,7 +47,7 @@ extends
     {
         "\t<cim:BusbarSectionInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BusbarSectionInfo>\n"
+        "\t</cim:BusbarSectionInfo>"
     }
 }
 
@@ -127,7 +127,7 @@ extends
     {
         "\t<cim:CableInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CableInfo>\n"
+        "\t</cim:CableInfo>"
     }
 }
 
@@ -208,7 +208,7 @@ extends
     {
         "\t<cim:ConcentricNeutralCableInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConcentricNeutralCableInfo>\n"
+        "\t</cim:ConcentricNeutralCableInfo>"
     }
 }
 
@@ -283,7 +283,7 @@ extends
     {
         "\t<cim:NoLoadTest rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:NoLoadTest>\n"
+        "\t</cim:NoLoadTest>"
     }
 }
 
@@ -363,7 +363,7 @@ extends
     {
         "\t<cim:OpenCircuitTest rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OpenCircuitTest>\n"
+        "\t</cim:OpenCircuitTest>"
     }
 }
 
@@ -424,7 +424,7 @@ extends
     {
         "\t<cim:OverheadWireInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OverheadWireInfo>\n"
+        "\t</cim:OverheadWireInfo>"
     }
 }
 
@@ -471,7 +471,7 @@ extends
     {
         "\t<cim:PowerTransformerInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerTransformerInfo>\n"
+        "\t</cim:PowerTransformerInfo>"
     }
 }
 
@@ -540,7 +540,7 @@ extends
     {
         "\t<cim:ShortCircuitTest rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShortCircuitTest>\n"
+        "\t</cim:ShortCircuitTest>"
     }
 }
 
@@ -615,7 +615,7 @@ extends
     {
         "\t<cim:ShuntCompensatorInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ShuntCompensatorInfo>\n"
+        "\t</cim:ShuntCompensatorInfo>"
     }
 }
 
@@ -686,7 +686,7 @@ extends
     {
         "\t<cim:SwitchInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SwitchInfo>\n"
+        "\t</cim:SwitchInfo>"
     }
 }
 
@@ -788,7 +788,7 @@ extends
     {
         "\t<cim:TapChangerInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TapChangerInfo>\n"
+        "\t</cim:TapChangerInfo>"
     }
 }
 
@@ -870,7 +870,7 @@ extends
     {
         "\t<cim:TapeShieldCableInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TapeShieldCableInfo>\n"
+        "\t</cim:TapeShieldCableInfo>"
     }
 }
 
@@ -962,7 +962,7 @@ extends
     {
         "\t<cim:TransformerEndInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerEndInfo>\n"
+        "\t</cim:TransformerEndInfo>"
     }
 }
 
@@ -1037,7 +1037,7 @@ extends
     {
         "\t<cim:TransformerTankInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerTankInfo>\n"
+        "\t</cim:TransformerTankInfo>"
     }
 }
 
@@ -1091,7 +1091,7 @@ extends
     {
         "\t<cim:TransformerTest rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransformerTest>\n"
+        "\t</cim:TransformerTest>"
     }
 }
 
@@ -1190,7 +1190,7 @@ extends
     {
         "\t<cim:WireInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WireInfo>\n"
+        "\t</cim:WireInfo>"
     }
 }
 
@@ -1280,7 +1280,7 @@ extends
     {
         "\t<cim:WirePosition rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WirePosition>\n"
+        "\t</cim:WirePosition>"
     }
 }
 
@@ -1353,7 +1353,7 @@ extends
     {
         "\t<cim:WireSpacingInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WireSpacingInfo>\n"
+        "\t</cim:WireSpacingInfo>"
     }
 }
 

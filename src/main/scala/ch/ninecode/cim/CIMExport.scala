@@ -1,15 +1,21 @@
 package ch.ninecode.cim
 
+import java.io.File
+import java.net.URI
 import java.nio.charset.StandardCharsets
+import java.nio.file
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.time.LocalDateTime
 
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.FileSystem
+import org.apache.hadoop.fs.FileUtil
+import org.apache.hadoop.fs.Path
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
-import org.slf4j.{Logger, LoggerFactory}
-
+import org.slf4j.LoggerFactory
 import ch.ninecode.model._
 
 /**
@@ -19,6 +25,13 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 {
     private implicit val session = spark
     private implicit val log = LoggerFactory.getLogger (getClass)
+    private val configuration: Configuration = session.sparkContext.hadoopConfiguration
+    private val hdfs = FileSystem.get (configuration)
+
+    def merge (source: String, destination: String): Unit =
+    {
+        FileUtil.copyMerge (hdfs, new Path (source), hdfs, new Path (destination), false, configuration, null)
+    }
 
     /**
      * Export elements.
@@ -64,7 +77,7 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
      * @param filename The name of the file to write.
      * @param about The about string for the CIM file header.
      */
-    def export (elements: RDD[Element], filename: String, about: String = ""):Unit =
+    def export (elements: RDD[Element], filename: String, about: String = "", temp: String = "/tmp/export.rdf"):Unit =
     {
         val ldt = LocalDateTime.now.toString
 
@@ -76,16 +89,19 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 		<md:Model.description>CIMExport</md:Model.description>
 		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
 		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
-	</md:FullModel>
-"""
-        val tailer =
-"""</rdf:RDF>
-"""
-        val ss = elements.map (_.export)
-        val s = header + ss.fold ("") ((x: String, y: String) ⇒ x + y)  + tailer
-        val b = s.getBytes (StandardCharsets.UTF_8)
-        val file = Paths.get (filename)
-        Files.write (file, b)
+	</md:FullModel>"""
+        val tailer = """</rdf:RDF>"""
+        val hdfs = FileSystem.get (URI.create (configuration.get ("fs.defaultFS")), configuration)
+        val directory: Path = new Path (hdfs.getWorkingDirectory, temp)
+        hdfs.delete (directory, true)
+        val file = new Path (filename)
+        hdfs.delete (file, false)
+        val txt = directory.toUri ().toString
+        val head = spark.sparkContext.makeRDD (List[String] (header))
+        val tail = spark.sparkContext.makeRDD (List[String] (tailer))
+        val ss = head.union (elements.map (_.export)).union (tail)
+        ss.saveAsTextFile (txt)
+        merge (txt, file.toUri ().toString)
     }
 
     /**
@@ -198,7 +214,22 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 
             // get the elements
             val elements = get[Element]("Elements").keyBy (_.id).join (ids).map (_._2._1)
-            export (elements.sortBy (_.id), filename, island)
+            export (elements, filename, island)
         }
+    }
+
+    /**
+      * Export all CIM elements.
+      *
+      * Useful after doing some processing, such as stripe de-duplicating or topological processing,
+      * to avoid having to redo that processing again.
+      *
+      * @param filename The name of the file to write.
+      * @param about The about string for the CIM file header.
+      */
+    def exportAll (filename: String, about: String = ""):Unit =
+    {
+        val elements = get[Element]("Elements")
+        export (elements, filename, about)
     }
 }

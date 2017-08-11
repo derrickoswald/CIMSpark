@@ -486,6 +486,15 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         ret
     }
 
+    /**
+     * Create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
+     *
+     * Any existing RDDs with these names will be unpersisted and renamed "old_XXX".
+     * Hierarchical nested case class RDDs will also be updated.
+     *
+     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
+     * @return The new Elements RDD - with TopologicalNode and TopologicalIsland objects included.
+     */
     def process (identify_islands: Boolean): RDD[Element] =
     {
         // get the initial graph based on edges
@@ -649,5 +658,29 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         }
 
         new_elements
+    }
+
+    /**
+     * Conditionally create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
+     *
+     * Note, if these RDD exist and are already populated, this method does nothing.
+     * Otherwise it calls the [[process(identify_islands:Boolean)]] method.
+     *
+     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
+     * @return Either the old Elements RDD or a new Elements RDD - with TopologicalNode and TopologicalIsland objects included.
+     */
+    def processIfNeeded (identify_islands: Boolean): RDD[Element] =
+    {
+        val nodes = get[TopologicalNode]
+        if ((null == nodes) || nodes.isEmpty ())
+            process (identify_islands)
+        else
+        {
+            val islands = get[TopologicalIsland]
+            if (identify_islands && ((null == islands) || islands.isEmpty ()))
+                process (identify_islands)
+            else
+                get [Element]("Elements")
+        }
     }
 }

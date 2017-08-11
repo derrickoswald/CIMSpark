@@ -41,7 +41,7 @@ extends
     {
         "\t<cim:AssetModelCatalogue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetModelCatalogue>\n"
+        "\t</cim:AssetModelCatalogue>"
     }
 }
 
@@ -100,7 +100,7 @@ extends
     {
         "\t<cim:AssetModelCatalogueItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AssetModelCatalogueItem>\n"
+        "\t</cim:AssetModelCatalogueItem>"
     }
 }
 
@@ -155,7 +155,7 @@ extends
     {
         "\t<cim:BreakerInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BreakerInfo>\n"
+        "\t</cim:BreakerInfo>"
     }
 }
 
@@ -230,7 +230,7 @@ extends
     {
         "\t<cim:CompositeSwitchInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CompositeSwitchInfo>\n"
+        "\t</cim:CompositeSwitchInfo>"
     }
 }
 
@@ -342,7 +342,7 @@ extends
     {
         "\t<cim:CurrentTransformerInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CurrentTransformerInfo>\n"
+        "\t</cim:CurrentTransformerInfo>"
     }
 }
 
@@ -423,7 +423,7 @@ extends
     {
         "\t<cim:FaultIndicatorInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FaultIndicatorInfo>\n"
+        "\t</cim:FaultIndicatorInfo>"
     }
 }
 
@@ -493,7 +493,7 @@ extends
     {
         "\t<cim:OldSwitchInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OldSwitchInfo>\n"
+        "\t</cim:OldSwitchInfo>"
     }
 }
 
@@ -557,7 +557,7 @@ extends
     {
         "\t<cim:OldTransformerEndInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OldTransformerEndInfo>\n"
+        "\t</cim:OldTransformerEndInfo>"
     }
 }
 
@@ -619,7 +619,7 @@ extends
     {
         "\t<cim:OldTransformerTankInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OldTransformerTankInfo>\n"
+        "\t</cim:OldTransformerTankInfo>"
     }
 }
 
@@ -698,7 +698,7 @@ extends
     {
         "\t<cim:PotentialTransformerInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PotentialTransformerInfo>\n"
+        "\t</cim:PotentialTransformerInfo>"
     }
 }
 
@@ -764,7 +764,7 @@ extends
     {
         "\t<cim:ProtectionEquipmentInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ProtectionEquipmentInfo>\n"
+        "\t</cim:ProtectionEquipmentInfo>"
     }
 }
 
@@ -829,7 +829,7 @@ extends
     {
         "\t<cim:RecloserInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RecloserInfo>\n"
+        "\t</cim:RecloserInfo>"
     }
 }
 
@@ -915,7 +915,7 @@ extends
     {
         "\t<cim:SurgeArresterInfo rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SurgeArresterInfo>\n"
+        "\t</cim:SurgeArresterInfo>"
     }
 }
 

@@ -42,7 +42,7 @@ extends
     {
         "\t<cim:EnvironmentalDependentLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnvironmentalDependentLimit>\n"
+        "\t</cim:EnvironmentalDependentLimit>"
     }
 }
 
@@ -95,7 +95,7 @@ extends
     {
         "\t<cim:EquipmentLimitSeriesComponent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquipmentLimitSeriesComponent>\n"
+        "\t</cim:EquipmentLimitSeriesComponent>"
     }
 }
 
@@ -149,7 +149,7 @@ extends
     {
         "\t<cim:LimitDependency rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LimitDependency>\n"
+        "\t</cim:LimitDependency>"
     }
 }
 
@@ -203,7 +203,7 @@ extends
     {
         "\t<cim:LimitScalingLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LimitScalingLimit>\n"
+        "\t</cim:LimitScalingLimit>"
     }
 }
 
@@ -264,7 +264,7 @@ extends
     {
         "\t<cim:OperatonalLimitTypeScaling rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperatonalLimitTypeScaling>\n"
+        "\t</cim:OperatonalLimitTypeScaling>"
     }
 }
 
@@ -314,7 +314,7 @@ extends
     {
         "\t<cim:ScheduledActivePowerLimitValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledActivePowerLimitValue>\n"
+        "\t</cim:ScheduledActivePowerLimitValue>"
     }
 }
 
@@ -365,7 +365,7 @@ extends
     {
         "\t<cim:ScheduledApparentPowerLimitValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledApparentPowerLimitValue>\n"
+        "\t</cim:ScheduledApparentPowerLimitValue>"
     }
 }
 
@@ -416,7 +416,7 @@ extends
     {
         "\t<cim:ScheduledCurrentLimitValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledCurrentLimitValue>\n"
+        "\t</cim:ScheduledCurrentLimitValue>"
     }
 }
 
@@ -461,7 +461,7 @@ extends
     {
         "\t<cim:ScheduledLimitDependency rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledLimitDependency>\n"
+        "\t</cim:ScheduledLimitDependency>"
     }
 }
 
@@ -514,7 +514,7 @@ extends
     {
         "\t<cim:ScheduledLimitValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledLimitValue>\n"
+        "\t</cim:ScheduledLimitValue>"
     }
 }
 
@@ -567,7 +567,7 @@ extends
     {
         "\t<cim:ScheduledVoltageLimitValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledVoltageLimitValue>\n"
+        "\t</cim:ScheduledVoltageLimitValue>"
     }
 }
 
@@ -617,7 +617,7 @@ extends
     {
         "\t<cim:SeriesEquipmentDependentLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SeriesEquipmentDependentLimit>\n"
+        "\t</cim:SeriesEquipmentDependentLimit>"
     }
 }
 
@@ -672,7 +672,7 @@ extends
     {
         "\t<cim:TemperatureDependentLimitPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TemperatureDependentLimitPoint>\n"
+        "\t</cim:TemperatureDependentLimitPoint>"
     }
 }
 
@@ -725,7 +725,7 @@ extends
     {
         "\t<cim:TemperatureDependentLimitTable rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TemperatureDependentLimitTable>\n"
+        "\t</cim:TemperatureDependentLimitTable>"
     }
 }
 
@@ -786,7 +786,7 @@ extends
     {
         "\t<cim:TemperaturePolynomialLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TemperaturePolynomialLimit>\n"
+        "\t</cim:TemperaturePolynomialLimit>"
     }
 }
 
@@ -843,7 +843,7 @@ extends
     {
         "\t<cim:WeatherStation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:WeatherStation>\n"
+        "\t</cim:WeatherStation>"
     }
 }
 

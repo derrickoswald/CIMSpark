@@ -69,7 +69,7 @@ extends
     {
         "\t<cim:BilateralTransaction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BilateralTransaction>\n"
+        "\t</cim:BilateralTransaction>"
     }
 }
 
@@ -135,7 +135,7 @@ extends
     {
         "\t<cim:Participation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Participation>\n"
+        "\t</cim:Participation>"
     }
 }
 
@@ -223,7 +223,7 @@ extends
     {
         "\t<cim:ResourceCertification rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceCertification>\n"
+        "\t</cim:ResourceCertification>"
     }
 }
 

@@ -46,7 +46,7 @@ extends
     {
         "\t<cim:DynamicsFunctionBlock rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DynamicsFunctionBlock>\n"
+        "\t</cim:DynamicsFunctionBlock>"
     }
 }
 
@@ -118,7 +118,7 @@ extends
     {
         "\t<cim:RotatingMachineDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RotatingMachineDynamics>\n"
+        "\t</cim:RotatingMachineDynamics>"
     }
 }
 

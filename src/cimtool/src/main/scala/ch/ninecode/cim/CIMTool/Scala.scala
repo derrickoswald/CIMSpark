@@ -665,7 +665,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             s.append ("""|        export_fields +
             |        "\t</cim:""".stripMargin)
             s.append (cls.name)
-            s.append (""">\n"
+            s.append (""">"
             |    }
             |}
             |

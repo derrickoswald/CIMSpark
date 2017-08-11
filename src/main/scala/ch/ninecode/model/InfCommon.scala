@@ -46,7 +46,7 @@ extends
     {
         "\t<cim:Bank rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Bank>\n"
+        "\t</cim:Bank>"
     }
 }
 
@@ -105,7 +105,7 @@ extends
     {
         "\t<cim:BankAccount rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BankAccount>\n"
+        "\t</cim:BankAccount>"
     }
 }
 
@@ -159,7 +159,7 @@ extends
     {
         "\t<cim:BusinessPlan rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BusinessPlan>\n"
+        "\t</cim:BusinessPlan>"
     }
 }
 
@@ -212,7 +212,7 @@ extends
     {
         "\t<cim:BusinessRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BusinessRole>\n"
+        "\t</cim:BusinessRole>"
     }
 }
 
@@ -272,7 +272,7 @@ extends
     {
         "\t<cim:Craft rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Craft>\n"
+        "\t</cim:Craft>"
     }
 }
 
@@ -325,7 +325,7 @@ extends
     {
         "\t<cim:DocumentOrganisationRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DocumentOrganisationRole>\n"
+        "\t</cim:DocumentOrganisationRole>"
     }
 }
 
@@ -386,7 +386,7 @@ extends
     {
         "\t<cim:OldCrew rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OldCrew>\n"
+        "\t</cim:OldCrew>"
     }
 }
 
@@ -461,7 +461,7 @@ extends
     {
         "\t<cim:OldPerson rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OldPerson>\n"
+        "\t</cim:OldPerson>"
     }
 }
 
@@ -523,7 +523,7 @@ extends
     {
         "\t<cim:OrgOrgRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OrgOrgRole>\n"
+        "\t</cim:OrgOrgRole>"
     }
 }
 
@@ -574,7 +574,7 @@ extends
     {
         "\t<cim:PersonDocumentRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PersonDocumentRole>\n"
+        "\t</cim:PersonDocumentRole>"
     }
 }
 
@@ -628,7 +628,7 @@ extends
     {
         "\t<cim:PersonOrganisationRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PersonOrganisationRole>\n"
+        "\t</cim:PersonOrganisationRole>"
     }
 }
 
@@ -685,7 +685,7 @@ extends
     {
         "\t<cim:PersonPropertyRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PersonPropertyRole>\n"
+        "\t</cim:PersonPropertyRole>"
     }
 }
 
@@ -736,7 +736,7 @@ extends
     {
         "\t<cim:PropertyOrganisationRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PropertyOrganisationRole>\n"
+        "\t</cim:PropertyOrganisationRole>"
     }
 }
 
@@ -788,7 +788,7 @@ extends
     {
         "\t<cim:Ratio rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Ratio>\n"
+        "\t</cim:Ratio>"
     }
 }
 
@@ -844,7 +844,7 @@ extends
     {
         "\t<cim:Role rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Role>\n"
+        "\t</cim:Role>"
     }
 }
 
@@ -912,7 +912,7 @@ extends
     {
         "\t<cim:Skill rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Skill>\n"
+        "\t</cim:Skill>"
     }
 }
 

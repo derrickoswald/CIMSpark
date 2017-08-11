@@ -49,7 +49,7 @@ extends
     {
         "\t<cim:PackageDependenciesCIMVersion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PackageDependenciesCIMVersion>\n"
+        "\t</cim:PackageDependenciesCIMVersion>"
     }
 }
 

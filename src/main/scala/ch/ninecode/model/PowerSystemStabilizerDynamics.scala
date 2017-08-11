@@ -44,7 +44,7 @@ extends
     {
         "\t<cim:PowerSystemStabilizerDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PowerSystemStabilizerDynamics>\n"
+        "\t</cim:PowerSystemStabilizerDynamics>"
     }
 }
 
@@ -154,7 +154,7 @@ extends
     {
         "\t<cim:Pss1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Pss1>\n"
+        "\t</cim:Pss1>"
     }
 }
 
@@ -299,7 +299,7 @@ extends
     {
         "\t<cim:Pss1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Pss1A>\n"
+        "\t</cim:Pss1A>"
     }
 }
 
@@ -514,7 +514,7 @@ extends
     {
         "\t<cim:Pss2B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Pss2B>\n"
+        "\t</cim:Pss2B>"
     }
 }
 
@@ -678,7 +678,7 @@ extends
     {
         "\t<cim:Pss2ST rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Pss2ST>\n"
+        "\t</cim:Pss2ST>"
     }
 }
 
@@ -834,7 +834,7 @@ extends
     {
         "\t<cim:Pss5 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Pss5>\n"
+        "\t</cim:Pss5>"
     }
 }
 
@@ -958,7 +958,7 @@ extends
     {
         "\t<cim:PssELIN2 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssELIN2>\n"
+        "\t</cim:PssELIN2>"
     }
 }
 
@@ -1075,7 +1075,7 @@ extends
     {
         "\t<cim:PssIEEE1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssIEEE1A>\n"
+        "\t</cim:PssIEEE1A>"
     }
 }
 
@@ -1254,7 +1254,7 @@ extends
     {
         "\t<cim:PssIEEE2B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssIEEE2B>\n"
+        "\t</cim:PssIEEE2B>"
     }
 }
 
@@ -1431,7 +1431,7 @@ extends
     {
         "\t<cim:PssIEEE3B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssIEEE3B>\n"
+        "\t</cim:PssIEEE3B>"
     }
 }
 
@@ -1776,7 +1776,7 @@ extends
     {
         "\t<cim:PssIEEE4B rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssIEEE4B>\n"
+        "\t</cim:PssIEEE4B>"
     }
 }
 
@@ -2000,7 +2000,7 @@ extends
     {
         "\t<cim:PssPTIST1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssPTIST1>\n"
+        "\t</cim:PssPTIST1>"
     }
 }
 
@@ -2185,7 +2185,7 @@ extends
     {
         "\t<cim:PssPTIST3 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssPTIST3>\n"
+        "\t</cim:PssPTIST3>"
     }
 }
 
@@ -2332,7 +2332,7 @@ extends
     {
         "\t<cim:PssSB4 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssSB4>\n"
+        "\t</cim:PssSB4>"
     }
 }
 
@@ -2452,7 +2452,7 @@ extends
     {
         "\t<cim:PssSH rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssSH>\n"
+        "\t</cim:PssSH>"
     }
 }
 
@@ -2568,7 +2568,7 @@ extends
     {
         "\t<cim:PssSK rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssSK>\n"
+        "\t</cim:PssSK>"
     }
 }
 
@@ -2690,7 +2690,7 @@ extends
     {
         "\t<cim:PssWECC rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PssWECC>\n"
+        "\t</cim:PssWECC>"
     }
 }
 

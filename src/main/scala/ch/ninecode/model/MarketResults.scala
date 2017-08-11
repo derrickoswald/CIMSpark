@@ -43,7 +43,7 @@ extends
     {
         "\t<cim:AncillaryServiceClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AncillaryServiceClearing>\n"
+        "\t</cim:AncillaryServiceClearing>"
     }
 }
 
@@ -148,7 +148,7 @@ extends
     {
         "\t<cim:BillDeterminant rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BillDeterminant>\n"
+        "\t</cim:BillDeterminant>"
     }
 }
 
@@ -254,7 +254,7 @@ extends
     {
         "\t<cim:ChargeProfile rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ChargeProfile>\n"
+        "\t</cim:ChargeProfile>"
     }
 }
 
@@ -329,7 +329,7 @@ extends
     {
         "\t<cim:ChargeProfileData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ChargeProfileData>\n"
+        "\t</cim:ChargeProfileData>"
     }
 }
 
@@ -386,7 +386,7 @@ extends
     {
         "\t<cim:CommitmentClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CommitmentClearing>\n"
+        "\t</cim:CommitmentClearing>"
     }
 }
 
@@ -469,7 +469,7 @@ extends
     {
         "\t<cim:Commitments rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Commitments>\n"
+        "\t</cim:Commitments>"
     }
 }
 
@@ -538,7 +538,7 @@ extends
     {
         "\t<cim:ConstraintClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConstraintClearing>\n"
+        "\t</cim:ConstraintClearing>"
     }
 }
 
@@ -642,7 +642,7 @@ extends
     {
         "\t<cim:ConstraintResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConstraintResults>\n"
+        "\t</cim:ConstraintResults>"
     }
 }
 
@@ -751,7 +751,7 @@ extends
     {
         "\t<cim:DopInstruction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DopInstruction>\n"
+        "\t</cim:DopInstruction>"
     }
 }
 
@@ -883,7 +883,7 @@ extends
     {
         "\t<cim:DotInstruction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DotInstruction>\n"
+        "\t</cim:DotInstruction>"
     }
 }
 
@@ -972,7 +972,7 @@ extends
     {
         "\t<cim:ExPostLoss rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostLoss>\n"
+        "\t</cim:ExPostLoss>"
     }
 }
 
@@ -1033,7 +1033,7 @@ extends
     {
         "\t<cim:ExPostLossResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostLossResults>\n"
+        "\t</cim:ExPostLossResults>"
     }
 }
 
@@ -1090,7 +1090,7 @@ extends
     {
         "\t<cim:ExPostMarketRegion rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostMarketRegion>\n"
+        "\t</cim:ExPostMarketRegion>"
     }
 }
 
@@ -1148,7 +1148,7 @@ extends
     {
         "\t<cim:ExPostMarketRegionResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostMarketRegionResults>\n"
+        "\t</cim:ExPostMarketRegionResults>"
     }
 }
 
@@ -1203,7 +1203,7 @@ extends
     {
         "\t<cim:ExPostPricing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostPricing>\n"
+        "\t</cim:ExPostPricing>"
     }
 }
 
@@ -1270,7 +1270,7 @@ extends
     {
         "\t<cim:ExPostPricingResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostPricingResults>\n"
+        "\t</cim:ExPostPricingResults>"
     }
 }
 
@@ -1327,7 +1327,7 @@ extends
     {
         "\t<cim:ExPostResource rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostResource>\n"
+        "\t</cim:ExPostResource>"
     }
 }
 
@@ -1408,7 +1408,7 @@ extends
     {
         "\t<cim:ExPostResourceResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ExPostResourceResults>\n"
+        "\t</cim:ExPostResourceResults>"
     }
 }
 
@@ -1478,7 +1478,7 @@ extends
     {
         "\t<cim:GeneralClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GeneralClearing>\n"
+        "\t</cim:GeneralClearing>"
     }
 }
 
@@ -1541,7 +1541,7 @@ extends
     {
         "\t<cim:GeneralClearingResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:GeneralClearingResults>\n"
+        "\t</cim:GeneralClearingResults>"
     }
 }
 
@@ -1599,7 +1599,7 @@ extends
     {
         "\t<cim:InstructionClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InstructionClearing>\n"
+        "\t</cim:InstructionClearing>"
     }
 }
 
@@ -1647,7 +1647,7 @@ extends
     {
         "\t<cim:InstructionClearingDOP rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InstructionClearingDOP>\n"
+        "\t</cim:InstructionClearingDOP>"
     }
 }
 
@@ -1700,7 +1700,7 @@ extends
     {
         "\t<cim:InstructionClearingDOT rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:InstructionClearingDOT>\n"
+        "\t</cim:InstructionClearingDOT>"
     }
 }
 
@@ -1790,7 +1790,7 @@ extends
     {
         "\t<cim:Instructions rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Instructions>\n"
+        "\t</cim:Instructions>"
     }
 }
 
@@ -1882,7 +1882,7 @@ extends
     {
         "\t<cim:LoadFollowingOperatorInput rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LoadFollowingOperatorInput>\n"
+        "\t</cim:LoadFollowingOperatorInput>"
     }
 }
 
@@ -1943,7 +1943,7 @@ extends
     {
         "\t<cim:LossClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LossClearing>\n"
+        "\t</cim:LossClearing>"
     }
 }
 
@@ -2004,7 +2004,7 @@ extends
     {
         "\t<cim:LossClearingResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LossClearingResults>\n"
+        "\t</cim:LossClearingResults>"
     }
 }
 
@@ -2070,7 +2070,7 @@ extends
     {
         "\t<cim:MPMClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MPMClearing>\n"
+        "\t</cim:MPMClearing>"
     }
 }
 
@@ -2132,7 +2132,7 @@ extends
     {
         "\t<cim:MPMResourceStatus rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MPMResourceStatus>\n"
+        "\t</cim:MPMResourceStatus>"
     }
 }
 
@@ -2201,7 +2201,7 @@ extends
     {
         "\t<cim:MPMTestResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MPMTestResults>\n"
+        "\t</cim:MPMTestResults>"
     }
 }
 
@@ -2311,7 +2311,7 @@ extends
     {
         "\t<cim:MarketRegionResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketRegionResults>\n"
+        "\t</cim:MarketRegionResults>"
     }
 }
 
@@ -2416,7 +2416,7 @@ extends
     {
         "\t<cim:MarketResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketResults>\n"
+        "\t</cim:MarketResults>"
     }
 }
 
@@ -2494,7 +2494,7 @@ extends
     {
         "\t<cim:MarketStatement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketStatement>\n"
+        "\t</cim:MarketStatement>"
     }
 }
 
@@ -2616,7 +2616,7 @@ extends
     {
         "\t<cim:MarketStatementLineItem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketStatementLineItem>\n"
+        "\t</cim:MarketStatementLineItem>"
     }
 }
 
@@ -2709,7 +2709,7 @@ extends
     {
         "\t<cim:MitigatedBid rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MitigatedBid>\n"
+        "\t</cim:MitigatedBid>"
     }
 }
 
@@ -2759,7 +2759,7 @@ extends
     {
         "\t<cim:MitigatedBidClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MitigatedBidClearing>\n"
+        "\t</cim:MitigatedBidClearing>"
     }
 }
 
@@ -2821,7 +2821,7 @@ extends
     {
         "\t<cim:MitigatedBidSegment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MitigatedBidSegment>\n"
+        "\t</cim:MitigatedBidSegment>"
     }
 }
 
@@ -2959,7 +2959,7 @@ extends
     {
         "\t<cim:PassThroughBill rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PassThroughBill>\n"
+        "\t</cim:PassThroughBill>"
     }
 }
 
@@ -3058,7 +3058,7 @@ extends
     {
         "\t<cim:PnodeClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PnodeClearing>\n"
+        "\t</cim:PnodeClearing>"
     }
 }
 
@@ -3135,7 +3135,7 @@ extends
     {
         "\t<cim:PnodeResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PnodeResults>\n"
+        "\t</cim:PnodeResults>"
     }
 }
 
@@ -3204,7 +3204,7 @@ extends
     {
         "\t<cim:RMRDetermination rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RMRDetermination>\n"
+        "\t</cim:RMRDetermination>"
     }
 }
 
@@ -3267,7 +3267,7 @@ extends
     {
         "\t<cim:RMROperatorInput rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RMROperatorInput>\n"
+        "\t</cim:RMROperatorInput>"
     }
 }
 
@@ -3359,7 +3359,7 @@ extends
     {
         "\t<cim:RUCAwardInstruction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RUCAwardInstruction>\n"
+        "\t</cim:RUCAwardInstruction>"
     }
 }
 
@@ -3430,7 +3430,7 @@ extends
     {
         "\t<cim:ResourceAwardClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceAwardClearing>\n"
+        "\t</cim:ResourceAwardClearing>"
     }
 }
 
@@ -3587,7 +3587,7 @@ extends
     {
         "\t<cim:ResourceAwardInstruction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceAwardInstruction>\n"
+        "\t</cim:ResourceAwardInstruction>"
     }
 }
 
@@ -3695,7 +3695,7 @@ extends
     {
         "\t<cim:ResourceClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceClearing>\n"
+        "\t</cim:ResourceClearing>"
     }
 }
 
@@ -3800,7 +3800,7 @@ extends
     {
         "\t<cim:ResourceDispatchResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceDispatchResults>\n"
+        "\t</cim:ResourceDispatchResults>"
     }
 }
 
@@ -3906,7 +3906,7 @@ extends
     {
         "\t<cim:ResourceLoadFollowingInst rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ResourceLoadFollowingInst>\n"
+        "\t</cim:ResourceLoadFollowingInst>"
     }
 }
 
@@ -3976,7 +3976,7 @@ extends
     {
         "\t<cim:SelfScheduleBreakdown rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SelfScheduleBreakdown>\n"
+        "\t</cim:SelfScheduleBreakdown>"
     }
 }
 
@@ -4034,7 +4034,7 @@ extends
     {
         "\t<cim:Settlement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Settlement>\n"
+        "\t</cim:Settlement>"
     }
 }
 
@@ -4086,7 +4086,7 @@ extends
     {
         "\t<cim:TransactionBidClearing rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransactionBidClearing>\n"
+        "\t</cim:TransactionBidClearing>"
     }
 }
 
@@ -4144,7 +4144,7 @@ extends
     {
         "\t<cim:TransactionBidResults rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TransactionBidResults>\n"
+        "\t</cim:TransactionBidResults>"
     }
 }
 

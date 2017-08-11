@@ -38,7 +38,7 @@ extends
     {
         "\t<cim:EnergySchedulingType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EnergySchedulingType>\n"
+        "\t</cim:EnergySchedulingType>"
     }
 }
 

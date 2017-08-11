@@ -71,7 +71,7 @@ extends
     {
         "\t<cim:RemoteInputSignal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RemoteInputSignal>\n"
+        "\t</cim:RemoteInputSignal>"
     }
 }
 

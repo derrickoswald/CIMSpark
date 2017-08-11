@@ -47,7 +47,7 @@ extends
     {
         "\t<cim:Accumulator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Accumulator>\n"
+        "\t</cim:Accumulator>"
     }
 }
 
@@ -104,7 +104,7 @@ extends
     {
         "\t<cim:AccumulatorLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AccumulatorLimit>\n"
+        "\t</cim:AccumulatorLimit>"
     }
 }
 
@@ -155,7 +155,7 @@ extends
     {
         "\t<cim:AccumulatorLimitSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AccumulatorLimitSet>\n"
+        "\t</cim:AccumulatorLimitSet>"
     }
 }
 
@@ -204,7 +204,7 @@ extends
     {
         "\t<cim:AccumulatorReset rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AccumulatorReset>\n"
+        "\t</cim:AccumulatorReset>"
     }
 }
 
@@ -262,7 +262,7 @@ extends
     {
         "\t<cim:AccumulatorValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AccumulatorValue>\n"
+        "\t</cim:AccumulatorValue>"
     }
 }
 
@@ -331,7 +331,7 @@ extends
     {
         "\t<cim:Analog rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Analog>\n"
+        "\t</cim:Analog>"
     }
 }
 
@@ -398,7 +398,7 @@ extends
     {
         "\t<cim:AnalogControl rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AnalogControl>\n"
+        "\t</cim:AnalogControl>"
     }
 }
 
@@ -456,7 +456,7 @@ extends
     {
         "\t<cim:AnalogLimit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AnalogLimit>\n"
+        "\t</cim:AnalogLimit>"
     }
 }
 
@@ -507,7 +507,7 @@ extends
     {
         "\t<cim:AnalogLimitSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AnalogLimitSet>\n"
+        "\t</cim:AnalogLimitSet>"
     }
 }
 
@@ -562,7 +562,7 @@ extends
     {
         "\t<cim:AnalogValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AnalogValue>\n"
+        "\t</cim:AnalogValue>"
     }
 }
 
@@ -626,7 +626,7 @@ extends
     {
         "\t<cim:Command rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Command>\n"
+        "\t</cim:Command>"
     }
 }
 
@@ -703,7 +703,7 @@ extends
     {
         "\t<cim:Control rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Control>\n"
+        "\t</cim:Control>"
     }
 }
 
@@ -777,7 +777,7 @@ extends
     {
         "\t<cim:Discrete rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Discrete>\n"
+        "\t</cim:Discrete>"
     }
 }
 
@@ -828,7 +828,7 @@ extends
     {
         "\t<cim:DiscreteCommand rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscreteCommand>\n"
+        "\t</cim:DiscreteCommand>"
     }
 }
 
@@ -883,7 +883,7 @@ extends
     {
         "\t<cim:DiscreteValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscreteValue>\n"
+        "\t</cim:DiscreteValue>"
     }
 }
 
@@ -937,7 +937,7 @@ extends
     {
         "\t<cim:Limit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Limit>\n"
+        "\t</cim:Limit>"
     }
 }
 
@@ -987,7 +987,7 @@ extends
     {
         "\t<cim:LimitSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LimitSet>\n"
+        "\t</cim:LimitSet>"
     }
 }
 
@@ -1059,7 +1059,7 @@ extends
     {
         "\t<cim:Measurement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Measurement>\n"
+        "\t</cim:Measurement>"
     }
 }
 
@@ -1142,7 +1142,7 @@ extends
     {
         "\t<cim:MeasurementValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeasurementValue>\n"
+        "\t</cim:MeasurementValue>"
     }
 }
 
@@ -1206,7 +1206,7 @@ extends
     {
         "\t<cim:MeasurementValueQuality rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeasurementValueQuality>\n"
+        "\t</cim:MeasurementValueQuality>"
     }
 }
 
@@ -1256,7 +1256,7 @@ extends
     {
         "\t<cim:MeasurementValueSource rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MeasurementValueSource>\n"
+        "\t</cim:MeasurementValueSource>"
     }
 }
 
@@ -1342,7 +1342,7 @@ extends
     {
         "\t<cim:Quality61850 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Quality61850>\n"
+        "\t</cim:Quality61850>"
     }
 }
 
@@ -1415,7 +1415,7 @@ extends
     {
         "\t<cim:RaiseLowerCommand rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:RaiseLowerCommand>\n"
+        "\t</cim:RaiseLowerCommand>"
     }
 }
 
@@ -1469,7 +1469,7 @@ extends
     {
         "\t<cim:SetPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:SetPoint>\n"
+        "\t</cim:SetPoint>"
     }
 }
 
@@ -1520,7 +1520,7 @@ extends
     {
         "\t<cim:StringMeasurement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StringMeasurement>\n"
+        "\t</cim:StringMeasurement>"
     }
 }
 
@@ -1572,7 +1572,7 @@ extends
     {
         "\t<cim:StringMeasurementValue rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StringMeasurementValue>\n"
+        "\t</cim:StringMeasurementValue>"
     }
 }
 
@@ -1624,7 +1624,7 @@ extends
     {
         "\t<cim:ValueAliasSet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ValueAliasSet>\n"
+        "\t</cim:ValueAliasSet>"
     }
 }
 
@@ -1676,7 +1676,7 @@ extends
     {
         "\t<cim:ValueToAlias rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ValueToAlias>\n"
+        "\t</cim:ValueToAlias>"
     }
 }
 

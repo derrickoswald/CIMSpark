@@ -95,7 +95,7 @@ extends
     {
         "\t<cim:TurbLCFB1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TurbLCFB1>\n"
+        "\t</cim:TurbLCFB1>"
     }
 }
 
@@ -168,7 +168,7 @@ extends
     {
         "\t<cim:TurbineLoadControllerDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TurbineLoadControllerDynamics>\n"
+        "\t</cim:TurbineLoadControllerDynamics>"
     }
 }
 

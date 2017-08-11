@@ -44,7 +44,7 @@ extends
     {
         "\t<cim:EquipmentFault rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquipmentFault>\n"
+        "\t</cim:EquipmentFault>"
     }
 }
 
@@ -112,7 +112,7 @@ extends
     {
         "\t<cim:Fault rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Fault>\n"
+        "\t</cim:Fault>"
     }
 }
 
@@ -171,7 +171,7 @@ extends
     {
         "\t<cim:FaultCauseType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FaultCauseType>\n"
+        "\t</cim:FaultCauseType>"
     }
 }
 
@@ -229,7 +229,7 @@ extends
     {
         "\t<cim:FaultImpedance rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FaultImpedance>\n"
+        "\t</cim:FaultImpedance>"
     }
 }
 
@@ -289,7 +289,7 @@ extends
     {
         "\t<cim:LineFault rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:LineFault>\n"
+        "\t</cim:LineFault>"
     }
 }
 

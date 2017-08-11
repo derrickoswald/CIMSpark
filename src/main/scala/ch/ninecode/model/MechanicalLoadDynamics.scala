@@ -52,7 +52,7 @@ extends
     {
         "\t<cim:MechLoad1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MechLoad1>\n"
+        "\t</cim:MechLoad1>"
     }
 }
 
@@ -112,7 +112,7 @@ extends
     {
         "\t<cim:MechanicalLoadDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MechanicalLoadDynamics>\n"
+        "\t</cim:MechanicalLoadDynamics>"
     }
 }
 

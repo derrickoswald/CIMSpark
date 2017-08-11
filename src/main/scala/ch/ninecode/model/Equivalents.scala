@@ -102,7 +102,7 @@ extends
     {
         "\t<cim:EquivalentBranch rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquivalentBranch>\n"
+        "\t</cim:EquivalentBranch>"
     }
 }
 
@@ -184,7 +184,7 @@ extends
     {
         "\t<cim:EquivalentEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquivalentEquipment>\n"
+        "\t</cim:EquivalentEquipment>"
     }
 }
 
@@ -292,7 +292,7 @@ extends
     {
         "\t<cim:EquivalentInjection rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquivalentInjection>\n"
+        "\t</cim:EquivalentInjection>"
     }
 }
 
@@ -372,7 +372,7 @@ extends
     {
         "\t<cim:EquivalentNetwork rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquivalentNetwork>\n"
+        "\t</cim:EquivalentNetwork>"
     }
 }
 
@@ -424,7 +424,7 @@ extends
     {
         "\t<cim:EquivalentShunt rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:EquivalentShunt>\n"
+        "\t</cim:EquivalentShunt>"
     }
 }
 

@@ -113,7 +113,7 @@ extends
     {
         "\t<cim:DiscExcContIEEEDEC1A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscExcContIEEEDEC1A>\n"
+        "\t</cim:DiscExcContIEEEDEC1A>"
     }
 }
 
@@ -211,7 +211,7 @@ extends
     {
         "\t<cim:DiscExcContIEEEDEC2A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscExcContIEEEDEC2A>\n"
+        "\t</cim:DiscExcContIEEEDEC2A>"
     }
 }
 
@@ -274,7 +274,7 @@ extends
     {
         "\t<cim:DiscExcContIEEEDEC3A rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscExcContIEEEDEC3A>\n"
+        "\t</cim:DiscExcContIEEEDEC3A>"
     }
 }
 
@@ -330,7 +330,7 @@ extends
     {
         "\t<cim:DiscontinuousExcitationControlDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DiscontinuousExcitationControlDynamics>\n"
+        "\t</cim:DiscontinuousExcitationControlDynamics>"
     }
 }
 

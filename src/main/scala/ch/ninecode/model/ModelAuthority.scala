@@ -41,7 +41,7 @@ extends
     {
         "\t<cim:ModelingAuthority rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ModelingAuthority>\n"
+        "\t</cim:ModelingAuthority>"
     }
 }
 
@@ -91,7 +91,7 @@ extends
     {
         "\t<cim:ModelingAuthoritySet rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ModelingAuthoritySet>\n"
+        "\t</cim:ModelingAuthoritySet>"
     }
 }
 

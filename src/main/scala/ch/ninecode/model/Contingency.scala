@@ -43,7 +43,7 @@ extends
     {
         "\t<cim:Contingency rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Contingency>\n"
+        "\t</cim:Contingency>"
     }
 }
 
@@ -94,7 +94,7 @@ extends
     {
         "\t<cim:ContingencyElement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ContingencyElement>\n"
+        "\t</cim:ContingencyElement>"
     }
 }
 
@@ -149,7 +149,7 @@ extends
     {
         "\t<cim:ContingencyEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ContingencyEquipment>\n"
+        "\t</cim:ContingencyEquipment>"
     }
 }
 

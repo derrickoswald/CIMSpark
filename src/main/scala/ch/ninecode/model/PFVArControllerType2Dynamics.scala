@@ -47,7 +47,7 @@ extends
     {
         "\t<cim:PFVArControllerType2Dynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PFVArControllerType2Dynamics>\n"
+        "\t</cim:PFVArControllerType2Dynamics>"
     }
 }
 
@@ -114,7 +114,7 @@ extends
     {
         "\t<cim:PFVArType2Common1 rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PFVArType2Common1>\n"
+        "\t</cim:PFVArType2Common1>"
     }
 }
 
@@ -197,7 +197,7 @@ extends
     {
         "\t<cim:PFVArType2IEEEPFController rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PFVArType2IEEEPFController>\n"
+        "\t</cim:PFVArType2IEEEPFController>"
     }
 }
 
@@ -281,7 +281,7 @@ extends
     {
         "\t<cim:PFVArType2IEEEVArController rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PFVArType2IEEEVArController>\n"
+        "\t</cim:PFVArType2IEEEVArController>"
     }
 }
 

@@ -49,7 +49,7 @@ extends
     {
         "\t<cim:AceTariffType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AceTariffType>\n"
+        "\t</cim:AceTariffType>"
     }
 }
 
@@ -113,7 +113,7 @@ extends
     {
         "\t<cim:AttributeInstanceComponent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:AttributeInstanceComponent>\n"
+        "\t</cim:AttributeInstanceComponent>"
     }
 }
 
@@ -188,7 +188,7 @@ extends
     {
         "\t<cim:Auction rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Auction>\n"
+        "\t</cim:Auction>"
     }
 }
 
@@ -267,7 +267,7 @@ extends
     {
         "\t<cim:BidTimeSeries rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:BidTimeSeries>\n"
+        "\t</cim:BidTimeSeries>"
     }
 }
 
@@ -331,7 +331,7 @@ extends
     {
         "\t<cim:DateAndOrTime rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DateAndOrTime>\n"
+        "\t</cim:DateAndOrTime>"
     }
 }
 
@@ -382,7 +382,7 @@ extends
     {
         "\t<cim:Domain rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Domain>\n"
+        "\t</cim:Domain>"
     }
 }
 
@@ -431,7 +431,7 @@ extends
     {
         "\t<cim:FlowDirection rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:FlowDirection>\n"
+        "\t</cim:FlowDirection>"
     }
 }
 
@@ -480,7 +480,7 @@ extends
     {
         "\t<cim:MarketAgreement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketAgreement>\n"
+        "\t</cim:MarketAgreement>"
     }
 }
 
@@ -538,7 +538,7 @@ extends
     {
         "\t<cim:MarketDocument rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketDocument>\n"
+        "\t</cim:MarketDocument>"
     }
 }
 
@@ -593,7 +593,7 @@ extends
     {
         "\t<cim:MarketEvaluationPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketEvaluationPoint>\n"
+        "\t</cim:MarketEvaluationPoint>"
     }
 }
 
@@ -645,7 +645,7 @@ extends
     {
         "\t<cim:MarketObjectStatus rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MarketObjectStatus>\n"
+        "\t</cim:MarketObjectStatus>"
     }
 }
 
@@ -701,7 +701,7 @@ extends
     {
         "\t<cim:MktPSRType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:MktPSRType>\n"
+        "\t</cim:MktPSRType>"
     }
 }
 
@@ -760,7 +760,7 @@ extends
     {
         "\t<cim:Period rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Period>\n"
+        "\t</cim:Period>"
     }
 }
 
@@ -834,7 +834,7 @@ extends
     {
         "\t<cim:Point rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Point>\n"
+        "\t</cim:Point>"
     }
 }
 
@@ -907,7 +907,7 @@ extends
     {
         "\t<cim:Price rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Price>\n"
+        "\t</cim:Price>"
     }
 }
 
@@ -971,7 +971,7 @@ extends
     {
         "\t<cim:Process rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Process>\n"
+        "\t</cim:Process>"
     }
 }
 
@@ -1035,7 +1035,7 @@ extends
     {
         "\t<cim:Reason rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Reason>\n"
+        "\t</cim:Reason>"
     }
 }
 
@@ -1131,7 +1131,7 @@ extends
     {
         "\t<cim:TimeSeries rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TimeSeries>\n"
+        "\t</cim:TimeSeries>"
     }
 }
 
@@ -1211,7 +1211,7 @@ extends
     {
         "\t<cim:Unit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Unit>\n"
+        "\t</cim:Unit>"
     }
 }
 

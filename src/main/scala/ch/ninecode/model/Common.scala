@@ -55,7 +55,7 @@ extends
     {
         "\t<cim:ActivityRecord rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ActivityRecord>\n"
+        "\t</cim:ActivityRecord>"
     }
 }
 
@@ -118,7 +118,7 @@ extends
     {
         "\t<cim:Agreement rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Agreement>\n"
+        "\t</cim:Agreement>"
     }
 }
 
@@ -177,7 +177,7 @@ extends
     {
         "\t<cim:Appointment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Appointment>\n"
+        "\t</cim:Appointment>"
     }
 }
 
@@ -259,7 +259,7 @@ extends
     {
         "\t<cim:ConfigurationEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ConfigurationEvent>\n"
+        "\t</cim:ConfigurationEvent>"
     }
 }
 
@@ -329,7 +329,7 @@ extends
     {
         "\t<cim:CoordinateSystem rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CoordinateSystem>\n"
+        "\t</cim:CoordinateSystem>"
     }
 }
 
@@ -383,7 +383,7 @@ extends
     {
         "\t<cim:Crew rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Crew>\n"
+        "\t</cim:Crew>"
     }
 }
 
@@ -436,7 +436,7 @@ extends
     {
         "\t<cim:CrewMember rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CrewMember>\n"
+        "\t</cim:CrewMember>"
     }
 }
 
@@ -486,7 +486,7 @@ extends
     {
         "\t<cim:CrewType rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CrewType>\n"
+        "\t</cim:CrewType>"
     }
 }
 
@@ -569,7 +569,7 @@ extends
     {
         "\t<cim:Document rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Document>\n"
+        "\t</cim:Document>"
     }
 }
 
@@ -661,7 +661,7 @@ extends
     {
         "\t<cim:ElectronicAddress rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ElectronicAddress>\n"
+        "\t</cim:ElectronicAddress>"
     }
 }
 
@@ -729,7 +729,7 @@ extends
     {
         "\t<cim:Hazard rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Hazard>\n"
+        "\t</cim:Hazard>"
     }
 }
 
@@ -815,7 +815,7 @@ extends
     {
         "\t<cim:Location rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Location>\n"
+        "\t</cim:Location>"
     }
 }
 
@@ -884,7 +884,7 @@ extends
     {
         "\t<cim:OperationPersonRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OperationPersonRole>\n"
+        "\t</cim:OperationPersonRole>"
     }
 }
 
@@ -931,7 +931,7 @@ extends
     {
         "\t<cim:Operator rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Operator>\n"
+        "\t</cim:Operator>"
     }
 }
 
@@ -995,7 +995,7 @@ extends
     {
         "\t<cim:Organisation rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Organisation>\n"
+        "\t</cim:Organisation>"
     }
 }
 
@@ -1056,7 +1056,7 @@ extends
     {
         "\t<cim:OrganisationRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:OrganisationRole>\n"
+        "\t</cim:OrganisationRole>"
     }
 }
 
@@ -1113,7 +1113,7 @@ extends
     {
         "\t<cim:Ownership rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Ownership>\n"
+        "\t</cim:Ownership>"
     }
 }
 
@@ -1192,7 +1192,7 @@ extends
     {
         "\t<cim:Person rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Person>\n"
+        "\t</cim:Person>"
     }
 }
 
@@ -1256,7 +1256,7 @@ extends
     {
         "\t<cim:PersonRole rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PersonRole>\n"
+        "\t</cim:PersonRole>"
     }
 }
 
@@ -1322,7 +1322,7 @@ extends
     {
         "\t<cim:PositionPoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PositionPoint>\n"
+        "\t</cim:PositionPoint>"
     }
 }
 
@@ -1390,7 +1390,7 @@ extends
     {
         "\t<cim:PostalAddress rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PostalAddress>\n"
+        "\t</cim:PostalAddress>"
     }
 }
 
@@ -1453,7 +1453,7 @@ extends
     {
         "\t<cim:Priority rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Priority>\n"
+        "\t</cim:Priority>"
     }
 }
 
@@ -1520,7 +1520,7 @@ extends
     {
         "\t<cim:ScheduledEvent rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledEvent>\n"
+        "\t</cim:ScheduledEvent>"
     }
 }
 
@@ -1588,7 +1588,7 @@ extends
     {
         "\t<cim:ScheduledEventData rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ScheduledEventData>\n"
+        "\t</cim:ScheduledEventData>"
     }
 }
 
@@ -1654,7 +1654,7 @@ extends
     {
         "\t<cim:Status rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:Status>\n"
+        "\t</cim:Status>"
     }
 }
 
@@ -1717,7 +1717,7 @@ extends
     {
         "\t<cim:StreetAddress rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StreetAddress>\n"
+        "\t</cim:StreetAddress>"
     }
 }
 
@@ -1802,7 +1802,7 @@ extends
     {
         "\t<cim:StreetDetail rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:StreetDetail>\n"
+        "\t</cim:StreetDetail>"
     }
 }
 
@@ -1883,7 +1883,7 @@ extends
     {
         "\t<cim:TelephoneNumber rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TelephoneNumber>\n"
+        "\t</cim:TelephoneNumber>"
     }
 }
 
@@ -1958,7 +1958,7 @@ extends
     {
         "\t<cim:TimePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TimePoint>\n"
+        "\t</cim:TimePoint>"
     }
 }
 
@@ -2034,7 +2034,7 @@ extends
     {
         "\t<cim:TimeSchedule rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TimeSchedule>\n"
+        "\t</cim:TimeSchedule>"
     }
 }
 
@@ -2106,7 +2106,7 @@ extends
     {
         "\t<cim:TownDetail rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TownDetail>\n"
+        "\t</cim:TownDetail>"
     }
 }
 
@@ -2183,7 +2183,7 @@ extends
     {
         "\t<cim:UserAttribute rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:UserAttribute>\n"
+        "\t</cim:UserAttribute>"
     }
 }
 

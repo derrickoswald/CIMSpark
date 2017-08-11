@@ -65,7 +65,7 @@ extends
     {
         "\t<cim:VAdjIEEE rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VAdjIEEE>\n"
+        "\t</cim:VAdjIEEE>"
     }
 }
 
@@ -126,7 +126,7 @@ extends
     {
         "\t<cim:VoltageAdjusterDynamics rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VoltageAdjusterDynamics>\n"
+        "\t</cim:VoltageAdjusterDynamics>"
     }
 }
 

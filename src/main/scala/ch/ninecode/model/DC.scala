@@ -113,7 +113,7 @@ extends
     {
         "\t<cim:ACDCConverter rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ACDCConverter>\n"
+        "\t</cim:ACDCConverter>"
     }
 }
 
@@ -202,7 +202,7 @@ extends
     {
         "\t<cim:ACDCConverterDCTerminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:ACDCConverterDCTerminal>\n"
+        "\t</cim:ACDCConverterDCTerminal>"
     }
 }
 
@@ -307,7 +307,7 @@ extends
     {
         "\t<cim:CsConverter rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:CsConverter>\n"
+        "\t</cim:CsConverter>"
     }
 }
 
@@ -389,7 +389,7 @@ extends
     {
         "\t<cim:DCBaseTerminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCBaseTerminal>\n"
+        "\t</cim:DCBaseTerminal>"
     }
 }
 
@@ -440,7 +440,7 @@ extends
     {
         "\t<cim:DCBreaker rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCBreaker>\n"
+        "\t</cim:DCBreaker>"
     }
 }
 
@@ -487,7 +487,7 @@ extends
     {
         "\t<cim:DCBusbar rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCBusbar>\n"
+        "\t</cim:DCBusbar>"
     }
 }
 
@@ -535,7 +535,7 @@ extends
     {
         "\t<cim:DCChopper rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCChopper>\n"
+        "\t</cim:DCChopper>"
     }
 }
 
@@ -582,7 +582,7 @@ extends
     {
         "\t<cim:DCConductingEquipment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCConductingEquipment>\n"
+        "\t</cim:DCConductingEquipment>"
     }
 }
 
@@ -634,7 +634,7 @@ extends
     {
         "\t<cim:DCConverterUnit rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCConverterUnit>\n"
+        "\t</cim:DCConverterUnit>"
     }
 }
 
@@ -685,7 +685,7 @@ extends
     {
         "\t<cim:DCDisconnector rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCDisconnector>\n"
+        "\t</cim:DCDisconnector>"
     }
 }
 
@@ -733,7 +733,7 @@ extends
     {
         "\t<cim:DCEquipmentContainer rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCEquipmentContainer>\n"
+        "\t</cim:DCEquipmentContainer>"
     }
 }
 
@@ -785,7 +785,7 @@ extends
     {
         "\t<cim:DCGround rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCGround>\n"
+        "\t</cim:DCGround>"
     }
 }
 
@@ -838,7 +838,7 @@ extends
     {
         "\t<cim:DCLine rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCLine>\n"
+        "\t</cim:DCLine>"
     }
 }
 
@@ -903,7 +903,7 @@ extends
     {
         "\t<cim:DCLineSegment rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCLineSegment>\n"
+        "\t</cim:DCLineSegment>"
     }
 }
 
@@ -966,7 +966,7 @@ extends
     {
         "\t<cim:DCNode rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCNode>\n"
+        "\t</cim:DCNode>"
     }
 }
 
@@ -1027,7 +1027,7 @@ extends
     {
         "\t<cim:DCSeriesDevice rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCSeriesDevice>\n"
+        "\t</cim:DCSeriesDevice>"
     }
 }
 
@@ -1090,7 +1090,7 @@ extends
     {
         "\t<cim:DCShunt rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCShunt>\n"
+        "\t</cim:DCShunt>"
     }
 }
 
@@ -1143,7 +1143,7 @@ extends
     {
         "\t<cim:DCSwitch rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCSwitch>\n"
+        "\t</cim:DCSwitch>"
     }
 }
 
@@ -1192,7 +1192,7 @@ extends
     {
         "\t<cim:DCTerminal rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCTerminal>\n"
+        "\t</cim:DCTerminal>"
     }
 }
 
@@ -1242,7 +1242,7 @@ extends
     {
         "\t<cim:DCTopologicalIsland rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:DCTopologicalIsland>\n"
+        "\t</cim:DCTopologicalIsland>"
     }
 }
 
@@ -1290,7 +1290,7 @@ extends
     {
         "\t<cim:PerLengthDCLineParameter rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:PerLengthDCLineParameter>\n"
+        "\t</cim:PerLengthDCLineParameter>"
     }
 }
 
@@ -1343,7 +1343,7 @@ extends
     {
         "\t<cim:VsCapabilityCurve rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VsCapabilityCurve>\n"
+        "\t</cim:VsCapabilityCurve>"
     }
 }
 
@@ -1430,7 +1430,7 @@ extends
     {
         "\t<cim:VsConverter rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:VsConverter>\n"
+        "\t</cim:VsConverter>"
     }
 }
 

@@ -41,7 +41,7 @@ extends
     {
         "\t<cim:TiePoint rdf:ID=\"" + id + "\">\n" +
         export_fields +
-        "\t</cim:TiePoint>\n"
+        "\t</cim:TiePoint>"
     }
 }
 
