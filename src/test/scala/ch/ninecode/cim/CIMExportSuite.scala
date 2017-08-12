@@ -1,50 +1,18 @@
-package ch.ninecode
+package ch.ninecode.cim
 
 import java.util.{HashMap, Map}
 
-import org.apache.spark.SparkConf
-import org.apache.spark.sql.{DataFrame, SQLContext, SparkSession}
+import org.apache.spark.sql.SparkSession
 
-import org.scalatest.Outcome
-import org.scalatest.fixture.FunSuite
-
-import ch.ninecode.cim.CHIM
-import ch.ninecode.cim.CIMExport
 import ch.ninecode.model._
 
-class ExportSuite extends FunSuite
+class CIMExportSuite extends ch.ninecode.SparkSuite
 {
     val FILE_DEPOT = "data/"
-    type FixtureParam = SparkSession
-
-    def withFixture (test: OneArgTest): Outcome =
-    {
-        // create the configuration
-        val configuration = new SparkConf (false)
-        configuration.setAppName ("CIMSparkSuite")
-        configuration.setMaster ("local[2]")
-        configuration.set ("spark.driver.memory", "1g")
-        configuration.set ("spark.executor.memory", "4g")
-        configuration.set ("spark.ui.showConsoleProgress", "false")
-
-        val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
-        session.sparkContext.setLogLevel ("OFF") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
-        try
-            withFixture (test.toNoArgTest (session)) // "loan" the fixture to the test
-        finally session.stop() // clean up the fixture
-    }
-
-    def readFile (context: SQLContext, filename: String, options: Map[String, String]): DataFrame =
-    {
-        options.put ("path", filename)
-        val files = filename.split (",")
-        context.read.format ("ch.ninecode.cim").options (options).load (files:_*)
-    }
-
 
     test ("Basic")
     {
-        session: SparkSession ⇒
+        _: SparkSession ⇒
         val psr =
 """	<cim:PSRType rdf:ID="PSRType_Substation">
 		<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
@@ -62,7 +30,7 @@ class ExportSuite extends FunSuite
 
     test ("Double")
     {
-        session: SparkSession ⇒
+        _: SparkSession ⇒
         val voltage =
 """	<cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
 		<cim:IdentifiedObject.name>400.000 V</cim:IdentifiedObject.name>
@@ -87,7 +55,7 @@ voltage +
 
     test ("Multiple")
     {
-        session: SparkSession ⇒
+        _: SparkSession ⇒
         val xml =
 """	<cim:Facility rdf:ID="STA196_asset">
 		<cim:IdentifiedObject.aliasName>187674625:nis_el_station</cim:IdentifiedObject.aliasName>
@@ -115,13 +83,13 @@ voltage +
 
     test ("Export")
     {
-        spark: SparkSession ⇒
+        implicit spark: SparkSession ⇒
 
         val filename =
             FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf"
         val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
-        val elements = readFile (spark.sqlContext, filename, options)
-        println (elements.count () + " elements")
+        val elements = readFile (filename, options)
+        println (elements.count + " elements")
         val export = new CIMExport (spark)
         export.exportAll ("target/" + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf")
     }

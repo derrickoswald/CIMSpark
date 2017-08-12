@@ -152,7 +152,7 @@
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <junitxml>.</junitxml>
                     <filereports>TestSuite.txt</filereports>
-                    <suites>ch.ninecode.TestSuite</suites>
+                    <suites>ch.ninecode.cim.TestSuite</suites>
                 </configuration>
                 <executions>
                     <execution>

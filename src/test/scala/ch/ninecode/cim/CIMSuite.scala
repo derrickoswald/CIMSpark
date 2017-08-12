@@ -1,10 +1,7 @@
-package ch.ninecode
+package ch.ninecode.cim
 
 import org.scalatest.FunSuite
 
-import ch.ninecode.cim.CHIM
-import ch.ninecode.cim.Context
-import ch.ninecode.cim.Context._
 import ch.ninecode.model._
 
 class CIMSuite extends FunSuite
@@ -95,7 +92,7 @@ yadda yadda"""
         assert (result._1.size === 1)
         assert (result._2.length === 0)
         val voltage = result._1("BaseVoltage_0.400000000000").asInstanceOf[BaseVoltage]
-        assert (voltage.nominalVoltage.toDouble === 0.40)
+        assert (voltage.nominalVoltage === 0.40)
     }
 
     test ("Illegal Voltage")
@@ -116,7 +113,7 @@ yadda yadda"""
         val parser = new CHIM (xml)
         intercept[Exception]
         {
-            val result = CHIM.parse (parser)
+            CHIM.parse (parser)
             fail ("invalid voltage accepted")
         }
     }

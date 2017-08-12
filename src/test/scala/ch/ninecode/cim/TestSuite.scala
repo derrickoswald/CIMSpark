@@ -1,4 +1,4 @@
-package ch.ninecode
+package ch.ninecode.cim
 
 import org.scalatest.Suites
 
@@ -23,5 +23,5 @@ class TestSuite extends Suites (
   new CIMRDDSuite,
   new CIMSparkSuite,
   new CIMNetworkTopologyProcessorSuite,
-  new ExportSuite
+  new CIMExportSuite
 )

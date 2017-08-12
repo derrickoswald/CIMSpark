@@ -99,7 +99,8 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
         val txt = directory.toUri ().toString
         val head = spark.sparkContext.makeRDD (List[String] (header))
         val tail = spark.sparkContext.makeRDD (List[String] (tailer))
-        val ss = head.union (elements.map (_.export)).union (tail)
+        val guts = elements.map (_.export)
+        val ss = head.union (guts).union (tail)
         ss.saveAsTextFile (txt)
         merge (txt, file.toUri ().toString)
     }
