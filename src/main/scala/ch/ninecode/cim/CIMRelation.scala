@@ -124,7 +124,7 @@ with
         {
             log.info ("eliminating duplicates")
             val dedup = new CIMDeDup (sparkSession, _StorageLevel)
-            val (e, r) = dedup.do_dedupulicate ()
+            val (e, r) = dedup.do_deduplicate ()
             ret = r
             e
         }

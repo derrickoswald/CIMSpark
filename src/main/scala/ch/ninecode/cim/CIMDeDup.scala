@@ -26,7 +26,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel) extends CIMRDD with 
         }
     }
 
-    def dedup (arg: Iterable[Element]): List[Element] =
+    def deduplicate (arg: Iterable[Element]): List[Element] =
     {
         val ret = arg.head
         if (1 != arg.size)
@@ -35,13 +35,13 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel) extends CIMRDD with 
         List (ret)
     }
 
-    def do_dedupulicate (): (RDD[Element], RDD[Row]) =
+    def do_deduplicate (): (RDD[Element], RDD[Row]) =
     {
         // get the elements RDD
         val elements = get[Element]("Elements")
 
         // deduplicate
-        val new_elements = elements.keyBy (_.id).groupByKey ().values.flatMap (dedup)
+        val new_elements = elements.keyBy (_.id).groupByKey ().values.flatMap (deduplicate)
 
         // swap the old Elements RDD for the new one
         elements.name = "duplicate_Elements"
