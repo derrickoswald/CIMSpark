@@ -49,7 +49,7 @@ object TiePoint
 extends
     Parseable[TiePoint]
 {
-    val tiePointMWRating: (Context) => String = parse_element (element ("""TiePoint.tiePointMWRating"""))
+    val tiePointMWRating = parse_element (element ("""TiePoint.tiePointMWRating"""))
     def parse (context: Context): TiePoint =
     {
         TiePoint(

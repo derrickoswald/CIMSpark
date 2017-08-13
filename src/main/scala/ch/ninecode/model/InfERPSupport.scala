@@ -53,7 +53,7 @@ object ErpBOM
 extends
     Parseable[ErpBOM]
 {
-    val Design: (Context) => String = parse_attribute (attribute ("""ErpBOM.Design"""))
+    val Design = parse_attribute (attribute ("""ErpBOM.Design"""))
     def parse (context: Context): ErpBOM =
     {
         ErpBOM(
@@ -105,7 +105,7 @@ object ErpBankAccount
 extends
     Parseable[ErpBankAccount]
 {
-    val bankABA: (Context) => String = parse_element (element ("""ErpBankAccount.bankABA"""))
+    val bankABA = parse_element (element ("""ErpBankAccount.bankABA"""))
     def parse (context: Context): ErpBankAccount =
     {
         ErpBankAccount(
@@ -162,9 +162,9 @@ object ErpBomItemData
 extends
     Parseable[ErpBomItemData]
 {
-    val DesignLocation: (Context) => String = parse_attribute (attribute ("""ErpBomItemData.DesignLocation"""))
-    val ErpBOM: (Context) => String = parse_attribute (attribute ("""ErpBomItemData.ErpBOM"""))
-    val TypeAsset: (Context) => String = parse_attribute (attribute ("""ErpBomItemData.TypeAsset"""))
+    val DesignLocation = parse_attribute (attribute ("""ErpBomItemData.DesignLocation"""))
+    val ErpBOM = parse_attribute (attribute ("""ErpBomItemData.ErpBOM"""))
+    val TypeAsset = parse_attribute (attribute ("""ErpBomItemData.TypeAsset"""))
     def parse (context: Context): ErpBomItemData =
     {
         ErpBomItemData(
@@ -460,8 +460,8 @@ object ErpInventory
 extends
     Parseable[ErpInventory]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpInventory.status"""))
-    val Asset: (Context) => String = parse_attribute (attribute ("""ErpInventory.Asset"""))
+    val status = parse_attribute (attribute ("""ErpInventory.status"""))
+    val Asset = parse_attribute (attribute ("""ErpInventory.Asset"""))
     def parse (context: Context): ErpInventory =
     {
         ErpInventory(
@@ -517,8 +517,8 @@ object ErpInventoryCount
 extends
     Parseable[ErpInventoryCount]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpInventoryCount.status"""))
-    val AssetModel: (Context) => String = parse_attribute (attribute ("""ErpInventoryCount.AssetModel"""))
+    val status = parse_attribute (attribute ("""ErpInventoryCount.status"""))
+    val AssetModel = parse_attribute (attribute ("""ErpInventoryCount.AssetModel"""))
     def parse (context: Context): ErpInventoryCount =
     {
         ErpInventoryCount(
@@ -599,16 +599,16 @@ object ErpInvoice
 extends
     Parseable[ErpInvoice]
 {
-    val amount: (Context) => String = parse_element (element ("""ErpInvoice.amount"""))
-    val billMediaKind: (Context) => String = parse_attribute (attribute ("""ErpInvoice.billMediaKind"""))
-    val dueDate: (Context) => String = parse_element (element ("""ErpInvoice.dueDate"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""ErpInvoice.kind"""))
-    val mailedDate: (Context) => String = parse_element (element ("""ErpInvoice.mailedDate"""))
-    val proForma: (Context) => String = parse_element (element ("""ErpInvoice.proForma"""))
-    val referenceNumber: (Context) => String = parse_element (element ("""ErpInvoice.referenceNumber"""))
-    val transactionDateTime: (Context) => String = parse_element (element ("""ErpInvoice.transactionDateTime"""))
-    val transferType: (Context) => String = parse_element (element ("""ErpInvoice.transferType"""))
-    val CustomerAccount: (Context) => String = parse_attribute (attribute ("""ErpInvoice.CustomerAccount"""))
+    val amount = parse_element (element ("""ErpInvoice.amount"""))
+    val billMediaKind = parse_attribute (attribute ("""ErpInvoice.billMediaKind"""))
+    val dueDate = parse_element (element ("""ErpInvoice.dueDate"""))
+    val kind = parse_attribute (attribute ("""ErpInvoice.kind"""))
+    val mailedDate = parse_element (element ("""ErpInvoice.mailedDate"""))
+    val proForma = parse_element (element ("""ErpInvoice.proForma"""))
+    val referenceNumber = parse_element (element ("""ErpInvoice.referenceNumber"""))
+    val transactionDateTime = parse_element (element ("""ErpInvoice.transactionDateTime"""))
+    val transferType = parse_element (element ("""ErpInvoice.transferType"""))
+    val CustomerAccount = parse_attribute (attribute ("""ErpInvoice.CustomerAccount"""))
     def parse (context: Context): ErpInvoice =
     {
         ErpInvoice(
@@ -716,23 +716,23 @@ object ErpInvoiceLineItem
 extends
     Parseable[ErpInvoiceLineItem]
 {
-    val billPeriod: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.billPeriod"""))
-    val glAccount: (Context) => String = parse_element (element ("""ErpInvoiceLineItem.glAccount"""))
-    val glDateTime: (Context) => String = parse_element (element ("""ErpInvoiceLineItem.glDateTime"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.kind"""))
-    val lineAmount: (Context) => String = parse_element (element ("""ErpInvoiceLineItem.lineAmount"""))
-    val lineNumber: (Context) => String = parse_element (element ("""ErpInvoiceLineItem.lineNumber"""))
-    val lineVersion: (Context) => String = parse_element (element ("""ErpInvoiceLineItem.lineVersion"""))
-    val netAmount: (Context) => String = parse_element (element ("""ErpInvoiceLineItem.netAmount"""))
-    val previousAmount: (Context) => String = parse_element (element ("""ErpInvoiceLineItem.previousAmount"""))
-    val ContainerErpInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.ContainerErpInvoiceLineItem"""))
-    val ErpInvoice: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpInvoice"""))
-    val ErpPayableLineItem: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpPayableLineItem"""))
-    val ErpPayments: (Context) => List[String] = parse_attributes (attribute ("""ErpInvoiceLineItem.ErpPayments"""))
-    val ErpQuoteLineItem: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpQuoteLineItem"""))
-    val ErpRecDelvLineItem: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpRecDelvLineItem"""))
-    val ErpRecLineItem: (Context) => String = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpRecLineItem"""))
-    val UserAttributes: (Context) => List[String] = parse_attributes (attribute ("""ErpInvoiceLineItem.UserAttributes"""))
+    val billPeriod = parse_attribute (attribute ("""ErpInvoiceLineItem.billPeriod"""))
+    val glAccount = parse_element (element ("""ErpInvoiceLineItem.glAccount"""))
+    val glDateTime = parse_element (element ("""ErpInvoiceLineItem.glDateTime"""))
+    val kind = parse_attribute (attribute ("""ErpInvoiceLineItem.kind"""))
+    val lineAmount = parse_element (element ("""ErpInvoiceLineItem.lineAmount"""))
+    val lineNumber = parse_element (element ("""ErpInvoiceLineItem.lineNumber"""))
+    val lineVersion = parse_element (element ("""ErpInvoiceLineItem.lineVersion"""))
+    val netAmount = parse_element (element ("""ErpInvoiceLineItem.netAmount"""))
+    val previousAmount = parse_element (element ("""ErpInvoiceLineItem.previousAmount"""))
+    val ContainerErpInvoiceLineItem = parse_attribute (attribute ("""ErpInvoiceLineItem.ContainerErpInvoiceLineItem"""))
+    val ErpInvoice = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpInvoice"""))
+    val ErpPayableLineItem = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpPayableLineItem"""))
+    val ErpPayments = parse_attributes (attribute ("""ErpInvoiceLineItem.ErpPayments"""))
+    val ErpQuoteLineItem = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpQuoteLineItem"""))
+    val ErpRecDelvLineItem = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpRecDelvLineItem"""))
+    val ErpRecLineItem = parse_attribute (attribute ("""ErpInvoiceLineItem.ErpRecLineItem"""))
+    val UserAttributes = parse_attributes (attribute ("""ErpInvoiceLineItem.UserAttributes"""))
     def parse (context: Context): ErpInvoiceLineItem =
     {
         ErpInvoiceLineItem(
@@ -805,9 +805,9 @@ object ErpIssueInventory
 extends
     Parseable[ErpIssueInventory]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpIssueInventory.status"""))
-    val TypeAsset: (Context) => String = parse_attribute (attribute ("""ErpIssueInventory.TypeAsset"""))
-    val TypeMaterial: (Context) => String = parse_attribute (attribute ("""ErpIssueInventory.TypeMaterial"""))
+    val status = parse_attribute (attribute ("""ErpIssueInventory.status"""))
+    val TypeAsset = parse_attribute (attribute ("""ErpIssueInventory.TypeAsset"""))
+    val TypeMaterial = parse_attribute (attribute ("""ErpIssueInventory.TypeMaterial"""))
     def parse (context: Context): ErpIssueInventory =
     {
         ErpIssueInventory(
@@ -864,8 +864,8 @@ object ErpItemMaster
 extends
     Parseable[ErpItemMaster]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpItemMaster.status"""))
-    val Asset: (Context) => String = parse_attribute (attribute ("""ErpItemMaster.Asset"""))
+    val status = parse_attribute (attribute ("""ErpItemMaster.status"""))
+    val Asset = parse_attribute (attribute ("""ErpItemMaster.Asset"""))
     def parse (context: Context): ErpItemMaster =
     {
         ErpItemMaster(
@@ -989,15 +989,15 @@ object ErpJournalEntry
 extends
     Parseable[ErpJournalEntry]
 {
-    val accountID: (Context) => String = parse_element (element ("""ErpJournalEntry.accountID"""))
-    val amount: (Context) => String = parse_element (element ("""ErpJournalEntry.amount"""))
-    val postingDateTime: (Context) => String = parse_element (element ("""ErpJournalEntry.postingDateTime"""))
-    val sourceID: (Context) => String = parse_element (element ("""ErpJournalEntry.sourceID"""))
-    val status: (Context) => String = parse_attribute (attribute ("""ErpJournalEntry.status"""))
-    val transactionDateTime: (Context) => String = parse_element (element ("""ErpJournalEntry.transactionDateTime"""))
-    val ErpInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""ErpJournalEntry.ErpInvoiceLineItem"""))
-    val ErpJournal: (Context) => String = parse_attribute (attribute ("""ErpJournalEntry.ErpJournal"""))
-    val ErpLedgerEntry: (Context) => String = parse_attribute (attribute ("""ErpJournalEntry.ErpLedgerEntry"""))
+    val accountID = parse_element (element ("""ErpJournalEntry.accountID"""))
+    val amount = parse_element (element ("""ErpJournalEntry.amount"""))
+    val postingDateTime = parse_element (element ("""ErpJournalEntry.postingDateTime"""))
+    val sourceID = parse_element (element ("""ErpJournalEntry.sourceID"""))
+    val status = parse_attribute (attribute ("""ErpJournalEntry.status"""))
+    val transactionDateTime = parse_element (element ("""ErpJournalEntry.transactionDateTime"""))
+    val ErpInvoiceLineItem = parse_attribute (attribute ("""ErpJournalEntry.ErpInvoiceLineItem"""))
+    val ErpJournal = parse_attribute (attribute ("""ErpJournalEntry.ErpJournal"""))
+    val ErpLedgerEntry = parse_attribute (attribute ("""ErpJournalEntry.ErpLedgerEntry"""))
     def parse (context: Context): ErpJournalEntry =
     {
         ErpJournalEntry(
@@ -1062,9 +1062,9 @@ object ErpLedBudLineItem
 extends
     Parseable[ErpLedBudLineItem]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpLedBudLineItem.status"""))
-    val ErpLedBudLineItem_attr: (Context) => String = parse_attribute (attribute ("""ErpLedBudLineItem.ErpLedBudLineItem"""))
-    val ErpLedgerBudget: (Context) => String = parse_attribute (attribute ("""ErpLedBudLineItem.ErpLedgerBudget"""))
+    val status = parse_attribute (attribute ("""ErpLedBudLineItem.status"""))
+    val ErpLedBudLineItem_attr = parse_attribute (attribute ("""ErpLedBudLineItem.ErpLedBudLineItem"""))
+    val ErpLedgerBudget = parse_attribute (attribute ("""ErpLedBudLineItem.ErpLedgerBudget"""))
     def parse (context: Context): ErpLedBudLineItem =
     {
         ErpLedBudLineItem(
@@ -1240,16 +1240,16 @@ object ErpLedgerEntry
 extends
     Parseable[ErpLedgerEntry]
 {
-    val accountID: (Context) => String = parse_element (element ("""ErpLedgerEntry.accountID"""))
-    val accountKind: (Context) => String = parse_attribute (attribute ("""ErpLedgerEntry.accountKind"""))
-    val amount: (Context) => String = parse_element (element ("""ErpLedgerEntry.amount"""))
-    val postedDateTime: (Context) => String = parse_element (element ("""ErpLedgerEntry.postedDateTime"""))
-    val status: (Context) => String = parse_attribute (attribute ("""ErpLedgerEntry.status"""))
-    val transactionDateTime: (Context) => String = parse_element (element ("""ErpLedgerEntry.transactionDateTime"""))
-    val ErpJounalEntry: (Context) => String = parse_attribute (attribute ("""ErpLedgerEntry.ErpJounalEntry"""))
-    val ErpLedger: (Context) => String = parse_attribute (attribute ("""ErpLedgerEntry.ErpLedger"""))
-    val ErpLedgerEntry_attr: (Context) => String = parse_attribute (attribute ("""ErpLedgerEntry.ErpLedgerEntry"""))
-    val UserAttributes: (Context) => List[String] = parse_attributes (attribute ("""ErpLedgerEntry.UserAttributes"""))
+    val accountID = parse_element (element ("""ErpLedgerEntry.accountID"""))
+    val accountKind = parse_attribute (attribute ("""ErpLedgerEntry.accountKind"""))
+    val amount = parse_element (element ("""ErpLedgerEntry.amount"""))
+    val postedDateTime = parse_element (element ("""ErpLedgerEntry.postedDateTime"""))
+    val status = parse_attribute (attribute ("""ErpLedgerEntry.status"""))
+    val transactionDateTime = parse_element (element ("""ErpLedgerEntry.transactionDateTime"""))
+    val ErpJounalEntry = parse_attribute (attribute ("""ErpLedgerEntry.ErpJounalEntry"""))
+    val ErpLedger = parse_attribute (attribute ("""ErpLedgerEntry.ErpLedger"""))
+    val ErpLedgerEntry_attr = parse_attribute (attribute ("""ErpLedgerEntry.ErpLedgerEntry"""))
+    val UserAttributes = parse_attributes (attribute ("""ErpLedgerEntry.UserAttributes"""))
     def parse (context: Context): ErpLedgerEntry =
     {
         ErpLedgerEntry(
@@ -1318,10 +1318,10 @@ object ErpPOLineItem
 extends
     Parseable[ErpPOLineItem]
 {
-    val AssetModelCatalogueItem: (Context) => String = parse_attribute (attribute ("""ErpPOLineItem.AssetModelCatalogueItem"""))
-    val ErpPurchaseOrder: (Context) => String = parse_attribute (attribute ("""ErpPOLineItem.ErpPurchaseOrder"""))
-    val ErpRecDelLineItem: (Context) => String = parse_attribute (attribute ("""ErpPOLineItem.ErpRecDelLineItem"""))
-    val ErpReqLineItem: (Context) => String = parse_attribute (attribute ("""ErpPOLineItem.ErpReqLineItem"""))
+    val AssetModelCatalogueItem = parse_attribute (attribute ("""ErpPOLineItem.AssetModelCatalogueItem"""))
+    val ErpPurchaseOrder = parse_attribute (attribute ("""ErpPOLineItem.ErpPurchaseOrder"""))
+    val ErpRecDelLineItem = parse_attribute (attribute ("""ErpPOLineItem.ErpRecDelLineItem"""))
+    val ErpReqLineItem = parse_attribute (attribute ("""ErpPOLineItem.ErpReqLineItem"""))
     def parse (context: Context): ErpPOLineItem =
     {
         ErpPOLineItem(
@@ -1435,11 +1435,11 @@ object ErpPayableLineItem
 extends
     Parseable[ErpPayableLineItem]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpPayableLineItem.status"""))
-    val ErpInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""ErpPayableLineItem.ErpInvoiceLineItem"""))
-    val ErpJournalEntries: (Context) => List[String] = parse_attributes (attribute ("""ErpPayableLineItem.ErpJournalEntries"""))
-    val ErpPayable: (Context) => String = parse_attribute (attribute ("""ErpPayableLineItem.ErpPayable"""))
-    val ErpPayments: (Context) => List[String] = parse_attributes (attribute ("""ErpPayableLineItem.ErpPayments"""))
+    val status = parse_attribute (attribute ("""ErpPayableLineItem.status"""))
+    val ErpInvoiceLineItem = parse_attribute (attribute ("""ErpPayableLineItem.ErpInvoiceLineItem"""))
+    val ErpJournalEntries = parse_attributes (attribute ("""ErpPayableLineItem.ErpJournalEntries"""))
+    val ErpPayable = parse_attribute (attribute ("""ErpPayableLineItem.ErpPayable"""))
+    val ErpPayments = parse_attributes (attribute ("""ErpPayableLineItem.ErpPayments"""))
     def parse (context: Context): ErpPayableLineItem =
     {
         ErpPayableLineItem(
@@ -1495,7 +1495,7 @@ object ErpPayment
 extends
     Parseable[ErpPayment]
 {
-    val termsPayment: (Context) => String = parse_element (element ("""ErpPayment.termsPayment"""))
+    val termsPayment = parse_element (element ("""ErpPayment.termsPayment"""))
     def parse (context: Context): ErpPayment =
     {
         ErpPayment(
@@ -1546,7 +1546,7 @@ object ErpPersonnel
 extends
     Parseable[ErpPersonnel]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpPersonnel.status"""))
+    val status = parse_attribute (attribute ("""ErpPersonnel.status"""))
     def parse (context: Context): ErpPersonnel =
     {
         ErpPersonnel(
@@ -1757,12 +1757,12 @@ object ErpQuoteLineItem
 extends
     Parseable[ErpQuoteLineItem]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpQuoteLineItem.status"""))
-    val AssetModelCatalogueItem: (Context) => String = parse_attribute (attribute ("""ErpQuoteLineItem.AssetModelCatalogueItem"""))
-    val Design: (Context) => String = parse_attribute (attribute ("""ErpQuoteLineItem.Design"""))
-    val ErpInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""ErpQuoteLineItem.ErpInvoiceLineItem"""))
-    val ErpQuote: (Context) => String = parse_attribute (attribute ("""ErpQuoteLineItem.ErpQuote"""))
-    val ErpReqLineItem: (Context) => String = parse_attribute (attribute ("""ErpQuoteLineItem.ErpReqLineItem"""))
+    val status = parse_attribute (attribute ("""ErpQuoteLineItem.status"""))
+    val AssetModelCatalogueItem = parse_attribute (attribute ("""ErpQuoteLineItem.AssetModelCatalogueItem"""))
+    val Design = parse_attribute (attribute ("""ErpQuoteLineItem.Design"""))
+    val ErpInvoiceLineItem = parse_attribute (attribute ("""ErpQuoteLineItem.ErpInvoiceLineItem"""))
+    val ErpQuote = parse_attribute (attribute ("""ErpQuoteLineItem.ErpQuote"""))
+    val ErpReqLineItem = parse_attribute (attribute ("""ErpQuoteLineItem.ErpReqLineItem"""))
     def parse (context: Context): ErpQuoteLineItem =
     {
         ErpQuoteLineItem(
@@ -1828,10 +1828,10 @@ object ErpRecDelvLineItem
 extends
     Parseable[ErpRecDelvLineItem]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpRecDelvLineItem.status"""))
-    val ErpInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""ErpRecDelvLineItem.ErpInvoiceLineItem"""))
-    val ErpPOLineItem: (Context) => String = parse_attribute (attribute ("""ErpRecDelvLineItem.ErpPOLineItem"""))
-    val ErpReceiveDelivery: (Context) => String = parse_attribute (attribute ("""ErpRecDelvLineItem.ErpReceiveDelivery"""))
+    val status = parse_attribute (attribute ("""ErpRecDelvLineItem.status"""))
+    val ErpInvoiceLineItem = parse_attribute (attribute ("""ErpRecDelvLineItem.ErpInvoiceLineItem"""))
+    val ErpPOLineItem = parse_attribute (attribute ("""ErpRecDelvLineItem.ErpPOLineItem"""))
+    val ErpReceiveDelivery = parse_attribute (attribute ("""ErpRecDelvLineItem.ErpReceiveDelivery"""))
     def parse (context: Context): ErpRecDelvLineItem =
     {
         ErpRecDelvLineItem(
@@ -1897,11 +1897,11 @@ object ErpRecLineItem
 extends
     Parseable[ErpRecLineItem]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpRecLineItem.status"""))
-    val ErpInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""ErpRecLineItem.ErpInvoiceLineItem"""))
-    val ErpJournalEntries: (Context) => List[String] = parse_attributes (attribute ("""ErpRecLineItem.ErpJournalEntries"""))
-    val ErpPayments: (Context) => List[String] = parse_attributes (attribute ("""ErpRecLineItem.ErpPayments"""))
-    val ErpReceivable: (Context) => String = parse_attribute (attribute ("""ErpRecLineItem.ErpReceivable"""))
+    val status = parse_attribute (attribute ("""ErpRecLineItem.status"""))
+    val ErpInvoiceLineItem = parse_attribute (attribute ("""ErpRecLineItem.ErpInvoiceLineItem"""))
+    val ErpJournalEntries = parse_attributes (attribute ("""ErpRecLineItem.ErpJournalEntries"""))
+    val ErpPayments = parse_attributes (attribute ("""ErpRecLineItem.ErpPayments"""))
+    val ErpReceivable = parse_attribute (attribute ("""ErpRecLineItem.ErpReceivable"""))
     def parse (context: Context): ErpRecLineItem =
     {
         ErpRecLineItem(
@@ -2079,16 +2079,16 @@ object ErpReqLineItem
 extends
     Parseable[ErpReqLineItem]
 {
-    val code: (Context) => String = parse_element (element ("""ErpReqLineItem.code"""))
-    val cost: (Context) => String = parse_element (element ("""ErpReqLineItem.cost"""))
-    val deliveryDate: (Context) => String = parse_element (element ("""ErpReqLineItem.deliveryDate"""))
-    val quantity: (Context) => String = parse_element (element ("""ErpReqLineItem.quantity"""))
-    val status: (Context) => String = parse_attribute (attribute ("""ErpReqLineItem.status"""))
-    val ErpPOLineItem: (Context) => String = parse_attribute (attribute ("""ErpReqLineItem.ErpPOLineItem"""))
-    val ErpQuoteLineItem: (Context) => String = parse_attribute (attribute ("""ErpReqLineItem.ErpQuoteLineItem"""))
-    val ErpRequisition: (Context) => String = parse_attribute (attribute ("""ErpReqLineItem.ErpRequisition"""))
-    val TypeAsset: (Context) => String = parse_attribute (attribute ("""ErpReqLineItem.TypeAsset"""))
-    val TypeMaterial: (Context) => String = parse_attribute (attribute ("""ErpReqLineItem.TypeMaterial"""))
+    val code = parse_element (element ("""ErpReqLineItem.code"""))
+    val cost = parse_element (element ("""ErpReqLineItem.cost"""))
+    val deliveryDate = parse_element (element ("""ErpReqLineItem.deliveryDate"""))
+    val quantity = parse_element (element ("""ErpReqLineItem.quantity"""))
+    val status = parse_attribute (attribute ("""ErpReqLineItem.status"""))
+    val ErpPOLineItem = parse_attribute (attribute ("""ErpReqLineItem.ErpPOLineItem"""))
+    val ErpQuoteLineItem = parse_attribute (attribute ("""ErpReqLineItem.ErpQuoteLineItem"""))
+    val ErpRequisition = parse_attribute (attribute ("""ErpReqLineItem.ErpRequisition"""))
+    val TypeAsset = parse_attribute (attribute ("""ErpReqLineItem.TypeAsset"""))
+    val TypeMaterial = parse_attribute (attribute ("""ErpReqLineItem.TypeMaterial"""))
     def parse (context: Context): ErpReqLineItem =
     {
         ErpReqLineItem(
@@ -2248,8 +2248,8 @@ object ErpSiteLevelData
 extends
     Parseable[ErpSiteLevelData]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpSiteLevelData.status"""))
-    val LandProperty: (Context) => String = parse_attribute (attribute ("""ErpSiteLevelData.LandProperty"""))
+    val status = parse_attribute (attribute ("""ErpSiteLevelData.status"""))
+    val LandProperty = parse_attribute (attribute ("""ErpSiteLevelData.LandProperty"""))
     def parse (context: Context): ErpSiteLevelData =
     {
         ErpSiteLevelData(
@@ -2307,9 +2307,9 @@ object ErpTimeEntry
 extends
     Parseable[ErpTimeEntry]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ErpTimeEntry.status"""))
-    val ErpProjectAccounting: (Context) => String = parse_attribute (attribute ("""ErpTimeEntry.ErpProjectAccounting"""))
-    val ErpTimeSheet: (Context) => String = parse_attribute (attribute ("""ErpTimeEntry.ErpTimeSheet"""))
+    val status = parse_attribute (attribute ("""ErpTimeEntry.status"""))
+    val ErpProjectAccounting = parse_attribute (attribute ("""ErpTimeEntry.ErpProjectAccounting"""))
+    val ErpTimeSheet = parse_attribute (attribute ("""ErpTimeEntry.ErpTimeSheet"""))
     def parse (context: Context): ErpTimeEntry =
     {
         ErpTimeEntry(

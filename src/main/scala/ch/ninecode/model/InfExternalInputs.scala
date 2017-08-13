@@ -54,9 +54,9 @@ object ReserveReq
 extends
     Parseable[ReserveReq]
 {
-    val MarketProduct: (Context) => String = parse_attribute (attribute ("""ReserveReq.MarketProduct"""))
-    val ReserveReqCurve: (Context) => String = parse_attribute (attribute ("""ReserveReq.ReserveReqCurve"""))
-    val SensitivityPriceCurve: (Context) => String = parse_attribute (attribute ("""ReserveReq.SensitivityPriceCurve"""))
+    val MarketProduct = parse_attribute (attribute ("""ReserveReq.MarketProduct"""))
+    val ReserveReqCurve = parse_attribute (attribute ("""ReserveReq.ReserveReqCurve"""))
+    val SensitivityPriceCurve = parse_attribute (attribute ("""ReserveReq.SensitivityPriceCurve"""))
     def parse (context: Context): ReserveReq =
     {
         ReserveReq(
@@ -110,7 +110,7 @@ object ReserveReqCurve
 extends
     Parseable[ReserveReqCurve]
 {
-    val ReserveReq: (Context) => String = parse_attribute (attribute ("""ReserveReqCurve.ReserveReq"""))
+    val ReserveReq = parse_attribute (attribute ("""ReserveReqCurve.ReserveReq"""))
     def parse (context: Context): ReserveReqCurve =
     {
         ReserveReqCurve(
@@ -164,8 +164,8 @@ object ResourceGroup
 extends
     Parseable[ResourceGroup]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""ResourceGroup.status"""))
-    val typ: (Context) => String = parse_element (element ("""ResourceGroup.type"""))
+    val status = parse_attribute (attribute ("""ResourceGroup.status"""))
+    val typ = parse_element (element ("""ResourceGroup.type"""))
     def parse (context: Context): ResourceGroup =
     {
         ResourceGroup(
@@ -220,8 +220,8 @@ object ResourceGroupReq
 extends
     Parseable[ResourceGroupReq]
 {
-    val RTOs: (Context) => List[String] = parse_attributes (attribute ("""ResourceGroupReq.RTOs"""))
-    val ResourceGroup: (Context) => String = parse_attribute (attribute ("""ResourceGroupReq.ResourceGroup"""))
+    val RTOs = parse_attributes (attribute ("""ResourceGroupReq.RTOs"""))
+    val ResourceGroup = parse_attribute (attribute ("""ResourceGroupReq.ResourceGroup"""))
     def parse (context: Context): ResourceGroupReq =
     {
         ResourceGroupReq(
@@ -274,7 +274,7 @@ object SensitivityPriceCurve
 extends
     Parseable[SensitivityPriceCurve]
 {
-    val ReserveReq: (Context) => String = parse_attribute (attribute ("""SensitivityPriceCurve.ReserveReq"""))
+    val ReserveReq = parse_attribute (attribute ("""SensitivityPriceCurve.ReserveReq"""))
     def parse (context: Context): SensitivityPriceCurve =
     {
         SensitivityPriceCurve(

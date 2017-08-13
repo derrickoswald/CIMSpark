@@ -60,10 +60,10 @@ object BaseWork
 extends
     Parseable[BaseWork]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""BaseWork.kind"""))
-    val priority: (Context) => String = parse_attribute (attribute ("""BaseWork.priority"""))
-    val statusKind: (Context) => String = parse_attribute (attribute ("""BaseWork.statusKind"""))
-    val WorkLocation: (Context) => String = parse_attribute (attribute ("""BaseWork.WorkLocation"""))
+    val kind = parse_attribute (attribute ("""BaseWork.kind"""))
+    val priority = parse_attribute (attribute ("""BaseWork.priority"""))
+    val statusKind = parse_attribute (attribute ("""BaseWork.statusKind"""))
+    val WorkLocation = parse_attribute (attribute ("""BaseWork.WorkLocation"""))
     def parse (context: Context): BaseWork =
     {
         BaseWork(
@@ -126,10 +126,10 @@ object MaintenanceLocation
 extends
     Parseable[MaintenanceLocation]
 {
-    val block: (Context) => String = parse_element (element ("""MaintenanceLocation.block"""))
-    val lot: (Context) => String = parse_element (element ("""MaintenanceLocation.lot"""))
-    val nearestIntersection: (Context) => String = parse_element (element ("""MaintenanceLocation.nearestIntersection"""))
-    val subdivision: (Context) => String = parse_element (element ("""MaintenanceLocation.subdivision"""))
+    val block = parse_element (element ("""MaintenanceLocation.block"""))
+    val lot = parse_element (element ("""MaintenanceLocation.lot"""))
+    val nearestIntersection = parse_element (element ("""MaintenanceLocation.nearestIntersection"""))
+    val subdivision = parse_element (element ("""MaintenanceLocation.subdivision"""))
     def parse (context: Context): MaintenanceLocation =
     {
         MaintenanceLocation(
@@ -190,9 +190,9 @@ object MaterialItem
 extends
     Parseable[MaterialItem]
 {
-    val quantity: (Context) => String = parse_attribute (attribute ("""MaterialItem.quantity"""))
-    val TypeMaterial: (Context) => String = parse_attribute (attribute ("""MaterialItem.TypeMaterial"""))
-    val WorkTask: (Context) => String = parse_attribute (attribute ("""MaterialItem.WorkTask"""))
+    val quantity = parse_attribute (attribute ("""MaterialItem.quantity"""))
+    val TypeMaterial = parse_attribute (attribute ("""MaterialItem.TypeMaterial"""))
+    val WorkTask = parse_attribute (attribute ("""MaterialItem.WorkTask"""))
     def parse (context: Context): MaterialItem =
     {
         MaterialItem(
@@ -245,7 +245,7 @@ object Tool
 extends
     Parseable[Tool]
 {
-    val lastCalibrationDate: (Context) => String = parse_element (element ("""Tool.lastCalibrationDate"""))
+    val lastCalibrationDate = parse_element (element ("""Tool.lastCalibrationDate"""))
     def parse (context: Context): Tool =
     {
         Tool(
@@ -303,9 +303,9 @@ object Vehicle
 extends
     Parseable[Vehicle]
 {
-    val odometerReadDateTime: (Context) => String = parse_element (element ("""Vehicle.odometerReadDateTime"""))
-    val odometerReading: (Context) => String = parse_element (element ("""Vehicle.odometerReading"""))
-    val usageKind: (Context) => String = parse_attribute (attribute ("""Vehicle.usageKind"""))
+    val odometerReadDateTime = parse_element (element ("""Vehicle.odometerReadDateTime"""))
+    val odometerReading = parse_element (element ("""Vehicle.odometerReading"""))
+    val usageKind = parse_attribute (attribute ("""Vehicle.usageKind"""))
     def parse (context: Context): Vehicle =
     {
         Vehicle(
@@ -370,11 +370,11 @@ object Work
 extends
     Parseable[Work]
 {
-    val requestDateTime: (Context) => String = parse_element (element ("""Work.requestDateTime"""))
-    val BusinessCase: (Context) => String = parse_attribute (attribute ("""Work.BusinessCase"""))
-    val ErpProjectAccounting: (Context) => String = parse_attribute (attribute ("""Work.ErpProjectAccounting"""))
-    val Project: (Context) => String = parse_attribute (attribute ("""Work.Project"""))
-    val WorkBillingInfo: (Context) => String = parse_attribute (attribute ("""Work.WorkBillingInfo"""))
+    val requestDateTime = parse_element (element ("""Work.requestDateTime"""))
+    val BusinessCase = parse_attribute (attribute ("""Work.BusinessCase"""))
+    val ErpProjectAccounting = parse_attribute (attribute ("""Work.ErpProjectAccounting"""))
+    val Project = parse_attribute (attribute ("""Work.Project"""))
+    val WorkBillingInfo = parse_attribute (attribute ("""Work.WorkBillingInfo"""))
     def parse (context: Context): Work =
     {
         Work(
@@ -429,7 +429,7 @@ object WorkAsset
 extends
     Parseable[WorkAsset]
 {
-    val Crew: (Context) => String = parse_attribute (attribute ("""WorkAsset.Crew"""))
+    val Crew = parse_attribute (attribute ("""WorkAsset.Crew"""))
     def parse (context: Context): WorkAsset =
     {
         WorkAsset(
@@ -480,7 +480,7 @@ object WorkLocation
 extends
     Parseable[WorkLocation]
 {
-    val OneCallRequest: (Context) => String = parse_attribute (attribute ("""WorkLocation.OneCallRequest"""))
+    val OneCallRequest = parse_attribute (attribute ("""WorkLocation.OneCallRequest"""))
     def parse (context: Context): WorkLocation =
     {
         WorkLocation(
@@ -542,15 +542,15 @@ object WorkTask
 extends
     Parseable[WorkTask]
 {
-    val crewETA: (Context) => String = parse_element (element ("""WorkTask.crewETA"""))
-    val instruction: (Context) => String = parse_element (element ("""WorkTask.instruction"""))
-    val schedOverride: (Context) => String = parse_element (element ("""WorkTask.schedOverride"""))
-    val taskKind: (Context) => String = parse_attribute (attribute ("""WorkTask.taskKind"""))
-    val Assets: (Context) => List[String] = parse_attributes (attribute ("""WorkTask.Assets"""))
-    val Crews: (Context) => List[String] = parse_attributes (attribute ("""WorkTask.Crews"""))
-    val OldAsset: (Context) => String = parse_attribute (attribute ("""WorkTask.OldAsset"""))
-    val SwitchingPlan: (Context) => String = parse_attribute (attribute ("""WorkTask.SwitchingPlan"""))
-    val Work: (Context) => String = parse_attribute (attribute ("""WorkTask.Work"""))
+    val crewETA = parse_element (element ("""WorkTask.crewETA"""))
+    val instruction = parse_element (element ("""WorkTask.instruction"""))
+    val schedOverride = parse_element (element ("""WorkTask.schedOverride"""))
+    val taskKind = parse_attribute (attribute ("""WorkTask.taskKind"""))
+    val Assets = parse_attributes (attribute ("""WorkTask.Assets"""))
+    val Crews = parse_attributes (attribute ("""WorkTask.Crews"""))
+    val OldAsset = parse_attribute (attribute ("""WorkTask.OldAsset"""))
+    val SwitchingPlan = parse_attribute (attribute ("""WorkTask.SwitchingPlan"""))
+    val Work = parse_attribute (attribute ("""WorkTask.Work"""))
     def parse (context: Context): WorkTask =
     {
         WorkTask(
@@ -612,8 +612,8 @@ object WorkTimeSchedule
 extends
     Parseable[WorkTimeSchedule]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""WorkTimeSchedule.kind"""))
-    val BaseWork: (Context) => String = parse_attribute (attribute ("""WorkTimeSchedule.BaseWork"""))
+    val kind = parse_attribute (attribute ("""WorkTimeSchedule.kind"""))
+    val BaseWork = parse_attribute (attribute ("""WorkTimeSchedule.BaseWork"""))
     def parse (context: Context): WorkTimeSchedule =
     {
         WorkTimeSchedule(

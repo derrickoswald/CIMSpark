@@ -99,7 +99,7 @@ object ModelingAuthoritySet
 extends
     Parseable[ModelingAuthoritySet]
 {
-    val ModelingAuthority: (Context) => String = parse_attribute (attribute ("""ModelingAuthoritySet.ModelingAuthority"""))
+    val ModelingAuthority = parse_attribute (attribute ("""ModelingAuthoritySet.ModelingAuthority"""))
     def parse (context: Context): ModelingAuthoritySet =
     {
         ModelingAuthoritySet(

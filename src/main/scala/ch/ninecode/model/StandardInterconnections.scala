@@ -79,16 +79,16 @@ object RemoteInputSignal
 extends
     Parseable[RemoteInputSignal]
 {
-    val remoteSignalType: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.remoteSignalType"""))
-    val DiscontinuousExcitationControlDynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.DiscontinuousExcitationControlDynamics"""))
-    val PFVArControllerType1Dynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.PFVArControllerType1Dynamics"""))
-    val PowerSystemStabilizerDynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.PowerSystemStabilizerDynamics"""))
-    val Terminal: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.Terminal"""))
-    val UnderexcitationLimiterDynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.UnderexcitationLimiterDynamics"""))
-    val VoltageCompensatorDynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.VoltageCompensatorDynamics"""))
-    val WindPlantDynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.WindPlantDynamics"""))
-    val WindTurbineType1or2Dynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType1or2Dynamics"""))
-    val WindTurbineType3or4Dynamics: (Context) => String = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType3or4Dynamics"""))
+    val remoteSignalType = parse_attribute (attribute ("""RemoteInputSignal.remoteSignalType"""))
+    val DiscontinuousExcitationControlDynamics = parse_attribute (attribute ("""RemoteInputSignal.DiscontinuousExcitationControlDynamics"""))
+    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""RemoteInputSignal.PFVArControllerType1Dynamics"""))
+    val PowerSystemStabilizerDynamics = parse_attribute (attribute ("""RemoteInputSignal.PowerSystemStabilizerDynamics"""))
+    val Terminal = parse_attribute (attribute ("""RemoteInputSignal.Terminal"""))
+    val UnderexcitationLimiterDynamics = parse_attribute (attribute ("""RemoteInputSignal.UnderexcitationLimiterDynamics"""))
+    val VoltageCompensatorDynamics = parse_attribute (attribute ("""RemoteInputSignal.VoltageCompensatorDynamics"""))
+    val WindPlantDynamics = parse_attribute (attribute ("""RemoteInputSignal.WindPlantDynamics"""))
+    val WindTurbineType1or2Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType1or2Dynamics"""))
+    val WindTurbineType3or4Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType3or4Dynamics"""))
     def parse (context: Context): RemoteInputSignal =
     {
         RemoteInputSignal(

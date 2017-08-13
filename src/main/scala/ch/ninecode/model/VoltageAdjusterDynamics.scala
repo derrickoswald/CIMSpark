@@ -73,12 +73,12 @@ object VAdjIEEE
 extends
     Parseable[VAdjIEEE]
 {
-    val adjslew: (Context) => String = parse_element (element ("""VAdjIEEE.adjslew"""))
-    val taoff: (Context) => String = parse_element (element ("""VAdjIEEE.taoff"""))
-    val taon: (Context) => String = parse_element (element ("""VAdjIEEE.taon"""))
-    val vadjf: (Context) => String = parse_element (element ("""VAdjIEEE.vadjf"""))
-    val vadjmax: (Context) => String = parse_element (element ("""VAdjIEEE.vadjmax"""))
-    val vadjmin: (Context) => String = parse_element (element ("""VAdjIEEE.vadjmin"""))
+    val adjslew = parse_element (element ("""VAdjIEEE.adjslew"""))
+    val taoff = parse_element (element ("""VAdjIEEE.taoff"""))
+    val taon = parse_element (element ("""VAdjIEEE.taon"""))
+    val vadjf = parse_element (element ("""VAdjIEEE.vadjf"""))
+    val vadjmax = parse_element (element ("""VAdjIEEE.vadjmax"""))
+    val vadjmin = parse_element (element ("""VAdjIEEE.vadjmin"""))
     def parse (context: Context): VAdjIEEE =
     {
         VAdjIEEE(
@@ -134,7 +134,7 @@ object VoltageAdjusterDynamics
 extends
     Parseable[VoltageAdjusterDynamics]
 {
-    val PFVArControllerType1Dynamics: (Context) => String = parse_attribute (attribute ("""VoltageAdjusterDynamics.PFVArControllerType1Dynamics"""))
+    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""VoltageAdjusterDynamics.PFVArControllerType1Dynamics"""))
     def parse (context: Context): VoltageAdjusterDynamics =
     {
         VoltageAdjusterDynamics(

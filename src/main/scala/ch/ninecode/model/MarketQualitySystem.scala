@@ -59,9 +59,9 @@ object AllocationResult
 extends
     Parseable[AllocationResult]
 {
-    val intervalStartTime: (Context) => String = parse_element (element ("""AllocationResult.intervalStartTime"""))
-    val updateTimeStamp: (Context) => String = parse_element (element ("""AllocationResult.updateTimeStamp"""))
-    val updateUser: (Context) => String = parse_element (element ("""AllocationResult.updateUser"""))
+    val intervalStartTime = parse_element (element ("""AllocationResult.intervalStartTime"""))
+    val updateTimeStamp = parse_element (element ("""AllocationResult.updateTimeStamp"""))
+    val updateUser = parse_element (element ("""AllocationResult.updateUser"""))
     def parse (context: Context): AllocationResult =
     {
         AllocationResult(
@@ -139,13 +139,13 @@ object AllocationResultValues
 extends
     Parseable[AllocationResultValues]
 {
-    val aggregateType: (Context) => String = parse_element (element ("""AllocationResultValues.aggregateType"""))
-    val allocationMwHour: (Context) => String = parse_element (element ("""AllocationResultValues.allocationMwHour"""))
-    val allocationPrice: (Context) => String = parse_element (element ("""AllocationResultValues.allocationPrice"""))
-    val energyTypeCode: (Context) => String = parse_element (element ("""AllocationResultValues.energyTypeCode"""))
-    val marketServiceType: (Context) => String = parse_element (element ("""AllocationResultValues.marketServiceType"""))
-    val AllocationResult: (Context) => String = parse_attribute (attribute ("""AllocationResultValues.AllocationResult"""))
-    val RegisteredResource: (Context) => String = parse_attribute (attribute ("""AllocationResultValues.RegisteredResource"""))
+    val aggregateType = parse_element (element ("""AllocationResultValues.aggregateType"""))
+    val allocationMwHour = parse_element (element ("""AllocationResultValues.allocationMwHour"""))
+    val allocationPrice = parse_element (element ("""AllocationResultValues.allocationPrice"""))
+    val energyTypeCode = parse_element (element ("""AllocationResultValues.energyTypeCode"""))
+    val marketServiceType = parse_element (element ("""AllocationResultValues.marketServiceType"""))
+    val AllocationResult = parse_attribute (attribute ("""AllocationResultValues.AllocationResult"""))
+    val RegisteredResource = parse_attribute (attribute ("""AllocationResultValues.RegisteredResource"""))
     def parse (context: Context): AllocationResultValues =
     {
         AllocationResultValues(
@@ -211,10 +211,10 @@ object AuxiliaryCost
 extends
     Parseable[AuxiliaryCost]
 {
-    val intervalStartTime: (Context) => String = parse_element (element ("""AuxiliaryCost.intervalStartTime"""))
-    val marketType: (Context) => String = parse_attribute (attribute ("""AuxiliaryCost.marketType"""))
-    val updateTimeStamp: (Context) => String = parse_element (element ("""AuxiliaryCost.updateTimeStamp"""))
-    val updateUser: (Context) => String = parse_element (element ("""AuxiliaryCost.updateUser"""))
+    val intervalStartTime = parse_element (element ("""AuxiliaryCost.intervalStartTime"""))
+    val marketType = parse_attribute (attribute ("""AuxiliaryCost.marketType"""))
+    val updateTimeStamp = parse_element (element ("""AuxiliaryCost.updateTimeStamp"""))
+    val updateUser = parse_element (element ("""AuxiliaryCost.updateUser"""))
     def parse (context: Context): AuxiliaryCost =
     {
         AuxiliaryCost(
@@ -271,8 +271,8 @@ object AuxiliaryObject
 extends
     Parseable[AuxiliaryObject]
 {
-    val RegisteredGenerator: (Context) => String = parse_attribute (attribute ("""AuxiliaryObject.RegisteredGenerator"""))
-    val RegisteredLoad: (Context) => String = parse_attribute (attribute ("""AuxiliaryObject.RegisteredLoad"""))
+    val RegisteredGenerator = parse_attribute (attribute ("""AuxiliaryObject.RegisteredGenerator"""))
+    val RegisteredLoad = parse_attribute (attribute ("""AuxiliaryObject.RegisteredLoad"""))
     def parse (context: Context): AuxiliaryObject =
     {
         AuxiliaryObject(
@@ -354,17 +354,17 @@ object AuxiliaryValues
 extends
     Parseable[AuxiliaryValues]
 {
-    val availUndispatchedQ: (Context) => String = parse_element (element ("""AuxiliaryValues.availUndispatchedQ"""))
-    val incrementalORAvail: (Context) => String = parse_element (element ("""AuxiliaryValues.incrementalORAvail"""))
-    val maxExpostCapacity: (Context) => String = parse_element (element ("""AuxiliaryValues.maxExpostCapacity"""))
-    val minExpostCapacity: (Context) => String = parse_element (element ("""AuxiliaryValues.minExpostCapacity"""))
-    val noLoadCost: (Context) => String = parse_element (element ("""AuxiliaryValues.noLoadCost"""))
-    val noLoadCostEligibilityFlag: (Context) => String = parse_attribute (attribute ("""AuxiliaryValues.noLoadCostEligibilityFlag"""))
-    val startUpCost: (Context) => String = parse_element (element ("""AuxiliaryValues.startUpCost"""))
-    val startUpCostEligibilityFlag: (Context) => String = parse_attribute (attribute ("""AuxiliaryValues.startUpCostEligibilityFlag"""))
-    val AuxillaryCost: (Context) => String = parse_attribute (attribute ("""AuxiliaryValues.AuxillaryCost"""))
-    val FiveMinAuxillaryData: (Context) => String = parse_attribute (attribute ("""AuxiliaryValues.FiveMinAuxillaryData"""))
-    val TenMinAuxillaryData: (Context) => String = parse_attribute (attribute ("""AuxiliaryValues.TenMinAuxillaryData"""))
+    val availUndispatchedQ = parse_element (element ("""AuxiliaryValues.availUndispatchedQ"""))
+    val incrementalORAvail = parse_element (element ("""AuxiliaryValues.incrementalORAvail"""))
+    val maxExpostCapacity = parse_element (element ("""AuxiliaryValues.maxExpostCapacity"""))
+    val minExpostCapacity = parse_element (element ("""AuxiliaryValues.minExpostCapacity"""))
+    val noLoadCost = parse_element (element ("""AuxiliaryValues.noLoadCost"""))
+    val noLoadCostEligibilityFlag = parse_attribute (attribute ("""AuxiliaryValues.noLoadCostEligibilityFlag"""))
+    val startUpCost = parse_element (element ("""AuxiliaryValues.startUpCost"""))
+    val startUpCostEligibilityFlag = parse_attribute (attribute ("""AuxiliaryValues.startUpCostEligibilityFlag"""))
+    val AuxillaryCost = parse_attribute (attribute ("""AuxiliaryValues.AuxillaryCost"""))
+    val FiveMinAuxillaryData = parse_attribute (attribute ("""AuxiliaryValues.FiveMinAuxillaryData"""))
+    val TenMinAuxillaryData = parse_attribute (attribute ("""AuxiliaryValues.TenMinAuxillaryData"""))
     def parse (context: Context): AuxiliaryValues =
     {
         AuxiliaryValues(
@@ -431,9 +431,9 @@ object ExpectedEnergy
 extends
     Parseable[ExpectedEnergy]
 {
-    val intervalStartTime: (Context) => String = parse_element (element ("""ExpectedEnergy.intervalStartTime"""))
-    val updateTimeStamp: (Context) => String = parse_element (element ("""ExpectedEnergy.updateTimeStamp"""))
-    val updateUser: (Context) => String = parse_element (element ("""ExpectedEnergy.updateUser"""))
+    val intervalStartTime = parse_element (element ("""ExpectedEnergy.intervalStartTime"""))
+    val updateTimeStamp = parse_element (element ("""ExpectedEnergy.updateTimeStamp"""))
+    val updateUser = parse_element (element ("""ExpectedEnergy.updateUser"""))
     def parse (context: Context): ExpectedEnergy =
     {
         ExpectedEnergy(
@@ -495,10 +495,10 @@ object ExpectedEnergyValues
 extends
     Parseable[ExpectedEnergyValues]
 {
-    val energyTypeCode: (Context) => String = parse_element (element ("""ExpectedEnergyValues.energyTypeCode"""))
-    val expectedMwh: (Context) => String = parse_element (element ("""ExpectedEnergyValues.expectedMwh"""))
-    val ExpectedEnergy: (Context) => String = parse_attribute (attribute ("""ExpectedEnergyValues.ExpectedEnergy"""))
-    val RegisteredResource: (Context) => String = parse_attribute (attribute ("""ExpectedEnergyValues.RegisteredResource"""))
+    val energyTypeCode = parse_element (element ("""ExpectedEnergyValues.energyTypeCode"""))
+    val expectedMwh = parse_element (element ("""ExpectedEnergyValues.expectedMwh"""))
+    val ExpectedEnergy = parse_attribute (attribute ("""ExpectedEnergyValues.ExpectedEnergy"""))
+    val RegisteredResource = parse_attribute (attribute ("""ExpectedEnergyValues.RegisteredResource"""))
     def parse (context: Context): ExpectedEnergyValues =
     {
         ExpectedEnergyValues(
@@ -558,9 +558,9 @@ object FiveMinAuxiliaryData
 extends
     Parseable[FiveMinAuxiliaryData]
 {
-    val intervalStartTime: (Context) => String = parse_element (element ("""FiveMinAuxiliaryData.intervalStartTime"""))
-    val updateTimeStamp: (Context) => String = parse_element (element ("""FiveMinAuxiliaryData.updateTimeStamp"""))
-    val updateUser: (Context) => String = parse_element (element ("""FiveMinAuxiliaryData.updateUser"""))
+    val intervalStartTime = parse_element (element ("""FiveMinAuxiliaryData.intervalStartTime"""))
+    val updateTimeStamp = parse_element (element ("""FiveMinAuxiliaryData.updateTimeStamp"""))
+    val updateUser = parse_element (element ("""FiveMinAuxiliaryData.updateUser"""))
     def parse (context: Context): FiveMinAuxiliaryData =
     {
         FiveMinAuxiliaryData(
@@ -619,9 +619,9 @@ object TenMinAuxiliaryData
 extends
     Parseable[TenMinAuxiliaryData]
 {
-    val intervalStartTime: (Context) => String = parse_element (element ("""TenMinAuxiliaryData.intervalStartTime"""))
-    val updateTimeStamp: (Context) => String = parse_element (element ("""TenMinAuxiliaryData.updateTimeStamp"""))
-    val updateUser: (Context) => String = parse_element (element ("""TenMinAuxiliaryData.updateUser"""))
+    val intervalStartTime = parse_element (element ("""TenMinAuxiliaryData.intervalStartTime"""))
+    val updateTimeStamp = parse_element (element ("""TenMinAuxiliaryData.updateTimeStamp"""))
+    val updateUser = parse_element (element ("""TenMinAuxiliaryData.updateUser"""))
     def parse (context: Context): TenMinAuxiliaryData =
     {
         TenMinAuxiliaryData(
@@ -683,10 +683,10 @@ object TradingHubPrice
 extends
     Parseable[TradingHubPrice]
 {
-    val intervalStartTime: (Context) => String = parse_element (element ("""TradingHubPrice.intervalStartTime"""))
-    val marketType: (Context) => String = parse_attribute (attribute ("""TradingHubPrice.marketType"""))
-    val updateTimeStamp: (Context) => String = parse_element (element ("""TradingHubPrice.updateTimeStamp"""))
-    val updateUser: (Context) => String = parse_element (element ("""TradingHubPrice.updateUser"""))
+    val intervalStartTime = parse_element (element ("""TradingHubPrice.intervalStartTime"""))
+    val marketType = parse_attribute (attribute ("""TradingHubPrice.marketType"""))
+    val updateTimeStamp = parse_element (element ("""TradingHubPrice.updateTimeStamp"""))
+    val updateUser = parse_element (element ("""TradingHubPrice.updateUser"""))
     def parse (context: Context): TradingHubPrice =
     {
         TradingHubPrice(
@@ -747,9 +747,9 @@ object TradingHubValues
 extends
     Parseable[TradingHubValues]
 {
-    val price: (Context) => String = parse_element (element ("""TradingHubValues.price"""))
-    val AggregatedPnode: (Context) => String = parse_attribute (attribute ("""TradingHubValues.AggregatedPnode"""))
-    val TradingHubPrice: (Context) => String = parse_attribute (attribute ("""TradingHubValues.TradingHubPrice"""))
+    val price = parse_element (element ("""TradingHubValues.price"""))
+    val AggregatedPnode = parse_attribute (attribute ("""TradingHubValues.AggregatedPnode"""))
+    val TradingHubPrice = parse_attribute (attribute ("""TradingHubValues.TradingHubPrice"""))
     def parse (context: Context): TradingHubValues =
     {
         TradingHubValues(

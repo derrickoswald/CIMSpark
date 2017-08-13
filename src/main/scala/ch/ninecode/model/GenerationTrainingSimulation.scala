@@ -111,27 +111,27 @@ object BWRSteamSupply
 extends
     Parseable[BWRSteamSupply]
 {
-    val highPowerLimit: (Context) => String = parse_element (element ("""BWRSteamSupply.highPowerLimit"""))
-    val inCoreThermalTC: (Context) => String = parse_element (element ("""BWRSteamSupply.inCoreThermalTC"""))
-    val integralGain: (Context) => String = parse_element (element ("""BWRSteamSupply.integralGain"""))
-    val lowPowerLimit: (Context) => String = parse_element (element ("""BWRSteamSupply.lowPowerLimit"""))
-    val lowerLimit: (Context) => String = parse_element (element ("""BWRSteamSupply.lowerLimit"""))
-    val pressureLimit: (Context) => String = parse_element (element ("""BWRSteamSupply.pressureLimit"""))
-    val pressureSetpointGA: (Context) => String = parse_element (element ("""BWRSteamSupply.pressureSetpointGA"""))
-    val pressureSetpointTC1: (Context) => String = parse_element (element ("""BWRSteamSupply.pressureSetpointTC1"""))
-    val pressureSetpointTC2: (Context) => String = parse_element (element ("""BWRSteamSupply.pressureSetpointTC2"""))
-    val proportionalGain: (Context) => String = parse_element (element ("""BWRSteamSupply.proportionalGain"""))
-    val rfAux1: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux1"""))
-    val rfAux2: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux2"""))
-    val rfAux3: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux3"""))
-    val rfAux4: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux4"""))
-    val rfAux5: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux5"""))
-    val rfAux6: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux6"""))
-    val rfAux7: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux7"""))
-    val rfAux8: (Context) => String = parse_element (element ("""BWRSteamSupply.rfAux8"""))
-    val rodPattern: (Context) => String = parse_element (element ("""BWRSteamSupply.rodPattern"""))
-    val rodPatternConstant: (Context) => String = parse_element (element ("""BWRSteamSupply.rodPatternConstant"""))
-    val upperLimit: (Context) => String = parse_element (element ("""BWRSteamSupply.upperLimit"""))
+    val highPowerLimit = parse_element (element ("""BWRSteamSupply.highPowerLimit"""))
+    val inCoreThermalTC = parse_element (element ("""BWRSteamSupply.inCoreThermalTC"""))
+    val integralGain = parse_element (element ("""BWRSteamSupply.integralGain"""))
+    val lowPowerLimit = parse_element (element ("""BWRSteamSupply.lowPowerLimit"""))
+    val lowerLimit = parse_element (element ("""BWRSteamSupply.lowerLimit"""))
+    val pressureLimit = parse_element (element ("""BWRSteamSupply.pressureLimit"""))
+    val pressureSetpointGA = parse_element (element ("""BWRSteamSupply.pressureSetpointGA"""))
+    val pressureSetpointTC1 = parse_element (element ("""BWRSteamSupply.pressureSetpointTC1"""))
+    val pressureSetpointTC2 = parse_element (element ("""BWRSteamSupply.pressureSetpointTC2"""))
+    val proportionalGain = parse_element (element ("""BWRSteamSupply.proportionalGain"""))
+    val rfAux1 = parse_element (element ("""BWRSteamSupply.rfAux1"""))
+    val rfAux2 = parse_element (element ("""BWRSteamSupply.rfAux2"""))
+    val rfAux3 = parse_element (element ("""BWRSteamSupply.rfAux3"""))
+    val rfAux4 = parse_element (element ("""BWRSteamSupply.rfAux4"""))
+    val rfAux5 = parse_element (element ("""BWRSteamSupply.rfAux5"""))
+    val rfAux6 = parse_element (element ("""BWRSteamSupply.rfAux6"""))
+    val rfAux7 = parse_element (element ("""BWRSteamSupply.rfAux7"""))
+    val rfAux8 = parse_element (element ("""BWRSteamSupply.rfAux8"""))
+    val rodPattern = parse_element (element ("""BWRSteamSupply.rodPattern"""))
+    val rodPatternConstant = parse_element (element ("""BWRSteamSupply.rodPatternConstant"""))
+    val upperLimit = parse_element (element ("""BWRSteamSupply.upperLimit"""))
     def parse (context: Context): BWRSteamSupply =
     {
         BWRSteamSupply(
@@ -202,7 +202,7 @@ object CTTempActivePowerCurve
 extends
     Parseable[CTTempActivePowerCurve]
 {
-    val CombustionTurbine: (Context) => String = parse_attribute (attribute ("""CTTempActivePowerCurve.CombustionTurbine"""))
+    val CombustionTurbine = parse_attribute (attribute ("""CTTempActivePowerCurve.CombustionTurbine"""))
     def parse (context: Context): CTTempActivePowerCurve =
     {
         CTTempActivePowerCurve(
@@ -286,17 +286,17 @@ object CombustionTurbine
 extends
     Parseable[CombustionTurbine]
 {
-    val ambientTemp: (Context) => String = parse_element (element ("""CombustionTurbine.ambientTemp"""))
-    val auxPowerVersusFrequency: (Context) => String = parse_element (element ("""CombustionTurbine.auxPowerVersusFrequency"""))
-    val auxPowerVersusVoltage: (Context) => String = parse_element (element ("""CombustionTurbine.auxPowerVersusVoltage"""))
-    val capabilityVersusFrequency: (Context) => String = parse_element (element ("""CombustionTurbine.capabilityVersusFrequency"""))
-    val heatRecoveryFlag: (Context) => String = parse_element (element ("""CombustionTurbine.heatRecoveryFlag"""))
-    val powerVariationByTemp: (Context) => String = parse_element (element ("""CombustionTurbine.powerVariationByTemp"""))
-    val referenceTemp: (Context) => String = parse_element (element ("""CombustionTurbine.referenceTemp"""))
-    val timeConstant: (Context) => String = parse_element (element ("""CombustionTurbine.timeConstant"""))
-    val AirCompressor: (Context) => String = parse_attribute (attribute ("""CombustionTurbine.AirCompressor"""))
-    val CTTempActivePowerCurve: (Context) => String = parse_attribute (attribute ("""CombustionTurbine.CTTempActivePowerCurve"""))
-    val HeatRecoveryBoiler: (Context) => String = parse_attribute (attribute ("""CombustionTurbine.HeatRecoveryBoiler"""))
+    val ambientTemp = parse_element (element ("""CombustionTurbine.ambientTemp"""))
+    val auxPowerVersusFrequency = parse_element (element ("""CombustionTurbine.auxPowerVersusFrequency"""))
+    val auxPowerVersusVoltage = parse_element (element ("""CombustionTurbine.auxPowerVersusVoltage"""))
+    val capabilityVersusFrequency = parse_element (element ("""CombustionTurbine.capabilityVersusFrequency"""))
+    val heatRecoveryFlag = parse_element (element ("""CombustionTurbine.heatRecoveryFlag"""))
+    val powerVariationByTemp = parse_element (element ("""CombustionTurbine.powerVariationByTemp"""))
+    val referenceTemp = parse_element (element ("""CombustionTurbine.referenceTemp"""))
+    val timeConstant = parse_element (element ("""CombustionTurbine.timeConstant"""))
+    val AirCompressor = parse_attribute (attribute ("""CombustionTurbine.AirCompressor"""))
+    val CTTempActivePowerCurve = parse_attribute (attribute ("""CombustionTurbine.CTTempActivePowerCurve"""))
+    val HeatRecoveryBoiler = parse_attribute (attribute ("""CombustionTurbine.HeatRecoveryBoiler"""))
     def parse (context: Context): CombustionTurbine =
     {
         CombustionTurbine(
@@ -357,7 +357,7 @@ object DrumBoiler
 extends
     Parseable[DrumBoiler]
 {
-    val drumBoilerRating: (Context) => String = parse_element (element ("""DrumBoiler.drumBoilerRating"""))
+    val drumBoilerRating = parse_element (element ("""DrumBoiler.drumBoilerRating"""))
     def parse (context: Context): DrumBoiler =
     {
         DrumBoiler(
@@ -485,32 +485,32 @@ object FossilSteamSupply
 extends
     Parseable[FossilSteamSupply]
 {
-    val auxPowerVersusFrequency: (Context) => String = parse_element (element ("""FossilSteamSupply.auxPowerVersusFrequency"""))
-    val auxPowerVersusVoltage: (Context) => String = parse_element (element ("""FossilSteamSupply.auxPowerVersusVoltage"""))
-    val boilerControlMode: (Context) => String = parse_attribute (attribute ("""FossilSteamSupply.boilerControlMode"""))
-    val controlErrorBiasP: (Context) => String = parse_element (element ("""FossilSteamSupply.controlErrorBiasP"""))
-    val controlIC: (Context) => String = parse_element (element ("""FossilSteamSupply.controlIC"""))
-    val controlPC: (Context) => String = parse_element (element ("""FossilSteamSupply.controlPC"""))
-    val controlPEB: (Context) => String = parse_element (element ("""FossilSteamSupply.controlPEB"""))
-    val controlPED: (Context) => String = parse_element (element ("""FossilSteamSupply.controlPED"""))
-    val controlTC: (Context) => String = parse_element (element ("""FossilSteamSupply.controlTC"""))
-    val feedWaterIG: (Context) => String = parse_element (element ("""FossilSteamSupply.feedWaterIG"""))
-    val feedWaterPG: (Context) => String = parse_element (element ("""FossilSteamSupply.feedWaterPG"""))
-    val feedWaterTC: (Context) => String = parse_element (element ("""FossilSteamSupply.feedWaterTC"""))
-    val fuelDemandLimit: (Context) => String = parse_element (element ("""FossilSteamSupply.fuelDemandLimit"""))
-    val fuelSupplyDelay: (Context) => String = parse_element (element ("""FossilSteamSupply.fuelSupplyDelay"""))
-    val fuelSupplyTC: (Context) => String = parse_element (element ("""FossilSteamSupply.fuelSupplyTC"""))
-    val maxErrorRateP: (Context) => String = parse_element (element ("""FossilSteamSupply.maxErrorRateP"""))
-    val mechPowerSensorLag: (Context) => String = parse_element (element ("""FossilSteamSupply.mechPowerSensorLag"""))
-    val minErrorRateP: (Context) => String = parse_element (element ("""FossilSteamSupply.minErrorRateP"""))
-    val pressureCtrlDG: (Context) => String = parse_element (element ("""FossilSteamSupply.pressureCtrlDG"""))
-    val pressureCtrlIG: (Context) => String = parse_element (element ("""FossilSteamSupply.pressureCtrlIG"""))
-    val pressureCtrlPG: (Context) => String = parse_element (element ("""FossilSteamSupply.pressureCtrlPG"""))
-    val pressureFeedback: (Context) => String = parse_element (element ("""FossilSteamSupply.pressureFeedback"""))
-    val superHeater1Capacity: (Context) => String = parse_element (element ("""FossilSteamSupply.superHeater1Capacity"""))
-    val superHeater2Capacity: (Context) => String = parse_element (element ("""FossilSteamSupply.superHeater2Capacity"""))
-    val superHeaterPipePD: (Context) => String = parse_element (element ("""FossilSteamSupply.superHeaterPipePD"""))
-    val throttlePressureSP: (Context) => String = parse_element (element ("""FossilSteamSupply.throttlePressureSP"""))
+    val auxPowerVersusFrequency = parse_element (element ("""FossilSteamSupply.auxPowerVersusFrequency"""))
+    val auxPowerVersusVoltage = parse_element (element ("""FossilSteamSupply.auxPowerVersusVoltage"""))
+    val boilerControlMode = parse_attribute (attribute ("""FossilSteamSupply.boilerControlMode"""))
+    val controlErrorBiasP = parse_element (element ("""FossilSteamSupply.controlErrorBiasP"""))
+    val controlIC = parse_element (element ("""FossilSteamSupply.controlIC"""))
+    val controlPC = parse_element (element ("""FossilSteamSupply.controlPC"""))
+    val controlPEB = parse_element (element ("""FossilSteamSupply.controlPEB"""))
+    val controlPED = parse_element (element ("""FossilSteamSupply.controlPED"""))
+    val controlTC = parse_element (element ("""FossilSteamSupply.controlTC"""))
+    val feedWaterIG = parse_element (element ("""FossilSteamSupply.feedWaterIG"""))
+    val feedWaterPG = parse_element (element ("""FossilSteamSupply.feedWaterPG"""))
+    val feedWaterTC = parse_element (element ("""FossilSteamSupply.feedWaterTC"""))
+    val fuelDemandLimit = parse_element (element ("""FossilSteamSupply.fuelDemandLimit"""))
+    val fuelSupplyDelay = parse_element (element ("""FossilSteamSupply.fuelSupplyDelay"""))
+    val fuelSupplyTC = parse_element (element ("""FossilSteamSupply.fuelSupplyTC"""))
+    val maxErrorRateP = parse_element (element ("""FossilSteamSupply.maxErrorRateP"""))
+    val mechPowerSensorLag = parse_element (element ("""FossilSteamSupply.mechPowerSensorLag"""))
+    val minErrorRateP = parse_element (element ("""FossilSteamSupply.minErrorRateP"""))
+    val pressureCtrlDG = parse_element (element ("""FossilSteamSupply.pressureCtrlDG"""))
+    val pressureCtrlIG = parse_element (element ("""FossilSteamSupply.pressureCtrlIG"""))
+    val pressureCtrlPG = parse_element (element ("""FossilSteamSupply.pressureCtrlPG"""))
+    val pressureFeedback = parse_element (element ("""FossilSteamSupply.pressureFeedback"""))
+    val superHeater1Capacity = parse_element (element ("""FossilSteamSupply.superHeater1Capacity"""))
+    val superHeater2Capacity = parse_element (element ("""FossilSteamSupply.superHeater2Capacity"""))
+    val superHeaterPipePD = parse_element (element ("""FossilSteamSupply.superHeaterPipePD"""))
+    val throttlePressureSP = parse_element (element ("""FossilSteamSupply.throttlePressureSP"""))
     def parse (context: Context): FossilSteamSupply =
     {
         FossilSteamSupply(
@@ -586,7 +586,7 @@ object HeatRecoveryBoiler
 extends
     Parseable[HeatRecoveryBoiler]
 {
-    val steamSupplyRating2: (Context) => String = parse_element (element ("""HeatRecoveryBoiler.steamSupplyRating2"""))
+    val steamSupplyRating2 = parse_element (element ("""HeatRecoveryBoiler.steamSupplyRating2"""))
     def parse (context: Context): HeatRecoveryBoiler =
     {
         HeatRecoveryBoiler(
@@ -668,17 +668,17 @@ object HydroTurbine
 extends
     Parseable[HydroTurbine]
 {
-    val gateRateLimit: (Context) => String = parse_element (element ("""HydroTurbine.gateRateLimit"""))
-    val gateUpperLimit: (Context) => String = parse_element (element ("""HydroTurbine.gateUpperLimit"""))
-    val maxHeadMaxP: (Context) => String = parse_element (element ("""HydroTurbine.maxHeadMaxP"""))
-    val minHeadMaxP: (Context) => String = parse_element (element ("""HydroTurbine.minHeadMaxP"""))
-    val speedRating: (Context) => String = parse_element (element ("""HydroTurbine.speedRating"""))
-    val speedRegulation: (Context) => String = parse_element (element ("""HydroTurbine.speedRegulation"""))
-    val transientDroopTime: (Context) => String = parse_element (element ("""HydroTurbine.transientDroopTime"""))
-    val transientRegulation: (Context) => String = parse_element (element ("""HydroTurbine.transientRegulation"""))
-    val turbineRating: (Context) => String = parse_element (element ("""HydroTurbine.turbineRating"""))
-    val turbineType: (Context) => String = parse_attribute (attribute ("""HydroTurbine.turbineType"""))
-    val waterStartingTime: (Context) => String = parse_element (element ("""HydroTurbine.waterStartingTime"""))
+    val gateRateLimit = parse_element (element ("""HydroTurbine.gateRateLimit"""))
+    val gateUpperLimit = parse_element (element ("""HydroTurbine.gateUpperLimit"""))
+    val maxHeadMaxP = parse_element (element ("""HydroTurbine.maxHeadMaxP"""))
+    val minHeadMaxP = parse_element (element ("""HydroTurbine.minHeadMaxP"""))
+    val speedRating = parse_element (element ("""HydroTurbine.speedRating"""))
+    val speedRegulation = parse_element (element ("""HydroTurbine.speedRegulation"""))
+    val transientDroopTime = parse_element (element ("""HydroTurbine.transientDroopTime"""))
+    val transientRegulation = parse_element (element ("""HydroTurbine.transientRegulation"""))
+    val turbineRating = parse_element (element ("""HydroTurbine.turbineRating"""))
+    val turbineType = parse_attribute (attribute ("""HydroTurbine.turbineType"""))
+    val waterStartingTime = parse_element (element ("""HydroTurbine.waterStartingTime"""))
     def parse (context: Context): HydroTurbine =
     {
         HydroTurbine(
@@ -796,26 +796,26 @@ object PWRSteamSupply
 extends
     Parseable[PWRSteamSupply]
 {
-    val coldLegFBLagTC: (Context) => String = parse_element (element ("""PWRSteamSupply.coldLegFBLagTC"""))
-    val coldLegFBLeadTC1: (Context) => String = parse_element (element ("""PWRSteamSupply.coldLegFBLeadTC1"""))
-    val coldLegFBLeadTC2: (Context) => String = parse_element (element ("""PWRSteamSupply.coldLegFBLeadTC2"""))
-    val coldLegFG1: (Context) => String = parse_element (element ("""PWRSteamSupply.coldLegFG1"""))
-    val coldLegFG2: (Context) => String = parse_element (element ("""PWRSteamSupply.coldLegFG2"""))
-    val coldLegLagTC: (Context) => String = parse_element (element ("""PWRSteamSupply.coldLegLagTC"""))
-    val coreHTLagTC1: (Context) => String = parse_element (element ("""PWRSteamSupply.coreHTLagTC1"""))
-    val coreHTLagTC2: (Context) => String = parse_element (element ("""PWRSteamSupply.coreHTLagTC2"""))
-    val coreNeutronicsEffTC: (Context) => String = parse_element (element ("""PWRSteamSupply.coreNeutronicsEffTC"""))
-    val coreNeutronicsHT: (Context) => String = parse_element (element ("""PWRSteamSupply.coreNeutronicsHT"""))
-    val feedbackFactor: (Context) => String = parse_element (element ("""PWRSteamSupply.feedbackFactor"""))
-    val hotLegLagTC: (Context) => String = parse_element (element ("""PWRSteamSupply.hotLegLagTC"""))
-    val hotLegSteamGain: (Context) => String = parse_element (element ("""PWRSteamSupply.hotLegSteamGain"""))
-    val hotLegToColdLegGain: (Context) => String = parse_element (element ("""PWRSteamSupply.hotLegToColdLegGain"""))
-    val pressureCG: (Context) => String = parse_element (element ("""PWRSteamSupply.pressureCG"""))
-    val steamFlowFG: (Context) => String = parse_element (element ("""PWRSteamSupply.steamFlowFG"""))
-    val steamPressureDropLagTC: (Context) => String = parse_element (element ("""PWRSteamSupply.steamPressureDropLagTC"""))
-    val steamPressureFG: (Context) => String = parse_element (element ("""PWRSteamSupply.steamPressureFG"""))
-    val throttlePressureFactor: (Context) => String = parse_element (element ("""PWRSteamSupply.throttlePressureFactor"""))
-    val throttlePressureSP: (Context) => String = parse_element (element ("""PWRSteamSupply.throttlePressureSP"""))
+    val coldLegFBLagTC = parse_element (element ("""PWRSteamSupply.coldLegFBLagTC"""))
+    val coldLegFBLeadTC1 = parse_element (element ("""PWRSteamSupply.coldLegFBLeadTC1"""))
+    val coldLegFBLeadTC2 = parse_element (element ("""PWRSteamSupply.coldLegFBLeadTC2"""))
+    val coldLegFG1 = parse_element (element ("""PWRSteamSupply.coldLegFG1"""))
+    val coldLegFG2 = parse_element (element ("""PWRSteamSupply.coldLegFG2"""))
+    val coldLegLagTC = parse_element (element ("""PWRSteamSupply.coldLegLagTC"""))
+    val coreHTLagTC1 = parse_element (element ("""PWRSteamSupply.coreHTLagTC1"""))
+    val coreHTLagTC2 = parse_element (element ("""PWRSteamSupply.coreHTLagTC2"""))
+    val coreNeutronicsEffTC = parse_element (element ("""PWRSteamSupply.coreNeutronicsEffTC"""))
+    val coreNeutronicsHT = parse_element (element ("""PWRSteamSupply.coreNeutronicsHT"""))
+    val feedbackFactor = parse_element (element ("""PWRSteamSupply.feedbackFactor"""))
+    val hotLegLagTC = parse_element (element ("""PWRSteamSupply.hotLegLagTC"""))
+    val hotLegSteamGain = parse_element (element ("""PWRSteamSupply.hotLegSteamGain"""))
+    val hotLegToColdLegGain = parse_element (element ("""PWRSteamSupply.hotLegToColdLegGain"""))
+    val pressureCG = parse_element (element ("""PWRSteamSupply.pressureCG"""))
+    val steamFlowFG = parse_element (element ("""PWRSteamSupply.steamFlowFG"""))
+    val steamPressureDropLagTC = parse_element (element ("""PWRSteamSupply.steamPressureDropLagTC"""))
+    val steamPressureFG = parse_element (element ("""PWRSteamSupply.steamPressureFG"""))
+    val throttlePressureFactor = parse_element (element ("""PWRSteamSupply.throttlePressureFactor"""))
+    val throttlePressureSP = parse_element (element ("""PWRSteamSupply.throttlePressureSP"""))
     def parse (context: Context): PWRSteamSupply =
     {
         PWRSteamSupply(
@@ -888,8 +888,8 @@ object PrimeMover
 extends
     Parseable[PrimeMover]
 {
-    val primeMoverRating: (Context) => String = parse_element (element ("""PrimeMover.primeMoverRating"""))
-    val SynchronousMachines: (Context) => List[String] = parse_attributes (attribute ("""PrimeMover.SynchronousMachines"""))
+    val primeMoverRating = parse_element (element ("""PrimeMover.primeMoverRating"""))
+    val SynchronousMachines = parse_attributes (attribute ("""PrimeMover.SynchronousMachines"""))
     def parse (context: Context): PrimeMover =
     {
         PrimeMover(
@@ -944,8 +944,8 @@ object SteamSupply
 extends
     Parseable[SteamSupply]
 {
-    val steamSupplyRating: (Context) => String = parse_element (element ("""SteamSupply.steamSupplyRating"""))
-    val SteamTurbines: (Context) => List[String] = parse_attributes (attribute ("""SteamSupply.SteamTurbines"""))
+    val steamSupplyRating = parse_element (element ("""SteamSupply.steamSupplyRating"""))
+    val SteamTurbines = parse_attributes (attribute ("""SteamSupply.SteamTurbines"""))
     def parse (context: Context): SteamSupply =
     {
         SteamSupply(
@@ -1030,18 +1030,18 @@ object SteamTurbine
 extends
     Parseable[SteamTurbine]
 {
-    val crossoverTC: (Context) => String = parse_element (element ("""SteamTurbine.crossoverTC"""))
-    val reheater1TC: (Context) => String = parse_element (element ("""SteamTurbine.reheater1TC"""))
-    val reheater2TC: (Context) => String = parse_element (element ("""SteamTurbine.reheater2TC"""))
-    val shaft1PowerHP: (Context) => String = parse_element (element ("""SteamTurbine.shaft1PowerHP"""))
-    val shaft1PowerIP: (Context) => String = parse_element (element ("""SteamTurbine.shaft1PowerIP"""))
-    val shaft1PowerLP1: (Context) => String = parse_element (element ("""SteamTurbine.shaft1PowerLP1"""))
-    val shaft1PowerLP2: (Context) => String = parse_element (element ("""SteamTurbine.shaft1PowerLP2"""))
-    val shaft2PowerHP: (Context) => String = parse_element (element ("""SteamTurbine.shaft2PowerHP"""))
-    val shaft2PowerIP: (Context) => String = parse_element (element ("""SteamTurbine.shaft2PowerIP"""))
-    val shaft2PowerLP1: (Context) => String = parse_element (element ("""SteamTurbine.shaft2PowerLP1"""))
-    val shaft2PowerLP2: (Context) => String = parse_element (element ("""SteamTurbine.shaft2PowerLP2"""))
-    val steamChestTC: (Context) => String = parse_element (element ("""SteamTurbine.steamChestTC"""))
+    val crossoverTC = parse_element (element ("""SteamTurbine.crossoverTC"""))
+    val reheater1TC = parse_element (element ("""SteamTurbine.reheater1TC"""))
+    val reheater2TC = parse_element (element ("""SteamTurbine.reheater2TC"""))
+    val shaft1PowerHP = parse_element (element ("""SteamTurbine.shaft1PowerHP"""))
+    val shaft1PowerIP = parse_element (element ("""SteamTurbine.shaft1PowerIP"""))
+    val shaft1PowerLP1 = parse_element (element ("""SteamTurbine.shaft1PowerLP1"""))
+    val shaft1PowerLP2 = parse_element (element ("""SteamTurbine.shaft1PowerLP2"""))
+    val shaft2PowerHP = parse_element (element ("""SteamTurbine.shaft2PowerHP"""))
+    val shaft2PowerIP = parse_element (element ("""SteamTurbine.shaft2PowerIP"""))
+    val shaft2PowerLP1 = parse_element (element ("""SteamTurbine.shaft2PowerLP1"""))
+    val shaft2PowerLP2 = parse_element (element ("""SteamTurbine.shaft2PowerLP2"""))
+    val steamChestTC = parse_element (element ("""SteamTurbine.steamChestTC"""))
     def parse (context: Context): SteamTurbine =
     {
         SteamTurbine(

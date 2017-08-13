@@ -65,11 +65,11 @@ object AccessPermit
 extends
     Parseable[AccessPermit]
 {
-    val applicationNumber: (Context) => String = parse_element (element ("""AccessPermit.applicationNumber"""))
-    val effectiveDate: (Context) => String = parse_element (element ("""AccessPermit.effectiveDate"""))
-    val expirationDate: (Context) => String = parse_element (element ("""AccessPermit.expirationDate"""))
-    val payment: (Context) => String = parse_element (element ("""AccessPermit.payment"""))
-    val permitID: (Context) => String = parse_element (element ("""AccessPermit.permitID"""))
+    val applicationNumber = parse_element (element ("""AccessPermit.applicationNumber"""))
+    val effectiveDate = parse_element (element ("""AccessPermit.effectiveDate"""))
+    val expirationDate = parse_element (element ("""AccessPermit.expirationDate"""))
+    val payment = parse_element (element ("""AccessPermit.payment"""))
+    val permitID = parse_element (element ("""AccessPermit.permitID"""))
     def parse (context: Context): AccessPermit =
     {
         AccessPermit(
@@ -125,7 +125,7 @@ object Assignment
 extends
     Parseable[Assignment]
 {
-    val effectivePeriod: (Context) => String = parse_attribute (attribute ("""Assignment.effectivePeriod"""))
+    val effectivePeriod = parse_attribute (attribute ("""Assignment.effectivePeriod"""))
     def parse (context: Context): Assignment =
     {
         Assignment(
@@ -176,7 +176,7 @@ object BusinessCase
 extends
     Parseable[BusinessCase]
 {
-    val corporateCode: (Context) => String = parse_element (element ("""BusinessCase.corporateCode"""))
+    val corporateCode = parse_element (element ("""BusinessCase.corporateCode"""))
     def parse (context: Context): BusinessCase =
     {
         BusinessCase(
@@ -227,7 +227,7 @@ object CUAllowableAction
 extends
     Parseable[CUAllowableAction]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""CUAllowableAction.status"""))
+    val status = parse_attribute (attribute ("""CUAllowableAction.status"""))
     def parse (context: Context): CUAllowableAction =
     {
         CUAllowableAction(
@@ -287,10 +287,10 @@ object CUAsset
 extends
     Parseable[CUAsset]
 {
-    val quantity: (Context) => String = parse_attribute (attribute ("""CUAsset.quantity"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CUAsset.status"""))
-    val typeAssetCode: (Context) => String = parse_element (element ("""CUAsset.typeAssetCode"""))
-    val TypeAsset: (Context) => String = parse_attribute (attribute ("""CUAsset.TypeAsset"""))
+    val quantity = parse_attribute (attribute ("""CUAsset.quantity"""))
+    val status = parse_attribute (attribute ("""CUAsset.status"""))
+    val typeAssetCode = parse_element (element ("""CUAsset.typeAssetCode"""))
+    val TypeAsset = parse_attribute (attribute ("""CUAsset.TypeAsset"""))
     def parse (context: Context): CUAsset =
     {
         CUAsset(
@@ -353,10 +353,10 @@ object CUContractorItem
 extends
     Parseable[CUContractorItem]
 {
-    val activityCode: (Context) => String = parse_element (element ("""CUContractorItem.activityCode"""))
-    val bidAmount: (Context) => String = parse_element (element ("""CUContractorItem.bidAmount"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CUContractorItem.status"""))
-    val CompatibleUnits: (Context) => List[String] = parse_attributes (attribute ("""CUContractorItem.CompatibleUnits"""))
+    val activityCode = parse_element (element ("""CUContractorItem.activityCode"""))
+    val bidAmount = parse_element (element ("""CUContractorItem.bidAmount"""))
+    val status = parse_attribute (attribute ("""CUContractorItem.status"""))
+    val CompatibleUnits = parse_attributes (attribute ("""CUContractorItem.CompatibleUnits"""))
     def parse (context: Context): CUContractorItem =
     {
         CUContractorItem(
@@ -413,8 +413,8 @@ object CUGroup
 extends
     Parseable[CUGroup]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""CUGroup.status"""))
-    val ChildCUGroups: (Context) => List[String] = parse_attributes (attribute ("""CUGroup.ChildCUGroups"""))
+    val status = parse_attribute (attribute ("""CUGroup.status"""))
+    val ChildCUGroups = parse_attributes (attribute ("""CUGroup.ChildCUGroups"""))
     def parse (context: Context): CUGroup =
     {
         CUGroup(
@@ -469,8 +469,8 @@ object CULaborCode
 extends
     Parseable[CULaborCode]
 {
-    val code: (Context) => String = parse_element (element ("""CULaborCode.code"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CULaborCode.status"""))
+    val code = parse_element (element ("""CULaborCode.code"""))
+    val status = parse_attribute (attribute ("""CULaborCode.status"""))
     def parse (context: Context): CULaborCode =
     {
         CULaborCode(
@@ -540,13 +540,13 @@ object CULaborItem
 extends
     Parseable[CULaborItem]
 {
-    val activityCode: (Context) => String = parse_element (element ("""CULaborItem.activityCode"""))
-    val laborDuration: (Context) => String = parse_element (element ("""CULaborItem.laborDuration"""))
-    val laborRate: (Context) => String = parse_element (element ("""CULaborItem.laborRate"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CULaborItem.status"""))
-    val CULaborCode: (Context) => String = parse_attribute (attribute ("""CULaborItem.CULaborCode"""))
-    val CompatibleUnits: (Context) => List[String] = parse_attributes (attribute ("""CULaborItem.CompatibleUnits"""))
-    val QualificationRequirements: (Context) => List[String] = parse_attributes (attribute ("""CULaborItem.QualificationRequirements"""))
+    val activityCode = parse_element (element ("""CULaborItem.activityCode"""))
+    val laborDuration = parse_element (element ("""CULaborItem.laborDuration"""))
+    val laborRate = parse_element (element ("""CULaborItem.laborRate"""))
+    val status = parse_attribute (attribute ("""CULaborItem.status"""))
+    val CULaborCode = parse_attribute (attribute ("""CULaborItem.CULaborCode"""))
+    val CompatibleUnits = parse_attributes (attribute ("""CULaborItem.CompatibleUnits"""))
+    val QualificationRequirements = parse_attributes (attribute ("""CULaborItem.QualificationRequirements"""))
     def parse (context: Context): CULaborItem =
     {
         CULaborItem(
@@ -616,11 +616,11 @@ object CUMaterialItem
 extends
     Parseable[CUMaterialItem]
 {
-    val corporateCode: (Context) => String = parse_element (element ("""CUMaterialItem.corporateCode"""))
-    val quantity: (Context) => String = parse_attribute (attribute ("""CUMaterialItem.quantity"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CUMaterialItem.status"""))
-    val CompatibleUnits: (Context) => List[String] = parse_attributes (attribute ("""CUMaterialItem.CompatibleUnits"""))
-    val TypeMaterial: (Context) => String = parse_attribute (attribute ("""CUMaterialItem.TypeMaterial"""))
+    val corporateCode = parse_element (element ("""CUMaterialItem.corporateCode"""))
+    val quantity = parse_attribute (attribute ("""CUMaterialItem.quantity"""))
+    val status = parse_attribute (attribute ("""CUMaterialItem.status"""))
+    val CompatibleUnits = parse_attributes (attribute ("""CUMaterialItem.CompatibleUnits"""))
+    val TypeMaterial = parse_attribute (attribute ("""CUMaterialItem.TypeMaterial"""))
     def parse (context: Context): CUMaterialItem =
     {
         CUMaterialItem(
@@ -687,11 +687,11 @@ object CUWorkEquipmentItem
 extends
     Parseable[CUWorkEquipmentItem]
 {
-    val equipCode: (Context) => String = parse_element (element ("""CUWorkEquipmentItem.equipCode"""))
-    val rate: (Context) => String = parse_element (element ("""CUWorkEquipmentItem.rate"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CUWorkEquipmentItem.status"""))
-    val CompatibleUnits: (Context) => List[String] = parse_attributes (attribute ("""CUWorkEquipmentItem.CompatibleUnits"""))
-    val TypeAsset: (Context) => String = parse_attribute (attribute ("""CUWorkEquipmentItem.TypeAsset"""))
+    val equipCode = parse_element (element ("""CUWorkEquipmentItem.equipCode"""))
+    val rate = parse_element (element ("""CUWorkEquipmentItem.rate"""))
+    val status = parse_attribute (attribute ("""CUWorkEquipmentItem.status"""))
+    val CompatibleUnits = parse_attributes (attribute ("""CUWorkEquipmentItem.CompatibleUnits"""))
+    val TypeAsset = parse_attribute (attribute ("""CUWorkEquipmentItem.TypeAsset"""))
     def parse (context: Context): CUWorkEquipmentItem =
     {
         CUWorkEquipmentItem(
@@ -764,13 +764,13 @@ object Capability
 extends
     Parseable[Capability]
 {
-    val performanceFactor: (Context) => String = parse_element (element ("""Capability.performanceFactor"""))
-    val status: (Context) => String = parse_attribute (attribute ("""Capability.status"""))
-    val typ: (Context) => String = parse_element (element ("""Capability.type"""))
-    val validityInterval: (Context) => String = parse_attribute (attribute ("""Capability.validityInterval"""))
-    val Crafts: (Context) => List[String] = parse_attributes (attribute ("""Capability.Crafts"""))
-    val Crew: (Context) => String = parse_attribute (attribute ("""Capability.Crew"""))
-    val WorkTasks: (Context) => List[String] = parse_attributes (attribute ("""Capability.WorkTasks"""))
+    val performanceFactor = parse_element (element ("""Capability.performanceFactor"""))
+    val status = parse_attribute (attribute ("""Capability.status"""))
+    val typ = parse_element (element ("""Capability.type"""))
+    val validityInterval = parse_attribute (attribute ("""Capability.validityInterval"""))
+    val Crafts = parse_attributes (attribute ("""Capability.Crafts"""))
+    val Crew = parse_attribute (attribute ("""Capability.Crew"""))
+    val WorkTasks = parse_attributes (attribute ("""Capability.WorkTasks"""))
     def parse (context: Context): Capability =
     {
         Capability(
@@ -851,15 +851,15 @@ object CompatibleUnit
 extends
     Parseable[CompatibleUnit]
 {
-    val estCost: (Context) => String = parse_element (element ("""CompatibleUnit.estCost"""))
-    val quantity: (Context) => String = parse_element (element ("""CompatibleUnit.quantity"""))
-    val CUAllowableAction: (Context) => String = parse_attribute (attribute ("""CompatibleUnit.CUAllowableAction"""))
-    val CUAssets: (Context) => List[String] = parse_attributes (attribute ("""CompatibleUnit.CUAssets"""))
-    val CUGroup: (Context) => String = parse_attribute (attribute ("""CompatibleUnit.CUGroup"""))
-    val CostType: (Context) => String = parse_attribute (attribute ("""CompatibleUnit.CostType"""))
-    val DesignLocationCUs: (Context) => List[String] = parse_attributes (attribute ("""CompatibleUnit.DesignLocationCUs"""))
-    val Procedures: (Context) => List[String] = parse_attributes (attribute ("""CompatibleUnit.Procedures"""))
-    val PropertyUnit: (Context) => String = parse_attribute (attribute ("""CompatibleUnit.PropertyUnit"""))
+    val estCost = parse_element (element ("""CompatibleUnit.estCost"""))
+    val quantity = parse_element (element ("""CompatibleUnit.quantity"""))
+    val CUAllowableAction = parse_attribute (attribute ("""CompatibleUnit.CUAllowableAction"""))
+    val CUAssets = parse_attributes (attribute ("""CompatibleUnit.CUAssets"""))
+    val CUGroup = parse_attribute (attribute ("""CompatibleUnit.CUGroup"""))
+    val CostType = parse_attribute (attribute ("""CompatibleUnit.CostType"""))
+    val DesignLocationCUs = parse_attributes (attribute ("""CompatibleUnit.DesignLocationCUs"""))
+    val Procedures = parse_attributes (attribute ("""CompatibleUnit.Procedures"""))
+    val PropertyUnit = parse_attribute (attribute ("""CompatibleUnit.PropertyUnit"""))
     def parse (context: Context): CompatibleUnit =
     {
         CompatibleUnit(
@@ -924,9 +924,9 @@ object ConditionFactor
 extends
     Parseable[ConditionFactor]
 {
-    val cfValue: (Context) => String = parse_element (element ("""ConditionFactor.cfValue"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""ConditionFactor.kind"""))
-    val status: (Context) => String = parse_attribute (attribute ("""ConditionFactor.status"""))
+    val cfValue = parse_element (element ("""ConditionFactor.cfValue"""))
+    val kind = parse_attribute (attribute ("""ConditionFactor.kind"""))
+    val status = parse_attribute (attribute ("""ConditionFactor.status"""))
     def parse (context: Context): ConditionFactor =
     {
         ConditionFactor(
@@ -997,13 +997,13 @@ object ContractorItem
 extends
     Parseable[ContractorItem]
 {
-    val activityCode: (Context) => String = parse_element (element ("""ContractorItem.activityCode"""))
-    val bidAmount: (Context) => String = parse_element (element ("""ContractorItem.bidAmount"""))
-    val cost: (Context) => String = parse_element (element ("""ContractorItem.cost"""))
-    val status: (Context) => String = parse_attribute (attribute ("""ContractorItem.status"""))
-    val ErpPayables: (Context) => List[String] = parse_attributes (attribute ("""ContractorItem.ErpPayables"""))
-    val WorkCostDetail: (Context) => String = parse_attribute (attribute ("""ContractorItem.WorkCostDetail"""))
-    val WorkTask: (Context) => String = parse_attribute (attribute ("""ContractorItem.WorkTask"""))
+    val activityCode = parse_element (element ("""ContractorItem.activityCode"""))
+    val bidAmount = parse_element (element ("""ContractorItem.bidAmount"""))
+    val cost = parse_element (element ("""ContractorItem.cost"""))
+    val status = parse_attribute (attribute ("""ContractorItem.status"""))
+    val ErpPayables = parse_attributes (attribute ("""ContractorItem.ErpPayables"""))
+    val WorkCostDetail = parse_attribute (attribute ("""ContractorItem.WorkCostDetail"""))
+    val WorkTask = parse_attribute (attribute ("""ContractorItem.WorkTask"""))
     def parse (context: Context): ContractorItem =
     {
         ContractorItem(
@@ -1079,13 +1079,13 @@ object CostType
 extends
     Parseable[CostType]
 {
-    val amountAssignable: (Context) => String = parse_element (element ("""CostType.amountAssignable"""))
-    val code: (Context) => String = parse_element (element ("""CostType.code"""))
-    val level: (Context) => String = parse_element (element ("""CostType.level"""))
-    val stage: (Context) => String = parse_element (element ("""CostType.stage"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CostType.status"""))
-    val ErpJournalEntries: (Context) => List[String] = parse_attributes (attribute ("""CostType.ErpJournalEntries"""))
-    val ParentCostType: (Context) => String = parse_attribute (attribute ("""CostType.ParentCostType"""))
+    val amountAssignable = parse_element (element ("""CostType.amountAssignable"""))
+    val code = parse_element (element ("""CostType.code"""))
+    val level = parse_element (element ("""CostType.level"""))
+    val stage = parse_element (element ("""CostType.stage"""))
+    val status = parse_attribute (attribute ("""CostType.status"""))
+    val ErpJournalEntries = parse_attributes (attribute ("""CostType.ErpJournalEntries"""))
+    val ParentCostType = parse_attribute (attribute ("""CostType.ParentCostType"""))
     def parse (context: Context): CostType =
     {
         CostType(
@@ -1158,12 +1158,12 @@ object Design
 extends
     Parseable[Design]
 {
-    val costEstimate: (Context) => String = parse_element (element ("""Design.costEstimate"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""Design.kind"""))
-    val price: (Context) => String = parse_element (element ("""Design.price"""))
-    val ConditionFactors: (Context) => List[String] = parse_attributes (attribute ("""Design.ConditionFactors"""))
-    val ErpQuoteLineItem: (Context) => String = parse_attribute (attribute ("""Design.ErpQuoteLineItem"""))
-    val Work: (Context) => String = parse_attribute (attribute ("""Design.Work"""))
+    val costEstimate = parse_element (element ("""Design.costEstimate"""))
+    val kind = parse_attribute (attribute ("""Design.kind"""))
+    val price = parse_element (element ("""Design.price"""))
+    val ConditionFactors = parse_attributes (attribute ("""Design.ConditionFactors"""))
+    val ErpQuoteLineItem = parse_attribute (attribute ("""Design.ErpQuoteLineItem"""))
+    val Work = parse_attribute (attribute ("""Design.Work"""))
     def parse (context: Context): Design =
     {
         Design(
@@ -1226,9 +1226,9 @@ object DesignLocation
 extends
     Parseable[DesignLocation]
 {
-    val spanLength: (Context) => String = parse_element (element ("""DesignLocation.spanLength"""))
-    val status: (Context) => String = parse_attribute (attribute ("""DesignLocation.status"""))
-    val ConditionFactors: (Context) => List[String] = parse_attributes (attribute ("""DesignLocation.ConditionFactors"""))
+    val spanLength = parse_element (element ("""DesignLocation.spanLength"""))
+    val status = parse_attribute (attribute ("""DesignLocation.status"""))
+    val ConditionFactors = parse_attributes (attribute ("""DesignLocation.ConditionFactors"""))
     def parse (context: Context): DesignLocation =
     {
         DesignLocation(
@@ -1315,18 +1315,18 @@ object DesignLocationCU
 extends
     Parseable[DesignLocationCU]
 {
-    val cuAccount: (Context) => String = parse_element (element ("""DesignLocationCU.cuAccount"""))
-    val cuAction: (Context) => String = parse_attribute (attribute ("""DesignLocationCU.cuAction"""))
-    val cuQuantity: (Context) => String = parse_attribute (attribute ("""DesignLocationCU.cuQuantity"""))
-    val cuUsage: (Context) => String = parse_element (element ("""DesignLocationCU.cuUsage"""))
-    val removalDate: (Context) => String = parse_element (element ("""DesignLocationCU.removalDate"""))
-    val status: (Context) => String = parse_attribute (attribute ("""DesignLocationCU.status"""))
-    val toBeEnergised: (Context) => String = parse_element (element ("""DesignLocationCU.toBeEnergised"""))
-    val CUGroups: (Context) => List[String] = parse_attributes (attribute ("""DesignLocationCU.CUGroups"""))
-    val ConditionFactors: (Context) => List[String] = parse_attributes (attribute ("""DesignLocationCU.ConditionFactors"""))
-    val DesignLocation: (Context) => String = parse_attribute (attribute ("""DesignLocationCU.DesignLocation"""))
-    val Designs: (Context) => List[String] = parse_attributes (attribute ("""DesignLocationCU.Designs"""))
-    val WorkTasks: (Context) => List[String] = parse_attributes (attribute ("""DesignLocationCU.WorkTasks"""))
+    val cuAccount = parse_element (element ("""DesignLocationCU.cuAccount"""))
+    val cuAction = parse_attribute (attribute ("""DesignLocationCU.cuAction"""))
+    val cuQuantity = parse_attribute (attribute ("""DesignLocationCU.cuQuantity"""))
+    val cuUsage = parse_element (element ("""DesignLocationCU.cuUsage"""))
+    val removalDate = parse_element (element ("""DesignLocationCU.removalDate"""))
+    val status = parse_attribute (attribute ("""DesignLocationCU.status"""))
+    val toBeEnergised = parse_element (element ("""DesignLocationCU.toBeEnergised"""))
+    val CUGroups = parse_attributes (attribute ("""DesignLocationCU.CUGroups"""))
+    val ConditionFactors = parse_attributes (attribute ("""DesignLocationCU.ConditionFactors"""))
+    val DesignLocation = parse_attribute (attribute ("""DesignLocationCU.DesignLocation"""))
+    val Designs = parse_attributes (attribute ("""DesignLocationCU.Designs"""))
+    val WorkTasks = parse_attributes (attribute ("""DesignLocationCU.WorkTasks"""))
     def parse (context: Context): DesignLocationCU =
     {
         DesignLocationCU(
@@ -1408,13 +1408,13 @@ object InfoQuestion
 extends
     Parseable[InfoQuestion]
 {
-    val answer: (Context) => String = parse_element (element ("""InfoQuestion.answer"""))
-    val answerDateTime: (Context) => String = parse_element (element ("""InfoQuestion.answerDateTime"""))
-    val answerRemark: (Context) => String = parse_element (element ("""InfoQuestion.answerRemark"""))
-    val questionCode: (Context) => String = parse_element (element ("""InfoQuestion.questionCode"""))
-    val questionRemark: (Context) => String = parse_element (element ("""InfoQuestion.questionRemark"""))
-    val questionText: (Context) => String = parse_element (element ("""InfoQuestion.questionText"""))
-    val questionType: (Context) => String = parse_element (element ("""InfoQuestion.questionType"""))
+    val answer = parse_element (element ("""InfoQuestion.answer"""))
+    val answerDateTime = parse_element (element ("""InfoQuestion.answerDateTime"""))
+    val answerRemark = parse_element (element ("""InfoQuestion.answerRemark"""))
+    val questionCode = parse_element (element ("""InfoQuestion.questionCode"""))
+    val questionRemark = parse_element (element ("""InfoQuestion.questionRemark"""))
+    val questionText = parse_element (element ("""InfoQuestion.questionText"""))
+    val questionType = parse_element (element ("""InfoQuestion.questionType"""))
     def parse (context: Context): InfoQuestion =
     {
         InfoQuestion(
@@ -1490,13 +1490,13 @@ object LaborItem
 extends
     Parseable[LaborItem]
 {
-    val activityCode: (Context) => String = parse_element (element ("""LaborItem.activityCode"""))
-    val cost: (Context) => String = parse_element (element ("""LaborItem.cost"""))
-    val laborDuration: (Context) => String = parse_element (element ("""LaborItem.laborDuration"""))
-    val laborRate: (Context) => String = parse_element (element ("""LaborItem.laborRate"""))
-    val status: (Context) => String = parse_attribute (attribute ("""LaborItem.status"""))
-    val WorkCostDetail: (Context) => String = parse_attribute (attribute ("""LaborItem.WorkCostDetail"""))
-    val WorkTask: (Context) => String = parse_attribute (attribute ("""LaborItem.WorkTask"""))
+    val activityCode = parse_element (element ("""LaborItem.activityCode"""))
+    val cost = parse_element (element ("""LaborItem.cost"""))
+    val laborDuration = parse_element (element ("""LaborItem.laborDuration"""))
+    val laborRate = parse_element (element ("""LaborItem.laborRate"""))
+    val status = parse_attribute (attribute ("""LaborItem.status"""))
+    val WorkCostDetail = parse_attribute (attribute ("""LaborItem.WorkCostDetail"""))
+    val WorkTask = parse_attribute (attribute ("""LaborItem.WorkTask"""))
     def parse (context: Context): LaborItem =
     {
         LaborItem(
@@ -1578,15 +1578,15 @@ object MiscCostItem
 extends
     Parseable[MiscCostItem]
 {
-    val account: (Context) => String = parse_element (element ("""MiscCostItem.account"""))
-    val costPerUnit: (Context) => String = parse_element (element ("""MiscCostItem.costPerUnit"""))
-    val costType: (Context) => String = parse_element (element ("""MiscCostItem.costType"""))
-    val externalRefID: (Context) => String = parse_element (element ("""MiscCostItem.externalRefID"""))
-    val quantity: (Context) => String = parse_attribute (attribute ("""MiscCostItem.quantity"""))
-    val status: (Context) => String = parse_attribute (attribute ("""MiscCostItem.status"""))
-    val DesignLocation: (Context) => String = parse_attribute (attribute ("""MiscCostItem.DesignLocation"""))
-    val WorkCostDetail: (Context) => String = parse_attribute (attribute ("""MiscCostItem.WorkCostDetail"""))
-    val WorkTask: (Context) => String = parse_attribute (attribute ("""MiscCostItem.WorkTask"""))
+    val account = parse_element (element ("""MiscCostItem.account"""))
+    val costPerUnit = parse_element (element ("""MiscCostItem.costPerUnit"""))
+    val costType = parse_element (element ("""MiscCostItem.costType"""))
+    val externalRefID = parse_element (element ("""MiscCostItem.externalRefID"""))
+    val quantity = parse_attribute (attribute ("""MiscCostItem.quantity"""))
+    val status = parse_attribute (attribute ("""MiscCostItem.status"""))
+    val DesignLocation = parse_attribute (attribute ("""MiscCostItem.DesignLocation"""))
+    val WorkCostDetail = parse_attribute (attribute ("""MiscCostItem.WorkCostDetail"""))
+    val WorkTask = parse_attribute (attribute ("""MiscCostItem.WorkTask"""))
     def parse (context: Context): MiscCostItem =
     {
         MiscCostItem(
@@ -1645,7 +1645,7 @@ object NonStandardItem
 extends
     Parseable[NonStandardItem]
 {
-    val amount: (Context) => String = parse_element (element ("""NonStandardItem.amount"""))
+    val amount = parse_element (element ("""NonStandardItem.amount"""))
     def parse (context: Context): NonStandardItem =
     {
         NonStandardItem(
@@ -1705,10 +1705,10 @@ object OldWorkTask
 extends
     Parseable[OldWorkTask]
 {
-    val Design: (Context) => String = parse_attribute (attribute ("""OldWorkTask.Design"""))
-    val OverheadCost: (Context) => String = parse_attribute (attribute ("""OldWorkTask.OverheadCost"""))
-    val QualificationRequirements: (Context) => List[String] = parse_attributes (attribute ("""OldWorkTask.QualificationRequirements"""))
-    val WorkFlowStep: (Context) => String = parse_attribute (attribute ("""OldWorkTask.WorkFlowStep"""))
+    val Design = parse_attribute (attribute ("""OldWorkTask.Design"""))
+    val OverheadCost = parse_attribute (attribute ("""OldWorkTask.OverheadCost"""))
+    val QualificationRequirements = parse_attributes (attribute ("""OldWorkTask.QualificationRequirements"""))
+    val WorkFlowStep = parse_attribute (attribute ("""OldWorkTask.WorkFlowStep"""))
     def parse (context: Context): OldWorkTask =
     {
         OldWorkTask(
@@ -1768,9 +1768,9 @@ object OneCallRequest
 extends
     Parseable[OneCallRequest]
 {
-    val explosivesUsed: (Context) => String = parse_element (element ("""OneCallRequest.explosivesUsed"""))
-    val markedIndicator: (Context) => String = parse_element (element ("""OneCallRequest.markedIndicator"""))
-    val markingInstruction: (Context) => String = parse_element (element ("""OneCallRequest.markingInstruction"""))
+    val explosivesUsed = parse_element (element ("""OneCallRequest.explosivesUsed"""))
+    val markedIndicator = parse_element (element ("""OneCallRequest.markedIndicator"""))
+    val markingInstruction = parse_element (element ("""OneCallRequest.markingInstruction"""))
     def parse (context: Context): OneCallRequest =
     {
         OneCallRequest(
@@ -1829,9 +1829,9 @@ object OverheadCost
 extends
     Parseable[OverheadCost]
 {
-    val code: (Context) => String = parse_element (element ("""OverheadCost.code"""))
-    val cost: (Context) => String = parse_element (element ("""OverheadCost.cost"""))
-    val status: (Context) => String = parse_attribute (attribute ("""OverheadCost.status"""))
+    val code = parse_element (element ("""OverheadCost.code"""))
+    val cost = parse_element (element ("""OverheadCost.cost"""))
+    val status = parse_attribute (attribute ("""OverheadCost.status"""))
     def parse (context: Context): OverheadCost =
     {
         OverheadCost(
@@ -1894,10 +1894,10 @@ object Project
 extends
     Parseable[Project]
 {
-    val budget: (Context) => String = parse_element (element ("""Project.budget"""))
-    val BusinessCase: (Context) => String = parse_attribute (attribute ("""Project.BusinessCase"""))
-    val ErpProjectAccounting: (Context) => String = parse_attribute (attribute ("""Project.ErpProjectAccounting"""))
-    val ParentProject: (Context) => String = parse_attribute (attribute ("""Project.ParentProject"""))
+    val budget = parse_element (element ("""Project.budget"""))
+    val BusinessCase = parse_attribute (attribute ("""Project.BusinessCase"""))
+    val ErpProjectAccounting = parse_attribute (attribute ("""Project.ErpProjectAccounting"""))
+    val ParentProject = parse_attribute (attribute ("""Project.ParentProject"""))
     def parse (context: Context): Project =
     {
         Project(
@@ -1964,11 +1964,11 @@ object PropertyUnit
 extends
     Parseable[PropertyUnit]
 {
-    val accountingUsage: (Context) => String = parse_element (element ("""PropertyUnit.accountingUsage"""))
-    val activityCode: (Context) => String = parse_attribute (attribute ("""PropertyUnit.activityCode"""))
-    val propertyAccount: (Context) => String = parse_element (element ("""PropertyUnit.propertyAccount"""))
-    val status: (Context) => String = parse_attribute (attribute ("""PropertyUnit.status"""))
-    val CUMaterialItems: (Context) => List[String] = parse_attributes (attribute ("""PropertyUnit.CUMaterialItems"""))
+    val accountingUsage = parse_element (element ("""PropertyUnit.accountingUsage"""))
+    val activityCode = parse_attribute (attribute ("""PropertyUnit.activityCode"""))
+    val propertyAccount = parse_element (element ("""PropertyUnit.propertyAccount"""))
+    val status = parse_attribute (attribute ("""PropertyUnit.status"""))
+    val CUMaterialItems = parse_attributes (attribute ("""PropertyUnit.CUMaterialItems"""))
     def parse (context: Context): PropertyUnit =
     {
         PropertyUnit(
@@ -2026,8 +2026,8 @@ object QualificationRequirement
 extends
     Parseable[QualificationRequirement]
 {
-    val qualificationID: (Context) => String = parse_element (element ("""QualificationRequirement.qualificationID"""))
-    val Specifications: (Context) => List[String] = parse_attributes (attribute ("""QualificationRequirement.Specifications"""))
+    val qualificationID = parse_element (element ("""QualificationRequirement.qualificationID"""))
+    val Specifications = parse_attributes (attribute ("""QualificationRequirement.Specifications"""))
     def parse (context: Context): QualificationRequirement =
     {
         QualificationRequirement(
@@ -2080,7 +2080,7 @@ object Regulation
 extends
     Parseable[Regulation]
 {
-    val referenceNumber: (Context) => String = parse_element (element ("""Regulation.referenceNumber"""))
+    val referenceNumber = parse_element (element ("""Regulation.referenceNumber"""))
     def parse (context: Context): Regulation =
     {
         Regulation(
@@ -2140,10 +2140,10 @@ object ShiftPattern
 extends
     Parseable[ShiftPattern]
 {
-    val assignmentType: (Context) => String = parse_element (element ("""ShiftPattern.assignmentType"""))
-    val cycleCount: (Context) => String = parse_element (element ("""ShiftPattern.cycleCount"""))
-    val status: (Context) => String = parse_attribute (attribute ("""ShiftPattern.status"""))
-    val validityInterval: (Context) => String = parse_attribute (attribute ("""ShiftPattern.validityInterval"""))
+    val assignmentType = parse_element (element ("""ShiftPattern.assignmentType"""))
+    val cycleCount = parse_element (element ("""ShiftPattern.cycleCount"""))
+    val status = parse_attribute (attribute ("""ShiftPattern.status"""))
+    val validityInterval = parse_attribute (attribute ("""ShiftPattern.validityInterval"""))
     def parse (context: Context): ShiftPattern =
     {
         ShiftPattern(
@@ -2208,10 +2208,10 @@ object TypeMaterial
 extends
     Parseable[TypeMaterial]
 {
-    val costType: (Context) => String = parse_element (element ("""TypeMaterial.costType"""))
-    val estUnitCost: (Context) => String = parse_element (element ("""TypeMaterial.estUnitCost"""))
-    val quantity: (Context) => String = parse_element (element ("""TypeMaterial.quantity"""))
-    val stockItem: (Context) => String = parse_element (element ("""TypeMaterial.stockItem"""))
+    val costType = parse_element (element ("""TypeMaterial.costType"""))
+    val estUnitCost = parse_element (element ("""TypeMaterial.estUnitCost"""))
+    val quantity = parse_element (element ("""TypeMaterial.quantity"""))
+    val stockItem = parse_element (element ("""TypeMaterial.stockItem"""))
     def parse (context: Context): TypeMaterial =
     {
         TypeMaterial(
@@ -2269,8 +2269,8 @@ object Usage
 extends
     Parseable[Usage]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""Usage.status"""))
-    val WorkTask: (Context) => String = parse_attribute (attribute ("""Usage.WorkTask"""))
+    val status = parse_attribute (attribute ("""Usage.status"""))
+    val WorkTask = parse_attribute (attribute ("""Usage.WorkTask"""))
     def parse (context: Context): Usage =
     {
         Usage(
@@ -2353,17 +2353,17 @@ object WorkCostDetail
 extends
     Parseable[WorkCostDetail]
 {
-    val amount: (Context) => String = parse_element (element ("""WorkCostDetail.amount"""))
-    val isDebit: (Context) => String = parse_element (element ("""WorkCostDetail.isDebit"""))
-    val transactionDateTime: (Context) => String = parse_element (element ("""WorkCostDetail.transactionDateTime"""))
-    val CostType: (Context) => String = parse_attribute (attribute ("""WorkCostDetail.CostType"""))
-    val Design: (Context) => String = parse_attribute (attribute ("""WorkCostDetail.Design"""))
-    val ErpProjectAccounting: (Context) => String = parse_attribute (attribute ("""WorkCostDetail.ErpProjectAccounting"""))
-    val OverheadCost: (Context) => String = parse_attribute (attribute ("""WorkCostDetail.OverheadCost"""))
-    val PropertyUnits: (Context) => List[String] = parse_attributes (attribute ("""WorkCostDetail.PropertyUnits"""))
-    val WorkCostSummary: (Context) => String = parse_attribute (attribute ("""WorkCostDetail.WorkCostSummary"""))
-    val WorkTask: (Context) => String = parse_attribute (attribute ("""WorkCostDetail.WorkTask"""))
-    val Works: (Context) => List[String] = parse_attributes (attribute ("""WorkCostDetail.Works"""))
+    val amount = parse_element (element ("""WorkCostDetail.amount"""))
+    val isDebit = parse_element (element ("""WorkCostDetail.isDebit"""))
+    val transactionDateTime = parse_element (element ("""WorkCostDetail.transactionDateTime"""))
+    val CostType = parse_attribute (attribute ("""WorkCostDetail.CostType"""))
+    val Design = parse_attribute (attribute ("""WorkCostDetail.Design"""))
+    val ErpProjectAccounting = parse_attribute (attribute ("""WorkCostDetail.ErpProjectAccounting"""))
+    val OverheadCost = parse_attribute (attribute ("""WorkCostDetail.OverheadCost"""))
+    val PropertyUnits = parse_attributes (attribute ("""WorkCostDetail.PropertyUnits"""))
+    val WorkCostSummary = parse_attribute (attribute ("""WorkCostDetail.WorkCostSummary"""))
+    val WorkTask = parse_attribute (attribute ("""WorkCostDetail.WorkTask"""))
+    val Works = parse_attributes (attribute ("""WorkCostDetail.Works"""))
     def parse (context: Context): WorkCostDetail =
     {
         WorkCostDetail(
@@ -2425,7 +2425,7 @@ object WorkCostSummary
 extends
     Parseable[WorkCostSummary]
 {
-    val WorkCostDetail: (Context) => String = parse_attribute (attribute ("""WorkCostSummary.WorkCostDetail"""))
+    val WorkCostDetail = parse_attribute (attribute ("""WorkCostSummary.WorkCostDetail"""))
     def parse (context: Context): WorkCostSummary =
     {
         WorkCostSummary(
@@ -2530,9 +2530,9 @@ object WorkFlowStep
 extends
     Parseable[WorkFlowStep]
 {
-    val sequenceNumber: (Context) => String = parse_element (element ("""WorkFlowStep.sequenceNumber"""))
-    val status: (Context) => String = parse_attribute (attribute ("""WorkFlowStep.status"""))
-    val Work: (Context) => String = parse_attribute (attribute ("""WorkFlowStep.Work"""))
+    val sequenceNumber = parse_element (element ("""WorkFlowStep.sequenceNumber"""))
+    val status = parse_attribute (attribute ("""WorkFlowStep.status"""))
+    val Work = parse_attribute (attribute ("""WorkFlowStep.Work"""))
     def parse (context: Context): WorkFlowStep =
     {
         WorkFlowStep(
@@ -2633,7 +2633,7 @@ object WorkStatusEntry
 extends
     Parseable[WorkStatusEntry]
 {
-    val percentComplete: (Context) => String = parse_element (element ("""WorkStatusEntry.percentComplete"""))
+    val percentComplete = parse_element (element ("""WorkStatusEntry.percentComplete"""))
     def parse (context: Context): WorkStatusEntry =
     {
         WorkStatusEntry(

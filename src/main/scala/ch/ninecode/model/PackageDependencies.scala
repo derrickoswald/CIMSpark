@@ -57,8 +57,8 @@ object PackageDependenciesCIMVersion
 extends
     Parseable[PackageDependenciesCIMVersion]
 {
-    val date: (Context) => String = parse_element (element ("""PackageDependenciesCIMVersion.date"""))
-    val version: (Context) => String = parse_element (element ("""PackageDependenciesCIMVersion.version"""))
+    val date = parse_element (element ("""PackageDependenciesCIMVersion.date"""))
+    val version = parse_element (element ("""PackageDependenciesCIMVersion.version"""))
     def parse (context: Context): PackageDependenciesCIMVersion =
     {
         PackageDependenciesCIMVersion(

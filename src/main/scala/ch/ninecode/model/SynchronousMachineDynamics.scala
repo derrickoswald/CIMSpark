@@ -66,10 +66,10 @@ object SynchronousMachineDetailed
 extends
     Parseable[SynchronousMachineDetailed]
 {
-    val efdBaseRatio: (Context) => String = parse_element (element ("""SynchronousMachineDetailed.efdBaseRatio"""))
-    val ifdBaseType: (Context) => String = parse_attribute (attribute ("""SynchronousMachineDetailed.ifdBaseType"""))
-    val saturationFactor120QAxis: (Context) => String = parse_element (element ("""SynchronousMachineDetailed.saturationFactor120QAxis"""))
-    val saturationFactorQAxis: (Context) => String = parse_element (element ("""SynchronousMachineDetailed.saturationFactorQAxis"""))
+    val efdBaseRatio = parse_element (element ("""SynchronousMachineDetailed.efdBaseRatio"""))
+    val ifdBaseType = parse_attribute (attribute ("""SynchronousMachineDetailed.ifdBaseType"""))
+    val saturationFactor120QAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactor120QAxis"""))
+    val saturationFactorQAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactorQAxis"""))
     def parse (context: Context): SynchronousMachineDetailed =
     {
         SynchronousMachineDetailed(
@@ -143,10 +143,10 @@ object SynchronousMachineDynamics
 extends
     Parseable[SynchronousMachineDynamics]
 {
-    val ExcitationSystemDynamics: (Context) => String = parse_attribute (attribute ("""SynchronousMachineDynamics.ExcitationSystemDynamics"""))
-    val MechanicalLoadDynamics: (Context) => String = parse_attribute (attribute ("""SynchronousMachineDynamics.MechanicalLoadDynamics"""))
-    val SynchronousMachine: (Context) => String = parse_attribute (attribute ("""SynchronousMachineDynamics.SynchronousMachine"""))
-    val TurbineGovernorDynamics: (Context) => List[String] = parse_attributes (attribute ("""SynchronousMachineDynamics.TurbineGovernorDynamics"""))
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.ExcitationSystemDynamics"""))
+    val MechanicalLoadDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.MechanicalLoadDynamics"""))
+    val SynchronousMachine = parse_attribute (attribute ("""SynchronousMachineDynamics.SynchronousMachine"""))
+    val TurbineGovernorDynamics = parse_attributes (attribute ("""SynchronousMachineDynamics.TurbineGovernorDynamics"""))
     def parse (context: Context): SynchronousMachineDynamics =
     {
         SynchronousMachineDynamics(
@@ -255,17 +255,17 @@ object SynchronousMachineEquivalentCircuit
 extends
     Parseable[SynchronousMachineEquivalentCircuit]
 {
-    val r1d: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1d"""))
-    val r1q: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1q"""))
-    val r2q: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.r2q"""))
-    val rfd: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.rfd"""))
-    val x1d: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1d"""))
-    val x1q: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1q"""))
-    val x2q: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.x2q"""))
-    val xad: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.xad"""))
-    val xaq: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.xaq"""))
-    val xf1d: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.xf1d"""))
-    val xfd: (Context) => String = parse_element (element ("""SynchronousMachineEquivalentCircuit.xfd"""))
+    val r1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1d"""))
+    val r1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1q"""))
+    val r2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r2q"""))
+    val rfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.rfd"""))
+    val x1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1d"""))
+    val x1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1q"""))
+    val x2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x2q"""))
+    val xad = parse_element (element ("""SynchronousMachineEquivalentCircuit.xad"""))
+    val xaq = parse_element (element ("""SynchronousMachineEquivalentCircuit.xaq"""))
+    val xf1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.xf1d"""))
+    val xfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.xfd"""))
     def parse (context: Context): SynchronousMachineEquivalentCircuit =
     {
         SynchronousMachineEquivalentCircuit(
@@ -458,20 +458,20 @@ object SynchronousMachineTimeConstantReactance
 extends
     Parseable[SynchronousMachineTimeConstantReactance]
 {
-    val ks: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.ks"""))
-    val modelType: (Context) => String = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.modelType"""))
-    val rotorType: (Context) => String = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.rotorType"""))
-    val tc: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.tc"""))
-    val tpdo: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpdo"""))
-    val tppdo: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppdo"""))
-    val tppqo: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppqo"""))
-    val tpqo: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpqo"""))
-    val xDirectSubtrans: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSubtrans"""))
-    val xDirectSync: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSync"""))
-    val xDirectTrans: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectTrans"""))
-    val xQuadSubtrans: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSubtrans"""))
-    val xQuadSync: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSync"""))
-    val xQuadTrans: (Context) => String = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadTrans"""))
+    val ks = parse_element (element ("""SynchronousMachineTimeConstantReactance.ks"""))
+    val modelType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.modelType"""))
+    val rotorType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.rotorType"""))
+    val tc = parse_element (element ("""SynchronousMachineTimeConstantReactance.tc"""))
+    val tpdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpdo"""))
+    val tppdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppdo"""))
+    val tppqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppqo"""))
+    val tpqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpqo"""))
+    val xDirectSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSubtrans"""))
+    val xDirectSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSync"""))
+    val xDirectTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectTrans"""))
+    val xQuadSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSubtrans"""))
+    val xQuadSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSync"""))
+    val xQuadTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadTrans"""))
     def parse (context: Context): SynchronousMachineTimeConstantReactance =
     {
         SynchronousMachineTimeConstantReactance(

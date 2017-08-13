@@ -49,7 +49,7 @@ object WheelingReferenceSchedule
 extends
     Parseable[WheelingReferenceSchedule]
 {
-    val value: (Context) => String = parse_element (element ("""WheelingReferenceSchedule.value"""))
+    val value = parse_element (element ("""WheelingReferenceSchedule.value"""))
     def parse (context: Context): WheelingReferenceSchedule =
     {
         WheelingReferenceSchedule(

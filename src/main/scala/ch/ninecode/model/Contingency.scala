@@ -51,7 +51,7 @@ object Contingency
 extends
     Parseable[Contingency]
 {
-    val mustStudy: (Context) => String = parse_element (element ("""Contingency.mustStudy"""))
+    val mustStudy = parse_element (element ("""Contingency.mustStudy"""))
     def parse (context: Context): Contingency =
     {
         Contingency(
@@ -102,7 +102,7 @@ object ContingencyElement
 extends
     Parseable[ContingencyElement]
 {
-    val Contingency: (Context) => String = parse_attribute (attribute ("""ContingencyElement.Contingency"""))
+    val Contingency = parse_attribute (attribute ("""ContingencyElement.Contingency"""))
     def parse (context: Context): ContingencyElement =
     {
         ContingencyElement(
@@ -157,8 +157,8 @@ object ContingencyEquipment
 extends
     Parseable[ContingencyEquipment]
 {
-    val contingentStatus: (Context) => String = parse_attribute (attribute ("""ContingencyEquipment.contingentStatus"""))
-    val Equipment: (Context) => String = parse_attribute (attribute ("""ContingencyEquipment.Equipment"""))
+    val contingentStatus = parse_attribute (attribute ("""ContingencyEquipment.contingentStatus"""))
+    val Equipment = parse_attribute (attribute ("""ContingencyEquipment.Equipment"""))
     def parse (context: Context): ContingencyEquipment =
     {
         ContingencyEquipment(

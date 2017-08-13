@@ -69,12 +69,12 @@ object AreaReserveSpec
 extends
     Parseable[AreaReserveSpec]
 {
-    val lowerRegMarginReqt: (Context) => String = parse_element (element ("""AreaReserveSpec.lowerRegMarginReqt"""))
-    val opReserveReqt: (Context) => String = parse_element (element ("""AreaReserveSpec.opReserveReqt"""))
-    val primaryReserveReqt: (Context) => String = parse_element (element ("""AreaReserveSpec.primaryReserveReqt"""))
-    val raiseRegMarginReqt: (Context) => String = parse_element (element ("""AreaReserveSpec.raiseRegMarginReqt"""))
-    val spinningReserveReqt: (Context) => String = parse_element (element ("""AreaReserveSpec.spinningReserveReqt"""))
-    val Description: (Context) => String = parse_element (element ("""AreaReserveSpec.Description"""))
+    val lowerRegMarginReqt = parse_element (element ("""AreaReserveSpec.lowerRegMarginReqt"""))
+    val opReserveReqt = parse_element (element ("""AreaReserveSpec.opReserveReqt"""))
+    val primaryReserveReqt = parse_element (element ("""AreaReserveSpec.primaryReserveReqt"""))
+    val raiseRegMarginReqt = parse_element (element ("""AreaReserveSpec.raiseRegMarginReqt"""))
+    val spinningReserveReqt = parse_element (element ("""AreaReserveSpec.spinningReserveReqt"""))
+    val Description = parse_element (element ("""AreaReserveSpec.Description"""))
     def parse (context: Context): AreaReserveSpec =
     {
         AreaReserveSpec(
@@ -142,10 +142,10 @@ object CurrentEmergencyScheduledInterchange
 extends
     Parseable[CurrentEmergencyScheduledInterchange]
 {
-    val emergencyScheduleMW: (Context) => String = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleMW"""))
-    val emergencyScheduleRampTime: (Context) => String = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime"""))
-    val emergencyScheduleStartTime: (Context) => String = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleStartTime"""))
-    val InternalControlArea: (Context) => String = parse_attribute (attribute ("""CurrentEmergencyScheduledInterchange.InternalControlArea"""))
+    val emergencyScheduleMW = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleMW"""))
+    val emergencyScheduleRampTime = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime"""))
+    val emergencyScheduleStartTime = parse_element (element ("""CurrentEmergencyScheduledInterchange.emergencyScheduleStartTime"""))
+    val InternalControlArea = parse_attribute (attribute ("""CurrentEmergencyScheduledInterchange.InternalControlArea"""))
     def parse (context: Context): CurrentEmergencyScheduledInterchange =
     {
         CurrentEmergencyScheduledInterchange(
@@ -206,9 +206,9 @@ object CurrentScheduledInterchange
 extends
     Parseable[CurrentScheduledInterchange]
 {
-    val currentNetTieMW: (Context) => String = parse_element (element ("""CurrentScheduledInterchange.currentNetTieMW"""))
-    val useEmergencySchedule: (Context) => String = parse_element (element ("""CurrentScheduledInterchange.useEmergencySchedule"""))
-    val InternalControlArea: (Context) => String = parse_attribute (attribute ("""CurrentScheduledInterchange.InternalControlArea"""))
+    val currentNetTieMW = parse_element (element ("""CurrentScheduledInterchange.currentNetTieMW"""))
+    val useEmergencySchedule = parse_element (element ("""CurrentScheduledInterchange.useEmergencySchedule"""))
+    val InternalControlArea = parse_attribute (attribute ("""CurrentScheduledInterchange.InternalControlArea"""))
     def parse (context: Context): CurrentScheduledInterchange =
     {
         CurrentScheduledInterchange(
@@ -262,7 +262,7 @@ object CurtailmentProfile
 extends
     Parseable[CurtailmentProfile]
 {
-    val EnergyTransaction: (Context) => String = parse_attribute (attribute ("""CurtailmentProfile.EnergyTransaction"""))
+    val EnergyTransaction = parse_attribute (attribute ("""CurtailmentProfile.EnergyTransaction"""))
     def parse (context: Context): CurtailmentProfile =
     {
         CurtailmentProfile(
@@ -326,11 +326,11 @@ object DynamicSchedule
 extends
     Parseable[DynamicSchedule]
 {
-    val dynSchedSignRev: (Context) => String = parse_element (element ("""DynamicSchedule.dynSchedSignRev"""))
-    val dynSchedStatus: (Context) => String = parse_element (element ("""DynamicSchedule.dynSchedStatus"""))
-    val MktMeasurement: (Context) => String = parse_attribute (attribute ("""DynamicSchedule.MktMeasurement"""))
-    val Receive_SubControlArea: (Context) => String = parse_attribute (attribute ("""DynamicSchedule.Receive_SubControlArea"""))
-    val Send_SubControlArea: (Context) => String = parse_attribute (attribute ("""DynamicSchedule.Send_SubControlArea"""))
+    val dynSchedSignRev = parse_element (element ("""DynamicSchedule.dynSchedSignRev"""))
+    val dynSchedStatus = parse_element (element ("""DynamicSchedule.dynSchedStatus"""))
+    val MktMeasurement = parse_attribute (attribute ("""DynamicSchedule.MktMeasurement"""))
+    val Receive_SubControlArea = parse_attribute (attribute ("""DynamicSchedule.Receive_SubControlArea"""))
+    val Send_SubControlArea = parse_attribute (attribute ("""DynamicSchedule.Send_SubControlArea"""))
     def parse (context: Context): DynamicSchedule =
     {
         DynamicSchedule(
@@ -391,9 +391,9 @@ object EnergyProduct
 extends
     Parseable[EnergyProduct]
 {
-    val GenerationProvider: (Context) => String = parse_attribute (attribute ("""EnergyProduct.GenerationProvider"""))
-    val ResoldBy_Marketer: (Context) => List[String] = parse_attributes (attribute ("""EnergyProduct.ResoldBy_Marketer"""))
-    val TitleHeldBy_Marketer: (Context) => String = parse_attribute (attribute ("""EnergyProduct.TitleHeldBy_Marketer"""))
+    val GenerationProvider = parse_attribute (attribute ("""EnergyProduct.GenerationProvider"""))
+    val ResoldBy_Marketer = parse_attributes (attribute ("""EnergyProduct.ResoldBy_Marketer"""))
+    val TitleHeldBy_Marketer = parse_attribute (attribute ("""EnergyProduct.TitleHeldBy_Marketer"""))
     def parse (context: Context): EnergyProduct =
     {
         EnergyProduct(
@@ -447,7 +447,7 @@ object InadvertentAccount
 extends
     Parseable[InadvertentAccount]
 {
-    val SubControlArea: (Context) => String = parse_attribute (attribute ("""InadvertentAccount.SubControlArea"""))
+    val SubControlArea = parse_attribute (attribute ("""InadvertentAccount.SubControlArea"""))
     def parse (context: Context): InadvertentAccount =
     {
         InadvertentAccount(
@@ -499,7 +499,7 @@ object InternalControlArea
 extends
     Parseable[InternalControlArea]
 {
-    val CurrentScheduledInterchange: (Context) => String = parse_attribute (attribute ("""InternalControlArea.CurrentScheduledInterchange"""))
+    val CurrentScheduledInterchange = parse_attribute (attribute ("""InternalControlArea.CurrentScheduledInterchange"""))
     def parse (context: Context): InternalControlArea =
     {
         InternalControlArea(
@@ -554,8 +554,8 @@ object LossProfile
 extends
     Parseable[LossProfile]
 {
-    val EnergyTransaction: (Context) => String = parse_attribute (attribute ("""LossProfile.EnergyTransaction"""))
-    val HasLoss_1: (Context) => String = parse_attribute (attribute ("""LossProfile.HasLoss_"""))
+    val EnergyTransaction = parse_attribute (attribute ("""LossProfile.EnergyTransaction"""))
+    val HasLoss_1 = parse_attribute (attribute ("""LossProfile.HasLoss_"""))
     def parse (context: Context): LossProfile =
     {
         LossProfile(
@@ -608,10 +608,10 @@ object TieLine
 extends
     Parseable[TieLine]
 {
-    val EnergyTransaction: (Context) => String = parse_attribute (attribute ("""TieLine.EnergyTransaction"""))
-    val ParentOfB: (Context) => String = parse_attribute (attribute ("""TieLine.ParentOfB"""))
-    val SideA_SubControlArea: (Context) => String = parse_attribute (attribute ("""TieLine.SideA_SubControlArea"""))
-    val SideB_SubControlArea: (Context) => String = parse_attribute (attribute ("""TieLine.SideB_SubControlArea"""))
+    val EnergyTransaction = parse_attribute (attribute ("""TieLine.EnergyTransaction"""))
+    val ParentOfB = parse_attribute (attribute ("""TieLine.ParentOfB"""))
+    val SideA_SubControlArea = parse_attribute (attribute ("""TieLine.SideA_SubControlArea"""))
+    val SideB_SubControlArea = parse_attribute (attribute ("""TieLine.SideB_SubControlArea"""))
     def parse (context: Context): TieLine =
     {
         TieLine(
@@ -712,7 +712,7 @@ object TransmissionRightOfWay
 extends
     Parseable[TransmissionRightOfWay]
 {
-    val TransmissionCorridor: (Context) => String = parse_attribute (attribute ("""TransmissionRightOfWay.TransmissionCorridor"""))
+    val TransmissionCorridor = parse_attribute (attribute ("""TransmissionRightOfWay.TransmissionCorridor"""))
     def parse (context: Context): TransmissionRightOfWay =
     {
         TransmissionRightOfWay(

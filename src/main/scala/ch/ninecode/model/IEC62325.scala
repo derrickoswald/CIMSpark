@@ -55,8 +55,8 @@ object IEC62325CIMVersion
 extends
     Parseable[IEC62325CIMVersion]
 {
-    val date: (Context) => String = parse_element (element ("""IEC62325CIMVersion.date"""))
-    val version: (Context) => String = parse_element (element ("""IEC62325CIMVersion.version"""))
+    val date = parse_element (element ("""IEC62325CIMVersion.date"""))
+    val version = parse_element (element ("""IEC62325CIMVersion.version"""))
     def parse (context: Context): IEC62325CIMVersion =
     {
         IEC62325CIMVersion(

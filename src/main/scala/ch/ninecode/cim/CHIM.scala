@@ -140,7 +140,7 @@ trait Parser
 //     * @param context The context for the substring in the XML and
 //     * line number and position context for reporting in case of an error.
 //     * @return The attribute value(s) (with leading # stripped off).
-        context: Context =>
+        (context: Context) =>
         {
             var ret: List[String] = null
 

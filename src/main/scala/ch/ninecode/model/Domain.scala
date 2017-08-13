@@ -55,8 +55,8 @@ object DateInterval
 extends
     Parseable[DateInterval]
 {
-    val end: (Context) => String = parse_element (element ("""DateInterval.end"""))
-    val start: (Context) => String = parse_element (element ("""DateInterval.start"""))
+    val end = parse_element (element ("""DateInterval.end"""))
+    val start = parse_element (element ("""DateInterval.start"""))
     def parse (context: Context): DateInterval =
     {
         DateInterval(
@@ -111,8 +111,8 @@ object DateTimeInterval
 extends
     Parseable[DateTimeInterval]
 {
-    val end: (Context) => String = parse_element (element ("""DateTimeInterval.end"""))
-    val start: (Context) => String = parse_element (element ("""DateTimeInterval.start"""))
+    val end = parse_element (element ("""DateTimeInterval.end"""))
+    val start = parse_element (element ("""DateTimeInterval.start"""))
     def parse (context: Context): DateTimeInterval =
     {
         DateTimeInterval(
@@ -165,10 +165,10 @@ object DecimalQuantity
 extends
     Parseable[DecimalQuantity]
 {
-    val currency: (Context) => String = parse_attribute (attribute ("""DecimalQuantity.currency"""))
-    val multiplier: (Context) => String = parse_attribute (attribute ("""DecimalQuantity.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""DecimalQuantity.unit"""))
-    val value: (Context) => String = parse_element (element ("""DecimalQuantity.value"""))
+    val currency = parse_attribute (attribute ("""DecimalQuantity.currency"""))
+    val multiplier = parse_attribute (attribute ("""DecimalQuantity.multiplier"""))
+    val unit = parse_attribute (attribute ("""DecimalQuantity.unit"""))
+    val value = parse_element (element ("""DecimalQuantity.value"""))
     def parse (context: Context): DecimalQuantity =
     {
         DecimalQuantity(
@@ -228,9 +228,9 @@ object FloatQuantity
 extends
     Parseable[FloatQuantity]
 {
-    val multiplier: (Context) => String = parse_attribute (attribute ("""FloatQuantity.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""FloatQuantity.unit"""))
-    val value: (Context) => String = parse_element (element ("""FloatQuantity.value"""))
+    val multiplier = parse_attribute (attribute ("""FloatQuantity.multiplier"""))
+    val unit = parse_attribute (attribute ("""FloatQuantity.unit"""))
+    val value = parse_element (element ("""FloatQuantity.value"""))
     def parse (context: Context): FloatQuantity =
     {
         FloatQuantity(
@@ -289,9 +289,9 @@ object IntegerQuantity
 extends
     Parseable[IntegerQuantity]
 {
-    val multiplier: (Context) => String = parse_attribute (attribute ("""IntegerQuantity.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""IntegerQuantity.unit"""))
-    val value: (Context) => String = parse_element (element ("""IntegerQuantity.value"""))
+    val multiplier = parse_attribute (attribute ("""IntegerQuantity.multiplier"""))
+    val unit = parse_attribute (attribute ("""IntegerQuantity.unit"""))
+    val value = parse_element (element ("""IntegerQuantity.value"""))
     def parse (context: Context): IntegerQuantity =
     {
         IntegerQuantity(
@@ -347,8 +347,8 @@ object MonthDayInterval
 extends
     Parseable[MonthDayInterval]
 {
-    val end: (Context) => String = parse_element (element ("""MonthDayInterval.end"""))
-    val start: (Context) => String = parse_element (element ("""MonthDayInterval.start"""))
+    val end = parse_element (element ("""MonthDayInterval.end"""))
+    val start = parse_element (element ("""MonthDayInterval.start"""))
     def parse (context: Context): MonthDayInterval =
     {
         MonthDayInterval(
@@ -406,9 +406,9 @@ object StringQuantity
 extends
     Parseable[StringQuantity]
 {
-    val multiplier: (Context) => String = parse_attribute (attribute ("""StringQuantity.multiplier"""))
-    val unit: (Context) => String = parse_attribute (attribute ("""StringQuantity.unit"""))
-    val value: (Context) => String = parse_element (element ("""StringQuantity.value"""))
+    val multiplier = parse_attribute (attribute ("""StringQuantity.multiplier"""))
+    val unit = parse_attribute (attribute ("""StringQuantity.unit"""))
+    val value = parse_element (element ("""StringQuantity.value"""))
     def parse (context: Context): StringQuantity =
     {
         StringQuantity(
@@ -464,8 +464,8 @@ object TimeInterval
 extends
     Parseable[TimeInterval]
 {
-    val end: (Context) => String = parse_element (element ("""TimeInterval.end"""))
-    val start: (Context) => String = parse_element (element ("""TimeInterval.start"""))
+    val end = parse_element (element ("""TimeInterval.end"""))
+    val start = parse_element (element ("""TimeInterval.start"""))
     def parse (context: Context): TimeInterval =
     {
         TimeInterval(

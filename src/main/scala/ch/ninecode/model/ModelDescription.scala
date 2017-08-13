@@ -57,9 +57,9 @@ object Description
 extends
     Parseable[Description]
 {
-    val description: (Context) => String = parse_element (element ("""Description.description"""))
-    val name: (Context) => String = parse_element (element ("""Description.name"""))
-    val version: (Context) => String = parse_element (element ("""Description.version"""))
+    val description = parse_element (element ("""Description.description"""))
+    val name = parse_element (element ("""Description.name"""))
+    val version = parse_element (element ("""Description.version"""))
     def parse (context: Context): Description =
     {
         Description(
@@ -107,7 +107,7 @@ object DescriptionID
 extends
     Parseable[DescriptionID]
 {
-    val uri: (Context) => String = parse_element (element ("""DescriptionID.uri"""))
+    val uri = parse_element (element ("""DescriptionID.uri"""))
     def parse (context: Context): DescriptionID =
     {
         DescriptionID(
@@ -155,8 +155,8 @@ object DifferenceModel
 extends
     Parseable[DifferenceModel]
 {
-    val forwardDifferences: (Context) => String = parse_attribute (attribute ("""DifferenceModel.forwardDifferences"""))
-    val reverseDifferences: (Context) => String = parse_attribute (attribute ("""DifferenceModel.reverseDifferences"""))
+    val forwardDifferences = parse_attribute (attribute ("""DifferenceModel.forwardDifferences"""))
+    val reverseDifferences = parse_attribute (attribute ("""DifferenceModel.reverseDifferences"""))
     def parse (context: Context): DifferenceModel =
     {
         DifferenceModel(
@@ -303,14 +303,14 @@ object Model
 extends
     Parseable[Model]
 {
-    val created: (Context) => String = parse_element (element ("""Model.created"""))
-    val description: (Context) => String = parse_element (element ("""Model.description"""))
-    val modelingAuthoritySet: (Context) => String = parse_attribute (attribute ("""Model.modelingAuthoritySet"""))
-    val profile: (Context) => String = parse_attribute (attribute ("""Model.profile"""))
-    val scenarioTime: (Context) => String = parse_element (element ("""Model.scenarioTime"""))
-    val version: (Context) => String = parse_element (element ("""Model.version"""))
-    val DependentOn: (Context) => List[String] = parse_attributes (attribute ("""Model.DependentOn"""))
-    val Supersedes: (Context) => List[String] = parse_attributes (attribute ("""Model.Supersedes"""))
+    val created = parse_element (element ("""Model.created"""))
+    val description = parse_element (element ("""Model.description"""))
+    val modelingAuthoritySet = parse_attribute (attribute ("""Model.modelingAuthoritySet"""))
+    val profile = parse_attribute (attribute ("""Model.profile"""))
+    val scenarioTime = parse_element (element ("""Model.scenarioTime"""))
+    val version = parse_element (element ("""Model.version"""))
+    val DependentOn = parse_attributes (attribute ("""Model.DependentOn"""))
+    val Supersedes = parse_attributes (attribute ("""Model.Supersedes"""))
     def parse (context: Context): Model =
     {
         Model(
@@ -365,8 +365,8 @@ object ModelDescriptionCIMVersion
 extends
     Parseable[ModelDescriptionCIMVersion]
 {
-    val date: (Context) => String = parse_element (element ("""ModelDescriptionCIMVersion.date"""))
-    val version: (Context) => String = parse_element (element ("""ModelDescriptionCIMVersion.version"""))
+    val date = parse_element (element ("""ModelDescriptionCIMVersion.date"""))
+    val version = parse_element (element ("""ModelDescriptionCIMVersion.version"""))
     def parse (context: Context): ModelDescriptionCIMVersion =
     {
         ModelDescriptionCIMVersion(

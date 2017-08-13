@@ -54,7 +54,7 @@ object DynamicsFunctionBlock
 extends
     Parseable[DynamicsFunctionBlock]
 {
-    val enabled: (Context) => String = parse_element (element ("""DynamicsFunctionBlock.enabled"""))
+    val enabled = parse_element (element ("""DynamicsFunctionBlock.enabled"""))
     def parse (context: Context): DynamicsFunctionBlock =
     {
         DynamicsFunctionBlock(
@@ -126,12 +126,12 @@ object RotatingMachineDynamics
 extends
     Parseable[RotatingMachineDynamics]
 {
-    val damping: (Context) => String = parse_element (element ("""RotatingMachineDynamics.damping"""))
-    val inertia: (Context) => String = parse_element (element ("""RotatingMachineDynamics.inertia"""))
-    val saturationFactor: (Context) => String = parse_element (element ("""RotatingMachineDynamics.saturationFactor"""))
-    val saturationFactor120: (Context) => String = parse_element (element ("""RotatingMachineDynamics.saturationFactor120"""))
-    val statorLeakageReactance: (Context) => String = parse_element (element ("""RotatingMachineDynamics.statorLeakageReactance"""))
-    val statorResistance: (Context) => String = parse_element (element ("""RotatingMachineDynamics.statorResistance"""))
+    val damping = parse_element (element ("""RotatingMachineDynamics.damping"""))
+    val inertia = parse_element (element ("""RotatingMachineDynamics.inertia"""))
+    val saturationFactor = parse_element (element ("""RotatingMachineDynamics.saturationFactor"""))
+    val saturationFactor120 = parse_element (element ("""RotatingMachineDynamics.saturationFactor120"""))
+    val statorLeakageReactance = parse_element (element ("""RotatingMachineDynamics.statorLeakageReactance"""))
+    val statorResistance = parse_element (element ("""RotatingMachineDynamics.statorResistance"""))
     def parse (context: Context): RotatingMachineDynamics =
     {
         RotatingMachineDynamics(

@@ -55,7 +55,7 @@ object PFVArControllerType2Dynamics
 extends
     Parseable[PFVArControllerType2Dynamics]
 {
-    val ExcitationSystemDynamics: (Context) => String = parse_attribute (attribute ("""PFVArControllerType2Dynamics.ExcitationSystemDynamics"""))
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""PFVArControllerType2Dynamics.ExcitationSystemDynamics"""))
     def parse (context: Context): PFVArControllerType2Dynamics =
     {
         PFVArControllerType2Dynamics(
@@ -122,11 +122,11 @@ object PFVArType2Common1
 extends
     Parseable[PFVArType2Common1]
 {
-    val j: (Context) => String = parse_element (element ("""PFVArType2Common1.j"""))
-    val ki: (Context) => String = parse_element (element ("""PFVArType2Common1.ki"""))
-    val kp: (Context) => String = parse_element (element ("""PFVArType2Common1.kp"""))
-    val max: (Context) => String = parse_element (element ("""PFVArType2Common1.max"""))
-    val ref: (Context) => String = parse_element (element ("""PFVArType2Common1.ref"""))
+    val j = parse_element (element ("""PFVArType2Common1.j"""))
+    val ki = parse_element (element ("""PFVArType2Common1.ki"""))
+    val kp = parse_element (element ("""PFVArType2Common1.kp"""))
+    val max = parse_element (element ("""PFVArType2Common1.max"""))
+    val ref = parse_element (element ("""PFVArType2Common1.ref"""))
     def parse (context: Context): PFVArType2Common1 =
     {
         PFVArType2Common1(
@@ -205,13 +205,13 @@ object PFVArType2IEEEPFController
 extends
     Parseable[PFVArType2IEEEPFController]
 {
-    val exlon: (Context) => String = parse_element (element ("""PFVArType2IEEEPFController.exlon"""))
-    val ki: (Context) => String = parse_element (element ("""PFVArType2IEEEPFController.ki"""))
-    val kp: (Context) => String = parse_element (element ("""PFVArType2IEEEPFController.kp"""))
-    val pfref: (Context) => String = parse_element (element ("""PFVArType2IEEEPFController.pfref"""))
-    val vclmt: (Context) => String = parse_element (element ("""PFVArType2IEEEPFController.vclmt"""))
-    val vref: (Context) => String = parse_element (element ("""PFVArType2IEEEPFController.vref"""))
-    val vs: (Context) => String = parse_element (element ("""PFVArType2IEEEPFController.vs"""))
+    val exlon = parse_element (element ("""PFVArType2IEEEPFController.exlon"""))
+    val ki = parse_element (element ("""PFVArType2IEEEPFController.ki"""))
+    val kp = parse_element (element ("""PFVArType2IEEEPFController.kp"""))
+    val pfref = parse_element (element ("""PFVArType2IEEEPFController.pfref"""))
+    val vclmt = parse_element (element ("""PFVArType2IEEEPFController.vclmt"""))
+    val vref = parse_element (element ("""PFVArType2IEEEPFController.vref"""))
+    val vs = parse_element (element ("""PFVArType2IEEEPFController.vs"""))
     def parse (context: Context): PFVArType2IEEEPFController =
     {
         PFVArType2IEEEPFController(
@@ -289,13 +289,13 @@ object PFVArType2IEEEVArController
 extends
     Parseable[PFVArType2IEEEVArController]
 {
-    val exlon: (Context) => String = parse_element (element ("""PFVArType2IEEEVArController.exlon"""))
-    val ki: (Context) => String = parse_element (element ("""PFVArType2IEEEVArController.ki"""))
-    val kp: (Context) => String = parse_element (element ("""PFVArType2IEEEVArController.kp"""))
-    val qref: (Context) => String = parse_element (element ("""PFVArType2IEEEVArController.qref"""))
-    val vclmt: (Context) => String = parse_element (element ("""PFVArType2IEEEVArController.vclmt"""))
-    val vref: (Context) => String = parse_element (element ("""PFVArType2IEEEVArController.vref"""))
-    val vs: (Context) => String = parse_element (element ("""PFVArType2IEEEVArController.vs"""))
+    val exlon = parse_element (element ("""PFVArType2IEEEVArController.exlon"""))
+    val ki = parse_element (element ("""PFVArType2IEEEVArController.ki"""))
+    val kp = parse_element (element ("""PFVArType2IEEEVArController.kp"""))
+    val qref = parse_element (element ("""PFVArType2IEEEVArController.qref"""))
+    val vclmt = parse_element (element ("""PFVArType2IEEEVArController.vclmt"""))
+    val vref = parse_element (element ("""PFVArType2IEEEVArController.vref"""))
+    val vs = parse_element (element ("""PFVArType2IEEEVArController.vs"""))
     def parse (context: Context): PFVArType2IEEEVArController =
     {
         PFVArType2IEEEVArController(

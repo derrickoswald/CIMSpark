@@ -60,10 +60,10 @@ object MechLoad1
 extends
     Parseable[MechLoad1]
 {
-    val a: (Context) => String = parse_element (element ("""MechLoad1.a"""))
-    val b: (Context) => String = parse_element (element ("""MechLoad1.b"""))
-    val d: (Context) => String = parse_element (element ("""MechLoad1.d"""))
-    val e: (Context) => String = parse_element (element ("""MechLoad1.e"""))
+    val a = parse_element (element ("""MechLoad1.a"""))
+    val b = parse_element (element ("""MechLoad1.b"""))
+    val d = parse_element (element ("""MechLoad1.d"""))
+    val e = parse_element (element ("""MechLoad1.e"""))
     def parse (context: Context): MechLoad1 =
     {
         MechLoad1(
@@ -120,8 +120,8 @@ object MechanicalLoadDynamics
 extends
     Parseable[MechanicalLoadDynamics]
 {
-    val AsynchronousMachineDynamics: (Context) => String = parse_attribute (attribute ("""MechanicalLoadDynamics.AsynchronousMachineDynamics"""))
-    val SynchronousMachineDynamics: (Context) => String = parse_attribute (attribute ("""MechanicalLoadDynamics.SynchronousMachineDynamics"""))
+    val AsynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.AsynchronousMachineDynamics"""))
+    val SynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.SynchronousMachineDynamics"""))
     def parse (context: Context): MechanicalLoadDynamics =
     {
         MechanicalLoadDynamics(

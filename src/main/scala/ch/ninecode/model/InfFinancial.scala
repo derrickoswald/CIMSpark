@@ -56,8 +56,8 @@ object ControlAreaOperator
 extends
     Parseable[ControlAreaOperator]
 {
-    val CAChildOf: (Context) => List[String] = parse_attributes (attribute ("""ControlAreaOperator.CAChildOf"""))
-    val ControlledBy: (Context) => String = parse_attribute (attribute ("""ControlAreaOperator.ControlledBy"""))
+    val CAChildOf = parse_attributes (attribute ("""ControlAreaOperator.CAChildOf"""))
+    val ControlledBy = parse_attribute (attribute ("""ControlAreaOperator.ControlledBy"""))
     def parse (context: Context): ControlAreaOperator =
     {
         ControlAreaOperator(
@@ -207,8 +207,8 @@ object IntSchedAgreement
 extends
     Parseable[IntSchedAgreement]
 {
-    val defaultIntegrationMethod: (Context) => String = parse_element (element ("""IntSchedAgreement.defaultIntegrationMethod"""))
-    val MktOrganisation: (Context) => List[String] = parse_attributes (attribute ("""IntSchedAgreement.MktOrganisation"""))
+    val defaultIntegrationMethod = parse_element (element ("""IntSchedAgreement.defaultIntegrationMethod"""))
+    val MktOrganisation = parse_attributes (attribute ("""IntSchedAgreement.MktOrganisation"""))
     def parse (context: Context): IntSchedAgreement =
     {
         IntSchedAgreement(
@@ -353,9 +353,9 @@ object TransmissionProduct
 extends
     Parseable[TransmissionProduct]
 {
-    val transmissionProductType: (Context) => String = parse_element (element ("""TransmissionProduct.transmissionProductType"""))
-    val LocationFor: (Context) => List[String] = parse_attributes (attribute ("""TransmissionProduct.LocationFor"""))
-    val TransmissionProvider: (Context) => String = parse_attribute (attribute ("""TransmissionProduct.TransmissionProvider"""))
+    val transmissionProductType = parse_element (element ("""TransmissionProduct.transmissionProductType"""))
+    val LocationFor = parse_attributes (attribute ("""TransmissionProduct.LocationFor"""))
+    val TransmissionProvider = parse_attribute (attribute ("""TransmissionProduct.TransmissionProvider"""))
     def parse (context: Context): TransmissionProduct =
     {
         TransmissionProduct(

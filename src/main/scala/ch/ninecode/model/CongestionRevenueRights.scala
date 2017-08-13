@@ -72,13 +72,13 @@ object CRR
 extends
     Parseable[CRR]
 {
-    val cRRcategory: (Context) => String = parse_attribute (attribute ("""CRR.cRRcategory"""))
-    val cRRtype: (Context) => String = parse_attribute (attribute ("""CRR.cRRtype"""))
-    val hedgeType: (Context) => String = parse_attribute (attribute ("""CRR.hedgeType"""))
-    val timeOfUse: (Context) => String = parse_attribute (attribute ("""CRR.timeOfUse"""))
-    val tradeSliceID: (Context) => String = parse_element (element ("""CRR.tradeSliceID"""))
-    val CRRMarket: (Context) => String = parse_attribute (attribute ("""CRR.CRRMarket"""))
-    val Flowgate: (Context) => String = parse_attribute (attribute ("""CRR.Flowgate"""))
+    val cRRcategory = parse_attribute (attribute ("""CRR.cRRcategory"""))
+    val cRRtype = parse_attribute (attribute ("""CRR.cRRtype"""))
+    val hedgeType = parse_attribute (attribute ("""CRR.hedgeType"""))
+    val timeOfUse = parse_attribute (attribute ("""CRR.timeOfUse"""))
+    val tradeSliceID = parse_element (element ("""CRR.tradeSliceID"""))
+    val CRRMarket = parse_attribute (attribute ("""CRR.CRRMarket"""))
+    val Flowgate = parse_attribute (attribute ("""CRR.Flowgate"""))
     def parse (context: Context): CRR =
     {
         CRR(
@@ -144,10 +144,10 @@ object CRROrgRole
 extends
     Parseable[CRROrgRole]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""CRROrgRole.kind"""))
-    val status: (Context) => String = parse_attribute (attribute ("""CRROrgRole.status"""))
-    val CRR: (Context) => String = parse_attribute (attribute ("""CRROrgRole.CRR"""))
-    val MktOrganisation: (Context) => String = parse_attribute (attribute ("""CRROrgRole.MktOrganisation"""))
+    val kind = parse_attribute (attribute ("""CRROrgRole.kind"""))
+    val status = parse_attribute (attribute ("""CRROrgRole.status"""))
+    val CRR = parse_attribute (attribute ("""CRROrgRole.CRR"""))
+    val MktOrganisation = parse_attribute (attribute ("""CRROrgRole.MktOrganisation"""))
     def parse (context: Context): CRROrgRole =
     {
         CRROrgRole(
@@ -217,12 +217,12 @@ object CRRSegment
 extends
     Parseable[CRRSegment]
 {
-    val amount: (Context) => String = parse_element (element ("""CRRSegment.amount"""))
-    val clearingPrice: (Context) => String = parse_element (element ("""CRRSegment.clearingPrice"""))
-    val endDateTime: (Context) => String = parse_element (element ("""CRRSegment.endDateTime"""))
-    val quantity: (Context) => String = parse_element (element ("""CRRSegment.quantity"""))
-    val startDateTime: (Context) => String = parse_element (element ("""CRRSegment.startDateTime"""))
-    val CRR: (Context) => String = parse_attribute (attribute ("""CRRSegment.CRR"""))
+    val amount = parse_element (element ("""CRRSegment.amount"""))
+    val clearingPrice = parse_element (element ("""CRRSegment.clearingPrice"""))
+    val endDateTime = parse_element (element ("""CRRSegment.endDateTime"""))
+    val quantity = parse_element (element ("""CRRSegment.quantity"""))
+    val startDateTime = parse_element (element ("""CRRSegment.startDateTime"""))
+    val CRR = parse_attribute (attribute ("""CRRSegment.CRR"""))
     def parse (context: Context): CRRSegment =
     {
         CRRSegment(

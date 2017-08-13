@@ -52,7 +52,7 @@ object ComplianceEvent
 extends
     Parseable[ComplianceEvent]
 {
-    val deadline: (Context) => String = parse_element (element ("""ComplianceEvent.deadline"""))
+    val deadline = parse_element (element ("""ComplianceEvent.deadline"""))
     def parse (context: Context): ComplianceEvent =
     {
         ComplianceEvent(
@@ -134,16 +134,16 @@ object CustomerBillingInfo
 extends
     Parseable[CustomerBillingInfo]
 {
-    val billingDate: (Context) => String = parse_element (element ("""CustomerBillingInfo.billingDate"""))
-    val dueDate: (Context) => String = parse_element (element ("""CustomerBillingInfo.dueDate"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""CustomerBillingInfo.kind"""))
-    val lastPaymentAmt: (Context) => String = parse_element (element ("""CustomerBillingInfo.lastPaymentAmt"""))
-    val lastPaymentDate: (Context) => String = parse_element (element ("""CustomerBillingInfo.lastPaymentDate"""))
-    val outBalance: (Context) => String = parse_element (element ("""CustomerBillingInfo.outBalance"""))
-    val pymtPlanAmt: (Context) => String = parse_element (element ("""CustomerBillingInfo.pymtPlanAmt"""))
-    val pymtPlanType: (Context) => String = parse_element (element ("""CustomerBillingInfo.pymtPlanType"""))
-    val CustomerAccount: (Context) => String = parse_attribute (attribute ("""CustomerBillingInfo.CustomerAccount"""))
-    val ErpInvoiceLineItems: (Context) => List[String] = parse_attributes (attribute ("""CustomerBillingInfo.ErpInvoiceLineItems"""))
+    val billingDate = parse_element (element ("""CustomerBillingInfo.billingDate"""))
+    val dueDate = parse_element (element ("""CustomerBillingInfo.dueDate"""))
+    val kind = parse_attribute (attribute ("""CustomerBillingInfo.kind"""))
+    val lastPaymentAmt = parse_element (element ("""CustomerBillingInfo.lastPaymentAmt"""))
+    val lastPaymentDate = parse_element (element ("""CustomerBillingInfo.lastPaymentDate"""))
+    val outBalance = parse_element (element ("""CustomerBillingInfo.outBalance"""))
+    val pymtPlanAmt = parse_element (element ("""CustomerBillingInfo.pymtPlanAmt"""))
+    val pymtPlanType = parse_element (element ("""CustomerBillingInfo.pymtPlanType"""))
+    val CustomerAccount = parse_attribute (attribute ("""CustomerBillingInfo.CustomerAccount"""))
+    val ErpInvoiceLineItems = parse_attributes (attribute ("""CustomerBillingInfo.ErpInvoiceLineItems"""))
     def parse (context: Context): CustomerBillingInfo =
     {
         CustomerBillingInfo(
@@ -275,15 +275,15 @@ object PowerQualityPricing
 extends
     Parseable[PowerQualityPricing]
 {
-    val emergencyHighVoltLimit: (Context) => String = parse_element (element ("""PowerQualityPricing.emergencyHighVoltLimit"""))
-    val emergencyLowVoltLimit: (Context) => String = parse_element (element ("""PowerQualityPricing.emergencyLowVoltLimit"""))
-    val normalHighVoltLimit: (Context) => String = parse_element (element ("""PowerQualityPricing.normalHighVoltLimit"""))
-    val normalLowVoltLimit: (Context) => String = parse_element (element ("""PowerQualityPricing.normalLowVoltLimit"""))
-    val powerFactorMin: (Context) => String = parse_element (element ("""PowerQualityPricing.powerFactorMin"""))
-    val valueUninterruptedServiceEnergy: (Context) => String = parse_element (element ("""PowerQualityPricing.valueUninterruptedServiceEnergy"""))
-    val valueUninterruptedServiceP: (Context) => String = parse_element (element ("""PowerQualityPricing.valueUninterruptedServiceP"""))
-    val voltImbalanceViolCost: (Context) => String = parse_element (element ("""PowerQualityPricing.voltImbalanceViolCost"""))
-    val voltLimitViolCost: (Context) => String = parse_element (element ("""PowerQualityPricing.voltLimitViolCost"""))
+    val emergencyHighVoltLimit = parse_element (element ("""PowerQualityPricing.emergencyHighVoltLimit"""))
+    val emergencyLowVoltLimit = parse_element (element ("""PowerQualityPricing.emergencyLowVoltLimit"""))
+    val normalHighVoltLimit = parse_element (element ("""PowerQualityPricing.normalHighVoltLimit"""))
+    val normalLowVoltLimit = parse_element (element ("""PowerQualityPricing.normalLowVoltLimit"""))
+    val powerFactorMin = parse_element (element ("""PowerQualityPricing.powerFactorMin"""))
+    val valueUninterruptedServiceEnergy = parse_element (element ("""PowerQualityPricing.valueUninterruptedServiceEnergy"""))
+    val valueUninterruptedServiceP = parse_element (element ("""PowerQualityPricing.valueUninterruptedServiceP"""))
+    val voltImbalanceViolCost = parse_element (element ("""PowerQualityPricing.voltImbalanceViolCost"""))
+    val voltLimitViolCost = parse_element (element ("""PowerQualityPricing.voltLimitViolCost"""))
     def parse (context: Context): PowerQualityPricing =
     {
         PowerQualityPricing(
@@ -352,10 +352,10 @@ object ServiceGuarantee
 extends
     Parseable[ServiceGuarantee]
 {
-    val applicationPeriod: (Context) => String = parse_attribute (attribute ("""ServiceGuarantee.applicationPeriod"""))
-    val automaticPay: (Context) => String = parse_element (element ("""ServiceGuarantee.automaticPay"""))
-    val payAmount: (Context) => String = parse_element (element ("""ServiceGuarantee.payAmount"""))
-    val serviceRequirement: (Context) => String = parse_element (element ("""ServiceGuarantee.serviceRequirement"""))
+    val applicationPeriod = parse_attribute (attribute ("""ServiceGuarantee.applicationPeriod"""))
+    val automaticPay = parse_element (element ("""ServiceGuarantee.automaticPay"""))
+    val payAmount = parse_element (element ("""ServiceGuarantee.payAmount"""))
+    val serviceRequirement = parse_element (element ("""ServiceGuarantee.serviceRequirement"""))
     def parse (context: Context): ServiceGuarantee =
     {
         ServiceGuarantee(
@@ -410,7 +410,7 @@ object StandardIndustryCode
 extends
     Parseable[StandardIndustryCode]
 {
-    val code: (Context) => String = parse_element (element ("""StandardIndustryCode.code"""))
+    val code = parse_element (element ("""StandardIndustryCode.code"""))
     def parse (context: Context): StandardIndustryCode =
     {
         StandardIndustryCode(
@@ -533,15 +533,15 @@ object WorkBillingInfo
 extends
     Parseable[WorkBillingInfo]
 {
-    val costEstimate: (Context) => String = parse_element (element ("""WorkBillingInfo.costEstimate"""))
-    val deposit: (Context) => String = parse_element (element ("""WorkBillingInfo.deposit"""))
-    val discount: (Context) => String = parse_element (element ("""WorkBillingInfo.discount"""))
-    val dueDateTime: (Context) => String = parse_element (element ("""WorkBillingInfo.dueDateTime"""))
-    val issueDateTime: (Context) => String = parse_element (element ("""WorkBillingInfo.issueDateTime"""))
-    val receivedDateTime: (Context) => String = parse_element (element ("""WorkBillingInfo.receivedDateTime"""))
-    val workPrice: (Context) => String = parse_element (element ("""WorkBillingInfo.workPrice"""))
-    val CustomerAccount: (Context) => String = parse_attribute (attribute ("""WorkBillingInfo.CustomerAccount"""))
-    val ErpLineItems: (Context) => List[String] = parse_attributes (attribute ("""WorkBillingInfo.ErpLineItems"""))
+    val costEstimate = parse_element (element ("""WorkBillingInfo.costEstimate"""))
+    val deposit = parse_element (element ("""WorkBillingInfo.deposit"""))
+    val discount = parse_element (element ("""WorkBillingInfo.discount"""))
+    val dueDateTime = parse_element (element ("""WorkBillingInfo.dueDateTime"""))
+    val issueDateTime = parse_element (element ("""WorkBillingInfo.issueDateTime"""))
+    val receivedDateTime = parse_element (element ("""WorkBillingInfo.receivedDateTime"""))
+    val workPrice = parse_element (element ("""WorkBillingInfo.workPrice"""))
+    val CustomerAccount = parse_attribute (attribute ("""WorkBillingInfo.CustomerAccount"""))
+    val ErpLineItems = parse_attributes (attribute ("""WorkBillingInfo.ErpLineItems"""))
     def parse (context: Context): WorkBillingInfo =
     {
         WorkBillingInfo(

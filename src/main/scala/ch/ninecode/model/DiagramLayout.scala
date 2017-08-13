@@ -68,12 +68,12 @@ object Diagram
 extends
     Parseable[Diagram]
 {
-    val orientation: (Context) => String = parse_attribute (attribute ("""Diagram.orientation"""))
-    val x1InitialView: (Context) => String = parse_element (element ("""Diagram.x1InitialView"""))
-    val x2InitialView: (Context) => String = parse_element (element ("""Diagram.x2InitialView"""))
-    val y1InitialView: (Context) => String = parse_element (element ("""Diagram.y1InitialView"""))
-    val y2InitialView: (Context) => String = parse_element (element ("""Diagram.y2InitialView"""))
-    val DiagramStyle: (Context) => String = parse_attribute (attribute ("""Diagram.DiagramStyle"""))
+    val orientation = parse_attribute (attribute ("""Diagram.orientation"""))
+    val x1InitialView = parse_element (element ("""Diagram.x1InitialView"""))
+    val x2InitialView = parse_element (element ("""Diagram.x2InitialView"""))
+    val y1InitialView = parse_element (element ("""Diagram.y1InitialView"""))
+    val y2InitialView = parse_element (element ("""Diagram.y2InitialView"""))
+    val DiagramStyle = parse_attribute (attribute ("""Diagram.DiagramStyle"""))
     def parse (context: Context): Diagram =
     {
         Diagram(
@@ -159,15 +159,15 @@ object DiagramObject
 extends
     Parseable[DiagramObject]
 {
-    val drawingOrder: (Context) => String = parse_element (element ("""DiagramObject.drawingOrder"""))
-    val isPolygon: (Context) => String = parse_element (element ("""DiagramObject.isPolygon"""))
-    val offsetX: (Context) => String = parse_element (element ("""DiagramObject.offsetX"""))
-    val offsetY: (Context) => String = parse_element (element ("""DiagramObject.offsetY"""))
-    val rotation: (Context) => String = parse_element (element ("""DiagramObject.rotation"""))
-    val Diagram: (Context) => String = parse_attribute (attribute ("""DiagramObject.Diagram"""))
-    val DiagramObjectStyle: (Context) => String = parse_attribute (attribute ("""DiagramObject.DiagramObjectStyle"""))
-    val IdentifiedObject_attr: (Context) => String = parse_attribute (attribute ("""DiagramObject.IdentifiedObject"""))
-    val VisibilityLayers: (Context) => List[String] = parse_attributes (attribute ("""DiagramObject.VisibilityLayers"""))
+    val drawingOrder = parse_element (element ("""DiagramObject.drawingOrder"""))
+    val isPolygon = parse_element (element ("""DiagramObject.isPolygon"""))
+    val offsetX = parse_element (element ("""DiagramObject.offsetX"""))
+    val offsetY = parse_element (element ("""DiagramObject.offsetY"""))
+    val rotation = parse_element (element ("""DiagramObject.rotation"""))
+    val Diagram = parse_attribute (attribute ("""DiagramObject.Diagram"""))
+    val DiagramObjectStyle = parse_attribute (attribute ("""DiagramObject.DiagramObjectStyle"""))
+    val IdentifiedObject_attr = parse_attribute (attribute ("""DiagramObject.IdentifiedObject"""))
+    val VisibilityLayers = parse_attributes (attribute ("""DiagramObject.VisibilityLayers"""))
     def parse (context: Context): DiagramObject =
     {
         DiagramObject(
@@ -289,12 +289,12 @@ object DiagramObjectPoint
 extends
     Parseable[DiagramObjectPoint]
 {
-    val sequenceNumber: (Context) => String = parse_element (element ("""DiagramObjectPoint.sequenceNumber"""))
-    val xPosition: (Context) => String = parse_element (element ("""DiagramObjectPoint.xPosition"""))
-    val yPosition: (Context) => String = parse_element (element ("""DiagramObjectPoint.yPosition"""))
-    val zPosition: (Context) => String = parse_element (element ("""DiagramObjectPoint.zPosition"""))
-    val DiagramObject: (Context) => String = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObject"""))
-    val DiagramObjectGluePoint: (Context) => String = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObjectGluePoint"""))
+    val sequenceNumber = parse_element (element ("""DiagramObjectPoint.sequenceNumber"""))
+    val xPosition = parse_element (element ("""DiagramObjectPoint.xPosition"""))
+    val yPosition = parse_element (element ("""DiagramObjectPoint.yPosition"""))
+    val zPosition = parse_element (element ("""DiagramObjectPoint.zPosition"""))
+    val DiagramObject = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObject"""))
+    val DiagramObjectGluePoint = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObjectGluePoint"""))
     def parse (context: Context): DiagramObjectPoint =
     {
         DiagramObjectPoint(
@@ -446,7 +446,7 @@ object TextDiagramObject
 extends
     Parseable[TextDiagramObject]
 {
-    val text: (Context) => String = parse_element (element ("""TextDiagramObject.text"""))
+    val text = parse_element (element ("""TextDiagramObject.text"""))
     def parse (context: Context): TextDiagramObject =
     {
         TextDiagramObject(
@@ -499,7 +499,7 @@ object VisibilityLayer
 extends
     Parseable[VisibilityLayer]
 {
-    val drawingOrder: (Context) => String = parse_element (element ("""VisibilityLayer.drawingOrder"""))
+    val drawingOrder = parse_element (element ("""VisibilityLayer.drawingOrder"""))
     def parse (context: Context): VisibilityLayer =
     {
         VisibilityLayer(

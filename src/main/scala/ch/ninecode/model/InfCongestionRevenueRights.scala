@@ -69,14 +69,14 @@ object FTR
 extends
     Parseable[FTR]
 {
-    val action: (Context) => String = parse_element (element ("""FTR.action"""))
-    val baseEnergy: (Context) => String = parse_element (element ("""FTR.baseEnergy"""))
-    val ftrType: (Context) => String = parse_element (element ("""FTR.ftrType"""))
-    val optimized: (Context) => String = parse_element (element ("""FTR.optimized"""))
-    val EnergyPriceCurve: (Context) => String = parse_attribute (attribute ("""FTR.EnergyPriceCurve"""))
-    val Flowgate: (Context) => String = parse_attribute (attribute ("""FTR.Flowgate"""))
-    val Pnodes: (Context) => List[String] = parse_attributes (attribute ("""FTR.Pnodes"""))
-    val _class: (Context) => String = parse_element (element ("""FTR.class"""))
+    val action = parse_element (element ("""FTR.action"""))
+    val baseEnergy = parse_element (element ("""FTR.baseEnergy"""))
+    val ftrType = parse_element (element ("""FTR.ftrType"""))
+    val optimized = parse_element (element ("""FTR.optimized"""))
+    val EnergyPriceCurve = parse_attribute (attribute ("""FTR.EnergyPriceCurve"""))
+    val Flowgate = parse_attribute (attribute ("""FTR.Flowgate"""))
+    val Pnodes = parse_attributes (attribute ("""FTR.Pnodes"""))
+    val _class = parse_element (element ("""FTR.class"""))
     def parse (context: Context): FTR =
     {
         FTR(
@@ -143,10 +143,10 @@ object ViolationLimit
 extends
     Parseable[ViolationLimit]
 {
-    val enforced: (Context) => String = parse_element (element ("""ViolationLimit.enforced"""))
-    val Flowgate: (Context) => String = parse_attribute (attribute ("""ViolationLimit.Flowgate"""))
-    val MktMeasurement: (Context) => String = parse_attribute (attribute ("""ViolationLimit.MktMeasurement"""))
-    val MktOrganisation: (Context) => List[String] = parse_attributes (attribute ("""ViolationLimit.MktOrganisation"""))
+    val enforced = parse_element (element ("""ViolationLimit.enforced"""))
+    val Flowgate = parse_attribute (attribute ("""ViolationLimit.Flowgate"""))
+    val MktMeasurement = parse_attribute (attribute ("""ViolationLimit.MktMeasurement"""))
+    val MktOrganisation = parse_attributes (attribute ("""ViolationLimit.MktOrganisation"""))
     def parse (context: Context): ViolationLimit =
     {
         ViolationLimit(

@@ -56,8 +56,8 @@ object LoadAggregate
 extends
     Parseable[LoadAggregate]
 {
-    val LoadMotor: (Context) => String = parse_attribute (attribute ("""LoadAggregate.LoadMotor"""))
-    val LoadStatic: (Context) => String = parse_attribute (attribute ("""LoadAggregate.LoadStatic"""))
+    val LoadMotor = parse_attribute (attribute ("""LoadAggregate.LoadMotor"""))
+    val LoadStatic = parse_attribute (attribute ("""LoadAggregate.LoadStatic"""))
     def parse (context: Context): LoadAggregate =
     {
         LoadAggregate(
@@ -151,17 +151,17 @@ object LoadComposite
 extends
     Parseable[LoadComposite]
 {
-    val epfd: (Context) => String = parse_element (element ("""LoadComposite.epfd"""))
-    val epfs: (Context) => String = parse_element (element ("""LoadComposite.epfs"""))
-    val epvd: (Context) => String = parse_element (element ("""LoadComposite.epvd"""))
-    val epvs: (Context) => String = parse_element (element ("""LoadComposite.epvs"""))
-    val eqfd: (Context) => String = parse_element (element ("""LoadComposite.eqfd"""))
-    val eqfs: (Context) => String = parse_element (element ("""LoadComposite.eqfs"""))
-    val eqvd: (Context) => String = parse_element (element ("""LoadComposite.eqvd"""))
-    val eqvs: (Context) => String = parse_element (element ("""LoadComposite.eqvs"""))
-    val h: (Context) => String = parse_element (element ("""LoadComposite.h"""))
-    val lfrac: (Context) => String = parse_element (element ("""LoadComposite.lfrac"""))
-    val pfrac: (Context) => String = parse_element (element ("""LoadComposite.pfrac"""))
+    val epfd = parse_element (element ("""LoadComposite.epfd"""))
+    val epfs = parse_element (element ("""LoadComposite.epfs"""))
+    val epvd = parse_element (element ("""LoadComposite.epvd"""))
+    val epvs = parse_element (element ("""LoadComposite.epvs"""))
+    val eqfd = parse_element (element ("""LoadComposite.eqfd"""))
+    val eqfs = parse_element (element ("""LoadComposite.eqfs"""))
+    val eqvd = parse_element (element ("""LoadComposite.eqvd"""))
+    val eqvs = parse_element (element ("""LoadComposite.eqvs"""))
+    val h = parse_element (element ("""LoadComposite.h"""))
+    val lfrac = parse_element (element ("""LoadComposite.lfrac"""))
+    val pfrac = parse_element (element ("""LoadComposite.pfrac"""))
     def parse (context: Context): LoadComposite =
     {
         LoadComposite(
@@ -296,15 +296,15 @@ object LoadGenericNonLinear
 extends
     Parseable[LoadGenericNonLinear]
 {
-    val bs: (Context) => String = parse_element (element ("""LoadGenericNonLinear.bs"""))
-    val bt: (Context) => String = parse_element (element ("""LoadGenericNonLinear.bt"""))
-    val genericNonLinearLoadModelType: (Context) => String = parse_attribute (attribute ("""LoadGenericNonLinear.genericNonLinearLoadModelType"""))
-    val ls: (Context) => String = parse_element (element ("""LoadGenericNonLinear.ls"""))
-    val lt: (Context) => String = parse_element (element ("""LoadGenericNonLinear.lt"""))
-    val pt: (Context) => String = parse_element (element ("""LoadGenericNonLinear.pt"""))
-    val qt: (Context) => String = parse_element (element ("""LoadGenericNonLinear.qt"""))
-    val tp: (Context) => String = parse_element (element ("""LoadGenericNonLinear.tp"""))
-    val tq: (Context) => String = parse_element (element ("""LoadGenericNonLinear.tq"""))
+    val bs = parse_element (element ("""LoadGenericNonLinear.bs"""))
+    val bt = parse_element (element ("""LoadGenericNonLinear.bt"""))
+    val genericNonLinearLoadModelType = parse_attribute (attribute ("""LoadGenericNonLinear.genericNonLinearLoadModelType"""))
+    val ls = parse_element (element ("""LoadGenericNonLinear.ls"""))
+    val lt = parse_element (element ("""LoadGenericNonLinear.lt"""))
+    val pt = parse_element (element ("""LoadGenericNonLinear.pt"""))
+    val qt = parse_element (element ("""LoadGenericNonLinear.qt"""))
+    val tp = parse_element (element ("""LoadGenericNonLinear.tp"""))
+    val tq = parse_element (element ("""LoadGenericNonLinear.tq"""))
     def parse (context: Context): LoadGenericNonLinear =
     {
         LoadGenericNonLinear(
@@ -416,20 +416,20 @@ object LoadMotor
 extends
     Parseable[LoadMotor]
 {
-    val d: (Context) => String = parse_element (element ("""LoadMotor.d"""))
-    val h: (Context) => String = parse_element (element ("""LoadMotor.h"""))
-    val lfac: (Context) => String = parse_element (element ("""LoadMotor.lfac"""))
-    val lp: (Context) => String = parse_element (element ("""LoadMotor.lp"""))
-    val lpp: (Context) => String = parse_element (element ("""LoadMotor.lpp"""))
-    val ls: (Context) => String = parse_element (element ("""LoadMotor.ls"""))
-    val pfrac: (Context) => String = parse_element (element ("""LoadMotor.pfrac"""))
-    val ra: (Context) => String = parse_element (element ("""LoadMotor.ra"""))
-    val tbkr: (Context) => String = parse_element (element ("""LoadMotor.tbkr"""))
-    val tpo: (Context) => String = parse_element (element ("""LoadMotor.tpo"""))
-    val tppo: (Context) => String = parse_element (element ("""LoadMotor.tppo"""))
-    val tv: (Context) => String = parse_element (element ("""LoadMotor.tv"""))
-    val vt: (Context) => String = parse_element (element ("""LoadMotor.vt"""))
-    val LoadAggregate: (Context) => String = parse_attribute (attribute ("""LoadMotor.LoadAggregate"""))
+    val d = parse_element (element ("""LoadMotor.d"""))
+    val h = parse_element (element ("""LoadMotor.h"""))
+    val lfac = parse_element (element ("""LoadMotor.lfac"""))
+    val lp = parse_element (element ("""LoadMotor.lp"""))
+    val lpp = parse_element (element ("""LoadMotor.lpp"""))
+    val ls = parse_element (element ("""LoadMotor.ls"""))
+    val pfrac = parse_element (element ("""LoadMotor.pfrac"""))
+    val ra = parse_element (element ("""LoadMotor.ra"""))
+    val tbkr = parse_element (element ("""LoadMotor.tbkr"""))
+    val tpo = parse_element (element ("""LoadMotor.tpo"""))
+    val tppo = parse_element (element ("""LoadMotor.tppo"""))
+    val tv = parse_element (element ("""LoadMotor.tv"""))
+    val vt = parse_element (element ("""LoadMotor.vt"""))
+    val LoadAggregate = parse_attribute (attribute ("""LoadMotor.LoadAggregate"""))
     def parse (context: Context): LoadMotor =
     {
         LoadMotor(
@@ -561,24 +561,24 @@ object LoadStatic
 extends
     Parseable[LoadStatic]
 {
-    val ep1: (Context) => String = parse_element (element ("""LoadStatic.ep1"""))
-    val ep2: (Context) => String = parse_element (element ("""LoadStatic.ep2"""))
-    val ep3: (Context) => String = parse_element (element ("""LoadStatic.ep3"""))
-    val eq1: (Context) => String = parse_element (element ("""LoadStatic.eq1"""))
-    val eq2: (Context) => String = parse_element (element ("""LoadStatic.eq2"""))
-    val eq3: (Context) => String = parse_element (element ("""LoadStatic.eq3"""))
-    val kp1: (Context) => String = parse_element (element ("""LoadStatic.kp1"""))
-    val kp2: (Context) => String = parse_element (element ("""LoadStatic.kp2"""))
-    val kp3: (Context) => String = parse_element (element ("""LoadStatic.kp3"""))
-    val kp4: (Context) => String = parse_element (element ("""LoadStatic.kp4"""))
-    val kpf: (Context) => String = parse_element (element ("""LoadStatic.kpf"""))
-    val kq1: (Context) => String = parse_element (element ("""LoadStatic.kq1"""))
-    val kq2: (Context) => String = parse_element (element ("""LoadStatic.kq2"""))
-    val kq3: (Context) => String = parse_element (element ("""LoadStatic.kq3"""))
-    val kq4: (Context) => String = parse_element (element ("""LoadStatic.kq4"""))
-    val kqf: (Context) => String = parse_element (element ("""LoadStatic.kqf"""))
-    val staticLoadModelType: (Context) => String = parse_attribute (attribute ("""LoadStatic.staticLoadModelType"""))
-    val LoadAggregate: (Context) => String = parse_attribute (attribute ("""LoadStatic.LoadAggregate"""))
+    val ep1 = parse_element (element ("""LoadStatic.ep1"""))
+    val ep2 = parse_element (element ("""LoadStatic.ep2"""))
+    val ep3 = parse_element (element ("""LoadStatic.ep3"""))
+    val eq1 = parse_element (element ("""LoadStatic.eq1"""))
+    val eq2 = parse_element (element ("""LoadStatic.eq2"""))
+    val eq3 = parse_element (element ("""LoadStatic.eq3"""))
+    val kp1 = parse_element (element ("""LoadStatic.kp1"""))
+    val kp2 = parse_element (element ("""LoadStatic.kp2"""))
+    val kp3 = parse_element (element ("""LoadStatic.kp3"""))
+    val kp4 = parse_element (element ("""LoadStatic.kp4"""))
+    val kpf = parse_element (element ("""LoadStatic.kpf"""))
+    val kq1 = parse_element (element ("""LoadStatic.kq1"""))
+    val kq2 = parse_element (element ("""LoadStatic.kq2"""))
+    val kq3 = parse_element (element ("""LoadStatic.kq3"""))
+    val kq4 = parse_element (element ("""LoadStatic.kq4"""))
+    val kqf = parse_element (element ("""LoadStatic.kqf"""))
+    val staticLoadModelType = parse_attribute (attribute ("""LoadStatic.staticLoadModelType"""))
+    val LoadAggregate = parse_attribute (attribute ("""LoadStatic.LoadAggregate"""))
     def parse (context: Context): LoadStatic =
     {
         LoadStatic(

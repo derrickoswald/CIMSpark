@@ -121,24 +121,24 @@ object DiscExcContIEEEDEC1A
 extends
     Parseable[DiscExcContIEEEDEC1A]
 {
-    val esc: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.esc"""))
-    val kan: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.kan"""))
-    val ketl: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.ketl"""))
-    val tan: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.tan"""))
-    val td: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.td"""))
-    val tl1: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.tl1"""))
-    val tl2: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.tl2"""))
-    val tw5: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.tw5"""))
-    val vanmax: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vanmax"""))
-    val vomax: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vomax"""))
-    val vomin: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vomin"""))
-    val vsmax: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vsmax"""))
-    val vsmin: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vsmin"""))
-    val vtc: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vtc"""))
-    val vtlmt: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vtlmt"""))
-    val vtm: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vtm"""))
-    val vtn: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.vtn"""))
-    val _val: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC1A.val"""))
+    val esc = parse_element (element ("""DiscExcContIEEEDEC1A.esc"""))
+    val kan = parse_element (element ("""DiscExcContIEEEDEC1A.kan"""))
+    val ketl = parse_element (element ("""DiscExcContIEEEDEC1A.ketl"""))
+    val tan = parse_element (element ("""DiscExcContIEEEDEC1A.tan"""))
+    val td = parse_element (element ("""DiscExcContIEEEDEC1A.td"""))
+    val tl1 = parse_element (element ("""DiscExcContIEEEDEC1A.tl1"""))
+    val tl2 = parse_element (element ("""DiscExcContIEEEDEC1A.tl2"""))
+    val tw5 = parse_element (element ("""DiscExcContIEEEDEC1A.tw5"""))
+    val vanmax = parse_element (element ("""DiscExcContIEEEDEC1A.vanmax"""))
+    val vomax = parse_element (element ("""DiscExcContIEEEDEC1A.vomax"""))
+    val vomin = parse_element (element ("""DiscExcContIEEEDEC1A.vomin"""))
+    val vsmax = parse_element (element ("""DiscExcContIEEEDEC1A.vsmax"""))
+    val vsmin = parse_element (element ("""DiscExcContIEEEDEC1A.vsmin"""))
+    val vtc = parse_element (element ("""DiscExcContIEEEDEC1A.vtc"""))
+    val vtlmt = parse_element (element ("""DiscExcContIEEEDEC1A.vtlmt"""))
+    val vtm = parse_element (element ("""DiscExcContIEEEDEC1A.vtm"""))
+    val vtn = parse_element (element ("""DiscExcContIEEEDEC1A.vtn"""))
+    val _val = parse_element (element ("""DiscExcContIEEEDEC1A.val"""))
     def parse (context: Context): DiscExcContIEEEDEC1A =
     {
         DiscExcContIEEEDEC1A(
@@ -219,11 +219,11 @@ object DiscExcContIEEEDEC2A
 extends
     Parseable[DiscExcContIEEEDEC2A]
 {
-    val td1: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC2A.td1"""))
-    val td2: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC2A.td2"""))
-    val vdmax: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC2A.vdmax"""))
-    val vdmin: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC2A.vdmin"""))
-    val vk: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC2A.vk"""))
+    val td1 = parse_element (element ("""DiscExcContIEEEDEC2A.td1"""))
+    val td2 = parse_element (element ("""DiscExcContIEEEDEC2A.td2"""))
+    val vdmax = parse_element (element ("""DiscExcContIEEEDEC2A.vdmax"""))
+    val vdmin = parse_element (element ("""DiscExcContIEEEDEC2A.vdmin"""))
+    val vk = parse_element (element ("""DiscExcContIEEEDEC2A.vk"""))
     def parse (context: Context): DiscExcContIEEEDEC2A =
     {
         DiscExcContIEEEDEC2A(
@@ -282,8 +282,8 @@ object DiscExcContIEEEDEC3A
 extends
     Parseable[DiscExcContIEEEDEC3A]
 {
-    val tdr: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC3A.tdr"""))
-    val vtmin: (Context) => String = parse_element (element ("""DiscExcContIEEEDEC3A.vtmin"""))
+    val tdr = parse_element (element ("""DiscExcContIEEEDEC3A.tdr"""))
+    val vtmin = parse_element (element ("""DiscExcContIEEEDEC3A.vtmin"""))
     def parse (context: Context): DiscExcContIEEEDEC3A =
     {
         DiscExcContIEEEDEC3A(
@@ -338,8 +338,8 @@ object DiscontinuousExcitationControlDynamics
 extends
     Parseable[DiscontinuousExcitationControlDynamics]
 {
-    val ExcitationSystemDynamics: (Context) => String = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics"""))
-    val RemoteInputSignal: (Context) => String = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.RemoteInputSignal"""))
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics"""))
+    val RemoteInputSignal = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.RemoteInputSignal"""))
     def parse (context: Context): DiscontinuousExcitationControlDynamics =
     {
         DiscontinuousExcitationControlDynamics(

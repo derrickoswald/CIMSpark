@@ -77,15 +77,15 @@ object MarketInvoice
 extends
     Parseable[MarketInvoice]
 {
-    val amount: (Context) => String = parse_element (element ("""MarketInvoice.amount"""))
-    val billMediaKind: (Context) => String = parse_attribute (attribute ("""MarketInvoice.billMediaKind"""))
-    val dueDate: (Context) => String = parse_element (element ("""MarketInvoice.dueDate"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""MarketInvoice.kind"""))
-    val mailedDate: (Context) => String = parse_element (element ("""MarketInvoice.mailedDate"""))
-    val proForma: (Context) => String = parse_element (element ("""MarketInvoice.proForma"""))
-    val referenceNumber: (Context) => String = parse_element (element ("""MarketInvoice.referenceNumber"""))
-    val transactionDateTime: (Context) => String = parse_element (element ("""MarketInvoice.transactionDateTime"""))
-    val transferType: (Context) => String = parse_element (element ("""MarketInvoice.transferType"""))
+    val amount = parse_element (element ("""MarketInvoice.amount"""))
+    val billMediaKind = parse_attribute (attribute ("""MarketInvoice.billMediaKind"""))
+    val dueDate = parse_element (element ("""MarketInvoice.dueDate"""))
+    val kind = parse_attribute (attribute ("""MarketInvoice.kind"""))
+    val mailedDate = parse_element (element ("""MarketInvoice.mailedDate"""))
+    val proForma = parse_element (element ("""MarketInvoice.proForma"""))
+    val referenceNumber = parse_element (element ("""MarketInvoice.referenceNumber"""))
+    val transactionDateTime = parse_element (element ("""MarketInvoice.transactionDateTime"""))
+    val transferType = parse_element (element ("""MarketInvoice.transferType"""))
     def parse (context: Context): MarketInvoice =
     {
         MarketInvoice(
@@ -177,18 +177,18 @@ object MarketInvoiceLineItem
 extends
     Parseable[MarketInvoiceLineItem]
 {
-    val billPeriod: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.billPeriod"""))
-    val glAccount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.glAccount"""))
-    val glDateTime: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.glDateTime"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.kind"""))
-    val lineAmount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.lineAmount"""))
-    val lineNumber: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.lineNumber"""))
-    val lineVersion: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.lineVersion"""))
-    val netAmount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.netAmount"""))
-    val previousAmount: (Context) => String = parse_element (element ("""MarketInvoiceLineItem.previousAmount"""))
-    val ContainerMarketInvoiceLineItem: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.ContainerMarketInvoiceLineItem"""))
-    val MarketInvoice: (Context) => String = parse_attribute (attribute ("""MarketInvoiceLineItem.MarketInvoice"""))
-    val Settlement: (Context) => List[String] = parse_attributes (attribute ("""MarketInvoiceLineItem.Settlement"""))
+    val billPeriod = parse_attribute (attribute ("""MarketInvoiceLineItem.billPeriod"""))
+    val glAccount = parse_element (element ("""MarketInvoiceLineItem.glAccount"""))
+    val glDateTime = parse_element (element ("""MarketInvoiceLineItem.glDateTime"""))
+    val kind = parse_attribute (attribute ("""MarketInvoiceLineItem.kind"""))
+    val lineAmount = parse_element (element ("""MarketInvoiceLineItem.lineAmount"""))
+    val lineNumber = parse_element (element ("""MarketInvoiceLineItem.lineNumber"""))
+    val lineVersion = parse_element (element ("""MarketInvoiceLineItem.lineVersion"""))
+    val netAmount = parse_element (element ("""MarketInvoiceLineItem.netAmount"""))
+    val previousAmount = parse_element (element ("""MarketInvoiceLineItem.previousAmount"""))
+    val ContainerMarketInvoiceLineItem = parse_attribute (attribute ("""MarketInvoiceLineItem.ContainerMarketInvoiceLineItem"""))
+    val MarketInvoice = parse_attribute (attribute ("""MarketInvoiceLineItem.MarketInvoice"""))
+    val Settlement = parse_attributes (attribute ("""MarketInvoiceLineItem.Settlement"""))
     def parse (context: Context): MarketInvoiceLineItem =
     {
         MarketInvoiceLineItem(
@@ -319,14 +319,14 @@ object MarketLedgerEntry
 extends
     Parseable[MarketLedgerEntry]
 {
-    val accountID: (Context) => String = parse_element (element ("""MarketLedgerEntry.accountID"""))
-    val accountKind: (Context) => String = parse_attribute (attribute ("""MarketLedgerEntry.accountKind"""))
-    val amount: (Context) => String = parse_element (element ("""MarketLedgerEntry.amount"""))
-    val postedDateTime: (Context) => String = parse_element (element ("""MarketLedgerEntry.postedDateTime"""))
-    val status: (Context) => String = parse_attribute (attribute ("""MarketLedgerEntry.status"""))
-    val transactionDateTime: (Context) => String = parse_element (element ("""MarketLedgerEntry.transactionDateTime"""))
-    val MarketLedger: (Context) => String = parse_attribute (attribute ("""MarketLedgerEntry.MarketLedger"""))
-    val Settlement: (Context) => List[String] = parse_attributes (attribute ("""MarketLedgerEntry.Settlement"""))
+    val accountID = parse_element (element ("""MarketLedgerEntry.accountID"""))
+    val accountKind = parse_attribute (attribute ("""MarketLedgerEntry.accountKind"""))
+    val amount = parse_element (element ("""MarketLedgerEntry.amount"""))
+    val postedDateTime = parse_element (element ("""MarketLedgerEntry.postedDateTime"""))
+    val status = parse_attribute (attribute ("""MarketLedgerEntry.status"""))
+    val transactionDateTime = parse_element (element ("""MarketLedgerEntry.transactionDateTime"""))
+    val MarketLedger = parse_attribute (attribute ("""MarketLedgerEntry.MarketLedger"""))
+    val Settlement = parse_attributes (attribute ("""MarketLedgerEntry.Settlement"""))
     def parse (context: Context): MarketLedgerEntry =
     {
         MarketLedgerEntry(
@@ -443,11 +443,11 @@ object MktConnectivityNode
 extends
     Parseable[MktConnectivityNode]
 {
-    val endEffectiveDate: (Context) => String = parse_element (element ("""MktConnectivityNode.endEffectiveDate"""))
-    val startEffectiveDate: (Context) => String = parse_element (element ("""MktConnectivityNode.startEffectiveDate"""))
-    val IndividualPnode: (Context) => String = parse_attribute (attribute ("""MktConnectivityNode.IndividualPnode"""))
-    val RTO: (Context) => String = parse_attribute (attribute ("""MktConnectivityNode.RTO"""))
-    val SysLoadDistribuFactor: (Context) => String = parse_attribute (attribute ("""MktConnectivityNode.SysLoadDistribuFactor"""))
+    val endEffectiveDate = parse_element (element ("""MktConnectivityNode.endEffectiveDate"""))
+    val startEffectiveDate = parse_element (element ("""MktConnectivityNode.startEffectiveDate"""))
+    val IndividualPnode = parse_attribute (attribute ("""MktConnectivityNode.IndividualPnode"""))
+    val RTO = parse_attribute (attribute ("""MktConnectivityNode.RTO"""))
+    val SysLoadDistribuFactor = parse_attribute (attribute ("""MktConnectivityNode.SysLoadDistribuFactor"""))
     def parse (context: Context): MktConnectivityNode =
     {
         MktConnectivityNode(
@@ -502,7 +502,7 @@ object MktEnergyConsumer
 extends
     Parseable[MktEnergyConsumer]
 {
-    val RegisteredLoad: (Context) => String = parse_attribute (attribute ("""MktEnergyConsumer.RegisteredLoad"""))
+    val RegisteredLoad = parse_attribute (attribute ("""MktEnergyConsumer.RegisteredLoad"""))
     def parse (context: Context): MktEnergyConsumer =
     {
         MktEnergyConsumer(
@@ -553,7 +553,7 @@ object MktGeneratingUnit
 extends
     Parseable[MktGeneratingUnit]
 {
-    val RegisteredGenerator: (Context) => String = parse_attribute (attribute ("""MktGeneratingUnit.RegisteredGenerator"""))
+    val RegisteredGenerator = parse_attribute (attribute ("""MktGeneratingUnit.RegisteredGenerator"""))
     def parse (context: Context): MktGeneratingUnit =
     {
         MktGeneratingUnit(
@@ -604,7 +604,7 @@ object MktLine
 extends
     Parseable[MktLine]
 {
-    val TransmissionRightOfWay: (Context) => String = parse_attribute (attribute ("""MktLine.TransmissionRightOfWay"""))
+    val TransmissionRightOfWay = parse_attribute (attribute ("""MktLine.TransmissionRightOfWay"""))
     def parse (context: Context): MktLine =
     {
         MktLine(
@@ -708,9 +708,9 @@ object MktMeasurement
 extends
     Parseable[MktMeasurement]
 {
-    val ByTiePoint: (Context) => String = parse_attribute (attribute ("""MktMeasurement.ByTiePoint"""))
-    val ForTiePoint: (Context) => String = parse_attribute (attribute ("""MktMeasurement.ForTiePoint"""))
-    val Pnode: (Context) => String = parse_attribute (attribute ("""MktMeasurement.Pnode"""))
+    val ByTiePoint = parse_attribute (attribute ("""MktMeasurement.ByTiePoint"""))
+    val ForTiePoint = parse_attribute (attribute ("""MktMeasurement.ForTiePoint"""))
+    val Pnode = parse_attribute (attribute ("""MktMeasurement.Pnode"""))
     def parse (context: Context): MktMeasurement =
     {
         MktMeasurement(
@@ -784,14 +784,14 @@ object MktOrganisation
 extends
     Parseable[MktOrganisation]
 {
-    val creditFlag: (Context) => String = parse_attribute (attribute ("""MktOrganisation.creditFlag"""))
-    val creditStartEffectiveDate: (Context) => String = parse_element (element ("""MktOrganisation.creditStartEffectiveDate"""))
-    val endEffectiveDate: (Context) => String = parse_element (element ("""MktOrganisation.endEffectiveDate"""))
-    val lastModified: (Context) => String = parse_element (element ("""MktOrganisation.lastModified"""))
-    val organisationID: (Context) => String = parse_element (element ("""MktOrganisation.organisationID"""))
-    val qualificationStatus: (Context) => String = parse_element (element ("""MktOrganisation.qualificationStatus"""))
-    val startEffectiveDate: (Context) => String = parse_element (element ("""MktOrganisation.startEffectiveDate"""))
-    val MarketPerson: (Context) => List[String] = parse_attributes (attribute ("""MktOrganisation.MarketPerson"""))
+    val creditFlag = parse_attribute (attribute ("""MktOrganisation.creditFlag"""))
+    val creditStartEffectiveDate = parse_element (element ("""MktOrganisation.creditStartEffectiveDate"""))
+    val endEffectiveDate = parse_element (element ("""MktOrganisation.endEffectiveDate"""))
+    val lastModified = parse_element (element ("""MktOrganisation.lastModified"""))
+    val organisationID = parse_element (element ("""MktOrganisation.organisationID"""))
+    val qualificationStatus = parse_element (element ("""MktOrganisation.qualificationStatus"""))
+    val startEffectiveDate = parse_element (element ("""MktOrganisation.startEffectiveDate"""))
+    val MarketPerson = parse_attributes (attribute ("""MktOrganisation.MarketPerson"""))
     def parse (context: Context): MktOrganisation =
     {
         MktOrganisation(
@@ -852,8 +852,8 @@ object MktPowerTransformer
 extends
     Parseable[MktPowerTransformer]
 {
-    val EndAFlow: (Context) => String = parse_attribute (attribute ("""MktPowerTransformer.EndAFlow"""))
-    val EndBFlow: (Context) => String = parse_attribute (attribute ("""MktPowerTransformer.EndBFlow"""))
+    val EndAFlow = parse_attribute (attribute ("""MktPowerTransformer.EndAFlow"""))
+    val EndBFlow = parse_attribute (attribute ("""MktPowerTransformer.EndBFlow"""))
     def parse (context: Context): MktPowerTransformer =
     {
         MktPowerTransformer(
@@ -911,9 +911,9 @@ object MktTerminal
 extends
     Parseable[MktTerminal]
 {
-    val endEffectiveDate: (Context) => String = parse_element (element ("""MktTerminal.endEffectiveDate"""))
-    val startEffectiveDate: (Context) => String = parse_element (element ("""MktTerminal.startEffectiveDate"""))
-    val Flowgate: (Context) => String = parse_attribute (attribute ("""MktTerminal.Flowgate"""))
+    val endEffectiveDate = parse_element (element ("""MktTerminal.endEffectiveDate"""))
+    val startEffectiveDate = parse_element (element ("""MktTerminal.startEffectiveDate"""))
+    val Flowgate = parse_attribute (attribute ("""MktTerminal.Flowgate"""))
     def parse (context: Context): MktTerminal =
     {
         MktTerminal(

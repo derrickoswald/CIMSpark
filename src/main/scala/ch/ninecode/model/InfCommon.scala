@@ -54,8 +54,8 @@ object Bank
 extends
     Parseable[Bank]
 {
-    val bic: (Context) => String = parse_element (element ("""Bank.bic"""))
-    val iban: (Context) => String = parse_element (element ("""Bank.iban"""))
+    val bic = parse_element (element ("""Bank.bic"""))
+    val iban = parse_element (element ("""Bank.iban"""))
     def parse (context: Context): Bank =
     {
         Bank(
@@ -113,9 +113,9 @@ object BankAccount
 extends
     Parseable[BankAccount]
 {
-    val accountNumber: (Context) => String = parse_element (element ("""BankAccount.accountNumber"""))
-    val Bank: (Context) => String = parse_attribute (attribute ("""BankAccount.Bank"""))
-    val ServiceSupplier: (Context) => String = parse_attribute (attribute ("""BankAccount.ServiceSupplier"""))
+    val accountNumber = parse_element (element ("""BankAccount.accountNumber"""))
+    val Bank = parse_attribute (attribute ("""BankAccount.Bank"""))
+    val ServiceSupplier = parse_attribute (attribute ("""BankAccount.ServiceSupplier"""))
     def parse (context: Context): BankAccount =
     {
         BankAccount(
@@ -220,8 +220,8 @@ object BusinessRole
 extends
     Parseable[BusinessRole]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""BusinessRole.status"""))
-    val typ: (Context) => String = parse_element (element ("""BusinessRole.type"""))
+    val status = parse_attribute (attribute ("""BusinessRole.status"""))
+    val typ = parse_element (element ("""BusinessRole.type"""))
     def parse (context: Context): BusinessRole =
     {
         BusinessRole(
@@ -280,9 +280,9 @@ object Craft
 extends
     Parseable[Craft]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""Craft.status"""))
-    val typ: (Context) => String = parse_element (element ("""Craft.type"""))
-    val ErpPersons: (Context) => List[String] = parse_attributes (attribute ("""Craft.ErpPersons"""))
+    val status = parse_attribute (attribute ("""Craft.status"""))
+    val typ = parse_element (element ("""Craft.type"""))
+    val ErpPersons = parse_attributes (attribute ("""Craft.ErpPersons"""))
     def parse (context: Context): Craft =
     {
         Craft(
@@ -394,11 +394,11 @@ object OldCrew
 extends
     Parseable[OldCrew]
 {
-    val typ: (Context) => String = parse_element (element ("""OldCrew.type"""))
-    val Assignments: (Context) => List[String] = parse_attributes (attribute ("""OldCrew.Assignments"""))
-    val Locations: (Context) => List[String] = parse_attributes (attribute ("""OldCrew.Locations"""))
-    val Route: (Context) => String = parse_attribute (attribute ("""OldCrew.Route"""))
-    val ShiftPatterns: (Context) => List[String] = parse_attributes (attribute ("""OldCrew.ShiftPatterns"""))
+    val typ = parse_element (element ("""OldCrew.type"""))
+    val Assignments = parse_attributes (attribute ("""OldCrew.Assignments"""))
+    val Locations = parse_attributes (attribute ("""OldCrew.Locations"""))
+    val Route = parse_attribute (attribute ("""OldCrew.Route"""))
+    val ShiftPatterns = parse_attributes (attribute ("""OldCrew.ShiftPatterns"""))
     def parse (context: Context): OldCrew =
     {
         OldCrew(
@@ -469,12 +469,12 @@ object OldPerson
 extends
     Parseable[OldPerson]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""OldPerson.status"""))
-    val typ: (Context) => String = parse_element (element ("""OldPerson.type"""))
-    val CustomerData: (Context) => String = parse_attribute (attribute ("""OldPerson.CustomerData"""))
-    val ErpCompetency: (Context) => String = parse_attribute (attribute ("""OldPerson.ErpCompetency"""))
-    val ErpPersonnel: (Context) => String = parse_attribute (attribute ("""OldPerson.ErpPersonnel"""))
-    val LaborItems: (Context) => List[String] = parse_attributes (attribute ("""OldPerson.LaborItems"""))
+    val status = parse_attribute (attribute ("""OldPerson.status"""))
+    val typ = parse_element (element ("""OldPerson.type"""))
+    val CustomerData = parse_attribute (attribute ("""OldPerson.CustomerData"""))
+    val ErpCompetency = parse_attribute (attribute ("""OldPerson.ErpCompetency"""))
+    val ErpPersonnel = parse_attribute (attribute ("""OldPerson.ErpPersonnel"""))
+    val LaborItems = parse_attributes (attribute ("""OldPerson.LaborItems"""))
     def parse (context: Context): OldPerson =
     {
         OldPerson(
@@ -531,7 +531,7 @@ object OrgOrgRole
 extends
     Parseable[OrgOrgRole]
 {
-    val clientID: (Context) => String = parse_element (element ("""OrgOrgRole.clientID"""))
+    val clientID = parse_element (element ("""OrgOrgRole.clientID"""))
     def parse (context: Context): OrgOrgRole =
     {
         OrgOrgRole(
@@ -582,7 +582,7 @@ object PersonDocumentRole
 extends
     Parseable[PersonDocumentRole]
 {
-    val Person: (Context) => String = parse_attribute (attribute ("""PersonDocumentRole.Person"""))
+    val Person = parse_attribute (attribute ("""PersonDocumentRole.Person"""))
     def parse (context: Context): PersonDocumentRole =
     {
         PersonDocumentRole(
@@ -636,8 +636,8 @@ object PersonOrganisationRole
 extends
     Parseable[PersonOrganisationRole]
 {
-    val clientID: (Context) => String = parse_element (element ("""PersonOrganisationRole.clientID"""))
-    val ErpPerson: (Context) => String = parse_attribute (attribute ("""PersonOrganisationRole.ErpPerson"""))
+    val clientID = parse_element (element ("""PersonOrganisationRole.clientID"""))
+    val ErpPerson = parse_attribute (attribute ("""PersonOrganisationRole.ErpPerson"""))
     def parse (context: Context): PersonOrganisationRole =
     {
         PersonOrganisationRole(
@@ -693,8 +693,8 @@ object PersonPropertyRole
 extends
     Parseable[PersonPropertyRole]
 {
-    val LandProperty: (Context) => String = parse_attribute (attribute ("""PersonPropertyRole.LandProperty"""))
-    val Person: (Context) => String = parse_attribute (attribute ("""PersonPropertyRole.Person"""))
+    val LandProperty = parse_attribute (attribute ("""PersonPropertyRole.LandProperty"""))
+    val Person = parse_attribute (attribute ("""PersonPropertyRole.Person"""))
     def parse (context: Context): PersonPropertyRole =
     {
         PersonPropertyRole(
@@ -796,8 +796,8 @@ object Ratio
 extends
     Parseable[Ratio]
 {
-    val denominator: (Context) => String = parse_element (element ("""Ratio.denominator"""))
-    val numerator: (Context) => String = parse_element (element ("""Ratio.numerator"""))
+    val denominator = parse_element (element ("""Ratio.denominator"""))
+    val numerator = parse_element (element ("""Ratio.numerator"""))
     def parse (context: Context): Ratio =
     {
         Ratio(
@@ -852,8 +852,8 @@ object Role
 extends
     Parseable[Role]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""Role.status"""))
-    val typ: (Context) => String = parse_element (element ("""Role.type"""))
+    val status = parse_attribute (attribute ("""Role.status"""))
+    val typ = parse_element (element ("""Role.type"""))
     def parse (context: Context): Role =
     {
         Role(
@@ -920,12 +920,12 @@ object Skill
 extends
     Parseable[Skill]
 {
-    val certificationPeriod: (Context) => String = parse_attribute (attribute ("""Skill.certificationPeriod"""))
-    val effectiveDateTime: (Context) => String = parse_element (element ("""Skill.effectiveDateTime"""))
-    val level: (Context) => String = parse_attribute (attribute ("""Skill.level"""))
-    val Crafts: (Context) => List[String] = parse_attributes (attribute ("""Skill.Crafts"""))
-    val ErpPerson: (Context) => String = parse_attribute (attribute ("""Skill.ErpPerson"""))
-    val QualificationRequirements: (Context) => List[String] = parse_attributes (attribute ("""Skill.QualificationRequirements"""))
+    val certificationPeriod = parse_attribute (attribute ("""Skill.certificationPeriod"""))
+    val effectiveDateTime = parse_element (element ("""Skill.effectiveDateTime"""))
+    val level = parse_attribute (attribute ("""Skill.level"""))
+    val Crafts = parse_attributes (attribute ("""Skill.Crafts"""))
+    val ErpPerson = parse_attribute (attribute ("""Skill.ErpPerson"""))
+    val QualificationRequirements = parse_attributes (attribute ("""Skill.QualificationRequirements"""))
     def parse (context: Context): Skill =
     {
         Skill(

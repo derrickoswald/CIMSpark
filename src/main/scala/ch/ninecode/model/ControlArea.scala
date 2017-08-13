@@ -59,9 +59,9 @@ object AltGeneratingUnitMeas
 extends
     Parseable[AltGeneratingUnitMeas]
 {
-    val priority: (Context) => String = parse_element (element ("""AltGeneratingUnitMeas.priority"""))
-    val AnalogValue: (Context) => String = parse_attribute (attribute ("""AltGeneratingUnitMeas.AnalogValue"""))
-    val ControlAreaGeneratingUnit: (Context) => String = parse_attribute (attribute ("""AltGeneratingUnitMeas.ControlAreaGeneratingUnit"""))
+    val priority = parse_element (element ("""AltGeneratingUnitMeas.priority"""))
+    val AnalogValue = parse_attribute (attribute ("""AltGeneratingUnitMeas.AnalogValue"""))
+    val ControlAreaGeneratingUnit = parse_attribute (attribute ("""AltGeneratingUnitMeas.ControlAreaGeneratingUnit"""))
     def parse (context: Context): AltGeneratingUnitMeas =
     {
         AltGeneratingUnitMeas(
@@ -121,9 +121,9 @@ object AltTieMeas
 extends
     Parseable[AltTieMeas]
 {
-    val priority: (Context) => String = parse_element (element ("""AltTieMeas.priority"""))
-    val AnalogValue: (Context) => String = parse_attribute (attribute ("""AltTieMeas.AnalogValue"""))
-    val TieFlow: (Context) => String = parse_attribute (attribute ("""AltTieMeas.TieFlow"""))
+    val priority = parse_element (element ("""AltTieMeas.priority"""))
+    val AnalogValue = parse_attribute (attribute ("""AltTieMeas.AnalogValue"""))
+    val TieFlow = parse_attribute (attribute ("""AltTieMeas.TieFlow"""))
     def parse (context: Context): AltTieMeas =
     {
         AltTieMeas(
@@ -187,10 +187,10 @@ object ControlArea
 extends
     Parseable[ControlArea]
 {
-    val netInterchange: (Context) => String = parse_element (element ("""ControlArea.netInterchange"""))
-    val pTolerance: (Context) => String = parse_element (element ("""ControlArea.pTolerance"""))
-    val typ: (Context) => String = parse_attribute (attribute ("""ControlArea.type"""))
-    val EnergyArea: (Context) => String = parse_attribute (attribute ("""ControlArea.EnergyArea"""))
+    val netInterchange = parse_element (element ("""ControlArea.netInterchange"""))
+    val pTolerance = parse_element (element ("""ControlArea.pTolerance"""))
+    val typ = parse_attribute (attribute ("""ControlArea.type"""))
+    val EnergyArea = parse_attribute (attribute ("""ControlArea.EnergyArea"""))
     def parse (context: Context): ControlArea =
     {
         ControlArea(
@@ -249,8 +249,8 @@ object ControlAreaGeneratingUnit
 extends
     Parseable[ControlAreaGeneratingUnit]
 {
-    val ControlArea: (Context) => String = parse_attribute (attribute ("""ControlAreaGeneratingUnit.ControlArea"""))
-    val GeneratingUnit: (Context) => String = parse_attribute (attribute ("""ControlAreaGeneratingUnit.GeneratingUnit"""))
+    val ControlArea = parse_attribute (attribute ("""ControlAreaGeneratingUnit.ControlArea"""))
+    val GeneratingUnit = parse_attribute (attribute ("""ControlAreaGeneratingUnit.GeneratingUnit"""))
     def parse (context: Context): ControlAreaGeneratingUnit =
     {
         ControlAreaGeneratingUnit(
@@ -309,9 +309,9 @@ object TieFlow
 extends
     Parseable[TieFlow]
 {
-    val positiveFlowIn: (Context) => String = parse_element (element ("""TieFlow.positiveFlowIn"""))
-    val ControlArea: (Context) => String = parse_attribute (attribute ("""TieFlow.ControlArea"""))
-    val Terminal: (Context) => String = parse_attribute (attribute ("""TieFlow.Terminal"""))
+    val positiveFlowIn = parse_element (element ("""TieFlow.positiveFlowIn"""))
+    val ControlArea = parse_attribute (attribute ("""TieFlow.ControlArea"""))
+    val Terminal = parse_attribute (attribute ("""TieFlow.Terminal"""))
     def parse (context: Context): TieFlow =
     {
         TieFlow(

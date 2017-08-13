@@ -53,7 +53,7 @@ object AuxiliaryEquipment
 extends
     Parseable[AuxiliaryEquipment]
 {
-    val Terminal: (Context) => String = parse_attribute (attribute ("""AuxiliaryEquipment.Terminal"""))
+    val Terminal = parse_attribute (attribute ("""AuxiliaryEquipment.Terminal"""))
     def parse (context: Context): AuxiliaryEquipment =
     {
         AuxiliaryEquipment(
@@ -117,11 +117,11 @@ object CurrentTransformer
 extends
     Parseable[CurrentTransformer]
 {
-    val accuracyClass: (Context) => String = parse_element (element ("""CurrentTransformer.accuracyClass"""))
-    val accuracyLimit: (Context) => String = parse_element (element ("""CurrentTransformer.accuracyLimit"""))
-    val coreBurden: (Context) => String = parse_element (element ("""CurrentTransformer.coreBurden"""))
-    val ctClass: (Context) => String = parse_element (element ("""CurrentTransformer.ctClass"""))
-    val usage: (Context) => String = parse_element (element ("""CurrentTransformer.usage"""))
+    val accuracyClass = parse_element (element ("""CurrentTransformer.accuracyClass"""))
+    val accuracyLimit = parse_element (element ("""CurrentTransformer.accuracyLimit"""))
+    val coreBurden = parse_element (element ("""CurrentTransformer.coreBurden"""))
+    val ctClass = parse_element (element ("""CurrentTransformer.ctClass"""))
+    val usage = parse_element (element ("""CurrentTransformer.usage"""))
     def parse (context: Context): CurrentTransformer =
     {
         CurrentTransformer(
@@ -281,10 +281,10 @@ object PotentialTransformer
 extends
     Parseable[PotentialTransformer]
 {
-    val accuracyClass: (Context) => String = parse_element (element ("""PotentialTransformer.accuracyClass"""))
-    val nominalRatio: (Context) => String = parse_element (element ("""PotentialTransformer.nominalRatio"""))
-    val ptClass: (Context) => String = parse_element (element ("""PotentialTransformer.ptClass"""))
-    val typ: (Context) => String = parse_attribute (attribute ("""PotentialTransformer.type"""))
+    val accuracyClass = parse_element (element ("""PotentialTransformer.accuracyClass"""))
+    val nominalRatio = parse_element (element ("""PotentialTransformer.nominalRatio"""))
+    val ptClass = parse_element (element ("""PotentialTransformer.ptClass"""))
+    val typ = parse_attribute (attribute ("""PotentialTransformer.type"""))
     def parse (context: Context): PotentialTransformer =
     {
         PotentialTransformer(

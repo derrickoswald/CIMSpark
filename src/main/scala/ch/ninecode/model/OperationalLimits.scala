@@ -51,7 +51,7 @@ object ActivePowerLimit
 extends
     Parseable[ActivePowerLimit]
 {
-    val value: (Context) => String = parse_element (element ("""ActivePowerLimit.value"""))
+    val value = parse_element (element ("""ActivePowerLimit.value"""))
     def parse (context: Context): ActivePowerLimit =
     {
         ActivePowerLimit(
@@ -102,7 +102,7 @@ object ApparentPowerLimit
 extends
     Parseable[ApparentPowerLimit]
 {
-    val value: (Context) => String = parse_element (element ("""ApparentPowerLimit.value"""))
+    val value = parse_element (element ("""ApparentPowerLimit.value"""))
     def parse (context: Context): ApparentPowerLimit =
     {
         ApparentPowerLimit(
@@ -169,12 +169,12 @@ object BranchGroup
 extends
     Parseable[BranchGroup]
 {
-    val maximumActivePower: (Context) => String = parse_element (element ("""BranchGroup.maximumActivePower"""))
-    val maximumReactivePower: (Context) => String = parse_element (element ("""BranchGroup.maximumReactivePower"""))
-    val minimumActivePower: (Context) => String = parse_element (element ("""BranchGroup.minimumActivePower"""))
-    val minimumReactivePower: (Context) => String = parse_element (element ("""BranchGroup.minimumReactivePower"""))
-    val monitorActivePower: (Context) => String = parse_element (element ("""BranchGroup.monitorActivePower"""))
-    val monitorReactivePower: (Context) => String = parse_element (element ("""BranchGroup.monitorReactivePower"""))
+    val maximumActivePower = parse_element (element ("""BranchGroup.maximumActivePower"""))
+    val maximumReactivePower = parse_element (element ("""BranchGroup.maximumReactivePower"""))
+    val minimumActivePower = parse_element (element ("""BranchGroup.minimumActivePower"""))
+    val minimumReactivePower = parse_element (element ("""BranchGroup.minimumReactivePower"""))
+    val monitorActivePower = parse_element (element ("""BranchGroup.monitorActivePower"""))
+    val monitorReactivePower = parse_element (element ("""BranchGroup.monitorReactivePower"""))
     def parse (context: Context): BranchGroup =
     {
         BranchGroup(
@@ -237,9 +237,9 @@ object BranchGroupTerminal
 extends
     Parseable[BranchGroupTerminal]
 {
-    val positiveFlowIn: (Context) => String = parse_element (element ("""BranchGroupTerminal.positiveFlowIn"""))
-    val BranchGroup: (Context) => String = parse_attribute (attribute ("""BranchGroupTerminal.BranchGroup"""))
-    val Terminal: (Context) => String = parse_attribute (attribute ("""BranchGroupTerminal.Terminal"""))
+    val positiveFlowIn = parse_element (element ("""BranchGroupTerminal.positiveFlowIn"""))
+    val BranchGroup = parse_attribute (attribute ("""BranchGroupTerminal.BranchGroup"""))
+    val Terminal = parse_attribute (attribute ("""BranchGroupTerminal.Terminal"""))
     def parse (context: Context): BranchGroupTerminal =
     {
         BranchGroupTerminal(
@@ -292,7 +292,7 @@ object CurrentLimit
 extends
     Parseable[CurrentLimit]
 {
-    val value: (Context) => String = parse_element (element ("""CurrentLimit.value"""))
+    val value = parse_element (element ("""CurrentLimit.value"""))
     def parse (context: Context): CurrentLimit =
     {
         CurrentLimit(
@@ -351,9 +351,9 @@ object OperationalLimit
 extends
     Parseable[OperationalLimit]
 {
-    val LimitDependencyModel: (Context) => List[String] = parse_attributes (attribute ("""OperationalLimit.LimitDependencyModel"""))
-    val OperationalLimitSet: (Context) => String = parse_attribute (attribute ("""OperationalLimit.OperationalLimitSet"""))
-    val OperationalLimitType: (Context) => String = parse_attribute (attribute ("""OperationalLimit.OperationalLimitType"""))
+    val LimitDependencyModel = parse_attributes (attribute ("""OperationalLimit.LimitDependencyModel"""))
+    val OperationalLimitSet = parse_attribute (attribute ("""OperationalLimit.OperationalLimitSet"""))
+    val OperationalLimitType = parse_attribute (attribute ("""OperationalLimit.OperationalLimitType"""))
     def parse (context: Context): OperationalLimit =
     {
         OperationalLimit(
@@ -410,8 +410,8 @@ object OperationalLimitSet
 extends
     Parseable[OperationalLimitSet]
 {
-    val Equipment: (Context) => String = parse_attribute (attribute ("""OperationalLimitSet.Equipment"""))
-    val Terminal: (Context) => String = parse_attribute (attribute ("""OperationalLimitSet.Terminal"""))
+    val Equipment = parse_attribute (attribute ("""OperationalLimitSet.Equipment"""))
+    val Terminal = parse_attribute (attribute ("""OperationalLimitSet.Terminal"""))
     def parse (context: Context): OperationalLimitSet =
     {
         OperationalLimitSet(
@@ -470,9 +470,9 @@ object OperationalLimitType
 extends
     Parseable[OperationalLimitType]
 {
-    val acceptableDuration: (Context) => String = parse_element (element ("""OperationalLimitType.acceptableDuration"""))
-    val direction: (Context) => String = parse_attribute (attribute ("""OperationalLimitType.direction"""))
-    val TargetOperationalLimitmTypeScaling: (Context) => String = parse_attribute (attribute ("""OperationalLimitType.TargetOperationalLimitmTypeScaling"""))
+    val acceptableDuration = parse_element (element ("""OperationalLimitType.acceptableDuration"""))
+    val direction = parse_attribute (attribute ("""OperationalLimitType.direction"""))
+    val TargetOperationalLimitmTypeScaling = parse_attribute (attribute ("""OperationalLimitType.TargetOperationalLimitmTypeScaling"""))
     def parse (context: Context): OperationalLimitType =
     {
         OperationalLimitType(
@@ -526,7 +526,7 @@ object VoltageLimit
 extends
     Parseable[VoltageLimit]
 {
-    val value: (Context) => String = parse_element (element ("""VoltageLimit.value"""))
+    val value = parse_element (element ("""VoltageLimit.value"""))
     def parse (context: Context): VoltageLimit =
     {
         VoltageLimit(

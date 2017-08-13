@@ -66,10 +66,10 @@ object AsynchronousMachineDynamics
 extends
     Parseable[AsynchronousMachineDynamics]
 {
-    val AsynchronousMachine: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineDynamics.AsynchronousMachine"""))
-    val MechanicalLoadDynamics: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineDynamics.MechanicalLoadDynamics"""))
-    val TurbineGovernorDynamics: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineDynamics.TurbineGovernorDynamics"""))
-    val WindTurbineType1or2Dynamics: (Context) => String = parse_attribute (attribute ("""AsynchronousMachineDynamics.WindTurbineType1or2Dynamics"""))
+    val AsynchronousMachine = parse_attribute (attribute ("""AsynchronousMachineDynamics.AsynchronousMachine"""))
+    val MechanicalLoadDynamics = parse_attribute (attribute ("""AsynchronousMachineDynamics.MechanicalLoadDynamics"""))
+    val TurbineGovernorDynamics = parse_attribute (attribute ("""AsynchronousMachineDynamics.TurbineGovernorDynamics"""))
+    val WindTurbineType1or2Dynamics = parse_attribute (attribute ("""AsynchronousMachineDynamics.WindTurbineType1or2Dynamics"""))
     def parse (context: Context): AsynchronousMachineDynamics =
     {
         AsynchronousMachineDynamics(
@@ -149,11 +149,11 @@ object AsynchronousMachineEquivalentCircuit
 extends
     Parseable[AsynchronousMachineEquivalentCircuit]
 {
-    val rr1: (Context) => String = parse_element (element ("""AsynchronousMachineEquivalentCircuit.rr1"""))
-    val rr2: (Context) => String = parse_element (element ("""AsynchronousMachineEquivalentCircuit.rr2"""))
-    val xlr1: (Context) => String = parse_element (element ("""AsynchronousMachineEquivalentCircuit.xlr1"""))
-    val xlr2: (Context) => String = parse_element (element ("""AsynchronousMachineEquivalentCircuit.xlr2"""))
-    val xm: (Context) => String = parse_element (element ("""AsynchronousMachineEquivalentCircuit.xm"""))
+    val rr1 = parse_element (element ("""AsynchronousMachineEquivalentCircuit.rr1"""))
+    val rr2 = parse_element (element ("""AsynchronousMachineEquivalentCircuit.rr2"""))
+    val xlr1 = parse_element (element ("""AsynchronousMachineEquivalentCircuit.xlr1"""))
+    val xlr2 = parse_element (element ("""AsynchronousMachineEquivalentCircuit.xlr2"""))
+    val xm = parse_element (element ("""AsynchronousMachineEquivalentCircuit.xm"""))
     def parse (context: Context): AsynchronousMachineEquivalentCircuit =
     {
         AsynchronousMachineEquivalentCircuit(
@@ -245,11 +245,11 @@ object AsynchronousMachineTimeConstantReactance
 extends
     Parseable[AsynchronousMachineTimeConstantReactance]
 {
-    val tpo: (Context) => String = parse_element (element ("""AsynchronousMachineTimeConstantReactance.tpo"""))
-    val tppo: (Context) => String = parse_element (element ("""AsynchronousMachineTimeConstantReactance.tppo"""))
-    val xp: (Context) => String = parse_element (element ("""AsynchronousMachineTimeConstantReactance.xp"""))
-    val xpp: (Context) => String = parse_element (element ("""AsynchronousMachineTimeConstantReactance.xpp"""))
-    val xs: (Context) => String = parse_element (element ("""AsynchronousMachineTimeConstantReactance.xs"""))
+    val tpo = parse_element (element ("""AsynchronousMachineTimeConstantReactance.tpo"""))
+    val tppo = parse_element (element ("""AsynchronousMachineTimeConstantReactance.tppo"""))
+    val xp = parse_element (element ("""AsynchronousMachineTimeConstantReactance.xp"""))
+    val xpp = parse_element (element ("""AsynchronousMachineTimeConstantReactance.xpp"""))
+    val xs = parse_element (element ("""AsynchronousMachineTimeConstantReactance.xs"""))
     def parse (context: Context): AsynchronousMachineTimeConstantReactance =
     {
         AsynchronousMachineTimeConstantReactance(

@@ -43,7 +43,7 @@ object ICCPCommandPoint
 extends
     Parseable[ICCPCommandPoint]
 {
-    val attr: (Context) => String = parse_attribute (attribute ("""ICCPCommandPoint."""))
+    val attr = parse_attribute (attribute ("""ICCPCommandPoint."""))
     def parse (context: Context): ICCPCommandPoint =
     {
         ICCPCommandPoint(
@@ -91,8 +91,8 @@ object ICCPControlPoint
 extends
     Parseable[ICCPControlPoint]
 {
-    val attr: (Context) => String = parse_attribute (attribute ("""ICCPControlPoint."""))
-    val deviceClass: (Context) => String = parse_attribute (attribute ("""ICCPControlPoint.deviceClass"""))
+    val attr = parse_attribute (attribute ("""ICCPControlPoint."""))
+    val deviceClass = parse_attribute (attribute ("""ICCPControlPoint.deviceClass"""))
     def parse (context: Context): ICCPControlPoint =
     {
         ICCPControlPoint(
@@ -141,8 +141,8 @@ object ICCPIndicationPoint
 extends
     Parseable[ICCPIndicationPoint]
 {
-    val attr: (Context) => String = parse_attribute (attribute ("""ICCPIndicationPoint."""))
-    val typ: (Context) => String = parse_attribute (attribute ("""ICCPIndicationPoint.type"""))
+    val attr = parse_attribute (attribute ("""ICCPIndicationPoint."""))
+    val typ = parse_attribute (attribute ("""ICCPIndicationPoint.type"""))
     def parse (context: Context): ICCPIndicationPoint =
     {
         ICCPIndicationPoint(
@@ -202,9 +202,9 @@ object ICCPInformationMessage
 extends
     Parseable[ICCPInformationMessage]
 {
-    val attr: (Context) => List[String] = parse_attributes (attribute ("""ICCPInformationMessage."""))
-    val localReference: (Context) => String = parse_element (element ("""ICCPInformationMessage.localReference"""))
-    val scope: (Context) => String = parse_attribute (attribute ("""ICCPInformationMessage.scope"""))
+    val attr = parse_attributes (attribute ("""ICCPInformationMessage."""))
+    val localReference = parse_element (element ("""ICCPInformationMessage.localReference"""))
+    val scope = parse_attribute (attribute ("""ICCPInformationMessage.scope"""))
     def parse (context: Context): ICCPInformationMessage =
     {
         ICCPInformationMessage(
@@ -261,8 +261,8 @@ object ICCPPoint
 extends
     Parseable[ICCPPoint]
 {
-    val attr: (Context) => String = parse_attribute (attribute ("""ICCPPoint."""))
-    val scope: (Context) => String = parse_attribute (attribute ("""ICCPPoint.scope"""))
+    val attr = parse_attribute (attribute ("""ICCPPoint."""))
+    val scope = parse_attribute (attribute ("""ICCPPoint.scope"""))
     def parse (context: Context): ICCPPoint =
     {
         ICCPPoint(
@@ -311,8 +311,8 @@ object ICCPSetPoint
 extends
     Parseable[ICCPSetPoint]
 {
-    val attr: (Context) => String = parse_attribute (attribute ("""ICCPSetPoint."""))
-    val typ: (Context) => String = parse_attribute (attribute ("""ICCPSetPoint.type"""))
+    val attr = parse_attribute (attribute ("""ICCPSetPoint."""))
+    val typ = parse_attribute (attribute ("""ICCPSetPoint.type"""))
     def parse (context: Context): ICCPSetPoint =
     {
         ICCPSetPoint(
@@ -367,11 +367,11 @@ object IPAccessPoint
 extends
     Parseable[IPAccessPoint]
 {
-    val address: (Context) => String = parse_element (element ("""IPAccessPoint.address"""))
-    val addressType: (Context) => String = parse_attribute (attribute ("""IPAccessPoint.addressType"""))
-    val attr: (Context) => String = parse_attribute (attribute ("""IPAccessPoint."""))
-    val gateway: (Context) => String = parse_element (element ("""IPAccessPoint.gateway"""))
-    val subnet: (Context) => String = parse_element (element ("""IPAccessPoint.subnet"""))
+    val address = parse_element (element ("""IPAccessPoint.address"""))
+    val addressType = parse_attribute (attribute ("""IPAccessPoint.addressType"""))
+    val attr = parse_attribute (attribute ("""IPAccessPoint."""))
+    val gateway = parse_element (element ("""IPAccessPoint.gateway"""))
+    val subnet = parse_element (element ("""IPAccessPoint.subnet"""))
     def parse (context: Context): IPAccessPoint =
     {
         IPAccessPoint(
@@ -427,10 +427,10 @@ object ISOUpperLayer
 extends
     Parseable[ISOUpperLayer]
 {
-    val ap: (Context) => String = parse_attribute (attribute ("""ISOUpperLayer.ap"""))
-    val osiPsel: (Context) => String = parse_element (element ("""ISOUpperLayer.osiPsel"""))
-    val osiSsel: (Context) => String = parse_element (element ("""ISOUpperLayer.osiSsel"""))
-    val osiTsel: (Context) => String = parse_element (element ("""ISOUpperLayer.osiTsel"""))
+    val ap = parse_attribute (attribute ("""ISOUpperLayer.ap"""))
+    val osiPsel = parse_element (element ("""ISOUpperLayer.osiPsel"""))
+    val osiSsel = parse_element (element ("""ISOUpperLayer.osiSsel"""))
+    val osiTsel = parse_element (element ("""ISOUpperLayer.osiTsel"""))
     def parse (context: Context): ISOUpperLayer =
     {
         ISOUpperLayer(
@@ -496,10 +496,10 @@ object TASE2BilateralTable
 extends
     Parseable[TASE2BilateralTable]
 {
-    val bilateralTableID: (Context) => String = parse_element (element ("""TASE2BilateralTable.bilateralTableID"""))
-    val calling: (Context) => String = parse_element (element ("""TASE2BilateralTable.calling"""))
-    val nameOfICC: (Context) => String = parse_element (element ("""TASE2BilateralTable.nameOfICC"""))
-    val tase2version: (Context) => String = parse_element (element ("""TASE2BilateralTable.tase2version"""))
+    val bilateralTableID = parse_element (element ("""TASE2BilateralTable.bilateralTableID"""))
+    val calling = parse_element (element ("""TASE2BilateralTable.calling"""))
+    val nameOfICC = parse_element (element ("""TASE2BilateralTable.nameOfICC"""))
+    val tase2version = parse_element (element ("""TASE2BilateralTable.tase2version"""))
     def parse (context: Context): TASE2BilateralTable =
     {
         TASE2BilateralTable(
@@ -550,8 +550,8 @@ object TCPAcessPoint
 extends
     Parseable[TCPAcessPoint]
 {
-    val keepAliveTime: (Context) => String = parse_element (element ("""TCPAcessPoint.keepAliveTime"""))
-    val port: (Context) => String = parse_element (element ("""TCPAcessPoint.port"""))
+    val keepAliveTime = parse_element (element ("""TCPAcessPoint.keepAliveTime"""))
+    val port = parse_element (element ("""TCPAcessPoint.port"""))
     def parse (context: Context): TCPAcessPoint =
     {
         TCPAcessPoint(

@@ -109,10 +109,10 @@ object RemoteControl
 extends
     Parseable[RemoteControl]
 {
-    val actuatorMaximum: (Context) => String = parse_element (element ("""RemoteControl.actuatorMaximum"""))
-    val actuatorMinimum: (Context) => String = parse_element (element ("""RemoteControl.actuatorMinimum"""))
-    val remoteControlled: (Context) => String = parse_element (element ("""RemoteControl.remoteControlled"""))
-    val Control: (Context) => String = parse_attribute (attribute ("""RemoteControl.Control"""))
+    val actuatorMaximum = parse_element (element ("""RemoteControl.actuatorMaximum"""))
+    val actuatorMinimum = parse_element (element ("""RemoteControl.actuatorMinimum"""))
+    val remoteControlled = parse_element (element ("""RemoteControl.remoteControlled"""))
+    val Control = parse_attribute (attribute ("""RemoteControl.Control"""))
     def parse (context: Context): RemoteControl =
     {
         RemoteControl(
@@ -167,7 +167,7 @@ object RemotePoint
 extends
     Parseable[RemotePoint]
 {
-    val RemoteUnit: (Context) => String = parse_attribute (attribute ("""RemotePoint.RemoteUnit"""))
+    val RemoteUnit = parse_attribute (attribute ("""RemotePoint.RemoteUnit"""))
     def parse (context: Context): RemotePoint =
     {
         RemotePoint(
@@ -230,11 +230,11 @@ object RemoteSource
 extends
     Parseable[RemoteSource]
 {
-    val deadband: (Context) => String = parse_element (element ("""RemoteSource.deadband"""))
-    val scanInterval: (Context) => String = parse_element (element ("""RemoteSource.scanInterval"""))
-    val sensorMaximum: (Context) => String = parse_element (element ("""RemoteSource.sensorMaximum"""))
-    val sensorMinimum: (Context) => String = parse_element (element ("""RemoteSource.sensorMinimum"""))
-    val MeasurementValue: (Context) => String = parse_attribute (attribute ("""RemoteSource.MeasurementValue"""))
+    val deadband = parse_element (element ("""RemoteSource.deadband"""))
+    val scanInterval = parse_element (element ("""RemoteSource.scanInterval"""))
+    val sensorMaximum = parse_element (element ("""RemoteSource.sensorMaximum"""))
+    val sensorMinimum = parse_element (element ("""RemoteSource.sensorMinimum"""))
+    val MeasurementValue = parse_attribute (attribute ("""RemoteSource.MeasurementValue"""))
     def parse (context: Context): RemoteSource =
     {
         RemoteSource(
@@ -290,7 +290,7 @@ object RemoteUnit
 extends
     Parseable[RemoteUnit]
 {
-    val remoteUnitType: (Context) => String = parse_attribute (attribute ("""RemoteUnit.remoteUnitType"""))
+    val remoteUnitType = parse_attribute (attribute ("""RemoteUnit.remoteUnitType"""))
     def parse (context: Context): RemoteUnit =
     {
         RemoteUnit(

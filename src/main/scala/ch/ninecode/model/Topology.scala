@@ -57,8 +57,8 @@ object BusNameMarker
 extends
     Parseable[BusNameMarker]
 {
-    val priority: (Context) => String = parse_element (element ("""BusNameMarker.priority"""))
-    val ReportingGroup: (Context) => String = parse_attribute (attribute ("""BusNameMarker.ReportingGroup"""))
+    val priority = parse_element (element ("""BusNameMarker.priority"""))
+    val ReportingGroup = parse_attribute (attribute ("""BusNameMarker.ReportingGroup"""))
     def parse (context: Context): BusNameMarker =
     {
         BusNameMarker(
@@ -113,8 +113,8 @@ object DCTopologicalNode
 extends
     Parseable[DCTopologicalNode]
 {
-    val DCEquipmentContainer: (Context) => String = parse_attribute (attribute ("""DCTopologicalNode.DCEquipmentContainer"""))
-    val DCTopologicalIsland: (Context) => String = parse_attribute (attribute ("""DCTopologicalNode.DCTopologicalIsland"""))
+    val DCEquipmentContainer = parse_attribute (attribute ("""DCTopologicalNode.DCEquipmentContainer"""))
+    val DCTopologicalIsland = parse_attribute (attribute ("""DCTopologicalNode.DCTopologicalIsland"""))
     def parse (context: Context): DCTopologicalNode =
     {
         DCTopologicalNode(
@@ -168,7 +168,7 @@ object TopologicalIsland
 extends
     Parseable[TopologicalIsland]
 {
-    val AngleRefTopologicalNode: (Context) => String = parse_attribute (attribute ("""TopologicalIsland.AngleRefTopologicalNode"""))
+    val AngleRefTopologicalNode = parse_attribute (attribute ("""TopologicalIsland.AngleRefTopologicalNode"""))
     def parse (context: Context): TopologicalIsland =
     {
         TopologicalIsland(
@@ -247,15 +247,15 @@ object TopologicalNode
 extends
     Parseable[TopologicalNode]
 {
-    val pInjection: (Context) => String = parse_element (element ("""TopologicalNode.pInjection"""))
-    val qInjection: (Context) => String = parse_element (element ("""TopologicalNode.qInjection"""))
-    val AngleRefTopologicalIsland: (Context) => String = parse_attribute (attribute ("""TopologicalNode.AngleRefTopologicalIsland"""))
-    val BaseVoltage: (Context) => String = parse_attribute (attribute ("""TopologicalNode.BaseVoltage"""))
-    val ConnectivityNodeContainer: (Context) => String = parse_attribute (attribute ("""TopologicalNode.ConnectivityNodeContainer"""))
-    val ReportingGroup: (Context) => String = parse_attribute (attribute ("""TopologicalNode.ReportingGroup"""))
-    val SvInjection: (Context) => String = parse_attribute (attribute ("""TopologicalNode.SvInjection"""))
-    val SvVoltage: (Context) => String = parse_attribute (attribute ("""TopologicalNode.SvVoltage"""))
-    val TopologicalIsland: (Context) => String = parse_attribute (attribute ("""TopologicalNode.TopologicalIsland"""))
+    val pInjection = parse_element (element ("""TopologicalNode.pInjection"""))
+    val qInjection = parse_element (element ("""TopologicalNode.qInjection"""))
+    val AngleRefTopologicalIsland = parse_attribute (attribute ("""TopologicalNode.AngleRefTopologicalIsland"""))
+    val BaseVoltage = parse_attribute (attribute ("""TopologicalNode.BaseVoltage"""))
+    val ConnectivityNodeContainer = parse_attribute (attribute ("""TopologicalNode.ConnectivityNodeContainer"""))
+    val ReportingGroup = parse_attribute (attribute ("""TopologicalNode.ReportingGroup"""))
+    val SvInjection = parse_attribute (attribute ("""TopologicalNode.SvInjection"""))
+    val SvVoltage = parse_attribute (attribute ("""TopologicalNode.SvVoltage"""))
+    val TopologicalIsland = parse_attribute (attribute ("""TopologicalNode.TopologicalIsland"""))
     def parse (context: Context): TopologicalNode =
     {
         TopologicalNode(

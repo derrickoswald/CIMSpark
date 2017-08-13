@@ -57,9 +57,9 @@ object ClearanceAction
 extends
     Parseable[ClearanceAction]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""ClearanceAction.kind"""))
-    val Clearance: (Context) => String = parse_attribute (attribute ("""ClearanceAction.Clearance"""))
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""ClearanceAction.SwitchingStepGroup"""))
+    val kind = parse_attribute (attribute ("""ClearanceAction.kind"""))
+    val Clearance = parse_attribute (attribute ("""ClearanceAction.Clearance"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""ClearanceAction.SwitchingStepGroup"""))
     def parse (context: Context): ClearanceAction =
     {
         ClearanceAction(
@@ -122,10 +122,10 @@ object ClearanceDocument
 extends
     Parseable[ClearanceDocument]
 {
-    val mustBeDeenergised: (Context) => String = parse_element (element ("""ClearanceDocument.mustBeDeenergised"""))
-    val mustBeGrounded: (Context) => String = parse_element (element ("""ClearanceDocument.mustBeGrounded"""))
-    val ClearanceAction: (Context) => String = parse_attribute (attribute ("""ClearanceDocument.ClearanceAction"""))
-    val TaggedPSRs: (Context) => List[String] = parse_attributes (attribute ("""ClearanceDocument.TaggedPSRs"""))
+    val mustBeDeenergised = parse_element (element ("""ClearanceDocument.mustBeDeenergised"""))
+    val mustBeGrounded = parse_element (element ("""ClearanceDocument.mustBeGrounded"""))
+    val ClearanceAction = parse_attribute (attribute ("""ClearanceDocument.ClearanceAction"""))
+    val TaggedPSRs = parse_attributes (attribute ("""ClearanceDocument.TaggedPSRs"""))
     def parse (context: Context): ClearanceDocument =
     {
         ClearanceDocument(
@@ -185,9 +185,9 @@ object CutAction
 extends
     Parseable[CutAction]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""CutAction.kind"""))
-    val Cut: (Context) => String = parse_attribute (attribute ("""CutAction.Cut"""))
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""CutAction.SwitchingStepGroup"""))
+    val kind = parse_attribute (attribute ("""CutAction.kind"""))
+    val Cut = parse_attribute (attribute ("""CutAction.Cut"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""CutAction.SwitchingStepGroup"""))
     def parse (context: Context): CutAction =
     {
         CutAction(
@@ -246,9 +246,9 @@ object EnergySourceAction
 extends
     Parseable[EnergySourceAction]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""EnergySourceAction.kind"""))
-    val EnergySource: (Context) => String = parse_attribute (attribute ("""EnergySourceAction.EnergySource"""))
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""EnergySourceAction.SwitchingStepGroup"""))
+    val kind = parse_attribute (attribute ("""EnergySourceAction.kind"""))
+    val EnergySource = parse_attribute (attribute ("""EnergySourceAction.EnergySource"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""EnergySourceAction.SwitchingStepGroup"""))
     def parse (context: Context): EnergySourceAction =
     {
         EnergySourceAction(
@@ -301,7 +301,7 @@ object GenericAction
 extends
     Parseable[GenericAction]
 {
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""GenericAction.SwitchingStepGroup"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""GenericAction.SwitchingStepGroup"""))
     def parse (context: Context): GenericAction =
     {
         GenericAction(
@@ -366,11 +366,11 @@ object GroundAction
 extends
     Parseable[GroundAction]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""GroundAction.kind"""))
-    val AlongACLineSegment: (Context) => String = parse_attribute (attribute ("""GroundAction.AlongACLineSegment"""))
-    val Ground: (Context) => String = parse_attribute (attribute ("""GroundAction.Ground"""))
-    val GroundedEquipment: (Context) => String = parse_attribute (attribute ("""GroundAction.GroundedEquipment"""))
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""GroundAction.SwitchingStepGroup"""))
+    val kind = parse_attribute (attribute ("""GroundAction.kind"""))
+    val AlongACLineSegment = parse_attribute (attribute ("""GroundAction.AlongACLineSegment"""))
+    val Ground = parse_attribute (attribute ("""GroundAction.Ground"""))
+    val GroundedEquipment = parse_attribute (attribute ("""GroundAction.GroundedEquipment"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""GroundAction.SwitchingStepGroup"""))
     def parse (context: Context): GroundAction =
     {
         GroundAction(
@@ -435,10 +435,10 @@ object Incident
 extends
     Parseable[Incident]
 {
-    val cause: (Context) => String = parse_element (element ("""Incident.cause"""))
-    val Outage: (Context) => String = parse_attribute (attribute ("""Incident.Outage"""))
-    val Owner: (Context) => String = parse_attribute (attribute ("""Incident.Owner"""))
-    val Works: (Context) => List[String] = parse_attributes (attribute ("""Incident.Works"""))
+    val cause = parse_element (element ("""Incident.cause"""))
+    val Outage = parse_attribute (attribute ("""Incident.Outage"""))
+    val Owner = parse_attribute (attribute ("""Incident.Owner"""))
+    val Works = parse_attributes (attribute ("""Incident.Works"""))
     def parse (context: Context): Incident =
     {
         Incident(
@@ -498,9 +498,9 @@ object JumperAction
 extends
     Parseable[JumperAction]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""JumperAction.kind"""))
-    val Jumper: (Context) => String = parse_attribute (attribute ("""JumperAction.Jumper"""))
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""JumperAction.SwitchingStepGroup"""))
+    val kind = parse_attribute (attribute ("""JumperAction.kind"""))
+    val Jumper = parse_attribute (attribute ("""JumperAction.Jumper"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""JumperAction.SwitchingStepGroup"""))
     def parse (context: Context): JumperAction =
     {
         JumperAction(
@@ -552,9 +552,9 @@ object OperationTag
 extends
     Parseable[OperationTag]
 {
-    val Asset: (Context) => String = parse_attribute (attribute ("""OperationTag.Asset"""))
-    val PowerSystemResource: (Context) => String = parse_attribute (attribute ("""OperationTag.PowerSystemResource"""))
-    val TagAction: (Context) => String = parse_attribute (attribute ("""OperationTag.TagAction"""))
+    val Asset = parse_attribute (attribute ("""OperationTag.Asset"""))
+    val PowerSystemResource = parse_attribute (attribute ("""OperationTag.PowerSystemResource"""))
+    val TagAction = parse_attribute (attribute ("""OperationTag.TagAction"""))
     def parse (context: Context): OperationTag =
     {
         OperationTag(
@@ -617,10 +617,10 @@ object OperationalRestriction
 extends
     Parseable[OperationalRestriction]
 {
-    val activePeriod: (Context) => String = parse_attribute (attribute ("""OperationalRestriction.activePeriod"""))
-    val restrictedValue: (Context) => String = parse_attribute (attribute ("""OperationalRestriction.restrictedValue"""))
-    val Equipments: (Context) => List[String] = parse_attributes (attribute ("""OperationalRestriction.Equipments"""))
-    val ProductAssetModel: (Context) => String = parse_attribute (attribute ("""OperationalRestriction.ProductAssetModel"""))
+    val activePeriod = parse_attribute (attribute ("""OperationalRestriction.activePeriod"""))
+    val restrictedValue = parse_attribute (attribute ("""OperationalRestriction.restrictedValue"""))
+    val Equipments = parse_attributes (attribute ("""OperationalRestriction.Equipments"""))
+    val ProductAssetModel = parse_attribute (attribute ("""OperationalRestriction.ProductAssetModel"""))
     def parse (context: Context): OperationalRestriction =
     {
         OperationalRestriction(
@@ -677,8 +677,8 @@ object OperationalUpdatedRating
 extends
     Parseable[OperationalUpdatedRating]
 {
-    val changeType: (Context) => String = parse_element (element ("""OperationalUpdatedRating.changeType"""))
-    val PlannedOutage: (Context) => String = parse_attribute (attribute ("""OperationalUpdatedRating.PlannedOutage"""))
+    val changeType = parse_element (element ("""OperationalUpdatedRating.changeType"""))
+    val PlannedOutage = parse_attribute (attribute ("""OperationalUpdatedRating.PlannedOutage"""))
     def parse (context: Context): OperationalUpdatedRating =
     {
         OperationalUpdatedRating(
@@ -760,16 +760,16 @@ object Outage
 extends
     Parseable[Outage]
 {
-    val actualPeriod: (Context) => String = parse_attribute (attribute ("""Outage.actualPeriod"""))
-    val cancelledDateTime: (Context) => String = parse_element (element ("""Outage.cancelledDateTime"""))
-    val cause: (Context) => String = parse_element (element ("""Outage.cause"""))
-    val estimatedPeriod: (Context) => String = parse_attribute (attribute ("""Outage.estimatedPeriod"""))
-    val isPlanned: (Context) => String = parse_element (element ("""Outage.isPlanned"""))
-    val summary: (Context) => String = parse_attribute (attribute ("""Outage.summary"""))
-    val Equipments: (Context) => List[String] = parse_attributes (attribute ("""Outage.Equipments"""))
-    val Incident: (Context) => String = parse_attribute (attribute ("""Outage.Incident"""))
-    val OutageSchedule: (Context) => String = parse_attribute (attribute ("""Outage.OutageSchedule"""))
-    val UsagePoints: (Context) => List[String] = parse_attributes (attribute ("""Outage.UsagePoints"""))
+    val actualPeriod = parse_attribute (attribute ("""Outage.actualPeriod"""))
+    val cancelledDateTime = parse_element (element ("""Outage.cancelledDateTime"""))
+    val cause = parse_element (element ("""Outage.cause"""))
+    val estimatedPeriod = parse_attribute (attribute ("""Outage.estimatedPeriod"""))
+    val isPlanned = parse_element (element ("""Outage.isPlanned"""))
+    val summary = parse_attribute (attribute ("""Outage.summary"""))
+    val Equipments = parse_attributes (attribute ("""Outage.Equipments"""))
+    val Incident = parse_attribute (attribute ("""Outage.Incident"""))
+    val OutageSchedule = parse_attribute (attribute ("""Outage.OutageSchedule"""))
+    val UsagePoints = parse_attributes (attribute ("""Outage.UsagePoints"""))
     def parse (context: Context): Outage =
     {
         Outage(
@@ -880,8 +880,8 @@ object PSREvent
 extends
     Parseable[PSREvent]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""PSREvent.kind"""))
-    val PowerSystemResource: (Context) => String = parse_attribute (attribute ("""PSREvent.PowerSystemResource"""))
+    val kind = parse_attribute (attribute ("""PSREvent.kind"""))
+    val PowerSystemResource = parse_attribute (attribute ("""PSREvent.PowerSystemResource"""))
     def parse (context: Context): PSREvent =
     {
         PSREvent(
@@ -933,7 +933,7 @@ object SafetyDocument
 extends
     Parseable[SafetyDocument]
 {
-    val SwitchingPlan: (Context) => String = parse_attribute (attribute ("""SafetyDocument.SwitchingPlan"""))
+    val SwitchingPlan = parse_attribute (attribute ("""SafetyDocument.SwitchingPlan"""))
     def parse (context: Context): SafetyDocument =
     {
         SafetyDocument(
@@ -988,8 +988,8 @@ object ServicePointOutageSummary
 extends
     Parseable[ServicePointOutageSummary]
 {
-    val criticalCount: (Context) => String = parse_element (element ("""ServicePointOutageSummary.criticalCount"""))
-    val totalCount: (Context) => String = parse_element (element ("""ServicePointOutageSummary.totalCount"""))
+    val criticalCount = parse_element (element ("""ServicePointOutageSummary.criticalCount"""))
+    val totalCount = parse_element (element ("""ServicePointOutageSummary.totalCount"""))
     def parse (context: Context): ServicePointOutageSummary =
     {
         ServicePointOutageSummary(
@@ -1050,10 +1050,10 @@ object SwitchAction
 extends
     Parseable[SwitchAction]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""SwitchAction.kind"""))
-    val OperatedSwitch: (Context) => String = parse_attribute (attribute ("""SwitchAction.OperatedSwitch"""))
-    val PlannedOutage: (Context) => String = parse_attribute (attribute ("""SwitchAction.PlannedOutage"""))
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""SwitchAction.SwitchingStepGroup"""))
+    val kind = parse_attribute (attribute ("""SwitchAction.kind"""))
+    val OperatedSwitch = parse_attribute (attribute ("""SwitchAction.OperatedSwitch"""))
+    val PlannedOutage = parse_attribute (attribute ("""SwitchAction.PlannedOutage"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""SwitchAction.SwitchingStepGroup"""))
     def parse (context: Context): SwitchAction =
     {
         SwitchAction(
@@ -1115,9 +1115,9 @@ object SwitchingPlan
 extends
     Parseable[SwitchingPlan]
 {
-    val purpose: (Context) => String = parse_element (element ("""SwitchingPlan.purpose"""))
-    val rank: (Context) => String = parse_element (element ("""SwitchingPlan.rank"""))
-    val Outage: (Context) => String = parse_attribute (attribute ("""SwitchingPlan.Outage"""))
+    val purpose = parse_element (element ("""SwitchingPlan.purpose"""))
+    val rank = parse_element (element ("""SwitchingPlan.rank"""))
+    val Outage = parse_attribute (attribute ("""SwitchingPlan.Outage"""))
     def parse (context: Context): SwitchingPlan =
     {
         SwitchingPlan(
@@ -1188,13 +1188,13 @@ object SwitchingStep
 extends
     Parseable[SwitchingStep]
 {
-    val description: (Context) => String = parse_element (element ("""SwitchingStep.description"""))
-    val executedDateTime: (Context) => String = parse_element (element ("""SwitchingStep.executedDateTime"""))
-    val isFreeSequence: (Context) => String = parse_element (element ("""SwitchingStep.isFreeSequence"""))
-    val plannedDateTime: (Context) => String = parse_element (element ("""SwitchingStep.plannedDateTime"""))
-    val sequenceNumber: (Context) => String = parse_element (element ("""SwitchingStep.sequenceNumber"""))
-    val CrewMember: (Context) => String = parse_attribute (attribute ("""SwitchingStep.CrewMember"""))
-    val Operator: (Context) => String = parse_attribute (attribute ("""SwitchingStep.Operator"""))
+    val description = parse_element (element ("""SwitchingStep.description"""))
+    val executedDateTime = parse_element (element ("""SwitchingStep.executedDateTime"""))
+    val isFreeSequence = parse_element (element ("""SwitchingStep.isFreeSequence"""))
+    val plannedDateTime = parse_element (element ("""SwitchingStep.plannedDateTime"""))
+    val sequenceNumber = parse_element (element ("""SwitchingStep.sequenceNumber"""))
+    val CrewMember = parse_attribute (attribute ("""SwitchingStep.CrewMember"""))
+    val Operator = parse_attribute (attribute ("""SwitchingStep.Operator"""))
     def parse (context: Context): SwitchingStep =
     {
         SwitchingStep(
@@ -1257,9 +1257,9 @@ object SwitchingStepGroup
 extends
     Parseable[SwitchingStepGroup]
 {
-    val isFreeSequence: (Context) => String = parse_element (element ("""SwitchingStepGroup.isFreeSequence"""))
-    val sequenceNumber: (Context) => String = parse_element (element ("""SwitchingStepGroup.sequenceNumber"""))
-    val SwitchingPlan: (Context) => String = parse_attribute (attribute ("""SwitchingStepGroup.SwitchingPlan"""))
+    val isFreeSequence = parse_element (element ("""SwitchingStepGroup.isFreeSequence"""))
+    val sequenceNumber = parse_element (element ("""SwitchingStepGroup.sequenceNumber"""))
+    val SwitchingPlan = parse_attribute (attribute ("""SwitchingStepGroup.SwitchingPlan"""))
     def parse (context: Context): SwitchingStepGroup =
     {
         SwitchingStepGroup(
@@ -1318,9 +1318,9 @@ object TagAction
 extends
     Parseable[TagAction]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""TagAction.kind"""))
-    val OperationTag: (Context) => String = parse_attribute (attribute ("""TagAction.OperationTag"""))
-    val SwitchingStepGroup: (Context) => String = parse_attribute (attribute ("""TagAction.SwitchingStepGroup"""))
+    val kind = parse_attribute (attribute ("""TagAction.kind"""))
+    val OperationTag = parse_attribute (attribute ("""TagAction.OperationTag"""))
+    val SwitchingStepGroup = parse_attribute (attribute ("""TagAction.SwitchingStepGroup"""))
     def parse (context: Context): TagAction =
     {
         TagAction(

@@ -103,18 +103,18 @@ object TurbLCFB1
 extends
     Parseable[TurbLCFB1]
 {
-    val db: (Context) => String = parse_element (element ("""TurbLCFB1.db"""))
-    val emax: (Context) => String = parse_element (element ("""TurbLCFB1.emax"""))
-    val fb: (Context) => String = parse_element (element ("""TurbLCFB1.fb"""))
-    val fbf: (Context) => String = parse_element (element ("""TurbLCFB1.fbf"""))
-    val irmax: (Context) => String = parse_element (element ("""TurbLCFB1.irmax"""))
-    val ki: (Context) => String = parse_element (element ("""TurbLCFB1.ki"""))
-    val kp: (Context) => String = parse_element (element ("""TurbLCFB1.kp"""))
-    val mwbase: (Context) => String = parse_element (element ("""TurbLCFB1.mwbase"""))
-    val pbf: (Context) => String = parse_element (element ("""TurbLCFB1.pbf"""))
-    val pmwset: (Context) => String = parse_element (element ("""TurbLCFB1.pmwset"""))
-    val speedReferenceGovernor: (Context) => String = parse_element (element ("""TurbLCFB1.speedReferenceGovernor"""))
-    val tpelec: (Context) => String = parse_element (element ("""TurbLCFB1.tpelec"""))
+    val db = parse_element (element ("""TurbLCFB1.db"""))
+    val emax = parse_element (element ("""TurbLCFB1.emax"""))
+    val fb = parse_element (element ("""TurbLCFB1.fb"""))
+    val fbf = parse_element (element ("""TurbLCFB1.fbf"""))
+    val irmax = parse_element (element ("""TurbLCFB1.irmax"""))
+    val ki = parse_element (element ("""TurbLCFB1.ki"""))
+    val kp = parse_element (element ("""TurbLCFB1.kp"""))
+    val mwbase = parse_element (element ("""TurbLCFB1.mwbase"""))
+    val pbf = parse_element (element ("""TurbLCFB1.pbf"""))
+    val pmwset = parse_element (element ("""TurbLCFB1.pmwset"""))
+    val speedReferenceGovernor = parse_element (element ("""TurbLCFB1.speedReferenceGovernor"""))
+    val tpelec = parse_element (element ("""TurbLCFB1.tpelec"""))
     def parse (context: Context): TurbLCFB1 =
     {
         TurbLCFB1(
@@ -176,7 +176,7 @@ object TurbineLoadControllerDynamics
 extends
     Parseable[TurbineLoadControllerDynamics]
 {
-    val TurbineGovernorDynamics: (Context) => String = parse_attribute (attribute ("""TurbineLoadControllerDynamics.TurbineGovernorDynamics"""))
+    val TurbineGovernorDynamics = parse_attribute (attribute ("""TurbineLoadControllerDynamics.TurbineGovernorDynamics"""))
     def parse (context: Context): TurbineLoadControllerDynamics =
     {
         TurbineLoadControllerDynamics(

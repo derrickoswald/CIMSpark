@@ -51,8 +51,8 @@ object SVC
 extends
     Parseable[SVC]
 {
-    val capacitiveRating: (Context) => String = parse_element (element ("""SVC.capacitiveRating"""))
-    val inductiveRating: (Context) => String = parse_element (element ("""SVC.inductiveRating"""))
+    val capacitiveRating = parse_element (element ("""SVC.capacitiveRating"""))
+    val inductiveRating = parse_element (element ("""SVC.inductiveRating"""))
     def parse (context: Context): SVC =
     {
         SVC(
@@ -158,24 +158,24 @@ object ShuntCompensatorControl
 extends
     Parseable[ShuntCompensatorControl]
 {
-    val branchDirect: (Context) => String = parse_element (element ("""ShuntCompensatorControl.branchDirect"""))
-    val cellSize: (Context) => String = parse_element (element ("""ShuntCompensatorControl.cellSize"""))
-    val controlKind: (Context) => String = parse_attribute (attribute ("""ShuntCompensatorControl.controlKind"""))
-    val highVoltageOverride: (Context) => String = parse_element (element ("""ShuntCompensatorControl.highVoltageOverride"""))
-    val localControlKind: (Context) => String = parse_attribute (attribute ("""ShuntCompensatorControl.localControlKind"""))
-    val localOffLevel: (Context) => String = parse_element (element ("""ShuntCompensatorControl.localOffLevel"""))
-    val localOnLevel: (Context) => String = parse_element (element ("""ShuntCompensatorControl.localOnLevel"""))
-    val localOverride: (Context) => String = parse_element (element ("""ShuntCompensatorControl.localOverride"""))
-    val lowVoltageOverride: (Context) => String = parse_element (element ("""ShuntCompensatorControl.lowVoltageOverride"""))
-    val maxSwitchOperationCount: (Context) => String = parse_element (element ("""ShuntCompensatorControl.maxSwitchOperationCount"""))
-    val normalOpen: (Context) => String = parse_element (element ("""ShuntCompensatorControl.normalOpen"""))
-    val regBranch: (Context) => String = parse_element (element ("""ShuntCompensatorControl.regBranch"""))
-    val regBranchEnd: (Context) => String = parse_element (element ("""ShuntCompensatorControl.regBranchEnd"""))
-    val regBranchKind: (Context) => String = parse_attribute (attribute ("""ShuntCompensatorControl.regBranchKind"""))
-    val sensingPhaseCode: (Context) => String = parse_attribute (attribute ("""ShuntCompensatorControl.sensingPhaseCode"""))
-    val switchOperationCycle: (Context) => String = parse_element (element ("""ShuntCompensatorControl.switchOperationCycle"""))
-    val vRegLineLine: (Context) => String = parse_element (element ("""ShuntCompensatorControl.vRegLineLine"""))
-    val ShuntCompensatorInfo: (Context) => String = parse_attribute (attribute ("""ShuntCompensatorControl.ShuntCompensatorInfo"""))
+    val branchDirect = parse_element (element ("""ShuntCompensatorControl.branchDirect"""))
+    val cellSize = parse_element (element ("""ShuntCompensatorControl.cellSize"""))
+    val controlKind = parse_attribute (attribute ("""ShuntCompensatorControl.controlKind"""))
+    val highVoltageOverride = parse_element (element ("""ShuntCompensatorControl.highVoltageOverride"""))
+    val localControlKind = parse_attribute (attribute ("""ShuntCompensatorControl.localControlKind"""))
+    val localOffLevel = parse_element (element ("""ShuntCompensatorControl.localOffLevel"""))
+    val localOnLevel = parse_element (element ("""ShuntCompensatorControl.localOnLevel"""))
+    val localOverride = parse_element (element ("""ShuntCompensatorControl.localOverride"""))
+    val lowVoltageOverride = parse_element (element ("""ShuntCompensatorControl.lowVoltageOverride"""))
+    val maxSwitchOperationCount = parse_element (element ("""ShuntCompensatorControl.maxSwitchOperationCount"""))
+    val normalOpen = parse_element (element ("""ShuntCompensatorControl.normalOpen"""))
+    val regBranch = parse_element (element ("""ShuntCompensatorControl.regBranch"""))
+    val regBranchEnd = parse_element (element ("""ShuntCompensatorControl.regBranchEnd"""))
+    val regBranchKind = parse_attribute (attribute ("""ShuntCompensatorControl.regBranchKind"""))
+    val sensingPhaseCode = parse_attribute (attribute ("""ShuntCompensatorControl.sensingPhaseCode"""))
+    val switchOperationCycle = parse_element (element ("""ShuntCompensatorControl.switchOperationCycle"""))
+    val vRegLineLine = parse_element (element ("""ShuntCompensatorControl.vRegLineLine"""))
+    val ShuntCompensatorInfo = parse_attribute (attribute ("""ShuntCompensatorControl.ShuntCompensatorInfo"""))
     def parse (context: Context): ShuntCompensatorControl =
     {
         ShuntCompensatorControl(

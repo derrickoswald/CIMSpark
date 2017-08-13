@@ -52,7 +52,7 @@ object ConformLoad
 extends
     Parseable[ConformLoad]
 {
-    val LoadGroup: (Context) => String = parse_attribute (attribute ("""ConformLoad.LoadGroup"""))
+    val LoadGroup = parse_attribute (attribute ("""ConformLoad.LoadGroup"""))
     def parse (context: Context): ConformLoad =
     {
         ConformLoad(
@@ -151,7 +151,7 @@ object ConformLoadSchedule
 extends
     Parseable[ConformLoadSchedule]
 {
-    val ConformLoadGroup: (Context) => String = parse_attribute (attribute ("""ConformLoadSchedule.ConformLoadGroup"""))
+    val ConformLoadGroup = parse_attribute (attribute ("""ConformLoadSchedule.ConformLoadGroup"""))
     def parse (context: Context): ConformLoadSchedule =
     {
         ConformLoadSchedule(
@@ -251,7 +251,7 @@ object EnergyArea
 extends
     Parseable[EnergyArea]
 {
-    val ControlArea: (Context) => String = parse_attribute (attribute ("""EnergyArea.ControlArea"""))
+    val ControlArea = parse_attribute (attribute ("""EnergyArea.ControlArea"""))
     def parse (context: Context): EnergyArea =
     {
         EnergyArea(
@@ -349,7 +349,7 @@ object LoadGroup
 extends
     Parseable[LoadGroup]
 {
-    val SubLoadArea: (Context) => String = parse_attribute (attribute ("""LoadGroup.SubLoadArea"""))
+    val SubLoadArea = parse_attribute (attribute ("""LoadGroup.SubLoadArea"""))
     def parse (context: Context): LoadGroup =
     {
         LoadGroup(
@@ -432,17 +432,17 @@ object LoadResponseCharacteristic
 extends
     Parseable[LoadResponseCharacteristic]
 {
-    val exponentModel: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.exponentModel"""))
-    val pConstantCurrent: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.pConstantCurrent"""))
-    val pConstantImpedance: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.pConstantImpedance"""))
-    val pConstantPower: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.pConstantPower"""))
-    val pFrequencyExponent: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.pFrequencyExponent"""))
-    val pVoltageExponent: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.pVoltageExponent"""))
-    val qConstantCurrent: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.qConstantCurrent"""))
-    val qConstantImpedance: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.qConstantImpedance"""))
-    val qConstantPower: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.qConstantPower"""))
-    val qFrequencyExponent: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.qFrequencyExponent"""))
-    val qVoltageExponent: (Context) => String = parse_element (element ("""LoadResponseCharacteristic.qVoltageExponent"""))
+    val exponentModel = parse_element (element ("""LoadResponseCharacteristic.exponentModel"""))
+    val pConstantCurrent = parse_element (element ("""LoadResponseCharacteristic.pConstantCurrent"""))
+    val pConstantImpedance = parse_element (element ("""LoadResponseCharacteristic.pConstantImpedance"""))
+    val pConstantPower = parse_element (element ("""LoadResponseCharacteristic.pConstantPower"""))
+    val pFrequencyExponent = parse_element (element ("""LoadResponseCharacteristic.pFrequencyExponent"""))
+    val pVoltageExponent = parse_element (element ("""LoadResponseCharacteristic.pVoltageExponent"""))
+    val qConstantCurrent = parse_element (element ("""LoadResponseCharacteristic.qConstantCurrent"""))
+    val qConstantImpedance = parse_element (element ("""LoadResponseCharacteristic.qConstantImpedance"""))
+    val qConstantPower = parse_element (element ("""LoadResponseCharacteristic.qConstantPower"""))
+    val qFrequencyExponent = parse_element (element ("""LoadResponseCharacteristic.qFrequencyExponent"""))
+    val qVoltageExponent = parse_element (element ("""LoadResponseCharacteristic.qVoltageExponent"""))
     def parse (context: Context): LoadResponseCharacteristic =
     {
         LoadResponseCharacteristic(
@@ -503,7 +503,7 @@ object NonConformLoad
 extends
     Parseable[NonConformLoad]
 {
-    val LoadGroup: (Context) => String = parse_attribute (attribute ("""NonConformLoad.LoadGroup"""))
+    val LoadGroup = parse_attribute (attribute ("""NonConformLoad.LoadGroup"""))
     def parse (context: Context): NonConformLoad =
     {
         NonConformLoad(
@@ -601,7 +601,7 @@ object NonConformLoadSchedule
 extends
     Parseable[NonConformLoadSchedule]
 {
-    val NonConformLoadGroup: (Context) => String = parse_attribute (attribute ("""NonConformLoadSchedule.NonConformLoadGroup"""))
+    val NonConformLoadGroup = parse_attribute (attribute ("""NonConformLoadSchedule.NonConformLoadGroup"""))
     def parse (context: Context): NonConformLoadSchedule =
     {
         NonConformLoadSchedule(
@@ -655,8 +655,8 @@ object PowerCutZone
 extends
     Parseable[PowerCutZone]
 {
-    val cutLevel1: (Context) => String = parse_element (element ("""PowerCutZone.cutLevel1"""))
-    val cutLevel2: (Context) => String = parse_element (element ("""PowerCutZone.cutLevel2"""))
+    val cutLevel1 = parse_element (element ("""PowerCutZone.cutLevel1"""))
+    val cutLevel2 = parse_element (element ("""PowerCutZone.cutLevel2"""))
     def parse (context: Context): PowerCutZone =
     {
         PowerCutZone(
@@ -711,8 +711,8 @@ object Season
 extends
     Parseable[Season]
 {
-    val endDate: (Context) => String = parse_element (element ("""Season.endDate"""))
-    val startDate: (Context) => String = parse_element (element ("""Season.startDate"""))
+    val endDate = parse_element (element ("""Season.endDate"""))
+    val startDate = parse_element (element ("""Season.startDate"""))
     def parse (context: Context): Season =
     {
         Season(
@@ -767,8 +767,8 @@ object SeasonDayTypeSchedule
 extends
     Parseable[SeasonDayTypeSchedule]
 {
-    val DayType: (Context) => String = parse_attribute (attribute ("""SeasonDayTypeSchedule.DayType"""))
-    val Season: (Context) => String = parse_attribute (attribute ("""SeasonDayTypeSchedule.Season"""))
+    val DayType = parse_attribute (attribute ("""SeasonDayTypeSchedule.DayType"""))
+    val Season = parse_attribute (attribute ("""SeasonDayTypeSchedule.Season"""))
     def parse (context: Context): SeasonDayTypeSchedule =
     {
         SeasonDayTypeSchedule(
@@ -867,7 +867,7 @@ object SubLoadArea
 extends
     Parseable[SubLoadArea]
 {
-    val LoadArea: (Context) => String = parse_attribute (attribute ("""SubLoadArea.LoadArea"""))
+    val LoadArea = parse_attribute (attribute ("""SubLoadArea.LoadArea"""))
     def parse (context: Context): SubLoadArea =
     {
         SubLoadArea(

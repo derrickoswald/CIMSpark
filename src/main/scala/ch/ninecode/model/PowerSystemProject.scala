@@ -74,14 +74,14 @@ object PowerSystemProject
 extends
     Parseable[PowerSystemProject]
 {
-    val attr: (Context) => String = parse_attribute (attribute ("""PowerSystemProject."""))
-    val description: (Context) => String = parse_element (element ("""PowerSystemProject.description"""))
-    val name: (Context) => String = parse_element (element ("""PowerSystemProject.name"""))
-    val priority: (Context) => String = parse_element (element ("""PowerSystemProject.priority"""))
-    val state: (Context) => String = parse_attribute (attribute ("""PowerSystemProject.state"""))
-    val typ: (Context) => String = parse_element (element ("""PowerSystemProject.type"""))
-    val version: (Context) => String = parse_element (element ("""PowerSystemProject.version"""))
-    val Project: (Context) => String = parse_attribute (attribute ("""PowerSystemProject.Project"""))
+    val attr = parse_attribute (attribute ("""PowerSystemProject."""))
+    val description = parse_element (element ("""PowerSystemProject.description"""))
+    val name = parse_element (element ("""PowerSystemProject.name"""))
+    val priority = parse_element (element ("""PowerSystemProject.priority"""))
+    val state = parse_attribute (attribute ("""PowerSystemProject.state"""))
+    val typ = parse_element (element ("""PowerSystemProject.type"""))
+    val version = parse_element (element ("""PowerSystemProject.version"""))
+    val Project = parse_attribute (attribute ("""PowerSystemProject.Project"""))
     def parse (context: Context): PowerSystemProject =
     {
         PowerSystemProject(
@@ -146,13 +146,13 @@ object PowerSystemProjectSchedule
 extends
     Parseable[PowerSystemProjectSchedule]
 {
-    val actualEnd: (Context) => String = parse_element (element ("""PowerSystemProjectSchedule.actualEnd"""))
-    val actualStart: (Context) => String = parse_element (element ("""PowerSystemProjectSchedule.actualStart"""))
-    val attr: (Context) => String = parse_attribute (attribute ("""PowerSystemProjectSchedule."""))
-    val scheduledEnd: (Context) => String = parse_element (element ("""PowerSystemProjectSchedule.scheduledEnd"""))
-    val scheduledStart: (Context) => String = parse_element (element ("""PowerSystemProjectSchedule.scheduledStart"""))
-    val status: (Context) => String = parse_attribute (attribute ("""PowerSystemProjectSchedule.status"""))
-    val stepType: (Context) => String = parse_attribute (attribute ("""PowerSystemProjectSchedule.stepType"""))
+    val actualEnd = parse_element (element ("""PowerSystemProjectSchedule.actualEnd"""))
+    val actualStart = parse_element (element ("""PowerSystemProjectSchedule.actualStart"""))
+    val attr = parse_attribute (attribute ("""PowerSystemProjectSchedule."""))
+    val scheduledEnd = parse_element (element ("""PowerSystemProjectSchedule.scheduledEnd"""))
+    val scheduledStart = parse_element (element ("""PowerSystemProjectSchedule.scheduledStart"""))
+    val status = parse_attribute (attribute ("""PowerSystemProjectSchedule.status"""))
+    val stepType = parse_attribute (attribute ("""PowerSystemProjectSchedule.stepType"""))
     def parse (context: Context): PowerSystemProjectSchedule =
     {
         PowerSystemProjectSchedule(
@@ -209,7 +209,7 @@ object PowerSystemSubProject
 extends
     Parseable[PowerSystemSubProject]
 {
-    val Project: (Context) => String = parse_attribute (attribute ("""PowerSystemSubProject.Project"""))
+    val Project = parse_attribute (attribute ("""PowerSystemSubProject.Project"""))
     def parse (context: Context): PowerSystemSubProject =
     {
         PowerSystemSubProject(
@@ -275,12 +275,12 @@ object ProjectStep
 extends
     Parseable[ProjectStep]
 {
-    val actualEnd: (Context) => String = parse_element (element ("""ProjectStep.actualEnd"""))
-    val actualStart: (Context) => String = parse_element (element ("""ProjectStep.actualStart"""))
-    val scheduledEnd: (Context) => String = parse_element (element ("""ProjectStep.scheduledEnd"""))
-    val scheduledStart: (Context) => String = parse_element (element ("""ProjectStep.scheduledStart"""))
-    val status: (Context) => String = parse_attribute (attribute ("""ProjectStep.status"""))
-    val stepType: (Context) => String = parse_attribute (attribute ("""ProjectStep.stepType"""))
+    val actualEnd = parse_element (element ("""ProjectStep.actualEnd"""))
+    val actualStart = parse_element (element ("""ProjectStep.actualStart"""))
+    val scheduledEnd = parse_element (element ("""ProjectStep.scheduledEnd"""))
+    val scheduledStart = parse_element (element ("""ProjectStep.scheduledStart"""))
+    val status = parse_attribute (attribute ("""ProjectStep.status"""))
+    val stepType = parse_attribute (attribute ("""ProjectStep.stepType"""))
     def parse (context: Context): ProjectStep =
     {
         ProjectStep(

@@ -66,10 +66,10 @@ object OverexcLim2
 extends
     Parseable[OverexcLim2]
 {
-    val ifdlim: (Context) => String = parse_element (element ("""OverexcLim2.ifdlim"""))
-    val koi: (Context) => String = parse_element (element ("""OverexcLim2.koi"""))
-    val voimax: (Context) => String = parse_element (element ("""OverexcLim2.voimax"""))
-    val voimin: (Context) => String = parse_element (element ("""OverexcLim2.voimin"""))
+    val ifdlim = parse_element (element ("""OverexcLim2.ifdlim"""))
+    val koi = parse_element (element ("""OverexcLim2.koi"""))
+    val voimax = parse_element (element ("""OverexcLim2.voimax"""))
+    val voimin = parse_element (element ("""OverexcLim2.voimin"""))
     def parse (context: Context): OverexcLim2 =
     {
         OverexcLim2(
@@ -145,12 +145,12 @@ object OverexcLimIEEE
 extends
     Parseable[OverexcLimIEEE]
 {
-    val hyst: (Context) => String = parse_element (element ("""OverexcLimIEEE.hyst"""))
-    val ifdlim: (Context) => String = parse_element (element ("""OverexcLimIEEE.ifdlim"""))
-    val ifdmax: (Context) => String = parse_element (element ("""OverexcLimIEEE.ifdmax"""))
-    val itfpu: (Context) => String = parse_element (element ("""OverexcLimIEEE.itfpu"""))
-    val kcd: (Context) => String = parse_element (element ("""OverexcLimIEEE.kcd"""))
-    val kramp: (Context) => String = parse_element (element ("""OverexcLimIEEE.kramp"""))
+    val hyst = parse_element (element ("""OverexcLimIEEE.hyst"""))
+    val ifdlim = parse_element (element ("""OverexcLimIEEE.ifdlim"""))
+    val ifdmax = parse_element (element ("""OverexcLimIEEE.ifdmax"""))
+    val itfpu = parse_element (element ("""OverexcLimIEEE.itfpu"""))
+    val kcd = parse_element (element ("""OverexcLimIEEE.kcd"""))
+    val kramp = parse_element (element ("""OverexcLimIEEE.kramp"""))
     def parse (context: Context): OverexcLimIEEE =
     {
         OverexcLimIEEE(
@@ -242,16 +242,16 @@ object OverexcLimX1
 extends
     Parseable[OverexcLimX1]
 {
-    val efd1: (Context) => String = parse_element (element ("""OverexcLimX1.efd1"""))
-    val efd2: (Context) => String = parse_element (element ("""OverexcLimX1.efd2"""))
-    val efd3: (Context) => String = parse_element (element ("""OverexcLimX1.efd3"""))
-    val efddes: (Context) => String = parse_element (element ("""OverexcLimX1.efddes"""))
-    val efdrated: (Context) => String = parse_element (element ("""OverexcLimX1.efdrated"""))
-    val kmx: (Context) => String = parse_element (element ("""OverexcLimX1.kmx"""))
-    val t1: (Context) => String = parse_element (element ("""OverexcLimX1.t1"""))
-    val t2: (Context) => String = parse_element (element ("""OverexcLimX1.t2"""))
-    val t3: (Context) => String = parse_element (element ("""OverexcLimX1.t3"""))
-    val vlow: (Context) => String = parse_element (element ("""OverexcLimX1.vlow"""))
+    val efd1 = parse_element (element ("""OverexcLimX1.efd1"""))
+    val efd2 = parse_element (element ("""OverexcLimX1.efd2"""))
+    val efd3 = parse_element (element ("""OverexcLimX1.efd3"""))
+    val efddes = parse_element (element ("""OverexcLimX1.efddes"""))
+    val efdrated = parse_element (element ("""OverexcLimX1.efdrated"""))
+    val kmx = parse_element (element ("""OverexcLimX1.kmx"""))
+    val t1 = parse_element (element ("""OverexcLimX1.t1"""))
+    val t2 = parse_element (element ("""OverexcLimX1.t2"""))
+    val t3 = parse_element (element ("""OverexcLimX1.t3"""))
+    val vlow = parse_element (element ("""OverexcLimX1.vlow"""))
     def parse (context: Context): OverexcLimX1 =
     {
         OverexcLimX1(
@@ -352,17 +352,17 @@ object OverexcLimX2
 extends
     Parseable[OverexcLimX2]
 {
-    val efd1: (Context) => String = parse_element (element ("""OverexcLimX2.efd1"""))
-    val efd2: (Context) => String = parse_element (element ("""OverexcLimX2.efd2"""))
-    val efd3: (Context) => String = parse_element (element ("""OverexcLimX2.efd3"""))
-    val efddes: (Context) => String = parse_element (element ("""OverexcLimX2.efddes"""))
-    val efdrated: (Context) => String = parse_element (element ("""OverexcLimX2.efdrated"""))
-    val kmx: (Context) => String = parse_element (element ("""OverexcLimX2.kmx"""))
-    val m: (Context) => String = parse_element (element ("""OverexcLimX2.m"""))
-    val t1: (Context) => String = parse_element (element ("""OverexcLimX2.t1"""))
-    val t2: (Context) => String = parse_element (element ("""OverexcLimX2.t2"""))
-    val t3: (Context) => String = parse_element (element ("""OverexcLimX2.t3"""))
-    val vlow: (Context) => String = parse_element (element ("""OverexcLimX2.vlow"""))
+    val efd1 = parse_element (element ("""OverexcLimX2.efd1"""))
+    val efd2 = parse_element (element ("""OverexcLimX2.efd2"""))
+    val efd3 = parse_element (element ("""OverexcLimX2.efd3"""))
+    val efddes = parse_element (element ("""OverexcLimX2.efddes"""))
+    val efdrated = parse_element (element ("""OverexcLimX2.efdrated"""))
+    val kmx = parse_element (element ("""OverexcLimX2.kmx"""))
+    val m = parse_element (element ("""OverexcLimX2.m"""))
+    val t1 = parse_element (element ("""OverexcLimX2.t1"""))
+    val t2 = parse_element (element ("""OverexcLimX2.t2"""))
+    val t3 = parse_element (element ("""OverexcLimX2.t3"""))
+    val vlow = parse_element (element ("""OverexcLimX2.vlow"""))
     def parse (context: Context): OverexcLimX2 =
     {
         OverexcLimX2(
@@ -423,7 +423,7 @@ object OverexcitationLimiterDynamics
 extends
     Parseable[OverexcitationLimiterDynamics]
 {
-    val ExcitationSystemDynamics: (Context) => String = parse_attribute (attribute ("""OverexcitationLimiterDynamics.ExcitationSystemDynamics"""))
+    val ExcitationSystemDynamics = parse_attribute (attribute ("""OverexcitationLimiterDynamics.ExcitationSystemDynamics"""))
     def parse (context: Context): OverexcitationLimiterDynamics =
     {
         OverexcitationLimiterDynamics(

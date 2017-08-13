@@ -65,12 +65,12 @@ object LandProperty
 extends
     Parseable[LandProperty]
 {
-    val demographicKind: (Context) => String = parse_attribute (attribute ("""LandProperty.demographicKind"""))
-    val externalRecordReference: (Context) => String = parse_element (element ("""LandProperty.externalRecordReference"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""LandProperty.kind"""))
-    val status: (Context) => String = parse_attribute (attribute ("""LandProperty.status"""))
-    val AssetContainers: (Context) => List[String] = parse_attributes (attribute ("""LandProperty.AssetContainers"""))
-    val Locations: (Context) => List[String] = parse_attributes (attribute ("""LandProperty.Locations"""))
+    val demographicKind = parse_attribute (attribute ("""LandProperty.demographicKind"""))
+    val externalRecordReference = parse_element (element ("""LandProperty.externalRecordReference"""))
+    val kind = parse_attribute (attribute ("""LandProperty.kind"""))
+    val status = parse_attribute (attribute ("""LandProperty.status"""))
+    val AssetContainers = parse_attributes (attribute ("""LandProperty.AssetContainers"""))
+    val Locations = parse_attributes (attribute ("""LandProperty.Locations"""))
     def parse (context: Context): LandProperty =
     {
         LandProperty(
@@ -131,8 +131,8 @@ object LocationGrant
 extends
     Parseable[LocationGrant]
 {
-    val propertyData: (Context) => String = parse_element (element ("""LocationGrant.propertyData"""))
-    val LandProperty: (Context) => String = parse_attribute (attribute ("""LocationGrant.LandProperty"""))
+    val propertyData = parse_element (element ("""LocationGrant.propertyData"""))
+    val LandProperty = parse_attribute (attribute ("""LocationGrant.LandProperty"""))
     def parse (context: Context): LocationGrant =
     {
         LocationGrant(
@@ -185,7 +185,7 @@ object RedLine
 extends
     Parseable[RedLine]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""RedLine.status"""))
+    val status = parse_attribute (attribute ("""RedLine.status"""))
     def parse (context: Context): RedLine =
     {
         RedLine(
@@ -241,8 +241,8 @@ object RightOfWay
 extends
     Parseable[RightOfWay]
 {
-    val propertyData: (Context) => String = parse_element (element ("""RightOfWay.propertyData"""))
-    val LandProperties: (Context) => List[String] = parse_attributes (attribute ("""RightOfWay.LandProperties"""))
+    val propertyData = parse_element (element ("""RightOfWay.propertyData"""))
+    val LandProperties = parse_attributes (attribute ("""RightOfWay.LandProperties"""))
     def parse (context: Context): RightOfWay =
     {
         RightOfWay(
@@ -300,9 +300,9 @@ object Route
 extends
     Parseable[Route]
 {
-    val status: (Context) => String = parse_attribute (attribute ("""Route.status"""))
-    val typ: (Context) => String = parse_element (element ("""Route.type"""))
-    val Locations: (Context) => List[String] = parse_attributes (attribute ("""Route.Locations"""))
+    val status = parse_attribute (attribute ("""Route.status"""))
+    val typ = parse_element (element ("""Route.type"""))
+    val Locations = parse_attributes (attribute ("""Route.Locations"""))
     def parse (context: Context): Route =
     {
         Route(
@@ -356,7 +356,7 @@ object Zone
 extends
     Parseable[Zone]
 {
-    val kind: (Context) => String = parse_attribute (attribute ("""Zone.kind"""))
+    val kind = parse_attribute (attribute ("""Zone.kind"""))
     def parse (context: Context): Zone =
     {
         Zone(

@@ -60,9 +60,9 @@ object AccountMovement
 extends
     Parseable[AccountMovement]
 {
-    val amount: (Context) => String = parse_element (element ("""AccountMovement.amount"""))
-    val dateTime: (Context) => String = parse_element (element ("""AccountMovement.dateTime"""))
-    val reason: (Context) => String = parse_element (element ("""AccountMovement.reason"""))
+    val amount = parse_element (element ("""AccountMovement.amount"""))
+    val dateTime = parse_element (element ("""AccountMovement.dateTime"""))
+    val reason = parse_element (element ("""AccountMovement.reason"""))
     def parse (context: Context): AccountMovement =
     {
         AccountMovement(
@@ -124,10 +124,10 @@ object AccountingUnit
 extends
     Parseable[AccountingUnit]
 {
-    val energyUnit: (Context) => String = parse_element (element ("""AccountingUnit.energyUnit"""))
-    val monetaryUnit: (Context) => String = parse_attribute (attribute ("""AccountingUnit.monetaryUnit"""))
-    val multiplier: (Context) => String = parse_attribute (attribute ("""AccountingUnit.multiplier"""))
-    val value: (Context) => String = parse_element (element ("""AccountingUnit.value"""))
+    val energyUnit = parse_element (element ("""AccountingUnit.energyUnit"""))
+    val monetaryUnit = parse_attribute (attribute ("""AccountingUnit.monetaryUnit"""))
+    val multiplier = parse_attribute (attribute ("""AccountingUnit.multiplier"""))
+    val value = parse_element (element ("""AccountingUnit.value"""))
     def parse (context: Context): AccountingUnit =
     {
         AccountingUnit(
@@ -200,13 +200,13 @@ object AuxiliaryAccount
 extends
     Parseable[AuxiliaryAccount]
 {
-    val balance: (Context) => String = parse_element (element ("""AuxiliaryAccount.balance"""))
-    val due: (Context) => String = parse_attribute (attribute ("""AuxiliaryAccount.due"""))
-    val lastCredit: (Context) => String = parse_attribute (attribute ("""AuxiliaryAccount.lastCredit"""))
-    val lastDebit: (Context) => String = parse_attribute (attribute ("""AuxiliaryAccount.lastDebit"""))
-    val principleAmount: (Context) => String = parse_element (element ("""AuxiliaryAccount.principleAmount"""))
-    val AuxiliaryAgreement: (Context) => String = parse_attribute (attribute ("""AuxiliaryAccount.AuxiliaryAgreement"""))
-    val Charges: (Context) => List[String] = parse_attributes (attribute ("""AuxiliaryAccount.Charges"""))
+    val balance = parse_element (element ("""AuxiliaryAccount.balance"""))
+    val due = parse_attribute (attribute ("""AuxiliaryAccount.due"""))
+    val lastCredit = parse_attribute (attribute ("""AuxiliaryAccount.lastCredit"""))
+    val lastDebit = parse_attribute (attribute ("""AuxiliaryAccount.lastDebit"""))
+    val principleAmount = parse_element (element ("""AuxiliaryAccount.principleAmount"""))
+    val AuxiliaryAgreement = parse_attribute (attribute ("""AuxiliaryAccount.AuxiliaryAgreement"""))
+    val Charges = parse_attributes (attribute ("""AuxiliaryAccount.Charges"""))
     def parse (context: Context): AuxiliaryAccount =
     {
         AuxiliaryAccount(
@@ -296,16 +296,16 @@ object AuxiliaryAgreement
 extends
     Parseable[AuxiliaryAgreement]
 {
-    val arrearsInterest: (Context) => String = parse_element (element ("""AuxiliaryAgreement.arrearsInterest"""))
-    val auxCycle: (Context) => String = parse_element (element ("""AuxiliaryAgreement.auxCycle"""))
-    val auxPriorityCode: (Context) => String = parse_element (element ("""AuxiliaryAgreement.auxPriorityCode"""))
-    val fixedAmount: (Context) => String = parse_element (element ("""AuxiliaryAgreement.fixedAmount"""))
-    val minAmount: (Context) => String = parse_element (element ("""AuxiliaryAgreement.minAmount"""))
-    val payCycle: (Context) => String = parse_element (element ("""AuxiliaryAgreement.payCycle"""))
-    val subType: (Context) => String = parse_element (element ("""AuxiliaryAgreement.subType"""))
-    val vendPortion: (Context) => String = parse_element (element ("""AuxiliaryAgreement.vendPortion"""))
-    val vendPortionArrear: (Context) => String = parse_element (element ("""AuxiliaryAgreement.vendPortionArrear"""))
-    val CustomerAgreement: (Context) => String = parse_attribute (attribute ("""AuxiliaryAgreement.CustomerAgreement"""))
+    val arrearsInterest = parse_element (element ("""AuxiliaryAgreement.arrearsInterest"""))
+    val auxCycle = parse_element (element ("""AuxiliaryAgreement.auxCycle"""))
+    val auxPriorityCode = parse_element (element ("""AuxiliaryAgreement.auxPriorityCode"""))
+    val fixedAmount = parse_element (element ("""AuxiliaryAgreement.fixedAmount"""))
+    val minAmount = parse_element (element ("""AuxiliaryAgreement.minAmount"""))
+    val payCycle = parse_element (element ("""AuxiliaryAgreement.payCycle"""))
+    val subType = parse_element (element ("""AuxiliaryAgreement.subType"""))
+    val vendPortion = parse_element (element ("""AuxiliaryAgreement.vendPortion"""))
+    val vendPortionArrear = parse_element (element ("""AuxiliaryAgreement.vendPortionArrear"""))
+    val CustomerAgreement = parse_attribute (attribute ("""AuxiliaryAgreement.CustomerAgreement"""))
     def parse (context: Context): AuxiliaryAgreement =
     {
         AuxiliaryAgreement(
@@ -377,11 +377,11 @@ object BankAccountDetail
 extends
     Parseable[BankAccountDetail]
 {
-    val accountNumber: (Context) => String = parse_element (element ("""BankAccountDetail.accountNumber"""))
-    val bankName: (Context) => String = parse_element (element ("""BankAccountDetail.bankName"""))
-    val branchCode: (Context) => String = parse_element (element ("""BankAccountDetail.branchCode"""))
-    val holderID: (Context) => String = parse_element (element ("""BankAccountDetail.holderID"""))
-    val holderName: (Context) => String = parse_element (element ("""BankAccountDetail.holderName"""))
+    val accountNumber = parse_element (element ("""BankAccountDetail.accountNumber"""))
+    val bankName = parse_element (element ("""BankAccountDetail.bankName"""))
+    val branchCode = parse_element (element ("""BankAccountDetail.branchCode"""))
+    val holderID = parse_element (element ("""BankAccountDetail.holderID"""))
+    val holderName = parse_element (element ("""BankAccountDetail.holderName"""))
     def parse (context: Context): BankAccountDetail =
     {
         BankAccountDetail(
@@ -448,11 +448,11 @@ object Card
 extends
     Parseable[Card]
 {
-    val accountHolderName: (Context) => String = parse_element (element ("""Card.accountHolderName"""))
-    val cvNumber: (Context) => String = parse_element (element ("""Card.cvNumber"""))
-    val expiryDate: (Context) => String = parse_element (element ("""Card.expiryDate"""))
-    val pan: (Context) => String = parse_element (element ("""Card.pan"""))
-    val Tender: (Context) => String = parse_attribute (attribute ("""Card.Tender"""))
+    val accountHolderName = parse_element (element ("""Card.accountHolderName"""))
+    val cvNumber = parse_element (element ("""Card.cvNumber"""))
+    val expiryDate = parse_element (element ("""Card.expiryDate"""))
+    val pan = parse_element (element ("""Card.pan"""))
+    val Tender = parse_attribute (attribute ("""Card.Tender"""))
     def parse (context: Context): Card =
     {
         Card(
@@ -508,7 +508,7 @@ object Cashier
 extends
     Parseable[Cashier]
 {
-    val electronicAddress: (Context) => String = parse_attribute (attribute ("""Cashier.electronicAddress"""))
+    val electronicAddress = parse_attribute (attribute ("""Cashier.electronicAddress"""))
     def parse (context: Context): Cashier =
     {
         Cashier(
@@ -565,9 +565,9 @@ object CashierShift
 extends
     Parseable[CashierShift]
 {
-    val cashFloat: (Context) => String = parse_element (element ("""CashierShift.cashFloat"""))
-    val Cashier: (Context) => String = parse_attribute (attribute ("""CashierShift.Cashier"""))
-    val PointOfSale: (Context) => String = parse_attribute (attribute ("""CashierShift.PointOfSale"""))
+    val cashFloat = parse_element (element ("""CashierShift.cashFloat"""))
+    val Cashier = parse_attribute (attribute ("""CashierShift.Cashier"""))
+    val PointOfSale = parse_attribute (attribute ("""CashierShift.PointOfSale"""))
     def parse (context: Context): CashierShift =
     {
         CashierShift(
@@ -630,10 +630,10 @@ object Charge
 extends
     Parseable[Charge]
 {
-    val fixedPortion: (Context) => String = parse_attribute (attribute ("""Charge.fixedPortion"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""Charge.kind"""))
-    val variablePortion: (Context) => String = parse_element (element ("""Charge.variablePortion"""))
-    val ParentCharge: (Context) => String = parse_attribute (attribute ("""Charge.ParentCharge"""))
+    val fixedPortion = parse_attribute (attribute ("""Charge.fixedPortion"""))
+    val kind = parse_attribute (attribute ("""Charge.kind"""))
+    val variablePortion = parse_element (element ("""Charge.variablePortion"""))
+    val ParentCharge = parse_attribute (attribute ("""Charge.ParentCharge"""))
     def parse (context: Context): Charge =
     {
         Charge(
@@ -702,12 +702,12 @@ object Cheque
 extends
     Parseable[Cheque]
 {
-    val bankAccountDetail: (Context) => String = parse_attribute (attribute ("""Cheque.bankAccountDetail"""))
-    val chequeNumber: (Context) => String = parse_element (element ("""Cheque.chequeNumber"""))
-    val date: (Context) => String = parse_element (element ("""Cheque.date"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""Cheque.kind"""))
-    val micrNumber: (Context) => String = parse_element (element ("""Cheque.micrNumber"""))
-    val Tender: (Context) => String = parse_attribute (attribute ("""Cheque.Tender"""))
+    val bankAccountDetail = parse_attribute (attribute ("""Cheque.bankAccountDetail"""))
+    val chequeNumber = parse_element (element ("""Cheque.chequeNumber"""))
+    val date = parse_element (element ("""Cheque.date"""))
+    val kind = parse_attribute (attribute ("""Cheque.kind"""))
+    val micrNumber = parse_element (element ("""Cheque.micrNumber"""))
+    val Tender = parse_attribute (attribute ("""Cheque.Tender"""))
     def parse (context: Context): Cheque =
     {
         Cheque(
@@ -774,10 +774,10 @@ object ConsumptionTariffInterval
 extends
     Parseable[ConsumptionTariffInterval]
 {
-    val sequenceNumber: (Context) => String = parse_element (element ("""ConsumptionTariffInterval.sequenceNumber"""))
-    val startValue: (Context) => String = parse_element (element ("""ConsumptionTariffInterval.startValue"""))
-    val Charges: (Context) => List[String] = parse_attributes (attribute ("""ConsumptionTariffInterval.Charges"""))
-    val TouTariffIntervals: (Context) => List[String] = parse_attributes (attribute ("""ConsumptionTariffInterval.TouTariffIntervals"""))
+    val sequenceNumber = parse_element (element ("""ConsumptionTariffInterval.sequenceNumber"""))
+    val startValue = parse_element (element ("""ConsumptionTariffInterval.startValue"""))
+    val Charges = parse_attributes (attribute ("""ConsumptionTariffInterval.Charges"""))
+    val TouTariffIntervals = parse_attributes (attribute ("""ConsumptionTariffInterval.TouTariffIntervals"""))
     def parse (context: Context): ConsumptionTariffInterval =
     {
         ConsumptionTariffInterval(
@@ -844,11 +844,11 @@ object Due
 extends
     Parseable[Due]
 {
-    val arrears: (Context) => String = parse_element (element ("""Due.arrears"""))
-    val charges: (Context) => String = parse_element (element ("""Due.charges"""))
-    val current: (Context) => String = parse_element (element ("""Due.current"""))
-    val interest: (Context) => String = parse_element (element ("""Due.interest"""))
-    val principle: (Context) => String = parse_element (element ("""Due.principle"""))
+    val arrears = parse_element (element ("""Due.arrears"""))
+    val charges = parse_element (element ("""Due.charges"""))
+    val current = parse_element (element ("""Due.current"""))
+    val interest = parse_element (element ("""Due.interest"""))
+    val principle = parse_element (element ("""Due.principle"""))
     def parse (context: Context): Due =
     {
         Due(
@@ -912,10 +912,10 @@ object LineDetail
 extends
     Parseable[LineDetail]
 {
-    val amount: (Context) => String = parse_element (element ("""LineDetail.amount"""))
-    val dateTime: (Context) => String = parse_element (element ("""LineDetail.dateTime"""))
-    val note: (Context) => String = parse_element (element ("""LineDetail.note"""))
-    val rounding: (Context) => String = parse_element (element ("""LineDetail.rounding"""))
+    val amount = parse_element (element ("""LineDetail.amount"""))
+    val dateTime = parse_element (element ("""LineDetail.dateTime"""))
+    val note = parse_element (element ("""LineDetail.note"""))
+    val rounding = parse_element (element ("""LineDetail.rounding"""))
     def parse (context: Context): LineDetail =
     {
         LineDetail(
@@ -979,10 +979,10 @@ object MerchantAccount
 extends
     Parseable[MerchantAccount]
 {
-    val currentBalance: (Context) => String = parse_element (element ("""MerchantAccount.currentBalance"""))
-    val provisionalBalance: (Context) => String = parse_element (element ("""MerchantAccount.provisionalBalance"""))
-    val MerchantAgreement: (Context) => String = parse_attribute (attribute ("""MerchantAccount.MerchantAgreement"""))
-    val Transactors: (Context) => List[String] = parse_attributes (attribute ("""MerchantAccount.Transactors"""))
+    val currentBalance = parse_element (element ("""MerchantAccount.currentBalance"""))
+    val provisionalBalance = parse_element (element ("""MerchantAccount.provisionalBalance"""))
+    val MerchantAgreement = parse_attribute (attribute ("""MerchantAccount.MerchantAgreement"""))
+    val Transactors = parse_attributes (attribute ("""MerchantAccount.Transactors"""))
     def parse (context: Context): MerchantAccount =
     {
         MerchantAccount(
@@ -1084,7 +1084,7 @@ object PointOfSale
 extends
     Parseable[PointOfSale]
 {
-    val location: (Context) => String = parse_element (element ("""PointOfSale.location"""))
+    val location = parse_element (element ("""PointOfSale.location"""))
     def parse (context: Context): PointOfSale =
     {
         PointOfSale(
@@ -1144,10 +1144,10 @@ object Receipt
 extends
     Parseable[Receipt]
 {
-    val isBankable: (Context) => String = parse_element (element ("""Receipt.isBankable"""))
-    val line: (Context) => String = parse_attribute (attribute ("""Receipt.line"""))
-    val CashierShift: (Context) => String = parse_attribute (attribute ("""Receipt.CashierShift"""))
-    val VendorShift: (Context) => String = parse_attribute (attribute ("""Receipt.VendorShift"""))
+    val isBankable = parse_element (element ("""Receipt.isBankable"""))
+    val line = parse_attribute (attribute ("""Receipt.line"""))
+    val CashierShift = parse_attribute (attribute ("""Receipt.CashierShift"""))
+    val VendorShift = parse_attribute (attribute ("""Receipt.VendorShift"""))
     def parse (context: Context): Receipt =
     {
         Receipt(
@@ -1204,8 +1204,8 @@ object ServiceSupplier
 extends
     Parseable[ServiceSupplier]
 {
-    val issuerIdentificationNumber: (Context) => String = parse_element (element ("""ServiceSupplier.issuerIdentificationNumber"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""ServiceSupplier.kind"""))
+    val issuerIdentificationNumber = parse_element (element ("""ServiceSupplier.issuerIdentificationNumber"""))
+    val kind = parse_attribute (attribute ("""ServiceSupplier.kind"""))
     def parse (context: Context): ServiceSupplier =
     {
         ServiceSupplier(
@@ -1278,12 +1278,12 @@ object Shift
 extends
     Parseable[Shift]
 {
-    val activityInterval: (Context) => String = parse_attribute (attribute ("""Shift.activityInterval"""))
-    val receiptsGrandTotalBankable: (Context) => String = parse_element (element ("""Shift.receiptsGrandTotalBankable"""))
-    val receiptsGrandTotalNonBankable: (Context) => String = parse_element (element ("""Shift.receiptsGrandTotalNonBankable"""))
-    val receiptsGrandTotalRounding: (Context) => String = parse_element (element ("""Shift.receiptsGrandTotalRounding"""))
-    val transactionsGrandTotal: (Context) => String = parse_element (element ("""Shift.transactionsGrandTotal"""))
-    val transactionsGrandTotalRounding: (Context) => String = parse_element (element ("""Shift.transactionsGrandTotalRounding"""))
+    val activityInterval = parse_attribute (attribute ("""Shift.activityInterval"""))
+    val receiptsGrandTotalBankable = parse_element (element ("""Shift.receiptsGrandTotalBankable"""))
+    val receiptsGrandTotalNonBankable = parse_element (element ("""Shift.receiptsGrandTotalNonBankable"""))
+    val receiptsGrandTotalRounding = parse_element (element ("""Shift.receiptsGrandTotalRounding"""))
+    val transactionsGrandTotal = parse_element (element ("""Shift.transactionsGrandTotal"""))
+    val transactionsGrandTotalRounding = parse_element (element ("""Shift.transactionsGrandTotalRounding"""))
     def parse (context: Context): Shift =
     {
         Shift(
@@ -1347,9 +1347,9 @@ object TariffProfile
 extends
     Parseable[TariffProfile]
 {
-    val tariffCycle: (Context) => String = parse_element (element ("""TariffProfile.tariffCycle"""))
-    val ConsumptionTariffIntervals: (Context) => List[String] = parse_attributes (attribute ("""TariffProfile.ConsumptionTariffIntervals"""))
-    val TimeTariffIntervals: (Context) => List[String] = parse_attributes (attribute ("""TariffProfile.TimeTariffIntervals"""))
+    val tariffCycle = parse_element (element ("""TariffProfile.tariffCycle"""))
+    val ConsumptionTariffIntervals = parse_attributes (attribute ("""TariffProfile.ConsumptionTariffIntervals"""))
+    val TimeTariffIntervals = parse_attributes (attribute ("""TariffProfile.TimeTariffIntervals"""))
     def parse (context: Context): TariffProfile =
     {
         TariffProfile(
@@ -1418,12 +1418,12 @@ object Tender
 extends
     Parseable[Tender]
 {
-    val amount: (Context) => String = parse_element (element ("""Tender.amount"""))
-    val change: (Context) => String = parse_element (element ("""Tender.change"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""Tender.kind"""))
-    val Card: (Context) => String = parse_attribute (attribute ("""Tender.Card"""))
-    val Cheque: (Context) => String = parse_attribute (attribute ("""Tender.Cheque"""))
-    val Receipt: (Context) => String = parse_attribute (attribute ("""Tender.Receipt"""))
+    val amount = parse_element (element ("""Tender.amount"""))
+    val change = parse_element (element ("""Tender.change"""))
+    val kind = parse_attribute (attribute ("""Tender.kind"""))
+    val Card = parse_attribute (attribute ("""Tender.Card"""))
+    val Cheque = parse_attribute (attribute ("""Tender.Cheque"""))
+    val Receipt = parse_attribute (attribute ("""Tender.Receipt"""))
     def parse (context: Context): Tender =
     {
         Tender(
@@ -1487,9 +1487,9 @@ object TimeTariffInterval
 extends
     Parseable[TimeTariffInterval]
 {
-    val sequenceNumber: (Context) => String = parse_element (element ("""TimeTariffInterval.sequenceNumber"""))
-    val startTime: (Context) => String = parse_element (element ("""TimeTariffInterval.startTime"""))
-    val Charges: (Context) => List[String] = parse_attributes (attribute ("""TimeTariffInterval.Charges"""))
+    val sequenceNumber = parse_element (element ("""TimeTariffInterval.sequenceNumber"""))
+    val startTime = parse_element (element ("""TimeTariffInterval.startTime"""))
+    val Charges = parse_attributes (attribute ("""TimeTariffInterval.Charges"""))
     def parse (context: Context): TimeTariffInterval =
     {
         TimeTariffInterval(
@@ -1584,21 +1584,21 @@ object Transaction
 extends
     Parseable[Transaction]
 {
-    val diverseReference: (Context) => String = parse_element (element ("""Transaction.diverseReference"""))
-    val donorReference: (Context) => String = parse_element (element ("""Transaction.donorReference"""))
-    val kind: (Context) => String = parse_attribute (attribute ("""Transaction.kind"""))
-    val line: (Context) => String = parse_attribute (attribute ("""Transaction.line"""))
-    val receiverReference: (Context) => String = parse_element (element ("""Transaction.receiverReference"""))
-    val reversedId: (Context) => String = parse_element (element ("""Transaction.reversedId"""))
-    val serviceUnitsEnergy: (Context) => String = parse_element (element ("""Transaction.serviceUnitsEnergy"""))
-    val serviceUnitsError: (Context) => String = parse_element (element ("""Transaction.serviceUnitsError"""))
-    val AuxiliaryAccount: (Context) => String = parse_attribute (attribute ("""Transaction.AuxiliaryAccount"""))
-    val CashierShift: (Context) => String = parse_attribute (attribute ("""Transaction.CashierShift"""))
-    val CustomerAccount: (Context) => String = parse_attribute (attribute ("""Transaction.CustomerAccount"""))
-    val Meter: (Context) => String = parse_attribute (attribute ("""Transaction.Meter"""))
-    val PricingStructure: (Context) => String = parse_attribute (attribute ("""Transaction.PricingStructure"""))
-    val Receipt: (Context) => String = parse_attribute (attribute ("""Transaction.Receipt"""))
-    val VendorShift: (Context) => String = parse_attribute (attribute ("""Transaction.VendorShift"""))
+    val diverseReference = parse_element (element ("""Transaction.diverseReference"""))
+    val donorReference = parse_element (element ("""Transaction.donorReference"""))
+    val kind = parse_attribute (attribute ("""Transaction.kind"""))
+    val line = parse_attribute (attribute ("""Transaction.line"""))
+    val receiverReference = parse_element (element ("""Transaction.receiverReference"""))
+    val reversedId = parse_element (element ("""Transaction.reversedId"""))
+    val serviceUnitsEnergy = parse_element (element ("""Transaction.serviceUnitsEnergy"""))
+    val serviceUnitsError = parse_element (element ("""Transaction.serviceUnitsError"""))
+    val AuxiliaryAccount = parse_attribute (attribute ("""Transaction.AuxiliaryAccount"""))
+    val CashierShift = parse_attribute (attribute ("""Transaction.CashierShift"""))
+    val CustomerAccount = parse_attribute (attribute ("""Transaction.CustomerAccount"""))
+    val Meter = parse_attribute (attribute ("""Transaction.Meter"""))
+    val PricingStructure = parse_attribute (attribute ("""Transaction.PricingStructure"""))
+    val Receipt = parse_attribute (attribute ("""Transaction.Receipt"""))
+    val VendorShift = parse_attribute (attribute ("""Transaction.VendorShift"""))
     def parse (context: Context): Transaction =
     {
         Transaction(
@@ -1769,10 +1769,10 @@ object VendorShift
 extends
     Parseable[VendorShift]
 {
-    val merchantDebitAmount: (Context) => String = parse_element (element ("""VendorShift.merchantDebitAmount"""))
-    val posted: (Context) => String = parse_element (element ("""VendorShift.posted"""))
-    val MerchantAccount: (Context) => String = parse_attribute (attribute ("""VendorShift.MerchantAccount"""))
-    val Vendor: (Context) => String = parse_attribute (attribute ("""VendorShift.Vendor"""))
+    val merchantDebitAmount = parse_element (element ("""VendorShift.merchantDebitAmount"""))
+    val posted = parse_element (element ("""VendorShift.posted"""))
+    val MerchantAccount = parse_attribute (attribute ("""VendorShift.MerchantAccount"""))
+    val Vendor = parse_attribute (attribute ("""VendorShift.Vendor"""))
     def parse (context: Context): VendorShift =
     {
         VendorShift(

@@ -57,9 +57,9 @@ object AceTariffType
 extends
     Parseable[AceTariffType]
 {
-    val typ: (Context) => String = parse_element (element ("""AceTariffType.type"""))
-    val MarketDocument: (Context) => List[String] = parse_attributes (attribute ("""AceTariffType.MarketDocument"""))
-    val Unit: (Context) => List[String] = parse_attributes (attribute ("""AceTariffType.Unit"""))
+    val typ = parse_element (element ("""AceTariffType.type"""))
+    val MarketDocument = parse_attributes (attribute ("""AceTariffType.MarketDocument"""))
+    val Unit = parse_attributes (attribute ("""AceTariffType.Unit"""))
     def parse (context: Context): AceTariffType =
     {
         AceTariffType(
@@ -121,10 +121,10 @@ object AttributeInstanceComponent
 extends
     Parseable[AttributeInstanceComponent]
 {
-    val attribute: (Context) => String = parse_element (element ("""AttributeInstanceComponent.attribute"""))
-    val attributeValue: (Context) => String = parse_element (element ("""AttributeInstanceComponent.attributeValue"""))
-    val position: (Context) => String = parse_element (element ("""AttributeInstanceComponent.position"""))
-    val TimeSeries: (Context) => List[String] = parse_attributes (attribute ("""AttributeInstanceComponent.TimeSeries"""))
+    val attribute = parse_element (element ("""AttributeInstanceComponent.attribute"""))
+    val attributeValue = parse_element (element ("""AttributeInstanceComponent.attributeValue"""))
+    val position = parse_element (element ("""AttributeInstanceComponent.position"""))
+    val TimeSeries = parse_attributes (attribute ("""AttributeInstanceComponent.TimeSeries"""))
     def parse (context: Context): AttributeInstanceComponent =
     {
         AttributeInstanceComponent(
@@ -196,13 +196,13 @@ object Auction
 extends
     Parseable[Auction]
 {
-    val allocationMode: (Context) => String = parse_element (element ("""Auction.allocationMode"""))
-    val cancelled: (Context) => String = parse_element (element ("""Auction.cancelled"""))
-    val category: (Context) => String = parse_element (element ("""Auction.category"""))
-    val paymentTerms: (Context) => String = parse_element (element ("""Auction.paymentTerms"""))
-    val rights: (Context) => String = parse_element (element ("""Auction.rights"""))
-    val typ: (Context) => String = parse_element (element ("""Auction.type"""))
-    val TimeSeries: (Context) => List[String] = parse_attributes (attribute ("""Auction.TimeSeries"""))
+    val allocationMode = parse_element (element ("""Auction.allocationMode"""))
+    val cancelled = parse_element (element ("""Auction.cancelled"""))
+    val category = parse_element (element ("""Auction.category"""))
+    val paymentTerms = parse_element (element ("""Auction.paymentTerms"""))
+    val rights = parse_element (element ("""Auction.rights"""))
+    val typ = parse_element (element ("""Auction.type"""))
+    val TimeSeries = parse_attributes (attribute ("""Auction.TimeSeries"""))
     def parse (context: Context): Auction =
     {
         Auction(
@@ -275,12 +275,12 @@ object BidTimeSeries
 extends
     Parseable[BidTimeSeries]
 {
-    val blockBid: (Context) => String = parse_element (element ("""BidTimeSeries.blockBid"""))
-    val direction: (Context) => String = parse_element (element ("""BidTimeSeries.direction"""))
-    val divisible: (Context) => String = parse_element (element ("""BidTimeSeries.divisible"""))
-    val linkedBidsIdentification: (Context) => String = parse_element (element ("""BidTimeSeries.linkedBidsIdentification"""))
-    val minimumActivationQuantity: (Context) => String = parse_element (element ("""BidTimeSeries.minimumActivationQuantity"""))
-    val stepIncrementQuantity: (Context) => String = parse_element (element ("""BidTimeSeries.stepIncrementQuantity"""))
+    val blockBid = parse_element (element ("""BidTimeSeries.blockBid"""))
+    val direction = parse_element (element ("""BidTimeSeries.direction"""))
+    val divisible = parse_element (element ("""BidTimeSeries.divisible"""))
+    val linkedBidsIdentification = parse_element (element ("""BidTimeSeries.linkedBidsIdentification"""))
+    val minimumActivationQuantity = parse_element (element ("""BidTimeSeries.minimumActivationQuantity"""))
+    val stepIncrementQuantity = parse_element (element ("""BidTimeSeries.stepIncrementQuantity"""))
     def parse (context: Context): BidTimeSeries =
     {
         BidTimeSeries(
@@ -339,8 +339,8 @@ object DateAndOrTime
 extends
     Parseable[DateAndOrTime]
 {
-    val date: (Context) => String = parse_element (element ("""DateAndOrTime.date"""))
-    val time: (Context) => String = parse_element (element ("""DateAndOrTime.time"""))
+    val date = parse_element (element ("""DateAndOrTime.date"""))
+    val time = parse_element (element ("""DateAndOrTime.time"""))
     def parse (context: Context): DateAndOrTime =
     {
         DateAndOrTime(
@@ -439,7 +439,7 @@ object FlowDirection
 extends
     Parseable[FlowDirection]
 {
-    val direction: (Context) => String = parse_element (element ("""FlowDirection.direction"""))
+    val direction = parse_element (element ("""FlowDirection.direction"""))
     def parse (context: Context): FlowDirection =
     {
         FlowDirection(
@@ -546,10 +546,10 @@ object MarketDocument
 extends
     Parseable[MarketDocument]
 {
-    val selfMarketDocument: (Context) => List[String] = parse_attributes (attribute ("""MarketDocument.selfMarketDocument"""))
-    val AttributeInstanceComponent: (Context) => List[String] = parse_attributes (attribute ("""MarketDocument.AttributeInstanceComponent"""))
-    val Domain: (Context) => List[String] = parse_attributes (attribute ("""MarketDocument.Domain"""))
-    val Period: (Context) => List[String] = parse_attributes (attribute ("""MarketDocument.Period"""))
+    val selfMarketDocument = parse_attributes (attribute ("""MarketDocument.selfMarketDocument"""))
+    val AttributeInstanceComponent = parse_attributes (attribute ("""MarketDocument.AttributeInstanceComponent"""))
+    val Domain = parse_attributes (attribute ("""MarketDocument.Domain"""))
+    val Period = parse_attributes (attribute ("""MarketDocument.Period"""))
     def parse (context: Context): MarketDocument =
     {
         MarketDocument(
@@ -653,8 +653,8 @@ object MarketObjectStatus
 extends
     Parseable[MarketObjectStatus]
 {
-    val status: (Context) => String = parse_element (element ("""MarketObjectStatus.status"""))
-    val TimeSeries: (Context) => List[String] = parse_attributes (attribute ("""MarketObjectStatus.TimeSeries"""))
+    val status = parse_element (element ("""MarketObjectStatus.status"""))
+    val TimeSeries = parse_attributes (attribute ("""MarketObjectStatus.TimeSeries"""))
     def parse (context: Context): MarketObjectStatus =
     {
         MarketObjectStatus(
@@ -709,8 +709,8 @@ object MktPSRType
 extends
     Parseable[MktPSRType]
 {
-    val psrType: (Context) => String = parse_element (element ("""MktPSRType.psrType"""))
-    val TimeSeries: (Context) => List[String] = parse_attributes (attribute ("""MktPSRType.TimeSeries"""))
+    val psrType = parse_element (element ("""MktPSRType.psrType"""))
+    val TimeSeries = parse_attributes (attribute ("""MktPSRType.TimeSeries"""))
     def parse (context: Context): MktPSRType =
     {
         MktPSRType(
@@ -768,9 +768,9 @@ object Period
 extends
     Parseable[Period]
 {
-    val resolution: (Context) => String = parse_element (element ("""Period.resolution"""))
-    val timeInterval: (Context) => String = parse_attribute (attribute ("""Period.timeInterval"""))
-    val Reason: (Context) => List[String] = parse_attributes (attribute ("""Period.Reason"""))
+    val resolution = parse_element (element ("""Period.resolution"""))
+    val timeInterval = parse_attribute (attribute ("""Period.timeInterval"""))
+    val Reason = parse_attributes (attribute ("""Period.Reason"""))
     def parse (context: Context): Period =
     {
         Period(
@@ -842,13 +842,13 @@ object Point
 extends
     Parseable[Point]
 {
-    val position: (Context) => String = parse_element (element ("""Point.position"""))
-    val quality: (Context) => String = parse_element (element ("""Point.quality"""))
-    val quantity: (Context) => String = parse_element (element ("""Point.quantity"""))
-    val secondaryQuantity: (Context) => String = parse_element (element ("""Point.secondaryQuantity"""))
-    val AceTariffType: (Context) => List[String] = parse_attributes (attribute ("""Point.AceTariffType"""))
-    val Period: (Context) => String = parse_attribute (attribute ("""Point.Period"""))
-    val TimeSeries: (Context) => List[String] = parse_attributes (attribute ("""Point.TimeSeries"""))
+    val position = parse_element (element ("""Point.position"""))
+    val quality = parse_element (element ("""Point.quality"""))
+    val quantity = parse_element (element ("""Point.quantity"""))
+    val secondaryQuantity = parse_element (element ("""Point.secondaryQuantity"""))
+    val AceTariffType = parse_attributes (attribute ("""Point.AceTariffType"""))
+    val Period = parse_attribute (attribute ("""Point.Period"""))
+    val TimeSeries = parse_attributes (attribute ("""Point.TimeSeries"""))
     def parse (context: Context): Point =
     {
         Point(
@@ -915,10 +915,10 @@ object Price
 extends
     Parseable[Price]
 {
-    val amount: (Context) => String = parse_element (element ("""Price.amount"""))
-    val category: (Context) => String = parse_element (element ("""Price.category"""))
-    val direction: (Context) => String = parse_element (element ("""Price.direction"""))
-    val Point: (Context) => String = parse_attribute (attribute ("""Price.Point"""))
+    val amount = parse_element (element ("""Price.amount"""))
+    val category = parse_element (element ("""Price.category"""))
+    val direction = parse_element (element ("""Price.direction"""))
+    val Point = parse_attribute (attribute ("""Price.Point"""))
     def parse (context: Context): Price =
     {
         Price(
@@ -979,9 +979,9 @@ object Process
 extends
     Parseable[Process]
 {
-    val classificationType: (Context) => String = parse_element (element ("""Process.classificationType"""))
-    val processType: (Context) => String = parse_element (element ("""Process.processType"""))
-    val MarketDocument: (Context) => List[String] = parse_attributes (attribute ("""Process.MarketDocument"""))
+    val classificationType = parse_element (element ("""Process.classificationType"""))
+    val processType = parse_element (element ("""Process.processType"""))
+    val MarketDocument = parse_attributes (attribute ("""Process.MarketDocument"""))
     def parse (context: Context): Process =
     {
         Process(
@@ -1043,10 +1043,10 @@ object Reason
 extends
     Parseable[Reason]
 {
-    val code: (Context) => String = parse_element (element ("""Reason.code"""))
-    val text: (Context) => String = parse_element (element ("""Reason.text"""))
-    val MarketDocument: (Context) => List[String] = parse_attributes (attribute ("""Reason.MarketDocument"""))
-    val Point: (Context) => List[String] = parse_attributes (attribute ("""Reason.Point"""))
+    val code = parse_element (element ("""Reason.code"""))
+    val text = parse_element (element ("""Reason.text"""))
+    val MarketDocument = parse_attributes (attribute ("""Reason.MarketDocument"""))
+    val Point = parse_attributes (attribute ("""Reason.Point"""))
     def parse (context: Context): Reason =
     {
         Reason(
@@ -1139,20 +1139,20 @@ object TimeSeries
 extends
     Parseable[TimeSeries]
 {
-    val businessType: (Context) => String = parse_element (element ("""TimeSeries.businessType"""))
-    val cancelledTS: (Context) => String = parse_element (element ("""TimeSeries.cancelledTS"""))
-    val curveType: (Context) => String = parse_element (element ("""TimeSeries.curveType"""))
-    val objectAggregation: (Context) => String = parse_element (element ("""TimeSeries.objectAggregation"""))
-    val product: (Context) => String = parse_element (element ("""TimeSeries.product"""))
-    val version: (Context) => String = parse_element (element ("""TimeSeries.version"""))
-    val DateAndOrTime: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.DateAndOrTime"""))
-    val Domain: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.Domain"""))
-    val FlowDirection: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.FlowDirection"""))
-    val MarketDocument: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.MarketDocument"""))
-    val MarketEvaluationPoint: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.MarketEvaluationPoint"""))
-    val MarketParticipant: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.MarketParticipant"""))
-    val Period: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.Period"""))
-    val Reason: (Context) => List[String] = parse_attributes (attribute ("""TimeSeries.Reason"""))
+    val businessType = parse_element (element ("""TimeSeries.businessType"""))
+    val cancelledTS = parse_element (element ("""TimeSeries.cancelledTS"""))
+    val curveType = parse_element (element ("""TimeSeries.curveType"""))
+    val objectAggregation = parse_element (element ("""TimeSeries.objectAggregation"""))
+    val product = parse_element (element ("""TimeSeries.product"""))
+    val version = parse_element (element ("""TimeSeries.version"""))
+    val DateAndOrTime = parse_attributes (attribute ("""TimeSeries.DateAndOrTime"""))
+    val Domain = parse_attributes (attribute ("""TimeSeries.Domain"""))
+    val FlowDirection = parse_attributes (attribute ("""TimeSeries.FlowDirection"""))
+    val MarketDocument = parse_attributes (attribute ("""TimeSeries.MarketDocument"""))
+    val MarketEvaluationPoint = parse_attributes (attribute ("""TimeSeries.MarketEvaluationPoint"""))
+    val MarketParticipant = parse_attributes (attribute ("""TimeSeries.MarketParticipant"""))
+    val Period = parse_attributes (attribute ("""TimeSeries.Period"""))
+    val Reason = parse_attributes (attribute ("""TimeSeries.Reason"""))
     def parse (context: Context): TimeSeries =
     {
         TimeSeries(
@@ -1219,8 +1219,8 @@ object Unit_
 extends
     Parseable[Unit_]
 {
-    val name: (Context) => String = parse_element (element ("""Unit_.name"""))
-    val TimeSeries: (Context) => List[String] = parse_attributes (attribute ("""Unit_.TimeSeries"""))
+    val name = parse_element (element ("""Unit_.name"""))
+    val TimeSeries = parse_attributes (attribute ("""Unit_.TimeSeries"""))
     def parse (context: Context): Unit_ =
     {
         Unit_(
