@@ -77,7 +77,7 @@ extends
  * Reference: IEEE Standard 421.5-2005 Section 11.2.
  * @param sup Reference to the superclass object.
  * @param ovex Overexcitation Flag (<i>OVEX</i>)
-true = overexcited
+ *        true = overexcited
  *        false = underexcited.
  * @param tpfc PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
  *        Typical Value = 5.

@@ -4502,8 +4502,8 @@ extends
  * @param earthingStarPointX Generator star point earthing reactance (Xe).
  *        Used for short circuit data exchange according to IEC 60909
  * @param ikk Steady-state short-circuit current (in A for the profile) of generator with compound excitation during 3-phase short circuit.
-- Ikk=0: Generator with no compound excitation.
-- Ikk?0: Generator with compound excitation.
+ *        - Ikk=0: Generator with no compound excitation.
+ *        - Ikk?0: Generator with compound excitation.
  *        Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation
  * @param manualToAVR Time delay required when switching from Manual to Automatic Voltage Regulation.
  *        This value is used in the accelerating power reference frame for powerflow solutions

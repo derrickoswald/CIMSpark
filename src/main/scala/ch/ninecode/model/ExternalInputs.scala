@@ -502,13 +502,13 @@ extends
 
 /**
  * DefaultBid is a generic class to hold Default Energy Bid, Default Startup Bid, and Default Minimum Load Bid:
-
-Default Energy Bid
-A Default Energy Bid is a monotonically increasing staircase function consisting at maximum 10 economic bid segments, or 10 ($/MW, MW) pairs.
+ * 
+ * Default Energy Bid
+ * A Default Energy Bid is a monotonically increasing staircase function consisting at maximum 10 economic bid segments, or 10 (\$/MW, MW) pairs.
  * There are three methods for determining the Default Energy Bid:
  * @param sup Reference to the superclass object.
  * @param bidType Default bid type such as Default Energy Bid, Default Minimum Load Bid, and Default Startup Bid
- * @param minLoadCost Minimum load cost in $/hr
+ * @param minLoadCost Minimum load cost in \$/hr
  * @param peakFlag on-peak, off-peak, or all
  * @param DefaultBidCurve <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
@@ -944,7 +944,7 @@ extends
 
 /**
  * An Energy Price Index for each Resource is valid for a period (e.g. daily) that is identified by a Valid Period Start Time and a Valid Period End Time.
- * An Energy Price Index is in $/MWh.
+ * An Energy Price Index is in \$/MWh.
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate End effective date
  * @param energyPriceIndex Energy price index
@@ -1864,12 +1864,12 @@ extends
  * @param sup Reference to the superclass object.
  * @param exceededLimit true if limit exceeded
  * @param limitType The type of limit the value represents
-Branch Limit Types:
-Short Term
-Medium Term
-Long Term
-Voltage Limits:
-High
+ *        Branch Limit Types:
+ *        Short Term
+ *        Medium Term
+ *        Long Term
+ *        Voltage Limits:
+ *        High
  *        Low
  */
 case class MktAnalogLimit
@@ -2498,7 +2498,7 @@ extends
 
 /**
  * Reserve demand curve.
- * Models maximum quantities of reserve required per Market Region and models a reserve demand curve for the minimum quantities of reserve. The ReserveDemandCurve is a relationship between unit operating reserve price in $/MWhr (Y-axis) and unit reserves in MW (X-axis).
+ * Models maximum quantities of reserve required per Market Region and models a reserve demand curve for the minimum quantities of reserve. The ReserveDemandCurve is a relationship between unit operating reserve price in \$/MWhr (Y-axis) and unit reserves in MW (X-axis).
  * @param sup Reference to the superclass object.
  * @param reqMaxMW Region requirement maximum limit
  * @param reserveRequirementType Reserve requirement type that the max and curve apply to.
@@ -3264,8 +3264,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param interfaceMargin The margin for the interface
  * @param postTransferMW Post Transfer MW for step
- * @param transferLimit Transfer Interface + Limit 
-Attribute Usage: The absoloute of the maximum flow on the transfer interface.
+ * @param transferLimit Transfer Interface + Limit
+ *        Attribute Usage: The absoloute of the maximum flow on the transfer interface.
  *        This is a positive MW value.
  * @param MktContingencyB <em>undocumented</em>
  * @param TransferInterface <em>undocumented</em>
@@ -3669,9 +3669,9 @@ extends
  * @param onlineStatus 'true' if the GeneratingUnit is currently On-Line
  * @param resourceMW Resource MW output at the end of previous clearing period.
  * @param resourceStatus Resource status at the end of previous clearing period:
-0 - off-line
-1 - on-line production
-2 - in shutdown process
+ *        0 - off-line
+ *        1 - on-line production
+ *        2 - in shutdown process
  *        3 - in startup process
  * @param statusDate Time and date for resourceStatus
  * @param timeInStatus Time in market trading intervals the resource is in the state as of the end of the previous clearing period.

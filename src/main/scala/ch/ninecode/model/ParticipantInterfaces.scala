@@ -516,7 +516,7 @@ extends
 }
 
 /**
- * Relationship between unit operating price in $/hour (Y-axis) and unit output in MW (X-axis).
+ * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
  * @param sup Reference to the superclass object.
  */
 case class BidPriceCurve
@@ -565,17 +565,17 @@ extends
 /**
  * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
  * @param sup Reference to the superclass object.
- * @param bidType BID Type:  
-
-I - Initial Bid;
+ * @param bidType BID Type:
+ *        
+ *        I - Initial Bid;
  *        F - Final Bid
  * @param mitigationStatus Mitigation Status:
-
-'S' - Mitigated by SMPM because of "misconduct"
-'L; - Mitigated by LMPM because of "misconduct"
-'R' - Modified by LMPM because of RMR rules
-'M' - Mitigated because of "misconduct" both by SMPM and LMPM
-'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
+ *        
+ *        'S' - Mitigated by SMPM because of "misconduct"
+ *        'L; - Mitigated by LMPM because of "misconduct"
+ *        'R' - Modified by LMPM because of RMR rules
+ *        'M' - Mitigated because of "misconduct" both by SMPM and LMPM
+ *        'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
  *        'O' - original
  * @param BidPriceCurve <em>undocumented</em>
  * @param ProductBid <em>undocumented</em>
@@ -1084,9 +1084,9 @@ extends
  *        For 5 minute binding dispatches, this is the Goto MW or DOT
  * @param instructionTime The target date/time for the received instruction.
  * @param instructionType instruction type:
-
-commitment
-out of sequence
+ *        
+ *        commitment
+ *        out of sequence
  *        dispatch
  * @param passIndicator The type of run for the market clearing.
  * @param receivedTime Timestamp indicating the time at which the instruction was received.
@@ -1176,7 +1176,7 @@ extends
 }
 
 /**
- * Relationship between a price in $(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
+ * Relationship between a price in \$(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
  * @param sup Reference to the superclass object.
  */
 case class EnergyPriceCurve
@@ -1238,13 +1238,13 @@ extends
  * @param operatingMode Bid operating mode ('C' - cycling, 'F' - fixed, 'M' - must run, 'U' - unavailable)
  * @param raiseRampRate Maximum Up ramp rate in MW/min
  * @param rampCurveType Ramp curve type:
-0 - Fixed ramp rate independent of rate function unit MW output
-1 - Static ramp rates as a function of unit MW output only
+ *        0 - Fixed ramp rate independent of rate function unit MW output
+ *        1 - Static ramp rates as a function of unit MW output only
  *        2 - Dynamic ramp rates as a function of unit MW output and ramping time
  * @param startUpRampRate Resource startup ramp rate (MW/minute)
  * @param startUpType Resource startup type:
-1 - Fixed startup time and fixed startup cost
-2 - Startup time as a function of down time and fixed startup cost
+ *        1 - Fixed startup time and fixed startup cost
+ *        2 - Startup time as a function of down time and fixed startup cost
  *        3 - Startup cost as a function of down time
  * @param startupCost Startup cost/price
  * @param upTimeMax Maximum up time.
@@ -1582,7 +1582,7 @@ extends
  * @param minLoad Minimum MW load below which it may not be reduced.
  * @param minLoadReduction Minimum MW for a load reduction (e.g.
  *        MW rating of a discrete pump.
- * @param minLoadReductionCost Cost in $ at the minimum reduced load
+ * @param minLoadReductionCost Cost in \$ at the minimum reduced load
  * @param minLoadReductionInterval Shortest period load reduction shall be maintained before load can be restored to normal levels.
  * @param minTimeBetLoadRed Shortest time that load shall be left at normal levels before a new load reduction.
  * @param pickUpRampRate Maximum rate load may be restored (MW/minute)
@@ -2374,17 +2374,17 @@ extends
 /**
  * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market)
  * @param sup Reference to the superclass object.
- * @param aggregationFlag Aggregation flag 
-0: individual resource level
-1: Aggregated node location
+ * @param aggregationFlag Aggregation flag
+ *        0: individual resource level
+ *        1: Aggregated node location
  *        2: Aggregated price location)
  * @param bidStatus <em>undocumented</em>
  * @param commodityType Energy product (commodity) type:
-'En' - Energy
-'Ru' - Regulation Up
-'Rd' - Regulation Dn
-'Sr' - Spinning Reserve
-'Nr' - Non-Spinning Reserve
+ *        'En' - Energy
+ *        'Ru' - Regulation Up
+ *        'Rd' - Regulation Dn
+ *        'Sr' - Spinning Reserve
+ *        'Nr' - Non-Spinning Reserve
  *        'Or' - Operating Reserve
  * @param contingencyAvailFlag contingent operating reserve availiability (Yes/No).
  *        Resource is availiable to participate with capacity only in contingency dispatch.
@@ -2392,13 +2392,13 @@ extends
  * @param energyMaxDay Maximum amount of energy per day which can be produced during the trading period in MWh
  * @param energyMinDay Minimum amount of energy per day which has to be produced during the trading period in MWh
  * @param marketSepFlag Market Separation Flag
-
-'Y' - Enforce market separation constraints for this bid
+ *        
+ *        'Y' - Enforce market separation constraints for this bid
  *        'N' - Don't enforce market separation constraints for this bid.
  * @param minDispatchTime minimum number of consecutive hours a resource shall be dispatched if bid is accepted
  * @param resourceLoadingType Resource loading curve type
-1 - step-wise continuous loading
-2 - piece-wise linear continuous loading
+ *        1 - step-wise continuous loading
+ *        2 - piece-wise linear continuous loading
  *        3 - block loading
  * @param shutDownsMaxDay Maximum number of shutdowns per day.
  * @param shutDownsMaxWeek Maximum number of shutdowns per week.
@@ -2634,8 +2634,8 @@ extends
  * @param submitToSchedulingCoordinator <em>undocumented</em>
  * @param submitToTimeStamp Timestamp of submittal of submit To Scheduling Coordinator Trade to Market Participant Bid Submittal
  * @param submitToUser_1 Userid of the submit To Scheduling Coordinator trade
- * @param tradeQuantity tradeQuantity: 
-If tradeType = IST, The amount of an Energy Trade.
+ * @param tradeQuantity tradeQuantity:
+ *        If tradeType = IST, The amount of an Energy Trade.
  *        If tradeType = AST, The amount of an Ancillary Service Obligation Trade.
  * @param tradeStatus Resulting status of the trade following the rule engine processing.
  * @param updateTimeStamp <em>undocumented</em>
@@ -2864,24 +2864,24 @@ extends
 
 /**
  * <b>TradeType</b>                                        <b>TradeProduct</b>
-IST  (InterSC Trade)                          PHY (Physical Energy Trade)
-IST                                                  APN (Energy Trades at Aggregated Pricing Nodes)
-IST                                                  CPT (Converted Physical Energy Trade)
-AST (Ancilliary Services Trade)             RUT (Regulation Up Trade)
-AST                                                 RDT (Regulation Down Trade)
-AST                                                 SRT (Spinning Reserve Trade)
-AST                                                 NRT (Non-Spinning Reserve Trade)
+ * IST  (InterSC Trade)                          PHY (Physical Energy Trade)
+ * IST                                                  APN (Energy Trades at Aggregated Pricing Nodes)
+ * IST                                                  CPT (Converted Physical Energy Trade)
+ * AST (Ancilliary Services Trade)             RUT (Regulation Up Trade)
+ * AST                                                 RDT (Regulation Down Trade)
+ * AST                                                 SRT (Spinning Reserve Trade)
+ * AST                                                 NRT (Non-Spinning Reserve Trade)
  * UCT (Unit Commitment Trade)            null
  * @param sup Reference to the superclass object.
- * @param tradeProductType PHY (Physical Energy Trade);  
-APN (Energy Trades at Aggregated Pricing Nodes);  
-CPT (Converted Physical Energy Trade);  
-RUT (Regulation Up Trade);  
-RDT (Regulation Down Trade);  
-SRT (Spinning Reserve Trade);
+ * @param tradeProductType PHY (Physical Energy Trade);
+ *        APN (Energy Trades at Aggregated Pricing Nodes);
+ *        CPT (Converted Physical Energy Trade);
+ *        RUT (Regulation Up Trade);
+ *        RDT (Regulation Down Trade);
+ *        SRT (Spinning Reserve Trade);
  *        NRT (Non-Spinning Reserve Trade)
- * @param tradeType IST  - InterSC Trade;  
-AST - Ancilliary Services Trade;
+ * @param tradeType IST  - InterSC Trade;
+ *        AST - Ancilliary Services Trade;
  *        UCT - Unit Commitment Trade
  */
 case class TradeProduct

@@ -26,11 +26,11 @@ import ch.ninecode.cim.Parseable
  *        Used in loss calculations.
  * @param p Active power at the point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param poleLossP The active power loss at a DC Pole 
-= idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc^2
-For lossless operation Pdc=Pac
-For rectifier operation with losses Pdc=Pac-lossP
-For inverter operation with losses Pdc=Pac+lossP
+ * @param poleLossP The active power loss at a DC Pole
+ *        &equals; idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc<sup>2</sup>
+ *        For lossless operation Pdc=Pac
+ *        For rectifier operation with losses Pdc=Pac-lossP
+ *        For inverter operation with losses Pdc=Pac+lossP
  *        Converter state variable used in power flow.
  * @param q Reactive power at the point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.

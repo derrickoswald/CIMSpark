@@ -1068,7 +1068,7 @@ extends
 
 /**
  * A sequence of grouped or atomic steps intended to:
-- de-energise equipment or part of the network for safe work, and/or
+ * - de-energise equipment or part of the network for safe work, and/or
  * - bring back in service previously de-energised equipment or part of the network.
  * @param sup Reference to the superclass object.
  * @param purpose Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.

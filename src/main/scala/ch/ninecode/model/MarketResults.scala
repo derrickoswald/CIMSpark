@@ -567,7 +567,7 @@ extends
  * @param optimizationFlag Included in optimization Y/N.
  * @param overloadMW Transmission overload MW.
  * @param percentMW Actual MW flow as percent of limit.
- * @param shadowPrice Shadow Price ($/MW) for the commodity.
+ * @param shadowPrice Shadow Price (\$/MW) for the commodity.
  *        Shadow price for the corresponding constraint.
  * @param updateTimeStamp Update time stamp.
  * @param updateType MQS change type.
@@ -2233,7 +2233,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param clearedMW Cleared generation Value in MW.
  *        For AS, this value is clearedMW = AS Total.  For AS, clearedMW - selfScheduleMW = AS Procured
- * @param clearedPrice Marginal Price ($/MW) for the commodity (Energy, Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) based on the pricing run.
+ * @param clearedPrice Marginal Price (\$/MW) for the commodity (Energy, Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) based on the pricing run.
  * @param dispatchCtMW Dispatchable MW for Combustion units.
  * @param dispatchHydroMW Dispatchable MW for Hydro units.
  * @param dispatchRate Dispatch rate in MW/minutes.
@@ -2365,12 +2365,12 @@ extends
  * This class holds elements that are single values for the entire market time horizon.
  * That is, for the Day Ahead market, there is 1 value for each element, not hourly based.  Is a summary of the market run
  * @param sup Reference to the superclass object.
- * @param ancillarySvcCost Total  AS Cost (i.e., payment) ($) over the time horizon
+ * @param ancillarySvcCost Total  AS Cost (i.e., payment) (\$) over the time horizon
  * @param contingentOperatingResAvail Global Contingent Operating Reserve Availability Indicator (Yes/No)
- * @param energyCost Total Energy Cost ($) over the time horizon
- * @param minimumLoadCost Total Minimum Load Cost ($) over the time horizon
- * @param startUpCost Total Start-up Cost ($) over the time horizon
- * @param totalCost Total Cost (Energy + AS) cost ($) by over the time horizon
+ * @param energyCost Total Energy Cost (\$) over the time horizon
+ * @param minimumLoadCost Total Minimum Load Cost (\$) over the time horizon
+ * @param startUpCost Total Start-up Cost (\$) over the time horizon
+ * @param totalCost Total Cost (Energy + AS) cost (\$) by over the time horizon
  * @param totalRucCost The total RUC capacity cost for this interval
  * @param EnergyMarket <em>undocumented</em>
  */
@@ -2849,8 +2849,8 @@ extends
 
 /**
  * Pass Through Bill is used for:
-1)Two sided charge transactions with or without ISO involvement (hence the ?pass thru?)
-2) Specific direct charges or payments that are calculated outside or provided directly to settlements
+ * 1)Two sided charge transactions with or without ISO involvement (hence the ?pass thru?)
+ * 2) Specific direct charges or payments that are calculated outside or provided directly to settlements
  * 3) Specific charge bill determinants that are externally supplied and used in charge calculations
  * @param sup Reference to the superclass object.
  * @param adjustedAmount <em>undocumented</em>
@@ -3081,7 +3081,7 @@ extends
  * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW.
  * @param costLMP Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
  * @param lossLMP Loss component of Location Marginal Price (LMP) in monetary units per MW.
- * @param marginalClearingPrice Locational Marginal Price (LMP) ($/MWh)
+ * @param marginalClearingPrice Locational Marginal Price (LMP) (\$/MWh)
  * @param scheduledMW total MW schedule at the pnode
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
@@ -3296,14 +3296,14 @@ extends
 /**
  * This class models the information about the RUC awards
  * @param sup Reference to the superclass object.
- * @param clearedPrice Marginal Price ($/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
+ * @param clearedPrice Marginal Price (\$/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
  * @param marketProductType major product type may include the following but not limited to:
-
-Energy
-Regulation Up
-Regulation Dn
-Spinning Reserve
-Non-Spinning Reserve
+ *        
+ *        Energy
+ *        Regulation Up
+ *        Regulation Dn
+ *        Spinning Reserve
+ *        Non-Spinning Reserve
  *        Operating Reserve
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
@@ -3454,19 +3454,19 @@ extends
  * Model of market results, instruction for resource.
  * Contains details of award as attributes
  * @param sup Reference to the superclass object.
- * @param awardMW For DA Energy: Not Applicable;   
-
-For DA AS: DA AS market award;   
-
-For RT Energy: Not Applicable;
+ * @param awardMW For DA Energy: Not Applicable;
+ *        
+ *        For DA AS: DA AS market award;
+ *        
+ *        For RT Energy: Not Applicable;
  *        For RT AS: RT AS market award (excluding DA AS market or self-proviison awards)
- * @param clearedMW For DA Energy: Total Schedule = DA market schedule + DA self-schedule award;   
-
-For DA AS: DA Ancillary Service Awards = DA AS market award + DA AS self-provision award;   
-
-For RT Energy: Total Schedule = RT market schedule + RT self-schedule award;
+ * @param clearedMW For DA Energy: Total Schedule = DA market schedule + DA self-schedule award;
+ *        
+ *        For DA AS: DA Ancillary Service Awards = DA AS market award + DA AS self-provision award;
+ *        
+ *        For RT Energy: Total Schedule = RT market schedule + RT self-schedule award;
  *        For RT AS: RT Ancillary Service Awards = RT AS self-provision award + RT AS market award + DA AS market award + DA AS self-provision award;
- * @param clearedPrice Marginal Price ($/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
+ * @param clearedPrice Marginal Price (\$/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
  * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW.
  * @param costLMP Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
  * @param dispatcherAddedMW The tier2 mw added by dispatcher action
@@ -3488,9 +3488,9 @@ For RT Energy: Total Schedule = RT market schedule + RT self-schedule award;
  * @param overrideTimeStamp Time the manual data entry occured.
  * @param overrideValue Provides the ability for the grid operator to override items, such as spin capacity requirements, prior to running the algorithm.
  *        This value is market product based (spin, non-spin, reg up, reg down, or RUC).
- * @param selfSchedMW For DA Energy: DA total self-schedule award;   
-For DA AS: DA AS self-provision award;   
-For RT Energy: RT total self-schedule award;
+ * @param selfSchedMW For DA Energy: DA total self-schedule award;
+ *        For DA AS: DA AS self-provision award;
+ *        For RT Energy: RT total self-schedule award;
  *        For RT AS: RT AS self-provision award (excluding DA AS market or self-provision awards)
  * @param startUpCost Unit start up cost in case of energy commodity
  * @param status In or out status of resource

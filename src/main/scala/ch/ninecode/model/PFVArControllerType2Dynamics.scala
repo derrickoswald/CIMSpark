@@ -8,9 +8,9 @@ import ch.ninecode.cim.Parseable
 
 /**
  * <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
-<font color="#0f0f0f">
+ * <font color="#0f0f0f">
+ * </font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ * <font color="#0f0f0f">
  * </font>
  */
 
@@ -70,7 +70,7 @@ extends
  * This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
  * @param sup Reference to the superclass object.
  * @param j Selector (J).
-true = control mode for reactive power
+ *        true = control mode for reactive power
  *        false = control mode for power factor.
  * @param ki Reset gain (Ki).
  * @param kp Proportional gain (Kp).
@@ -145,7 +145,7 @@ extends
  * This controller is implemented as a slow PI type controller. The voltage regulator forms the inner loop and is implemented as a fast controller.
  * @param sup Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
-true = 1 (not in the overexcitation or underexcitation state, integral action is active)
+ *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
  *        false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
  * @param ki Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).
  *        Typical Value = 1.
@@ -232,7 +232,7 @@ extends
  * It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
  * @param sup Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
-true = 1 (not in the overexcitation or underexcitation state, integral action is active)
+ *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
  *        false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
  * @param ki Integral gain of the pf controller (<i>K</i><i><sub>I</sub></i>).
  * @param kp Proportional gain of the pf controller (<i>K</i><i><sub>P</sub></i>).

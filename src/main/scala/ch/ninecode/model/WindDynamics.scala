@@ -231,13 +231,13 @@ extends
  *        It is project dependent parameter.
  * @param kpqu Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).
  *        It is type dependent parameter.
- * @param mdfslim Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>): 
-- false=0: total current limitation, 
-- true=1: stator current limitation).
+ * @param mdfslim Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>):
+ *        - false=0: total current limitation,
+ *        - true=1: stator current limitation).
  *        It is type dependent parameter.
  * @param mqpri Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):
-- true = 1: reactive power priority,
-- false = 0: active power priority.
+ *        - true = 1: reactive power priority,
+ *        - false = 0: active power priority.
  *        It is project dependent parameter.
  * @param tufiltcl Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).
  *        It is type dependent parameter.
@@ -340,8 +340,8 @@ extends
  * @param kpp PI controller proportional gain (<i>K</i><sub>Pp</sub>).
  *        It is type dependent parameter.
  * @param mpuvrt Enable UVRT power control mode (M<sub>pUVRT).</sub>
-true = 1: voltage control
-false = 0: reactive power control.
+ *        true = 1: voltage control
+ *        false = 0: reactive power control.
  *        It is project dependent parameter.
  * @param omegaoffset Offset to reference value that limits controller action during rotor speed changes (omega<sub>offset</sub>).
  *        It is case dependent parameter.
@@ -1596,11 +1596,11 @@ extends
  * IEC Type 3B generator set model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.3.
  * @param sup Reference to the superclass object.
- * @param mwtcwp Crowbar control mode (<i>M</i><sub>WTcwp</sub>). 
-<ul>
-	<li>true = 1 in the model</li>
-	<li>false = 0 in the model.</li>
-</ul>
+ * @param mwtcwp Crowbar control mode (<i>M</i><sub>WTcwp</sub>).
+ *        <ul>
+ *        <li>true = 1 in the model</li>
+ *        <li>false = 0 in the model.</li>
+ *        </ul>
  *        The parameter is case dependent parameter.
  * @param tg Current generation Time constant (<i>T</i><sub>g</sub>).
  *        It is type dependent parameter.

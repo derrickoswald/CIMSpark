@@ -169,10 +169,10 @@ extends
  * @param sup Reference to the superclass object.
  * @param apnodeType Aggregate Price Node Types
  * @param participationCategory Designated Control Area participation in LMP price measurement
-
-'Y' - Participates in both Local Market Power Mitigation (LMPM) and System Market Power Mitigation (SMPM)
-'N' - Not included in LMP price measures
-'S' - Participatesin SMPM price measures
+ *        
+ *        'Y' - Participates in both Local Market Power Mitigation (LMPM) and System Market Power Mitigation (SMPM)
+ *        'N' - Not included in LMP price measures
+ *        'S' - Participatesin SMPM price measures
  *        'L' - Participatesin LMPM price measures
  * @param PnodeDistributionFactor <em>undocumented</em>
  * @param TACArea <em>undocumented</em>
@@ -238,11 +238,11 @@ extends
 /**
  * This class represent the bid price cap.
  * @param sup Reference to the superclass object.
- * @param bidCeiling Bid Ceiling ($/MWH)
- * @param bidCeilingAS Bid Ceiling ($/MWH) for generic AS versus a specific market product
- * @param bidFloor Bid Floor, ($/MWH)
- * @param bidFloorAS Bid Floor ($/MWH) for generic AS versus a specific market product
- * @param defaultPrice Bid Default Price($/MWH)
+ * @param bidCeiling Bid Ceiling (\$/MWH)
+ * @param bidCeilingAS Bid Ceiling (\$/MWH) for generic AS versus a specific market product
+ * @param bidFloor Bid Floor, (\$/MWH)
+ * @param bidFloorAS Bid Floor (\$/MWH) for generic AS versus a specific market product
+ * @param defaultPrice Bid Default Price(\$/MWH)
  * @param marketType Market Type of the cap (DAM or RTM)
  * @param MarketProduct <em>undocumented</em>
  */
@@ -1464,7 +1464,7 @@ extends
 }
 
 /**
- * Relationship between unit fuel cost in $/kWh(Y-axis) and  unit output in MW (X-axis).
+ * Relationship between unit fuel cost in \$/kWh(Y-axis) and  unit output in MW (X-axis).
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  */
@@ -2022,13 +2022,13 @@ extends
  * Specific data is the test identifier (Price, Conduct, or Impact) and the test method (System MPM, Local MPM, Alternate System MPM, or Alternate Local MPM).
  * @param sup Reference to the superclass object.
  * @param purposeFlag Nature of threshold data:
-'M' - Mitigation threshold
+ *        'M' - Mitigation threshold
  *        'R' - Reporting threshold
  * @param testIdentifier 1 - Global Price Test
-2 - Global Conduct Test
-3 - Global Impact Test
-4 - Local Price Test
-5 - Local Conduct Test
+ *        2 - Global Conduct Test
+ *        3 - Global Impact Test
+ *        4 - Local Price Test
+ *        5 - Local Conduct Test
  *        6 - Local Impact Test
  * @param testMethod The method of performing the market power monitoring.
  *        Examples are Normal (default) thresholds or Alternate thresholds.
@@ -2092,7 +2092,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param marketType Market Type (DAM, RTM)
  * @param percent Price Threshold in %
- * @param price Price Threshold in $/MW
+ * @param price Price Threshold in \$/MW
  * @param MPMTestCategory <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
  */
@@ -3225,12 +3225,12 @@ extends
  * @param isPublic If true, this Pnode is public (prices are published for DA/RT and FTR markets), otherwise it is private (location is not usable by market for bidding/FTRs/transactions).
  * @param startEffectiveDate Start effective date of the period in which the price node definition is valid.
  * @param typ Pnode type
- * @param usage Price node usage: 
-'Control Area'
-'Regulation Region'
-'Price Zone'
-'Spin Region'
-'Non-Spin Region'
+ * @param usage Price node usage:
+ *        'Control Area'
+ *        'Regulation Region'
+ *        'Price Zone'
+ *        'Spin Region'
+ *        'Non-Spin Region'
  *        'Price Hub'
  * @param RTO <em>undocumented</em>
  * @param SinkCRRSegment <em>undocumented</em>
@@ -3754,7 +3754,7 @@ extends
  * @param extremeLongStart Some long-start up time units may need to receive start up instruction before DA market results are available.
  *        Long-Start resources may be either physical resources within the control with start-up times greater than 18 hours or the long-start contractual inter-tie commitment that shall be completed by 6 am one-day ahead.  Therefore, there is a need for a process to determine the commitment of such resources before the DA market.
  * @param fuelSource Values: Natural Gas Based Resource, Non Natural Gas Based Resource
-"NG" - Natural-Gas-Based Resource - a Resource that is powered by Natural Gas
+ *        "NG" - Natural-Gas-Based Resource - a Resource that is powered by Natural Gas
  *        "NNG" - Non-Natural-Gas-Based Resource - a Resouce that is powered by some other fuel than Natural Gas
  * @param highControlLimit High limit for secondary (AGC) control
  * @param hotIntTime Hot-to-intermediate time (Seasonal)
@@ -3798,31 +3798,31 @@ extends
  * @param raiseControlRate Regulation up response rate in MW per minute
  * @param raiseRampRate <em>undocumented</em>
  * @param rampCurveType Ramp curve type:
-0 - Fixed ramp rate independent of rate function unit MW output
-1 - Static ramp rates as a function of unit MW output only
+ *        0 - Fixed ramp rate independent of rate function unit MW output
+ *        1 - Static ramp rates as a function of unit MW output only
  *        2 - Dynamic ramp rates as a function of unit MW output and ramping time
  * @param rampMode Ramping mode
-0: ignore ramping limits
-1: 20-minute ramping rule
+ *        0: ignore ramping limits
+ *        1: 20-minute ramping rule
  *        2: 60-minute ramping rule
  * @param regulationFlag 0 = Unit is not on regulation
-1 = Unit is on AGC and regulating
+ *        1 = Unit is on AGC and regulating
  *        2 = Unit is suppose to be on regulation but it is not under regulation now
  * @param regulationRampRate For the outage scheduling services
  * @param resourceSubType CCGT90	Combined Cycle greater than 90 MW
-CCLE90	Combined Cycle less than or equal to 90 MW
-CLLIG	Coal and Lignite
-DSL	Diesel
-GASSTM	Gas-Steam
-GSNONR	Gas Steam Non-Reheat Boiler
-GSREH	Gas Steam Reheat Boiler
-GSSUP	Gas Steam Supercritical Boiler
-HYDRO	Hydro
-NUC	Nuclear
-RENEW	Renewable
-SCGT90	Simple Cycle greater than 90 MW
-SCLE90	Simple Cycle less than or equal to 90 MW
-WIND	Wind
+ *        CCLE90	Combined Cycle less than or equal to 90 MW
+ *        CLLIG	Coal and Lignite
+ *        DSL	Diesel
+ *        GASSTM	Gas-Steam
+ *        GSNONR	Gas Steam Non-Reheat Boiler
+ *        GSREH	Gas Steam Reheat Boiler
+ *        GSSUP	Gas Steam Supercritical Boiler
+ *        HYDRO	Hydro
+ *        NUC	Nuclear
+ *        RENEW	Renewable
+ *        SCGT90	Simple Cycle greater than 90 MW
+ *        SCLE90	Simple Cycle less than or equal to 90 MW
+ *        WIND	Wind
  *        PS         Pumped Storage
  * @param riverSystem River System the Resource is tied to.
  * @param spinReserveRamp <em>undocumented</em>
@@ -3836,8 +3836,8 @@ WIND	Wind
  * @param MktHeatRateCurve <em>undocumented</em>
  * @param RMNRFlag Reliability must not run (RMNR) flag: indicated whether the RMR unit is set as an RMNR in the current market
  * @param RMRFlag Reliability must run (RMR) flag: indicates whether the unit is RMR; Indicates whether the unit is RMR:
-N' - not an RMR unit
-'1' - RMR Condition 1 unit
+ *        N' - not an RMR unit
+ *        '1' - RMR Condition 1 unit
  *        '2' - RMR Condition 2 unit
  * @param RMRHeatRateCurve <em>undocumented</em>
  * @param RMRManualIndicator Indicates the RMR Manual pre-determination status [Y/N]
@@ -4583,14 +4583,14 @@ extends
  * A resource may have numbers of capacities related to operating, ancillary services, energy trade and so forth. The types are but not limited to:
  * @param sup Reference to the superclass object.
  * @param capacityType capacity type
-
-The types are but not limited to:
-
-Regulation Up
-Regulation Dn
-Spinning Reserve
-Non-Spinning Reserve
-FOO capacity
+ *        
+ *        The types are but not limited to:
+ *        
+ *        Regulation Up
+ *        Regulation Dn
+ *        Spinning Reserve
+ *        Non-Spinning Reserve
+ *        FOO capacity
  *        MOO capacity
  * @param defaultCapacity default capacity
  * @param maximumCapacity maximum capacity
@@ -4659,10 +4659,10 @@ extends
  * @param sup Reference to the superclass object.
  * @param gasPercentAboveLowSustainedLimit Percentage of Fuel Index Price (gas) for operating above Low Sustained Limit (LSL)
  * @param oilPercentAboveLowSustainedLimit Percentage of Fuel Oil Price (FOP) for operating above Low Sustained Limit (LSL)
- * @param omCostColdStartup Verifiable O&amp;M Cost ($), Cold Startup
- * @param omCostHotStartup Verifiable O&amp;M Cost ($), Hot Startup
- * @param omCostIntermediateStartup Verifiable O&amp;M Cost ($), Intermediate Startup
- * @param omCostLowSustainedLimit Verifiable O&amp;M Cost ($/MWh), LSL
+ * @param omCostColdStartup Verifiable O&amp;M Cost (\$), Cold Startup
+ * @param omCostHotStartup Verifiable O&amp;M Cost (\$), Hot Startup
+ * @param omCostIntermediateStartup Verifiable O&amp;M Cost (\$), Intermediate Startup
+ * @param omCostLowSustainedLimit Verifiable O&amp;M Cost (\$/MWh), LSL
  * @param solidfuelPercentAboveLowSustainedLimit Percentage of Solid Fuel for operating above Low Sustained Limit (LSL)
  * @param ResourceVerifiableCosts <em>undocumented</em>
  */

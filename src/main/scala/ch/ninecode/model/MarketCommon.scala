@@ -153,13 +153,13 @@ extends
  * @param mustOfferFlag Must offer flag: indicates whether the unit is subject to the must offer provisions (Y/N)
  * @param nonMarket Flag to indicate that the Resource is not participating in the Market Operations.
  * @param pointOfDeliveryFlag Indication that the registered resource is a Point of Delivery (YES) resource which implies there is a POD Loss Factor.
- * @param priceSetFlagDA Price setting flag: indicates whether a resource is capable of setting the Market Clearing Price (Y) for the DA market, and if not, indicates whether the resource shall submit bids for energy at $ 0 (S) or not (N)
-
-Initially in the RegisteredGenerator class.
+ * @param priceSetFlagDA Price setting flag: indicates whether a resource is capable of setting the Market Clearing Price (Y) for the DA market, and if not, indicates whether the resource shall submit bids for energy at \$ 0 (S) or not (N)
+ *        
+ *        Initially in the RegisteredGenerator class.
  *        It wasmove to the RegisteredResource class for the participating load dispatch purpose
- * @param priceSetFlagRT Price setting flag: indicates whether a resource is capable of setting the Market Clearing Price (Y) for the RT market, and if not, indicates whether the resource shall submit bids for energy at $ 0 (S) or not (N)
-
-Initially in the RegisteredGenerator class.
+ * @param priceSetFlagRT Price setting flag: indicates whether a resource is capable of setting the Market Clearing Price (Y) for the RT market, and if not, indicates whether the resource shall submit bids for energy at \$ 0 (S) or not (N)
+ *        
+ *        Initially in the RegisteredGenerator class.
  *        It wasmove to the RegisteredResource class for the participating load dispatch purpose
  * @param registrationStatus Registration Status of resource - Active, Mothballed, Planned, or Decommissioned.
  * @param resourceAdequacyFlag Indication that this resource participates inthe resource adequacy function.

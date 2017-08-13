@@ -138,12 +138,12 @@ extends
  * @param timeIntervalLength Trading time interval length.
  * @param tradingDay Market trading date
  * @param tradingPeriod Trading period that describes the market, possibilities could be for an Energy Market:
-Day
-Hour
-
-For a CRR Market:
-Year
-Month
+ *        Day
+ *        Hour
+ *        
+ *        For a CRR Market:
+ *        Year
+ *        Month
  *        Season
  */
 case class Market
@@ -438,12 +438,12 @@ extends
  * Ancillary service product examples include:Regulation UpRegulation DnSpinning ReserveNon-Spinning ReserveOperating Reserve
  * @param sup Reference to the superclass object.
  * @param marketProductType Market product type examples:
-
-EN (Energy)
-RU (Regulation Up)
-RD (Regulation Dn)
-SR (Spinning Reserve)
-NR (Non-Spinning Reserve)
+ *        
+ *        EN (Energy)
+ *        RU (Regulation Up)
+ *        RD (Regulation Dn)
+ *        SR (Spinning Reserve)
+ *        NR (Non-Spinning Reserve)
  *        RC (RUC)
  * @param rampInterval Ramping time interval for the specific market product type specified by marketProductType attribute.
  *        For example, if marketProductType = EN (from enumeration MarketProductType), then the rampInterval is the ramping time interval for Energy.

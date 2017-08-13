@@ -7,9 +7,9 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
-<u>
-</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.
+ * This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.
+ * <u>
+ * </u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.
  * Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
  */
 
@@ -17,7 +17,7 @@ import ch.ninecode.cim.Parseable
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class AsynchronousMachineUserDefined
@@ -70,7 +70,7 @@ extends
  * Discontinuous excitation control function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class DiscontinuousExcitationControlUserDefined
@@ -123,7 +123,7 @@ extends
  * Excitation system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class ExcitationSystemUserDefined
@@ -176,7 +176,7 @@ extends
  * Load whose dynamic behaviour is described by a user-defined model.
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class LoadUserDefined
@@ -229,7 +229,7 @@ extends
  * Mechanical load function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class MechanicalLoadUserDefined
@@ -282,7 +282,7 @@ extends
  * Overexcitation limiter system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class OverexcitationLimiterUserDefined
@@ -335,7 +335,7 @@ extends
  * Power Factor or VAr controller Type I function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PFVArControllerType1UserDefined
@@ -388,7 +388,7 @@ extends
  * Power Factor or VAr controller Type II function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PFVArControllerType2UserDefined
@@ -441,7 +441,7 @@ extends
  * <font color="#0f0f0f">Power system stabilizer</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class PowerSystemStabilizerUserDefined
@@ -654,7 +654,7 @@ extends
  * Synchronous machine whose dynamic behaviour is described by a user-defined model.
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class SynchronousMachineUserDefined
@@ -707,7 +707,7 @@ extends
  * Turbine-governor function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class TurbineGovernorUserDefined
@@ -760,7 +760,7 @@ extends
  * Turbine load controller function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class TurbineLoadControllerUserDefined
@@ -813,7 +813,7 @@ extends
  * Underexcitation limiter function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class UnderexcitationLimiterUserDefined
@@ -866,7 +866,7 @@ extends
  * <font color="#0f0f0f">Voltage adjuster</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class VoltageAdjusterUserDefined
@@ -919,7 +919,7 @@ extends
  * Voltage compensator function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class VoltageCompensatorUserDefined
@@ -972,7 +972,7 @@ extends
  * Wind plant function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindPlantUserDefined
@@ -1025,7 +1025,7 @@ extends
  * Wind Type 1 or Type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindType1or2UserDefined
@@ -1078,7 +1078,7 @@ extends
  * Wind Type 3 or Type 4 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
-true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+ *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
  */
 case class WindType3or4UserDefined

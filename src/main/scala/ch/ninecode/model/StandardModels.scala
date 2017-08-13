@@ -15,7 +15,7 @@ import ch.ninecode.cim.Parseable
  * Abstract parent class for all Dynamics function blocks.
  * @param sup Reference to the superclass object.
  * @param enabled Function block used indicator.
-true = use of function block is enabled
+ *        true = use of function block is enabled
  *        false = use of function block is disabled.
  */
 case class DynamicsFunctionBlock

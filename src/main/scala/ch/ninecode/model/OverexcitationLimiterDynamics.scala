@@ -286,7 +286,7 @@ extends
  * @param kmx Gain (K<sub>MX</sub>).
  *        Typical Value = 0.002.
  * @param m (m).
-true = IFD limiting
+ *        true = IFD limiting
  *        false = EFD limiting.
  * @param t1 Time to trip the exciter at the low voltage or current point on the inverse time characteristic (TIME<sub>1</sub>).
  *        Typical Value = 120.

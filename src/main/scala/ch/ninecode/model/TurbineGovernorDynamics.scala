@@ -84,8 +84,8 @@ import ch.ninecode.cim.Parseable
  * @param wfnl No load fuel flow (Wfnl).
  *        Typical Value = 0.2.
  * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
-true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
-false = fuel control system keeps fuel flow independent of engine speed.
+ *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+ *        false = fuel control system keeps fuel flow independent of engine speed.
  *        Typical Value = true.
  */
 case class GovCT1
@@ -385,8 +385,8 @@ extends
  * @param wfnl No load fuel flow (Wfnl).
  *        Typical Value = 0.187.
  * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
-true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
-false = fuel control system keeps fuel flow independent of engine speed.
+ *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+ *        false = fuel control system keeps fuel flow independent of engine speed.
  *        Typical Value = false.
  */
 case class GovCT2
@@ -1052,7 +1052,7 @@ extends
  * @param x Governor lead time constant (X).
  * @param y Governor lag time constant (Y) (&gt;0).
  * @param z Governor mode (Z).
-true = Droop
+ *        true = Droop
  *        false = ISO.
  */
 case class GovGAST2
@@ -2089,8 +2089,8 @@ extends
  * @param eps Intentional db hysteresis (eps).
  *        Unit = Hz.  Typical Value = 0.
  * @param governorControl Governor control flag (Cflag).
-true = PID control is active
-false = double derivative control is active.
+ *        true = PID control is active
+ *        false = double derivative control is active.
  *        Typical Value = true.
  * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
  *        Typical Value = 0.
@@ -2643,9 +2643,9 @@ extends
  *        Typical Value = 0.
  * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
  *        Typical Value = 0.
- * @param inputSignal Input signal switch (Flag). 
-true = Pe input is used
-false = feedback is received from CV.
+ * @param inputSignal Input signal switch (Flag).
+ *        true = Pe input is used
+ *        false = feedback is received from CV.
  *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.
  * @param k1 Single derivative gain (K1).
  *        Typical Value = 3.6.
@@ -2927,8 +2927,8 @@ extends
  * @param vc Maximum gate closing velocity (Vc).
  *        Unit = PU/sec.  Typical Value = -0.011.
  * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (Tflag).
-true = enable of water tunnel and surge chamber simulation
-false = inhibit of water tunnel and surge chamber simulation.
+ *        true = enable of water tunnel and surge chamber simulation
+ *        false = inhibit of water tunnel and surge chamber simulation.
  *        Typical Value = false.
  * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
  *        Unit = m.  Typical Value = 25.
@@ -3402,9 +3402,9 @@ extends
  *        Typical Value = 0.
  * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
  *        Typical Value = 0.
- * @param inputSignal Input signal switch (Flag). 
-true = Pe input is used
-false = feedback is received from CV.
+ * @param inputSignal Input signal switch (Flag).
+ *        true = Pe input is used
+ *        false = feedback is received from CV.
  *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
  * @param kd Derivative gain (Kd).
  *        Typical Value = 1.11.
@@ -3632,7 +3632,7 @@ extends
  * @param d Turbine damping factor (D).
  *        Unit = delta P / delta speed.  Typical Value = 0.
  * @param feedbackSignal Feedback signal type flag (Flag).
-true = use gate position feedback signal
+ *        true = use gate position feedback signal
  *        false = use Pe.
  * @param g0 Gate opening at speed no load (G0).
  *        Typical Value = 0.
@@ -3832,12 +3832,12 @@ extends
  * @param qn Rated flow (Q<sub>n</sub>).
  *        Unit = m<sup>3</sup>/s. Typical Value = 40.
  * @param simplifiedPelton Simplified Pelton model simulation (Sflag).
-true = enable of simplified Pelton model simulation
-false = enable of complete Pelton model simulation (non linear gain).
+ *        true = enable of simplified Pelton model simulation
+ *        false = enable of complete Pelton model simulation (non linear gain).
  *        Typical Value = false.
  * @param staticCompensating Static compensating characteristic (Cflag).
-true = enable of static compensating characteristic 
-false = inhibit of static compensating characteristic.
+ *        true = enable of static compensating characteristic
+ *        false = inhibit of static compensating characteristic.
  *        Typical Value = false.
  * @param ta Derivative gain (accelerometer time constant) (Ta).
  *        Typical Value = 3.
@@ -3864,8 +3864,8 @@ false = inhibit of static compensating characteristic.
  * @param vcv Maximum servomotor valve closing velocity (Vcv).
  *        Typical Value = -0.017.
  * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (Tflag).
-true = enable of water tunnel and surge chamber simulation
-false = inhibit of water tunnel and surge chamber simulation.
+ *        true = enable of water tunnel and surge chamber simulation
+ *        false = inhibit of water tunnel and surge chamber simulation.
  *        Typical Value = false.
  * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
  *        Unit = m. Typical Value = 25.
@@ -4056,8 +4056,8 @@ extends
  * @param h0 Turbine nominal head (H0).
  *        Typical Value = 1.
  * @param inputSignal Input signal switch (Flag).
-true = Pe input is used
-false = feedback is received from CV.
+ *        true = Pe input is used
+ *        false = feedback is received from CV.
  *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
  * @param kg Gate servo gain (Kg).
  *        Typical Value = 2.
@@ -4333,8 +4333,8 @@ extends
  * @param dturb Turbine damping factor (Dturb).
  *        Unit = delta P (PU of MWbase) / delta speed (PU).
  * @param feedbackSignal Feedback signal selection (Sw).
-true = PID Output (if R-Perm-Gate=droop and R-Perm-Pe=0)
-false = Electrical Power (if R-Perm-Gate=0 and R-Perm-Pe=droop) or
+ *        true = PID Output (if R-Perm-Gate=droop and R-Perm-Pe=0)
+ *        false = Electrical Power (if R-Perm-Gate=0 and R-Perm-Pe=droop) or
  *        false = Gate Position (if R-Perm-Gate=droop and R-Perm-Pe=0).
  * @param fl1 Flow Gate 1 (Fl1).
  *        Flow value for gate position point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
@@ -4978,12 +4978,12 @@ extends
  * @param pmin Minimum valve opening (Pmin) (&gt;=0).
  *        Typical Value = 0.
  * @param sdb1 Intentional deadband indicator.
-true = intentional deadband is applied
-false = intentional deadband is not applied.
+ *        true = intentional deadband is applied
+ *        false = intentional deadband is not applied.
  *        Typical Value = true.
  * @param sdb2 Unintentional deadband location.
-true = intentional deadband is applied before point "A"
-false = intentional deadband is applied after point "A".
+ *        true = intentional deadband is applied before point "A"
+ *        false = intentional deadband is applied after point "A".
  *        Typical Value = true.
  * @param t1 Governor lag time constant (T1).
  *        Typical Value = 0.
@@ -5004,8 +5004,8 @@ false = intentional deadband is applied after point "A".
  * @param uo Maximum valve opening velocity (Uo) (&gt;0).
  *        Unit = PU/sec.  Typical Value = 1.
  * @param valve Nonlinear valve characteristic.
-true = nonlinear valve characteristic is used
-false = nonlinear valve characteristic is not used.
+ *        true = nonlinear valve characteristic is used
+ *        false = nonlinear valve characteristic is not used.
  *        Typical Value = true.
  */
 case class GovSteam1

@@ -46,8 +46,12 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
 
 /**
  * Create a topology.
- * Create TopologicalNode and TopologicalIsland RDD.
+ *
+ * Create TopologicalNode and optionally TopologicalIsland RDD that encode the
+ * connections between electrical elements.
+ *
  * Based on ConnectivityNode elements and connecting edges, find the topology that has:
+ *
  * - each substation has a single bus (TopologicalNode) at each nominal voltage level
  *   for each set of BusbarSection that are connected by closed switches
  * - eliminates switches based on their open/closed state
@@ -58,8 +62,13 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
  *   (a new unique generated container or one of the possibly many
  *   different existing ConnectivityNodeContainer (Bay, Line, Substation, VoltageLevel)
  *   of all the ConnectivityNode with the same TopologicalNode)
+ *
  * To be done eventually:
+ *
  * - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
+ *
+ * @param spark The session with CIM RDD defined, for which the topology should be calculated
+ * @param storage The storage level for new and replaced CIM RDD.
  */
 class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
@@ -664,7 +673,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
      * Conditionally create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
      *
      * Note, if these RDD exist and are already populated, this method does nothing.
-     * Otherwise it calls the [[process(identify_islands:Boolean)]] method.
+     * Otherwise it calls the [[process]] method.
      *
      * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
      * @return Either the old Elements RDD or a new Elements RDD - with TopologicalNode and TopologicalIsland objects included.

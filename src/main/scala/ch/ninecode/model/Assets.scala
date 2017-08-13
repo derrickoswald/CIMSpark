@@ -357,8 +357,9 @@ extends
 
 /**
  * Set of attributes of an asset, representing typical datasheet information of a physical device that can be instantiated and shared in different data exchange contexts:
-- as attributes of an asset instance (installed or in stock)
-- as attributes of an asset model (product by a manufacturer)
+ *
+ * - as attributes of an asset instance (installed or in stock)
+ * - as attributes of an asset model (product by a manufacturer)
  * - as attributes of a type asset (generic type of an asset as used in designs/extension planning).
  * @param sup Reference to the superclass object.
  * @param AssetModel Asset model described by this data.

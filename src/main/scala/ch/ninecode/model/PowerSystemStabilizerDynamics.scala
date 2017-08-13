@@ -90,8 +90,8 @@ extends
  * @param tpe Electric power filter time constant (T<sub>PE</sub>).
  *        Typical Value = 0.05.
  * @param vadat <font color="#0f0f0f">Signal selector (V<sub>adAt</sub>).</font>
-<font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
-<font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
+ *        <font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
+ *        <font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
  *        <font color="#0f0f0f">Typical Value = true.</font>
  * @param vsmn Stabilizer output max limit (V<sub>SMN</sub>).
  *        Typical Value = -0.06.
@@ -213,8 +213,8 @@ extends
  * @param a7 Notch filter parameter (A7).
  * @param a8 Notch filter parameter (A8).
  * @param inputSignalType Type of input signal.
- * @param kd Selector (Kd). 
-true = e<sup>-sTdelay</sup> used
+ * @param kd Selector (Kd).
+ *        true = e<sup>-sTdelay</sup> used
  *        false = e<sup>-sTdelay</sup> not used.
  * @param ks Stabilizer gain (Ks).
  * @param t1 Lead/lag time constant (T1).
@@ -734,14 +734,14 @@ extends
  * Italian PSS - Detailed PSS.
  * @param sup Reference to the superclass object.
  * @param ctw2 Selector for Second washout enabling (C<sub>TW2</sub>).
-true = second washout filter is bypassed
-false = second washout filter in use.
+ *        true = second washout filter is bypassed
+ *        false = second washout filter in use.
  *        Typical Value = true.
  * @param deadband Stabilizer output dead band (DeadBand).
  *        Typical Value = 0.
  * @param isfreq Selector for Frequency/shaft speed input (IsFreq).
-true = speed
-false = frequency.
+ *        true = speed
+ *        false = frequency.
  *        Typical Value = true.
  * @param kf Frequency/shaft speed input gain (K<sub>F</sub>).
  *        Typical Value = 5.
@@ -766,8 +766,8 @@ false = frequency.
  * @param tw2 Second WashOut (T<sub>w2</sub>).
  *        Typical Value = 0.
  * @param vadat <font color="#0f0f0f">Signal selector (V<sub>adAtt</sub>).</font>
-<font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
-<font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
+ *        <font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
+ *        <font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
  *        <font color="#0f0f0f">Typical Value = true.</font>
  * @param vsmn Stabilizer output max limit (V<sub>SMN</sub>).
  *        Typical Value = -0.1.
@@ -2064,7 +2064,7 @@ extends
  * @param dtp Time step active power calculation (0.015 for 50 Hz) (Dtp).
  *        Typical Value = 0.0125.
  * @param isw Digital/analog output switch (Isw).
-true = produce analog output
+ *        true = produce analog output
  *        false = convert to digital output, using tap selection table.
  * @param k Gain (K).
  *        Typical Value = 9.

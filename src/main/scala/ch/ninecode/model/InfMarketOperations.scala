@@ -13,18 +13,18 @@ import ch.ninecode.cim.Parseable
  * @param curtailTimeMax Maximum curtailment time in number of trading intervals
  * @param curtailTimeMin Minimum curtailment time in number of trading intervals
  * @param marketType Market type (default=DA)
-DA - Day Ahead
-RT - Real Time
+ *        DA - Day Ahead
+ *        RT - Real Time
  *        HA - Hour Ahead
  * @param purchaseTimeMax Maximum purchase time in number of trading intervals
  * @param purchaseTimeMin Minimum purchase time in number of trading intervals
  * @param scope Transaction scope:
-'Internal' (default)
+ *        'Internal' (default)
  *        'External'
  * @param totalTranChargeMax Maximum total transmission (congestion) charges in monetary units
  * @param transactionType Transaction type (default 1)
-1 - Fixed
-2 - Dispatchable continuous
+ *        1 - Fixed
+ *        2 - Dispatchable continuous
  *        3 - Dispatchable block-loading
  */
 case class BilateralTransaction

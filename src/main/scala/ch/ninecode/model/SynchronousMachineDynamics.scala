@@ -84,16 +84,16 @@ extends
 
 /**
  * Synchronous machine whose behaviour is described by reference to a standard model expressed in one of the following forms:
-<ul>
-	<li>simplified (or classical), where a group of generators or motors is not modelled in detail</li>
-</ul>
-<ul>
-	<li>detailed, in equivalent circuit form</li>
-	<li>detailed, in time constant reactance form</li>
-</ul>
-<font color="#0f0f0f">or by definition of a user-defined model.</font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f"><b>Note:</b>  It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.
+ * <ul>
+ * <li>simplified (or classical), where a group of generators or motors is not modelled in detail</li>
+ * </ul>
+ * <ul>
+ * <li>detailed, in equivalent circuit form</li>
+ * <li>detailed, in time constant reactance form</li>
+ * </ul>
+ * <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * <font color="#0f0f0f">
+ * </font><font color="#0f0f0f"><b>Note:</b>  It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.
  * In this case a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as ordinary load.</font>
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model associated with this synchronous machine model.
@@ -161,30 +161,30 @@ extends
 
 /**
  * The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct and quadrature axes.
-
-<b>Equations for conversion between Equivalent Circuit and Time Constant Reactance forms:</b>
-<b>Xd</b> = <b>Xad</b> + <b>Xl</b>
-<b>X�d</b> = <b>Xl</b> + <b>Xad</b> * <b>Xfd</b> / (<b>Xad</b> + <b>Xfd</b>)
-<b>X�d</b> = <b>Xl</b> + <b>Xad</b> * <b>Xfd </b>* <b>X1d</b> / (<b>Xad</b> * <b>Xfd</b> + <b>Xad</b> * <b>X1d</b> + <b>Xfd</b> * <b>X1d</b>)
-<b>Xq</b> = <b>Xaq</b> + <b>Xl</b>
-<b>X�q</b> = <b>Xl</b> + <b>Xaq</b> * <b>X1q</b> / (<b>Xaq</b>+ <b>X1q</b>)
-<b>X�q</b> = <b>Xl</b> + <b>Xaq</b> *<b> X1q</b>* <b>X2q</b> / (<b>Xaq</b> * <b>X1q</b> + <b>Xaq</b> * <b>X2q</b> + <b>X1q</b> * <b>X2q</b>)
-<b>T�do</b> = (<b>Xad</b> + <b>Xfd</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>Rfd</b>)
-<b>T�do</b> = (<b>Xad</b> * <b>Xfd</b> + <b>Xad</b> * <b>X1d</b> + <b>Xfd</b> * <b>X1d</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>R1d</b> * (<b>Xad</b> + <b>Xfd</b>)
-<b>T�qo</b> = (<b>Xaq</b> + <b>X1q</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>R1q</b>)
-<b>T�qo</b> = (<b>Xaq</b> * <b>X1q</b> + <b>Xaq</b> * <b>X2q</b> + <b>X1q</b> * <b>X2q</b>)/ (<b>omega</b><b><sub>0</sub></b> * <b>R2q</b> * (<b>Xaq</b> + <b>X1q</b>)
-<b>
-</b>Same equations using CIM attributes from SynchronousMachineTimeConstantReactance class on left of = sign and SynchronousMachineEquivalentCircuit class on right (except as noted):
-xDirectSync = xad + RotatingMachineDynamics.statorLeakageReactance
-xDirectTrans = RotatingMachineDynamics.statorLeakageReactance + xad * xfd / (xad + xfd)
-xDirectSubtrans = RotatingMachineDynamics.statorLeakageReactance + xad * xfd * x1d / (xad * xfd + xad * x1d + xfd * x1d)
-xQuadSync = xaq + RotatingMachineDynamics.statorLeakageReactance
-xQuadTrans = RotatingMachineDynamics.statorLeakageReactance + xaq * x1q / (xaq+ x1q)
-xQuadSubtrans = RotatingMachineDynamics.statorLeakageReactance + xaq * x1q* x2q / (xaq * x1q + xaq * x2q + x1q * x2q) 
-tpdo = (xad + xfd) / (2*pi*nominal frequency * rfd)
-tppdo = (xad * xfd + xad * x1d + xfd * x1d) / (2*pi*nominal frequency * r1d * (xad + xfd)
-tpqo = (xaq + x1q) / (2*pi*nominal frequency * r1q)
-tppqo = (xaq * x1q + xaq * x2q + x1q * x2q)/ (2*pi*nominal frequency * r2q * (xaq + x1q).
+ * 
+ * <b>Equations for conversion between Equivalent Circuit and Time Constant Reactance forms:</b>
+ * <b>Xd</b> = <b>Xad</b> + <b>Xl</b>
+ * <b>X�d</b> = <b>Xl</b> + <b>Xad</b> * <b>Xfd</b> / (<b>Xad</b> + <b>Xfd</b>)
+ * <b>X�d</b> = <b>Xl</b> + <b>Xad</b> * <b>Xfd </b>* <b>X1d</b> / (<b>Xad</b> * <b>Xfd</b> + <b>Xad</b> * <b>X1d</b> + <b>Xfd</b> * <b>X1d</b>)
+ * <b>Xq</b> = <b>Xaq</b> + <b>Xl</b>
+ * <b>X�q</b> = <b>Xl</b> + <b>Xaq</b> * <b>X1q</b> / (<b>Xaq</b>+ <b>X1q</b>)
+ * <b>X�q</b> = <b>Xl</b> + <b>Xaq</b> *<b> X1q</b>* <b>X2q</b> / (<b>Xaq</b> * <b>X1q</b> + <b>Xaq</b> * <b>X2q</b> + <b>X1q</b> * <b>X2q</b>)
+ * <b>T�do</b> = (<b>Xad</b> + <b>Xfd</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>Rfd</b>)
+ * <b>T�do</b> = (<b>Xad</b> * <b>Xfd</b> + <b>Xad</b> * <b>X1d</b> + <b>Xfd</b> * <b>X1d</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>R1d</b> * (<b>Xad</b> + <b>Xfd</b>)
+ * <b>T�qo</b> = (<b>Xaq</b> + <b>X1q</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>R1q</b>)
+ * <b>T�qo</b> = (<b>Xaq</b> * <b>X1q</b> + <b>Xaq</b> * <b>X2q</b> + <b>X1q</b> * <b>X2q</b>)/ (<b>omega</b><b><sub>0</sub></b> * <b>R2q</b> * (<b>Xaq</b> + <b>X1q</b>)
+ * <b>
+ * </b>Same equations using CIM attributes from SynchronousMachineTimeConstantReactance class on left of = sign and SynchronousMachineEquivalentCircuit class on right (except as noted):
+ * xDirectSync = xad + RotatingMachineDynamics.statorLeakageReactance
+ * xDirectTrans = RotatingMachineDynamics.statorLeakageReactance + xad * xfd / (xad + xfd)
+ * xDirectSubtrans = RotatingMachineDynamics.statorLeakageReactance + xad * xfd * x1d / (xad * xfd + xad * x1d + xfd * x1d)
+ * xQuadSync = xaq + RotatingMachineDynamics.statorLeakageReactance
+ * xQuadTrans = RotatingMachineDynamics.statorLeakageReactance + xaq * x1q / (xaq+ x1q)
+ * xQuadSubtrans = RotatingMachineDynamics.statorLeakageReactance + xaq * x1q* x2q / (xaq * x1q + xaq * x2q + x1q * x2q)
+ * tpdo = (xad + xfd) / (2*pi*nominal frequency * rfd)
+ * tppdo = (xad * xfd + xad * x1d + xfd * x1d) / (2*pi*nominal frequency * r1d * (xad + xfd)
+ * tpqo = (xaq + x1q) / (2*pi*nominal frequency * r1q)
+ * tppqo = (xaq * x1q + xaq * x2q + x1q * x2q)/ (2*pi*nominal frequency * r2q * (xaq + x1q).
  * Are only valid for a simplified model where "Canay" reactance is zero.
  * @param sup Reference to the superclass object.
  * @param r1d D-axis damper 1 winding resistance.
@@ -334,39 +334,39 @@ extends
 }
 
 /**
- * Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.  
-<b>
-</b><b>Parameter notes:</b>
-<ol>
-	<li>The �p� in the time-related attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpdo refers to <b>T'do</b>.</li>
-</ol>
-<b>
-</b>The parameters used for models expressed in time constant reactance form include:
-<ul>
-	<li>RotatingMachine.ratedS (MVAbase)</li>
-	<li>RotatingMachineDynamics.damping (D)</li>
-	<li>RotatingMachineDynamics.inertia (H)</li>
-	<li>RotatingMachineDynamics.saturationFactor (S1)</li>
-	<li>RotatingMachineDynamics.saturationFactor120 (S12)</li>
-	<li>RotatingMachineDynamics.statorLeakageReactance (Xl)</li>
-	<li>RotatingMachineDynamics.statorResistance (Rs)</li>
-	<li>SynchronousMachineTimeConstantReactance.ks (Ks)</li>
-	<li>SynchronousMachineDetailed.saturationFactorQAxis (S1q)</li>
-	<li>SynchronousMachineDetailed.saturationFactor120QAxis (S12q)</li>
-	<li>SynchronousMachineDetailed.efdBaseRatio</li>
-	<li>SynchronousMachineDetailed.ifdBaseType</li>
-	<li>SynchronousMachineDetailed.ifdBaseValue, if present</li>
-	<li>.xDirectSync (Xd)</li>
-	<li>.xDirectTrans (X'd)</li>
-	<li>.xDirectSubtrans (X''d)</li>
-	<li>.xQuadSync (Xq)</li>
-	<li>.xQuadTrans (X'q)</li>
-	<li>.xQuadSubtrans (X''q)</li>
-	<li>.tpdo (T'do)</li>
-	<li>.tppdo (T''do)</li>
-	<li>.tpqo (T'qo)</li>
-	<li>.tppqo (T''qo)</li>
-	<li>.tc.</li>
+ * Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.
+ * <b>
+ * </b><b>Parameter notes:</b>
+ * <ol>
+ * <li>The �p� in the time-related attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpdo refers to <b>T'do</b>.</li>
+ * </ol>
+ * <b>
+ * </b>The parameters used for models expressed in time constant reactance form include:
+ * <ul>
+ * <li>RotatingMachine.ratedS (MVAbase)</li>
+ * <li>RotatingMachineDynamics.damping (D)</li>
+ * <li>RotatingMachineDynamics.inertia (H)</li>
+ * <li>RotatingMachineDynamics.saturationFactor (S1)</li>
+ * <li>RotatingMachineDynamics.saturationFactor120 (S12)</li>
+ * <li>RotatingMachineDynamics.statorLeakageReactance (Xl)</li>
+ * <li>RotatingMachineDynamics.statorResistance (Rs)</li>
+ * <li>SynchronousMachineTimeConstantReactance.ks (Ks)</li>
+ * <li>SynchronousMachineDetailed.saturationFactorQAxis (S1q)</li>
+ * <li>SynchronousMachineDetailed.saturationFactor120QAxis (S12q)</li>
+ * <li>SynchronousMachineDetailed.efdBaseRatio</li>
+ * <li>SynchronousMachineDetailed.ifdBaseType</li>
+ * <li>SynchronousMachineDetailed.ifdBaseValue, if present</li>
+ * <li>.xDirectSync (Xd)</li>
+ * <li>.xDirectTrans (X'd)</li>
+ * <li>.xDirectSubtrans (X''d)</li>
+ * <li>.xQuadSync (Xq)</li>
+ * <li>.xQuadTrans (X'q)</li>
+ * <li>.xQuadSubtrans (X''q)</li>
+ * <li>.tpdo (T'do)</li>
+ * <li>.tppdo (T''do)</li>
+ * <li>.tpqo (T'qo)</li>
+ * <li>.tppqo (T''qo)</li>
+ * <li>.tc.</li>
  * </ul>
  * @param sup Reference to the superclass object.
  * @param ks Saturation loading correction factor (Ks) (&gt;= 0).

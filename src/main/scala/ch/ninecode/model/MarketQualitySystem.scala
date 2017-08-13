@@ -77,16 +77,16 @@ extends
  * Models Market clearing results in terms of price and MW values
  * @param sup Reference to the superclass object.
  * @param aggregateType "1" --  "Detail",
-"2" --  "Aggregate by Market service type", in which case, the "AllocationEnergyType" field will not be filled;
+ *        "2" --  "Aggregate by Market service type", in which case, the "AllocationEnergyType" field will not be filled;
  *        "3" --  "Aggregate by "AllocationEnergyType", in which case "MarketServiceType" will not be filled.
  * @param allocationMwHour <em>undocumented</em>
  * @param allocationPrice <em>undocumented</em>
  * @param energyTypeCode <em>undocumented</em>
- * @param marketServiceType Choices are: 
-ME - Market Energy Capacity; 
-SR - Spinning Reserve Capacity; 
-NR - Non-Spinning Reserve Capacity; 
-DAC - Day Ahead Capacity;
+ * @param marketServiceType Choices are:
+ *        ME - Market Energy Capacity;
+ *        SR - Spinning Reserve Capacity;
+ *        NR - Non-Spinning Reserve Capacity;
+ *        DAC - Day Ahead Capacity;
  *        DEC - Derate Capacity
  * @param AllocationResult <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>

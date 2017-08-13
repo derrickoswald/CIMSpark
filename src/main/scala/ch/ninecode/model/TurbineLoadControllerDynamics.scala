@@ -21,8 +21,8 @@ import ch.ninecode.cim.Parseable
  * @param fb Frequency bias gain (Fb).
  *        Typical Value = 0.
  * @param fbf Frequency bias flag (Fbf).
-true = enable frequency bias
-false = disable frequency bias.
+ *        true = enable frequency bias
+ *        false = disable frequency bias.
  *        Typical Value = false.
  * @param irmax Maximum turbine speed/load reference bias (Irmax) (note 3).
  *        Typical Value = 0.
@@ -33,14 +33,14 @@ false = disable frequency bias.
  * @param mwbase Base for power values (MWbase) (&gt;0).
  *        Unit = MW.
  * @param pbf Power controller flag (Pbf).
-true = enable load controller
-false = disable load controller.
+ *        true = enable load controller
+ *        false = disable load controller.
  *        Typical Value = false.
  * @param pmwset Power controller setpoint (Pmwset) (note 1).
  *        Unit = MW. Typical Value = 0.
  * @param speedReferenceGovernor Type of turbine governor reference (Type).
-true = speed reference governor
-false = load reference governor.
+ *        true = speed reference governor
+ *        false = load reference governor.
  *        Typical Value = true.
  * @param tpelec Power transducer time constant (Tpelec).
  *        Typical Value = 0.

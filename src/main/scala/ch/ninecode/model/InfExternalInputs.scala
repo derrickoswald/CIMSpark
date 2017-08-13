@@ -234,7 +234,7 @@ extends
 
 /**
  * Optionally, this curve expresses elasticity of the associated requirement.
- * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of $1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
+ * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
  * @param sup Reference to the superclass object.
  * @param ReserveReq <em>undocumented</em>
  */

@@ -15,8 +15,8 @@ import ch.ninecode.cim.Parseable
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
  * @param sup Reference to the superclass object.
  * @param hvlvgates Indicates if both HV gate and LV gate are active (HVLVgates).
-true = gates are used
-false = gates are not used.
+ *        true = gates are used
+ *        false = gates are not used.
  *        Typical Value = true.
  * @param ka Voltage regulator gain (Ka).
  *        Typical Value = 400.
@@ -195,8 +195,8 @@ extends
  * Modified IEEE AC2A alternator-supplied rectifier excitation system with different field current limit.
  * @param sup Reference to the superclass object.
  * @param hvgate Indicates if HV gate is active (HVgate).
-true = gate is used
-false = gate is not used.
+ *        true = gate is used
+ *        false = gate is not used.
  *        Typical Value = true.
  * @param ka Voltage regulator gain (Ka).
  *        Typical Value = 400.
@@ -221,8 +221,8 @@ false = gate is not used.
  * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
  *        Typical Value = 0.
  * @param lvgate Indicates if LV gate is active (LVgate).
-true = gate is used
-false = gate is not used.
+ *        true = gate is used
+ *        false = gate is not used.
  *        Typical Value = true.
  * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
  *        Typical Value = 0.037.
@@ -1053,8 +1053,8 @@ extends
  * Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
  * @param sup Reference to the superclass object.
  * @param inlim Input limiter indicator.
-true = input limiter Vimax and Vimin is considered
-false = input limiter Vimax and Vimin is not considered.
+ *        true = input limiter Vimax and Vimin is considered
+ *        false = input limiter Vimax and Vimin is not considered.
  *        Typical Value = true.
  * @param ka Voltage regulator gain (Ka).
  *        Typical Value = 1.
@@ -1073,8 +1073,8 @@ false = input limiter Vimax and Vimin is not considered.
  * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
  *        Typical Value = 0.
  * @param pidlim PID limiter indicator.
-true = input limiter Vpidmax and Vpidmin is considered
-false = input limiter Vpidmax and Vpidmin is not considered.
+ *        true = input limiter Vpidmax and Vpidmin is considered
+ *        false = input limiter Vpidmax and Vpidmin is not considered.
  *        Typical Value = true.
  * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve1]).
  *        Typical Value = 0.3.
@@ -1109,8 +1109,8 @@ false = input limiter Vpidmax and Vpidmin is not considered.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = 0.
  * @param vtmult Multiply by generator's terminal voltage indicator.
-true =the limits Vrmax and Vrmin are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
-false = limits are not multiplied by generator's terminal voltage.
+ *        true =the limits Vrmax and Vrmin are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
+ *        false = limits are not multiplied by generator's terminal voltage.
  *        Typical Value = false.
  */
 case class ExcAC8B
@@ -1267,9 +1267,9 @@ extends
  * Italian excitation system.
  * It represents static field voltage or excitation current feedback excitation system.
  * @param sup Reference to the superclass object.
- * @param blint Governor Control Flag (BLINT). 
-0 = lead-lag regulator
-1 = proportional integral regulator.
+ * @param blint Governor Control Flag (BLINT).
+ *        0 = lead-lag regulator
+ *        1 = proportional integral regulator.
  *        Typical Value = 0.
  * @param ifmn Minimum exciter current (I<sub>FMN</sub>).
  *        Typical Value = -5.2.
@@ -1281,13 +1281,13 @@ extends
  *        Typical Value = 1000.
  * @param kce Ceiling factor (K<sub>CE</sub>).
  *        Typical Value = 1.
- * @param krvecc Feedback enabling (K<sub>RVECC</sub>). 
-0 = Open loop control
-1 = Closed loop control.
+ * @param krvecc Feedback enabling (K<sub>RVECC</sub>).
+ *        0 = Open loop control
+ *        1 = Closed loop control.
  *        Typical Value = 1.
- * @param kvfif Rate feedback signal flag (K<sub>VFIF</sub>). 
-0 = output voltage of the exciter
-1 = exciter field current.
+ * @param kvfif Rate feedback signal flag (K<sub>VFIF</sub>).
+ *        0 = output voltage of the exciter
+ *        1 = exciter field current.
  *        Typical Value = 0.
  * @param t1 Time constant (T<sub>1</sub>).
  *        Typical Value = 20.
@@ -1768,8 +1768,8 @@ extends
  * It represents static exciter and electric voltage regulator.
  * @param sup Reference to the superclass object.
  * @param imul AVR output voltage dependency selector (Imul).
-true = selector is connected
-false = selector is not connected.
+ *        true = selector is connected
+ *        false = selector is not connected.
  *        Typical Value = true.
  * @param ka AVR gain (K<sub>A</sub>).
  *        Typical Value = 300.
@@ -2142,8 +2142,8 @@ extends
  * @param k Steady state gain (K).
  *        Typical Value = 300.
  * @param switch1 Supplementary signal routing selector (switch).
-true = Vs connected to 3rd summing point
-false =  Vs connected to 1st summing point (see diagram).
+ *        true = Vs connected to 3rd summing point
+ *        false =  Vs connected to 1st summing point (see diagram).
  *        Typical Value = true.
  * @param t1 Controller time constant (T1).
  *        Typical Value = 6.
@@ -2535,8 +2535,8 @@ extends
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = -4.9.
  * @param vtlim (Vtlim).
-true = limiter at the block [Ka/(1+sTa)] is dependent on Vt 
-false = limiter at the block is not dependent on Vt.
+ *        true = limiter at the block [Ka/(1+sTa)] is dependent on Vt
+ *        false = limiter at the block is not dependent on Vt.
  *        Typical Value = true.
  */
 case class ExcDC2A
@@ -2664,8 +2664,8 @@ extends
  * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
  *        Typical Value = 3.45.
  * @param efdlim (Efdlim).
-true = exciter output limiter is active
-false = exciter output limiter not active.
+ *        true = exciter output limiter is active
+ *        false = exciter output limiter not active.
  *        Typical Value = true.
  * @param efdmin Minimum voltage exciter output limiter (Efdmin).
  *        Typical Value = -99.
@@ -2802,8 +2802,8 @@ extends
  * This is modified old IEEE type 3 excitation system.
  * @param sup Reference to the superclass object.
  * @param exclim (exclim).
-true = lower limit of zero is applied to integrator output
-false = lower limit of zero not applied to integrator output.
+ *        true = lower limit of zero is applied to integrator output
+ *        false = lower limit of zero not applied to integrator output.
  *        Typical Value = true.
  * @param ka Voltage regulator gain (Ka).
  *        Typical Value = 300.
@@ -2824,8 +2824,8 @@ false = lower limit of zero not applied to integrator output.
  * @param vb1max Available exciter voltage limiter (Vb1max).
  *        Typical Value = 11.63.
  * @param vblim Vb limiter indicator.
-true = exciter Vbmax limiter is active
-false = Vb1max is active.
+ *        true = exciter Vbmax limiter is active
+ *        false = Vb1max is active.
  *        Typical Value = true.
  * @param vbmax Available exciter voltage limiter (Vbmax).
  *        Typical Value = 11.63.
@@ -4697,8 +4697,8 @@ extends
  * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
  *        Typical Value = 1.
  * @param uelin UEL input (uelin).
-true = input is connected to the HV gate
-false = input connects to the error signal.
+ *        true = input is connected to the HV gate
+ *        false = input connects to the error signal.
  *        Typical Value = true.
  * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
  *        Typical Value = 1.
@@ -4842,8 +4842,8 @@ extends
  * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
  *        Typical Value = 0.675.
  * @param uelin UEL input (uelin).
-true = input is connected to the HV gate
-false = input connects to the error signal.
+ *        true = input is connected to the HV gate
+ *        false = input connects to the error signal.
  *        Typical Value = true.
  * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
  *        Typical Value = 4.95.
@@ -5090,8 +5090,8 @@ extends
  * @param kp Regulator proportional gain (K<sub>P</sub>).
  *        Typical Value = 20.
  * @param oelin OEL input (OELin).
-true = LV gate
-false = subtract from error signal.
+ *        true = LV gate
+ *        false = subtract from error signal.
  *        Typical Value = true.
  * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
  *        Typical Value = 0.08.
@@ -5106,8 +5106,8 @@ false = subtract from error signal.
  * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
  *        Typical Value = 1.
  * @param uelin UEL input (UELin).
-true = HV gate
-false = add to error signal.
+ *        true = HV gate
+ *        false = add to error signal.
  *        Typical Value = true.
  * @param vemin Minimum exciter voltage output(V<sub>EMIN</sub>).
  *        Typical Value = 0.
@@ -5249,8 +5249,8 @@ extends
  * @param klr Exciter output current limiter gain (K<sub>LR</sub>).
  *        Typical Value = 0.
  * @param pssin Selector of the Power System Stabilizer (PSS) input (PSSin).
-true = PSS input (Vs) added to error signal
-false = PSS input (Vs) added to voltage regulator output.
+ *        true = PSS input (Vs) added to error signal
+ *        false = PSS input (Vs) added to voltage regulator output.
  *        Typical Value = true.
  * @param ta Voltage regulator time constant (T<sub>A</sub>).
  *        Typical Value = 0.
@@ -5422,8 +5422,8 @@ extends
  * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
  *        Typical Value = 1.
  * @param uelin UEL input (UELin).
-true = HV gate
-false = add to error signal.
+ *        true = HV gate
+ *        false = add to error signal.
  *        Typical Value = true.
  * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
  *        Typical Value = 1.
@@ -6844,7 +6844,7 @@ extends
  * Simple excitation system model representing generic characteristics of many excitation systems; intended for use where negative field current may be a problem.
  * @param sup Reference to the superclass object.
  * @param cswitch Power source switch (Cswitch).
-true = fixed voltage of 1.0 PU
+ *        true = fixed voltage of 1.0 PU
  *        false = generator terminal voltage.
  * @param emax Maximum field voltage output (Emax).
  *        Typical Value = 5.
@@ -7075,13 +7075,13 @@ extends
  * @param nq Dead band of reactive power (nq).
  *        Determines the range of sensitivity.  Typical Value = 0.001.
  * @param qconoff Secondary voltage control state (Qc_on_off).
-true = secondary voltage control is ON
-false = secondary voltage control is OFF.
+ *        true = secondary voltage control is ON
+ *        false = secondary voltage control is OFF.
  *        Typical Value = false.
  * @param qz Desired value (setpoint) of reactive power, manual setting (Qz).
  * @param remote Selector to apply automatic calculation in secondary controller model.
-true = automatic calculation is activated
-false = manual set is active; the use of desired value of reactive power (Qz) is required.
+ *        true = automatic calculation is activated
+ *        false = manual set is active; the use of desired value of reactive power (Qz) is required.
  *        Typical Value = true.
  * @param sbase Apparent power of the unit (Sbase).
  *        Unit = MVA.  Typical Value = 259.
@@ -7462,8 +7462,8 @@ extends
  * @param tf Excitation control system stabilizer time constant (Tf).
  *        Typical Value = 0.7.
  * @param uelin UEL input (UELin).
-true = HV gate
-false = add to error signal.
+ *        true = HV gate
+ *        false = add to error signal.
  *        Typical Value = false.
  * @param vrmax Maximum voltage regulator outputs (Vrmax).
  *        Typical Value = 1.
@@ -7758,16 +7758,16 @@ extends
  * @param kpr Voltage regulator proportional gain (Kpr).
  *        Typical Value = 10.75.
  * @param lvgate Selector (LVgate).
-true = LVgate is part of the block diagram
-false = LVgate is not part of the block diagram.
+ *        true = LVgate is part of the block diagram
+ *        false = LVgate is not part of the block diagram.
  *        Typical Value = false.
  * @param ta Voltage regulator time constant (Ta).
  *        Typical Value = 0.02.
  * @param thetap Potential circuit phase angle (thetap).
  *        Typical Value = 0.
  * @param uel Selector (Uel).
-true = UEL is part of block diagram
-false = UEL is not part of block diagram.
+ *        true = UEL is part of block diagram
+ *        false = UEL is not part of block diagram.
  *        Typical Value = false.
  * @param vbmax Maximum excitation voltage (Vbmax).
  *        Typical Value = 11.63.
@@ -7908,8 +7908,8 @@ extends
  * @param ilr Exciter output current limit reference (Ilr).
  *        Typical Value = 4.164.
  * @param k1 Selector (K1).
-true = feedback is from Ifd
-false = feedback is not from Ifd.
+ *        true = feedback is from Ifd
+ *        false = feedback is not from Ifd.
  *        Typical Value = true.
  * @param kcl Exciter output current limit adjustment (Kcl).
  *        Typical Value = 1.0577.
@@ -7940,16 +7940,16 @@ false = feedback is not from Ifd.
  * @param vamin Minimum voltage regulator output (Vamin).
  *        Typical Value = -3.85.
  * @param vilim Selector (Vilim).
-true = Vimin-Vimax limiter is active
-false = Vimin-Vimax limiter is not active.
+ *        true = Vimin-Vimax limiter is active
+ *        false = Vimin-Vimax limiter is not active.
  *        Typical Value = true.
  * @param vimax Maximum voltage regulator input limit (Vimax).
  *        Typical Value = 10.
  * @param vimin Minimum voltage regulator input limit (Vimin).
  *        Typical Value = -10.
  * @param vmult Selector (Vmult).
-true = multiply regulator output by terminal voltage
-false = do not multiply regulator output by terminal voltage.
+ *        true = multiply regulator output by terminal voltage
+ *        false = do not multiply regulator output by terminal voltage.
  *        Typical Value = true.
  * @param vrmax Maximum voltage regulator output (Vrmax).
  *        Typical Value = 4.81.

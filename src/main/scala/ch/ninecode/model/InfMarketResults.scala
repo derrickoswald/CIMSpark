@@ -126,13 +126,13 @@ extends
  * Market case clearing results are posted for a given settlement period.
  * @param sup Reference to the superclass object.
  * @param caseType Settlement period:
-'DA - Bid-in'
-'DA - Reliability'
-'DA - Amp1'
-'DA - Amp2'
-'RT - Ex-Ante'
-'RT - Ex-Post'
-'RT - Amp1'
+ *        'DA - Bid-in'
+ *        'DA - Reliability'
+ *        'DA - Amp1'
+ *        'DA - Amp2'
+ *        'RT - Ex-Ante'
+ *        'RT - Ex-Post'
+ *        'RT - Amp1'
  *        'RT - Amp2'
  * @param modifiedDate Last time and date clearing results were manually modified.
  * @param postedDate Bid clearing results posted time and date.
