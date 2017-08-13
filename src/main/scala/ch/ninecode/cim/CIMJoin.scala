@@ -10,8 +10,9 @@ import ch.ninecode.model._
 
 class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
-    private implicit val session = spark
-    private implicit val log = LoggerFactory.getLogger (getClass)
+    implicit val session = spark
+    implicit val level: StorageLevel = storage
+    implicit val log = LoggerFactory.getLogger (getClass)
 
     def unbundle (a: ((Name,ServiceLocation), (Name,ServiceLocation))): (String, (ServiceLocation, ServiceLocation)) =
     {
@@ -162,74 +163,34 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
     def do_join (): RDD[Element] =
     {
         val names = get[Name]
-        val locations = get[ServiceLocation]
+        val service_locations = get[ServiceLocation]
         val points = get[PositionPoint]
         val attributes = get[UserAttribute]
 
         // get only the cim:Name objects pertaining to the ServiceLocation join
-        val isusl = names.keyBy (_.name).join (locations.keyBy (_.id)).values
-        val nissl = names.keyBy (_.IdentifiedObject).join (locations.keyBy (_.id)).values
+        val isusl = names.keyBy (_.name).join (service_locations.keyBy (_.id)).values
+        val nissl = names.keyBy (_.IdentifiedObject).join (service_locations.keyBy (_.id)).values
 
         // construct a useful intermediate representation of the cim:Name objects
         val pairs = isusl.keyBy (_._1.id).join (nissl.keyBy (_._1.id)).values.map (unbundle)
 
         // step 1, edit (replace) ISU ServiceLocation that have a corresponding NIS ServiceLocation
-        val temp_locations = locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._1.id)).values.map (edit_service_location)
+        val temp_locations = service_locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._1.id)).values.map (edit_service_location)
         // step 4, delete the NIS ServiceLocations that have a corresponding ISU ServiceLocation
         val updated_locations = temp_locations.keyBy (_.id).leftOuterJoin (pairs).values.filter (delete_service_location).map (_._1)
+        put (service_locations)
 
         // step 2, change the Location attribute of affected PositionPoint
         val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs).values.map (edit_position_point)
-
-        // swap the old PositionPoint RDD for the new one
-        points.name = "unjoined_PositionPoint"
-        updated_points.name = "PositionPoint"
-        updated_points.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => updated_points.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (updated_points).createOrReplaceTempView ("PositionPoint")
+        put (updated_points)
 
         // step 3, change the name attribute of affected UserAttribute
         val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
-
-        // swap the old UserAttribute RDD for the new one
-        attributes.name = "unjoined_UserAttribute"
-        updated_attributes.name = "UserAttribute"
-        updated_attributes.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => updated_attributes.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (updated_attributes).createOrReplaceTempView ("UserAttribute")
+        put (updated_attributes)
 
         // step 5 and 6, delete the Name objects that are no longer needed
         val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
-
-        // swap the old Name RDD for the new one
-        names.name = "unjoined_Name"
-        updated_names.name = "Name"
-        updated_names.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => updated_names.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (updated_names).createOrReplaceTempView ("Name")
-
-        // swap the old ServiceLocation RDD for the new one
-        locations.name = "unjoined_ServiceLocation"
-        updated_locations.name = "ServiceLocation"
-        updated_locations.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => updated_locations.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (updated_locations).createOrReplaceTempView ("ServiceLocation")
+        put (updated_names)
 
         // replace service locations in WorkLocation
         val old_work_loc = get[WorkLocation]
@@ -243,17 +204,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                         case None => List (arg._1)
                     }
                 )
-
-        // swap the old WorkLocation RDD for the new one
-        old_work_loc.name = "unjoined_WorkLocation"
-        new_work_loc.name = "WorkLocation"
-        new_work_loc.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_work_loc.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (new_work_loc).createOrReplaceTempView ("WorkLocation")
+        put (new_work_loc)
 
         // replace service locations in Location
         val old_loc = get[Location]
@@ -266,17 +217,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                         case None => List (arg._1)
                     }
                 )
-
-        // swap the old Location RDD for the new one
-        old_loc.name = "unjoined_Location"
-        new_loc.name = "Location"
-        new_loc.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_loc.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (new_loc).createOrReplaceTempView ("Location")
+        put (new_loc)
 
         // new RDD as IdentifiedObject
         val idobj = old_loc.map (_.IdentifiedObject)
@@ -292,17 +233,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                         case None => List (arg._1)
                     }
                 )
-
-        // swap the old IdentifiedObject RDD for the new one
-        old_idobj.name = "unjoined_IdentifiedObject"
-        new_idobj.name = "IdentifiedObject"
-        new_idobj.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_idobj.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
+        put (new_idobj)
 
         // make a union of all new RDD as Element
         val newelem = updated_points.asInstanceOf[RDD[Element]].

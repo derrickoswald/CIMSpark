@@ -5,14 +5,15 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
 
 class CIMDeDup (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
-    private implicit val session = spark
-    private implicit val log = LoggerFactory.getLogger (getClass)
+    implicit val session: SparkSession = spark
+    implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     def check (element: Element, others: Iterable[Element]): Unit =
     {
@@ -26,13 +27,13 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel) extends CIMRDD with 
         }
     }
 
-    def deduplicate (arg: Iterable[Element]): List[Element] =
+    def deduplicate (arg: Iterable[Element]): Element =
     {
         val ret = arg.head
         if (1 != arg.size)
             // check for equality
             check (ret, arg.tail)
-        List (ret)
+        ret
     }
 
     def do_deduplicate (): (RDD[Element], RDD[Row]) =
@@ -41,7 +42,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel) extends CIMRDD with 
         val elements = get[Element]("Elements")
 
         // deduplicate
-        val new_elements = elements.keyBy (_.id).groupByKey ().values.flatMap (deduplicate)
+        val new_elements: RDD[Element] = elements.keyBy (_.id).groupByKey ().values.map (deduplicate)
 
         // swap the old Elements RDD for the new one
         elements.name = "duplicate_Elements"

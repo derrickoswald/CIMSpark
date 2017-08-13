@@ -23,10 +23,10 @@ import ch.ninecode.model._
  */
 class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 {
-    private implicit val session = spark
-    private implicit val log = LoggerFactory.getLogger (getClass)
-    private val configuration: Configuration = session.sparkContext.hadoopConfiguration
-    private val hdfs = FileSystem.get (configuration)
+    implicit val session: SparkSession = spark
+    implicit val log = LoggerFactory.getLogger (getClass)
+    val configuration: Configuration = spark.sparkContext.hadoopConfiguration
+    val hdfs = FileSystem.get (configuration)
 
     def merge (source: String, destination: String): Unit =
     {
@@ -96,13 +96,13 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
         hdfs.delete (directory, true)
         val file = new Path (filename)
         hdfs.delete (file, false)
-        val txt = directory.toUri ().toString
+        val txt = directory.toUri.toString
         val head = spark.sparkContext.makeRDD (List[String] (header))
         val tail = spark.sparkContext.makeRDD (List[String] (tailer))
         val guts = elements.map (_.export)
         val ss = head.union (guts).union (tail)
         ss.saveAsTextFile (txt)
-        merge (txt, file.toUri ().toString)
+        merge (txt, file.toUri.toString)
     }
 
     /**

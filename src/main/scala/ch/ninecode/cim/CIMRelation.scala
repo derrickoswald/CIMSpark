@@ -24,7 +24,7 @@ class CIMRelation (
     dataSchema: StructType,
     fileFormat: FileFormat,
     parameters: Map[String, String])
-                                    (sparkSession: SparkSession)
+                                    (spark: SparkSession)
 
 // Derrick: if it inherits from HadoopFSRelation, DataSource uses the CIMFileFormat which doesn't allow subsetting, etc.
 //extends
@@ -34,17 +34,16 @@ class CIMRelation (
 //        dataSchema,
 //        None, // org.apache.spark.sql.execution.datasources.BucketSpec is private
 //        fileFormat,
-//        parameters)                    (sparkSession)
+//        parameters)                    (spark)
 extends
     BaseRelation
 with
     TableScan
 {
-
-    val log: Logger = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     // check for a storage level option
-    val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
+    implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
     // check for deduplication option
     val _DeDup: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_deduplication", "false").toBoolean
     // check for edge creation option
@@ -59,10 +58,9 @@ with
     val _SplitSize: Long = parameters.getOrElse ("ch.ninecode.cim.split_maxsize", "67108864").toLong
 
     log.info ("parameters: " + parameters.toString)
-    log.info ("sqlContext: " + sqlContext.toString)
     log.info ("storage: " + _StorageLevel.description)
 
-    def sqlContext: SQLContext = sparkSession.sqlContext
+    def sqlContext: SQLContext = spark.sqlContext
 
     // just to get a schema
     case class dummy
@@ -90,7 +88,6 @@ with
     override def buildScan (): RDD[Row] =
     {
         log.info ("buildScan")
-        log.info ("storage: " + _StorageLevel.description)
 
         // register the ElementUDT
         ElementRegistration.register ()
@@ -100,11 +97,11 @@ with
         val path = parameters.getOrElse("path", sys.error("'path' must be specified for CIM data."))
 
         // make a config
-        val configuration = new Configuration (sqlContext.sparkContext.hadoopConfiguration)
+        val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
         configuration.set (FileInputFormat.INPUT_DIR, path)
         configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
 
-        val rdd = sqlContext.sparkContext.newAPIHadoopRDD (
+        val rdd = spark.sparkContext.newAPIHadoopRDD (
             configuration,
             classOf[CIMInputFormat],
             classOf[String],
@@ -113,7 +110,7 @@ with
         ret = rdd.asInstanceOf[RDD[Row]]
         ret.setName ("Elements") // persist it
         ret.persist (_StorageLevel)
-        sparkSession.sparkContext.getCheckpointDir match
+        spark.sparkContext.getCheckpointDir match
         {
             case Some (_) => ret.checkpoint ()
             case None =>
@@ -123,7 +120,7 @@ with
         val elements = if (_DeDup)
         {
             log.info ("eliminating duplicates")
-            val dedup = new CIMDeDup (sparkSession, _StorageLevel)
+            val dedup = new CIMDeDup (spark, _StorageLevel)
             val (e, r) = dedup.do_deduplicate ()
             ret = r
             e
@@ -163,7 +160,7 @@ with
                 if (names.contains (subsetter.cls))
                 {
                     log.info ("building " + subsetter.cls)
-                    subsetter.make (sqlContext, elements, _StorageLevel)
+                    subsetter.make (spark.sqlContext, elements, _StorageLevel)
                 }
             }
         )
@@ -172,7 +169,7 @@ with
         if (_Join)
         {
             log.info ("joining ISU and NIS")
-            val join = new CIMJoin (sparkSession, _StorageLevel)
+            val join = new CIMJoin (spark, _StorageLevel)
             ret = join.do_join ().asInstanceOf[RDD[Row]]
         }
 
@@ -180,7 +177,7 @@ with
         if (_Topo)
         {
             log.info ("performing Network Topology Processing")
-            val ntp = new CIMNetworkTopologyProcessor (sparkSession, _StorageLevel)
+            val ntp = new CIMNetworkTopologyProcessor (spark, _StorageLevel)
             ret = ntp.process (_Islands).asInstanceOf[RDD[Row]]
         }
 
@@ -188,7 +185,7 @@ with
         if (_Edges)
         {
             log.info ("making Edges RDD")
-            val cimedges = new CIMEdges (sparkSession, _StorageLevel)
+            val cimedges = new CIMEdges (spark, _StorageLevel)
             ret = cimedges.make_edges (_Topo).asInstanceOf[RDD[Row]]
         }
 

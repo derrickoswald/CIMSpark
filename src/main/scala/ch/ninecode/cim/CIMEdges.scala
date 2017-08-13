@@ -4,6 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
@@ -15,8 +16,9 @@ case class TopoEdge (id_seq_1: String, id_island_1: String, id_seq_2: String, id
 
 class CIMEdges (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
-    private implicit val session = spark
-    private implicit val log = LoggerFactory.getLogger (getClass)
+    implicit val session: SparkSession = spark
+    implicit val level: StorageLevel = storage
+    implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     def get_extremum (): RDD[Extremum] =
     {
@@ -405,33 +407,15 @@ class CIMEdges (spark: SparkSession, storage: StorageLevel) extends CIMRDD with 
             val topo2 =         topo1.keyBy (_._1.cn_2).leftOuterJoin (topologicals).values.map ((x) => (x._1._1, x._1._2, x._1._3, x._1._4, x._2))
             val edges = topo2.map (topo_edge_op)
 
-            // persist it
-            edges.setName ("Edges")
-            edges.persist (storage)
-            spark.sparkContext.getCheckpointDir match
-            {
-                case Some (_) => edges.checkpoint ()
-                case None =>
-            }
-
-            // expose it
-            spark.createDataFrame (edges).createOrReplaceTempView ("edges")
+            // persist and expose it
+            put (edges, "Edges")
         }
         else
         {
             val edges = asseted_edges.map (edge_op)
 
-            // persist it
-            edges.setName ("Edges")
-            edges.persist (storage)
-            spark.sparkContext.getCheckpointDir match
-            {
-                case Some (_) => edges.checkpoint ()
-                case None =>
-            }
-
-            // expose it
-            spark.createDataFrame (edges).createOrReplaceTempView ("edges")
+            // persist and expose it
+            put (edges, "Edges")
         }
 
         elements

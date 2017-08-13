@@ -1,10 +1,13 @@
 package ch.ninecode.cim
 
+import scala.reflect._
+import scala.reflect.runtime.universe._
+import scala.util.Random
+
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.storage.StorageLevel
 import org.slf4j.Logger
-
-import scala.reflect._
 
 /**
   * Access globally named and cached RDD of CIM classes.
@@ -32,8 +35,8 @@ import scala.reflect._
   *
   * class Processor (spark: SparkSession) extends CIMRDD with Serializable
   * {
-  *     private implicit val log: Logger = LoggerFactory.getLogger (getClass)
-  *     private implicit val session = spark
+  *     implicit val log: Logger = LoggerFactory.getLogger (getClass)
+  *     implicit val session = spark
   *
   *     def process =
   *     {
@@ -62,10 +65,10 @@ trait CIMRDD
     def get[T : ClassTag](name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =
     {
 
-        val rdd: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
-        rdd.find (_._2.name == name) match
+        val rdds: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
+        rdds.find (_._2.name == name) match
         {
-            case Some ((index: Int, rdd: RDD[_])) =>
+            case Some ((_: Int, rdd: RDD[_])) =>
                 rdd.asInstanceOf[RDD[T]]
             case Some (_) =>
                 log.warn (name + " not found in Spark context persistent RDDs map")
@@ -92,5 +95,49 @@ trait CIMRDD
         val classname = classTag[T].runtimeClass.getName
         val name = classname.substring (classname.lastIndexOf (".") + 1)
         get (name)
+    }
+
+    /**
+     * Persist the typed RDD using the given name and create the SQL view for it.
+     *
+     * @param rdd The RDD to persist
+     * @param name The name under which to persist it.
+     * @param spark The Spark session.
+     * @param storage The storage level for persistence.
+     * @tparam T The type of RDD.
+     */
+    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String)(implicit spark: SparkSession, storage: StorageLevel): Unit =
+    {
+        val rdds: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
+        rdds.find (_._2.name == name) match
+        {
+            case Some ((_: Int, old: RDD[_])) =>
+                old.name = name + "_old" + Random.nextInt (99999999)
+            case Some (_) =>
+            case None =>
+        }
+        rdd.name = name
+        rdd.persist (storage)
+        spark.sparkContext.getCheckpointDir match
+        {
+            case Some (_) => rdd.checkpoint ()
+            case None =>
+        }
+        spark.createDataFrame (rdd).createOrReplaceTempView (name)
+    }
+
+    /**
+     * Persist the typed RDD using the class name and create the SQL view for it.
+     *
+     * @param rdd The RDD to persist
+     * @param spark The Spark session.
+     * @param storage The storage level for persistence.
+     * @tparam T The type of RDD.
+     */
+    def put[T <: Product: ClassTag : TypeTag](rdd: RDD[T])(implicit spark: SparkSession, storage: StorageLevel): Unit =
+    {
+        val classname = classTag[T].runtimeClass.getName
+        val name = classname.substring (classname.lastIndexOf (".") + 1)
+        put (rdd, name)
     }
 }
