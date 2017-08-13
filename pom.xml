@@ -30,6 +30,7 @@
         <version.dependency.scalatest>3.0.1</version.dependency.scalatest>
         <version.dependency.scopt>3.5.0</version.dependency.scopt>
         <version.dependency.spark>2.1.1</version.dependency.spark>
+        <gpg.keyname>22541B35B1001FF72C9C8EB5B6E0CEC3658010EF</gpg.keyname>
     </properties>
 
     <dependencies>
@@ -186,6 +187,25 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- signing artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
