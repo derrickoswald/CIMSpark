@@ -1,0 +1,2310 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>GovCT2 - CIMReader 2.11-2.1.1-2.1.0 API - ch.ninecode.model.GovCT2</title>
+          <meta name="description" content="GovCT2 - CIMReader 2.11 - 2.1.1 - 2.1.0 API - ch.ninecode.model.GovCT2" />
+          <meta name="keywords" content="GovCT2 CIMReader 2.11 2.1.1 2.1.0 API ch.ninecode.model.GovCT2" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'ch.ninecode.model.GovCT2';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <a href="GovCT2$.html" title="See companion object"><img alt="Class/Object" src="../../../lib/class_to_object_big.png" /></a>
+        <p id="owner"><a href="../../package.html" class="extype" name="ch">ch</a>.<a href="../package.html" class="extype" name="ch.ninecode">ninecode</a>.<a href="package.html" class="extype" name="ch.ninecode.model">model</a></p>
+        <h1><a href="GovCT2$.html" title="See companion object">GovCT2</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="GovCT2$.html" title="See companion object">object GovCT2</a>
+            | <a href="package.html" class="extype" name="ch.ninecode.model">package model</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GovCT2</span><span class="params">(<span name="sup">sup: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>, <span name="aset">aset: <span class="extype" name="scala.Double">Double</span></span>, <span name="db">db: <span class="extype" name="scala.Double">Double</span></span>, <span name="dm">dm: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim1">flim1: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim10">flim10: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim2">flim2: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim3">flim3: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim4">flim4: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim5">flim5: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim6">flim6: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim7">flim7: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim8">flim8: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim9">flim9: <span class="extype" name="scala.Double">Double</span></span>, <span name="ka">ka: <span class="extype" name="scala.Double">Double</span></span>, <span name="kdgov">kdgov: <span class="extype" name="scala.Double">Double</span></span>, <span name="kigov">kigov: <span class="extype" name="scala.Double">Double</span></span>, <span name="kiload">kiload: <span class="extype" name="scala.Double">Double</span></span>, <span name="kimw">kimw: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpgov">kpgov: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpload">kpload: <span class="extype" name="scala.Double">Double</span></span>, <span name="kturb">kturb: <span class="extype" name="scala.Double">Double</span></span>, <span name="ldref">ldref: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxerr">maxerr: <span class="extype" name="scala.Double">Double</span></span>, <span name="minerr">minerr: <span class="extype" name="scala.Double">Double</span></span>, <span name="mwbase">mwbase: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim1">plim1: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim10">plim10: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim2">plim2: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim3">plim3: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim4">plim4: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim5">plim5: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim6">plim6: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim7">plim7: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim8">plim8: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim9">plim9: <span class="extype" name="scala.Double">Double</span></span>, <span name="prate">prate: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="rclose">rclose: <span class="extype" name="scala.Double">Double</span></span>, <span name="rdown">rdown: <span class="extype" name="scala.Double">Double</span></span>, <span name="ropen">ropen: <span class="extype" name="scala.Double">Double</span></span>, <span name="rselect">rselect: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rup">rup: <span class="extype" name="scala.Double">Double</span></span>, <span name="ta">ta: <span class="extype" name="scala.Double">Double</span></span>, <span name="tact">tact: <span class="extype" name="scala.Double">Double</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span></span>, <span name="tc">tc: <span class="extype" name="scala.Double">Double</span></span>, <span name="tdgov">tdgov: <span class="extype" name="scala.Double">Double</span></span>, <span name="teng">teng: <span class="extype" name="scala.Double">Double</span></span>, <span name="tfload">tfload: <span class="extype" name="scala.Double">Double</span></span>, <span name="tpelec">tpelec: <span class="extype" name="scala.Double">Double</span></span>, <span name="tsa">tsa: <span class="extype" name="scala.Double">Double</span></span>, <span name="tsb">tsb: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmax">vmax: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmin">vmin: <span class="extype" name="scala.Double">Double</span></span>, <span name="wfnl">wfnl: <span class="extype" name="scala.Double">Double</span></span>, <span name="wfspd">wfspd: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>General governor model with frequency-dependent fuel flow limit.
+This model is a modification of the GovCT1<b> </b>model in order to represent the frequency-dependent fuel flow limit of a specific gas turbine manufacturer.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">aset</dt><dd class="cmt"><p>Acceleration limiter setpoint (Aset).
+       Unit = PU/sec.  Typical Value = 10.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Speed governor dead band in per unit speed (db).
+       In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.</p></dd><dt class="param">dm</dt><dd class="cmt"><p>Speed sensitivity coefficient (Dm).
+       Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.</p></dd><dt class="param">flim1</dt><dd class="cmt"><p>Frequency threshold 1 (Flim1).
+       Unit = Hz.  Typical Value = 59.</p></dd><dt class="param">flim10</dt><dd class="cmt"><p>Frequency threshold 10 (Flim10).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim2</dt><dd class="cmt"><p>Frequency threshold 2 (Flim2).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim3</dt><dd class="cmt"><p>Frequency threshold 3 (Flim3).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim4</dt><dd class="cmt"><p>Frequency threshold 4 (Flim4).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim5</dt><dd class="cmt"><p>Frequency threshold 5 (Flim5).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim6</dt><dd class="cmt"><p>Frequency threshold 6 (Flim6).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim7</dt><dd class="cmt"><p>Frequency threshold 7 (Flim7).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim8</dt><dd class="cmt"><p>Frequency threshold 8 (Flim8).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim9</dt><dd class="cmt"><p>Frequency threshold 9 (Flim9).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Acceleration limiter Gain (Ka).
+       Typical Value = 10.</p></dd><dt class="param">kdgov</dt><dd class="cmt"><p>Governor derivative gain (Kdgov).
+       Typical Value = 0.</p></dd><dt class="param">kigov</dt><dd class="cmt"><p>Governor integral gain (Kigov).
+       Typical Value = 0.45.</p></dd><dt class="param">kiload</dt><dd class="cmt"><p>Load limiter integral gain for PI controller (Kiload).
+       Typical Value = 1.</p></dd><dt class="param">kimw</dt><dd class="cmt"><p>Power controller (reset) gain (Kimw).
+       The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.</p></dd><dt class="param">kpgov</dt><dd class="cmt"><p>Governor proportional gain (Kpgov).
+       Typical Value = 4.</p></dd><dt class="param">kpload</dt><dd class="cmt"><p>Load limiter proportional gain for PI controller (Kpload).
+       Typical Value = 1.</p></dd><dt class="param">kturb</dt><dd class="cmt"><p>Turbine gain (Kturb).
+       Typical Value = 1.9168.</p></dd><dt class="param">ldref</dt><dd class="cmt"><p>Load limiter reference value (Ldref).
+       Typical Value = 1.</p></dd><dt class="param">maxerr</dt><dd class="cmt"><p>Maximum value for speed error signal (Maxerr).
+       Typical Value = 1.</p></dd><dt class="param">minerr</dt><dd class="cmt"><p>Minimum value for speed error signal (Minerr).
+       Typical Value = -1.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">plim1</dt><dd class="cmt"><p>Power limit 1 (Plim1).
+       Typical Value = 0.8325.</p></dd><dt class="param">plim10</dt><dd class="cmt"><p>Power limit 10 (Plim10).
+       Typical Value = 0.</p></dd><dt class="param">plim2</dt><dd class="cmt"><p>Power limit 2 (Plim2).
+       Typical Value = 0.</p></dd><dt class="param">plim3</dt><dd class="cmt"><p>Power limit 3 (Plim3).
+       Typical Value = 0.</p></dd><dt class="param">plim4</dt><dd class="cmt"><p>Power limit 4 (Plim4).
+       Typical Value = 0.</p></dd><dt class="param">plim5</dt><dd class="cmt"><p>Power limit 5 (Plim5).
+       Typical Value = 0.</p></dd><dt class="param">plim6</dt><dd class="cmt"><p>Power limit 6 (Plim6).
+       Typical Value = 0.</p></dd><dt class="param">plim7</dt><dd class="cmt"><p>Power limit 7 (Plim7).
+       Typical Value = 0.</p></dd><dt class="param">plim8</dt><dd class="cmt"><p>Power limit 8 (Plim8).
+       Typical Value = 0.</p></dd><dt class="param">plim9</dt><dd class="cmt"><p>Power Limit 9 (Plim9).
+       Typical Value = 0.</p></dd><dt class="param">prate</dt><dd class="cmt"><p>Ramp rate for frequency-dependent power limit (Prate).
+       Typical Value = 0.017.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Permanent droop (R).
+       Typical Value = 0.05.</p></dd><dt class="param">rclose</dt><dd class="cmt"><p>Minimum valve closing rate (Rclose).
+       Unit = PU/sec.  Typical Value = -99.</p></dd><dt class="param">rdown</dt><dd class="cmt"><p>Maximum rate of load limit decrease (Rdown).
+       Typical Value = -99.</p></dd><dt class="param">ropen</dt><dd class="cmt"><p>Maximum valve opening rate (Ropen).
+       Unit = PU/sec.  Typical Value = 99.</p></dd><dt class="param">rselect</dt><dd class="cmt"><p>Feedback signal for droop (Rselect).
+       Typical Value = electricalPower.</p></dd><dt class="param">rup</dt><dd class="cmt"><p>Maximum rate of load limit increase (Rup).
+       Typical Value = 99.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Acceleration limiter time constant (Ta).
+       Typical Value = 1.</p></dd><dt class="param">tact</dt><dd class="cmt"><p>Actuator time constant (Tact).
+       Typical Value = 0.4.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Turbine lag time constant (Tb).
+       Typical Value = 0.1.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Turbine lead time constant (Tc).
+       Typical Value = 0.</p></dd><dt class="param">tdgov</dt><dd class="cmt"><p>Governor derivative controller time constant (Tdgov).
+       Typical Value = 1.</p></dd><dt class="param">teng</dt><dd class="cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
+       Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.</p></dd><dt class="param">tfload</dt><dd class="cmt"><p>Load Limiter time constant (Tfload).
+       Typical Value = 3.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Electrical power transducer time constant (Tpelec).
+       Typical Value = 2.5.</p></dd><dt class="param">tsa</dt><dd class="cmt"><p>Temperature detection lead time constant (Tsa).
+       Typical Value = 0.</p></dd><dt class="param">tsb</dt><dd class="cmt"><p>Temperature detection lag time constant (Tsb).
+       Typical Value = 50.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum valve position limit (Vmax).
+       Typical Value = 1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum valve position limit (Vmin).
+       Typical Value = 0.175.</p></dd><dt class="param">wfnl</dt><dd class="cmt"><p>No load fuel flow (Wfnl).
+       Typical Value = 0.187.</p></dd><dt class="param">wfspd</dt><dd class="cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+       true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+       false = fuel control system keeps fuel flow independent of engine speed.
+       Typical Value = false.</p></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                <li class="group out"><span>Grouped</span></li>
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="ch.ninecode.model.GovCT2"><span>GovCT2</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="ch.ninecode.model.Element"><span>Element</span></li><li class="in" name="scala.Cloneable"><span>Cloneable</span></li><li class="in" name="java.lang.Cloneable"><span>Cloneable</span></li><li class="in" name="org.apache.spark.sql.Row"><span>Row</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="ch.ninecode.model.GovCT2#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():ch.ninecode.model.GovCT2"></a>
+      <a id="&lt;init&gt;:GovCT2"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GovCT2</span><span class="params">()</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@&lt;init&gt;():ch.ninecode.model.GovCT2" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Zero args constructor.</p>
+    </li><li name="ch.ninecode.model.GovCT2#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.TurbineGovernorDynamics,aset:Double,db:Double,dm:Double,flim1:Double,flim10:Double,flim2:Double,flim3:Double,flim4:Double,flim5:Double,flim6:Double,flim7:Double,flim8:Double,flim9:Double,ka:Double,kdgov:Double,kigov:Double,kiload:Double,kimw:Double,kpgov:Double,kpload:Double,kturb:Double,ldref:Double,maxerr:Double,minerr:Double,mwbase:Double,plim1:Double,plim10:Double,plim2:Double,plim3:Double,plim4:Double,plim5:Double,plim6:Double,plim7:Double,plim8:Double,plim9:Double,prate:Double,r:Double,rclose:Double,rdown:Double,ropen:Double,rselect:String,rup:Double,ta:Double,tact:Double,tb:Double,tc:Double,tdgov:Double,teng:Double,tfload:Double,tpelec:Double,tsa:Double,tsb:Double,vmax:Double,vmin:Double,wfnl:Double,wfspd:Boolean):ch.ninecode.model.GovCT2"></a>
+      <a id="&lt;init&gt;:GovCT2"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GovCT2</span><span class="params">(<span name="sup">sup: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>, <span name="aset">aset: <span class="extype" name="scala.Double">Double</span></span>, <span name="db">db: <span class="extype" name="scala.Double">Double</span></span>, <span name="dm">dm: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim1">flim1: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim10">flim10: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim2">flim2: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim3">flim3: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim4">flim4: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim5">flim5: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim6">flim6: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim7">flim7: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim8">flim8: <span class="extype" name="scala.Double">Double</span></span>, <span name="flim9">flim9: <span class="extype" name="scala.Double">Double</span></span>, <span name="ka">ka: <span class="extype" name="scala.Double">Double</span></span>, <span name="kdgov">kdgov: <span class="extype" name="scala.Double">Double</span></span>, <span name="kigov">kigov: <span class="extype" name="scala.Double">Double</span></span>, <span name="kiload">kiload: <span class="extype" name="scala.Double">Double</span></span>, <span name="kimw">kimw: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpgov">kpgov: <span class="extype" name="scala.Double">Double</span></span>, <span name="kpload">kpload: <span class="extype" name="scala.Double">Double</span></span>, <span name="kturb">kturb: <span class="extype" name="scala.Double">Double</span></span>, <span name="ldref">ldref: <span class="extype" name="scala.Double">Double</span></span>, <span name="maxerr">maxerr: <span class="extype" name="scala.Double">Double</span></span>, <span name="minerr">minerr: <span class="extype" name="scala.Double">Double</span></span>, <span name="mwbase">mwbase: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim1">plim1: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim10">plim10: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim2">plim2: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim3">plim3: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim4">plim4: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim5">plim5: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim6">plim6: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim7">plim7: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim8">plim8: <span class="extype" name="scala.Double">Double</span></span>, <span name="plim9">plim9: <span class="extype" name="scala.Double">Double</span></span>, <span name="prate">prate: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="rclose">rclose: <span class="extype" name="scala.Double">Double</span></span>, <span name="rdown">rdown: <span class="extype" name="scala.Double">Double</span></span>, <span name="ropen">ropen: <span class="extype" name="scala.Double">Double</span></span>, <span name="rselect">rselect: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rup">rup: <span class="extype" name="scala.Double">Double</span></span>, <span name="ta">ta: <span class="extype" name="scala.Double">Double</span></span>, <span name="tact">tact: <span class="extype" name="scala.Double">Double</span></span>, <span name="tb">tb: <span class="extype" name="scala.Double">Double</span></span>, <span name="tc">tc: <span class="extype" name="scala.Double">Double</span></span>, <span name="tdgov">tdgov: <span class="extype" name="scala.Double">Double</span></span>, <span name="teng">teng: <span class="extype" name="scala.Double">Double</span></span>, <span name="tfload">tfload: <span class="extype" name="scala.Double">Double</span></span>, <span name="tpelec">tpelec: <span class="extype" name="scala.Double">Double</span></span>, <span name="tsa">tsa: <span class="extype" name="scala.Double">Double</span></span>, <span name="tsb">tsb: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmax">vmax: <span class="extype" name="scala.Double">Double</span></span>, <span name="vmin">vmin: <span class="extype" name="scala.Double">Double</span></span>, <span name="wfnl">wfnl: <span class="extype" name="scala.Double">Double</span></span>, <span name="wfspd">wfspd: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@&lt;init&gt;(sup:ch.ninecode.model.TurbineGovernorDynamics,aset:Double,db:Double,dm:Double,flim1:Double,flim10:Double,flim2:Double,flim3:Double,flim4:Double,flim5:Double,flim6:Double,flim7:Double,flim8:Double,flim9:Double,ka:Double,kdgov:Double,kigov:Double,kiload:Double,kimw:Double,kpgov:Double,kpload:Double,kturb:Double,ldref:Double,maxerr:Double,minerr:Double,mwbase:Double,plim1:Double,plim10:Double,plim2:Double,plim3:Double,plim4:Double,plim5:Double,plim6:Double,plim7:Double,plim8:Double,plim9:Double,prate:Double,r:Double,rclose:Double,rdown:Double,ropen:Double,rselect:String,rup:Double,ta:Double,tact:Double,tb:Double,tc:Double,tdgov:Double,teng:Double,tfload:Double,tpelec:Double,tsa:Double,tsb:Double,vmax:Double,vmin:Double,wfnl:Double,wfspd:Boolean):ch.ninecode.model.GovCT2" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">aset</dt><dd class="cmt"><p>Acceleration limiter setpoint (Aset).
+       Unit = PU/sec.  Typical Value = 10.</p></dd><dt class="param">db</dt><dd class="cmt"><p>Speed governor dead band in per unit speed (db).
+       In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.</p></dd><dt class="param">dm</dt><dd class="cmt"><p>Speed sensitivity coefficient (Dm).
+       Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.</p></dd><dt class="param">flim1</dt><dd class="cmt"><p>Frequency threshold 1 (Flim1).
+       Unit = Hz.  Typical Value = 59.</p></dd><dt class="param">flim10</dt><dd class="cmt"><p>Frequency threshold 10 (Flim10).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim2</dt><dd class="cmt"><p>Frequency threshold 2 (Flim2).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim3</dt><dd class="cmt"><p>Frequency threshold 3 (Flim3).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim4</dt><dd class="cmt"><p>Frequency threshold 4 (Flim4).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim5</dt><dd class="cmt"><p>Frequency threshold 5 (Flim5).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim6</dt><dd class="cmt"><p>Frequency threshold 6 (Flim6).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim7</dt><dd class="cmt"><p>Frequency threshold 7 (Flim7).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim8</dt><dd class="cmt"><p>Frequency threshold 8 (Flim8).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">flim9</dt><dd class="cmt"><p>Frequency threshold 9 (Flim9).
+       Unit = Hz.  Typical Value = 0.</p></dd><dt class="param">ka</dt><dd class="cmt"><p>Acceleration limiter Gain (Ka).
+       Typical Value = 10.</p></dd><dt class="param">kdgov</dt><dd class="cmt"><p>Governor derivative gain (Kdgov).
+       Typical Value = 0.</p></dd><dt class="param">kigov</dt><dd class="cmt"><p>Governor integral gain (Kigov).
+       Typical Value = 0.45.</p></dd><dt class="param">kiload</dt><dd class="cmt"><p>Load limiter integral gain for PI controller (Kiload).
+       Typical Value = 1.</p></dd><dt class="param">kimw</dt><dd class="cmt"><p>Power controller (reset) gain (Kimw).
+       The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.</p></dd><dt class="param">kpgov</dt><dd class="cmt"><p>Governor proportional gain (Kpgov).
+       Typical Value = 4.</p></dd><dt class="param">kpload</dt><dd class="cmt"><p>Load limiter proportional gain for PI controller (Kpload).
+       Typical Value = 1.</p></dd><dt class="param">kturb</dt><dd class="cmt"><p>Turbine gain (Kturb).
+       Typical Value = 1.9168.</p></dd><dt class="param">ldref</dt><dd class="cmt"><p>Load limiter reference value (Ldref).
+       Typical Value = 1.</p></dd><dt class="param">maxerr</dt><dd class="cmt"><p>Maximum value for speed error signal (Maxerr).
+       Typical Value = 1.</p></dd><dt class="param">minerr</dt><dd class="cmt"><p>Minimum value for speed error signal (Minerr).
+       Typical Value = -1.</p></dd><dt class="param">mwbase</dt><dd class="cmt"><p>Base for power values (MWbase) (&gt; 0).
+       Unit = MW.</p></dd><dt class="param">plim1</dt><dd class="cmt"><p>Power limit 1 (Plim1).
+       Typical Value = 0.8325.</p></dd><dt class="param">plim10</dt><dd class="cmt"><p>Power limit 10 (Plim10).
+       Typical Value = 0.</p></dd><dt class="param">plim2</dt><dd class="cmt"><p>Power limit 2 (Plim2).
+       Typical Value = 0.</p></dd><dt class="param">plim3</dt><dd class="cmt"><p>Power limit 3 (Plim3).
+       Typical Value = 0.</p></dd><dt class="param">plim4</dt><dd class="cmt"><p>Power limit 4 (Plim4).
+       Typical Value = 0.</p></dd><dt class="param">plim5</dt><dd class="cmt"><p>Power limit 5 (Plim5).
+       Typical Value = 0.</p></dd><dt class="param">plim6</dt><dd class="cmt"><p>Power limit 6 (Plim6).
+       Typical Value = 0.</p></dd><dt class="param">plim7</dt><dd class="cmt"><p>Power limit 7 (Plim7).
+       Typical Value = 0.</p></dd><dt class="param">plim8</dt><dd class="cmt"><p>Power limit 8 (Plim8).
+       Typical Value = 0.</p></dd><dt class="param">plim9</dt><dd class="cmt"><p>Power Limit 9 (Plim9).
+       Typical Value = 0.</p></dd><dt class="param">prate</dt><dd class="cmt"><p>Ramp rate for frequency-dependent power limit (Prate).
+       Typical Value = 0.017.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Permanent droop (R).
+       Typical Value = 0.05.</p></dd><dt class="param">rclose</dt><dd class="cmt"><p>Minimum valve closing rate (Rclose).
+       Unit = PU/sec.  Typical Value = -99.</p></dd><dt class="param">rdown</dt><dd class="cmt"><p>Maximum rate of load limit decrease (Rdown).
+       Typical Value = -99.</p></dd><dt class="param">ropen</dt><dd class="cmt"><p>Maximum valve opening rate (Ropen).
+       Unit = PU/sec.  Typical Value = 99.</p></dd><dt class="param">rselect</dt><dd class="cmt"><p>Feedback signal for droop (Rselect).
+       Typical Value = electricalPower.</p></dd><dt class="param">rup</dt><dd class="cmt"><p>Maximum rate of load limit increase (Rup).
+       Typical Value = 99.</p></dd><dt class="param">ta</dt><dd class="cmt"><p>Acceleration limiter time constant (Ta).
+       Typical Value = 1.</p></dd><dt class="param">tact</dt><dd class="cmt"><p>Actuator time constant (Tact).
+       Typical Value = 0.4.</p></dd><dt class="param">tb</dt><dd class="cmt"><p>Turbine lag time constant (Tb).
+       Typical Value = 0.1.</p></dd><dt class="param">tc</dt><dd class="cmt"><p>Turbine lead time constant (Tc).
+       Typical Value = 0.</p></dd><dt class="param">tdgov</dt><dd class="cmt"><p>Governor derivative controller time constant (Tdgov).
+       Typical Value = 1.</p></dd><dt class="param">teng</dt><dd class="cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
+       Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.</p></dd><dt class="param">tfload</dt><dd class="cmt"><p>Load Limiter time constant (Tfload).
+       Typical Value = 3.</p></dd><dt class="param">tpelec</dt><dd class="cmt"><p>Electrical power transducer time constant (Tpelec).
+       Typical Value = 2.5.</p></dd><dt class="param">tsa</dt><dd class="cmt"><p>Temperature detection lead time constant (Tsa).
+       Typical Value = 0.</p></dd><dt class="param">tsb</dt><dd class="cmt"><p>Temperature detection lag time constant (Tsb).
+       Typical Value = 50.</p></dd><dt class="param">vmax</dt><dd class="cmt"><p>Maximum valve position limit (Vmax).
+       Typical Value = 1.</p></dd><dt class="param">vmin</dt><dd class="cmt"><p>Minimum valve position limit (Vmin).
+       Typical Value = 0.175.</p></dd><dt class="param">wfnl</dt><dd class="cmt"><p>No load fuel flow (Wfnl).
+       Typical Value = 0.187.</p></dd><dt class="param">wfspd</dt><dd class="cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+       true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+       false = fuel control system keeps fuel flow independent of engine speed.
+       Typical Value = false.</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@##():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#TurbineGovernorDynamics" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+      <a id="TurbineGovernorDynamics:ch.ninecode.model.TurbineGovernorDynamics"></a>
+      <a id="TurbineGovernorDynamics:TurbineGovernorDynamics"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TurbineGovernorDynamics</span><span class="result">: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@TurbineGovernorDynamics:ch.ninecode.model.TurbineGovernorDynamics" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="anyNull:Boolean"></a>
+      <a id="anyNull:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">anyNull</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@anyNull:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply(i:Int):Any"></a>
+      <a id="apply(Int):Any"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@apply(i:Int):Any" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#aset" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="aset:Double"></a>
+      <a id="aset:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">aset</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@aset:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Acceleration limiter setpoint (Aset).</p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter setpoint (Aset).
+       Unit = PU/sec.  Typical Value = 10.</p></div></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@clone():Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#copy" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
+      <a id="copy():org.apache.spark.sql.Row"></a>
+      <a id="copy():Row"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">copy</span><span class="params">()</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row">Row</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@copy():org.apache.spark.sql.Row" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return a copy of this object as a Row.</p><div class="fullcomment"><div class="comment cmt"><p>Return a copy of this object as a Row.</p><p>Creates a clone of this object for use in Row manipulations.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The copy of the object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovCT2">GovCT2</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#db" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="db:Double"></a>
+      <a id="db:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">db</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@db:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Speed governor dead band in per unit speed (db).</p><div class="fullcomment"><div class="comment cmt"><p>Speed governor dead band in per unit speed (db).
+       In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#dm" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dm:Double"></a>
+      <a id="dm:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dm</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@dm:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Speed sensitivity coefficient (Dm).</p><div class="fullcomment"><div class="comment cmt"><p>Speed sensitivity coefficient (Dm).
+       Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.</p></div></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(o:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="o">o: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@equals(o:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#export" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
+      <a id="export:String"></a>
+      <a id="export:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">export</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@export:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return a string containing this object as XML.</p><div class="fullcomment"><div class="comment cmt"><p>Return a string containing this object as XML.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The XML corresponding to this object.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovCT2">GovCT2</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#export_fields" visbl="pub" data-isabs="false" fullComment="yes" group="Serialization">
+      <a id="export_fields:String"></a>
+      <a id="export_fields:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">export_fields</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@export_fields:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return a string containing the fields of this object suitable for inclusion in an XML object.</p><div class="fullcomment"><div class="comment cmt"><p>Return a string containing the fields of this object suitable for inclusion in an XML object.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A string with the fileds coded in XML</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovCT2">GovCT2</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#fieldIndex" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fieldIndex(name:String):Int"></a>
+      <a id="fieldIndex(String):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fieldIndex</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@fieldIndex(name:String):Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim1:Double"></a>
+      <a id="flim1:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim1</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim1:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 1 (Flim1).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 1 (Flim1).
+       Unit = Hz.  Typical Value = 59.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim10" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim10:Double"></a>
+      <a id="flim10:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim10</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim10:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 10 (Flim10).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 10 (Flim10).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim2:Double"></a>
+      <a id="flim2:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim2</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim2:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 2 (Flim2).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 2 (Flim2).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim3:Double"></a>
+      <a id="flim3:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim3</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim3:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 3 (Flim3).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 3 (Flim3).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim4:Double"></a>
+      <a id="flim4:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim4</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim4:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 4 (Flim4).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 4 (Flim4).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim5:Double"></a>
+      <a id="flim5:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim5</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim5:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 5 (Flim5).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 5 (Flim5).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim6:Double"></a>
+      <a id="flim6:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim6</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim6:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 6 (Flim6).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 6 (Flim6).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim7" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim7:Double"></a>
+      <a id="flim7:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim7</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim7:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 7 (Flim7).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 7 (Flim7).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim8" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim8:Double"></a>
+      <a id="flim8:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim8</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim8:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 8 (Flim8).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 8 (Flim8).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#flim9" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flim9:Double"></a>
+      <a id="flim9:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flim9</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@flim9:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Frequency threshold 9 (Flim9).</p><div class="fullcomment"><div class="comment cmt"><p>Frequency threshold 9 (Flim9).
+       Unit = Hz.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#get" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
+      <a id="get(i:Int):Object"></a>
+      <a id="get(Int):AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@get(i:Int):Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get the value of the field at index <code>i</code>.</code></p><div class="fullcomment"><div class="comment cmt"><p>Get the value of the field at index <code>i</code>.
+</p></div><dl class="paramcmts block"><dt class="param">i</dt><dd class="cmt"><p>The index of the field desired.</p></dd><dt>returns</dt><dd class="cmt"><p>The value stored in the field, or <code>null</code> if none.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovCT2">GovCT2</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getAs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAs[T](fieldName:String):T"></a>
+      <a id="getAs[T](String):T"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAs</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="fieldName">fieldName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row.getAs.T">T</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getAs[T](fieldName:String):T" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getAs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAs[T](i:Int):T"></a>
+      <a id="getAs[T](Int):T"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAs</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row.getAs.T">T</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getAs[T](i:Int):T" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getBoolean" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getBoolean(i:Int):Boolean"></a>
+      <a id="getBoolean(Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getBoolean</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getBoolean(i:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getByte" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getByte(i:Int):Byte"></a>
+      <a id="getByte(Int):Byte"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getByte</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getByte(i:Int):Byte" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getDate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDate(i:Int):java.sql.Date"></a>
+      <a id="getDate(Int):Date"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDate</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.sql.Date">Date</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getDate(i:Int):java.sql.Date" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getDecimal" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDecimal(i:Int):java.math.BigDecimal"></a>
+      <a id="getDecimal(Int):BigDecimal"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDecimal</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.math.BigDecimal">BigDecimal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getDecimal(i:Int):java.math.BigDecimal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getDouble(i:Int):Double"></a>
+      <a id="getDouble(Int):Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDouble</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getDouble(i:Int):Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getFloat(i:Int):Float"></a>
+      <a id="getFloat(Int):Float"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getFloat</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getFloat(i:Int):Float" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getInt(i:Int):Int"></a>
+      <a id="getInt(Int):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getInt</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getInt(i:Int):Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getJavaMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getJavaMap[K,V](i:Int):java.util.Map[K,V]"></a>
+      <a id="getJavaMap[K,V](Int):Map[K,V]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getJavaMap</span><span class="tparams">[<span name="K">K</span>, <span name="V">V</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.Map">Map</span>[<span class="extype" name="org.apache.spark.sql.Row.getJavaMap.K">K</span>, <span class="extype" name="org.apache.spark.sql.Row.getJavaMap.V">V</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getJavaMap[K,V](i:Int):java.util.Map[K,V]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getList" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getList[T](i:Int):java.util.List[T]"></a>
+      <a id="getList[T](Int):List[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getList</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.util.List">List</span>[<span class="extype" name="org.apache.spark.sql.Row.getList.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getList[T](i:Int):java.util.List[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getLong(i:Int):Long"></a>
+      <a id="getLong(Int):Long"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getLong</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getLong(i:Int):Long" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getMap[K,V](i:Int):scala.collection.Map[K,V]"></a>
+      <a id="getMap[K,V](Int):Map[K,V]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getMap</span><span class="tparams">[<span name="K">K</span>, <span name="V">V</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.collection.Map">Map</span>[<span class="extype" name="org.apache.spark.sql.Row.getMap.K">K</span>, <span class="extype" name="org.apache.spark.sql.Row.getMap.V">V</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getMap[K,V](i:Int):scala.collection.Map[K,V]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getSeq[T](i:Int):Seq[T]"></a>
+      <a id="getSeq[T](Int):Seq[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSeq</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="org.apache.spark.sql.Row.getSeq.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getSeq[T](i:Int):Seq[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getShort" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getShort(i:Int):Short"></a>
+      <a id="getShort(Int):Short"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getShort</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getShort(i:Int):Short" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getString(i:Int):String"></a>
+      <a id="getString(Int):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getString</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getString(i:Int):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getStruct" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getStruct(i:Int):org.apache.spark.sql.Row"></a>
+      <a id="getStruct(Int):Row"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getStruct</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.sql.Row">Row</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getStruct(i:Int):org.apache.spark.sql.Row" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getTimestamp" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getTimestamp(i:Int):java.sql.Timestamp"></a>
+      <a id="getTimestamp(Int):Timestamp"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTimestamp</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="java.sql.Timestamp">Timestamp</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getTimestamp(i:Int):java.sql.Timestamp" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#getValuesMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getValuesMap[T](fieldNames:Seq[String]):Map[String,T]"></a>
+      <a id="getValuesMap[T](Seq[String]):Map[String,T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getValuesMap</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="fieldNames">fieldNames: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.sql.Row.getValuesMap.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@getValuesMap[T](fieldNames:Seq[String]):Map[String,T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Element#id" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
+      <a id="id:String"></a>
+      <a id="id:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">id</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@id:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return the unique ID for the object, the mRID for IdentifiedObject derived classes.</p><div class="fullcomment"><div class="comment cmt"><p>Return the unique ID for the object, the mRID for IdentifiedObject derived classes.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The object ID.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#isNullAt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isNullAt(i:Int):Boolean"></a>
+      <a id="isNullAt(Int):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isNullAt</span><span class="params">(<span name="i">i: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@isNullAt(i:Int):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#ka" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ka:Double"></a>
+      <a id="ka:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ka</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@ka:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Acceleration limiter Gain (Ka).</p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter Gain (Ka).
+       Typical Value = 10.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#kdgov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kdgov:Double"></a>
+      <a id="kdgov:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kdgov</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@kdgov:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Governor derivative gain (Kdgov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor derivative gain (Kdgov).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#kigov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kigov:Double"></a>
+      <a id="kigov:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kigov</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@kigov:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Governor integral gain (Kigov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor integral gain (Kigov).
+       Typical Value = 0.45.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#kiload" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kiload:Double"></a>
+      <a id="kiload:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kiload</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@kiload:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Load limiter integral gain for PI controller (Kiload).</p><div class="fullcomment"><div class="comment cmt"><p>Load limiter integral gain for PI controller (Kiload).
+       Typical Value = 1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#kimw" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kimw:Double"></a>
+      <a id="kimw:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kimw</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@kimw:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power controller (reset) gain (Kimw).</p><div class="fullcomment"><div class="comment cmt"><p>Power controller (reset) gain (Kimw).
+       The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#kpgov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kpgov:Double"></a>
+      <a id="kpgov:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kpgov</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@kpgov:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Governor proportional gain (Kpgov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor proportional gain (Kpgov).
+       Typical Value = 4.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#kpload" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kpload:Double"></a>
+      <a id="kpload:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kpload</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@kpload:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Load limiter proportional gain for PI controller (Kpload).</p><div class="fullcomment"><div class="comment cmt"><p>Load limiter proportional gain for PI controller (Kpload).
+       Typical Value = 1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#kturb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kturb:Double"></a>
+      <a id="kturb:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">kturb</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@kturb:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Turbine gain (Kturb).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine gain (Kturb).
+       Typical Value = 1.9168.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#ldref" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ldref:Double"></a>
+      <a id="ldref:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ldref</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@ldref:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Load limiter reference value (Ldref).</p><div class="fullcomment"><div class="comment cmt"><p>Load limiter reference value (Ldref).
+       Typical Value = 1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#length" visbl="pub" data-isabs="false" fullComment="yes" group="Row">
+      <a id="length:Int"></a>
+      <a id="length:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">length</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@length:Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The number of fields in the object definition.</p><div class="fullcomment"><div class="comment cmt"><p>The number of fields in the object definition.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The number of defined fields for use in Row manipulations.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovCT2">GovCT2</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> → Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#maxerr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="maxerr:Double"></a>
+      <a id="maxerr:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">maxerr</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@maxerr:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Maximum value for speed error signal (Maxerr).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum value for speed error signal (Maxerr).
+       Typical Value = 1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#minerr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="minerr:Double"></a>
+      <a id="minerr:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">minerr</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@minerr:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Minimum value for speed error signal (Minerr).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum value for speed error signal (Minerr).
+       Typical Value = -1.</p></div></div>
+    </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkString(start:String,sep:String,end:String):String"></a>
+      <a id="mkString(String,String,String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkString</span><span class="params">(<span name="start">start: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="sep">sep: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="end">end: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@mkString(start:String,sep:String,end:String):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkString(sep:String):String"></a>
+      <a id="mkString(String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkString</span><span class="params">(<span name="sep">sep: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@mkString(sep:String):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#mkString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mkString:String"></a>
+      <a id="mkString:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mkString</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@mkString:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#mwbase" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mwbase:Double"></a>
+      <a id="mwbase:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mwbase</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@mwbase:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Base for power values (MWbase) (&gt; 0).</p><div class="fullcomment"><div class="comment cmt"><p>Base for power values (MWbase) (&gt; 0).
+       Unit = MW.</p></div></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim1:Double"></a>
+      <a id="plim1:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim1</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim1:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 1 (Plim1).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 1 (Plim1).
+       Typical Value = 0.8325.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim10" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim10:Double"></a>
+      <a id="plim10:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim10</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim10:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 10 (Plim10).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 10 (Plim10).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim2:Double"></a>
+      <a id="plim2:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim2</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim2:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 2 (Plim2).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 2 (Plim2).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim3:Double"></a>
+      <a id="plim3:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim3</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim3:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 3 (Plim3).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 3 (Plim3).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim4:Double"></a>
+      <a id="plim4:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim4</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim4:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 4 (Plim4).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 4 (Plim4).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim5:Double"></a>
+      <a id="plim5:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim5</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim5:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 5 (Plim5).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 5 (Plim5).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim6:Double"></a>
+      <a id="plim6:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim6</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim6:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 6 (Plim6).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 6 (Plim6).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim7" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim7:Double"></a>
+      <a id="plim7:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim7</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim7:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 7 (Plim7).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 7 (Plim7).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim8" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim8:Double"></a>
+      <a id="plim8:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim8</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim8:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power limit 8 (Plim8).</p><div class="fullcomment"><div class="comment cmt"><p>Power limit 8 (Plim8).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#plim9" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="plim9:Double"></a>
+      <a id="plim9:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">plim9</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@plim9:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Power Limit 9 (Plim9).</p><div class="fullcomment"><div class="comment cmt"><p>Power Limit 9 (Plim9).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#prate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="prate:Double"></a>
+      <a id="prate:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">prate</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@prate:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ramp rate for frequency-dependent power limit (Prate).</p><div class="fullcomment"><div class="comment cmt"><p>Ramp rate for frequency-dependent power limit (Prate).
+       Typical Value = 0.017.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#r" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="r:Double"></a>
+      <a id="r:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">r</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@r:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Permanent droop (R).</p><div class="fullcomment"><div class="comment cmt"><p>Permanent droop (R).
+       Typical Value = 0.05.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#rclose" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rclose:Double"></a>
+      <a id="rclose:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rclose</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@rclose:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Minimum valve closing rate (Rclose).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum valve closing rate (Rclose).
+       Unit = PU/sec.  Typical Value = -99.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#rdown" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rdown:Double"></a>
+      <a id="rdown:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rdown</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@rdown:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Maximum rate of load limit decrease (Rdown).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum rate of load limit decrease (Rdown).
+       Typical Value = -99.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#ropen" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ropen:Double"></a>
+      <a id="ropen:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ropen</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@ropen:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Maximum valve opening rate (Ropen).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum valve opening rate (Ropen).
+       Unit = PU/sec.  Typical Value = 99.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#rselect" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rselect:String"></a>
+      <a id="rselect:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rselect</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@rselect:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Feedback signal for droop (Rselect).</p><div class="fullcomment"><div class="comment cmt"><p>Feedback signal for droop (Rselect).
+       Typical Value = electricalPower.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#rup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rup:Double"></a>
+      <a id="rup:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rup</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@rup:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Maximum rate of load limit increase (Rup).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum rate of load limit increase (Rup).
+       Typical Value = 99.</p></div></div>
+    </li><li name="org.apache.spark.sql.Row#schema" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="schema:org.apache.spark.sql.types.StructType"></a>
+      <a id="schema:StructType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">schema</span><span class="result">: <span class="extype" name="org.apache.spark.sql.types.StructType">StructType</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@schema:org.apache.spark.sql.types.StructType" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="size:Int"></a>
+      <a id="size:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">size</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@size:Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#sup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sup:ch.ninecode.model.TurbineGovernorDynamics"></a>
+      <a id="sup:TurbineGovernorDynamics"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sup</span><span class="result">: <a href="TurbineGovernorDynamics.html" class="extype" name="ch.ninecode.model.TurbineGovernorDynamics">TurbineGovernorDynamics</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@sup:ch.ninecode.model.TurbineGovernorDynamics" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.GovCT2">GovCT2</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#ta" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ta:Double"></a>
+      <a id="ta:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ta</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@ta:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Acceleration limiter time constant (Ta).</p><div class="fullcomment"><div class="comment cmt"><p>Acceleration limiter time constant (Ta).
+       Typical Value = 1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#tact" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tact:Double"></a>
+      <a id="tact:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tact</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tact:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Actuator time constant (Tact).</p><div class="fullcomment"><div class="comment cmt"><p>Actuator time constant (Tact).
+       Typical Value = 0.4.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#tb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tb:Double"></a>
+      <a id="tb:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tb</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tb:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Turbine lag time constant (Tb).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine lag time constant (Tb).
+       Typical Value = 0.1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#tc" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tc:Double"></a>
+      <a id="tc:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tc</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tc:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Turbine lead time constant (Tc).</p><div class="fullcomment"><div class="comment cmt"><p>Turbine lead time constant (Tc).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#tdgov" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tdgov:Double"></a>
+      <a id="tdgov:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tdgov</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tdgov:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Governor derivative controller time constant (Tdgov).</p><div class="fullcomment"><div class="comment cmt"><p>Governor derivative controller time constant (Tdgov).
+       Typical Value = 1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#teng" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="teng:Double"></a>
+      <a id="teng:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">teng</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@teng:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).</p><div class="fullcomment"><div class="comment cmt"><p>Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
+       Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#tfload" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tfload:Double"></a>
+      <a id="tfload:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tfload</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tfload:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Load Limiter time constant (Tfload).</p><div class="fullcomment"><div class="comment cmt"><p>Load Limiter time constant (Tfload).
+       Typical Value = 3.</p></div></div>
+    </li><li name="org.apache.spark.sql.Row#toSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toSeq:Seq[Any]"></a>
+      <a id="toSeq:Seq[Any]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toSeq</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Any">Any</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@toSeq:Seq[Any]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row</dd></dl></div>
+    </li><li name="org.apache.spark.sql.Row#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@toString():String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#tpelec" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tpelec:Double"></a>
+      <a id="tpelec:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tpelec</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tpelec:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Electrical power transducer time constant (Tpelec).</p><div class="fullcomment"><div class="comment cmt"><p>Electrical power transducer time constant (Tpelec).
+       Typical Value = 2.5.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#tsa" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tsa:Double"></a>
+      <a id="tsa:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tsa</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tsa:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Temperature detection lead time constant (Tsa).</p><div class="fullcomment"><div class="comment cmt"><p>Temperature detection lead time constant (Tsa).
+       Typical Value = 0.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#tsb" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tsb:Double"></a>
+      <a id="tsb:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tsb</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@tsb:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Temperature detection lag time constant (Tsb).</p><div class="fullcomment"><div class="comment cmt"><p>Temperature detection lag time constant (Tsb).
+       Typical Value = 50.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#vmax" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="vmax:Double"></a>
+      <a id="vmax:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">vmax</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@vmax:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Maximum valve position limit (Vmax).</p><div class="fullcomment"><div class="comment cmt"><p>Maximum valve position limit (Vmax).
+       Typical Value = 1.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#vmin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="vmin:Double"></a>
+      <a id="vmin:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">vmin</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@vmin:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Minimum valve position limit (Vmin).</p><div class="fullcomment"><div class="comment cmt"><p>Minimum valve position limit (Vmin).
+       Typical Value = 0.175.</p></div></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="ch.ninecode.model.GovCT2#wfnl" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wfnl:Double"></a>
+      <a id="wfnl:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wfnl</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@wfnl:Double" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">No load fuel flow (Wfnl).</p><div class="fullcomment"><div class="comment cmt"><p>No load fuel flow (Wfnl).
+       Typical Value = 0.187.</p></div></div>
+    </li><li name="ch.ninecode.model.GovCT2#wfspd" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wfspd:Boolean"></a>
+      <a id="wfspd:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wfspd</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.GovCT2@wfspd:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).</p><div class="fullcomment"><div class="comment cmt"><p>Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+       true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+       false = fuel control system keeps fuel flow independent of engine speed.
+       Typical Value = false.</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.Product">
+              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
+            </div><div class="parent" name="ch.ninecode.model.Element">
+              <h3>Inherited from <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></h3>
+            </div><div class="parent" name="scala.Cloneable">
+              <h3>Inherited from <span class="extype" name="scala.Cloneable">Cloneable</span></h3>
+            </div><div class="parent" name="java.lang.Cloneable">
+              <h3>Inherited from <span class="extype" name="java.lang.Cloneable">Cloneable</span></h3>
+            </div><div class="parent" name="org.apache.spark.sql.Row">
+              <h3>Inherited from <span class="extype" name="org.apache.spark.sql.Row">Row</span></h3>
+            </div><div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Hierarchy">
+              <h3>Hierarchy</h3>
+              
+            </div><div class="group" name="Row">
+              <h3>Row</h3>
+              
+            </div><div class="group" name="Serialization">
+              <h3>Serialization</h3>
+              
+            </div><div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

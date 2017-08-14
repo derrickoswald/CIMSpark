@@ -20,7 +20,8 @@ or can be accessed via [SparkR](http://spark.apache.org/docs/latest/sparkr.html)
 
 The RDDs are also exposed as Hive2 tables using Thrift for legacy JDBC access.
 
-The CIM model as implemented in CIMReader is described in [CIM Model](Model.md).
+The CIM model as implemented in CIMReader is described in [CIM Model](Model.md)
+and is described in detail in the [ScalaDoc](https://derrickoswald.github.io/CIMReader).
 
 # Architecture
 

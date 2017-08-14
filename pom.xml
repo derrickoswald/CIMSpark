@@ -135,6 +135,10 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
+                            <goals>
+                                <goal>doc</goal>
+                            </goals>
+                            <reportOutputDirectory>${project.basedir}/doc</reportOutputDirectory>
                             <args>
                                 <arg>-groups</arg>
                             </args>
