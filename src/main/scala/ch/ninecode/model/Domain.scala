@@ -7,15 +7,17 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The domain package define primitive datatypes that are used by classes in other packages.
- * Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- */
-
-/**
  * Interval between two dates.
  * @param sup Reference to the superclass object.
  * @param end End date of this interval.
  * @param start Start date of this interval.
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
  */
 case class DateInterval
 (
@@ -26,8 +28,19 @@ case class DateInterval
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[DateInterval] }
     override def get (i: Int): Object =
     {
@@ -72,6 +85,13 @@ extends
  * @param sup Reference to the superclass object.
  * @param end End date and time of this interval.
  * @param start Start date and time of this interval.
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
  */
 case class DateTimeInterval
 (
@@ -82,8 +102,19 @@ case class DateTimeInterval
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[DateTimeInterval] }
     override def get (i: Int): Object =
     {
@@ -123,6 +154,15 @@ extends
     }
 }
 
+/**
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+ */
 case class DecimalQuantity
 (
     override val sup: BasicElement,
@@ -134,8 +174,19 @@ case class DecimalQuantity
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[DecimalQuantity] }
     override def get (i: Int): Object =
     {
@@ -187,6 +238,13 @@ extends
  * @param multiplier <em>undocumented</em>
  * @param unit <em>undocumented</em>
  * @param value <em>undocumented</em>
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
  */
 case class FloatQuantity
 (
@@ -198,8 +256,19 @@ case class FloatQuantity
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[FloatQuantity] }
     override def get (i: Int): Object =
     {
@@ -248,6 +317,13 @@ extends
  * @param multiplier <em>undocumented</em>
  * @param unit <em>undocumented</em>
  * @param value <em>undocumented</em>
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
  */
 case class IntegerQuantity
 (
@@ -259,8 +335,19 @@ case class IntegerQuantity
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[IntegerQuantity] }
     override def get (i: Int): Object =
     {
@@ -308,6 +395,13 @@ extends
  * @param sup Reference to the superclass object.
  * @param end End time of this interval.
  * @param start Start time of this interval.
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
  */
 case class MonthDayInterval
 (
@@ -318,8 +412,19 @@ case class MonthDayInterval
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MonthDayInterval] }
     override def get (i: Int): Object =
     {
@@ -365,6 +470,13 @@ extends
  * @param multiplier <em>undocumented</em>
  * @param unit <em>undocumented</em>
  * @param value <em>undocumented</em>
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
  */
 case class StringQuantity
 (
@@ -376,8 +488,19 @@ case class StringQuantity
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[StringQuantity] }
     override def get (i: Int): Object =
     {
@@ -425,6 +548,13 @@ extends
  * @param sup Reference to the superclass object.
  * @param end End time of this interval.
  * @param start Start time of this interval.
+ * @group Domain
+ * @groupname Domain Package Domain
+ * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
  */
 case class TimeInterval
 (
@@ -435,8 +565,19 @@ case class TimeInterval
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TimeInterval] }
     override def get (i: Int): Object =
     {

@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The excitation system model provides the field voltage (Efd) for a synchronous machine model.
- * It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
- */
-
-/**
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
  * @param sup Reference to the superclass object.
  * @param hvlvgates Indicates if both HV gate and LV gate are active (HVLVgates).
@@ -60,6 +55,9 @@ import ch.ninecode.cim.Parseable
  *        Typical Value = 6.03.
  * @param vrmin Minimum voltage regulator outputs (Rrmin).
  *        Typical Value = -5.43.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAC1A
 (
@@ -90,7 +88,18 @@ case class ExcAC1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAC1A] }
     override def get (i: Int): Object =
@@ -254,6 +263,9 @@ extends
  *        Typical Value = 105.
  * @param vrmin Minimum voltage regulator outputs (Vrmin).
  *        Typical Value = -95.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAC2A
 (
@@ -290,7 +302,18 @@ case class ExcAC2A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAC2A] }
     override def get (i: Int): Object =
@@ -464,6 +487,9 @@ extends
  *        Typical Value = 16.
  * @param vlv Field voltage used in the minimum field voltage limiter loop (Vlv).
  *        Typical Value = 0.79.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAC3A
 (
@@ -498,7 +524,18 @@ case class ExcAC3A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAC3A] }
     override def get (i: Int): Object =
@@ -632,6 +669,9 @@ extends
  *        Typical Value = 5.64.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = -4.53.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAC4A
 (
@@ -649,7 +689,18 @@ case class ExcAC4A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAC4A] }
     override def get (i: Int): Object =
@@ -750,6 +801,9 @@ extends
  *        Typical Value = 7.3.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value =-7.3.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAC5A
 (
@@ -776,7 +830,18 @@ case class ExcAC5A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAC5A] }
     override def get (i: Int): Object =
@@ -914,6 +979,9 @@ extends
  *        Typical Value = 44.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = -36.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAC6A
 (
@@ -945,7 +1013,18 @@ case class ExcAC6A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAC6A] }
     override def get (i: Int): Object =
@@ -1112,6 +1191,9 @@ extends
  *        true =the limits Vrmax and Vrmin are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
  *        false = limits are not multiplied by generator's terminal voltage.
  *        Typical Value = false.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAC8B
 (
@@ -1147,7 +1229,18 @@ case class ExcAC8B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAC8B] }
     override def get (i: Int): Object =
@@ -1301,6 +1394,9 @@ extends
  *        Typical Value = -5.2.
  * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
  *        Typical Value = 6.5.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcANS
 (
@@ -1323,7 +1419,18 @@ case class ExcANS
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcANS] }
     override def get (i: Int): Object =
@@ -1428,6 +1535,9 @@ extends
  *        Typical Value = -6.
  * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
  *        Typical Value = 7.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAVR1
 (
@@ -1448,7 +1558,18 @@ case class ExcAVR1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAVR1] }
     override def get (i: Int): Object =
@@ -1549,6 +1670,9 @@ extends
  *        Typical Value = -6.
  * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
  *        Typical Value = 7.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAVR2
 (
@@ -1570,7 +1694,18 @@ case class ExcAVR2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAVR2] }
     override def get (i: Int): Object =
@@ -1672,6 +1807,9 @@ extends
  *        Typical Value = -7.5.
  * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
  *        Typical Value = 7.5.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAVR3
 (
@@ -1692,7 +1830,18 @@ case class ExcAVR3
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAVR3] }
     override def get (i: Int): Object =
@@ -1797,6 +1946,9 @@ extends
  *        Typical Value = 0.
  * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
  *        Typical Value = 5.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAVR4
 (
@@ -1819,7 +1971,18 @@ case class ExcAVR4
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAVR4] }
     override def get (i: Int): Object =
@@ -1904,6 +2067,9 @@ extends
  * @param rex Effective Output Resistance (Rex).
  *        Rex represents the effective output resistance seen by the excitation system.
  * @param ta Time constant (Ta).
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAVR5
 (
@@ -1915,7 +2081,18 @@ case class ExcAVR5
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAVR5] }
     override def get (i: Int): Object =
@@ -2004,6 +2181,9 @@ extends
  *        Typical Value = -5.
  * @param vmin5 Lead-lag min. limit (Vmin5).
  *        Typical Value = -2.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcAVR7
 (
@@ -2033,7 +2213,18 @@ case class ExcAVR7
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcAVR7] }
     override def get (i: Int): Object =
@@ -2159,6 +2350,9 @@ extends
  *        Typical Value = -5.
  * @param xe Effective excitation transformer reactance (Xe).
  *        Typical Value = 0.05.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcBBC
 (
@@ -2178,7 +2372,18 @@ case class ExcBBC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcBBC] }
     override def get (i: Int): Object =
@@ -2259,6 +2464,9 @@ extends
  * @param te Exciter time constant, integration rate associated with exciter control (Te).
  * @param vrmax Voltage regulator maximum limit (Vrmax).
  * @param vrmin Voltage regulator minimum limit (Vrmin).
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcCZ
 (
@@ -2277,7 +2485,18 @@ case class ExcCZ
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcCZ] }
     override def get (i: Int): Object =
@@ -2381,6 +2600,9 @@ extends
  *        Typical Value = 1.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = -0.9.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcDC1A
 (
@@ -2407,7 +2629,18 @@ case class ExcDC1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcDC1A] }
     override def get (i: Int): Object =
@@ -2538,6 +2771,9 @@ extends
  *        true = limiter at the block [Ka/(1+sTa)] is dependent on Vt
  *        false = limiter at the block is not dependent on Vt.
  *        Typical Value = true.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcDC2A
 (
@@ -2564,7 +2800,18 @@ case class ExcDC2A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcDC2A] }
     override def get (i: Int): Object =
@@ -2691,6 +2938,9 @@ extends
  *        Typical Value = 5.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = 0.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcDC3A
 (
@@ -2715,7 +2965,18 @@ case class ExcDC3A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcDC3A] }
     override def get (i: Int): Object =
@@ -2833,6 +3094,9 @@ extends
  *        Typical Value = 5.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = 0.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcDC3A1
 (
@@ -2855,7 +3119,18 @@ case class ExcDC3A1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcDC3A1] }
     override def get (i: Int): Object =
@@ -2966,6 +3241,9 @@ extends
  *        Typical Value = 34.5.
  * @param xe Excitation transformer effective reactance (Xe) (&gt;=0).
  *        Xe represents the regulation of the transformer/rectifier unit.  Typical Value = 0.06.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcELIN1
 (
@@ -2989,7 +3267,18 @@ case class ExcELIN1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcELIN1] }
     override def get (i: Int): Object =
@@ -3127,6 +3416,9 @@ extends
  *        Typical Value = 0.
  * @param xp Excitation transformer effective reactance (Xp).
  *        Typical Value = 1.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcELIN2
 (
@@ -3162,7 +3454,18 @@ case class ExcELIN2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcELIN2] }
     override def get (i: Int): Object =
@@ -3305,6 +3608,9 @@ extends
  *        Typical Value = 0.01333.
  * @param tr Filter time constant (Tr).
  *        If a voltage compensator is used in conjunction with this excitation system model, Tr should be set to 0.  Typical Value = 0.01.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcHU
 (
@@ -3325,7 +3631,18 @@ case class ExcHU
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcHU] }
     override def get (i: Int): Object =
@@ -3436,6 +3753,9 @@ extends
  *        Typical Value = 6.03.
  * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
  *        Typical Value = -5.43.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC1A
 (
@@ -3462,7 +3782,18 @@ case class ExcIEEEAC1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC1A] }
     override def get (i: Int): Object =
@@ -3597,6 +3928,9 @@ extends
  *        Typical Value = 105.
  * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
  *        Typical Value = -95.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC2A
 (
@@ -3626,7 +3960,18 @@ case class ExcIEEEAC2A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC2A] }
     override def get (i: Int): Object =
@@ -3770,6 +4115,9 @@ extends
  *        Typical Value = 0.1.
  * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
  *        Typical Value = 16.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC3A
 (
@@ -3799,7 +4147,18 @@ case class ExcIEEEAC3A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC3A] }
     override def get (i: Int): Object =
@@ -3919,6 +4278,9 @@ extends
  *        Typical Value = 5.64.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -4.53.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC4A
 (
@@ -3936,7 +4298,18 @@ case class ExcIEEEAC4A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC4A] }
     override def get (i: Int): Object =
@@ -4030,6 +4403,9 @@ extends
  *        Typical Value = 7.3.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -7.3.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC5A
 (
@@ -4052,7 +4428,18 @@ case class ExcIEEEAC5A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC5A] }
     override def get (i: Int): Object =
@@ -4177,6 +4564,9 @@ extends
  *        Typical Value = 44.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -36.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC6A
 (
@@ -4207,7 +4597,18 @@ case class ExcIEEEAC6A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC6A] }
     override def get (i: Int): Object =
@@ -4364,6 +4765,9 @@ extends
  *        Typical Value = 5.79.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -5.79.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC7B
 (
@@ -4398,7 +4802,18 @@ case class ExcIEEEAC7B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC7B] }
     override def get (i: Int): Object =
@@ -4551,6 +4966,9 @@ extends
  *        Typical Value = 35.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = 0.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEAC8B
 (
@@ -4577,7 +4995,18 @@ case class ExcIEEEAC8B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEAC8B] }
     override def get (i: Int): Object =
@@ -4704,6 +5133,9 @@ extends
  *        Typical Value = 1.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -0.9.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEDC1A
 (
@@ -4728,7 +5160,18 @@ case class ExcIEEEDC1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEDC1A] }
     override def get (i: Int): Object =
@@ -4849,6 +5292,9 @@ extends
  *        Typical Value = 4.95.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -4.9.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEDC2A
 (
@@ -4873,7 +5319,18 @@ case class ExcIEEEDC2A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEDC2A] }
     override def get (i: Int): Object =
@@ -4982,6 +5439,9 @@ extends
  *        Typical Value = 1.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = 0.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEDC3A
 (
@@ -5001,7 +5461,18 @@ case class ExcIEEEDC3A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEDC3A] }
     override def get (i: Int): Object =
@@ -5115,6 +5586,9 @@ extends
  *        Typical Value = 2.7.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -0.9.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEDC4B
 (
@@ -5142,7 +5616,18 @@ case class ExcIEEEDC4B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEDC4B] }
     override def get (i: Int): Object =
@@ -5278,6 +5763,9 @@ extends
  *        Typical Value = 7.8.
  * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
  *        Typical Value = -6.7.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEST1A
 (
@@ -5305,7 +5793,18 @@ case class ExcIEEEST1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST1A] }
     override def get (i: Int): Object =
@@ -5429,6 +5928,9 @@ extends
  *        Typical Value = 1.
  * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
  *        Typical Value = 0.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEST2A
 (
@@ -5450,7 +5952,18 @@ case class ExcIEEEST2A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST2A] }
     override def get (i: Int): Object =
@@ -5568,6 +6081,9 @@ extends
  *        Typical Value = -10.
  * @param xl Reactance associated with potential source (X<sub>L</sub>).
  *        Typical Value = 0.081.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEST3A
 (
@@ -5596,7 +6112,18 @@ case class ExcIEEEST3A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST3A] }
     override def get (i: Int): Object =
@@ -5727,6 +6254,9 @@ extends
  *        Typical Value = -0.87.
  * @param xl Reactance associated with potential source (X<sub>L</sub>).
  *        Typical Value = 0.124.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEST4B
 (
@@ -5751,7 +6281,18 @@ case class ExcIEEEST4B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST4B] }
     override def get (i: Int): Object =
@@ -5872,6 +6413,9 @@ extends
  *        Typical Value = 5.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -4.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEST5B
 (
@@ -5897,7 +6441,18 @@ case class ExcIEEEST5B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST5B] }
     override def get (i: Int): Object =
@@ -6015,6 +6570,9 @@ extends
  *        Typical Value = 4.81.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -3.85.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEST6B
 (
@@ -6037,7 +6595,18 @@ case class ExcIEEEST6B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST6B] }
     override def get (i: Int): Object =
@@ -6148,6 +6717,9 @@ extends
  *        Typical Value = 5.
  * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
  *        Typical Value = -4.5.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcIEEEST7B
 (
@@ -6171,7 +6743,18 @@ case class ExcIEEEST7B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcIEEEST7B] }
     override def get (i: Int): Object =
@@ -6273,6 +6856,9 @@ extends
  * @param tf Time constant (T<sub>F</sub>).
  * @param vrmax Limiter (V<sub>RMAX</sub>).
  * @param vrmin Limiter (V<sub>RMIN</sub>).
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcOEX3T
 (
@@ -6300,7 +6886,18 @@ case class ExcOEX3T
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcOEX3T] }
     override def get (i: Int): Object =
@@ -6442,6 +7039,9 @@ extends
  *        Typical Value = 1.
  * @param vrmin Voltage regulator minimum limit (Vrmin).
  *        Typical Value = -0.87.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcPIC
 (
@@ -6473,7 +7073,18 @@ case class ExcPIC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcPIC] }
     override def get (i: Int): Object =
@@ -6653,6 +7264,9 @@ extends
  *        Typical Value = -20.
  * @param xc Exciter compounding reactance (Xc).
  *        Typical Value = 0.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcREXS
 (
@@ -6697,7 +7311,18 @@ case class ExcREXS
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcREXS] }
     override def get (i: Int): Object =
@@ -6860,6 +7485,9 @@ extends
  *        Typical Value = 10.
  * @param te Time constant of gain block (Te) (&gt;0).
  *        Typical Value = 0.02.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcSCRX
 (
@@ -6876,7 +7504,18 @@ case class ExcSCRX
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcSCRX] }
     override def get (i: Int): Object =
@@ -6958,6 +7597,9 @@ extends
  *        Typical Value = 0.
  * @param te Time constant of gain block (Te).
  *        Typical Value = 0.05.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcSEXS
 (
@@ -6976,7 +7618,18 @@ case class ExcSEXS
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcSEXS] }
     override def get (i: Int): Object =
@@ -7109,6 +7762,9 @@ extends
  *        Determines the range of voltage dead band.  Typical Value = 0.95.
  * @param yp Maximum output (Yp).
  *        Minimum output = 0.  Typical Value = 1.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcSK
 (
@@ -7149,7 +7805,18 @@ case class ExcSK
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcSK] }
     override def get (i: Int): Object =
@@ -7319,6 +7986,9 @@ extends
  *        Typical Value = -6.7.
  * @param xe Excitation xfmr effective reactance (Xe).
  *        Typical Value = 0.04.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcST1A
 (
@@ -7345,7 +8015,18 @@ case class ExcST1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcST1A] }
     override def get (i: Int): Object =
@@ -7469,6 +8150,9 @@ extends
  *        Typical Value = 1.
  * @param vrmin Minimum voltage regulator outputs (Vrmin).
  *        Typical Value = -1.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcST2A
 (
@@ -7492,7 +8176,18 @@ case class ExcST2A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcST2A] }
     override def get (i: Int): Object =
@@ -7615,6 +8310,9 @@ extends
  *        Typical Value = 0.
  * @param xl Reactance associated with potential source (Xl).
  *        Typical Value = 0.09.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcST3A
 (
@@ -7643,7 +8341,18 @@ case class ExcST3A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcST3A] }
     override def get (i: Int): Object =
@@ -7783,6 +8492,9 @@ extends
  *        Typical Value = -0.87.
  * @param xl Reactance associated with potential source (Xl).
  *        Typical Value = 0.124.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcST4B
 (
@@ -7810,7 +8522,18 @@ case class ExcST4B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcST4B] }
     override def get (i: Int): Object =
@@ -7957,6 +8680,9 @@ extends
  *        Typical Value = -3.85.
  * @param xc Excitation source reactance (Xc).
  *        Typical Value = 0.05.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcST6B
 (
@@ -7988,7 +8714,18 @@ case class ExcST6B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcST6B] }
     override def get (i: Int): Object =
@@ -8127,6 +8864,9 @@ extends
  *        Typical Value = 5.
  * @param vrmin Minimum voltage regulator output (Vrmin).
  *        Typical Value = -4.5.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcST7B
 (
@@ -8151,7 +8891,18 @@ case class ExcST7B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcST7B] }
     override def get (i: Int): Object =
@@ -8245,6 +8996,9 @@ extends
  * @param SynchronousMachineDynamics Synchronous machine model with which this excitation system model is associated.
  * @param UnderexcitationLimiterDynamics Undrexcitation limiter model associated with this excitation system model.
  * @param VoltageCompensatorDynamics Voltage compensator model associated with this excitation system model.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
  */
 case class ExcitationSystemDynamics
 (
@@ -8261,7 +9015,18 @@ case class ExcitationSystemDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[ExcitationSystemDynamics] }
     override def get (i: Int): Object =

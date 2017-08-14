@@ -133,10 +133,23 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>attach-javadocs</id>
                         <goals>
                             <goal>doc-jar</goal>
                         </goals>
+                        <configuration>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

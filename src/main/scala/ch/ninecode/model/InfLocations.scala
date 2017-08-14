@@ -6,7 +6,6 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * Information about a particular piece of (land) property such as its use.
  * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
@@ -18,6 +17,8 @@ import ch.ninecode.cim.Parseable
  * @param status <em>undocumented</em>
  * @param AssetContainers <em>undocumented</em>
  * @param Locations The spatail description of a piece of property.
+ * @group InfLocations
+ * @groupname InfLocations Package InfLocations
  */
 case class LandProperty
 (
@@ -32,7 +33,18 @@ case class LandProperty
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LandProperty] }
     override def get (i: Int): Object =
@@ -92,6 +104,8 @@ extends
  * @param propertyData Property related information that describes the Grant's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
  * @param LandProperty Land property this location grant applies to.
+ * @group InfLocations
+ * @groupname InfLocations Package InfLocations
  */
 case class LocationGrant
 (
@@ -102,7 +116,18 @@ case class LocationGrant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[LocationGrant] }
     override def get (i: Int): Object =
@@ -148,6 +173,8 @@ extends
  * A red line can be associated with any Location object.
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
+ * @group InfLocations
+ * @groupname InfLocations Package InfLocations
  */
 case class RedLine
 (
@@ -157,7 +184,18 @@ case class RedLine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[RedLine] }
     override def get (i: Int): Object =
@@ -202,6 +240,8 @@ extends
  * @param propertyData Property related information that describes the ROW's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
  * @param LandProperties All land properties this right of way applies to.
+ * @group InfLocations
+ * @groupname InfLocations Package InfLocations
  */
 case class RightOfWay
 (
@@ -212,7 +252,18 @@ case class RightOfWay
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[RightOfWay] }
     override def get (i: Int): Object =
@@ -259,6 +310,8 @@ extends
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work management standards and practices.
  * @param Locations <em>undocumented</em>
+ * @group InfLocations
+ * @groupname InfLocations Package InfLocations
  */
 case class Route
 (
@@ -270,7 +323,18 @@ case class Route
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Route] }
     override def get (i: Int): Object =
@@ -319,6 +383,8 @@ extends
  * It may be part of the electrical network, a land area where special restrictions apply, weather areas, etc. For weather, it is an area where a set of relatively homogenous weather measurements apply.
  * @param sup Reference to the superclass object.
  * @param kind Kind of this zone.
+ * @group InfLocations
+ * @groupname InfLocations Package InfLocations
  */
 case class Zone
 (
@@ -328,7 +394,18 @@ case class Zone
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Location: Location = sup.asInstanceOf[Location]
     override def copy (): Row = { clone ().asInstanceOf[Zone] }
     override def get (i: Int): Object =

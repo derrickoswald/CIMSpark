@@ -6,13 +6,14 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
  * @param sup Reference to the superclass object.
  * @param MarketProduct Market product associated with reserve requirement must be a reserve or regulation product.
  * @param ReserveReqCurve <em>undocumented</em>
  * @param SensitivityPriceCurve <em>undocumented</em>
+ * @group InfExternalInputs
+ * @groupname InfExternalInputs Package InfExternalInputs
  */
 case class ReserveReq
 (
@@ -24,7 +25,18 @@ case class ReserveReq
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ResourceGroupReq: ResourceGroupReq = sup.asInstanceOf[ResourceGroupReq]
     override def copy (): Row = { clone ().asInstanceOf[ReserveReq] }
     override def get (i: Int): Object =
@@ -73,6 +85,8 @@ extends
  * The  curve can be based on "absolute" time or on "normalized' time.
  * @param sup Reference to the superclass object.
  * @param ReserveReq <em>undocumented</em>
+ * @group InfExternalInputs
+ * @groupname InfExternalInputs Package InfExternalInputs
  */
 case class ReserveReqCurve
 (
@@ -82,7 +96,18 @@ case class ReserveReqCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[ReserveReqCurve] }
     override def get (i: Int): Object =
@@ -125,6 +150,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param status Status of this group.
  * @param typ Type of this group.
+ * @group InfExternalInputs
+ * @groupname InfExternalInputs Package InfExternalInputs
  */
 case class ResourceGroup
 (
@@ -135,7 +162,18 @@ case class ResourceGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ResourceGroup] }
     override def get (i: Int): Object =
@@ -181,6 +219,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param RTOs <em>undocumented</em>
  * @param ResourceGroup <em>undocumented</em>
+ * @group InfExternalInputs
+ * @groupname InfExternalInputs Package InfExternalInputs
  */
 case class ResourceGroupReq
 (
@@ -191,7 +231,18 @@ case class ResourceGroupReq
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ResourceGroupReq] }
     override def get (i: Int): Object =
@@ -237,6 +288,8 @@ extends
  * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
  * @param sup Reference to the superclass object.
  * @param ReserveReq <em>undocumented</em>
+ * @group InfExternalInputs
+ * @groupname InfExternalInputs Package InfExternalInputs
  */
 case class SensitivityPriceCurve
 (
@@ -246,7 +299,18 @@ case class SensitivityPriceCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[SensitivityPriceCurve] }
     override def get (i: Int): Object =

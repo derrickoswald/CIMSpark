@@ -7,16 +7,15 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This section contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
- * In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.
- */
-
-/**
  * Abstract parent class for all Dynamics function blocks.
  * @param sup Reference to the superclass object.
  * @param enabled Function block used indicator.
  *        true = use of function block is enabled
  *        false = use of function block is disabled.
+ * @group StandardModels
+ * @groupname StandardModels Package StandardModels
+ * @groupdesc StandardModels This section contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
+In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.
  */
 case class DynamicsFunctionBlock
 (
@@ -26,7 +25,18 @@ case class DynamicsFunctionBlock
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DynamicsFunctionBlock] }
     override def get (i: Int): Object =
@@ -79,6 +89,10 @@ extends
  *        Typical Value = 0.15.
  * @param statorResistance Stator (armature) resistance (Rs) (&gt; or =0).
  *        Typical Value = 0.005.
+ * @group StandardModels
+ * @groupname StandardModels Package StandardModels
+ * @groupdesc StandardModels This section contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
+In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.
  */
 case class RotatingMachineDynamics
 (
@@ -93,7 +107,18 @@ case class RotatingMachineDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[RotatingMachineDynamics] }
     override def get (i: Int): Object =

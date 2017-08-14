@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the common objects shared by MarketOperations packages.
- */
-
-/**
  * A roll up of invoice line items.
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
  * @param sup Reference to the superclass object.
@@ -24,6 +20,9 @@ import ch.ninecode.cim.Parseable
  * @param referenceNumber Number of an invoice to be reference by this invoice.
  * @param transactionDateTime Date and time when the invoice is issued.
  * @param transferType Type of invoice transfer.
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MarketInvoice
 (
@@ -41,8 +40,19 @@ case class MarketInvoice
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null, null, false, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketInvoice] }
     override def get (i: Int): Object =
     {
@@ -118,6 +128,9 @@ extends
  * @param ContainerMarketInvoiceLineItem <em>undocumented</em>
  * @param MarketInvoice <em>undocumented</em>
  * @param Settlement <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MarketInvoiceLineItem
 (
@@ -138,8 +151,19 @@ case class MarketInvoiceLineItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0.0, null, null, 0.0, 0.0, null, null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketInvoiceLineItem] }
     override def get (i: Int): Object =
     {
@@ -213,6 +237,9 @@ extends
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
  * @param sup Reference to the superclass object.
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MarketLedger
 (
@@ -221,8 +248,19 @@ case class MarketLedger
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketLedger] }
     override def get (i: Int): Object =
     {
@@ -268,6 +306,9 @@ extends
  * @param transactionDateTime Date and time journal entry was recorded.
  * @param MarketLedger <em>undocumented</em>
  * @param Settlement <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MarketLedgerEntry
 (
@@ -284,8 +325,19 @@ case class MarketLedgerEntry
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, null, null, null, null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketLedgerEntry] }
     override def get (i: Int): Object =
     {
@@ -346,6 +398,9 @@ extends
 /**
  * Subclass of IEC61968: Common:ActivityRecord
  * @param sup Reference to the superclass object.
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktActivityRecord
 (
@@ -354,7 +409,18 @@ case class MktActivityRecord
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
     override def copy (): Row = { clone ().asInstanceOf[MktActivityRecord] }
     override def get (i: Int): Object =
@@ -398,6 +464,9 @@ extends
  * @param IndividualPnode <em>undocumented</em>
  * @param RTO <em>undocumented</em>
  * @param SysLoadDistribuFactor <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktConnectivityNode
 (
@@ -411,7 +480,18 @@ case class MktConnectivityNode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConnectivityNode: ConnectivityNode = sup.asInstanceOf[ConnectivityNode]
     override def copy (): Row = { clone ().asInstanceOf[MktConnectivityNode] }
     override def get (i: Int): Object =
@@ -465,6 +545,9 @@ extends
  * Subclass of IEC61970:Wires:EnergyConsumer
  * @param sup Reference to the superclass object.
  * @param RegisteredLoad <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktEnergyConsumer
 (
@@ -474,7 +557,18 @@ case class MktEnergyConsumer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
     override def copy (): Row = { clone ().asInstanceOf[MktEnergyConsumer] }
     override def get (i: Int): Object =
@@ -516,6 +610,9 @@ extends
  * Subclass of IEC61970:Production:GeneratingUnit
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktGeneratingUnit
 (
@@ -525,7 +622,18 @@ case class MktGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { clone ().asInstanceOf[MktGeneratingUnit] }
     override def get (i: Int): Object =
@@ -567,6 +675,9 @@ extends
  * Subclass for IEC61970:Wires:Line
  * @param sup Reference to the superclass object.
  * @param TransmissionRightOfWay <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktLine
 (
@@ -576,7 +687,18 @@ case class MktLine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Line: Line = sup.asInstanceOf[Line]
     override def copy (): Row = { clone ().asInstanceOf[MktLine] }
     override def get (i: Int): Object =
@@ -617,6 +739,9 @@ extends
 /**
  * Subclass of IEC61970:LoadModel: LoadArea
  * @param sup Reference to the superclass object.
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktLoadArea
 (
@@ -625,7 +750,18 @@ case class MktLoadArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LoadArea: LoadArea = sup.asInstanceOf[LoadArea]
     override def copy (): Row = { clone ().asInstanceOf[MktLoadArea] }
     override def get (i: Int): Object =
@@ -667,6 +803,9 @@ extends
  * @param ByTiePoint A measurement is made on the B side of a tie point
  * @param ForTiePoint A measurement is made on the A side of a tie point
  * @param Pnode <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktMeasurement
 (
@@ -678,7 +817,18 @@ case class MktMeasurement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
     override def copy (): Row = { clone ().asInstanceOf[MktMeasurement] }
     override def get (i: Int): Object =
@@ -733,6 +883,9 @@ extends
  * @param qualificationStatus Organisation qualification status, Qualified, Not Qualified, or Disqualified
  * @param startEffectiveDate start effective date
  * @param MarketPerson <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktOrganisation
 (
@@ -749,7 +902,18 @@ case class MktOrganisation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Organisation: Organisation = sup.asInstanceOf[Organisation]
     override def copy (): Row = { clone ().asInstanceOf[MktOrganisation] }
     override def get (i: Int): Object =
@@ -813,6 +977,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param EndAFlow <em>undocumented</em>
  * @param EndBFlow <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktPowerTransformer
 (
@@ -823,7 +990,18 @@ case class MktPowerTransformer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerTransformer: PowerTransformer = sup.asInstanceOf[PowerTransformer]
     override def copy (): Row = { clone ().asInstanceOf[MktPowerTransformer] }
     override def get (i: Int): Object =
@@ -870,6 +1048,9 @@ extends
  * @param endEffectiveDate This is the end date/time of the element eligibility for the flowgate.
  * @param startEffectiveDate This is the begin date/time of the element eligibility for the flowgate.
  * @param Flowgate <em>undocumented</em>
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktTerminal
 (
@@ -881,7 +1062,18 @@ case class MktTerminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Terminal: Terminal = sup.asInstanceOf[Terminal]
     override def copy (): Row = { clone ().asInstanceOf[MktTerminal] }
     override def get (i: Int): Object =
@@ -928,6 +1120,9 @@ extends
 /**
  * Subclass of IEC61968:Domain2:UserAttribute
  * @param sup Reference to the superclass object.
+ * @group MarketOpCommon
+ * @groupname MarketOpCommon Package MarketOpCommon
+ * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktUserAttribute
 (
@@ -936,7 +1131,18 @@ case class MktUserAttribute
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def UserAttribute: UserAttribute = sup.asInstanceOf[UserAttribute]
     override def copy (): Row = { clone ().asInstanceOf[MktUserAttribute] }
     override def get (i: Int): Object =

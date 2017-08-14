@@ -6,11 +6,12 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * Model of market clearing related to results at the inter-ties.
  * Identifies interval
  * @param sup Reference to the superclass object.
+ * @group InfMarketResults
+ * @groupname InfMarketResults Package InfMarketResults
  */
 case class InterTieClearing
 (
@@ -19,7 +20,18 @@ case class InterTieClearing
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MarketFactors: MarketFactors = sup.asInstanceOf[MarketFactors]
     override def copy (): Row = { clone ().asInstanceOf[InterTieClearing] }
     override def get (i: Int): Object =
@@ -63,6 +75,8 @@ extends
  * @param clearedValue Net Dispatched MW
  * @param Flowgate <em>undocumented</em>
  * @param InterTieClearing <em>undocumented</em>
+ * @group InfMarketResults
+ * @groupname InfMarketResults Package InfMarketResults
  */
 case class InterTieResults
 (
@@ -75,8 +89,19 @@ case class InterTieResults
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[InterTieResults] }
     override def get (i: Int): Object =
     {
@@ -136,6 +161,8 @@ extends
  *        'RT - Amp2'
  * @param modifiedDate Last time and date clearing results were manually modified.
  * @param postedDate Bid clearing results posted time and date.
+ * @group InfMarketResults
+ * @groupname InfMarketResults Package InfMarketResults
  */
 case class MarketCaseClearing
 (
@@ -147,7 +174,18 @@ case class MarketCaseClearing
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MarketFactors: MarketFactors = sup.asInstanceOf[MarketFactors]
     override def copy (): Row = { clone ().asInstanceOf[MarketCaseClearing] }
     override def get (i: Int): Object =
@@ -197,6 +235,8 @@ extends
  * @param mwFlow Optimal MW flow
  * @param mwLimit Binding MW limit.
  * @param shadowPrice Security constraint shadow price.
+ * @group InfMarketResults
+ * @groupname InfMarketResults Package InfMarketResults
  */
 case class SecurityConstraintsClearing
 (
@@ -208,7 +248,18 @@ case class SecurityConstraintsClearing
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MarketFactors: MarketFactors = sup.asInstanceOf[MarketFactors]
     override def copy (): Row = { clone ().asInstanceOf[SecurityConstraintsClearing] }
     override def get (i: Int): Object =

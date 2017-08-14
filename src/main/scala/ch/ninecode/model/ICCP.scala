@@ -6,7 +6,10 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
+/**
+ * @group ICCP
+ * @groupname ICCP Package ICCP
+ */
 case class ICCPCommandPoint
 (
     override val sup: ICCPControlPoint,
@@ -15,7 +18,18 @@ case class ICCPCommandPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ICCPControlPoint: ICCPControlPoint = sup.asInstanceOf[ICCPControlPoint]
     override def copy (): Row = { clone ().asInstanceOf[ICCPCommandPoint] }
     override def get (i: Int): Object =
@@ -53,6 +67,10 @@ extends
     }
 }
 
+/**
+ * @group ICCP
+ * @groupname ICCP Package ICCP
+ */
 case class ICCPControlPoint
 (
     override val sup: ICCPPoint,
@@ -62,7 +80,18 @@ case class ICCPControlPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ICCPPoint: ICCPPoint = sup.asInstanceOf[ICCPPoint]
     override def copy (): Row = { clone ().asInstanceOf[ICCPControlPoint] }
     override def get (i: Int): Object =
@@ -103,6 +132,10 @@ extends
     }
 }
 
+/**
+ * @group ICCP
+ * @groupname ICCP Package ICCP
+ */
 case class ICCPIndicationPoint
 (
     override val sup: ICCPPoint,
@@ -112,7 +145,18 @@ case class ICCPIndicationPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ICCPPoint: ICCPPoint = sup.asInstanceOf[ICCPPoint]
     override def copy (): Row = { clone ().asInstanceOf[ICCPIndicationPoint] }
     override def get (i: Int): Object =
@@ -161,6 +205,8 @@ extends
  * @param localReference The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
  *        It further identifies the Information Message.
  * @param scope <em>undocumented</em>
+ * @group ICCP
+ * @groupname ICCP Package ICCP
  */
 case class ICCPInformationMessage
 (
@@ -172,7 +218,18 @@ case class ICCPInformationMessage
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ICCPInformationMessage] }
     override def get (i: Int): Object =
@@ -222,6 +279,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param attr <em>undocumented</em>
  * @param scope <em>undocumented</em>
+ * @group ICCP
+ * @groupname ICCP Package ICCP
  */
 case class ICCPPoint
 (
@@ -232,7 +291,18 @@ case class ICCPPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ICCPPoint] }
     override def get (i: Int): Object =
@@ -273,6 +343,10 @@ extends
     }
 }
 
+/**
+ * @group ICCP
+ * @groupname ICCP Package ICCP
+ */
 case class ICCPSetPoint
 (
     override val sup: ICCPControlPoint,
@@ -282,7 +356,18 @@ case class ICCPSetPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ICCPControlPoint: ICCPControlPoint = sup.asInstanceOf[ICCPControlPoint]
     override def copy (): Row = { clone ().asInstanceOf[ICCPSetPoint] }
     override def get (i: Int): Object =
@@ -323,6 +408,10 @@ extends
     }
 }
 
+/**
+ * @group ICCP
+ * @groupname ICCP Package ICCP
+ */
 case class IPAccessPoint
 (
     override val sup: BasicElement,
@@ -335,8 +424,19 @@ case class IPAccessPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[IPAccessPoint] }
     override def get (i: Int): Object =
     {
@@ -385,6 +485,10 @@ extends
     }
 }
 
+/**
+ * @group ICCP
+ * @groupname ICCP Package ICCP
+ */
 case class ISOUpperLayer
 (
     override val sup: TCPAcessPoint,
@@ -396,7 +500,18 @@ case class ISOUpperLayer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TCPAcessPoint: TCPAcessPoint = sup.asInstanceOf[TCPAcessPoint]
     override def copy (): Row = { clone ().asInstanceOf[ISOUpperLayer] }
     override def get (i: Int): Object =
@@ -453,6 +568,8 @@ extends
  * @param nameOfICC Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
  *        This value may not be null.
  * @param tase2version Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2
+ * @group ICCP
+ * @groupname ICCP Package ICCP
  */
 case class TASE2BilateralTable
 (
@@ -465,7 +582,18 @@ case class TASE2BilateralTable
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TASE2BilateralTable] }
     override def get (i: Int): Object =
@@ -512,6 +640,10 @@ extends
     }
 }
 
+/**
+ * @group ICCP
+ * @groupname ICCP Package ICCP
+ */
 case class TCPAcessPoint
 (
     override val sup: IPAccessPoint,
@@ -521,7 +653,18 @@ case class TCPAcessPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IPAccessPoint: IPAccessPoint = sup.asInstanceOf[IPAccessPoint]
     override def copy (): Row = { clone ().asInstanceOf[TCPAcessPoint] }
     override def get (i: Int): Object =

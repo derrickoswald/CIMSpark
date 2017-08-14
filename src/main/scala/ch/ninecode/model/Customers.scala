@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the core information classes that support customer billing applications.
- */
-
-/**
  * Organisation receiving services from service supplier.
  * @param sup Reference to the superclass object.
  * @param kind Kind of customer.
@@ -22,6 +18,9 @@ import ch.ninecode.cim.Parseable
  * @param vip (use 'priority' instead) True if this is an important customer.
  *        Importance is for matters different than those in 'specialNeed' attribute.
  * @param Works All the works performed for this customer.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class Customer
 (
@@ -38,7 +37,18 @@ case class Customer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, false, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[Customer] }
     override def get (i: Int): Object =
@@ -104,6 +114,9 @@ extends
  * @param billingCycle Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.
  * @param budgetBill Budget bill code.
  * @param Customer Customer owning this account.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class CustomerAccount
 (
@@ -115,7 +128,18 @@ case class CustomerAccount
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[CustomerAccount] }
     override def get (i: Int): Object =
@@ -171,6 +195,9 @@ extends
  * @param ServiceLocations All service locations regulated by this customer agreement.
  * @param ServiceSupplier Service supplier for this customer agreement.
  * @param StandardIndustryCode <em>undocumented</em>
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class CustomerAgreement
 (
@@ -187,7 +214,18 @@ case class CustomerAgreement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List(), null, List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[CustomerAgreement] }
     override def get (i: Int): Object =
@@ -256,6 +294,9 @@ extends
  * @param trigger Trigger for this notification.
  * @param Customer Customer requiring this notification.
  * @param Incident Incident as a subject of this customer notification.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class CustomerNotification
 (
@@ -271,8 +312,19 @@ case class CustomerNotification
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[CustomerNotification] }
     override def get (i: Int): Object =
     {
@@ -333,6 +385,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param Incident Incident associated with this hazard.
  * @param TroubleTicket Trouble ticket associated with this hazard.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class IncidentHazard
 (
@@ -343,7 +398,18 @@ case class IncidentHazard
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Hazard: Hazard = sup.asInstanceOf[Hazard]
     override def copy (): Row = { clone ().asInstanceOf[IncidentHazard] }
     override def get (i: Int): Object =
@@ -398,6 +464,9 @@ extends
  * @param ServiceCategory Service category to which this pricing structure applies.
  * @param Tariffs All tariffs used by this pricing structure.
  * @param UsagePoints All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class PricingStructure
 (
@@ -415,7 +484,18 @@ case class PricingStructure
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0, 0, 0, null, false, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[PricingStructure] }
     override def get (i: Int): Object =
@@ -481,6 +561,9 @@ extends
  * Category of service provided to the customer.
  * @param sup Reference to the superclass object.
  * @param kind Kind of service.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class ServiceCategory
 (
@@ -490,7 +573,18 @@ case class ServiceCategory
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ServiceCategory] }
     override def get (i: Int): Object =
@@ -537,6 +631,9 @@ extends
  *        This could be requested by a customer, due to suspected tampering, environmental concerns (e.g., a fire in the vicinity), or to correct incompatible data.
  * @param siteAccessProblem Problems previously encountered when visiting or performing work on this location.
  *        Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class ServiceLocation
 (
@@ -548,7 +645,18 @@ case class ServiceLocation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkLocation: WorkLocation = sup.asInstanceOf[WorkLocation]
     override def copy (): Row = { clone ().asInstanceOf[ServiceLocation] }
     override def get (i: Int): Object =
@@ -599,6 +707,9 @@ extends
  * @param endDate (if tariff became inactive) Date tariff was terminated.
  * @param startDate Date tariff was activated.
  * @param TariffProfiles All tariff profiles using this tariff.
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
  */
 case class Tariff
 (
@@ -610,7 +721,18 @@ case class Tariff
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Tariff] }
     override def get (i: Int): Object =
@@ -654,6 +776,11 @@ extends
     }
 }
 
+/**
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
+ */
 case class TroubleTicket
 (
     override val sup: Document,
@@ -669,7 +796,18 @@ case class TroubleTicket
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[TroubleTicket] }
     override def get (i: Int): Object =

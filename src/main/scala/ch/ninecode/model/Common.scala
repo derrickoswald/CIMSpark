@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the information classes that support distribution management in general.
- */
-
-/**
  * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
  * @param sup Reference to the superclass object.
  * @param createdDateTime Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
@@ -18,6 +14,9 @@ import ch.ninecode.cim.Parseable
  * @param severity Severity level of event resulting in this activity record.
  * @param status Information on consequence of event resulting in this activity record.
  * @param typ Type of event resulting in this activity record.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class ActivityRecord
 (
@@ -31,7 +30,18 @@ case class ActivityRecord
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ActivityRecord] }
     override def get (i: Int): Object =
@@ -87,6 +97,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param signDate Date this agreement was consummated among associated persons and/or organisations.
  * @param validityInterval Date and time interval this agreement is valid (from going into effect to termination).
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Agreement
 (
@@ -97,7 +110,18 @@ case class Agreement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Agreement] }
     override def get (i: Int): Object =
@@ -144,6 +168,9 @@ extends
  * @param callAhead True if requested to call customer when someone is about to arrive at their premises.
  * @param meetingInterval Date and time reserved for appointment.
  * @param Works All works for this appointment.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Appointment
 (
@@ -155,7 +182,18 @@ case class Appointment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Appointment] }
     override def get (i: Int): Object =
@@ -212,6 +250,9 @@ extends
  * @param ChangedPersonRole Person role whose change resulted in this configuration event.
  * @param ChangedServiceCategory Service category whose change resulted in this configuration event.
  * @param ChangedUsagePoint Usage point whose change resulted in this configuration event.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class ConfigurationEvent
 (
@@ -230,7 +271,18 @@ case class ConfigurationEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
     override def copy (): Row = { clone ().asInstanceOf[ConfigurationEvent] }
     override def get (i: Int): Object =
@@ -300,6 +352,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param crsUrn A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
  *        PositionPoints'.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class CoordinateSystem
 (
@@ -309,7 +364,18 @@ case class CoordinateSystem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CoordinateSystem] }
     override def get (i: Int): Object =
@@ -352,6 +418,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param status Status of this crew.
  * @param CrewType Type of this crew.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Crew
 (
@@ -362,7 +431,18 @@ case class Crew
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Crew] }
     override def get (i: Int): Object =
@@ -407,6 +487,9 @@ extends
  * Member of a crew.
  * @param sup Reference to the superclass object.
  * @param Crew Crew to which this crew member belongs.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class CrewMember
 (
@@ -416,7 +499,18 @@ case class CrewMember
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OperationPersonRole: OperationPersonRole = sup.asInstanceOf[OperationPersonRole]
     override def copy (): Row = { clone ().asInstanceOf[CrewMember] }
     override def get (i: Int): Object =
@@ -458,6 +552,9 @@ extends
  * Custom description of the type of crew.
  * This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.
  * @param sup Reference to the superclass object.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class CrewType
 (
@@ -466,7 +563,18 @@ case class CrewType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CrewType] }
     override def get (i: Int): Object =
@@ -520,6 +628,9 @@ extends
  * @param subject Document subject.
  * @param title Document title.
  * @param typ Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Document
 (
@@ -539,7 +650,18 @@ case class Document
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Document] }
     override def get (i: Int): Object =
@@ -618,6 +740,9 @@ extends
  * @param radio Radio address.
  * @param userID User ID needed to log in, which can be for an individual person, an organisation, a location, etc.
  * @param web World wide web address.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class ElectronicAddress
 (
@@ -634,8 +759,19 @@ case class ElectronicAddress
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ElectronicAddress] }
     override def get (i: Int): Object =
     {
@@ -698,6 +834,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param status Status of this hazard.
  * @param typ Type of this hazard.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Hazard
 (
@@ -708,7 +847,18 @@ case class Hazard
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Hazard] }
     override def get (i: Int): Object =
@@ -766,6 +916,9 @@ extends
  * @param typ Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
  * @param CoordinateSystem Coordinate system used to describe position points of this location.
  * @param Measurements <em>undocumented</em>
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Location
 (
@@ -785,7 +938,18 @@ case class Location
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Location] }
     override def get (i: Int): Object =
@@ -856,6 +1020,9 @@ extends
 /**
  * Person role in the context of utility operations.
  * @param sup Reference to the superclass object.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class OperationPersonRole
 (
@@ -864,7 +1031,18 @@ case class OperationPersonRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PersonRole: PersonRole = sup.asInstanceOf[PersonRole]
     override def copy (): Row = { clone ().asInstanceOf[OperationPersonRole] }
     override def get (i: Int): Object =
@@ -903,6 +1081,9 @@ extends
 /**
  * Control room operator.
  * @param sup Reference to the superclass object.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Operator
 (
@@ -911,7 +1092,18 @@ case class Operator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OperationPersonRole: OperationPersonRole = sup.asInstanceOf[OperationPersonRole]
     override def copy (): Row = { clone ().asInstanceOf[Operator] }
     override def get (i: Int): Object =
@@ -956,6 +1148,9 @@ extends
  * @param postalAddress Postal address, potentially different than 'streetAddress' (e.g., another city).
  * @param streetAddress Street address.
  * @param ActivityRecords <em>undocumented</em>
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Organisation
 (
@@ -970,7 +1165,18 @@ case class Organisation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Organisation] }
     override def get (i: Int): Object =
@@ -1027,6 +1233,9 @@ extends
  * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
  * @param sup Reference to the superclass object.
  * @param Organisation Organisation having this role.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class OrganisationRole
 (
@@ -1036,7 +1245,18 @@ case class OrganisationRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OrganisationRole] }
     override def get (i: Int): Object =
@@ -1080,6 +1300,9 @@ extends
  * @param share Share of this ownership.
  * @param Asset Asset that is object of this ownership.
  * @param AssetOwner Asset owner that is subject in this ownership.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Ownership
 (
@@ -1091,7 +1314,18 @@ case class Ownership
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Ownership] }
     override def get (i: Int): Object =
@@ -1147,6 +1381,9 @@ extends
  * @param prefix A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
  * @param specialNeed Special service needs for the person (contact) are described; examples include life support, etc.
  * @param suffix A suffix for the person's name, such as II, III, etc.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Person
 (
@@ -1164,7 +1401,18 @@ case class Person
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Person] }
     override def get (i: Int): Object =
@@ -1226,6 +1474,11 @@ extends
     }
 }
 
+/**
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
+ */
 case class PersonRole
 (
     override val sup: IdentifiedObject,
@@ -1235,7 +1488,18 @@ case class PersonRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[PersonRole] }
     override def get (i: Int): Object =
@@ -1285,6 +1549,9 @@ extends
  * @param yPosition Y axis position.
  * @param zPosition (if applicable) Z axis position.
  * @param Location Location described by this position point.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class PositionPoint
 (
@@ -1298,8 +1565,19 @@ case class PositionPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PositionPoint] }
     override def get (i: Int): Object =
     {
@@ -1355,6 +1633,9 @@ extends
  * @param postalCode Postal code for the address.
  * @param streetDetail Street detail.
  * @param townDetail Town detail.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class PostalAddress
 (
@@ -1367,8 +1648,19 @@ case class PostalAddress
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PostalAddress] }
     override def get (i: Int): Object =
     {
@@ -1420,6 +1712,9 @@ extends
  * @param justification Justification for 'rank'.
  * @param rank Priority level; usually, lower number means high priority, but the details are provided in 'type'.
  * @param typ Type describing 'rank'; e.g., high, emergency, etc.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Priority
 (
@@ -1431,8 +1726,19 @@ case class Priority
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Priority] }
     override def get (i: Int): Object =
     {
@@ -1483,6 +1789,9 @@ extends
  * @param typ Type of scheduled event.
  * @param Assets <em>undocumented</em>
  * @param ScheduledEventData Specification for this scheduled event.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class ScheduledEvent
 (
@@ -1496,7 +1805,18 @@ case class ScheduledEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ScheduledEvent] }
     override def get (i: Int): Object =
@@ -1553,6 +1873,9 @@ extends
  * @param requestedWindow Requested date and time interval for activity execution.
  * @param status <em>undocumented</em>
  * @param InspectionDataSet <em>undocumented</em>
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class ScheduledEventData
 (
@@ -1565,8 +1888,19 @@ case class ScheduledEventData
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ScheduledEventData] }
     override def get (i: Int): Object =
     {
@@ -1619,6 +1953,9 @@ extends
  * @param reason Reason code or explanation for why an object went to the current status 'value'.
  * @param remark Pertinent information regarding the current 'value', as free form text.
  * @param value Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Status
 (
@@ -1631,8 +1968,19 @@ case class Status
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Status] }
     override def get (i: Int): Object =
     {
@@ -1684,6 +2032,9 @@ extends
  * @param status Status of this address.
  * @param streetDetail Street detail.
  * @param townDetail Town detail.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class StreetAddress
 (
@@ -1695,8 +2046,19 @@ case class StreetAddress
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[StreetAddress] }
     override def get (i: Int): Object =
     {
@@ -1755,6 +2117,9 @@ extends
  * @param typ Type of street.
  *        Examples include: street, circle, boulevard, avenue, road, drive, etc.
  * @param withinTownLimits True if this street is within the legal geographical boundaries of the specified town (default).
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class StreetDetail
 (
@@ -1773,8 +2138,19 @@ case class StreetDetail
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, false) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[StreetDetail] }
     override def get (i: Int): Object =
     {
@@ -1846,6 +2222,9 @@ extends
  * @param countryCode Country code.
  * @param extension (if applicable) Extension for this telephone number.
  * @param localNumber Main (local) part of this telephone number.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class TelephoneNumber
 (
@@ -1859,8 +2238,19 @@ case class TelephoneNumber
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TelephoneNumber] }
     override def get (i: Int): Object =
     {
@@ -1919,6 +2309,9 @@ extends
  * @param status Status of this time point.
  * @param window Interval defining the window of time that this time point is valid (for example, seasonal, only on weekends, not on weekends, only 8:00 am to 5:00 pm, etc.).
  * @param TimeSchedule Time schedule owning this time point.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class TimePoint
 (
@@ -1933,7 +2326,18 @@ case class TimePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TimePoint] }
     override def get (i: Int): Object =
@@ -1997,6 +2401,9 @@ extends
  * @param recurrencePeriod Duration between time points, from the beginning of one period to the beginning of the next period.
  *        Note that a device like a meter may have multiple interval periods (e.g., 1 min, 5 min, 15 min, 30 min, or 60 min).
  * @param scheduleInterval Schedule date and time interval.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class TimeSchedule
 (
@@ -2010,7 +2417,18 @@ case class TimeSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[TimeSchedule] }
     override def get (i: Int): Object =
@@ -2069,6 +2487,9 @@ extends
  * @param section Town section.
  *        For example, it is common for there to be 36 sections per township.
  * @param stateOrProvince Name of the state or province.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class TownDetail
 (
@@ -2082,8 +2503,19 @@ case class TownDetail
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TownDetail] }
     override def get (i: Int): Object =
     {
@@ -2142,6 +2574,9 @@ extends
  * @param PropertySpecification <em>undocumented</em>
  * @param RatingSpecification <em>undocumented</em>
  * @param Transaction Transaction for which this snapshot has been recorded.
+ * @group Common
+ * @groupname Common Package Common
+ * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class UserAttribute
 (
@@ -2157,8 +2592,19 @@ case class UserAttribute
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0, null, List(), null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[UserAttribute] }
     override def get (i: Int): Object =
     {

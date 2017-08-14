@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks.
- * This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
- */
-
-/**
  * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
  * For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
  * @param sup Reference to the superclass object.
@@ -29,6 +24,9 @@ import ch.ninecode.cim.Parseable
  * @param LineGroundingAction Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
  * @param LineJumpingAction Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
  * @param PerLengthImpedance Per-length impedance of this line segment.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class ACLineSegment
 (
@@ -49,7 +47,18 @@ case class ACLineSegment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Conductor: Conductor = sup.asInstanceOf[Conductor]
     override def copy (): Row = { clone ().asInstanceOf[ACLineSegment] }
     override def get (i: Int): Object =
@@ -125,6 +134,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param phase The phase connection of the wire at both ends.
  * @param ACLineSegment The line segment to which the phase belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class ACLineSegmentPhase
 (
@@ -135,7 +147,18 @@ case class ACLineSegmentPhase
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[ACLineSegmentPhase] }
     override def get (i: Int): Object =
@@ -209,6 +232,9 @@ extends
  * @param xpp Sub-transient reactance (unsaturated) (greather than Xl).
  * @param xs Synchronous reactance (greather than xp).
  * @param AsynchronousMachineDynamics Asynchronous machine dynamics model used to describe dynamic behavior of this asynchronous machine.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class AsynchronousMachine
 (
@@ -238,7 +264,18 @@ case class AsynchronousMachine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, 0.0, 0.0, 0.0, 0.0, 0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
     override def copy (): Row = { clone ().asInstanceOf[AsynchronousMachine] }
     override def get (i: Int): Object =
@@ -340,6 +377,9 @@ extends
  * A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time, and breaking currents under specified abnormal circuit conditions e.g.  those of short circuit.
  * @param sup Reference to the superclass object.
  * @param inTransitTime The transition time from open to close.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Breaker
 (
@@ -349,7 +389,18 @@ case class Breaker
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
     override def copy (): Row = { clone ().asInstanceOf[Breaker] }
     override def get (i: Int): Object =
@@ -394,6 +445,9 @@ extends
  * @param ipMax Maximum allowable peak short-circuit current of busbar (Ipmax in the IEC 60909-0).
  *        Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909
  * @param VoltageControlZone A VoltageControlZone is controlled by a designated BusbarSection.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class BusbarSection
 (
@@ -404,7 +458,18 @@ case class BusbarSection
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Connector: Connector = sup.asInstanceOf[Connector]
     override def copy (): Row = { clone ().asInstanceOf[BusbarSection] }
     override def get (i: Int): Object =
@@ -451,6 +516,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the clamp is located starting from side one of the line segment, i.e. the line segment terminal with sequence number equal to 1.
  * @param ACLineSegment The line segment to which the clamp is connected.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Clamp
 (
@@ -461,7 +529,18 @@ case class Clamp
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[Clamp] }
     override def get (i: Int): Object =
@@ -507,6 +586,9 @@ extends
  * These are typically found in medium voltage distribution networks.
  * @param sup Reference to the superclass object.
  * @param compositeSwitchType An alphanumeric code that can be used as a reference to extra information such as the description of the interlocking scheme if any.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class CompositeSwitch
 (
@@ -516,7 +598,18 @@ case class CompositeSwitch
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[CompositeSwitch] }
     override def get (i: Int): Object =
@@ -558,6 +651,9 @@ extends
  * Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
  * @param sup Reference to the superclass object.
  * @param len Segment length for calculating line section capabilities
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Conductor
 (
@@ -567,7 +663,18 @@ case class Conductor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[Conductor] }
     override def get (i: Int): Object =
@@ -608,6 +715,9 @@ extends
 /**
  * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation and are modelled with a single logical terminal.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Connector
 (
@@ -616,7 +726,18 @@ case class Connector
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[Connector] }
     override def get (i: Int): Object =
@@ -659,6 +780,9 @@ extends
  * @param lengthFromTerminal1 The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1.
  * @param ACLineSegment The line segment to which the cut is applied.
  * @param CutAction Action taken with this cut.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Cut
 (
@@ -670,7 +794,18 @@ case class Cut
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { clone ().asInstanceOf[Cut] }
     override def get (i: Int): Object =
@@ -718,6 +853,9 @@ extends
  * A manually operated or motor operated mechanical switching device used for changing the connections in a circuit, or for isolating a circuit or equipment from a source of power.
  * It is required to open or close circuits when negligible current is broken or made.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Disconnector
 (
@@ -726,7 +864,18 @@ case class Disconnector
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { clone ().asInstanceOf[Disconnector] }
     override def get (i: Int): Object =
@@ -767,6 +916,9 @@ extends
  * An earth fault compensator device modeled with a single terminal implies a second terminal solidly connected to ground.  If two terminals are modeled, the ground is not assumed and normal connection rules apply.
  * @param sup Reference to the superclass object.
  * @param r Nominal resistance of device.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class EarthFaultCompensator
 (
@@ -776,7 +928,18 @@ case class EarthFaultCompensator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[EarthFaultCompensator] }
     override def get (i: Int): Object =
@@ -837,6 +1000,9 @@ extends
  * @param LoadResponse The load response characteristic of this load.
  *        If missing, this load is assumed to be constant power.
  * @param PowerCutZone The  energy consumer is assigned to this power cut zone.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class EnergyConsumer
 (
@@ -857,7 +1023,18 @@ case class EnergyConsumer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[EnergyConsumer] }
     override def get (i: Int): Object =
@@ -942,6 +1119,9 @@ extends
  * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param EnergyConsumer The energy consumer to which this phase belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class EnergyConsumerPhase
 (
@@ -956,7 +1136,18 @@ case class EnergyConsumerPhase
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[EnergyConsumerPhase] }
     override def get (i: Int): Object =
@@ -1028,6 +1219,9 @@ extends
  * @param EnergySchedulingType Energy Scheduling Type of an Energy Source
  * @param EnergySourceAction Action taken with this energy source.
  * @param WindTurbineType3or4Dynamics Wind generator Type 3 or 4 dynamics model associated with this energy source.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class EnergySource
 (
@@ -1050,7 +1244,18 @@ case class EnergySource
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[EnergySource] }
     override def get (i: Int): Object =
@@ -1161,6 +1366,9 @@ extends
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param referencePriority Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  * @param voltageFactor Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class ExternalNetworkInjection
 (
@@ -1187,7 +1395,18 @@ case class ExternalNetworkInjection
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
     override def copy (): Row = { clone ().asInstanceOf[ExternalNetworkInjection] }
     override def get (i: Int): Object =
@@ -1285,6 +1504,9 @@ extends
  * @param maxU The maximum voltage on the DC side at which the frequency converter should operate.
  * @param minP The minimum active power on the DC side at which the frequence converter should operate.
  * @param minU The minimum voltage on the DC side at which the frequency converter should operate.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class FrequencyConverter
 (
@@ -1298,7 +1520,18 @@ case class FrequencyConverter
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
     override def copy (): Row = { clone ().asInstanceOf[FrequencyConverter] }
     override def get (i: Int): Object =
@@ -1352,6 +1585,9 @@ extends
  * An overcurrent protective device with a circuit opening fusible part that is heated and severed by the passage of overcurrent through it.
  * A fuse is considered a switching device because it breaks current.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Fuse
 (
@@ -1360,7 +1596,18 @@ case class Fuse
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { clone ().asInstanceOf[Fuse] }
     override def get (i: Int): Object =
@@ -1401,6 +1648,9 @@ extends
  * The power system model can have any number of grounds.
  * @param sup Reference to the superclass object.
  * @param GroundAction Action taken with this ground.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Ground
 (
@@ -1410,7 +1660,18 @@ case class Ground
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[Ground] }
     override def get (i: Int): Object =
@@ -1451,6 +1712,9 @@ extends
 /**
  * A manually operated or motor operated mechanical switching device used for isolating a circuit or equipment from ground.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class GroundDisconnector
 (
@@ -1459,7 +1723,18 @@ case class GroundDisconnector
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { clone ().asInstanceOf[GroundDisconnector] }
     override def get (i: Int): Object =
@@ -1499,6 +1774,9 @@ extends
  * A fixed impedance device used for grounding.
  * @param sup Reference to the superclass object.
  * @param x Reactance of device.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class GroundingImpedance
 (
@@ -1508,7 +1786,18 @@ case class GroundingImpedance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EarthFaultCompensator: EarthFaultCompensator = sup.asInstanceOf[EarthFaultCompensator]
     override def copy (): Row = { clone ().asInstanceOf[GroundingImpedance] }
     override def get (i: Int): Object =
@@ -1551,6 +1840,9 @@ extends
  * Note that zero-impedance branches can potentially be modeled by other equipment types.
  * @param sup Reference to the superclass object.
  * @param JumperAction Action taken with this jumper.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Jumper
 (
@@ -1560,7 +1852,18 @@ case class Jumper
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { clone ().asInstanceOf[Jumper] }
     override def get (i: Int): Object =
@@ -1601,6 +1904,9 @@ extends
 /**
  * A point where one or more conducting equipments are connected with zero resistance.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Junction
 (
@@ -1609,7 +1915,18 @@ case class Junction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Connector: Connector = sup.asInstanceOf[Connector]
     override def copy (): Row = { clone ().asInstanceOf[Junction] }
     override def get (i: Int): Object =
@@ -1649,6 +1966,9 @@ extends
  * Contains equipment beyond a substation belonging to a power transmission line.
  * @param sup Reference to the superclass object.
  * @param Region The sub-geographical region of the line.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Line
 (
@@ -1658,7 +1978,18 @@ case class Line
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[Line] }
     override def get (i: Int): Object =
@@ -1703,6 +2034,9 @@ extends
  * @param bPerSection Positive sequence shunt (charging) susceptance per section
  * @param g0PerSection Zero sequence shunt (charging) conductance per section
  * @param gPerSection Positive sequence shunt (charging) conductance per section
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class LinearShuntCompensator
 (
@@ -1715,7 +2049,18 @@ case class LinearShuntCompensator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
     override def copy (): Row = { clone ().asInstanceOf[LinearShuntCompensator] }
     override def get (i: Int): Object =
@@ -1769,6 +2114,9 @@ extends
  *        Susceptance per section phase to phase if shunt compensator is delta connected.
  * @param gPerSection Conductance per section for this phase if shunt compensator is wye connected.
  *        Conductance per section phase to phase if shunt compensator is delta connected.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class LinearShuntCompensatorPhase
 (
@@ -1779,7 +2127,18 @@ case class LinearShuntCompensatorPhase
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ShuntCompensatorPhase: ShuntCompensatorPhase = sup.asInstanceOf[ShuntCompensatorPhase]
     override def copy (): Row = { clone ().asInstanceOf[LinearShuntCompensatorPhase] }
     override def get (i: Int): Object =
@@ -1823,6 +2182,9 @@ extends
 /**
  * A mechanical switching device capable of making, carrying, and breaking currents under normal operating conditions.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class LoadBreakSwitch
 (
@@ -1831,7 +2193,18 @@ case class LoadBreakSwitch
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
     override def copy (): Row = { clone ().asInstanceOf[LoadBreakSwitch] }
     override def get (i: Int): Object =
@@ -1881,6 +2254,9 @@ extends
  * @param First_Terminal The starting terminal for the calculation of distances along the first branch of the mutual coupling.
  *        Normally MutualCoupling would only be used for terminals of AC line segments.  The first and second terminals of a mutual coupling should point to different AC line segments.
  * @param Second_Terminal The starting terminal for the calculation of distances along the second branch of the mutual coupling.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class MutualCoupling
 (
@@ -1899,7 +2275,18 @@ case class MutualCoupling
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MutualCoupling] }
     override def get (i: Int): Object =
@@ -1967,6 +2354,9 @@ extends
 /**
  * A non linear shunt compensator has bank or section admittance values that differs.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class NonlinearShuntCompensator
 (
@@ -1975,7 +2365,18 @@ case class NonlinearShuntCompensator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
     override def copy (): Row = { clone ().asInstanceOf[NonlinearShuntCompensator] }
     override def get (i: Int): Object =
@@ -2014,6 +2415,9 @@ extends
 /**
  * A per phase non linear shunt compensator has bank or section admittance values that differs.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class NonlinearShuntCompensatorPhase
 (
@@ -2022,7 +2426,18 @@ case class NonlinearShuntCompensatorPhase
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ShuntCompensatorPhase: ShuntCompensatorPhase = sup.asInstanceOf[ShuntCompensatorPhase]
     override def copy (): Row = { clone ().asInstanceOf[NonlinearShuntCompensatorPhase] }
     override def get (i: Int): Object =
@@ -2065,6 +2480,9 @@ extends
  * @param g Positive sequence shunt (charging) conductance per section
  * @param sectionNumber The number of the section.
  * @param NonlinearShuntCompensatorPhase Non-linear shunt compensator phase owning this point.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class NonlinearShuntCompensatorPhasePoint
 (
@@ -2077,8 +2495,19 @@ case class NonlinearShuntCompensatorPhasePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[NonlinearShuntCompensatorPhasePoint] }
     override def get (i: Int): Object =
     {
@@ -2133,6 +2562,9 @@ extends
  * @param g0 Zero sequence shunt (charging) conductance per section
  * @param sectionNumber The number of the section.
  * @param NonlinearShuntCompensator Non-linear shunt compensator owning this point.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class NonlinearShuntCompensatorPoint
 (
@@ -2147,8 +2579,19 @@ case class NonlinearShuntCompensatorPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[NonlinearShuntCompensatorPoint] }
     override def get (i: Int): Object =
     {
@@ -2203,6 +2646,9 @@ extends
 /**
  * Common type for per-length impedance electrical catalogues.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PerLengthImpedance
 (
@@ -2211,7 +2657,18 @@ case class PerLengthImpedance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PerLengthLineParameter: PerLengthLineParameter = sup.asInstanceOf[PerLengthLineParameter]
     override def copy (): Row = { clone ().asInstanceOf[PerLengthImpedance] }
     override def get (i: Int): Object =
@@ -2251,6 +2708,9 @@ extends
  * Common type for per-length electrical catalogues describing line parameters.
  * @param sup Reference to the superclass object.
  * @param WireSpacingInfo Wire spacing datasheet used to calculate this per-length parameter.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PerLengthLineParameter
 (
@@ -2260,7 +2720,18 @@ case class PerLengthLineParameter
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[PerLengthLineParameter] }
     override def get (i: Int): Object =
@@ -2303,6 +2774,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param conductorCount Number of phase, neutral, and other wires retained.
  *        Constrains the number of matrix elements and the phase codes that can be used with this matrix.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PerLengthPhaseImpedance
 (
@@ -2312,7 +2786,18 @@ case class PerLengthPhaseImpedance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PerLengthImpedance: PerLengthImpedance = sup.asInstanceOf[PerLengthImpedance]
     override def copy (): Row = { clone ().asInstanceOf[PerLengthPhaseImpedance] }
     override def get (i: Int): Object =
@@ -2362,6 +2847,9 @@ extends
  * @param r0 Zero sequence series resistance, per unit of length.
  * @param x Positive sequence series reactance, per unit of length.
  * @param x0 Zero sequence series reactance, per unit of length.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PerLengthSequenceImpedance
 (
@@ -2378,7 +2866,18 @@ case class PerLengthSequenceImpedance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PerLengthImpedance: PerLengthImpedance = sup.asInstanceOf[PerLengthImpedance]
     override def copy (): Row = { clone ().asInstanceOf[PerLengthSequenceImpedance] }
     override def get (i: Int): Object =
@@ -2450,6 +2949,9 @@ extends
  * @param xGroundMin The minimum reactance.
  * @param xGroundNominal The nominal reactance.
  *        This is the operating point (normally over compensation) that is defined based on the resonance point in the healthy network condition.  The impedance is calculated based on nominal voltage divided by position current.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PetersenCoil
 (
@@ -2465,7 +2967,18 @@ case class PetersenCoil
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EarthFaultCompensator: EarthFaultCompensator = sup.asInstanceOf[EarthFaultCompensator]
     override def copy (): Row = { clone ().asInstanceOf[PetersenCoil] }
     override def get (i: Int): Object =
@@ -2530,6 +3043,9 @@ extends
  *        Ranges from 1 to N + N*(N-1)/2.
  * @param x Reactance matrix element value, per length of unit.
  * @param PhaseImpedance Conductor phase impedance to which this data belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseImpedanceData
 (
@@ -2543,8 +3059,19 @@ case class PhaseImpedanceData
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PhaseImpedanceData] }
     override def get (i: Int): Object =
     {
@@ -2598,6 +3125,9 @@ extends
  * This phase tap model may also impact the voltage magnitude.
  * @param sup Reference to the superclass object.
  * @param TransformerEnd Transformer end to which this phase tap changer belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseTapChanger
 (
@@ -2607,7 +3137,18 @@ case class PhaseTapChanger
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TapChanger: TapChanger = sup.asInstanceOf[TapChanger]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChanger] }
     override def get (i: Int): Object =
@@ -2651,6 +3192,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param windingConnectionAngle The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift.
  *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmemtrical transformer.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseTapChangerAsymmetrical
 (
@@ -2660,7 +3204,18 @@ case class PhaseTapChangerAsymmetrical
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = sup.asInstanceOf[PhaseTapChangerNonLinear]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChangerAsymmetrical] }
     override def get (i: Int): Object =
@@ -2708,6 +3263,9 @@ extends
  *        The maximum reactance (xMax) appear at the low and high tap positions.
  * @param xMin The reactance depend on the tap position according to a "u" shaped curve.
  *        The minimum reactance (xMin) appear at the mid tap position.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseTapChangerLinear
 (
@@ -2719,7 +3277,18 @@ case class PhaseTapChangerLinear
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChangerLinear] }
     override def get (i: Int): Object =
@@ -2772,6 +3341,9 @@ extends
  *        The maximum reactance (xMax) appear at the low and high tap positions.
  * @param xMin The reactance depend on the tap position according to a "u" shaped curve.
  *        The minimum reactance (xMin) appear at the mid tap position.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseTapChangerNonLinear
 (
@@ -2783,7 +3355,18 @@ case class PhaseTapChangerNonLinear
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChangerNonLinear] }
     override def get (i: Int): Object =
@@ -2831,6 +3414,9 @@ extends
  * Describes a symmetrical phase shifting transformer tap model in which the secondary side voltage magnitude is the same as at the primary side.
  * The difference voltage magnitude is the base in an equal-sided triangle where the sides corresponds to the primary and secondary voltages. The phase angle difference corresponds to the top angle and can be expressed as twice the arctangent of half the total difference voltage.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseTapChangerSymmetrical
 (
@@ -2839,7 +3425,18 @@ case class PhaseTapChangerSymmetrical
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = sup.asInstanceOf[PhaseTapChangerNonLinear]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChangerSymmetrical] }
     override def get (i: Int): Object =
@@ -2878,6 +3475,9 @@ extends
 /**
  * Describes a tabular curve for how the phase angle difference and impedance varies with the tap step.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseTapChangerTable
 (
@@ -2886,7 +3486,18 @@ case class PhaseTapChangerTable
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChangerTable] }
     override def get (i: Int): Object =
@@ -2927,6 +3538,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param angle The angle difference in degrees.
  * @param PhaseTapChangerTable The table of this point.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PhaseTapChangerTablePoint
 (
@@ -2937,7 +3551,18 @@ case class PhaseTapChangerTablePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TapChangerTablePoint: TapChangerTablePoint = sup.asInstanceOf[TapChangerTablePoint]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChangerTablePoint] }
     override def get (i: Int): Object =
@@ -2978,6 +3603,11 @@ extends
     }
 }
 
+/**
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
 case class PhaseTapChangerTabular
 (
     override val sup: PhaseTapChanger,
@@ -2986,7 +3616,18 @@ case class PhaseTapChangerTabular
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PhaseTapChanger: PhaseTapChanger = sup.asInstanceOf[PhaseTapChanger]
     override def copy (): Row = { clone ().asInstanceOf[PhaseTapChangerTabular] }
     override def get (i: Int): Object =
@@ -3027,6 +3668,9 @@ extends
 /**
  * A Plant is a collection of equipment for purposes of generation.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Plant
 (
@@ -3035,7 +3679,18 @@ case class Plant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[Plant] }
     override def get (i: Int): Object =
@@ -3089,6 +3744,9 @@ extends
  *        Used for short circuit data exchange according to IEC 60909.
  * @param vectorGroup Vector group of the transformer for protective relaying, e.g., Dyn1.
  *        For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PowerTransformer
 (
@@ -3104,7 +3762,18 @@ case class PowerTransformer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[PowerTransformer] }
     override def get (i: Int): Object =
@@ -3182,6 +3851,9 @@ extends
  * @param x Positive sequence series reactance (star-model) of the transformer end.
  * @param x0 Zero sequence series reactance of the transformer end.
  * @param PowerTransformer The power transformer of this power transformer end.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class PowerTransformerEnd
 (
@@ -3203,7 +3875,18 @@ case class PowerTransformerEnd
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
     override def copy (): Row = { clone ().asInstanceOf[PowerTransformerEnd] }
     override def get (i: Int): Object =
@@ -3281,6 +3964,9 @@ extends
  * A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
  * @param sup Reference to the superclass object.
  * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class ProtectedSwitch
 (
@@ -3290,7 +3976,18 @@ case class ProtectedSwitch
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { clone ().asInstanceOf[ProtectedSwitch] }
     override def get (i: Int): Object =
@@ -3335,6 +4032,9 @@ extends
  * @param tculControlMode Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger.
  * @param RatioTapChangerTable The tap ratio table for this ratio  tap changer.
  * @param TransformerEnd Transformer end to which this ratio tap changer belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class RatioTapChanger
 (
@@ -3347,7 +4047,18 @@ case class RatioTapChanger
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TapChanger: TapChanger = sup.asInstanceOf[TapChanger]
     override def copy (): Row = { clone ().asInstanceOf[RatioTapChanger] }
     override def get (i: Int): Object =
@@ -3397,6 +4108,9 @@ extends
 /**
  * Describes a curve for how the voltage magnitude and impedance varies with the tap step.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class RatioTapChangerTable
 (
@@ -3405,7 +4119,18 @@ case class RatioTapChangerTable
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[RatioTapChangerTable] }
     override def get (i: Int): Object =
@@ -3445,6 +4170,9 @@ extends
  * Describes each tap step in the ratio tap changer tabular curve.
  * @param sup Reference to the superclass object.
  * @param RatioTapChangerTable Table of this point.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class RatioTapChangerTablePoint
 (
@@ -3454,7 +4182,18 @@ case class RatioTapChangerTablePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TapChangerTablePoint: TapChangerTablePoint = sup.asInstanceOf[TapChangerTablePoint]
     override def copy (): Row = { clone ().asInstanceOf[RatioTapChangerTablePoint] }
     override def get (i: Int): Object =
@@ -3498,6 +4237,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param coolantTemperature The machine's coolant temperature (e.g., ambient air or stator circulating water).
  * @param hydrogenPressure The hydrogen coolant pressure
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class ReactiveCapabilityCurve
 (
@@ -3508,7 +4250,18 @@ case class ReactiveCapabilityCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[ReactiveCapabilityCurve] }
     override def get (i: Int): Object =
@@ -3552,6 +4305,9 @@ extends
 /**
  * Pole-mounted fault interrupter with built-in phase and ground relays, current transformer (CT), and supplemental controls.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Recloser
 (
@@ -3560,7 +4316,18 @@ case class Recloser
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectedSwitch: ProtectedSwitch = sup.asInstanceOf[ProtectedSwitch]
     override def copy (): Row = { clone ().asInstanceOf[Recloser] }
     override def get (i: Int): Object =
@@ -3602,6 +4369,9 @@ extends
  * @param controlEnabled Specifies the regulation status of the equipment.
  *        True is regulating, false is not regulating.
  * @param RegulatingControl The regulating control scheme in which this equipment participates.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class RegulatingCondEq
 (
@@ -3612,7 +4382,18 @@ case class RegulatingCondEq
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[RegulatingCondEq] }
     override def get (i: Int): Object =
@@ -3670,6 +4451,9 @@ extends
  * @param targetValueUnitMultiplier Specify the multiplier for used for the targetValue.
  * @param Terminal The terminal associated with this regulating control.
  *        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class RegulatingControl
 (
@@ -3686,7 +4470,18 @@ case class RegulatingControl
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, null, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[RegulatingControl] }
     override def get (i: Int): Object =
@@ -3749,6 +4544,9 @@ extends
  * A pre-established pattern over time for a controlled variable, e.g., busbar voltage.
  * @param sup Reference to the superclass object.
  * @param RegulatingControl Regulating controls that have this Schedule.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class RegulationSchedule
 (
@@ -3758,7 +4556,18 @@ case class RegulationSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
     override def copy (): Row = { clone ().asInstanceOf[RegulationSchedule] }
     override def get (i: Int): Object =
@@ -3812,6 +4621,9 @@ extends
  * @param GeneratingUnit A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
  * @param HydroPump The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
  *        The direction of machine rotation for pumping may or may not be the same as for generating.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class RotatingMachine
 (
@@ -3827,7 +4639,18 @@ case class RotatingMachine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
     override def copy (): Row = { clone ().asInstanceOf[RotatingMachine] }
     override def get (i: Int): Object =
@@ -3887,6 +4710,9 @@ extends
  * Automatic switch that will lock open to isolate a faulted section.
  * It may, or may not, have load breaking capability. Its primary purpose is to provide fault sectionalising at locations where the fault current is either too high, or too low, for proper coordination of fuses.
  * @param sup Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Sectionaliser
 (
@@ -3895,7 +4721,18 @@ case class Sectionaliser
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Switch: Switch = sup.asInstanceOf[Switch]
     override def copy (): Row = { clone ().asInstanceOf[Sectionaliser] }
     override def get (i: Int): Object =
@@ -3942,6 +4779,9 @@ extends
  * @param varistorVoltageThreshold The dc voltage at which the varistor start conducting.
  * @param x Positive sequence reactance.
  * @param x0 Zero sequence reactance.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class SeriesCompensator
 (
@@ -3957,7 +4797,18 @@ case class SeriesCompensator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[SeriesCompensator] }
     override def get (i: Int): Object =
@@ -4031,6 +4882,9 @@ extends
  * @param switchOnDate The date and time when the capacitor bank was last switched on.
  * @param voltageSensitivity Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
  * @param SvShuntCompensatorSections The state for the number of shunt compensator sections in service.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class ShuntCompensator
 (
@@ -4050,7 +4904,18 @@ case class ShuntCompensator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, 0, 0.0, 0, null, 0.0, 0, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
     override def copy (): Row = { clone ().asInstanceOf[ShuntCompensator] }
     override def get (i: Int): Object =
@@ -4126,6 +4991,9 @@ extends
  * @param phase Phase of this shunt compensator component.
  *        If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase.
  * @param ShuntCompensator Shunt compensator of this shunt compensator phase.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class ShuntCompensatorPhase
 (
@@ -4138,7 +5006,18 @@ case class ShuntCompensatorPhase
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[ShuntCompensatorPhase] }
     override def get (i: Int): Object =
@@ -4197,6 +5076,9 @@ extends
  * @param slope The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
  * @param voltageSetPoint The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
  *        When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class StaticVarCompensator
 (
@@ -4211,7 +5093,18 @@ case class StaticVarCompensator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
     override def copy (): Row = { clone ().asInstanceOf[StaticVarCompensator] }
     override def get (i: Int): Object =
@@ -4279,6 +5172,9 @@ extends
  * @param CompositeSwitch Composite switch to which this Switch belongs.
  * @param Outage Current outage of this protective device.
  * @param SwitchAction Action changing status of this switch.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class Switch
 (
@@ -4296,7 +5192,18 @@ case class Switch
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, 0.0, false, 0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[Switch] }
     override def get (i: Int): Object =
@@ -4369,6 +5276,9 @@ extends
  * @param phaseSide2 Phase of this SwitchPhase on the side with terminal sequence number equal 2.
  *        Should be a phase contained in that terminal&rsquo;s Terminal.phases attribute.
  * @param Switch The switch of the switch phase.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class SwitchPhase
 (
@@ -4382,7 +5292,18 @@ case class SwitchPhase
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[SwitchPhase] }
     override def get (i: Int): Object =
@@ -4437,6 +5358,9 @@ extends
  * If RegularTimePoint.value1 is 0, the switch is open.  If 1, the switch is closed.
  * @param sup Reference to the superclass object.
  * @param Switch A SwitchSchedule is associated with a Switch.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class SwitchSchedule
 (
@@ -4446,7 +5370,18 @@ case class SwitchSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
     override def copy (): Row = { clone ().asInstanceOf[SwitchSchedule] }
     override def get (i: Int): Object =
@@ -4534,6 +5469,9 @@ extends
  * @param x2 Negative sequence reactance.
  * @param InitialReactiveCapabilityCurve The default reactive capability curve for use by a synchronous machine.
  * @param SynchronousMachineDynamics Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class SynchronousMachine
 (
@@ -4574,7 +5512,18 @@ case class SynchronousMachine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RotatingMachine: RotatingMachine = sup.asInstanceOf[RotatingMachine]
     override def copy (): Row = { clone ().asInstanceOf[SynchronousMachine] }
     override def get (i: Int): Object =
@@ -4725,6 +5674,9 @@ extends
  * @param subsequentDelay For an LTC, the delay for subsequent tap changer operation (second and later step changes)
  * @param SvTapStep The tap step state associated with the tap changer.
  * @param TapChangerControl The regulating control scheme in which this tap changer participates.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TapChanger
 (
@@ -4745,7 +5697,18 @@ case class TapChanger
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0, 0.0, 0, false, 0, 0.0, 0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[TapChanger] }
     override def get (i: Int): Object =
@@ -4826,6 +5789,9 @@ extends
  * @param lineDropX Line drop compensator reactance setting for normal (forward) power flow.
  * @param reverseLineDropR Line drop compensator resistance setting for reverse power flow.
  * @param reverseLineDropX Line drop compensator reactance setting for reverse power flow.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TapChangerControl
 (
@@ -4840,7 +5806,18 @@ case class TapChangerControl
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegulatingControl: RegulatingControl = sup.asInstanceOf[RegulatingControl]
     override def copy (): Row = { clone ().asInstanceOf[TapChangerControl] }
     override def get (i: Int): Object =
@@ -4893,6 +5870,11 @@ extends
     }
 }
 
+/**
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
 case class TapChangerTablePoint
 (
     override val sup: BasicElement,
@@ -4906,8 +5888,19 @@ case class TapChangerTablePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TapChangerTablePoint] }
     override def get (i: Int): Object =
     {
@@ -4963,6 +5956,9 @@ extends
  * A pre-established pattern over time for a tap step.
  * @param sup Reference to the superclass object.
  * @param TapChanger A TapSchedule is associated with a TapChanger.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TapSchedule
 (
@@ -4972,7 +5968,18 @@ case class TapSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
     override def copy (): Row = { clone ().asInstanceOf[TapSchedule] }
     override def get (i: Int): Object =
@@ -5020,6 +6027,9 @@ extends
  * @param g Magnetizing branch conductance (G mag).
  * @param g0 Zero sequence magnetizing branch conductance.
  * @param TransformerEndInfo Transformer end datasheet used to calculate this core admittance.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TransformerCoreAdmittance
 (
@@ -5033,7 +6043,18 @@ case class TransformerCoreAdmittance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TransformerCoreAdmittance] }
     override def get (i: Int): Object =
@@ -5104,6 +6125,9 @@ extends
  * @param StarImpedance (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
  *        By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).
  * @param Terminal Terminal of the power transformer to which this transformer end belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TransformerEnd
 (
@@ -5125,7 +6149,18 @@ case class TransformerEnd
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0, false, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TransformerEnd] }
     override def get (i: Int): Object =
@@ -5211,6 +6246,9 @@ extends
  *        It determines the voltage reference.
  * @param FromTransformerEndInfo 'from' transformer end datasheet this mesh impedance is calculated from.
  *        It determines the voltage reference.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TransformerMeshImpedance
 (
@@ -5225,7 +6263,18 @@ case class TransformerMeshImpedance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TransformerMeshImpedance] }
     override def get (i: Int): Object =
@@ -5287,6 +6336,9 @@ extends
  * @param x Positive sequence series reactance of the transformer end.
  * @param x0 Zero sequence series reactance of the transformer end.
  * @param TransformerEndInfo Transformer end datasheet used to calculate this transformer star impedance.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TransformerStarImpedance
 (
@@ -5300,7 +6352,18 @@ case class TransformerStarImpedance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TransformerStarImpedance] }
     override def get (i: Int): Object =
@@ -5355,6 +6418,9 @@ extends
  * These windings are bound on a common core and place in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
  * @param sup Reference to the superclass object.
  * @param PowerTransformer Bank this transformer belongs to.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TransformerTank
 (
@@ -5364,7 +6430,18 @@ case class TransformerTank
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[TransformerTank] }
     override def get (i: Int): Object =
@@ -5407,6 +6484,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param phases Describes the phases carried by a conducting equipment.
  * @param TransformerTank Transformer this winding belongs to.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class TransformerTankEnd
 (
@@ -5417,7 +6497,18 @@ case class TransformerTankEnd
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TransformerEnd: TransformerEnd = sup.asInstanceOf[TransformerEnd]
     override def copy (): Row = { clone ().asInstanceOf[TransformerTankEnd] }
     override def get (i: Int): Object =
@@ -5464,6 +6555,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param BusbarSection A VoltageControlZone is controlled by a designated BusbarSection.
  * @param RegulationSchedule A VoltageControlZone may have a  voltage regulation schedule.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class VoltageControlZone
 (
@@ -5474,7 +6568,18 @@ case class VoltageControlZone
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[VoltageControlZone] }
     override def get (i: Int): Object =

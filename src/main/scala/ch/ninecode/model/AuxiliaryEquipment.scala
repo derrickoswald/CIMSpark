@@ -7,15 +7,13 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.
- * These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
- */
-
-/**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
  * AuxiliaryEquipment is attached to primary eqipment via an association with Terminal.
  * @param sup Reference to the superclass object.
  * @param Terminal The Terminal at the equipment where the AuxiliaryEquipment is attached.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class AuxiliaryEquipment
 (
@@ -25,7 +23,18 @@ case class AuxiliaryEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[AuxiliaryEquipment] }
     override def get (i: Int): Object =
@@ -72,6 +81,9 @@ extends
  * @param coreBurden Power burden of the CT core.
  * @param ctClass CT classification; i.e. class 10P.
  * @param usage Intended usage of the CT; i.e. metering, protection.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class CurrentTransformer
 (
@@ -85,7 +97,18 @@ case class CurrentTransformer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Sensor: Sensor = sup.asInstanceOf[Sensor]
     override def copy (): Row = { clone ().asInstanceOf[CurrentTransformer] }
     override def get (i: Int): Object =
@@ -139,6 +162,9 @@ extends
  * A FaultIndicator is typically only an indicator (which may or may not be remotely monitored), and not a piece of equipment that actually initiates a protection event.
  * It is used for FLISR (Fault Location, Isolation and Restoration) purposes, assisting with the dispatch of crews to "most likely" part of the network (i.e. assists with determining circuit section where the fault most likely happened).
  * @param sup Reference to the superclass object.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class FaultIndicator
 (
@@ -147,7 +173,18 @@ case class FaultIndicator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
     override def copy (): Row = { clone ().asInstanceOf[FaultIndicator] }
     override def get (i: Int): Object =
@@ -186,6 +223,9 @@ extends
 /**
  * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
  * @param sup Reference to the superclass object.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class PostLineSensor
 (
@@ -194,7 +234,18 @@ case class PostLineSensor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Sensor: Sensor = sup.asInstanceOf[Sensor]
     override def copy (): Row = { clone ().asInstanceOf[PostLineSensor] }
     override def get (i: Int): Object =
@@ -238,6 +289,9 @@ extends
  * @param nominalRatio Nominal ratio between the primary and secondary voltage.
  * @param ptClass Potential transformer (PT) classification covering burden.
  * @param typ Potential transformer construction type.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class PotentialTransformer
 (
@@ -250,7 +304,18 @@ case class PotentialTransformer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Sensor: Sensor = sup.asInstanceOf[Sensor]
     override def copy (): Row = { clone ().asInstanceOf[PotentialTransformer] }
     override def get (i: Int): Object =
@@ -300,6 +365,9 @@ extends
 /**
  * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
  * @param sup Reference to the superclass object.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class Sensor
 (
@@ -308,7 +376,18 @@ case class Sensor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
     override def copy (): Row = { clone ().asInstanceOf[Sensor] }
     override def get (i: Int): Object =
@@ -347,6 +426,9 @@ extends
 /**
  * Shunt device, installed on the network, usually in the proximity of electrical equipment in order to protect the said equipment against transient voltage transients caused by lightning or switching activity.
  * @param sup Reference to the superclass object.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class SurgeArrester
 (
@@ -355,7 +437,18 @@ case class SurgeArrester
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
     override def copy (): Row = { clone ().asInstanceOf[SurgeArrester] }
     override def get (i: Int): Object =
@@ -394,6 +487,9 @@ extends
 /**
  * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
  * @param sup Reference to the superclass object.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  */
 case class WaveTrap
 (
@@ -402,7 +498,18 @@ case class WaveTrap
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
     override def copy (): Row = { clone ().asInstanceOf[WaveTrap] }
     override def get (i: Int): Object =

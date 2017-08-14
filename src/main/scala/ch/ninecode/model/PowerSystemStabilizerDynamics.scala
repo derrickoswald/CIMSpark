@@ -7,14 +7,12 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.
- * A variety of input signals may be used depending on the particular design.
- */
-
-/**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this power system stabilizer model is associated.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PowerSystemStabilizerDynamics
 (
@@ -24,7 +22,18 @@ case class PowerSystemStabilizerDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[PowerSystemStabilizerDynamics] }
     override def get (i: Int): Object =
@@ -97,6 +106,9 @@ extends
  *        Typical Value = -0.06.
  * @param vsmx Stabilizer output min limit (V<sub>SMX</sub>).
  *        Typical Value = 0.06.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class Pss1
 (
@@ -120,7 +132,18 @@ case class Pss1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[Pss1] }
     override def get (i: Int): Object =
@@ -228,6 +251,9 @@ extends
  * @param vcu Stabilizer input cutoff threshold (Vcu).
  * @param vrmax Maximum stabilizer output (Vrmax).
  * @param vrmin Minimum stabilizer output (Vrmin).
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class Pss1A
 (
@@ -258,7 +284,18 @@ case class Pss1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[Pss1A] }
     override def get (i: Int): Object =
@@ -425,6 +462,9 @@ extends
  *        Typical Value = 0.1.
  * @param vstmin Stabilizer output min limit (Vstmin).
  *        Typical Value = -0.1.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class Pss2B
 (
@@ -464,7 +504,18 @@ case class Pss2B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[Pss2B] }
     override def get (i: Int): Object =
@@ -615,6 +666,9 @@ extends
  * @param t9 Time constant (T9).
  * @param vcl Cutoff limiter (Vcl).
  * @param vcu Cutoff limiter (Vcu).
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class Pss2ST
 (
@@ -641,7 +695,18 @@ case class Pss2ST
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[Pss2ST] }
     override def get (i: Int): Object =
@@ -773,6 +838,9 @@ extends
  *        Typical Value = -0.1.
  * @param vsmx Stabilizer output min limit (V<sub>SMX</sub>).
  *        Typical Value = 0.1.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class Pss5
 (
@@ -798,7 +866,18 @@ case class Pss5
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[Pss5] }
     override def get (i: Int): Object =
@@ -909,6 +988,9 @@ extends
  *        Typical Value = 0.
  * @param ts6 Time constant (Ts6).
  *        Typical Value = 1.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssELIN2
 (
@@ -928,7 +1010,18 @@ case class PssELIN2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssELIN2] }
     override def get (i: Int): Object =
@@ -1024,6 +1117,9 @@ extends
  *        Typical Value = 0.05.
  * @param vrmin Minimum stabilizer output (Vrmin).
  *        Typical Value = -0.05.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssIEEE1A
 (
@@ -1044,7 +1140,18 @@ case class PssIEEE1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssIEEE1A] }
     override def get (i: Int): Object =
@@ -1173,6 +1280,9 @@ extends
  *        Typical Value = 0.1.
  * @param vstmin Stabilizer output min limit (Vstmin).
  *        Typical Value = -0.1.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssIEEE2B
 (
@@ -1208,7 +1318,18 @@ case class PssIEEE2B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssIEEE2B] }
     override def get (i: Int): Object =
@@ -1366,6 +1487,9 @@ extends
  *        Typical Value = 0.1.
  * @param vstmin Stabilizer output min limit (Vstmin).
  *        Typical Value = -0.1.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssIEEE3B
 (
@@ -1393,7 +1517,18 @@ case class PssIEEE3B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssIEEE3B] }
     override def get (i: Int): Object =
@@ -1615,6 +1750,9 @@ extends
  *        Typical Value = 0.15.
  * @param vstmin PSS output minimum limit (V<sub>STmin</sub>).
  *        Typical Value = -0.15.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssIEEE4B
 (
@@ -1690,7 +1828,18 @@ case class PssIEEE4B
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssIEEE4B] }
     override def get (i: Int): Object =
@@ -1951,6 +2100,9 @@ extends
  *        Typical Value = 0.2.
  * @param tp Time constant (Tp).
  *        Typical Value = 0.2.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssPTIST1
 (
@@ -1970,7 +2122,18 @@ case class PssPTIST1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssPTIST1] }
     override def get (i: Int): Object =
@@ -2090,6 +2253,9 @@ extends
  *        Typical Value = 0.2.
  * @param tp Time constant (Tp).
  *        Typical Value = 0.2.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssPTIST3
 (
@@ -2132,7 +2298,18 @@ case class PssPTIST3
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssPTIST3] }
     override def get (i: Int): Object =
@@ -2283,6 +2460,9 @@ extends
  * @param tx2 Time constant (Tx2).
  * @param vsmax Limiter (Vsmax).
  * @param vsmin Limiter (Vsmin).
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssSB4
 (
@@ -2302,7 +2482,18 @@ case class PssSB4
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssSB4] }
     override def get (i: Int): Object =
@@ -2399,6 +2590,9 @@ extends
  *        Typical Value = 0.1.
  * @param vsmin Output minimum limit (Vsmin).
  *        Typical Value = -0.1.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssSH
 (
@@ -2420,7 +2614,18 @@ case class PssSH
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssSH] }
     override def get (i: Int): Object =
@@ -2519,6 +2724,9 @@ extends
  *        Typical Value = 0.4.
  * @param vsmin Stabilizer output min limit (Vsmin).
  *        Typical Value = -0.4.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssSK
 (
@@ -2538,7 +2746,18 @@ case class PssSK
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssSK] }
     override def get (i: Int): Object =
@@ -2627,6 +2846,9 @@ extends
  * @param vcu Maximum value for voltage compensator output (V<sub>CU</sub>).
  * @param vsmax Maximum output signal (Vsmax).
  * @param vsmin Minimum output signal (Vsmin).
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
  */
 case class PssWECC
 (
@@ -2653,7 +2875,18 @@ case class PssWECC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PssWECC] }
     override def get (i: Int): Object =

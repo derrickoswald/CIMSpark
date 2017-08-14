@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * An extension to the Core and Wires packages that models information for protection equipment such as relays.
- * These entities are used within training simulators and distribution network fault location applications.
- */
-
-/**
  * A device that checks current flow values in any direction or designated direction.
  * @param sup Reference to the superclass object.
  * @param currentLimit1 Current limit number one 1 for inverse time pickup.
@@ -21,6 +16,9 @@ import ch.ninecode.cim.Parseable
  * @param timeDelay1 Inverse time delay number 1 for current limit number 1.
  * @param timeDelay2 Inverse time delay number 2 for current limit number 2.
  * @param timeDelay3 Inverse time delay number 3 for current limit number 3.
+ * @group Protection
+ * @groupname Protection Package Protection
+ * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
 case class CurrentRelay
 (
@@ -36,7 +34,18 @@ case class CurrentRelay
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf[ProtectionEquipment]
     override def copy (): Row = { clone ().asInstanceOf[CurrentRelay] }
     override def get (i: Int): Object =
@@ -104,6 +113,9 @@ extends
  * @param unitSymbol The unit of measure of the value.
  * @param ConductingEquipments Protection equipment may be used to protect specific conducting equipment.
  * @param ProtectedSwitches Protected switches operated by this ProtectionEquipment.
+ * @group Protection
+ * @groupname Protection Package Protection
+ * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
 case class ProtectionEquipment
 (
@@ -120,7 +132,18 @@ case class ProtectionEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, false, 0.0, null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[ProtectionEquipment] }
     override def get (i: Int): Object =
@@ -185,6 +208,9 @@ extends
  * @param recloseDelay Indicates the time lapse before the reclose step will execute a reclose.
  * @param recloseStep Indicates the ordinal position of the reclose step relative to other steps in the sequence.
  * @param ProtectedSwitch A breaker may have zero or more automatic reclosures after a trip occurs.
+ * @group Protection
+ * @groupname Protection Package Protection
+ * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
 case class RecloseSequence
 (
@@ -196,7 +222,18 @@ case class RecloseSequence
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[RecloseSequence] }
     override def get (i: Int): Object =
@@ -247,6 +284,9 @@ extends
  * @param maxAngleDiff The maximum allowable voltage vector phase angle difference across the open device.
  * @param maxFreqDiff The maximum allowable frequency difference across the open device.
  * @param maxVoltDiff The maximum allowable difference voltage across the open device.
+ * @group Protection
+ * @groupname Protection Package Protection
+ * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
  */
 case class SynchrocheckRelay
 (
@@ -258,7 +298,18 @@ case class SynchrocheckRelay
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf[ProtectionEquipment]
     override def copy (): Row = { clone ().asInstanceOf[SynchrocheckRelay] }
     override def get (i: Int): Object =

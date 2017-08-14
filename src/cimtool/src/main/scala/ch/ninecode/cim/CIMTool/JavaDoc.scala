@@ -2,7 +2,7 @@ package ch.ninecode.cim.CIMTool
 
 import java.util.regex.Pattern
 
-case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List())
+case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List(), group: String = "", group_name: String = "", group_description: String = "")
 {
     lazy val spaces: String = (for (i <- 0 until leftpad) yield " ").mkString ("")
     val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""")
@@ -38,25 +38,69 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
         s.replace ("\n", "\n * ")
     }
 
+    def addGroupStuff (s: StringBuilder): Unit =
+    {
+        s.append ("""
+          | * @group """.stripMargin)
+        s.append (group)
+        if ("" != group_name)
+        {
+            s.append (
+            """
+                    | * @groupname """.stripMargin)
+            s.append (group)
+            s.append (" ")
+            s.append (group_name)
+        }
+            if ("" != group_description)
+        {
+            s.
+            append (
+            """
+                | * @groupdesc """.stripMargin)
+            s.append (group)
+            s.append (" ")
+            s.append (group_description)
+        }
+
+    }
     def asText (): String =
     {
         if ((null != note) && (note != ""))
         {
             val s = new StringBuilder ()
-            s.append ("""/**
+            s.append (
+                """/**
                 | * """.stripMargin)
             s.append (asterisks (edit (summary)))
             if ("" != body)
             {
-                s.append ("""
+                s.append (
+                    """
                     | * """.stripMargin)
                 s.append (asterisks (edit (body)))
             }
             for (member <- members)
                 s.append ("\n" + member.javaDoc)
-            s.append ("""
+            if ("" != group)
+                addGroupStuff (s)
+            s.append (
+                """
                 | */
                 |""".stripMargin)
+
+            s.toString.split ("\n").map (st => spaces + st).mkString ("\n") + "\n"
+        }
+        else if ("" != group)
+        {
+            val s = new StringBuilder ()
+
+            s.append ("""/**""")
+            addGroupStuff (s)
+            s.append (
+                """
+                  | */
+                  |""".stripMargin)
 
             s.toString.split ("\n").map (st => spaces + st).mkString ("\n") + "\n"
         }

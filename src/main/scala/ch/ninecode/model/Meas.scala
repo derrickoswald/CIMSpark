@@ -7,15 +7,14 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Contains entities that describe dynamic measurement data exchanged between applications.
- */
-
-/**
  * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
  * @param sup Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param LimitSets A measurement may have zero or more limit ranges defined for it.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Accumulator
 (
@@ -26,7 +25,18 @@ case class Accumulator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
     override def copy (): Row = { clone ().asInstanceOf[Accumulator] }
     override def get (i: Int): Object =
@@ -73,6 +83,9 @@ extends
  * @param value The value to supervise against.
  *        The value is positive.
  * @param LimitSet The set of limits.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AccumulatorLimit
 (
@@ -83,7 +96,18 @@ case class AccumulatorLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Limit: Limit = sup.asInstanceOf[Limit]
     override def copy (): Row = { clone ().asInstanceOf[AccumulatorLimit] }
     override def get (i: Int): Object =
@@ -127,6 +151,9 @@ extends
 /**
  * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
  * @param sup Reference to the superclass object.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AccumulatorLimitSet
 (
@@ -135,7 +162,18 @@ case class AccumulatorLimitSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LimitSet: LimitSet = sup.asInstanceOf[LimitSet]
     override def copy (): Row = { clone ().asInstanceOf[AccumulatorLimitSet] }
     override def get (i: Int): Object =
@@ -175,6 +213,9 @@ extends
  * This command reset the counter value to zero.
  * @param sup Reference to the superclass object.
  * @param AccumulatorValue The accumulator value that is reset by the command.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AccumulatorReset
 (
@@ -184,7 +225,18 @@ case class AccumulatorReset
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Control: Control = sup.asInstanceOf[Control]
     override def copy (): Row = { clone ().asInstanceOf[AccumulatorReset] }
     override def get (i: Int): Object =
@@ -229,6 +281,9 @@ extends
  *        The value is positive.
  * @param Accumulator Measurement to which this value is connected.
  * @param AccumulatorReset The command that reset the accumulator value.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AccumulatorValue
 (
@@ -240,7 +295,18 @@ case class AccumulatorValue
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
     override def copy (): Row = { clone ().asInstanceOf[AccumulatorValue] }
     override def get (i: Int): Object =
@@ -294,6 +360,9 @@ extends
  * @param normalValue Normal measurement value, e.g., used for percentage calculations.
  * @param positiveFlowIn If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource.
  * @param LimitSets A measurement may have zero or more limit ranges defined for it.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Analog
 (
@@ -307,7 +376,18 @@ case class Analog
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, false, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
     override def copy (): Row = { clone ().asInstanceOf[Analog] }
     override def get (i: Int): Object =
@@ -365,6 +445,9 @@ extends
  * @param minValue Normal value range minimum for any of the Control.value.
  *        Used for scaling, e.g. in bar graphs.
  * @param AnalogValue The MeasurementValue that is controlled.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AnalogControl
 (
@@ -376,7 +459,18 @@ case class AnalogControl
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Control: Control = sup.asInstanceOf[Control]
     override def copy (): Row = { clone ().asInstanceOf[AnalogControl] }
     override def get (i: Int): Object =
@@ -425,6 +519,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param value The value to supervise against.
  * @param LimitSet The set of limits.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AnalogLimit
 (
@@ -435,7 +532,18 @@ case class AnalogLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Limit: Limit = sup.asInstanceOf[Limit]
     override def copy (): Row = { clone ().asInstanceOf[AnalogLimit] }
     override def get (i: Int): Object =
@@ -479,6 +587,9 @@ extends
 /**
  * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
  * @param sup Reference to the superclass object.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AnalogLimitSet
 (
@@ -487,7 +598,18 @@ case class AnalogLimitSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LimitSet: LimitSet = sup.asInstanceOf[LimitSet]
     override def copy (): Row = { clone ().asInstanceOf[AnalogLimitSet] }
     override def get (i: Int): Object =
@@ -529,6 +651,9 @@ extends
  * @param value The value to supervise.
  * @param Analog Measurement to which this value is connected.
  * @param AnalogControl The Control variable associated with the MeasurementValue.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class AnalogValue
 (
@@ -540,7 +665,18 @@ case class AnalogValue
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
     override def copy (): Row = { clone ().asInstanceOf[AnalogValue] }
     override def get (i: Int): Object =
@@ -591,6 +727,9 @@ extends
  * @param value The value representing the actuator output.
  * @param DiscreteValue The MeasurementValue that is controlled.
  * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Command
 (
@@ -603,7 +742,18 @@ case class Command
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Control: Control = sup.asInstanceOf[Control]
     override def copy (): Row = { clone ().asInstanceOf[Command] }
     override def get (i: Int): Object =
@@ -662,6 +812,9 @@ extends
  * @param unitSymbol The unit of measure of the controlled quantity.
  * @param PowerSystemResource Regulating device governed by this control output.
  * @param RemoteControl The remote point controlling the physical actuator.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Control
 (
@@ -677,7 +830,18 @@ case class Control
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Control] }
     override def get (i: Int): Object =
@@ -742,6 +906,9 @@ extends
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param normalValue Normal measurement value, e.g., used for percentage calculations.
  * @param ValueAliasSet The ValueAliasSet used for translation of a MeasurementValue.value to a name.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Discrete
 (
@@ -754,7 +921,18 @@ case class Discrete
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
     override def copy (): Row = { clone ().asInstanceOf[Discrete] }
     override def get (i: Int): Object =
@@ -801,6 +979,11 @@ extends
     }
 }
 
+/**
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
+ */
 case class DiscreteCommand
 (
     override val sup: Command
@@ -808,7 +991,18 @@ case class DiscreteCommand
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Command: Command = sup.asInstanceOf[Command]
     override def copy (): Row = { clone ().asInstanceOf[DiscreteCommand] }
     override def get (i: Int): Object =
@@ -850,6 +1044,9 @@ extends
  * @param value The value to supervise.
  * @param Command The Control variable associated with the MeasurementValue.
  * @param Discrete Measurement to which this value is connected.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class DiscreteValue
 (
@@ -861,7 +1058,18 @@ case class DiscreteValue
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
     override def copy (): Row = { clone ().asInstanceOf[DiscreteValue] }
     override def get (i: Int): Object =
@@ -909,6 +1117,9 @@ extends
  * Specifies one limit value for a Measurement.
  * A Measurement typically has several limits that are kept together by the LimitSet class. The actual meaning and use of a Limit instance (i.e., if it is an alarm or warning limit or if it is a high or low limit) is not captured in the Limit class. However the name of a Limit instance may indicate both meaning and use.
  * @param sup Reference to the superclass object.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Limit
 (
@@ -917,7 +1128,18 @@ case class Limit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Limit] }
     override def get (i: Int): Object =
@@ -958,6 +1180,9 @@ extends
  * A Measurement may have several LimitSets corresponding to seasonal or other changing conditions. The condition is captured in the name and description attributes. The same LimitSet may be used for several Measurements. In particular percentage limits are used this way.
  * @param sup Reference to the superclass object.
  * @param isPercentageLimits Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class LimitSet
 (
@@ -967,7 +1192,18 @@ case class LimitSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LimitSet] }
     override def get (i: Int): Object =
@@ -1018,6 +1254,9 @@ extends
  * @param Asset <em>undocumented</em>
  * @param PowerSystemResource The power system resource that contains the measurement.
  * @param Terminal One or more measurements may be associated with a terminal in the network.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Measurement
 (
@@ -1033,7 +1272,18 @@ case class Measurement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Measurement] }
     override def get (i: Int): Object =
@@ -1101,6 +1351,9 @@ extends
  * @param MeasurementValueSource A reference to the type of source that updates the MeasurementValue, e.g.
  *        SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
  * @param RemoteSource Link to the physical telemetered point associated with this measurement.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class MeasurementValue
 (
@@ -1116,7 +1369,18 @@ case class MeasurementValue
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MeasurementValue] }
     override def get (i: Int): Object =
@@ -1177,6 +1441,9 @@ extends
  * Bits 0-10 are defined for substation automation in draft IEC 61850 part 7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
  * @param sup Reference to the superclass object.
  * @param MeasurementValue A MeasurementValue has a MeasurementValueQuality associated with it.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class MeasurementValueQuality
 (
@@ -1186,7 +1453,18 @@ case class MeasurementValueQuality
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Quality61850: Quality61850 = sup.asInstanceOf[Quality61850]
     override def copy (): Row = { clone ().asInstanceOf[MeasurementValueQuality] }
     override def get (i: Int): Object =
@@ -1228,6 +1506,9 @@ extends
  * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
  * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
  * @param sup Reference to the superclass object.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class MeasurementValueSource
 (
@@ -1236,7 +1517,18 @@ case class MeasurementValueSource
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MeasurementValueSource] }
     override def get (i: Int): Object =
@@ -1291,6 +1583,9 @@ extends
  *        Typically set by a network State Estimator.
  * @param test Measurement value is transmitted for test purposes.
  * @param validity Validity of the measurement value.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class Quality61850
 (
@@ -1311,8 +1606,19 @@ case class Quality61850
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, false, false, false, false, false, false, null, false, false, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Quality61850] }
     override def get (i: Int): Object =
     {
@@ -1386,6 +1692,9 @@ extends
  * An analog control that increase or decrease a set point value with pulses.
  * @param sup Reference to the superclass object.
  * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class RaiseLowerCommand
 (
@@ -1395,7 +1704,18 @@ case class RaiseLowerCommand
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AnalogControl: AnalogControl = sup.asInstanceOf[AnalogControl]
     override def copy (): Row = { clone ().asInstanceOf[RaiseLowerCommand] }
     override def get (i: Int): Object =
@@ -1438,6 +1758,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
  * @param value The value representing the actuator output.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class SetPoint
 (
@@ -1448,7 +1771,18 @@ case class SetPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AnalogControl: AnalogControl = sup.asInstanceOf[AnalogControl]
     override def copy (): Row = { clone ().asInstanceOf[SetPoint] }
     override def get (i: Int): Object =
@@ -1492,6 +1826,9 @@ extends
 /**
  * StringMeasurement represents a measurement with values of type string.
  * @param sup Reference to the superclass object.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class StringMeasurement
 (
@@ -1500,7 +1837,18 @@ case class StringMeasurement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Measurement: Measurement = sup.asInstanceOf[Measurement]
     override def copy (): Row = { clone ().asInstanceOf[StringMeasurement] }
     override def get (i: Int): Object =
@@ -1541,6 +1889,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param value The value to supervise.
  * @param StringMeasurement Measurement to which this value is connected.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class StringMeasurementValue
 (
@@ -1551,7 +1902,18 @@ case class StringMeasurementValue
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
     override def copy (): Row = { clone ().asInstanceOf[StringMeasurementValue] }
     override def get (i: Int): Object =
@@ -1596,6 +1958,9 @@ extends
  * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
  * @param sup Reference to the superclass object.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class ValueAliasSet
 (
@@ -1604,7 +1969,18 @@ case class ValueAliasSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ValueAliasSet] }
     override def get (i: Int): Object =
@@ -1645,6 +2021,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param value The value that is mapped.
  * @param ValueAliasSet The ValueAliasSet having the ValueToAlias mappings.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class ValueToAlias
 (
@@ -1655,7 +2034,18 @@ case class ValueToAlias
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ValueToAlias] }
     override def get (i: Int): Object =

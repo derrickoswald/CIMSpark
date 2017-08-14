@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
- * <font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
- */
-
-/**
  * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
  * Reference: IEEE Standard 421.5-2005 Section 11.1.
  * @param sup Reference to the superclass object.
@@ -26,6 +21,11 @@ import ch.ninecode.cim.Parseable
  *        Typical Value = 1.1.
  * @param vadjmin Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
  *        Typical Value = 0.9.
+ * @group VoltageAdjusterDynamics
+ * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
+ * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
+
+<font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
  */
 case class VAdjIEEE
 (
@@ -40,7 +40,18 @@ case class VAdjIEEE
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def VoltageAdjusterDynamics: VoltageAdjusterDynamics = sup.asInstanceOf[VoltageAdjusterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[VAdjIEEE] }
     override def get (i: Int): Object =
@@ -97,6 +108,11 @@ extends
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
+ * @group VoltageAdjusterDynamics
+ * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
+ * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
+
+<font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
  */
 case class VoltageAdjusterDynamics
 (
@@ -106,7 +122,18 @@ case class VoltageAdjusterDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[VoltageAdjusterDynamics] }
     override def get (i: Int): Object =

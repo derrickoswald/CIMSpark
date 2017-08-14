@@ -7,15 +7,14 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the core information classes that support operations and outage management applications.
- */
-
-/**
  * Action on clearance document as a switching step.
  * @param sup Reference to the superclass object.
  * @param kind Clearance action to perform.
  * @param Clearance Clearance associated with this clearance action.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class ClearanceAction
 (
@@ -27,7 +26,18 @@ case class ClearanceAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[ClearanceAction] }
     override def get (i: Int): Object =
@@ -79,6 +89,9 @@ extends
  * @param mustBeGrounded If true, the equipment must be grounded.
  * @param ClearanceAction Clearance action associated with this clearance.
  * @param TaggedPSRs All power system resources tagged through this clearance.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class ClearanceDocument
 (
@@ -91,7 +104,18 @@ case class ClearanceDocument
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SafetyDocument: SafetyDocument = sup.asInstanceOf[SafetyDocument]
     override def copy (): Row = { clone ().asInstanceOf[ClearanceDocument] }
     override def get (i: Int): Object =
@@ -144,6 +168,9 @@ extends
  * @param kind Switching action to perform.
  * @param Cut Cut on which this action is taken.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class CutAction
 (
@@ -155,7 +182,18 @@ case class CutAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[CutAction] }
     override def get (i: Int): Object =
@@ -205,6 +243,9 @@ extends
  * @param kind Switching action to perform.
  * @param EnergySource Energy source on which this action is taken.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class EnergySourceAction
 (
@@ -216,7 +257,18 @@ case class EnergySourceAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[EnergySourceAction] }
     override def get (i: Int): Object =
@@ -264,6 +316,9 @@ extends
  * An arbitrary switching step.
  * @param sup Reference to the superclass object.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class GenericAction
 (
@@ -273,7 +328,18 @@ case class GenericAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[GenericAction] }
     override def get (i: Int): Object =
@@ -321,6 +387,9 @@ extends
  * @param GroundedEquipment Equipment being grounded with this operation.
  *        In case of placing a ground anywhere along a line segment, you must use the clamp (to get the distance from one terminal), so use the explicit relation with line segment. In all other cases (including placing the ground at a line segment terminal), reference to one or more conducting equipment is sufficient.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class GroundAction
 (
@@ -334,7 +403,18 @@ case class GroundAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[GroundAction] }
     override def get (i: Int): Object =
@@ -392,6 +472,9 @@ extends
  * @param Outage Outage for this incident.
  * @param Owner Operator who owns this incident.
  * @param Works All works addressing this incident.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class Incident
 (
@@ -404,7 +487,18 @@ case class Incident
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Incident] }
     override def get (i: Int): Object =
@@ -457,6 +551,9 @@ extends
  * @param kind Switching action to perform.
  * @param Jumper Jumper on which this action is taken.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class JumperAction
 (
@@ -468,7 +565,18 @@ case class JumperAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[JumperAction] }
     override def get (i: Int): Object =
@@ -512,6 +620,11 @@ extends
     }
 }
 
+/**
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
+ */
 case class OperationTag
 (
     override val sup: Document,
@@ -522,7 +635,18 @@ case class OperationTag
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[OperationTag] }
     override def get (i: Int): Object =
@@ -574,6 +698,9 @@ extends
  * @param restrictedValue Restricted (new) value; includes unit of measure and potentially multiplier.
  * @param Equipments All equipments to which this restriction applies.
  * @param ProductAssetModel Asset model to which this restriction applies.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class OperationalRestriction
 (
@@ -586,7 +713,18 @@ case class OperationalRestriction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[OperationalRestriction] }
     override def get (i: Int): Object =
@@ -638,6 +776,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param changeType Type of operational updated rating, e.g. a derate, a rerate or a return to normal.
  * @param PlannedOutage Planned equipment outage with this updated rating.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class OperationalUpdatedRating
 (
@@ -648,7 +789,18 @@ case class OperationalUpdatedRating
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OperationalRestriction: OperationalRestriction = sup.asInstanceOf[OperationalRestriction]
     override def copy (): Row = { clone ().asInstanceOf[OperationalUpdatedRating] }
     override def get (i: Int): Object =
@@ -705,6 +857,9 @@ extends
  * @param Incident Incident reported in trouble call that results in this outage.
  * @param OutageSchedule Outage schedule whose execution will result in this outage.
  * @param UsagePoints All usage points associated with this outage.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class Outage
 (
@@ -723,7 +878,18 @@ case class Outage
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, false, null, List(), null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Outage] }
     override def get (i: Int): Object =
@@ -792,6 +958,9 @@ extends
  * Document containing the definition of planned outages of equipment and/or service (delivery) points (sometimes referred to as customers).
  * It is used as specification for producing switching plans.
  * @param sup Reference to the superclass object.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class OutageSchedule
 (
@@ -800,7 +969,18 @@ case class OutageSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[OutageSchedule] }
     override def get (i: Int): Object =
@@ -841,6 +1021,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param kind Kind of event.
  * @param PowerSystemResource Power system resource that generated this event.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class PSREvent
 (
@@ -851,7 +1034,18 @@ case class PSREvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
     override def copy (): Row = { clone ().asInstanceOf[PSREvent] }
     override def get (i: Int): Object =
@@ -896,6 +1090,9 @@ extends
  * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
  * @param sup Reference to the superclass object.
  * @param SwitchingPlan Switching plan to which this safety document applies.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class SafetyDocument
 (
@@ -905,7 +1102,18 @@ case class SafetyDocument
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[SafetyDocument] }
     override def get (i: Int): Object =
@@ -949,6 +1157,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param criticalCount Number of critical service (delivery) points affected by an outage.
  * @param totalCount Number of all service (delivery) points affected by an outage.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class ServicePointOutageSummary
 (
@@ -959,8 +1170,19 @@ case class ServicePointOutageSummary
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ServicePointOutageSummary] }
     override def get (i: Int): Object =
     {
@@ -1007,6 +1229,9 @@ extends
  * @param OperatedSwitch Switch that is the object of this switch action.
  * @param PlannedOutage Planned outage for whose scope this switch action applies.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class SwitchAction
 (
@@ -1019,7 +1244,18 @@ case class SwitchAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[SwitchAction] }
     override def get (i: Int): Object =
@@ -1074,6 +1310,9 @@ extends
  * @param purpose Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.
  * @param rank Ranking in comparison to other switching plans.
  * @param Outage Outage that will be eliminated when this switching plan gets executed.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class SwitchingPlan
 (
@@ -1085,7 +1324,18 @@ case class SwitchingPlan
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStepGroup: SwitchingStepGroup = sup.asInstanceOf[SwitchingStepGroup]
     override def copy (): Row = { clone ().asInstanceOf[SwitchingPlan] }
     override def get (i: Int): Object =
@@ -1139,6 +1389,9 @@ extends
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
  * @param CrewMember Crew member responsible for this switching step.
  * @param Operator Operator responsible for this switching step.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class SwitchingStep
 (
@@ -1154,8 +1407,19 @@ case class SwitchingStep
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, false, null, 0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[SwitchingStep] }
     override def get (i: Int): Object =
     {
@@ -1216,6 +1480,9 @@ extends
  * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
  * @param SwitchingPlan Switching plan to which this group belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class SwitchingStepGroup
 (
@@ -1227,7 +1494,18 @@ case class SwitchingStepGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[SwitchingStepGroup] }
     override def get (i: Int): Object =
@@ -1277,6 +1555,9 @@ extends
  * @param kind Kind of tag action.
  * @param OperationTag Tag associated with this tag action.
  * @param SwitchingStepGroup Group to which this step belongs.
+ * @group Operations
+ * @groupname Operations Package Operations
+ * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class TagAction
 (
@@ -1288,7 +1569,18 @@ case class TagAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchingStep: SwitchingStep = sup.asInstanceOf[SwitchingStep]
     override def copy (): Row = { clone ().asInstanceOf[TagAction] }
     override def get (i: Int): Object =

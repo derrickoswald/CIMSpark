@@ -6,7 +6,6 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
  * @param sup Reference to the superclass object.
@@ -18,6 +17,8 @@ import ch.ninecode.cim.Parseable
  * @param Flowgate <em>undocumented</em>
  * @param Pnodes <em>undocumented</em>
  * @param _class Peak, Off-peak, 24-hour
+ * @group InfCongestionRevenueRights
+ * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
 case class FTR
 (
@@ -34,7 +35,18 @@ case class FTR
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[FTR] }
     override def get (i: Int): Object =
@@ -100,6 +112,8 @@ extends
  * @param Flowgate <em>undocumented</em>
  * @param MktMeasurement <em>undocumented</em>
  * @param MktOrganisation <em>undocumented</em>
+ * @group InfCongestionRevenueRights
+ * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
 case class ViolationLimit
 (
@@ -112,7 +126,18 @@ case class ViolationLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Limit: Limit = sup.asInstanceOf[Limit]
     override def copy (): Row = { clone ().asInstanceOf[ViolationLimit] }
     override def get (i: Int): Object =

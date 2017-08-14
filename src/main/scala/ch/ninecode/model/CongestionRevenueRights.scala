@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets.
- * For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
- */
-
-/**
  * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
  * A CRR is a financial concept that is used to hedge congestion charges.
  * @param sup Reference to the superclass object.
@@ -23,6 +18,9 @@ import ch.ninecode.cim.Parseable
  * @param tradeSliceID Segment of the CRR described in the current record
  * @param CRRMarket <em>undocumented</em>
  * @param Flowgate <em>undocumented</em>
+ * @group CongestionRevenueRights
+ * @groupname CongestionRevenueRights Package CongestionRevenueRights
+ * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
  */
 case class CRR
 (
@@ -38,7 +36,18 @@ case class CRR
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[CRR] }
     override def get (i: Int): Object =
@@ -101,6 +110,9 @@ extends
  * @param status Status of congestion revenue rights organisation role.
  * @param CRR <em>undocumented</em>
  * @param MktOrganisation <em>undocumented</em>
+ * @group CongestionRevenueRights
+ * @groupname CongestionRevenueRights Package CongestionRevenueRights
+ * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
  */
 case class CRROrgRole
 (
@@ -113,7 +125,18 @@ case class CRROrgRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[CRROrgRole] }
     override def get (i: Int): Object =
@@ -170,6 +193,9 @@ extends
  * @param quantity The MW amount associated with the CRR
  * @param startDateTime segment start date time
  * @param CRR <em>undocumented</em>
+ * @group CongestionRevenueRights
+ * @groupname CongestionRevenueRights Package CongestionRevenueRights
+ * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
  */
 case class CRRSegment
 (
@@ -184,7 +210,18 @@ case class CRRSegment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CRRSegment] }
     override def get (i: Int): Object =

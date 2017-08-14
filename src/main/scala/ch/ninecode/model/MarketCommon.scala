@@ -7,14 +7,13 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the common objects shared by both MarketManagement and MarketOperations packages.
- */
-
-/**
  * An identification of a party acting in a electricity market business process.
  * This class is used to identify organizations that can participate in market management and/or market operations.
  * @param sup Reference to the superclass object.
  * @param MarketDocument <em>undocumented</em>
+ * @group MarketCommon
+ * @groupname MarketCommon Package MarketCommon
+ * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.
  */
 case class MarketParticipant
 (
@@ -24,7 +23,18 @@ case class MarketParticipant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Organisation: Organisation = sup.asInstanceOf[Organisation]
     override def copy (): Row = { clone ().asInstanceOf[MarketParticipant] }
     override def get (i: Int): Object =
@@ -70,6 +80,9 @@ extends
  * @param typ The kind of market roles that can be played by parties for given domains within the electricity market.
  *        Types are flexible using dataType of string for free-entry of role types.
  * @param MarketParticipant <em>undocumented</em>
+ * @group MarketCommon
+ * @groupname MarketCommon Package MarketCommon
+ * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.
  */
 case class MarketRole
 (
@@ -82,7 +95,18 @@ case class MarketRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MarketRole] }
     override def get (i: Int): Object =
@@ -184,6 +208,9 @@ extends
  * @param SMPMFlag SMPM flag: indicates whether the resource is subject to the SMPM test (Yes/No)
  * @param SubControlArea <em>undocumented</em>
  * @param TimeSeries <em>undocumented</em>
+ * @group MarketCommon
+ * @groupname MarketCommon Package MarketCommon
+ * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.
  */
 case class RegisteredResource
 (
@@ -234,7 +261,18 @@ case class RegisteredResource
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, List(), null, null, List(), null, List(), null, null, null, null, List(), List(), List(), null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[RegisteredResource] }
     override def get (i: Int): Object =

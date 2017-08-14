@@ -7,13 +7,12 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Market participant interfaces for bids and trades.
- */
-
-/**
  * Action request against an existing Trade.
  * @param sup Reference to the superclass object.
  * @param actionName Action name type for the action request.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class ActionRequest
 (
@@ -23,8 +22,19 @@ case class ActionRequest
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ActionRequest] }
     override def get (i: Int): Object =
     {
@@ -67,6 +77,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param demandBidMW The Demand Bid Megawatt for the area case.
  *        Attribute Usage: This is Scheduled demand MW in Day Ahead
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class AreaLoadBid
 (
@@ -76,7 +89,18 @@ case class AreaLoadBid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Bid: Bid = sup.asInstanceOf[Bid]
     override def copy (): Row = { clone ().asInstanceOf[AreaLoadBid] }
     override def get (i: Int): Object =
@@ -121,6 +145,9 @@ extends
  * @param propertyValue <em>undocumented</em>
  * @param sequence <em>undocumented</em>
  * @param MktUserAttribute <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class AttributeProperty
 (
@@ -133,8 +160,19 @@ case class AttributeProperty
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AttributeProperty] }
     override def get (i: Int): Object =
     {
@@ -190,6 +228,9 @@ extends
  * @param EnergyMarket <em>undocumented</em>
  * @param MarketParticipant <em>undocumented</em>
  * @param SchedulingCoordinator <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class Bid
 (
@@ -205,7 +246,18 @@ case class Bid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Bid] }
     override def get (i: Int): Object =
@@ -267,6 +319,9 @@ extends
  * @param timeIntervalEnd End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
  * @param timeIntervalStart Start of the time interval in which bid is valid (yyyy-mm-dd hh24: mi: ss).
  * @param ProductBid <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidDistributionFactor
 (
@@ -278,8 +333,19 @@ case class BidDistributionFactor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[BidDistributionFactor] }
     override def get (i: Int): Object =
     {
@@ -334,6 +400,9 @@ extends
  * @param ruleID <em>undocumented</em>
  * @param startTime hour wihthin the bid for which the error applies
  * @param MarketProduct <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidError
 (
@@ -351,7 +420,18 @@ case class BidError
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0, null, 0, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BidError] }
     override def get (i: Int): Object =
@@ -417,6 +497,9 @@ extends
  * Containment for bid parameters that are dependent on a market product type.
  * @param sup Reference to the superclass object.
  * @param ProductBid <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidHourlyProductSchedule
 (
@@ -426,7 +509,18 @@ case class BidHourlyProductSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[BidHourlyProductSchedule] }
     override def get (i: Int): Object =
@@ -468,6 +562,9 @@ extends
  * Containment for bid hourly parameters that are not product dependent.
  * @param sup Reference to the superclass object.
  * @param Bid <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidHourlySchedule
 (
@@ -477,7 +574,18 @@ case class BidHourlySchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[BidHourlySchedule] }
     override def get (i: Int): Object =
@@ -518,6 +626,9 @@ extends
 /**
  * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
  * @param sup Reference to the superclass object.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidPriceCurve
 (
@@ -526,7 +637,18 @@ case class BidPriceCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[BidPriceCurve] }
     override def get (i: Int): Object =
@@ -579,6 +701,9 @@ extends
  *        'O' - original
  * @param BidPriceCurve <em>undocumented</em>
  * @param ProductBid <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidPriceSchedule
 (
@@ -591,7 +716,18 @@ case class BidPriceSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[BidPriceSchedule] }
     override def get (i: Int): Object =
@@ -661,6 +797,9 @@ extends
  * @param ProductBid <em>undocumented</em>
  * @param SubControlArea <em>undocumented</em>
  * @param TransmissionContractRight <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidSelfSched
 (
@@ -684,7 +823,18 @@ case class BidSelfSched
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0.0, null, 0.0, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[BidSelfSched] }
     override def get (i: Int): Object =
@@ -768,6 +918,9 @@ extends
  * As set of mutually exclusive bids for which a maximum of one may be scheduled.
  * Of these generating bids, only one generating bid can be scheduled at a time.
  * @param sup Reference to the superclass object.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class BidSet
 (
@@ -776,7 +929,18 @@ case class BidSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BidSet] }
     override def get (i: Int): Object =
@@ -824,6 +988,9 @@ extends
  * @param terminationDate <em>undocumented</em>
  * @param typ <em>undocumented</em>
  * @param BillDeterminants A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class ChargeComponent
 (
@@ -841,7 +1008,18 @@ case class ChargeComponent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ChargeComponent] }
     override def get (i: Int): Object =
@@ -912,6 +1090,9 @@ extends
  * @param terminationDate <em>undocumented</em>
  * @param ChargeGroupParent A ChargeGroup instance can have relationships with other ChargeGroup instances.
  * @param MktUserAttribute <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class ChargeGroup
 (
@@ -925,7 +1106,18 @@ case class ChargeGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ChargeGroup] }
     override def get (i: Int): Object =
@@ -990,6 +1182,9 @@ extends
  * @param ChargeGroup A ChargeGroup can have 0-n ChargeType.
  *        A ChargeType can associate to 0-n ChargeGroup.
  * @param MktUserAttribute <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class ChargeType
 (
@@ -1008,7 +1203,18 @@ case class ChargeType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, List(), List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[ChargeType] }
     override def get (i: Int): Object =
@@ -1092,6 +1298,9 @@ extends
  * @param receivedTime Timestamp indicating the time at which the instruction was received.
  * @param startTime start time
  * @param RegisteredResource <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class DispatchInstReply
 (
@@ -1110,7 +1319,18 @@ case class DispatchInstReply
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DispatchInstReply] }
     override def get (i: Int): Object =
@@ -1178,6 +1398,9 @@ extends
 /**
  * Relationship between a price in \$(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
  * @param sup Reference to the superclass object.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class EnergyPriceCurve
 (
@@ -1186,8 +1409,19 @@ case class EnergyPriceCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[EnergyPriceCurve] }
     override def get (i: Int): Object =
     {
@@ -1253,6 +1487,9 @@ extends
  * @param RegisteredGenerator <em>undocumented</em>
  * @param StartUpCostCurve <em>undocumented</em>
  * @param StartUpTimeCurve <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class GeneratingBid
 (
@@ -1283,7 +1520,18 @@ case class GeneratingBid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0, 0.0, 0, 0.0, 0.0, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ResourceBid: ResourceBid = sup.asInstanceOf[ResourceBid]
     override def copy (): Row = { clone ().asInstanceOf[GeneratingBid] }
     override def get (i: Int): Object =
@@ -1389,6 +1637,9 @@ extends
  * The resource could be a RegisteredGenerator or a RegisteredInterTie.
  * @param sup Reference to the superclass object.
  * @param value Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class HourlyPreDispatchSchedule
 (
@@ -1398,7 +1649,18 @@ case class HourlyPreDispatchSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BidHourlySchedule: BidHourlySchedule = sup.asInstanceOf[BidHourlySchedule]
     override def copy (): Row = { clone ().asInstanceOf[HourlyPreDispatchSchedule] }
     override def get (i: Int): Object =
@@ -1441,6 +1703,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param minHourlyBlock_1 The minimum hourly block for an Inter-Tie Resource supplied within the bid.
  * @param RegisteredInterTie <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class InterTieBid
 (
@@ -1451,7 +1716,18 @@ case class InterTieBid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ResourceBid: ResourceBid = sup.asInstanceOf[ResourceBid]
     override def copy (): Row = { clone ().asInstanceOf[InterTieBid] }
     override def get (i: Int): Object =
@@ -1503,6 +1779,9 @@ extends
  * @param passIndicator Part of the Composite key that downstream app uses to match the instruction
  * @param startTime Part of the Composite key that downstream app uses to match the instruction
  * @param RegisteredInterTie <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class InterTieDispatchResponse
 (
@@ -1517,8 +1796,19 @@ case class InterTieDispatchResponse
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, 0.0, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[InterTieDispatchResponse] }
     override def get (i: Int): Object =
     {
@@ -1592,6 +1882,9 @@ extends
  * @param shutdownCost The fixed cost associated with committing a load reduction.
  * @param AreaLoadBid <em>undocumented</em>
  * @param RegisteredLoad <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class LoadBid
 (
@@ -1616,7 +1909,18 @@ case class LoadBid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ResourceBid: ResourceBid = sup.asInstanceOf[ResourceBid]
     override def copy (): Row = { clone ().asInstanceOf[LoadBid] }
     override def get (i: Int): Object =
@@ -1708,6 +2012,9 @@ extends
  *        ADS passes through.
  * @param startTime Instruction Start Time
  * @param RegisteredResource <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class LoadFollowingInst
 (
@@ -1721,8 +2028,19 @@ case class LoadFollowingInst
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[LoadFollowingInst] }
     override def get (i: Int): Object =
     {
@@ -1776,6 +2094,9 @@ extends
  * Relationship between price (Y1-axis) vs. MW (X-axis).
  * @param sup Reference to the superclass object.
  * @param LoadBid <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class LoadReductionPriceCurve
 (
@@ -1785,7 +2106,18 @@ case class LoadReductionPriceCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[LoadReductionPriceCurve] }
     override def get (i: Int): Object =
@@ -1837,6 +2169,9 @@ extends
  * @param terminationDate <em>undocumented</em>
  * @param ChargeType A MajorChargeGroup can have 0-n ChargeType.
  *        A ChargeType can associate to 0-n MajorChargeGroup.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class MajorChargeGroup
 (
@@ -1854,7 +2189,18 @@ case class MajorChargeGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MajorChargeGroup] }
     override def get (i: Int): Object =
@@ -1923,6 +2269,9 @@ extends
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status <em>undocumented</em>
  * @param MajorChargeGroup <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class MarketScheduledEvent
 (
@@ -1935,7 +2284,18 @@ case class MarketScheduledEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MarketScheduledEvent] }
     override def get (i: Int): Object =
@@ -1986,6 +2346,9 @@ extends
  * Notification time curve as a function of down time.
  * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
  * @param sup Reference to the superclass object.
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class NotificationTimeCurve
 (
@@ -1994,7 +2357,18 @@ case class NotificationTimeCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[NotificationTimeCurve] }
     override def get (i: Int): Object =
@@ -2035,6 +2409,9 @@ extends
  * This schedule is assocated with the hourly parameters in a resource bid.
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class OpenTieSchedule
 (
@@ -2044,7 +2421,18 @@ case class OpenTieSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BidHourlySchedule: BidHourlySchedule = sup.asInstanceOf[BidHourlySchedule]
     override def copy (): Row = { clone ().asInstanceOf[OpenTieSchedule] }
     override def get (i: Int): Object =
@@ -2087,6 +2475,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param Bid A bid comprises one or more product bids of market products
  * @param MarketProduct <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class ProductBid
 (
@@ -2097,7 +2488,18 @@ case class ProductBid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ProductBid] }
     override def get (i: Int): Object =
@@ -2143,6 +2545,9 @@ extends
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class PumpingCostSchedule
 (
@@ -2152,7 +2557,18 @@ case class PumpingCostSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf[BidHourlyProductSchedule]
     override def copy (): Row = { clone ().asInstanceOf[PumpingCostSchedule] }
     override def get (i: Int): Object =
@@ -2195,6 +2611,9 @@ extends
  * Associated with the energy market product type.
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class PumpingLevelSchedule
 (
@@ -2204,7 +2623,18 @@ case class PumpingLevelSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf[BidHourlyProductSchedule]
     override def copy (): Row = { clone ().asInstanceOf[PumpingLevelSchedule] }
     override def get (i: Int): Object =
@@ -2247,6 +2677,9 @@ extends
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class PumpingShutDownCostSchedule
 (
@@ -2256,7 +2689,18 @@ case class PumpingShutDownCostSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf[BidHourlyProductSchedule]
     override def copy (): Row = { clone ().asInstanceOf[PumpingShutDownCostSchedule] }
     override def get (i: Int): Object =
@@ -2304,6 +2748,9 @@ extends
  * @param GeneratingBid <em>undocumented</em>
  * @param InterTieBid <em>undocumented</em>
  * @param LoadBid <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class RampRateCurve
 (
@@ -2318,7 +2765,18 @@ case class RampRateCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[RampRateCurve] }
     override def get (i: Int): Object =
@@ -2407,6 +2865,9 @@ extends
  * @param virtual True if bid is virtual.
  *        Bid is assumed to be non-virtual if attribute is absent
  * @param BidError <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class ResourceBid
 (
@@ -2431,7 +2892,18 @@ case class ResourceBid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null, null, null, 0.0, 0.0, null, 0, 0, 0, 0, 0, 0, false, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Bid: Bid = sup.asInstanceOf[Bid]
     override def copy (): Row = { clone ().asInstanceOf[ResourceBid] }
     override def get (i: Int): Object =
@@ -2519,6 +2991,9 @@ extends
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerators <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class StartUpCostCurve
 (
@@ -2528,7 +3003,18 @@ case class StartUpCostCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[StartUpCostCurve] }
     override def get (i: Int): Object =
@@ -2571,6 +3057,9 @@ extends
  * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class StartUpTimeCurve
 (
@@ -2580,7 +3069,18 @@ case class StartUpTimeCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[StartUpTimeCurve] }
     override def get (i: Int): Object =
@@ -2646,6 +3146,9 @@ extends
  * @param RegisteredGenerator <em>undocumented</em>
  * @param To_SC <em>undocumented</em>
  * @param TradeProduct <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class Trade
 (
@@ -2677,7 +3180,18 @@ case class Trade
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, 0.0, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Trade] }
     override def get (i: Int): Object =
@@ -2791,6 +3305,9 @@ extends
  * @param ruleID Rule identifier which triggered the error/warning message
  * @param startTime hour wihthin the trade for which the error applies
  * @param Trade <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class TradeError
 (
@@ -2806,7 +3323,18 @@ case class TradeError
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0, null, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TradeError] }
     override def get (i: Int): Object =
@@ -2883,6 +3411,9 @@ extends
  * @param tradeType IST  - InterSC Trade;
  *        AST - Ancilliary Services Trade;
  *        UCT - Unit Commitment Trade
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class TradeProduct
 (
@@ -2893,8 +3424,19 @@ case class TradeProduct
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TradeProduct] }
     override def get (i: Int): Object =
     {
@@ -2944,6 +3486,9 @@ extends
  * @param Delivery_Pnode <em>undocumented</em>
  * @param Receipt_Pnode <em>undocumented</em>
  * @param TransmissionReservation <em>undocumented</em>
+ * @group ParticipantInterfaces
+ * @groupname ParticipantInterfaces Package ParticipantInterfaces
+ * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
  */
 case class TransactionBid
 (
@@ -2958,7 +3503,18 @@ case class TransactionBid
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, false, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Bid: Bid = sup.asInstanceOf[Bid]
     override def copy (): Row = { clone ().asInstanceOf[TransactionBid] }
     override def get (i: Int): Object =

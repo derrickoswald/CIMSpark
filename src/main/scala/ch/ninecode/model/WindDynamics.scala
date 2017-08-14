@@ -7,15 +7,23 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Wind turbines are generally divided into 4 types, which are currently significant in power systems.
- * The 4 types have the following characteristics:
- */
-
-/**
  * The constant aerodynamic torque model assumes that the aerodynamic torque is constant.
  * Reference: IEC Standard 61400-27-1 Section 5.6.1.1.
  * @param sup Reference to the superclass object.
  * @param WindGenTurbineType1aIEC Wind turbine type 1A model with which this wind aerodynamic model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindAeroConstIEC
 (
@@ -25,7 +33,18 @@ case class WindAeroConstIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindAeroConstIEC] }
     override def get (i: Int): Object =
@@ -72,6 +91,19 @@ extends
  * @param thetaomega Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
  *        It is case dependent parameter.
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindAeroOneDimIEC
 (
@@ -83,7 +115,18 @@ case class WindAeroOneDimIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindAeroOneDimIEC] }
     override def get (i: Int): Object =
@@ -146,6 +189,19 @@ extends
  * @param thetazero Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
  *        It is case dependent parameter.
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindAeroTwoDimIEC
 (
@@ -162,7 +218,18 @@ case class WindAeroTwoDimIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindAeroTwoDimIEC] }
     override def get (i: Int): Object =
@@ -244,6 +311,19 @@ extends
  * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
  *        It is type dependent parameter.
  * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContCurrLimIEC
 (
@@ -260,7 +340,18 @@ case class WindContCurrLimIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContCurrLimIEC] }
     override def get (i: Int): Object =
@@ -372,6 +463,19 @@ extends
  * @param zeta Coefficient for active drive train damping (zeta).
  *        It is type dependent parameter.
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this Wind control P type 3 model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContPType3IEC
 (
@@ -404,7 +508,18 @@ case class WindContPType3IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContPType3IEC] }
     override def get (i: Int): Object =
@@ -522,6 +637,19 @@ extends
  * @param tufiltp4a Voltage measurement filter time constant (<i>T</i><sub>ufiltp4A</sub>).
  *        It is type dependent parameter.
  * @param WindTurbineType4aIEC Wind turbine type 4A model with which this wind control P type 4A model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContPType4aIEC
 (
@@ -534,7 +662,18 @@ case class WindContPType4aIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContPType4aIEC] }
     override def get (i: Int): Object =
@@ -594,6 +733,19 @@ extends
  * @param tufiltp4b Voltage measurement filter time constant (<i>T</i><sub>ufiltp4B</sub>).
  *        It is type dependent parameter.
  * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind control P type 4B model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContPType4bIEC
 (
@@ -607,7 +759,18 @@ case class WindContPType4bIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContPType4bIEC] }
     override def get (i: Int): Object =
@@ -682,6 +845,19 @@ extends
  * @param ttheta Pitch time constant (t<i>theta</i>).
  *        It is type dependent parameter.
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this pitch control model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContPitchAngleIEC
 (
@@ -701,7 +877,18 @@ case class WindContPitchAngleIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContPitchAngleIEC] }
     override def get (i: Int): Object =
@@ -820,6 +1007,19 @@ extends
  * @param xdroop Inductive component of voltage drop impedance (<i>x</i><sub>droop</sub>).
  *        It is project dependent parameter.
  * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reactive control model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContQIEC
 (
@@ -852,7 +1052,18 @@ case class WindContQIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContQIEC] }
     override def get (i: Int): Object =
@@ -968,6 +1179,19 @@ extends
  * @param qmin Minimum reactive power (<i>q</i><sub>min</sub>).
  *        It is type dependent parameter.
  * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this constant Q limitation model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContQLimIEC
 (
@@ -979,7 +1203,18 @@ case class WindContQLimIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContQLimIEC] }
     override def get (i: Int): Object =
@@ -1032,6 +1267,19 @@ extends
  * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><sub>ufiltql</sub>).
  *        It is type dependent parameter.
  * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContQPQULimIEC
 (
@@ -1043,7 +1291,18 @@ case class WindContQPQULimIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContQPQULimIEC] }
     override def get (i: Int): Object =
@@ -1108,6 +1367,19 @@ extends
  * @param tpfiltrr Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
  *        It is type dependent parameter.
  * @param WindGenTurbineType2IEC Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindContRotorRIEC
 (
@@ -1125,7 +1397,18 @@ case class WindContRotorRIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindContRotorRIEC] }
     override def get (i: Int): Object =
@@ -1203,6 +1486,19 @@ extends
  * @param WindPlantFreqPcontrolIEC The frequency and active power wind plant control model with which this wind dynamics lookup table is associated.
  * @param WindPlantReactiveControlIEC The voltage and reactive power wind plant control model with which this wind dynamics lookup table is associated.
  * @param WindProtectionIEC The grid protection model with which this wind dynamics lookup table is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindDynamicsLookupTable
 (
@@ -1224,7 +1520,18 @@ case class WindDynamicsLookupTable
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, 0.0, 0, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindDynamicsLookupTable] }
     override def get (i: Int): Object =
@@ -1303,6 +1610,19 @@ extends
  * Reference: IEC Standard 61400-27-1, section 5.5.2.2.
  * @param sup Reference to the superclass object.
  * @param WindAeroConstIEC Wind aerodynamic model associated with this wind turbine type 1A model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindGenTurbineType1aIEC
 (
@@ -1312,7 +1632,18 @@ case class WindGenTurbineType1aIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType1or2IEC: WindTurbineType1or2IEC = sup.asInstanceOf[WindTurbineType1or2IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindGenTurbineType1aIEC] }
     override def get (i: Int): Object =
@@ -1355,6 +1686,19 @@ extends
  * Reference: IEC Standard 61400-27-1, section 5.5.2.3.
  * @param sup Reference to the superclass object.
  * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 1B model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindGenTurbineType1bIEC
 (
@@ -1364,7 +1708,18 @@ case class WindGenTurbineType1bIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType1or2IEC: WindTurbineType1or2IEC = sup.asInstanceOf[WindTurbineType1or2IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindGenTurbineType1bIEC] }
     override def get (i: Int): Object =
@@ -1408,6 +1763,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param WindContRotorRIEC Wind control rotor resistance model associated with wind turbine type 2 model.
  * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 2 model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindGenTurbineType2IEC
 (
@@ -1418,7 +1786,18 @@ case class WindGenTurbineType2IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType1or2IEC: WindTurbineType1or2IEC = sup.asInstanceOf[WindTurbineType1or2IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindGenTurbineType2IEC] }
     override def get (i: Int): Object =
@@ -1469,6 +1848,19 @@ extends
  * @param xs Electromagnetic transient reactance (x<sub>S</sub>).
  *        It is type dependent parameter.
  * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind generator type 3 is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindGenType3IEC
 (
@@ -1481,7 +1873,18 @@ case class WindGenType3IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindGenType3IEC] }
     override def get (i: Int): Object =
@@ -1537,6 +1940,19 @@ extends
  * @param tic Current PI controller integration time constant (T<sub>Ic</sub>).
  *        It is type dependent parameter.
  * @param WindTurbineType4IEC Wind turbine type 4 model with which this wind generator type 3A model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindGenType3aIEC
 (
@@ -1548,7 +1964,18 @@ case class WindGenType3aIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindGenType3IEC: WindGenType3IEC = sup.asInstanceOf[WindGenType3IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindGenType3aIEC] }
     override def get (i: Int): Object =
@@ -1606,6 +2033,19 @@ extends
  *        It is type dependent parameter.
  * @param two Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
  *        It is case dependent parameter.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindGenType3bIEC
 (
@@ -1617,7 +2057,18 @@ case class WindGenType3bIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindGenType3IEC: WindGenType3IEC = sup.asInstanceOf[WindGenType3IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindGenType3bIEC] }
     override def get (i: Int): Object =
@@ -1675,6 +2126,19 @@ extends
  *        It is type dependent parameter.
  * @param WindTurbineType4aIEC Wind turbine type 4A model with which this wind generator type 4 model is associated.
  * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind generator type 4 model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindGenType4IEC
 (
@@ -1689,7 +2153,18 @@ case class WindGenType4IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindGenType4IEC] }
     override def get (i: Int): Object =
@@ -1757,6 +2232,19 @@ extends
  * @param WindTurbineType1or2IEC Wind generator type 1 or 2 model with which this wind mechanical model is associated.
  * @param WindTurbineType3IEC Wind turbine Type 3 model with which this wind mechanical model is associated.
  * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind mechanical model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindMechIEC
 (
@@ -1772,7 +2260,18 @@ case class WindMechIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindMechIEC] }
     override def get (i: Int): Object =
@@ -1848,6 +2347,19 @@ extends
  *        It is type dependent parameter.
  * @param WindGenTurbineType1bIEC Wind turbine type 1B model with which this Pitch control power model is associated.
  * @param WindGenTurbineType2IEC Wind turbine type 2 model with which this Pitch control power model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindPitchContPowerIEC
 (
@@ -1865,7 +2377,18 @@ case class WindPitchContPowerIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindPitchContPowerIEC] }
     override def get (i: Int): Object =
@@ -1931,6 +2454,19 @@ extends
  * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant IEC and user defined wind plants including their control models.
  * @param sup Reference to the superclass object.
  * @param RemoteInputSignal The remote signal with which this power plant is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindPlantDynamics
 (
@@ -1940,7 +2476,18 @@ case class WindPlantDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[WindPlantDynamics] }
     override def get (i: Int): Object =
@@ -2013,6 +2560,19 @@ extends
  * @param twppfiltp Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
  *        It is project dependent parameter.
  * @param WindPlantIEC Wind plant model with which this wind plant frequency and active power control is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindPlantFreqPcontrolIEC
 (
@@ -2037,7 +2597,18 @@ case class WindPlantFreqPcontrolIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindPlantFreqPcontrolIEC] }
     override def get (i: Int): Object =
@@ -2126,6 +2697,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param WindPlantFreqPcontrolIEC Wind plant frequency and active power control model associated with this wind plant.
  * @param WindPlantReactiveControlIEC Wind plant model with which this wind reactive control is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindPlantIEC
 (
@@ -2136,7 +2720,18 @@ case class WindPlantIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindPlantDynamics: WindPlantDynamics = sup.asInstanceOf[WindPlantDynamics]
     override def copy (): Row = { clone ().asInstanceOf[WindPlantIEC] }
     override def get (i: Int): Object =
@@ -2218,6 +2813,19 @@ extends
  * @param xrefmin Minimum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta<i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmin</sub>).
  *        It is project dependent parameter.
  * @param WindPlantIEC Wind plant reactive control model associated with this wind plant.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindPlantReactiveControlIEC
 (
@@ -2245,7 +2853,18 @@ case class WindPlantReactiveControlIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindPlantReactiveControlIEC] }
     override def get (i: Int): Object =
@@ -2357,6 +2976,19 @@ extends
  *        It is project dependent parameter.
  * @param WindTurbineType1or2IEC Wind generator type 1 or 2 model with which this wind turbine protection model is associated.
  * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindProtectionIEC
 (
@@ -2374,7 +3006,18 @@ case class WindProtectionIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindProtectionIEC] }
     override def get (i: Int): Object =
@@ -2447,6 +3090,19 @@ extends
  * @param upll2 Voltage (u<sub>PLL2</sub>) below which the angle of the voltage is frozen if u<sub>PLL2 </sub>is smaller or equal to u<sub>PLL1</sub> .
  *        It is type dependent parameter.
  * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reference frame rotation model is associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindRefFrameRotIEC
 (
@@ -2459,7 +3115,18 @@ case class WindRefFrameRotIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindRefFrameRotIEC] }
     override def get (i: Int): Object =
@@ -2511,6 +3178,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param AsynchronousMachineDynamics Asynchronous machine model with which this wind generator type 1 or 2 model is associated.
  * @param RemoteInputSignal Remote input signal used by this wind generator Type 1 or Type 2 model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType1or2Dynamics
 (
@@ -2521,7 +3201,18 @@ case class WindTurbineType1or2Dynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType1or2Dynamics] }
     override def get (i: Int): Object =
@@ -2568,6 +3259,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param WindMechIEC Wind mechanical model associated with this wind generator type 1 or 2 model.
  * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 1 or 2 model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType1or2IEC
 (
@@ -2578,7 +3282,18 @@ case class WindTurbineType1or2IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType1or2Dynamics: WindTurbineType1or2Dynamics = sup.asInstanceOf[WindTurbineType1or2Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType1or2IEC] }
     override def get (i: Int): Object =
@@ -2628,6 +3343,19 @@ extends
  * @param WindContPitchAngleIEC Wind control pitch angle model associated with this wind turbine type 3.
  * @param WindGenType3IEC Wind generator Type 3 model associated with this wind turbine type 3 model.
  * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 3 model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType3IEC
 (
@@ -2642,7 +3370,18 @@ case class WindTurbineType3IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType3or4IEC: WindTurbineType3or4IEC = sup.asInstanceOf[WindTurbineType3or4IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType3IEC] }
     override def get (i: Int): Object =
@@ -2701,6 +3440,19 @@ extends
  * @param EnergySource Energy Source (current source) with which this wind Type 3 or 4 dynamics model is asoociated.
  * @param RemoteInputSignal Remote input signal used by these wind turbine Type 3 or 4 models.
  * @param WindPlantDynamics The wind plant with which the wind turbines type 3 or 4 are associated.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType3or4Dynamics
 (
@@ -2712,7 +3464,18 @@ case class WindTurbineType3or4Dynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType3or4Dynamics] }
     override def get (i: Int): Object =
@@ -2765,6 +3528,19 @@ extends
  * @param WindContQPQULimIEC QP and QU limitation model associated with this wind generator type 3 or 4 model.
  * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 3 or 4 model.
  * @param WindRefFrameRotIEC Reference frame rotation model associated with this wind turbine type 3 or 4 model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType3or4IEC
 (
@@ -2779,7 +3555,18 @@ case class WindTurbineType3or4IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType3or4Dynamics: WindTurbineType3or4Dynamics = sup.asInstanceOf[WindTurbineType3or4Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType3or4IEC] }
     override def get (i: Int): Object =
@@ -2836,6 +3623,19 @@ extends
  * Parent class supporting relationships to IEC wind turbines Type 4 including their control models.
  * @param sup Reference to the superclass object.
  * @param WindGenType3aIEC Wind generator type 3A model associated with this wind turbine type 4 model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType4IEC
 (
@@ -2845,7 +3645,18 @@ case class WindTurbineType4IEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType3or4IEC: WindTurbineType3or4IEC = sup.asInstanceOf[WindTurbineType3or4IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType4IEC] }
     override def get (i: Int): Object =
@@ -2889,6 +3700,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param WindContPType4aIEC Wind control P type 4A model associated with this wind turbine type 4A model.
  * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4A model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType4aIEC
 (
@@ -2899,7 +3723,18 @@ case class WindTurbineType4aIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType4IEC: WindTurbineType4IEC = sup.asInstanceOf[WindTurbineType4IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType4aIEC] }
     override def get (i: Int): Object =
@@ -2947,6 +3782,19 @@ extends
  * @param WindContPType4bIEC Wind control P type 4B model associated with this wind turbine type 4B model.
  * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4B model.
  * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 4B model.
+ * @group WindDynamics
+ * @groupname WindDynamics Package WindDynamics
+ * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
+<ul>
+	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
+	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
+	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
+	<li>Type 4: Wind turbines connected fully through a power converter.</li>
+</ul>
+
+Models included in this package are according to IEC 61400-27-1.
+
+Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
  */
 case class WindTurbineType4bIEC
 (
@@ -2958,7 +3806,18 @@ case class WindTurbineType4bIEC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType4IEC: WindTurbineType4IEC = sup.asInstanceOf[WindTurbineType4IEC]
     override def copy (): Row = { clone ().asInstanceOf[WindTurbineType4bIEC] }
     override def get (i: Int): Object =

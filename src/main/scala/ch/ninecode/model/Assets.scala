@@ -7,16 +7,15 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
- */
-
-/**
  * Acceptance test for assets.
  * @param sup Reference to the superclass object.
  * @param dateTime Date and time the asset was last tested using the 'type' of test and yielding the current status in 'success' attribute.
  * @param success True if asset has passed acceptance test and may be placed in or is in service.
  *        It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.
  * @param typ Type of test or group of tests that was conducted on 'dateTime'.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AcceptanceTest
 (
@@ -28,8 +27,19 @@ case class AcceptanceTest
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AcceptanceTest] }
     override def get (i: Int): Object =
     {
@@ -102,6 +112,9 @@ extends
  * @param OrganisationRoles All roles an organisation plays for this asset.
  * @param PowerSystemResources All power system resources used to electrically model this asset.
  *        For example, transformer asset is electrically modelled with a transformer and its windings and tap changer.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class Asset
 (
@@ -133,7 +146,18 @@ case class Asset
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null, null, 0.0, null, null, 0.0, null, null, null, null, List(), null, null, List(), null, null, List(), null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Asset] }
     override def get (i: Int): Object =
@@ -240,6 +264,9 @@ extends
 /**
  * Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.
  * @param sup Reference to the superclass object.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetContainer
 (
@@ -248,7 +275,18 @@ case class AssetContainer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[AssetContainer] }
     override def get (i: Int): Object =
@@ -292,6 +330,9 @@ extends
  * @param hardwareID Hardware version.
  * @param password Password needed to access this function.
  * @param programID Name of program.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetFunction
 (
@@ -305,7 +346,18 @@ case class AssetFunction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AssetFunction] }
     override def get (i: Int): Object =
@@ -357,12 +409,14 @@ extends
 
 /**
  * Set of attributes of an asset, representing typical datasheet information of a physical device that can be instantiated and shared in different data exchange contexts:
- *
  * - as attributes of an asset instance (installed or in stock)
  * - as attributes of an asset model (product by a manufacturer)
  * - as attributes of a type asset (generic type of an asset as used in designs/extension planning).
  * @param sup Reference to the superclass object.
  * @param AssetModel Asset model described by this data.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetInfo
 (
@@ -372,7 +426,18 @@ case class AssetInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AssetInfo] }
     override def get (i: Int): Object =
@@ -415,6 +480,9 @@ extends
  * Examples are trees growing under overhead power lines, a park being located by a substation (i.e., children climb fence to recover a ball), a lake near an overhead distribution line (fishing pole/line contacting power lines), dangerous neighbour, etc.
  * @param sup Reference to the superclass object.
  * @param Locations The location of this hazard.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetLocationHazard
 (
@@ -424,7 +492,18 @@ case class AssetLocationHazard
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Hazard: Hazard = sup.asInstanceOf[Hazard]
     override def copy (): Row = { clone ().asInstanceOf[AssetLocationHazard] }
     override def get (i: Int): Object =
@@ -467,6 +546,9 @@ extends
  * Datasheet characteristics are available through the associated AssetInfo subclass and can be shared with asset or power system resource instances.
  * @param sup Reference to the superclass object.
  * @param AssetInfo Data applicable to this asset model.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetModel
 (
@@ -476,7 +558,18 @@ case class AssetModel
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AssetModel] }
     override def get (i: Int): Object =
@@ -517,6 +610,9 @@ extends
 /**
  * Role an organisation plays with respect to asset.
  * @param sup Reference to the superclass object.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetOrganisationRole
 (
@@ -525,7 +621,18 @@ case class AssetOrganisationRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[AssetOrganisationRole] }
     override def get (i: Int): Object =
@@ -564,6 +671,9 @@ extends
 /**
  * Owner of the asset.
  * @param sup Reference to the superclass object.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetOwner
 (
@@ -572,7 +682,18 @@ case class AssetOwner
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetOrganisationRole: AssetOrganisationRole = sup.asInstanceOf[AssetOrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[AssetOwner] }
     override def get (i: Int): Object =
@@ -611,6 +732,9 @@ extends
 /**
  * Organisation that is a user of the asset.
  * @param sup Reference to the superclass object.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetUser
 (
@@ -619,7 +743,18 @@ case class AssetUser
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetOrganisationRole: AssetOrganisationRole = sup.asInstanceOf[AssetOrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[AssetUser] }
     override def get (i: Int): Object =
@@ -658,6 +793,9 @@ extends
 /**
  * Communication media such as fibre optic cable, power-line, telephone, etc.
  * @param sup Reference to the superclass object.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class ComMedia
 (
@@ -666,7 +804,18 @@ case class ComMedia
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[ComMedia] }
     override def get (i: Int): Object =
@@ -715,6 +864,9 @@ extends
  *        Ignored if (1) not intended to be in service, or (2) currently in service.
  * @param retiredDate (if applicable) Date the asset is permanently retired from service and may be scheduled for disposal.
  *        Ignored if asset is (1) currently in service, or (2) permanently removed from service.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class LifecycleDate
 (
@@ -729,8 +881,19 @@ case class LifecycleDate
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[LifecycleDate] }
     override def get (i: Int): Object =
     {
@@ -785,6 +948,9 @@ extends
 /**
  * Organisation that maintains assets.
  * @param sup Reference to the superclass object.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class Maintainer
 (
@@ -793,7 +959,18 @@ case class Maintainer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetOrganisationRole: AssetOrganisationRole = sup.asInstanceOf[AssetOrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[Maintainer] }
     override def get (i: Int): Object =
@@ -832,6 +1009,9 @@ extends
 /**
  * Organisation that manufactures asset products.
  * @param sup Reference to the superclass object.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class Manufacturer
 (
@@ -840,7 +1020,18 @@ case class Manufacturer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[Manufacturer] }
     override def get (i: Int): Object =
@@ -885,6 +1076,9 @@ extends
  * @param Assets All assets to which this procedure applies.
  * @param Limits <em>undocumented</em>
  * @param Measurements Document containing this measurement.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class Procedure
 (
@@ -899,7 +1093,18 @@ case class Procedure
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List(), List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Procedure] }
     override def get (i: Int): Object =
@@ -960,6 +1165,9 @@ extends
  * @param MeasurementValues <em>undocumented</em>
  * @param Procedure Procedure capturing this data set.
  * @param TransformerObservations <em>undocumented</em>
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class ProcedureDataSet
 (
@@ -972,7 +1180,18 @@ case class ProcedureDataSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List(), null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[ProcedureDataSet] }
     override def get (i: Int): Object =
@@ -1029,6 +1248,9 @@ extends
  * @param weightTotal Total manufactured weight of asset.
  * @param GenericAssetModelOrMaterial Generic asset model or material satisified by this product asset model.
  * @param Manufacturer Manufacturer of this asset model.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class ProductAssetModel
 (
@@ -1044,7 +1266,18 @@ case class ProductAssetModel
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetModel: AssetModel = sup.asInstanceOf[AssetModel]
     override def copy (): Row = { clone ().asInstanceOf[ProductAssetModel] }
     override def get (i: Int): Object =
@@ -1108,6 +1341,9 @@ extends
  * @param kind Kind of seal.
  * @param sealNumber (reserved word) Seal number.
  * @param AssetContainer Asset container to which this seal is applied.
+ * @group Assets
+ * @groupname Assets Package Assets
+ * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class Seal
 (
@@ -1121,7 +1357,18 @@ case class Seal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Seal] }
     override def get (i: Int): Object =

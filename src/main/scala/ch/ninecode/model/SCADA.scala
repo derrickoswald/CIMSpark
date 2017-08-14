@@ -7,14 +7,13 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications.
- * Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions.
- */
-
-/**
  * The connection to remote units is through one or more communication links.
  * Reduntant links may exist. The CommunicationLink class inherit PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
  * @param sup Reference to the superclass object.
+ * @group SCADA
+ * @groupname SCADA Package SCADA
+ * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
+This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 case class CommunicationLink
 (
@@ -23,7 +22,18 @@ case class CommunicationLink
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[CommunicationLink] }
     override def get (i: Int): Object =
@@ -66,6 +76,10 @@ extends
  * @param actuatorMinimum The minimum set point value accepted by the remote control point.
  * @param remoteControlled Set to true if the actuator is remotely controlled.
  * @param Control The Control for the RemoteControl point.
+ * @group SCADA
+ * @groupname SCADA Package SCADA
+ * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
+This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 case class RemoteControl
 (
@@ -78,7 +92,18 @@ case class RemoteControl
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RemotePoint: RemotePoint = sup.asInstanceOf[RemotePoint]
     override def copy (): Row = { clone ().asInstanceOf[RemoteControl] }
     override def get (i: Int): Object =
@@ -130,6 +155,10 @@ extends
  * Other units (e.g. control centers) usually also contain calculated values.
  * @param sup Reference to the superclass object.
  * @param RemoteUnit Remote unit this point belongs to.
+ * @group SCADA
+ * @groupname SCADA Package SCADA
+ * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
+This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 case class RemotePoint
 (
@@ -139,7 +168,18 @@ case class RemotePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[RemotePoint] }
     override def get (i: Int): Object =
@@ -185,6 +225,10 @@ extends
  * @param sensorMaximum The maximum value the telemetry item can return.
  * @param sensorMinimum The minimum value the telemetry item can return.
  * @param MeasurementValue Link to the physical telemetered point associated with this measurement.
+ * @group SCADA
+ * @groupname SCADA Package SCADA
+ * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
+This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 case class RemoteSource
 (
@@ -198,7 +242,18 @@ case class RemoteSource
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RemotePoint: RemotePoint = sup.asInstanceOf[RemotePoint]
     override def copy (): Row = { clone ().asInstanceOf[RemoteSource] }
     override def get (i: Int): Object =
@@ -253,6 +308,10 @@ extends
  * The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570 etc.). A remote unit contain remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherit PowerSystemResource. The intention is to allow RemotUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure etc.
  * @param sup Reference to the superclass object.
  * @param remoteUnitType Type of remote unit.
+ * @group SCADA
+ * @groupname SCADA Package SCADA
+ * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
+This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 case class RemoteUnit
 (
@@ -262,7 +321,18 @@ case class RemoteUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[RemoteUnit] }
     override def get (i: Int): Object =

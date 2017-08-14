@@ -7,15 +7,14 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Top package for IEC 61970.
- */
-
-/**
  * This is the IEC 61970 CIM version number assigned to this UML model.
  * @param sup Reference to the superclass object.
  * @param date Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
  * @param version Form is IEC61970CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
  *        For example IEC61970CIM13v18.
+ * @group IEC61970
+ * @groupname IEC61970 Package IEC61970
+ * @groupdesc IEC61970 Top package for IEC 61970.
  */
 case class IEC61970CIMVersion
 (
@@ -26,8 +25,19 @@ case class IEC61970CIMVersion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[IEC61970CIMVersion] }
     override def get (i: Int): Object =
     {

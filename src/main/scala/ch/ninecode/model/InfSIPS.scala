@@ -7,14 +7,12 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * System Integrity Protection Schemes (SIPS) (IEC terminology).
- * Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
- */
-
-/**
  * Logical gate than support logical operation based on the input.
  * @param sup Reference to the superclass object.
  * @param kind The logical operation of the gate.
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class Gate
 (
@@ -24,7 +22,18 @@ case class Gate
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Gate] }
     override def get (i: Int): Object =
@@ -74,6 +83,9 @@ extends
  * @param thresholdPercentage The threshold percentage that should be used for compare with the percentage change between input value and threshold value.
  * @param thresholdValue The threshold value that should be used for compare with the input value.
  * @param Gate <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class GateInputPin
 (
@@ -89,7 +101,18 @@ case class GateInputPin
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, 0.0, false, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[GateInputPin] }
     override def get (i: Int): Object =
@@ -149,6 +172,9 @@ extends
  * Result of a calculation of one or more measurement.
  * @param sup Reference to the superclass object.
  * @param kind Calculation operation executed on the operants.
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class MeasurementCalculator
 (
@@ -158,7 +184,18 @@ case class MeasurementCalculator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MeasurementCalculator] }
     override def get (i: Int): Object =
@@ -205,6 +242,9 @@ extends
  *        The order is not relevant (e.g. summation).
  * @param Measurement <em>undocumented</em>
  * @param MeasurementCalculator <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class MeasurementCalculatorInput
 (
@@ -217,7 +257,18 @@ case class MeasurementCalculatorInput
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MeasurementCalculatorInput] }
     override def get (i: Int): Object =
@@ -269,6 +320,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param kind The compare operation done on the branch group.
  * @param BranchGroup <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class PinBranchGroup
 (
@@ -279,7 +333,18 @@ case class PinBranchGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
     override def copy (): Row = { clone ().asInstanceOf[PinBranchGroup] }
     override def get (i: Int): Object =
@@ -325,6 +390,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param kind The compare operation done on the equipment.
  * @param Equipment <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class PinEquipment
 (
@@ -335,7 +403,18 @@ case class PinEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
     override def copy (): Row = { clone ().asInstanceOf[PinEquipment] }
     override def get (i: Int): Object =
@@ -380,6 +459,9 @@ extends
  * An output from one gate represent an input to another gate.
  * @param sup Reference to the superclass object.
  * @param GateOutput <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class PinGate
 (
@@ -389,7 +471,18 @@ case class PinGate
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
     override def copy (): Row = { clone ().asInstanceOf[PinGate] }
     override def get (i: Int): Object =
@@ -432,6 +525,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param Measurement <em>undocumented</em>
  * @param MeasurementCalculator <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class PinMeasurement
 (
@@ -442,7 +538,18 @@ case class PinMeasurement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
     override def copy (): Row = { clone ().asInstanceOf[PinMeasurement] }
     override def get (i: Int): Object =
@@ -488,6 +595,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param kind The compare operation done on the terminal.
  * @param Terminal <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class PinTerminal
 (
@@ -498,7 +608,18 @@ case class PinTerminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
     override def copy (): Row = { clone ().asInstanceOf[PinTerminal] }
     override def get (i: Int): Object =
@@ -549,6 +670,9 @@ extends
  * @param GateEnabledCondition <em>undocumented</em>
  * @param ProtectionEquipment <em>undocumented</em>
  * @param ProtectiveActionCollection <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class ProtectiveAction
 (
@@ -563,7 +687,18 @@ case class ProtectiveAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ProtectiveAction] }
     override def get (i: Int): Object =
@@ -630,6 +765,9 @@ extends
  * @param ConductingEquipment <em>undocumented</em>
  * @param DCConductingEquipment <em>undocumented</em>
  * @param Measurement <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class ProtectiveActionAdjustment
 (
@@ -646,7 +784,18 @@ case class ProtectiveActionAdjustment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, false, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectiveAction: ProtectiveAction = sup.asInstanceOf[ProtectiveAction]
     override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionAdjustment] }
     override def get (i: Int): Object =
@@ -708,6 +857,9 @@ extends
 /**
  * A collection of protective actions to protect the integrity of the power system.
  * @param sup Reference to the superclass object.
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class ProtectiveActionCollection
 (
@@ -716,7 +868,18 @@ case class ProtectiveActionCollection
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionCollection] }
     override def get (i: Int): Object =
@@ -757,6 +920,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param inService If true the equipment is put in-service, otherwise out-of-service.
  * @param Equipment <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class ProtectiveActionEquipment
 (
@@ -767,7 +933,18 @@ case class ProtectiveActionEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectiveAction: ProtectiveAction = sup.asInstanceOf[ProtectiveAction]
     override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionEquipment] }
     override def get (i: Int): Object =
@@ -815,6 +992,9 @@ extends
  * @param targetValue The target value specified the new case input for the regulator.
  *        The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.
  * @param RegulatingControl <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class ProtectiveActionRegulation
 (
@@ -826,7 +1006,18 @@ case class ProtectiveActionRegulation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProtectiveAction: ProtectiveAction = sup.asInstanceOf[ProtectiveAction]
     override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionRegulation] }
     override def get (i: Int): Object =
@@ -878,6 +1069,9 @@ extends
  * @param kind Kind of Remedial Action Scheme (RAS)
  * @param normalArmed The default/normal value used when other active signal/values are missing.
  * @param GateArmed <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class RemedialActionScheme
 (
@@ -890,7 +1084,18 @@ case class RemedialActionScheme
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[RemedialActionScheme] }
     override def get (i: Int): Object =
@@ -943,6 +1148,9 @@ extends
  * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  *        A stage with higher priority needs be activated before a lower stage can be activated.
  * @param RemedialActionScheme <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class Stage
 (
@@ -953,7 +1161,18 @@ case class Stage
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Stage] }
     override def get (i: Int): Object =
@@ -1007,6 +1226,9 @@ extends
  * @param GateTrigger <em>undocumented</em>
  * @param ProtectiveActionCollection <em>undocumented</em>
  * @param Stage <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class StageTrigger
 (
@@ -1023,7 +1245,18 @@ case class StageTrigger
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, 0, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[StageTrigger] }
     override def get (i: Int): Object =
@@ -1087,6 +1320,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param GateTrigger <em>undocumented</em>
  * @param RemedialActionScheme <em>undocumented</em>
+ * @group InfSIPS
+ * @groupname InfSIPS Package InfSIPS
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class TriggerCondition
 (
@@ -1097,7 +1333,18 @@ case class TriggerCondition
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TriggerCondition] }
     override def get (i: Int): Object =

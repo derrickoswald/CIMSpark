@@ -6,12 +6,13 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
  * @param sup Reference to the superclass object.
  * @param capacitiveRating Maximum capacitive reactive power.
  * @param inductiveRating Maximum inductive reactive power.
+ * @group InfWiresExt
+ * @groupname InfWiresExt Package InfWiresExt
  */
 case class SVC
 (
@@ -22,7 +23,18 @@ case class SVC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ShuntCompensator: ShuntCompensator = sup.asInstanceOf[ShuntCompensator]
     override def copy (): Row = { clone ().asInstanceOf[SVC] }
     override def get (i: Int): Object =
@@ -87,6 +99,8 @@ extends
  * @param switchOperationCycle Time interval between consecutive switching operations.
  * @param vRegLineLine True if regulated voltages are measured line to line, otherwise they are measured line to ground.
  * @param ShuntCompensatorInfo <em>undocumented</em>
+ * @group InfWiresExt
+ * @groupname InfWiresExt Package InfWiresExt
  */
 case class ShuntCompensatorControl
 (
@@ -113,7 +127,18 @@ case class ShuntCompensatorControl
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, null, 0.0, null, null, null, false, 0.0, 0, false, null, 0, null, null, 0.0, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegulatingControl: RegulatingControl = sup.asInstanceOf[RegulatingControl]
     override def copy (): Row = { clone ().asInstanceOf[ShuntCompensatorControl] }
     override def get (i: Int): Object =

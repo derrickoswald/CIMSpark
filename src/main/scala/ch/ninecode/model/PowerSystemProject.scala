@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The package describes how power system model data is managed and evolve over time in projects.
- */
-
-/**
  * A (document/collection) that describe a set of changes to the network.
  * @param sup Reference to the superclass object.
  * @param attr <em>undocumented</em>
@@ -23,6 +19,9 @@ import ch.ninecode.cim.Parseable
  * @param version Version of the project.
  *        Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
  * @param Project <em>undocumented</em>
+ * @group PowerSystemProject
+ * @groupname PowerSystemProject Package PowerSystemProject
+ * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.
  */
 case class PowerSystemProject
 (
@@ -39,8 +38,19 @@ case class PowerSystemProject
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0, null, null, 0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PowerSystemProject] }
     override def get (i: Int): Object =
     {
@@ -98,6 +108,11 @@ extends
     }
 }
 
+/**
+ * @group PowerSystemProject
+ * @groupname PowerSystemProject Package PowerSystemProject
+ * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.
+ */
 case class PowerSystemProjectSchedule
 (
     override val sup: BasicElement,
@@ -112,8 +127,19 @@ case class PowerSystemProjectSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PowerSystemProjectSchedule] }
     override def get (i: Int): Object =
     {
@@ -172,6 +198,9 @@ extends
  * A collection of dependent projects.
  * @param sup Reference to the superclass object.
  * @param Project <em>undocumented</em>
+ * @group PowerSystemProject
+ * @groupname PowerSystemProject Package PowerSystemProject
+ * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.
  */
 case class PowerSystemSubProject
 (
@@ -181,7 +210,18 @@ case class PowerSystemSubProject
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemProject: PowerSystemProject = sup.asInstanceOf[PowerSystemProject]
     override def copy (): Row = { clone ().asInstanceOf[PowerSystemSubProject] }
     override def get (i: Int): Object =
@@ -228,6 +268,9 @@ extends
  * @param scheduledStart Estimated date and time for when the project will be commissioned and committed to the network model.
  * @param status <em>undocumented</em>
  * @param stepType <em>undocumented</em>
+ * @group PowerSystemProject
+ * @groupname PowerSystemProject Package PowerSystemProject
+ * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.
  */
 case class ProjectStep
 (
@@ -242,8 +285,19 @@ case class ProjectStep
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ProjectStep] }
     override def get (i: Int): Object =
     {

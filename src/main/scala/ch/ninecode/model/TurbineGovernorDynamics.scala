@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.
- * Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
- */
-
-/**
  * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
  * This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for representation of
  * @param sup Reference to the superclass object.
@@ -87,6 +82,11 @@ import ch.ninecode.cim.Parseable
  *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
  *        false = fuel control system keeps fuel flow independent of engine speed.
  *        Typical Value = true.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovCT1
 (
@@ -130,7 +130,18 @@ case class GovCT1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovCT1] }
     override def get (i: Int): Object =
@@ -388,6 +399,11 @@ extends
  *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
  *        false = fuel control system keeps fuel flow independent of engine speed.
  *        Typical Value = false.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovCT2
 (
@@ -452,7 +468,18 @@ case class GovCT2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovCT2] }
     override def get (i: Int): Object =
@@ -677,6 +704,11 @@ extends
  *        Typical Value = 1.
  * @param vmin Minimum turbine power, PU of MWbase (Vmin).
  *        Typical Value = 0.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovGAST
 (
@@ -695,7 +727,18 @@ case class GovGAST
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovGAST] }
     override def get (i: Int): Object =
@@ -831,6 +874,11 @@ extends
  *        Typical Value = 1.
  * @param vmin Minimum turbine power, PU of MWbase (Vmin).
  *        Typical Value = 0.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovGAST1
 (
@@ -873,7 +921,18 @@ case class GovGAST1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovGAST1] }
     override def get (i: Int): Object =
@@ -1054,6 +1113,11 @@ extends
  * @param z Governor mode (Z).
  *        true = Droop
  *        false = ISO.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovGAST2
 (
@@ -1094,7 +1158,18 @@ case class GovGAST2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovGAST2] }
     override def get (i: Int): Object =
@@ -1270,6 +1345,11 @@ extends
  *        Typical Value = 2.5.
  * @param ty Time constant of fuel valve positioner (Ty).
  *        Typical Value = 0.2.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovGAST3
 (
@@ -1299,7 +1379,18 @@ case class GovGAST3
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovGAST3] }
     override def get (i: Int): Object =
@@ -1422,6 +1513,11 @@ extends
  *        Typical Value = 0.2.
  * @param tv Time constant of fuel valve positioner (T<sub>y</sub>).
  *        Typical Value = 0.1.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovGAST4
 (
@@ -1441,7 +1537,18 @@ case class GovGAST4
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovGAST4] }
     override def get (i: Int): Object =
@@ -1549,6 +1656,11 @@ extends
  * @param trate Turbine rating (Trate).
  *        Unit = MW.
  * @param tt Temperature controller integration rate (Tt).
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovGASTWD
 (
@@ -1590,7 +1702,18 @@ case class GovGASTWD
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovGASTWD] }
     override def get (i: Int): Object =
@@ -1755,6 +1878,11 @@ extends
  *        Typical Value = 1.
  * @param velm Maximum gate velocity (Vlem) (&gt;0).
  *        Typical Value = 0.2.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydro1
 (
@@ -1777,7 +1905,18 @@ case class GovHydro1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydro1] }
     override def get (i: Int): Object =
@@ -1915,6 +2054,11 @@ extends
  *        Unit = PU/sec.   Typical Value = -0.1.
  * @param uo Maximum gate opening velocity (Uo).
  *        Unit = PU/sec.  Typical Value = 0.1.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydro2
 (
@@ -1952,7 +2096,18 @@ case class GovHydro2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydro2] }
     override def get (i: Int): Object =
@@ -2152,6 +2307,11 @@ extends
  *        Unit = PU/sec.  Typical Value = -0.2.
  * @param velop Maximum gate opening velocity (Velop).
  *        Unit = PU/sec. Typical Value = 0.2.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydro3
 (
@@ -2196,7 +2356,18 @@ case class GovHydro3
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydro3] }
     override def get (i: Int): Object =
@@ -2419,6 +2590,11 @@ extends
  *        Typical Value = 0.2.
  * @param uo Max gate opening velocity (Uo).
  *        Typical Value = 0.2.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydro4
 (
@@ -2465,7 +2641,18 @@ case class GovHydro4
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydro4] }
     override def get (i: Int): Object =
@@ -2689,6 +2876,11 @@ extends
  *        Unit = PU/sec.  Typical Value = -0.14.
  * @param velop Maximum gate opening velocity (Velop).
  *        Unit = PU/sec.  Typical Value = 0.09.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroDD
 (
@@ -2732,7 +2924,18 @@ case class GovHydroDD
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroDD] }
     override def get (i: Int): Object =
@@ -2932,6 +3135,11 @@ extends
  *        Typical Value = false.
  * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
  *        Unit = m.  Typical Value = 25.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroFrancis
 (
@@ -2967,7 +3175,18 @@ case class GovHydroFrancis
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroFrancis] }
     override def get (i: Int): Object =
@@ -3099,6 +3318,11 @@ extends
  * @param t3 Gate actuator time constant (T3).
  *        Typical Value = 0.1.
  * @param t4 Water starting time (T4).
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroIEEE0
 (
@@ -3115,7 +3339,18 @@ case class GovHydroIEEE0
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroIEEE0] }
     override def get (i: Int): Object =
@@ -3230,6 +3465,11 @@ extends
  *        Typical Value = -0.1.
  * @param uo Maximum gate opening velocity (Uo).
  *        Unit = PU/sec.  Typical Value = 0.1.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroIEEE2
 (
@@ -3264,7 +3504,18 @@ case class GovHydroIEEE2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroIEEE2] }
     override def get (i: Int): Object =
@@ -3448,6 +3699,11 @@ extends
  *        Unit = PU/sec.  Typical Value = -0.14.
  * @param velop Maximum gate opening velocity (Velop).
  *        Unit = PU/sec.  Typical Value = 0.09.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroPID
 (
@@ -3489,7 +3745,18 @@ case class GovHydroPID
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroPID] }
     override def get (i: Int): Object =
@@ -3672,6 +3939,11 @@ extends
  *        Unit = PU/sec.  Typical Value = 0.
  * @param velmin Maximum gate closing velocity (Velmin).
  *        Unit = PU/sec.  Typical Value = 0.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroPID2
 (
@@ -3702,7 +3974,18 @@ case class GovHydroPID2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroPID2] }
     override def get (i: Int): Object =
@@ -3869,6 +4152,11 @@ extends
  *        Typical Value = false.
  * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
  *        Unit = m. Typical Value = 25.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroPelton
 (
@@ -3905,7 +4193,18 @@ case class GovHydroPelton
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroPelton] }
     override def get (i: Int): Object =
@@ -4113,6 +4412,11 @@ extends
  *        Unit = PU/sec.  Typical Value = -0.2.
  * @param velop Maximum gate opening velocity (Velop).
  *        Unit = PU/sec.  Typical Value = 0.2.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroR
 (
@@ -4163,7 +4467,18 @@ case class GovHydroR
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroR] }
     override def get (i: Int): Object =
@@ -4413,6 +4728,11 @@ extends
  * @param tp Pilot Valve time lag time constant (Tp).
  * @param tpe Electrical power droop time constant (Tpe).
  * @param tw Water inertia time constant (Tw) (&gt;0).
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroWEH
 (
@@ -4472,7 +4792,18 @@ case class GovHydroWEH
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroWEH] }
     override def get (i: Int): Object =
@@ -4695,6 +5026,11 @@ extends
  *        Unit = PU/sec.  Typical Value = 0.
  * @param velmin Maximum gate closing velocity (Velmin).
  *        Unit = PU/sec.  Typical Value = 0.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovHydroWPID
 (
@@ -4725,7 +5061,18 @@ case class GovHydroWPID
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovHydroWPID] }
     override def get (i: Int): Object =
@@ -4845,6 +5192,11 @@ extends
  *        Typical Value = 1.
  * @param vmin Minimum valve position, PU of mwcap (Vmin).
  *        Typical Value = 0.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteam0
 (
@@ -4861,7 +5213,18 @@ case class GovSteam0
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteam0] }
     override def get (i: Int): Object =
@@ -5007,6 +5370,11 @@ extends
  *        true = nonlinear valve characteristic is used
  *        false = nonlinear valve characteristic is not used.
  *        Typical Value = true.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteam1
 (
@@ -5054,7 +5422,18 @@ case class GovSteam1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteam1] }
     override def get (i: Int): Object =
@@ -5225,6 +5604,11 @@ extends
  *        Typical Value = 0.45.
  * @param t2 Governor lead time constant (T<sub>2</sub>) (may be 0).
  *        Typical Value = 0.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteam2
 (
@@ -5241,7 +5625,18 @@ case class GovSteam2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteam2] }
     override def get (i: Int): Object =
@@ -5337,6 +5732,11 @@ extends
  *        Typical Value = 10.
  * @param t5lp LP reheater time constant (T5lp).
  *        Typical Value = 10.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteamCC
 (
@@ -5362,7 +5762,18 @@ case class GovSteamCC
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamCC] }
     override def get (i: Int): Object =
@@ -5521,6 +5932,11 @@ extends
  *        Typical Value = 0.1.
  * @param wwmin Lower limit for the speed governor frequency correction (Wwmin).
  *        Typical Value = -1.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteamEU
 (
@@ -5564,7 +5980,18 @@ case class GovSteamEU
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamEU] }
     override def get (i: Int): Object =
@@ -5721,6 +6148,11 @@ extends
  * @param tt Time constant with which power falls off after intercept valve closure (Tt).
  * @param vmax (Vmax).
  * @param vmin (Vmin).
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteamFV2
 (
@@ -5742,7 +6174,18 @@ case class GovSteamFV2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamFV2] }
     override def get (i: Int): Object =
@@ -5857,6 +6300,11 @@ extends
  *        Unit = PU/sec.  Typical Value = -1.
  * @param uo Maximum valve opening velocity (Uo).
  *        Unit = PU/sec.  Typical Value = 0.1.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteamFV3
 (
@@ -5884,7 +6332,18 @@ case class GovSteamFV3
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamFV3] }
     override def get (i: Int): Object =
@@ -6081,6 +6540,11 @@ extends
  *        Typical Value = 0.
  * @param ympmx Maximum intercept valve position (Ympmx).
  *        Typical Value = 1.1.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteamFV4
 (
@@ -6140,7 +6604,18 @@ case class GovSteamFV4
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamFV4] }
     override def get (i: Int): Object =
@@ -6373,6 +6848,11 @@ extends
  *        Unit = PU/sec.  Typical Value = -10.
  * @param uo Maximum valve opening velocity (Uo) (&gt; 0).
  *        Unit = PU/sec.  Typical Value = 1.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteamIEEE1
 (
@@ -6402,7 +6882,18 @@ case class GovSteamIEEE1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamIEEE1] }
     override def get (i: Int): Object =
@@ -6516,6 +7007,11 @@ extends
  * @param t4 Delay due to steam inlet volumes associated with steam chest and inlet piping (T4).
  * @param t5 Reheater delay including hot and cold leads (T5).
  * @param t6 Delay due to IP-LP turbine, crossover pipes and LP end hoods (T6).
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class GovSteamSGO
 (
@@ -6536,7 +7032,18 @@ case class GovSteamSGO
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamSGO] }
     override def get (i: Int): Object =
@@ -6612,6 +7119,11 @@ extends
  * @param sup Reference to the superclass object.
  * @param AsynchronousMachineDynamics Asynchronous machine model with which this turbine-governor model is associated.
  * @param TurbineLoadControllerDynamics Turbine load controller providing input to this turbine-governor.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
  */
 case class TurbineGovernorDynamics
 (
@@ -6622,7 +7134,18 @@ case class TurbineGovernorDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[TurbineGovernorDynamics] }
     override def get (i: Int): Object =

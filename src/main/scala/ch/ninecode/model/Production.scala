@@ -7,16 +7,14 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The production package is responsible for classes which describe various kinds of generators.
- * These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
- */
-
-/**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
  * @param sup Reference to the superclass object.
  * @param airCompressorRating Rating of the CAES air compressor.
  * @param CAESPlant An air compressor may be a member of a compressed air energy storage plant.
  * @param CombustionTurbine A CAES air compressor is driven by combustion turbine.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class AirCompressor
 (
@@ -28,7 +26,18 @@ case class AirCompressor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[AirCompressor] }
     override def get (i: Int): Object =
@@ -79,6 +88,9 @@ extends
  * @param ratedCapacityP The CAES plant's gross rated generating capacity.
  * @param AirCompressor An air compressor may be a member of a compressed air energy storage plant.
  * @param ThermalGeneratingUnit A thermal generating unit may be a member of a compressed air energy storage plant.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class CAESPlant
 (
@@ -91,7 +103,18 @@ case class CAESPlant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[CAESPlant] }
     override def get (i: Int): Object =
@@ -148,6 +171,9 @@ extends
  * @param cogenLPSteamRating The low pressure steam rating.
  * @param ratedP The rated output active power of the cogeneration plant.
  * @param SteamSendoutSchedule A cogeneration plant has a steam sendout schedule.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class CogenerationPlant
 (
@@ -162,7 +188,18 @@ case class CogenerationPlant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[CogenerationPlant] }
     override def get (i: Int): Object =
@@ -219,6 +256,9 @@ extends
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
  * @param sup Reference to the superclass object.
  * @param combCyclePlantRating The combined cycle plant's active power output rating.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class CombinedCyclePlant
 (
@@ -228,7 +268,18 @@ case class CombinedCyclePlant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[CombinedCyclePlant] }
     override def get (i: Int): Object =
@@ -274,6 +325,9 @@ extends
  *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
  * @param emissionValueSource The source of the emission value.
  * @param ThermalGeneratingUnit A thermal generating unit may have one or more emission allowance accounts.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class EmissionAccount
 (
@@ -285,7 +339,18 @@ case class EmissionAccount
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[EmissionAccount] }
     override def get (i: Int): Object =
@@ -338,6 +403,9 @@ extends
  *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit A thermal generating unit may have  one or more emission curves.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class EmissionCurve
 (
@@ -350,7 +418,18 @@ case class EmissionCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[EmissionCurve] }
     override def get (i: Int): Object =
@@ -414,6 +493,9 @@ extends
  * @param lowBreakpointP The active power output level of the unit at which the given type of fuel is switched off.
  *        This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels.
  * @param ThermalGeneratingUnit A thermal generating unit may have one or more fossil fuels.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class FossilFuel
 (
@@ -433,7 +515,18 @@ case class FossilFuel
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[FossilFuel] }
     override def get (i: Int): Object =
@@ -511,6 +604,9 @@ extends
  * @param minFuelAllocation The minimum amount fuel that is allocated for consumption for the scheduled time period, e.g., based on a "take-or-pay" contract.
  * @param FossilFuel A fuel allocation schedule must have a fossil fuel.
  * @param ThermalGeneratingUnit A thermal generating unit may have one or more fuel allocation schedules.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class FuelAllocationSchedule
 (
@@ -526,7 +622,18 @@ case class FuelAllocationSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[FuelAllocationSchedule] }
     override def get (i: Int): Object =
@@ -588,6 +695,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param GeneratingUnit A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class GenUnitOpCostCurve
 (
@@ -598,7 +708,18 @@ case class GenUnitOpCostCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[GenUnitOpCostCurve] }
     override def get (i: Int): Object =
@@ -644,6 +765,9 @@ extends
  * The X-axis represents absolute time. The Y1-axis represents the status (0=off-line and unavailable: 1=available: 2=must run: 3=must run at fixed power value: etc.). The Y2-axis represents the must run fixed power value where required.
  * @param sup Reference to the superclass object.
  * @param GeneratingUnit A generating unit may have an operating schedule, indicating the planned operation of the unit.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class GenUnitOpSchedule
 (
@@ -653,7 +777,18 @@ case class GenUnitOpSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[GenUnitOpSchedule] }
     override def get (i: Int): Object =
@@ -739,6 +874,9 @@ extends
  * @param totalEfficiency The efficiency of the unit in converting the fuel into electrical energy.
  * @param variableCost The variable cost component of production per unit of ActivePower.
  * @param GenUnitOpSchedule A generating unit may have an operating schedule, indicating the planned operation of the unit.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class GeneratingUnit
 (
@@ -785,7 +923,18 @@ case class GeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[GeneratingUnit] }
     override def get (i: Int): Object =
@@ -939,6 +1088,9 @@ extends
  * Station service loads, when modeled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
  * @param sup Reference to the superclass object.
  * @param GeneratingUnit A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class GrossToNetActivePowerCurve
 (
@@ -948,7 +1100,18 @@ case class GrossToNetActivePowerCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[GrossToNetActivePowerCurve] }
     override def get (i: Int): Object =
@@ -996,6 +1159,9 @@ extends
  * @param heatInputOffset Heat input - offset adjustment factor.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit A thermal generating unit may have a heat input curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class HeatInputCurve
 (
@@ -1010,7 +1176,18 @@ case class HeatInputCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[HeatInputCurve] }
     override def get (i: Int): Object =
@@ -1069,6 +1246,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit A thermal generating unit may have a heat rate curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class HeatRateCurve
 (
@@ -1079,7 +1259,18 @@ case class HeatRateCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[HeatRateCurve] }
     override def get (i: Int): Object =
@@ -1125,6 +1316,9 @@ extends
  * The relationship between efficiency, discharge, head, and power output is expressed as follows:   E =KP/HQ
  * @param sup Reference to the superclass object.
  * @param HydroGeneratingUnit A hydro generating unit has an efficiency curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class HydroGeneratingEfficiencyCurve
 (
@@ -1134,7 +1328,18 @@ case class HydroGeneratingEfficiencyCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[HydroGeneratingEfficiencyCurve] }
     override def get (i: Int): Object =
@@ -1179,6 +1384,9 @@ extends
  * @param hydroUnitWaterCost The equivalent cost of water that drives the hydro turbine.
  * @param HydroPowerPlant The hydro generating unit belongs to a hydro power plant.
  * @param PenstockLossCurve A hydro generating unit has a penstock loss curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class HydroGeneratingUnit
 (
@@ -1191,7 +1399,18 @@ case class HydroGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { clone ().asInstanceOf[HydroGeneratingUnit] }
     override def get (i: Int): Object =
@@ -1253,6 +1472,9 @@ extends
  * @param surgeTankCrestLevel The level at which the surge tank spills.
  * @param GenSourcePumpDischargeReservoir Generators are supplied water from or pumps discharge water to an upstream reservoir.
  * @param Reservoir Generators discharge water to or pumps are supplied water from a downstream reservoir.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class HydroPowerPlant
 (
@@ -1272,7 +1494,18 @@ case class HydroPowerPlant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[HydroPowerPlant] }
     override def get (i: Int): Object =
@@ -1351,6 +1584,9 @@ extends
  * @param HydroPumpOpSchedule The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
  * @param RotatingMachine The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
  *        The direction of machine rotation for pumping may or may not be the same as for generating.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class HydroPump
 (
@@ -1366,7 +1602,18 @@ case class HydroPump
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[HydroPump] }
     override def get (i: Int): Object =
@@ -1427,6 +1674,9 @@ extends
  * The unit's operating schedule status is typically given as: (0=unavailable) (1=avilable to startup or shutdown)  (2=must pump).
  * @param sup Reference to the superclass object.
  * @param HydroPump The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class HydroPumpOpSchedule
 (
@@ -1436,7 +1686,18 @@ case class HydroPumpOpSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[HydroPumpOpSchedule] }
     override def get (i: Int): Object =
@@ -1480,6 +1741,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit A thermal generating unit may have an incremental heat rate curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class IncrementalHeatRateCurve
 (
@@ -1490,7 +1754,18 @@ case class IncrementalHeatRateCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[IncrementalHeatRateCurve] }
     override def get (i: Int): Object =
@@ -1536,6 +1811,9 @@ extends
  * Typically in one hour increments for up to 10 days. The forecast is given in average cubic meters per second over the time increment.
  * @param sup Reference to the superclass object.
  * @param Reservoir A reservoir may have a "natural" inflow forecast.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class InflowForecast
 (
@@ -1545,7 +1823,18 @@ case class InflowForecast
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[InflowForecast] }
     override def get (i: Int): Object =
@@ -1588,6 +1877,9 @@ extends
  * The  volume is at the y-axis and the reservoir level at the x-axis.
  * @param sup Reference to the superclass object.
  * @param Reservoir A reservoir may have a level versus volume relationship.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class LevelVsVolumeCurve
 (
@@ -1597,7 +1889,18 @@ case class LevelVsVolumeCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[LevelVsVolumeCurve] }
     override def get (i: Int): Object =
@@ -1638,6 +1941,9 @@ extends
 /**
  * A nuclear generating unit.
  * @param sup Reference to the superclass object.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class NuclearGeneratingUnit
 (
@@ -1646,7 +1952,18 @@ case class NuclearGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { clone ().asInstanceOf[NuclearGeneratingUnit] }
     override def get (i: Int): Object =
@@ -1687,6 +2004,9 @@ extends
  * One or more turbines may be connected to the same penstock.
  * @param sup Reference to the superclass object.
  * @param HydroGeneratingUnit A hydro generating unit has a penstock loss curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class PenstockLossCurve
 (
@@ -1696,7 +2016,18 @@ case class PenstockLossCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[PenstockLossCurve] }
     override def get (i: Int): Object =
@@ -1752,6 +2083,9 @@ extends
  * @param spillwayCrestLevel Spillway crest level above which water will spill.
  * @param SpillsFromReservoir A reservoir may spill into a downstream reservoir.
  * @param TargetLevelSchedule A reservoir may have a water level target schedule.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class Reservoir
 (
@@ -1773,7 +2107,18 @@ case class Reservoir
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[Reservoir] }
     override def get (i: Int): Object =
@@ -1853,6 +2198,9 @@ extends
  * @param shutdownCost Fixed shutdown cost.
  * @param shutdownDate The date and time of the most recent generating unit shutdown.
  * @param ThermalGeneratingUnit A thermal generating unit may have a shutdown curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class ShutdownCurve
 (
@@ -1864,7 +2212,18 @@ case class ShutdownCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[ShutdownCurve] }
     override def get (i: Int): Object =
@@ -1911,6 +2270,9 @@ extends
 /**
  * A solar thermal generating unit.
  * @param sup Reference to the superclass object.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class SolarGeneratingUnit
 (
@@ -1919,7 +2281,18 @@ case class SolarGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { clone ().asInstanceOf[SolarGeneratingUnit] }
     override def get (i: Int): Object =
@@ -1960,6 +2333,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param ignitionFuelType Type of ignition fuel.
  * @param StartupModel The unit's startup model may have a startup ignition fuel curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class StartIgnFuelCurve
 (
@@ -1970,7 +2346,18 @@ case class StartIgnFuelCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[StartIgnFuelCurve] }
     override def get (i: Int): Object =
@@ -2016,6 +2403,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param mainFuelType Type of main fuel.
  * @param StartupModel The unit's startup model may have a startup main fuel curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class StartMainFuelCurve
 (
@@ -2026,7 +2416,18 @@ case class StartMainFuelCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[StartMainFuelCurve] }
     override def get (i: Int): Object =
@@ -2072,6 +2473,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param hotStandbyRamp The startup ramp rate in gross for a unit that is on hot standby.
  * @param StartupModel The unit's startup model may have a startup ramp curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class StartRampCurve
 (
@@ -2082,7 +2486,18 @@ case class StartRampCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[StartRampCurve] }
     override def get (i: Int): Object =
@@ -2142,6 +2557,9 @@ extends
  * @param StartMainFuelCurve The unit's startup model may have a startup main fuel curve.
  * @param StartRampCurve The unit's startup model may have a startup ramp curve.
  * @param ThermalGeneratingUnit A thermal generating unit may have a startup model.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class StartupModel
 (
@@ -2164,7 +2582,18 @@ case class StartupModel
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[StartupModel] }
     override def get (i: Int): Object =
@@ -2245,6 +2674,9 @@ extends
  * The cogeneration plant's steam sendout schedule in volume per time unit.
  * @param sup Reference to the superclass object.
  * @param CogenerationPlant A cogeneration plant has a steam sendout schedule.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class SteamSendoutSchedule
 (
@@ -2254,7 +2686,18 @@ case class SteamSendoutSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[SteamSendoutSchedule] }
     override def get (i: Int): Object =
@@ -2297,6 +2740,9 @@ extends
  * There could be more than one curve depending on the level of the tailbay reservoir or river level.
  * @param sup Reference to the superclass object.
  * @param HydroGeneratingUnit A hydro generating unit has a tailbay loss curve.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class TailbayLossCurve
 (
@@ -2306,7 +2752,18 @@ case class TailbayLossCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[TailbayLossCurve] }
     override def get (i: Int): Object =
@@ -2351,6 +2808,9 @@ extends
  * @param highLevelLimit High target level limit, above which the reservoir operation will be penalized.
  * @param lowLevelLimit Low target level limit, below which the reservoir operation will be penalized.
  * @param Reservoir A reservoir may have a water level target schedule.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class TargetLevelSchedule
 (
@@ -2362,7 +2822,18 @@ case class TargetLevelSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[TargetLevelSchedule] }
     override def get (i: Int): Object =
@@ -2418,6 +2889,9 @@ extends
  * @param IncrementalHeatRateCurve A thermal generating unit may have an incremental heat rate curve.
  * @param ShutdownCurve A thermal generating unit may have a shutdown curve.
  * @param StartupModel A thermal generating unit may have a startup model.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class ThermalGeneratingUnit
 (
@@ -2435,7 +2909,18 @@ case class ThermalGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { clone ().asInstanceOf[ThermalGeneratingUnit] }
     override def get (i: Int): Object =
@@ -2502,6 +2987,9 @@ extends
  * May be used to represent a single turbine or an aggregation.
  * @param sup Reference to the superclass object.
  * @param windGenUnitType The kind of wind generating unit
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
  */
 case class WindGeneratingUnit
 (
@@ -2511,7 +2999,18 @@ case class WindGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
     override def copy (): Row = { clone ().asInstanceOf[WindGeneratingUnit] }
     override def get (i: Int): Object =

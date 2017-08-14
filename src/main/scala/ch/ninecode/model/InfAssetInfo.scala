@@ -6,12 +6,13 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
  * Each catalogue item is for a specific product (AssetModel) available from a specific supplier.
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class AssetModelCatalogue
 (
@@ -21,7 +22,18 @@ case class AssetModelCatalogue
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AssetModelCatalogue] }
     override def get (i: Int): Object =
@@ -67,6 +79,8 @@ extends
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
  * @param AssetModel <em>undocumented</em>
  * @param AssetModelCatalogue <em>undocumented</em>
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class AssetModelCatalogueItem
 (
@@ -78,7 +92,18 @@ case class AssetModelCatalogueItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[AssetModelCatalogueItem] }
     override def get (i: Int): Object =
@@ -126,6 +151,8 @@ extends
  * Properties of breaker assets.
  * @param sup Reference to the superclass object.
  * @param phaseTrip Phase trip rating.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class BreakerInfo
 (
@@ -135,7 +162,18 @@ case class BreakerInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OldSwitchInfo: OldSwitchInfo = sup.asInstanceOf[OldSwitchInfo]
     override def copy (): Row = { clone ().asInstanceOf[BreakerInfo] }
     override def get (i: Int): Object =
@@ -185,6 +223,8 @@ extends
  * @param ratedVoltage Rated voltage.
  * @param remote True if device is capable of being operated by remote control.
  * @param switchStateCount Number of switch states represented by the composite switch.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class CompositeSwitchInfo
 (
@@ -202,7 +242,18 @@ case class CompositeSwitchInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, 0.0, null, null, 0, 0.0, false, 0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[CompositeSwitchInfo] }
     override def get (i: Int): Object =
@@ -283,6 +334,8 @@ extends
  * @param tertiaryFlsRating Full load secondary (FLS) rating for tertiary winding.
  * @param tertiaryRatio Ratio for the tertiary winding tap changer.
  * @param usage Usage: eg. metering, protection, etc.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class CurrentTransformerInfo
 (
@@ -307,7 +360,18 @@ case class CurrentTransformerInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0, null, 0.0, 0.0, null, null, 0.0, null, 0.0, 0.0, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[CurrentTransformerInfo] }
     override def get (i: Int): Object =
@@ -394,6 +458,8 @@ extends
  * Parameters of fault indicator asset.
  * @param sup Reference to the superclass object.
  * @param resetKind Kind of reset mechanisim of this fault indicator.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class FaultIndicatorInfo
 (
@@ -403,7 +469,18 @@ case class FaultIndicatorInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[FaultIndicatorInfo] }
     override def get (i: Int): Object =
@@ -452,6 +529,8 @@ extends
  * @param poleCount Number of poles (i.e. of current carrying conductors that are switched).
  * @param remote True if device is capable of being operated by remote control.
  * @param withstandCurrent The highest value of current the switch can carry in the closed position at the rated voltage under specified operating conditions without suffering significant deterioration of its performance.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class OldSwitchInfo
 (
@@ -467,7 +546,18 @@ case class OldSwitchInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0, false, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SwitchInfo: SwitchInfo = sup.asInstanceOf[SwitchInfo]
     override def copy (): Row = { clone ().asInstanceOf[OldSwitchInfo] }
     override def get (i: Int): Object =
@@ -523,6 +613,10 @@ extends
     }
 }
 
+/**
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
+ */
 case class OldTransformerEndInfo
 (
     override val sup: TransformerEndInfo,
@@ -534,7 +628,18 @@ case class OldTransformerEndInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TransformerEndInfo: TransformerEndInfo = sup.asInstanceOf[TransformerEndInfo]
     override def copy (): Row = { clone ().asInstanceOf[OldTransformerEndInfo] }
     override def get (i: Int): Object =
@@ -581,6 +686,10 @@ extends
     }
 }
 
+/**
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
+ */
 case class OldTransformerTankInfo
 (
     override val sup: TransformerTankInfo,
@@ -594,7 +703,18 @@ case class OldTransformerTankInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TransformerTankInfo: TransformerTankInfo = sup.asInstanceOf[TransformerTankInfo]
     override def copy (): Row = { clone ().asInstanceOf[OldTransformerTankInfo] }
     override def get (i: Int): Object =
@@ -657,6 +777,8 @@ extends
  * @param ratedVoltage Rated voltage on the primary side.
  * @param secondaryRatio Ratio for the secondary winding tap changer.
  * @param tertiaryRatio Ratio for the tertiary winding tap changer.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class PotentialTransformerInfo
 (
@@ -672,7 +794,18 @@ case class PotentialTransformerInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[PotentialTransformerInfo] }
     override def get (i: Int): Object =
@@ -733,6 +866,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param groundTrip Actual ground trip for this type of relay, if applicable.
  * @param phaseTrip Actual phase trip for this type of relay, if applicable.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class ProtectionEquipmentInfo
 (
@@ -743,7 +878,18 @@ case class ProtectionEquipmentInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[ProtectionEquipmentInfo] }
     override def get (i: Int): Object =
@@ -792,6 +938,8 @@ extends
  * @param groundTripRating Ground trip rating.
  * @param phaseTripRating Phase trip rating.
  * @param recloseLockoutCount Total number of phase reclose operations.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class RecloserInfo
 (
@@ -805,7 +953,18 @@ case class RecloserInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, 0.0, 0.0, 0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OldSwitchInfo: OldSwitchInfo = sup.asInstanceOf[OldSwitchInfo]
     override def copy (): Row = { clone ().asInstanceOf[RecloserInfo] }
     override def get (i: Int): Object =
@@ -870,6 +1029,8 @@ extends
  * @param steepFrontDischargeVoltage Residual voltage during a current impulse with front time of 1 microsecond, and magnitude equal to the nominal discharge current level.
  * @param switchingImpulseDischargeVoltage Residual voltage during a current impulse with front time of at least 30 microseconds, and magnitude specified in IEC 60099 for the line discharge class.
  *        Does not apply to line discharge class 0.
+ * @group InfAssetInfo
+ * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class SurgeArresterInfo
 (
@@ -887,7 +1048,18 @@ case class SurgeArresterInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[SurgeArresterInfo] }
     override def get (i: Int): Object =

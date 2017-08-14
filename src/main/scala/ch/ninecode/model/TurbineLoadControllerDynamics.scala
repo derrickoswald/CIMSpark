@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.
- */
-
-/**
  * Turbine Load Controller model developed in the WECC.
  * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
  * @param sup Reference to the superclass object.
@@ -44,6 +40,9 @@ import ch.ninecode.cim.Parseable
  *        Typical Value = true.
  * @param tpelec Power transducer time constant (Tpelec).
  *        Typical Value = 0.
+ * @group TurbineLoadControllerDynamics
+ * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
+ * @groupdesc TurbineLoadControllerDynamics A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.
  */
 case class TurbLCFB1
 (
@@ -64,7 +63,18 @@ case class TurbLCFB1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, false, 0.0, false, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineLoadControllerDynamics: TurbineLoadControllerDynamics = sup.asInstanceOf[TurbineLoadControllerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[TurbLCFB1] }
     override def get (i: Int): Object =
@@ -139,6 +149,9 @@ extends
  * Turbine load controller function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param TurbineGovernorDynamics Turbine-governor controlled by this turbine load controller.
+ * @group TurbineLoadControllerDynamics
+ * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
+ * @groupdesc TurbineLoadControllerDynamics A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.
  */
 case class TurbineLoadControllerDynamics
 (
@@ -148,7 +161,18 @@ case class TurbineLoadControllerDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[TurbineLoadControllerDynamics] }
     override def get (i: Int): Object =

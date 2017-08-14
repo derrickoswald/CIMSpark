@@ -7,17 +7,16 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
- * <font color="#0f0f0f">
- * </font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
- * <font color="#0f0f0f">
- * </font>
- */
-
-/**
  * Power Factor or VAr controller Type II function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this Power Factor or VAr controller Type II is associated.
+ * @group PFVArControllerType2Dynamics
+ * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+<font color="#0f0f0f">
+</font>
  */
 case class PFVArControllerType2Dynamics
 (
@@ -27,7 +26,18 @@ case class PFVArControllerType2Dynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[PFVArControllerType2Dynamics] }
     override def get (i: Int): Object =
@@ -77,6 +87,13 @@ extends
  * @param max Output limit (max).
  * @param ref Reference value of reactive power or power factor (Ref).
  *        The reference value is initialised by this model. This initialisation may override the value exchanged by this attribute to represent a plant operator's change of the reference setting.
+ * @group PFVArControllerType2Dynamics
+ * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+<font color="#0f0f0f">
+</font>
  */
 case class PFVArType2Common1
 (
@@ -90,7 +107,18 @@ case class PFVArType2Common1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup.asInstanceOf[PFVArControllerType2Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[PFVArType2Common1] }
     override def get (i: Int): Object =
@@ -156,6 +184,13 @@ extends
  *        Typical Value = 0.1.
  * @param vref Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).
  * @param vs Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
+ * @group PFVArControllerType2Dynamics
+ * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+<font color="#0f0f0f">
+</font>
  */
 case class PFVArType2IEEEPFController
 (
@@ -171,7 +206,18 @@ case class PFVArType2IEEEPFController
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup.asInstanceOf[PFVArControllerType2Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[PFVArType2IEEEPFController] }
     override def get (i: Int): Object =
@@ -240,6 +286,13 @@ extends
  * @param vclmt Maximum output of the pf controller (<i>V</i><i><sub>CLMT</sub></i>).
  * @param vref Voltage regulator reference (<i>V</i><i><sub>REF</sub></i>).
  * @param vs Generator sensing voltage (<i>V</i><i><sub>S</sub></i>).
+ * @group PFVArControllerType2Dynamics
+ * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
+ * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+<font color="#0f0f0f">
+</font>
  */
 case class PFVArType2IEEEVArController
 (
@@ -255,7 +308,18 @@ case class PFVArType2IEEEVArController
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup.asInstanceOf[PFVArControllerType2Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[PFVArType2IEEEVArController] }
     override def get (i: Int): Object =

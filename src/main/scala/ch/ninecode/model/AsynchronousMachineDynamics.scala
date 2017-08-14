@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine.
- * The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
- */
-
-/**
  * Asynchronous machine whose behaviour is described by reference to a standard model expressed in either time constant reactance form or equivalent circuit form <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * 
  * <b>Parameter Notes:</b>
@@ -23,6 +18,13 @@ import ch.ninecode.cim.Parseable
  * @param MechanicalLoadDynamics Mechanical load model associated with this asynchronous machine model.
  * @param TurbineGovernorDynamics Turbine-governor model associated with this asynchronous machine model.
  * @param WindTurbineType1or2Dynamics Wind generator type 1 or 2 model associated with this asynchronous machine model.
+ * @group AsynchronousMachineDynamics
+ * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
+ * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
+
+The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+
+The asynchronous machine model is used to model wind generators Type 1 and Type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 case class AsynchronousMachineDynamics
 (
@@ -35,7 +37,18 @@ case class AsynchronousMachineDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RotatingMachineDynamics: RotatingMachineDynamics = sup.asInstanceOf[RotatingMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[AsynchronousMachineDynamics] }
     override def get (i: Int): Object =
@@ -104,6 +117,13 @@ extends
  * @param xlr1 Damper 1 winding leakage reactance.
  * @param xlr2 Damper 2 winding leakage reactance.
  * @param xm Magnetizing reactance.
+ * @group AsynchronousMachineDynamics
+ * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
+ * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
+
+The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+
+The asynchronous machine model is used to model wind generators Type 1 and Type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 case class AsynchronousMachineEquivalentCircuit
 (
@@ -117,7 +137,18 @@ case class AsynchronousMachineEquivalentCircuit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AsynchronousMachineDynamics: AsynchronousMachineDynamics = sup.asInstanceOf[AsynchronousMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[AsynchronousMachineEquivalentCircuit] }
     override def get (i: Int): Object =
@@ -200,6 +231,13 @@ extends
  *        Typical Value = 0.2.
  * @param xs Synchronous reactance (Xs) (&gt;= X').
  *        Typical Value = 1.8.
+ * @group AsynchronousMachineDynamics
+ * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
+ * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
+
+The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+
+The asynchronous machine model is used to model wind generators Type 1 and Type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 case class AsynchronousMachineTimeConstantReactance
 (
@@ -213,7 +251,18 @@ case class AsynchronousMachineTimeConstantReactance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AsynchronousMachineDynamics: AsynchronousMachineDynamics = sup.asInstanceOf[AsynchronousMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[AsynchronousMachineTimeConstantReactance] }
     override def get (i: Int): Object =

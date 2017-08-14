@@ -6,10 +6,11 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * Used to define the type of generation for scheduling purposes.
  * @param sup Reference to the superclass object.
+ * @group InfEnergySource
+ * @groupname InfEnergySource Package InfEnergySource
  */
 case class EnergySchedulingType
 (
@@ -18,7 +19,18 @@ case class EnergySchedulingType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[EnergySchedulingType] }
     override def get (i: Int): Object =

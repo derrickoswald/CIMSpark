@@ -7,14 +7,13 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The package is used to define detailed customer models.
- */
-
-/**
  * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
  * These might be created as a consequence of local business processes and associated rules. It is anticipated that this class will be customised extensively to meet local implementation needs.
  * @param sup Reference to the superclass object.
  * @param deadline The deadline for compliance.
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class ComplianceEvent
 (
@@ -24,7 +23,18 @@ case class ComplianceEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
     override def copy (): Row = { clone ().asInstanceOf[ComplianceEvent] }
     override def get (i: Int): Object =
@@ -79,6 +89,9 @@ extends
  * @param pymtPlanType Type of payment plan.
  * @param CustomerAccount <em>undocumented</em>
  * @param ErpInvoiceLineItems <em>undocumented</em>
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class CustomerBillingInfo
 (
@@ -97,7 +110,18 @@ case class CustomerBillingInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0.0, null, 0.0, 0.0, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[CustomerBillingInfo] }
     override def get (i: Int): Object =
@@ -166,6 +190,9 @@ extends
  * A type of customer agreement involving an external agency.
  * For example, a customer may form a contracts with an Energy Service Supplier if Direct Access is permitted.
  * @param sup Reference to the superclass object.
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class ExternalCustomerAgreement
 (
@@ -174,7 +201,18 @@ case class ExternalCustomerAgreement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[ExternalCustomerAgreement] }
     override def get (i: Int): Object =
@@ -222,6 +260,9 @@ extends
  * @param valueUninterruptedServiceP Value of uninterrupted service (Cost per active power).
  * @param voltImbalanceViolCost Voltage imbalance violation cost (Cost per unit Voltage).
  * @param voltLimitViolCost Voltage limit violation cost (Cost per unit Voltage).
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class PowerQualityPricing
 (
@@ -239,7 +280,18 @@ case class PowerQualityPricing
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[PowerQualityPricing] }
     override def get (i: Int): Object =
@@ -309,6 +361,9 @@ extends
  * @param automaticPay True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
  * @param payAmount Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
  * @param serviceRequirement Explanation of the requirement and conditions for satisfying it.
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class ServiceGuarantee
 (
@@ -321,7 +376,18 @@ case class ServiceGuarantee
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[ServiceGuarantee] }
     override def get (i: Int): Object =
@@ -373,6 +439,9 @@ extends
  * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
  * @param sup Reference to the superclass object.
  * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class StandardIndustryCode
 (
@@ -382,7 +451,18 @@ case class StandardIndustryCode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[StandardIndustryCode] }
     override def get (i: Int): Object =
@@ -423,6 +503,9 @@ extends
 /**
  * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
  * @param sup Reference to the superclass object.
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class SubscribePowerCurve
 (
@@ -431,7 +514,18 @@ case class SubscribePowerCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[SubscribePowerCurve] }
     override def get (i: Int): Object =
@@ -480,6 +574,9 @@ extends
  * @param workPrice Amount of bill.
  * @param CustomerAccount <em>undocumented</em>
  * @param ErpLineItems <em>undocumented</em>
+ * @group InfCustomers
+ * @groupname InfCustomers Package InfCustomers
+ * @groupdesc InfCustomers The package is used to define detailed customer models.
  */
 case class WorkBillingInfo
 (
@@ -497,7 +594,18 @@ case class WorkBillingInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null, null, null, 0.0, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[WorkBillingInfo] }
     override def get (i: Int): Object =

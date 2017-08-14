@@ -7,17 +7,15 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The ControlArea package models area specifications which can be used for a variety of purposes.
- * The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
- */
-
-/**
  * A prioritized measurement to be used for the generating unit in the control area specificaiton.
  * @param sup Reference to the superclass object.
  * @param priority Priority of a measurement usage.
  *        Lower numbers have first priority.
  * @param AnalogValue The specific analog value used as a source.
  * @param ControlAreaGeneratingUnit The control aread generating unit to which the prioritized measurement assignment is applied.
+ * @group ControlArea
+ * @groupname ControlArea Package ControlArea
+ * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
 case class AltGeneratingUnitMeas
 (
@@ -29,8 +27,19 @@ case class AltGeneratingUnitMeas
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AltGeneratingUnitMeas] }
     override def get (i: Int): Object =
     {
@@ -80,6 +89,9 @@ extends
  *        Lower numbers have first priority.
  * @param AnalogValue The specific analog value used as a source.
  * @param TieFlow The tie flow of the alternate measurements.
+ * @group ControlArea
+ * @groupname ControlArea Package ControlArea
+ * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
 case class AltTieMeas
 (
@@ -91,8 +103,19 @@ case class AltTieMeas
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AltTieMeas] }
     override def get (i: Int): Object =
     {
@@ -144,6 +167,9 @@ extends
  * @param typ The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
  *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
  * @param EnergyArea The energy area that is forecast from this control area specification.
+ * @group ControlArea
+ * @groupname ControlArea Package ControlArea
+ * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
 case class ControlArea
 (
@@ -156,7 +182,18 @@ case class ControlArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[ControlArea] }
     override def get (i: Int): Object =
@@ -210,6 +247,9 @@ extends
  * @param ControlArea The parent control area for the generating unit specifications.
  * @param GeneratingUnit The generating unit specified for this control area.
  *        Note that a control area should include a GeneratingUnit only once.
+ * @group ControlArea
+ * @groupname ControlArea Package ControlArea
+ * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
 case class ControlAreaGeneratingUnit
 (
@@ -220,7 +260,18 @@ case class ControlAreaGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ControlAreaGeneratingUnit] }
     override def get (i: Int): Object =
@@ -268,6 +319,9 @@ extends
  *        For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.
  * @param ControlArea The control area of the tie flows.
  * @param Terminal The terminal to which this tie flow belongs.
+ * @group ControlArea
+ * @groupname ControlArea Package ControlArea
+ * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
 case class TieFlow
 (
@@ -279,8 +333,19 @@ case class TieFlow
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TieFlow] }
     override def get (i: Int): Object =
     {

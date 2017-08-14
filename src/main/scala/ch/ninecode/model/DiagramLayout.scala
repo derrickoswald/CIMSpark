@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package describes diagram layout.
- * This describes how objects are arranged in a coordianate system rather than how they are rendered.
- */
-
-/**
  * The diagram being exchanged.
  * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
  * @param sup Reference to the superclass object.
@@ -21,6 +16,9 @@ import ch.ninecode.cim.Parseable
  * @param y1InitialView Y coordinate of the first corner of the initial view.
  * @param y2InitialView Y coordinate of the second corner of the initial view.
  * @param DiagramStyle A Diagram may have a DiagramStyle.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class Diagram
 (
@@ -35,7 +33,18 @@ case class Diagram
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Diagram] }
     override def get (i: Int): Object =
@@ -106,6 +115,9 @@ extends
  * @param DiagramObjectStyle A diagram object has a style associated that provides a reference for the style used in the originating system.
  * @param IdentifiedObject_attr The domain object to which this diagram object is associated.
  * @param VisibilityLayers A diagram object can be part of multiple visibility layers.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramObject
 (
@@ -123,7 +135,18 @@ case class DiagramObject
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DiagramObject] }
     override def get (i: Int): Object =
@@ -188,6 +211,9 @@ extends
 /**
  * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
  * @param sup Reference to the superclass object.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramObjectGluePoint
 (
@@ -196,8 +222,19 @@ case class DiagramObjectGluePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[DiagramObjectGluePoint] }
     override def get (i: Int): Object =
     {
@@ -242,6 +279,9 @@ extends
  * @param zPosition The Z coordinate of this point.
  * @param DiagramObject The diagram object with which the points are associated.
  * @param DiagramObjectGluePoint The 'glue' point to which this point is associated.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramObjectPoint
 (
@@ -256,8 +296,19 @@ case class DiagramObjectPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, 0.0, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[DiagramObjectPoint] }
     override def get (i: Int): Object =
     {
@@ -313,6 +364,9 @@ extends
  * A reference to a style used by the originating system for a diagram object.
  * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
  * @param sup Reference to the superclass object.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramObjectStyle
 (
@@ -321,7 +375,18 @@ case class DiagramObjectStyle
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DiagramObjectStyle] }
     override def get (i: Int): Object =
@@ -361,6 +426,9 @@ extends
  * The diagram style refer to a style used by the originating system for a diagram.
  * A diagram style describes information such as schematic, geographic, bus-branch etc.
  * @param sup Reference to the superclass object.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramStyle
 (
@@ -369,7 +437,18 @@ case class DiagramStyle
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DiagramStyle] }
     override def get (i: Int): Object =
@@ -409,6 +488,9 @@ extends
  * A diagram object for placing free-text or text derived from an associated domain object.
  * @param sup Reference to the superclass object.
  * @param text The text that is displayed by this text diagram object.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class TextDiagramObject
 (
@@ -418,7 +500,18 @@ case class TextDiagramObject
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DiagramObject: DiagramObject = sup.asInstanceOf[DiagramObject]
     override def copy (): Row = { clone ().asInstanceOf[TextDiagramObject] }
     override def get (i: Int): Object =
@@ -462,6 +555,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param drawingOrder The drawing order for this layer.
  *        The higher the number, the later the layer and the objects within it are rendered.
+ * @group DiagramLayout
+ * @groupname DiagramLayout Package DiagramLayout
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class VisibilityLayer
 (
@@ -471,7 +567,18 @@ case class VisibilityLayer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[VisibilityLayer] }
     override def get (i: Int): Object =

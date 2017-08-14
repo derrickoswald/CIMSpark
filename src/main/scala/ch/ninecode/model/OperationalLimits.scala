@@ -7,13 +7,12 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package models a specification of limits associated with equipment and other operational entities.
- */
-
-/**
  * Limit on active power flow.
  * @param sup Reference to the superclass object.
  * @param value Value of active power limit.
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class ActivePowerLimit
 (
@@ -23,7 +22,18 @@ case class ActivePowerLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OperationalLimit: OperationalLimit = sup.asInstanceOf[OperationalLimit]
     override def copy (): Row = { clone ().asInstanceOf[ActivePowerLimit] }
     override def get (i: Int): Object =
@@ -65,6 +75,9 @@ extends
  * Apparent power limit.
  * @param sup Reference to the superclass object.
  * @param value The apparent power limit.
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class ApparentPowerLimit
 (
@@ -74,7 +87,18 @@ case class ApparentPowerLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OperationalLimit: OperationalLimit = sup.asInstanceOf[OperationalLimit]
     override def copy (): Row = { clone ().asInstanceOf[ApparentPowerLimit] }
     override def get (i: Int): Object =
@@ -122,6 +146,9 @@ extends
  * @param minimumReactivePower The minimum reactive power flow.
  * @param monitorActivePower Monitor the active power flow.
  * @param monitorReactivePower Monitor the reactive power flow.
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class BranchGroup
 (
@@ -136,7 +163,18 @@ case class BranchGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BranchGroup] }
     override def get (i: Int): Object =
@@ -196,6 +234,9 @@ extends
  *        The flow out of the terminanl is summed if set false.
  * @param BranchGroup The branch group to which the directed branch group terminals belong.
  * @param Terminal The terminal to be summed.
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class BranchGroupTerminal
 (
@@ -207,8 +248,19 @@ case class BranchGroupTerminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[BranchGroupTerminal] }
     override def get (i: Int): Object =
     {
@@ -255,6 +307,9 @@ extends
  * Operational limit on current.
  * @param sup Reference to the superclass object.
  * @param value Limit on current flow.
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class CurrentLimit
 (
@@ -264,7 +319,18 @@ case class CurrentLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OperationalLimit: OperationalLimit = sup.asInstanceOf[OperationalLimit]
     override def copy (): Row = { clone ().asInstanceOf[CurrentLimit] }
     override def get (i: Int): Object =
@@ -310,6 +376,9 @@ extends
  *        If no limit dependencies are specified then the native limit value is used.
  * @param OperationalLimitSet The limit set to which the limit values belong.
  * @param OperationalLimitType The limit type associated with this limit.
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class OperationalLimit
 (
@@ -321,7 +390,18 @@ case class OperationalLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OperationalLimit] }
     override def get (i: Int): Object =
@@ -371,6 +451,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param Equipment The equipment to which the limit set applies.
  * @param Terminal <em>undocumented</em>
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class OperationalLimitSet
 (
@@ -381,7 +464,18 @@ case class OperationalLimitSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OperationalLimitSet] }
     override def get (i: Int): Object =
@@ -429,6 +523,9 @@ extends
  *        Limits are commonly expressed in terms of the a time limit for which the limit is normally acceptable.   The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
  * @param direction The direction of the limit.
  * @param TargetOperationalLimitmTypeScaling <em>undocumented</em>
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class OperationalLimitType
 (
@@ -440,7 +537,18 @@ case class OperationalLimitType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OperationalLimitType] }
     override def get (i: Int): Object =
@@ -489,6 +597,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param value Limit on voltage.
  *        High or low limit nature of the limit depends upon the properties of the operational limit type.
+ * @group OperationalLimits
+ * @groupname OperationalLimits Package OperationalLimits
+ * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
  */
 case class VoltageLimit
 (
@@ -498,7 +609,18 @@ case class VoltageLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OperationalLimit: OperationalLimit = sup.asInstanceOf[OperationalLimit]
     override def copy (): Row = { clone ().asInstanceOf[VoltageLimit] }
     override def get (i: Int): Object =

@@ -7,15 +7,13 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses.
- * They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
- */
-
-/**
  * Busbar section data.
  * @param sup Reference to the superclass object.
  * @param ratedCurrent Rated current.
  * @param ratedVoltage Rated voltage.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class BusbarSectionInfo
 (
@@ -26,7 +24,18 @@ case class BusbarSectionInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[BusbarSectionInfo] }
     override def get (i: Int): Object =
@@ -80,6 +89,9 @@ extends
  * @param outerJacketKind Kind of outer jacket of this cable.
  * @param sheathAsNeutral True if sheath / shield is used as a neutral (i.e., bonded).
  * @param shieldMaterial Material of the shield.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class CableInfo
 (
@@ -98,7 +110,18 @@ case class CableInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, false, 0.0, null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WireInfo: WireInfo = sup.asInstanceOf[WireInfo]
     override def copy (): Row = { clone ().asInstanceOf[CableInfo] }
     override def get (i: Int): Object =
@@ -171,6 +194,9 @@ extends
  * @param neutralStrandGmr Geometric mean radius of the neutral strand.
  * @param neutralStrandRDC20 DC resistance per unit length of the neutral strand at 20 �C.
  * @param neutralStrandRadius Outside radius of the neutral strand.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class ConcentricNeutralCableInfo
 (
@@ -184,7 +210,18 @@ case class ConcentricNeutralCableInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def CableInfo: CableInfo = sup.asInstanceOf[CableInfo]
     override def copy (): Row = { clone ().asInstanceOf[ConcentricNeutralCableInfo] }
     override def get (i: Int): Object =
@@ -244,6 +281,9 @@ extends
  * @param loss Losses measured from a positive-sequence or single-phase excitation test.
  * @param lossZero Losses measured from a zero-sequence excitation test.
  * @param EnergisedEnd Transformer end that current is applied to in this no-load test.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class NoLoadTest
 (
@@ -258,7 +298,18 @@ case class NoLoadTest
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TransformerTest: TransformerTest = sup.asInstanceOf[TransformerTest]
     override def copy (): Row = { clone ().asInstanceOf[NoLoadTest] }
     override def get (i: Int): Object =
@@ -322,6 +373,9 @@ extends
  * @param phaseShift Phase shift measured at the open end with the energised end set to rated voltage and all other ends open.
  * @param EnergisedEnd Transformer end that current is applied to in this open-circuit test.
  * @param OpenEnd Transformer end measured for induced voltage and angle in this open-circuit test.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class OpenCircuitTest
 (
@@ -337,7 +391,18 @@ case class OpenCircuitTest
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, 0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TransformerTest: TransformerTest = sup.asInstanceOf[TransformerTest]
     override def copy (): Row = { clone ().asInstanceOf[OpenCircuitTest] }
     override def get (i: Int): Object =
@@ -396,6 +461,9 @@ extends
 /**
  * Overhead wire data.
  * @param sup Reference to the superclass object.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class OverheadWireInfo
 (
@@ -404,7 +472,18 @@ case class OverheadWireInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WireInfo: WireInfo = sup.asInstanceOf[WireInfo]
     override def copy (): Row = { clone ().asInstanceOf[OverheadWireInfo] }
     override def get (i: Int): Object =
@@ -443,6 +522,9 @@ extends
 /**
  * Set of power transformer data, from an equipment library.
  * @param sup Reference to the superclass object.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class PowerTransformerInfo
 (
@@ -451,7 +533,18 @@ case class PowerTransformerInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[PowerTransformerInfo] }
     override def get (i: Int): Object =
@@ -499,6 +592,9 @@ extends
  * @param lossZero Load losses from a zero-sequence short-circuit test.
  * @param EnergisedEnd Transformer end that voltage is applied to in this short-circuit test.
  *        The test voltage is chosen to induce rated current in the energised end.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class ShortCircuitTest
 (
@@ -514,7 +610,18 @@ case class ShortCircuitTest
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TransformerTest: TransformerTest = sup.asInstanceOf[TransformerTest]
     override def copy (): Row = { clone ().asInstanceOf[ShortCircuitTest] }
     override def get (i: Int): Object =
@@ -578,6 +685,9 @@ extends
  * @param ratedReactivePower Rated reactive power.
  * @param ratedVoltage Rated voltage.
  * @param ShuntCompensatorControl <em>undocumented</em>
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class ShuntCompensatorInfo
 (
@@ -591,7 +701,18 @@ case class ShuntCompensatorInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[ShuntCompensatorInfo] }
     override def get (i: Int): Object =
@@ -649,6 +770,9 @@ extends
  * @param isUnganged If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).
  * @param ratedCurrent Rated current.
  * @param ratedVoltage Rated voltage.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class SwitchInfo
 (
@@ -662,7 +786,18 @@ case class SwitchInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, false, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[SwitchInfo] }
     override def get (i: Int): Object =
@@ -731,6 +866,9 @@ extends
  * @param ratedVoltage Rated voltage.
  * @param stepPhaseIncrement Phase shift per step position.
  * @param stepVoltageIncrement Tap step increment, in per cent of rated voltage, per step position.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class TapChangerInfo
 (
@@ -754,7 +892,18 @@ case class TapChangerInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0, false, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[TapChangerInfo] }
     override def get (i: Int): Object =
@@ -839,6 +988,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param tapeLap Percentage of the tape shield width that overlaps in each wrap, typically 10% to 25%.
  * @param tapeThickness Thickness of the tape shield, before wrapping.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class TapeShieldCableInfo
 (
@@ -849,7 +1001,18 @@ case class TapeShieldCableInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def CableInfo: CableInfo = sup.asInstanceOf[CableInfo]
     override def copy (): Row = { clone ().asInstanceOf[TapeShieldCableInfo] }
     override def get (i: Int): Object =
@@ -909,6 +1072,9 @@ extends
  * @param ToMeshImpedances All mesh impedances between this 'from' and other 'to' transformer ends.
  * @param TransformerStarImpedance Transformer star impedance calculated from this transformer end datasheet.
  * @param TransformerTankInfo Transformer tank data that this end description is part of.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class TransformerEndInfo
 (
@@ -930,7 +1096,18 @@ case class TransformerEndInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, null, List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[TransformerEndInfo] }
     override def get (i: Int): Object =
@@ -1008,6 +1185,9 @@ extends
  * Set of transformer tank data, from an equipment library.
  * @param sup Reference to the superclass object.
  * @param PowerTransformerInfo Power transformer data that this tank description is part of.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class TransformerTankInfo
 (
@@ -1017,7 +1197,18 @@ case class TransformerTankInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[TransformerTankInfo] }
     override def get (i: Int): Object =
@@ -1060,6 +1251,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param basePower Base power at which the tests are conducted, usually equal to the rateds of one of the involved transformer ends.
  * @param temperature Temperature at which the test is conducted.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class TransformerTest
 (
@@ -1070,7 +1264,18 @@ case class TransformerTest
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TransformerTest] }
     override def get (i: Int): Object =
@@ -1131,6 +1336,9 @@ extends
  * @param sizeDescription Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).
  * @param strandCount Number of strands in the conductor.
  * @param PerLengthParameters All per-length parameters calculated from this wire datasheet.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class WireInfo
 (
@@ -1155,7 +1363,18 @@ case class WireInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0, 0.0, false, null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[WireInfo] }
     override def get (i: Int): Object =
@@ -1245,6 +1464,9 @@ extends
  * @param xCoord Signed horizontal distance from the wire at this position to a common reference point.
  * @param yCoord Signed vertical distance from the wire at this position: above ground (positive value) or burial depth below ground (negative value).
  * @param WireSpacingInfo Wire spacing data this wire position belongs to.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class WirePosition
 (
@@ -1257,7 +1479,18 @@ case class WirePosition
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WirePosition] }
     override def get (i: Int): Object =
@@ -1314,6 +1547,9 @@ extends
  * @param usage Usage of the associated wires.
  * @param DuctBank <em>undocumented</em>
  * @param Structures <em>undocumented</em>
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class WireSpacingInfo
 (
@@ -1328,7 +1564,18 @@ case class WireSpacingInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0, 0.0, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[WireSpacingInfo] }
     override def get (i: Int): Object =

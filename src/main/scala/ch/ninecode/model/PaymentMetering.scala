@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering.
- * These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
- */
-
-/**
  * Credit/debit movements for an account.
  * @param sup Reference to the superclass object.
  * @param amount Amount that was credited to/debited from an account.
@@ -19,6 +14,9 @@ import ch.ninecode.cim.Parseable
  * @param dateTime Date and time when the credit/debit transaction was performed.
  * @param reason Reason for credit/debit transaction on an account.
  *        Example: payment received/arrears interest levied.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class AccountMovement
 (
@@ -30,8 +28,19 @@ case class AccountMovement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AccountMovement] }
     override def get (i: Int): Object =
     {
@@ -81,6 +90,9 @@ extends
  * @param monetaryUnit Unit of currency.
  * @param multiplier Multiplier for the 'energyUnit' or 'monetaryUnit'.
  * @param value Value expressed in applicable units.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class AccountingUnit
 (
@@ -93,8 +105,19 @@ case class AccountingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AccountingUnit] }
     override def get (i: Int): Object =
     {
@@ -151,6 +174,9 @@ extends
  * @param principleAmount The initial principle amount, with which this account was instantiated.
  * @param AuxiliaryAgreement Auxiliary agreement regulating this account.
  * @param Charges All charges levied on this account.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class AuxiliaryAccount
 (
@@ -166,7 +192,18 @@ case class AuxiliaryAccount
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null, 0.0, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[AuxiliaryAccount] }
     override def get (i: Int): Object =
@@ -241,6 +278,9 @@ extends
  * @param vendPortionArrear The percentage of the transaction amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement when payments are in arrears.
  *        Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
  * @param CustomerAgreement Customer agreement this (non-service related) auxiliary agreement refers to.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class AuxiliaryAgreement
 (
@@ -259,7 +299,18 @@ case class AuxiliaryAgreement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0, 0.0, null, null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[AuxiliaryAgreement] }
     override def get (i: Int): Object =
@@ -332,6 +383,9 @@ extends
  * @param branchCode Branch of bank where account is held.
  * @param holderID National identity number (or equivalent) of account holder.
  * @param holderName Name of account holder.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class BankAccountDetail
 (
@@ -345,8 +399,19 @@ case class BankAccountDetail
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[BankAccountDetail] }
     override def get (i: Int): Object =
     {
@@ -403,6 +468,9 @@ extends
  * @param expiryDate The date when this card expires.
  * @param pan The primary account number.
  * @param Tender Payment tender this card is being used for.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Card
 (
@@ -416,8 +484,19 @@ case class Card
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Card] }
     override def get (i: Int): Object =
     {
@@ -471,6 +550,9 @@ extends
  * Cashier is under the exclusive management control of Vendor.
  * @param sup Reference to the superclass object.
  * @param electronicAddress Electronic address.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Cashier
 (
@@ -480,7 +562,18 @@ case class Cashier
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Cashier] }
     override def get (i: Int): Object =
@@ -524,6 +617,9 @@ extends
  * @param cashFloat The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.
  * @param Cashier Cashier operating this shift.
  * @param PointOfSale Point of sale that is in operation during this shift.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class CashierShift
 (
@@ -535,7 +631,18 @@ case class CashierShift
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Shift: Shift = sup.asInstanceOf[Shift]
     override def copy (): Row = { clone ().asInstanceOf[CashierShift] }
     override def get (i: Int): Object =
@@ -587,6 +694,9 @@ extends
  * @param kind The kind of charge to be applied.
  * @param variablePortion The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
  * @param ParentCharge Parent of this charge sub-component.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Charge
 (
@@ -599,7 +709,18 @@ case class Charge
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Charge] }
     override def get (i: Int): Object =
@@ -655,6 +776,9 @@ extends
  * @param kind Kind of cheque.
  * @param micrNumber The magnetic ink character recognition number printed on the cheque.
  * @param Tender Payment tender the cheque is being used for.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Cheque
 (
@@ -669,8 +793,19 @@ case class Cheque
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Cheque] }
     override def get (i: Int): Object =
     {
@@ -731,6 +866,9 @@ extends
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
  * @param Charges All charges used to define this consumption tariff interval.
  * @param TouTariffIntervals All time of use tariff intervals influenced by this consumption tariff interval.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class ConsumptionTariffInterval
 (
@@ -743,8 +881,19 @@ case class ConsumptionTariffInterval
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, List(), List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ConsumptionTariffInterval] }
     override def get (i: Int): Object =
     {
@@ -799,6 +948,9 @@ extends
  *        Typically the rule for settlement priority is: interest dues, then arrears dues, then current dues, then charge dues.
  * @param interest Part of 'current' that constitutes the interest portion.
  * @param principle Part of 'current' that constitutes the portion of the principle amount currently due.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Due
 (
@@ -812,8 +964,19 @@ case class Due
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Due] }
     override def get (i: Int): Object =
     {
@@ -869,6 +1032,9 @@ extends
  * @param dateTime Date and time when this line was created in the application process.
  * @param note Free format note relevant to this line.
  * @param rounding Totalised monetary value of all errors due to process rounding or truncating that is not reflected in 'amount'.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class LineDetail
 (
@@ -881,8 +1047,19 @@ case class LineDetail
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[LineDetail] }
     override def get (i: Int): Object =
     {
@@ -936,6 +1113,9 @@ extends
  * @param provisionalBalance The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
  * @param MerchantAgreement Merchant agreement that instantiated this merchant account.
  * @param Transactors All transactors this merchant account is registered with.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class MerchantAccount
 (
@@ -948,7 +1128,18 @@ case class MerchantAccount
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[MerchantAccount] }
     override def get (i: Int): Object =
@@ -999,6 +1190,9 @@ extends
  * A formal controlling contractual agreement between supplier and merchant, in terms of which the merchant is authorised to vend tokens and receipt payments on behalf of the supplier.
  * The merchant is accountable to the supplier for revenue collected at point of sale.
  * @param sup Reference to the superclass object.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class MerchantAgreement
 (
@@ -1007,7 +1201,18 @@ case class MerchantAgreement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[MerchantAgreement] }
     override def get (i: Int): Object =
@@ -1047,6 +1252,9 @@ extends
  * Logical point where transactions take place with operational interaction between cashier and the payment system; in certain cases the point of sale interacts directly with the end customer, in which case the cashier might not be a real person: for example a self-service kiosk or over the internet.
  * @param sup Reference to the superclass object.
  * @param location Local description for where this point of sale is physically located.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class PointOfSale
 (
@@ -1056,7 +1264,18 @@ case class PointOfSale
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[PointOfSale] }
     override def get (i: Int): Object =
@@ -1101,6 +1320,9 @@ extends
  * @param line Receipted amount with rounding, date and note.
  * @param CashierShift Cashier shift during which this receipt was recorded.
  * @param VendorShift Vendor shift during which this receipt was recorded.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Receipt
 (
@@ -1113,7 +1335,18 @@ case class Receipt
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Receipt] }
     override def get (i: Int): Object =
@@ -1165,6 +1398,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param issuerIdentificationNumber Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.
  * @param kind Kind of supplier.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class ServiceSupplier
 (
@@ -1175,7 +1411,18 @@ case class ServiceSupplier
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[ServiceSupplier] }
     override def get (i: Int): Object =
@@ -1231,6 +1478,9 @@ extends
  *        Values are obtained from transaction:
  * @param transactionsGrandTotalRounding Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
  *        Values are obtained from Transaction attributes:
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Shift
 (
@@ -1245,7 +1495,18 @@ case class Shift
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Shift] }
     override def get (i: Int): Object =
@@ -1306,6 +1567,9 @@ extends
  *        Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
  * @param ConsumptionTariffIntervals All consumption tariff intervals used to define this tariff profile.
  * @param TimeTariffIntervals All time tariff intervals used to define this tariff profile.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class TariffProfile
 (
@@ -1317,7 +1581,18 @@ case class TariffProfile
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[TariffProfile] }
     override def get (i: Int): Object =
@@ -1371,6 +1646,9 @@ extends
  * @param Card Card used to tender payment.
  * @param Cheque Cheque used to tender payment.
  * @param Receipt Receipt that recorded this receiving of a payment in the form of tenders.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Tender
 (
@@ -1385,7 +1663,18 @@ case class Tender
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Tender] }
     override def get (i: Int): Object =
@@ -1446,6 +1735,9 @@ extends
  * @param startTime A real time marker that defines the starting time (typically it is the time of day) for this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
  * @param Charges All charges used to define this time tariff interval.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class TimeTariffInterval
 (
@@ -1457,8 +1749,19 @@ case class TimeTariffInterval
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TimeTariffInterval] }
     override def get (i: Int): Object =
     {
@@ -1519,6 +1822,9 @@ extends
  * @param PricingStructure Pricing structure applicable for this transaction.
  * @param Receipt The receipted payment for which this transaction has been recorded.
  * @param VendorShift Vendor shift during which this transaction was recorded.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Transaction
 (
@@ -1542,7 +1848,18 @@ case class Transaction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, 0.0, 0.0, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Transaction] }
     override def get (i: Int): Object =
@@ -1625,6 +1942,9 @@ extends
 /**
  * The entity that ultimately executes the transaction and which is in control of the process; typically this is embodied in secure software running on a server that may employ secure hardware encryption devices for secure transaction processing.
  * @param sup Reference to the superclass object.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Transactor
 (
@@ -1633,7 +1953,18 @@ case class Transactor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Transactor] }
     override def get (i: Int): Object =
@@ -1673,6 +2004,9 @@ extends
  * The entity that owns the point of sale and contracts with the cashier to receipt payments and vend tokens using the payment system.
  * The vendor has a private contract with and is managed by the merchant which is a type of organisation. The vendor is accountable to the merchant for revenue collected, and the merchant is in turn accountable to the supplier.
  * @param sup Reference to the superclass object.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Vendor
 (
@@ -1681,7 +2015,18 @@ case class Vendor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Vendor] }
     override def get (i: Int): Object =
@@ -1726,6 +2071,9 @@ extends
  * @param posted If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.
  * @param MerchantAccount Merchant account this vendor shift periodically debits (based on aggregated transactions).
  * @param Vendor Vendor that opens and owns this vendor shift.
+ * @group PaymentMetering
+ * @groupname PaymentMetering Package PaymentMetering
+ * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class VendorShift
 (
@@ -1738,7 +2086,18 @@ case class VendorShift
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Shift: Shift = sup.asInstanceOf[Shift]
     override def copy (): Row = { clone ().asInstanceOf[VendorShift] }
     override def get (i: Int): Object =

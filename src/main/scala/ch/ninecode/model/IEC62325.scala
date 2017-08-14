@@ -7,15 +7,14 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The IEC 62325 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 16.
- */
-
-/**
  * IEC 62325 version number assigned to this UML model.
  * @param sup Reference to the superclass object.
  * @param date Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
  * @param version Form is IEC62325CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
  *        For example IEC62325CIM10v03.
+ * @group IEC62325
+ * @groupname IEC62325 Package IEC62325
+ * @groupdesc IEC62325 The IEC 62325 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 16.
  */
 case class IEC62325CIMVersion
 (
@@ -26,8 +25,19 @@ case class IEC62325CIMVersion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[IEC62325CIMVersion] }
     override def get (i: Int): Object =
     {

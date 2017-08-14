@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited.
- * For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
- */
-
-/**
  * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
  * Reference: IEEE Standard 421.5-2005 Section 12.2.
  * @param sup Reference to the superclass object.
@@ -50,6 +45,11 @@ import ch.ninecode.cim.Parseable
  *        Typical Value = 1.12.
  * @param _val Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
  *        Typical Value = 5.5.
+ * @group DiscontinuousExcitationControlDynamics
+ * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
+ * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
  */
 case class DiscExcContIEEEDEC1A
 (
@@ -76,7 +76,18 @@ case class DiscExcContIEEEDEC1A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup.asInstanceOf[DiscontinuousExcitationControlDynamics]
     override def copy (): Row = { clone ().asInstanceOf[DiscExcContIEEEDEC1A] }
     override def get (i: Int): Object =
@@ -174,6 +185,11 @@ extends
  * @param vdmax Limiter (<i>V</i><i><sub>DMAX</sub></i>).
  * @param vdmin Limiter (<i>V</i><i><sub>DMIN</sub></i>).
  * @param vk Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
+ * @group DiscontinuousExcitationControlDynamics
+ * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
+ * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
  */
 case class DiscExcContIEEEDEC2A
 (
@@ -187,7 +203,18 @@ case class DiscExcContIEEEDEC2A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup.asInstanceOf[DiscontinuousExcitationControlDynamics]
     override def copy (): Row = { clone ().asInstanceOf[DiscExcContIEEEDEC2A] }
     override def get (i: Int): Object =
@@ -243,6 +270,11 @@ extends
  * @param sup Reference to the superclass object.
  * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>).
  * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
+ * @group DiscontinuousExcitationControlDynamics
+ * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
+ * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
  */
 case class DiscExcContIEEEDEC3A
 (
@@ -253,7 +285,18 @@ case class DiscExcContIEEEDEC3A
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup.asInstanceOf[DiscontinuousExcitationControlDynamics]
     override def copy (): Row = { clone ().asInstanceOf[DiscExcContIEEEDEC3A] }
     override def get (i: Int): Object =
@@ -299,6 +342,11 @@ extends
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this discontinuous excitation control model is associated.
  * @param RemoteInputSignal Remote input signal used by this discontinuous excitation control system model.
+ * @group DiscontinuousExcitationControlDynamics
+ * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
+ * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
+<font color="#0f0f0f">
+</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
  */
 case class DiscontinuousExcitationControlDynamics
 (
@@ -309,7 +357,18 @@ case class DiscontinuousExcitationControlDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[DiscontinuousExcitationControlDynamics] }
     override def get (i: Int): Object =

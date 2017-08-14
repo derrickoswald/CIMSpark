@@ -7,18 +7,26 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.
- * <u>
- * </u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.
- * Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
- */
-
-/**
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
  * @param sup Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class AsynchronousMachineUserDefined
 (
@@ -28,7 +36,18 @@ case class AsynchronousMachineUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AsynchronousMachineDynamics: AsynchronousMachineDynamics = sup.asInstanceOf[AsynchronousMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[AsynchronousMachineUserDefined] }
     override def get (i: Int): Object =
@@ -72,6 +91,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class DiscontinuousExcitationControlUserDefined
 (
@@ -81,7 +115,18 @@ case class DiscontinuousExcitationControlUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics = sup.asInstanceOf[DiscontinuousExcitationControlDynamics]
     override def copy (): Row = { clone ().asInstanceOf[DiscontinuousExcitationControlUserDefined] }
     override def get (i: Int): Object =
@@ -125,6 +170,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class ExcitationSystemUserDefined
 (
@@ -134,7 +194,18 @@ case class ExcitationSystemUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
     override def copy (): Row = { clone ().asInstanceOf[ExcitationSystemUserDefined] }
     override def get (i: Int): Object =
@@ -178,6 +249,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class LoadUserDefined
 (
@@ -187,7 +273,18 @@ case class LoadUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LoadDynamics: LoadDynamics = sup.asInstanceOf[LoadDynamics]
     override def copy (): Row = { clone ().asInstanceOf[LoadUserDefined] }
     override def get (i: Int): Object =
@@ -231,6 +328,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class MechanicalLoadUserDefined
 (
@@ -240,7 +352,18 @@ case class MechanicalLoadUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MechanicalLoadDynamics: MechanicalLoadDynamics = sup.asInstanceOf[MechanicalLoadDynamics]
     override def copy (): Row = { clone ().asInstanceOf[MechanicalLoadUserDefined] }
     override def get (i: Int): Object =
@@ -284,6 +407,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class OverexcitationLimiterUserDefined
 (
@@ -293,7 +431,18 @@ case class OverexcitationLimiterUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup.asInstanceOf[OverexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[OverexcitationLimiterUserDefined] }
     override def get (i: Int): Object =
@@ -337,6 +486,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class PFVArControllerType1UserDefined
 (
@@ -346,7 +510,18 @@ case class PFVArControllerType1UserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup.asInstanceOf[PFVArControllerType1Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[PFVArControllerType1UserDefined] }
     override def get (i: Int): Object =
@@ -390,6 +565,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class PFVArControllerType2UserDefined
 (
@@ -399,7 +589,18 @@ case class PFVArControllerType2UserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PFVArControllerType2Dynamics: PFVArControllerType2Dynamics = sup.asInstanceOf[PFVArControllerType2Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[PFVArControllerType2UserDefined] }
     override def get (i: Int): Object =
@@ -443,6 +644,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class PowerSystemStabilizerUserDefined
 (
@@ -452,7 +668,18 @@ case class PowerSystemStabilizerUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[PowerSystemStabilizerUserDefined] }
     override def get (i: Int): Object =
@@ -519,6 +746,21 @@ extends
  * @param WindPlantUserDefined Proprietary user-defined model with which this parameter is associated.
  * @param WindType1or2UserDefined Proprietary user-defined model with which this parameter is associated.
  * @param WindType3or4UserDefined Proprietary user-defined model with which this parameter is associated.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class ProprietaryParameterDynamics
 (
@@ -549,8 +791,19 @@ case class ProprietaryParameterDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ProprietaryParameterDynamics] }
     override def get (i: Int): Object =
     {
@@ -656,6 +909,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class SynchronousMachineUserDefined
 (
@@ -665,7 +933,18 @@ case class SynchronousMachineUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SynchronousMachineDynamics: SynchronousMachineDynamics = sup.asInstanceOf[SynchronousMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineUserDefined] }
     override def get (i: Int): Object =
@@ -709,6 +988,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class TurbineGovernorUserDefined
 (
@@ -718,7 +1012,18 @@ case class TurbineGovernorUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[TurbineGovernorUserDefined] }
     override def get (i: Int): Object =
@@ -762,6 +1067,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class TurbineLoadControllerUserDefined
 (
@@ -771,7 +1091,18 @@ case class TurbineLoadControllerUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TurbineLoadControllerDynamics: TurbineLoadControllerDynamics = sup.asInstanceOf[TurbineLoadControllerDynamics]
     override def copy (): Row = { clone ().asInstanceOf[TurbineLoadControllerUserDefined] }
     override def get (i: Int): Object =
@@ -815,6 +1146,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class UnderexcitationLimiterUserDefined
 (
@@ -824,7 +1170,18 @@ case class UnderexcitationLimiterUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup.asInstanceOf[UnderexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[UnderexcitationLimiterUserDefined] }
     override def get (i: Int): Object =
@@ -868,6 +1225,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class VoltageAdjusterUserDefined
 (
@@ -877,7 +1249,18 @@ case class VoltageAdjusterUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def VoltageAdjusterDynamics: VoltageAdjusterDynamics = sup.asInstanceOf[VoltageAdjusterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[VoltageAdjusterUserDefined] }
     override def get (i: Int): Object =
@@ -921,6 +1304,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class VoltageCompensatorUserDefined
 (
@@ -930,7 +1328,18 @@ case class VoltageCompensatorUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def VoltageCompensatorDynamics: VoltageCompensatorDynamics = sup.asInstanceOf[VoltageCompensatorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[VoltageCompensatorUserDefined] }
     override def get (i: Int): Object =
@@ -974,6 +1383,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class WindPlantUserDefined
 (
@@ -983,7 +1407,18 @@ case class WindPlantUserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindPlantDynamics: WindPlantDynamics = sup.asInstanceOf[WindPlantDynamics]
     override def copy (): Row = { clone ().asInstanceOf[WindPlantUserDefined] }
     override def get (i: Int): Object =
@@ -1027,6 +1462,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class WindType1or2UserDefined
 (
@@ -1036,7 +1486,18 @@ case class WindType1or2UserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType1or2Dynamics: WindTurbineType1or2Dynamics = sup.asInstanceOf[WindTurbineType1or2Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[WindType1or2UserDefined] }
     override def get (i: Int): Object =
@@ -1080,6 +1541,21 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @group UserDefinedModels
+ * @groupname UserDefinedModels Package UserDefinedModels
+ * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
+<u>
+</u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.  Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+<u>
+</u><u>Explicitly defined models</u> describe dynamic behaviour in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modelling are not currently defined - it is future work intended to also be supported by the family of xxxUserDefined classes.
+
+Both types of user-defined models use the family of xxxUserDefined classes, which allow a user-defined model to be utilized:
+<ul>
+	<li>as the model for an individual standard function block (like turbine-governor or power system stabilizer) in a standard interconnection model whose other function blocks could be either standard or user-defined.  For an illustration of this form of usage for a proprietary model, see the ExampleFunctionBlockProprietaryModel diagram in the Examples section.</li>
+</ul>
+<ul>
+	<li>as the complete representation of a dynamic behaviour model (for an entire synchronous machine, for example) where standard function blocks and standard interconnections are not used at all. For an illustration of this form of usage for a proprietary model, see the ExampleCompleteProprietaryModel diagram in the Examples section.</li>
+</ul>
  */
 case class WindType3or4UserDefined
 (
@@ -1089,7 +1565,18 @@ case class WindType3or4UserDefined
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WindTurbineType3or4Dynamics: WindTurbineType3or4Dynamics = sup.asInstanceOf[WindTurbineType3or4Dynamics]
     override def copy (): Row = { clone ().asInstanceOf[WindType3or4UserDefined] }
     override def get (i: Int): Object =

@@ -7,13 +7,12 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Contingencies to be studied.
- */
-
-/**
  * An event threatening system reliability, consisting of one or more contingency elements.
  * @param sup Reference to the superclass object.
  * @param mustStudy Set true if must study this contingency.
+ * @group Contingency
+ * @groupname Contingency Package Contingency
+ * @groupdesc Contingency Contingencies to be studied.
  */
 case class Contingency
 (
@@ -23,7 +22,18 @@ case class Contingency
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Contingency] }
     override def get (i: Int): Object =
@@ -65,6 +75,9 @@ extends
  * An element of a system event to be studied by contingency analysis, representing a change in status of a single piece of equipment.
  * @param sup Reference to the superclass object.
  * @param Contingency A contingency element belongs to one contingency.
+ * @group Contingency
+ * @groupname Contingency Package Contingency
+ * @groupdesc Contingency Contingencies to be studied.
  */
 case class ContingencyElement
 (
@@ -74,7 +87,18 @@ case class ContingencyElement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ContingencyElement] }
     override def get (i: Int): Object =
@@ -118,6 +142,9 @@ extends
  * @param contingentStatus The status for the associated equipment when in the contingency state.
  *        This status is independent of the case to which the contingency is originally applied, but defines the equipment status when the contingency is applied.
  * @param Equipment The single piece of equipment to which to apply the contingency.
+ * @group Contingency
+ * @groupname Contingency Package Contingency
+ * @groupdesc Contingency Contingencies to be studied.
  */
 case class ContingencyEquipment
 (
@@ -128,7 +155,18 @@ case class ContingencyEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ContingencyElement: ContingencyElement = sup.asInstanceOf[ContingencyElement]
     override def copy (): Row = { clone ().asInstanceOf[ContingencyEquipment] }
     override def get (i: Int): Object =

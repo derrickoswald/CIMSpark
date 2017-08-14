@@ -7,16 +7,15 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the core information classes that support work management and network extension planning applications.
- */
-
-/**
  * Common representation for work and work tasks.
  * @param sup Reference to the superclass object.
  * @param kind Kind of work.
  * @param priority Priority of work.
  * @param statusKind Kind of work status.
  * @param WorkLocation Location for this work/task.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class BaseWork
 (
@@ -29,7 +28,18 @@ case class BaseWork
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[BaseWork] }
     override def get (i: Int): Object =
@@ -83,6 +93,9 @@ extends
  * @param lot (if applicable) Name, identifier, or description of the lot in which work is to occur.
  * @param nearestIntersection The names of streets at the nearest intersection to work area.
  * @param subdivision (if applicable) Name, identifier, or description of the subdivision in which work is to occur.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class MaintenanceLocation
 (
@@ -95,7 +108,18 @@ case class MaintenanceLocation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkLocation: WorkLocation = sup.asInstanceOf[WorkLocation]
     override def copy (): Row = { clone ().asInstanceOf[MaintenanceLocation] }
     override def get (i: Int): Object =
@@ -149,6 +173,9 @@ extends
  * @param quantity Quantity of material used.
  * @param TypeMaterial <em>undocumented</em>
  * @param WorkTask <em>undocumented</em>
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class MaterialItem
 (
@@ -160,7 +187,18 @@ case class MaterialItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MaterialItem] }
     override def get (i: Int): Object =
@@ -208,6 +246,9 @@ extends
  * Tool asset.
  * @param sup Reference to the superclass object.
  * @param lastCalibrationDate (if applicable) Date the tool was last calibrated.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class Tool
 (
@@ -217,7 +258,18 @@ case class Tool
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkAsset: WorkAsset = sup.asInstanceOf[WorkAsset]
     override def copy (): Row = { clone ().asInstanceOf[Tool] }
     override def get (i: Int): Object =
@@ -262,6 +314,9 @@ extends
  * @param odometerReading Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
  *        Refer to associated ActivityRecords for earlier readings.
  * @param usageKind Kind of usage of the vehicle.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class Vehicle
 (
@@ -273,7 +328,18 @@ case class Vehicle
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkAsset: WorkAsset = sup.asInstanceOf[WorkAsset]
     override def copy (): Row = { clone ().asInstanceOf[Vehicle] }
     override def get (i: Int): Object =
@@ -325,6 +391,9 @@ extends
  * @param ErpProjectAccounting <em>undocumented</em>
  * @param Project <em>undocumented</em>
  * @param WorkBillingInfo <em>undocumented</em>
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class Work
 (
@@ -338,7 +407,18 @@ case class Work
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BaseWork: BaseWork = sup.asInstanceOf[BaseWork]
     override def copy (): Row = { clone ().asInstanceOf[Work] }
     override def get (i: Int): Object =
@@ -392,6 +472,9 @@ extends
  * Asset used to perform work.
  * @param sup Reference to the superclass object.
  * @param Crew Crew using this work asset.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class WorkAsset
 (
@@ -401,7 +484,18 @@ case class WorkAsset
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[WorkAsset] }
     override def get (i: Int): Object =
@@ -443,6 +537,9 @@ extends
  * Information about a particular location for various forms of work.
  * @param sup Reference to the superclass object.
  * @param OneCallRequest <em>undocumented</em>
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class WorkLocation
 (
@@ -452,7 +549,18 @@ case class WorkLocation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Location: Location = sup.asInstanceOf[Location]
     override def copy (): Row = { clone ().asInstanceOf[WorkLocation] }
     override def get (i: Int): Object =
@@ -490,6 +598,11 @@ extends
     }
 }
 
+/**
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
+ */
 case class WorkTask
 (
     override val sup: BaseWork,
@@ -506,7 +619,18 @@ case class WorkTask
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, List(), List(), null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BaseWork: BaseWork = sup.asInstanceOf[BaseWork]
     override def copy (): Row = { clone ().asInstanceOf[WorkTask] }
     override def get (i: Int): Object =
@@ -573,6 +697,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param kind Kind of this work schedule.
  * @param BaseWork Time schedule for this work or work task.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
  */
 case class WorkTimeSchedule
 (
@@ -583,7 +710,18 @@ case class WorkTimeSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TimeSchedule: TimeSchedule = sup.asInstanceOf[TimeSchedule]
     override def copy (): Row = { clone ().asInstanceOf[WorkTimeSchedule] }
     override def get (i: Int): Object =

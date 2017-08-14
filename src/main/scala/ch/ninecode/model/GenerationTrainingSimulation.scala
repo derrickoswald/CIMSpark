@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
- */
-
-/**
  * Boiling water reactor used as a steam supply to a steam turbine.
  * @param sup Reference to the superclass object.
  * @param highPowerLimit High power limit.
@@ -34,6 +30,9 @@ import ch.ninecode.cim.Parseable
  * @param rodPattern Rod pattern.
  * @param rodPatternConstant Constant associated with rod pattern.
  * @param upperLimit Initial upper limit.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class BWRSteamSupply
 (
@@ -63,7 +62,18 @@ case class BWRSteamSupply
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SteamSupply: SteamSupply = sup.asInstanceOf[SteamSupply]
     override def copy (): Row = { clone ().asInstanceOf[BWRSteamSupply] }
     override def get (i: Int): Object =
@@ -165,6 +175,9 @@ extends
  * Relationship between the combustion turbine's power output rating in gross active power (X-axis) and the ambient air temperature (Y-axis).
  * @param sup Reference to the superclass object.
  * @param CombustionTurbine A combustion turbine may have an active power versus ambient temperature relationship.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class CTTempActivePowerCurve
 (
@@ -174,7 +187,18 @@ case class CTTempActivePowerCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[CTTempActivePowerCurve] }
     override def get (i: Int): Object =
@@ -229,6 +253,9 @@ extends
  * @param AirCompressor A CAES air compressor is driven by combustion turbine.
  * @param CTTempActivePowerCurve A combustion turbine may have an active power versus ambient temperature relationship.
  * @param HeatRecoveryBoiler A combustion turbine may have a heat recovery boiler for making steam.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class CombustionTurbine
 (
@@ -248,7 +275,18 @@ case class CombustionTurbine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PrimeMover: PrimeMover = sup.asInstanceOf[PrimeMover]
     override def copy (): Row = { clone ().asInstanceOf[CombustionTurbine] }
     override def get (i: Int): Object =
@@ -320,6 +358,9 @@ extends
  * Drum boiler.
  * @param sup Reference to the superclass object.
  * @param drumBoilerRating Rating of drum boiler in steam units.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class DrumBoiler
 (
@@ -329,7 +370,18 @@ case class DrumBoiler
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def FossilSteamSupply: FossilSteamSupply = sup.asInstanceOf[FossilSteamSupply]
     override def copy (): Row = { clone ().asInstanceOf[DrumBoiler] }
     override def get (i: Int): Object =
@@ -398,6 +450,9 @@ extends
  * @param superHeater2Capacity Secondary superheater capacity.
  * @param superHeaterPipePD Superheater pipe pressure drop constant.
  * @param throttlePressureSP Throttle pressure setpoint.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class FossilSteamSupply
 (
@@ -432,7 +487,18 @@ case class FossilSteamSupply
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SteamSupply: SteamSupply = sup.asInstanceOf[SteamSupply]
     override def copy (): Row = { clone ().asInstanceOf[FossilSteamSupply] }
     override def get (i: Int): Object =
@@ -549,6 +615,9 @@ extends
  * The heat recovery system associated with combustion turbines in order to produce steam for combined cycle plants.
  * @param sup Reference to the superclass object.
  * @param steamSupplyRating2 The steam supply rating in kilopounds per hour, if dual pressure boiler.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class HeatRecoveryBoiler
 (
@@ -558,7 +627,18 @@ case class HeatRecoveryBoiler
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def FossilSteamSupply: FossilSteamSupply = sup.asInstanceOf[FossilSteamSupply]
     override def copy (): Row = { clone ().asInstanceOf[HeatRecoveryBoiler] }
     override def get (i: Int): Object =
@@ -611,6 +691,9 @@ extends
  * @param turbineRating Rated turbine active power.
  * @param turbineType Type of turbine.
  * @param waterStartingTime Water starting time.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class HydroTurbine
 (
@@ -630,7 +713,18 @@ case class HydroTurbine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PrimeMover: PrimeMover = sup.asInstanceOf[PrimeMover]
     override def copy (): Row = { clone ().asInstanceOf[HydroTurbine] }
     override def get (i: Int): Object =
@@ -721,6 +815,9 @@ extends
  * @param steamPressureFG Steam pressure feedback gain.
  * @param throttlePressureFactor Throttle pressure factor.
  * @param throttlePressureSP Throttle pressure setpoint.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class PWRSteamSupply
 (
@@ -749,7 +846,18 @@ case class PWRSteamSupply
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SteamSupply: SteamSupply = sup.asInstanceOf[SteamSupply]
     override def copy (): Row = { clone ().asInstanceOf[PWRSteamSupply] }
     override def get (i: Int): Object =
@@ -849,6 +957,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param primeMoverRating Rating of prime mover.
  * @param SynchronousMachines Synchronous machines this Prime mover drives.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class PrimeMover
 (
@@ -859,7 +970,18 @@ case class PrimeMover
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[PrimeMover] }
     override def get (i: Int): Object =
@@ -905,6 +1027,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param steamSupplyRating Rating of steam supply.
  * @param SteamTurbines Steam turbines may have steam supplied by a steam supply.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class SteamSupply
 (
@@ -915,7 +1040,18 @@ case class SteamSupply
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[SteamSupply] }
     override def get (i: Int): Object =
@@ -971,6 +1107,9 @@ extends
  * @param shaft2PowerLP1 Fraction of power from shaft 2 first low pressure turbine output.
  * @param shaft2PowerLP2 Fraction of power from shaft 2 second low pressure turbine output.
  * @param steamChestTC Steam chest time constant.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class SteamTurbine
 (
@@ -991,7 +1130,18 @@ case class SteamTurbine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PrimeMover: PrimeMover = sup.asInstanceOf[PrimeMover]
     override def copy (): Row = { clone ().asInstanceOf[SteamTurbine] }
     override def get (i: Int): Object =
@@ -1065,6 +1215,9 @@ extends
 /**
  * Once-through subcritical boiler.
  * @param sup Reference to the superclass object.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class Subcritical
 (
@@ -1073,7 +1226,18 @@ case class Subcritical
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def FossilSteamSupply: FossilSteamSupply = sup.asInstanceOf[FossilSteamSupply]
     override def copy (): Row = { clone ().asInstanceOf[Subcritical] }
     override def get (i: Int): Object =
@@ -1112,6 +1276,9 @@ extends
 /**
  * Once-through supercritical boiler.
  * @param sup Reference to the superclass object.
+ * @group GenerationTrainingSimulation
+ * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
+ * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class Supercritical
 (
@@ -1120,7 +1287,18 @@ case class Supercritical
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def FossilSteamSupply: FossilSteamSupply = sup.asInstanceOf[FossilSteamSupply]
     override def copy (): Row = { clone ().asInstanceOf[Supercritical] }
     override def get (i: Int): Object =

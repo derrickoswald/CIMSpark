@@ -6,12 +6,13 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * A unique identifier of a wheeling transaction.
  * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
+ * @group InfParticipantInterfaces
+ * @groupname InfParticipantInterfaces Package InfParticipantInterfaces
  */
 case class WheelingReferenceSchedule
 (
@@ -21,7 +22,18 @@ case class WheelingReferenceSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BidHourlySchedule: BidHourlySchedule = sup.asInstanceOf[BidHourlySchedule]
     override def copy (): Row = { clone ().asInstanceOf[WheelingReferenceSchedule] }
     override def get (i: Int): Object =

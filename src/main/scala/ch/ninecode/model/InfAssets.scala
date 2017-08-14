@@ -7,15 +7,30 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The package is used to define asset-level models for objects.
- * Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
- */
-
-/**
  * An Asset Property that is described through curves rather than as a data point.
  * The relationship is to be defined between an independent variable (X-axis) and one or two dependent variables (Y1-axis and Y2-axis).
  * @param sup Reference to the superclass object.
  * @param Specification <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class AssetPropertyCurve
 (
@@ -25,7 +40,18 @@ case class AssetPropertyCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[AssetPropertyCurve] }
     override def get (i: Int): Object =
@@ -72,6 +98,26 @@ extends
  * @param c2PowerFactor Factory measured insulation power factor, measured between the power factor tap and ground.
  * @param insulationKind Kind of insulation.
  * @param Terminal <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Bushing
 (
@@ -86,7 +132,18 @@ case class Bushing
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[Bushing] }
     override def get (i: Int): Object =
@@ -147,6 +204,26 @@ extends
  * @param testKind Kind of test for this bushing.
  * @param Bushing <em>undocumented</em>
  * @param TransformerObservation <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class BushingInsulationPF
 (
@@ -159,7 +236,18 @@ case class BushingInsulationPF
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BushingInsulationPF] }
     override def get (i: Int): Object =
@@ -209,6 +297,26 @@ extends
 /**
  * Enclosure that offers protection to the equipment it contains and/or safety to people/animals outside it.
  * @param sup Reference to the superclass object.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Cabinet
 (
@@ -217,7 +325,18 @@ case class Cabinet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
     override def copy (): Row = { clone ().asInstanceOf[Cabinet] }
     override def get (i: Int): Object =
@@ -261,6 +380,26 @@ extends
  * @param powerRating The power rating associated with type of cooling specified for this stage.
  * @param stage Stage of cooling and associated power rating.
  * @param Reconditionings <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class CoolingPowerRating
 (
@@ -273,7 +412,18 @@ case class CoolingPowerRating
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CoolingPowerRating] }
     override def get (i: Int): Object =
@@ -331,6 +481,26 @@ extends
  * @param sizeLength Length measurement.
  * @param sizeWidth Width measurement.
  * @param Specifications <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class DimensionsInfo
 (
@@ -345,7 +515,18 @@ case class DimensionsInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DimensionsInfo] }
     override def get (i: Int): Object =
@@ -403,6 +584,26 @@ extends
  * @param sup Reference to the superclass object.
  * @param circuitCount Number of circuits in duct bank.
  *        Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class DuctBank
 (
@@ -412,7 +613,18 @@ case class DuctBank
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
     override def copy (): Row = { clone ().asInstanceOf[DuctBank] }
     override def get (i: Int): Object =
@@ -454,6 +666,26 @@ extends
  * FACTS device asset.
  * @param sup Reference to the superclass object.
  * @param kind Kind of FACTS device.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class FACTSDevice
 (
@@ -463,7 +695,18 @@ case class FACTSDevice
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[FACTSDevice] }
     override def get (i: Int): Object =
@@ -505,6 +748,26 @@ extends
  * A facility may contain buildings, storage facilities, switching facilities, power generation, manufacturing facilities, maintenance facilities, etc.
  * @param sup Reference to the superclass object.
  * @param kind Kind of this facility.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Facility
 (
@@ -514,7 +777,18 @@ case class Facility
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
     override def copy (): Row = { clone ().asInstanceOf[Facility] }
     override def get (i: Int): Object =
@@ -560,6 +834,26 @@ extends
  * @param faultLocatingMethod The method used for locating the faulted part of the asset.
  *        For example, cable options include: Cap Discharge-Thumping, Bridge Method, Visual Inspection, Other.
  * @param location Failure location on an object.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class FailureEvent
 (
@@ -572,7 +866,18 @@ case class FailureEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
     override def copy (): Row = { clone ().asInstanceOf[FailureEvent] }
     override def get (i: Int): Object =
@@ -636,6 +941,26 @@ extends
  * @param valueDateTime Date and time at which the financial value was last established.
  * @param warrantyEndDateTime Date and time warranty on asset expires.
  * @param Asset <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class FinancialInfo
 (
@@ -656,7 +981,18 @@ case class FinancialInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[FinancialInfo] }
     override def get (i: Int): Object =
@@ -737,6 +1073,26 @@ extends
  * @param CUAsset <em>undocumented</em>
  * @param CUWorkEquipmentAsset <em>undocumented</em>
  * @param TypeAssetCatalogue <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class GenericAssetModelOrMaterial
 (
@@ -751,7 +1107,18 @@ case class GenericAssetModelOrMaterial
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, false, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetModel: AssetModel = sup.asInstanceOf[AssetModel]
     override def copy (): Row = { clone ().asInstanceOf[GenericAssetModelOrMaterial] }
     override def get (i: Int): Object =
@@ -811,6 +1178,26 @@ extends
  * @param configurationKind Configuration of joint.
  * @param fillKind Material used to fill the joint.
  * @param insulation The type of insulation around the joint, classified according to the utility's asset management standards and practices.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Joint
 (
@@ -822,7 +1209,18 @@ case class Joint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[Joint] }
     override def get (i: Int): Object =
@@ -874,6 +1272,26 @@ extends
  *        Note that the actual volume is a type of measurement associated witht the asset.
  * @param Assets <em>undocumented</em>
  * @param Specification <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Medium
 (
@@ -886,7 +1304,18 @@ case class Medium
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Medium] }
     override def get (i: Int): Object =
@@ -949,6 +1378,26 @@ extends
  *        Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown.
  * @param treatedDateTime Date and time pole was last treated with preservative.
  * @param treatmentKind Kind of treatment for this pole.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Pole
 (
@@ -968,7 +1417,18 @@ case class Pole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null, null, 0.0, null, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Structure: Structure = sup.asInstanceOf[Structure]
     override def copy (): Row = { clone ().asInstanceOf[Pole] }
     override def get (i: Int): Object =
@@ -1041,6 +1501,26 @@ extends
  * @param sup Reference to the superclass object.
  * @param dateTime Date and time this reconditioning (or a major overhaul) has been performed.
  * @param Asset <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Reconditioning
 (
@@ -1051,7 +1531,18 @@ case class Reconditioning
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Reconditioning] }
     override def get (i: Int): Object =
@@ -1099,6 +1590,26 @@ extends
  * @param momFailureRate Momentary failure rate (temporary failures/kft-year).
  * @param Assets <em>undocumented</em>
  * @param Specification <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class ReliabilityInfo
 (
@@ -1111,7 +1622,18 @@ case class ReliabilityInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ReliabilityInfo] }
     override def get (i: Int): Object =
@@ -1162,6 +1684,26 @@ extends
  * Specification can be used for various purposes relative to an asset, a logical device (PowerSystemResource), location, etc.
  * Examples include documents supplied by manufacturers such as asset installation instructions, asset maintenance instructions, etc.
  * @param sup Reference to the superclass object.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Specification
 (
@@ -1170,7 +1712,18 @@ case class Specification
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Specification] }
     override def get (i: Int): Object =
@@ -1214,6 +1767,26 @@ extends
  * @param lampKind Lamp kind.
  * @param lightRating Power rating of light.
  * @param Pole Pole to which thiss streetlight is attached.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Streetlight
 (
@@ -1226,7 +1799,18 @@ case class Streetlight
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[Streetlight] }
     override def get (i: Int): Object =
@@ -1285,6 +1869,26 @@ extends
  * @param ratedVoltage Maximum rated voltage of the equipment that can be mounted on/contained within the structure.
  * @param removeWeed True if weeds are to be removed around asset.
  * @param weedRemovedDate Date weed were last removed.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Structure
 (
@@ -1300,7 +1904,18 @@ case class Structure
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, null, 0.0, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
     override def copy (): Row = { clone ().asInstanceOf[Structure] }
     override def get (i: Int): Object =
@@ -1367,6 +1982,26 @@ extends
  * @param len Length of this support structure.
  * @param size1 Size of this support structure.
  * @param SecuredStructure <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class StructureSupport
 (
@@ -1383,7 +2018,18 @@ case class StructureSupport
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0, 0.0, 0.0, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[StructureSupport] }
     override def get (i: Int): Object =
@@ -1447,6 +2093,26 @@ extends
  * Dimensions of the Tower are specified in associated DimensionsInfo class.
  * @param sup Reference to the superclass object.
  * @param constructionKind Construction structure on the tower.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Tower
 (
@@ -1456,7 +2122,18 @@ case class Tower
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Structure: Structure = sup.asInstanceOf[Structure]
     override def copy (): Row = { clone ().asInstanceOf[Tower] }
     override def get (i: Int): Object =
@@ -1517,6 +2194,26 @@ extends
  * @param waterContent Water Content expressed in parts per million.
  * @param Reconditioning <em>undocumented</em>
  * @param Transformer <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class TransformerObservation
 (
@@ -1541,7 +2238,18 @@ case class TransformerObservation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null, 0.0, null, 0.0, null, null, null, null, null, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TransformerObservation] }
     override def get (i: Int): Object =
@@ -1631,6 +2339,26 @@ extends
  * @param kind True if vault is ventilating.
  * @param material Primary material of underground structure.
  * @param sealingWarrantyExpiresDate Date sealing warranty expires.
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class UndergroundStructure
 (
@@ -1643,7 +2371,18 @@ case class UndergroundStructure
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Structure: Structure = sup.asInstanceOf[Structure]
     override def copy (): Row = { clone ().asInstanceOf[UndergroundStructure] }
     override def get (i: Int): Object =
@@ -1701,6 +2440,26 @@ extends
  * @param FromWinding <em>undocumented</em>
  * @param ToWinding <em>undocumented</em>
  * @param TransformerObservation <em>undocumented</em>
+ * @group InfAssets
+ * @groupname InfAssets Package InfAssets
+ * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+<ul>
+	<li>Assets can have names, through inheritance to the Naming package</li>
+	<li>Assets are physical entities which have a lifecycle</li>
+	<li>One or more assets can be associated to create a PowerSystemResource</li>
+	<li>Assets can be grouped (aggregated) with other Assets</li>
+	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+</ul>
+The following sections describe the packages in the Assets package.
+The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class WindingInsulation
 (
@@ -1716,7 +2475,18 @@ case class WindingInsulation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WindingInsulation] }
     override def get (i: Int): Object =

@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package shows all the root level subpackage dependencies of the combined CIM model.
- */
-
-/**
  * The version of dependencies description among top level subpackages of the combined CIM model.
  * This is not the same as the combined packages version.
  * @param sup Reference to the superclass object.
@@ -18,6 +14,9 @@ import ch.ninecode.cim.Parseable
  *        This is updated when the version attribute is updated.
  * @param version The version of the main subpackages of the combined CIM model.
  *        The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
+ * @group PackageDependencies
+ * @groupname PackageDependencies Package PackageDependencies
+ * @groupdesc PackageDependencies This package shows all the root level subpackage dependencies of the combined CIM model.
  */
 case class PackageDependenciesCIMVersion
 (
@@ -28,8 +27,19 @@ case class PackageDependenciesCIMVersion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PackageDependenciesCIMVersion] }
     override def get (i: Int): Object =
     {

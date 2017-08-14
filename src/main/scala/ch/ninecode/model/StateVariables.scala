@@ -7,12 +7,11 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * State variables for analysis solutions such as powerflow.
- */
-
-/**
  * An abstract class for state variables.
  * @param sup Reference to the superclass object.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 case class StateVariable
 (
@@ -21,8 +20,19 @@ case class StateVariable
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[StateVariable] }
     override def get (i: Int): Object =
     {
@@ -66,6 +76,9 @@ extends
  * @param qInjection The reactive power injected into the bus in addition to injections from equipment terminals.
  *        Positive sign means injection into the TopologicalNode (bus).
  * @param TopologicalNode The topological node associated with the flow injection state variable.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 case class SvInjection
 (
@@ -77,7 +90,18 @@ case class SvInjection
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
     override def copy (): Row = { clone ().asInstanceOf[SvInjection] }
     override def get (i: Int): Object =
@@ -130,6 +154,9 @@ extends
  * @param q The reactive power flow.
  *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
  * @param Terminal The terminal associated with the power flow state variable.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 case class SvPowerFlow
 (
@@ -141,7 +168,18 @@ case class SvPowerFlow
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
     override def copy (): Row = { clone ().asInstanceOf[SvPowerFlow] }
     override def get (i: Int): Object =
@@ -191,6 +229,9 @@ extends
  * @param sections The number of sections in service as a continous variable.
  *        To get integer value scale with ShuntCompensator.bPerSection.
  * @param ShuntCompensator The shunt compensator for which the state applies.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 case class SvShuntCompensatorSections
 (
@@ -201,7 +242,18 @@ case class SvShuntCompensatorSections
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
     override def copy (): Row = { clone ().asInstanceOf[SvShuntCompensatorSections] }
     override def get (i: Int): Object =
@@ -247,6 +299,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param inService The in service status as a result of topology processing.
  * @param ConductingEquipment The conducting equipment associated with the status state variable.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 case class SvStatus
 (
@@ -257,7 +312,18 @@ case class SvStatus
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
     override def copy (): Row = { clone ().asInstanceOf[SvStatus] }
     override def get (i: Int): Object =
@@ -305,6 +371,9 @@ extends
  * @param position The floating point tap position.
  *        This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions.
  * @param TapChanger The tap changer associated with the tap step state.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 case class SvTapStep
 (
@@ -315,7 +384,18 @@ case class SvTapStep
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
     override def copy (): Row = { clone ().asInstanceOf[SvTapStep] }
     override def get (i: Int): Object =
@@ -362,6 +442,9 @@ extends
  * @param angle The voltage angle of the topological node complex voltage with respect to system reference.
  * @param v The voltage magnitude of the topological node.
  * @param TopologicalNode The topological node associated with the voltage state.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
  */
 case class SvVoltage
 (
@@ -373,7 +456,18 @@ case class SvVoltage
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
     override def copy (): Row = { clone ().asInstanceOf[SvVoltage] }
     override def get (i: Int): Object =

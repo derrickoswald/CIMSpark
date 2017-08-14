@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The package covers all types of work, including inspection, maintenance, repair, restoration, and construction.
- * It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
- */
-
-/**
  * A permit is sometimes needed to provide legal access to land or equipment.
  * For example, local authority permission for road works.
  * @param sup Reference to the superclass object.
@@ -20,6 +15,19 @@ import ch.ninecode.cim.Parseable
  * @param expirationDate Permit expiration date.
  * @param payment Total cost of permit.
  * @param permitID Permit identifier.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class AccessPermit
 (
@@ -33,7 +41,18 @@ case class AccessPermit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[AccessPermit] }
     override def get (i: Int): Object =
@@ -88,6 +107,19 @@ extends
  * TimeSchedules may be set up directly for Assignments or indirectly via the associated WorkTask. Note that these associations are all inherited through the recursive relationship on Document.
  * @param sup Reference to the superclass object.
  * @param effectivePeriod Period between the assignment becoming effective and its expiration.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class Assignment
 (
@@ -97,7 +129,18 @@ case class Assignment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[Assignment] }
     override def get (i: Int): Object =
@@ -139,6 +182,19 @@ extends
  * Business justification for capital expenditures, usually addressing operations and maintenance costs as well.
  * @param sup Reference to the superclass object.
  * @param corporateCode A codified representation of the business case (i.e., codes for highway relocation, replace substation transformers, etc.).
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class BusinessCase
 (
@@ -148,7 +204,18 @@ case class BusinessCase
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[BusinessCase] }
     override def get (i: Int): Object =
@@ -190,6 +257,19 @@ extends
  * Allowed actions: Install, Remove, Transfer, Abandon, etc.
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CUAllowableAction
 (
@@ -199,7 +279,18 @@ case class CUAllowableAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CUAllowableAction] }
     override def get (i: Int): Object =
@@ -244,6 +335,19 @@ extends
  * @param status <em>undocumented</em>
  * @param typeAssetCode The code for this type of asset.
  * @param TypeAsset <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CUAsset
 (
@@ -256,7 +360,18 @@ case class CUAsset
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CUAsset] }
     override def get (i: Int): Object =
@@ -310,6 +425,19 @@ extends
  * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
  * @param status <em>undocumented</em>
  * @param CompatibleUnits <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CUContractorItem
 (
@@ -322,7 +450,18 @@ case class CUContractorItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CUContractorItem] }
     override def get (i: Int): Object =
@@ -374,6 +513,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ChildCUGroups <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CUGroup
 (
@@ -384,7 +536,18 @@ case class CUGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CUGroup] }
     override def get (i: Int): Object =
@@ -430,6 +593,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param code Labor code.
  * @param status <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CULaborCode
 (
@@ -440,7 +616,18 @@ case class CULaborCode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CULaborCode] }
     override def get (i: Int): Object =
@@ -491,6 +678,19 @@ extends
  * @param CULaborCode <em>undocumented</em>
  * @param CompatibleUnits <em>undocumented</em>
  * @param QualificationRequirements <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CULaborItem
 (
@@ -506,7 +706,18 @@ case class CULaborItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CULaborItem] }
     override def get (i: Int): Object =
@@ -571,6 +782,19 @@ extends
  * @param status <em>undocumented</em>
  * @param CompatibleUnits <em>undocumented</em>
  * @param TypeMaterial <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CUMaterialItem
 (
@@ -584,7 +808,18 @@ case class CUMaterialItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CUMaterialItem] }
     override def get (i: Int): Object =
@@ -642,6 +877,19 @@ extends
  * @param status <em>undocumented</em>
  * @param CompatibleUnits <em>undocumented</em>
  * @param TypeAsset <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CUWorkEquipmentItem
 (
@@ -655,7 +903,18 @@ case class CUWorkEquipmentItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CUWorkEquipmentItem] }
     override def get (i: Int): Object =
@@ -715,6 +974,19 @@ extends
  * @param Crafts <em>undocumented</em>
  * @param Crew <em>undocumented</em>
  * @param WorkTasks <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class Capability
 (
@@ -730,7 +1002,18 @@ case class Capability
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, List(), null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Capability] }
     override def get (i: Int): Object =
@@ -798,6 +1081,19 @@ extends
  * @param DesignLocationCUs <em>undocumented</em>
  * @param Procedures <em>undocumented</em>
  * @param PropertyUnit <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CompatibleUnit
 (
@@ -815,7 +1111,18 @@ case class CompatibleUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, List(), null, null, List(), List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[CompatibleUnit] }
     override def get (i: Int): Object =
@@ -883,6 +1190,19 @@ extends
  * @param cfValue The actual value of the condition factor, such as labor flat fee or percentage.
  * @param kind Kind of this condition factor.
  * @param status <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class ConditionFactor
 (
@@ -894,7 +1214,18 @@ case class ConditionFactor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ConditionFactor] }
     override def get (i: Int): Object =
@@ -948,6 +1279,19 @@ extends
  * @param ErpPayables <em>undocumented</em>
  * @param WorkCostDetail <em>undocumented</em>
  * @param WorkTask <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class ContractorItem
 (
@@ -963,7 +1307,18 @@ case class ContractorItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, null, List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ContractorItem] }
     override def get (i: Int): Object =
@@ -1030,6 +1385,19 @@ extends
  * @param status <em>undocumented</em>
  * @param ErpJournalEntries <em>undocumented</em>
  * @param ParentCostType <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class CostType
 (
@@ -1045,7 +1413,18 @@ case class CostType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null, null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CostType] }
     override def get (i: Int): Object =
@@ -1111,6 +1490,19 @@ extends
  * @param ConditionFactors <em>undocumented</em>
  * @param ErpQuoteLineItem <em>undocumented</em>
  * @param Work <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class Design
 (
@@ -1125,7 +1517,18 @@ case class Design
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, 0.0, List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[Design] }
     override def get (i: Int): Object =
@@ -1185,6 +1588,19 @@ extends
  * @param spanLength The legth of the span from the previous pole to this pole.
  * @param status <em>undocumented</em>
  * @param ConditionFactors <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class DesignLocation
 (
@@ -1196,7 +1612,18 @@ case class DesignLocation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DesignLocation] }
     override def get (i: Int): Object =
@@ -1256,6 +1683,19 @@ extends
  * @param DesignLocation <em>undocumented</em>
  * @param Designs <em>undocumented</em>
  * @param WorkTasks <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class DesignLocationCU
 (
@@ -1276,7 +1716,18 @@ case class DesignLocationCU
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, false, List(), List(), null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DesignLocationCU] }
     override def get (i: Int): Object =
@@ -1359,6 +1810,19 @@ extends
  * @param questionRemark Remarks to qualify the question in this situation.
  * @param questionText For non-coded questions, the question is provided here.
  * @param questionType The type of the question.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class InfoQuestion
 (
@@ -1374,7 +1838,18 @@ case class InfoQuestion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[InfoQuestion] }
     override def get (i: Int): Object =
@@ -1441,6 +1916,19 @@ extends
  * @param status <em>undocumented</em>
  * @param WorkCostDetail <em>undocumented</em>
  * @param WorkTask <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class LaborItem
 (
@@ -1456,7 +1944,18 @@ case class LaborItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LaborItem] }
     override def get (i: Int): Object =
@@ -1525,6 +2024,19 @@ extends
  * @param DesignLocation <em>undocumented</em>
  * @param WorkCostDetail <em>undocumented</em>
  * @param WorkTask <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class MiscCostItem
 (
@@ -1542,7 +2054,18 @@ case class MiscCostItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MiscCostItem] }
     override def get (i: Int): Object =
@@ -1608,6 +2131,19 @@ extends
  * This document provides information for non-standard items like customer contributions (e.g., customer digs trench), vouchers (e.g., credit), and contractor bids.
  * @param sup Reference to the superclass object.
  * @param amount The projected cost for this item.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class NonStandardItem
 (
@@ -1617,7 +2153,18 @@ case class NonStandardItem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[NonStandardItem] }
     override def get (i: Int): Object =
@@ -1662,6 +2209,19 @@ extends
  * @param OverheadCost <em>undocumented</em>
  * @param QualificationRequirements <em>undocumented</em>
  * @param WorkFlowStep <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class OldWorkTask
 (
@@ -1674,7 +2234,18 @@ case class OldWorkTask
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkTask: WorkTask = sup.asInstanceOf[WorkTask]
     override def copy (): Row = { clone ().asInstanceOf[OldWorkTask] }
     override def get (i: Int): Object =
@@ -1727,6 +2298,19 @@ extends
  * @param explosivesUsed True if explosives have been or are planned to be used.
  * @param markedIndicator True if work location has been marked, for example for a dig area.
  * @param markingInstruction Instructions for marking a dig area, if applicable.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class OneCallRequest
 (
@@ -1738,7 +2322,18 @@ case class OneCallRequest
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[OneCallRequest] }
     override def get (i: Int): Object =
@@ -1788,6 +2383,19 @@ extends
  * @param code Overhead code.
  * @param cost The overhead cost to be applied.
  * @param status <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class OverheadCost
 (
@@ -1799,7 +2407,18 @@ case class OverheadCost
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OverheadCost] }
     override def get (i: Int): Object =
@@ -1851,6 +2470,19 @@ extends
  * @param BusinessCase <em>undocumented</em>
  * @param ErpProjectAccounting <em>undocumented</em>
  * @param ParentProject <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class Project
 (
@@ -1863,7 +2495,18 @@ case class Project
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[Project] }
     override def get (i: Int): Object =
@@ -1919,6 +2562,19 @@ extends
  *        For example, in the USA, this would be a FERC account.
  * @param status <em>undocumented</em>
  * @param CUMaterialItems <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class PropertyUnit
 (
@@ -1932,7 +2588,18 @@ case class PropertyUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[PropertyUnit] }
     override def get (i: Int): Object =
@@ -1987,6 +2654,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param qualificationID Qualification identifier.
  * @param Specifications <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class QualificationRequirement
 (
@@ -1997,7 +2677,18 @@ case class QualificationRequirement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[QualificationRequirement] }
     override def get (i: Int): Object =
@@ -2043,6 +2734,19 @@ extends
  * For example, fire protection and scaffolding.
  * @param sup Reference to the superclass object.
  * @param referenceNumber External reference to regulation, if applicable.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class Regulation
 (
@@ -2052,7 +2756,18 @@ case class Regulation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[Regulation] }
     override def get (i: Int): Object =
@@ -2097,6 +2812,19 @@ extends
  * @param cycleCount Number of cycles for a temporary shift.
  * @param status <em>undocumented</em>
  * @param validityInterval Date and time interval for which this shift pattern is valid (when it became effective and when it expires).
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class ShiftPattern
 (
@@ -2109,7 +2837,18 @@ case class ShiftPattern
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ShiftPattern] }
     override def get (i: Int): Object =
@@ -2165,6 +2904,19 @@ extends
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
  * @param quantity The value, unit of measure, and multiplier for the quantity.
  * @param stockItem True if item is a stock item (default).
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class TypeMaterial
 (
@@ -2177,7 +2929,18 @@ case class TypeMaterial
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[TypeMaterial] }
     override def get (i: Int): Object =
@@ -2230,6 +2993,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param WorkTask <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class Usage
 (
@@ -2240,7 +3016,18 @@ case class Usage
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Usage] }
     override def get (i: Int): Object =
@@ -2296,6 +3083,19 @@ extends
  * @param WorkCostSummary <em>undocumented</em>
  * @param WorkTask <em>undocumented</em>
  * @param Works <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class WorkCostDetail
 (
@@ -2315,7 +3115,18 @@ case class WorkCostDetail
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, null, null, null, null, null, List(), null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[WorkCostDetail] }
     override def get (i: Int): Object =
@@ -2388,6 +3199,19 @@ extends
  * For example, total labor.
  * @param sup Reference to the superclass object.
  * @param WorkCostDetail <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class WorkCostSummary
 (
@@ -2397,7 +3221,18 @@ case class WorkCostSummary
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkDocument: WorkDocument = sup.asInstanceOf[WorkDocument]
     override def copy (): Row = { clone ().asInstanceOf[WorkCostSummary] }
     override def get (i: Int): Object =
@@ -2439,6 +3274,19 @@ extends
  * Shadow class for Document, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
  * @param sup Reference to the superclass object.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class WorkDocument
 (
@@ -2447,7 +3295,18 @@ case class WorkDocument
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[WorkDocument] }
     override def get (i: Int): Object =
@@ -2489,6 +3348,19 @@ extends
  * @param sequenceNumber Used to define dependencies of each work flow step, which is for the instance of WorkTask associated with a given instance of WorkFlow.
  * @param status <em>undocumented</em>
  * @param Work <em>undocumented</em>
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class WorkFlowStep
 (
@@ -2500,7 +3372,18 @@ case class WorkFlowStep
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WorkFlowStep] }
     override def get (i: Int): Object =
@@ -2548,6 +3431,19 @@ extends
  * Shadow class for IdentifiedObject, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
  * @param sup Reference to the superclass object.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class WorkIdentifiedObject
 (
@@ -2556,7 +3452,18 @@ case class WorkIdentifiedObject
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WorkIdentifiedObject] }
     override def get (i: Int): Object =
@@ -2596,6 +3503,19 @@ extends
  * A type of ActivityRecord that records information about the status of an item, such as a Work or WorkTask, at a point in time.
  * @param sup Reference to the superclass object.
  * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
+ * @group InfWork
+ * @groupname InfWork Package InfWork
+ * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
+
+TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+"The Work package is used to define classes related to work. There are several different aspects of work.
+The Work Initiation (Work, Project, Request).
+The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
+The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
+The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
+The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
+This package is used for inspection and maintenance (InspectionDataSet, Procedure).
+The WorkService package defines Appointment class".
  */
 case class WorkStatusEntry
 (
@@ -2605,7 +3525,18 @@ case class WorkStatusEntry
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
     override def copy (): Row = { clone ().asInstanceOf[WorkStatusEntry] }
     override def get (i: Int): Object =

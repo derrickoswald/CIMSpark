@@ -7,16 +7,15 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.
- */
-
-/**
  * Mechanical load model type 1.
  * @param sup Reference to the superclass object.
  * @param a Speed squared coefficient (a).
  * @param b Speed coefficient (b).
  * @param d Speed to the exponent coefficient (d).
  * @param e Exponent (e).
+ * @group MechanicalLoadDynamics
+ * @groupname MechanicalLoadDynamics Package MechanicalLoadDynamics
+ * @groupdesc MechanicalLoadDynamics A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.
  */
 case class MechLoad1
 (
@@ -29,7 +28,18 @@ case class MechLoad1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MechanicalLoadDynamics: MechanicalLoadDynamics = sup.asInstanceOf[MechanicalLoadDynamics]
     override def copy (): Row = { clone ().asInstanceOf[MechLoad1] }
     override def get (i: Int): Object =
@@ -81,6 +91,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param AsynchronousMachineDynamics Asynchronous machine model with which this mechanical load model is associated.
  * @param SynchronousMachineDynamics Synchronous machine model with which this mechanical load model is associated.
+ * @group MechanicalLoadDynamics
+ * @groupname MechanicalLoadDynamics Package MechanicalLoadDynamics
+ * @groupdesc MechanicalLoadDynamics A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.
  */
 case class MechanicalLoadDynamics
 (
@@ -91,7 +104,18 @@ case class MechanicalLoadDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[MechanicalLoadDynamics] }
     override def get (i: Int): Object =

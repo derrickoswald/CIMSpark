@@ -6,7 +6,6 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * The result of a problem (typically an asset failure) diagnosis.
  * @param sup Reference to the superclass object.
@@ -23,6 +22,8 @@ import ch.ninecode.cim.Parseable
  * @param rootCause Root cause of problem determined during diagnosis.
  * @param rootOrigin Root origin of problem determined during diagnosis.
  * @param rootRemark Remarks pertaining to root cause findings during problem diagnosis.
+ * @group InfNewAssets
+ * @groupname InfNewAssets Package InfNewAssets
  */
 case class DiagnosisDataSet
 (
@@ -44,7 +45,18 @@ case class DiagnosisDataSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
     override def copy (): Row = { clone ().asInstanceOf[DiagnosisDataSet] }
     override def get (i: Int): Object =
@@ -122,6 +134,8 @@ extends
  * Documents the result of one inspection, for a given attribute of an asset.
  * @param sup Reference to the superclass object.
  * @param locationCondition Description of the conditions of the location where the asset resides.
+ * @group InfNewAssets
+ * @groupname InfNewAssets Package InfNewAssets
  */
 case class InspectionDataSet
 (
@@ -131,7 +145,18 @@ case class InspectionDataSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
     override def copy (): Row = { clone ().asInstanceOf[InspectionDataSet] }
     override def get (i: Int): Object =
@@ -175,6 +200,8 @@ extends
  * @param conditionAfter Condition of asset just following maintenance procedure.
  * @param conditionBefore Description of the condition of the asset just prior to maintenance being performed.
  * @param maintCode Code for the type of maintenance performed.
+ * @group InfNewAssets
+ * @groupname InfNewAssets Package InfNewAssets
  */
 case class MaintenanceDataSet
 (
@@ -186,7 +213,18 @@ case class MaintenanceDataSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
     override def copy (): Row = { clone ().asInstanceOf[MaintenanceDataSet] }
     override def get (i: Int): Object =
@@ -236,6 +274,8 @@ extends
  * @param conclusion Conclusion drawn from test results.
  * @param specimenID Identifier of specimen used in inspection or test.
  * @param specimenToLabDateTime Date and time the specimen was received by the lab.
+ * @group InfNewAssets
+ * @groupname InfNewAssets Package InfNewAssets
  */
 case class TestDataSet
 (
@@ -247,7 +287,18 @@ case class TestDataSet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
     override def copy (): Row = { clone ().asInstanceOf[TestDataSet] }
     override def get (i: Int): Object =

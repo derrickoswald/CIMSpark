@@ -7,14 +7,13 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains functions common for distribution management.
- */
-
-/**
  * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
  * @param sup Reference to the superclass object.
  * @param bic Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
  * @param iban International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class Bank
 (
@@ -25,7 +24,18 @@ case class Bank
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[Bank] }
     override def get (i: Int): Object =
@@ -72,6 +82,9 @@ extends
  * @param accountNumber Account reference number.
  * @param Bank Bank that provides this BankAccount.
  * @param ServiceSupplier ServiceSupplier that is owner of this BankAccount.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class BankAccount
 (
@@ -83,7 +96,18 @@ case class BankAccount
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[BankAccount] }
     override def get (i: Int): Object =
@@ -131,6 +155,9 @@ extends
  * A BusinessPlan is an organized sequence of predetermined actions required to complete a future organizational objective.
  * It is a type of document that typically references a schedule, physical and/or logical resources (assets and/or PowerSystemResources), locations, etc.
  * @param sup Reference to the superclass object.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class BusinessPlan
 (
@@ -139,7 +166,18 @@ case class BusinessPlan
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[BusinessPlan] }
     override def get (i: Int): Object =
@@ -181,6 +219,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's corporate standards and practices.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class BusinessRole
 (
@@ -191,7 +232,18 @@ case class BusinessRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[BusinessRole] }
     override def get (i: Int): Object =
@@ -239,6 +291,9 @@ extends
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work mangement standards and practices.
  * @param ErpPersons <em>undocumented</em>
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class Craft
 (
@@ -250,7 +305,18 @@ case class Craft
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Craft] }
     override def get (i: Int): Object =
@@ -297,6 +363,9 @@ extends
 /**
  * Role an organisation plays with respect to documents.
  * @param sup Reference to the superclass object.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class DocumentOrganisationRole
 (
@@ -305,7 +374,18 @@ case class DocumentOrganisationRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[DocumentOrganisationRole] }
     override def get (i: Int): Object =
@@ -349,6 +429,9 @@ extends
  * @param Locations <em>undocumented</em>
  * @param Route <em>undocumented</em>
  * @param ShiftPatterns <em>undocumented</em>
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class OldCrew
 (
@@ -362,7 +445,18 @@ case class OldCrew
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List(), List(), null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Crew: Crew = sup.asInstanceOf[Crew]
     override def copy (): Row = { clone ().asInstanceOf[OldCrew] }
     override def get (i: Int): Object =
@@ -422,6 +516,9 @@ extends
  * @param ErpCompetency <em>undocumented</em>
  * @param ErpPersonnel <em>undocumented</em>
  * @param LaborItems <em>undocumented</em>
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class OldPerson
 (
@@ -436,7 +533,18 @@ case class OldPerson
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Person: Person = sup.asInstanceOf[Person]
     override def copy (): Row = { clone ().asInstanceOf[OldPerson] }
     override def get (i: Int): Object =
@@ -494,6 +602,9 @@ extends
  * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
  * @param sup Reference to the superclass object.
  * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class OrgOrgRole
 (
@@ -503,7 +614,18 @@ case class OrgOrgRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[OrgOrgRole] }
     override def get (i: Int): Object =
@@ -545,6 +667,9 @@ extends
  * Roles played between Persons and Documents.
  * @param sup Reference to the superclass object.
  * @param Person <em>undocumented</em>
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class PersonDocumentRole
 (
@@ -554,7 +679,18 @@ case class PersonDocumentRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Role: Role = sup.asInstanceOf[Role]
     override def copy (): Row = { clone ().asInstanceOf[PersonDocumentRole] }
     override def get (i: Int): Object =
@@ -597,6 +733,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param clientID Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
  * @param ErpPerson <em>undocumented</em>
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class PersonOrganisationRole
 (
@@ -607,7 +746,18 @@ case class PersonOrganisationRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[PersonOrganisationRole] }
     override def get (i: Int): Object =
@@ -654,6 +804,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param LandProperty <em>undocumented</em>
  * @param Person <em>undocumented</em>
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class PersonPropertyRole
 (
@@ -664,7 +817,18 @@ case class PersonPropertyRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Role: Role = sup.asInstanceOf[Role]
     override def copy (): Row = { clone ().asInstanceOf[PersonPropertyRole] }
     override def get (i: Int): Object =
@@ -708,6 +872,9 @@ extends
 /**
  * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
  * @param sup Reference to the superclass object.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class PropertyOrganisationRole
 (
@@ -716,7 +883,18 @@ case class PropertyOrganisationRole
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
     override def copy (): Row = { clone ().asInstanceOf[PropertyOrganisationRole] }
     override def get (i: Int): Object =
@@ -757,6 +935,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param denominator The part of a fraction that is below the line and that functions as the divisor of the numerator.
  * @param numerator The part of a fraction that is above the line and signifies the number to be divided by the denominator.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class Ratio
 (
@@ -767,8 +948,19 @@ case class Ratio
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Ratio] }
     override def get (i: Int): Object =
     {
@@ -813,6 +1005,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Type of role.
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class Role
 (
@@ -823,7 +1018,18 @@ case class Role
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Role] }
     override def get (i: Int): Object =
@@ -873,6 +1079,9 @@ extends
  * @param Crafts <em>undocumented</em>
  * @param ErpPerson <em>undocumented</em>
  * @param QualificationRequirements <em>undocumented</em>
+ * @group InfCommon
+ * @groupname InfCommon Package InfCommon
+ * @groupdesc InfCommon This package contains functions common for distribution management.
  */
 case class Skill
 (
@@ -887,7 +1096,18 @@ case class Skill
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List(), null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[Skill] }
     override def get (i: Int): Object =

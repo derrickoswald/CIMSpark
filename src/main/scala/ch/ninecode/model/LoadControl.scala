@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment.
- * These classes are generally associated with the point where a service is delivered to the customer.
- */
-
-/**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
  * @param sup Reference to the superclass object.
  * @param eventCount Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
@@ -28,6 +23,9 @@ import ch.ninecode.cim.Parseable
  *        If set false and if reconnection can be operated remotely, then the operation happens manually.
  * @param rcdInfo Information on remote connect disconnect switch.
  * @param Switches <em>undocumented</em>
+ * @group LoadControl
+ * @groupname LoadControl Package LoadControl
+ * @groupdesc LoadControl This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ConnectDisconnectFunction
 (
@@ -45,7 +43,18 @@ case class ConnectDisconnectFunction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, false, false, false, false, false, false, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EndDeviceFunction: EndDeviceFunction = sup.asInstanceOf[EndDeviceFunction]
     override def copy (): Row = { clone ().asInstanceOf[ConnectDisconnectFunction] }
     override def get (i: Int): Object =
@@ -122,6 +131,9 @@ extends
  * @param needsVoltageLimitCheck True if voltage limit has to be checked to prevent connect if voltage is over the limit.
  * @param powerLimit Load limit above which the connect should either not take place or should cause an immediate disconnect.
  * @param usePushbutton True if pushbutton has to be used for connect.
+ * @group LoadControl
+ * @groupname LoadControl Package LoadControl
+ * @groupdesc LoadControl This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class RemoteConnectDisconnectInfo
 (
@@ -142,8 +154,19 @@ case class RemoteConnectDisconnectInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, false, false, false, false, false, 0.0, false) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[RemoteConnectDisconnectInfo] }
     override def get (i: Int): Object =
     {

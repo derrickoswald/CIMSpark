@@ -535,8 +535,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                         .union(parser.roles.filter(myrole).map(details))
 
             val s = new StringBuilder ()
-            if (null != cls.note)
-                s.append (JavaDoc (cls.note, 0, members).asText ())
+            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package " + pkg.name, if (null != pkg.notes) pkg.notes else "").asText ())
             s.append ("case class ")
             s.append (name)
             s.append ("""
@@ -564,9 +563,21 @@ case class Scala (parser: ModelParser, pkg: Package)
             |extends
             |    Element
             |{
+            |    /**
+            |     * Zero args constructor.
+            |     */
             |    def this () = { this (""".stripMargin)
             s.append (initializers.toString)
             s.append (""") }
+            |""".stripMargin)
+            s.append ("""    /**
+            |     * Return the superclass object.
+            |     *
+            |     * @return The typed superclass nested object.
+            |     * @group Hierarchy
+            |     * @groupname Hierarchy Class Hierarchy Related
+            |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+            |     */
             |    def """.stripMargin)
             if (null != cls.sup)
             {
@@ -577,7 +588,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                 s.append (cls.sup.name)
             }
             else
-                s.append ("""Element: Element = sup.asInstanceOf[Element""")
+                s.append (""" Element: Element = sup.asInstanceOf[Element""")
             s.append ("""]
             |    override def copy (): Row = { clone ().asInstanceOf[""".stripMargin)
             s.append (name)
@@ -786,9 +797,6 @@ case class Scala (parser: ModelParser, pkg: Package)
             |import ch.ninecode.cim.Parseable
             |
             |""".stripMargin)
-            v.append (JavaDoc (pkg.notes, 0).asText ())
-            v.append ("""
-                |""".stripMargin)
             v.append (p.toString)
 
             v.append ("""private[ninecode] object """)

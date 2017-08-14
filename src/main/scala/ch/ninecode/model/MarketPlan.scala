@@ -7,13 +7,12 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
- */
-
-/**
  * Model that describes the Congestion Revenue Rights Auction Market
  * @param sup Reference to the superclass object.
  * @param labelID labelID - an ID for a set of apnodes/pnodes used in a CRR market
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class CRRMarket
 (
@@ -23,7 +22,18 @@ case class CRRMarket
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Market: Market = sup.asInstanceOf[Market]
     override def copy (): Row = { clone ().asInstanceOf[CRRMarket] }
     override def get (i: Int): Object =
@@ -68,6 +78,9 @@ extends
  * @param MarketResults <em>undocumented</em>
  * @param RTO <em>undocumented</em>
  * @param RegisteredResources <em>undocumented</em>
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class EnergyMarket
 (
@@ -79,7 +92,18 @@ case class EnergyMarket
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Market: Market = sup.asInstanceOf[Market]
     override def copy (): Row = { clone ().asInstanceOf[EnergyMarket] }
     override def get (i: Int): Object =
@@ -145,6 +169,9 @@ extends
  *        Year
  *        Month
  *        Season
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class Market
 (
@@ -163,7 +190,18 @@ case class Market
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, false, null, null, null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Market] }
     override def get (i: Int): Object =
@@ -237,6 +275,9 @@ extends
  * @param MarketRun Market run triggered by this actual event.
  *        For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.
  * @param PlannedMarketEvent Planned event executed by this actual event.
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class MarketActualEvent
 (
@@ -250,8 +291,19 @@ case class MarketActualEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketActualEvent] }
     override def get (i: Int): Object =
     {
@@ -307,6 +359,9 @@ extends
  * @param intervalStartTime The start of the time interval for which requirement is defined.
  * @param Market <em>undocumented</em>
  * @param MktActivityRecord <em>undocumented</em>
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class MarketFactors
 (
@@ -319,7 +374,18 @@ case class MarketFactors
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[MarketFactors] }
     override def get (i: Int): Object =
@@ -374,6 +440,9 @@ extends
  * @param marketPlanID Planned market identifier.
  * @param name Name of the planned market.
  * @param tradingDay Planned market trading day.
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class MarketPlan
 (
@@ -386,8 +455,19 @@ case class MarketPlan
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketPlan] }
     override def get (i: Int): Object =
     {
@@ -449,6 +529,9 @@ extends
  *        For example, if marketProductType = EN (from enumeration MarketProductType), then the rampInterval is the ramping time interval for Energy.
  * @param Market <em>undocumented</em>
  * @param MarketRegionResults <em>undocumented</em>
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class MarketProduct
 (
@@ -461,7 +544,18 @@ case class MarketProduct
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MarketProduct] }
     override def get (i: Int): Object =
@@ -529,6 +623,9 @@ extends
  *        possible values could be but not limited by: Open, Close.
  * @param Market <em>undocumented</em>
  * @param PlannedMarket A planned market could have multiple market runs for the reason that a planned market could have a rerun.
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class MarketRun
 (
@@ -549,8 +646,19 @@ case class MarketRun
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, false, null, null, null, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketRun] }
     override def get (i: Int): Object =
     {
@@ -630,6 +738,9 @@ extends
  * @param marketStartTime Market start time.
  * @param marketType Market type.
  * @param MarketPlan a market plan has a number of markets (DA, HA, RT)
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class PlannedMarket
 (
@@ -643,8 +754,19 @@ case class PlannedMarket
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PlannedMarket] }
     override def get (i: Int): Object =
     {
@@ -702,6 +824,9 @@ extends
  * @param plannedEventID Planned event identifier.
  * @param plannedTime This is relative time so that this attribute can be used by more than one planned market.
  *        For example the bid submission is 10am everyday.
+ * @group MarketPlan
+ * @groupname MarketPlan Package MarketPlan
+ * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
  */
 case class PlannedMarketEvent
 (
@@ -714,8 +839,19 @@ case class PlannedMarketEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PlannedMarketEvent] }
     override def get (i: Int): Object =
     {

@@ -7,17 +7,25 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.
- * It is linked to a specific generator (synchronous machine).
- */
-
-/**
  * This class provides the resistive and reactive components of compensation for the generator associated with the IEEE Type 2 voltage compensator for current flow out of one of the other generators in the interconnection.
  * @param sup Reference to the superclass object.
  * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
  * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
  * @param SynchronousMachineDynamics Standard synchronous machine out of which current flow is being compensated for.
  * @param VcompIEEEType2 The standard IEEE Type 2 voltage compensator of this compensation.
+ * @group VoltageCompensatorDynamics
+ * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
+ * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
+
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+
+<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
+
+<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+
+
+<font color="#0f0f0f">
+</font>
  */
 case class GenICompensationForGenJ
 (
@@ -30,7 +38,18 @@ case class GenICompensationForGenJ
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[GenICompensationForGenJ] }
     override def get (i: Int): Object =
@@ -84,6 +103,19 @@ extends
  * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (Rc).</font>
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
  * @param xc <font color="#0f0f0f">Reactive component of compensation of a generator (Xc).</font>
+ * @group VoltageCompensatorDynamics
+ * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
+ * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
+
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+
+<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
+
+<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+
+
+<font color="#0f0f0f">
+</font>
  */
 case class VCompIEEEType1
 (
@@ -95,7 +127,18 @@ case class VCompIEEEType1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def VoltageCompensatorDynamics: VoltageCompensatorDynamics = sup.asInstanceOf[VoltageCompensatorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[VCompIEEEType1] }
     override def get (i: Int): Object =
@@ -144,6 +187,19 @@ extends
  * This model is designed to cover the following types of compensation: </font>
  * @param sup Reference to the superclass object.
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
+ * @group VoltageCompensatorDynamics
+ * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
+ * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
+
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+
+<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
+
+<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+
+
+<font color="#0f0f0f">
+</font>
  */
 case class VCompIEEEType2
 (
@@ -153,7 +209,18 @@ case class VCompIEEEType2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def VoltageCompensatorDynamics: VoltageCompensatorDynamics = sup.asInstanceOf[VoltageCompensatorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[VCompIEEEType2] }
     override def get (i: Int): Object =
@@ -196,6 +263,19 @@ extends
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this voltage compensator is associated.
  * @param RemoteInputSignal Remote input signal used by this voltage compensator model.
+ * @group VoltageCompensatorDynamics
+ * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
+ * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
+
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+
+<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
+
+<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+
+
+<font color="#0f0f0f">
+</font>
  */
 case class VoltageCompensatorDynamics
 (
@@ -206,7 +286,18 @@ case class VoltageCompensatorDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[VoltageCompensatorDynamics] }
     override def get (i: Int): Object =

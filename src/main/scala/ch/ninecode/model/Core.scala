@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities.
- * Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
- */
-
-/**
  * An electrical connection point (AC or DC) to a piece of conducting equipment.
  * Terminals are connected at physical connection points called connectivity nodes.
  * @param sup Reference to the superclass object.
@@ -20,6 +15,9 @@ import ch.ninecode.cim.Parseable
  * @param sequenceNumber The orientation of the terminal connections for a multiple terminal conducting equipment.
  *        The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.
  * @param BusNameMarker The bus name marker used to name the bus (topological node).
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ACDCTerminal
 (
@@ -31,7 +29,18 @@ case class ACDCTerminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ACDCTerminal] }
     override def get (i: Int): Object =
@@ -80,6 +89,9 @@ extends
  * In case of multiple power networks with different frequencies, e.g. 50 or 60 Hertz each network will have it's own base frequency class. Hence it is assumed that power system objects having different base frequencies appear in separate documents where each document has a single base frequency instance.
  * @param sup Reference to the superclass object.
  * @param frequency The base frequency.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class BaseFrequency
 (
@@ -89,7 +101,18 @@ case class BaseFrequency
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BaseFrequency] }
     override def get (i: Int): Object =
@@ -131,6 +154,9 @@ extends
  * The BasePower class defines the base power used in the per unit calculations.
  * @param sup Reference to the superclass object.
  * @param basePower Value used as base power.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class BasePower
 (
@@ -140,7 +166,18 @@ case class BasePower
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BasePower] }
     override def get (i: Int): Object =
@@ -182,6 +219,9 @@ extends
  * Defines a system base voltage which is referenced.
  * @param sup Reference to the superclass object.
  * @param nominalVoltage The power system resource's base voltage.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class BaseVoltage
 (
@@ -191,7 +231,18 @@ case class BaseVoltage
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BaseVoltage] }
     override def get (i: Int): Object =
@@ -237,6 +288,9 @@ extends
  * @param value1Unit Value1 units of measure.
  * @param value2Multiplier Multiplier for value2.
  * @param value2Unit Value2 units of measure.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class BasicIntervalSchedule
 (
@@ -250,7 +304,18 @@ case class BasicIntervalSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[BasicIntervalSchedule] }
     override def get (i: Int): Object =
@@ -310,6 +375,9 @@ extends
  * @param busBarConfiguration Bus bar configuration.
  * @param Substation Substation containing the bay.
  * @param VoltageLevel The voltage level containing this bay.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class Bay
 (
@@ -324,7 +392,18 @@ case class Bay
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[Bay] }
     override def get (i: Int): Object =
@@ -385,6 +464,9 @@ extends
  * @param GroundingAction Action involving grounding operation on this conducting equipment.
  * @param JumpingAction Jumper action involving jumping operation on this conducting equipment.
  * @param SvStatus The status state variable associated with this conducting equipment.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ConductingEquipment
 (
@@ -397,7 +479,18 @@ case class ConductingEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[ConductingEquipment] }
     override def get (i: Int): Object =
@@ -450,6 +543,9 @@ extends
  * @param ConnectivityNodeContainer Container of this connectivity node.
  * @param TopologicalNode The topological node to which this connectivity node is assigned.
  *        May depend on the current state of switches in the network.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ConnectivityNode
 (
@@ -460,7 +556,18 @@ case class ConnectivityNode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ConnectivityNode] }
     override def get (i: Int): Object =
@@ -504,6 +611,9 @@ extends
 /**
  * A base class for all objects that may contain connectivity nodes or topological nodes.
  * @param sup Reference to the superclass object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ConnectivityNodeContainer
 (
@@ -512,7 +622,18 @@ case class ConnectivityNodeContainer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[ConnectivityNodeContainer] }
     override def get (i: Int): Object =
@@ -560,6 +681,9 @@ extends
  * @param y2Unit The Y2-axis units of measure.
  * @param y3Multiplier Multiplier for Y3-axis.
  * @param y3Unit The Y3-axis units of measure.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class Curve
 (
@@ -577,7 +701,18 @@ case class Curve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Curve] }
     override def get (i: Int): Object =
@@ -648,6 +783,9 @@ extends
  * @param y2value The data value of the second Y-axis variable (if present), depending on the Y-axis units.
  * @param y3value The data value of the third Y-axis variable (if present), depending on the Y-axis units.
  * @param Curve The curve of  this curve data point.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class CurveData
 (
@@ -661,8 +799,19 @@ case class CurveData
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[CurveData] }
     override def get (i: Int): Object =
     {
@@ -719,6 +868,9 @@ extends
  * @param normallyInService If true, the equipment is normally in service.
  * @param EquipmentContainer Container of this equipment.
  * @param WeatherStation <em>undocumented</em>
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class Equipment
 (
@@ -731,7 +883,18 @@ case class Equipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[Equipment] }
     override def get (i: Int): Object =
@@ -781,6 +944,9 @@ extends
 /**
  * A modeling construct to provide a root class for containing equipment.
  * @param sup Reference to the superclass object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class EquipmentContainer
 (
@@ -789,7 +955,18 @@ case class EquipmentContainer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
     override def copy (): Row = { clone ().asInstanceOf[EquipmentContainer] }
     override def get (i: Int): Object =
@@ -828,6 +1005,9 @@ extends
 /**
  * A geographical region of a power system network model.
  * @param sup Reference to the superclass object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class GeographicalRegion
 (
@@ -836,7 +1016,18 @@ case class GeographicalRegion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[GeographicalRegion] }
     override def get (i: Int): Object =
@@ -882,6 +1073,9 @@ extends
  * @param mRID Master resource identifier issued by a model authority.
  *        The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.
  * @param name The name is any free human readable and possibly non unique text naming the object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class IdentifiedObject
 (
@@ -894,8 +1088,19 @@ case class IdentifiedObject
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[IdentifiedObject] }
     override def get (i: Int): Object =
     {
@@ -944,6 +1149,9 @@ extends
 /**
  * The schedule has time points where the time between them varies.
  * @param sup Reference to the superclass object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class IrregularIntervalSchedule
 (
@@ -952,7 +1160,18 @@ case class IrregularIntervalSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BasicIntervalSchedule: BasicIntervalSchedule = sup.asInstanceOf[BasicIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[IrregularIntervalSchedule] }
     override def get (i: Int): Object =
@@ -997,6 +1216,9 @@ extends
  * @param value2 The second value at the time.
  *        The meaning of the value is defined by the derived type of the associated schedule.
  * @param IntervalSchedule An IrregularTimePoint belongs to an IrregularIntervalSchedule.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class IrregularTimePoint
 (
@@ -1009,8 +1231,19 @@ case class IrregularTimePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[IrregularTimePoint] }
     override def get (i: Int): Object =
     {
@@ -1063,6 +1296,9 @@ extends
  * @param name Any free text that name the object.
  * @param IdentifiedObject Identified object that this name designates.
  * @param NameType Type of this name.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class Name
 (
@@ -1074,8 +1310,19 @@ case class Name
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Name] }
     override def get (i: Int): Object =
     {
@@ -1125,6 +1372,9 @@ extends
  * @param description Description of the name type.
  * @param name Name of the name type.
  * @param NameTypeAuthority Authority responsible for managing names of this type.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class NameType
 (
@@ -1136,8 +1386,19 @@ case class NameType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[NameType] }
     override def get (i: Int): Object =
     {
@@ -1185,6 +1446,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param description Description of the name type authority.
  * @param name Name of the name type authority.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class NameTypeAuthority
 (
@@ -1195,8 +1459,19 @@ case class NameTypeAuthority
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[NameTypeAuthority] }
     override def get (i: Int): Object =
     {
@@ -1240,6 +1515,9 @@ extends
  * An operator of multiple power system resource objects.
  * Note multple operating participants may operate the same power system resource object.   This can be used for modeling jointly owned units where each owner operates as a contractual share.
  * @param sup Reference to the superclass object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class OperatingParticipant
 (
@@ -1248,7 +1526,18 @@ case class OperatingParticipant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OperatingParticipant] }
     override def get (i: Int): Object =
@@ -1291,6 +1580,9 @@ extends
  *        The total percentage ownership for a power system resource should add to 100%.
  * @param OperatingParticipant The operating participant having this share with the associated power system resource.
  * @param PowerSystemResource The power system resource to which the share applies.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class OperatingShare
 (
@@ -1302,8 +1594,19 @@ case class OperatingShare
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[OperatingShare] }
     override def get (i: Int): Object =
     {
@@ -1350,6 +1653,9 @@ extends
  * Classifying instances of the same class, e.g. overhead and underground ACLineSegments.
  * This classification mechanism is intended to provide flexibility outside the scope of this standard, i.e. provide customisation that is non standard.
  * @param sup Reference to the superclass object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class PSRType
 (
@@ -1358,7 +1664,18 @@ case class PSRType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[PSRType] }
     override def get (i: Int): Object =
@@ -1401,6 +1718,9 @@ extends
  * @param AssetDatasheet Datasheet information for this power system resource.
  * @param Location Location of this power system resource.
  * @param PSRType Custom classification for this power system resource.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class PowerSystemResource
 (
@@ -1412,7 +1732,18 @@ case class PowerSystemResource
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[PowerSystemResource] }
     override def get (i: Int): Object =
@@ -1461,6 +1792,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param endTime The time for the last time point.
  * @param timeStep The time between each pair of subsequent regular time points in sequence order.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class RegularIntervalSchedule
 (
@@ -1471,7 +1805,18 @@ case class RegularIntervalSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BasicIntervalSchedule: BasicIntervalSchedule = sup.asInstanceOf[BasicIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[RegularIntervalSchedule] }
     override def get (i: Int): Object =
@@ -1522,6 +1867,9 @@ extends
  * @param value2 The second value at the time.
  *        The meaning of the value is defined by the derived type of the associated schedule.
  * @param IntervalSchedule Regular interval schedule containing this time point.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class RegularTimePoint
 (
@@ -1534,8 +1882,19 @@ case class RegularTimePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[RegularTimePoint] }
     override def get (i: Int): Object =
     {
@@ -1586,6 +1945,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param PowerSystemResource Power system resources which belong to this reporting group.
  * @param ReportingSuperGroup Reporting super group to which this reporting group belongs.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ReportingGroup
 (
@@ -1596,7 +1958,18 @@ case class ReportingGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ReportingGroup] }
     override def get (i: Int): Object =
@@ -1640,6 +2013,9 @@ extends
 /**
  * A reporting super group, groups reporting groups for a higher level report.
  * @param sup Reference to the superclass object.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ReportingSuperGroup
 (
@@ -1648,7 +2024,18 @@ case class ReportingSuperGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ReportingSuperGroup] }
     override def get (i: Int): Object =
@@ -1688,6 +2075,9 @@ extends
  * A subset of a geographical region of a power system network model.
  * @param sup Reference to the superclass object.
  * @param Region The geographical region to which this sub-geographical region is within.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class SubGeographicalRegion
 (
@@ -1697,7 +2087,18 @@ case class SubGeographicalRegion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[SubGeographicalRegion] }
     override def get (i: Int): Object =
@@ -1739,6 +2140,9 @@ extends
  * A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
  * @param sup Reference to the superclass object.
  * @param Region The SubGeographicalRegion containing the substation.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class Substation
 (
@@ -1748,7 +2152,18 @@ case class Substation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[Substation] }
     override def get (i: Int): Object =
@@ -1799,6 +2214,9 @@ extends
  * @param SvPowerFlow The power flow state variable associated with the terminal.
  * @param TopologicalNode The topological node associated with the terminal.
  *        This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class Terminal
 (
@@ -1813,7 +2231,18 @@ case class Terminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ACDCTerminal: ACDCTerminal = sup.asInstanceOf[ACDCTerminal]
     override def copy (): Row = { clone ().asInstanceOf[Terminal] }
     override def get (i: Int): Object =
@@ -1874,6 +2303,9 @@ extends
  * @param lowVoltageLimit The bus bar's low voltage limit
  * @param BaseVoltage The base voltage used for all equipment within the voltage level.
  * @param Substation The substation of the voltage level.
+ * @group Core
+ * @groupname Core Package Core
+ * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class VoltageLevel
 (
@@ -1886,7 +2318,18 @@ case class VoltageLevel
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[VoltageLevel] }
     override def get (i: Int): Object =

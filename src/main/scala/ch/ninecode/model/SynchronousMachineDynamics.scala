@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.
- * Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.
- */
-
-/**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
  * The several variations differ in the following ways:
  * @param sup Reference to the superclass object.
@@ -23,6 +18,11 @@ import ch.ninecode.cim.Parseable
  *        Typical Value = 0.12.
  * @param saturationFactorQAxis Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
  *        Typical Value = 0.02.
+ * @group SynchronousMachineDynamics
+ * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
+
+The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineDetailed
 (
@@ -35,7 +35,18 @@ case class SynchronousMachineDetailed
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SynchronousMachineDynamics: SynchronousMachineDynamics = sup.asInstanceOf[SynchronousMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineDetailed] }
     override def get (i: Int): Object =
@@ -100,6 +111,11 @@ extends
  * @param MechanicalLoadDynamics Mechanical load model associated with this synchronous machine model.
  * @param SynchronousMachine Synchronous machine to which synchronous machine dynamics model applies.
  * @param TurbineGovernorDynamics Turbine-governor model associated with this synchronous machine model.
+ * @group SynchronousMachineDynamics
+ * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
+
+The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineDynamics
 (
@@ -112,7 +128,18 @@ case class SynchronousMachineDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RotatingMachineDynamics: RotatingMachineDynamics = sup.asInstanceOf[RotatingMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineDynamics] }
     override def get (i: Int): Object =
@@ -198,6 +225,11 @@ extends
  * @param xaq Q-axis mutual reactance.
  * @param xf1d Differential mutual (�Canay�) reactance.
  * @param xfd Field winding leakage reactance.
+ * @group SynchronousMachineDynamics
+ * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
+
+The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineEquivalentCircuit
 (
@@ -217,7 +249,18 @@ case class SynchronousMachineEquivalentCircuit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SynchronousMachineDetailed: SynchronousMachineDetailed = sup.asInstanceOf[SynchronousMachineDetailed]
     override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineEquivalentCircuit] }
     override def get (i: Int): Object =
@@ -289,6 +332,11 @@ extends
  * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance (<b>Rs</b> + <b>jXp</b>) as shown in the Simplified diagram.
  * Since internal voltage is held constant, there is no <b>Efd</b> input and any excitation system model will be ignored.  There is also no <b>Ifd</b> output.
  * @param sup Reference to the superclass object.
+ * @group SynchronousMachineDynamics
+ * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
+
+The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineSimplified
 (
@@ -297,7 +345,18 @@ case class SynchronousMachineSimplified
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SynchronousMachineDynamics: SynchronousMachineDynamics = sup.asInstanceOf[SynchronousMachineDynamics]
     override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineSimplified] }
     override def get (i: Int): Object =
@@ -395,6 +454,11 @@ extends
  *        The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.
  * @param xQuadTrans Quadrature-axis transient reactance (X'q) (&gt; =X''q).
  *        Typical Value = 0.3.
+ * @group SynchronousMachineDynamics
+ * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
+
+The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineTimeConstantReactance
 (
@@ -417,7 +481,18 @@ case class SynchronousMachineTimeConstantReactance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SynchronousMachineDetailed: SynchronousMachineDetailed = sup.asInstanceOf[SynchronousMachineDetailed]
     override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineTimeConstantReactance] }
     override def get (i: Int): Object =

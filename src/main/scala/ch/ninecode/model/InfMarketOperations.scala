@@ -6,7 +6,6 @@ import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
-
 /**
  * Bilateral transaction
  * @param sup Reference to the superclass object.
@@ -26,6 +25,8 @@ import ch.ninecode.cim.Parseable
  *        1 - Fixed
  *        2 - Dispatchable continuous
  *        3 - Dispatchable block-loading
+ * @group InfMarketOperations
+ * @groupname InfMarketOperations Package InfMarketOperations
  */
 case class BilateralTransaction
 (
@@ -42,8 +43,19 @@ case class BilateralTransaction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0, null, 0, 0, null, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[BilateralTransaction] }
     override def get (i: Int): Object =
     {
@@ -106,6 +118,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
  *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
+ * @group InfMarketOperations
+ * @groupname InfMarketOperations Package InfMarketOperations
  */
 case class Participation
 (
@@ -115,7 +129,18 @@ case class Participation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Participation] }
     override def get (i: Int): Object =
@@ -170,6 +195,8 @@ extends
  * @param certifiedReplaceAS <em>undocumented</em>
  * @param certifiedSpin <em>undocumented</em>
  * @param certifiedSpinMw <em>undocumented</em>
+ * @group InfMarketOperations
+ * @groupname InfMarketOperations Package InfMarketOperations
  */
 case class ResourceCertification
 (
@@ -191,8 +218,19 @@ case class ResourceCertification
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, null, 0.0, null, null, null, null, 0.0, null, null, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ResourceCertification] }
     override def get (i: Int): Object =
     {

@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Underexcitation limiters (UELs) act to boost excitation.
- * The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
- */
-
-/**
  * This model can be derived from UnderexcLimIEEE2.
  * The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
  * @param sup Reference to the superclass object.
@@ -29,6 +24,9 @@ import ch.ninecode.cim.Parseable
  *        Typical Value = 1.
  * @param vuimin Minimum error signal (V<sub>UImin</sub>).
  *        Typical Value = 0.
+ * @group UnderexcitationLimiterDynamics
+ * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
+ * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
 case class UnderexcLim2Simplified
 (
@@ -44,7 +42,18 @@ case class UnderexcLim2Simplified
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup.asInstanceOf[UnderexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[UnderexcLim2Simplified] }
     override def get (i: Int): Object =
@@ -132,6 +141,9 @@ extends
  *        Typical Value = -18.
  * @param vurmax UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
  *        Typical Value = 5.8.
+ * @group UnderexcitationLimiterDynamics
+ * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
+ * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
 case class UnderexcLimIEEE1
 (
@@ -155,7 +167,18 @@ case class UnderexcLimIEEE1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup.asInstanceOf[UnderexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[UnderexcLimIEEE1] }
     override def get (i: Int): Object =
@@ -307,6 +330,9 @@ extends
  *        Typical Value = 0.25.
  * @param vulmin UEL output minimum limit (V<sub>ULMIN</sub>).
  *        Typical Value = 0.
+ * @group UnderexcitationLimiterDynamics
+ * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
+ * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
 case class UnderexcLimIEEE2
 (
@@ -355,7 +381,18 @@ case class UnderexcLimIEEE2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup.asInstanceOf[UnderexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[UnderexcLimIEEE2] }
     override def get (i: Int): Object =
@@ -519,6 +556,9 @@ extends
  * @param melmax Minimum excitation limit value (MELMAX).
  * @param tf2 Differential time constant (Tf2) (&gt;0).
  * @param tm Minimum excitation limit time constant (Tm).
+ * @group UnderexcitationLimiterDynamics
+ * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
+ * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
 case class UnderexcLimX1
 (
@@ -533,7 +573,18 @@ case class UnderexcLimX1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup.asInstanceOf[UnderexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[UnderexcLimX1] }
     override def get (i: Int): Object =
@@ -596,6 +647,9 @@ extends
  * @param r Excitation radius (R).
  * @param tf2 Differential time constant (Tf2) (&gt;0).
  * @param tm Minimum excitation limit time constant (Tm).
+ * @group UnderexcitationLimiterDynamics
+ * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
+ * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
 case class UnderexcLimX2
 (
@@ -611,7 +665,18 @@ case class UnderexcLimX2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def UnderexcitationLimiterDynamics: UnderexcitationLimiterDynamics = sup.asInstanceOf[UnderexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[UnderexcLimX2] }
     override def get (i: Int): Object =
@@ -672,6 +737,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this underexcitation limiter model is associated.
  * @param RemoteInputSignal Remote input signal used by this underexcitation limiter model.
+ * @group UnderexcitationLimiterDynamics
+ * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
+ * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
  */
 case class UnderexcitationLimiterDynamics
 (
@@ -682,7 +750,18 @@ case class UnderexcitationLimiterDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[UnderexcitationLimiterDynamics] }
     override def get (i: Int): Object =

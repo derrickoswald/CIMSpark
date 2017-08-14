@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Market static reference data.
- */
-
-/**
  * Goups Adjacent Control Areas
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
@@ -18,6 +14,9 @@ import ch.ninecode.cim.Parseable
  * @param startEffectiveDate start effective date
  * @param HostControlArea <em>undocumented</em>
  * @param RTO <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class AdjacentCASet
 (
@@ -31,7 +30,18 @@ case class AdjacentCASet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AdjacentCASet] }
     override def get (i: Int): Object =
@@ -93,6 +103,9 @@ extends
  * @param Pnode <em>undocumented</em>
  * @param RTO <em>undocumented</em>
  * @param SubControlArea <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class AggregateNode
 (
@@ -108,7 +121,18 @@ case class AggregateNode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0, null, List(), null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AggregateNode] }
     override def get (i: Int): Object =
@@ -176,6 +200,9 @@ extends
  *        'L' - Participatesin LMPM price measures
  * @param PnodeDistributionFactor <em>undocumented</em>
  * @param TACArea <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class AggregatedPnode
 (
@@ -188,7 +215,18 @@ case class AggregatedPnode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Pnode: Pnode = sup.asInstanceOf[Pnode]
     override def copy (): Row = { clone ().asInstanceOf[AggregatedPnode] }
     override def get (i: Int): Object =
@@ -245,6 +283,9 @@ extends
  * @param defaultPrice Bid Default Price(\$/MWH)
  * @param marketType Market Type of the cap (DAM or RTM)
  * @param MarketProduct <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class BidPriceCap
 (
@@ -260,8 +301,19 @@ case class BidPriceCap
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[BidPriceCap] }
     override def get (i: Int): Object =
     {
@@ -326,6 +378,9 @@ extends
  * @param HostControlArea <em>undocumented</em>
  * @param MktConnectivityNode <em>undocumented</em>
  * @param SubControlArea <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class CnodeDistributionFactor
 (
@@ -340,7 +395,18 @@ case class CnodeDistributionFactor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CnodeDistributionFactor] }
     override def get (i: Int): Object =
@@ -401,6 +467,9 @@ extends
  * @param CombinedCycleLogicalConfiguration <em>undocumented</em>
  * @param ShutdownFlag Whether Combined Cycle Plant can be shut-down in this Configuration?
  * @param StartupFlag Whether Combined Cycle Plant can be started in this Logical Configuration?
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class CombinedCycleConfiguration
 (
@@ -413,7 +482,18 @@ case class CombinedCycleConfiguration
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, false, false) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegisteredGenerator: RegisteredGenerator = sup.asInstanceOf[RegisteredGenerator]
     override def copy (): Row = { clone ().asInstanceOf[CombinedCycleConfiguration] }
     override def get (i: Int): Object =
@@ -467,6 +547,9 @@ extends
  * @param steam Steam plant.
  * @param CombinedCycleConfiguration <em>undocumented</em>
  * @param MktThermalGeneratingUnit <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class CombinedCycleConfigurationMember
 (
@@ -479,7 +562,18 @@ case class CombinedCycleConfigurationMember
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CombinedCycleConfigurationMember] }
     override def get (i: Int): Object =
@@ -531,6 +625,9 @@ extends
  * Operating Combined Cycle Plant (CCP) configurations are represented as Logical CCP Resources. Logical representation shall be used for Market applications to optimize and control Market Operations. Logical representation is also necessary for controlling the number of CCP configurations and to temper performance issues that may otherwise occur.
  * @param sup Reference to the superclass object.
  * @param MktCombinedCyclePlant <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class CombinedCycleLogicalConfiguration
 (
@@ -540,7 +637,18 @@ case class CombinedCycleLogicalConfiguration
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CombinedCycleLogicalConfiguration] }
     override def get (i: Int): Object =
@@ -585,6 +693,9 @@ extends
  *        If not, it is a DOWN transition.
  * @param FromConfiguration <em>undocumented</em>
  * @param ToConfiguration <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class CombinedCycleTransitionState
 (
@@ -596,8 +707,19 @@ case class CombinedCycleTransitionState
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[CombinedCycleTransitionState] }
     override def get (i: Int): Object =
     {
@@ -644,6 +766,9 @@ extends
  * Designated Congestion Area Definition (DCA)
  * @param sup Reference to the superclass object.
  * @param IndividualPnode <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class CongestionArea
 (
@@ -653,7 +778,18 @@ case class CongestionArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AggregatedPnode: AggregatedPnode = sup.asInstanceOf[AggregatedPnode]
     override def copy (): Row = { clone ().asInstanceOf[CongestionArea] }
     override def get (i: Int): Object =
@@ -700,6 +836,9 @@ extends
  * @param Flowgate <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
  * @param TransmissionContractRight <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ContractDistributionFactor
 (
@@ -714,8 +853,19 @@ case class ContractDistributionFactor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ContractDistributionFactor] }
     override def get (i: Int): Object =
     {
@@ -804,6 +954,9 @@ extends
  * @param SchedulingCoordinator <em>undocumented</em>
  * @param TRType Transmission Right type - is this an individual contract right or a chain contract right.
  *        Types = CHAIN or INDIVIDUAL
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ContractRight
 (
@@ -840,7 +993,18 @@ case class ContractRight
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, 0.0, 0, null, null, null, null, null, null, 0.0, 0, null, 0.0, 0.0, 0, 0, 0.0, 0.0, null, null, null, 0, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ContractRight] }
     override def get (i: Int): Object =
@@ -966,6 +1130,9 @@ extends
  * @param native1 Native.
  * @param RegisteredResource <em>undocumented</em>
  * @param SubControlArea <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ControlAreaDesignation
 (
@@ -978,8 +1145,19 @@ case class ControlAreaDesignation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List(), List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ControlAreaDesignation] }
     override def get (i: Int): Object =
     {
@@ -1041,6 +1219,9 @@ extends
  * @param MktPowerTransformer <em>undocumented</em>
  * @param SecurityConstraints <em>undocumented</em>
  * @param To_SubControlArea <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class Flowgate
 (
@@ -1062,7 +1243,18 @@ case class Flowgate
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, 0.0, null, null, null, null, null, List(), List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[Flowgate] }
     override def get (i: Int): Object =
@@ -1140,6 +1332,9 @@ extends
  * Flowgate defined partner
  * @param sup Reference to the superclass object.
  * @param FlowgateValue <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class FlowgatePartner
 (
@@ -1149,7 +1344,18 @@ case class FlowgatePartner
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[FlowgatePartner] }
     override def get (i: Int): Object =
@@ -1197,6 +1403,9 @@ extends
  * @param terminateDate Date/Time when record is no longer effective
  *        Used to determine when a record is no longer effective
  * @param Flowgate <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class FlowgateRelief
 (
@@ -1209,8 +1418,19 @@ case class FlowgateRelief
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[FlowgateRelief] }
     override def get (i: Int): Object =
     {
@@ -1269,6 +1489,9 @@ extends
  * @param netFirmNetworkLimit Net Energy flow in flowgate for the associated FlowgatePartner
  * @param Flowgate <em>undocumented</em>
  * @param FlowgatePartner <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class FlowgateValue
 (
@@ -1285,8 +1508,19 @@ case class FlowgateValue
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, 0, null, 0, 0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[FlowgateValue] }
     override def get (i: Int): Object =
     {
@@ -1352,6 +1586,9 @@ extends
  * @param crossingCost Cost associated with crossing the forbidden region
  * @param highMW High end of the region definition
  * @param lowMW Low end of the region definition.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ForbiddenRegion
 (
@@ -1364,7 +1601,18 @@ case class ForbiddenRegion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ForbiddenRegion] }
     override def get (i: Int): Object =
@@ -1416,6 +1664,9 @@ extends
  * The ID, name, and effectivity dates are utilized.
  * @param sup Reference to the superclass object.
  * @param RegisteredResource <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class FormerReference
 (
@@ -1425,7 +1676,18 @@ case class FormerReference
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[FormerReference] }
     override def get (i: Int): Object =
@@ -1467,6 +1729,9 @@ extends
  * Relationship between unit fuel cost in \$/kWh(Y-axis) and  unit output in MW (X-axis).
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class FuelCostCurve
 (
@@ -1476,7 +1741,18 @@ case class FuelCostCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[FuelCostCurve] }
     override def get (i: Int): Object =
@@ -1524,6 +1800,9 @@ extends
  * @param GasPrice <em>undocumented</em>
  * @param OilPrice <em>undocumented</em>
  * @param RTO <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class FuelRegion
 (
@@ -1539,7 +1818,18 @@ case class FuelRegion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[FuelRegion] }
     override def get (i: Int): Object =
@@ -1600,6 +1890,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param gasPriceIndex The average natural gas price at a defined fuel region.
  * @param FuelRegion <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class GasPrice
 (
@@ -1610,8 +1903,19 @@ case class GasPrice
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[GasPrice] }
     override def get (i: Int): Object =
     {
@@ -1663,6 +1967,9 @@ extends
  * @param AdjacentCASet <em>undocumented</em>
  * @param Controls A ControlAreaCompany controls a ControlArea.
  * @param RTO <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class HostControlArea
 (
@@ -1679,7 +1986,18 @@ case class HostControlArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[HostControlArea] }
     override def get (i: Int): Object =
@@ -1744,6 +2062,9 @@ extends
  * @param GenDistributionFactor <em>undocumented</em>
  * @param LoadDistributionFactor <em>undocumented</em>
  * @param MktConnectivityNode <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class IndividualPnode
 (
@@ -1755,7 +2076,18 @@ case class IndividualPnode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Pnode: Pnode = sup.asInstanceOf[Pnode]
     override def copy (): Row = { clone ().asInstanceOf[IndividualPnode] }
     override def get (i: Int): Object =
@@ -1803,6 +2135,9 @@ extends
  * A specialized class of type AggregatedNode type.
  * Defines Load Aggregation Points.
  * @param sup Reference to the superclass object.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class LoadAggregationPoint
 (
@@ -1811,7 +2146,18 @@ case class LoadAggregationPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AggregateNode: AggregateNode = sup.asInstanceOf[AggregateNode]
     override def copy (): Row = { clone ().asInstanceOf[LoadAggregationPoint] }
     override def get (i: Int): Object =
@@ -1854,6 +2200,9 @@ extends
  * @param intervalStartTime Interval Start Time
  * @param share Share in percentage of total Market load for the selected time interval.
  * @param SchedulingCoordinator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class LoadRatio
 (
@@ -1866,8 +2215,19 @@ case class LoadRatio
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[LoadRatio] }
     override def get (i: Int): Object =
     {
@@ -1919,6 +2279,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param loadReductionTimeCurveType type of the curve: Possible values are but not limited to:
  *        Max, Min,
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class LoadReductionTimeCurve
 (
@@ -1928,7 +2291,18 @@ case class LoadReductionTimeCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[LoadReductionTimeCurve] }
     override def get (i: Int): Object =
@@ -1970,6 +2344,9 @@ extends
  * Allows definition of reliablity areas (eg load pockets) within the ISO/RTO
  * @param sup Reference to the superclass object.
  * @param RTO <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class LocalReliabilityArea
 (
@@ -1979,7 +2356,18 @@ case class LocalReliabilityArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LocalReliabilityArea] }
     override def get (i: Int): Object =
@@ -2032,6 +2420,9 @@ extends
  *        6 - Local Impact Test
  * @param testMethod The method of performing the market power monitoring.
  *        Examples are Normal (default) thresholds or Alternate thresholds.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MPMTestCategory
 (
@@ -2043,7 +2434,18 @@ case class MPMTestCategory
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MPMTestCategory] }
     override def get (i: Int): Object =
@@ -2095,6 +2497,9 @@ extends
  * @param price Price Threshold in \$/MW
  * @param MPMTestCategory <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MPMTestThreshold
 (
@@ -2108,8 +2513,19 @@ case class MPMTestThreshold
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MPMTestThreshold] }
     override def get (i: Int): Object =
     {
@@ -2172,6 +2588,9 @@ extends
  * @param rucProcurement Indicates that RUC will be procured by the ISO or self provided.
  * @param startEffectiveDate start effective date
  * @param RTO <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MSSAggregation
 (
@@ -2189,7 +2608,18 @@ case class MSSAggregation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MSSAggregation] }
     override def get (i: Int): Object =
@@ -2260,6 +2690,9 @@ extends
  * @param rucGrossSettlement Metered Sub-System (MSS) Load Following may select Net vs.
  *        Gross settlement.  Net Settlement requires the net Demand settled at the Metered Sub-Sustem (MSS) Load Aggregation Point (LAP) and Net Supply needs to settle at the equivalent to the weighted average price of the MSS generation.  Gross load will be settled at the System LAP and the Gross supply will be settled at the LMP.  MSS Aggregation that elects gross settlement shall have to identify if its resources are Load Following or not.
  * @param MeteredSubSystem <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MSSZone
 (
@@ -2272,7 +2705,18 @@ case class MSSZone
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AggregateNode: AggregateNode = sup.asInstanceOf[AggregateNode]
     override def copy (): Row = { clone ().asInstanceOf[MSSZone] }
     override def get (i: Int): Object =
@@ -2337,6 +2781,9 @@ extends
  * @param status <em>undocumented</em>
  * @param suffix A suffix for the person's name, such as II, III, etc.
  * @param userID The user name for the person; required to log in.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MarketPerson
 (
@@ -2359,7 +2806,18 @@ case class MarketPerson
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MarketPerson] }
     override def get (i: Int): Object =
@@ -2446,6 +2904,9 @@ extends
  * @param status The status of the privilege.
  *        Shows the status of the user�s qualification.
  * @param statusType This is the name of the status of the qualification and is used to display the status of the user's or organization's status.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MarketQualificationRequirement
 (
@@ -2459,7 +2920,18 @@ case class MarketQualificationRequirement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MarketQualificationRequirement] }
     override def get (i: Int): Object =
@@ -2513,6 +2985,9 @@ extends
  * A specialized class of AggregatedNode type.
  * Defines the MarketRegions. Regions could be system Market Regions, Energy Regions or Ancillary Service Regions.
  * @param sup Reference to the superclass object.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MarketRegion
 (
@@ -2521,7 +2996,18 @@ case class MarketRegion
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AggregateNode: AggregateNode = sup.asInstanceOf[AggregateNode]
     override def copy (): Row = { clone ().asInstanceOf[MarketRegion] }
     override def get (i: Int): Object =
@@ -2565,6 +3051,9 @@ extends
  * @param level Level of skill for a Craft.
  * @param MarketPerson <em>undocumented</em>
  * @param MarketQualificationRequirements <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MarketSkill
 (
@@ -2578,7 +3067,18 @@ case class MarketSkill
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[MarketSkill] }
     override def get (i: Int): Object =
@@ -2632,6 +3132,9 @@ extends
  * The maximum Startup costs and time as a function of down time.
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis). This is used to validate the information provided in the Bid.
  * @param sup Reference to the superclass object.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MaxStartUpCostCurve
 (
@@ -2640,7 +3143,18 @@ case class MaxStartUpCostCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[MaxStartUpCostCurve] }
     override def get (i: Int): Object =
@@ -2680,6 +3194,9 @@ extends
  * A metered subsystem
  * @param sup Reference to the superclass object.
  * @param MSSAggregation <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MeteredSubSystem
 (
@@ -2689,7 +3206,18 @@ case class MeteredSubSystem
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MeteredSubSystem] }
     override def get (i: Int): Object =
@@ -2732,6 +3260,9 @@ extends
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency
  * @param sup Reference to the superclass object.
  * @param AggregatedPnode <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MktCombinedCyclePlant
 (
@@ -2741,7 +3272,18 @@ case class MktCombinedCyclePlant
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def CombinedCyclePlant: CombinedCyclePlant = sup.asInstanceOf[CombinedCyclePlant]
     override def copy (): Row = { clone ().asInstanceOf[MktCombinedCyclePlant] }
     override def get (i: Int): Object =
@@ -2782,6 +3324,9 @@ extends
 /**
  * Subclass of IEC61970:Core:ConductingEquipment
  * @param sup Reference to the superclass object.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MktConductingEquipment
 (
@@ -2790,7 +3335,18 @@ case class MktConductingEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[MktConductingEquipment] }
     override def get (i: Int): Object =
@@ -2839,6 +3395,9 @@ extends
  *        Flag that indicated whether screening is bypassed for the contingency
  * @param TransferInterfaceSolutionA <em>undocumented</em>
  * @param TransferInterfaceSolutionB <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MktContingency
 (
@@ -2853,7 +3412,18 @@ case class MktContingency
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, null, false, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Contingency: Contingency = sup.asInstanceOf[Contingency]
     override def copy (): Row = { clone ().asInstanceOf[MktContingency] }
     override def get (i: Int): Object =
@@ -2911,6 +3481,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @param ResourceVerifiableCosts <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MktHeatRateCurve
 (
@@ -2921,7 +3494,18 @@ case class MktHeatRateCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def HeatRateCurve: HeatRateCurve = sup.asInstanceOf[HeatRateCurve]
     override def copy (): Row = { clone ().asInstanceOf[MktHeatRateCurve] }
     override def get (i: Int): Object =
@@ -2965,6 +3549,9 @@ extends
 /**
  * Subclass of ThermalGeneratingUnit from Production Package in IEC61970.
  * @param sup Reference to the superclass object.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class MktThermalGeneratingUnit
 (
@@ -2973,7 +3560,18 @@ case class MktThermalGeneratingUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ThermalGeneratingUnit: ThermalGeneratingUnit = sup.asInstanceOf[ThermalGeneratingUnit]
     override def copy (): Row = { clone ().asInstanceOf[MktThermalGeneratingUnit] }
     override def get (i: Int): Object =
@@ -3014,6 +3612,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param oilPriceIndex The average oil price at a defined fuel region.
  * @param FuelRegion <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class OilPrice
 (
@@ -3024,8 +3625,19 @@ case class OilPrice
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[OilPrice] }
     override def get (i: Int): Object =
     {
@@ -3073,6 +3685,9 @@ extends
  * @param startEffectiveDate start effective date
  * @param MktOrganisation <em>undocumented</em>
  * @param Pnode <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class OrgPnodeAllocation
 (
@@ -3086,7 +3701,18 @@ case class OrgPnodeAllocation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OrgPnodeAllocation] }
     override def get (i: Int): Object =
@@ -3146,6 +3772,9 @@ extends
  * @param startEffectiveDate start effective date
  * @param MktOrganisation <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class OrgResOwnership
 (
@@ -3161,7 +3790,18 @@ case class OrgResOwnership
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[OrgResOwnership] }
     override def get (i: Int): Object =
@@ -3236,6 +3876,9 @@ extends
  * @param SinkCRRSegment <em>undocumented</em>
  * @param SourceCRRSegment <em>undocumented</em>
  * @param SubControlArea <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class Pnode
 (
@@ -3253,7 +3896,18 @@ case class Pnode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null, null, null, null, List(), List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Pnode] }
     override def get (i: Int): Object =
@@ -3325,6 +3979,9 @@ extends
  * @param podLossFactor Point of delivery loss factor
  * @param BidDistributionFactor <em>undocumented</em>
  * @param IndividualPnode <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class PnodeDistributionFactor
 (
@@ -3339,8 +3996,19 @@ case class PnodeDistributionFactor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PnodeDistributionFactor] }
     override def get (i: Int): Object =
     {
@@ -3396,6 +4064,9 @@ extends
  * Model to support processing of reliability must run units.
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RMRHeatRateCurve
 (
@@ -3405,7 +4076,18 @@ case class RMRHeatRateCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[RMRHeatRateCurve] }
     override def get (i: Int): Object =
@@ -3447,6 +4129,9 @@ extends
  * Model to support processing of reliability must run units.
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RMRStartUpCostCurve
 (
@@ -3456,7 +4141,18 @@ case class RMRStartUpCostCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[RMRStartUpCostCurve] }
     override def get (i: Int): Object =
@@ -3498,6 +4194,9 @@ extends
  * Model to support processing of reliability must run units.
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RMRStartUpEnergyCurve
 (
@@ -3507,7 +4206,18 @@ case class RMRStartUpEnergyCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[RMRStartUpEnergyCurve] }
     override def get (i: Int): Object =
@@ -3549,6 +4259,9 @@ extends
  * Model to support processing of reliability must run units.
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RMRStartUpFuelCurve
 (
@@ -3558,7 +4271,18 @@ case class RMRStartUpFuelCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[RMRStartUpFuelCurve] }
     override def get (i: Int): Object =
@@ -3600,6 +4324,9 @@ extends
  * Model to support processing of reliability must run units.
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RMRStartUpTimeCurve
 (
@@ -3609,7 +4336,18 @@ case class RMRStartUpTimeCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[RMRStartUpTimeCurve] }
     override def get (i: Int): Object =
@@ -3650,6 +4388,9 @@ extends
 /**
  * Regional transmission operator.
  * @param sup Reference to the superclass object.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RTO
 (
@@ -3658,7 +4399,18 @@ case class RTO
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MktOrganisation: MktOrganisation = sup.asInstanceOf[MktOrganisation]
     override def copy (): Row = { clone ().asInstanceOf[RTO] }
     override def get (i: Int): Object =
@@ -3698,6 +4450,9 @@ extends
  * A specialized class of type AggregatedNode type.
  * Defines RUC Zones. A forecast region represents a collection of Nodes for which the Market operator has developed sufficient historical demand and relevant weather data to perform a demand forecast for such area. The Market Operator may further adjust this forecast to ensure that the Reliability Unit Commitment produces adequate local capacity procurement.
  * @param sup Reference to the superclass object.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RUCZone
 (
@@ -3706,7 +4461,18 @@ case class RUCZone
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AggregateNode: AggregateNode = sup.asInstanceOf[AggregateNode]
     override def copy (): Row = { clone ().asInstanceOf[RUCZone] }
     override def get (i: Int): Object =
@@ -3850,6 +4616,9 @@ extends
  * @param StartUpEnergyCurve <em>undocumented</em>
  * @param StartUpFuelCurve <em>undocumented</em>
  * @param StartUpTimeCurve <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RegisteredGenerator
 (
@@ -3933,7 +4702,18 @@ case class RegisteredGenerator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, 0.0, 0, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0, 0.0, 0.0, null, null, 0.0, 0.0, null, null, 0, 0.0, null, null, 0.0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegisteredResource: RegisteredResource = sup.asInstanceOf[RegisteredResource]
     override def copy (): Row = { clone ().asInstanceOf[RegisteredGenerator] }
     override def get (i: Int): Object =
@@ -4203,6 +4983,9 @@ extends
  * @param minHourlyBlockLimit The registered upper bound of minimum hourly block for an Inter-Tie Resource
  * @param Flowgate <em>undocumented</em>
  * @param InterTieBid <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RegisteredInterTie
 (
@@ -4218,7 +5001,18 @@ case class RegisteredInterTie
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegisteredResource: RegisteredResource = sup.asInstanceOf[RegisteredResource]
     override def copy (): Row = { clone ().asInstanceOf[RegisteredInterTie] }
     override def get (i: Int): Object =
@@ -4305,6 +5099,9 @@ extends
  * @param LoadReductionTimeCurve <em>undocumented</em>
  * @param MktLoadArea <em>undocumented</em>
  * @param NPLCustomLoadAggregation A Non-Participating Load Resource aggregation scheme with resource-specific Distribution Factors that are submitted with the Bid and for which the distributed Energy is settled at the relevant Distribution Location marginal prices.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RegisteredLoad
 (
@@ -4335,7 +5132,18 @@ case class RegisteredLoad
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0.0, 0.0, 0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, List(), List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegisteredResource: RegisteredResource = sup.asInstanceOf[RegisteredResource]
     override def copy (): Row = { clone ().asInstanceOf[RegisteredLoad] }
     override def get (i: Int): Object =
@@ -4442,6 +5250,9 @@ extends
  * @param highLimit <em>undocumented</em>
  * @param lowLimit <em>undocumented</em>
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class RegulatingLimit
 (
@@ -4453,7 +5264,18 @@ case class RegulatingLimit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[RegulatingLimit] }
     override def get (i: Int): Object =
@@ -4507,6 +5329,9 @@ extends
  * @param startEffectiveDate Ancillary Service Qualification effective from date
  * @param typ Type of service based on ResourceAncillaryServiceType enumeration
  * @param RegisteredResource RegisteredResources are qualified for resource ancillary service types (which include market product types as well as other types such as BlackStart) by the association to the class ResourceAncillaryServiceQualification.
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ResourceAncillaryServiceQualification
 (
@@ -4522,8 +5347,19 @@ case class ResourceAncillaryServiceQualification
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ResourceAncillaryServiceQualification] }
     override def get (i: Int): Object =
     {
@@ -4595,6 +5431,9 @@ extends
  * @param defaultCapacity default capacity
  * @param maximumCapacity maximum capacity
  * @param minimumCapacity minimum capacity
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ResourceCapacity
 (
@@ -4607,8 +5446,19 @@ case class ResourceCapacity
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ResourceCapacity] }
     override def get (i: Int): Object =
     {
@@ -4665,6 +5515,9 @@ extends
  * @param omCostLowSustainedLimit Verifiable O&amp;M Cost (\$/MWh), LSL
  * @param solidfuelPercentAboveLowSustainedLimit Percentage of Solid Fuel for operating above Low Sustained Limit (LSL)
  * @param ResourceVerifiableCosts <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ResourceOperationMaintenanceCost
 (
@@ -4681,7 +5534,18 @@ case class ResourceOperationMaintenanceCost
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[ResourceOperationMaintenanceCost] }
     override def get (i: Int): Object =
@@ -4760,6 +5624,9 @@ extends
  * @param solidfuelPercentIntermediateStartup Percentage of Solid Fuel for intermedite startup
  * @param solidfuelPercentLowSustainedLimit Percentage of Solid Fuel for operating at LSL
  * @param ResourceVerifiableCosts <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ResourceStartupCost
 (
@@ -4785,8 +5652,19 @@ case class ResourceStartupCost
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ResourceStartupCost] }
     override def get (i: Int): Object =
     {
@@ -4877,6 +5755,9 @@ extends
  * @param MktHeatRateCurve <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
  * @param ResourceOperationMaintenanceCost <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class ResourceVerifiableCosts
 (
@@ -4888,8 +5769,19 @@ case class ResourceVerifiableCosts
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ResourceVerifiableCosts] }
     override def get (i: Int): Object =
     {
@@ -4939,6 +5831,9 @@ extends
  * @param scid This is the short name or Scheduling Coordinator ID field.
  * @param LoadRatio <em>undocumented</em>
  * @param MktOrgansation <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class SchedulingCoordinator
 (
@@ -4950,7 +5845,18 @@ case class SchedulingCoordinator
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MktOrganisation: MktOrganisation = sup.asInstanceOf[MktOrganisation]
     override def copy (): Row = { clone ().asInstanceOf[SchedulingCoordinator] }
     override def get (i: Int): Object =
@@ -5002,6 +5908,9 @@ extends
  * @param loginID Login ID
  * @param loginRole Assigned roles (these are roles with either Read or Read/Write privileges on different Market Systems)
  * @param startEffectiveDate Login ID Effective Date
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class SchedulingCoordinatorUser
 (
@@ -5015,8 +5924,19 @@ case class SchedulingCoordinatorUser
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[SchedulingCoordinatorUser] }
     override def get (i: Int): Object =
     {
@@ -5071,6 +5991,9 @@ extends
  * @param endEffectiveDate End effective date.
  * @param startEffectiveDate Start effective date.
  * @param Flowgate <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class SchedulingPoint
 (
@@ -5082,7 +6005,18 @@ case class SchedulingPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[SchedulingPoint] }
     override def get (i: Int): Object =
@@ -5131,6 +6065,9 @@ extends
  * Definition of the StartUpEnergyCurve includes, xvalue as the cooling time and y1value as the MW value.
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class StartUpEnergyCurve
 (
@@ -5140,7 +6077,18 @@ case class StartUpEnergyCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[StartUpEnergyCurve] }
     override def get (i: Int): Object =
@@ -5182,6 +6130,9 @@ extends
  * The fuel consumption of a Generating Resource to complete a Start-Up.(x=cooling time) Form Startup Fuel Curve. xAxisData -&gt; cooling time, y1AxisData -&gt; MBtu
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class StartUpFuelCurve
 (
@@ -5191,7 +6142,18 @@ case class StartUpFuelCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[StartUpFuelCurve] }
     override def get (i: Int): Object =
@@ -5249,6 +6211,9 @@ extends
  * @param AreaReserveSpecification <em>undocumented</em>
  * @param HostControlArea The interchange area  may operate as a control area
  * @param RTO <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class SubControlArea
 (
@@ -5272,7 +6237,18 @@ case class SubControlArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, null, 0.0, null, 0.0, 0.0, 0.0, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[SubControlArea] }
     override def get (i: Int): Object =
@@ -5360,6 +6336,9 @@ extends
  *        The lower the number the higher the precedence.
  * @param RegisteredResource <em>undocumented</em>
  * @param TransmissionContractRight <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class SubstitutionResourceList
 (
@@ -5371,8 +6350,19 @@ case class SubstitutionResourceList
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[SubstitutionResourceList] }
     override def get (i: Int): Object =
     {
@@ -5421,6 +6411,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class TACArea
 (
@@ -5431,7 +6424,18 @@ case class TACArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TACArea] }
     override def get (i: Int): Object =
@@ -5480,6 +6484,9 @@ extends
  * @param startEffectiveDate start effective date
  * @param Chain_ContractRight <em>undocumented</em>
  * @param RTO <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class TransmissionRightChain
 (
@@ -5492,7 +6499,18 @@ case class TransmissionRightChain
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TransmissionRightChain] }
     override def get (i: Int): Object =
@@ -5543,6 +6561,9 @@ extends
  * Counter party in a wheeling transaction.
  * @param sup Reference to the superclass object.
  * @param RegisteredInterTie <em>undocumented</em>
+ * @group ReferenceData
+ * @groupname ReferenceData Package ReferenceData
+ * @groupdesc ReferenceData Market static reference data.
  */
 case class WheelingCounterParty
 (
@@ -5552,7 +6573,18 @@ case class WheelingCounterParty
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[WheelingCounterParty] }
     override def get (i: Int): Object =

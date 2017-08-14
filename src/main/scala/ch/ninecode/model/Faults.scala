@@ -7,14 +7,13 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
- */
-
-/**
  * A fault applied at the terminal, external to the equipment.
  * This class is not used to specify faults internal to the equipment.
  * @param sup Reference to the superclass object.
  * @param Terminal The terminal connecting to the bus to which the fault is applied.
+ * @group Faults
+ * @groupname Faults Package Faults
+ * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class EquipmentFault
 (
@@ -24,7 +23,18 @@ case class EquipmentFault
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Fault: Fault = sup.asInstanceOf[Fault]
     override def copy (): Row = { clone ().asInstanceOf[EquipmentFault] }
     override def get (i: Int): Object =
@@ -73,6 +83,9 @@ extends
  * @param FaultCauseTypes All types of fault cause.
  * @param FaultyEquipment Equipment carrying this fault.
  * @param Outage Outage associated with this fault.
+ * @group Faults
+ * @groupname Faults Package Faults
+ * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class Fault
 (
@@ -87,7 +100,18 @@ case class Fault
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, List(), null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Fault] }
     override def get (i: Int): Object =
@@ -143,6 +167,9 @@ extends
 /**
  * Type of cause of the fault.
  * @param sup Reference to the superclass object.
+ * @group Faults
+ * @groupname Faults Package Faults
+ * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class FaultCauseType
 (
@@ -151,7 +178,18 @@ case class FaultCauseType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[FaultCauseType] }
     override def get (i: Int): Object =
@@ -194,6 +232,9 @@ extends
  * @param rLineToLine The resistance of the fault between phases.
  * @param xGround The reactance of the fault between phases and ground.
  * @param xLineToLine The reactance of the fault between phases.
+ * @group Faults
+ * @groupname Faults Package Faults
+ * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class FaultImpedance
 (
@@ -206,8 +247,19 @@ case class FaultImpedance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[FaultImpedance] }
     override def get (i: Int): Object =
     {
@@ -258,6 +310,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.
  * @param ACLineSegment The line segment of this line fault.
+ * @group Faults
+ * @groupname Faults Package Faults
+ * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class LineFault
 (
@@ -268,7 +323,18 @@ case class LineFault
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Fault: Fault = sup.asInstanceOf[Fault]
     override def copy (): Row = { clone ().asInstanceOf[LineFault] }
     override def get (i: Int): Object =

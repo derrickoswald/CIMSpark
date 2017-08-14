@@ -7,15 +7,14 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains all core CIM Market Extensions required for market management systems.
- */
-
-/**
  * The Area Control Error tariff type that is applied or used.
  * @param sup Reference to the superclass object.
  * @param typ The coded type of an ACE tariff.
  * @param MarketDocument <em>undocumented</em>
  * @param Unit <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class AceTariffType
 (
@@ -27,8 +26,19 @@ case class AceTariffType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List(), List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AceTariffType] }
     override def get (i: Int): Object =
     {
@@ -78,6 +88,9 @@ extends
  * @param attributeValue The instance value of the attribute.
  * @param position A sequential value representing a relative sequence number.
  * @param TimeSeries <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class AttributeInstanceComponent
 (
@@ -90,8 +103,19 @@ case class AttributeInstanceComponent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, 0, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AttributeInstanceComponent] }
     override def get (i: Int): Object =
     {
@@ -147,6 +171,9 @@ extends
  * @param rights The rights of use the transmission capacity acquired in an auction.
  * @param typ The kind of the Auction (e.g. implicit, explicit ...).
  * @param TimeSeries <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Auction
 (
@@ -162,7 +189,18 @@ case class Auction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Auction] }
     override def get (i: Int): Object =
@@ -228,6 +266,9 @@ extends
  * @param linkedBidsIdentification Unique identification associated with all linked bids.
  * @param minimumActivationQuantity The minimum quantity of energy that can be activated at a given time interval.
  * @param stepIncrementQuantity The minimum increment that can be applied for an increase in an activation request.
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class BidTimeSeries
 (
@@ -242,7 +283,18 @@ case class BidTimeSeries
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def TimeSeries: TimeSeries = sup.asInstanceOf[TimeSeries]
     override def copy (): Row = { clone ().asInstanceOf[BidTimeSeries] }
     override def get (i: Int): Object =
@@ -300,6 +352,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param date Date as "yyyy-mm-dd", which conforms with ISO 8601
  * @param time Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class DateAndOrTime
 (
@@ -310,8 +365,19 @@ case class DateAndOrTime
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[DateAndOrTime] }
     override def get (i: Int): Object =
     {
@@ -354,6 +420,9 @@ extends
 /**
  * An area of activity defined within the energy market.
  * @param sup Reference to the superclass object.
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Domain
 (
@@ -362,7 +431,18 @@ case class Domain
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Domain] }
     override def get (i: Int): Object =
@@ -402,6 +482,9 @@ extends
  * The coded identification of the direction of energy flow.
  * @param sup Reference to the superclass object.
  * @param direction The coded identification of the direction of energy flow.
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class FlowDirection
 (
@@ -411,8 +494,19 @@ case class FlowDirection
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[FlowDirection] }
     override def get (i: Int): Object =
     {
@@ -452,6 +546,9 @@ extends
 /**
  * An identification  or eventually the contents of an agreement between two or more parties.
  * @param sup Reference to the superclass object.
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class MarketAgreement
 (
@@ -460,7 +557,18 @@ case class MarketAgreement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MarketDocument: MarketDocument = sup.asInstanceOf[MarketDocument]
     override def copy (): Row = { clone ().asInstanceOf[MarketAgreement] }
     override def get (i: Int): Object =
@@ -503,6 +611,9 @@ extends
  * @param AttributeInstanceComponent <em>undocumented</em>
  * @param Domain <em>undocumented</em>
  * @param Period <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class MarketDocument
 (
@@ -515,7 +626,18 @@ case class MarketDocument
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List(), List(), List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Document: Document = sup.asInstanceOf[Document]
     override def copy (): Row = { clone ().asInstanceOf[MarketDocument] }
     override def get (i: Int): Object =
@@ -565,6 +687,9 @@ extends
 /**
  * The identification of an entity where energy products are measured or computed.
  * @param sup Reference to the superclass object.
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class MarketEvaluationPoint
 (
@@ -573,7 +698,18 @@ case class MarketEvaluationPoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MarketEvaluationPoint] }
     override def get (i: Int): Object =
@@ -614,6 +750,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param status The coded condition or position of an object with regard to its standing.
  * @param TimeSeries <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class MarketObjectStatus
 (
@@ -624,8 +763,19 @@ case class MarketObjectStatus
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[MarketObjectStatus] }
     override def get (i: Int): Object =
     {
@@ -670,6 +820,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param psrType The coded type of a power system resource.
  * @param TimeSeries <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class MktPSRType
 (
@@ -680,7 +833,18 @@ case class MktPSRType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PSRType: PSRType = sup.asInstanceOf[PSRType]
     override def copy (): Row = { clone ().asInstanceOf[MktPSRType] }
     override def get (i: Int): Object =
@@ -727,6 +891,9 @@ extends
  * @param resolution The number of units of time that compose an individual step within a period.
  * @param timeInterval The start and end date and time for a given interval.
  * @param Reason <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Period
 (
@@ -738,8 +905,19 @@ case class Period
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Period] }
     override def get (i: Int): Object =
     {
@@ -793,6 +971,9 @@ extends
  * @param AceTariffType <em>undocumented</em>
  * @param Period <em>undocumented</em>
  * @param TimeSeries <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Point
 (
@@ -808,8 +989,19 @@ case class Point
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, null, 0.0, 0.0, List(), null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Point] }
     override def get (i: Int): Object =
     {
@@ -872,6 +1064,9 @@ extends
  *        The price category is mutually agreed between System Operators.
  * @param direction The direction indicates whether a System Operator pays the Market Parties or inverse.
  * @param Point <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Price
 (
@@ -884,8 +1079,19 @@ case class Price
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Price] }
     override def get (i: Int): Object =
     {
@@ -938,6 +1144,9 @@ extends
  *        The grouping may be of a detailed or a summary nature.
  * @param processType The kind of business process.
  * @param MarketDocument <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Process
 (
@@ -949,7 +1158,18 @@ case class Process
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Process] }
     override def get (i: Int): Object =
@@ -1000,6 +1220,9 @@ extends
  * @param text The textual explanation corresponding to the reason code.
  * @param MarketDocument <em>undocumented</em>
  * @param Point <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Reason
 (
@@ -1012,8 +1235,19 @@ case class Reason
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List(), List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Reason] }
     override def get (i: Int): Object =
     {
@@ -1076,6 +1310,9 @@ extends
  * @param MarketParticipant <em>undocumented</em>
  * @param Period <em>undocumented</em>
  * @param Reason <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class TimeSeries
 (
@@ -1098,7 +1335,18 @@ case class TimeSeries
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, List(), List(), List(), List(), List(), List(), List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TimeSeries] }
     override def get (i: Int): Object =
@@ -1180,6 +1428,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param name The coded representation of the unit.
  * @param TimeSeries <em>undocumented</em>
+ * @group MarketManagement
+ * @groupname MarketManagement Package MarketManagement
+ * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Unit_
 (
@@ -1190,8 +1441,19 @@ case class Unit_
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[Unit_] }
     override def get (i: Int): Object =
     {

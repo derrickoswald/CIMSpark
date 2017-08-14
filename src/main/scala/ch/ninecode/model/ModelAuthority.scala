@@ -7,12 +7,11 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The package describes meta data for partitioning  power system models into non overlapping subsets of objects managed by a model authority.
- */
-
-/**
  * A Modeling Authority is an entity responsible for supplying and maintaining the data defining a specific set of objects in a network model.
  * @param sup Reference to the superclass object.
+ * @group ModelAuthority
+ * @groupname ModelAuthority Package ModelAuthority
+ * @groupdesc ModelAuthority The package describes meta data for partitioning  power system models into non overlapping subsets of objects managed by a model authority.
  */
 case class ModelingAuthority
 (
@@ -21,8 +20,19 @@ case class ModelingAuthority
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ModelingAuthority] }
     override def get (i: Int): Object =
     {
@@ -62,6 +72,9 @@ extends
  * This class is typically not included in instance data exchange as this information is tracked by other mechanisms in the exchange.
  * @param sup Reference to the superclass object.
  * @param ModelingAuthority A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
+ * @group ModelAuthority
+ * @groupname ModelAuthority Package ModelAuthority
+ * @groupdesc ModelAuthority The package describes meta data for partitioning  power system models into non overlapping subsets of objects managed by a model authority.
  */
 case class ModelingAuthoritySet
 (
@@ -71,8 +84,19 @@ case class ModelingAuthoritySet
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ModelingAuthoritySet] }
     override def get (i: Int): Object =
     {

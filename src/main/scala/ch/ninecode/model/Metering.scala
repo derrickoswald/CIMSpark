@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions.
- * These classes are generally associated with the point where a service is delivered to the customer.
- */
-
-/**
  * Common representation for reading values.
  * Note that a reading value may have multiple qualities, as produced by various systems ('ReadingQuality.source').
  * @param sup Reference to the superclass object.
@@ -19,6 +14,9 @@ import ch.ninecode.cim.Parseable
  * @param source System that originally supplied the reading (e.g., customer, AMI system, handheld reading system, another enterprise system, etc.).
  * @param timePeriod Start and end of the period for those readings whose type has a time attribute such as 'billing', seasonal' or 'forTheSpecifiedPeriod'.
  * @param value Value of this reading.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class BaseReading
 (
@@ -31,7 +29,18 @@ case class BaseReading
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def MeasurementValue: MeasurementValue = sup.asInstanceOf[MeasurementValue]
     override def copy (): Row = { clone ().asInstanceOf[BaseReading] }
     override def get (i: Int): Object =
@@ -85,6 +94,9 @@ extends
  * @param isVirtual If true, the data is being calculated by an enterprise system rather than metered directly.
  * @param ReadingType Reading type for register values reported/collected by this channel.
  * @param Register Register whose values are collected/reported by this channel.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class Channel
 (
@@ -96,7 +108,18 @@ case class Channel
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Channel] }
     override def get (i: Int): Object =
@@ -148,6 +171,9 @@ extends
  * @param direction Kind of communication direction.
  * @param technology Kind of communication technology.
  * @param ComModule Module performing this communication function.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ComFunction
 (
@@ -161,7 +187,18 @@ case class ComFunction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EndDeviceFunction: EndDeviceFunction = sup.asInstanceOf[EndDeviceFunction]
     override def copy (): Row = { clone ().asInstanceOf[ComFunction] }
     override def get (i: Int): Object =
@@ -218,6 +255,9 @@ extends
  * @param amrSystem Automated meter reading (AMR) system communicating with this com module.
  * @param supportsAutonomousDst If true, autonomous daylight saving time (DST) function is supported.
  * @param timeZoneOffset Time zone offset relative to GMT for the location of this com module.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ComModule
 (
@@ -229,7 +269,18 @@ case class ComModule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Asset: Asset = sup.asInstanceOf[Asset]
     override def copy (): Row = { clone ().asInstanceOf[ComModule] }
     override def get (i: Int): Object =
@@ -288,6 +339,9 @@ extends
  * @param isSmartAppliance True if the appliance is a smart appliance.
  * @param isStripAndBaseboardHeater True if the appliance is a stip or baseboard heater.
  * @param isWaterHeater True if the appliance is a water heater.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ControlledAppliance
 (
@@ -308,8 +362,19 @@ case class ControlledAppliance
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, false, false, false, false, false, false, false, false, false, false) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ControlledAppliance] }
     override def get (i: Int): Object =
     {
@@ -388,6 +453,9 @@ extends
  * @param CustomerAgreements All customer agreements through which the customer is enrolled in this demand response program.
  * @param EndDeviceGroups All groups of end devices enrolled in this demand response program.
  * @param UsagePointGroups All usage point groups enrolled in this demand response program.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class DemandResponseProgram
 (
@@ -401,7 +469,18 @@ case class DemandResponseProgram
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, List(), List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DemandResponseProgram] }
     override def get (i: Int): Object =
@@ -465,6 +544,9 @@ extends
  * @param EndDeviceInfo End device data.
  * @param ServiceLocation Service location whose service delivery is measured by this end device.
  * @param UsagePoint Usage point to which this end device belongs.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDevice
 (
@@ -482,7 +564,18 @@ case class EndDevice
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, false, false, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
     override def copy (): Row = { clone ().asInstanceOf[EndDevice] }
     override def get (i: Int): Object =
@@ -552,6 +645,9 @@ extends
  * @param durationIndefinite True if the action of this control is indefinite.
  * @param startDateTime Start date and time for action of this control.
  * @param EndDeviceControl End device control issuing this end device action.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceAction
 (
@@ -565,8 +661,19 @@ case class EndDeviceAction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, false, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceAction] }
     override def get (i: Int): Object =
     {
@@ -636,6 +743,9 @@ extends
  * @param temperatureCompensation True if device performs temperature compensation for metered quantities.
  * @param textMessage True if the displaying of text messages is supported.
  * @param waterMetering True if water metering function is supported.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceCapability
 (
@@ -662,8 +772,19 @@ case class EndDeviceCapability
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceCapability] }
     override def get (i: Int): Object =
     {
@@ -773,6 +894,9 @@ extends
  * @param EndDevices All end devices receiving commands from this end device control.
  * @param UsagePointGroups All usage point groups receiving commands from this end device control.
  * @param UsagePoints All usage points receiving commands from this end device control.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceControl
 (
@@ -795,7 +919,18 @@ case class EndDeviceControl
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, false, null, null, null, null, null, null, null, null, null, List(), List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceControl] }
     override def get (i: Int): Object =
@@ -882,6 +1017,9 @@ extends
  * @param subDomain More specific nature of the control, as a further sub-categorisation of 'domain'.
  * @param typ Type of physical device from which the control was created.
  *        A value of zero (0) can be used when the source is unknown.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceControlType
 (
@@ -894,7 +1032,18 @@ case class EndDeviceControlType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceControlType] }
     override def get (i: Int): Object =
@@ -952,6 +1101,9 @@ extends
  * @param EndDeviceEventType Type of this end device event.
  * @param MeterReading Set of measured values to which this event applies.
  * @param UsagePoint Usage point for which this end device event is reported.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceEvent
 (
@@ -967,7 +1119,18 @@ case class EndDeviceEvent
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceEvent] }
     override def get (i: Int): Object =
@@ -1029,6 +1192,9 @@ extends
  * @param name Name.
  * @param value Value, including unit information.
  * @param EndDeviceEvent End device owning this detail.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceEventDetail
 (
@@ -1040,8 +1206,19 @@ case class EndDeviceEventDetail
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceEventDetail] }
     override def get (i: Int): Object =
     {
@@ -1095,6 +1272,9 @@ extends
  * @param subDomain More specific nature of the event, as a further sub-categorisation of 'domain'.
  * @param typ Type of physical device from which the event was created.
  *        A value of zero (0) can be used when the source is unknown.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceEventType
 (
@@ -1107,7 +1287,18 @@ case class EndDeviceEventType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceEventType] }
     override def get (i: Int): Object =
@@ -1159,6 +1350,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param enabled True if the function is enabled.
  * @param EndDevice End device that performs this function.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceFunction
 (
@@ -1169,7 +1363,18 @@ case class EndDeviceFunction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetFunction: AssetFunction = sup.asInstanceOf[AssetFunction]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceFunction] }
     override def get (i: Int): Object =
@@ -1217,6 +1422,9 @@ extends
  * @param typ Type of this group.
  * @param EndDeviceControls All end device controls sending commands to this end device group.
  * @param EndDevices All end devices this end device group refers to.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceGroup
 (
@@ -1228,7 +1436,18 @@ case class EndDeviceGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceGroup] }
     override def get (i: Int): Object =
@@ -1280,6 +1499,9 @@ extends
  * @param phaseCount Number of potential phases the end device supports, typically 0, 1 or 3.
  * @param ratedCurrent Rated current.
  * @param ratedVoltage Rated voltage.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceInfo
 (
@@ -1293,7 +1515,18 @@ case class EndDeviceInfo
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, 0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceInfo] }
     override def get (i: Int): Object =
@@ -1350,6 +1583,9 @@ extends
  * @param durationIndefinite True if 'duration' is indefinite.
  * @param interval Start and end time of an interval during which end device control actions are to be executed.
  * @param randomisation Kind of randomisation to be applied to the end device control actions to be executed.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class EndDeviceTiming
 (
@@ -1362,8 +1598,19 @@ case class EndDeviceTiming
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[EndDeviceTiming] }
     override def get (i: Int): Object =
     {
@@ -1417,6 +1664,9 @@ extends
  * @param MeterReading Meter reading containing this interval block.
  * @param PendingCalculation Pending calculation to apply to interval reading values contained by this block (after which the resulting reading type is different than the original because it reflects the conversion result).
  * @param ReadingType Type information for interval reading values contained in this block.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class IntervalBlock
 (
@@ -1429,8 +1679,19 @@ case class IntervalBlock
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, List(), null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[IntervalBlock] }
     override def get (i: Int): Object =
     {
@@ -1480,6 +1741,9 @@ extends
  * Data captured at regular intervals of time.
  * Interval data could be captured as incremental data, absolute data, or relative data. The source for the data is usually a tariff quantity or an engineering quantity. Data is typically captured in time-tagged, uniform, fixed-length intervals of 5 min, 10 min, 15 min, 30 min, or 60 min.
  * @param sup Reference to the superclass object.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class IntervalReading
 (
@@ -1488,7 +1752,18 @@ case class IntervalReading
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BaseReading: BaseReading = sup.asInstanceOf[BaseReading]
     override def copy (): Row = { clone ().asInstanceOf[IntervalReading] }
     override def get (i: Int): Object =
@@ -1530,6 +1805,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param formNumber Meter form designation per ANSI C12.10 or other applicable standard.
  *        An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class Meter
 (
@@ -1539,7 +1817,18 @@ case class Meter
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EndDevice: EndDevice = sup.asInstanceOf[EndDevice]
     override def copy (): Row = { clone ().asInstanceOf[Meter] }
     override def get (i: Int): Object =
@@ -1583,6 +1872,9 @@ extends
  * @param kind Kind of multiplier.
  * @param value Multiplier value.
  * @param Meter Meter applying this multiplier.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class MeterMultiplier
 (
@@ -1594,7 +1886,18 @@ case class MeterMultiplier
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MeterMultiplier] }
     override def get (i: Int): Object =
@@ -1646,6 +1949,9 @@ extends
  * @param CustomerAgreement (could be deprecated in the future) Customer agreement for this meter reading.
  * @param Meter Meter providing this reading.
  * @param UsagePoint Usage point from which this meter reading (set of values) has been obtained.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class MeterReading
 (
@@ -1659,7 +1965,18 @@ case class MeterReading
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MeterReading] }
     override def get (i: Int): Object =
@@ -1715,6 +2032,9 @@ extends
  * @param Meter Meter on which this non-replacement work is performed.
  * @param OldMeter Old meter replaced by this work.
  * @param UsagePoint Usage point to which this meter service work applies.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class MeterServiceWork
 (
@@ -1726,7 +2046,18 @@ case class MeterServiceWork
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Work: Work = sup.asInstanceOf[Work]
     override def copy (): Row = { clone ().asInstanceOf[MeterServiceWork] }
     override def get (i: Int): Object =
@@ -1775,6 +2106,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param reason Reason for this metrology requirement being specified.
  * @param UsagePoints All usage points having this metrology requirement.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class MetrologyRequirement
 (
@@ -1785,7 +2119,18 @@ case class MetrologyRequirement
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[MetrologyRequirement] }
     override def get (i: Int): Object =
@@ -1849,6 +2194,9 @@ extends
  *        It represents a temperature change that will be applied to the associated heating set point. The temperature offsets will be calculated per the local temperature in the thermostat. The calculated temperature will be interpreted as the number of degrees to be subtracted from the heating set point. Sequential demand response events are not cumulative. The offset shall be applied to the normal setpoint.
  * @param heatingSetpoint Requested heating set point.
  *        Temperature set point is typically defined and calculated based on local temperature.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class PanDemandResponse
 (
@@ -1869,7 +2217,18 @@ case class PanDemandResponse
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null, false, 0.0, 0.0, null, 0.0, null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EndDeviceAction: EndDeviceAction = sup.asInstanceOf[EndDeviceAction]
     override def copy (): Row = { clone ().asInstanceOf[PanDemandResponse] }
     override def get (i: Int): Object =
@@ -1947,6 +2306,9 @@ extends
  * @param priority Priority associated with the text message to be displayed.
  * @param textMessage Text to be displayed by a PAN device.
  * @param transmissionMode Transmission mode to be used for this PAN display control.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class PanDisplay
 (
@@ -1959,7 +2321,18 @@ case class PanDisplay
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EndDeviceAction: EndDeviceAction = sup.asInstanceOf[EndDeviceAction]
     override def copy (): Row = { clone ().asInstanceOf[PanDisplay] }
     override def get (i: Int): Object =
@@ -2010,6 +2383,9 @@ extends
  * PAN action/command used to issue pricing information to a PAN device.
  * @param sup Reference to the superclass object.
  * @param providerID Unique identifier for the commodity provider.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class PanPricing
 (
@@ -2019,7 +2395,18 @@ case class PanPricing
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EndDeviceAction: EndDeviceAction = sup.asInstanceOf[EndDeviceAction]
     override def copy (): Row = { clone ().asInstanceOf[PanPricing] }
     override def get (i: Int): Object =
@@ -2076,6 +2463,9 @@ extends
  * @param registerTier Register tier accumulating usage information.
  * @param unitOfMeasure Defines commodity as well as its base unit of measure.
  * @param PanPricing PAN pricing command/action issuing this price detail.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class PanPricingDetail
 (
@@ -2098,8 +2488,19 @@ case class PanPricingDetail
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0, 0, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PanPricingDetail] }
     override def get (i: Int): Object =
     {
@@ -2186,6 +2587,9 @@ extends
  * @param scalarNumerator (if scalar is integer or rational number)  When the scalar is a simple integer, and this attribute is presented alone and multiplied with 'IntervalReading.value', it causes a unit of measure conversion to occur, resulting in the 'ReadingType.unit'.
  *        It is never used in conjunction with 'scalarFloat', only with 'scalarDenominator'.
  * @param ReadingType Reading type resulting from this pending conversion.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class PendingCalculation
 (
@@ -2200,8 +2604,19 @@ case class PendingCalculation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0, 0, 0.0, 0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[PendingCalculation] }
     override def get (i: Int): Object =
     {
@@ -2259,6 +2674,9 @@ extends
  * @param denominator Denominator.
  *        Value 1 indicates the number is a simple integer.
  * @param numerator Numerator.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class RationalNumber
 (
@@ -2269,8 +2687,19 @@ case class RationalNumber
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[RationalNumber] }
     override def get (i: Int): Object =
     {
@@ -2317,6 +2746,9 @@ extends
  * @param reason Reason for this reading being taken.
  * @param MeterReadings All meter readings (sets of values) containing this reading value.
  * @param ReadingType Type information for this reading value.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class Reading
 (
@@ -2328,7 +2760,18 @@ case class Reading
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BaseReading: BaseReading = sup.asInstanceOf[BaseReading]
     override def copy (): Row = { clone ().asInstanceOf[Reading] }
     override def get (i: Int): Object =
@@ -2379,6 +2822,9 @@ extends
  *        Value 0 means not applicable. Value 2 is used in combination with 'numerator'=1 to represent interharmonic 1/2. Finally, value 1 indicates the harmonic of the order specified with 'numerator'.
  * @param numerator Interharmonic numerator.
  *        Value 0 means not applicable. Value 1 is used in combination with 'denominator'=2 to represent interharmonic 1/2, and with 'denominator'=1 it represents fundamental frequency. Finally, values greater than 1 indicate the harmonic of that order (e.g., 'numerator'=5 is the fifth harmonic).
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ReadingInterharmonic
 (
@@ -2389,8 +2835,19 @@ case class ReadingInterharmonic
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0, 0) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ReadingInterharmonic] }
     override def get (i: Int): Object =
     {
@@ -2439,6 +2896,9 @@ extends
  * @param timeStamp Date and time at which the quality code was assigned or ascertained.
  * @param Reading Reading value to which this quality applies.
  * @param ReadingQualityType Type of this reading quality.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ReadingQuality
 (
@@ -2452,8 +2912,19 @@ case class ReadingQuality
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ReadingQuality] }
     override def get (i: Int): Object =
     {
@@ -2509,6 +2980,9 @@ extends
  * @param category High-level nature of the reading value quality.
  * @param subCategory More specific nature of the reading value quality, as a further sub-categorisation of 'category'.
  * @param systemId Identification of the system which has declared the issue with the data or provided commentary on the data.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ReadingQualityType
 (
@@ -2520,7 +2994,18 @@ case class ReadingQualityType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ReadingQualityType] }
     override def get (i: Int): Object =
@@ -2594,6 +3079,9 @@ extends
  * @param unit Metering-specific unit.
  * @param Channel Channel reporting/collecting register values with this type information.
  * @param PendingCalculation Pending calculation that produced this reading type.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ReadingType
 (
@@ -2620,7 +3108,18 @@ case class ReadingType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, 0, 0, null, null, null, null, null, null, null, null, 0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ReadingType] }
     override def get (i: Int): Object =
@@ -2720,6 +3219,9 @@ extends
  * @param touTierName Name used for the time of use tier (also known as bin or bucket).
  *        For example, "peak", "off-peak", "TOU Category A", etc.
  * @param EndDeviceFunction End device function metering quantities displayed by this register.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class Register
 (
@@ -2734,7 +3236,18 @@ case class Register
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0, 0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Register] }
     override def get (i: Int): Object =
@@ -2793,6 +3306,9 @@ extends
  * @param kind Kind of multiplier.
  * @param value Multiplier value.
  * @param UsagePoint Usage point applying this multiplier.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class ServiceMultiplier
 (
@@ -2804,7 +3320,18 @@ case class ServiceMultiplier
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[ServiceMultiplier] }
     override def get (i: Int): Object =
@@ -2853,6 +3380,9 @@ extends
  * Use this class for instances that cannot be represented by another end device function specialisations.
  * @param sup Reference to the superclass object.
  * @param kind Kind of this function.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class SimpleEndDeviceFunction
 (
@@ -2862,7 +3392,18 @@ case class SimpleEndDeviceFunction
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EndDeviceFunction: EndDeviceFunction = sup.asInstanceOf[EndDeviceFunction]
     override def copy (): Row = { clone ().asInstanceOf[SimpleEndDeviceFunction] }
     override def get (i: Int): Object =
@@ -2934,6 +3475,9 @@ extends
  * @param ServiceLocation Service location where the service delivered by this usage point is consumed.
  * @param ServiceSupplier ServiceSupplier (utility) utilising this usage point to deliver a service.
  * @param UsagePointLocation Location of this usage point.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class UsagePoint
 (
@@ -2965,7 +3509,18 @@ case class UsagePoint
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, false, null, 0.0, false, false, false, false, 0.0, null, null, 0.0, 0.0, null, null, null, null, null, List(), null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[UsagePoint] }
     override def get (i: Int): Object =
@@ -3075,6 +3630,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param typ Type of this group.
  * @param UsagePoints All usage points in this group.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class UsagePointGroup
 (
@@ -3085,7 +3643,18 @@ case class UsagePointGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[UsagePointGroup] }
     override def get (i: Int): Object =
@@ -3134,6 +3703,9 @@ extends
  * @param remark Remarks about this location.
  * @param siteAccessProblem Problems previously encountered when visiting or performing work at this location.
  *        Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
+ * @group Metering
+ * @groupname Metering Package Metering
+ * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class UsagePointLocation
 (
@@ -3145,7 +3717,18 @@ case class UsagePointLocation
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Location: Location = sup.asInstanceOf[Location]
     override def copy (): Row = { clone ().asInstanceOf[UsagePointLocation] }
     override def get (i: Int): Object =

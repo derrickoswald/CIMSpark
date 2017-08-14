@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package contains model for direct current equipment and controls.
- */
-
-/**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
  * @param sup Reference to the superclass object.
  * @param baseS Base apparent power of the converter pole.
@@ -50,6 +46,9 @@ import ch.ninecode.cim.Parseable
  *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
  * @param PccTerminal Point of common coupling terminal for this converter DC side.
  *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class ACDCConverter
 (
@@ -76,7 +75,18 @@ case class ACDCConverter
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[ACDCConverter] }
     override def get (i: Int): Object =
@@ -171,6 +181,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param polarity Represents the normal network polarity condition.
  * @param DCConductingEquipment <em>undocumented</em>
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class ACDCConverterDCTerminal
 (
@@ -181,7 +194,18 @@ case class ACDCConverterDCTerminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCBaseTerminal: DCBaseTerminal = sup.asInstanceOf[DCBaseTerminal]
     override def copy (): Row = { clone ().asInstanceOf[ACDCConverterDCTerminal] }
     override def get (i: Int): Object =
@@ -252,6 +276,9 @@ extends
  *        CSC  control variable used in power flow.
  * @param targetIdc DC current target value.
  *        CSC control variable used in power flow.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class CsConverter
 (
@@ -274,7 +301,18 @@ case class CsConverter
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ACDCConverter: ACDCConverter = sup.asInstanceOf[ACDCConverter]
     override def copy (): Row = { clone ().asInstanceOf[CsConverter] }
     override def get (i: Int): Object =
@@ -358,6 +396,9 @@ extends
  * @param DCNode <em>undocumented</em>
  * @param DCTopologicalNode See association end Terminal.
  *        TopologicalNode.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCBaseTerminal
 (
@@ -368,7 +409,18 @@ case class DCBaseTerminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ACDCTerminal: ACDCTerminal = sup.asInstanceOf[ACDCTerminal]
     override def copy (): Row = { clone ().asInstanceOf[DCBaseTerminal] }
     override def get (i: Int): Object =
@@ -412,6 +464,9 @@ extends
 /**
  * A breaker within a DC system.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCBreaker
 (
@@ -420,7 +475,18 @@ case class DCBreaker
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCSwitch: DCSwitch = sup.asInstanceOf[DCSwitch]
     override def copy (): Row = { clone ().asInstanceOf[DCBreaker] }
     override def get (i: Int): Object =
@@ -459,6 +525,9 @@ extends
 /**
  * A busbar within a DC system.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCBusbar
 (
@@ -467,7 +536,18 @@ case class DCBusbar
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[DCBusbar] }
     override def get (i: Int): Object =
@@ -507,6 +587,9 @@ extends
  * Low resistance equipment used in the internal DC circuit to balance voltages.
  * It has typically positive and negative pole terminals and a ground.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCChopper
 (
@@ -515,7 +598,18 @@ case class DCChopper
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[DCChopper] }
     override def get (i: Int): Object =
@@ -554,6 +648,9 @@ extends
 /**
  * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCConductingEquipment
 (
@@ -562,7 +659,18 @@ case class DCConductingEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Equipment: Equipment = sup.asInstanceOf[Equipment]
     override def copy (): Row = { clone ().asInstanceOf[DCConductingEquipment] }
     override def get (i: Int): Object =
@@ -603,6 +711,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param operationMode <em>undocumented</em>
  * @param Substation <em>undocumented</em>
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCConverterUnit
 (
@@ -613,7 +724,18 @@ case class DCConverterUnit
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCEquipmentContainer: DCEquipmentContainer = sup.asInstanceOf[DCEquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[DCConverterUnit] }
     override def get (i: Int): Object =
@@ -657,6 +779,9 @@ extends
 /**
  * A disconnector within a DC system.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCDisconnector
 (
@@ -665,7 +790,18 @@ case class DCDisconnector
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCSwitch: DCSwitch = sup.asInstanceOf[DCSwitch]
     override def copy (): Row = { clone ().asInstanceOf[DCDisconnector] }
     override def get (i: Int): Object =
@@ -705,6 +841,9 @@ extends
  * A modeling construct to provide a root class for containment of DC as well as AC equipment.
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCEquipmentContainer
 (
@@ -713,7 +852,18 @@ case class DCEquipmentContainer
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquipmentContainer: EquipmentContainer = sup.asInstanceOf[EquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[DCEquipmentContainer] }
     override def get (i: Int): Object =
@@ -754,6 +904,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param inductance Inductance to ground.
  * @param r Resistance to ground.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCGround
 (
@@ -764,7 +917,18 @@ case class DCGround
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[DCGround] }
     override def get (i: Int): Object =
@@ -809,6 +973,9 @@ extends
  * Overhead lines and/or cables connecting two or more HVDC substations.
  * @param sup Reference to the superclass object.
  * @param Region <em>undocumented</em>
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCLine
 (
@@ -818,7 +985,18 @@ case class DCLine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCEquipmentContainer: DCEquipmentContainer = sup.asInstanceOf[DCEquipmentContainer]
     override def copy (): Row = { clone ().asInstanceOf[DCLine] }
     override def get (i: Int): Object =
@@ -866,6 +1044,9 @@ extends
  * @param len Segment length for calculating line section capabilities.
  * @param resistance Resistance of the DC line segment.
  * @param PerLengthParameter Set of per-length parameters for this line segment.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCLineSegment
 (
@@ -879,7 +1060,18 @@ case class DCLineSegment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[DCLineSegment] }
     override def get (i: Int): Object =
@@ -935,6 +1127,9 @@ extends
  * @param DCEquipmentContainer <em>undocumented</em>
  * @param DCTopologicalNode See association end ConnectivityNode.
  *        TopologicalNode.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCNode
 (
@@ -945,7 +1140,18 @@ case class DCNode
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DCNode] }
     override def get (i: Int): Object =
@@ -994,6 +1200,9 @@ extends
  * @param ratedUdc Rated DC device voltage.
  *        Converter configuration data used in power flow.
  * @param resistance Resistance of the DC device.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCSeriesDevice
 (
@@ -1005,7 +1214,18 @@ case class DCSeriesDevice
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[DCSeriesDevice] }
     override def get (i: Int): Object =
@@ -1057,6 +1277,9 @@ extends
  * @param ratedUdc Rated DC device voltage.
  *        Converter configuration data used in power flow.
  * @param resistance Resistance of the DC device.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCShunt
 (
@@ -1068,7 +1291,18 @@ case class DCShunt
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[DCShunt] }
     override def get (i: Int): Object =
@@ -1115,6 +1349,9 @@ extends
 /**
  * A switch within the DC system.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCSwitch
 (
@@ -1123,7 +1360,18 @@ case class DCSwitch
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCConductingEquipment: DCConductingEquipment = sup.asInstanceOf[DCConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[DCSwitch] }
     override def get (i: Int): Object =
@@ -1163,6 +1411,9 @@ extends
  * An electrical connection point to generic DC conducting equipment.
  * @param sup Reference to the superclass object.
  * @param DCConductingEquipment <em>undocumented</em>
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCTerminal
 (
@@ -1172,7 +1423,18 @@ case class DCTerminal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DCBaseTerminal: DCBaseTerminal = sup.asInstanceOf[DCBaseTerminal]
     override def copy (): Row = { clone ().asInstanceOf[DCTerminal] }
     override def get (i: Int): Object =
@@ -1214,6 +1476,9 @@ extends
  * An electrically connected subset of the network.
  * DC topological islands can change as the current network state changes: e.g. due to
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCTopologicalIsland
 (
@@ -1222,7 +1487,18 @@ case class DCTopologicalIsland
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DCTopologicalIsland] }
     override def get (i: Int): Object =
@@ -1258,6 +1534,11 @@ extends
     }
 }
 
+/**
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
+ */
 case class PerLengthDCLineParameter
 (
     override val sup: PerLengthLineParameter,
@@ -1268,7 +1549,18 @@ case class PerLengthDCLineParameter
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PerLengthLineParameter: PerLengthLineParameter = sup.asInstanceOf[PerLengthLineParameter]
     override def copy (): Row = { clone ().asInstanceOf[PerLengthDCLineParameter] }
     override def get (i: Int): Object =
@@ -1315,6 +1607,9 @@ extends
 /**
  * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
  * @param sup Reference to the superclass object.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class VsCapabilityCurve
 (
@@ -1323,7 +1618,18 @@ case class VsCapabilityCurve
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Curve: Curve = sup.asInstanceOf[Curve]
     override def copy (): Row = { clone ().asInstanceOf[VsCapabilityCurve] }
     override def get (i: Int): Object =
@@ -1379,6 +1685,9 @@ extends
  * @param uf Line-to-line voltage on the valve side of the converter transformer.
  *        Converter state variable, result from power flow.
  * @param CapabilityCurve Capability curve of this converter.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class VsConverter
 (
@@ -1399,7 +1708,18 @@ case class VsConverter
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ACDCConverter: ACDCConverter = sup.asInstanceOf[ACDCConverter]
     override def copy (): Row = { clone ().asInstanceOf[VsConverter] }
     override def get (i: Int): Object =

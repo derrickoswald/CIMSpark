@@ -7,17 +7,15 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes.
- * Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
- */
-
-/**
  * Models Market clearing results.
  * Indicates market horizon, interval based. Used by a market quality system for billing and settlement purposes
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class AllocationResult
 (
@@ -29,8 +27,19 @@ case class AllocationResult
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AllocationResult] }
     override def get (i: Int): Object =
     {
@@ -90,6 +99,9 @@ extends
  *        DEC - Derate Capacity
  * @param AllocationResult <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class AllocationResultValues
 (
@@ -105,8 +117,19 @@ case class AllocationResultValues
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, 0.0, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AllocationResultValues] }
     override def get (i: Int): Object =
     {
@@ -168,6 +191,9 @@ extends
  * @param marketType <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class AuxiliaryCost
 (
@@ -180,8 +206,19 @@ case class AuxiliaryCost
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AuxiliaryCost] }
     override def get (i: Int): Object =
     {
@@ -232,6 +269,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @param RegisteredLoad <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class AuxiliaryObject
 (
@@ -242,8 +282,19 @@ case class AuxiliaryObject
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AuxiliaryObject] }
     override def get (i: Int): Object =
     {
@@ -297,6 +348,9 @@ extends
  * @param AuxillaryCost <em>undocumented</em>
  * @param FiveMinAuxillaryData <em>undocumented</em>
  * @param TenMinAuxillaryData <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class AuxiliaryValues
 (
@@ -316,7 +370,18 @@ case class AuxiliaryValues
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def AuxiliaryObject: AuxiliaryObject = sup.asInstanceOf[AuxiliaryObject]
     override def copy (): Row = { clone ().asInstanceOf[AuxiliaryValues] }
     override def get (i: Int): Object =
@@ -390,6 +455,9 @@ extends
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class ExpectedEnergy
 (
@@ -401,8 +469,19 @@ case class ExpectedEnergy
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ExpectedEnergy] }
     override def get (i: Int): Object =
     {
@@ -452,6 +531,9 @@ extends
  * @param expectedMwh <em>undocumented</em>
  * @param ExpectedEnergy <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class ExpectedEnergyValues
 (
@@ -464,8 +546,19 @@ case class ExpectedEnergyValues
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[ExpectedEnergyValues] }
     override def get (i: Int): Object =
     {
@@ -517,6 +610,9 @@ extends
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class FiveMinAuxiliaryData
 (
@@ -528,8 +624,19 @@ case class FiveMinAuxiliaryData
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[FiveMinAuxiliaryData] }
     override def get (i: Int): Object =
     {
@@ -578,6 +685,9 @@ extends
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class TenMinAuxiliaryData
 (
@@ -589,8 +699,19 @@ case class TenMinAuxiliaryData
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TenMinAuxiliaryData] }
     override def get (i: Int): Object =
     {
@@ -640,6 +761,9 @@ extends
  * @param marketType <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class TradingHubPrice
 (
@@ -652,8 +776,19 @@ case class TradingHubPrice
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TradingHubPrice] }
     override def get (i: Int): Object =
     {
@@ -706,6 +841,9 @@ extends
  *        For DA, the price is hourly. For RTM the price is a 5 minute price.
  * @param AggregatedPnode <em>undocumented</em>
  * @param TradingHubPrice <em>undocumented</em>
+ * @group MarketQualitySystem
+ * @groupname MarketQualitySystem Package MarketQualitySystem
+ * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
  */
 case class TradingHubValues
 (
@@ -717,8 +855,19 @@ case class TradingHubValues
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[TradingHubValues] }
     override def get (i: Int): Object =
     {

@@ -7,14 +7,14 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package is responsible for modeling the energy consumers and the system load as curves and associated curve data.
- * Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
- */
-
-/**
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
  * @param sup Reference to the superclass object.
  * @param LoadGroup Group of this ConformLoad.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class ConformLoad
 (
@@ -24,7 +24,18 @@ case class ConformLoad
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
     override def copy (): Row = { clone ().asInstanceOf[ConformLoad] }
     override def get (i: Int): Object =
@@ -65,6 +76,11 @@ extends
 /**
  * A group of loads conforming to an allocation pattern.
  * @param sup Reference to the superclass object.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class ConformLoadGroup
 (
@@ -73,7 +89,18 @@ case class ConformLoadGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LoadGroup: LoadGroup = sup.asInstanceOf[LoadGroup]
     override def copy (): Row = { clone ().asInstanceOf[ConformLoadGroup] }
     override def get (i: Int): Object =
@@ -114,6 +141,11 @@ extends
  * This curve represents a typical pattern of load over the time period for a given day type and season.
  * @param sup Reference to the superclass object.
  * @param ConformLoadGroup The ConformLoadGroup where the ConformLoadSchedule belongs.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class ConformLoadSchedule
 (
@@ -123,7 +155,18 @@ case class ConformLoadSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
     override def copy (): Row = { clone ().asInstanceOf[ConformLoadSchedule] }
     override def get (i: Int): Object =
@@ -165,6 +208,11 @@ extends
  * Group of similar days.
  * For example it could be used to represent weekdays, weekend, or holidays.
  * @param sup Reference to the superclass object.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class DayType
 (
@@ -173,7 +221,18 @@ case class DayType
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[DayType] }
     override def get (i: Int): Object =
@@ -214,6 +273,11 @@ extends
  * Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.
  * @param sup Reference to the superclass object.
  * @param ControlArea The control area specification that is used for the load forecast.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class EnergyArea
 (
@@ -223,7 +287,18 @@ case class EnergyArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[EnergyArea] }
     override def get (i: Int): Object =
@@ -264,6 +339,11 @@ extends
 /**
  * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  * @param sup Reference to the superclass object.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class LoadArea
 (
@@ -272,7 +352,18 @@ case class LoadArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EnergyArea: EnergyArea = sup.asInstanceOf[EnergyArea]
     override def copy (): Row = { clone ().asInstanceOf[LoadArea] }
     override def get (i: Int): Object =
@@ -312,6 +403,11 @@ extends
  * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  * @param sup Reference to the superclass object.
  * @param SubLoadArea The SubLoadArea where the Loadgroup belongs.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class LoadGroup
 (
@@ -321,7 +417,18 @@ case class LoadGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LoadGroup] }
     override def get (i: Int): Object =
@@ -375,6 +482,11 @@ extends
  * @param qConstantPower Portion of reactive power load modeled as constant power.
  * @param qFrequencyExponent Exponent of per unit frequency effecting reactive power.
  * @param qVoltageExponent Exponent of per unit voltage effecting reactive power.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class LoadResponseCharacteristic
 (
@@ -394,7 +506,18 @@ case class LoadResponseCharacteristic
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LoadResponseCharacteristic] }
     override def get (i: Int): Object =
@@ -466,6 +589,11 @@ extends
  * NonConformLoad represent loads that do not follow a daily load change pattern and changes are not correlated with the daily load change pattern.
  * @param sup Reference to the superclass object.
  * @param LoadGroup Group of this ConformLoad.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class NonConformLoad
 (
@@ -475,7 +603,18 @@ case class NonConformLoad
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
     override def copy (): Row = { clone ().asInstanceOf[NonConformLoad] }
     override def get (i: Int): Object =
@@ -516,6 +655,11 @@ extends
 /**
  * Loads that do not follow a daily and seasonal load variation pattern.
  * @param sup Reference to the superclass object.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class NonConformLoadGroup
 (
@@ -524,7 +668,18 @@ case class NonConformLoadGroup
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LoadGroup: LoadGroup = sup.asInstanceOf[LoadGroup]
     override def copy (): Row = { clone ().asInstanceOf[NonConformLoadGroup] }
     override def get (i: Int): Object =
@@ -564,6 +719,11 @@ extends
  * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
  * @param sup Reference to the superclass object.
  * @param NonConformLoadGroup The NonConformLoadGroup where the NonConformLoadSchedule belongs.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class NonConformLoadSchedule
 (
@@ -573,7 +733,18 @@ case class NonConformLoadSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def SeasonDayTypeSchedule: SeasonDayTypeSchedule = sup.asInstanceOf[SeasonDayTypeSchedule]
     override def copy (): Row = { clone ().asInstanceOf[NonConformLoadSchedule] }
     override def get (i: Int): Object =
@@ -616,6 +787,11 @@ extends
  * @param sup Reference to the superclass object.
  * @param cutLevel1 First level (amount) of load to cut as a percentage of total zone load.
  * @param cutLevel2 Second level (amount) of load to cut as a percentage of total zone load.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class PowerCutZone
 (
@@ -626,7 +802,18 @@ case class PowerCutZone
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[PowerCutZone] }
     override def get (i: Int): Object =
@@ -672,6 +859,11 @@ extends
  * @param sup Reference to the superclass object.
  * @param endDate Date season ends.
  * @param startDate Date season starts.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class Season
 (
@@ -682,7 +874,18 @@ case class Season
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[Season] }
     override def get (i: Int): Object =
@@ -728,6 +931,11 @@ extends
  * @param sup Reference to the superclass object.
  * @param DayType DayType for the Schedule.
  * @param Season Season for the Schedule.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class SeasonDayTypeSchedule
 (
@@ -738,7 +946,18 @@ case class SeasonDayTypeSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[SeasonDayTypeSchedule] }
     override def get (i: Int): Object =
@@ -782,6 +1001,11 @@ extends
 /**
  * Station supply with load derived from the station output.
  * @param sup Reference to the superclass object.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class StationSupply
 (
@@ -790,7 +1014,18 @@ case class StationSupply
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
     override def copy (): Row = { clone ().asInstanceOf[StationSupply] }
     override def get (i: Int): Object =
@@ -830,6 +1065,11 @@ extends
  * The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  * @param sup Reference to the superclass object.
  * @param LoadArea The LoadArea where the SubLoadArea belongs.
+ * @group LoadModel
+ * @groupname LoadModel Package LoadModel
+ * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+
+This information is used by Load Forecasting and Load Management.
  */
 case class SubLoadArea
 (
@@ -839,7 +1079,18 @@ case class SubLoadArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EnergyArea: EnergyArea = sup.asInstanceOf[EnergyArea]
     override def copy (): Row = { clone ().asInstanceOf[SubLoadArea] }
     override def get (i: Int): Object =

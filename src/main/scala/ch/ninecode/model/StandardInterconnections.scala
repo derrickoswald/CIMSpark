@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This section describes the standard interconnections for various types of equipment.
- * These interconnections are understood by the application programs and can be identified based on the presence of one of the key classes with a relationship to the static power flow model: SynchronousMachineDynamics, AsynchronousMachineDynamics, EnergyConsumerDynamics or WindTurbineType3or4Dynamics.
- */
-
-/**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
  * @param sup Reference to the superclass object.
  * @param remoteSignalType Type of input signal.
@@ -24,6 +19,13 @@ import ch.ninecode.cim.Parseable
  * @param WindPlantDynamics The wind plant using the remote signal.
  * @param WindTurbineType1or2Dynamics Wind generator Type 1 or Type 2 model using this remote input signal.
  * @param WindTurbineType3or4Dynamics Wind turbine Type 3 or 4 models using this remote input signal.
+ * @group StandardInterconnections
+ * @groupname StandardInterconnections Package StandardInterconnections
+ * @groupdesc StandardInterconnections This section describes the standard interconnections for various types of equipment. These interconnections are understood by the application programs and can be identified based on the presence of one of the key classes with a relationship to the static power flow model: SynchronousMachineDynamics, AsynchronousMachineDynamics, EnergyConsumerDynamics or WindTurbineType3or4Dynamics. 
+
+The relationships between classes expressed in the interconnection diagrams are intended to support dynamic behaviour described by either standard models or user-defined models.
+
+In the interconnection diagrams, boxes which are black in colour represent function blocks whose functionality can be provided by one of many standard models or by a used-defined model. Blue boxes represent specific standard models.  A dashed box means that the function block or specific standard model is optional.
  */
 case class RemoteInputSignal
 (
@@ -42,7 +44,18 @@ case class RemoteInputSignal
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[RemoteInputSignal] }
     override def get (i: Int): Object =

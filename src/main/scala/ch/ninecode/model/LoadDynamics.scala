@@ -7,16 +7,19 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.
- * Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
- */
-
-/**
  * Standard aggregate load model comprised of static and/or dynamic components.
  * A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can used to represent the aggregate response of the motor components of the load.
  * @param sup Reference to the superclass object.
  * @param LoadMotor Aggregate motor (dynamic) load associated with this aggregate load.
  * @param LoadStatic Aggregate static load associated with this aggregate load.
+ * @group LoadDynamics
+ * @groupname LoadDynamics Package LoadDynamics
+ * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
+
+Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
+
+Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
+In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
  */
 case class LoadAggregate
 (
@@ -27,7 +30,18 @@ case class LoadAggregate
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LoadDynamics: LoadDynamics = sup.asInstanceOf[LoadDynamics]
     override def copy (): Row = { clone ().asInstanceOf[LoadAggregate] }
     override def get (i: Int): Object =
@@ -94,6 +108,14 @@ extends
  *        Typical Value = 0.8.
  * @param pfrac Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
  *        Typical Value = 0.5.
+ * @group LoadDynamics
+ * @groupname LoadDynamics Package LoadDynamics
+ * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
+
+Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
+
+Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
+In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
  */
 case class LoadComposite
 (
@@ -113,7 +135,18 @@ case class LoadComposite
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LoadDynamics: LoadDynamics = sup.asInstanceOf[LoadDynamics]
     override def copy (): Row = { clone ().asInstanceOf[LoadComposite] }
     override def get (i: Int): Object =
@@ -187,6 +220,14 @@ extends
  * A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single aggregate load definition.
  * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data. This load is usually the aggregation of many individual load devices and the load model is approximate representation of the aggregate response of the load devices to system disturbances. The load model is always applied to individual bus loads (energy consumers) but a single set of load model parameters can used for all loads in the grouping.
  * @param sup Reference to the superclass object.
+ * @group LoadDynamics
+ * @groupname LoadDynamics Package LoadDynamics
+ * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
+
+Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
+
+Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
+In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
  */
 case class LoadDynamics
 (
@@ -195,7 +236,18 @@ case class LoadDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LoadDynamics] }
     override def get (i: Int): Object =
@@ -243,6 +295,14 @@ extends
  * @param qt Dynamic portion of reactive load (Q<sub>T</sub>).
  * @param tp Time constant of lag function of active power (T<sub>P</sub>).
  * @param tq Time constant of lag function of reactive power (T<sub>Q</sub>).
+ * @group LoadDynamics
+ * @groupname LoadDynamics Package LoadDynamics
+ * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
+
+Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
+
+Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
+In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
  */
 case class LoadGenericNonLinear
 (
@@ -260,7 +320,18 @@ case class LoadGenericNonLinear
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def LoadDynamics: LoadDynamics = sup.asInstanceOf[LoadDynamics]
     override def copy (): Row = { clone ().asInstanceOf[LoadGenericNonLinear] }
     override def get (i: Int): Object =
@@ -353,6 +424,14 @@ extends
  * @param vt Voltage threshold for tripping (Vt).
  *        Typical Value = 0.7.
  * @param LoadAggregate Aggregate load to which this aggregate motor (dynamic) load belongs.
+ * @group LoadDynamics
+ * @groupname LoadDynamics Package LoadDynamics
+ * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
+
+Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
+
+Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
+In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
  */
 case class LoadMotor
 (
@@ -375,7 +454,18 @@ case class LoadMotor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LoadMotor] }
     override def get (i: Int): Object =
@@ -490,6 +580,14 @@ extends
  * @param staticLoadModelType Type of static load model.
  *        Typical Value = constantZ.
  * @param LoadAggregate Aggregate load to which this aggregate static load belongs.
+ * @group LoadDynamics
+ * @groupname LoadDynamics Package LoadDynamics
+ * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
+
+Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
+
+Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
+In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
  */
 case class LoadStatic
 (
@@ -516,7 +614,18 @@ case class LoadStatic
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[LoadStatic] }
     override def get (i: Int): Object =

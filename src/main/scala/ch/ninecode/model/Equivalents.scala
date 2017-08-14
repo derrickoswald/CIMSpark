@@ -7,10 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * The equivalents package models equivalent networks.
- */
-
-/**
  * The class represents equivalent branches.
  * @param sup Reference to the superclass object.
  * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
@@ -43,6 +39,9 @@ import ch.ninecode.cim.Parseable
  *        Used for short circuit data exchange according to IEC 60909
  * @param zeroX21 Zero sequence series reactance from terminal sequence 2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909
+ * @group Equivalents
+ * @groupname Equivalents Package Equivalents
+ * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
 case class EquivalentBranch
 (
@@ -67,7 +66,18 @@ case class EquivalentBranch
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquivalentEquipment: EquivalentEquipment = sup.asInstanceOf[EquivalentEquipment]
     override def copy (): Row = { clone ().asInstanceOf[EquivalentBranch] }
     override def get (i: Int): Object =
@@ -155,6 +165,9 @@ extends
  * The class is the base for equivalent objects of different types.
  * @param sup Reference to the superclass object.
  * @param EquivalentNetwork The equivalent where the reduced model belongs.
+ * @group Equivalents
+ * @groupname Equivalents Package Equivalents
+ * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
 case class EquivalentEquipment
 (
@@ -164,7 +177,18 @@ case class EquivalentEquipment
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
     override def copy (): Row = { clone ().asInstanceOf[EquivalentEquipment] }
     override def get (i: Int): Object =
@@ -233,6 +257,9 @@ extends
  * @param x2 Negative sequence reactance.
  *        Used to represent Extended-Ward (IEC 60909).
  * @param ReactiveCapabilityCurve The reactive capability curve used by this equivalent injection.
+ * @group Equivalents
+ * @groupname Equivalents Package Equivalents
+ * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
 case class EquivalentInjection
 (
@@ -257,7 +284,18 @@ case class EquivalentInjection
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquivalentEquipment: EquivalentEquipment = sup.asInstanceOf[EquivalentEquipment]
     override def copy (): Row = { clone ().asInstanceOf[EquivalentInjection] }
     override def get (i: Int): Object =
@@ -344,6 +382,9 @@ extends
  * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
  * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
  * @param sup Reference to the superclass object.
+ * @group Equivalents
+ * @groupname Equivalents Package Equivalents
+ * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
 case class EquivalentNetwork
 (
@@ -352,7 +393,18 @@ case class EquivalentNetwork
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def ConnectivityNodeContainer: ConnectivityNodeContainer = sup.asInstanceOf[ConnectivityNodeContainer]
     override def copy (): Row = { clone ().asInstanceOf[EquivalentNetwork] }
     override def get (i: Int): Object =
@@ -393,6 +445,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param b Positive sequence shunt susceptance.
  * @param g Positive sequence shunt conductance.
+ * @group Equivalents
+ * @groupname Equivalents Package Equivalents
+ * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
 case class EquivalentShunt
 (
@@ -403,7 +458,18 @@ case class EquivalentShunt
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def EquivalentEquipment: EquivalentEquipment = sup.asInstanceOf[EquivalentEquipment]
     override def copy (): Row = { clone ().asInstanceOf[EquivalentShunt] }
     override def get (i: Int): Object =

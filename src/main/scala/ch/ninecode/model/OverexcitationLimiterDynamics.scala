@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding.
- * Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
- */
-
-/**
  * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
  * Irated is the rated machine excitation current (calculated from nameplate conditions: V<sub>nom</sub>, P<sub>nom</sub>, CosPhi<sub>nom</sub>).
  * @param sup Reference to the superclass object.
@@ -23,6 +18,9 @@ import ch.ninecode.cim.Parseable
  *        Typical Value = 0.
  * @param voimin Minimum error signal (V<sub>OIMIN</sub>).
  *        Typical Value = -9999.
+ * @group OverexcitationLimiterDynamics
+ * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
+ * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
 case class OverexcLim2
 (
@@ -35,7 +33,18 @@ case class OverexcLim2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup.asInstanceOf[OverexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[OverexcLim2] }
     override def get (i: Int): Object =
@@ -98,6 +107,9 @@ extends
  *        Typical Value = 1.
  * @param kramp OEL ramped limit rate (K<sub>RAMP</sub>).
  *        Unit = PU/sec.  Typical Value = 10.
+ * @group OverexcitationLimiterDynamics
+ * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
+ * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
 case class OverexcLimIEEE
 (
@@ -112,7 +124,18 @@ case class OverexcLimIEEE
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup.asInstanceOf[OverexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[OverexcLimIEEE] }
     override def get (i: Int): Object =
@@ -187,6 +210,9 @@ extends
  * @param t3 Time to trip the exciter at the high voltage point on the inverse time characteristic (TIME<sub>3</sub>).
  *        Typical Value = 15.
  * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
+ * @group OverexcitationLimiterDynamics
+ * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
+ * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
 case class OverexcLimX1
 (
@@ -205,7 +231,18 @@ case class OverexcLimX1
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup.asInstanceOf[OverexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[OverexcLimX1] }
     override def get (i: Int): Object =
@@ -295,6 +332,9 @@ extends
  * @param t3 Time to trip the exciter at the high voltage or current point on the inverse time characteristic (TIME<sub>3</sub>).
  *        Typical Value = 15.
  * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
+ * @group OverexcitationLimiterDynamics
+ * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
+ * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
 case class OverexcLimX2
 (
@@ -314,7 +354,18 @@ case class OverexcLimX2
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def OverexcitationLimiterDynamics: OverexcitationLimiterDynamics = sup.asInstanceOf[OverexcitationLimiterDynamics]
     override def copy (): Row = { clone ().asInstanceOf[OverexcLimX2] }
     override def get (i: Int): Object =
@@ -386,6 +437,9 @@ extends
  * <font color="#0f0f0f">O</font>Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this overexcitation limiter model is associated.
+ * @group OverexcitationLimiterDynamics
+ * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
+ * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
  */
 case class OverexcitationLimiterDynamics
 (
@@ -395,7 +449,18 @@ case class OverexcitationLimiterDynamics
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
     override def copy (): Row = { clone ().asInstanceOf[OverexcitationLimiterDynamics] }
     override def get (i: Int): Object =

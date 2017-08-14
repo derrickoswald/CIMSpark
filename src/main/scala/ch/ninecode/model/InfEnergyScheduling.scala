@@ -7,11 +7,6 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
- * This package provides the capability to schedule and account for transactions for the exchange of electric power between companies.
- * It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
- */
-
-/**
  * The control area's reserve specification.
  * @param sup Reference to the superclass object.
  * @param lowerRegMarginReqt Lower regulating margin requirement in MW, the amount of generation that can be dropped by control in 10 minutes
@@ -22,6 +17,9 @@ import ch.ninecode.cim.Parseable
  * @param raiseRegMarginReqt Raise regulating margin requirement in MW, the amount of generation that can be picked up by control in 10 minutes
  * @param spinningReserveReqt Spinning reserve requirement in MW, spinning reserve is generating capability that is presently synchronized to the network and is fully available within 10 minutes
  * @param Description Description of the object or instance.
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class AreaReserveSpec
 (
@@ -36,8 +34,19 @@ case class AreaReserveSpec
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[AreaReserveSpec] }
     override def get (i: Int): Object =
     {
@@ -99,6 +108,9 @@ extends
  * @param emergencyScheduleStartTime Net tie time,  the start time for a schedule.
  *        This is calculated as the current time if a schedule is ramping.
  * @param InternalControlArea <em>undocumented</em>
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class CurrentEmergencyScheduledInterchange
 (
@@ -111,7 +123,18 @@ case class CurrentEmergencyScheduledInterchange
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[CurrentEmergencyScheduledInterchange] }
     override def get (i: Int): Object =
@@ -165,6 +188,9 @@ extends
  * @param useEmergencySchedule Use Emergency Schedule
  *        Attribute Usage: Emergency use indicator, false = Emergency Schedular OFF, true = Emergency Schedular ON.
  * @param InternalControlArea <em>undocumented</em>
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class CurrentScheduledInterchange
 (
@@ -176,8 +202,19 @@ case class CurrentScheduledInterchange
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, false, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[CurrentScheduledInterchange] }
     override def get (i: Int): Object =
     {
@@ -225,6 +262,9 @@ extends
  * The CurtailmentProfile must be completely contained within the EnergyProfile timeframe for this EnergyTransaction.
  * @param sup Reference to the superclass object.
  * @param EnergyTransaction An EnergyTransaction may be curtailed by any of the participating entities.
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class CurtailmentProfile
 (
@@ -234,7 +274,18 @@ case class CurtailmentProfile
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Profile: Profile = sup.asInstanceOf[Profile]
     override def copy (): Row = { clone ().asInstanceOf[CurtailmentProfile] }
     override def get (i: Int): Object =
@@ -281,6 +332,9 @@ extends
  * @param MktMeasurement <em>undocumented</em>
  * @param Receive_SubControlArea A control area can receive dynamic schedules from other control areas
  * @param Send_SubControlArea A control area can send dynamic schedules to other control areas
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class DynamicSchedule
 (
@@ -294,7 +348,18 @@ case class DynamicSchedule
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, false, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def BasicIntervalSchedule: BasicIntervalSchedule = sup.asInstanceOf[BasicIntervalSchedule]
     override def copy (): Row = { clone ().asInstanceOf[DynamicSchedule] }
     override def get (i: Int): Object =
@@ -350,6 +415,9 @@ extends
  * @param GenerationProvider <em>undocumented</em>
  * @param ResoldBy_Marketer A Marketer may resell an EnergyProduct.
  * @param TitleHeldBy_Marketer A Marketer holds title to an EnergyProduct.
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class EnergyProduct
 (
@@ -361,7 +429,18 @@ case class EnergyProduct
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Agreement: Agreement = sup.asInstanceOf[Agreement]
     override def copy (): Row = { clone ().asInstanceOf[EnergyProduct] }
     override def get (i: Int): Object =
@@ -410,6 +489,9 @@ extends
  * A control area may have more than one inadvertent account in order to track inadvertent over one or more specific tie points in addition to the usual overall net inadvertent. Separate accounts would also be used to track designated time periods, such as on-peak and off-peak.
  * @param sup Reference to the superclass object.
  * @param SubControlArea A control area can have one or more net inadvertent interchange accounts
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class InadvertentAccount
 (
@@ -419,8 +501,19 @@ case class InadvertentAccount
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
-    def Element: Element = sup.asInstanceOf[Element]
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
     override def copy (): Row = { clone ().asInstanceOf[InadvertentAccount] }
     override def get (i: Int): Object =
     {
@@ -462,6 +555,9 @@ extends
  * Real time generation control affects only the internal control area.
  * @param sup Reference to the superclass object.
  * @param CurrentScheduledInterchange <em>undocumented</em>
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class InternalControlArea
 (
@@ -471,7 +567,18 @@ case class InternalControlArea
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[InternalControlArea] }
     override def get (i: Int): Object =
@@ -515,6 +622,9 @@ extends
  * @param EnergyTransaction An EnergyTransaction may have a LossProfile.
  * @param HasLoss_1 Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
  *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class LossProfile
 (
@@ -525,7 +635,18 @@ case class LossProfile
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Profile: Profile = sup.asInstanceOf[Profile]
     override def copy (): Row = { clone ().asInstanceOf[LossProfile] }
     override def get (i: Int): Object =
@@ -566,6 +687,11 @@ extends
     }
 }
 
+/**
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
+ */
 case class TieLine
 (
     override val sup: IdentifiedObject,
@@ -577,7 +703,18 @@ case class TieLine
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TieLine] }
     override def get (i: Int): Object =
@@ -627,6 +764,9 @@ extends
 /**
  * A corridor containing one or more rights of way
  * @param sup Reference to the superclass object.
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class TransmissionCorridor
 (
@@ -635,7 +775,18 @@ case class TransmissionCorridor
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[TransmissionCorridor] }
     override def get (i: Int): Object =
@@ -675,6 +826,9 @@ extends
  * A collection of transmission lines that are close proximity to each other.
  * @param sup Reference to the superclass object.
  * @param TransmissionCorridor A transmission right-of-way is a member of a transmission corridor
+ * @group InfEnergyScheduling
+ * @groupname InfEnergyScheduling Package InfEnergyScheduling
+ * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  */
 case class TransmissionRightOfWay
 (
@@ -684,7 +838,18 @@ case class TransmissionRightOfWay
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
     override def copy (): Row = { clone ().asInstanceOf[TransmissionRightOfWay] }
     override def get (i: Int): Object =
