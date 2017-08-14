@@ -19,10 +19,10 @@ import ch.ninecode.cim.Parser
  *
  * Provides overridable functionality to:
  *
- * - access the typed superclass for each object (implemented as <code>null</code> in this trait)
- * - access the unique ID for each object
- * - act as a Row object for use in SQL DataFrames ([[length]], [[get]] and [[copy]]
- * - export the object as XML (implemented as <code>""</code> in this trait)
+ - access the typed superclass for each object (implemented as <code>null</code> in this trait)
+ - access the unique ID for each object
+ - act as a Row object for use in SQL DataFrames ([[length]], [[get]] and [[copy]]
+ - export the object as XML (implemented as <code>""</code> in this trait)
  *
  * @group Added
  * @groupname Added Classes added by CIMReader

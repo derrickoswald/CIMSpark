@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * An abstract class for state variables.
+ *
  * @param sup Reference to the superclass object.
  * @group StateVariables
  * @groupname StateVariables Package StateVariables
@@ -70,6 +71,7 @@ extends
 /**
  * The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.
  * The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
+ *
  * @param sup Reference to the superclass object.
  * @param pInjection The active power injected into the bus in addition to injections from equipment terminals.
  *        Positive sign means injection into the TopologicalNode (bus).
@@ -148,6 +150,7 @@ extends
 /**
  * State variable for power flow.
  * Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.
+ *
  * @param sup Reference to the superclass object.
  * @param p The active power flow.
  *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
@@ -225,6 +228,7 @@ extends
 
 /**
  * State variable for the number of sections in service for a shunt compensator.
+ *
  * @param sup Reference to the superclass object.
  * @param sections The number of sections in service as a continous variable.
  *        To get integer value scale with ShuntCompensator.bPerSection.
@@ -296,6 +300,7 @@ extends
 
 /**
  * State variable for status.
+ *
  * @param sup Reference to the superclass object.
  * @param inService The in service status as a result of topology processing.
  * @param ConductingEquipment The conducting equipment associated with the status state variable.
@@ -367,6 +372,7 @@ extends
 /**
  * State variable for transformer tap step.
  * This class is to be used for taps of LTC (load tap changing) transformers, not fixed tap transformers.
+ *
  * @param sup Reference to the superclass object.
  * @param position The floating point tap position.
  *        This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions.
@@ -438,6 +444,7 @@ extends
 
 /**
  * State variable for voltage.
+ *
  * @param sup Reference to the superclass object.
  * @param angle The voltage angle of the topological node complex voltage with respect to system reference.
  * @param v The voltage magnitude of the topological node.

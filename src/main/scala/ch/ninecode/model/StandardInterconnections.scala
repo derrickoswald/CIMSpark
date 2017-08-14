@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
+ *
  * @param sup Reference to the superclass object.
  * @param remoteSignalType Type of input signal.
  * @param DiscontinuousExcitationControlDynamics Discontinuous excitation control model using this remote input signal.

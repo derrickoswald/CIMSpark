@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Common representation for reading values.
  * Note that a reading value may have multiple qualities, as produced by various systems ('ReadingQuality.source').
+ *
  * @param sup Reference to the superclass object.
  * @param reportedDateTime (used only when there are detailed auditing requirements) Date and time at which the reading was first delivered to the metering system.
  * @param source System that originally supplied the reading (e.g., customer, AMI system, handheld reading system, another enterprise system, etc.).
@@ -90,6 +91,7 @@ extends
 /**
  * A single path for the collection or reporting of register values over a period of time.
  * For example, a register which measures forward energy can have two channels, one providing bulk quantity readings and the other providing interval readings of a fixed interval size.
+ *
  * @param sup Reference to the superclass object.
  * @param isVirtual If true, the data is being calculated by an enterprise system rather than metered directly.
  * @param ReadingType Reading type for register values reported/collected by this channel.
@@ -165,6 +167,7 @@ extends
 
 /**
  * Communication function of communication equipment or a device such as a meter.
+ *
  * @param sup Reference to the superclass object.
  * @param amrAddress Communication ID number (e.g. serial number, IP address, telephone number, etc.) of the AMR module which serves this meter.
  * @param amrRouter Communication ID number (e.g. port number, serial number, data collector ID, etc.) of the parent device associated to this AMR module.
@@ -251,6 +254,7 @@ extends
 /**
  * An asset having communications capabilities that can be paired with a meter or other end device to provide the device with communication ability, through associated communication function.
  * An end device that has communications capabilities through embedded hardware can use that function directly (without the communication module), or combine embedded communication function with additional communication functions provided through an external communication module (e.g. zigbee).
+ *
  * @param sup Reference to the superclass object.
  * @param amrSystem Automated meter reading (AMR) system communicating with this com module.
  * @param supportsAutonomousDst If true, autonomous daylight saving time (DST) function is supported.
@@ -326,6 +330,7 @@ extends
 
 /**
  * Appliance controlled with a PAN device control.
+ *
  * @param sup Reference to the superclass object.
  * @param isElectricVehicle True if the appliance is an electric vehicle.
  * @param isExteriorLighting True if the appliance is exterior lighting.
@@ -446,6 +451,7 @@ extends
 
 /**
  * Demand response program.
+ *
  * @param sup Reference to the superclass object.
  * @param typ Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
  *        Note that possible types change a lot and it would be impossible to enumerate them all.
@@ -533,6 +539,7 @@ extends
 /**
  * Asset container that performs one or more end device functions.
  * One type of end device is a meter which can perform metering, load management, connect/disconnect, accounting functions, etc. Some end devices, such as ones monitoring and controlling air conditioners, refrigerators, pool pumps may be connected to a meter. All end devices may have communication capability defined by the associated communication function(s). An end device may be owned by a consumer, a service provider, utility or otherwise.
+ *
  * @param sup Reference to the superclass object.
  * @param amrSystem Automated meter reading (AMR) or other communication system responsible for communications to this end device.
  * @param installCode Installation code.
@@ -639,6 +646,7 @@ extends
 
 /**
  * Action/command performed by an end device on a device other than the end device.
+ *
  * @param sup Reference to the superclass object.
  * @param command Command text.
  * @param duration Amount of time the action of this control is to remain active.
@@ -724,6 +732,7 @@ extends
 
 /**
  * Inherent capabilities of an end device (i.e., the functions it supports).
+ *
  * @param sup Reference to the superclass object.
  * @param autonomousDst True if autonomous DST (daylight saving time) function is supported.
  * @param communication True if communication function is supported.
@@ -874,6 +883,7 @@ extends
 
 /**
  * Instructs an end device (or an end device group) to perform a specified action.
+ *
  * @param sup Reference to the superclass object.
  * @param drProgramLevel Level of a demand response program request, where 0=emergency.
  *        Note: Attribute is not defined on DemandResponseProgram as it is not its inherent property (it serves to control it).
@@ -1010,6 +1020,7 @@ extends
 /**
  * Detailed description for a control produced by an end device.
  * Values in attributes allow for creation of recommended codes to be used for identifying end device controls as follows: &lt;type&gt;.&lt;domain&gt;.&lt;subDomain&gt;.&lt;eventOrAction&gt;.
+ *
  * @param sup Reference to the superclass object.
  * @param domain High-level nature of the control.
  * @param eventOrAction The most specific part of this control type.
@@ -1092,6 +1103,7 @@ extends
 
 /**
  * Event detected by a device function associated with the end device.
+ *
  * @param sup Reference to the superclass object.
  * @param issuerID Unique identifier of the business entity originating an end device control.
  * @param issuerTrackingID Identifier assigned by the initiator (e.g. retail electric provider) of an end device control action to uniquely identify the demand response event, text message, or other subject of the control action.
@@ -1188,6 +1200,7 @@ extends
 
 /**
  * Name-value pair, specific to end device events.
+ *
  * @param sup Reference to the superclass object.
  * @param name Name.
  * @param value Value, including unit information.
@@ -1264,6 +1277,7 @@ extends
 /**
  * Detailed description for an event produced by an end device.
  * Values in attributes allow for creation of recommended codes to be used for identifying end device events as follows: &lt;type&gt;.&lt;domain&gt;.&lt;subDomain&gt;.&lt;eventOrAction&gt;.
+ *
  * @param sup Reference to the superclass object.
  * @param domain High-level nature of the event.
  *        By properly classifying events by a small set of domain codes, a system can more easily run reports based on the types of events that have occurred or been received.
@@ -1347,6 +1361,7 @@ extends
 
 /**
  * Function performed by an end device such as a meter, communication equipment, controllers, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param enabled True if the function is enabled.
  * @param EndDevice End device that performs this function.
@@ -1418,6 +1433,7 @@ extends
 /**
  * Abstraction for management of group communications within a two-way AMR system or the data for a group of related end devices.
  * Commands can be issued to all of the end devices that belong to the group using a defined group address and the underlying AMR communication infrastructure.
+ *
  * @param sup Reference to the superclass object.
  * @param typ Type of this group.
  * @param EndDeviceControls All end device controls sending commands to this end device group.
@@ -1493,6 +1509,7 @@ extends
 
 /**
  * End device data.
+ *
  * @param sup Reference to the superclass object.
  * @param capability Inherent capabilities of the device (i.e., the functions it supports).
  * @param isSolidState If true, this is a solid state end device (as opposed to a mechanical or electromechanical device).
@@ -1578,6 +1595,7 @@ extends
 
 /**
  * Timing for the control actions of end devices.
+ *
  * @param sup Reference to the superclass object.
  * @param duration Duration of the end device control action or the business event that is the subject of the end device control.
  * @param durationIndefinite True if 'duration' is indefinite.
@@ -1659,6 +1677,7 @@ extends
 /**
  * Time sequence of readings of the same reading type.
  * Contained interval readings may need conversion through the application of an offset and a scalar defined in associated pending.
+ *
  * @param sup Reference to the superclass object.
  * @param IntervalReadings Interval reading contained in this block.
  * @param MeterReading Meter reading containing this interval block.
@@ -1740,6 +1759,7 @@ extends
 /**
  * Data captured at regular intervals of time.
  * Interval data could be captured as incremental data, absolute data, or relative data. The source for the data is usually a tariff quantity or an engineering quantity. Data is typically captured in time-tagged, uniform, fixed-length intervals of 5 min, 10 min, 15 min, 30 min, or 60 min.
+ *
  * @param sup Reference to the superclass object.
  * @group Metering
  * @groupname Metering Package Metering
@@ -1802,6 +1822,7 @@ extends
 /**
  * Physical asset that performs the metering role of the usage point.
  * Used for measuring consumption and detection of events.
+ *
  * @param sup Reference to the superclass object.
  * @param formNumber Meter form designation per ANSI C12.10 or other applicable standard.
  *        An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement.
@@ -1868,6 +1889,7 @@ extends
 
 /**
  * Multiplier applied at the meter.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of multiplier.
  * @param value Multiplier value.
@@ -1943,6 +1965,7 @@ extends
 
 /**
  * Set of values obtained from the meter.
+ *
  * @param sup Reference to the superclass object.
  * @param isCoincidentTrigger If true, this meter reading is the meter reading for which other coincident meter readings are requested or provided.
  * @param valuesInterval Date and time interval of the data items contained within this meter reading.
@@ -2028,6 +2051,7 @@ extends
 
 /**
  * Work involving meters.
+ *
  * @param sup Reference to the superclass object.
  * @param Meter Meter on which this non-replacement work is performed.
  * @param OldMeter Old meter replaced by this work.
@@ -2103,6 +2127,7 @@ extends
 
 /**
  * A specification of the metering requirements for a particular point within a network.
+ *
  * @param sup Reference to the superclass object.
  * @param reason Reason for this metrology requirement being specified.
  * @param UsagePoints All usage points having this metrology requirement.
@@ -2173,6 +2198,7 @@ extends
 
 /**
  * PAN control used to issue action/command to PAN devices during a demand response/load control event.
+ *
  * @param sup Reference to the superclass object.
  * @param appliance Appliance being controlled.
  * @param avgLoadAdjustment Used to define a maximum energy usage limit as a percentage of the client implementations specific average energy usage.
@@ -2301,6 +2327,7 @@ extends
 
 /**
  * PAN action/command used to issue the displaying of text messages on PAN devices.
+ *
  * @param sup Reference to the superclass object.
  * @param confirmationRequired If true, the requesting entity (e.g. retail electric provider) requires confirmation of the successful display of the text message.
  * @param priority Priority associated with the text message to be displayed.
@@ -2381,6 +2408,7 @@ extends
 
 /**
  * PAN action/command used to issue pricing information to a PAN device.
+ *
  * @param sup Reference to the superclass object.
  * @param providerID Unique identifier for the commodity provider.
  * @group Metering
@@ -2446,6 +2474,7 @@ extends
 
 /**
  * Detail for a single price command/action.
+ *
  * @param sup Reference to the superclass object.
  * @param alternateCostDelivered Alternative measure of the cost of the energy consumed.
  *        An example might be the emissions of CO2 for each kWh of electricity consumed providing a measure of the environmental cost.
@@ -2579,6 +2608,7 @@ extends
 /**
  * When present, a scalar conversion that needs to be applied to every IntervalReading.value contained in IntervalBlock.
  * This conversion results in a new associated ReadingType, reflecting the true dimensions of IntervalReading values after the conversion.
+ *
  * @param sup Reference to the superclass object.
  * @param multiplyBeforeAdd Whether scalars should be applied before adding the 'offset'.
  * @param offset (if applicable) Offset to be added as well as multiplication using scalars.
@@ -2670,6 +2700,7 @@ extends
 
 /**
  * Rational number = 'numerator' / 'denominator'.
+ *
  * @param sup Reference to the superclass object.
  * @param denominator Denominator.
  *        Value 1 indicates the number is a simple integer.
@@ -2742,6 +2773,7 @@ extends
 /**
  * Specific value measured by a meter or other asset, or calculated by a system.
  * Each Reading is associated with a specific ReadingType.
+ *
  * @param sup Reference to the superclass object.
  * @param reason Reason for this reading being taken.
  * @param MeterReadings All meter readings (sets of values) containing this reading value.
@@ -2817,6 +2849,7 @@ extends
 
 /**
  * Interharmonics are represented as a rational number 'numerator' / 'denominator', and harmonics are represented using the same mechanism and identified by 'denominator'=1.
+ *
  * @param sup Reference to the superclass object.
  * @param denominator Interharmonic denominator.
  *        Value 0 means not applicable. Value 2 is used in combination with 'numerator'=1 to represent interharmonic 1/2. Finally, value 1 indicates the harmonic of the order specified with 'numerator'.
@@ -2890,6 +2923,7 @@ extends
 /**
  * Quality of a specific reading value or interval reading value.
  * Note that more than one quality may be applicable to a given reading. Typically not used unless problems or unusual conditions occur (i.e., quality for each reading is assumed to be good unless stated otherwise in associated reading quality type). It can also be used with the corresponding reading quality type to indicate that the validation has been performed and succeeded.
+ *
  * @param sup Reference to the superclass object.
  * @param comment Elaboration on the quality code.
  * @param source System acting as the source of the quality code.
@@ -2976,6 +3010,7 @@ extends
 /**
  * Detailed description for a quality of a reading value, produced by an end device or a system.
  * Values in attributes allow for creation of the recommended codes to be used for identifying reading value quality codes as follows: &lt;systemId&gt;.&lt;category&gt;.&lt;subCategory&gt;.
+ *
  * @param sup Reference to the superclass object.
  * @param category High-level nature of the reading value quality.
  * @param subCategory More specific nature of the reading value quality, as a further sub-categorisation of 'category'.
@@ -3052,6 +3087,7 @@ extends
 /**
  * Detailed description for a type of a reading value.
  * Values in attributes allow for the creation of recommended codes to be used for identifying reading value types as follows: &lt;macroPeriod&gt;.&lt;aggregate&gt;.&lt;measuringPeriod&gt;.&lt;accumulation&gt;.&lt;flowDirection&gt;.&lt;commodity&gt;.&lt;measurementKind&gt;.&lt;interharmonic.numerator&gt;.&lt;interharmonic.denominator&gt;.&lt;argument.numerator&gt;.&lt;argument.denominator&gt;.&lt;tou&gt;.&lt;cpp&gt;.&lt;consumptionTier&gt;.&lt;phases&gt;.&lt;multiplier&gt;.&lt;unit&gt;.&lt;currency&gt;.
+ *
  * @param sup Reference to the superclass object.
  * @param accumulation Accumulation behaviour of a reading over time, usually 'measuringPeriod', to be used with individual endpoints (as opposed to 'macroPeriod' and 'aggregate' that are used to describe aggregations of data from individual endpoints).
  * @param aggregate Salient attribute of the reading data aggregated from individual endpoints.
@@ -3210,6 +3246,7 @@ extends
 
 /**
  * A device that indicates or records units of the commodity or other quantity measured.
+ *
  * @param sup Reference to the superclass object.
  * @param isVirtual If true, the data it produces is  calculated or measured by a device other than a physical end device/meter.
  *        Otherwise, any data streams it produces are measured by the hardware of the end device/meter itself.
@@ -3302,6 +3339,7 @@ extends
 
 /**
  * Multiplier applied at the usage point.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of multiplier.
  * @param value Multiplier value.
@@ -3378,6 +3416,7 @@ extends
 /**
  * Simple end device function distinguished by 'kind'.
  * Use this class for instances that cannot be represented by another end device function specialisations.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of this function.
  * @group Metering
@@ -3444,6 +3483,7 @@ extends
 /**
  * Logical or physical point in the network to which readings or events may be attributed.
  * Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.
+ *
  * @param sup Reference to the superclass object.
  * @param amiBillingReady Tracks the lifecycle of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.
  * @param checkBilling True if as a result of an inspection or otherwise, there is a reason to suspect that a previous billing may have been performed with erroneous data.
@@ -3627,6 +3667,7 @@ extends
 /**
  * Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points.
  * Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.
+ *
  * @param sup Reference to the superclass object.
  * @param typ Type of this group.
  * @param UsagePoints All usage points in this group.
@@ -3697,6 +3738,7 @@ extends
 
 /**
  * Location of an individual usage point.
+ *
  * @param sup Reference to the superclass object.
  * @param accessMethod Method for the service person to access this usage point location.
  *        For example, a description of where to obtain a key if the facility is unmanned and secured.

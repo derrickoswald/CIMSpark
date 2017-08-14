@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * The version of dependencies description among top level subpackages of the combined CIM model.
  * This is not the same as the combined packages version.
+ *
  * @param sup Reference to the superclass object.
  * @param date Date of last change to the main package dependencies in format YYYY-MM-DD.
  *        This is updated when the version attribute is updated.

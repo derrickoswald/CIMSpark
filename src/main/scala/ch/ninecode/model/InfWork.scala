@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * A permit is sometimes needed to provide legal access to land or equipment.
  * For example, local authority permission for road works.
+ *
  * @param sup Reference to the superclass object.
  * @param applicationNumber Permit application number that is used by municipality, state, province, etc.
  * @param effectiveDate Date that permit became official.
@@ -105,6 +106,7 @@ extends
 /**
  * An assignment is given to an ErpPerson, Crew, Organisation, Equipment Item, Tool, etc. and may be used to perform Work, WorkTasks, Procedures, etc.
  * TimeSchedules may be set up directly for Assignments or indirectly via the associated WorkTask. Note that these associations are all inherited through the recursive relationship on Document.
+ *
  * @param sup Reference to the superclass object.
  * @param effectivePeriod Period between the assignment becoming effective and its expiration.
  * @group InfWork
@@ -180,6 +182,7 @@ extends
 
 /**
  * Business justification for capital expenditures, usually addressing operations and maintenance costs as well.
+ *
  * @param sup Reference to the superclass object.
  * @param corporateCode A codified representation of the business case (i.e., codes for highway relocation, replace substation transformers, etc.).
  * @group InfWork
@@ -255,6 +258,7 @@ extends
 
 /**
  * Allowed actions: Install, Remove, Transfer, Abandon, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfWork
@@ -330,6 +334,7 @@ extends
 
 /**
  * Compatible unit for various types of assets such as transformers switches, substation fences, poles, etc..
+ *
  * @param sup Reference to the superclass object.
  * @param quantity Quantity of the type asset within the CU.
  * @param status <em>undocumented</em>
@@ -420,6 +425,7 @@ extends
 
 /**
  * Compatible unit contractor item.
+ *
  * @param sup Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
@@ -510,6 +516,7 @@ extends
 
 /**
  * A Compatible Unit Group identifies a set of compatible units which may be jointly utilized for estimating and designating jobs.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ChildCUGroups <em>undocumented</em>
@@ -590,6 +597,7 @@ extends
 
 /**
  * Labor code associated with various compatible unit labor items.
+ *
  * @param sup Reference to the superclass object.
  * @param code Labor code.
  * @param status <em>undocumented</em>
@@ -670,6 +678,7 @@ extends
 
 /**
  * Compatible unit labor item.
+ *
  * @param sup Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param laborDuration Estimated time to perform work.
@@ -776,6 +785,7 @@ extends
 /**
  * Compatible unit of a consumable supply item.
  * For example, nuts, bolts, brackets, glue, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param corporateCode Code for material.
  * @param quantity Quantity of the TypeMaterial for this CU, used to determine estimated costs based on a per unit cost or a cost per unit length specified in the TypeMaterial.
@@ -871,6 +881,7 @@ extends
 
 /**
  * Compatible unit for various types of WorkEquipmentAssets, including vehicles.
+ *
  * @param sup Reference to the superclass object.
  * @param equipCode The equipment type code.
  * @param rate Standard usage rate for the type of vehicle.
@@ -966,6 +977,7 @@ extends
 
 /**
  * Capabilities of a crew.
+ *
  * @param sup Reference to the superclass object.
  * @param performanceFactor Capability performance factor.
  * @param status <em>undocumented</em>
@@ -1071,6 +1083,7 @@ extends
 
 /**
  * A pre-planned job model containing labor, material, and accounting requirements for standardized job planning.
+ *
  * @param sup Reference to the superclass object.
  * @param estCost Estimated total cost for perfoming CU.
  * @param quantity The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
@@ -1186,6 +1199,7 @@ extends
 
 /**
  * This is to specify the various condition factors for a design that may alter the cost estimate or the allocation.
+ *
  * @param sup Reference to the superclass object.
  * @param cfValue The actual value of the condition factor, such as labor flat fee or percentage.
  * @param kind Kind of this condition factor.
@@ -1271,6 +1285,7 @@ extends
 
 /**
  * Contractor information for work task.
+ *
  * @param sup Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
@@ -1377,6 +1392,7 @@ extends
 /**
  * A categorization for resources, often costs, in accounting transactions.
  * Examples include: material components, building in service, coal sales, overhead, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param amountAssignable True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).
  * @param code A codified representation of the resource element.
@@ -1483,6 +1499,7 @@ extends
 /**
  * A design for consideration by customers, potential customers, or internal work.
  * Note that the Version of design is the revision attribute that is inherited from Document.
+ *
  * @param sup Reference to the superclass object.
  * @param costEstimate Estimated cost (not price) of design.
  * @param kind Kind of this design.
@@ -1584,6 +1601,7 @@ extends
 /**
  * A logical part of the design (e.g., pole and all equipment on a pole).
  * This includes points and spans.
+ *
  * @param sup Reference to the superclass object.
  * @param spanLength The legth of the span from the previous pole to this pole.
  * @param status <em>undocumented</em>
@@ -1669,6 +1687,7 @@ extends
 
 /**
  * Compatible unit at a given design location.
+ *
  * @param sup Reference to the superclass object.
  * @param cuAccount A code that helps direct accounting (capital, expense, or accounting treatment).
  * @param cuAction A code that instructs the crew what action to perform.
@@ -1801,6 +1820,7 @@ extends
 /**
  * Questions and answers associated with a type of document for purposes of clarification.
  * Questions may be predefined or ad hoc.
+ *
  * @param sup Reference to the superclass object.
  * @param answer Answer to question.
  * @param answerDateTime The date and time the quesiton was answered.
@@ -1907,6 +1927,7 @@ extends
 
 /**
  * Labor used for work order.
+ *
  * @param sup Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param cost Total cost for labor.
@@ -2014,6 +2035,7 @@ extends
 /**
  * Various cost items that are not associated with compatible units.
  * Examples include rental equipment, labor, materials, contractor costs, permits - anything not covered in a CU.
+ *
  * @param sup Reference to the superclass object.
  * @param account This drives the accounting treatment for this misc. item.
  * @param costPerUnit The cost per unit for this misc. item.
@@ -2129,6 +2151,7 @@ extends
 
 /**
  * This document provides information for non-standard items like customer contributions (e.g., customer digs trench), vouchers (e.g., credit), and contractor bids.
+ *
  * @param sup Reference to the superclass object.
  * @param amount The projected cost for this item.
  * @group InfWork
@@ -2204,6 +2227,7 @@ extends
 
 /**
  * A set of tasks is required to implement a design.
+ *
  * @param sup Reference to the superclass object.
  * @param Design <em>undocumented</em>
  * @param OverheadCost <em>undocumented</em>
@@ -2294,6 +2318,7 @@ extends
 
 /**
  * A request for other utilities to mark their underground facilities prior to commencement of construction and/or maintenance.
+ *
  * @param sup Reference to the superclass object.
  * @param explosivesUsed True if explosives have been or are planned to be used.
  * @param markedIndicator True if work location has been marked, for example for a dig area.
@@ -2379,6 +2404,7 @@ extends
 
 /**
  * Overhead cost applied to work order.
+ *
  * @param sup Reference to the superclass object.
  * @param code Overhead code.
  * @param cost The overhead cost to be applied.
@@ -2465,6 +2491,7 @@ extends
 /**
  * A collection of related work.
  * For construction projects and maintenance projects, multiple phases may be performed.
+ *
  * @param sup Reference to the superclass object.
  * @param budget Overall project budget.
  * @param BusinessCase <em>undocumented</em>
@@ -2555,6 +2582,7 @@ extends
 
 /**
  * Unit of property for reporting purposes.
+ *
  * @param sup Reference to the superclass object.
  * @param accountingUsage A code that identifies appropriate type of property accounts such as distribution, streetlgihts, communications.
  * @param activityCode Activity code identifies a specific and distinguishable work action.
@@ -2651,6 +2679,7 @@ extends
 
 /**
  * Certain skills are required and must be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
+ *
  * @param sup Reference to the superclass object.
  * @param qualificationID Qualification identifier.
  * @param Specifications <em>undocumented</em>
@@ -2732,6 +2761,7 @@ extends
 /**
  * Special requirements and/or regulations may pertain to certain types of assets or work.
  * For example, fire protection and scaffolding.
+ *
  * @param sup Reference to the superclass object.
  * @param referenceNumber External reference to regulation, if applicable.
  * @group InfWork
@@ -2807,6 +2837,7 @@ extends
 
 /**
  * The patterns of shifts worked by people or crews.
+ *
  * @param sup Reference to the superclass object.
  * @param assignmentType Type of assignement intended to be worked on this shift, for example, temporary, standard, etc.
  * @param cycleCount Number of cycles for a temporary shift.
@@ -2898,6 +2929,7 @@ extends
 /**
  * Documentation for a generic material item that may be used for design, work and other purposes.
  * Any number of MaterialItems manufactured by various vendors may be used to perform this TypeMaterial.
+ *
  * @param sup Reference to the superclass object.
  * @param costType The type of cost to which this Material Item belongs.
  * @param estUnitCost The estimated unit cost of this type of material, either for a unit cost or cost per unit length.
@@ -2990,6 +3022,7 @@ extends
 /**
  * The way material and assets are used to perform a certain type of work task.
  * The way is described in text in the inheritied description attribute.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param WorkTask <em>undocumented</em>
@@ -3070,6 +3103,7 @@ extends
 
 /**
  * A collection of all of the individual cost items collected from multiple sources.
+ *
  * @param sup Reference to the superclass object.
  * @param amount Amount in designated currency for work, either a total or an individual element.
  *        As defined in the attribute "type," multiple instances are applicable to each work for: planned cost, actual cost, authorized cost, budgeted cost, forecasted cost, other.
@@ -3197,6 +3231,7 @@ extends
 /**
  * A roll up by cost type for the entire cost of a work order.
  * For example, total labor.
+ *
  * @param sup Reference to the superclass object.
  * @param WorkCostDetail <em>undocumented</em>
  * @group InfWork
@@ -3273,6 +3308,7 @@ extends
 /**
  * Shadow class for Document, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
+ *
  * @param sup Reference to the superclass object.
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -3344,6 +3380,7 @@ extends
 
 /**
  * A pre-defined set of work steps for a given type of work.
+ *
  * @param sup Reference to the superclass object.
  * @param sequenceNumber Used to define dependencies of each work flow step, which is for the instance of WorkTask associated with a given instance of WorkFlow.
  * @param status <em>undocumented</em>
@@ -3430,6 +3467,7 @@ extends
 /**
  * Shadow class for IdentifiedObject, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
+ *
  * @param sup Reference to the superclass object.
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -3501,6 +3539,7 @@ extends
 
 /**
  * A type of ActivityRecord that records information about the status of an item, such as a Work or WorkTask, at a point in time.
+ *
  * @param sup Reference to the superclass object.
  * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
  * @group InfWork

@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Model of results of market clearing with respect to  Ancillary Service products
+ *
  * @param sup Reference to the superclass object.
  * @param MarketCaseClearing <em>undocumented</em>
  * @group MarketResults
@@ -73,6 +74,7 @@ extends
 
 /**
  * Model various charges to support billing and settlement of
+ *
  * @param sup Reference to the superclass object.
  * @param calculationLevel Level in charge calculation order.
  * @param configVersion The version of configuration of calculation logic in the settlement.
@@ -228,6 +230,7 @@ extends
 
 /**
  * A type of profile for financial charges
+ *
  * @param sup Reference to the superclass object.
  * @param frequency The calculation frequency, daily or monthly.
  * @param numberInterval The number of intervals in the profile data.
@@ -324,6 +327,7 @@ extends
 
 /**
  * Model of various charges associated with an energy profile to support billing and settlement
+ *
  * @param sup Reference to the superclass object.
  * @param sequence The sequence number of the profile.
  * @param timeStamp The date and time of an interval.
@@ -409,6 +413,7 @@ extends
 
 /**
  * Models results of market clearing which call for commitment of units.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -471,6 +476,7 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Startup/Shutdown commitment results.
  * This information is relevant to all markets.
+ *
  * @param sup Reference to the superclass object.
  * @param commitmentType the type of UC status (self commitment, ISO commitment, or SCUC commitment)
  * @param instructionCost Total cost associated with changing the status of the resource.
@@ -589,6 +595,7 @@ extends
 
 /**
  * Groups all items associated with Binding Constraints and Constraint Violations per interval and market.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -651,6 +658,7 @@ extends
 /**
  * Provides the Market results for the constraint processing for either the DAM or RTM.
  * The data includes the constraint type (binding or violated), the solved value for the constraint, and the associated shadow price.
+ *
  * @param sup Reference to the superclass object.
  * @param baseFlow Branch base Power Flow.
  * @param bindingLimit MW Limit.
@@ -805,6 +813,7 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Dispatch Operating Point (DOP) results on a Dispatch interval.
  * This information is only relevant to the RT interval market.
+ *
  * @param sup Reference to the superclass object.
  * @param mwDOP Dispatched Operating Point (MW)
  * @param plotPriority A value used to establish priority of the DOP when plotting.
@@ -908,6 +917,7 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Dispatch Operating Target (DOT) results on a Dispatch interval.
  * This information is only relevant to the RT interval market.
+ *
  * @param sup Reference to the superclass object.
  * @param actualRampRate Actual ramp rate.
  * @param compliantIndicator Flag indicating whether or not the resource was in compliance with the instruction (plus/minus 10%).
@@ -1079,6 +1089,7 @@ extends
 
 /**
  * Model of ex-post calcultion of MW losses.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1141,6 +1152,7 @@ extends
 /**
  * Model results of ex-post calculation of MW losses.
  * Summarizes loss in two categories losses on the the extra high voltage transmission and total losses. Calculated for each subcontrol area.
+ *
  * @param sup Reference to the superclass object.
  * @param ehvLossMW EHV MW losses in the company
  *        Attribute Usage: Information purposes - Output of LPA engine.
@@ -1223,6 +1235,7 @@ extends
 
 /**
  * Model of ex-post calculation of cleared MW on a regional basis
+ *
  * @param sup Reference to the superclass object.
  * @param ExPostMarketRegionResults <em>undocumented</em>
  * @group MarketResults
@@ -1289,6 +1302,7 @@ extends
 /**
  * Model of expost calculation of cleared MW on a region basis.
  * Includes cleared price
+ *
  * @param sup Reference to the superclass object.
  * @param exPostClearedPrice <em>undocumented</em>
  * @param ExPostMarketRegion <em>undocumented</em>
@@ -1364,6 +1378,7 @@ extends
 
 /**
  * Model of ex-post pricing of nodes
+ *
  * @param sup Reference to the superclass object.
  * @param energyPrice market energy price
  * @group MarketResults
@@ -1430,6 +1445,7 @@ extends
 /**
  * Model of ex-post pricing of nodes.
  * Includes LMP information, pnode based.
+ *
  * @param sup Reference to the superclass object.
  * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW; congestion component of the hourly LMP at a specific pricing node
  *        Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly congestion component of LMP for each pricing node.
@@ -1518,6 +1534,7 @@ extends
 
 /**
  * Model of ex-post pricing of resources.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1580,6 +1597,7 @@ extends
 /**
  * Model of ex-post pricing of resources contains components of LMPs: energy, congestion, loss.
  * Resource based.
+ *
  * @param sup Reference to the superclass object.
  * @param congestionLMP LMP component in USD (deprecated)
  * @param desiredMW Desired output of unit
@@ -1697,6 +1715,7 @@ extends
 /**
  * Model of clearing result of the market run at the market level.
  * Identifies interval
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1758,6 +1777,7 @@ extends
 
 /**
  * Provides the adjusted load forecast value on a load forecast zone basis.
+ *
  * @param sup Reference to the superclass object.
  * @param loadForecast Load Prediction/Forecast (MW), by Time Period (5', 10', 15')
  * @param totalLoad Amount of load in the control zone
@@ -1846,6 +1866,7 @@ extends
 /**
  * Model of market clearing, relating to commitment instructions.
  * Identifies interval
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1908,6 +1929,7 @@ extends
 /**
  * Model of market clearing, related to Dispatch Operating Point.
  * Identifies interval
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1970,6 +1992,7 @@ extends
 /**
  * Model of market clearing, related to Dispatch Operating Target (model of anticipatory dispatch).
  * Identifies interval
+ *
  * @param sup Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
@@ -2041,6 +2064,7 @@ extends
 /**
  * Provides the necessary information (on a resource basis) to capture the Startup/Shutdown instruction results.
  * This information is relevant to the DA Market (RUC only) as well as the RT Market (HASP, Pre-dispatch, and Interval).
+ *
  * @param sup Reference to the superclass object.
  * @param bindingDOT <em>undocumented</em>
  * @param bindingInstruction <em>undocumented</em>
@@ -2165,6 +2189,7 @@ extends
 /**
  * Model of load following capabilities that are entered by operators on a temporary basis.
  * Related to Registered Resources in Metered Subsystems
+ *
  * @param sup Reference to the superclass object.
  * @param dataEntryTimeStamp Time the data entry was performed
  * @param tempLoadFollowingDownManualCap temporarily manually entered LFD capacity
@@ -2260,6 +2285,7 @@ extends
 
 /**
  * RT only and is published on 5 minute intervals for the previous RT time interval results.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -2321,6 +2347,7 @@ extends
 
 /**
  * Provides the MW loss for RUC Zones, subcontrol areas, and the total loss.
+ *
  * @param sup Reference to the superclass object.
  * @param lossMW <em>undocumented</em>
  * @param HostControlArea <em>undocumented</em>
@@ -2407,6 +2434,7 @@ extends
 /**
  * Model of results of Market Power tests, and possible mitigation.
  * Interval based
+ *
  * @param sup Reference to the superclass object.
  * @param mitigationOccuredFlag <em>undocumented</em>
  * @param LMPMFinalFlag <em>undocumented</em>
@@ -2482,6 +2510,7 @@ extends
 
 /**
  * Model of results of Market Power tests, gives status of resource for the associated interval
+ *
  * @param sup Reference to the superclass object.
  * @param resourceStatus Interval Test Status
  *        'N' - not applicable
@@ -2559,6 +2588,7 @@ extends
 /**
  * Provides the outcome and margin percent (as appropriate) result data for the MPM tests.
  * There are relationships to Zone for Designated Congestion Area Tests, CurveSchedData for bid segment tests, to the SubControlArea for the system wide level tests, and Pnodes for the LMPM impact tests.
+ *
  * @param sup Reference to the superclass object.
  * @param marginPercent Used to show the Margin % result of the Impact test
  * @param outcome The results of the test.
@@ -2646,6 +2676,7 @@ extends
 /**
  * Provides all Region Ancillary Service results for the DA and RT markets.
  * The specific data is commodity type (Regulation Up, Regulation Down, Spinning Reserve, Non-spinning Reserve, or Total Up reserves) based for the cleared MW, cleared price, and total capacity required for the region.
+ *
  * @param sup Reference to the superclass object.
  * @param clearedMW Cleared generation Value in MW.
  *        For AS, this value is clearedMW = AS Total.  For AS, clearedMW - selfScheduleMW = AS Procured
@@ -2794,6 +2825,7 @@ extends
 /**
  * This class holds elements that are single values for the entire market time horizon.
  * That is, for the Day Ahead market, there is 1 value for each element, not hourly based.  Is a summary of the market run
+ *
  * @param sup Reference to the superclass object.
  * @param ancillarySvcCost Total  AS Cost (i.e., payment) (\$) over the time horizon
  * @param contingentOperatingResAvail Global Contingent Operating Reserve Availability Indicator (Yes/No)
@@ -2895,6 +2927,7 @@ extends
 /**
  * A statement is a roll up of statement line items.
  * Each statement along with its line items provide the details of specific charges at any given time.  Used by Billing and Settlement
+ *
  * @param sup Reference to the superclass object.
  * @param end The end of a bill period.
  * @param referenceNumber The version number of previous statement (in the case of true up).
@@ -2980,6 +3013,7 @@ extends
 
 /**
  * An individual line item on a statement.
+ *
  * @param sup Reference to the superclass object.
  * @param currentAmount Current settlement amount.
  * @param currentISOAmount Current ISO settlement amount.
@@ -3150,6 +3184,7 @@ extends
 
 /**
  * Mitigated bid results posted for a given settlement period.
+ *
  * @param sup Reference to the superclass object.
  * @param Bid <em>undocumented</em>
  * @group MarketResults
@@ -3216,6 +3251,7 @@ extends
 /**
  * Model of market power mitigation through reference or mitigated bids.
  * Interval based.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -3278,6 +3314,7 @@ extends
 /**
  * Model of mitigated bid.
  * Indicates segment of piece-wise linear bid, that has been mitigated
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param segmentMW Mitigated bid segment MW value
@@ -3366,6 +3403,7 @@ extends
  * 1)Two sided charge transactions with or without ISO involvement (hence the ?pass thru?)
  * 2) Specific direct charges or payments that are calculated outside or provided directly to settlements
  * 3) Specific charge bill determinants that are externally supplied and used in charge calculations
+ *
  * @param sup Reference to the superclass object.
  * @param adjustedAmount <em>undocumented</em>
  * @param amount The charge amount of the product/service.
@@ -3557,6 +3595,7 @@ extends
 
 /**
  * Pricing node clearing results posted for a given settlement period.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -3619,6 +3658,7 @@ extends
 /**
  * Provides the total price, the cost component, the loss component, and the congestion component for Pnodes for the forward and real time markets.
  * There are several prices produced based on the run type (MPM, RUC, Pricing, or Scheduling/Dispatch).
+ *
  * @param sup Reference to the superclass object.
  * @param congestLMP Congestion component of Location Marginal Price (LMP) in monetary units per MW.
  * @param costLMP Cost component of Locational Marginal Pricing (LMP) in monetary units per MW.
@@ -3729,6 +3769,7 @@ extends
 
 /**
  * Indicates whether unit is a reliablity must run unit: required to be on to satisfy Grid Code Reliablitiy criteria, load demand, or voltage support.
+ *
  * @param sup Reference to the superclass object.
  * @param Bid <em>undocumented</em>
  * @group MarketResults
@@ -3794,6 +3835,7 @@ extends
 
 /**
  * RMR Operator's entry of the RMR requirement per market interval.
+ *
  * @param sup Reference to the superclass object.
  * @param manuallySchedRMRMw The lower of the original pre-dispatch or the AC run schedule (Also known as the RMR Reguirement) becomes the pre-dispatch value.
  * @param updateTimeStamp <em>undocumented</em>
@@ -3879,6 +3921,7 @@ extends
 
 /**
  * This class models the information about the RUC awards
+ *
  * @param sup Reference to the superclass object.
  * @param clearedPrice Marginal Price (\$/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
  * @param marketProductType major product type may include the following but not limited to:
@@ -3994,6 +4037,7 @@ extends
 /**
  * Models details of bid and offer market clearing.
  * Class indicates whether a contingency is active and whether the automatic dispatching system is active for this interval of the market solution
+ *
  * @param sup Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
@@ -4065,6 +4109,7 @@ extends
 /**
  * Model of market results, instruction for resource.
  * Contains details of award as attributes
+ *
  * @param sup Reference to the superclass object.
  * @param awardMW For DA Energy: Not Applicable;
  *        
@@ -4292,6 +4337,7 @@ extends
 /**
  * Model of market results, including cleaing result of resources.
  * Associated with ResourceDispatchResults.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -4354,6 +4400,7 @@ extends
 /**
  * The ResourceDispatchResults class provides market results that can be provided to a SC.
  * The specific data provided consists of several indicators such as contingency flags, blocked start up, and RMR dispatch. It also provides the projected overall and the regulating status of the resource.
+ *
  * @param sup Reference to the superclass object.
  * @param blockedDispatch Blocked Dispatch Indicator (Yes/No)
  * @param blockedPublishDOP Block sending DOP to ADS (Y/N)
@@ -4510,6 +4557,7 @@ extends
 
 /**
  * Model of market clearing results for resources that bid to follow load
+ *
  * @param sup Reference to the superclass object.
  * @param calcLoadFollowingMW weighted average for RTPD and RTCD and same for RTID
  * @param dispWindowHighLimt <em>undocumented</em>
@@ -4607,6 +4655,7 @@ extends
 /**
  * Model of Self Schedules Results.
  * Includes self schedule MW,and type of self schedule for each self schedule type included in total self schedule MW value found in ResourceAwardInstruction.
+ *
  * @param sup Reference to the superclass object.
  * @param selfSchedMW Cleared value for the specific self schedule type listed.
  * @param selfSchedType Self schedule breakdown type.
@@ -4682,6 +4731,7 @@ extends
 
 /**
  * Specifies a settlement run.
+ *
  * @param sup Reference to the superclass object.
  * @param tradeDate The trade date on which the settlement is run.
  * @param EnergyMarket <em>undocumented</em>
@@ -4753,6 +4803,7 @@ extends
 /**
  * Contains the intervals relavent for the associated TransactionBidResults.
  * For example, Day Ahead cleared results for the transaction bids for each interval of the market day.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -4814,6 +4865,7 @@ extends
 
 /**
  * Contains the cleared results for each TransactionBid submitted to and accepted by the market.
+ *
  * @param sup Reference to the superclass object.
  * @param clearedMW The market transaction megawatt
  * @param clearedPrice The price of the market transaction

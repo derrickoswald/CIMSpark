@@ -8,6 +8,14 @@ import org.slf4j.LoggerFactory
 
 import ch.ninecode.model._
 
+/**
+ * Join CIM files from NIS Strom and SAP ISU.
+ *
+ * Resolve ServiceLocation objects based on the Name user attribute.
+ *
+ * @param spark The session with CIM RDD defined, for which the topology should be calculated
+ * @param storage The storage level for new and replaced CIM RDD.
+ */
 class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
 {
     implicit val session = spark
@@ -137,28 +145,31 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
      *
      * The join uses the Name objects that contain both the SAP ISU id and the NIS number.
      * The tasks are:
-     * 1) Create new (or edit) the SAP ServiceLocation objects with:
-     *   - mRID (rdf:ID) is the SAP ISU number (unchanged)
-     *   - IdentifiedObject.name is the NIS number
-     *   - IdentifiedObject.aliasName is the NIS internal id and class name
-     *   - IdentifiedObject.description is the ISU description (aliasName)
-     *   - Location.mainAddress is the ISU address data (unchanged)
-     * 2) Change the location attribute of the PositionPoint object for the NIS ServiceLocation
-     *    to point to the ISU ServiceLocation (i.e. replace MST# with ISU#)
-     * 3) Change the UserAttribute objects that link the EnergyConsumer to ServiceLocation
-     *    to point to the new (or edited) SAP ServiceLocation (i.e. replace MST# with ISU#)
-     * 4) Optionally delete the NIS ServiceLocation
-     * 5) Optionally delete the old Name object referencing the NIS ServiceLocation
-     *    (this should clean out the Name RDD I think)
-     * 6) Create a new Name object with the reverse orientation
-     *    (Name.name = NIS MST# and Name.IdentifiedObject = SAP ISU#)
-     *    [Not required if NIS ServiceLocation is deleted]
+     *
+ 1. Create new (or edit) the SAP ServiceLocation objects with:
+   - mRID (rdf:ID) is the SAP ISU number (unchanged)
+   - IdentifiedObject.name is the NIS number
+   - IdentifiedObject.aliasName is the NIS internal id and class name
+   - IdentifiedObject.description is the ISU description (aliasName)
+   - Location.mainAddress is the ISU address data (unchanged)
+ 1. Change the location attribute of the PositionPoint object for the NIS ServiceLocation
+    to point to the ISU ServiceLocation (i.e. replace MST# with ISU#)
+ 1. Change the UserAttribute objects that link the EnergyConsumer to ServiceLocation
+    to point to the new (or edited) SAP ServiceLocation (i.e. replace MST# with ISU#)
+ 1. Optionally delete the NIS ServiceLocation
+ 1. Optionally delete the old Name object referencing the NIS ServiceLocation
+    (this should clean out the Name RDD I think)
+ 1. Create a new Name object with the reverse orientation
+    (Name.name = NIS MST# and Name.IdentifiedObject = SAP ISU#)
+    [Not required if NIS ServiceLocation is deleted]
      *
      * So, in summary, edit these RDD:
-     *    ServiceLocation (merge & delete)
-     *    PositionPoint (edit)
-     *    UserAttribute (edit)
-     *    Name (delete)
+ - ServiceLocation (merge & delete)
+ - PositionPoint (edit)
+ - UserAttribute (edit)
+ - Name (delete)
+     *
+     * @return The updated Elements RDD.
      */
     def do_join (): RDD[Element] =
     {

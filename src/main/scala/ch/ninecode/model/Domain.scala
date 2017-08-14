@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Interval between two dates.
+ *
  * @param sup Reference to the superclass object.
  * @param end End date of this interval.
  * @param start Start date of this interval.
@@ -82,6 +83,7 @@ extends
 
 /**
  * Interval between two date and time points.
+ *
  * @param sup Reference to the superclass object.
  * @param end End date and time of this interval.
  * @param start Start date and time of this interval.
@@ -234,6 +236,7 @@ extends
 
 /**
  * Quantity with float value and associated unit information.
+ *
  * @param sup Reference to the superclass object.
  * @param multiplier <em>undocumented</em>
  * @param unit <em>undocumented</em>
@@ -313,6 +316,7 @@ extends
 
 /**
  * Quantity with integer value and associated unit information.
+ *
  * @param sup Reference to the superclass object.
  * @param multiplier <em>undocumented</em>
  * @param unit <em>undocumented</em>
@@ -392,6 +396,7 @@ extends
 
 /**
  * Interval between two times specified as mont and date.
+ *
  * @param sup Reference to the superclass object.
  * @param end End time of this interval.
  * @param start Start time of this interval.
@@ -466,6 +471,7 @@ extends
 
 /**
  * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
+ *
  * @param sup Reference to the superclass object.
  * @param multiplier <em>undocumented</em>
  * @param unit <em>undocumented</em>
@@ -545,6 +551,7 @@ extends
 
 /**
  * Interval between two times.
+ *
  * @param sup Reference to the superclass object.
  * @param end End time of this interval.
  * @param start Start time of this interval.

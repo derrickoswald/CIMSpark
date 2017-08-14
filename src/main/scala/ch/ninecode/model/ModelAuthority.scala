@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A Modeling Authority is an entity responsible for supplying and maintaining the data defining a specific set of objects in a network model.
+ *
  * @param sup Reference to the superclass object.
  * @group ModelAuthority
  * @groupname ModelAuthority Package ModelAuthority
@@ -70,6 +71,7 @@ extends
 /**
  * A Modeling Authority Set is a group of objects in a network model where the data is supplied and maintained by the same Modeling Authority.
  * This class is typically not included in instance data exchange as this information is tracked by other mechanisms in the exchange.
+ *
  * @param sup Reference to the superclass object.
  * @param ModelingAuthority A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
  * @group ModelAuthority

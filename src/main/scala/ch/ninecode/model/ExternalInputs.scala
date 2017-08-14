@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Models Ancillary Service Requirements.
  * Describes interval for which the requirement is applicable.
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
  * @group ExternalInputs
@@ -74,6 +75,7 @@ extends
 
 /**
  * Measurement quality flags for Analog Values.
+ *
  * @param sup Reference to the superclass object.
  * @param scadaQualityCode The quality code for the given Analog Value.
  * @param MktAnalogValue <em>undocumented</em>
@@ -144,6 +146,7 @@ extends
 
 /**
  * Area load curve definition.
+ *
  * @param sup Reference to the superclass object.
  * @param forecastType Load forecast area type.
  * @param AggregateNode <em>undocumented</em>
@@ -225,6 +228,7 @@ extends
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a contingency analysis base case.
  * Use CurveSchedule XAxisUnits to specify MW or MVA. To be used only if the BaseCaseConstraintLimit differs from the DefaultConstraintLimit.
+ *
  * @param sup Reference to the superclass object.
  * @param SecurityConstraintSum <em>undocumented</em>
  * @group ExternalInputs
@@ -290,6 +294,7 @@ extends
 
 /**
  * Dynamic flows and ratings associated with a branch end.
+ *
  * @param sup Reference to the superclass object.
  * @param loadDumpRating The Load Dump Rating for the branch
  * @param longTermRating The Long Term Rating for the branch
@@ -382,6 +387,7 @@ extends
 
 /**
  * A constraint term is one element of a linear constraint.
+ *
  * @param sup Reference to the superclass object.
  * @param factor <em>undocumented</em>
  * @param function The function is an enumerated value that can be 'active', 'reactive', or 'VA' to indicate the type of flow.
@@ -458,6 +464,7 @@ extends
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a constraint for a specific contingency.
  * Use CurveSchedule XAxisUnits to specify MW or MVA.
+ *
  * @param sup Reference to the superclass object.
  * @param MWLimitSchedules <em>undocumented</em>
  * @param MktContingency <em>undocumented</em>
@@ -533,6 +540,7 @@ extends
 
 /**
  * State Estimator Solution Pool Interchange and Losses
+ *
  * @param sup Reference to the superclass object.
  * @param solvedInterchange Pool MW Interchange
  *        Attribute Usage: The active power interchange of the pool
@@ -614,6 +622,7 @@ extends
  * Default Energy Bid
  * A Default Energy Bid is a monotonically increasing staircase function consisting at maximum 10 economic bid segments, or 10 (\$/MW, MW) pairs.
  * There are three methods for determining the Default Energy Bid:
+ *
  * @param sup Reference to the superclass object.
  * @param bidType Default bid type such as Default Energy Bid, Default Minimum Load Bid, and Default Startup Bid
  * @param minLoadCost Minimum load cost in \$/hr
@@ -699,6 +708,7 @@ extends
 
 /**
  * Default bid curve for default energy bid curve and default startup curves (cost and time)
+ *
  * @param sup Reference to the superclass object.
  * @param curveType To indicate a type used for a default energy bid curve, such as LMP, cost or consultative based.
  * @param debAdderFlag Default energy bid adder flag
@@ -774,6 +784,7 @@ extends
 
 /**
  * Curve data for default bid curve and startup cost curve.
+ *
  * @param sup Reference to the superclass object.
  * @param bidSegmentCalcType Type of calculation basis used to define the default bid segment curve.
  * @group ExternalInputs
@@ -840,6 +851,7 @@ extends
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) applied as a default value if no specific constraint limits are specified for a contingency analysis.
  * Use CurveSchedule XAxisUnits to specify MW or MVA.
+ *
  * @param sup Reference to the superclass object.
  * @param SecurityConstraintSum <em>undocumented</em>
  * @group ExternalInputs
@@ -905,6 +917,7 @@ extends
 
 /**
  * Measurement quality flags for Discrete Values.
+ *
  * @param sup Reference to the superclass object.
  * @param manualReplaceIndicator Switch Manual Replace Indicator.
  *        Flag indicating that the switch is manual replace.
@@ -983,6 +996,7 @@ extends
 /**
  * A containing class that groups all the distribution factors within a market.
  * This is calculated daily for DA factors and hourly for RT factors.
+ *
  * @param sup Reference to the superclass object.
  * @param intervalEndTime The end of the time interval for which requirement is defined.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
@@ -1074,6 +1088,7 @@ extends
 /**
  * Optimal Power Flow or State Estimator Load Data for OTS.
  * This is used for RealTime, Study and Maintenance Users
+ *
  * @param sup Reference to the superclass object.
  * @param loadMVAR The MVAR load
  *        Attribute Usage: The reactive power consumption of the load in MW
@@ -1151,6 +1166,7 @@ extends
 /**
  * An Energy Price Index for each Resource is valid for a period (e.g. daily) that is identified by a Valid Period Start Time and a Valid Period End Time.
  * An Energy Price Index is in \$/MWh.
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate End effective date
  * @param energyPriceIndex Energy price index
@@ -1241,6 +1257,7 @@ extends
 
 /**
  * Specifies the start time, stop time, level for an EnergyTransaction.
+ *
  * @param sup Reference to the superclass object.
  * @param EnergyTransaction An EnergyTransaction shall have at least one EnergyProfile.
  * @param TransactionBid <em>undocumented</em>
@@ -1311,6 +1328,7 @@ extends
 
 /**
  * Specifies the schedule for energy transfers between interchange areas that are necessary to satisfy the associated interchange transaction.
+ *
  * @param sup Reference to the superclass object.
  * @param capacityBacked Interchange capacity flag.
  *        When the flag is set to true, it indicates a transaction is capacity backed.
@@ -1444,6 +1462,7 @@ extends
 /**
  * This class models the generation distribution factors.
  * This class needs to be used along with the AggregatedPnode and the IndividualPnode to show the distriubtion of each individual party.
+ *
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate generation "participation" of an individual pnond in an AggregatePnode.
  * @param AggregatedPnode <em>undocumented</em>
@@ -1520,6 +1539,7 @@ extends
 /**
  * Optimal Power Flow or State Estimator Unit Data for Operator Training Simulator.
  * This is used for RealTime, Study and Maintenance Users
+ *
  * @param sup Reference to the superclass object.
  * @param lossFactor Loss Factor
  * @param mVAR Unit reactive power generation in MVAR
@@ -1622,6 +1642,7 @@ extends
 /**
  * Generic constraints can represent secure areas, voltage profile, transient stability and voltage collapse limits.
  * The generic constraints can be one of the following forms:
+ *
  * @param sup Reference to the superclass object.
  * @param intervalEndTime Interval End Time
  * @param intervalStartTime Interval Start Time
@@ -1702,6 +1723,7 @@ extends
 
 /**
  * Existing Transmission Contract data for an interchange schedule
+ *
  * @param sup Reference to the superclass object.
  * @param contractNumber Existing transmission contract number
  * @param usageMW Existing transmission contract usage MW value
@@ -1777,6 +1799,7 @@ extends
 
 /**
  * Interchange schedule class to hold information for interchange schedules such as import export type, energy type, and etc.
+ *
  * @param sup Reference to the superclass object.
  * @param checkOutType To indicate a check out type such as adjusted capacity or dispatch capacity.
  * @param directionType Import or export.
@@ -1892,6 +1915,7 @@ extends
 
 /**
  * Indicates whether unit is eligible for treatment as a intermittent variable renewable resource
+ *
  * @param sup Reference to the superclass object.
  * @param eligibilityStatus Indicates whether a resource is eligible for PIRP program for a given hour
  * @param RegisteredResource <em>undocumented</em>
@@ -1963,6 +1987,7 @@ extends
 /**
  * This class models the load distribution factors.
  * This class should be used in one of two ways:
+ *
  * @param sup Reference to the superclass object.
  * @param pDistFactor Real power (MW) load distribution factor
  * @param qDistFactor Reactive power (MVAr) load distribution factor
@@ -2043,6 +2068,7 @@ extends
 
 /**
  * Loss sensitivity applied to a ConnectivityNode for a given time interval.
+ *
  * @param sup Reference to the superclass object.
  * @param lossFactor Loss penalty factor.
  *        Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value. The typical range of penalty factors is (0,9 to 1,1).
@@ -2114,6 +2140,7 @@ extends
 
 /**
  * Maximum MW and optionally Minimum MW (Y1 and Y2, respectively)
+ *
  * @param sup Reference to the superclass object.
  * @param SecurityConstraintLimit <em>undocumented</em>
  * @group ExternalInputs
@@ -2179,6 +2206,7 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:ACLineSegment
+ *
  * @param sup Reference to the superclass object.
  * @param EndAFlow <em>undocumented</em>
  * @param EndBFlow <em>undocumented</em>
@@ -2249,6 +2277,7 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:AnalogLimit
+ *
  * @param sup Reference to the superclass object.
  * @param exceededLimit true if limit exceeded
  * @param limitType The type of limit the value represents
@@ -2326,6 +2355,7 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:AnalogLimitSet
+ *
  * @param sup Reference to the superclass object.
  * @param ratingSet Rating set numbers
  * @group ExternalInputs
@@ -2391,6 +2421,7 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:AnalogValue
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2452,6 +2483,7 @@ extends
 
 /**
  * Market subclass of IEC61970:ControlArea
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2513,6 +2545,7 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:DiscreteValue
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2574,6 +2607,7 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:SeriesCompensator
+ *
  * @param sup Reference to the superclass object.
  * @param EndAFlow <em>undocumented</em>
  * @param EndBFlow <em>undocumented</em>
@@ -2644,6 +2678,7 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:ShuntCompensator
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2705,6 +2740,7 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:Switch
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2766,6 +2802,7 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:TapChanger
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2828,6 +2865,7 @@ extends
 /**
  * To be used only to constrain a quantity that cannot be associated with a terminal.
  * For example, a registered generating unit that is not electrically connected to the network.
+ *
  * @param sup Reference to the superclass object.
  * @param MktConnectivityNode <em>undocumented</em>
  * @group ExternalInputs
@@ -2893,6 +2931,7 @@ extends
 
 /**
  * A profile is a simpler curve type.
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2954,6 +2993,7 @@ extends
 
 /**
  * Data for profile.
+ *
  * @param sup Reference to the superclass object.
  * @param bidPrice Bid price associated with contract
  * @param capacityLevel Capacity level for the profile, in MW.
@@ -3055,6 +3095,7 @@ extends
 /**
  * Reserve demand curve.
  * Models maximum quantities of reserve required per Market Region and models a reserve demand curve for the minimum quantities of reserve. The ReserveDemandCurve is a relationship between unit operating reserve price in \$/MWhr (Y-axis) and unit reserves in MW (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param reqMaxMW Region requirement maximum limit
  * @param reserveRequirementType Reserve requirement type that the max and curve apply to.
@@ -3136,6 +3177,7 @@ extends
 
 /**
  * Contains information about the update from SCADA
+ *
  * @param sup Reference to the superclass object.
  * @param timeStamp time of the update from SCADA
  * @group ExternalInputs
@@ -3202,6 +3244,7 @@ extends
 /**
  * Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.
  * A constraint has N (&gt;=1) constraint terms. A term is represented by an
+ *
  * @param sup Reference to the superclass object.
  * @param BaseCaseConstraintLimit <em>undocumented</em>
  * @param DefaultConstraintLimit <em>undocumented</em>
@@ -3277,6 +3320,7 @@ extends
 
 /**
  * Typical for regional transmission operators (RTOs), these constraints include transmission as well as generation group constraints identified in both base case and critical contingency cases.
+ *
  * @param sup Reference to the superclass object.
  * @param actualMW Actual branch or group of branches MW flow (only for transmission constraints)
  * @param maxMW Maximum MW limit
@@ -3368,6 +3412,7 @@ extends
 /**
  * The defined termination points of a transmission path (down to distribution level or to a customer - generation or consumption or both).
  * Service points are defined from the viewpoint of the transmission service. Each service point is contained within (or on the boundary of) an interchange area. A service point is source or destination of a transaction.
+ *
  * @param sup Reference to the superclass object.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -3430,6 +3475,7 @@ extends
 /**
  * Optimal Power Flow or State Estimator Filter Bank Data for OTS.
  * This is used for RealTime, Study and Maintenance Users
+ *
  * @param sup Reference to the superclass object.
  * @param connectionStatus The current status for the Voltage Control Capacitor 1= Connected 0 = Disconnected
  * @param desiredVoltage The desired voltage for the Voltage Control Capacitor
@@ -3520,6 +3566,7 @@ extends
 
 /**
  * Optimal Power Flow or State Estimator Circuit Breaker Status.
+ *
  * @param sup Reference to the superclass object.
  * @param switchStatus Circuit Breaker Status (closed or open) of the circuit breaker from the power flow.
  * @param MktSwitch <em>undocumented</em>
@@ -3591,6 +3638,7 @@ extends
 /**
  * This class models the system distribution factors.
  * This class needs to be used along with the HostControlArea and the ConnectivityNode to show the distribution of each individual party.
+ *
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate load "participation" of a connectivity node in an host control area
  * @param HostControlArea <em>undocumented</em>
@@ -3667,6 +3715,7 @@ extends
 /**
  * A Transmission Right(TR) can be a chain of TR's or on individual.
  * When a transmission right is not a chain, this is formally the ETC/TOR Entitlement for each ETC/TOR contract with the inclusion of CVR(Converted Rights) as an ETC. This is the sum of all entitlements on all related transmission interfaces for the same TR.
+ *
  * @param sup Reference to the superclass object.
  * @param entitlement The entitlement
  * @param startOperatingDate Operating date and hour when the entitlement applies
@@ -3743,6 +3792,7 @@ extends
 /**
  * Optimal Power Flow or State Estimator Phase Shifter Data.
  * This is used for RealTime, Study and Maintenance Users. SE Solution Phase Shifter Measurements from the last run of SE
+ *
  * @param sup Reference to the superclass object.
  * @param angleRegulationStatus True means the phase shifter is regulating.
  * @param desiredMW Phase Shifter Desired MW.
@@ -3850,6 +3900,7 @@ extends
 
 /**
  * A constraint term associated with a specific terminal on a physical piece of equipment.
+ *
  * @param sup Reference to the superclass object.
  * @param MktTerminal <em>undocumented</em>
  * @group ExternalInputs
@@ -3915,6 +3966,7 @@ extends
 
 /**
  * A Transfer Interface is made up of branches such as transmission lines and transformers.
+ *
  * @param sup Reference to the superclass object.
  * @param HostControlArea <em>undocumented</em>
  * @param TransferInterfaceSolution <em>undocumented</em>
@@ -3985,6 +4037,7 @@ extends
 
 /**
  * TNA Interface Definitions from OPF for VSA
+ *
  * @param sup Reference to the superclass object.
  * @param interfaceMargin The margin for the interface
  * @param postTransferMW Post Transfer MW for step
@@ -4077,6 +4130,7 @@ extends
 
 /**
  * This class models the transmission (either a transmission interface or a POR/POD pair) capacity including Total Transfer Capacity (TTC), Operating Transfer Capacity (OTC), and Capacity Benefit Margin (CBM)
+ *
  * @param sup Reference to the superclass object.
  * @param capacityBenefitMargin Capacity Benefit Margin (CBM) is used by Markets to calculate the transmission interface limits.
  *        This number could be manually or procedurally determined. The CBM is defined per transmission interface (branch group).
@@ -4190,6 +4244,7 @@ extends
 /**
  * This is formally called the branch group ETC/TOR entitlement with the inclusion of CVR as ETC.
  * Is used to represent the entitlements. This could be also used to represent the TR entitlement on a POR/POD.
+ *
  * @param sup Reference to the superclass object.
  * @param entitlement the entitlement
  * @param startOperatingDate Operating date and hour when the entitlement applies
@@ -4281,6 +4336,7 @@ extends
 /**
  * An electrical connection, link, or line consisting of one or more parallel transmission elements between two areas of the interconnected electric systems, or portions thereof.
  * TransmissionCorridor and TransmissionRightOfWay refer to legal aspects. The TransmissionPath refers to the segments between a TransmissionProvider's ServicePoints.
+ *
  * @param sup Reference to the superclass object.
  * @param availTransferCapability The available transmission capability of a transmission path for the reference direction.
  * @param parallelPathFlag Flag which indicates if the transmission path is also a designated interconnection "parallel path".
@@ -4371,6 +4427,7 @@ extends
 
 /**
  * A transmission reservation is obtained from the OASIS system to reserve transmission for a specified time period, transmission path and transmission product.
+ *
  * @param sup Reference to the superclass object.
  * @param EnergyTransaction <em>undocumented</em>
  * @param Sink <em>undocumented</em>
@@ -4456,6 +4513,7 @@ extends
 
 /**
  * Resource status at the end of a given clearing period.
+ *
  * @param sup Reference to the superclass object.
  * @param cumEnergy Cumulative energy production over trading period.
  * @param cumStatusChanges Cumulative number of status changes of the resource.

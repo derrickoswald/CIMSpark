@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Busbar section data.
+ *
  * @param sup Reference to the superclass object.
  * @param ratedCurrent Rated current.
  * @param ratedVoltage Rated voltage.
@@ -78,6 +79,7 @@ extends
 
 /**
  * Cable data.
+ *
  * @param sup Reference to the superclass object.
  * @param constructionKind Kind of construction of this cable.
  * @param diameterOverCore Diameter over the core, including any semi-con screen; should be the insulating layer's inside diameter.
@@ -188,6 +190,7 @@ extends
 
 /**
  * Concentric neutral cable data.
+ *
  * @param sup Reference to the superclass object.
  * @param diameterOverNeutral Diameter over the concentric neutral strands.
  * @param neutralStrandCount Number of concentric neutral strands.
@@ -274,6 +277,7 @@ extends
 /**
  * No-load test results determine core admittance parameters.
  * They include exciting current and core loss measurements from applying voltage to one winding. The excitation may be positive sequence or zero sequence. The test may be repeated at different voltages to measure saturation.
+ *
  * @param sup Reference to the superclass object.
  * @param energisedEndVoltage Voltage applied to the winding (end) during test.
  * @param excitingCurrent Exciting current measured from a positive-sequence or single-phase excitation test.
@@ -365,6 +369,7 @@ extends
 /**
  * Open-circuit test results verify winding turn ratios and phase shifts.
  * They include induced voltage and phase shift measurements on open-circuit windings, with voltage applied to the energised end. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence.
+ *
  * @param sup Reference to the superclass object.
  * @param energisedEndStep Tap step number for the energised end of the test pair.
  * @param energisedEndVoltage Voltage applied to the winding (end) during test.
@@ -460,6 +465,7 @@ extends
 
 /**
  * Overhead wire data.
+ *
  * @param sup Reference to the superclass object.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
@@ -521,6 +527,7 @@ extends
 
 /**
  * Set of power transformer data, from an equipment library.
+ *
  * @param sup Reference to the superclass object.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
@@ -583,6 +590,7 @@ extends
 /**
  * Short-circuit test results determine mesh impedance parameters.
  * They include load losses and leakage impedances. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence. There shall be at least one grounded winding.
+ *
  * @param sup Reference to the superclass object.
  * @param energisedEndStep Tap step number for the energised end of the test pair.
  * @param groundedEndStep Tap step number for the grounded end of the test pair.
@@ -679,6 +687,7 @@ extends
 
 /**
  * Properties of shunt capacitor, shunt reactor or switchable bank of shunt capacitor or reactor assets.
+ *
  * @param sup Reference to the superclass object.
  * @param maxPowerLoss Maximum allowed apparent power loss.
  * @param ratedCurrent Rated current.
@@ -764,6 +773,7 @@ extends
 
 /**
  * Switch data.
+ *
  * @param sup Reference to the superclass object.
  * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
  * @param isSinglePhase If true, it is a single phase switch.
@@ -849,6 +859,7 @@ extends
 
 /**
  * Tap changer data.
+ *
  * @param sup Reference to the superclass object.
  * @param bil Basic Insulation Level (BIL) expressed as the impulse crest voltage of a nominal wave, typically 1.2 X 50 microsecond.
  *        This is a measure of the ability of the insulation to withstand very high voltage surges.
@@ -985,6 +996,7 @@ extends
 
 /**
  * Tape shield cable data.
+ *
  * @param sup Reference to the superclass object.
  * @param tapeLap Percentage of the tape shield width that overlaps in each wrap, typically 10% to 25%.
  * @param tapeThickness Thickness of the tape shield, before wrapping.
@@ -1055,6 +1067,7 @@ extends
 
 /**
  * Transformer end data.
+ *
  * @param sup Reference to the superclass object.
  * @param connectionKind Kind of connection.
  * @param emergencyS Apparent power that the winding can carry under emergency conditions (also called long-term emergency power).
@@ -1183,6 +1196,7 @@ extends
 
 /**
  * Set of transformer tank data, from an equipment library.
+ *
  * @param sup Reference to the superclass object.
  * @param PowerTransformerInfo Power transformer data that this tank description is part of.
  * @group AssetInfo
@@ -1248,6 +1262,7 @@ extends
 
 /**
  * Test result for transformer ends, such as short-circuit, open-circuit (excitation) or no-load test.
+ *
  * @param sup Reference to the superclass object.
  * @param basePower Base power at which the tests are conducted, usually equal to the rateds of one of the involved transformer ends.
  * @param temperature Temperature at which the test is conducted.
@@ -1318,6 +1333,7 @@ extends
 
 /**
  * Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.
+ *
  * @param sup Reference to the superclass object.
  * @param coreRadius (if there is a different core material) Radius of the central core.
  * @param coreStrandCount (if used) Number of strands in the steel core.
@@ -1459,6 +1475,7 @@ extends
 
 /**
  * Identification, spacing and configuration of the wires of a conductor with respect to a structure.
+ *
  * @param sup Reference to the superclass object.
  * @param phase Single phase or neutral designation for the wire with this position.
  * @param xCoord Signed horizontal distance from the wire at this position to a common reference point.
@@ -1540,6 +1557,7 @@ extends
 /**
  * Wire spacing data that associates multiple wire positions with the line segment, and allows to calculate line segment impedances.
  * Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
+ *
  * @param sup Reference to the superclass object.
  * @param isCable If true, this spacing data describes a cable.
  * @param phaseWireCount Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).

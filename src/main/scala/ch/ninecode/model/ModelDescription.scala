@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Identity contain comon descriptive information.
+ *
  * @param sup Reference to the superclass object.
  * @param description <em>undocumented</em>
  * @param name <em>undocumented</em>

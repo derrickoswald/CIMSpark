@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A prioritized measurement to be used for the generating unit in the control area specificaiton.
+ *
  * @param sup Reference to the superclass object.
  * @param priority Priority of a measurement usage.
  *        Lower numbers have first priority.
@@ -84,6 +85,7 @@ extends
 
 /**
  * A prioritized measurement to be used for the tie flow as part of the control area specification.
+ *
  * @param sup Reference to the superclass object.
  * @param priority Priority of a measurement usage.
  *        Lower numbers have first priority.
@@ -161,6 +163,7 @@ extends
 /**
  * A control area<b> </b>is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.
  * Note that any number of overlapping control area specifications can be superimposed on the physical model.
+ *
  * @param sup Reference to the superclass object.
  * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
  * @param pTolerance Active power net interchange tolerance
@@ -243,6 +246,7 @@ extends
 /**
  * A control area generating unit.
  * This class is needed so that alternate control area definitions may include the same generating unit.   Note only one instance within a control area should reference a specific generating unit.
+ *
  * @param sup Reference to the superclass object.
  * @param ControlArea The parent control area for the generating unit specifications.
  * @param GeneratingUnit The generating unit specified for this control area.
@@ -314,6 +318,7 @@ extends
 
 /**
  * A flow specification in terms of location and direction for a control area.
+ *
  * @param sup Reference to the superclass object.
  * @param positiveFlowIn True if the flow into the terminal (load convention) is also flow into the control area.
  *        For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.

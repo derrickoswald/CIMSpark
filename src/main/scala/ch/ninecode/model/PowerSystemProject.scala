@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A (document/collection) that describe a set of changes to the network.
+ *
  * @param sup Reference to the superclass object.
  * @param attr <em>undocumented</em>
  * @param description <em>undocumented</em>
@@ -196,6 +197,7 @@ extends
 
 /**
  * A collection of dependent projects.
+ *
  * @param sup Reference to the superclass object.
  * @param Project <em>undocumented</em>
  * @group PowerSystemProject
@@ -261,6 +263,7 @@ extends
 
 /**
  * The ProjectSteps are ordered by the actualStart and actualEnds so that  a dependent ProjectStep will have a actualStart after an actualEnd.
+ *
  * @param sup Reference to the superclass object.
  * @param actualEnd Actual date and time for when the project is commissioned and committed to the network model.
  * @param actualStart Actual date and time for when the project is commissioned and committed to the network model.

@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
+ *
  * @param sup Reference to the superclass object.
  * @param LoadGroup Group of this ConformLoad.
  * @group LoadModel
@@ -75,6 +76,7 @@ extends
 
 /**
  * A group of loads conforming to an allocation pattern.
+ *
  * @param sup Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
@@ -139,6 +141,7 @@ extends
 /**
  * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
  * This curve represents a typical pattern of load over the time period for a given day type and season.
+ *
  * @param sup Reference to the superclass object.
  * @param ConformLoadGroup The ConformLoadGroup where the ConformLoadSchedule belongs.
  * @group LoadModel
@@ -207,6 +210,7 @@ extends
 /**
  * Group of similar days.
  * For example it could be used to represent weekdays, weekend, or holidays.
+ *
  * @param sup Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
@@ -271,6 +275,7 @@ extends
 /**
  * Describes an area having energy production or consumption.
  * Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.
+ *
  * @param sup Reference to the superclass object.
  * @param ControlArea The control area specification that is used for the load forecast.
  * @group LoadModel
@@ -338,6 +343,7 @@ extends
 
 /**
  * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+ *
  * @param sup Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
@@ -401,6 +407,7 @@ extends
 
 /**
  * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+ *
  * @param sup Reference to the superclass object.
  * @param SubLoadArea The SubLoadArea where the Loadgroup belongs.
  * @group LoadModel
@@ -469,6 +476,7 @@ extends
 /**
  * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
  * This is not related to demand response.
+ *
  * @param sup Reference to the superclass object.
  * @param exponentModel Indicates the exponential voltage dependency model is to be used.
  *        If false, the coefficient model is to be used.
@@ -587,6 +595,7 @@ extends
 
 /**
  * NonConformLoad represent loads that do not follow a daily load change pattern and changes are not correlated with the daily load change pattern.
+ *
  * @param sup Reference to the superclass object.
  * @param LoadGroup Group of this ConformLoad.
  * @group LoadModel
@@ -654,6 +663,7 @@ extends
 
 /**
  * Loads that do not follow a daily and seasonal load variation pattern.
+ *
  * @param sup Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
@@ -717,6 +727,7 @@ extends
 
 /**
  * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
+ *
  * @param sup Reference to the superclass object.
  * @param NonConformLoadGroup The NonConformLoadGroup where the NonConformLoadSchedule belongs.
  * @group LoadModel
@@ -784,6 +795,7 @@ extends
 
 /**
  * An area or zone of the power system which is used for load shedding purposes.
+ *
  * @param sup Reference to the superclass object.
  * @param cutLevel1 First level (amount) of load to cut as a percentage of total zone load.
  * @param cutLevel2 Second level (amount) of load to cut as a percentage of total zone load.
@@ -856,6 +868,7 @@ extends
 
 /**
  * A specified time period of the year.
+ *
  * @param sup Reference to the superclass object.
  * @param endDate Date season ends.
  * @param startDate Date season starts.
@@ -928,6 +941,7 @@ extends
 
 /**
  * A time schedule covering a 24 hour period, with curve data for a specific type of season and day.
+ *
  * @param sup Reference to the superclass object.
  * @param DayType DayType for the Schedule.
  * @param Season Season for the Schedule.
@@ -1000,6 +1014,7 @@ extends
 
 /**
  * Station supply with load derived from the station output.
+ *
  * @param sup Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
@@ -1063,6 +1078,7 @@ extends
 
 /**
  * The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
+ *
  * @param sup Reference to the superclass object.
  * @param LoadArea The LoadArea where the SubLoadArea belongs.
  * @group LoadModel

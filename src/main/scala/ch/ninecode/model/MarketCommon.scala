@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * An identification of a party acting in a electricity market business process.
  * This class is used to identify organizations that can participate in market management and/or market operations.
+ *
  * @param sup Reference to the superclass object.
  * @param MarketDocument <em>undocumented</em>
  * @group MarketCommon
@@ -74,6 +75,7 @@ extends
 
 /**
  * The external intended behaviour played by a party within the electricity market.
+ *
  * @param sup Reference to the superclass object.
  * @param roleType Defined using an enumerated list of types of market roles for use when a finite list of types are desired.
  * @param status Status of the market role.
@@ -156,6 +158,7 @@ extends
 /**
  * A resource that is registered through the market participant registration system.
  * Examples include generating unit, load, and non-physical generator or load.
+ *
  * @param sup Reference to the superclass object.
  * @param commercialOpDate Resource Commercial Operation Date.
  * @param contingencyAvailFlag contingent operating reserve availiability (Yes/No).

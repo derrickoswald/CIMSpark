@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Goups Adjacent Control Areas
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param lossPercentage_1 Loss percentage
@@ -94,6 +95,7 @@ extends
 /**
  * An aggregated node can define a typed grouping further defined by the AnodeType enumeratuion.
  * Types range from System Zone/Regions to Market Energy Regions to Aggregated Loads and Aggregated Generators.
+ *
  * @param sup Reference to the superclass object.
  * @param anodeType Type of aggregated node
  * @param endEffectiveDate end effective date
@@ -190,6 +192,7 @@ extends
 
 /**
  * An aggregated pricing node is a specialized type of pricing node used to model items such as System Zone, Default Price Zone, Custom Price Zone, Control Area, Aggregated Generation, Aggregated Particpating Load, Aggregated Non-Participating Load, Trading Hub, Designated Control Area(DCA) Zone
+ *
  * @param sup Reference to the superclass object.
  * @param apnodeType Aggregate Price Node Types
  * @param participationCategory Designated Control Area participation in LMP price measurement
@@ -275,6 +278,7 @@ extends
 
 /**
  * This class represent the bid price cap.
+ *
  * @param sup Reference to the superclass object.
  * @param bidCeiling Bid Ceiling (\$/MWH)
  * @param bidCeilingAS Bid Ceiling (\$/MWH) for generic AS versus a specific market product
@@ -371,6 +375,7 @@ extends
 /**
  * Participation factors per Cnode.
  * Used to calculate "participation" of Cnode in an AggregateNode. Each Cnode associated to an AggregateNode would be assigned a participation factor for its participation within the AggregateNode.
+ *
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate "participation" of Cnode in an AggregateNode
  * @param podLossFactor Point of delivery loss factor
@@ -462,6 +467,7 @@ extends
 /**
  * Configuration options for combined cycle units.
  * For example, a Combined Cycle with (CT1, CT2, ST1) will have (CT1, ST1) and (CT2, ST1) configurations as part of(1CT + 1STlogicalconfiguration).
+ *
  * @param sup Reference to the superclass object.
  * @param primaryConfiguration Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?
  * @param CombinedCycleLogicalConfiguration <em>undocumented</em>
@@ -542,6 +548,7 @@ extends
 
 /**
  * Configuration Member of CCP Configuration.
+ *
  * @param sup Reference to the superclass object.
  * @param primary primary configuration.
  * @param steam Steam plant.
@@ -623,6 +630,7 @@ extends
 /**
  * Logical Configuration of a Combined Cycle plant.
  * Operating Combined Cycle Plant (CCP) configurations are represented as Logical CCP Resources. Logical representation shall be used for Market applications to optimize and control Market Operations. Logical representation is also necessary for controlling the number of CCP configurations and to temper performance issues that may otherwise occur.
+ *
  * @param sup Reference to the superclass object.
  * @param MktCombinedCyclePlant <em>undocumented</em>
  * @group ReferenceData
@@ -688,6 +696,7 @@ extends
 
 /**
  * Defines the available from and to Transition States for the Combine Cycle Configurations.
+ *
  * @param sup Reference to the superclass object.
  * @param upTransition Flag indicating whether this is an UP transition.
  *        If not, it is a DOWN transition.
@@ -764,6 +773,7 @@ extends
 
 /**
  * Designated Congestion Area Definition (DCA)
+ *
  * @param sup Reference to the superclass object.
  * @param IndividualPnode <em>undocumented</em>
  * @group ReferenceData
@@ -829,6 +839,7 @@ extends
 
 /**
  * Distribution amoung resources at the sink point or source point
+ *
  * @param sup Reference to the superclass object.
  * @param factor MW value that this resource provides to the overall contract.
  * @param sinkFlag This value will be set to YES if the referenced Cnode is defined as the sink point in the contract.
@@ -920,6 +931,7 @@ extends
 /**
  * Provides definition of Transmission Ownership Right and Existing Transmission Contract identifiers for use by SCUC.
  * RMR contract hosting: Startup lead time, Contract Service Limits, Max Service Hours, Max MWhs, Max Start-ups, Ramp Rate, Max Net Dependable Capacity, Min Capacity and Unit Substitution for DAM/RTM to retrieve;
+ *
  * @param sup Reference to the superclass object.
  * @param chainOrder When used in conjunction with a Transmission Right contract chain, this is the precedence for the contracts.
  * @param contractMW MW value of the contract
@@ -1125,6 +1137,7 @@ extends
 
 /**
  * Indicates Control Area associated with self-schedule.
+ *
  * @param sup Reference to the superclass object.
  * @param attained Attained.
  * @param native1 Native.
@@ -1205,6 +1218,7 @@ extends
 
 /**
  * A flowgate, is single or group of transmission elements intended to model MW flow impact relating to transmission limitations and transmission service usage.
+ *
  * @param sup Reference to the superclass object.
  * @param direction The direction of the flowgate, export or import
  * @param endEffectiveDate end effective date
@@ -1330,6 +1344,7 @@ extends
 
 /**
  * Flowgate defined partner
+ *
  * @param sup Reference to the superclass object.
  * @param FlowgateValue <em>undocumented</em>
  * @group ReferenceData
@@ -1395,6 +1410,7 @@ extends
 
 /**
  * IDC (Interchange Distribution Calulator) sends data for a TLR (Transmission Loading Relief).
+ *
  * @param sup Reference to the superclass object.
  * @param effectiveDate Date/Time when record becomes effective
  *        Used to determine when a record becomes effective.
@@ -1478,6 +1494,7 @@ extends
 
 /**
  * Day Ahead,  Network Native Load, Economic Dispatch, values used for calculation of Network Native Load (NNL) Determinator process.
+ *
  * @param sup Reference to the superclass object.
  * @param economicDispatchLimit Limit for Economic Dispatch priority 6 energy flow on the specified flowgate for the specified time period.
  * @param effectiveDate Date/Time when record becomes effective
@@ -1581,6 +1598,7 @@ extends
 /**
  * Forbbiden region is operating ranges where the units are unable to maintain steady operation without causing equipment damage.
  * The four attributes that define a forbidden region are the low MW, the High MW, the crossing time, and the crossing cost.
+ *
  * @param sup Reference to the superclass object.
  * @param crossTime Time to cross the forbidden region in minutes.
  * @param crossingCost Cost associated with crossing the forbidden region
@@ -1662,6 +1680,7 @@ extends
 /**
  * Used to indicate former references to the same piece of equipment.
  * The ID, name, and effectivity dates are utilized.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredResource <em>undocumented</em>
  * @group ReferenceData
@@ -1727,6 +1746,7 @@ extends
 
 /**
  * Relationship between unit fuel cost in \$/kWh(Y-axis) and  unit output in MW (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -1792,6 +1812,7 @@ extends
 
 /**
  * Indication of region for fuel inventory purposes
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param fuelRegionType The type of fuel region
@@ -1887,6 +1908,7 @@ extends
 
 /**
  * Price of gas in monetary units
+ *
  * @param sup Reference to the superclass object.
  * @param gasPriceIndex The average natural gas price at a defined fuel region.
  * @param FuelRegion <em>undocumented</em>
@@ -1958,6 +1980,7 @@ extends
 /**
  * A HostControlArea has a set of tie points and a set of generator controls (i.e., AGC).
  * It also has a total load, including transmission and distribution losses.
+ *
  * @param sup Reference to the superclass object.
  * @param areaControlMode The area's present control mode: (CF = constant frequency) or (CTL = constant tie-line) or (TLB = tie-line bias) or (OFF = off control)
  * @param endEffectiveDate end effective date
@@ -2058,6 +2081,7 @@ extends
 
 /**
  * Individual pricing node based on Pnode
+ *
  * @param sup Reference to the superclass object.
  * @param GenDistributionFactor <em>undocumented</em>
  * @param LoadDistributionFactor <em>undocumented</em>
@@ -2134,6 +2158,7 @@ extends
 /**
  * A specialized class of type AggregatedNode type.
  * Defines Load Aggregation Points.
+ *
  * @param sup Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -2195,6 +2220,7 @@ extends
 
 /**
  * Representing the ratio of the load share for the associated SC.
+ *
  * @param sup Reference to the superclass object.
  * @param intervalEndTime Interval End Time
  * @param intervalStartTime Interval Start Time
@@ -2276,6 +2302,7 @@ extends
 /**
  * This is the cureve that describes the load reduction time.
  * Relationship between time (Y1-axis) vs. MW (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param loadReductionTimeCurveType type of the curve: Possible values are but not limited to:
  *        Max, Min,
@@ -2342,6 +2369,7 @@ extends
 
 /**
  * Allows definition of reliablity areas (eg load pockets) within the ISO/RTO
+ *
  * @param sup Reference to the superclass object.
  * @param RTO <em>undocumented</em>
  * @group ReferenceData
@@ -2408,6 +2436,7 @@ extends
 /**
  * Provides a reference to the Market Power Mitigation test identifiers and methods for the results of the DA or RT markets.
  * Specific data is the test identifier (Price, Conduct, or Impact) and the test method (System MPM, Local MPM, Alternate System MPM, or Alternate Local MPM).
+ *
  * @param sup Reference to the superclass object.
  * @param purposeFlag Nature of threshold data:
  *        'M' - Mitigation threshold
@@ -2491,6 +2520,7 @@ extends
 
 /**
  * Market Power Mitigation (MPM) test thresholds for resource as well as designated congestion areas (DCAs)
+ *
  * @param sup Reference to the superclass object.
  * @param marketType Market Type (DAM, RTM)
  * @param percent Price Threshold in %
@@ -2576,6 +2606,7 @@ extends
 
 /**
  * Metered Sub-System aggregation of MSS Zones.
+ *
  * @param sup Reference to the superclass object.
  * @param costRecovery Charge for Emission Costs, Start Up Costs, or Minimum Load Costs.
  * @param endEffectiveDate end effective date
@@ -2683,6 +2714,7 @@ extends
 
 /**
  * Model to define a zone within a Metered Sub System
+ *
  * @param sup Reference to the superclass object.
  * @param ignoreLosses Provides an indication if losses are to be ignored for this metered subsystem zone.
  * @param lossFactor This is the default loss factor for the Metered Sub-System (MSS) zone.
@@ -2765,6 +2797,7 @@ extends
 
 /**
  * General purpose information for name and other information to contact people.
+ *
  * @param sup Reference to the superclass object.
  * @param category Category of this person relative to utility operations, classified according to the utility's corporate standards and practices.
  *        Examples include employee, contractor, agent, not affiliated, etc.
@@ -2896,6 +2929,7 @@ extends
 
 /**
  * Certain skills are required and shall be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
+ *
  * @param sup Reference to the superclass object.
  * @param effectiveDate Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization
  * @param expirationDate This is the terminate date of the application for the organization
@@ -2984,6 +3018,7 @@ extends
 /**
  * A specialized class of AggregatedNode type.
  * Defines the MarketRegions. Regions could be system Market Regions, Energy Regions or Ancillary Service Regions.
+ *
  * @param sup Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -3045,6 +3080,7 @@ extends
 
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
+ *
  * @param sup Reference to the superclass object.
  * @param certificationPeriod Interval between the certification and its expiry.
  * @param effectiveDateTime Date and time the skill became effective.
@@ -3131,6 +3167,7 @@ extends
 /**
  * The maximum Startup costs and time as a function of down time.
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis). This is used to validate the information provided in the Bid.
+ *
  * @param sup Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -3192,6 +3229,7 @@ extends
 
 /**
  * A metered subsystem
+ *
  * @param sup Reference to the superclass object.
  * @param MSSAggregation <em>undocumented</em>
  * @group ReferenceData
@@ -3258,6 +3296,7 @@ extends
 /**
  * Subclass of Production: CombinedCyclePlant from IEC61970 package.
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency
+ *
  * @param sup Reference to the superclass object.
  * @param AggregatedPnode <em>undocumented</em>
  * @group ReferenceData
@@ -3323,6 +3362,7 @@ extends
 
 /**
  * Subclass of IEC61970:Core:ConductingEquipment
+ *
  * @param sup Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -3384,6 +3424,7 @@ extends
 
 /**
  * Subclass of IEC61970:Contingency
+ *
  * @param sup Reference to the superclass object.
  * @param loadRolloverFlag load change flag
  *        Flag that indicates whether load rollover and load pickup should be processed for this contingency
@@ -3478,6 +3519,7 @@ extends
 
 /**
  * Subclass of IEC61970: Generation: Production:HeatRateCurve
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @param ResourceVerifiableCosts <em>undocumented</em>
@@ -3548,6 +3590,7 @@ extends
 
 /**
  * Subclass of ThermalGeneratingUnit from Production Package in IEC61970.
+ *
  * @param sup Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -3609,6 +3652,7 @@ extends
 
 /**
  * Price of oil in monetary units
+ *
  * @param sup Reference to the superclass object.
  * @param oilPriceIndex The average oil price at a defined fuel region.
  * @param FuelRegion <em>undocumented</em>
@@ -3679,6 +3723,7 @@ extends
 
 /**
  * This class models the allocation between asset owners and pricing nodes
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param maxMWAllocation Maximum MW for the Source/Sink for the Allocation
@@ -3764,6 +3809,7 @@ extends
 
 /**
  * This class model the ownership percent and type of ownership between resource and organisation
+ *
  * @param sup Reference to the superclass object.
  * @param asscType association type for the association between Organisation and Resource:
  * @param endEffectiveDate end effective date
@@ -3860,6 +3906,7 @@ extends
 /**
  * A pricing node is directly associated with a connectivity node.
  * It is a pricing location for which market participants submit their bids, offers, buy/sell CRRs, and settle.
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate End effective date of the period in which the price node definition is valid.
  * @param isPublic If true, this Pnode is public (prices are published for DA/RT and FTR markets), otherwise it is private (location is not usable by market for bidding/FTRs/transactions).
@@ -3971,6 +4018,7 @@ extends
 
 /**
  * This class allows SC to input different distribution factors for pricing node
+ *
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
  *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
@@ -4062,6 +4110,7 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -4127,6 +4176,7 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -4192,6 +4242,7 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -4257,6 +4308,7 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -4322,6 +4374,7 @@ extends
 
 /**
  * Model to support processing of reliability must run units.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -4387,6 +4440,7 @@ extends
 
 /**
  * Regional transmission operator.
+ *
  * @param sup Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -4449,6 +4503,7 @@ extends
 /**
  * A specialized class of type AggregatedNode type.
  * Defines RUC Zones. A forecast region represents a collection of Nodes for which the Market operator has developed sufficient historical demand and relevant weather data to perform a demand forecast for such area. The Market Operator may further adjust this forecast to ensure that the Reliability Unit Commitment produces adequate local capacity procurement.
+ *
  * @param sup Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -4510,6 +4565,7 @@ extends
 
 /**
  * Model of a generator  that is registered to participate in the market
+ *
  * @param sup Reference to the superclass object.
  * @param capacityFactor Capacity Factor
  * @param coldStartTime Cold start time.
@@ -4975,6 +5031,7 @@ extends
 
 /**
  * This class represents the inter tie resource.
+ *
  * @param sup Reference to the superclass object.
  * @param direction indicate the direction (export/import) of an intertie resource
  * @param energyProductType Under each major product type, the commodity type can be applied to further specify the type.
@@ -5070,6 +5127,7 @@ extends
 
 /**
  * Model of a load that is registered to participate in the market (demand reduction)
+ *
  * @param sup Reference to the superclass object.
  * @param blockLoadTransferFlag Flag to indicate that the Resource is Block Load pseudo resource (&lsquo;Y&rsquo;, &lsquo; N&rsquo;)
  * @param dynamicallyScheduledLoadResourceFlag Flag to indicate that a Load Resource is part of a DSR Load
@@ -5246,6 +5304,7 @@ extends
 
 /**
  * This class represents the physical characteristc of a generator regarding the regulating limit
+ *
  * @param sup Reference to the superclass object.
  * @param highLimit <em>undocumented</em>
  * @param lowLimit <em>undocumented</em>
@@ -5321,6 +5380,7 @@ extends
 
 /**
  * Ancillary Services that a resource is qualified to provide.
+ *
  * @param sup Reference to the superclass object.
  * @param certifiedCapacity Certified capacity for associated resource and market type and ancillary service type product
  * @param endEffectiveDate Ancillary Service Qualification end date
@@ -5417,6 +5477,7 @@ extends
 /**
  * This class model the various capacities of a resource.
  * A resource may have numbers of capacities related to operating, ancillary services, energy trade and so forth. The types are but not limited to:
+ *
  * @param sup Reference to the superclass object.
  * @param capacityType capacity type
  *        
@@ -5506,6 +5567,7 @@ extends
 
 /**
  * To model the Operation and Maintenance (O and M) costs of a generation resource.
+ *
  * @param sup Reference to the superclass object.
  * @param gasPercentAboveLowSustainedLimit Percentage of Fuel Index Price (gas) for operating above Low Sustained Limit (LSL)
  * @param oilPercentAboveLowSustainedLimit Percentage of Fuel Oil Price (FOP) for operating above Low Sustained Limit (LSL)
@@ -5606,6 +5668,7 @@ extends
 
 /**
  * To model the startup costs of a generation resource.
+ *
  * @param sup Reference to the superclass object.
  * @param fuelColdStartup Verifiable Cold Start Up Fuel (MMBtu per start)
  * @param fuelHotStartup Verifiable Hot Start Up Fuel (MMBtu per start)
@@ -5751,6 +5814,7 @@ extends
 
 /**
  * This class is defined to describe the verifiable costs associated with a generation resource.
+ *
  * @param sup Reference to the superclass object.
  * @param MktHeatRateCurve <em>undocumented</em>
  * @param RegisteredResource <em>undocumented</em>
@@ -5827,6 +5891,7 @@ extends
 /**
  * Market participants could be represented by Scheduling Coordinators (SCs) that are registered with the RTO/ISO.
  * One participant could register multiple SCs with the RTO/ISO. Many market participants can do business with the RTO/ISO using a single SC. One SC could schedule multiple generators. A load scheduling point could be used by multiple SCs. Each SC could schedule load at multiple scheduling points. An inter-tie scheduling point can be used by multiple SCs. Each SC can schedule interchange at multiple inter-tie scheduling points.
+ *
  * @param sup Reference to the superclass object.
  * @param scid This is the short name or Scheduling Coordinator ID field.
  * @param LoadRatio <em>undocumented</em>
@@ -5902,6 +5967,7 @@ extends
 
 /**
  * Describing users of a Scheduling Coordinator
+ *
  * @param sup Reference to the superclass object.
  * @param attr <em>undocumented</em>
  * @param endEffectiveDate Login ID Expiration Date
@@ -5987,6 +6053,7 @@ extends
 
 /**
  * Connection to other organizations at the boundary of the ISO/RTO.
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate End effective date.
  * @param startEffectiveDate Start effective date.
@@ -6063,6 +6130,7 @@ extends
 /**
  * The energy consumption of a generating resource to complete a start-up from the StartUpEnergyCurve.
  * Definition of the StartUpEnergyCurve includes, xvalue as the cooling time and y1value as the MW value.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -6128,6 +6196,7 @@ extends
 
 /**
  * The fuel consumption of a Generating Resource to complete a Start-Up.(x=cooling time) Form Startup Fuel Curve. xAxisData -&gt; cooling time, y1AxisData -&gt; MBtu
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ReferenceData
@@ -6193,6 +6262,7 @@ extends
 
 /**
  * An area defined for the purpose of tracking interchange with surrounding areas via tie points; may or may not serve as a control area.
+ *
  * @param sup Reference to the superclass object.
  * @param areaShortName Market area short name, which is the regulation zone.
  *        It references AGC regulation zone name.
@@ -6331,6 +6401,7 @@ extends
 /**
  * List of resources that can be substituted for within the bounds of a Contract definition.
  * This class has a precedence and a resource.
+ *
  * @param sup Reference to the superclass object.
  * @param precedence An indicator of the order a resource should be substituted.
  *        The lower the number the higher the precedence.
@@ -6408,6 +6479,7 @@ extends
 /**
  * Transmission Access Charge Area.
  * Charges assessed, on behalf of the Participating Transmission Owner, to parties who require access to the controlled grid.
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
@@ -6479,6 +6551,7 @@ extends
 /**
  * Allows chaining of TransmissionContractRights.
  * Many individual contract rights can be included in the definition of a TransmissionRightChain. A TransmissionRightChain is also defined as a TransmissionContractRight itself.
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
@@ -6559,6 +6632,7 @@ extends
 
 /**
  * Counter party in a wheeling transaction.
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredInterTie <em>undocumented</em>
  * @group ReferenceData

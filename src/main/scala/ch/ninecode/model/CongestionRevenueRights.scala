@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
  * A CRR is a financial concept that is used to hedge congestion charges.
+ *
  * @param sup Reference to the superclass object.
  * @param cRRcategory CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
  *        If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records
@@ -105,6 +106,7 @@ extends
 
 /**
  * Identifies a way in which an organisation may participate with a defined Congestion Revenue Right (CRR).
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of role the organisation is with regards to the congestion revenue rights.
  * @param status Status of congestion revenue rights organisation role.
@@ -186,6 +188,7 @@ extends
 /**
  * CRRSegment represents a segment of a CRR in a particular time frame.
  * The segment class contains CRR kind, type, quantity, hedger type, time of use flag, and segment period.
+ *
  * @param sup Reference to the superclass object.
  * @param amount Dollar amount = quantity x clearingPrice
  * @param clearingPrice Clearing price of a CRR

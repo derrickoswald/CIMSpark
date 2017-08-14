@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
+ *
  * @param sup Reference to the superclass object.
  * @param baseS Base apparent power of the converter pole.
  * @param idc Converter DC current, also called Id.
@@ -178,6 +179,7 @@ extends
 /**
  * A DC electrical connection point at the AC/DC converter.
  * The AC/DC converter is electrically connected also to the AC side. The AC connection is inherited from the AC conducting equipment in the same way as any other AC equipment. The AC/DC converter DC terminal is separate from generic DC terminal to restrict the connection with the AC side to AC/DC converter and so that no other DC conducting equipment can be connected to the AC side.
+ *
  * @param sup Reference to the superclass object.
  * @param polarity Represents the normal network polarity condition.
  * @param DCConductingEquipment <em>undocumented</em>
@@ -248,6 +250,7 @@ extends
 
 /**
  * DC side of the current source converter (CSC).
+ *
  * @param sup Reference to the superclass object.
  * @param alpha Firing angle, typical value between 10 and 18 degrees for a rectifier.
  *        CSC state variable, result from power flow.
@@ -392,6 +395,7 @@ extends
 /**
  * An electrical connection point at a piece of DC conducting equipment.
  * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
+ *
  * @param sup Reference to the superclass object.
  * @param DCNode <em>undocumented</em>
  * @param DCTopologicalNode See association end Terminal.
@@ -463,6 +467,7 @@ extends
 
 /**
  * A breaker within a DC system.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -524,6 +529,7 @@ extends
 
 /**
  * A busbar within a DC system.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -586,6 +592,7 @@ extends
 /**
  * Low resistance equipment used in the internal DC circuit to balance voltages.
  * It has typically positive and negative pole terminals and a ground.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -647,6 +654,7 @@ extends
 
 /**
  * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -708,6 +716,7 @@ extends
 
 /**
  * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
+ *
  * @param sup Reference to the superclass object.
  * @param operationMode <em>undocumented</em>
  * @param Substation <em>undocumented</em>
@@ -778,6 +787,7 @@ extends
 
 /**
  * A disconnector within a DC system.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -840,6 +850,7 @@ extends
 /**
  * A modeling construct to provide a root class for containment of DC as well as AC equipment.
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -901,6 +912,7 @@ extends
 
 /**
  * A ground within a DC system.
+ *
  * @param sup Reference to the superclass object.
  * @param inductance Inductance to ground.
  * @param r Resistance to ground.
@@ -971,6 +983,7 @@ extends
 
 /**
  * Overhead lines and/or cables connecting two or more HVDC substations.
+ *
  * @param sup Reference to the superclass object.
  * @param Region <em>undocumented</em>
  * @group DC
@@ -1036,6 +1049,7 @@ extends
 
 /**
  * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
+ *
  * @param sup Reference to the superclass object.
  * @param capacitance Capacitance of the DC line segment.
  *        Significant for cables only.
@@ -1123,6 +1137,7 @@ extends
 
 /**
  * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
+ *
  * @param sup Reference to the superclass object.
  * @param DCEquipmentContainer <em>undocumented</em>
  * @param DCTopologicalNode See association end ConnectivityNode.
@@ -1195,6 +1210,7 @@ extends
 /**
  * A series device within the DC system, typically a reactor used for filtering or smoothing.
  * Needed for transient and short circuit studies.
+ *
  * @param sup Reference to the superclass object.
  * @param inductance Inductance of the device.
  * @param ratedUdc Rated DC device voltage.
@@ -1272,6 +1288,7 @@ extends
 /**
  * A shunt device within the DC system, typically used for filtering.
  * Needed for transient and short circuit studies.
+ *
  * @param sup Reference to the superclass object.
  * @param capacitance Capacitance of the DC shunt.
  * @param ratedUdc Rated DC device voltage.
@@ -1348,6 +1365,7 @@ extends
 
 /**
  * A switch within the DC system.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -1409,6 +1427,7 @@ extends
 
 /**
  * An electrical connection point to generic DC conducting equipment.
+ *
  * @param sup Reference to the superclass object.
  * @param DCConductingEquipment <em>undocumented</em>
  * @group DC
@@ -1475,6 +1494,7 @@ extends
 /**
  * An electrically connected subset of the network.
  * DC topological islands can change as the current network state changes: e.g. due to
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -1606,6 +1626,7 @@ extends
 
 /**
  * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
+ *
  * @param sup Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
@@ -1667,6 +1688,7 @@ extends
 
 /**
  * DC side of the voltage source converter (VSC).
+ *
  * @param sup Reference to the superclass object.
  * @param delta Angle between uf and uc.
  *        Converter state variable used in power flow.

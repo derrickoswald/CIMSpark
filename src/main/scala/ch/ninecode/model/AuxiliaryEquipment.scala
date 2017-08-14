@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
  * AuxiliaryEquipment is attached to primary eqipment via an association with Terminal.
+ *
  * @param sup Reference to the superclass object.
  * @param Terminal The Terminal at the equipment where the AuxiliaryEquipment is attached.
  * @group AuxiliaryEquipment
@@ -75,6 +76,7 @@ extends
 /**
  * Instrument transformer used to measure electrical qualities of the circuit that is being protected and/or monitored.
  * Typically used as current transducer for the purpose of metering or protection. A typical secondary current rating would be 5A.
+ *
  * @param sup Reference to the superclass object.
  * @param accuracyClass CT accuracy classification.
  * @param accuracyLimit Percent of rated current for which the CT remains accurate within specified limits.
@@ -161,6 +163,7 @@ extends
 /**
  * A FaultIndicator is typically only an indicator (which may or may not be remotely monitored), and not a piece of equipment that actually initiates a protection event.
  * It is used for FLISR (Fault Location, Isolation and Restoration) purposes, assisting with the dispatch of crews to "most likely" part of the network (i.e. assists with determining circuit section where the fault most likely happened).
+ *
  * @param sup Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
@@ -222,6 +225,7 @@ extends
 
 /**
  * A sensor used mainly in overhead distribution networks as the source of both current and voltage measurements.
+ *
  * @param sup Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
@@ -284,6 +288,7 @@ extends
 /**
  * Instrument transformer (also known as Voltage Transformer) used to measure electrical qualities of the circuit that is being protected and/or monitored.
  * Typically used as voltage transducer for the purpose of metering, protection, or sometimes auxiliary substation supply. A typical secondary voltage rating would be 120V.
+ *
  * @param sup Reference to the superclass object.
  * @param accuracyClass PT accuracy classification.
  * @param nominalRatio Nominal ratio between the primary and secondary voltage.
@@ -364,6 +369,7 @@ extends
 
 /**
  * This class describe devices that transform a measured quantity into signals that can be presented at displays, used in control or be recorded.
+ *
  * @param sup Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
@@ -425,6 +431,7 @@ extends
 
 /**
  * Shunt device, installed on the network, usually in the proximity of electrical equipment in order to protect the said equipment against transient voltage transients caused by lightning or switching activity.
+ *
  * @param sup Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
@@ -486,6 +493,7 @@ extends
 
 /**
  * Line traps are devices that impede high frequency power line carrier signals yet present a negligible impedance at the main power frequency.
+ *
  * @param sup Reference to the superclass object.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment

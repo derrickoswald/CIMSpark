@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * This class provides the resistive and reactive components of compensation for the generator associated with the IEEE Type 2 voltage compensator for current flow out of one of the other generators in the interconnection.
+ *
  * @param sup Reference to the superclass object.
  * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
  * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
@@ -99,6 +100,7 @@ extends
 /**
  * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
  * This model is common to all excitation system models described in the IEEE Standard. </font>
+ *
  * @param sup Reference to the superclass object.
  * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (Rc).</font>
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
@@ -185,6 +187,7 @@ extends
 /**
  * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
  * This model is designed to cover the following types of compensation: </font>
+ *
  * @param sup Reference to the superclass object.
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
  * @group VoltageCompensatorDynamics
@@ -260,6 +263,7 @@ extends
 
 /**
  * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this voltage compensator is associated.
  * @param RemoteInputSignal Remote input signal used by this voltage compensator model.

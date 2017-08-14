@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Used to apply user standard names to topology buses.
  * Typically used for "bus/branch" case generation. Associated with one or more terminals that are normally connected with the bus name.    The associated terminals are normally connected by non-retained switches. For a ring bus station configuration, all busbar terminals in the ring are typically associated.   For a breaker and a half scheme, both busbars would normally be associated.  For a ring bus, all busbars would normally be associated.  For a "straight" busbar configuration, normally only the main terminal at the busbar would be associated.
+ *
  * @param sup Reference to the superclass object.
  * @param priority Priority of bus name marker for use as topology bus name.
  *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
@@ -80,6 +81,7 @@ extends
 
 /**
  * DC bus.
+ *
  * @param sup Reference to the superclass object.
  * @param DCEquipmentContainer <em>undocumented</em>
  * @param DCTopologicalIsland <em>undocumented</em>
@@ -151,6 +153,7 @@ extends
 /**
  * An electrically connected subset of the network.
  * Topological islands can change as the current network state changes: e.g. due to
+ *
  * @param sup Reference to the superclass object.
  * @param AngleRefTopologicalNode The angle reference for the island.
  *        Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.
@@ -218,6 +221,7 @@ extends
 /**
  * For a detailed substation model a topological node is a set of connectivity nodes that, in the current network state, are connected together through any type of closed switches, including  jumpers.
  * Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).
+ *
  * @param sup Reference to the superclass object.
  * @param pInjection The active power injected into the bus at this location in addition to injections from equipment.
  *        Positive sign means injection into the TopologicalNode (bus).

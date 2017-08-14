@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * IEC 62325 version number assigned to this UML model.
+ *
  * @param sup Reference to the superclass object.
  * @param date Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
  * @param version Form is IEC62325CIMXXvYY where XX is the major CIM package version and the YY is the minor version.

@@ -13,10 +13,12 @@ import org.apache.spark.sql.types._
 import ch.ninecode.model.Element
 
 /**
- * Subclass extractor
+ * Subclass extractor.
+ *
  * Extracts the given type of object from the full Element Resilient Distributes Dataset (RDD),
  * to create another RDD of just those elements, and creates a DataFrame of that RDD,
  * and registers it as a temporary table for access via SQL (e.g. JDBC and SparkR::sql()).
+ *
  * Note: This must be serializable and can't depend on the companion objects
  * for the CIM case classes.
  */

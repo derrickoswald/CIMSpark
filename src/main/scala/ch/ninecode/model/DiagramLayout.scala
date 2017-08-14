@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * The diagram being exchanged.
  * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
+ *
  * @param sup Reference to the superclass object.
  * @param orientation Coordinate system orientation of the diagram.
  * @param x1InitialView X coordinate of the first corner of the initial view.
@@ -100,6 +101,7 @@ extends
 /**
  * An object that defines one or more points in a given space.
  * This object can be associated with anything that specializes IdentifiedObject. For single line diagrams such objects typically include such items as analog values, breakers, disconnectors, power transformers, and transmission lines.
+ *
  * @param sup Reference to the superclass object.
  * @param drawingOrder The drawing order of this element.
  *        The higher the number, the later the element is drawn in sequence. This is used to ensure that elements that overlap are rendered in the correct order.
@@ -210,6 +212,7 @@ extends
 
 /**
  * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
+ *
  * @param sup Reference to the superclass object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -272,6 +275,7 @@ extends
 /**
  * A point in a given space defined by 3 coordinates and associated to a diagram object.
  * The coordinates may be positive or negative as the origin does not have to be in the corner of a diagram.
+ *
  * @param sup Reference to the superclass object.
  * @param sequenceNumber The sequence position of the point, used for defining the order of points for diagram objects acting as a polyline or polygon with more than one point.
  * @param xPosition The X coordinate of this point.
@@ -363,6 +367,7 @@ extends
 /**
  * A reference to a style used by the originating system for a diagram object.
  * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
+ *
  * @param sup Reference to the superclass object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -425,6 +430,7 @@ extends
 /**
  * The diagram style refer to a style used by the originating system for a diagram.
  * A diagram style describes information such as schematic, geographic, bus-branch etc.
+ *
  * @param sup Reference to the superclass object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -486,6 +492,7 @@ extends
 
 /**
  * A diagram object for placing free-text or text derived from an associated domain object.
+ *
  * @param sup Reference to the superclass object.
  * @param text The text that is displayed by this text diagram object.
  * @group DiagramLayout
@@ -552,6 +559,7 @@ extends
 /**
  * Layers are typically used for grouping diagram objects according to themes and scales.
  * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
+ *
  * @param sup Reference to the superclass object.
  * @param drawingOrder The drawing order for this layer.
  *        The higher the number, the later the layer and the objects within it are rendered.

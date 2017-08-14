@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Bilateral transaction
+ *
  * @param sup Reference to the superclass object.
  * @param curtailTimeMax Maximum curtailment time in number of trading intervals
  * @param curtailTimeMin Minimum curtailment time in number of trading intervals
@@ -115,6 +116,7 @@ extends
 
 /**
  * Participation level of a given Pnode in a given AggregatePnode.
+ *
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
  *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
@@ -181,6 +183,7 @@ extends
 /**
  * This class represent the resource certification for a specific product type.
  * For example, a resource is certified for Non-Spinning reserve for RTM.
+ *
  * @param sup Reference to the superclass object.
  * @param certifiedDAM <em>undocumented</em>
  * @param certifiedNonspinDAM <em>undocumented</em>

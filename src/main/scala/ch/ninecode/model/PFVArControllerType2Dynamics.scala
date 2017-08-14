@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Power Factor or VAr controller Type II function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this Power Factor or VAr controller Type II is associated.
  * @group PFVArControllerType2Dynamics
@@ -78,6 +79,7 @@ extends
 /**
  * Power factor / Reactive power regulator.
  * This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
+ *
  * @param sup Reference to the superclass object.
  * @param j Selector (J).
  *        true = control mode for reactive power
@@ -171,6 +173,7 @@ extends
 /**
  * The class represents IEEE PF Controller Type 2 which is a summing point type controller and makes up the outside loop of a two-loop system.
  * This controller is implemented as a slow PI type controller. The voltage regulator forms the inner loop and is implemented as a fast controller.
+ *
  * @param sup Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
  *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
@@ -276,6 +279,7 @@ extends
 /**
  * The class represents IEEE VAR Controller Type 2 which is a summing point type controller.
  * It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
+ *
  * @param sup Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
  *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)

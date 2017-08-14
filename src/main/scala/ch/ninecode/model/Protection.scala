@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A device that checks current flow values in any direction or designated direction.
+ *
  * @param sup Reference to the superclass object.
  * @param currentLimit1 Current limit number one 1 for inverse time pickup.
  * @param currentLimit2 Current limit number 2 for inverse time pickup.
@@ -104,6 +105,7 @@ extends
 /**
  * An electrical device designed to respond to input conditions in a prescribed manner and after specified conditions are met to cause contact operation or similar abrupt change in associated electric control circuits, or simply to display the detected condition.
  * Protection equipment are associated with conducting equipment and usually operate circuit breakers.
+ *
  * @param sup Reference to the superclass object.
  * @param highLimit The maximum allowable value.
  * @param lowLimit The minimum allowable value.
@@ -204,6 +206,7 @@ extends
 
 /**
  * A reclose sequence (open and close) is defined for each possible reclosure of a breaker.
+ *
  * @param sup Reference to the superclass object.
  * @param recloseDelay Indicates the time lapse before the reclose step will execute a reclose.
  * @param recloseStep Indicates the ordinal position of the reclose step relative to other steps in the sequence.
@@ -280,6 +283,7 @@ extends
 /**
  * A device that operates when two AC circuits are within the desired limits of frequency, phase angle, and voltage, to permit or to cause the paralleling of these two circuits.
  * Used to prevent the paralleling of non-synchronous topological islands.
+ *
  * @param sup Reference to the superclass object.
  * @param maxAngleDiff The maximum allowable voltage vector phase angle difference across the open device.
  * @param maxFreqDiff The maximum allowable frequency difference across the open device.

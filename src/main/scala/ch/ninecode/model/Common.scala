@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
+ *
  * @param sup Reference to the superclass object.
  * @param createdDateTime Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
  * @param reason Reason for event resulting in this activity record, typically supplied when user initiated.
@@ -94,6 +95,7 @@ extends
 /**
  * Formal agreement between two parties defining the terms and conditions for a set of services.
  * The specifics of the services are, in turn, defined via one or more service agreements.
+ *
  * @param sup Reference to the superclass object.
  * @param signDate Date this agreement was consummated among associated persons and/or organisations.
  * @param validityInterval Date and time interval this agreement is valid (from going into effect to termination).
@@ -164,6 +166,7 @@ extends
 
 /**
  * Meeting time and location.
+ *
  * @param sup Reference to the superclass object.
  * @param callAhead True if requested to call customer when someone is about to arrive at their premises.
  * @param meetingInterval Date and time reserved for appointment.
@@ -239,6 +242,7 @@ extends
 
 /**
  * Used to report details on creation, change or deletion of an entity or its configuration.
+ *
  * @param sup Reference to the superclass object.
  * @param effectiveDateTime Date and time this event has or will become effective.
  * @param modifiedBy Source/initiator of modification.
@@ -349,6 +353,7 @@ extends
 
 /**
  * Coordinate reference system.
+ *
  * @param sup Reference to the superclass object.
  * @param crsUrn A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
  *        PositionPoints'.
@@ -415,6 +420,7 @@ extends
 
 /**
  * Group of people with specific skills, tools, and vehicles.
+ *
  * @param sup Reference to the superclass object.
  * @param status Status of this crew.
  * @param CrewType Type of this crew.
@@ -485,6 +491,7 @@ extends
 
 /**
  * Member of a crew.
+ *
  * @param sup Reference to the superclass object.
  * @param Crew Crew to which this crew member belongs.
  * @group Common
@@ -551,6 +558,7 @@ extends
 /**
  * Custom description of the type of crew.
  * This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.
+ *
  * @param sup Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
@@ -613,6 +621,7 @@ extends
 /**
  * Parent class for different groupings of information collected and managed as a part of a business process.
  * It will frequently contain references to other objects, such as assets, people and power system resources.
+ *
  * @param sup Reference to the superclass object.
  * @param authorName Name of the author of this document.
  * @param comment Free text comment.
@@ -731,6 +740,7 @@ extends
 
 /**
  * Electronic address information.
+ *
  * @param sup Reference to the superclass object.
  * @param email1 Primary email address.
  * @param email2 Alternate email address.
@@ -831,6 +841,7 @@ extends
 
 /**
  * An object or a condition that is a danger for causing loss or perils to an asset and/or people.
+ *
  * @param sup Reference to the superclass object.
  * @param status Status of this hazard.
  * @param typ Type of this hazard.
@@ -902,6 +913,7 @@ extends
 /**
  * The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time.
  * It can be defined with one or more postition points (coordinates) in a given coordinate system.
+ *
  * @param sup Reference to the superclass object.
  * @param direction (if applicable) Direction that allows field crews to quickly find a given asset.
  *        For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.
@@ -1019,6 +1031,7 @@ extends
 
 /**
  * Person role in the context of utility operations.
+ *
  * @param sup Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
@@ -1080,6 +1093,7 @@ extends
 
 /**
  * Control room operator.
+ *
  * @param sup Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
@@ -1141,6 +1155,7 @@ extends
 
 /**
  * Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param electronicAddress Electronic address.
  * @param phone1 Phone number.
@@ -1231,6 +1246,7 @@ extends
 
 /**
  * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
+ *
  * @param sup Reference to the superclass object.
  * @param Organisation Organisation having this role.
  * @group Common
@@ -1296,6 +1312,7 @@ extends
 
 /**
  * Ownership of e.g. asset.
+ *
  * @param sup Reference to the superclass object.
  * @param share Share of this ownership.
  * @param Asset Asset that is object of this ownership.
@@ -1371,6 +1388,7 @@ extends
 
 /**
  * General purpose information for name and other information to contact people.
+ *
  * @param sup Reference to the superclass object.
  * @param electronicAddress Electronic address.
  * @param firstName Person's first name.
@@ -1543,6 +1561,7 @@ extends
 /**
  * Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.
  * CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
+ *
  * @param sup Reference to the superclass object.
  * @param sequenceNumber Zero-relative sequence number of this point within a series of points.
  * @param xPosition X axis position.
@@ -1628,6 +1647,7 @@ extends
 
 /**
  * General purpose postal address information.
+ *
  * @param sup Reference to the superclass object.
  * @param poBox Post office box.
  * @param postalCode Postal code for the address.
@@ -1708,6 +1728,7 @@ extends
 
 /**
  * Priority definition.
+ *
  * @param sup Reference to the superclass object.
  * @param justification Justification for 'rank'.
  * @param rank Priority level; usually, lower number means high priority, but the details are provided in 'type'.
@@ -1783,6 +1804,7 @@ extends
 
 /**
  * An event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units must be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status <em>undocumented</em>
@@ -1868,6 +1890,7 @@ extends
 
 /**
  * Schedule parameters for an activity that is to occur, is occurring, or has completed.
+ *
  * @param sup Reference to the superclass object.
  * @param estimatedWindow Estimated date and time for activity execution (with earliest possibility of activity initiation and latest possibility of activity completion).
  * @param requestedWindow Requested date and time interval for activity execution.
@@ -1948,6 +1971,7 @@ extends
 
 /**
  * Current status information relevant to an entity.
+ *
  * @param sup Reference to the superclass object.
  * @param dateTime Date and time for which status 'value' applies.
  * @param reason Reason code or explanation for why an object went to the current status 'value'.
@@ -2028,6 +2052,7 @@ extends
 
 /**
  * General purpose street address information.
+ *
  * @param sup Reference to the superclass object.
  * @param status Status of this address.
  * @param streetDetail Street detail.
@@ -2103,6 +2128,7 @@ extends
 
 /**
  * Street details, in the context of address.
+ *
  * @param sup Reference to the superclass object.
  * @param addressGeneral Additional address information, for example a mailstop.
  * @param buildingName (if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.
@@ -2216,6 +2242,7 @@ extends
 
 /**
  * Telephone number.
+ *
  * @param sup Reference to the superclass object.
  * @param areaCode Area or region code.
  * @param cityCode (if applicable) City code.
@@ -2301,6 +2328,7 @@ extends
 
 /**
  * A point in time within a sequence of points in time relative to a time schedule.
+ *
  * @param sup Reference to the superclass object.
  * @param dateTime Absolute date and time for this time point.
  *        For calendar-based time point, it is typically manually entered, while for interval-based or sequence-based time point it is derived.
@@ -2393,6 +2421,7 @@ extends
 /**
  * Description of anything that changes through time.
  * Time schedule is used to perform a single-valued function of time. Use inherited 'type' attribute to give additional information on this schedule, such as: periodic (hourly, daily, weekly, monthly, etc.), day of the month, by date, calendar (specific times and dates).
+ *
  * @param sup Reference to the superclass object.
  * @param disabled True if this schedule is deactivated (disabled).
  * @param offset The offset from midnight (i.e., 0 h, 0 min, 0 s) for the periodic time points to begin.
@@ -2480,6 +2509,7 @@ extends
 
 /**
  * Town details, in the context of address.
+ *
  * @param sup Reference to the superclass object.
  * @param code Town code.
  * @param country Name of the country.
@@ -2566,6 +2596,7 @@ extends
 
 /**
  * Generic name-value pair class, with optional sequence number and units for value; can be used to model parts of information exchange when concrete types are not known in advance.
+ *
  * @param sup Reference to the superclass object.
  * @param name Name of an attribute.
  * @param sequenceNumber Sequence number for this attribute in a list of attributes.

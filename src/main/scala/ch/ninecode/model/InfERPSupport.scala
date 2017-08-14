@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Information that generally describes the Bill of Material Structure and its contents for a utility.
  * This is used by ERP systems to transfer Bill of Material information between two business applications.
+ *
  * @param sup Reference to the superclass object.
  * @param Design <em>undocumented</em>
  * @group InfERPSupport
@@ -80,6 +81,7 @@ extends
 /**
  * Relationship under a particular name, usually evidenced by a deposit against which withdrawals can be made.
  * Types of bank accounts include: demand, time, custodial, joint, trustee, corporate, special, and regular accounts.
+ *
  * @param sup Reference to the superclass object.
  * @param bankABA Bank ABA.
  * @group InfERPSupport
@@ -150,6 +152,7 @@ extends
 
 /**
  * An individual item on a bill of materials.
+ *
  * @param sup Reference to the superclass object.
  * @param DesignLocation <em>undocumented</em>
  * @param ErpBOM <em>undocumented</em>
@@ -231,6 +234,7 @@ extends
 /**
  * Accounting structure of a business.
  * Each account represents a financial aspect of a business, such as its Accounts Payable, or the value of its inventory, or its office supply expenses.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -298,6 +302,7 @@ extends
 /**
  * Information that describes aptitudes of a utility employee.
  * Unlike Skills that an ErpPerson must be certified to perform before undertaking certain type of assignments (to be able to perfrom a Craft), ErpCompetency has more to do with typical Human Resource (HR) matters such as schooling, training, etc.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -365,6 +370,7 @@ extends
 /**
  * Shadow class for Document, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -431,6 +437,7 @@ extends
 
 /**
  * General Utility Engineering Change Order information.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -498,6 +505,7 @@ extends
 /**
  * Shadow class for IdentifiedObject, to isolate subclassing from this package.
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -565,6 +573,7 @@ extends
 /**
  * Utility inventory-related information about an item or part (and not for description of the item and its attributes).
  * It is used by ERP applications to enable the synchronization of Inventory data that exists on separate Item Master databases. This data is not the master data that describes the attributes of the item such as dimensions, weight, or unit of measure - it describes the item as it exists at a specific location.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param Asset <em>undocumented</em>
@@ -641,6 +650,7 @@ extends
 /**
  * This is related to Inventory physical counts organized by AssetModel.
  * Note that a count of a type of asset can be accomplished by the association inherited by AssetModel (from Document) to Asset.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param AssetModel <em>undocumented</em>
@@ -717,6 +727,7 @@ extends
 /**
  * A roll up of invoice line items.
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
+ *
  * @param sup Reference to the superclass object.
  * @param amount Total amount due on this invoice based on line items and applicable adjustments.
  * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
@@ -833,6 +844,7 @@ extends
 
 /**
  * An individual line item on an invoice.
+ *
  * @param sup Reference to the superclass object.
  * @param billPeriod Bill period for the line item.
  * @param glAccount General Ledger account code, must be a valid combination.
@@ -983,6 +995,7 @@ extends
 
 /**
  * Can be used to request an application to process an issue or request information about an issue.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param TypeAsset <em>undocumented</em>
@@ -1064,6 +1077,7 @@ extends
 /**
  * Any unique purchased part for manufactured product tracked by ERP systems for a utility.
  * Item, as used by the OAG, refers to the basic information about an item, including its attributes, cost, and locations. It does not include item quantities. Compare to the Inventory, which includes all quantities and other location-specific information.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param Asset <em>undocumented</em>
@@ -1140,6 +1154,7 @@ extends
 /**
  * Book for recording accounting transactions as they occur.
  * Transactions and adjustments are first recorded in a journal, which is like a diary of instructions, advising which account to be charged and by how much.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1206,6 +1221,7 @@ extends
 
 /**
  * Details of an individual entry in a journal, which is to be posted to a ledger on the posting date.
+ *
  * @param sup Reference to the superclass object.
  * @param accountID Account identifier for this entry.
  * @param amount The amount of the debit or credit for this account.
@@ -1316,6 +1332,7 @@ extends
 
 /**
  * Individual entry of a given Ledger Budget, typically containing information such as amount, accounting date, accounting period, and is associated with the applicable general ledger account.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpLedBudLineItem_attr <em>undocumented</em>
@@ -1397,6 +1414,7 @@ extends
 /**
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1464,6 +1482,7 @@ extends
 /**
  * Information for utility Ledger Budgets.
  * They support the transfer budget amounts between all possible source applications throughout an enterprise and a general ledger or budget application.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1530,6 +1549,7 @@ extends
 
 /**
  * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
+ *
  * @param sup Reference to the superclass object.
  * @param accountID Account identifier for this entry.
  * @param accountKind Kind of account for this entry.
@@ -1645,6 +1665,7 @@ extends
 
 /**
  * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
+ *
  * @param sup Reference to the superclass object.
  * @param AssetModelCatalogueItem <em>undocumented</em>
  * @param ErpPurchaseOrder <em>undocumented</em>
@@ -1731,6 +1752,7 @@ extends
 /**
  * A transaction that represents an invoice from a supplier.
  * A payable (or voucher) is an open item, approved and ready for payment, in the Accounts Payable ledger.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1797,6 +1819,7 @@ extends
 
 /**
  * Of an ErpPayable, a line item references an ErpInvoiceLineitem or other source such as credit memos.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpInvoiceLineItem <em>undocumented</em>
@@ -1888,6 +1911,7 @@ extends
 /**
  * Payment infromation and status for any individual line item of an ErpInvoice (e.g., when payment is from a customer).
  * ErpPayable is also updated when payment is to a supplier and ErpReceivable is updated when payment is from a customer. Multiple payments can be made against a single line item and an individual payment can apply to more that one line item.
+ *
  * @param sup Reference to the superclass object.
  * @param termsPayment Payment terms (e.g., net 30).
  * @group InfERPSupport
@@ -1958,6 +1982,7 @@ extends
 
 /**
  * Information that applies to the basic data about a utility person, used by ERP applications to transfer Personnel data for a worker.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfERPSupport
@@ -2029,6 +2054,7 @@ extends
 /**
  * Utility Project Accounting information, used by ERP applications to enable all relevant sub-systems that submit single sided transactions to transfer information with a Project Accounting Application.
  * This would include, but not necessarily be limited to: Accounts Payable, Accounts Receivable, Budget, Order Management, Purchasing, Time and Labor, Travel and Expense.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2096,6 +2122,7 @@ extends
 /**
  * A document that communicates an order to purchase goods from a buyer to a supplier.
  * The PurchaseOrder carries information to and from the buyer and supplier. It is a legally binding document once both Parties agree to the contents and the specified terms and conditions of the order.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2163,6 +2190,7 @@ extends
 /**
  * Document describing the prices of goods or services provided by a supplier.
  * It includes the terms of the purchase, delivery proposals, identification of goods or services ordered, as well as their quantities.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2229,6 +2257,7 @@ extends
 
 /**
  * Of an ErpQuote, the item or product quoted along with quantity, price and other descriptive information.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param AssetModelCatalogueItem <em>undocumented</em>
@@ -2326,6 +2355,7 @@ extends
 /**
  * Of an ErpReceiveDelivery, this is an individually received good or service by the Organisation receiving goods or services.
  * It may be used to indicate receipt of goods in conjunction with a purchase order line item.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpInvoiceLineItem <em>undocumented</em>
@@ -2411,6 +2441,7 @@ extends
 
 /**
  * Individual entry of an ErpReceivable, it is a particular transaction representing an invoice, credit memo or debit memo to a customer.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpInvoiceLineItem <em>undocumented</em>
@@ -2502,6 +2533,7 @@ extends
 /**
  * Transaction representing an invoice, credit memo or debit memo to a customer.
  * It is an open (unpaid) item in the Accounts Receivable ledger.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2569,6 +2601,7 @@ extends
 /**
  * Transaction for an Organisation receiving goods or services that may be used to indicate receipt of goods in conjunction with a purchase order.
  * A receivable is an open (unpaid) item in the Accounts Receivable ledger.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2635,6 +2668,7 @@ extends
 
 /**
  * Information that describes a requested item and its attributes.
+ *
  * @param sup Reference to the superclass object.
  * @param code <em>undocumented</em>
  * @param cost Cost of material.
@@ -2751,6 +2785,7 @@ extends
 /**
  * General information that applies to a utility requisition that is a request for the purchase of goods or services.
  * Typically, a requisition leads to the creation of a purchase order to a specific supplier.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2818,6 +2853,7 @@ extends
 /**
  * General purpose Sales Order is used for utility service orders, etc.
  * As used by the OAG, the SalesOrder is a step beyond a PurchaseOrder in that the receiving entity of the order also communicates SalesInformoration about the Order along with the Order itself.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2885,6 +2921,7 @@ extends
 /**
  * For a utility, general information that describes physical locations of organizations or the location codes and their meanings.
  * This enables ERP applications to ensure that the physical location identifiers are synchronized between the business applications.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param LandProperty <em>undocumented</em>
@@ -2960,6 +2997,7 @@ extends
 
 /**
  * An individual entry on an ErpTimeSheet.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpProjectAccounting <em>undocumented</em>
@@ -3041,6 +3079,7 @@ extends
 /**
  * Time sheet for employees and contractors.
  * Note that ErpTimeSheet inherits the relationship to ErpPerson from Document.
+ *
  * @param sup Reference to the superclass object.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport

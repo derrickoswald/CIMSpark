@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
  * This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for representation of
+ *
  * @param sup Reference to the superclass object.
  * @param aset Acceleration limiter setpoint (Aset).
  *        Unit = PU/sec.  Typical Value = 0.01.
@@ -284,6 +285,7 @@ extends
 /**
  * General governor model with frequency-dependent fuel flow limit.
  * This model is a modification of the GovCT1<b> </b>model in order to represent the frequency-dependent fuel flow limit of a specific gas turbine manufacturer.
+ *
  * @param sup Reference to the superclass object.
  * @param aset Acceleration limiter setpoint (Aset).
  *        Unit = PU/sec.  Typical Value = 10.
@@ -684,6 +686,7 @@ extends
 
 /**
  * Single shaft gas turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param at Ambient temperature load limit (Load Limit).
  *        Typical Value = 1.
@@ -805,6 +808,7 @@ extends
 
 /**
  * Modified single shaft gas turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param a Turbine power time constant numerator scale factor (a).
  *        Typical Value = 0.8.
@@ -1071,6 +1075,7 @@ extends
 
 /**
  * Gas turbine model.
+ *
  * @param sup Reference to the superclass object.
  * @param a Valve positioner (A).
  * @param af1 Exhaust temperature Parameter (Af1).
@@ -1302,6 +1307,7 @@ extends
 
 /**
  * Generic turbogas with acceleration and temperature controller.
+ *
  * @param sup Reference to the superclass object.
  * @param bca Acceleration limit set-point (Bca).
  *        Unit = 1/s.  Typical Value = 0.01.
@@ -1490,6 +1496,7 @@ extends
 
 /**
  * Generic turbogas.
+ *
  * @param sup Reference to the superclass object.
  * @param bp Droop (bp).
  *        Typical Value = 0.05.
@@ -1618,6 +1625,7 @@ extends
 
 /**
  * Woodward Gas turbine governor model.
+ *
  * @param sup Reference to the superclass object.
  * @param a Valve positioner (<i>A</i>).
  * @param af1 Exhaust temperature Parameter (Af1).
@@ -1849,6 +1857,7 @@ extends
 
 /**
  * Basic Hydro turbine governor model.
+ *
  * @param sup Reference to the superclass object.
  * @param at Turbine gain (At) (&gt;0).
  *        Typical Value = 1.2.
@@ -1995,6 +2004,7 @@ extends
 
 /**
  * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
+ *
  * @param sup Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (Aturb).
  *        Typical Value = -1.
@@ -2232,6 +2242,7 @@ extends
 /**
  * Modified IEEE Hydro Governor-Turbine Model.
  * This model differs from that defined in the IEEE modeling guideline paper in that the limits on gate position and velocity do not permit "wind up" of the upstream signals.
+ *
  * @param sup Reference to the superclass object.
  * @param at Turbine gain (At).
  *        Typical Value = 1.2.
@@ -2513,6 +2524,7 @@ extends
 /**
  * Hydro turbine and governor.
  * Represents plants with straight-forward penstock configurations and hydraulic governors of traditional 'dashpot' type.  This model can be used to represent simple, Francis, Pelton or Kaplan turbines.
+ *
  * @param sup Reference to the superclass object.
  * @param at Turbine gain (At).
  *        Typical Value = 1.2.
@@ -2803,6 +2815,7 @@ extends
 
 /**
  * Double derivative hydro governor and turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (Aturb) (note 3).
  *        Typical Value = -1.
@@ -3078,6 +3091,7 @@ extends
 /**
  * Detailed hydro unit - Francis model.
  * This model can be used to represent three types of governors.
+ *
  * @param sup Reference to the superclass object.
  * @param am Opening section S<sub>eff</sub> at the maximum efficiency (Am).
  *        Typical Value = 0.7.
@@ -3305,6 +3319,7 @@ extends
 /**
  * IEEE Simplified Hydro Governor-Turbine Model.
  * Used for Mechanical-Hydraulic and Electro-Hydraulic turbine governors, with our without steam feedback. Typical values given are for Mechanical-Hydraulic.
+ *
  * @param sup Reference to the superclass object.
  * @param k Governor gain (K<i>)</i>.
  * @param mwbase Base for power values (MWbase) (&gt; 0).
@@ -3412,6 +3427,7 @@ extends
 /**
  * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
+ *
  * @param sup Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (Aturb).
  *        Typical Value = -1.
@@ -3630,6 +3646,7 @@ extends
 
 /**
  * PID governor and turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param aturb Turbine numerator multiplier (Aturb) (note 3).
  *        Typical Value -1.
@@ -3893,6 +3910,7 @@ extends
 /**
  * Hydro turbine and governor.
  * Represents plants with straight forward penstock configurations and "three term" electro-hydraulic governors (i.e. Woodard electronic).
+ *
  * @param sup Reference to the superclass object.
  * @param atw Factor multiplying Tw (Atw).
  *        Typical Value = 0.
@@ -4089,6 +4107,7 @@ extends
 /**
  * Detailed hydro unit - Pelton model.
  * This model can be used to represent the dynamic related to water tunnel and surge chamber.
+ *
  * @param sup Reference to the superclass object.
  * @param av0 Area of the surge tank (A<sub>V0</sub>).
  *        Unit = m<sup>2</sup>. Typical Value = 30.
@@ -4325,6 +4344,7 @@ extends
 
 /**
  * Fourth order lead-lag governor and hydro turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param at Turbine gain (At).
  *        Typical Value = 1.2.
@@ -4641,6 +4661,7 @@ extends
 
 /**
  * Woodward Electric Hydro Governor Model.
+ *
  * @param sup Reference to the superclass object.
  * @param db Speed Dead Band (db).
  * @param dicn Value to allow the integral controller to advance beyond the gate limits (Dicn).
@@ -4993,6 +5014,7 @@ extends
 
 /**
  * Woodward PID Hydro Governor.
+ *
  * @param sup Reference to the superclass object.
  * @param d Turbine damping factor (D).
  *        Unit = delta P / delta speed.
@@ -5175,6 +5197,7 @@ extends
 
 /**
  * A simplified steam turbine governor model.
+ *
  * @param sup Reference to the superclass object.
  * @param dt Turbine damping coefficient (Dt).
  *        Unit = delta P / delta speed. Typical Value = 0.
@@ -5285,6 +5308,7 @@ extends
 
 /**
  * Steam turbine governor model, based on the GovSteamIEEE1 model  (with optional deadband and nonlinear valve gain added).
+ *
  * @param sup Reference to the superclass object.
  * @param db1 Intentional deadband width (db1).
  *        Unit = Hz.  Typical Value = 0.
@@ -5587,6 +5611,7 @@ extends
 
 /**
  * Simplified governor model.
+ *
  * @param sup Reference to the superclass object.
  * @param dbf Frequency dead band (DBF).
  *        Typical Value = 0.
@@ -5697,6 +5722,7 @@ extends
 
 /**
  * Cross compound turbine governor model.
+ *
  * @param sup Reference to the superclass object.
  * @param dhp HP damping factor (Dhp).
  *        Typical Value = 0.
@@ -5861,6 +5887,7 @@ extends
 
 /**
  * Simplified model  of boiler and steam turbine with PID governor.
+ *
  * @param sup Reference to the superclass object.
  * @param chc Control valves rate closing limit (Chc).
  *        Unit = PU/sec.  Typical Value = -3.3.
@@ -6133,6 +6160,7 @@ extends
 
 /**
  * Steam turbine governor with reheat time constants and modeling of the effects of fast valve closing to reduce mechanical power.
+ *
  * @param sup Reference to the superclass object.
  * @param dt (Dt).
  * @param k Fraction of the turbine power developed by turbine sections not involved in fast valving (K).
@@ -6261,6 +6289,7 @@ extends
 
 /**
  * Simplified GovSteamIEEE1 Steam turbine governor model with Prmax limit and fast valving.
+ *
  * @param sup Reference to the superclass object.
  * @param k Governor gain, (reciprocal of droop) (K).
  *        Typical Value = 20.
@@ -6437,6 +6466,7 @@ extends
 
 /**
  * Detailed electro-hydraulic governor for steam unit.
+ *
  * @param sup Reference to the superclass object.
  * @param cpsmn Minimum value of pressure regulator output (Cpsmn).
  *        Typical Value = -1.
@@ -6806,6 +6836,7 @@ extends
 /**
  * IEEE steam turbine governor model.
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
+ *
  * @param sup Reference to the superclass object.
  * @param k Governor gain (reciprocal of droop) (K) (&gt; 0).
  *        Typical Value = 25.
@@ -6993,6 +7024,7 @@ extends
 
 /**
  * Simplified Steam turbine governor model.
+ *
  * @param sup Reference to the superclass object.
  * @param k1 One/per unit regulation (K1).
  * @param k2 Fraction (K2).
@@ -7116,6 +7148,7 @@ extends
 
 /**
  * Turbine-governor function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param AsynchronousMachineDynamics Asynchronous machine model with which this turbine-governor model is associated.
  * @param TurbineLoadControllerDynamics Turbine load controller providing input to this turbine-governor.

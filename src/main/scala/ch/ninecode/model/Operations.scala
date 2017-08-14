@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Action on clearance document as a switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Clearance action to perform.
  * @param Clearance Clearance associated with this clearance action.
@@ -84,6 +85,7 @@ extends
 /**
  * Safety document used to authorise work on conducting equipment in the field.
  * Tagged equipment is not allowed to be operated.
+ *
  * @param sup Reference to the superclass object.
  * @param mustBeDeenergised If true, the equipment must be deenergised.
  * @param mustBeGrounded If true, the equipment must be grounded.
@@ -164,6 +166,7 @@ extends
 
 /**
  * Action on cut as a switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param Cut Cut on which this action is taken.
@@ -239,6 +242,7 @@ extends
 
 /**
  * Action on energy source as a switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param EnergySource Energy source on which this action is taken.
@@ -314,6 +318,7 @@ extends
 
 /**
  * An arbitrary switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param SwitchingStepGroup Group to which this step belongs.
  * @group Operations
@@ -379,6 +384,7 @@ extends
 
 /**
  * Action on ground as a switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param AlongACLineSegment The line segment that this ground action will affect.
@@ -467,6 +473,7 @@ extends
 /**
  * Description of a problem in the field that may be reported in a trouble ticket or come from another source.
  * It may have to do with an outage.
+ *
  * @param sup Reference to the superclass object.
  * @param cause Cause of this incident.
  * @param Outage Outage for this incident.
@@ -547,6 +554,7 @@ extends
 
 /**
  * Action on jumper as a switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param Jumper Jumper on which this action is taken.
@@ -693,6 +701,7 @@ extends
 /**
  * A document that can be associated with equipment to describe any sort of restrictions compared with the original manufacturer's specification or with the usual operational practice e.g. temporary maximum loadings, maximum switching current, do not operate if bus couplers are open, etc.
  * In the UK, for example, if a breaker or switch ever mal-operates, this is reported centrally and utilities use their asset systems to identify all the installed devices of the same manufacturer's type. They then apply operational restrictions in the operational systems to warn operators of potential problems. After appropriate inspection and maintenance, the operational restrictions may be removed.
+ *
  * @param sup Reference to the superclass object.
  * @param activePeriod Interval during which this restriction is applied.
  * @param restrictedValue Restricted (new) value; includes unit of measure and potentially multiplier.
@@ -773,6 +782,7 @@ extends
 
 /**
  * Lowered capability because of deterioration or inadequacy (sometimes referred to as derating or partial outage) or other kind of operational rating change.
+ *
  * @param sup Reference to the superclass object.
  * @param changeType Type of operational updated rating, e.g. a derate, a rerate or a return to normal.
  * @param PlannedOutage Planned equipment outage with this updated rating.
@@ -844,6 +854,7 @@ extends
 /**
  * Document describing details of an active or planned outage in a part of the electrical network.
  * A non-planned outage may be created upon:
+ *
  * @param sup Reference to the superclass object.
  * @param actualPeriod Actual outage period; end of the period corresponds to the actual restoration time.
  * @param cancelledDateTime Date and time planned outage has been cancelled.
@@ -957,6 +968,7 @@ extends
 /**
  * Document containing the definition of planned outages of equipment and/or service (delivery) points (sometimes referred to as customers).
  * It is used as specification for producing switching plans.
+ *
  * @param sup Reference to the superclass object.
  * @group Operations
  * @groupname Operations Package Operations
@@ -1018,6 +1030,7 @@ extends
 
 /**
  * Event recording the change in operational status of a power system resource; may be for an event that has already occurred or for a planned activity.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of event.
  * @param PowerSystemResource Power system resource that generated this event.
@@ -1088,6 +1101,7 @@ extends
 
 /**
  * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
+ *
  * @param sup Reference to the superclass object.
  * @param SwitchingPlan Switching plan to which this safety document applies.
  * @group Operations
@@ -1154,6 +1168,7 @@ extends
 /**
  * Summary counts of service points affected by an outage.
  * These counts are sometimes referred to as total and critical customer count.
+ *
  * @param sup Reference to the superclass object.
  * @param criticalCount Number of critical service (delivery) points affected by an outage.
  * @param totalCount Number of all service (delivery) points affected by an outage.
@@ -1224,6 +1239,7 @@ extends
 
 /**
  * Action on switch as a switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param OperatedSwitch Switch that is the object of this switch action.
@@ -1306,6 +1322,7 @@ extends
  * A sequence of grouped or atomic steps intended to:
  * - de-energise equipment or part of the network for safe work, and/or
  * - bring back in service previously de-energised equipment or part of the network.
+ *
  * @param sup Reference to the superclass object.
  * @param purpose Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.
  * @param rank Ranking in comparison to other switching plans.
@@ -1381,6 +1398,7 @@ extends
 
 /**
  * Atomic switching step; can be part of a switching step group, or of the switching plan.
+ *
  * @param sup Reference to the superclass object.
  * @param description Free text description of this activity.
  * @param executedDateTime Actual date and time of this switching step.
@@ -1476,6 +1494,7 @@ extends
 
 /**
  * A logical step, grouping atomic switching steps that are important to distinguish when they may change topology (e.g. placing a jumper between two cuts).
+ *
  * @param sup Reference to the superclass object.
  * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
@@ -1551,6 +1570,7 @@ extends
 
 /**
  * Action on operation tag as a switching step.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of tag action.
  * @param OperationTag Tag associated with this tag action.

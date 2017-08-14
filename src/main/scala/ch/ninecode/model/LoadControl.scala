@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
+ *
  * @param sup Reference to the superclass object.
  * @param eventCount Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
  * @param isConnected True if this function is in the connected state.
@@ -118,6 +119,7 @@ extends
 
 /**
  * Details of remote connect and disconnect function.
+ *
  * @param sup Reference to the superclass object.
  * @param armedTimeout Setting of the timeout elapsed time.
  * @param customerVoltageLimit Voltage limit on customer side of RCD switch above which the connect should not be made.

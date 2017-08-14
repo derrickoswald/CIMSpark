@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * An Asset Property that is described through curves rather than as a data point.
  * The relationship is to be defined between an independent variable (X-axis) and one or two dependent variables (Y1-axis and Y2-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param Specification <em>undocumented</em>
  * @group InfAssets
@@ -91,6 +92,7 @@ extends
 
 /**
  * Bushing asset.
+ *
  * @param sup Reference to the superclass object.
  * @param c1Capacitance Factory measured capacitance, measured between the power factor tap and the bushing conductor.
  * @param c1PowerFactor Factory measured insulation power factor, measured between the power factor tap and the bushing conductor.
@@ -199,6 +201,7 @@ extends
 /**
  * Bushing insulation power factor condition as a result of a test.
  * Typical status values are: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param testKind Kind of test for this bushing.
@@ -296,6 +299,7 @@ extends
 
 /**
  * Enclosure that offers protection to the equipment it contains and/or safety to people/animals outside it.
+ *
  * @param sup Reference to the superclass object.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -375,6 +379,7 @@ extends
 /**
  * There are often stages of power which are associated with stages of cooling.
  * For instance, a transformer may be rated 121kV on the primary, 15kV on the secondary and 4kV on the tertiary winding. These are voltage ratings and the power ratings are generally the same for all three windings and independent of the voltage ratings, there are instances where the tertiary may have a lower power rating.
+ *
  * @param sup Reference to the superclass object.
  * @param coolingKind Kind of cooling system.
  * @param powerRating The power rating associated with type of cooling specified for this stage.
@@ -473,6 +478,7 @@ extends
 /**
  * As applicable, the basic linear, area, or volume dimensions of an asset, asset type (AssetModel) or other type of object (such as land area).
  * Units and multipliers are specified per dimension.
+ *
  * @param sup Reference to the superclass object.
  * @param orientation A description of the orientation of the object relative to the dimensions.
  *        As an example, a vault may have north-south orientation for the sizeLength measurement and sizeDepth may be the height of the vault.
@@ -581,6 +587,7 @@ extends
 
 /**
  * A duct contains individual wires in the layout as specified with associated wire spacing instances; number of them gives the number of conductors in this duct.
+ *
  * @param sup Reference to the superclass object.
  * @param circuitCount Number of circuits in duct bank.
  *        Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
@@ -664,6 +671,7 @@ extends
 
 /**
  * FACTS device asset.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of FACTS device.
  * @group InfAssets
@@ -746,6 +754,7 @@ extends
 
 /**
  * A facility may contain buildings, storage facilities, switching facilities, power generation, manufacturing facilities, maintenance facilities, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of this facility.
  * @group InfAssets
@@ -828,6 +837,7 @@ extends
 
 /**
  * An event where an asset has failed to perform its functions within specified parameters.
+ *
  * @param sup Reference to the superclass object.
  * @param corporateCode Code for asset failure.
  * @param failureIsolationMethod How the asset failure was isolated from the system.
@@ -927,6 +937,7 @@ extends
 /**
  * Various current financial properties associated with a particular asset.
  * Historical properties may be determined by ActivityRecords associated with the asset.
+ *
  * @param sup Reference to the superclass object.
  * @param account The account to which this actual material item is charged.
  * @param actualPurchaseCost The actual purchase cost of this particular asset.
@@ -1065,6 +1076,7 @@ extends
 
 /**
  * Generic asset or material item that may be used for planning, work or design purposes.
+ *
  * @param sup Reference to the superclass object.
  * @param estimatedUnitCost Estimated unit cost (or cost per unit length) of this type of asset.
  *        It does not include labor to install/construct or configure it.
@@ -1174,6 +1186,7 @@ extends
 /**
  * Joint connects two or more cables.
  * It includes the portion of cable under wipes, welds, or other seals.
+ *
  * @param sup Reference to the superclass object.
  * @param configurationKind Configuration of joint.
  * @param fillKind Material used to fill the joint.
@@ -1266,6 +1279,7 @@ extends
 
 /**
  * A substance that either (1) provides the means of transmission of a force or effect, such as hydraulic fluid, or (2) is used for a surrounding or enveloping substance, such as oil in a transformer or circuit breaker.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of this medium.
  * @param volumeSpec The volume of the medium specified for this application.
@@ -1364,6 +1378,7 @@ extends
 
 /**
  * Pole asset.
+ *
  * @param sup Reference to the superclass object.
  * @param baseKind Kind of base for this pole.
  * @param breastBlock True if a block of material has been attached to base of pole in ground for stability.
@@ -1498,6 +1513,7 @@ extends
 
 /**
  * Reconditioning information for an asset.
+ *
  * @param sup Reference to the superclass object.
  * @param dateTime Date and time this reconditioning (or a major overhaul) has been performed.
  * @param Asset <em>undocumented</em>
@@ -1585,6 +1601,7 @@ extends
 
 /**
  * Information regarding the experienced and expected reliability of a specific asset, type of asset, or asset model.
+ *
  * @param sup Reference to the superclass object.
  * @param mTTR Mean time to repair (MTTR - hours).
  * @param momFailureRate Momentary failure rate (temporary failures/kft-year).
@@ -1683,6 +1700,7 @@ extends
 /**
  * Specification can be used for various purposes relative to an asset, a logical device (PowerSystemResource), location, etc.
  * Examples include documents supplied by manufacturers such as asset installation instructions, asset maintenance instructions, etc.
+ *
  * @param sup Reference to the superclass object.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -1761,6 +1779,7 @@ extends
 
 /**
  * Streetlight asset.
+ *
  * @param sup Reference to the superclass object.
  * @param armLength Length of arm.
  *        Note that a new light may be placed on an existing arm.
@@ -1860,6 +1879,7 @@ extends
 /**
  * Construction holding assets such as conductors, transformers, switchgear, etc.
  * Where applicable, number of conductors can be derived from the number of associated wire spacing instances.
+ *
  * @param sup Reference to the superclass object.
  * @param fumigantAppliedDate Date fumigant was last applied.
  * @param fumigantName Name of fumigant.
@@ -1973,6 +1993,7 @@ extends
 
 /**
  * Support for structure assets.
+ *
  * @param sup Reference to the superclass object.
  * @param anchorKind (if anchor) Kind of anchor.
  * @param anchorRodCount (if anchor) Number of rods used.
@@ -2091,6 +2112,7 @@ extends
 /**
  * Tower asset.
  * Dimensions of the Tower are specified in associated DimensionsInfo class.
+ *
  * @param sup Reference to the superclass object.
  * @param constructionKind Construction structure on the tower.
  * @group InfAssets
@@ -2174,6 +2196,7 @@ extends
 /**
  * Common information captured during transformer inspections and/or diagnostics.
  * Note that some properties may be measured through other means and therefore have measurement values in addition to the observed values recorded here.
+ *
  * @param sup Reference to the superclass object.
  * @param bushingTemp Bushing temperature.
  * @param dga Dissolved Gas Analysis.
@@ -2334,6 +2357,7 @@ extends
 
 /**
  * Underground structure.
+ *
  * @param sup Reference to the superclass object.
  * @param hasVentilation True if vault is ventilating.
  * @param kind True if vault is ventilating.
@@ -2431,6 +2455,7 @@ extends
 
 /**
  * Winding insulation condition as a result of a test.
+ *
  * @param sup Reference to the superclass object.
  * @param insulationPFStatus Status of Winding Insulation Power Factor as of statusDate: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
  * @param insulationResistance For testType, status of Winding Insulation Resistance as of statusDate.

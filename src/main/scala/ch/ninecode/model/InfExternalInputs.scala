@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
+ *
  * @param sup Reference to the superclass object.
  * @param MarketProduct Market product associated with reserve requirement must be a reserve or regulation product.
  * @param ReserveReqCurve <em>undocumented</em>
@@ -83,6 +84,7 @@ extends
 /**
  * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
  * The  curve can be based on "absolute" time or on "normalized' time.
+ *
  * @param sup Reference to the superclass object.
  * @param ReserveReq <em>undocumented</em>
  * @group InfExternalInputs
@@ -147,6 +149,7 @@ extends
 
 /**
  * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param status Status of this group.
  * @param typ Type of this group.
@@ -216,6 +219,7 @@ extends
 
 /**
  * Ancillary service requirements for a market.
+ *
  * @param sup Reference to the superclass object.
  * @param RTOs <em>undocumented</em>
  * @param ResourceGroup <em>undocumented</em>
@@ -286,6 +290,7 @@ extends
 /**
  * Optionally, this curve expresses elasticity of the associated requirement.
  * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
+ *
  * @param sup Reference to the superclass object.
  * @param ReserveReq <em>undocumented</em>
  * @group InfExternalInputs

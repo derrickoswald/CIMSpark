@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * The constant aerodynamic torque model assumes that the aerodynamic torque is constant.
  * Reference: IEC Standard 61400-27-1 Section 5.6.1.1.
+ *
  * @param sup Reference to the superclass object.
  * @param WindGenTurbineType1aIEC Wind turbine type 1A model with which this wind aerodynamic model is associated.
  * @group WindDynamics
@@ -85,6 +86,7 @@ extends
 /**
  * One-dimensional aerodynamic model.
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.2.
+ *
  * @param sup Reference to the superclass object.
  * @param ka Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
  *        It is type dependent parameter.
@@ -173,6 +175,7 @@ extends
 /**
  * Two-dimensional aerodynamic model.
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.3.
+ *
  * @param sup Reference to the superclass object.
  * @param dpomega Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
  *        It is type dependent parameter.
@@ -291,6 +294,7 @@ extends
 /**
  * Current limitation model.
  * The current limitation model combines the physical limits and the control limits.
+ *
  * @param sup Reference to the superclass object.
  * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
  *        It is type dependent parameter.
@@ -413,6 +417,7 @@ extends
 /**
  * P control model Type 3.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.4.
+ *
  * @param sup Reference to the superclass object.
  * @param dpmax Maximum wind turbine power ramp rate (<i>dp</i><sub>max</sub>).
  *        It is type dependent parameter.
@@ -629,6 +634,7 @@ extends
 /**
  * P control model Type 4A.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.5.
+ *
  * @param sup Reference to the superclass object.
  * @param dpmaxp4a Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4A</sub>).
  *        It is project dependent parameter.
@@ -723,6 +729,7 @@ extends
 /**
  * P control model Type 4B.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.6.
+ *
  * @param sup Reference to the superclass object.
  * @param dpmaxp4b Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4B</sub>).
  *        It is project dependent parameter.
@@ -823,6 +830,7 @@ extends
 /**
  * Pitch angle control model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.2.
+ *
  * @param sup Reference to the superclass object.
  * @param dthetamax Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
  *        It is type dependent parameter. Unit = degrees/sec.
@@ -959,6 +967,7 @@ extends
 /**
  * Q control model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.7.
+ *
  * @param sup Reference to the superclass object.
  * @param iqh1 Maximum reactive current injection during dip (i<sub>qh1</sub>).
  *        It is type dependent parameter.
@@ -1173,6 +1182,7 @@ extends
 /**
  * Constant Q limitation model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.9.
+ *
  * @param sup Reference to the superclass object.
  * @param qmax Maximum reactive power (<i>q</i><sub>max</sub>).
  *        It is type dependent parameter.
@@ -1261,6 +1271,7 @@ extends
 /**
  * QP and QU limitation model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.10.
+ *
  * @param sup Reference to the superclass object.
  * @param tpfiltql Power measurement filter time constant for Q capacity (<i>T</i><sub>pfiltql</sub>).
  *        It is type dependent parameter.
@@ -1349,6 +1360,7 @@ extends
 /**
  * Rotor resistance control model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.3.
+ *
  * @param sup Reference to the superclass object.
  * @param kirr Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
  *        It is type dependent parameter.
@@ -1472,6 +1484,7 @@ extends
 
 /**
  * The class models a look up table for the purpose of wind standard models.
+ *
  * @param sup Reference to the superclass object.
  * @param input Input value (x) for the lookup table function.
  * @param lookupTableFunctionType Type of the lookup table function.
@@ -1608,6 +1621,7 @@ extends
 /**
  * Wind turbine IEC Type 1A.
  * Reference: IEC Standard 61400-27-1, section 5.5.2.2.
+ *
  * @param sup Reference to the superclass object.
  * @param WindAeroConstIEC Wind aerodynamic model associated with this wind turbine type 1A model.
  * @group WindDynamics
@@ -1684,6 +1698,7 @@ extends
 /**
  * Wind turbine IEC Type 1B.
  * Reference: IEC Standard 61400-27-1, section 5.5.2.3.
+ *
  * @param sup Reference to the superclass object.
  * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 1B model.
  * @group WindDynamics
@@ -1760,6 +1775,7 @@ extends
 /**
  * Wind turbine IEC Type 2.
  * Reference: IEC Standard 61400-27-1, section 5.5.3.
+ *
  * @param sup Reference to the superclass object.
  * @param WindContRotorRIEC Wind control rotor resistance model associated with wind turbine type 2 model.
  * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 2 model.
@@ -1840,6 +1856,7 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 generator models of IEC type 3A and 3B.
+ *
  * @param sup Reference to the superclass object.
  * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
  *        It is project dependent parameter.
@@ -1934,6 +1951,7 @@ extends
 /**
  * IEC Type 3A generator set model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.2.
+ *
  * @param sup Reference to the superclass object.
  * @param kpc Current PI controller proportional gain (K<sub>Pc</sub>).
  *        It is type dependent parameter.
@@ -2022,6 +2040,7 @@ extends
 /**
  * IEC Type 3B generator set model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.3.
+ *
  * @param sup Reference to the superclass object.
  * @param mwtcwp Crowbar control mode (<i>M</i><sub>WTcwp</sub>).
  *        <ul>
@@ -2115,6 +2134,7 @@ extends
 /**
  * IEC Type 4 generator set model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.4.
+ *
  * @param sup Reference to the superclass object.
  * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
  *        It is project dependent parameter.
@@ -2220,6 +2240,7 @@ extends
 /**
  * Two mass model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.2.1.
+ *
  * @param sup Reference to the superclass object.
  * @param cdrt Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
  *        It is type dependent parameter.
@@ -2330,6 +2351,7 @@ extends
 /**
  * Pitch control power model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.1.
+ *
  * @param sup Reference to the superclass object.
  * @param dpmax Rate limit for increasing power (d<i>p</i><sub>max</sub>).
  *        It is type dependent parameter.
@@ -2452,6 +2474,7 @@ extends
 
 /**
  * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant IEC and user defined wind plants including their control models.
+ *
  * @param sup Reference to the superclass object.
  * @param RemoteInputSignal The remote signal with which this power plant is associated.
  * @group WindDynamics
@@ -2528,6 +2551,7 @@ extends
 /**
  * Frequency and active power controller model.
  * Reference: IEC Standard 61400-27-1 Annex D.
+ *
  * @param sup Reference to the superclass object.
  * @param dprefmax Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
  *        It is case dependent parameter.
@@ -2694,6 +2718,7 @@ extends
 /**
  * Simplified IEC type plant level model.
  * Reference: IEC 61400-27-1, Annex D.
+ *
  * @param sup Reference to the superclass object.
  * @param WindPlantFreqPcontrolIEC Wind plant frequency and active power control model associated with this wind plant.
  * @param WindPlantReactiveControlIEC Wind plant model with which this wind reactive control is associated.
@@ -2775,6 +2800,7 @@ extends
 /**
  * Simplified plant voltage and reactive power control model for use with type 3 and type 4 wind turbine models.
  * Reference: IEC Standard 61400-27-1 Annex D.
+ *
  * @param sup Reference to the superclass object.
  * @param dxrefmax Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmax</sub>).
  *        It is project dependent parameter.
@@ -2959,6 +2985,7 @@ extends
 /**
  * The grid protection model includes protection against over and under voltage, and against over and under frequency.
  * Reference: IEC Standard 614000-27-1 Section 5.6.6.
+ *
  * @param sup Reference to the superclass object.
  * @param dfimax Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
  *        It is type dependent parameter.
@@ -3082,6 +3109,7 @@ extends
 /**
  * Reference frame rotation model.
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.5.
+ *
  * @param sup Reference to the superclass object.
  * @param tpll Time constant for PLL first order filter model (T<sub>PLL</sub>).
  *        It is type dependent parameter.
@@ -3175,6 +3203,7 @@ extends
 
 /**
  * Parent class supporting relationships to wind turbines Type 1 and 2 and their control models.
+ *
  * @param sup Reference to the superclass object.
  * @param AsynchronousMachineDynamics Asynchronous machine model with which this wind generator type 1 or 2 model is associated.
  * @param RemoteInputSignal Remote input signal used by this wind generator Type 1 or Type 2 model.
@@ -3256,6 +3285,7 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines Type 1 and 2 including their control models.
  * Generator model for wind turbine of IEC Type 1 or Type 2 is a standard asynchronous generator model.
+ *
  * @param sup Reference to the superclass object.
  * @param WindMechIEC Wind mechanical model associated with this wind generator type 1 or 2 model.
  * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 1 or 2 model.
@@ -3336,6 +3366,7 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 including their control models.
+ *
  * @param sup Reference to the superclass object.
  * @param WindAeroOneDimIEC Wind aerodynamic model associated with this wind generator type 3 model.
  * @param WindAeroTwoDimIEC Wind aerodynamic model associated with this wind turbine type 3 model.
@@ -3436,6 +3467,7 @@ extends
 
 /**
  * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant including their control models.
+ *
  * @param sup Reference to the superclass object.
  * @param EnergySource Energy Source (current source) with which this wind Type 3 or 4 dynamics model is asoociated.
  * @param RemoteInputSignal Remote input signal used by these wind turbine Type 3 or 4 models.
@@ -3521,6 +3553,7 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 and 4 including their control models.
+ *
  * @param sup Reference to the superclass object.
  * @param WIndContQIEC Wind control Q model associated with this wind turbine type 3 or 4 model.
  * @param WindContCurrLimIEC Wind control current limitation model associated with this wind turbine type 3 or 4 model.
@@ -3621,6 +3654,7 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 4 including their control models.
+ *
  * @param sup Reference to the superclass object.
  * @param WindGenType3aIEC Wind generator type 3A model associated with this wind turbine type 4 model.
  * @group WindDynamics
@@ -3697,6 +3731,7 @@ extends
 /**
  * Wind turbine IEC Type 4A.
  * Reference: IEC Standard 61400-27-1, section 5.5.5.3.
+ *
  * @param sup Reference to the superclass object.
  * @param WindContPType4aIEC Wind control P type 4A model associated with this wind turbine type 4A model.
  * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4A model.
@@ -3778,6 +3813,7 @@ extends
 /**
  * Wind turbine IEC Type 4A.
  * Reference: IEC Standard 61400-27-1, section 5.5.5.2.
+ *
  * @param sup Reference to the superclass object.
  * @param WindContPType4bIEC Wind control P type 4B model associated with this wind turbine type 4B model.
  * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4B model.

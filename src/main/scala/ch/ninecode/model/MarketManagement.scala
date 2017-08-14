@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The Area Control Error tariff type that is applied or used.
+ *
  * @param sup Reference to the superclass object.
  * @param typ The coded type of an ACE tariff.
  * @param MarketDocument <em>undocumented</em>
@@ -83,6 +84,7 @@ extends
 
 /**
  * A class used to provide information about an attribute.
+ *
  * @param sup Reference to the superclass object.
  * @param attribute The identification of the formal name of an attribute.
  * @param attributeValue The instance value of the attribute.
@@ -163,6 +165,7 @@ extends
 
 /**
  * A class providing the identification and type of an auction.
+ *
  * @param sup Reference to the superclass object.
  * @param allocationMode Identification of the method of allocation in an auction.
  * @param cancelled An indicator that signifies that the auction has been cancelled.
@@ -258,6 +261,7 @@ extends
 
 /**
  * The formal specification of specific characteristics related to a bid.
+ *
  * @param sup Reference to the superclass object.
  * @param blockBid Indication that  the values in the period are considered as a whole.
  *        They cannot be changed or subdivided.
@@ -349,6 +353,7 @@ extends
 
 /**
  * The date and or the time.
+ *
  * @param sup Reference to the superclass object.
  * @param date Date as "yyyy-mm-dd", which conforms with ISO 8601
  * @param time Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
@@ -419,6 +424,7 @@ extends
 
 /**
  * An area of activity defined within the energy market.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -480,6 +486,7 @@ extends
 
 /**
  * The coded identification of the direction of energy flow.
+ *
  * @param sup Reference to the superclass object.
  * @param direction The coded identification of the direction of energy flow.
  * @group MarketManagement
@@ -545,6 +552,7 @@ extends
 
 /**
  * An identification  or eventually the contents of an agreement between two or more parties.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -606,6 +614,7 @@ extends
 
 /**
  * Electronic document containing the information necessary to satisfy a given business process set of requirements.
+ *
  * @param sup Reference to the superclass object.
  * @param selfMarketDocument <em>undocumented</em>
  * @param AttributeInstanceComponent <em>undocumented</em>
@@ -686,6 +695,7 @@ extends
 
 /**
  * The identification of an entity where energy products are measured or computed.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -747,6 +757,7 @@ extends
 
 /**
  * The condition or position of an object with regard to its standing.
+ *
  * @param sup Reference to the superclass object.
  * @param status The coded condition or position of an object with regard to its standing.
  * @param TimeSeries <em>undocumented</em>
@@ -817,6 +828,7 @@ extends
 
 /**
  * The type of a power system resource.
+ *
  * @param sup Reference to the superclass object.
  * @param psrType The coded type of a power system resource.
  * @param TimeSeries <em>undocumented</em>
@@ -887,6 +899,7 @@ extends
 
 /**
  * An identification of a time interval that may have a given resolution.
+ *
  * @param sup Reference to the superclass object.
  * @param resolution The number of units of time that compose an individual step within a period.
  * @param timeInterval The start and end date and time for a given interval.
@@ -962,6 +975,7 @@ extends
 
 /**
  * An identification of a set of values beeing adressed within a specific interval of time.
+ *
  * @param sup Reference to the superclass object.
  * @param position A sequential value representing the relative position within a given time interval.
  * @param quality The quality of the information being provided.
@@ -1058,6 +1072,7 @@ extends
 
 /**
  * The cost corresponding to a specific measure and expressed in a currency.
+ *
  * @param sup Reference to the superclass object.
  * @param amount A number of monetary units specified in a unit of currency.
  * @param category The category of a price to be used in a price calculation.
@@ -1139,6 +1154,7 @@ extends
 
 /**
  * The formal specification of a set of business transactions having the same business goal.
+ *
  * @param sup Reference to the superclass object.
  * @param classificationType The classification mechanism used to group a set of objects together within a business process.
  *        The grouping may be of a detailed or a summary nature.
@@ -1215,6 +1231,7 @@ extends
 
 /**
  * The motivation of an act.
+ *
  * @param sup Reference to the superclass object.
  * @param code The motivation of an act in coded form.
  * @param text The textual explanation corresponding to the reason code.
@@ -1295,6 +1312,7 @@ extends
 
 /**
  * A set of regular time-ordered measurements or values of quantitative nature of an individual or collective phenomenon taken at successive, in most cases equidistant, periods / points of time.
+ *
  * @param sup Reference to the superclass object.
  * @param businessType The identification of the nature of the time series.
  * @param cancelledTS An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.
@@ -1425,6 +1443,7 @@ extends
 
 /**
  * The identification of the unit name for the time series quantities.
+ *
  * @param sup Reference to the superclass object.
  * @param name The coded representation of the unit.
  * @param TimeSeries <em>undocumented</em>

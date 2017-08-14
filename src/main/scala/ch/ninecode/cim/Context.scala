@@ -47,8 +47,8 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
      * The index of newlines for the string
      * "Now is the time\nfor all good men\nto come to the aid of the party\n"
      * is [15, 32, 64]
-     * @param string - the string to index
-     * @param offset - optional offset to add to the index values
+     * @param string the string to index
+     * @param offset optional offset to add to the index values
      * @return {Unit} nothing
      */
     def index_string (string: String, offset: Long = 0L, n: ArrayBuffer[Long] = ArrayBuffer[Long] ()): ArrayBuffer[Long] =

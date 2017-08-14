@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Turbine Load Controller model developed in the WECC.
  * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
+ *
  * @param sup Reference to the superclass object.
  * @param db Controller dead band (db).
  *        Typical Value = 0.
@@ -147,6 +148,7 @@ extends
 
 /**
  * Turbine load controller function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param TurbineGovernorDynamics Turbine-governor controlled by this turbine load controller.
  * @group TurbineLoadControllerDynamics

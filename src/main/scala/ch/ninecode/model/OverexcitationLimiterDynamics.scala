@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
  * Irated is the rated machine excitation current (calculated from nameplate conditions: V<sub>nom</sub>, P<sub>nom</sub>, CosPhi<sub>nom</sub>).
+ *
  * @param sup Reference to the superclass object.
  * @param ifdlim Limit value of rated field current (I<sub>FDLIM</sub>).
  *        Typical Value = 1.05.
@@ -94,6 +95,7 @@ extends
 /**
  * The over excitation limiter model is intended to represent the significant features of OELs necessary for some large-scale system studies.
  * It is the result of a pragmatic approach to obtain a model that can be widely applied with attainable data from generator owners. An attempt to include all variations in the functionality of OELs and duplicate how they interact with the rest of the excitation systems would likely result in a level of application insufficient for the studies for which they are intended.
+ *
  * @param sup Reference to the superclass object.
  * @param hyst OEL pickup/drop-out hysteresis (HYST).
  *        Typical Value = 0.03.
@@ -190,6 +192,7 @@ extends
 
 /**
  * Field voltage over excitation limiter.
+ *
  * @param sup Reference to the superclass object.
  * @param efd1 Low voltage point on the inverse time characteristic (EFD<sub>1</sub>).
  *        Typical Value = 1.1.
@@ -309,6 +312,7 @@ extends
 
 /**
  * Field Voltage or Current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
+ *
  * @param sup Reference to the superclass object.
  * @param efd1 Low voltage or current point on the inverse time characteristic (EFD<sub>1</sub>).
  *        Typical Value = 1.1.
@@ -435,6 +439,7 @@ extends
 
 /**
  * <font color="#0f0f0f">O</font>Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this overexcitation limiter model is associated.
  * @group OverexcitationLimiterDynamics

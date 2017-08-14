@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Model that describes the Congestion Revenue Rights Auction Market
+ *
  * @param sup Reference to the superclass object.
  * @param labelID labelID - an ID for a set of apnodes/pnodes used in a CRR market
  * @group MarketPlan
@@ -74,6 +75,7 @@ extends
 /**
  * Energy and Ancillary Market (e.g.
  * Energy, Spinning Reserve, Non-Spinning Reserve) with a description of the Market operation control parameters.
+ *
  * @param sup Reference to the superclass object.
  * @param MarketResults <em>undocumented</em>
  * @param RTO <em>undocumented</em>
@@ -150,6 +152,7 @@ extends
 /**
  * Market (e.g.
  * Day Ahead Market, RealTime Market) with a description of the the Market operation control parameters.
+ *
  * @param sup Reference to the superclass object.
  * @param actualEnd Market ending time - actual market end
  * @param actualStart Market starting time - actual market start
@@ -268,6 +271,7 @@ extends
 
 /**
  * This class represent the actual instance of an event.
+ *
  * @param sup Reference to the superclass object.
  * @param description Description of the event.
  * @param eventID Actual event ID.
@@ -354,6 +358,7 @@ extends
 
 /**
  * Aggregation of market information relative for a specific time interval.
+ *
  * @param sup Reference to the superclass object.
  * @param intervalEndTime The end of the time interval for which requirement is defined.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
@@ -435,6 +440,7 @@ extends
 /**
  * This class identifies a set of planned markets.
  * This class is a container of these planned markets
+ *
  * @param sup Reference to the superclass object.
  * @param description Description of the planned market.
  * @param marketPlanID Planned market identifier.
@@ -516,6 +522,7 @@ extends
 /**
  * A product traded by an RTO (e.g. energy, 10 minute spinning reserve).
  * Ancillary service product examples include:Regulation UpRegulation DnSpinning ReserveNon-Spinning ReserveOperating Reserve
+ *
  * @param sup Reference to the superclass object.
  * @param marketProductType Market product type examples:
  *        
@@ -605,6 +612,7 @@ extends
 /**
  * This class represent an actual instance of a planned market.
  * For example, a Day Ahead market opens with the Bid Submission, ends with the closing of the Bid Submission. The market run represent the whole process. MarketRuns can be defined for markets such as Day Ahead Market, Real Time Market, Hour Ahead Market, Week Ahead Market,...
+ *
  * @param sup Reference to the superclass object.
  * @param executionType The execution type; Day Ahead, Intra Day, Real Time Pre-Dispatch, Real Time Dispatch
  * @param marketApprovalTime Approved time for case.
@@ -731,6 +739,7 @@ extends
 /**
  * Represent a planned market.
  * For example an planned DA/HA/RT market.
+ *
  * @param sup Reference to the superclass object.
  * @param marketEndTime Market end time.
  * @param marketID An identification that defines the attributes of the Market.
@@ -818,6 +827,7 @@ extends
 /**
  * This class represents planned events.
  * Used to model the various planned events in a market (closing time, clearing time, etc).
+ *
  * @param sup Reference to the superclass object.
  * @param description Description of the planned event.
  * @param eventType Planned event type.

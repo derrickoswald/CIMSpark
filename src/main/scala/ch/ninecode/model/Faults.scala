@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * A fault applied at the terminal, external to the equipment.
  * This class is not used to specify faults internal to the equipment.
+ *
  * @param sup Reference to the superclass object.
  * @param Terminal The terminal connecting to the bus to which the fault is applied.
  * @group Faults
@@ -74,6 +75,7 @@ extends
 
 /**
  * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).
+ *
  * @param sup Reference to the superclass object.
  * @param impedance Fault impedance.
  *        Its usage is described by 'kind'.
@@ -166,6 +168,7 @@ extends
 
 /**
  * Type of cause of the fault.
+ *
  * @param sup Reference to the superclass object.
  * @group Faults
  * @groupname Faults Package Faults
@@ -227,6 +230,7 @@ extends
 
 /**
  * Impedance description for the fault.
+ *
  * @param sup Reference to the superclass object.
  * @param rGround The resistance of the fault between phases and ground.
  * @param rLineToLine The resistance of the fault between phases.
@@ -307,6 +311,7 @@ extends
 
 /**
  * A fault that occurs on an AC line segment at some point along the length.
+ *
  * @param sup Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.
  * @param ACLineSegment The line segment of this line fault.

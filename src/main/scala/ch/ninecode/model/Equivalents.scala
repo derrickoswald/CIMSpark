@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The class represents equivalent branches.
+ *
  * @param sup Reference to the superclass object.
  * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909
@@ -163,6 +164,7 @@ extends
 /**
  * The class represents equivalent objects that are the result of a network reduction.
  * The class is the base for equivalent objects of different types.
+ *
  * @param sup Reference to the superclass object.
  * @param EquivalentNetwork The equivalent where the reduced model belongs.
  * @group Equivalents
@@ -229,6 +231,7 @@ extends
 /**
  * This class represents equivalent injections (generation or load).
  * Voltage regulation is allowed only at the point of connection.
+ *
  * @param sup Reference to the superclass object.
  * @param maxP Maximum active power of the injection.
  * @param maxQ Used for modeling of infeed for load flow exchange.
@@ -381,6 +384,7 @@ extends
 /**
  * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
  * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
+ *
  * @param sup Reference to the superclass object.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
@@ -442,6 +446,7 @@ extends
 
 /**
  * The class represents equivalent shunts.
+ *
  * @param sup Reference to the superclass object.
  * @param b Positive sequence shunt susceptance.
  * @param g Positive sequence shunt conductance.

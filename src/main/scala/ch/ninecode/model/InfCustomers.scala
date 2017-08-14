@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
  * These might be created as a consequence of local business processes and associated rules. It is anticipated that this class will be customised extensively to meet local implementation needs.
+ *
  * @param sup Reference to the superclass object.
  * @param deadline The deadline for compliance.
  * @group InfCustomers
@@ -75,6 +76,7 @@ extends
 /**
  * The creation of the monthly customer billing statements is the method employed to notify Customers of charges, adjustments and credits applied to their account for Services and Products.
  * The actuall billing occurs through an ErpInvoice. The CustomerBillingInfo includes information from the payment, collection, meter reading, installed meter, service, site, customer, customer account, customer agreement, services and pricing subject areas. Each component price shows up as a separate line item on the ErpInvoice.
+ *
  * @param sup Reference to the superclass object.
  * @param billingDate Business date designated for the billing run which produced this CustomerBillingInfo.
  * @param dueDate Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
@@ -189,6 +191,7 @@ extends
 /**
  * A type of customer agreement involving an external agency.
  * For example, a customer may form a contracts with an Energy Service Supplier if Direct Access is permitted.
+ *
  * @param sup Reference to the superclass object.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -250,6 +253,7 @@ extends
 
 /**
  * Pricing can be based on power quality.
+ *
  * @param sup Reference to the superclass object.
  * @param emergencyHighVoltLimit Emergency high voltage limit.
  * @param emergencyLowVoltLimit Emergency low voltage limit.
@@ -356,6 +360,7 @@ extends
 /**
  * A service guarantee, often imposed by a regulator, defines conditions that, if not satisfied, will result in the utility making a monetary payment to the customer.
  * Note that guarantee's identifier is in the 'name' attribute and the status of the guarantee is in the 'Status.status' attribute.
+ *
  * @param sup Reference to the superclass object.
  * @param applicationPeriod Period in which this service guantee applies.
  * @param automaticPay True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
@@ -437,6 +442,7 @@ extends
 /**
  * The Standard Industrial Classification (SIC) are the codes that identify the type of products/service an industry is involved in, and used for statutory reporting purposes.
  * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
+ *
  * @param sup Reference to the superclass object.
  * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
  * @group InfCustomers
@@ -502,6 +508,7 @@ extends
 
 /**
  * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
+ *
  * @param sup Reference to the superclass object.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -564,6 +571,7 @@ extends
 /**
  * Billing information for work performed for the customer.
  * The history of Work Billing Info, Invoices, and Payments is to be maintained in associated ActivityRecords.
+ *
  * @param sup Reference to the superclass object.
  * @param costEstimate Estimated cost for work.
  * @param deposit Amount of price on deposit.

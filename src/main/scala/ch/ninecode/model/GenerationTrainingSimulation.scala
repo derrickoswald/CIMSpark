@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Boiling water reactor used as a steam supply to a steam turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param highPowerLimit High power limit.
  * @param inCoreThermalTC In-core thermal time constant.
@@ -173,6 +174,7 @@ extends
 
 /**
  * Relationship between the combustion turbine's power output rating in gross active power (X-axis) and the ambient air temperature (Y-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param CombustionTurbine A combustion turbine may have an active power versus ambient temperature relationship.
  * @group GenerationTrainingSimulation
@@ -238,6 +240,7 @@ extends
 
 /**
  * A prime mover that is typically fueled by gas or light oil.
+ *
  * @param sup Reference to the superclass object.
  * @param ambientTemp Default ambient temperature to be used in modeling applications.
  * @param auxPowerVersusFrequency Off-nominal frequency effect on turbine auxiliaries.
@@ -356,6 +359,7 @@ extends
 
 /**
  * Drum boiler.
+ *
  * @param sup Reference to the superclass object.
  * @param drumBoilerRating Rating of drum boiler in steam units.
  * @group GenerationTrainingSimulation
@@ -421,6 +425,7 @@ extends
 
 /**
  * Fossil fueled boiler (e.g., coal, oil, gas).
+ *
  * @param sup Reference to the superclass object.
  * @param auxPowerVersusFrequency Off nominal frequency effect on auxiliary real power.
  *        Per unit active power variation versus per unit frequency variation.
@@ -613,6 +618,7 @@ extends
 
 /**
  * The heat recovery system associated with combustion turbines in order to produce steam for combined cycle plants.
+ *
  * @param sup Reference to the superclass object.
  * @param steamSupplyRating2 The steam supply rating in kilopounds per hour, if dual pressure boiler.
  * @group GenerationTrainingSimulation
@@ -679,6 +685,7 @@ extends
 /**
  * A water driven prime mover.
  * Typical turbine types are: Francis, Kaplan, and Pelton.
+ *
  * @param sup Reference to the superclass object.
  * @param gateRateLimit Gate rate limit.
  * @param gateUpperLimit Gate upper limit.
@@ -794,6 +801,7 @@ extends
 
 /**
  * Pressurized water reactor used as a steam supply to a steam turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param coldLegFBLagTC Cold leg feedback lag time constant.
  * @param coldLegFBLeadTC1 Cold leg feedback lead time constant.
@@ -954,6 +962,7 @@ extends
 
 /**
  * The machine used to develop mechanical energy used to drive a generator.
+ *
  * @param sup Reference to the superclass object.
  * @param primeMoverRating Rating of prime mover.
  * @param SynchronousMachines Synchronous machines this Prime mover drives.
@@ -1024,6 +1033,7 @@ extends
 
 /**
  * Steam supply for steam turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param steamSupplyRating Rating of steam supply.
  * @param SteamTurbines Steam turbines may have steam supplied by a steam supply.
@@ -1094,6 +1104,7 @@ extends
 
 /**
  * Steam turbine.
+ *
  * @param sup Reference to the superclass object.
  * @param crossoverTC Crossover time constant.
  * @param reheater1TC First reheater time constant.
@@ -1214,6 +1225,7 @@ extends
 
 /**
  * Once-through subcritical boiler.
+ *
  * @param sup Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
@@ -1275,6 +1287,7 @@ extends
 
 /**
  * Once-through supercritical boiler.
+ *
  * @param sup Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation

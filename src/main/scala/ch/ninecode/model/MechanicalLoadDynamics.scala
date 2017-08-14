@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Mechanical load model type 1.
+ *
  * @param sup Reference to the superclass object.
  * @param a Speed squared coefficient (a).
  * @param b Speed coefficient (b).
@@ -88,6 +89,7 @@ extends
 
 /**
  * Mechanical load function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param AsynchronousMachineDynamics Asynchronous machine model with which this mechanical load model is associated.
  * @param SynchronousMachineDynamics Synchronous machine model with which this mechanical load model is associated.

@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Information about a particular piece of (land) property such as its use.
  * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
+ *
  * @param sup Reference to the superclass object.
  * @param demographicKind Demographics around the site.
  * @param externalRecordReference Reference allocated by the governing organisation (such as municipality) to this piece of land that has a formal reference to Surveyor General's records.
@@ -100,6 +101,7 @@ extends
 /**
  * A grant provides a right, as defined by type, for a parcel of land.
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
+ *
  * @param sup Reference to the superclass object.
  * @param propertyData Property related information that describes the Grant's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
@@ -171,6 +173,7 @@ extends
 /**
  * This class is used for handling the accompanying annotations, time stamp, author, etc. of designs, drawings and maps.
  * A red line can be associated with any Location object.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfLocations
@@ -236,6 +239,7 @@ extends
 /**
  * A right-of-way (ROW) is for land where it is lawful to use for a public road, an electric power line, etc.
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
+ *
  * @param sup Reference to the superclass object.
  * @param propertyData Property related information that describes the ROW's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
@@ -306,6 +310,7 @@ extends
 
 /**
  * Route that is followed, for example by service crews.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work management standards and practices.
@@ -381,6 +386,7 @@ extends
 /**
  * Area divided off from other areas.
  * It may be part of the electrical network, a land area where special restrictions apply, weather areas, etc. For weather, it is an area where a set of relatively homogenous weather measurements apply.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of this zone.
  * @group InfLocations

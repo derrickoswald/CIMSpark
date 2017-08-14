@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Action request against an existing Trade.
+ *
  * @param sup Reference to the superclass object.
  * @param actionName Action name type for the action request.
  * @group ParticipantInterfaces
@@ -74,6 +75,7 @@ extends
 /**
  * AreaLoadBid is not submitted by a market participant into the Markets.
  * Instead, it is simply an aggregation of all LoadBids contained wtihin a specific SubControlArea. This entity should inherit from Bid for representation of the timeframe (startTime, stopTime) and the market type.
+ *
  * @param sup Reference to the superclass object.
  * @param demandBidMW The Demand Bid Megawatt for the area case.
  *        Attribute Usage: This is Scheduled demand MW in Day Ahead
@@ -140,6 +142,7 @@ extends
 
 /**
  * Property for a particular attribute that contains name and value
+ *
  * @param sup Reference to the superclass object.
  * @param propertyName <em>undocumented</em>
  * @param propertyValue <em>undocumented</em>
@@ -220,6 +223,7 @@ extends
 
 /**
  * Represents both bids to purchase and offers to sell energy or ancillary services in an RTO-sponsored market.
+ *
  * @param sup Reference to the superclass object.
  * @param marketType The market type, DAM or RTM.
  * @param startTime Start time and date for which bid applies.
@@ -315,6 +319,7 @@ extends
 
 /**
  * This class allows SC to input different time intervals for distribution factors
+ *
  * @param sup Reference to the superclass object.
  * @param timeIntervalEnd End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
  * @param timeIntervalStart Start of the time interval in which bid is valid (yyyy-mm-dd hh24: mi: ss).
@@ -390,6 +395,7 @@ extends
 
 /**
  * This class represent the error information for a bid that is detected during bid validation
+ *
  * @param sup Reference to the superclass object.
  * @param componentType <em>undocumented</em>
  * @param endTime hour wihthin the bid for which the error applies
@@ -495,6 +501,7 @@ extends
 
 /**
  * Containment for bid parameters that are dependent on a market product type.
+ *
  * @param sup Reference to the superclass object.
  * @param ProductBid <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -560,6 +567,7 @@ extends
 
 /**
  * Containment for bid hourly parameters that are not product dependent.
+ *
  * @param sup Reference to the superclass object.
  * @param Bid <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -625,6 +633,7 @@ extends
 
 /**
  * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -686,6 +695,7 @@ extends
 
 /**
  * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
+ *
  * @param sup Reference to the superclass object.
  * @param bidType BID Type:
  *        
@@ -776,6 +786,7 @@ extends
 
 /**
  * Defines self schedule values to be used for specified time intervals.
+ *
  * @param sup Reference to the superclass object.
  * @param balancingFlag This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
  *        It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.
@@ -917,6 +928,7 @@ extends
 /**
  * As set of mutually exclusive bids for which a maximum of one may be scheduled.
  * Of these generating bids, only one generating bid can be scheduled at a time.
+ *
  * @param sup Reference to the superclass object.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -978,6 +990,7 @@ extends
 
 /**
  * A Charge Component is a list of configurable charge quality items to feed into settlement calculation and/or bill determinants.
+ *
  * @param sup Reference to the superclass object.
  * @param deleteStatus <em>undocumented</em>
  * @param effectiveDate <em>undocumented</em>
@@ -1084,6 +1097,7 @@ extends
 /**
  * Charge Group is the grouping of Charge Types for settlement invoicing purpose.
  * Examples such as Ancillary Services, Interests, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param effectiveDate <em>undocumented</em>
  * @param marketCode <em>undocumented</em>
@@ -1170,6 +1184,7 @@ extends
 /**
  * Charge Type is the basic level configuration for settlement to process specific charges for invoicing purpose.
  * Examples such as: Day Ahead Spinning Reserve Default Invoice Interest Charge, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param chargeOrder <em>undocumented</em>
  * @param chargeVersion <em>undocumented</em>
@@ -1281,6 +1296,7 @@ extends
 
 /**
  * Response from registered resource acknowleging receipt of dispatch instructions
+ *
  * @param sup Reference to the superclass object.
  * @param acceptMW The accepted mw amount by the responder. aka response mw.
  * @param acceptStatus The accept status submitted by the responder. enumeration type needs to be defined
@@ -1397,6 +1413,7 @@ extends
 
 /**
  * Relationship between a price in \$(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -1458,6 +1475,7 @@ extends
 
 /**
  * Offer to supply energy/ancillary services from a generating unit or resource
+ *
  * @param sup Reference to the superclass object.
  * @param combinedCycleUnitOffer Will indicate if the unit is part of a CC offer or not
  * @param downTimeMax Maximum down time.
@@ -1635,6 +1653,7 @@ extends
 /**
  * An indicator specifying that a resource shall have an Hourly Pre-Dispatch.
  * The resource could be a RegisteredGenerator or a RegisteredInterTie.
+ *
  * @param sup Reference to the superclass object.
  * @param value Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
  * @group ParticipantInterfaces
@@ -1700,6 +1719,7 @@ extends
 
 /**
  * This class represents the inter tie bid
+ *
  * @param sup Reference to the superclass object.
  * @param minHourlyBlock_1 The minimum hourly block for an Inter-Tie Resource supplied within the bid.
  * @param RegisteredInterTie <em>undocumented</em>
@@ -1770,6 +1790,7 @@ extends
 
 /**
  * Response from an intertie resource acknowleging receipt of dispatch instructions
+ *
  * @param sup Reference to the superclass object.
  * @param acceptMW The accepted mw amount by the responder. aka response mw.
  * @param acceptStatus The accept status submitted by the responder.
@@ -1862,6 +1883,7 @@ extends
 
 /**
  * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption)
+ *
  * @param sup Reference to the superclass object.
  * @param dropRampRate Maximum rate that load can be reduced (MW/minute)
  * @param loadRedInitiationCost load reduction initiation cost
@@ -2005,6 +2027,7 @@ extends
 
 /**
  * Metered SubSystem Load Following Instruction
+ *
  * @param sup Reference to the superclass object.
  * @param endTime Instruction End Time
  * @param loadFollowingMW Load Following MW Positive for follow-up and negative for follow-down
@@ -2092,6 +2115,7 @@ extends
 /**
  * This is the price sensitivity that bidder expresses for allowing market load interruption.
  * Relationship between price (Y1-axis) vs. MW (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param LoadBid <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -2158,6 +2182,7 @@ extends
 /**
  * A Major Charge Group is the same as Invocie Type which provides the highest level of grouping for charge types configration.
  * Examples as Market, FERC, RMR,
+ *
  * @param sup Reference to the superclass object.
  * @param effectiveDate <em>undocumented</em>
  * @param frequencyType <em>undocumented</em>
@@ -2264,6 +2289,7 @@ extends
 
 /**
  * Signifies an event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units shall be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param category Category of scheduled event.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
@@ -2345,6 +2371,7 @@ extends
 /**
  * Notification time curve as a function of down time.
  * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2407,6 +2434,7 @@ extends
 /**
  * Result of bid validation against conditions that may exist on an interchange that becomes disconnected or is heavily discounted with respect the MW flow.
  * This schedule is assocated with the hourly parameters in a resource bid.
+ *
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -2472,6 +2500,7 @@ extends
 
 /**
  * Component of a bid that pertains to one market product.
+ *
  * @param sup Reference to the superclass object.
  * @param Bid A bid comprises one or more product bids of market products
  * @param MarketProduct <em>undocumented</em>
@@ -2543,6 +2572,7 @@ extends
 /**
  * The operating cost of a Pump Storage Hydro Unit operating as a hydro pump.
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
+ *
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -2609,6 +2639,7 @@ extends
 /**
  * The fixed operating level of a Pump Storage Hydro Unit operating as a hydro pump.
  * Associated with the energy market product type.
+ *
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -2675,6 +2706,7 @@ extends
 /**
  * The cost to shutdown a Pump Storage Hydro Unit (in pump mode) or a pump.
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
+ *
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -2740,6 +2772,7 @@ extends
 
 /**
  * Ramp rate as a function of resource MW output
+ *
  * @param sup Reference to the superclass object.
  * @param condition condition for the ramp rate
  * @param constraintRampType The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval.
@@ -2831,6 +2864,7 @@ extends
 
 /**
  * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market)
+ *
  * @param sup Reference to the superclass object.
  * @param aggregationFlag Aggregation flag
  *        0: individual resource level
@@ -2989,6 +3023,7 @@ extends
 /**
  * Startup costs and time as a function of down time.
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerators <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -3055,6 +3090,7 @@ extends
 /**
  * Startup time curve as a function of down time, where time is specified in minutes.
  * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -3120,6 +3156,7 @@ extends
 
 /**
  * Inter Scheduling Coordinator Trades to model financial trades which may impact settlement
+ *
  * @param sup Reference to the superclass object.
  * @param adjustedTradeQuantity The validated and current market accepted trade amount of a physical energy trade.
  * @param counterTradeQuantity MW quantity submitted by counter SC for the same trade
@@ -3297,6 +3334,7 @@ extends
 
 /**
  * Trade error and warning messages associated with the rule engine processing of the submitted trade.
+ *
  * @param sup Reference to the superclass object.
  * @param endTime hour wihthin the trade for which the error applies
  * @param errMessage error message
@@ -3400,6 +3438,7 @@ extends
  * AST                                                 SRT (Spinning Reserve Trade)
  * AST                                                 NRT (Non-Spinning Reserve Trade)
  * UCT (Unit Commitment Trade)            null
+ *
  * @param sup Reference to the superclass object.
  * @param tradeProductType PHY (Physical Energy Trade);
  *        APN (Energy Trades at Aggregated Pricing Nodes);
@@ -3478,6 +3517,7 @@ extends
 
 /**
  * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process
+ *
  * @param sup Reference to the superclass object.
  * @param demandTransaction Set true if this is a demand transaction.
  * @param dispatchable Set true if this is a dispatchable transaction.

@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
+ *
  * @param sup Reference to the superclass object.
  * @param bic Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
  * @param iban International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
@@ -78,6 +79,7 @@ extends
 
 /**
  * Bank account.
+ *
  * @param sup Reference to the superclass object.
  * @param accountNumber Account reference number.
  * @param Bank Bank that provides this BankAccount.
@@ -154,6 +156,7 @@ extends
 /**
  * A BusinessPlan is an organized sequence of predetermined actions required to complete a future organizational objective.
  * It is a type of document that typically references a schedule, physical and/or logical resources (assets and/or PowerSystemResources), locations, etc.
+ *
  * @param sup Reference to the superclass object.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -216,6 +219,7 @@ extends
 /**
  * A business role that this organisation plays.
  * A single organisation typically performs many functions, each one described as a role.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's corporate standards and practices.
@@ -287,6 +291,7 @@ extends
 /**
  * Craft of a person or a crew.
  * Examples include overhead electric, underground electric, high pressure gas, etc. This ensures necessary knowledge and skills before being allowed to perform certain types of work.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work mangement standards and practices.
@@ -362,6 +367,7 @@ extends
 
 /**
  * Role an organisation plays with respect to documents.
+ *
  * @param sup Reference to the superclass object.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -423,6 +429,7 @@ extends
 
 /**
  * A crew is a group of people with specific skills, tools, and vehicles.
+ *
  * @param sup Reference to the superclass object.
  * @param typ Classification by utility's work management standards and practices.
  * @param Assignments All Assignments for this Crew.
@@ -508,6 +515,7 @@ extends
 
 /**
  * General purpose information for name and other information to contact people.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Utility-specific classification for this person, according to the utility's corporate standards and practices.
@@ -600,6 +608,7 @@ extends
 /**
  * Roles played between Organisations and other Organisations.
  * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
  * @group InfCommon
@@ -665,6 +674,7 @@ extends
 
 /**
  * Roles played between Persons and Documents.
+ *
  * @param sup Reference to the superclass object.
  * @param Person <em>undocumented</em>
  * @group InfCommon
@@ -730,6 +740,7 @@ extends
 
 /**
  * Role an organisation plays with respect to persons.
+ *
  * @param sup Reference to the superclass object.
  * @param clientID Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
  * @param ErpPerson <em>undocumented</em>
@@ -801,6 +812,7 @@ extends
 /**
  * The role of a person relative to a given piece of property.
  * Examples of roles include: owner, renter, contractor, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param LandProperty <em>undocumented</em>
  * @param Person <em>undocumented</em>
@@ -871,6 +883,7 @@ extends
 
 /**
  * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
+ *
  * @param sup Reference to the superclass object.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -932,6 +945,7 @@ extends
 
 /**
  * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
+ *
  * @param sup Reference to the superclass object.
  * @param denominator The part of a fraction that is below the line and that functions as the divisor of the numerator.
  * @param numerator The part of a fraction that is above the line and signifies the number to be divided by the denominator.
@@ -1002,6 +1016,7 @@ extends
 
 /**
  * Enumeration of potential roles that might be played by one object relative to another.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Type of role.
@@ -1072,6 +1087,7 @@ extends
 
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
+ *
  * @param sup Reference to the superclass object.
  * @param certificationPeriod Interval between the certification and its expiry.
  * @param effectiveDateTime Date and time the skill became effective.

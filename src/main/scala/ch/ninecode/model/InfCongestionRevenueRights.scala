@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
+ *
  * @param sup Reference to the superclass object.
  * @param action Buy, Sell
  * @param baseEnergy Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
@@ -107,6 +108,7 @@ extends
 
 /**
  * A type of limit that indicates if it is enforced and, through association, the organisation responsible for setting the limit.
+ *
  * @param sup Reference to the superclass object.
  * @param enforced True if limit is enforced.
  * @param Flowgate <em>undocumented</em>

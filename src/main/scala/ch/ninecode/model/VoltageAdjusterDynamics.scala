@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
  * Reference: IEEE Standard 421.5-2005 Section 11.1.
+ *
  * @param sup Reference to the superclass object.
  * @param adjslew Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
  *        Unit = sec./PU.  Typical Value = 300.
@@ -106,6 +107,7 @@ extends
 
 /**
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
  * @group VoltageAdjusterDynamics

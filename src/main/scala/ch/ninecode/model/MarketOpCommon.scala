@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * A roll up of invoice line items.
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
+ *
  * @param sup Reference to the superclass object.
  * @param amount Total amount due on this invoice based on line items and applicable adjustments.
  * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
@@ -115,6 +116,7 @@ extends
 
 /**
  * An individual line item on an invoice.
+ *
  * @param sup Reference to the superclass object.
  * @param billPeriod Bill period for the line item.
  * @param glAccount General Ledger account code, shall be a valid combination.
@@ -236,6 +238,7 @@ extends
 /**
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
+ *
  * @param sup Reference to the superclass object.
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -297,6 +300,7 @@ extends
 
 /**
  * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
+ *
  * @param sup Reference to the superclass object.
  * @param accountID Account identifier for this entry.
  * @param accountKind Kind of account for this entry.
@@ -397,6 +401,7 @@ extends
 
 /**
  * Subclass of IEC61968: Common:ActivityRecord
+ *
  * @param sup Reference to the superclass object.
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -458,6 +463,7 @@ extends
 
 /**
  * Subclass of IEC61970:Topology:ConnectivityNode
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
@@ -543,6 +549,7 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:EnergyConsumer
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredLoad <em>undocumented</em>
  * @group MarketOpCommon
@@ -608,6 +615,7 @@ extends
 
 /**
  * Subclass of IEC61970:Production:GeneratingUnit
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @group MarketOpCommon
@@ -673,6 +681,7 @@ extends
 
 /**
  * Subclass for IEC61970:Wires:Line
+ *
  * @param sup Reference to the superclass object.
  * @param TransmissionRightOfWay <em>undocumented</em>
  * @group MarketOpCommon
@@ -738,6 +747,7 @@ extends
 
 /**
  * Subclass of IEC61970:LoadModel: LoadArea
+ *
  * @param sup Reference to the superclass object.
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -799,6 +809,7 @@ extends
 
 /**
  * Subclass of IEC61970:Meas:Measurement
+ *
  * @param sup Reference to the superclass object.
  * @param ByTiePoint A measurement is made on the B side of a tie point
  * @param ForTiePoint A measurement is made on the A side of a tie point
@@ -874,6 +885,7 @@ extends
 
 /**
  * Subclass of IEC61968:Core2:TopLevel:Organisation
+ *
  * @param sup Reference to the superclass object.
  * @param creditFlag Flag to indicate creditworthiness (Y, N)
  * @param creditStartEffectiveDate Date that the organisation becomes creditworthy.
@@ -974,6 +986,7 @@ extends
 
 /**
  * Subclass of IEC61970:Wires:PowerTransformer
+ *
  * @param sup Reference to the superclass object.
  * @param EndAFlow <em>undocumented</em>
  * @param EndBFlow <em>undocumented</em>
@@ -1044,6 +1057,7 @@ extends
 
 /**
  * Subclass of IEC61970:Core:Terminal
+ *
  * @param sup Reference to the superclass object.
  * @param endEffectiveDate This is the end date/time of the element eligibility for the flowgate.
  * @param startEffectiveDate This is the begin date/time of the element eligibility for the flowgate.
@@ -1119,6 +1133,7 @@ extends
 
 /**
  * Subclass of IEC61968:Domain2:UserAttribute
+ *
  * @param sup Reference to the superclass object.
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon

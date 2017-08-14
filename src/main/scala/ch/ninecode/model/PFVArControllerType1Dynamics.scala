@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Power Factor or VAr controller Type I function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ *
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this Power Factor or VAr controller Type I model is associated.
  * @param RemoteInputSignal Remote input signal used by this Power Factor or VAr controller Type I model.
@@ -86,6 +87,7 @@ extends
 /**
  * The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.
  * Reference: IEEE Standard 421.5-2005 Section 11.2.
+ *
  * @param sup Reference to the superclass object.
  * @param ovex Overexcitation Flag (<i>OVEX</i>)
  *        true = overexcited
@@ -193,6 +195,7 @@ extends
 /**
  * The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.
  * Reference: IEEE Standard 421.5-2005 Section 11.3.
+ *
  * @param sup Reference to the superclass object.
  * @param tvarc Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
  *        Typical Value = 5.

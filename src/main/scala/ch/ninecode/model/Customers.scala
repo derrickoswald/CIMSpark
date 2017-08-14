@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Organisation receiving services from service supplier.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of customer.
  * @param locale Locale designating language to use in communications with this customer.
@@ -110,6 +111,7 @@ extends
 /**
  * Assignment of a group of products and services purchased by the customer through a customer agreement, used as a mechanism for customer billing and payment.
  * It contains common information from the various types of customer agreements to create billings (invoices) for a customer and receive payment.
+ *
  * @param sup Reference to the superclass object.
  * @param billingCycle Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.
  * @param budgetBill Budget bill code.
@@ -186,6 +188,7 @@ extends
 /**
  * Agreement between the customer and the service supplier to pay for service at a specific service location.
  * It records certain billing information about the type of service provided at the service location and is used during charge creation to determine the type of service.
+ *
  * @param sup Reference to the superclass object.
  * @param loadMgmt Load management code.
  * @param Customer Customer for this agreement.
@@ -286,6 +289,7 @@ extends
 
 /**
  * Conditions for notifying the customer about the changes in the status of their service (e.g., outage restore, estimated restoration time, tariff or service level change, etc.)
+ *
  * @param sup Reference to the superclass object.
  * @param contactType Type of contact (e.g., phone, email, etc.).
  * @param contactValue Value of contact type (e.g., phone number, email address, etc.).
@@ -382,6 +386,7 @@ extends
 /**
  * Hazardous situation associated with an incident.
  * Examples are line down, gas leak, fire, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param Incident Incident associated with this hazard.
  * @param TroubleTicket Trouble ticket associated with this hazard.
@@ -453,6 +458,7 @@ extends
 /**
  * Grouping of pricing components and prices used in the creation of customer charges and the eligibility criteria under which these terms may be offered to a customer.
  * The reasons for grouping include state, customer classification, site characteristics, classification (i.e. fee price structure, deposit price structure, electric service price structure, etc.) and accounting requirements.
+ *
  * @param sup Reference to the superclass object.
  * @param code Unique user-allocated key for this pricing structure, used by company representatives to identify the correct price structure for allocating to a customer.
  *        For rate schedules it is often prefixed by a state code.
@@ -559,6 +565,7 @@ extends
 
 /**
  * Category of service provided to the customer.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of service.
  * @group Customers
@@ -624,6 +631,7 @@ extends
 
 /**
  * A real estate location, commonly referred to as premises.
+ *
  * @param sup Reference to the superclass object.
  * @param accessMethod Method for the service person to access this service location.
  *        For example, a description of where to obtain a key if the facility is unmanned and secured.
@@ -703,6 +711,7 @@ extends
 /**
  * Document, approved by the responsible regulatory agency, listing the terms and conditions, including a schedule of prices, under which utility services will be provided.
  * It has a unique number within the state or province. For rate schedules it is frequently allocated by the affiliated Public utilities commission (PUC).
+ *
  * @param sup Reference to the superclass object.
  * @param endDate (if tariff became inactive) Date tariff was terminated.
  * @param startDate Date tariff was activated.

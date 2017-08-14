@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Standard aggregate load model comprised of static and/or dynamic components.
  * A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can used to represent the aggregate response of the motor components of the load.
+ *
  * @param sup Reference to the superclass object.
  * @param LoadMotor Aggregate motor (dynamic) load associated with this aggregate load.
  * @param LoadStatic Aggregate static load associated with this aggregate load.
@@ -85,6 +86,7 @@ extends
 /**
  * This model combines static load and induction motor load effects.
  * The dynamics of the motor are simplified by linearizing the induction machine equations.
+ *
  * @param sup Reference to the superclass object.
  * @param epfd Active load-frequency dependence index (dynamic) (Epfd).
  *        Typical Value = 1.5.
@@ -219,6 +221,7 @@ extends
  * 
  * A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single aggregate load definition.
  * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data. This load is usually the aggregation of many individual load devices and the load model is approximate representation of the aggregate response of the load devices to system disturbances. The load model is always applied to individual bus loads (energy consumers) but a single set of load model parameters can used for all loads in the grouping.
+ *
  * @param sup Reference to the superclass object.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
@@ -285,6 +288,7 @@ extends
 
 /**
  * These load models (known also as generic non-linear dynamic (GNLD) load models) can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as they can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
+ *
  * @param sup Reference to the superclass object.
  * @param bs Steady state voltage index for reactive power (BS).
  * @param bt Transient voltage index for reactive power (BT).
@@ -396,6 +400,7 @@ extends
 /**
  * Aggregate induction motor load.
  * This model  is used to represent a fraction of an ordinary load as "induction motor load".  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If <b>Lpp</b> = 0. or <b>Lpp</b> = <b>Lp</b>, or <b>Tppo</b> = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a "one-cage" or "two-cage" model of the induction machine can be modelled. Magnetic saturation is not modelled.
+ *
  * @param sup Reference to the superclass object.
  * @param d Damping factor (D).
  *        Unit = delta P/delta speed.  Typical Value = 2.
@@ -544,6 +549,7 @@ extends
 
 /**
  * General static load model representing the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
+ *
  * @param sup Reference to the superclass object.
  * @param ep1 First term voltage exponent for active power (Ep1).
  *        Used only when .staticLoadModelType = exponential.

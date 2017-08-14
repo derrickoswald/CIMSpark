@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
+ *
  * @param sup Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
@@ -79,6 +80,7 @@ extends
 
 /**
  * Limit values for Accumulator measurements.
+ *
  * @param sup Reference to the superclass object.
  * @param value The value to supervise against.
  *        The value is positive.
@@ -150,6 +152,7 @@ extends
 
 /**
  * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
+ *
  * @param sup Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
@@ -211,6 +214,7 @@ extends
 
 /**
  * This command reset the counter value to zero.
+ *
  * @param sup Reference to the superclass object.
  * @param AccumulatorValue The accumulator value that is reset by the command.
  * @group Meas
@@ -276,6 +280,7 @@ extends
 
 /**
  * AccumulatorValue represents an accumulated (counted) MeasurementValue.
+ *
  * @param sup Reference to the superclass object.
  * @param value The value to supervise.
  *        The value is positive.
@@ -352,6 +357,7 @@ extends
 
 /**
  * Analog represents an analog Measurement.
+ *
  * @param sup Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
@@ -439,6 +445,7 @@ extends
 
 /**
  * An analog control used for supervisory control.
+ *
  * @param sup Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the Control.value.
  *        Used for scaling, e.g. in bar graphs.
@@ -516,6 +523,7 @@ extends
 
 /**
  * Limit values for Analog measurements.
+ *
  * @param sup Reference to the superclass object.
  * @param value The value to supervise against.
  * @param LimitSet The set of limits.
@@ -586,6 +594,7 @@ extends
 
 /**
  * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
+ *
  * @param sup Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
@@ -647,6 +656,7 @@ extends
 
 /**
  * AnalogValue represents an analog MeasurementValue.
+ *
  * @param sup Reference to the superclass object.
  * @param value The value to supervise.
  * @param Analog Measurement to which this value is connected.
@@ -722,6 +732,7 @@ extends
 
 /**
  * A Command is a discrete control used for supervisory control.
+ *
  * @param sup Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
  * @param value The value representing the actuator output.
@@ -803,6 +814,7 @@ extends
 /**
  * Control is used for supervisory/device control.
  * It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
+ *
  * @param sup Reference to the superclass object.
  * @param controlType Specifies the type of Control, e.g.
  *        BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
@@ -899,6 +911,7 @@ extends
 
 /**
  * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
+ *
  * @param sup Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
@@ -1040,6 +1053,7 @@ extends
 
 /**
  * DiscreteValue represents a discrete MeasurementValue.
+ *
  * @param sup Reference to the superclass object.
  * @param value The value to supervise.
  * @param Command The Control variable associated with the MeasurementValue.
@@ -1116,6 +1130,7 @@ extends
 /**
  * Specifies one limit value for a Measurement.
  * A Measurement typically has several limits that are kept together by the LimitSet class. The actual meaning and use of a Limit instance (i.e., if it is an alarm or warning limit or if it is a high or low limit) is not captured in the Limit class. However the name of a Limit instance may indicate both meaning and use.
+ *
  * @param sup Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1178,6 +1193,7 @@ extends
 /**
  * Specifies a set of Limits that are associated with a Measurement.
  * A Measurement may have several LimitSets corresponding to seasonal or other changing conditions. The condition is captured in the name and description attributes. The same LimitSet may be used for several Measurements. In particular percentage limits are used this way.
+ *
  * @param sup Reference to the superclass object.
  * @param isPercentageLimits Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
  * @group Meas
@@ -1244,6 +1260,7 @@ extends
 /**
  * A Measurement represents any measured, calculated or non-measured non-calculated quantity.
  * Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.
+ *
  * @param sup Reference to the superclass object.
  * @param measurementType Specifies the type of measurement.
  *        For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
@@ -1342,6 +1359,7 @@ extends
 /**
  * The current state for a measurement.
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
+ *
  * @param sup Reference to the superclass object.
  * @param attr <em>undocumented</em>
  * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
@@ -1439,6 +1457,7 @@ extends
 /**
  * Measurement quality flags.
  * Bits 0-10 are defined for substation automation in draft IEC 61850 part 7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
+ *
  * @param sup Reference to the superclass object.
  * @param MeasurementValue A MeasurementValue has a MeasurementValueQuality associated with it.
  * @group Meas
@@ -1505,6 +1524,7 @@ extends
 /**
  * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
  * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
+ *
  * @param sup Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1566,6 +1586,7 @@ extends
 
 /**
  * Quality flags in this class are as defined in IEC 61850, except for estimatorReplaced, which has been included in this class for convenience.
+ *
  * @param sup Reference to the superclass object.
  * @param badReference Measurement value may be incorrect due to a reference being out of calibration.
  * @param estimatorReplaced Value has been replaced by State Estimator. estimatorReplaced is not an IEC61850 quality bit but has been put in this class for convenience.
@@ -1690,6 +1711,7 @@ extends
 
 /**
  * An analog control that increase or decrease a set point value with pulses.
+ *
  * @param sup Reference to the superclass object.
  * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
  * @group Meas
@@ -1755,6 +1777,7 @@ extends
 
 /**
  * An analog control that issue a set point value.
+ *
  * @param sup Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
  * @param value The value representing the actuator output.
@@ -1825,6 +1848,7 @@ extends
 
 /**
  * StringMeasurement represents a measurement with values of type string.
+ *
  * @param sup Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1886,6 +1910,7 @@ extends
 
 /**
  * StringMeasurementValue represents a measurement value of type string.
+ *
  * @param sup Reference to the superclass object.
  * @param value The value to supervise.
  * @param StringMeasurement Measurement to which this value is connected.
@@ -1957,6 +1982,7 @@ extends
 /**
  * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
+ *
  * @param sup Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
@@ -2018,6 +2044,7 @@ extends
 
 /**
  * Describes the translation of one particular value into a name, e.g. 1 as "Open".
+ *
  * @param sup Reference to the superclass object.
  * @param value The value that is mapped.
  * @param ValueAliasSet The ValueAliasSet having the ValueToAlias mappings.

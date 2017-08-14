@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
  * Reference: IEEE Standard 421.5-2005 Section 12.2.
+ *
  * @param sup Reference to the superclass object.
  * @param esc Speed change reference (<i>E</i><i><sub>SC</sub></i>).
  *        Typical Value = 0.0015.
@@ -179,6 +180,7 @@ extends
 /**
  * The class represents IEEE Type DEC2A model for the discontinuous excitation control.
  * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
+ *
  * @param sup Reference to the superclass object.
  * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).
  * @param td2 Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).
@@ -267,6 +269,7 @@ extends
 /**
  * The class represents IEEE Type DEC3A model.
  * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
+ *
  * @param sup Reference to the superclass object.
  * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>).
  * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
@@ -339,6 +342,7 @@ extends
 
 /**
  * Discontinuous excitation control function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model</font>.
+ *
  * @param sup Reference to the superclass object.
  * @param ExcitationSystemDynamics Excitation system model with which this discontinuous excitation control model is associated.
  * @param RemoteInputSignal Remote input signal used by this discontinuous excitation control system model.

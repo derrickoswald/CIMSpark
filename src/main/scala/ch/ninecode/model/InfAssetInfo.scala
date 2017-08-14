@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
  * Each catalogue item is for a specific product (AssetModel) available from a specific supplier.
+ *
  * @param sup Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfAssetInfo
@@ -74,6 +75,7 @@ extends
 /**
  * Provides pricing and other relevant information about a specific manufacturer's product (i.e., AssetModel), and its price from a given supplier.
  * A single AssetModel may be availble from multiple suppliers. Note that manufacturer and supplier are both types of organisation, which the association is inherited from Document.
+ *
  * @param sup Reference to the superclass object.
  * @param unitCost Unit cost for an asset model from a specific supplier, either for a unit cost or cost per unit length.
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
@@ -149,6 +151,7 @@ extends
 
 /**
  * Properties of breaker assets.
+ *
  * @param sup Reference to the superclass object.
  * @param phaseTrip Phase trip rating.
  * @group InfAssetInfo
@@ -213,6 +216,7 @@ extends
 
 /**
  * Properties of a composite switch.
+ *
  * @param sup Reference to the superclass object.
  * @param ganged True if multi-phase switch controls all phases concurrently.
  * @param initOpMode Initial operating mode, with the following values: Automatic, Manual.
@@ -317,6 +321,7 @@ extends
 
 /**
  * Properties of current transformer asset.
+ *
  * @param sup Reference to the superclass object.
  * @param accuracyClass CT accuracy classification.
  * @param accuracyLimit Accuracy limit.
@@ -456,6 +461,7 @@ extends
 
 /**
  * Parameters of fault indicator asset.
+ *
  * @param sup Reference to the superclass object.
  * @param resetKind Kind of reset mechanisim of this fault indicator.
  * @group InfAssetInfo
@@ -520,6 +526,7 @@ extends
 
 /**
  * Properties of switch assets.
+ *
  * @param sup Reference to the superclass object.
  * @param dielectricStrength The maximum rms voltage that may be applied across an open contact without breaking down the dielectric properties of the switch in the open position.
  * @param loadBreak True if switch has load breaking capabiity.
@@ -769,6 +776,7 @@ extends
 
 /**
  * Properties of potential transformer asset.
+ *
  * @param sup Reference to the superclass object.
  * @param accuracyClass <em>undocumented</em>
  * @param nominalRatio <em>undocumented</em>
@@ -863,6 +871,7 @@ extends
 
 /**
  * Properties of protection equipment asset.
+ *
  * @param sup Reference to the superclass object.
  * @param groundTrip Actual ground trip for this type of relay, if applicable.
  * @param phaseTrip Actual phase trip for this type of relay, if applicable.
@@ -932,6 +941,7 @@ extends
 
 /**
  * Properties of recloser assets.
+ *
  * @param sup Reference to the superclass object.
  * @param groundTripCapable True if device has ground trip capability.
  * @param groundTripNormalEnabled True if normal status of ground trip is enabled.
@@ -1016,6 +1026,7 @@ extends
 
 /**
  * Properties of surge arrester.
+ *
  * @param sup Reference to the superclass object.
  * @param continuousOperatingVoltage Maximum continuous power frequency voltage allowed on the surge arrester.
  * @param isPolymer If true, the arrester has a polymer housing, porcelain otherwise.

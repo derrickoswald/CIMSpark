@@ -12,9 +12,21 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 
-
 import ch.ninecode.model._
 
+/**
+ * Edge data for topological processing.
+ *
+ * @param id_seq_1 the mRID of terminal 0
+ * @param id_cn_1 the connectivity node of terminal 0
+ * @param id_seq_2 the mRID of terminal 1 (or N in the case of multi-terminal devices)
+ * @param id_cn_2 the connectivity node of terminal 1 (or N in the case of multi-terminal devices)
+ * @param id_equ the [[ch.ninecode.model.ConductingEquipment]] object associated with the terminals
+ * @param isZero <code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
+ *        which means the terminals are the same topological node
+ * @param isConnected <code>true</code> if there is a connection between the terminals, i.e. a cable,
+ *        which means the terminals are the same topological island
+ */
 case class CuttingEdge (
     id_seq_1: String,
     id_cn_1: String,
@@ -25,12 +37,20 @@ case class CuttingEdge (
     isConnected: Boolean) extends Serializable
 
 /**
- * island is min of all connected ConnectivityNode ( single topological island)
- * node is min of equivalent ConnectivityNode (a single topological node)
- * label is a user friendly label
+ * Vertex data for topological processing.
+ *
+ * @param island the minimum (hash code) of all connected ConnectivityNode (single topological island)
+ * @param island_label a user friendly label for the island
+ * @param node the minimum (hash code) of equivalent ConnectivityNode (a single topological node)
+ * @param node_label a user friendly label for the node
  */
 case class TopologicalData (var island: VertexId = Long.MaxValue, var island_label: String = "", var node: VertexId = Long.MaxValue, var node_label: String = "") extends Serializable
 {
+    /**
+     * Generate an appropriate name for the topological node based on the node label.
+     *
+     * @return The best guess as to what the topological node should be called.
+     */
     def name: String =
     {
         if (node_label.endsWith ("_node_fuse"))
@@ -52,20 +72,20 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
  *
  * Based on ConnectivityNode elements and connecting edges, find the topology that has:
  *
- * - each substation has a single bus (TopologicalNode) at each nominal voltage level
- *   for each set of BusbarSection that are connected by closed switches
- * - eliminates switches based on their open/closed state
- * - assigns each ConnectivityNode to exactly one TopologicalNode
- * - assigns each TopologicalNode to exactly one TopologicalIsland
- *   (islands are un-connected groups of internally-connected TopologicalNode)
- * - assigns to each TopologicalNode only one ConnectivityNodeContainer
- *   (a new unique generated container or one of the possibly many
- *   different existing ConnectivityNodeContainer (Bay, Line, Substation, VoltageLevel)
- *   of all the ConnectivityNode with the same TopologicalNode)
+ - each substation has a single bus (TopologicalNode) at each nominal voltage level
+   for each set of BusbarSection that are connected by closed switches
+ - eliminates switches based on their open/closed state
+ - assigns each ConnectivityNode to exactly one TopologicalNode
+ - assigns each TopologicalNode to exactly one TopologicalIsland
+   (islands are un-connected groups of internally-connected TopologicalNode)
+ - assigns to each TopologicalNode only one ConnectivityNodeContainer
+   (a new unique generated container or one of the possibly many
+   different existing ConnectivityNodeContainer (Bay, Line, Substation, VoltageLevel)
+   of all the ConnectivityNode with the same TopologicalNode)
  *
  * To be done eventually:
  *
- * - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
+ - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
  *
  * @param spark The session with CIM RDD defined, for which the topology should be calculated
  * @param storage The storage level for new and replaced CIM RDD.

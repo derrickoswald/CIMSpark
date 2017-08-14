@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The control area's reserve specification.
+ *
  * @param sup Reference to the superclass object.
  * @param lowerRegMarginReqt Lower regulating margin requirement in MW, the amount of generation that can be dropped by control in 10 minutes
  * @param opReserveReqt Operating reserve requirement in MW, where operating reserve is the generating capability that is fully available within 30 minutes.
@@ -100,6 +101,7 @@ extends
 
 /**
  * Control area emergency schedules
+ *
  * @param sup Reference to the superclass object.
  * @param emergencyScheduleMW Net tie MW.
  *        These are three entries, the current emergency schedule interchange and the two future schedules if they exist.
@@ -183,6 +185,7 @@ extends
 
 /**
  * Control area current net tie (scheduled interchange) sent to real time dispatch.
+ *
  * @param sup Reference to the superclass object.
  * @param currentNetTieMW Current control area net tie MW (the sum of the tie line flows, i.e the sum of flows into and out of the control area), the current instantaneous scheduled interchange.
  * @param useEmergencySchedule Use Emergency Schedule
@@ -260,6 +263,7 @@ extends
 /**
  * Curtailing entity must be providing at least one service to the EnergyTransaction.
  * The CurtailmentProfile must be completely contained within the EnergyProfile timeframe for this EnergyTransaction.
+ *
  * @param sup Reference to the superclass object.
  * @param EnergyTransaction An EnergyTransaction may be curtailed by any of the participating entities.
  * @group InfEnergyScheduling
@@ -326,6 +330,7 @@ extends
 /**
  * A continuously variable component of a control area's MW net interchange schedule.
  * Dynamic schedules are sent and received by control areas.
+ *
  * @param sup Reference to the superclass object.
  * @param dynSchedSignRev Dynamic schedule sign reversal required (true/false)
  * @param dynSchedStatus The "active" or "inactive" status of the dynamic schedule
@@ -411,6 +416,7 @@ extends
 
 /**
  * An EnergyProduct is offered commercially as a ContractOrTariff.
+ *
  * @param sup Reference to the superclass object.
  * @param GenerationProvider <em>undocumented</em>
  * @param ResoldBy_Marketer A Marketer may resell an EnergyProduct.
@@ -487,6 +493,7 @@ extends
 /**
  * An account for tracking inadvertent interchange versus time for each control area.
  * A control area may have more than one inadvertent account in order to track inadvertent over one or more specific tie points in addition to the usual overall net inadvertent. Separate accounts would also be used to track designated time periods, such as on-peak and off-peak.
+ *
  * @param sup Reference to the superclass object.
  * @param SubControlArea A control area can have one or more net inadvertent interchange accounts
  * @group InfEnergyScheduling
@@ -553,6 +560,7 @@ extends
 /**
  * There is one internal control area in the system, which is the single control area in the primary network company.
  * Real time generation control affects only the internal control area.
+ *
  * @param sup Reference to the superclass object.
  * @param CurrentScheduledInterchange <em>undocumented</em>
  * @group InfEnergyScheduling
@@ -618,6 +626,7 @@ extends
 
 /**
  * LossProfile is associated with an EnerrgyTransaction and must be completely contained within the time frame of the EnergyProfile associated with this EnergyTransaction.
+ *
  * @param sup Reference to the superclass object.
  * @param EnergyTransaction An EnergyTransaction may have a LossProfile.
  * @param HasLoss_1 Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
@@ -763,6 +772,7 @@ extends
 
 /**
  * A corridor containing one or more rights of way
+ *
  * @param sup Reference to the superclass object.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
@@ -824,6 +834,7 @@ extends
 
 /**
  * A collection of transmission lines that are close proximity to each other.
+ *
  * @param sup Reference to the superclass object.
  * @param TransmissionCorridor A transmission right-of-way is a member of a transmission corridor
  * @group InfEnergyScheduling

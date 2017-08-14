@@ -24,9 +24,9 @@ import ch.ninecode.model.Unknown
  * runs a Hive/Thrift server to expose the RDD as JDBC tables.
  *
  * The program is usually run on the master node with a command like:
- * <code>
+ * {{{
  * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.0.2-2.1.0-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"
- * </code>
+ * }}}
  *
  * It will read the rdf file and create a Spark RDD for each CIM class,
  * a description of which can be found in [Model.md](https://github.com/derrickoswald/CIMReader/blob/master/Model.md).
@@ -39,7 +39,7 @@ import ch.ninecode.model.Unknown
  * A java client program can get a JDBC connection to the Hive/Thrift server
  * using the [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)
  * and the usual JDBC connection process:
- * <code>
+ * {{{
  * private static String driverName = "org.apache.hive.jdbc.HiveDriver";
  * private static String port = "10004";
  * private static String database = "default";
@@ -55,9 +55,9 @@ import ch.ninecode.model.Unknown
  *     System.exit (1);
  * }
  * Connection con = DriverManager.getConnection ("jdbc:hive2://" + host + ":" + port + "/" + database, user, "");
- * </code>
+ * }}}
  *
- * A [sample program](https://github.com/derrickoswald/CIMReader/blob/master/src/test/java/ch/ninecode/CIMJava.java)
+ * A [[https://github.com/derrickoswald/CIMReader/blob/master/src/jdbc/src/main/java/ch/ninecode/cim/CIMJava.java sample program]]
  * is provided in the src/main/java directory.
  *
  */

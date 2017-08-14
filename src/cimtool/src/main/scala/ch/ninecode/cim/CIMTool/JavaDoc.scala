@@ -80,6 +80,8 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
                     | * """.stripMargin)
                 s.append (asterisks (edit (body)))
             }
+            s.append ("""
+                  | *""".stripMargin)
             for (member <- members)
                 s.append ("\n" + member.javaDoc)
             if ("" != group)

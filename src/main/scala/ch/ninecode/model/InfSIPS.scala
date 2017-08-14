@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Logical gate than support logical operation based on the input.
+ *
  * @param sup Reference to the superclass object.
  * @param kind The logical operation of the gate.
  * @group InfSIPS
@@ -74,6 +75,7 @@ extends
 /**
  * Input pin for a logical gate.
  * The condition described in the input pin will give a logical true or false. Result from measurement and calculation are converted to a true or false.
+ *
  * @param sup Reference to the superclass object.
  * @param aDLogicKind The compare operation.
  * @param absoluteValue If true, use the absolute value for compare..
@@ -170,6 +172,7 @@ extends
 
 /**
  * Result of a calculation of one or more measurement.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Calculation operation executed on the operants.
  * @group InfSIPS
@@ -236,6 +239,7 @@ extends
 /**
  * Input to measurement calculation.
  * Support Analog, Discrete and Accumulator.
+ *
  * @param sup Reference to the superclass object.
  * @param absoluteValue If true, use the absolute value for the calculation.
  * @param order Positive number that defines the order of the operant in the calculation. 0 = default.
@@ -317,6 +321,7 @@ extends
 
 /**
  * Value associated with branch group is used as compare.
+ *
  * @param sup Reference to the superclass object.
  * @param kind The compare operation done on the branch group.
  * @param BranchGroup <em>undocumented</em>
@@ -387,6 +392,7 @@ extends
 
 /**
  * Value associated with Equipment is used as compare.
+ *
  * @param sup Reference to the superclass object.
  * @param kind The compare operation done on the equipment.
  * @param Equipment <em>undocumented</em>
@@ -457,6 +463,7 @@ extends
 
 /**
  * An output from one gate represent an input to another gate.
+ *
  * @param sup Reference to the superclass object.
  * @param GateOutput <em>undocumented</em>
  * @group InfSIPS
@@ -522,6 +529,7 @@ extends
 
 /**
  * Gate input pin that is associated with a Measurement or a calculation of Measurement.
+ *
  * @param sup Reference to the superclass object.
  * @param Measurement <em>undocumented</em>
  * @param MeasurementCalculator <em>undocumented</em>
@@ -592,6 +600,7 @@ extends
 
 /**
  * Value associated with Terminal is used as compare.
+ *
  * @param sup Reference to the superclass object.
  * @param kind The compare operation done on the terminal.
  * @param Terminal <em>undocumented</em>
@@ -662,6 +671,7 @@ extends
 
 /**
  * A protective action for supporting the integrity of the power system.
+ *
  * @param sup Reference to the superclass object.
  * @param enabled The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
@@ -754,6 +764,7 @@ extends
 /**
  * Protective actions on non-switching equipment.
  * The operating condition is adjusted.
+ *
  * @param sup Reference to the superclass object.
  * @param byPercentage The adjustment is given in percent of the active value.
  * @param byValue The adjustment is given in value of the active value.
@@ -856,6 +867,7 @@ extends
 
 /**
  * A collection of protective actions to protect the integrity of the power system.
+ *
  * @param sup Reference to the superclass object.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -917,6 +929,7 @@ extends
 
 /**
  * Protective action to put an Equipment in-service/out-of-service.
+ *
  * @param sup Reference to the superclass object.
  * @param inService If true the equipment is put in-service, otherwise out-of-service.
  * @param Equipment <em>undocumented</em>
@@ -987,6 +1000,7 @@ extends
 
 /**
  * Protective action to change regulation to Equipment.
+ *
  * @param sup Reference to the superclass object.
  * @param isRegulating If true the regulator is put in-service, otherwise out-of-service (no regulation).
  * @param targetValue The target value specified the new case input for the regulator.
@@ -1063,6 +1077,7 @@ extends
 
 /**
  * Remedial Action Scheme (RAS), Special Protection Schemes (SPS), System Protection Schemes (SPS) or System Integrity Protection Schemes (SIPS).
+ *
  * @param sup Reference to the superclass object.
  * @param armed The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
@@ -1144,6 +1159,7 @@ extends
 
 /**
  * Stage of a remedial action scheme.
+ *
  * @param sup Reference to the superclass object.
  * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  *        A stage with higher priority needs be activated before a lower stage can be activated.
@@ -1215,6 +1231,7 @@ extends
 
 /**
  * Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
+ *
  * @param sup Reference to the superclass object.
  * @param armed The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
@@ -1317,6 +1334,7 @@ extends
 
 /**
  * A conditions that can trigger remedial actions.
+ *
  * @param sup Reference to the superclass object.
  * @param GateTrigger <em>undocumented</em>
  * @param RemedialActionScheme <em>undocumented</em>

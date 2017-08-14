@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Common representation for work and work tasks.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of work.
  * @param priority Priority of work.
@@ -88,6 +89,7 @@ extends
 
 /**
  * Location where to perform maintenance work.
+ *
  * @param sup Reference to the superclass object.
  * @param block (if applicable) Name, identifier, or description of the block in which work is to occur.
  * @param lot (if applicable) Name, identifier, or description of the lot in which work is to occur.
@@ -169,6 +171,7 @@ extends
 /**
  * The physical consumable supply used for work and other purposes.
  * It includes items such as nuts, bolts, brackets, glue, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param quantity Quantity of material used.
  * @param TypeMaterial <em>undocumented</em>
@@ -244,6 +247,7 @@ extends
 
 /**
  * Tool asset.
+ *
  * @param sup Reference to the superclass object.
  * @param lastCalibrationDate (if applicable) Date the tool was last calibrated.
  * @group Work
@@ -309,6 +313,7 @@ extends
 
 /**
  * Vehicle asset.
+ *
  * @param sup Reference to the superclass object.
  * @param odometerReadDateTime Date and time the last odometer reading was recorded.
  * @param odometerReading Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
@@ -385,6 +390,7 @@ extends
 
 /**
  * Document used to request, initiate, track and record work.
+ *
  * @param sup Reference to the superclass object.
  * @param requestDateTime Date and time work was requested.
  * @param BusinessCase <em>undocumented</em>
@@ -470,6 +476,7 @@ extends
 
 /**
  * Asset used to perform work.
+ *
  * @param sup Reference to the superclass object.
  * @param Crew Crew using this work asset.
  * @group Work
@@ -535,6 +542,7 @@ extends
 
 /**
  * Information about a particular location for various forms of work.
+ *
  * @param sup Reference to the superclass object.
  * @param OneCallRequest <em>undocumented</em>
  * @group Work
@@ -694,6 +702,7 @@ extends
 
 /**
  * Time schedule specific to work.
+ *
  * @param sup Reference to the superclass object.
  * @param kind Kind of this work schedule.
  * @param BaseWork Time schedule for this work or work task.

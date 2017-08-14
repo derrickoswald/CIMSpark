@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
+ *
  * @param sup Reference to the superclass object.
  * @param capacitiveRating Maximum capacitive reactive power.
  * @param inductiveRating Maximum inductive reactive power.
@@ -77,6 +78,7 @@ extends
 
 /**
  * Distribution capacitor bank control settings.
+ *
  * @param sup Reference to the superclass object.
  * @param branchDirect For VAR, amp, or power factor locally controlled shunt impedances, the flow direction: in, out.
  * @param cellSize The size of the individual units that make up the bank.

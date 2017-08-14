@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Limit on active power flow.
+ *
  * @param sup Reference to the superclass object.
  * @param value Value of active power limit.
  * @group OperationalLimits
@@ -73,6 +74,7 @@ extends
 
 /**
  * Apparent power limit.
+ *
  * @param sup Reference to the superclass object.
  * @param value The apparent power limit.
  * @group OperationalLimits
@@ -139,6 +141,7 @@ extends
 /**
  * A group of branch terminals whose directed flow summation is to be monitored.
  * A branch group need not form a cutset of the network.
+ *
  * @param sup Reference to the superclass object.
  * @param maximumActivePower The maximum active power flow.
  * @param maximumReactivePower The maximum reactive power flow.
@@ -229,6 +232,7 @@ extends
 
 /**
  * A specific directed terminal flow for a branch group.
+ *
  * @param sup Reference to the superclass object.
  * @param positiveFlowIn The flow into the terminal is summed if set true.
  *        The flow out of the terminanl is summed if set false.
@@ -305,6 +309,7 @@ extends
 
 /**
  * Operational limit on current.
+ *
  * @param sup Reference to the superclass object.
  * @param value Limit on current flow.
  * @group OperationalLimits
@@ -371,6 +376,7 @@ extends
 /**
  * A value associated with a specific kind of limit.
  * The sub class value attribute shall be positive.
+ *
  * @param sup Reference to the superclass object.
  * @param LimitDependencyModel The limit dependency models which are used to calculate this limit.
  *        If no limit dependencies are specified then the native limit value is used.
@@ -448,6 +454,7 @@ extends
 /**
  * A set of limits associated with equipment.
  * Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.
+ *
  * @param sup Reference to the superclass object.
  * @param Equipment The equipment to which the limit set applies.
  * @param Terminal <em>undocumented</em>
@@ -518,6 +525,7 @@ extends
 
 /**
  * The operational meaning of a category of limits.
+ *
  * @param sup Reference to the superclass object.
  * @param acceptableDuration The nominal acceptable duration of the limit.
  *        Limits are commonly expressed in terms of the a time limit for which the limit is normally acceptable.   The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
@@ -594,6 +602,7 @@ extends
 
 /**
  * Operational limit applied to voltage.
+ *
  * @param sup Reference to the superclass object.
  * @param value Limit on voltage.
  *        High or low limit nature of the limit depends upon the properties of the operational limit type.

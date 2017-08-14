@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Models Market clearing results.
  * Indicates market horizon, interval based. Used by a market quality system for billing and settlement purposes
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
@@ -84,6 +85,7 @@ extends
 
 /**
  * Models Market clearing results in terms of price and MW values
+ *
  * @param sup Reference to the superclass object.
  * @param aggregateType "1" --  "Detail",
  *        "2" --  "Aggregate by Market service type", in which case, the "AllocationEnergyType" field will not be filled;
@@ -186,6 +188,7 @@ extends
 
 /**
  * Models Market clearing results for Auxillary costs
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param marketType <em>undocumented</em>
@@ -266,6 +269,7 @@ extends
 
 /**
  * Models Auxillary Values
+ *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator <em>undocumented</em>
  * @param RegisteredLoad <em>undocumented</em>
@@ -336,6 +340,7 @@ extends
 
 /**
  * Models Auxillary Values
+ *
  * @param sup Reference to the superclass object.
  * @param availUndispatchedQ <em>undocumented</em>
  * @param incrementalORAvail <em>undocumented</em>
@@ -451,6 +456,7 @@ extends
 
 /**
  * Model Expected Energy  from Market Clearing, interval based
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
@@ -526,6 +532,7 @@ extends
 
 /**
  * Model Expected Energy  from Market Clearing
+ *
  * @param sup Reference to the superclass object.
  * @param energyTypeCode <em>undocumented</em>
  * @param expectedMwh <em>undocumented</em>
@@ -606,6 +613,7 @@ extends
 
 /**
  * Models 5-Minutes Auxillary Data
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
@@ -681,6 +689,7 @@ extends
 
 /**
  * Models 10-Minutes Auxillary Data
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
@@ -756,6 +765,7 @@ extends
 
 /**
  * Models prices at Trading Hubs, interval based
+ *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
  * @param marketType <em>undocumented</em>
@@ -836,6 +846,7 @@ extends
 
 /**
  * Models prices at Trading Hubs
+ *
  * @param sup Reference to the superclass object.
  * @param price Utilizes the Market type.
  *        For DA, the price is hourly. For RTM the price is a 5 minute price.

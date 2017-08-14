@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Acceptance test for assets.
+ *
  * @param sup Reference to the superclass object.
  * @param dateTime Date and time the asset was last tested using the 'type' of test and yielding the current status in 'success' attribute.
  * @param success True if asset has passed acceptance test and may be placed in or is in service.
@@ -85,6 +86,7 @@ extends
 /**
  * Tangible resource of the utility, including power system equipment, various end devices, cabinets, buildings, etc.
  * For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.
+ *
  * @param sup Reference to the superclass object.
  * @param acceptanceTest Information on acceptance test.
  * @param critical True if asset is considered critical for some reason (for example, a pole with critical attachments).
@@ -263,6 +265,7 @@ extends
 
 /**
  * Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.
+ *
  * @param sup Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
@@ -324,6 +327,7 @@ extends
 
 /**
  * Function performed by an asset.
+ *
  * @param sup Reference to the superclass object.
  * @param configID Configuration specified for this function.
  * @param firmwareID Firmware version.
@@ -412,6 +416,7 @@ extends
  * - as attributes of an asset instance (installed or in stock)
  * - as attributes of an asset model (product by a manufacturer)
  * - as attributes of a type asset (generic type of an asset as used in designs/extension planning).
+ *
  * @param sup Reference to the superclass object.
  * @param AssetModel Asset model described by this data.
  * @group Assets
@@ -478,6 +483,7 @@ extends
 /**
  * Potential hazard related to the location of an asset.
  * Examples are trees growing under overhead power lines, a park being located by a substation (i.e., children climb fence to recover a ball), a lake near an overhead distribution line (fishing pole/line contacting power lines), dangerous neighbour, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param Locations The location of this hazard.
  * @group Assets
@@ -544,6 +550,7 @@ extends
 /**
  * Model of an asset, either a product of a specific manufacturer or a generic asset model or material item.
  * Datasheet characteristics are available through the associated AssetInfo subclass and can be shared with asset or power system resource instances.
+ *
  * @param sup Reference to the superclass object.
  * @param AssetInfo Data applicable to this asset model.
  * @group Assets
@@ -609,6 +616,7 @@ extends
 
 /**
  * Role an organisation plays with respect to asset.
+ *
  * @param sup Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
@@ -670,6 +678,7 @@ extends
 
 /**
  * Owner of the asset.
+ *
  * @param sup Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
@@ -731,6 +740,7 @@ extends
 
 /**
  * Organisation that is a user of the asset.
+ *
  * @param sup Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
@@ -792,6 +802,7 @@ extends
 
 /**
  * Communication media such as fibre optic cable, power-line, telephone, etc.
+ *
  * @param sup Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
@@ -853,6 +864,7 @@ extends
 
 /**
  * Dates for lifecycle events of an asset.
+ *
  * @param sup Reference to the superclass object.
  * @param installationDate (if applicable) Date current installation was completed, which may not be the same as the in-service date.
  *        Asset may have been installed at other locations previously. Ignored if asset is (1) not currently installed (e.g., stored in a depot) or (2) not intended to be installed (e.g., vehicle, tool).
@@ -947,6 +959,7 @@ extends
 
 /**
  * Organisation that maintains assets.
+ *
  * @param sup Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
@@ -1008,6 +1021,7 @@ extends
 
 /**
  * Organisation that manufactures asset products.
+ *
  * @param sup Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
@@ -1069,6 +1083,7 @@ extends
 
 /**
  * Documented procedure for various types of work or work tasks on assets.
+ *
  * @param sup Reference to the superclass object.
  * @param instruction Textual description of this procedure.
  * @param kind Kind of procedure.
@@ -1160,6 +1175,7 @@ extends
 /**
  * A data set recorded each time a procedure is executed.
  * Observed results are captured in associated measurement values and/or values for properties relevant to the type of procedure performed.
+ *
  * @param sup Reference to the superclass object.
  * @param completedDateTime Date and time procedure was completed.
  * @param MeasurementValues <em>undocumented</em>
@@ -1240,6 +1256,7 @@ extends
 
 /**
  * Asset model by a specific manufacturer.
+ *
  * @param sup Reference to the superclass object.
  * @param corporateStandardKind Kind of corporate standard for this asset model.
  * @param modelNumber Manufacturer's model number.
@@ -1335,6 +1352,7 @@ extends
 
 /**
  * Physically controls access to AssetContainers.
+ *
  * @param sup Reference to the superclass object.
  * @param appliedDateTime Date and time this seal has been applied.
  * @param condition Condition of seal.

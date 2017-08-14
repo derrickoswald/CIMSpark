@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
+ *
  * @param sup Reference to the superclass object.
  * @param airCompressorRating Rating of the CAES air compressor.
  * @param CAESPlant An air compressor may be a member of a compressed air energy storage plant.
@@ -83,6 +84,7 @@ extends
 
 /**
  * Compressed air energy storage plant.
+ *
  * @param sup Reference to the superclass object.
  * @param energyStorageCapacity The rated energy storage capacity.
  * @param ratedCapacityP The CAES plant's gross rated generating capacity.
@@ -164,6 +166,7 @@ extends
 /**
  * A set of thermal generating units for the production of electrical energy and process steam (usually from the output of the steam turbines).
  * The steam sendout is typically used for industrial purposes or for municipal heating and cooling.
+ *
  * @param sup Reference to the superclass object.
  * @param cogenHPSendoutRating The high pressure steam sendout.
  * @param cogenHPSteamRating The high pressure steam rating.
@@ -254,6 +257,7 @@ extends
 
 /**
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
+ *
  * @param sup Reference to the superclass object.
  * @param combCyclePlantRating The combined cycle plant's active power output rating.
  * @group Production
@@ -320,6 +324,7 @@ extends
 /**
  * Accounts for tracking emissions usage and credits for thermal generating units.
  * A unit may have zero or more emission accounts, and will typically have one for tracking usage and one for tracking credits.
+ *
  * @param sup Reference to the superclass object.
  * @param emissionType The type of emission, for example sulfur dioxide (SO2).
  *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
@@ -397,6 +402,7 @@ extends
 /**
  * Relationship between the unit's emission rate in units of mass per hour (Y-axis) and output active power (X-axis) for a given type of emission.
  * This curve applies when only one type of fuel is being burned.
+ *
  * @param sup Reference to the superclass object.
  * @param emissionContent The emission content per quantity of fuel burned.
  * @param emissionType The type of emission, which also gives the production rate measurement unit.
@@ -479,6 +485,7 @@ extends
 /**
  * The fossil fuel consumed by the non-nuclear thermal generating unit.
  * For example, coal, oil, gas, etc.   This a the specific fuels that the generating unit can consume.
+ *
  * @param sup Reference to the superclass object.
  * @param fossilFuelType The type of fossil fuel, such as coal, oil, or gas.
  * @param fuelCost The cost in terms of heat value for the given type of fuel.
@@ -596,6 +603,7 @@ extends
 
 /**
  * The amount of fuel of a given type which is allocated for consumption over a specified period of time.
+ *
  * @param sup Reference to the superclass object.
  * @param fuelAllocationEndDate The end time and date of the fuel allocation schedule.
  * @param fuelAllocationStartDate The start time and date of the fuel allocation schedule.
@@ -692,6 +700,7 @@ extends
 /**
  * Relationship between unit operating cost (Y-axis) and unit output active power (X-axis).
  * The operating cost curve for thermal units is derived from heat input and fuel costs. The operating cost curve for hydro units is derived from water flow rates and equivalent water costs.
+ *
  * @param sup Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param GeneratingUnit A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
@@ -763,6 +772,7 @@ extends
 /**
  * The generating unit's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
  * The X-axis represents absolute time. The Y1-axis represents the status (0=off-line and unavailable: 1=available: 2=must run: 3=must run at fixed power value: etc.). The Y2-axis represents the must run fixed power value where required.
+ *
  * @param sup Reference to the superclass object.
  * @param GeneratingUnit A generating unit may have an operating schedule, indicating the planned operation of the unit.
  * @group Production
@@ -829,6 +839,7 @@ extends
 /**
  * A single or set of synchronous machines for converting mechanical power into alternating-current power.
  * For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.
+ *
  * @param sup Reference to the superclass object.
  * @param allocSpinResP The planned unused capacity (spinning reserve) which can be used to support emergency load.
  * @param autoCntrlMarginP The planned unused capacity which can be used to support automatic control overruns.
@@ -1086,6 +1097,7 @@ extends
 /**
  * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
  * Station service loads, when modeled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
+ *
  * @param sup Reference to the superclass object.
  * @param GeneratingUnit A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
  * @group Production
@@ -1152,6 +1164,7 @@ extends
 /**
  * Relationship between unit heat input in energy per time for main fuel (Y1-axis) and supplemental fuel (Y2-axis) versus unit output in active power (X-axis).
  * The quantity of main fuel used to sustain generation at this output level is prorated for throttling between definition points. The quantity of supplemental fuel used at this output level is fixed and not prorated.
+ *
  * @param sup Reference to the superclass object.
  * @param auxPowerMult Power output - auxiliary power multiplier adjustment factor.
  * @param auxPowerOffset Power output - auxiliary power offset adjustment factor.
@@ -1243,6 +1256,7 @@ extends
 /**
  * Relationship between unit heat rate per active power (Y-axis) and  unit output (X-axis).
  * The heat input is from all fuels.
+ *
  * @param sup Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit A thermal generating unit may have a heat rate curve.
@@ -1314,6 +1328,7 @@ extends
 /**
  * Relationship between unit efficiency in percent and unit output active power for a given net head in meters.
  * The relationship between efficiency, discharge, head, and power output is expressed as follows:   E =KP/HQ
+ *
  * @param sup Reference to the superclass object.
  * @param HydroGeneratingUnit A hydro generating unit has an efficiency curve.
  * @group Production
@@ -1379,6 +1394,7 @@ extends
 
 /**
  * A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
+ *
  * @param sup Reference to the superclass object.
  * @param energyConversionCapability Energy conversion capability for generating.
  * @param hydroUnitWaterCost The equivalent cost of water that drives the hydro turbine.
@@ -1460,6 +1476,7 @@ extends
 /**
  * A hydro power station which can generate or pump.
  * When generating, the generator turbines receive water from an upper reservoir. When pumping, the pumps receive their water from a lower reservoir.
+ *
  * @param sup Reference to the superclass object.
  * @param dischargeTravelDelay Water travel delay from tailbay to next downstream hydro power station.
  * @param genRatedP The hydro plant's generating rating active power for rated head conditions.
@@ -1575,6 +1592,7 @@ extends
 
 /**
  * A synchronous motor-driven pump, typically associated with a pumped storage plant.
+ *
  * @param sup Reference to the superclass object.
  * @param pumpDischAtMaxHead The pumping discharge under maximum head conditions, usually at full gate.
  * @param pumpDischAtMinHead The pumping discharge under minimum head conditions, usually at full gate.
@@ -1672,6 +1690,7 @@ extends
 /**
  * The hydro pump's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
  * The unit's operating schedule status is typically given as: (0=unavailable) (1=avilable to startup or shutdown)  (2=must pump).
+ *
  * @param sup Reference to the superclass object.
  * @param HydroPump The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
  * @group Production
@@ -1738,6 +1757,7 @@ extends
 /**
  * Relationship between unit incremental heat rate in (delta energy/time) per (delta active power) and unit output in active power.
  * The IHR curve represents the slope of the HeatInputCurve. Note that the "incremental heat rate" and the "heat rate" have the same engineering units.
+ *
  * @param sup Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit A thermal generating unit may have an incremental heat rate curve.
@@ -1809,6 +1829,7 @@ extends
 /**
  * Natural water inflow to a reservoir, usually forecasted from predicted rain and snowmelt.
  * Typically in one hour increments for up to 10 days. The forecast is given in average cubic meters per second over the time increment.
+ *
  * @param sup Reference to the superclass object.
  * @param Reservoir A reservoir may have a "natural" inflow forecast.
  * @group Production
@@ -1875,6 +1896,7 @@ extends
 /**
  * Relationship between reservoir volume and reservoir level.
  * The  volume is at the y-axis and the reservoir level at the x-axis.
+ *
  * @param sup Reference to the superclass object.
  * @param Reservoir A reservoir may have a level versus volume relationship.
  * @group Production
@@ -1940,6 +1962,7 @@ extends
 
 /**
  * A nuclear generating unit.
+ *
  * @param sup Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
@@ -2002,6 +2025,7 @@ extends
 /**
  * Relationship between penstock head loss (in meters) and  total discharge through the penstock (in cubic meters per second).
  * One or more turbines may be connected to the same penstock.
+ *
  * @param sup Reference to the superclass object.
  * @param HydroGeneratingUnit A hydro generating unit has a penstock loss curve.
  * @group Production
@@ -2068,6 +2092,7 @@ extends
 /**
  * A water storage facility within a hydro system, including: ponds, lakes, lagoons, and rivers.
  * The storage is usually behind some type of dam.
+ *
  * @param sup Reference to the superclass object.
  * @param activeStorageCapacity Storage volume between the full supply level and the normal minimum operating level.
  * @param energyStorageRating The reservoir's energy storage rating in energy for given head conditions.
@@ -2194,6 +2219,7 @@ extends
 
 /**
  * Relationship between the rate in gross active power/minute (Y-axis) at which a unit should be shutdown and its present gross MW output (X-axis).
+ *
  * @param sup Reference to the superclass object.
  * @param shutdownCost Fixed shutdown cost.
  * @param shutdownDate The date and time of the most recent generating unit shutdown.
@@ -2269,6 +2295,7 @@ extends
 
 /**
  * A solar thermal generating unit.
+ *
  * @param sup Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
@@ -2330,6 +2357,7 @@ extends
 
 /**
  * The quantity of ignition fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
+ *
  * @param sup Reference to the superclass object.
  * @param ignitionFuelType Type of ignition fuel.
  * @param StartupModel The unit's startup model may have a startup ignition fuel curve.
@@ -2400,6 +2428,7 @@ extends
 
 /**
  * The quantity of main fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
+ *
  * @param sup Reference to the superclass object.
  * @param mainFuelType Type of main fuel.
  * @param StartupModel The unit's startup model may have a startup main fuel curve.
@@ -2470,6 +2499,7 @@ extends
 
 /**
  * Rate in gross active power/minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
+ *
  * @param sup Reference to the superclass object.
  * @param hotStandbyRamp The startup ramp rate in gross for a unit that is on hot standby.
  * @param StartupModel The unit's startup model may have a startup ramp curve.
@@ -2540,6 +2570,7 @@ extends
 
 /**
  * Unit start up characteristics depending on how long the unit has been off line.
+ *
  * @param sup Reference to the superclass object.
  * @param fixedMaintCost Fixed maintenance cost.
  * @param hotStandbyHeat The amount of heat input per time uint required for hot standby operation.
@@ -2672,6 +2703,7 @@ extends
 
 /**
  * The cogeneration plant's steam sendout schedule in volume per time unit.
+ *
  * @param sup Reference to the superclass object.
  * @param CogenerationPlant A cogeneration plant has a steam sendout schedule.
  * @group Production
@@ -2738,6 +2770,7 @@ extends
 /**
  * Relationship between tailbay head loss hight (y-axis) and the total discharge into the power station's tailbay volume per time unit (x-axis) .
  * There could be more than one curve depending on the level of the tailbay reservoir or river level.
+ *
  * @param sup Reference to the superclass object.
  * @param HydroGeneratingUnit A hydro generating unit has a tailbay loss curve.
  * @group Production
@@ -2804,6 +2837,7 @@ extends
 /**
  * Reservoir water level targets from advanced studies or "rule curves".
  * Typically in one hour increments for up to 10 days.
+ *
  * @param sup Reference to the superclass object.
  * @param highLevelLimit High target level limit, above which the reservoir operation will be penalized.
  * @param lowLevelLimit Low target level limit, below which the reservoir operation will be penalized.
@@ -2879,6 +2913,7 @@ extends
 
 /**
  * A generating unit whose prime mover could be a steam turbine, combustion turbine, or diesel engine.
+ *
  * @param sup Reference to the superclass object.
  * @param oMCost Operating and maintenance cost for the thermal unit.
  * @param CAESPlant A thermal generating unit may be a member of a compressed air energy storage plant.
@@ -2985,6 +3020,7 @@ extends
 /**
  * A wind driven generating unit.
  * May be used to represent a single turbine or an aggregation.
+ *
  * @param sup Reference to the superclass object.
  * @param windGenUnitType The kind of wind generating unit
  * @group Production

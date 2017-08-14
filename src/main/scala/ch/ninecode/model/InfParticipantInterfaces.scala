@@ -9,6 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * A unique identifier of a wheeling transaction.
  * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
+ *
  * @param sup Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group InfParticipantInterfaces

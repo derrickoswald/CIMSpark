@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Credit/debit movements for an account.
+ *
  * @param sup Reference to the superclass object.
  * @param amount Amount that was credited to/debited from an account.
  *        For example: payment received/interest charge on arrears.
@@ -85,6 +86,7 @@ extends
 
 /**
  * Unit for accounting; use either 'energyUnit' or 'currencyUnit' to specify the unit for 'value'.
+ *
  * @param sup Reference to the superclass object.
  * @param energyUnit Unit of service.
  * @param monetaryUnit Unit of currency.
@@ -165,6 +167,7 @@ extends
 
 /**
  * Variable and dynamic part of auxiliary agreement, generally representing the current state of the account related to the outstanding balance defined in auxiliary agreement.
+ *
  * @param sup Reference to the superclass object.
  * @param balance The total amount currently remaining on this account that is required to be paid in order to settle the account to zero.
  *        This excludes any due amounts not yet paid.
@@ -262,6 +265,7 @@ extends
 /**
  * An ad-hoc auxiliary account agreement associated with a customer agreement, not part of the customer's account, but typically subject to formal agreement between customer and supplier (utility).
  * Typically this is used to collect revenue owed by the customer for other services or arrears accrued with the utility for other services. It is typically linked to a prepaid token purchase transaction, thus forcing the customer to make a payment towards settlement of the auxiliary account balance whenever the customer needs to purchase a prepaid token for electricity.
+ *
  * @param sup Reference to the superclass object.
  * @param arrearsInterest The interest per annum to be charged prorata on 'AuxiliaryAccount.dueArrears' at the end of each 'payCycle'.
  * @param auxCycle The frequency for automatically recurring auxiliary charges, where 'AuxiliaryAccount.initialCharge' is recursively added to 'AuxiliaryAccount.dueCurrent' at the start of each 'auxCycle'.
@@ -377,6 +381,7 @@ extends
 
 /**
  * Details of a bank account.
+ *
  * @param sup Reference to the superclass object.
  * @param accountNumber Operational account reference number.
  * @param bankName Name of bank where account is held.
@@ -462,6 +467,7 @@ extends
 
 /**
  * Documentation of the tender when it is a type of card (credit, debit, etc).
+ *
  * @param sup Reference to the superclass object.
  * @param accountHolderName Name of account holder.
  * @param cvNumber The card verification number.
@@ -548,6 +554,7 @@ extends
 /**
  * The operator of the point of sale for the duration of CashierShift.
  * Cashier is under the exclusive management control of Vendor.
+ *
  * @param sup Reference to the superclass object.
  * @param electronicAddress Electronic address.
  * @group PaymentMetering
@@ -613,6 +620,7 @@ extends
 
 /**
  * The operating shift for a cashier, during which the cashier may transact against the cashier shift, subject to vendor shift being open.
+ *
  * @param sup Reference to the superclass object.
  * @param cashFloat The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.
  * @param Cashier Cashier operating this shift.
@@ -689,6 +697,7 @@ extends
 /**
  * A charge element associated with other entities such as tariff structures, auxiliary agreements or other charge elements.
  * The total charge amount applicable to this instance of charge is the sum of fixed and variable portion.
+ *
  * @param sup Reference to the superclass object.
  * @param fixedPortion The fixed portion of this charge element.
  * @param kind The kind of charge to be applied.
@@ -769,6 +778,7 @@ extends
 
 /**
  * The actual tender when it is a type of cheque.
+ *
  * @param sup Reference to the superclass object.
  * @param bankAccountDetail Details of the account holder and bank.
  * @param chequeNumber Cheque reference number as printed on the cheque.
@@ -860,6 +870,7 @@ extends
 /**
  * One of a sequence of intervals defined in terms of consumption quantity of a service such as electricity, water, gas, etc.
  * It is typically used in association with TariffProfile to define the steps or blocks in a step tariff structure, where startValue simultaneously defines the entry value of this step and the closing value of the previous step. Where consumption is &gt;= startValue it falls within this interval and where consumption is &lt; startValue it falls within the previous interval.
+ *
  * @param sup Reference to the superclass object.
  * @param sequenceNumber A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
  * @param startValue The lowest level of consumption that defines the starting point of this interval.
@@ -941,6 +952,7 @@ extends
 
 /**
  * Details on amounts due for an account.
+ *
  * @param sup Reference to the superclass object.
  * @param arrears Part of 'current' that constitutes the arrears portion.
  * @param charges Part of 'current' that constitutes the charge portion: 'charges' = 'Charge.fixedPortion' + 'Charge.variablePortion'.
@@ -1027,6 +1039,7 @@ extends
 
 /**
  * Details on an amount line, with rounding, date and note.
+ *
  * @param sup Reference to the superclass object.
  * @param amount Amount for this line item.
  * @param dateTime Date and time when this line was created in the application process.
@@ -1108,6 +1121,7 @@ extends
 /**
  * The operating account controlled by merchant agreement, against which the vendor may vend tokens or receipt payments.
  * Transactions via vendor shift debit the account and bank deposits via bank statement credit the account.
+ *
  * @param sup Reference to the superclass object.
  * @param currentBalance The current operating balance of this account.
  * @param provisionalBalance The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
@@ -1189,6 +1203,7 @@ extends
 /**
  * A formal controlling contractual agreement between supplier and merchant, in terms of which the merchant is authorised to vend tokens and receipt payments on behalf of the supplier.
  * The merchant is accountable to the supplier for revenue collected at point of sale.
+ *
  * @param sup Reference to the superclass object.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -1250,6 +1265,7 @@ extends
 
 /**
  * Logical point where transactions take place with operational interaction between cashier and the payment system; in certain cases the point of sale interacts directly with the end customer, in which case the cashier might not be a real person: for example a self-service kiosk or over the internet.
+ *
  * @param sup Reference to the superclass object.
  * @param location Local description for where this point of sale is physically located.
  * @group PaymentMetering
@@ -1315,6 +1331,7 @@ extends
 
 /**
  * Record of total receipted payment from customer.
+ *
  * @param sup Reference to the superclass object.
  * @param isBankable True if this receipted payment is manually bankable, otherwise it is an electronic funds transfer.
  * @param line Receipted amount with rounding, date and note.
@@ -1395,6 +1412,7 @@ extends
 
 /**
  * Organisation that provides services to customers.
+ *
  * @param sup Reference to the superclass object.
  * @param issuerIdentificationNumber Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.
  * @param kind Kind of supplier.
@@ -1466,6 +1484,7 @@ extends
 /**
  * Generally referring to a period of operation or work performed.
  * Whether the shift is open/closed can be derived from attributes 'activityInterval.start' and 'activityInterval.end'.
+ *
  * @param sup Reference to the superclass object.
  * @param activityInterval Interval for activity of this shift.
  * @param receiptsGrandTotalBankable Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
@@ -1562,6 +1581,7 @@ extends
 /**
  * A schedule of charges; structure associated with Tariff that allows the definition of complex tarif structures such as step and time of use when used in conjunction with TimeTariffInterval and Charge.
  * Inherited 'status.value' is defined in the context of the utility's business rules, for example: active, inactive, etc.
+ *
  * @param sup Reference to the superclass object.
  * @param tariffCycle The frequency at which the tariff charge schedule is repeated.
  *        Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
@@ -1639,6 +1659,7 @@ extends
 /**
  * Tender is what is "offered" by the customer towards making a payment and is often more than the required payment (hence the need for 'change').
  * The payment is thus that part of the Tender that goes towards settlement of a particular transaction.
+ *
  * @param sup Reference to the superclass object.
  * @param amount Amount tendered by customer.
  * @param change Difference between amount tendered by customer and the amount charged by point of sale.
@@ -1730,6 +1751,7 @@ extends
 /**
  * One of a sequence of time intervals defined in terms of real time.
  * It is typically used in association with TariffProfile to define the intervals in a time of use tariff structure, where startDateTime simultaneously determines the starting point of this interval and the ending point of the previous interval.
+ *
  * @param sup Reference to the superclass object.
  * @param sequenceNumber A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
  * @param startTime A real time marker that defines the starting time (typically it is the time of day) for this interval.
@@ -1806,6 +1828,7 @@ extends
 
 /**
  * The record of details of payment for service or token sale.
+ *
  * @param sup Reference to the superclass object.
  * @param diverseReference Formal reference for use with diverse payment (traffic fine for example).
  * @param donorReference Reference to the entity that is the source of 'amount' (for example: customer for token purchase; or supplier for free issue token).
@@ -1941,6 +1964,7 @@ extends
 
 /**
  * The entity that ultimately executes the transaction and which is in control of the process; typically this is embodied in secure software running on a server that may employ secure hardware encryption devices for secure transaction processing.
+ *
  * @param sup Reference to the superclass object.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -2003,6 +2027,7 @@ extends
 /**
  * The entity that owns the point of sale and contracts with the cashier to receipt payments and vend tokens using the payment system.
  * The vendor has a private contract with and is managed by the merchant which is a type of organisation. The vendor is accountable to the merchant for revenue collected, and the merchant is in turn accountable to the supplier.
+ *
  * @param sup Reference to the superclass object.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -2065,6 +2090,7 @@ extends
 /**
  * The operating shift for a vendor during which the vendor may transact against the merchant's account.
  * It aggregates transactions and receipts during the shift and periodically debits a merchant account. The totals in vendor shift should always be the sum of totals aggregated in all cashier shifts that were open under the particular vendor shift.
+ *
  * @param sup Reference to the superclass object.
  * @param merchantDebitAmount The amount that is to be debited from the merchant account for this vendor shift.
  *        This amount reflects the sum(PaymentTransaction.transactionAmount).
