@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors.
-A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors.</p><p>A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">aVRDelay</dt><dd class="cmt"><p>Time delay required for the device to be connected or disconnected by automatic voltage regulation (AVR).</p></dd><dt class="param">grounded</dt><dd class="cmt"><p>Used for Yn and Zn connections.
        True if the neutral is solidly grounded.</p></dd><dt class="param">maximumSections</dt><dd class="cmt"><p>The maximum number of sections that may be switched in.</p></dd><dt class="param">nomU</dt><dd class="cmt"><p>The voltage at which the nominal reactive power may be calculated.
        This should normally be within 10% of the voltage at which the capacitor is connected to the network.</p></dd><dt class="param">normalSections</dt><dd class="cmt"><p>The normal number of sections switched in.</p></dd><dt class="param">phaseConnection</dt><dd class="cmt"><p>The type of phase connection, such as wye or delta.</p></dd><dt class="param">sections</dt><dd class="cmt"><p>Shunt compensator sections in use.

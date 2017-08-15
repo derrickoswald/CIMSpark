@@ -74,6 +74,7 @@ extends
 
 /**
  * AreaLoadBid is not submitted by a market participant into the Markets.
+ *
  * Instead, it is simply an aggregation of all LoadBids contained wtihin a specific SubControlArea. This entity should inherit from Bid for representation of the timeframe (startTime, stopTime) and the market type.
  *
  * @param sup Reference to the superclass object.
@@ -927,6 +928,7 @@ extends
 
 /**
  * As set of mutually exclusive bids for which a maximum of one may be scheduled.
+ *
  * Of these generating bids, only one generating bid can be scheduled at a time.
  *
  * @param sup Reference to the superclass object.
@@ -1096,6 +1098,7 @@ extends
 
 /**
  * Charge Group is the grouping of Charge Types for settlement invoicing purpose.
+ *
  * Examples such as Ancillary Services, Interests, etc.
  *
  * @param sup Reference to the superclass object.
@@ -1183,6 +1186,7 @@ extends
 
 /**
  * Charge Type is the basic level configuration for settlement to process specific charges for invoicing purpose.
+ *
  * Examples such as: Day Ahead Spinning Reserve Default Invoice Interest Charge, etc.
  *
  * @param sup Reference to the superclass object.
@@ -1652,6 +1656,7 @@ extends
 
 /**
  * An indicator specifying that a resource shall have an Hourly Pre-Dispatch.
+ *
  * The resource could be a RegisteredGenerator or a RegisteredInterTie.
  *
  * @param sup Reference to the superclass object.
@@ -2114,6 +2119,7 @@ extends
 
 /**
  * This is the price sensitivity that bidder expresses for allowing market load interruption.
+ *
  * Relationship between price (Y1-axis) vs. MW (X-axis).
  *
  * @param sup Reference to the superclass object.
@@ -2181,6 +2187,7 @@ extends
 
 /**
  * A Major Charge Group is the same as Invocie Type which provides the highest level of grouping for charge types configration.
+ *
  * Examples as Market, FERC, RMR,
  *
  * @param sup Reference to the superclass object.
@@ -2370,6 +2377,7 @@ extends
 
 /**
  * Notification time curve as a function of down time.
+ *
  * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
  *
  * @param sup Reference to the superclass object.
@@ -2433,6 +2441,7 @@ extends
 
 /**
  * Result of bid validation against conditions that may exist on an interchange that becomes disconnected or is heavily discounted with respect the MW flow.
+ *
  * This schedule is assocated with the hourly parameters in a resource bid.
  *
  * @param sup Reference to the superclass object.
@@ -2571,6 +2580,7 @@ extends
 
 /**
  * The operating cost of a Pump Storage Hydro Unit operating as a hydro pump.
+ *
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  *
  * @param sup Reference to the superclass object.
@@ -2638,6 +2648,7 @@ extends
 
 /**
  * The fixed operating level of a Pump Storage Hydro Unit operating as a hydro pump.
+ *
  * Associated with the energy market product type.
  *
  * @param sup Reference to the superclass object.
@@ -2705,6 +2716,7 @@ extends
 
 /**
  * The cost to shutdown a Pump Storage Hydro Unit (in pump mode) or a pump.
+ *
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  *
  * @param sup Reference to the superclass object.
@@ -3022,6 +3034,7 @@ extends
 
 /**
  * Startup costs and time as a function of down time.
+ *
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
  *
  * @param sup Reference to the superclass object.
@@ -3089,6 +3102,7 @@ extends
 
 /**
  * Startup time curve as a function of down time, where time is specified in minutes.
+ *
  * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
  *
  * @param sup Reference to the superclass object.
@@ -3437,6 +3451,7 @@ extends
  * AST                                                 RDT (Regulation Down Trade)
  * AST                                                 SRT (Spinning Reserve Trade)
  * AST                                                 NRT (Non-Spinning Reserve Trade)
+ *
  * UCT (Unit Commitment Trade)            null
  *
  * @param sup Reference to the superclass object.

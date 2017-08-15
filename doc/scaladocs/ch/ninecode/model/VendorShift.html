@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The operating shift for a vendor during which the vendor may transact against the merchant's account.
-It aggregates transactions and receipts during the shift and periodically debits a merchant account. The totals in vendor shift should always be the sum of totals aggregated in all cashier shifts that were open under the particular vendor shift.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The operating shift for a vendor during which the vendor may transact against the merchant's account.</p><p>It aggregates transactions and receipts during the shift and periodically debits a merchant account. The totals in vendor shift should always be the sum of totals aggregated in all cashier shifts that were open under the particular vendor shift.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">merchantDebitAmount</dt><dd class="cmt"><p>The amount that is to be debited from the merchant account for this vendor shift.
        This amount reflects the sum(PaymentTransaction.transactionAmount).</p></dd><dt class="param">posted</dt><dd class="cmt"><p>If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.</p></dd><dt class="param">MerchantAccount</dt><dd class="cmt"><p>Merchant account this vendor shift periodically debits (based on aggregated transactions).</p></dd><dt class="param">Vendor</dt><dd class="cmt"><p>Vendor that opens and owns this vendor shift.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>

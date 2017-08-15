@@ -94,6 +94,7 @@ extends
 
 /**
  * Formal agreement between two parties defining the terms and conditions for a set of services.
+ *
  * The specifics of the services are, in turn, defined via one or more service agreements.
  *
  * @param sup Reference to the superclass object.
@@ -557,6 +558,7 @@ extends
 
 /**
  * Custom description of the type of crew.
+ *
  * This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.
  *
  * @param sup Reference to the superclass object.
@@ -620,6 +622,7 @@ extends
 
 /**
  * Parent class for different groupings of information collected and managed as a part of a business process.
+ *
  * It will frequently contain references to other objects, such as assets, people and power system resources.
  *
  * @param sup Reference to the superclass object.
@@ -912,6 +915,7 @@ extends
 
 /**
  * The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time.
+ *
  * It can be defined with one or more postition points (coordinates) in a given coordinate system.
  *
  * @param sup Reference to the superclass object.
@@ -1493,6 +1497,7 @@ extends
 }
 
 /**
+
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1560,6 +1565,7 @@ extends
 
 /**
  * Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.
+ *
  * CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
  *
  * @param sup Reference to the superclass object.
@@ -2420,6 +2426,7 @@ extends
 
 /**
  * Description of anything that changes through time.
+ *
  * Time schedule is used to perform a single-valued function of time. Use inherited 'type' attribute to give additional information on this schedule, such as: periodic (hourly, daily, weekly, monthly, etc.), day of the month, by date, calendar (specific times and dates).
  *
  * @param sup Reference to the superclass object.

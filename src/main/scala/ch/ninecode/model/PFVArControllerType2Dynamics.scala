@@ -78,6 +78,7 @@ extends
 
 /**
  * Power factor / Reactive power regulator.
+ *
  * This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
  *
  * @param sup Reference to the superclass object.
@@ -172,6 +173,7 @@ extends
 
 /**
  * The class represents IEEE PF Controller Type 2 which is a summing point type controller and makes up the outside loop of a two-loop system.
+ *
  * This controller is implemented as a slow PI type controller. The voltage regulator forms the inner loop and is implemented as a fast controller.
  *
  * @param sup Reference to the superclass object.
@@ -278,6 +280,7 @@ extends
 
 /**
  * The class represents IEEE VAR Controller Type 2 which is a summing point type controller.
+ *
  * It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
  *
  * @param sup Reference to the superclass object.

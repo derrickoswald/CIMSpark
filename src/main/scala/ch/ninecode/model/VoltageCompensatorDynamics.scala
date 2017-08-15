@@ -99,6 +99,7 @@ extends
 
 /**
  * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
+ *
  * This model is common to all excitation system models described in the IEEE Standard. </font>
  *
  * @param sup Reference to the superclass object.
@@ -186,6 +187,7 @@ extends
 
 /**
  * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
+ *
  * This model is designed to cover the following types of compensation: </font>
  *
  * @param sup Reference to the superclass object.

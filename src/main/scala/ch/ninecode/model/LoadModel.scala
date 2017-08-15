@@ -140,6 +140,7 @@ extends
 
 /**
  * A curve of load  versus time (X-axis) showing the active power values (Y1-axis) and reactive power (Y2-axis) for each unit of the period covered.
+ *
  * This curve represents a typical pattern of load over the time period for a given day type and season.
  *
  * @param sup Reference to the superclass object.
@@ -209,6 +210,7 @@ extends
 
 /**
  * Group of similar days.
+ *
  * For example it could be used to represent weekdays, weekend, or holidays.
  *
  * @param sup Reference to the superclass object.
@@ -274,6 +276,7 @@ extends
 
 /**
  * Describes an area having energy production or consumption.
+ *
  * Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.
  *
  * @param sup Reference to the superclass object.
@@ -475,6 +478,7 @@ extends
 
 /**
  * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
+ *
  * This is not related to demand response.
  *
  * @param sup Reference to the superclass object.

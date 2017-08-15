@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Logical or physical point in the network to which readings or events may be attributed.
-Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Logical or physical point in the network to which readings or events may be attributed.</p><p>Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">amiBillingReady</dt><dd class="cmt"><p>Tracks the lifecycle of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.</p></dd><dt class="param">checkBilling</dt><dd class="cmt"><p>True if as a result of an inspection or otherwise, there is a reason to suspect that a previous billing may have been performed with erroneous data.
        Value should be reset once this potential discrepancy has been resolved.</p></dd><dt class="param">connectionState</dt><dd class="cmt"><p>State of the usage point with respect to connection to the network.</p></dd><dt class="param">estimatedLoad</dt><dd class="cmt"><p>Estimated load.</p></dd><dt class="param">grounded</dt><dd class="cmt"><p>True if grounded.</p></dd><dt class="param">isSdp</dt><dd class="cmt"><p>If true, this usage point is a service delivery point, i.e., a usage point where the ownership of the service changes hands.</p></dd><dt class="param">isVirtual</dt><dd class="cmt"><p>If true, this usage point is virtual, i.e., no physical location exists in the network where a meter could be located to collect the meter readings.
        For example, one may define a virtual usage point to serve as an aggregation of usage for all of a company's premises distributed widely across the distribution territory. Otherwise, the usage point is physical, i.e., there is a logical point in the network where a meter could be located to collect meter readings.</p></dd><dt class="param">minimalUsageExpected</dt><dd class="cmt"><p>If true, minimal or zero usage is expected at this usage point for situations such as premises vacancy, logical or physical disconnect.

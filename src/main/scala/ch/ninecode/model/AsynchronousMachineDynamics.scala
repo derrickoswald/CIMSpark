@@ -12,6 +12,7 @@ import ch.ninecode.cim.Parseable
  * <b>Parameter Notes:</b>
  * <ol>
  * <li>Asynchronous machine parameters such as <b>Xl, Xs</b> etc. are actually used as inductances (L) in the model, but are commonly referred to as reactances since, at nominal frequency, the per unit values are the same.
+ *
  * However, some references use the symbol L instead of X. </li>
  *
  * @param sup Reference to the superclass object.
@@ -111,6 +112,7 @@ extends
  * xp = RotatingMachineDynamics.statorLeakageReactance + xm * xlr1 / (xm + xlr1)
  * xpp = RotatingMachineDynamics.statorLeakageReactance + xm * xlr1* xlr2 / (xm * xlr1 + xm * xlr2 + xlr1 * xlr2)
  * tpo = (xm + xlr1) / (2*pi*nominal frequency * rr1)
+ *
  * tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (xm + xlr1).
  *
  * @param sup Reference to the superclass object.
@@ -221,6 +223,7 @@ extends
  * <li>.xpp (X'')</li>
  * <li>.tpo (T'o)</li>
  * <li>.tppo (T''o).</li>
+ *
  * </ul>
  *
  * @param sup Reference to the superclass object.

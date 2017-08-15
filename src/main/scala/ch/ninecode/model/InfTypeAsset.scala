@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Generic generation equipment that may be used for various purposes such as work planning.
+ *
  * It defines both the Real and Reactive power properties (modelled at the PSR level as a GeneratingUnit + SynchronousMachine).
  *
  * @param sup Reference to the superclass object.
@@ -149,6 +150,7 @@ extends
 
 /**
  * Catalogue of generic types of assets (TypeAsset) that may be used for design purposes.
+ *
  * It is not associated with a particular manufacturer.
  *
  * @param sup Reference to the superclass object.

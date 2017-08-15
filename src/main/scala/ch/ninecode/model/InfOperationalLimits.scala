@@ -144,6 +144,7 @@ extends
 
 /**
  * A limit calculation model used to compute an operational limit based on external input such as temperature.
+ *
  * These are intended to be shared among operational limits with the same calculation form that apply to a piece of equipment..
  *
  * @param sup Reference to the superclass object.
@@ -284,6 +285,7 @@ extends
 
 /**
  * One operational limit type scales values of another operational limit type when under the same operational limit set.
+ *
  * This applies to any operational limit assigned to the target operational limit type and without other limit dependency models.
  *
  * @param sup Reference to the superclass object.
@@ -362,6 +364,7 @@ extends
 }
 
 /**
+
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -559,6 +562,7 @@ extends
 }
 
 /**
+
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -760,6 +764,7 @@ extends
 
 /**
  * Limit based on most restrictive series equipment limit.
+ *
  * A specification of  of equipment that determines the calculated operational limit values based upon other equipment and their ratings.  The most restrictive limit connected in series within the group is used.   The physical connection based on switch status for example may also impact which elements in the group are considered. Any equipment in the group that are presently connected in series with the equipment of the directly associated operational limit are used.   This provides a means to indicate which potentially series equipment limits are considered for a computed operational limit. The operational limit of the same operational limit type is assumed to be used from the grouped equipment.   It is also possible to make assumptions or calculations regarding how flow might split if the equipment is not simply in series.
  *
  * @param sup Reference to the superclass object.

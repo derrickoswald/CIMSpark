@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
+ *
  * This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for representation of
  *
  * @param sup Reference to the superclass object.
@@ -284,6 +285,7 @@ extends
 
 /**
  * General governor model with frequency-dependent fuel flow limit.
+ *
  * This model is a modification of the GovCT1<b> </b>model in order to represent the frequency-dependent fuel flow limit of a specific gas turbine manufacturer.
  *
  * @param sup Reference to the superclass object.
@@ -2241,6 +2243,7 @@ extends
 
 /**
  * Modified IEEE Hydro Governor-Turbine Model.
+ *
  * This model differs from that defined in the IEEE modeling guideline paper in that the limits on gate position and velocity do not permit "wind up" of the upstream signals.
  *
  * @param sup Reference to the superclass object.
@@ -2523,6 +2526,7 @@ extends
 
 /**
  * Hydro turbine and governor.
+ *
  * Represents plants with straight-forward penstock configurations and hydraulic governors of traditional 'dashpot' type.  This model can be used to represent simple, Francis, Pelton or Kaplan turbines.
  *
  * @param sup Reference to the superclass object.
@@ -3090,6 +3094,7 @@ extends
 
 /**
  * Detailed hydro unit - Francis model.
+ *
  * This model can be used to represent three types of governors.
  *
  * @param sup Reference to the superclass object.
@@ -3318,6 +3323,7 @@ extends
 
 /**
  * IEEE Simplified Hydro Governor-Turbine Model.
+ *
  * Used for Mechanical-Hydraulic and Electro-Hydraulic turbine governors, with our without steam feedback. Typical values given are for Mechanical-Hydraulic.
  *
  * @param sup Reference to the superclass object.
@@ -3426,6 +3432,7 @@ extends
 
 /**
  * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
+ *
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
  *
  * @param sup Reference to the superclass object.
@@ -3909,6 +3916,7 @@ extends
 
 /**
  * Hydro turbine and governor.
+ *
  * Represents plants with straight forward penstock configurations and "three term" electro-hydraulic governors (i.e. Woodard electronic).
  *
  * @param sup Reference to the superclass object.
@@ -4106,6 +4114,7 @@ extends
 
 /**
  * Detailed hydro unit - Pelton model.
+ *
  * This model can be used to represent the dynamic related to water tunnel and surge chamber.
  *
  * @param sup Reference to the superclass object.
@@ -6835,6 +6844,7 @@ extends
 
 /**
  * IEEE steam turbine governor model.
+ *
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
  *
  * @param sup Reference to the superclass object.

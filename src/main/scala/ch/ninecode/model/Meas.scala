@@ -813,6 +813,7 @@ extends
 
 /**
  * Control is used for supervisory/device control.
+ *
  * It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
  *
  * @param sup Reference to the superclass object.
@@ -993,6 +994,7 @@ extends
 }
 
 /**
+
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1129,6 +1131,7 @@ extends
 
 /**
  * Specifies one limit value for a Measurement.
+ *
  * A Measurement typically has several limits that are kept together by the LimitSet class. The actual meaning and use of a Limit instance (i.e., if it is an alarm or warning limit or if it is a high or low limit) is not captured in the Limit class. However the name of a Limit instance may indicate both meaning and use.
  *
  * @param sup Reference to the superclass object.
@@ -1192,6 +1195,7 @@ extends
 
 /**
  * Specifies a set of Limits that are associated with a Measurement.
+ *
  * A Measurement may have several LimitSets corresponding to seasonal or other changing conditions. The condition is captured in the name and description attributes. The same LimitSet may be used for several Measurements. In particular percentage limits are used this way.
  *
  * @param sup Reference to the superclass object.
@@ -1259,6 +1263,7 @@ extends
 
 /**
  * A Measurement represents any measured, calculated or non-measured non-calculated quantity.
+ *
  * Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.
  *
  * @param sup Reference to the superclass object.
@@ -1358,6 +1363,7 @@ extends
 
 /**
  * The current state for a measurement.
+ *
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
  *
  * @param sup Reference to the superclass object.
@@ -1456,6 +1462,7 @@ extends
 
 /**
  * Measurement quality flags.
+ *
  * Bits 0-10 are defined for substation automation in draft IEC 61850 part 7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
  *
  * @param sup Reference to the superclass object.
@@ -1523,6 +1530,7 @@ extends
 
 /**
  * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
+ *
  * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
  *
  * @param sup Reference to the superclass object.
@@ -1981,6 +1989,7 @@ extends
 
 /**
  * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
+ *
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
  *
  * @param sup Reference to the superclass object.

@@ -165,6 +165,7 @@ extends
 
 /**
  * A set of thermal generating units for the production of electrical energy and process steam (usually from the output of the steam turbines).
+ *
  * The steam sendout is typically used for industrial purposes or for municipal heating and cooling.
  *
  * @param sup Reference to the superclass object.
@@ -323,6 +324,7 @@ extends
 
 /**
  * Accounts for tracking emissions usage and credits for thermal generating units.
+ *
  * A unit may have zero or more emission accounts, and will typically have one for tracking usage and one for tracking credits.
  *
  * @param sup Reference to the superclass object.
@@ -401,6 +403,7 @@ extends
 
 /**
  * Relationship between the unit's emission rate in units of mass per hour (Y-axis) and output active power (X-axis) for a given type of emission.
+ *
  * This curve applies when only one type of fuel is being burned.
  *
  * @param sup Reference to the superclass object.
@@ -484,6 +487,7 @@ extends
 
 /**
  * The fossil fuel consumed by the non-nuclear thermal generating unit.
+ *
  * For example, coal, oil, gas, etc.   This a the specific fuels that the generating unit can consume.
  *
  * @param sup Reference to the superclass object.
@@ -699,6 +703,7 @@ extends
 
 /**
  * Relationship between unit operating cost (Y-axis) and unit output active power (X-axis).
+ *
  * The operating cost curve for thermal units is derived from heat input and fuel costs. The operating cost curve for hydro units is derived from water flow rates and equivalent water costs.
  *
  * @param sup Reference to the superclass object.
@@ -771,6 +776,7 @@ extends
 
 /**
  * The generating unit's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
+ *
  * The X-axis represents absolute time. The Y1-axis represents the status (0=off-line and unavailable: 1=available: 2=must run: 3=must run at fixed power value: etc.). The Y2-axis represents the must run fixed power value where required.
  *
  * @param sup Reference to the superclass object.
@@ -838,6 +844,7 @@ extends
 
 /**
  * A single or set of synchronous machines for converting mechanical power into alternating-current power.
+ *
  * For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.
  *
  * @param sup Reference to the superclass object.
@@ -1096,6 +1103,7 @@ extends
 
 /**
  * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
+ *
  * Station service loads, when modeled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
  *
  * @param sup Reference to the superclass object.
@@ -1163,6 +1171,7 @@ extends
 
 /**
  * Relationship between unit heat input in energy per time for main fuel (Y1-axis) and supplemental fuel (Y2-axis) versus unit output in active power (X-axis).
+ *
  * The quantity of main fuel used to sustain generation at this output level is prorated for throttling between definition points. The quantity of supplemental fuel used at this output level is fixed and not prorated.
  *
  * @param sup Reference to the superclass object.
@@ -1255,6 +1264,7 @@ extends
 
 /**
  * Relationship between unit heat rate per active power (Y-axis) and  unit output (X-axis).
+ *
  * The heat input is from all fuels.
  *
  * @param sup Reference to the superclass object.
@@ -1327,6 +1337,7 @@ extends
 
 /**
  * Relationship between unit efficiency in percent and unit output active power for a given net head in meters.
+ *
  * The relationship between efficiency, discharge, head, and power output is expressed as follows:   E =KP/HQ
  *
  * @param sup Reference to the superclass object.
@@ -1475,6 +1486,7 @@ extends
 
 /**
  * A hydro power station which can generate or pump.
+ *
  * When generating, the generator turbines receive water from an upper reservoir. When pumping, the pumps receive their water from a lower reservoir.
  *
  * @param sup Reference to the superclass object.
@@ -1689,6 +1701,7 @@ extends
 
 /**
  * The hydro pump's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
+ *
  * The unit's operating schedule status is typically given as: (0=unavailable) (1=avilable to startup or shutdown)  (2=must pump).
  *
  * @param sup Reference to the superclass object.
@@ -1756,6 +1769,7 @@ extends
 
 /**
  * Relationship between unit incremental heat rate in (delta energy/time) per (delta active power) and unit output in active power.
+ *
  * The IHR curve represents the slope of the HeatInputCurve. Note that the "incremental heat rate" and the "heat rate" have the same engineering units.
  *
  * @param sup Reference to the superclass object.
@@ -1828,6 +1842,7 @@ extends
 
 /**
  * Natural water inflow to a reservoir, usually forecasted from predicted rain and snowmelt.
+ *
  * Typically in one hour increments for up to 10 days. The forecast is given in average cubic meters per second over the time increment.
  *
  * @param sup Reference to the superclass object.
@@ -1895,6 +1910,7 @@ extends
 
 /**
  * Relationship between reservoir volume and reservoir level.
+ *
  * The  volume is at the y-axis and the reservoir level at the x-axis.
  *
  * @param sup Reference to the superclass object.
@@ -2024,6 +2040,7 @@ extends
 
 /**
  * Relationship between penstock head loss (in meters) and  total discharge through the penstock (in cubic meters per second).
+ *
  * One or more turbines may be connected to the same penstock.
  *
  * @param sup Reference to the superclass object.
@@ -2091,6 +2108,7 @@ extends
 
 /**
  * A water storage facility within a hydro system, including: ponds, lakes, lagoons, and rivers.
+ *
  * The storage is usually behind some type of dam.
  *
  * @param sup Reference to the superclass object.
@@ -2769,6 +2787,7 @@ extends
 
 /**
  * Relationship between tailbay head loss hight (y-axis) and the total discharge into the power station's tailbay volume per time unit (x-axis) .
+ *
  * There could be more than one curve depending on the level of the tailbay reservoir or river level.
  *
  * @param sup Reference to the superclass object.
@@ -2836,6 +2855,7 @@ extends
 
 /**
  * Reservoir water level targets from advanced studies or "rule curves".
+ *
  * Typically in one hour increments for up to 10 days.
  *
  * @param sup Reference to the superclass object.
@@ -3019,6 +3039,7 @@ extends
 
 /**
  * A wind driven generating unit.
+ *
  * May be used to represent a single turbine or an aggregation.
  *
  * @param sup Reference to the superclass object.

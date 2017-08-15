@@ -178,6 +178,7 @@ extends
 
 /**
  * A DC electrical connection point at the AC/DC converter.
+ *
  * The AC/DC converter is electrically connected also to the AC side. The AC connection is inherited from the AC conducting equipment in the same way as any other AC equipment. The AC/DC converter DC terminal is separate from generic DC terminal to restrict the connection with the AC side to AC/DC converter and so that no other DC conducting equipment can be connected to the AC side.
  *
  * @param sup Reference to the superclass object.
@@ -394,6 +395,7 @@ extends
 
 /**
  * An electrical connection point at a piece of DC conducting equipment.
+ *
  * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
  *
  * @param sup Reference to the superclass object.
@@ -591,6 +593,7 @@ extends
 
 /**
  * Low resistance equipment used in the internal DC circuit to balance voltages.
+ *
  * It has typically positive and negative pole terminals and a ground.
  *
  * @param sup Reference to the superclass object.
@@ -849,6 +852,7 @@ extends
 
 /**
  * A modeling construct to provide a root class for containment of DC as well as AC equipment.
+ *
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
  *
  * @param sup Reference to the superclass object.
@@ -1209,6 +1213,7 @@ extends
 
 /**
  * A series device within the DC system, typically a reactor used for filtering or smoothing.
+ *
  * Needed for transient and short circuit studies.
  *
  * @param sup Reference to the superclass object.
@@ -1287,6 +1292,7 @@ extends
 
 /**
  * A shunt device within the DC system, typically used for filtering.
+ *
  * Needed for transient and short circuit studies.
  *
  * @param sup Reference to the superclass object.
@@ -1493,6 +1499,7 @@ extends
 
 /**
  * An electrically connected subset of the network.
+ *
  * DC topological islands can change as the current network state changes: e.g. due to
  *
  * @param sup Reference to the superclass object.
@@ -1555,6 +1562,7 @@ extends
 }
 
 /**
+
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.

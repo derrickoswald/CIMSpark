@@ -74,6 +74,7 @@ extends
 
 /**
  * Energy and Ancillary Market (e.g.
+ *
  * Energy, Spinning Reserve, Non-Spinning Reserve) with a description of the Market operation control parameters.
  *
  * @param sup Reference to the superclass object.
@@ -151,6 +152,7 @@ extends
 
 /**
  * Market (e.g.
+ *
  * Day Ahead Market, RealTime Market) with a description of the the Market operation control parameters.
  *
  * @param sup Reference to the superclass object.
@@ -439,6 +441,7 @@ extends
 
 /**
  * This class identifies a set of planned markets.
+ *
  * This class is a container of these planned markets
  *
  * @param sup Reference to the superclass object.
@@ -521,6 +524,7 @@ extends
 
 /**
  * A product traded by an RTO (e.g. energy, 10 minute spinning reserve).
+ *
  * Ancillary service product examples include:Regulation UpRegulation DnSpinning ReserveNon-Spinning ReserveOperating Reserve
  *
  * @param sup Reference to the superclass object.
@@ -611,6 +615,7 @@ extends
 
 /**
  * This class represent an actual instance of a planned market.
+ *
  * For example, a Day Ahead market opens with the Bid Submission, ends with the closing of the Bid Submission. The market run represent the whole process. MarketRuns can be defined for markets such as Day Ahead Market, Real Time Market, Hour Ahead Market, Week Ahead Market,...
  *
  * @param sup Reference to the superclass object.
@@ -738,6 +743,7 @@ extends
 
 /**
  * Represent a planned market.
+ *
  * For example an planned DA/HA/RT market.
  *
  * @param sup Reference to the superclass object.
@@ -826,6 +832,7 @@ extends
 
 /**
  * This class represents planned events.
+ *
  * Used to model the various planned events in a market (closing time, clearing time, etc).
  *
  * @param sup Reference to the superclass object.

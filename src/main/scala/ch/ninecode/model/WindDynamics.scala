@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The constant aerodynamic torque model assumes that the aerodynamic torque is constant.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.1.1.
  *
  * @param sup Reference to the superclass object.
@@ -85,6 +86,7 @@ extends
 
 /**
  * One-dimensional aerodynamic model.
+ *
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.2.
  *
  * @param sup Reference to the superclass object.
@@ -174,6 +176,7 @@ extends
 
 /**
  * Two-dimensional aerodynamic model.
+ *
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.3.
  *
  * @param sup Reference to the superclass object.
@@ -293,6 +296,7 @@ extends
 
 /**
  * Current limitation model.
+ *
  * The current limitation model combines the physical limits and the control limits.
  *
  * @param sup Reference to the superclass object.
@@ -416,6 +420,7 @@ extends
 
 /**
  * P control model Type 3.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.4.
  *
  * @param sup Reference to the superclass object.
@@ -633,6 +638,7 @@ extends
 
 /**
  * P control model Type 4A.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.5.
  *
  * @param sup Reference to the superclass object.
@@ -728,6 +734,7 @@ extends
 
 /**
  * P control model Type 4B.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.6.
  *
  * @param sup Reference to the superclass object.
@@ -829,6 +836,7 @@ extends
 
 /**
  * Pitch angle control model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.2.
  *
  * @param sup Reference to the superclass object.
@@ -966,6 +974,7 @@ extends
 
 /**
  * Q control model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.7.
  *
  * @param sup Reference to the superclass object.
@@ -1181,6 +1190,7 @@ extends
 
 /**
  * Constant Q limitation model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.9.
  *
  * @param sup Reference to the superclass object.
@@ -1270,6 +1280,7 @@ extends
 
 /**
  * QP and QU limitation model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.10.
  *
  * @param sup Reference to the superclass object.
@@ -1359,6 +1370,7 @@ extends
 
 /**
  * Rotor resistance control model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.3.
  *
  * @param sup Reference to the superclass object.
@@ -1620,6 +1632,7 @@ extends
 
 /**
  * Wind turbine IEC Type 1A.
+ *
  * Reference: IEC Standard 61400-27-1, section 5.5.2.2.
  *
  * @param sup Reference to the superclass object.
@@ -1697,6 +1710,7 @@ extends
 
 /**
  * Wind turbine IEC Type 1B.
+ *
  * Reference: IEC Standard 61400-27-1, section 5.5.2.3.
  *
  * @param sup Reference to the superclass object.
@@ -1774,6 +1788,7 @@ extends
 
 /**
  * Wind turbine IEC Type 2.
+ *
  * Reference: IEC Standard 61400-27-1, section 5.5.3.
  *
  * @param sup Reference to the superclass object.
@@ -1950,6 +1965,7 @@ extends
 
 /**
  * IEC Type 3A generator set model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.2.
  *
  * @param sup Reference to the superclass object.
@@ -2039,6 +2055,7 @@ extends
 
 /**
  * IEC Type 3B generator set model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.3.
  *
  * @param sup Reference to the superclass object.
@@ -2133,6 +2150,7 @@ extends
 
 /**
  * IEC Type 4 generator set model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.4.
  *
  * @param sup Reference to the superclass object.
@@ -2239,6 +2257,7 @@ extends
 
 /**
  * Two mass model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.2.1.
  *
  * @param sup Reference to the superclass object.
@@ -2350,6 +2369,7 @@ extends
 
 /**
  * Pitch control power model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.1.
  *
  * @param sup Reference to the superclass object.
@@ -2550,6 +2570,7 @@ extends
 
 /**
  * Frequency and active power controller model.
+ *
  * Reference: IEC Standard 61400-27-1 Annex D.
  *
  * @param sup Reference to the superclass object.
@@ -2717,6 +2738,7 @@ extends
 
 /**
  * Simplified IEC type plant level model.
+ *
  * Reference: IEC 61400-27-1, Annex D.
  *
  * @param sup Reference to the superclass object.
@@ -2799,6 +2821,7 @@ extends
 
 /**
  * Simplified plant voltage and reactive power control model for use with type 3 and type 4 wind turbine models.
+ *
  * Reference: IEC Standard 61400-27-1 Annex D.
  *
  * @param sup Reference to the superclass object.
@@ -2984,6 +3007,7 @@ extends
 
 /**
  * The grid protection model includes protection against over and under voltage, and against over and under frequency.
+ *
  * Reference: IEC Standard 614000-27-1 Section 5.6.6.
  *
  * @param sup Reference to the superclass object.
@@ -3108,6 +3132,7 @@ extends
 
 /**
  * Reference frame rotation model.
+ *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.5.
  *
  * @param sup Reference to the superclass object.
@@ -3284,6 +3309,7 @@ extends
 
 /**
  * Parent class supporting relationships to IEC wind turbines Type 1 and 2 including their control models.
+ *
  * Generator model for wind turbine of IEC Type 1 or Type 2 is a standard asynchronous generator model.
  *
  * @param sup Reference to the superclass object.
@@ -3730,6 +3756,7 @@ extends
 
 /**
  * Wind turbine IEC Type 4A.
+ *
  * Reference: IEC Standard 61400-27-1, section 5.5.5.3.
  *
  * @param sup Reference to the superclass object.
@@ -3812,6 +3839,7 @@ extends
 
 /**
  * Wind turbine IEC Type 4A.
+ *
  * Reference: IEC Standard 61400-27-1, section 5.5.5.2.
  *
  * @param sup Reference to the superclass object.

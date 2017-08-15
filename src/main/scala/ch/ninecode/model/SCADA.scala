@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The connection to remote units is through one or more communication links.
+ *
  * Reduntant links may exist. The CommunicationLink class inherit PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
  *
  * @param sup Reference to the superclass object.
@@ -154,6 +155,7 @@ extends
 
 /**
  * For a RTU remote points correspond to telemetered values or control outputs.
+ *
  * Other units (e.g. control centers) usually also contain calculated values.
  *
  * @param sup Reference to the superclass object.
@@ -309,6 +311,7 @@ extends
 
 /**
  * A remote unit can be a RTU, IED, substation control system, control center etc.
+ *
  * The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570 etc.). A remote unit contain remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherit PowerSystemResource. The intention is to allow RemotUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure etc.
  *
  * @param sup Reference to the superclass object.

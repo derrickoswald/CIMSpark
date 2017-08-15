@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Site of an interface between interchange areas.
+ *
  * The tie point can be a network branch (e.g., transmission line or transformer) or a switching device. For transmission lines, the interchange area boundary is usually at a designated point such as the middle of the line. Line end metering is then corrected for line losses.
  *
  * @param sup Reference to the superclass object.

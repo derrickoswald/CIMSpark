@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * An electrical connection point (AC or DC) to a piece of conducting equipment.
+ *
  * Terminals are connected at physical connection points called connectivity nodes.
  *
  * @param sup Reference to the superclass object.
@@ -87,6 +88,7 @@ extends
 
 /**
  * The class describe a base frequency for a power system network.
+ *
  * In case of multiple power networks with different frequencies, e.g. 50 or 60 Hertz each network will have it's own base frequency class. Hence it is assumed that power system objects having different base frequencies appear in separate documents where each document has a single base frequency instance.
  *
  * @param sup Reference to the superclass object.
@@ -372,6 +374,7 @@ extends
 
 /**
  * A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.
+ *
  * A bay typically represents a physical grouping related to modularization of equipment.
  *
  * @param sup Reference to the superclass object.
@@ -786,6 +789,7 @@ extends
 
 /**
  * Multi-purpose data points for defining a curve.
+ *
  * The use of this generic class is discouraged if a more specific class  can be used to specify the x and y axis values along with their specific data types.
  *
  * @param sup Reference to the superclass object.
@@ -1308,6 +1312,7 @@ extends
 
 /**
  * The Name class provides the means to define any number of human readable  names for an object.
+ *
  * A name is <b>not</b> to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.
  *
  * @param sup Reference to the superclass object.
@@ -1385,6 +1390,7 @@ extends
 
 /**
  * Type of name.
+ *
  * Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:
  *
  * @param sup Reference to the superclass object.
@@ -1533,6 +1539,7 @@ extends
 
 /**
  * An operator of multiple power system resource objects.
+ *
  * Note multple operating participants may operate the same power system resource object.   This can be used for modeling jointly owned units where each owner operates as a contractual share.
  *
  * @param sup Reference to the superclass object.
@@ -1673,6 +1680,7 @@ extends
 
 /**
  * Classifying instances of the same class, e.g. overhead and underground ACLineSegments.
+ *
  * This classification mechanism is intended to provide flexibility outside the scope of this standard, i.e. provide customisation that is non standard.
  *
  * @param sup Reference to the superclass object.
@@ -1736,6 +1744,7 @@ extends
 
 /**
  * A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area.
+ *
  * Power system resources can have measurements associated.
  *
  * @param sup Reference to the superclass object.
@@ -2233,6 +2242,7 @@ extends
 
 /**
  * An AC electrical connection point to a piece of conducting equipment.
+ *
  * Terminals are connected at physical connection points called connectivity nodes.
  *
  * @param sup Reference to the superclass object.
@@ -2328,6 +2338,7 @@ extends
 
 /**
  * A collection of equipment at one common system voltage forming a switchgear.
+ *
  * The equipment typically consist of breakers, busbars, instrumentation, control, regulation and protection devices as well as assemblies of all these.
  *
  * @param sup Reference to the superclass object.

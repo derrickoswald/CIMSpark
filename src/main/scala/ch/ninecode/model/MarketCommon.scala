@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * An identification of a party acting in a electricity market business process.
+ *
  * This class is used to identify organizations that can participate in market management and/or market operations.
  *
  * @param sup Reference to the superclass object.
@@ -157,6 +158,7 @@ extends
 
 /**
  * A resource that is registered through the market participant registration system.
+ *
  * Examples include generating unit, load, and non-physical generator or load.
  *
  * @param sup Reference to the superclass object.

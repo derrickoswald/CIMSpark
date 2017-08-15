@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
+ *
  * Reference: IEEE Standard 421.5-2005 Section 12.2.
  *
  * @param sup Reference to the superclass object.
@@ -179,6 +180,7 @@ extends
 
 /**
  * The class represents IEEE Type DEC2A model for the discontinuous excitation control.
+ *
  * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
  *
  * @param sup Reference to the superclass object.
@@ -268,6 +270,7 @@ extends
 
 /**
  * The class represents IEEE Type DEC3A model.
+ *
  * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
  *
  * @param sup Reference to the superclass object.

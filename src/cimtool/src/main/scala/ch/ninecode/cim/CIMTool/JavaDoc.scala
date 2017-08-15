@@ -46,13 +46,13 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
         if ("" != group_name)
         {
             s.append (
-            """
+                """
                     | * @groupname """.stripMargin)
             s.append (group)
             s.append (" ")
             s.append (group_name)
         }
-            if ("" != group_description)
+        if ("" != group_description)
         {
             s.
             append (
@@ -64,41 +64,42 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
         }
 
     }
-    def asText (): String =
+
+    def contents: String =
     {
+        val s = new StringBuilder ()
         if ((null != note) && (note != ""))
         {
-            val s = new StringBuilder ()
-            s.append (
-                """/**
-                | * """.stripMargin)
+            s.append (""" * """)
             s.append (asterisks (edit (summary)))
             if ("" != body)
             {
-                s.append (
-                    """
-                    | * """.stripMargin)
+                s.append ("""
+                      | *
+                      | * """.stripMargin)
                 s.append (asterisks (edit (body)))
             }
             s.append ("""
-                  | *""".stripMargin)
+                        | *""".stripMargin)
             for (member <- members)
                 s.append ("\n" + member.javaDoc)
-            if ("" != group)
-                addGroupStuff (s)
-            s.append (
-                """
-                | */
-                |""".stripMargin)
-
-            s.toString.split ("\n").map (st => spaces + st).mkString ("\n") + "\n"
         }
-        else if ("" != group)
+        if ("" != group)
+            addGroupStuff (s)
+        s.toString
+    }
+
+    def asText: String =
+    {
+        val s = contents
+        if ("" != contents)
         {
             val s = new StringBuilder ()
 
-            s.append ("""/**""")
-            addGroupStuff (s)
+            s.append (
+                """/**
+                  |""".stripMargin)
+            s.append (contents)
             s.append (
                 """
                   | */

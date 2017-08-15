@@ -70,6 +70,7 @@ extends
 
 /**
  * The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.
+ *
  * The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
  *
  * @param sup Reference to the superclass object.
@@ -149,6 +150,7 @@ extends
 
 /**
  * State variable for power flow.
+ *
  * Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.
  *
  * @param sup Reference to the superclass object.
@@ -371,6 +373,7 @@ extends
 
 /**
  * State variable for transformer tap step.
+ *
  * This class is to be used for taps of LTC (load tap changing) transformers, not fixed tap transformers.
  *
  * @param sup Reference to the superclass object.

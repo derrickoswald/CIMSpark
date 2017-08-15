@@ -157,6 +157,7 @@ extends
 }
 
 /**
+
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:

@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Control is used for supervisory/device control.
-It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Control is used for supervisory/device control.</p><p>It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">controlType</dt><dd class="cmt"><p>Specifies the type of Control, e.g.
        BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.</p></dd><dt class="param">operationInProgress</dt><dd class="cmt"><p>Indicates that a client is currently sending control commands that has not completed.</p></dd><dt class="param">timeStamp</dt><dd class="cmt"><p>The last time a control output was sent.</p></dd><dt class="param">unitMultiplier</dt><dd class="cmt"><p>The unit multiplier of the controlled quantity.</p></dd><dt class="param">unitSymbol</dt><dd class="cmt"><p>The unit of measure of the controlled quantity.</p></dd><dt class="param">PowerSystemResource</dt><dd class="cmt"><p>Regulating device governed by this control output.</p></dd><dt class="param">RemoteControl</dt><dd class="cmt"><p>The remote point controlling the physical actuator.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>

@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
-The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.</p><p>The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">b</dt><dd class="cmt"><p>Magnetizing branch susceptance (B mag).
        The value can be positive or negative.</p></dd><dt class="param">b0</dt><dd class="cmt"><p>Zero sequence magnetizing branch susceptance.</p></dd><dt class="param">connectionKind</dt><dd class="cmt"><p>Kind of connection.</p></dd><dt class="param">g</dt><dd class="cmt"><p>Magnetizing branch conductance.</p></dd><dt class="param">g0</dt><dd class="cmt"><p>Zero sequence magnetizing branch conductance (star-model).</p></dd><dt class="param">phaseAngleClock</dt><dd class="cmt"><p>Terminal voltage phase angle displacement where 360 degrees are represented with clock hours.
        The valid values are 0 to 11. For example, for the secondary side end of a transformer with vector group code of 'Dyn11', specify the connection kind as wye with neutral and specify the phase angle of the clock as 11.  The clock value of the transformer end number specified as 1, is assumed to be zero.  Note the transformer end number is not assumed to be the same as the terminal sequence number.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Resistance (star-model) of the transformer end.

@@ -3,9 +3,8 @@ package ch.ninecode.cim.CIMTool
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
 import scala.collection.mutable.SortedSet
-
 import java.io.File
-import java.nio.file.{Paths, Files}
+import java.nio.file.{Files, Paths}
 import java.nio.charset.StandardCharsets
 
 import com.healthmarketscience.jackcess._
@@ -346,16 +345,53 @@ object ModelParser
                 |        List (
                 |""".stripMargin)
             var registers: List[String] = List[String]()
+            val pkgdoc = new StringBuilder ()
+            pkgdoc.append (
+                """package ch.ninecode
+                  |
+                  |/**
+                  | * ==Overview==
+                  | * Provides Common Information Model (CIM) classes for electrical, topological, asset, spatial
+                  | * and other categories of objects that are germane to electric network operations.
+                  | *
+                  | * Some examples are shown in the following image:
+                  | *
+                  | * <img src="https://rawgit.com/derrickoswald/CIMSparkPresentation/master/img/information.svg" width="700">
+                  | *
+                  | * These classes are the types of, and objects contained in, the RDD that are created by the CIMReader,
+                  | * e.g. RDD[Switch].
+                  | *
+                  | * Classes are nested according to the hierarchical package structure found in CIM.
+                  | *
+                  | * Each class has the reference to its parent class, available as the generic <code>sup</code> field,
+                  | * and also as a typed reference of the same name as the parent class.
+                  | *
+                  | * This is illustrated in the following image, where the object with id TE1932 (a Switch) is found in
+                  | * RDD[Switch] and all RDD for which the relation 'a Switch "Is A" <em>X</em>' holds,
+                  | * e.g. RDD[ConductingEquipment]:
+                  | *
+                  | * <img src="https://rawgit.com/derrickoswald/CIMSparkPresentation/master/img/nested.svg" width="700">
+                  | *
+                  | * The packages and their descriptions are itemized below.
+                  | *
+                  | * A short summary of all classes is found below that.
+                  | * The classes can be ordered by package (Grouped) or alphabetically.
+                  | * The classes are alos listed in the panel on the left for easy reference.
+                  |""".stripMargin)
+            var package_docs: List[String] = List[String]()
             for (q <- packages)
             {
-                val p = parser.packages (q._2)
-                val scala = Scala (parser, p)
+                val pkg = parser.packages (q._2)
+                val scala = Scala (parser, pkg)
                 val s = scala.asText ()
                 if (s.trim != "")
                 {
-                    println ("target/model/" + p.name + ".scala:")
-                    Files.write (Paths.get ("target/model/" + p.name + ".scala"), s.getBytes (StandardCharsets.UTF_8))
+                    println ("target/model/" + pkg.name + ".scala:")
+                    Files.write (Paths.get ("target/model/" + pkg.name + ".scala"), s.getBytes (StandardCharsets.UTF_8))
                     registers = registers :+ """            """ + scala.register + """.register"""
+                    package_docs = package_docs :+ """ *"""
+                    package_docs = package_docs :+ """ * ===""".stripMargin + pkg.name + """==="""
+                    package_docs = package_docs :+ JavaDoc (pkg.notes, 0).contents
                 }
             }
             register.append (registers.mkString (",\n"))
@@ -363,6 +399,14 @@ object ModelParser
                 |        ).flatten
                 |""".stripMargin)
             Files.write (Paths.get ("target/chim_register.scala"), register.toString.getBytes (StandardCharsets.UTF_8))
+            pkgdoc.append (package_docs.mkString ("\n"))
+            pkgdoc.append ("""
+                  | */
+                  |package object model
+                  |{
+                  |}
+                  |""".stripMargin)
+            Files.write (Paths.get ("target/model/package.scala"), pkgdoc.toString.getBytes (StandardCharsets.UTF_8))
         }
         else
         {

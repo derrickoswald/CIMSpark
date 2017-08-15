@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Model of market clearing related to results at the inter-ties.
+ *
  * Identifies interval
  *
  * @param sup Reference to the superclass object.
@@ -70,6 +71,7 @@ extends
 
 /**
  * Provides the tie point specific output from the market applications.
+ *
  * Currently, this is defined as the loop flow compensation MW value.
  *
  * @param sup Reference to the superclass object.

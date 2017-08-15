@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A single or set of synchronous machines for converting mechanical power into alternating-current power.
-For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A single or set of synchronous machines for converting mechanical power into alternating-current power.</p><p>For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">allocSpinResP</dt><dd class="cmt"><p>The planned unused capacity (spinning reserve) which can be used to support emergency load.</p></dd><dt class="param">autoCntrlMarginP</dt><dd class="cmt"><p>The planned unused capacity which can be used to support automatic control overruns.</p></dd><dt class="param">baseP</dt><dd class="cmt"><p>For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value.
        The value must be between the operating low and high limits.</p></dd><dt class="param">controlDeadband</dt><dd class="cmt"><p>Unit control error deadband.
        When a unit's desired active power change is less than this deadband, then no control pulses will be sent to the unit.</p></dd><dt class="param">controlPulseHigh</dt><dd class="cmt"><p>Pulse high limit which is the largest control pulse that the unit can respond to.</p></dd><dt class="param">controlPulseLow</dt><dd class="cmt"><p>Pulse low limit which is the smallest control pulse that the unit can respond to.</p></dd><dt class="param">controlResponseRate</dt><dd class="cmt"><p>Unit response rate which specifies the active power change for a control pulse of one second in the most responsive loading level of the unit.</p></dd><dt class="param">efficiency</dt><dd class="cmt"><p>The efficiency of the unit in converting mechanical energy, from the prime mover, into electrical energy.</p></dd><dt class="param">genControlMode</dt><dd class="cmt"><p>The unit control mode.</p></dd><dt class="param">genControlSource</dt><dd class="cmt"><p>The source of controls for a generating unit.</p></dd><dt class="param">governorMPL</dt><dd class="cmt"><p>Governor motor position limit.</p></dd><dt class="param">governorSCD</dt><dd class="cmt"><p>Governor Speed Changer Droop.

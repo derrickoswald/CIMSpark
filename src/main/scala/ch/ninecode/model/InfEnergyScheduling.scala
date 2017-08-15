@@ -262,6 +262,7 @@ extends
 
 /**
  * Curtailing entity must be providing at least one service to the EnergyTransaction.
+ *
  * The CurtailmentProfile must be completely contained within the EnergyProfile timeframe for this EnergyTransaction.
  *
  * @param sup Reference to the superclass object.
@@ -329,6 +330,7 @@ extends
 
 /**
  * A continuously variable component of a control area's MW net interchange schedule.
+ *
  * Dynamic schedules are sent and received by control areas.
  *
  * @param sup Reference to the superclass object.
@@ -492,6 +494,7 @@ extends
 
 /**
  * An account for tracking inadvertent interchange versus time for each control area.
+ *
  * A control area may have more than one inadvertent account in order to track inadvertent over one or more specific tie points in addition to the usual overall net inadvertent. Separate accounts would also be used to track designated time periods, such as on-peak and off-peak.
  *
  * @param sup Reference to the superclass object.
@@ -559,6 +562,7 @@ extends
 
 /**
  * There is one internal control area in the system, which is the single control area in the primary network company.
+ *
  * Real time generation control affects only the internal control area.
  *
  * @param sup Reference to the superclass object.
@@ -697,6 +701,7 @@ extends
 }
 
 /**
+
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.

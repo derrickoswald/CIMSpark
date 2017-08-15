@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Common representation for reading values.
+ *
  * Note that a reading value may have multiple qualities, as produced by various systems ('ReadingQuality.source').
  *
  * @param sup Reference to the superclass object.
@@ -90,6 +91,7 @@ extends
 
 /**
  * A single path for the collection or reporting of register values over a period of time.
+ *
  * For example, a register which measures forward energy can have two channels, one providing bulk quantity readings and the other providing interval readings of a fixed interval size.
  *
  * @param sup Reference to the superclass object.
@@ -253,6 +255,7 @@ extends
 
 /**
  * An asset having communications capabilities that can be paired with a meter or other end device to provide the device with communication ability, through associated communication function.
+ *
  * An end device that has communications capabilities through embedded hardware can use that function directly (without the communication module), or combine embedded communication function with additional communication functions provided through an external communication module (e.g. zigbee).
  *
  * @param sup Reference to the superclass object.
@@ -538,6 +541,7 @@ extends
 
 /**
  * Asset container that performs one or more end device functions.
+ *
  * One type of end device is a meter which can perform metering, load management, connect/disconnect, accounting functions, etc. Some end devices, such as ones monitoring and controlling air conditioners, refrigerators, pool pumps may be connected to a meter. All end devices may have communication capability defined by the associated communication function(s). An end device may be owned by a consumer, a service provider, utility or otherwise.
  *
  * @param sup Reference to the superclass object.
@@ -1019,6 +1023,7 @@ extends
 
 /**
  * Detailed description for a control produced by an end device.
+ *
  * Values in attributes allow for creation of recommended codes to be used for identifying end device controls as follows: &lt;type&gt;.&lt;domain&gt;.&lt;subDomain&gt;.&lt;eventOrAction&gt;.
  *
  * @param sup Reference to the superclass object.
@@ -1276,6 +1281,7 @@ extends
 
 /**
  * Detailed description for an event produced by an end device.
+ *
  * Values in attributes allow for creation of recommended codes to be used for identifying end device events as follows: &lt;type&gt;.&lt;domain&gt;.&lt;subDomain&gt;.&lt;eventOrAction&gt;.
  *
  * @param sup Reference to the superclass object.
@@ -1432,6 +1438,7 @@ extends
 
 /**
  * Abstraction for management of group communications within a two-way AMR system or the data for a group of related end devices.
+ *
  * Commands can be issued to all of the end devices that belong to the group using a defined group address and the underlying AMR communication infrastructure.
  *
  * @param sup Reference to the superclass object.
@@ -1676,6 +1683,7 @@ extends
 
 /**
  * Time sequence of readings of the same reading type.
+ *
  * Contained interval readings may need conversion through the application of an offset and a scalar defined in associated pending.
  *
  * @param sup Reference to the superclass object.
@@ -1758,6 +1766,7 @@ extends
 
 /**
  * Data captured at regular intervals of time.
+ *
  * Interval data could be captured as incremental data, absolute data, or relative data. The source for the data is usually a tariff quantity or an engineering quantity. Data is typically captured in time-tagged, uniform, fixed-length intervals of 5 min, 10 min, 15 min, 30 min, or 60 min.
  *
  * @param sup Reference to the superclass object.
@@ -1821,6 +1830,7 @@ extends
 
 /**
  * Physical asset that performs the metering role of the usage point.
+ *
  * Used for measuring consumption and detection of events.
  *
  * @param sup Reference to the superclass object.
@@ -2607,6 +2617,7 @@ extends
 
 /**
  * When present, a scalar conversion that needs to be applied to every IntervalReading.value contained in IntervalBlock.
+ *
  * This conversion results in a new associated ReadingType, reflecting the true dimensions of IntervalReading values after the conversion.
  *
  * @param sup Reference to the superclass object.
@@ -2772,6 +2783,7 @@ extends
 
 /**
  * Specific value measured by a meter or other asset, or calculated by a system.
+ *
  * Each Reading is associated with a specific ReadingType.
  *
  * @param sup Reference to the superclass object.
@@ -2922,6 +2934,7 @@ extends
 
 /**
  * Quality of a specific reading value or interval reading value.
+ *
  * Note that more than one quality may be applicable to a given reading. Typically not used unless problems or unusual conditions occur (i.e., quality for each reading is assumed to be good unless stated otherwise in associated reading quality type). It can also be used with the corresponding reading quality type to indicate that the validation has been performed and succeeded.
  *
  * @param sup Reference to the superclass object.
@@ -3009,6 +3022,7 @@ extends
 
 /**
  * Detailed description for a quality of a reading value, produced by an end device or a system.
+ *
  * Values in attributes allow for creation of the recommended codes to be used for identifying reading value quality codes as follows: &lt;systemId&gt;.&lt;category&gt;.&lt;subCategory&gt;.
  *
  * @param sup Reference to the superclass object.
@@ -3086,6 +3100,7 @@ extends
 
 /**
  * Detailed description for a type of a reading value.
+ *
  * Values in attributes allow for the creation of recommended codes to be used for identifying reading value types as follows: &lt;macroPeriod&gt;.&lt;aggregate&gt;.&lt;measuringPeriod&gt;.&lt;accumulation&gt;.&lt;flowDirection&gt;.&lt;commodity&gt;.&lt;measurementKind&gt;.&lt;interharmonic.numerator&gt;.&lt;interharmonic.denominator&gt;.&lt;argument.numerator&gt;.&lt;argument.denominator&gt;.&lt;tou&gt;.&lt;cpp&gt;.&lt;consumptionTier&gt;.&lt;phases&gt;.&lt;multiplier&gt;.&lt;unit&gt;.&lt;currency&gt;.
  *
  * @param sup Reference to the superclass object.
@@ -3415,6 +3430,7 @@ extends
 
 /**
  * Simple end device function distinguished by 'kind'.
+ *
  * Use this class for instances that cannot be represented by another end device function specialisations.
  *
  * @param sup Reference to the superclass object.
@@ -3482,6 +3498,7 @@ extends
 
 /**
  * Logical or physical point in the network to which readings or events may be attributed.
+ *
  * Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.
  *
  * @param sup Reference to the superclass object.
@@ -3666,6 +3683,7 @@ extends
 
 /**
  * Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points.
+ *
  * Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.
  *
  * @param sup Reference to the superclass object.

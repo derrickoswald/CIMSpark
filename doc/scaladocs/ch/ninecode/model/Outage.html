@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Document describing details of an active or planned outage in a part of the electrical network.
-A non-planned outage may be created upon:
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Document describing details of an active or planned outage in a part of the electrical network.</p><p>A non-planned outage may be created upon:
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">actualPeriod</dt><dd class="cmt"><p>Actual outage period; end of the period corresponds to the actual restoration time.</p></dd><dt class="param">cancelledDateTime</dt><dd class="cmt"><p>Date and time planned outage has been cancelled.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>One or more causes of this outage.
        Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).</p></dd><dt class="param">estimatedPeriod</dt><dd class="cmt"><p>Estimated outage period.
        The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p>Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p>All equipments associated with this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p>Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p>Outage schedule whose execution will result in this outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p>All usage points associated with this outage.</p></dd></dl><div class="toggleContainer block">

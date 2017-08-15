@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Models Market clearing results.
+ *
  * Indicates market horizon, interval based. Used by a market quality system for billing and settlement purposes
  *
  * @param sup Reference to the superclass object.

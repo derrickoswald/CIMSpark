@@ -7,6 +7,7 @@ import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
 
 /**
+
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -68,6 +69,7 @@ extends
 }
 
 /**
+
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -133,6 +135,7 @@ extends
 }
 
 /**
+
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -199,6 +202,7 @@ extends
 
 /**
  * This class represents the TASE.2 Information Message Object.
+ *
  * The IdentifiedObject.name attribute must be non-null.  The value of the attribute shall be used as the TASE.2 Information Reference, as specified by 60870-6-503.
  *
  * @param sup Reference to the superclass object.
@@ -276,6 +280,7 @@ extends
 
 /**
  * The IdentifiedObject.name attribute must have a value.
+ *
  * The name attribute shall be used as the DataValue name used for the exchange.
  *
  * @param sup Reference to the superclass object.
@@ -346,6 +351,7 @@ extends
 }
 
 /**
+
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -411,6 +417,7 @@ extends
 }
 
 /**
+
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -488,6 +495,7 @@ extends
 }
 
 /**
+
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -562,6 +570,7 @@ extends
 
 /**
  * This class describe the sending (providing) side in a bilateral ICCP data exchange.
+ *
  * Hence the ICCP bilateral (table) descriptions are created by exchanging ICCPProvider data between the parties.
  *
  * @param sup Reference to the superclass object.
@@ -644,6 +653,7 @@ extends
 }
 
 /**
+
  * @group ICCP
  * @groupname ICCP Package ICCP
  */

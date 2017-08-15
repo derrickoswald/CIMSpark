@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.
-The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.</p><p>The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">pInjection</dt><dd class="cmt"><p>The active power injected into the bus in addition to injections from equipment terminals.
        Positive sign means injection into the TopologicalNode (bus).</p></dd><dt class="param">qInjection</dt><dd class="cmt"><p>The reactive power injected into the bus in addition to injections from equipment terminals.
        Positive sign means injection into the TopologicalNode (bus).</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p>The topological node associated with the flow injection state variable.</p></dd></dl><div class="toggleContainer block">

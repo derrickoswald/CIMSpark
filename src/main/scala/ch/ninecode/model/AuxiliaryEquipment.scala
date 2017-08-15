@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
+ *
  * AuxiliaryEquipment is attached to primary eqipment via an association with Terminal.
  *
  * @param sup Reference to the superclass object.
@@ -75,6 +76,7 @@ extends
 
 /**
  * Instrument transformer used to measure electrical qualities of the circuit that is being protected and/or monitored.
+ *
  * Typically used as current transducer for the purpose of metering or protection. A typical secondary current rating would be 5A.
  *
  * @param sup Reference to the superclass object.
@@ -162,6 +164,7 @@ extends
 
 /**
  * A FaultIndicator is typically only an indicator (which may or may not be remotely monitored), and not a piece of equipment that actually initiates a protection event.
+ *
  * It is used for FLISR (Fault Location, Isolation and Restoration) purposes, assisting with the dispatch of crews to "most likely" part of the network (i.e. assists with determining circuit section where the fault most likely happened).
  *
  * @param sup Reference to the superclass object.
@@ -287,6 +290,7 @@ extends
 
 /**
  * Instrument transformer (also known as Voltage Transformer) used to measure electrical qualities of the circuit that is being protected and/or monitored.
+ *
  * Typically used as voltage transducer for the purpose of metering, protection, or sometimes auxiliary substation supply. A typical secondary voltage rating would be 120V.
  *
  * @param sup Reference to the superclass object.

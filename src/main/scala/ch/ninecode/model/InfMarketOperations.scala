@@ -182,6 +182,7 @@ extends
 
 /**
  * This class represent the resource certification for a specific product type.
+ *
  * For example, a resource is certified for Non-Spinning reserve for RTM.
  *
  * @param sup Reference to the superclass object.

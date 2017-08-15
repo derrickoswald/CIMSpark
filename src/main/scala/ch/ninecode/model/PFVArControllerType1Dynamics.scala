@@ -86,6 +86,7 @@ extends
 
 /**
  * The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.
+ *
  * Reference: IEEE Standard 421.5-2005 Section 11.2.
  *
  * @param sup Reference to the superclass object.
@@ -194,6 +195,7 @@ extends
 
 /**
  * The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.
+ *
  * Reference: IEEE Standard 421.5-2005 Section 11.3.
  *
  * @param sup Reference to the superclass object.

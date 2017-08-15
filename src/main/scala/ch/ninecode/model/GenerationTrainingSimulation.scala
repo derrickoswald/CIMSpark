@@ -684,6 +684,7 @@ extends
 
 /**
  * A water driven prime mover.
+ *
  * Typical turbine types are: Francis, Kaplan, and Pelton.
  *
  * @param sup Reference to the superclass object.

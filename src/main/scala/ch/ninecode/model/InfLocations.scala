@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Information about a particular piece of (land) property such as its use.
+ *
  * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
  *
  * @param sup Reference to the superclass object.
@@ -100,6 +101,7 @@ extends
 
 /**
  * A grant provides a right, as defined by type, for a parcel of land.
+ *
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
  *
  * @param sup Reference to the superclass object.
@@ -172,6 +174,7 @@ extends
 
 /**
  * This class is used for handling the accompanying annotations, time stamp, author, etc. of designs, drawings and maps.
+ *
  * A red line can be associated with any Location object.
  *
  * @param sup Reference to the superclass object.
@@ -238,6 +241,7 @@ extends
 
 /**
  * A right-of-way (ROW) is for land where it is lawful to use for a public road, an electric power line, etc.
+ *
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
  *
  * @param sup Reference to the superclass object.
@@ -385,6 +389,7 @@ extends
 
 /**
  * Area divided off from other areas.
+ *
  * It may be part of the electrical network, a land area where special restrictions apply, weather areas, etc. For weather, it is an area where a set of relatively homogenous weather measurements apply.
  *
  * @param sup Reference to the superclass object.

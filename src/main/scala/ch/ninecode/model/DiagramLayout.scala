@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The diagram being exchanged.
+ *
  * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
  *
  * @param sup Reference to the superclass object.
@@ -100,6 +101,7 @@ extends
 
 /**
  * An object that defines one or more points in a given space.
+ *
  * This object can be associated with anything that specializes IdentifiedObject. For single line diagrams such objects typically include such items as analog values, breakers, disconnectors, power transformers, and transmission lines.
  *
  * @param sup Reference to the superclass object.
@@ -274,6 +276,7 @@ extends
 
 /**
  * A point in a given space defined by 3 coordinates and associated to a diagram object.
+ *
  * The coordinates may be positive or negative as the origin does not have to be in the corner of a diagram.
  *
  * @param sup Reference to the superclass object.
@@ -366,6 +369,7 @@ extends
 
 /**
  * A reference to a style used by the originating system for a diagram object.
+ *
  * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
  *
  * @param sup Reference to the superclass object.
@@ -429,6 +433,7 @@ extends
 
 /**
  * The diagram style refer to a style used by the originating system for a diagram.
+ *
  * A diagram style describes information such as schematic, geographic, bus-branch etc.
  *
  * @param sup Reference to the superclass object.
@@ -558,6 +563,7 @@ extends
 
 /**
  * Layers are typically used for grouping diagram objects according to themes and scales.
+ *
  * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
  *
  * @param sup Reference to the superclass object.

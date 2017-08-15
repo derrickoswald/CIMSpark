@@ -728,6 +728,7 @@ extends
 
 /**
  * Supports definition of one or more parameters of several different datatypes for use by proprietary user-defined models.
+ *
  * NOTE: This class does not inherit from IdentifiedObject since it is not intended that a single instance of it be referenced by more than one proprietary user-defined model instance.
  *
  * @param sup Reference to the superclass object.

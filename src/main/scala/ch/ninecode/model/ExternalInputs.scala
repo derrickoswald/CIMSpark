@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Models Ancillary Service Requirements.
+ *
  * Describes interval for which the requirement is applicable.
  *
  * @param sup Reference to the superclass object.
@@ -227,6 +228,7 @@ extends
 
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a contingency analysis base case.
+ *
  * Use CurveSchedule XAxisUnits to specify MW or MVA. To be used only if the BaseCaseConstraintLimit differs from the DefaultConstraintLimit.
  *
  * @param sup Reference to the superclass object.
@@ -463,6 +465,7 @@ extends
 
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) assigned to a constraint for a specific contingency.
+ *
  * Use CurveSchedule XAxisUnits to specify MW or MVA.
  *
  * @param sup Reference to the superclass object.
@@ -621,6 +624,7 @@ extends
  * 
  * Default Energy Bid
  * A Default Energy Bid is a monotonically increasing staircase function consisting at maximum 10 economic bid segments, or 10 (\$/MW, MW) pairs.
+ *
  * There are three methods for determining the Default Energy Bid:
  *
  * @param sup Reference to the superclass object.
@@ -850,6 +854,7 @@ extends
 
 /**
  * Possibly time-varying max MW or MVA and optionally Min MW limit or MVA limit (Y1 and Y2, respectively) applied as a default value if no specific constraint limits are specified for a contingency analysis.
+ *
  * Use CurveSchedule XAxisUnits to specify MW or MVA.
  *
  * @param sup Reference to the superclass object.
@@ -995,6 +1000,7 @@ extends
 
 /**
  * A containing class that groups all the distribution factors within a market.
+ *
  * This is calculated daily for DA factors and hourly for RT factors.
  *
  * @param sup Reference to the superclass object.
@@ -1087,6 +1093,7 @@ extends
 
 /**
  * Optimal Power Flow or State Estimator Load Data for OTS.
+ *
  * This is used for RealTime, Study and Maintenance Users
  *
  * @param sup Reference to the superclass object.
@@ -1165,6 +1172,7 @@ extends
 
 /**
  * An Energy Price Index for each Resource is valid for a period (e.g. daily) that is identified by a Valid Period Start Time and a Valid Period End Time.
+ *
  * An Energy Price Index is in \$/MWh.
  *
  * @param sup Reference to the superclass object.
@@ -1461,6 +1469,7 @@ extends
 
 /**
  * This class models the generation distribution factors.
+ *
  * This class needs to be used along with the AggregatedPnode and the IndividualPnode to show the distriubtion of each individual party.
  *
  * @param sup Reference to the superclass object.
@@ -1538,6 +1547,7 @@ extends
 
 /**
  * Optimal Power Flow or State Estimator Unit Data for Operator Training Simulator.
+ *
  * This is used for RealTime, Study and Maintenance Users
  *
  * @param sup Reference to the superclass object.
@@ -1641,6 +1651,7 @@ extends
 
 /**
  * Generic constraints can represent secure areas, voltage profile, transient stability and voltage collapse limits.
+ *
  * The generic constraints can be one of the following forms:
  *
  * @param sup Reference to the superclass object.
@@ -1986,6 +1997,7 @@ extends
 
 /**
  * This class models the load distribution factors.
+ *
  * This class should be used in one of two ways:
  *
  * @param sup Reference to the superclass object.
@@ -2864,6 +2876,7 @@ extends
 
 /**
  * To be used only to constrain a quantity that cannot be associated with a terminal.
+ *
  * For example, a registered generating unit that is not electrically connected to the network.
  *
  * @param sup Reference to the superclass object.
@@ -3094,6 +3107,7 @@ extends
 
 /**
  * Reserve demand curve.
+ *
  * Models maximum quantities of reserve required per Market Region and models a reserve demand curve for the minimum quantities of reserve. The ReserveDemandCurve is a relationship between unit operating reserve price in \$/MWhr (Y-axis) and unit reserves in MW (X-axis).
  *
  * @param sup Reference to the superclass object.
@@ -3243,6 +3257,7 @@ extends
 
 /**
  * Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.
+ *
  * A constraint has N (&gt;=1) constraint terms. A term is represented by an
  *
  * @param sup Reference to the superclass object.
@@ -3411,6 +3426,7 @@ extends
 
 /**
  * The defined termination points of a transmission path (down to distribution level or to a customer - generation or consumption or both).
+ *
  * Service points are defined from the viewpoint of the transmission service. Each service point is contained within (or on the boundary of) an interchange area. A service point is source or destination of a transaction.
  *
  * @param sup Reference to the superclass object.
@@ -3474,6 +3490,7 @@ extends
 
 /**
  * Optimal Power Flow or State Estimator Filter Bank Data for OTS.
+ *
  * This is used for RealTime, Study and Maintenance Users
  *
  * @param sup Reference to the superclass object.
@@ -3637,6 +3654,7 @@ extends
 
 /**
  * This class models the system distribution factors.
+ *
  * This class needs to be used along with the HostControlArea and the ConnectivityNode to show the distribution of each individual party.
  *
  * @param sup Reference to the superclass object.
@@ -3714,6 +3732,7 @@ extends
 
 /**
  * A Transmission Right(TR) can be a chain of TR's or on individual.
+ *
  * When a transmission right is not a chain, this is formally the ETC/TOR Entitlement for each ETC/TOR contract with the inclusion of CVR(Converted Rights) as an ETC. This is the sum of all entitlements on all related transmission interfaces for the same TR.
  *
  * @param sup Reference to the superclass object.
@@ -3791,6 +3810,7 @@ extends
 
 /**
  * Optimal Power Flow or State Estimator Phase Shifter Data.
+ *
  * This is used for RealTime, Study and Maintenance Users. SE Solution Phase Shifter Measurements from the last run of SE
  *
  * @param sup Reference to the superclass object.
@@ -4243,6 +4263,7 @@ extends
 
 /**
  * This is formally called the branch group ETC/TOR entitlement with the inclusion of CVR as ETC.
+ *
  * Is used to represent the entitlements. This could be also used to represent the TR entitlement on a POR/POD.
  *
  * @param sup Reference to the superclass object.
@@ -4335,6 +4356,7 @@ extends
 
 /**
  * An electrical connection, link, or line consisting of one or more parallel transmission elements between two areas of the interconnected electric systems, or portions thereof.
+ *
  * TransmissionCorridor and TransmissionRightOfWay refer to legal aspects. The TransmissionPath refers to the segments between a TransmissionProvider's ServicePoints.
  *
  * @param sup Reference to the superclass object.

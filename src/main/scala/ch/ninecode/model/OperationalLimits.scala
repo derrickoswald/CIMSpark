@@ -140,6 +140,7 @@ extends
 
 /**
  * A group of branch terminals whose directed flow summation is to be monitored.
+ *
  * A branch group need not form a cutset of the network.
  *
  * @param sup Reference to the superclass object.
@@ -375,6 +376,7 @@ extends
 
 /**
  * A value associated with a specific kind of limit.
+ *
  * The sub class value attribute shall be positive.
  *
  * @param sup Reference to the superclass object.
@@ -453,6 +455,7 @@ extends
 
 /**
  * A set of limits associated with equipment.
+ *
  * Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.
  *
  * @param sup Reference to the superclass object.

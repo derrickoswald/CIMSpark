@@ -1365,6 +1365,7 @@ extends
 
 /**
  * Italian excitation system.
+ *
  * It represents static field voltage or excitation current feedback excitation system.
  *
  * @param sup Reference to the superclass object.
@@ -1517,6 +1518,7 @@ extends
 
 /**
  * Italian excitation system corresponding to IEEE (1968) Type 1 Model.
+ *
  * It represents exciter dynamo and electromechanical regulator.
  *
  * @param sup Reference to the superclass object.
@@ -1651,6 +1653,7 @@ extends
 
 /**
  * Italian excitation system corresponding to IEEE (1968) Type 2 Model.
+ *
  * It represents alternator and rotating diodes and electromechanic voltage regulators.
  *
  * @param sup Reference to the superclass object.
@@ -1791,6 +1794,7 @@ extends
 
 /**
  * Italian excitation system.
+ *
  * It represents exciter dynamo and electric regulator.
  *
  * @param sup Reference to the superclass object.
@@ -1925,6 +1929,7 @@ extends
 
 /**
  * Italian excitation system.
+ *
  * It represents static exciter and electric voltage regulator.
  *
  * @param sup Reference to the superclass object.
@@ -2073,6 +2078,7 @@ extends
 
 /**
  * Manual excitation control with field circuit resistance.
+ *
  * This model can be used as a very simple representation of manual voltage control.
  *
  * @param sup Reference to the superclass object.
@@ -2338,6 +2344,7 @@ extends
 
 /**
  * Transformer fed static excitation system (static with ABB regulator).
+ *
  * This model represents a static excitation system in which a gated thyristor bridge fed by a transformer at the main generator terminals feeds the main generator directly.
  *
  * @param sup Reference to the superclass object.
@@ -2748,6 +2755,7 @@ extends
 
 /**
  * Modified IEEE DC2A direct current commutator exciters with speed input, one more leg block in feedback loop and without underexcitation limiters (UEL) inputs.
+ *
  * DC type 2 excitation system model with added speed multiplier, added lead-lag, and voltage-dependent limits.
  *
  * @param sup Reference to the superclass object.
@@ -2920,6 +2928,7 @@ extends
 
 /**
  * This is modified IEEE DC3A direct current commutator exciters with speed input, and death band.
+ *
  * DC old type 4.
  *
  * @param sup Reference to the superclass object.
@@ -3229,6 +3238,7 @@ extends
 
 /**
  * Static PI transformer fed excitation system: ELIN (VATECH) - simplified model.
+ *
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  A power system stabilizer with power input is included in the model.
  *
  * @param sup Reference to the superclass object.
@@ -3381,6 +3391,7 @@ extends
 
 /**
  * Detailed Excitation System Model - ELIN (VATECH).
+ *
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  Power system stabilizer models used in conjunction with this excitation system model: PssELIN2, PssIEEE2B, Pss2B.
  *
  * @param sup Reference to the superclass object.
@@ -3738,6 +3749,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC1A model.
+ *
  * The model represents the field-controlled alternator-rectifier excitation systems designated Type AC1A. These excitation systems consist of an alternator main exciter with non-controlled rectifiers.
  *
  * @param sup Reference to the superclass object.
@@ -3908,6 +3920,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC2A model.
+ *
  * The model represents a high initial response field-controlled alternator-rectifier excitation system. The alternator main exciter is used with non-controlled rectifiers. The Type AC2A model is similar to that of Type AC1A except for the inclusion of exciter time constant compensation and exciter field current limiting elements.
  *
  * @param sup Reference to the superclass object.
@@ -4096,6 +4109,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC3A model.
+ *
  * The model represents the field-controlled alternator-rectifier excitation systems designated Type AC3A. These excitation systems include an alternator main exciter with non-controlled rectifiers. The exciter employs self-excitation, and the voltage regulator power is derived from the exciter output voltage.  Therefore, this system has an additional nonlinearity, simulated by the use of a multiplier
  *
  * @param sup Reference to the superclass object.
@@ -4284,6 +4298,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC4A model.
+ *
  * The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other type ac systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modeled; however, transient loading effects on the exciter alternator are included.
  *
  * @param sup Reference to the superclass object.
@@ -4400,6 +4415,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC5A model.
+ *
  * The model represents a simplified model for brushless excitation systems. The regulator is supplied from a source, such as a permanent magnet generator, which is not affected by system disturbances.  Unlike other ac models, this model uses loaded rather than open circuit exciter saturation data in the same way as it is used for the dc models.  Because the model has been widely implemented by the industry, it is sometimes used to represent other types of systems when either detailed data for them are not available or simplified models are required.
  *
  * @param sup Reference to the superclass object.
@@ -4546,6 +4562,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC6A model.
+ *
  * The model represents field-controlled alternator-rectifier excitation systems with system-supplied electronic voltage regulators.  The maximum output of the regulator, <b><i>V</i></b><b><i><sub>R</sub></i></b>, is a function of terminal voltage, <b><i>V</i></b><b><i><sub>T</sub></i></b>. The field current limiter included in the original model AC6A remains in the 2005 update.
  *
  * @param sup Reference to the superclass object.
@@ -4740,6 +4757,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC7B model.
+ *
  * The model represents excitation systems which consist of an ac alternator with either stationary or rotating rectifiers to produce the dc field requirements. It is an upgrade to earlier ac excitation systems, which replace only the controls but retain the ac alternator and diode rectifier bridge.
  *
  * @param sup Reference to the superclass object.
@@ -4958,6 +4976,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type AC8B model.
+ *
  * This model represents a PID voltage regulator with either a brushless exciter or dc exciter. The AVR in this model consists of PID control, with separate constants for the proportional (<b>K</b><b><sub>PR</sub></b>), integral (<b>K</b><b><sub>IR</sub></b>), and derivative (<b>K</b><b><sub>DR</sub></b>) gains. The representation of the brushless exciter (<b>T</b><b><sub>E</sub></b>, <b>K</b><b><sub>E</sub></b>, <b>S</b><b><sub>E</sub></b>, <b>K</b><b><sub>C</sub></b>, <b>K</b><b><sub>D</sub></b>) is similar to the model Type AC2A. The Type AC8B model can be used to represent static voltage regulators applied to brushless excitation systems. Digitally based voltage regulators feeding dc rotating main exciters can be represented with the AC Type AC8B model with the parameters <b>K</b><b><sub>C</sub></b> and <b>K</b><b><sub>D</sub></b> set to 0.  For thyristor power stages fed from the generator terminals, the limits <b>V</b><b><sub>RMAX</sub></b> and <b>V</b><b><sub>RMIN</sub></b> should be a function of terminal voltage: <b>V</b><b><sub>T</sub></b> * <b>V</b><b><sub>RMAX</sub></b><sub> </sub>and <b>V</b><b><sub>T</sub></b> * <b>V</b><b><sub>RMIN</sub></b>.
  *
  * @param sup Reference to the superclass object.
@@ -5128,6 +5147,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type DC1A model.
+ *
  * This model represents field-controlled dc commutator exciters with continuously acting voltage regulators (especially the direct-acting rheostatic, rotating amplifier, and magnetic amplifier types).  Because this model has been widely implemented by the industry, it is sometimes used to represent other types of systems when detailed data for them are not available or when a simplified model is required.
  *
  * @param sup Reference to the superclass object.
@@ -5288,6 +5308,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type DC2A model.
+ *
  * This model represents represent field-controlled dc commutator exciters with continuously acting voltage regulators having supplies obtained from the generator or auxiliary bus.  It differs from the Type DC1A model only in the voltage regulator output limits, which are now proportional to terminal voltage <b>V</b><b><sub>T</sub></b>.
  *
  * @param sup Reference to the superclass object.
@@ -5448,6 +5469,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type DC3A model.
+ *
  * This model represents represent older systems, in particular those dc commutator exciters with non-continuously acting regulators that were commonly used before the development of the continuously acting varieties.  These systems respond at basically two different rates, depending upon the magnitude of voltage error. For small errors, adjustment is made periodically with a signal to a motor-operated rheostat. Larger errors cause resistors to be quickly shorted or inserted and a strong forcing signal applied to the exciter. Continuous motion of the motor-operated rheostat occurs for these larger error signals, even though it is bypassed by contactor action.
  *
  * @param sup Reference to the superclass object.
@@ -5576,6 +5598,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type DC4B model.
+ *
  * These excitation systems utilize a field-controlled dc commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
  *
  * @param sup Reference to the superclass object.
@@ -5756,6 +5779,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type ST1A model.
+ *
  * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit�s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
  *
  * @param sup Reference to the superclass object.
@@ -5934,6 +5958,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type ST2A model.
+ *
  * Some static systems utilize both current and voltage sources (generator terminal quantities) to comprise the power source.  The regulator controls the exciter output through controlled saturation of the power transformer components.  These compound-source rectifier excitation systems are designated Type ST2A and are represented by ExcIEEEST2A.
  *
  * @param sup Reference to the superclass object.
@@ -6076,6 +6101,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type ST3A model.
+ *
  * Some static systems utilize a field voltage control loop to linearize the exciter control characteristic. This also makes the output independent of supply source variations until supply limitations are reached.  These systems utilize a variety of controlled-rectifier designs: full thyristor complements or hybrid bridges
  *
  * @param sup Reference to the superclass object.
@@ -6258,6 +6284,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type ST4B model.
+ *
  * This model is a variation of the Type ST3A model, with a proportional plus integral (PI) regulator block replacing the lag-lead regulator characteristic that is in the ST3A model. Both potential and compound source rectifier excitation systems are modeled.  The PI regulator blocks have non-windup limits that are represented. The voltage regulator of this model is typically implemented digitally.
  *
  * @param sup Reference to the superclass object.
@@ -6416,6 +6443,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type ST5B model.
+ *
  * The Type ST5B excitation system is a variation of the Type ST1A model, with alternative overexcitation and underexcitation inputs and additional limits.
  *
  * @param sup Reference to the superclass object.
@@ -6580,6 +6608,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type ST6B model.
+ *
  * This model consists of a PI voltage regulator with an inner loop field voltage regulator and pre-control. The field voltage regulator implements a proportional control. The pre-control and the delay in the feedback circuit increase the dynamic response.
  *
  * @param sup Reference to the superclass object.
@@ -6726,6 +6755,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type ST7B model.
+ *
  * This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from Type PSS1A, PSS2A, or PSS2B) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
  *
  * @param sup Reference to the superclass object.
@@ -7034,6 +7064,7 @@ extends
 
 /**
  * Proportional/Integral Regulator Excitation System Model.
+ *
  * This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
  *
  * @param sup Reference to the superclass object.
@@ -7234,6 +7265,7 @@ extends
 
 /**
  * General Purpose Rotating Excitation System Model.
+ *
  * This model can be used to represent a wide range of excitation systems whose DC power source is an AC or DC generator. It encompasses IEEE type AC1, AC2, DC1, and DC2 excitation system models.
  *
  * @param sup Reference to the superclass object.
@@ -7743,6 +7775,7 @@ extends
 
 /**
  * Slovakian Excitation System Model.
+ *
  * UEL and secondary voltage control are included in this model. When this model is used, there cannot be a separate underexcitation limiter or VAr controller model.
  *
  * @param sup Reference to the superclass object.

@@ -84,6 +84,7 @@ extends
 
 /**
  * Safety document used to authorise work on conducting equipment in the field.
+ *
  * Tagged equipment is not allowed to be operated.
  *
  * @param sup Reference to the superclass object.
@@ -472,6 +473,7 @@ extends
 
 /**
  * Description of a problem in the field that may be reported in a trouble ticket or come from another source.
+ *
  * It may have to do with an outage.
  *
  * @param sup Reference to the superclass object.
@@ -629,6 +631,7 @@ extends
 }
 
 /**
+
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -700,6 +703,7 @@ extends
 
 /**
  * A document that can be associated with equipment to describe any sort of restrictions compared with the original manufacturer's specification or with the usual operational practice e.g. temporary maximum loadings, maximum switching current, do not operate if bus couplers are open, etc.
+ *
  * In the UK, for example, if a breaker or switch ever mal-operates, this is reported centrally and utilities use their asset systems to identify all the installed devices of the same manufacturer's type. They then apply operational restrictions in the operational systems to warn operators of potential problems. After appropriate inspection and maintenance, the operational restrictions may be removed.
  *
  * @param sup Reference to the superclass object.
@@ -853,6 +857,7 @@ extends
 
 /**
  * Document describing details of an active or planned outage in a part of the electrical network.
+ *
  * A non-planned outage may be created upon:
  *
  * @param sup Reference to the superclass object.
@@ -967,6 +972,7 @@ extends
 
 /**
  * Document containing the definition of planned outages of equipment and/or service (delivery) points (sometimes referred to as customers).
+ *
  * It is used as specification for producing switching plans.
  *
  * @param sup Reference to the superclass object.
@@ -1167,6 +1173,7 @@ extends
 
 /**
  * Summary counts of service points affected by an outage.
+ *
  * These counts are sometimes referred to as total and critical customer count.
  *
  * @param sup Reference to the superclass object.
@@ -1321,6 +1328,7 @@ extends
 /**
  * A sequence of grouped or atomic steps intended to:
  * - de-energise equipment or part of the network for safe work, and/or
+ *
  * - bring back in service previously de-energised equipment or part of the network.
  *
  * @param sup Reference to the superclass object.

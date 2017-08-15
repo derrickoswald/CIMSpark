@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Operates the Control Area.
+ *
  * Approves and implements energy transactions. Verifies both Inter-Control Area and Intra-Control Area transactions for the power system  before granting approval (and implementing) the transactions.
  *
  * @param sup Reference to the superclass object.
@@ -399,6 +400,7 @@ extends
 }
 
 /**
+
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
@@ -470,6 +472,7 @@ extends
 
 /**
  * Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.
+ *
  * Posts information for transmission paths and AvailableTransmissionCapacities  on a reservation node.  Buys and sells its products and services on the same reservation node.
  *
  * @param sup Reference to the superclass object.

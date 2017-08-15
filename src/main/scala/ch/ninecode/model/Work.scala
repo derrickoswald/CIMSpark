@@ -170,6 +170,7 @@ extends
 
 /**
  * The physical consumable supply used for work and other purposes.
+ *
  * It includes items such as nuts, bolts, brackets, glue, etc.
  *
  * @param sup Reference to the superclass object.
@@ -607,6 +608,7 @@ extends
 }
 
 /**
+
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.

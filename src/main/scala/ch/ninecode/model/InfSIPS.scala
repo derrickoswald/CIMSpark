@@ -74,6 +74,7 @@ extends
 
 /**
  * Input pin for a logical gate.
+ *
  * The condition described in the input pin will give a logical true or false. Result from measurement and calculation are converted to a true or false.
  *
  * @param sup Reference to the superclass object.
@@ -238,6 +239,7 @@ extends
 
 /**
  * Input to measurement calculation.
+ *
  * Support Analog, Discrete and Accumulator.
  *
  * @param sup Reference to the superclass object.
@@ -763,6 +765,7 @@ extends
 
 /**
  * Protective actions on non-switching equipment.
+ *
  * The operating condition is adjusted.
  *
  * @param sup Reference to the superclass object.

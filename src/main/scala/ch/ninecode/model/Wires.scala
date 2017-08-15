@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
+ *
  * For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
  *
  * @param sup Reference to the superclass object.
@@ -203,6 +204,7 @@ extends
 
 /**
  * A rotating machine whose shaft rotates asynchronously with the electrical field.
+ *
  * Also known as an induction machine with no external connection to the rotor windings, e.g squirrel-cage induction machine.
  *
  * @param sup Reference to the superclass object.
@@ -444,6 +446,7 @@ extends
 
 /**
  * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation.
+ *
  * Voltage measurements are typically obtained from VoltageTransformers that are connected to busbar sections. A bus bar section may have many physical terminals but for analysis is modelled with exactly one logical terminal.
  *
  * @param sup Reference to the superclass object.
@@ -517,6 +520,7 @@ extends
 
 /**
  * A Clamp is a galvanic connection at a line segment where other equipment is connected.
+ *
  * A Clamp does not cut the line segment.
  *
  * @param sup Reference to the superclass object.
@@ -589,6 +593,7 @@ extends
 
 /**
  * A model of a set of individual Switches normally enclosed within the same cabinet and possibly with interlocks that restrict the combination of switch positions.
+ *
  * These are typically found in medium voltage distribution networks.
  *
  * @param sup Reference to the superclass object.
@@ -784,6 +789,7 @@ extends
 
 /**
  * A cut separates a line segment into two parts.
+ *
  * The cut appears as a switch inserted between these two parts and connects them together. As the cut is normally open there is no galvanic connection between the two line segment parts. But it is possible to close the cut to get galvanic connection.
  *
  * @param sup Reference to the superclass object.
@@ -861,6 +867,7 @@ extends
 
 /**
  * A manually operated or motor operated mechanical switching device used for changing the connections in a circuit, or for isolating a circuit or equipment from a source of power.
+ *
  * It is required to open or close circuits when negligible current is broken or made.
  *
  * @param sup Reference to the superclass object.
@@ -924,6 +931,7 @@ extends
 
 /**
  * A conducting equipment used to represent a connection to ground which is typically used to compensate earth faults..
+ *
  * An earth fault compensator device modeled with a single terminal implies a second terminal solidly connected to ground.  If two terminals are modeled, the ground is not assumed and normal connection rules apply.
  *
  * @param sup Reference to the superclass object.
@@ -1513,6 +1521,7 @@ extends
 
 /**
  * A device to convert from one frequency to another (e.g., frequency F1 to F2) comprises a pair of FrequencyConverter instances.
+ *
  * One converts from F1 to DC, the other converts the DC to F2.
  *
  * @param sup Reference to the superclass object.
@@ -1600,6 +1609,7 @@ extends
 
 /**
  * An overcurrent protective device with a circuit opening fusible part that is heated and severed by the passage of overcurrent through it.
+ *
  * A fuse is considered a switching device because it breaks current.
  *
  * @param sup Reference to the superclass object.
@@ -1663,6 +1673,7 @@ extends
 
 /**
  * A point where the system is grounded used for connecting conducting equipment to ground.
+ *
  * The power system model can have any number of grounds.
  *
  * @param sup Reference to the superclass object.
@@ -1858,6 +1869,7 @@ extends
 
 /**
  * A short section of conductor with negligible impedance which can be manually removed and replaced if the circuit is de-energized.
+ *
  * Note that zero-impedance branches can potentially be modeled by other equipment types.
  *
  * @param sup Reference to the superclass object.
@@ -2872,6 +2884,7 @@ extends
 
 /**
  * Sequence impedance and admittance parameters per unit length, for transposed lines of 1, 2, or 3 phases.
+ *
  * For 1-phase lines, define x=x0=xself. For 2-phase lines, define x=xs-xm and x0=xs+xm.
  *
  * @param sup Reference to the superclass object.
@@ -3160,6 +3173,7 @@ extends
 
 /**
  * A transformer phase shifting tap model that controls the phase angle difference across the power transformer and potentially the active power flow through the power transformer.
+ *
  * This phase tap model may also impact the voltage magnitude.
  *
  * @param sup Reference to the superclass object.
@@ -3227,6 +3241,7 @@ extends
 
 /**
  * Describes the tap model for an asymmetrical phase shifting transformer in which the difference voltage vector adds to the primary side voltage.
+ *
  * The angle between the primary side voltage and the difference voltage is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
  *
  * @param sup Reference to the superclass object.
@@ -3295,6 +3310,7 @@ extends
 
 /**
  * Describes a tap changer with a linear relation between the tap step and the phase angle difference across the transformer.
+ *
  * This is a mathematical model that is an approximation of a real phase tap changer.
  *
  * @param sup Reference to the superclass object.
@@ -3375,6 +3391,7 @@ extends
 
 /**
  * The non-linear phase tap changer describes the non-linear behavior of a phase tap changer.
+ *
  * This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in the IEC 61970-301 document.
  *
  * @param sup Reference to the superclass object.
@@ -3454,6 +3471,7 @@ extends
 
 /**
  * Describes a symmetrical phase shifting transformer tap model in which the secondary side voltage magnitude is the same as at the primary side.
+ *
  * The difference voltage magnitude is the base in an equal-sided triangle where the sides corresponds to the primary and secondary voltages. The phase angle difference corresponds to the top angle and can be expressed as twice the arctangent of half the total difference voltage.
  *
  * @param sup Reference to the superclass object.
@@ -3649,6 +3667,7 @@ extends
 }
 
 /**
+
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3774,6 +3793,7 @@ extends
 
 /**
  * An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits.
+ *
  * Transformers can be used to control voltage and phase shift (active power flow).
  *
  * @param sup Reference to the superclass object.
@@ -3878,6 +3898,7 @@ extends
 
 /**
  * A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
+ *
  * The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows
  *
  * @param sup Reference to the superclass object.
@@ -4285,6 +4306,7 @@ extends
 
 /**
  * Reactive power rating envelope versus the synchronous machine's active power, in both the generating and motoring modes.
+ *
  * For each active power value there is a corresponding high and low reactive power limit  value. Typically there will be a separate curve for each coolant condition, such as hydrogen pressure.  The Y1 axis values represent reactive minimum and the Y2 axis values represent reactive maximum.
  *
  * @param sup Reference to the superclass object.
@@ -4491,6 +4513,7 @@ extends
 
 /**
  * Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.
+ *
  * Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment.
  *
  * @param sup Reference to the superclass object.
@@ -4766,6 +4789,7 @@ extends
 
 /**
  * Automatic switch that will lock open to isolate a faulted section.
+ *
  * It may, or may not, have load breaking capability. Its primary purpose is to provide fault sectionalising at locations where the fault current is either too high, or too low, for proper coordination of fuses.
  *
  * @param sup Reference to the superclass object.
@@ -4829,6 +4853,7 @@ extends
 
 /**
  * A Series Compensator is a series capacitor or reactor or an AC transmission line without charging susceptance.
+ *
  * It is a two terminal device.
  *
  * @param sup Reference to the superclass object.
@@ -4926,6 +4951,7 @@ extends
 
 /**
  * A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors.
+ *
  * A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
  *
  * @param sup Reference to the superclass object.
@@ -5128,6 +5154,7 @@ extends
 
 /**
  * A facility for providing variable and controllable shunt reactive power.
+ *
  * The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.
  *
  * @param sup Reference to the superclass object.
@@ -5222,6 +5249,7 @@ extends
 
 /**
  * A generic device designed to close, or open, or both, one or more electric circuits.
+ *
  * All switches are two terminal devices including grounding switches.
  *
  * @param sup Reference to the superclass object.
@@ -5420,6 +5448,7 @@ extends
 
 /**
  * A schedule of switch positions.
+ *
  * If RegularTimePoint.value1 is 0, the switch is open.  If 1, the switch is closed.
  *
  * @param sup Reference to the superclass object.
@@ -5487,6 +5516,7 @@ extends
 
 /**
  * An electromechanical device that operates with shaft rotating synchronously with the network.
+ *
  * It is a single machine operating either as a generator or synchronous condenser or pump.
  *
  * @param sup Reference to the superclass object.
@@ -5940,6 +5970,7 @@ extends
 }
 
 /**
+
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6089,6 +6120,7 @@ extends
 
 /**
  * The transformer core admittance.
+ *
  * Used to specify the core admittance of a transformer in a manner that can be shared among power transformers.
  *
  * @param sup Reference to the superclass object.
@@ -6177,6 +6209,7 @@ extends
 
 /**
  * A conducting connection point of a power transformer.
+ *
  * It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.
  *
  * @param sup Reference to the superclass object.
@@ -6308,6 +6341,7 @@ extends
 
 /**
  * Transformer mesh impedance (Delta-model) between transformer ends.
+ *
  * The typical case is that this class describes the impedance between two transformer ends pair-wise, i.e. the cardinalities at both tranformer end associations are 1. But in cases where two or more transformer ends are modeled the cardinalities are larger than 1.
  *
  * @param sup Reference to the superclass object.
@@ -6402,6 +6436,7 @@ extends
 
 /**
  * Transformer star impedance (Pi-model) that accurately reflects impedance for transformers with 2 or 3 windings.
+ *
  * For transformers with 4 or more windings, you must use TransformerMeshImpedance class.
  *
  * @param sup Reference to the superclass object.
@@ -6489,6 +6524,7 @@ extends
 
 /**
  * An assembly of two or more coupled windings that transform electrical power between voltage levels.
+ *
  * These windings are bound on a common core and place in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
  *
  * @param sup Reference to the superclass object.
@@ -6627,6 +6663,7 @@ extends
 
 /**
  * An area of the power system network which is defined for secondary voltage control purposes.
+ *
  * A voltage control zone consists of a collection of substations with a designated bus bar section whose voltage will be controlled.
  *
  * @param sup Reference to the superclass object.

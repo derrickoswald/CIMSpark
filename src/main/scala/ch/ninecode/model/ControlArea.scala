@@ -162,6 +162,7 @@ extends
 
 /**
  * A control area<b> </b>is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.
+ *
  * Note that any number of overlapping control area specifications can be superimposed on the physical model.
  *
  * @param sup Reference to the superclass object.
@@ -245,6 +246,7 @@ extends
 
 /**
  * A control area generating unit.
+ *
  * This class is needed so that alternate control area definitions may include the same generating unit.   Note only one instance within a control area should reference a specific generating unit.
  *
  * @param sup Reference to the superclass object.

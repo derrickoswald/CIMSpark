@@ -94,6 +94,7 @@ extends
 
 /**
  * An aggregated node can define a typed grouping further defined by the AnodeType enumeratuion.
+ *
  * Types range from System Zone/Regions to Market Energy Regions to Aggregated Loads and Aggregated Generators.
  *
  * @param sup Reference to the superclass object.
@@ -374,6 +375,7 @@ extends
 
 /**
  * Participation factors per Cnode.
+ *
  * Used to calculate "participation" of Cnode in an AggregateNode. Each Cnode associated to an AggregateNode would be assigned a participation factor for its participation within the AggregateNode.
  *
  * @param sup Reference to the superclass object.
@@ -466,6 +468,7 @@ extends
 
 /**
  * Configuration options for combined cycle units.
+ *
  * For example, a Combined Cycle with (CT1, CT2, ST1) will have (CT1, ST1) and (CT2, ST1) configurations as part of(1CT + 1STlogicalconfiguration).
  *
  * @param sup Reference to the superclass object.
@@ -629,6 +632,7 @@ extends
 
 /**
  * Logical Configuration of a Combined Cycle plant.
+ *
  * Operating Combined Cycle Plant (CCP) configurations are represented as Logical CCP Resources. Logical representation shall be used for Market applications to optimize and control Market Operations. Logical representation is also necessary for controlling the number of CCP configurations and to temper performance issues that may otherwise occur.
  *
  * @param sup Reference to the superclass object.
@@ -930,6 +934,7 @@ extends
 
 /**
  * Provides definition of Transmission Ownership Right and Existing Transmission Contract identifiers for use by SCUC.
+ *
  * RMR contract hosting: Startup lead time, Contract Service Limits, Max Service Hours, Max MWhs, Max Start-ups, Ramp Rate, Max Net Dependable Capacity, Min Capacity and Unit Substitution for DAM/RTM to retrieve;
  *
  * @param sup Reference to the superclass object.
@@ -1597,6 +1602,7 @@ extends
 
 /**
  * Forbbiden region is operating ranges where the units are unable to maintain steady operation without causing equipment damage.
+ *
  * The four attributes that define a forbidden region are the low MW, the High MW, the crossing time, and the crossing cost.
  *
  * @param sup Reference to the superclass object.
@@ -1679,6 +1685,7 @@ extends
 
 /**
  * Used to indicate former references to the same piece of equipment.
+ *
  * The ID, name, and effectivity dates are utilized.
  *
  * @param sup Reference to the superclass object.
@@ -1979,6 +1986,7 @@ extends
 
 /**
  * A HostControlArea has a set of tie points and a set of generator controls (i.e., AGC).
+ *
  * It also has a total load, including transmission and distribution losses.
  *
  * @param sup Reference to the superclass object.
@@ -2157,6 +2165,7 @@ extends
 
 /**
  * A specialized class of type AggregatedNode type.
+ *
  * Defines Load Aggregation Points.
  *
  * @param sup Reference to the superclass object.
@@ -2301,6 +2310,7 @@ extends
 
 /**
  * This is the cureve that describes the load reduction time.
+ *
  * Relationship between time (Y1-axis) vs. MW (X-axis).
  *
  * @param sup Reference to the superclass object.
@@ -2435,6 +2445,7 @@ extends
 
 /**
  * Provides a reference to the Market Power Mitigation test identifiers and methods for the results of the DA or RT markets.
+ *
  * Specific data is the test identifier (Price, Conduct, or Impact) and the test method (System MPM, Local MPM, Alternate System MPM, or Alternate Local MPM).
  *
  * @param sup Reference to the superclass object.
@@ -3017,6 +3028,7 @@ extends
 
 /**
  * A specialized class of AggregatedNode type.
+ *
  * Defines the MarketRegions. Regions could be system Market Regions, Energy Regions or Ancillary Service Regions.
  *
  * @param sup Reference to the superclass object.
@@ -3166,6 +3178,7 @@ extends
 
 /**
  * The maximum Startup costs and time as a function of down time.
+ *
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis). This is used to validate the information provided in the Bid.
  *
  * @param sup Reference to the superclass object.
@@ -3295,6 +3308,7 @@ extends
 
 /**
  * Subclass of Production: CombinedCyclePlant from IEC61970 package.
+ *
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency
  *
  * @param sup Reference to the superclass object.
@@ -3905,6 +3919,7 @@ extends
 
 /**
  * A pricing node is directly associated with a connectivity node.
+ *
  * It is a pricing location for which market participants submit their bids, offers, buy/sell CRRs, and settle.
  *
  * @param sup Reference to the superclass object.
@@ -4502,6 +4517,7 @@ extends
 
 /**
  * A specialized class of type AggregatedNode type.
+ *
  * Defines RUC Zones. A forecast region represents a collection of Nodes for which the Market operator has developed sufficient historical demand and relevant weather data to perform a demand forecast for such area. The Market Operator may further adjust this forecast to ensure that the Reliability Unit Commitment produces adequate local capacity procurement.
  *
  * @param sup Reference to the superclass object.
@@ -5476,6 +5492,7 @@ extends
 
 /**
  * This class model the various capacities of a resource.
+ *
  * A resource may have numbers of capacities related to operating, ancillary services, energy trade and so forth. The types are but not limited to:
  *
  * @param sup Reference to the superclass object.
@@ -5890,6 +5907,7 @@ extends
 
 /**
  * Market participants could be represented by Scheduling Coordinators (SCs) that are registered with the RTO/ISO.
+ *
  * One participant could register multiple SCs with the RTO/ISO. Many market participants can do business with the RTO/ISO using a single SC. One SC could schedule multiple generators. A load scheduling point could be used by multiple SCs. Each SC could schedule load at multiple scheduling points. An inter-tie scheduling point can be used by multiple SCs. Each SC can schedule interchange at multiple inter-tie scheduling points.
  *
  * @param sup Reference to the superclass object.
@@ -6129,6 +6147,7 @@ extends
 
 /**
  * The energy consumption of a generating resource to complete a start-up from the StartUpEnergyCurve.
+ *
  * Definition of the StartUpEnergyCurve includes, xvalue as the cooling time and y1value as the MW value.
  *
  * @param sup Reference to the superclass object.
@@ -6400,6 +6419,7 @@ extends
 
 /**
  * List of resources that can be substituted for within the bounds of a Contract definition.
+ *
  * This class has a precedence and a resource.
  *
  * @param sup Reference to the superclass object.
@@ -6478,6 +6498,7 @@ extends
 
 /**
  * Transmission Access Charge Area.
+ *
  * Charges assessed, on behalf of the Participating Transmission Owner, to parties who require access to the controlled grid.
  *
  * @param sup Reference to the superclass object.
@@ -6550,6 +6571,7 @@ extends
 
 /**
  * Allows chaining of TransmissionContractRights.
+ *
  * Many individual contract rights can be included in the definition of a TransmissionRightChain. A TransmissionRightChain is also defined as a TransmissionContractRight itself.
  *
  * @param sup Reference to the superclass object.

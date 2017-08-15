@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A roll up of invoice line items.
+ *
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
  *
  * @param sup Reference to the superclass object.
@@ -237,6 +238,7 @@ extends
 
 /**
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
+ *
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
  *
  * @param sup Reference to the superclass object.

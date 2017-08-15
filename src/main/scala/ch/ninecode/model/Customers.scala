@@ -110,6 +110,7 @@ extends
 
 /**
  * Assignment of a group of products and services purchased by the customer through a customer agreement, used as a mechanism for customer billing and payment.
+ *
  * It contains common information from the various types of customer agreements to create billings (invoices) for a customer and receive payment.
  *
  * @param sup Reference to the superclass object.
@@ -187,6 +188,7 @@ extends
 
 /**
  * Agreement between the customer and the service supplier to pay for service at a specific service location.
+ *
  * It records certain billing information about the type of service provided at the service location and is used during charge creation to determine the type of service.
  *
  * @param sup Reference to the superclass object.
@@ -385,6 +387,7 @@ extends
 
 /**
  * Hazardous situation associated with an incident.
+ *
  * Examples are line down, gas leak, fire, etc.
  *
  * @param sup Reference to the superclass object.
@@ -457,6 +460,7 @@ extends
 
 /**
  * Grouping of pricing components and prices used in the creation of customer charges and the eligibility criteria under which these terms may be offered to a customer.
+ *
  * The reasons for grouping include state, customer classification, site characteristics, classification (i.e. fee price structure, deposit price structure, electric service price structure, etc.) and accounting requirements.
  *
  * @param sup Reference to the superclass object.
@@ -710,6 +714,7 @@ extends
 
 /**
  * Document, approved by the responsible regulatory agency, listing the terms and conditions, including a schedule of prices, under which utility services will be provided.
+ *
  * It has a unique number within the state or province. For rate schedules it is frequently allocated by the affiliated Public utilities commission (PUC).
  *
  * @param sup Reference to the superclass object.
@@ -786,6 +791,7 @@ extends
 }
 
 /**
+
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.

@@ -155,6 +155,7 @@ extends
 
 /**
  * A BusinessPlan is an organized sequence of predetermined actions required to complete a future organizational objective.
+ *
  * It is a type of document that typically references a schedule, physical and/or logical resources (assets and/or PowerSystemResources), locations, etc.
  *
  * @param sup Reference to the superclass object.
@@ -218,6 +219,7 @@ extends
 
 /**
  * A business role that this organisation plays.
+ *
  * A single organisation typically performs many functions, each one described as a role.
  *
  * @param sup Reference to the superclass object.
@@ -290,6 +292,7 @@ extends
 
 /**
  * Craft of a person or a crew.
+ *
  * Examples include overhead electric, underground electric, high pressure gas, etc. This ensures necessary knowledge and skills before being allowed to perform certain types of work.
  *
  * @param sup Reference to the superclass object.
@@ -607,6 +610,7 @@ extends
 
 /**
  * Roles played between Organisations and other Organisations.
+ *
  * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
  *
  * @param sup Reference to the superclass object.
@@ -811,6 +815,7 @@ extends
 
 /**
  * The role of a person relative to a given piece of property.
+ *
  * Examples of roles include: owner, renter, contractor, etc.
  *
  * @param sup Reference to the superclass object.

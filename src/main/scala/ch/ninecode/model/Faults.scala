@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A fault applied at the terminal, external to the equipment.
+ *
  * This class is not used to specify faults internal to the equipment.
  *
  * @param sup Reference to the superclass object.

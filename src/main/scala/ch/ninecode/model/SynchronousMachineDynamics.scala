@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
+ *
  * The several variations differ in the following ways:
  *
  * @param sup Reference to the superclass object.
@@ -106,6 +107,7 @@ extends
  * <font color="#0f0f0f">or by definition of a user-defined model.</font>
  * <font color="#0f0f0f">
  * </font><font color="#0f0f0f"><b>Note:</b>  It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.
+ *
  * In this case a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as ordinary load.</font>
  *
  * @param sup Reference to the superclass object.
@@ -214,6 +216,7 @@ extends
  * tppdo = (xad * xfd + xad * x1d + xfd * x1d) / (2*pi*nominal frequency * r1d * (xad + xfd)
  * tpqo = (xaq + x1q) / (2*pi*nominal frequency * r1q)
  * tppqo = (xaq * x1q + xaq * x2q + x1q * x2q)/ (2*pi*nominal frequency * r2q * (xaq + x1q).
+ *
  * Are only valid for a simplified model where "Canay" reactance is zero.
  *
  * @param sup Reference to the superclass object.
@@ -333,6 +336,7 @@ extends
 
 /**
  * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance (<b>Rs</b> + <b>jXp</b>) as shown in the Simplified diagram.
+ *
  * Since internal voltage is held constant, there is no <b>Efd</b> input and any excitation system model will be ignored.  There is also no <b>Ifd</b> output.
  *
  * @param sup Reference to the superclass object.
@@ -430,6 +434,7 @@ extends
  * <li>.tpqo (T'qo)</li>
  * <li>.tppqo (T''qo)</li>
  * <li>.tc.</li>
+ *
  * </ul>
  *
  * @param sup Reference to the superclass object.

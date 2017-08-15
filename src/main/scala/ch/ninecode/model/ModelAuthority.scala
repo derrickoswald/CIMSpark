@@ -70,6 +70,7 @@ extends
 
 /**
  * A Modeling Authority Set is a group of objects in a network model where the data is supplied and maintained by the same Modeling Authority.
+ *
  * This class is typically not included in instance data exchange as this information is tracked by other mechanisms in the exchange.
  *
  * @param sup Reference to the superclass object.

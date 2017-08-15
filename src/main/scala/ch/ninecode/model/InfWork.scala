@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * A permit is sometimes needed to provide legal access to land or equipment.
+ *
  * For example, local authority permission for road works.
  *
  * @param sup Reference to the superclass object.
@@ -105,6 +106,7 @@ extends
 
 /**
  * An assignment is given to an ErpPerson, Crew, Organisation, Equipment Item, Tool, etc. and may be used to perform Work, WorkTasks, Procedures, etc.
+ *
  * TimeSchedules may be set up directly for Assignments or indirectly via the associated WorkTask. Note that these associations are all inherited through the recursive relationship on Document.
  *
  * @param sup Reference to the superclass object.
@@ -784,6 +786,7 @@ extends
 
 /**
  * Compatible unit of a consumable supply item.
+ *
  * For example, nuts, bolts, brackets, glue, etc.
  *
  * @param sup Reference to the superclass object.
@@ -1391,6 +1394,7 @@ extends
 
 /**
  * A categorization for resources, often costs, in accounting transactions.
+ *
  * Examples include: material components, building in service, coal sales, overhead, etc.
  *
  * @param sup Reference to the superclass object.
@@ -1498,6 +1502,7 @@ extends
 
 /**
  * A design for consideration by customers, potential customers, or internal work.
+ *
  * Note that the Version of design is the revision attribute that is inherited from Document.
  *
  * @param sup Reference to the superclass object.
@@ -1600,6 +1605,7 @@ extends
 
 /**
  * A logical part of the design (e.g., pole and all equipment on a pole).
+ *
  * This includes points and spans.
  *
  * @param sup Reference to the superclass object.
@@ -1819,6 +1825,7 @@ extends
 
 /**
  * Questions and answers associated with a type of document for purposes of clarification.
+ *
  * Questions may be predefined or ad hoc.
  *
  * @param sup Reference to the superclass object.
@@ -2034,6 +2041,7 @@ extends
 
 /**
  * Various cost items that are not associated with compatible units.
+ *
  * Examples include rental equipment, labor, materials, contractor costs, permits - anything not covered in a CU.
  *
  * @param sup Reference to the superclass object.
@@ -2490,6 +2498,7 @@ extends
 
 /**
  * A collection of related work.
+ *
  * For construction projects and maintenance projects, multiple phases may be performed.
  *
  * @param sup Reference to the superclass object.
@@ -2760,6 +2769,7 @@ extends
 
 /**
  * Special requirements and/or regulations may pertain to certain types of assets or work.
+ *
  * For example, fire protection and scaffolding.
  *
  * @param sup Reference to the superclass object.
@@ -2928,6 +2938,7 @@ extends
 
 /**
  * Documentation for a generic material item that may be used for design, work and other purposes.
+ *
  * Any number of MaterialItems manufactured by various vendors may be used to perform this TypeMaterial.
  *
  * @param sup Reference to the superclass object.
@@ -3021,6 +3032,7 @@ extends
 
 /**
  * The way material and assets are used to perform a certain type of work task.
+ *
  * The way is described in text in the inheritied description attribute.
  *
  * @param sup Reference to the superclass object.
@@ -3230,6 +3242,7 @@ extends
 
 /**
  * A roll up by cost type for the entire cost of a work order.
+ *
  * For example, total labor.
  *
  * @param sup Reference to the superclass object.
@@ -3307,6 +3320,7 @@ extends
 
 /**
  * Shadow class for Document, to isolate subclassing from this package.
+ *
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
  *
  * @param sup Reference to the superclass object.
@@ -3466,6 +3480,7 @@ extends
 
 /**
  * Shadow class for IdentifiedObject, to isolate subclassing from this package.
+ *
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
  *
  * @param sup Reference to the superclass object.

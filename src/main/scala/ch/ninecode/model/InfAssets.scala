@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * An Asset Property that is described through curves rather than as a data point.
+ *
  * The relationship is to be defined between an independent variable (X-axis) and one or two dependent variables (Y1-axis and Y2-axis).
  *
  * @param sup Reference to the superclass object.
@@ -200,6 +201,7 @@ extends
 
 /**
  * Bushing insulation power factor condition as a result of a test.
+ *
  * Typical status values are: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
  *
  * @param sup Reference to the superclass object.
@@ -378,6 +380,7 @@ extends
 
 /**
  * There are often stages of power which are associated with stages of cooling.
+ *
  * For instance, a transformer may be rated 121kV on the primary, 15kV on the secondary and 4kV on the tertiary winding. These are voltage ratings and the power ratings are generally the same for all three windings and independent of the voltage ratings, there are instances where the tertiary may have a lower power rating.
  *
  * @param sup Reference to the superclass object.
@@ -477,6 +480,7 @@ extends
 
 /**
  * As applicable, the basic linear, area, or volume dimensions of an asset, asset type (AssetModel) or other type of object (such as land area).
+ *
  * Units and multipliers are specified per dimension.
  *
  * @param sup Reference to the superclass object.
@@ -936,6 +940,7 @@ extends
 
 /**
  * Various current financial properties associated with a particular asset.
+ *
  * Historical properties may be determined by ActivityRecords associated with the asset.
  *
  * @param sup Reference to the superclass object.
@@ -1185,6 +1190,7 @@ extends
 
 /**
  * Joint connects two or more cables.
+ *
  * It includes the portion of cable under wipes, welds, or other seals.
  *
  * @param sup Reference to the superclass object.
@@ -1699,6 +1705,7 @@ extends
 
 /**
  * Specification can be used for various purposes relative to an asset, a logical device (PowerSystemResource), location, etc.
+ *
  * Examples include documents supplied by manufacturers such as asset installation instructions, asset maintenance instructions, etc.
  *
  * @param sup Reference to the superclass object.
@@ -1878,6 +1885,7 @@ extends
 
 /**
  * Construction holding assets such as conductors, transformers, switchgear, etc.
+ *
  * Where applicable, number of conductors can be derived from the number of associated wire spacing instances.
  *
  * @param sup Reference to the superclass object.
@@ -2111,6 +2119,7 @@ extends
 
 /**
  * Tower asset.
+ *
  * Dimensions of the Tower are specified in associated DimensionsInfo class.
  *
  * @param sup Reference to the superclass object.
@@ -2195,6 +2204,7 @@ extends
 
 /**
  * Common information captured during transformer inspections and/or diagnostics.
+ *
  * Note that some properties may be measured through other means and therefore have measurement values in addition to the observed values recorded here.
  *
  * @param sup Reference to the superclass object.

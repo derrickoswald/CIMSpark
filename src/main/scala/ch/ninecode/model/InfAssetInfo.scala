@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
+ *
  * Each catalogue item is for a specific product (AssetModel) available from a specific supplier.
  *
  * @param sup Reference to the superclass object.
@@ -74,6 +75,7 @@ extends
 
 /**
  * Provides pricing and other relevant information about a specific manufacturer's product (i.e., AssetModel), and its price from a given supplier.
+ *
  * A single AssetModel may be availble from multiple suppliers. Note that manufacturer and supplier are both types of organisation, which the association is inherited from Document.
  *
  * @param sup Reference to the superclass object.
@@ -621,6 +623,7 @@ extends
 }
 
 /**
+
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
@@ -694,6 +697,7 @@ extends
 }
 
 /**
+
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */

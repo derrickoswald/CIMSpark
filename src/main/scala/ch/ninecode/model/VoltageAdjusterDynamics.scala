@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
+ *
  * Reference: IEEE Standard 421.5-2005 Section 11.1.
  *
  * @param sup Reference to the superclass object.

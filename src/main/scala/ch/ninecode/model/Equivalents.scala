@@ -163,6 +163,7 @@ extends
 
 /**
  * The class represents equivalent objects that are the result of a network reduction.
+ *
  * The class is the base for equivalent objects of different types.
  *
  * @param sup Reference to the superclass object.
@@ -230,6 +231,7 @@ extends
 
 /**
  * This class represents equivalent injections (generation or load).
+ *
  * Voltage regulation is allowed only at the point of connection.
  *
  * @param sup Reference to the superclass object.
@@ -383,6 +385,7 @@ extends
 
 /**
  * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
+ *
  * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
  *
  * @param sup Reference to the superclass object.

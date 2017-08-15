@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
+ *
  * Irated is the rated machine excitation current (calculated from nameplate conditions: V<sub>nom</sub>, P<sub>nom</sub>, CosPhi<sub>nom</sub>).
  *
  * @param sup Reference to the superclass object.
@@ -94,6 +95,7 @@ extends
 
 /**
  * The over excitation limiter model is intended to represent the significant features of OELs necessary for some large-scale system studies.
+ *
  * It is the result of a pragmatic approach to obtain a model that can be widely applied with attainable data from generator owners. An attempt to include all variations in the functionality of OELs and duplicate how they interact with the rest of the excitation systems would likely result in a level of application insufficient for the studies for which they are intended.
  *
  * @param sup Reference to the superclass object.

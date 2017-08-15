@@ -85,6 +85,7 @@ extends
 
 /**
  * Tangible resource of the utility, including power system equipment, various end devices, cabinets, buildings, etc.
+ *
  * For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.
  *
  * @param sup Reference to the superclass object.
@@ -415,6 +416,7 @@ extends
  * Set of attributes of an asset, representing typical datasheet information of a physical device that can be instantiated and shared in different data exchange contexts:
  * - as attributes of an asset instance (installed or in stock)
  * - as attributes of an asset model (product by a manufacturer)
+ *
  * - as attributes of a type asset (generic type of an asset as used in designs/extension planning).
  *
  * @param sup Reference to the superclass object.
@@ -482,6 +484,7 @@ extends
 
 /**
  * Potential hazard related to the location of an asset.
+ *
  * Examples are trees growing under overhead power lines, a park being located by a substation (i.e., children climb fence to recover a ball), a lake near an overhead distribution line (fishing pole/line contacting power lines), dangerous neighbour, etc.
  *
  * @param sup Reference to the superclass object.
@@ -549,6 +552,7 @@ extends
 
 /**
  * Model of an asset, either a product of a specific manufacturer or a generic asset model or material item.
+ *
  * Datasheet characteristics are available through the associated AssetInfo subclass and can be shared with asset or power system resource instances.
  *
  * @param sup Reference to the superclass object.
@@ -1174,6 +1178,7 @@ extends
 
 /**
  * A data set recorded each time a procedure is executed.
+ *
  * Observed results are captured in associated measurement values and/or values for properties relevant to the type of procedure performed.
  *
  * @param sup Reference to the superclass object.

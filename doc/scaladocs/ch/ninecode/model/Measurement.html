@@ -12,7 +12,7 @@
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
-      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
@@ -51,8 +51,7 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A Measurement represents any measured, calculated or non-measured non-calculated quantity.
-Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A Measurement represents any measured, calculated or non-measured non-calculated quantity.</p><p>Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">measurementType</dt><dd class="cmt"><p>Specifies the type of measurement.
        For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.</p></dd><dt class="param">phases</dt><dd class="cmt"><p>Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
        The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.</p></dd><dt class="param">unitMultiplier</dt><dd class="cmt"><p>The unit multiplier of the measured quantity.</p></dd><dt class="param">unitSymbol</dt><dd class="cmt"><p>The unit of measure of the measured quantity.</p></dd><dt class="param">Asset</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">PowerSystemResource</dt><dd class="cmt"><p>The power system resource that contains the measurement.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p>One or more measurements may be associated with a terminal in the network.</p></dd></dl><div class="toggleContainer block">

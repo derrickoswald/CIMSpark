@@ -104,6 +104,7 @@ extends
 
 /**
  * An electrical device designed to respond to input conditions in a prescribed manner and after specified conditions are met to cause contact operation or similar abrupt change in associated electric control circuits, or simply to display the detected condition.
+ *
  * Protection equipment are associated with conducting equipment and usually operate circuit breakers.
  *
  * @param sup Reference to the superclass object.
@@ -282,6 +283,7 @@ extends
 
 /**
  * A device that operates when two AC circuits are within the desired limits of frequency, phase angle, and voltage, to permit or to cause the paralleling of these two circuits.
+ *
  * Used to prevent the paralleling of non-synchronous topological islands.
  *
  * @param sup Reference to the superclass object.

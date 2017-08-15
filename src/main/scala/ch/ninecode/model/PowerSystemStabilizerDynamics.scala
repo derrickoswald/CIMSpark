@@ -227,6 +227,7 @@ extends
 
 /**
  * Single input power system stabilizer.
+ *
  * It is a modified version in order to allow representation of various vendors' implementations on PSS type 1A.
  *
  * @param sup Reference to the superclass object.
@@ -401,6 +402,7 @@ extends
 
 /**
  * Modified IEEE PSS2B Model.
+ *
  * Extra lead/lag (or rate) block added at end (up to 4 lead/lags total).
  *
  * @param sup Reference to the superclass object.
@@ -1098,6 +1100,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type PSS1A power system stabilizer model.
+ *
  * PSS1A is the generalized form of a PSS with a single input. Some common stabilizer input signals are speed, frequency, and power.
  *
  * @param sup Reference to the superclass object.
@@ -1232,6 +1235,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
+ *
  * This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
  *
  * @param sup Reference to the superclass object.
@@ -1456,6 +1460,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type PSS3B power system stabilizer model.
+ *
  * The PSS model PSS3B has dual inputs of electrical power and rotor angular frequency deviation. The signals are used to derive an equivalent mechanical power signal.
  *
  * @param sup Reference to the superclass object.
@@ -1632,6 +1637,7 @@ extends
 
 /**
  * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
+ *
  * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta-omega (speed input) PSS.
  *
  * @param sup Reference to the superclass object.

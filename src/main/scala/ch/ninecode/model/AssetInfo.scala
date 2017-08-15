@@ -276,6 +276,7 @@ extends
 
 /**
  * No-load test results determine core admittance parameters.
+ *
  * They include exciting current and core loss measurements from applying voltage to one winding. The excitation may be positive sequence or zero sequence. The test may be repeated at different voltages to measure saturation.
  *
  * @param sup Reference to the superclass object.
@@ -368,6 +369,7 @@ extends
 
 /**
  * Open-circuit test results verify winding turn ratios and phase shifts.
+ *
  * They include induced voltage and phase shift measurements on open-circuit windings, with voltage applied to the energised end. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence.
  *
  * @param sup Reference to the superclass object.
@@ -589,6 +591,7 @@ extends
 
 /**
  * Short-circuit test results determine mesh impedance parameters.
+ *
  * They include load losses and leakage impedances. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence. There shall be at least one grounded winding.
  *
  * @param sup Reference to the superclass object.
@@ -1556,6 +1559,7 @@ extends
 
 /**
  * Wire spacing data that associates multiple wire positions with the line segment, and allows to calculate line segment impedances.
+ *
  * Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
  *
  * @param sup Reference to the superclass object.

@@ -8,6 +8,7 @@ import ch.ninecode.cim.Parseable
 
 /**
  * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
+ *
  * A CRR is a financial concept that is used to hedge congestion charges.
  *
  * @param sup Reference to the superclass object.
@@ -187,6 +188,7 @@ extends
 
 /**
  * CRRSegment represents a segment of a CRR in a particular time frame.
+ *
  * The segment class contains CRR kind, type, quantity, hedger type, time of use flag, and segment period.
  *
  * @param sup Reference to the superclass object.
