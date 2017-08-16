@@ -3,11 +3,11 @@ package ch.ninecode.cim
 import java.io.File
 
 import scala.util.Random
-
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapreduce.lib.input.FileSplit
 import org.apache.hadoop.mapreduce.{Counter, TaskAttemptContext}
+import org.apache.hadoop.io.RawComparator
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.{Row, SparkSession}
@@ -231,6 +231,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
         def getProgress: Float = ???
         def getStatus: String = ???
         def setStatus(x$1: String): Unit = ???
+        def getCombinerKeyGroupingComparator: RawComparator[_] = ???
     }
 
     test ("Read beyond 2GB")
